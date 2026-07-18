@@ -1,0 +1,15 @@
+{
+  "name": "산업기사 통합 CBT",
+  "short_name": "통합 CBT",
+  "description": "공조냉동기계·산업안전·에너지관리·설비보전산업기사 기출문제 학습과 모의시험",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#0b63ce",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

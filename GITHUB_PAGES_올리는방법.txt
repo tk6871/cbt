@@ -1,0 +1,56 @@
+[GitHub Pages 호스팅 방법 - GitHub Desktop 권장]
+
+현재 공유본은 약 56.6MB, 4,085개 파일입니다.
+GitHub 웹사이트의 파일 업로드는 한 번에 100개까지만 가능하므로 GitHub Desktop을 사용하는 것이 편합니다.
+
+1. GitHub 계정 준비
+   https://github.com/ 에 가입하거나 로그인합니다.
+
+2. GitHub Desktop 설치
+   https://desktop.github.com/ 에서 Windows용을 설치한 다음 GitHub 계정으로 로그인합니다.
+
+3. 공유본 폴더를 저장소로 추가
+   GitHub Desktop에서 File > Add local repository > Choose를 누릅니다.
+   아래 폴더를 선택합니다.
+   C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본
+
+   "Git 저장소가 아닙니다"라는 안내가 나오면 Create a repository here를 누릅니다.
+   Git ignore는 None, License는 None으로 두면 됩니다.
+
+4. 첫 저장
+   왼쪽 아래 Summary에 "통합 산업기사 CBT 최초 등록"을 입력하고 Commit to main을 누릅니다.
+
+5. GitHub에 게시
+   상단 Publish repository를 누릅니다.
+   Name은 영문으로 industrial-cbt를 권장합니다.
+   GitHub 무료 계정에서 Pages를 사용하려면 Keep this code private 체크를 해제하여 공개 저장소로 만듭니다.
+   Publish repository를 눌러 업로드가 끝날 때까지 기다립니다.
+
+6. GitHub Pages 켜기
+   GitHub Desktop에서 Repository > View on GitHub를 누릅니다.
+   저장소 웹페이지에서 Settings > 왼쪽 Pages로 이동합니다.
+   Build and deployment의 Source를 Deploy from a branch로 선택합니다.
+   Branch는 main, 폴더는 /(root)를 선택하고 Save를 누릅니다.
+
+7. 홈페이지 접속
+   보통 1~10분 뒤 아래 주소로 열립니다.
+   https://본인아이디.github.io/industrial-cbt/
+
+   Settings > Pages에 표시되는 Visit site 버튼으로도 접속할 수 있습니다.
+
+8. 휴대폰·태블릿에서 사용
+   위 주소를 휴대폰 브라우저로 연 뒤 홈 화면에 추가를 선택하면 앱처럼 실행할 수 있습니다.
+   최초 접속 때 필요한 자료를 불러오며, 이후 본 문제와 이미지는 오프라인 캐시에 차례로 저장됩니다.
+
+[나중에 내용 업데이트하기]
+1. 이 공유본 폴더의 파일을 수정합니다.
+2. GitHub Desktop을 엽니다.
+3. Summary에 변경 내용을 적고 Commit to main을 누릅니다.
+4. 상단 Push origin을 누릅니다.
+5. 잠시 후 홈페이지에 자동 반영됩니다.
+
+[중요]
+- 저장소 최상단에 index.html이 보여야 합니다.
+- 통합_산업기사_CBT_반응형공유본 폴더 자체를 한 단계 더 감싸서 올리면 안 됩니다.
+- data와 assets 폴더를 빠뜨리면 문제나 이미지가 보이지 않습니다.
+- 업데이트 직후 예전 화면이 보이면 브라우저를 새로고침하거나 사이트 데이터를 한 번 지우면 됩니다.
