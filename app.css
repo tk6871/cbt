@@ -219,6 +219,8 @@ th:first-child, td:first-child { text-align: left; }
 .learning-toolbar > span { flex:1; color:var(--muted); font-size:.72rem; text-align:center; }
 .learning-toolbar select { margin-left: 8px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); }
 .learning-toolbar button { padding: 8px 10px; border-radius: 7px; background: var(--primary-soft); color: var(--primary); font-size: .74rem; }
+.learning-toolbar-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
+.learning-toolbar .learning-reset-button { background:color-mix(in srgb, var(--red) 12%, transparent); color:var(--red); }
 .learning-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:13px; align-items:start; }
 .question-card { padding: 25px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
 .question-meta { display: flex; justify-content: space-between; color: var(--primary); font-size: .72rem; font-weight: 700; }
@@ -244,6 +246,7 @@ th:first-child, td:first-child { text-align: left; }
 .explanation.wrong { border-color: var(--red); background: color-mix(in srgb, var(--red) 9%, var(--surface)); }
 .explanation p { margin: 8px 0 0; font-size: .82rem; line-height: 1.7; }
 .explanation small { display: block; margin-top: 10px; color: var(--muted); }
+.ai-explanation-badge { display: inline-flex; margin: 0 0 0 9px; padding: 3px 8px; border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--primary) 10%, var(--surface)); color: var(--primary); font-size: .65rem; font-weight: 800; vertical-align: 1px; }
 .source-details { margin-top: 14px; color: var(--muted); font-size: .73rem; }
 .source-details img { display: block; margin-top: 10px; border: 1px solid var(--line); border-radius: 8px; }
 .pagination { margin: 20px 0; display: flex; align-items: center; justify-content: center; gap: 18px; }
