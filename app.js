@@ -31,7 +31,8 @@
   let store = loadStore();
   let state = {
     space: 'industrial', view: 'home', qualification: 'all', year: 'all', roundSearch: '', searchQuery: '',
-    session: null, result: null, modal: null, examSheetOpen: false, focusSidebarOpen: false, wrongFilter: 'all', updateReady: false
+    session: null, result: null, modal: null, examSheetOpen: false, focusSidebarOpen: false, mobileSidebarOpen: false,
+    wrongFilter: 'all', updateReady: false
   };
   let timerHandle = null;
   let toastHandle = null;
@@ -343,8 +344,15 @@
     const stats = overallStats();
     const focused = !!state.session;
     const jewelry = state.space === 'jewelry';
-    app.innerHTML = `<div class="app-shell ${jewelry ? 'space-jewelry' : 'space-industrial'} ${focused ? `session-shell ${state.focusSidebarOpen ? 'sidebar-open' : 'sidebar-collapsed'}` : ''}">
+    const sidebarOpen = focused ? state.focusSidebarOpen : state.mobileSidebarOpen;
+    const sidebarToggleAction = focused ? 'toggle-session-sidebar' : 'toggle-mobile-sidebar';
+    const spaceTarget = jewelry ? 'industrial' : 'jewelry';
+    const spaceShortLabel = jewelry ? '산업' : '보석';
+    const spaceLabel = jewelry ? '산업기사' : '보석관';
+    const spaceMoveLabel = jewelry ? '산업기사 CBT로 이동' : '보석관으로 이동';
+    app.innerHTML = `<div class="app-shell ${jewelry ? 'space-jewelry' : 'space-industrial'} ${focused ? `session-shell ${state.focusSidebarOpen ? 'sidebar-open' : 'sidebar-collapsed'}` : (state.mobileSidebarOpen ? 'sidebar-open' : '')}">
       <aside class="sidebar">
+        <button class="sidebar-close" data-action="${sidebarToggleAction}" aria-label="메뉴 닫기">×</button>
         <button class="brand" data-action="nav" data-view="home"><span class="brand-mark">${jewelry ? 'GEM' : 'CBT'}</span><span><strong>${jewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT'}</strong><small>${jewelry ? 'JEWELRY STUDY' : 'OFFLINE STUDY'}</small></span></button>
         <nav class="side-nav">
           ${navButton('home', '⌂', '첫 화면')}${navButton('rounds', '▤', '기출 회차')}${navButton('wrong', '!', '오답·북마크')}${navButton('search', '⌕', '문제 검색')}${navButton('stats', '▥', '학습 통계')}${navButton('updates', '◷', '패치노트')}
@@ -353,11 +361,11 @@
         <div class="side-foot"><span>전체 학습 범위</span><strong>${stats.coverage}% 완료</strong></div>
       </aside>
       <main class="main">
-        <header class="topbar">${focused ? `<button class="session-back-button" data-action="leave-session" aria-label="회차 목록으로 돌아가기">←</button><button class="session-menu-toggle" data-action="toggle-session-sidebar" aria-label="메뉴 열기 또는 닫기">${state.focusSidebarOpen ? '×' : '☰'}</button>` : ''}<div class="topbar-copy"><strong>${esc(title)}</strong><span>${esc(subtitle || '원하는 종목과 회차를 선택하세요.')}</span></div><div class="top-actions"><button class="icon-button space-icon-button" data-action="switch-space" data-space="${jewelry ? 'industrial' : 'jewelry'}" title="${jewelry ? '산업기사 CBT로 돌아가기' : '보석·귀금속 학습관'}">${jewelry ? 'CBT' : '◇'}</button><button class="icon-button" data-action="open-search" title="검색">⌕</button><button class="icon-button" data-action="open-settings" title="설정">⚙</button></div></header>
+        <header class="topbar">${focused ? `<button class="session-back-button" data-action="leave-session" aria-label="회차 목록으로 돌아가기">←</button><button class="session-menu-toggle" data-action="toggle-session-sidebar" aria-label="메뉴 열기 또는 닫기">${state.focusSidebarOpen ? '×' : '☰'}</button>` : `<button class="mobile-menu-toggle" data-action="toggle-mobile-sidebar" aria-label="전체 메뉴 열기"><span aria-hidden="true">☰</span><span>메뉴</span></button>`}<div class="topbar-copy"><strong>${esc(title)}</strong><span>${esc(subtitle || '원하는 종목과 회차를 선택하세요.')}</span></div><div class="top-actions"><button class="icon-button space-icon-button" data-action="switch-space" data-space="${spaceTarget}" aria-label="${jewelry ? '산업기사 CBT로 돌아가기' : '보석·귀금속 학습관 열기'}" title="${jewelry ? '산업기사 CBT로 돌아가기' : '보석·귀금속 학습관'}"><span aria-hidden="true">${jewelry ? 'CBT' : '◇'}</span><span class="space-icon-label">${spaceLabel}</span></button><button class="icon-button top-search-button" data-action="open-search" title="검색">⌕</button><button class="icon-button" data-action="open-settings" title="설정">⚙</button></div></header>
         <section class="content">${content}</section>
       </main>
-      <nav class="mobile-nav">${navButton('home', '⌂', '홈')}${navButton('rounds', '▤', '회차')}${navButton('wrong', '!', '오답')}${navButton('search', '⌕', '검색')}${navButton('stats', '▥', '통계')}${navButton('updates', '◷', '패치')}</nav>
-      ${focused && state.focusSidebarOpen ? '<button class="session-sidebar-backdrop" data-action="toggle-session-sidebar" aria-label="메뉴 닫기"></button>' : ''}
+      <nav class="mobile-nav">${navButton('home', '⌂', '홈')}${navButton('rounds', '▤', '회차')}${navButton('wrong', '!', '오답')}${navButton('search', '⌕', '검색')}${navButton('stats', '▥', '통계')}<button class="nav-button mobile-space-switch" data-action="switch-space" data-space="${spaceTarget}" aria-label="${spaceMoveLabel}"><span>${jewelry ? 'CBT' : '◇'}</span><span>${spaceShortLabel}</span></button>${navButton('updates', '◷', '패치')}</nav>
+      ${sidebarOpen ? `<button class="session-sidebar-backdrop" data-action="${sidebarToggleAction}" aria-label="메뉴 닫기"></button>` : ''}
     </div>${renderModal()}`;
     bindFocusable();
   }
@@ -901,16 +909,21 @@
     // the backdrop itself as a request to close; inner controls must keep working.
     if (button.dataset.action === 'close-modal' && button.classList?.contains('modal-backdrop') && event.target !== button) return;
     const action = button.dataset.action;
-    if (action === 'nav') { state.modal = null; state.view = button.dataset.view; route(); }
+    if (action === 'nav') {
+      state.modal = null; state.mobileSidebarOpen = false; state.focusSidebarOpen = false;
+      state.view = button.dataset.view; route();
+    }
     else if (action === 'switch-space') {
       if (state.session?.mode === 'exam' && !confirm('현재 시험을 종료하고 다른 학습관으로 이동할까요?')) return;
       clearInterval(timerHandle);
       state.space = button.dataset.space === 'jewelry' ? 'jewelry' : 'industrial';
       state.view = 'home'; state.qualification = 'all'; state.year = 'all'; state.roundSearch = ''; state.searchQuery = '';
       state.session = null; state.result = null; state.modal = null; state.wrongFilter = 'all';
+      state.mobileSidebarOpen = false; state.focusSidebarOpen = false;
       renderHome(); scrollTo(0, 0);
     }
     else if (action === 'toggle-session-sidebar') { state.focusSidebarOpen = !state.focusSidebarOpen; renderSession(); }
+    else if (action === 'toggle-mobile-sidebar') { state.mobileSidebarOpen = !state.mobileSidebarOpen; route(); }
     else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; renderRounds(); }
     else if (action === 'open-mode') { state.modal = { type: 'mode', roundId: button.dataset.round }; route(); }
     else if (action === 'start-mode') startRound(button.dataset.round, button.dataset.mode);
