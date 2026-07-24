@@ -277,7 +277,7 @@
     const visible = s.questions.slice(start, start + s.pageSize);
     const answered = Object.keys(s.answers).length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
-      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><button data-action="open-jump">문제 번호로 이동</button></div>
+      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
       <div class="learning-list">${visible.map((question) => renderLearningQuestion(question)).join('')}</div>
       <div class="pagination"><button data-action="session-prev" ${s.page === 0 ? 'disabled' : ''}>‹ 이전</button><span>${s.page + 1} / ${pages}</span><button data-action="session-next" ${s.page >= pages - 1 ? 'disabled' : ''}>다음 ›</button></div>
       <div class="learning-finish"><button class="primary-button" data-action="finish-session">학습 결과 보기</button></div>`, '문제 풀이', `${s.round.shortQualification || ''} · 학습모드`);
@@ -296,8 +296,9 @@
   }
   function renderExplanation(question, selected) {
     const correct = selected === question.answer;
+    const explanationBadge = question.explanationType === 'ai-reference' ? '<span class="ai-explanation-badge">AI 참고 해설 · 쉽게 풀어보기</span>' : '';
     const explanation = question.explanationHtml || (question.explanation ? esc(question.explanation).replaceAll('\n', '<br>') : '등록된 해설이 없습니다. 정답과 보기를 비교해 복습하세요.');
-    return `<div class="explanation ${correct ? 'correct' : 'wrong'}"><strong>${correct ? '정답입니다' : `오답입니다 · 정답 ${CIRCLES[question.answer - 1]}`}</strong><p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>`;
+    return `<div class="explanation ${correct ? 'correct' : 'wrong'}"><strong>${correct ? '정답입니다' : `오답입니다 · 정답 ${CIRCLES[question.answer - 1]}`}</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>`;
   }
   function renderImages(images, alt) {
     return (images || []).length ? `<div class="question-images">${images.map((src) => `<img src="${esc(src)}" alt="${alt}" loading="lazy">`).join('')}</div>` : '';
@@ -468,6 +469,18 @@
     else if (action === 'start-single') { const item = findQuestion(button.dataset.id); if (item) startCollection([item], '선택 문제 풀이'); }
     else if (action === 'session-prev') { state.session.page--; renderSession(); scrollTo(0, 0); }
     else if (action === 'session-next') { state.session.page++; renderSession(); scrollTo(0, 0); }
+    else if (action === 'reset-learning-session' && state.session?.mode === 'learn' && confirm('현재 회차에서 선택한 답과 진행 위치를 모두 초기화할까요? 오답노트와 북마크는 유지됩니다.')) {
+      const s = state.session;
+      s.answers = {};
+      s.revealed = {};
+      s.review = {};
+      s.page = 0;
+      if (!s.transient) delete store.progress[s.round.id];
+      saveStore();
+      renderSession();
+      scrollTo(0, 0);
+      toast('현재 풀이를 처음 상태로 초기화했습니다.');
+    }
     else if (action === 'open-jump') renderJumpModal();
     else if (action === 'jump-question') jumpQuestion(Number(button.dataset.number));
     else if (action === 'toggle-review') {
