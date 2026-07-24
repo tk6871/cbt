@@ -544,5 +544,20 @@
   app.addEventListener('input', inputHandler);
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system'); bindFocusable(); route();
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    const hadServiceWorker = !!navigator.serviceWorker.controller;
+    let updateReloading = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!hadServiceWorker || updateReloading) return;
+      if (state.session) {
+        toast('새 버전이 준비됐습니다. 풀이를 마친 뒤 다시 접속하면 적용됩니다.');
+        return;
+      }
+      updateReloading = true;
+      location.reload();
+    });
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' })
+      .then((registration) => registration.update())
+      .catch(() => {});
+  }
 })();
