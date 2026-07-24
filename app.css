@@ -240,6 +240,8 @@ th:first-child, td:first-child { text-align: left; }
 .session-status { text-align: right; }.session-status strong, .session-status span { display: block; }
 .learning-toolbar { margin:12px 0; padding:10px 14px; border:1px solid var(--line); border-radius:11px; background:var(--surface); display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
 .learning-toolbar label { color: var(--muted); font-size: .75rem; }
+.learning-subject-select { min-width: min(100%, 310px); }
+.learning-subject-select select { min-width: 230px; color: var(--text); }
 .learning-toolbar > span { flex:1; color:var(--muted); font-size:.72rem; text-align:center; }
 .learning-toolbar select { margin-left: 8px; padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--bg); }
 .learning-toolbar button { padding: 8px 10px; border-radius: 7px; background: var(--primary-soft); color: var(--primary); font-size: .74rem; }
@@ -270,6 +272,9 @@ th:first-child, td:first-child { text-align: left; }
 .image-answer-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .image-answer-list .choice { grid-template-columns: auto 1fr; justify-content: center; text-align: center; font-weight: 700; }
 .answer-guide { color: var(--muted); font-size: .72rem; }
+.answer-rate-badge { margin-top:10px; padding:9px 11px; border:1px solid color-mix(in srgb,var(--primary) 28%,var(--line)); border-radius:8px; background:var(--primary-soft); display:flex; align-items:center; gap:8px; color:var(--muted); font-size:.7rem; }
+.answer-rate-badge strong { color:var(--primary); font-size:.92rem; }
+.answer-rate-badge small { margin-left:auto; padding:3px 6px; border-radius:5px; background:var(--surface); color:var(--text); font-weight:750; }
 .explanation { margin-top: 16px; padding: 17px; border-radius: 11px; border-left: 4px solid #29a97a; background: color-mix(in srgb, #2bb881 11%, var(--surface)); }
 .explanation.wrong { border-color: var(--red); background: color-mix(in srgb, var(--red) 9%, var(--surface)); }
 .retry-explanation p { color:var(--muted); }
