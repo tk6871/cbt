@@ -14,6 +14,7 @@
   const STORAGE_KEY = 'unified-industrial-cbt-v1';
   const THEME_KEY = 'unified-cbt-theme';
   const CIRCLES = ['①', '②', '③', '④'];
+  const CHANGELOG = window.CBT_CHANGELOG || { currentVersion: '', entries: [] };
   const app = document.getElementById('app');
   const toastNode = document.getElementById('toast');
 
@@ -129,7 +130,7 @@
       <aside class="sidebar">
         <button class="brand" data-action="nav" data-view="home"><span class="brand-mark">CBT</span><span><strong>산업기사 통합 CBT</strong><small>OFFLINE STUDY</small></span></button>
         <nav class="side-nav">
-          ${navButton('home', '⌂', '첫 화면')}${navButton('rounds', '▤', '기출 회차')}${navButton('wrong', '!', '오답·북마크')}${navButton('search', '⌕', '문제 검색')}${navButton('stats', '▥', '학습 통계')}
+          ${navButton('home', '⌂', '첫 화면')}${navButton('rounds', '▤', '기출 회차')}${navButton('wrong', '!', '오답·북마크')}${navButton('search', '⌕', '문제 검색')}${navButton('stats', '▥', '학습 통계')}${navButton('updates', '◷', '패치노트')}
         </nav>
         <div class="side-foot"><span>전체 학습 범위</span><strong>${stats.coverage}% 완료</strong></div>
       </aside>
@@ -137,7 +138,7 @@
         <header class="topbar">${focused ? `<button class="session-back-button" data-action="leave-session" aria-label="회차 목록으로 돌아가기">←</button><button class="session-menu-toggle" data-action="toggle-session-sidebar" aria-label="메뉴 열기 또는 닫기">${state.focusSidebarOpen ? '×' : '☰'}</button>` : ''}<div class="topbar-copy"><strong>${esc(title)}</strong><span>${esc(subtitle || '원하는 종목과 회차를 선택하세요.')}</span></div><div class="top-actions"><button class="icon-button" data-action="open-search" title="검색">⌕</button><button class="icon-button" data-action="open-settings" title="설정">⚙</button></div></header>
         <section class="content">${content}</section>
       </main>
-      <nav class="mobile-nav">${navButton('home', '⌂', '홈')}${navButton('rounds', '▤', '회차')}${navButton('wrong', '!', '오답')}${navButton('search', '⌕', '검색')}${navButton('stats', '▥', '통계')}</nav>
+      <nav class="mobile-nav">${navButton('home', '⌂', '홈')}${navButton('rounds', '▤', '회차')}${navButton('wrong', '!', '오답')}${navButton('search', '⌕', '검색')}${navButton('stats', '▥', '통계')}${navButton('updates', '◷', '패치')}</nav>
       ${focused && state.focusSidebarOpen ? '<button class="session-sidebar-backdrop" data-action="toggle-session-sidebar" aria-label="메뉴 닫기"></button>' : ''}
     </div>${renderModal()}`;
     bindFocusable();
@@ -218,6 +219,20 @@
       return `<tr><th>${esc(item.name)}</th><td>${ids.length.toLocaleString()}</td><td>${answered.toLocaleString()}</td><td>${answered ? Math.round(correct / answered * 100) : 0}%</td></tr>`;
     }).join('');
     shell(`<div class="stat-cards"><article><span>학습한 문제</span><strong>${stats.answered.toLocaleString()}</strong><small>/ ${stats.total.toLocaleString()}</small></article><article><span>정답률</span><strong>${stats.accuracy}%</strong><small>${stats.correct.toLocaleString()}문제 정답</small></article><article><span>오답노트</span><strong>${stats.wrong.toLocaleString()}</strong><small>복습 필요</small></article><article><span>완료한 시험</span><strong>${store.history.length}</strong><small>최근 50회 저장</small></article></div><article class="panel"><div class="panel-heading"><h2>종목별 학습 현황</h2></div><div class="table-wrap"><table><thead><tr><th>종목</th><th>전체</th><th>학습</th><th>정답률</th></tr></thead><tbody>${rows}</tbody></table></div></article>`, '학습 통계', '이 브라우저에 저장된 학습 기록입니다.');
+  }
+
+  function renderUpdates() {
+    state.view = 'updates';
+    const entries = CHANGELOG.entries || [];
+    const latest = entries[0];
+    const cards = entries.map((entry, index) => `<article class="patch-card ${index === 0 ? 'latest' : ''}">
+      <div class="patch-card-head"><div><span class="patch-version">v${esc(entry.version)}</span>${index === 0 ? '<span class="patch-latest">최신 버전</span>' : ''}</div><time datetime="${esc(entry.date.replaceAll('.', '-'))}">${esc(entry.date)}</time></div>
+      <h2>${esc(entry.title)}</h2>
+      <p>${esc(entry.summary)}</p>
+      <div class="patch-tags">${(entry.tags || []).map((tag) => `<span>${esc(tag)}</span>`).join('')}</div>
+      <ul>${(entry.changes || []).map((change) => `<li>${esc(change)}</li>`).join('')}</ul>
+    </article>`).join('') || '<div class="empty-state">등록된 패치노트가 없습니다.</div>';
+    shell(`<section class="patch-hero"><div><span>UPDATE HISTORY</span><h1>더 편한 학습을 위한<br>업데이트 기록</h1><p>문제·정답·화면 기능이 어떻게 바뀌었는지 버전별로 확인할 수 있습니다.</p></div><div class="patch-current"><span>현재 버전</span><strong>v${esc(CHANGELOG.currentVersion || latest?.version || '-')}</strong><small>${latest ? `${esc(latest.date)} 업데이트` : '업데이트 준비 중'}</small></div></section><div class="patch-list">${cards}</div>`, '패치노트', '버전별 추가 기능과 수정 내역을 확인합니다.');
   }
 
   function renderModal() {
@@ -521,7 +536,7 @@
   }
   function route() {
     if (state.session) return renderSession();
-    if (state.view === 'home') renderHome(); else if (state.view === 'rounds') renderRounds(); else if (state.view === 'wrong') renderWrong(); else if (state.view === 'search') renderSearch(); else if (state.view === 'stats') renderStats(); else if (state.view === 'result') renderResult(); else renderHome();
+    if (state.view === 'home') renderHome(); else if (state.view === 'rounds') renderRounds(); else if (state.view === 'wrong') renderWrong(); else if (state.view === 'search') renderSearch(); else if (state.view === 'stats') renderStats(); else if (state.view === 'updates') renderUpdates(); else if (state.view === 'result') renderResult(); else renderHome();
   }
 
   app.addEventListener('click', actionHandler);
