@@ -22,7 +22,8 @@
   const toastNode = document.getElementById('toast');
 
   const defaultStore = () => ({
-    theme: 'system', fontScale: 1, bookmarks: [], wrong: {}, attempts: {}, progress: {}, history: [], notes: {}
+    theme: 'system', fontScale: 1, bookmarks: [], wrong: {}, attempts: {}, progress: {}, history: [], notes: {},
+    questionTimes: {}, studyPlan: null
   });
   let store = loadStore();
   let state = {
@@ -92,6 +93,7 @@
     const answered = Object.keys(store.attempts).length;
     const correct = Object.values(store.attempts).filter((item) => item.lastCorrect).length;
     return { total, answered, correct, wrong: Object.keys(store.wrong).length, bookmarks: store.bookmarks.length, notes: Object.values(store.notes || {}).filter((note) => note?.text?.trim()).length,
+      formulas: Object.values(store.notes || {}).filter((note) => note?.formula && note?.text?.trim()).length,
       accuracy: answered ? Math.round(correct / answered * 100) : 0, coverage: total ? Math.round(answered / total * 100) : 0 };
   }
   function isToday(timestamp) {
@@ -218,6 +220,39 @@
       .slice(0, limit)
       .map(({ item }) => item);
   }
+  function recordQuestionTime(round, question, elapsedMs) {
+    const id = questionId(round, question);
+    const previous = store.questionTimes[id] || {};
+    const safe = clamp(Math.round(elapsedMs), 1000, 30 * 60 * 1000);
+    store.questionTimes[id] = { totalMs: (previous.totalMs || 0) + safe, count: (previous.count || 0) + 1, lastMs: safe, at: Date.now() };
+  }
+  function slowQuestionItems(limit = 20) {
+    return Object.entries(store.questionTimes || {}).map(([id, timing]) => {
+      const item = findQuestion(id);
+      const averageMs = timing.count ? timing.totalMs / timing.count : 0;
+      return item ? { ...item, averageMs, count: timing.count } : null;
+    }).filter((item) => item && item.averageMs > 0).sort((a, b) => b.averageMs - a.averageMs).slice(0, limit);
+  }
+  function formatDuration(ms) {
+    const seconds = Math.max(0, Math.round(ms / 1000));
+    return seconds >= 60 ? `${Math.floor(seconds / 60)}분 ${seconds % 60}초` : `${seconds}초`;
+  }
+  function localDateValue(date = new Date()) {
+    const year = date.getFullYear(), month = String(date.getMonth() + 1).padStart(2, '0'), day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  function studyPlanStats(plan = store.studyPlan) {
+    if (!plan?.qualification || !plan?.examDate) return null;
+    const catalog = getCatalog(plan.qualification);
+    const exam = new Date(`${plan.examDate}T00:00:00`);
+    if (!catalog || Number.isNaN(exam.getTime())) return null;
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const dDay = Math.ceil((exam - today) / DAY_MS);
+    const days = Math.max(1, dDay);
+    const items = catalog.rounds.flatMap((round) => round.questions.map((question) => ({ round, question })));
+    const remainingItems = items.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
+    return { ...plan, catalog, dDay, days, total: items.length, remaining: remainingItems.length, dailyTarget: remainingItems.length ? Math.ceil(remainingItems.length / days) : 0, remainingItems };
+  }
   function wrongHistoryItems() {
     const ids = new Set([
       ...Object.keys(store.wrong),
@@ -308,9 +343,11 @@
       <section class="smart-strip"><article class="daily-card"><div class="daily-ring" style="--daily:${daily.percent * 3.6}deg"><div><strong>${daily.today}</strong><span>/ ${daily.goal}</span></div></div><div><span class="smart-kicker">TODAY</span><h3>오늘의 학습 목표</h3><p>${daily.today >= daily.goal ? '오늘 목표를 달성했습니다. 대단해요!' : `${daily.goal - daily.today}문제만 더 풀면 오늘 목표 달성!`}</p></div></article><button class="smart-action violet" data-action="start-daily"><span>✦</span><div><strong>오늘의 20문제</strong><small>아직 안 푼 문제 중심 출제</small></div><b>›</b></button><button class="smart-action coral" data-action="start-weak"><span>◎</span><div><strong>약점 집중 훈련</strong><small>오답 우선 맞춤 복습</small></div><b>›</b></button>${recentRound ? `<button class="smart-action mint" data-action="continue-round" data-round="${recentRound.id}"><span>↗</span><div><strong>이어서 학습</strong><small>${esc(recentRound.shortQualification)} · ${recentRound.year}년</small></div><b>›</b></button>` : `<button class="smart-action mint" data-action="nav" data-view="rounds"><span>↗</span><div><strong>첫 학습 시작</strong><small>원하는 회차를 골라보세요</small></div><b>›</b></button>`}</section>
       <section class="section-block"><div class="section-heading"><div><span>QUALIFICATIONS</span><h2>종목 선택</h2></div></div><div class="qualification-grid">${cards}</div></section>
       <section class="dashboard-grid"><article class="panel"><div class="panel-heading"><h3>학습 현황</h3><button data-action="nav" data-view="stats">자세히</button></div><div class="metric-grid"><div><span>전체 문제</span><strong>${stats.total.toLocaleString()}</strong></div><div><span>학습 문제</span><strong>${stats.answered.toLocaleString()}</strong></div><div><span>북마크</span><strong>${stats.bookmarks.toLocaleString()}</strong></div><div><span>학습 범위</span><strong>${stats.coverage}%</strong></div></div></article><article class="panel"><div class="panel-heading"><h3>최근 시험</h3></div><ul class="history-list">${recent}</ul></article></section>
-      <aside class="streak-banner"><span>🔥</span><div><strong>${daily.streak}일 연속 학습 중</strong><small>매일 한 문제라도 풀면 연속 기록이 이어집니다.</small></div><div class="streak-dots">${Array.from({length:7},(_,i)=>`<i class="${i < Math.min(7,daily.streak) ? 'on' : ''}"></i>`).join('')}</div></aside>`, '산업기사 통합 CBT', '공조냉동 · 산업안전 · 에너지관리');
+      <aside class="streak-banner"><span>🔥</span><div><strong>${daily.streak}일 연속 학습 중</strong><small>매일 한 문제라도 풀면 연속 기록이 이어집니다.</small></div><div class="streak-dots">${Array.from({length:7},(_,i)=>`<i class="${i < Math.min(7,daily.streak) ? 'on' : ''}"></i>`).join('')}</div></aside>`, '산업기사 통합 CBT', '공조냉동 · 산업안전 · 에너지관리 · 설비보전');
     const dueCount = dueReviewItems().length;
     const frequentCount = frequentWrongItems(20).length;
+    const slowCount = slowQuestionItems(20).length;
+    const plan = studyPlanStats();
     document.querySelector('.smart-strip')?.insertAdjacentHTML('afterend', `<section class="training-panel">
       <div class="training-panel-head"><div><span>ADAPTIVE STUDY</span><h2>맞춤 훈련</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
       <div class="training-grid">
@@ -321,6 +358,9 @@
         <button data-action="nav" data-view="wrong"><strong>오답 단계별 분류</strong><small>1회·2회·3회 이상</small><b>${stats.wrong}문제</b></button>
         <button data-action="nav" data-view="stats"><strong>과목별 취약도</strong><small>정답률과 누적 오답 분석</small><b>분석 ›</b></button>
         <button data-action="nav" data-view="wrong"><strong>개인 메모</strong><small>문제마다 자동 저장</small><b>${stats.notes}개</b></button>
+        <button data-action="start-slow"><strong>느린 문제 TOP 20</strong><small>학습모드 풀이시간 기준</small><b>${slowCount}문제</b></button>
+        <button data-action="${plan ? 'start-plan-daily' : 'open-study-plan'}"><strong>시험일 학습계획</strong><small>${plan ? `${esc(plan.catalog.shortName)} · 하루 ${plan.dailyTarget}문제` : '시험일로 하루 학습량 계산'}</small><b>${plan ? (plan.dDay > 0 ? `D-${plan.dDay}` : plan.dDay === 0 ? 'D-DAY' : '재설정 ›') : '설정 ›'}</b></button>
+        <button data-action="nav" data-view="wrong"><strong>공식 노트</strong><small>개인 메모에서 공식만 모아보기</small><b>${stats.formulas}개</b></button>
       </div>
     </section>`);
   }
@@ -350,17 +390,18 @@
     const bookmarks = store.bookmarks.map(findQuestion).filter(Boolean);
     const noteItems = Object.entries(store.notes || {}).map(([id, note]) => {
       const item = findQuestion(id);
-      return item && note?.text?.trim() ? { ...item, id, note: note.text } : null;
+      return item && note?.text?.trim() ? { ...item, id, note: note.text, formula: !!note.formula } : null;
     }).filter(Boolean).sort((a, b) => (store.notes[b.id]?.updatedAt || 0) - (store.notes[a.id]?.updatedAt || 0));
+    const formulaItems = noteItems.filter((item) => item.formula);
     const list = (items, type) => items.slice(0, 100).map((item) => {
       const { round, question } = item;
       const id = questionId(round, question);
       const countBadge = type === 'wrong' ? `<b class="wrong-count-badge">${item.wrongCount}회 오답</b>${item.active ? '<i class="review-needed">복습 필요</i>' : '<i class="review-cleared">최근 정답</i>'}` : '';
-      const noteText = type === 'note' ? `<p class="mini-note">${esc(item.note)}</p>` : (store.notes[id]?.text?.trim() ? '<i class="memo-badge">메모 있음</i>' : '');
-      return `<article class="mini-question"><span>${esc(round.shortQualification)} · ${round.year}년 · ${question.number}번 ${countBadge}</span><strong>${esc(question.text)}</strong>${noteText}<div><button data-action="start-single" data-id="${id}">풀어보기</button>${type === 'bookmark' ? `<button data-action="toggle-bookmark" data-id="${id}">북마크 해제</button>` : ''}${type === 'note' ? `<button data-action="clear-note" data-id="${id}">메모 삭제</button>` : ''}</div></article>`;
+      const noteText = ['note', 'formula'].includes(type) ? `<p class="mini-note">${esc(item.note)}</p>` : (store.notes[id]?.text?.trim() ? '<i class="memo-badge">메모 있음</i>' : '');
+      return `<article class="mini-question"><span>${esc(round.shortQualification)} · ${round.year}년 · ${question.number}번 ${countBadge}</span><strong>${esc(question.text)}</strong>${noteText}<div><button data-action="start-single" data-id="${id}">풀어보기</button>${type === 'bookmark' ? `<button data-action="toggle-bookmark" data-id="${id}">북마크 해제</button>` : ''}${type === 'note' ? `<button data-action="clear-note" data-id="${id}">메모 삭제</button>` : ''}${type === 'formula' ? `<button data-action="remove-formula" data-id="${id}">공식 노트 해제</button>` : ''}</div></article>`;
     }).join('') || '<div class="empty-state">저장된 문제가 없습니다.</div>';
     const filterButton = (value, label) => `<button class="${state.wrongFilter === value ? 'active' : ''}" data-action="set-wrong-filter" data-filter="${value}">${label}</button>`;
-    shell(`<div class="wrong-filter-bar"><span>틀린 횟수</span>${filterButton('all', `전체 ${historyItems.length}`)}${filterButton('1', '1회')}${filterButton('2', '2회')}${filterButton('3', '3회 이상')}</div><div class="review-grid"><section class="panel"><div class="panel-heading"><h2>누적 오답 ${wrongItems.length}문제</h2>${wrongItems.length ? '<button data-action="start-filtered-wrong">현재 목록 풀기</button>' : ''}</div><div class="mini-list">${list(wrongItems, 'wrong')}</div></section><section class="panel"><div class="panel-heading"><h2>북마크 ${bookmarks.length}문제</h2>${bookmarks.length ? '<button data-action="start-bookmarks">전체 풀기</button>' : ''}</div><div class="mini-list">${list(bookmarks, 'bookmark')}</div></section><section class="panel note-panel"><div class="panel-heading"><h2>개인 메모 ${noteItems.length}개</h2></div><div class="mini-list">${list(noteItems, 'note')}</div></section></div>`, '오답·북마크·메모', '누적 오답 횟수와 개인 메모를 모아 다시 학습합니다.');
+    shell(`<div class="wrong-filter-bar"><span>틀린 횟수</span>${filterButton('all', `전체 ${historyItems.length}`)}${filterButton('1', '1회')}${filterButton('2', '2회')}${filterButton('3', '3회 이상')}</div><div class="review-grid"><section class="panel"><div class="panel-heading"><h2>누적 오답 ${wrongItems.length}문제</h2>${wrongItems.length ? '<button data-action="start-filtered-wrong">현재 목록 풀기</button>' : ''}</div><div class="mini-list">${list(wrongItems, 'wrong')}</div></section><section class="panel"><div class="panel-heading"><h2>북마크 ${bookmarks.length}문제</h2>${bookmarks.length ? '<button data-action="start-bookmarks">전체 풀기</button>' : ''}</div><div class="mini-list">${list(bookmarks, 'bookmark')}</div></section><section class="panel note-panel"><div class="panel-heading"><h2>개인 메모 ${noteItems.length}개</h2></div><div class="mini-list">${list(noteItems, 'note')}</div></section><section class="panel"><div class="panel-heading"><h2>공식 노트 ${formulaItems.length}개</h2>${formulaItems.length ? '<button data-action="start-formula-notes">공식 문제 풀기</button>' : ''}</div><div class="mini-list">${list(formulaItems, 'formula')}</div></section></div>`, '오답·북마크·메모', '오답, 북마크, 개인 메모와 공식 노트를 한곳에서 관리합니다.');
   }
 
   function renderSearch() {
@@ -388,6 +429,11 @@
     const reviewCounts = reviewScheduleStats();
     const subjectRows = subjectPerformance();
     const weakest = subjectRows.find((row) => row.answered >= 3);
+    const timingValues = Object.values(store.questionTimes || {});
+    const totalTimingCount = timingValues.reduce((sum, timing) => sum + (timing.count || 0), 0);
+    const averageTiming = totalTimingCount ? timingValues.reduce((sum, timing) => sum + (timing.totalMs || 0), 0) / totalTimingCount : 0;
+    const slowCount = slowQuestionItems(20).length;
+    const plan = studyPlanStats();
     const rows = CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => {
       const ids = item.rounds.flatMap((round) => round.questions.map((question) => questionId(round, question)));
       const answered = ids.filter((id) => store.attempts[id]).length;
@@ -398,7 +444,8 @@
     shell(`<div class="stat-cards"><article><span>학습한 문제</span><strong>${stats.answered.toLocaleString()}</strong><small>/ ${stats.total.toLocaleString()}</small></article><article><span>정답률</span><strong>${stats.accuracy}%</strong><small>${stats.correct.toLocaleString()}문제 정답</small></article><article><span>오늘 복습</span><strong>${dueCount.toLocaleString()}</strong><small>최대 20문제 출제</small></article><article><span>개인 메모</span><strong>${stats.notes.toLocaleString()}</strong><small>브라우저 자동 저장</small></article></div>
       <div class="stats-layout"><article class="panel"><div class="panel-heading"><h2>종목별 학습 현황</h2></div><div class="table-wrap"><table><thead><tr><th>종목</th><th>전체</th><th>학습</th><th>정답률</th></tr></thead><tbody>${rows}</tbody></table></div></article>
       <article class="panel review-schedule"><div class="panel-heading"><h2>1·3·7일 복습 일정</h2><button data-action="start-due">오늘 복습 시작</button></div><div><span><b>1일</b><strong>${reviewCounts[0]}</strong><small>기초 복습</small></span><span><b>3일</b><strong>${reviewCounts[1]}</strong><small>정착 복습</small></span><span><b>7일</b><strong>${reviewCounts[2]}</strong><small>장기 복습</small></span></div><p>문제를 풀 때마다 다음 복습일이 자동으로 잡힙니다.</p></article></div>
-      <article class="panel subject-analysis"><div class="panel-heading"><div><h2>과목별 정답률·취약도</h2><p>${weakest ? `현재 취약 과목은 ${esc(weakest.qualification)} · ${esc(weakest.subject)} (${weakest.accuracy}%)입니다.` : '과목별로 3문제 이상 풀면 취약 과목을 분석합니다.'}</p></div><button data-action="start-frequent">자주 틀린 20문제</button></div><div class="table-wrap"><table><thead><tr><th>과목</th><th>학습</th><th>정답률</th><th>누적 오답</th><th></th></tr></thead><tbody>${subjectTable}</tbody></table></div></article>`, '학습 통계', '이 브라우저에 저장된 학습 기록입니다.');
+      <article class="panel subject-analysis"><div class="panel-heading"><div><h2>과목별 정답률·취약도</h2><p>${weakest ? `현재 취약 과목은 ${esc(weakest.qualification)} · ${esc(weakest.subject)} (${weakest.accuracy}%)입니다.` : '과목별로 3문제 이상 풀면 취약 과목을 분석합니다.'}</p></div><button data-action="start-frequent">자주 틀린 20문제</button></div><div class="table-wrap"><table><thead><tr><th>과목</th><th>학습</th><th>정답률</th><th>누적 오답</th><th></th></tr></thead><tbody>${subjectTable}</tbody></table></div></article>
+      <div class="stats-layout insight-panels"><article class="panel"><div class="panel-heading"><h2>문제별 풀이시간</h2><button data-action="start-slow">느린 문제 풀기</button></div><div class="insight-metrics"><span>측정 문제<strong>${Object.keys(store.questionTimes || {}).length}</strong></span><span>평균 풀이시간<strong>${averageTiming ? formatDuration(averageTiming) : '-'}</strong></span><span>느린 문제 시험<strong>${slowCount}문제</strong></span></div><p class="panel-note">학습모드에서 문제를 처음 선택할 때까지의 시간을 기준으로 기록합니다.</p></article><article class="panel"><div class="panel-heading"><h2>시험일 학습계획</h2><button data-action="open-study-plan">${plan ? '계획 수정' : '계획 설정'}</button></div>${plan ? `<div class="plan-summary"><strong>${esc(plan.catalog.name)}</strong><span>${esc(plan.examDate)} · ${plan.dDay > 0 ? `D-${plan.dDay}` : plan.dDay === 0 ? 'D-DAY' : '시험일 지남'}</span><b>남은 ${plan.remaining.toLocaleString()}문제 · 하루 ${plan.dailyTarget.toLocaleString()}문제</b><button data-action="start-plan-daily">오늘 계획 풀기</button></div>` : '<div class="empty-state compact-empty">시험일을 설정하면 남은 문제를 날짜별로 자동 배분합니다.</div>'}</article></div>`, '학습 통계', '이 브라우저에 저장된 학습 기록입니다.');
   }
 
   function renderUpdates() {
@@ -438,8 +485,14 @@
       }).join('');
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">COMCBT 정답률 기준</span><h2>고난도 문제만 풀기</h2><label class="setting-row">종목<select id="difficultyQualification"><option value="all">전체 종목</option>${options}</select></label><label class="setting-row">최대 정답률<select id="difficultyRate"><option value="30">30% 이하</option><option value="40" selected>40% 이하</option><option value="50">50% 이하</option></select></label><label class="setting-row">문제 수<select id="difficultyCount"><option value="10">10문제</option><option value="20" selected>20문제</option><option value="40">40문제</option></select></label><p class="setting-note">원문에 COMCBT 정답률이 있는 문제만 출제합니다.</p><button class="primary-button wide" data-action="start-hard">고난도 학습 시작</button></div></div>`;
     }
+    if (state.modal.type === 'study-plan') {
+      const plan = store.studyPlan || {};
+      const suggested = new Date(); suggested.setDate(suggested.getDate() + 30);
+      const selectedKey = plan.qualification || (PRIMARY_KEYS.includes(state.qualification) ? state.qualification : 'hvac');
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">DAILY STUDY PLAN</span><h2>시험일 학습계획</h2><p>시험일까지 남은 미학습 문제를 날짜별로 자동 배분합니다.</p><label class="setting-row">종목<select id="studyPlanQualification">${CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => `<option value="${item.key}" ${selectedKey === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">시험일<input id="studyPlanDate" type="date" min="${localDateValue()}" value="${esc(plan.examDate || localDateValue(suggested))}"></label><button class="primary-button wide" data-action="save-study-plan">학습계획 저장</button>${store.studyPlan ? '<button class="secondary-button wide modal-secondary" data-action="clear-study-plan">계획 삭제</button>' : ''}</div></div>`;
+    }
     if (state.modal.type === 'settings') {
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면 설정</h2><label class="setting-row">화면 테마<select data-change="theme"><option value="system">기기 설정</option><option value="light">밝게</option><option value="dark">어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><p class="setting-note">학습 기록은 서버로 전송되지 않고 이 브라우저에만 저장됩니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">화면 테마<select data-change="theme"><option value="system">기기 설정</option><option value="light">밝게</option><option value="dark">어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
     }
     if (state.modal.type === 'random') {
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>랜덤 문제</h2><label class="setting-row">종목<select id="randomQualification">${CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => `<option value="${item.key}" ${state.qualification === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="primary-button wide" data-action="start-random">학습 시작</button></div></div>`;
@@ -455,7 +508,8 @@
     const savedPageSize = Number(saved?.pageSize);
     const subject = mode === 'learn' && round.subjects.includes(saved?.subject) ? saved.subject : 'all';
     const questions = subject === 'all' ? round.questions : round.questions.filter((question) => subjectFor(round, question) === subject);
-    state.session = { round, allQuestions: round.questions, questions, subject, mode, answers: saved?.answers || {}, revealed: saved?.revealed || {}, review: {}, page: saved?.page || 0, pageSize: [2, 4, 6, 10, 20, 40, questions.length].includes(savedPageSize) ? savedPageSize : 4, duration, remaining: duration, startedAt: Date.now() };
+    const savedAnswers = saved?.answers || {};
+    state.session = { round, allQuestions: round.questions, questions, subject, mode, answers: savedAnswers, revealed: saved?.revealed || {}, review: {}, page: saved?.page || 0, pageSize: [2, 4, 6, 10, 20, 40, questions.length].includes(savedPageSize) ? savedPageSize : 4, duration, remaining: duration, startedAt: Date.now(), questionStartedAt: {}, timedQuestions: Object.fromEntries(Object.keys(savedAnswers).map((number) => [number, true])) };
     state.modal = null; state.result = null; state.examSheetOpen = false; state.focusSidebarOpen = false; state.view = 'session';
     if (mode === 'exam') startTimer();
     renderSession();
@@ -464,7 +518,7 @@
     if (!items.length) return toast('풀 문제가 없습니다.');
     const questions = items.map(({ round, question }, index) => Object.assign({}, question, { number: index + 1, _originalNumber: question.number, _originRoundId: round.id, _subject: `${round.shortQualification} · ${subjectFor(round, question)}` }));
     const round = { id: `collection-${Date.now()}`, title, qualification: '맞춤 학습', shortQualification: '맞춤', qualificationKey: 'collection', year: '', subjects: [...new Set(questions.map((question) => question._subject))], questions, examMinutes: Math.max(10, Math.round(questions.length * 1.5)) };
-    state.session = { round, questions, mode: 'learn', answers: {}, revealed: {}, review: {}, page: 0, pageSize: 4, duration: 0, remaining: 0, startedAt: Date.now(), transient: true };
+    state.session = { round, questions, mode: 'learn', answers: {}, revealed: {}, review: {}, page: 0, pageSize: 4, duration: 0, remaining: 0, startedAt: Date.now(), questionStartedAt: {}, timedQuestions: {}, transient: true };
     state.modal = null; state.focusSidebarOpen = false; state.view = 'session'; renderSession();
   }
   function startTimer() {
@@ -488,6 +542,10 @@
     s.page = clamp(s.page, 0, pages - 1);
     const start = s.page * s.pageSize;
     const visible = s.questions.slice(start, start + s.pageSize);
+    const visibleAt = Date.now();
+    visible.forEach((question) => {
+      if (!s.timedQuestions[question.number] && !s.questionStartedAt[question.number]) s.questionStartedAt[question.number] = visibleAt;
+    });
     const answered = s.questions.filter((question) => s.answers[question.number] != null).length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
       <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
@@ -519,6 +577,7 @@
   function renderLearningQuestion(question) {
     const s = state.session, id = questionId(s.round, question), selected = s.answers[question.number], revealed = !!s.revealed[question.number], bookmarked = store.bookmarks.includes(id);
     const note = store.notes?.[id]?.text || '';
+    const formula = !!store.notes?.[id]?.formula;
     const imagePrimary = isImagePrimary(s.round, question);
     const prompt = imagePrimary
       ? `<div class="image-question-label"><strong>${question.number}번</strong><span>CBT 복원문제 · 원문 이미지</span></div><img class="source-question-main" src="${esc(question.sourceImage)}" alt="${question.number}번 복원문제 원문" loading="lazy">`
@@ -527,7 +586,7 @@
       <div class="choice-list ${imagePrimary ? 'image-answer-list' : ''}">${question.choices.map((choice, index) => { const n = index + 1, cls = revealed ? (n === selected ? (n === question.answer ? 'correct' : 'wrong') : '') : n === selected ? 'selected' : ''; return `<button class="choice ${cls}" data-action="answer" data-number="${question.number}" data-choice="${n}"><span>${CIRCLES[index]}</span><span>${imagePrimary ? `${n}번 선택` : (choice.html || esc(choice.text))}</span>${imagePrimary ? '' : renderImages(choice.images, '보기 이미지')}</button>`; }).join('')}</div>
       <div class="question-feedback">${revealed ? renderExplanation(question, selected) : '<p class="answer-guide">보기를 선택하면 정답과 해설이 표시됩니다.</p>'}</div>
       ${question.sourceImage && !imagePrimary ? `<details class="source-details"><summary>원문 이미지 확인</summary><img src="${esc(question.sourceImage)}" alt="${question.number}번 원문" loading="lazy"></details>` : ''}
-      <details class="question-note" ${note ? 'open' : ''}><summary>개인 메모${note ? ' · 저장됨' : ''}</summary><textarea data-input="question-note" data-id="${id}" placeholder="공식, 풀이 요령, 헷갈린 내용을 적어두세요.">${esc(note)}</textarea><small>입력 내용은 이 브라우저에 자동 저장됩니다.</small></details></article>`;
+      <details class="question-note" ${note || formula ? 'open' : ''}><summary>개인 메모${note ? ' · 저장됨' : ''}</summary><textarea data-input="question-note" data-id="${id}" placeholder="공식, 풀이 요령, 헷갈린 내용을 적어두세요.">${esc(note)}</textarea><label class="formula-toggle"><input type="checkbox" data-change="formula-note" data-id="${id}" ${formula ? 'checked' : ''}> 공식 노트에 추가</label><small>입력 내용은 이 브라우저에 자동 저장됩니다.</small></details></article>`;
   }
   function renderExplanation(question, selected) {
     const rate = numericAnswerRate(question);
@@ -582,6 +641,10 @@
     if (s.mode === 'learn') {
       s.revealed[number] = true;
       const correct = choice === question.answer;
+      if (!s.timedQuestions[number]) {
+        recordQuestionTime(s.round, question, Date.now() - (s.questionStartedAt[number] || s.startedAt));
+        s.timedQuestions[number] = true;
+      }
       recordAttempt(s.round, question, correct, choice);
       saveStore(); saveLearningProgress();
       const card = document.getElementById(`question-${number}`);
@@ -687,6 +750,42 @@
       if (swRegistration.waiting) markUpdateReady();
     }).catch(() => {});
   }
+  function exportBackup() {
+    const payload = { app: 'industrial-cbt', version: CHANGELOG.currentVersion, exportedAt: new Date().toISOString(), store };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `industrial-cbt-backup-${localDateValue()}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast('학습 기록 백업 파일을 저장했습니다.');
+  }
+  async function importBackup(file) {
+    if (!file) return;
+    try {
+      const parsed = JSON.parse(await file.text());
+      const incoming = parsed?.store || parsed;
+      if (!incoming || typeof incoming !== 'object' || Array.isArray(incoming)) throw new Error('invalid');
+      if (!confirm('현재 브라우저의 학습 기록을 백업 파일 내용으로 교체할까요?')) return;
+      const restored = Object.assign(defaultStore(), incoming);
+      restored.bookmarks = Array.isArray(restored.bookmarks) ? restored.bookmarks : [];
+      restored.history = Array.isArray(restored.history) ? restored.history : [];
+      ['wrong', 'attempts', 'progress', 'notes', 'questionTimes'].forEach((key) => {
+        if (!restored[key] || typeof restored[key] !== 'object' || Array.isArray(restored[key])) restored[key] = {};
+      });
+      store = restored;
+      state.session = null; state.modal = null; state.view = 'home';
+      setTheme(store.theme || 'system');
+      saveStore();
+      renderHome();
+      toast('학습 기록을 복원했습니다.');
+    } catch (error) {
+      toast('올바른 CBT 백업 파일이 아닙니다.');
+    }
+  }
 
   function actionHandler(event) {
     const button = event.target.closest('[data-action]'); if (!button) return;
@@ -701,8 +800,31 @@
     else if (action === 'start-mode') startRound(button.dataset.round, button.dataset.mode);
     else if (action === 'close-modal') { state.modal = null; route(); }
     else if (action === 'open-settings') { state.modal = { type: 'settings' }; route(); }
+    else if (action === 'export-backup') exportBackup();
+    else if (action === 'choose-backup') document.getElementById('backupFile')?.click();
     else if (action === 'open-search') { state.view = 'search'; state.modal = null; renderSearch(); }
     else if (action === 'open-random') { state.modal = { type: 'random' }; route(); }
+    else if (action === 'open-study-plan') { state.modal = { type: 'study-plan' }; route(); }
+    else if (action === 'save-study-plan') {
+      const qualification = document.getElementById('studyPlanQualification').value;
+      const examDate = document.getElementById('studyPlanDate').value;
+      if (!examDate) toast('시험일을 선택하세요.');
+      else {
+        store.studyPlan = { qualification, examDate, updatedAt: Date.now() };
+        saveStore(); state.modal = null; renderHome(); toast('시험일 학습계획을 저장했습니다.');
+      }
+    }
+    else if (action === 'clear-study-plan' && confirm('저장된 시험일 학습계획을 삭제할까요?')) { store.studyPlan = null; saveStore(); state.modal = null; renderHome(); }
+    else if (action === 'start-plan-daily') {
+      const plan = studyPlanStats();
+      if (!plan || !plan.remainingItems.length) toast('계획한 종목의 미학습 문제를 모두 풀었습니다.');
+      else startCollection(shuffled(plan.remainingItems).slice(0, Math.min(100, Math.max(1, plan.dailyTarget))), `${plan.catalog.shortName} 오늘의 시험일 계획`);
+    }
+    else if (action === 'start-slow') {
+      const slow = slowQuestionItems(20);
+      if (!slow.length) toast('학습모드에서 문제를 풀면 풀이시간 분석이 시작됩니다.');
+      else startCollection(slow, '풀이시간이 오래 걸린 문제 TOP 20');
+    }
     else if (action === 'open-recurring') {
       state.modal = { type: 'recurring', qualification: PRIMARY_KEYS.includes(state.qualification) ? state.qualification : 'hvac', minimum: 2 };
       route();
@@ -794,8 +916,10 @@
     else if (action === 'start-filtered-wrong') startCollection(wrongHistoryItems().filter((item) => state.wrongFilter === 'all' || (state.wrongFilter === '3' ? item.wrongCount >= 3 : item.wrongCount === Number(state.wrongFilter))), '누적 오답 다시 풀기');
     else if (action === 'set-wrong-filter') { state.wrongFilter = button.dataset.filter; renderWrong(); }
     else if (action === 'start-bookmarks') startCollection(store.bookmarks.map(findQuestion).filter(Boolean), '북마크 다시 풀기');
+    else if (action === 'start-formula-notes') startCollection(Object.entries(store.notes || {}).filter(([, note]) => note?.formula && note?.text?.trim()).map(([id]) => findQuestion(id)).filter(Boolean), '공식 노트 문제 복습');
     else if (action === 'start-single') { const item = findQuestion(button.dataset.id); if (item) startCollection([item], '선택 문제 풀이'); }
     else if (action === 'clear-note' && confirm('이 문제의 개인 메모를 삭제할까요?')) { delete store.notes[button.dataset.id]; saveStore(); renderWrong(); }
+    else if (action === 'remove-formula') { if (store.notes[button.dataset.id]) store.notes[button.dataset.id].formula = false; saveStore(); renderWrong(); }
     else if (action === 'session-prev') { state.session.page--; renderSession(); scrollTo(0, 0); }
     else if (action === 'session-next') { state.session.page++; renderSession(); scrollTo(0, 0); }
     else if (action === 'reset-learning-session' && state.session?.mode === 'learn' && confirm('현재 회차에서 선택한 답과 진행 위치를 모두 초기화할까요? 오답노트와 북마크는 유지됩니다.')) {
@@ -828,7 +952,7 @@
     else if (action === 'leave-session') { if (state.session?.mode !== 'exam' || confirm('시험을 종료하고 나갈까요? 현재 답안은 저장되지 않습니다.')) { clearInterval(timerHandle); state.session = null; renderRounds(); } }
     else if (action === 'retry-result') { const round = rRound(); if (round) startRound(round.id, state.result.mode); }
     else if (action === 'force-refresh') forceRefresh();
-    else if (action === 'reset-progress' && confirm('모든 학습 기록, 오답, 북마크, 개인 메모를 초기화할까요?')) { store = defaultStore(); saveStore(); state.modal = null; renderHome(); }
+    else if (action === 'reset-progress' && confirm('모든 학습 기록, 오답, 북마크, 메모, 풀이시간과 시험계획을 초기화할까요?')) { store = defaultStore(); saveStore(); state.modal = null; renderHome(); }
   }
   function rRound() { return state.result?.round?.id ? getRound(state.result.round.id) : null; }
   function changeHandler(event) {
@@ -837,6 +961,19 @@
     else if (key === 'year') { state.year = event.target.value; renderRounds(); }
     else if (key === 'theme') { setTheme(event.target.value); route(); }
     else if (key === 'font-scale') { store.fontScale = Number(event.target.value); bindFocusable(); saveStore(); }
+    else if (key === 'import-backup') importBackup(event.target.files?.[0]);
+    else if (key === 'formula-note') {
+      const id = event.target.dataset.id;
+      const text = event.target.closest('.question-note')?.querySelector('[data-input="question-note"]')?.value || store.notes[id]?.text || '';
+      if (event.target.checked && !text.trim()) {
+        event.target.checked = false;
+        toast('개인 메모를 먼저 입력한 뒤 공식 노트에 추가하세요.');
+      } else {
+        store.notes[id] = { ...(store.notes[id] || {}), text, formula: event.target.checked, updatedAt: Date.now() };
+        saveStore();
+        toast(event.target.checked ? '공식 노트에 추가했습니다.' : '공식 노트에서 해제했습니다.');
+      }
+    }
     else if (key === 'recurring-qualification') { state.modal.qualification = event.target.value; route(); }
     else if (key === 'recurring-minimum') { state.modal.minimum = Number(event.target.value); route(); }
     else if (key === 'session-page-size') {
@@ -865,7 +1002,7 @@
       clearTimeout(target._timer);
       target._timer = setTimeout(() => {
         const text = target.value;
-        if (text.trim()) store.notes[id] = { text, updatedAt: Date.now() };
+        if (text.trim()) store.notes[id] = { ...(store.notes[id] || {}), text, updatedAt: Date.now() };
         else delete store.notes[id];
         saveStore();
       }, 300);
@@ -890,7 +1027,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=161', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=170', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
