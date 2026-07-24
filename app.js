@@ -6,10 +6,12 @@
     window.CBT_DATA_SAFETY,
     window.CBT_DATA_ENERGY,
     window.CBT_DATA_ENERGY_ENGINEER,
-    window.CBT_DATA_MAINTENANCE
+    window.CBT_DATA_MAINTENANCE,
+    ...(Array.isArray(window.CBT_DATA_JEWELRY) ? window.CBT_DATA_JEWELRY : [])
   ].filter(Boolean);
   const PRIMARY_KEYS = ['hvac', 'safety', 'energy', 'maintenance'];
-  const CATALOG = DATASETS.filter((item) => PRIMARY_KEYS.includes(item.key));
+  const JEWELRY_KEYS = ['gem-appraiser', 'precious-industrial', 'precious-craftsman', 'gem-processing'];
+  const CATALOG = DATASETS.filter((item) => PRIMARY_KEYS.includes(item.key) || JEWELRY_KEYS.includes(item.key));
   const ROUNDS = CATALOG.flatMap((item) => item.rounds || []).sort((a, b) => String(b.sortKey || b.date || '').localeCompare(String(a.sortKey || a.date || '')));
   const STORAGE_KEY = 'unified-industrial-cbt-v1';
   const THEME_KEY = 'unified-cbt-theme';
@@ -23,11 +25,11 @@
 
   const defaultStore = () => ({
     theme: 'system', fontScale: 1, bookmarks: [], wrong: {}, attempts: {}, progress: {}, history: [], notes: {},
-    questionTimes: {}, studyPlan: null
+    questionTimes: {}, studyPlan: null, studyPlans: {}
   });
   let store = loadStore();
   let state = {
-    view: 'home', qualification: 'all', year: 'all', roundSearch: '', searchQuery: '',
+    space: 'industrial', view: 'home', qualification: 'all', year: 'all', roundSearch: '', searchQuery: '',
     session: null, result: null, modal: null, examSheetOpen: false, focusSidebarOpen: false, wrongFilter: 'all', updateReady: false
   };
   let timerHandle = null;
@@ -49,6 +51,13 @@
   function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
   function getRound(id) { return ROUNDS.find((round) => round.id === id); }
   function getCatalog(key) { return CATALOG.find((item) => item.key === key); }
+  function activeKeys() { return state.space === 'jewelry' ? JEWELRY_KEYS : PRIMARY_KEYS; }
+  function activeCatalogs() { const keys = activeKeys(); return CATALOG.filter((item) => keys.includes(item.key) && item.rounds?.length); }
+  function activeRounds() { const keys = activeKeys(); return ROUNDS.filter((round) => keys.includes(round.qualificationKey)); }
+  function isActiveRound(round) { return !!round && activeKeys().includes(round.qualificationKey); }
+  function currentStudyPlan() {
+    return store.studyPlans?.[state.space] || (state.space === 'industrial' ? store.studyPlan : null);
+  }
   function questionId(round, question) { return `${question._originRoundId || round.id}:${question._originalNumber || question.number}`; }
   function findQuestion(id) {
     const split = id.lastIndexOf(':');
@@ -88,12 +97,15 @@
     localStorage.setItem(THEME_KEY, mode); saveStore();
   }
   function overallStats() {
-    const rounds = ROUNDS.filter((round) => PRIMARY_KEYS.includes(round.qualificationKey));
+    const rounds = activeRounds();
+    const ids = new Set(rounds.flatMap((round) => round.questions.map((question) => questionId(round, question))));
     const total = rounds.reduce((sum, round) => sum + round.questions.length, 0);
-    const answered = Object.keys(store.attempts).length;
-    const correct = Object.values(store.attempts).filter((item) => item.lastCorrect).length;
-    return { total, answered, correct, wrong: Object.keys(store.wrong).length, bookmarks: store.bookmarks.length, notes: Object.values(store.notes || {}).filter((note) => note?.text?.trim()).length,
-      formulas: Object.values(store.notes || {}).filter((note) => note?.formula && note?.text?.trim()).length,
+    const answeredIds = [...ids].filter((id) => store.attempts[id]);
+    const answered = answeredIds.length;
+    const correct = answeredIds.filter((id) => store.attempts[id]?.lastCorrect).length;
+    return { total, answered, correct, wrong: [...ids].filter((id) => store.wrong[id]).length, bookmarks: store.bookmarks.filter((id) => ids.has(id)).length,
+      notes: [...ids].filter((id) => store.notes[id]?.text?.trim()).length,
+      formulas: [...ids].filter((id) => store.notes[id]?.formula && store.notes[id]?.text?.trim()).length,
       accuracy: answered ? Math.round(correct / answered * 100) : 0, coverage: total ? Math.round(answered / total * 100) : 0 };
   }
   function isToday(timestamp) {
@@ -102,8 +114,10 @@
     return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth() && date.getDate() === now.getDate();
   }
   function dailyStats() {
-    const today = Object.values(store.attempts).filter((item) => isToday(item.at)).length;
-    const days = new Set(Object.values(store.attempts).map((item) => {
+    const activeIds = new Set(activeRounds().flatMap((round) => round.questions.map((question) => questionId(round, question))));
+    const attempts = Object.entries(store.attempts).filter(([id]) => activeIds.has(id)).map(([, attempt]) => attempt);
+    const today = attempts.filter((item) => isToday(item.at)).length;
+    const days = new Set(attempts.map((item) => {
       const date = new Date(item.at); return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     }));
     let streak = 0, cursor = new Date();
@@ -115,7 +129,7 @@
     return { today, goal: 20, streak, percent: Math.min(100, Math.round(today / 20 * 100)) };
   }
   function allQuestionItems() {
-    return ROUNDS.flatMap((round) => round.questions.map((question) => ({ round, question })));
+    return activeRounds().flatMap((round) => round.questions.map((question) => ({ round, question })));
   }
   function normalizeRecurringText(question) {
     const source = String(question.text || question.html || '').replace(/<[^>]*>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ').toLowerCase();
@@ -209,13 +223,13 @@
   function dueReviewItems() {
     const now = Date.now();
     return Object.entries(store.attempts).map(([id, attempt]) => ({ id, item: findQuestion(id), attempt }))
-      .filter(({ id, item, attempt }) => item && ((attempt.nextReviewAt > 0 && attempt.nextReviewAt <= now) || (store.wrong[id] && !attempt.nextReviewAt)))
+      .filter(({ id, item, attempt }) => item && isActiveRound(item.round) && ((attempt.nextReviewAt > 0 && attempt.nextReviewAt <= now) || (store.wrong[id] && !attempt.nextReviewAt)))
       .sort((a, b) => (a.attempt.nextReviewAt || 0) - (b.attempt.nextReviewAt || 0))
       .map(({ item }) => item);
   }
   function frequentWrongItems(limit = 20) {
     return Object.entries(store.attempts).map(([id, attempt]) => ({ item: findQuestion(id), wrongCount: attempt.wrongCount || (store.wrong[id] ? 1 : 0) }))
-      .filter(({ item, wrongCount }) => item && wrongCount > 0)
+      .filter(({ item, wrongCount }) => item && isActiveRound(item.round) && wrongCount > 0)
       .sort((a, b) => b.wrongCount - a.wrongCount)
       .slice(0, limit)
       .map(({ item }) => item);
@@ -231,7 +245,7 @@
       const item = findQuestion(id);
       const averageMs = timing.count ? timing.totalMs / timing.count : 0;
       return item ? { ...item, averageMs, count: timing.count } : null;
-    }).filter((item) => item && item.averageMs > 0).sort((a, b) => b.averageMs - a.averageMs).slice(0, limit);
+    }).filter((item) => item && isActiveRound(item.round) && item.averageMs > 0).sort((a, b) => b.averageMs - a.averageMs).slice(0, limit);
   }
   function formatDuration(ms) {
     const seconds = Math.max(0, Math.round(ms / 1000));
@@ -241,7 +255,7 @@
     const year = date.getFullYear(), month = String(date.getMonth() + 1).padStart(2, '0'), day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
-  function studyPlanStats(plan = store.studyPlan) {
+  function studyPlanStats(plan = currentStudyPlan()) {
     if (!plan?.qualification || !plan?.examDate) return null;
     const catalog = getCatalog(plan.qualification);
     const exam = new Date(`${plan.examDate}T00:00:00`);
@@ -261,11 +275,11 @@
     return [...ids].map((id) => {
       const item = findQuestion(id);
       return item ? { ...item, id, wrongCount: store.attempts[id]?.wrongCount || store.wrong[id]?.count || 1, active: !!store.wrong[id] } : null;
-    }).filter(Boolean).sort((a, b) => b.wrongCount - a.wrongCount || (store.attempts[b.id]?.at || 0) - (store.attempts[a.id]?.at || 0));
+    }).filter((item) => item && isActiveRound(item.round)).sort((a, b) => b.wrongCount - a.wrongCount || (store.attempts[b.id]?.at || 0) - (store.attempts[a.id]?.at || 0));
   }
   function subjectPerformance() {
     const groups = new Map();
-    CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).forEach((catalog) => {
+    activeCatalogs().forEach((catalog) => {
       catalog.rounds.forEach((round) => round.questions.forEach((question) => {
         const subject = subjectFor(round, question);
         const key = `${catalog.key}::${subject}`;
@@ -285,7 +299,9 @@
   }
   function reviewScheduleStats() {
     const counts = [0, 0, 0];
-    Object.values(store.attempts).forEach((attempt) => {
+    Object.entries(store.attempts).forEach(([id, attempt]) => {
+      const item = findQuestion(id);
+      if (!item || !isActiveRound(item.round)) return;
       if (attempt.nextReviewAt) counts[clamp(Number(attempt.reviewStage) || 0, 0, 2)]++;
     });
     return counts;
@@ -296,7 +312,7 @@
     return copy;
   }
   function latestProgressRound() {
-    return Object.entries(store.progress).sort((a, b) => (b[1].updatedAt || 0) - (a[1].updatedAt || 0)).map(([id]) => getRound(id)).find(Boolean) || null;
+    return Object.entries(store.progress).sort((a, b) => (b[1].updatedAt || 0) - (a[1].updatedAt || 0)).map(([id]) => getRound(id)).find(isActiveRound) || null;
   }
 
   function navButton(view, icon, label) {
@@ -306,16 +322,18 @@
   function shell(content, title, subtitle) {
     const stats = overallStats();
     const focused = !!state.session;
-    app.innerHTML = `<div class="app-shell ${focused ? `session-shell ${state.focusSidebarOpen ? 'sidebar-open' : 'sidebar-collapsed'}` : ''}">
+    const jewelry = state.space === 'jewelry';
+    app.innerHTML = `<div class="app-shell ${jewelry ? 'space-jewelry' : 'space-industrial'} ${focused ? `session-shell ${state.focusSidebarOpen ? 'sidebar-open' : 'sidebar-collapsed'}` : ''}">
       <aside class="sidebar">
-        <button class="brand" data-action="nav" data-view="home"><span class="brand-mark">CBT</span><span><strong>산업기사 통합 CBT</strong><small>OFFLINE STUDY</small></span></button>
+        <button class="brand" data-action="nav" data-view="home"><span class="brand-mark">${jewelry ? 'GEM' : 'CBT'}</span><span><strong>${jewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT'}</strong><small>${jewelry ? 'JEWELRY STUDY' : 'OFFLINE STUDY'}</small></span></button>
         <nav class="side-nav">
           ${navButton('home', '⌂', '첫 화면')}${navButton('rounds', '▤', '기출 회차')}${navButton('wrong', '!', '오답·북마크')}${navButton('search', '⌕', '문제 검색')}${navButton('stats', '▥', '학습 통계')}${navButton('updates', '◷', '패치노트')}
         </nav>
+        <button class="space-switch" data-action="switch-space" data-space="${jewelry ? 'industrial' : 'jewelry'}"><span>${jewelry ? 'CBT' : '◇'}</span><strong>${jewelry ? '산업기사 CBT로' : '보석·귀금속 학습관'}</strong><small>${jewelry ? '기존 4종목으로 돌아가기' : '별도 문제 공간 열기'}</small></button>
         <div class="side-foot"><span>전체 학습 범위</span><strong>${stats.coverage}% 완료</strong></div>
       </aside>
       <main class="main">
-        <header class="topbar">${focused ? `<button class="session-back-button" data-action="leave-session" aria-label="회차 목록으로 돌아가기">←</button><button class="session-menu-toggle" data-action="toggle-session-sidebar" aria-label="메뉴 열기 또는 닫기">${state.focusSidebarOpen ? '×' : '☰'}</button>` : ''}<div class="topbar-copy"><strong>${esc(title)}</strong><span>${esc(subtitle || '원하는 종목과 회차를 선택하세요.')}</span></div><div class="top-actions"><button class="icon-button" data-action="open-search" title="검색">⌕</button><button class="icon-button" data-action="open-settings" title="설정">⚙</button></div></header>
+        <header class="topbar">${focused ? `<button class="session-back-button" data-action="leave-session" aria-label="회차 목록으로 돌아가기">←</button><button class="session-menu-toggle" data-action="toggle-session-sidebar" aria-label="메뉴 열기 또는 닫기">${state.focusSidebarOpen ? '×' : '☰'}</button>` : ''}<div class="topbar-copy"><strong>${esc(title)}</strong><span>${esc(subtitle || '원하는 종목과 회차를 선택하세요.')}</span></div><div class="top-actions"><button class="icon-button space-icon-button" data-action="switch-space" data-space="${jewelry ? 'industrial' : 'jewelry'}" title="${jewelry ? '산업기사 CBT로 돌아가기' : '보석·귀금속 학습관'}">${jewelry ? 'CBT' : '◇'}</button><button class="icon-button" data-action="open-search" title="검색">⌕</button><button class="icon-button" data-action="open-settings" title="설정">⚙</button></div></header>
         <section class="content">${content}</section>
       </main>
       <nav class="mobile-nav">${navButton('home', '⌂', '홈')}${navButton('rounds', '▤', '회차')}${navButton('wrong', '!', '오답')}${navButton('search', '⌕', '검색')}${navButton('stats', '▥', '통계')}${navButton('updates', '◷', '패치')}</nav>
@@ -326,6 +344,7 @@
 
   function renderHome() {
     state.view = 'home';
+    if (state.space === 'jewelry') return renderJewelryHome();
     const stats = overallStats();
     const daily = dailyStats();
     const recentRound = latestProgressRound();
@@ -351,7 +370,7 @@
     document.querySelector('.smart-strip')?.insertAdjacentHTML('afterend', `<section class="training-panel">
       <div class="training-panel-head"><div><span>ADAPTIVE STUDY</span><h2>맞춤 훈련</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
       <div class="training-grid">
-        <button class="training-featured" data-action="open-recurring"><strong>전회차 빈출·유사문제</strong><small>${ROUNDS.length}회차 · ${stats.total.toLocaleString()}문항을 개념별로 묶어 다시 풀기</small><b>분류해서 풀기 ›</b></button>
+        <button class="training-featured" data-action="open-recurring"><strong>전회차 빈출·유사문제</strong><small>${activeRounds().length}회차 · ${stats.total.toLocaleString()}문항을 개념별로 묶어 다시 풀기</small><b>분류해서 풀기 ›</b></button>
         <button data-action="open-difficulty"><strong>고난도 문제</strong><small>COMCBT 정답률 기준 선택</small><b>설정 ›</b></button>
         <button data-action="start-due"><strong>오늘의 자동 복습</strong><small>1일·3일·7일 간격</small><b>${dueCount}문제</b></button>
         <button data-action="start-frequent"><strong>자주 틀린 20문제</strong><small>누적 오답 횟수 우선</small><b>${frequentCount}문제</b></button>
@@ -365,15 +384,56 @@
     </section>`);
   }
 
+  function renderJewelryHome() {
+    state.view = 'home';
+    const stats = overallStats();
+    const daily = dailyStats();
+    const catalogs = activeCatalogs();
+    const recentRound = latestProgressRound();
+    const dueCount = dueReviewItems().length;
+    const frequentCount = frequentWrongItems(20).length;
+    const availableKeys = new Set(catalogs.map((item) => item.key));
+    const sourceRows = [
+      ['gem-appraiser', '보석감정사(기능사)', '감정·감별 기초'],
+      ['gem-identification-industrial', '보석감정산업기사', '대비 목표 종목'],
+      ['precious-industrial', '귀금속가공산업기사', '디자인·재료·가공'],
+      ['precious-craftsman', '귀금속가공기능사', '귀금속 가공 기초'],
+      ['gem-processing', '보석가공기능사', '보석 가공 기초'],
+      ['gem-processing-industrial', '보석가공산업기사', '연관 산업기사']
+    ];
+    const catalogCards = catalogs.map((item) => {
+      const questions = item.rounds.reduce((sum, round) => sum + round.questions.length, 0);
+      return `<button class="jewelry-catalog-card" data-action="select-qualification" data-key="${item.key}"><span class="jewel-swatch ${item.key}"></span><span><strong>${esc(item.name)}</strong><small>${item.rounds.length}회차 · ${questions.toLocaleString()}문제</small></span><b>›</b></button>`;
+    }).join('');
+    const sourceStatus = sourceRows.map(([key, label, description]) => {
+      const catalog = getCatalog(key);
+      const available = availableKeys.has(key);
+      return `<li class="${available ? 'available' : 'reference'}"><span>${available ? '수록' : '참고'}</span><div><strong>${esc(label)}</strong><small>${esc(description)}</small></div><b>${available ? `${catalog.rounds.length}회차` : '완성 CBT 없음'}</b></li>`;
+    }).join('');
+    const recent = store.history.filter((item) => item.roundId && isActiveRound(getRound(item.roundId))).slice(0, 5)
+      .map((item) => `<li><span>${esc(item.title)}</span><strong>${item.score}점</strong><small>${new Date(item.at).toLocaleDateString('ko-KR')}</small></li>`).join('') || '<li class="empty-row">아직 완료한 시험이 없습니다.</li>';
+    shell(`<section class="jewelry-hero">
+        <div><span>GEM IDENTIFICATION & CRAFT</span><h1>보석감정산업기사<br>대비 학습관</h1><p>공개된 보석감정·귀금속가공 연관 기출을 한 공간에 모았습니다. 기존 산업기사 문제와 학습 화면·통계가 섞이지 않습니다.</p><div><button class="jewelry-primary" data-action="start-jewelry-mix">연관 문제 20개</button><button class="jewelry-secondary" data-action="nav" data-view="rounds">회차별 학습</button></div></div>
+        <dl><div><dt>검증 회차</dt><dd>${activeRounds().length}</dd></div><div><dt>수록 문항</dt><dd>${stats.total.toLocaleString()}</dd></div><div><dt>현재 정답률</dt><dd>${stats.accuracy}%</dd></div></dl>
+      </section>
+      <section class="jewelry-notice"><strong>자료 구성 원칙</strong><p>문항·보기·정답이 모두 있는 회차만 수록했습니다. 복원중 회차와 확인되지 않은 보석감정산업기사 직접 기출은 섞지 않고, 연관 종목 문제로 구분합니다.</p></section>
+      <section class="jewelry-actions"><button data-action="start-daily"><span>오늘</span><strong>새 문제 20개</strong><small>${daily.today}/${daily.goal}문제 학습</small></button><button data-action="start-due"><span>복습</span><strong>1·3·7일 자동 복습</strong><small>${dueCount}문제 대기</small></button><button data-action="start-frequent"><span>약점</span><strong>자주 틀린 문제</strong><small>${frequentCount}문제 분석</small></button>${recentRound ? `<button data-action="continue-round" data-round="${recentRound.id}"><span>계속</span><strong>${esc(recentRound.shortQualification)}</strong><small>${recentRound.year}년 회차 이어 풀기</small></button>` : '<button data-action="nav" data-view="rounds"><span>시작</span><strong>첫 회차 고르기</strong><small>학습모드·시험모드 지원</small></button>'}</section>
+      <section class="jewelry-section"><div class="section-heading"><div><span>AVAILABLE CBT</span><h2>검증 완료 문제</h2></div><button data-action="open-recurring">빈출 유형 분석</button></div><div class="jewelry-catalog-grid">${catalogCards}</div></section>
+      <section class="jewelry-dashboard"><article><div class="panel-heading"><h2>연관 자격 구성</h2></div><ul class="jewelry-source-list">${sourceStatus}</ul></article><article><div class="panel-heading"><h2>학습 현황</h2><button data-action="nav" data-view="stats">자세히</button></div><div class="jewelry-metrics"><span>학습 문제<strong>${stats.answered.toLocaleString()}</strong></span><span>오답<strong>${stats.wrong.toLocaleString()}</strong></span><span>북마크<strong>${stats.bookmarks.toLocaleString()}</strong></span><span>진도<strong>${stats.coverage}%</strong></span></div><div class="panel-heading jewelry-history-heading"><h2>최근 시험</h2></div><ul class="history-list">${recent}</ul></article></section>`,
+      '보석·귀금속 학습관', '보석감정산업기사 대비 연관 CBT');
+  }
+
   function renderRounds() {
     state.view = 'rounds';
-    const years = [...new Set(ROUNDS.filter((round) => state.qualification === 'all' || round.qualificationKey === state.qualification).map((round) => round.year))].sort((a, b) => b - a);
+    const rounds = activeRounds();
+    const catalogs = activeCatalogs();
+    const years = [...new Set(rounds.filter((round) => state.qualification === 'all' || round.qualificationKey === state.qualification).map((round) => round.year))].sort((a, b) => b - a);
     const query = state.roundSearch.trim().toLowerCase();
-    const filtered = ROUNDS.filter((round) => (state.qualification === 'all' || round.qualificationKey === state.qualification) && (state.year === 'all' || String(round.year) === String(state.year)) && (!query || `${round.title} ${round.qualification}`.toLowerCase().includes(query)));
-    const qualificationOptions = `<option value="all">전체 종목</option>` + CATALOG.map((item) => `<option value="${item.key}" ${state.qualification === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('');
+    const filtered = rounds.filter((round) => (state.qualification === 'all' || round.qualificationKey === state.qualification) && (state.year === 'all' || String(round.year) === String(state.year)) && (!query || `${round.title} ${round.qualification}`.toLowerCase().includes(query)));
+    const qualificationOptions = `<option value="all">전체 종목</option>` + catalogs.map((item) => `<option value="${item.key}" ${state.qualification === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('');
     shell(`<div class="filter-bar"><label>종목<select data-change="qualification">${qualificationOptions}</select></label><label>연도<select data-change="year"><option value="all">전체 연도</option>${years.map((year) => `<option ${String(state.year) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="filter-search">회차 검색<input data-input="round-search" value="${esc(state.roundSearch)}" placeholder="예: 2020년 3회"></label></div>
       <div class="section-heading"><div><span>PAST EXAMS</span><h2>${filtered.length}개 회차</h2></div><button class="secondary-button compact" data-action="open-random">랜덤 출제</button></div>
-      <div class="round-grid">${filtered.map(renderRoundCard).join('') || '<div class="empty-state">조건에 맞는 회차가 없습니다.</div>'}</div>`, '기출 회차', '학습모드 또는 실제 CBT형 시험모드로 시작할 수 있습니다.');
+      <div class="round-grid">${filtered.map(renderRoundCard).join('') || '<div class="empty-state">조건에 맞는 회차가 없습니다.</div>'}</div>`, state.space === 'jewelry' ? '보석·귀금속 기출 회차' : '기출 회차', '학습모드 또는 실제 CBT형 시험모드로 시작할 수 있습니다.');
   }
   function renderRoundCard(round) {
     const progress = store.progress[round.id];
@@ -387,10 +447,10 @@
     state.view = 'wrong';
     const historyItems = wrongHistoryItems();
     const wrongItems = historyItems.filter((item) => state.wrongFilter === 'all' || (state.wrongFilter === '3' ? item.wrongCount >= 3 : item.wrongCount === Number(state.wrongFilter)));
-    const bookmarks = store.bookmarks.map(findQuestion).filter(Boolean);
+    const bookmarks = store.bookmarks.map(findQuestion).filter((item) => item && isActiveRound(item.round));
     const noteItems = Object.entries(store.notes || {}).map(([id, note]) => {
       const item = findQuestion(id);
-      return item && note?.text?.trim() ? { ...item, id, note: note.text, formula: !!note.formula } : null;
+      return item && isActiveRound(item.round) && note?.text?.trim() ? { ...item, id, note: note.text, formula: !!note.formula } : null;
     }).filter(Boolean).sort((a, b) => (store.notes[b.id]?.updatedAt || 0) - (store.notes[a.id]?.updatedAt || 0));
     const formulaItems = noteItems.filter((item) => item.formula);
     const list = (items, type) => items.slice(0, 100).map((item) => {
@@ -409,13 +469,13 @@
     const query = state.searchQuery.trim().toLowerCase();
     const results = [];
     if (query.length >= 2) {
-      outer: for (const round of ROUNDS) for (const question of round.questions) {
+      outer: for (const round of activeRounds()) for (const question of round.questions) {
         const text = `${question.text} ${question.choices.map((choice) => choice.text).join(' ')}`.toLowerCase();
         if (text.includes(query)) results.push({ round, question });
         if (results.length >= 150) break outer;
       }
     }
-    shell(`<div class="search-hero"><input autofocus data-input="question-search" value="${esc(state.searchQuery)}" placeholder="두 글자 이상 입력하세요"><span>⌕</span></div><p class="search-count">${query.length >= 2 ? `${results.length}${results.length === 150 ? '+' : ''}개 결과` : '문제와 보기의 텍스트를 검색합니다.'}</p><div class="search-results">${results.map(({ round, question }) => `<article><span>${esc(round.shortQualification)} · ${round.year}년 · ${question.number}번</span><strong>${highlight(question.text, query)}</strong><button data-action="start-single" data-id="${questionId(round, question)}">문제 풀기</button></article>`).join('') || (query.length >= 2 ? '<div class="empty-state">검색 결과가 없습니다.</div>' : '')}</div>`, '문제 검색', '13,420문제에서 필요한 내용을 찾습니다.');
+    shell(`<div class="search-hero"><input autofocus data-input="question-search" value="${esc(state.searchQuery)}" placeholder="두 글자 이상 입력하세요"><span>⌕</span></div><p class="search-count">${query.length >= 2 ? `${results.length}${results.length === 150 ? '+' : ''}개 결과` : '문제와 보기의 텍스트를 검색합니다.'}</p><div class="search-results">${results.map(({ round, question }) => `<article><span>${esc(round.shortQualification)} · ${round.year}년 · ${question.number}번</span><strong>${highlight(question.text, query)}</strong><button data-action="start-single" data-id="${questionId(round, question)}">문제 풀기</button></article>`).join('') || (query.length >= 2 ? '<div class="empty-state">검색 결과가 없습니다.</div>' : '')}</div>`, '문제 검색', `${overallStats().total.toLocaleString()}문제에서 필요한 내용을 찾습니다.`);
   }
   function highlight(text, query) {
     const safe = esc(text); if (!query) return safe;
@@ -429,12 +489,14 @@
     const reviewCounts = reviewScheduleStats();
     const subjectRows = subjectPerformance();
     const weakest = subjectRows.find((row) => row.answered >= 3);
-    const timingValues = Object.values(store.questionTimes || {});
+    const timingValues = Object.entries(store.questionTimes || {}).filter(([id]) => {
+      const item = findQuestion(id); return item && isActiveRound(item.round);
+    }).map(([, timing]) => timing);
     const totalTimingCount = timingValues.reduce((sum, timing) => sum + (timing.count || 0), 0);
     const averageTiming = totalTimingCount ? timingValues.reduce((sum, timing) => sum + (timing.totalMs || 0), 0) / totalTimingCount : 0;
     const slowCount = slowQuestionItems(20).length;
     const plan = studyPlanStats();
-    const rows = CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => {
+    const rows = activeCatalogs().map((item) => {
       const ids = item.rounds.flatMap((round) => round.questions.map((question) => questionId(round, question)));
       const answered = ids.filter((id) => store.attempts[id]).length;
       const correct = ids.filter((id) => store.attempts[id]?.lastCorrect).length;
@@ -445,7 +507,7 @@
       <div class="stats-layout"><article class="panel"><div class="panel-heading"><h2>종목별 학습 현황</h2></div><div class="table-wrap"><table><thead><tr><th>종목</th><th>전체</th><th>학습</th><th>정답률</th></tr></thead><tbody>${rows}</tbody></table></div></article>
       <article class="panel review-schedule"><div class="panel-heading"><h2>1·3·7일 복습 일정</h2><button data-action="start-due">오늘 복습 시작</button></div><div><span><b>1일</b><strong>${reviewCounts[0]}</strong><small>기초 복습</small></span><span><b>3일</b><strong>${reviewCounts[1]}</strong><small>정착 복습</small></span><span><b>7일</b><strong>${reviewCounts[2]}</strong><small>장기 복습</small></span></div><p>문제를 풀 때마다 다음 복습일이 자동으로 잡힙니다.</p></article></div>
       <article class="panel subject-analysis"><div class="panel-heading"><div><h2>과목별 정답률·취약도</h2><p>${weakest ? `현재 취약 과목은 ${esc(weakest.qualification)} · ${esc(weakest.subject)} (${weakest.accuracy}%)입니다.` : '과목별로 3문제 이상 풀면 취약 과목을 분석합니다.'}</p></div><button data-action="start-frequent">자주 틀린 20문제</button></div><div class="table-wrap"><table><thead><tr><th>과목</th><th>학습</th><th>정답률</th><th>누적 오답</th><th></th></tr></thead><tbody>${subjectTable}</tbody></table></div></article>
-      <div class="stats-layout insight-panels"><article class="panel"><div class="panel-heading"><h2>문제별 풀이시간</h2><button data-action="start-slow">느린 문제 풀기</button></div><div class="insight-metrics"><span>측정 문제<strong>${Object.keys(store.questionTimes || {}).length}</strong></span><span>평균 풀이시간<strong>${averageTiming ? formatDuration(averageTiming) : '-'}</strong></span><span>느린 문제 시험<strong>${slowCount}문제</strong></span></div><p class="panel-note">학습모드에서 문제를 처음 선택할 때까지의 시간을 기준으로 기록합니다.</p></article><article class="panel"><div class="panel-heading"><h2>시험일 학습계획</h2><button data-action="open-study-plan">${plan ? '계획 수정' : '계획 설정'}</button></div>${plan ? `<div class="plan-summary"><strong>${esc(plan.catalog.name)}</strong><span>${esc(plan.examDate)} · ${plan.dDay > 0 ? `D-${plan.dDay}` : plan.dDay === 0 ? 'D-DAY' : '시험일 지남'}</span><b>남은 ${plan.remaining.toLocaleString()}문제 · 하루 ${plan.dailyTarget.toLocaleString()}문제</b><button data-action="start-plan-daily">오늘 계획 풀기</button></div>` : '<div class="empty-state compact-empty">시험일을 설정하면 남은 문제를 날짜별로 자동 배분합니다.</div>'}</article></div>`, '학습 통계', '이 브라우저에 저장된 학습 기록입니다.');
+      <div class="stats-layout insight-panels"><article class="panel"><div class="panel-heading"><h2>문제별 풀이시간</h2><button data-action="start-slow">느린 문제 풀기</button></div><div class="insight-metrics"><span>측정 문제<strong>${timingValues.length}</strong></span><span>평균 풀이시간<strong>${averageTiming ? formatDuration(averageTiming) : '-'}</strong></span><span>느린 문제 시험<strong>${slowCount}문제</strong></span></div><p class="panel-note">학습모드에서 문제를 처음 선택할 때까지의 시간을 기준으로 기록합니다.</p></article><article class="panel"><div class="panel-heading"><h2>시험일 학습계획</h2><button data-action="open-study-plan">${plan ? '계획 수정' : '계획 설정'}</button></div>${plan ? `<div class="plan-summary"><strong>${esc(plan.catalog.name)}</strong><span>${esc(plan.examDate)} · ${plan.dDay > 0 ? `D-${plan.dDay}` : plan.dDay === 0 ? 'D-DAY' : '시험일 지남'}</span><b>남은 ${plan.remaining.toLocaleString()}문제 · 하루 ${plan.dailyTarget.toLocaleString()}문제</b><button data-action="start-plan-daily">오늘 계획 풀기</button></div>` : '<div class="empty-state compact-empty">시험일을 설정하면 남은 문제를 날짜별로 자동 배분합니다.</div>'}</article></div>`, '학습 통계', '이 브라우저에 저장된 학습 기록입니다.');
   }
 
   function renderUpdates() {
@@ -476,26 +538,26 @@
       const filtered = clusters.filter((cluster) => cluster.count >= minimum);
       const covered = new Set(filtered.flatMap((cluster) => cluster.items.map(({ round, question }) => questionId(round, question)))).size;
       const groupButtons = filtered.slice(0, 15).map((cluster) => `<button class="recurring-group" data-action="start-recurring-group" data-key="${key}" data-cluster="${cluster.id}"><span><b>${cluster.count}회</b>${esc(cluster.subject)}</span><strong>${esc(cluster.label)}</strong><small>이 유형의 유사문제 ${cluster.count}문제 모두 풀기</small></button>`).join('') || '<div class="empty-state">선택한 출제 횟수에 해당하는 유형이 없습니다.</div>';
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal recurring-modal" role="dialog"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">전회차 유사도 분석</span><h2>빈출·유사문제 분류</h2><p>숫자와 표현이 달라도 핵심 문장이 비슷한 문제를 같은 유형으로 묶었습니다.</p><div class="recurring-controls"><label class="setting-row">종목<select data-change="recurring-qualification">${CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">최소 출제 횟수<select data-change="recurring-minimum"><option value="2" ${minimum === 2 ? 'selected' : ''}>2회 이상</option><option value="3" ${minimum === 3 ? 'selected' : ''}>3회 이상</option><option value="5" ${minimum === 5 ? 'selected' : ''}>5회 이상</option></select></label><label class="setting-row">종합시험 문제 수<select id="recurringCount"><option>10</option><option selected>20</option><option>40</option></select></label></div><div class="recurring-summary"><span>분류된 유형<strong>${filtered.length.toLocaleString()}개</strong></span><span>포함 문제<strong>${covered.toLocaleString()}문제</strong></span><button class="primary-button" data-action="start-recurring-mix" data-key="${key}" data-minimum="${minimum}">빈출 종합시험 시작</button></div><div class="recurring-list">${groupButtons}</div></div></div>`;
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal recurring-modal" role="dialog"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">전회차 유사도 분석</span><h2>빈출·유사문제 분류</h2><p>숫자와 표현이 달라도 핵심 문장이 비슷한 문제를 같은 유형으로 묶었습니다.</p><div class="recurring-controls"><label class="setting-row">종목<select data-change="recurring-qualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">최소 출제 횟수<select data-change="recurring-minimum"><option value="2" ${minimum === 2 ? 'selected' : ''}>2회 이상</option><option value="3" ${minimum === 3 ? 'selected' : ''}>3회 이상</option><option value="5" ${minimum === 5 ? 'selected' : ''}>5회 이상</option></select></label><label class="setting-row">종합시험 문제 수<select id="recurringCount"><option>10</option><option selected>20</option><option>40</option></select></label></div><div class="recurring-summary"><span>분류된 유형<strong>${filtered.length.toLocaleString()}개</strong></span><span>포함 문제<strong>${covered.toLocaleString()}문제</strong></span><button class="primary-button" data-action="start-recurring-mix" data-key="${key}" data-minimum="${minimum}">빈출 종합시험 시작</button></div><div class="recurring-list">${groupButtons}</div></div></div>`;
     }
     if (state.modal.type === 'difficulty') {
-      const options = CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => {
+      const options = activeCatalogs().map((item) => {
         const count = item.rounds.reduce((sum, round) => sum + round.questions.filter((question) => numericAnswerRate(question) != null).length, 0);
         return `<option value="${item.key}" ${count ? '' : 'disabled'}>${esc(item.name)}${count ? '' : ' · 정답률 자료 없음'}</option>`;
       }).join('');
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">COMCBT 정답률 기준</span><h2>고난도 문제만 풀기</h2><label class="setting-row">종목<select id="difficultyQualification"><option value="all">전체 종목</option>${options}</select></label><label class="setting-row">최대 정답률<select id="difficultyRate"><option value="30">30% 이하</option><option value="40" selected>40% 이하</option><option value="50">50% 이하</option></select></label><label class="setting-row">문제 수<select id="difficultyCount"><option value="10">10문제</option><option value="20" selected>20문제</option><option value="40">40문제</option></select></label><p class="setting-note">원문에 COMCBT 정답률이 있는 문제만 출제합니다.</p><button class="primary-button wide" data-action="start-hard">고난도 학습 시작</button></div></div>`;
     }
     if (state.modal.type === 'study-plan') {
-      const plan = store.studyPlan || {};
+      const plan = currentStudyPlan() || {};
       const suggested = new Date(); suggested.setDate(suggested.getDate() + 30);
-      const selectedKey = plan.qualification || (PRIMARY_KEYS.includes(state.qualification) ? state.qualification : 'hvac');
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">DAILY STUDY PLAN</span><h2>시험일 학습계획</h2><p>시험일까지 남은 미학습 문제를 날짜별로 자동 배분합니다.</p><label class="setting-row">종목<select id="studyPlanQualification">${CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => `<option value="${item.key}" ${selectedKey === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">시험일<input id="studyPlanDate" type="date" min="${localDateValue()}" value="${esc(plan.examDate || localDateValue(suggested))}"></label><button class="primary-button wide" data-action="save-study-plan">학습계획 저장</button>${store.studyPlan ? '<button class="secondary-button wide modal-secondary" data-action="clear-study-plan">계획 삭제</button>' : ''}</div></div>`;
+      const selectedKey = plan.qualification || (activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key);
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">DAILY STUDY PLAN</span><h2>시험일 학습계획</h2><p>시험일까지 남은 미학습 문제를 날짜별로 자동 배분합니다.</p><label class="setting-row">종목<select id="studyPlanQualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${selectedKey === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">시험일<input id="studyPlanDate" type="date" min="${localDateValue()}" value="${esc(plan.examDate || localDateValue(suggested))}"></label><button class="primary-button wide" data-action="save-study-plan">학습계획 저장</button>${currentStudyPlan() ? '<button class="secondary-button wide modal-secondary" data-action="clear-study-plan">계획 삭제</button>' : ''}</div></div>`;
     }
     if (state.modal.type === 'settings') {
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">화면 테마<select data-change="theme"><option value="system">기기 설정</option><option value="light">밝게</option><option value="dark">어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
     }
     if (state.modal.type === 'random') {
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>랜덤 문제</h2><label class="setting-row">종목<select id="randomQualification">${CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => `<option value="${item.key}" ${state.qualification === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="primary-button wide" data-action="start-random">학습 시작</button></div></div>`;
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>랜덤 문제</h2><label class="setting-row">종목<select id="randomQualification">${activeCatalogs().map((item, index) => `<option value="${item.key}" ${state.qualification === item.key || (state.qualification === 'all' && index === 0) ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="primary-button wide" data-action="start-random">학습 시작</button></div></div>`;
     }
     return '';
   }
@@ -685,7 +747,7 @@
     });
     const score = Math.round(correct / s.questions.length * 100);
     state.result = { score, correct, total: s.questions.length, unanswered, subjects: subjectMap, title: s.round.title, answers: Object.assign({}, s.answers), questions: s.questions, round: s.round, mode: s.mode };
-    store.history.unshift({ title: s.round.title, score, correct, total: s.questions.length, at: Date.now() }); store.history = store.history.slice(0, 50); saveStore();
+    store.history.unshift({ roundId: s.round.id, title: s.round.title, score, correct, total: s.questions.length, at: Date.now() }); store.history = store.history.slice(0, 50); saveStore();
     state.session = null; state.view = 'result'; renderResult();
   }
   function renderResult() {
@@ -794,6 +856,14 @@
     if (button.dataset.action === 'close-modal' && button.classList?.contains('modal-backdrop') && event.target !== button) return;
     const action = button.dataset.action;
     if (action === 'nav') { state.modal = null; state.view = button.dataset.view; route(); }
+    else if (action === 'switch-space') {
+      if (state.session?.mode === 'exam' && !confirm('현재 시험을 종료하고 다른 학습관으로 이동할까요?')) return;
+      clearInterval(timerHandle);
+      state.space = button.dataset.space === 'jewelry' ? 'jewelry' : 'industrial';
+      state.view = 'home'; state.qualification = 'all'; state.year = 'all'; state.roundSearch = ''; state.searchQuery = '';
+      state.session = null; state.result = null; state.modal = null; state.wrongFilter = 'all';
+      renderHome(); scrollTo(0, 0);
+    }
     else if (action === 'toggle-session-sidebar') { state.focusSidebarOpen = !state.focusSidebarOpen; renderSession(); }
     else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; renderRounds(); }
     else if (action === 'open-mode') { state.modal = { type: 'mode', roundId: button.dataset.round }; route(); }
@@ -810,11 +880,17 @@
       const examDate = document.getElementById('studyPlanDate').value;
       if (!examDate) toast('시험일을 선택하세요.');
       else {
-        store.studyPlan = { qualification, examDate, updatedAt: Date.now() };
+        store.studyPlans ||= {};
+        store.studyPlans[state.space] = { qualification, examDate, updatedAt: Date.now() };
+        if (state.space === 'industrial') store.studyPlan = store.studyPlans[state.space];
         saveStore(); state.modal = null; renderHome(); toast('시험일 학습계획을 저장했습니다.');
       }
     }
-    else if (action === 'clear-study-plan' && confirm('저장된 시험일 학습계획을 삭제할까요?')) { store.studyPlan = null; saveStore(); state.modal = null; renderHome(); }
+    else if (action === 'clear-study-plan' && confirm('저장된 시험일 학습계획을 삭제할까요?')) {
+      store.studyPlans ||= {}; delete store.studyPlans[state.space];
+      if (state.space === 'industrial') store.studyPlan = null;
+      saveStore(); state.modal = null; renderHome();
+    }
     else if (action === 'start-plan-daily') {
       const plan = studyPlanStats();
       if (!plan || !plan.remainingItems.length) toast('계획한 종목의 미학습 문제를 모두 풀었습니다.');
@@ -826,7 +902,7 @@
       else startCollection(slow, '풀이시간이 오래 걸린 문제 TOP 20');
     }
     else if (action === 'open-recurring') {
-      state.modal = { type: 'recurring', qualification: PRIMARY_KEYS.includes(state.qualification) ? state.qualification : 'hvac', minimum: 2 };
+      state.modal = { type: 'recurring', qualification: activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key, minimum: 2 };
       route();
     }
     else if (action === 'open-difficulty') { state.modal = { type: 'difficulty' }; route(); }
@@ -887,8 +963,18 @@
       if (selected.length < 20) selected.push(...shuffled(pool.filter((item) => !selected.includes(item))).slice(0, 20 - selected.length));
       startCollection(selected, '오늘의 20문제');
     }
+    else if (action === 'start-jewelry-mix') {
+      const pool = allQuestionItems();
+      const unseen = pool.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
+      const selected = shuffled(unseen).slice(0, 20);
+      if (selected.length < 20) {
+        const used = new Set(selected.map(({ round, question }) => questionId(round, question)));
+        selected.push(...shuffled(pool.filter(({ round, question }) => !used.has(questionId(round, question)))).slice(0, 20 - selected.length));
+      }
+      startCollection(selected, '보석감정산업기사 대비 연관 20문제');
+    }
     else if (action === 'start-weak') {
-      const wrong = Object.keys(store.wrong).map(findQuestion).filter(Boolean);
+      const wrong = Object.keys(store.wrong).map(findQuestion).filter((item) => item && isActiveRound(item.round));
       const selected = shuffled(wrong).slice(0, 20);
       if (selected.length < 20) {
         const used = new Set(selected.map(({ round, question }) => questionId(round, question)));
@@ -912,11 +998,11 @@
     else if (action === 'toggle-bookmark') {
       const id = button.dataset.id; store.bookmarks = store.bookmarks.includes(id) ? store.bookmarks.filter((item) => item !== id) : [...store.bookmarks, id]; saveStore(); route();
     }
-    else if (action === 'start-wrong') startCollection(Object.keys(store.wrong).map(findQuestion).filter(Boolean), '오답 다시 풀기');
+    else if (action === 'start-wrong') startCollection(Object.keys(store.wrong).map(findQuestion).filter((item) => item && isActiveRound(item.round)), '오답 다시 풀기');
     else if (action === 'start-filtered-wrong') startCollection(wrongHistoryItems().filter((item) => state.wrongFilter === 'all' || (state.wrongFilter === '3' ? item.wrongCount >= 3 : item.wrongCount === Number(state.wrongFilter))), '누적 오답 다시 풀기');
     else if (action === 'set-wrong-filter') { state.wrongFilter = button.dataset.filter; renderWrong(); }
-    else if (action === 'start-bookmarks') startCollection(store.bookmarks.map(findQuestion).filter(Boolean), '북마크 다시 풀기');
-    else if (action === 'start-formula-notes') startCollection(Object.entries(store.notes || {}).filter(([, note]) => note?.formula && note?.text?.trim()).map(([id]) => findQuestion(id)).filter(Boolean), '공식 노트 문제 복습');
+    else if (action === 'start-bookmarks') startCollection(store.bookmarks.map(findQuestion).filter((item) => item && isActiveRound(item.round)), '북마크 다시 풀기');
+    else if (action === 'start-formula-notes') startCollection(Object.entries(store.notes || {}).filter(([, note]) => note?.formula && note?.text?.trim()).map(([id]) => findQuestion(id)).filter((item) => item && isActiveRound(item.round)), '공식 노트 문제 복습');
     else if (action === 'start-single') { const item = findQuestion(button.dataset.id); if (item) startCollection([item], '선택 문제 풀이'); }
     else if (action === 'clear-note' && confirm('이 문제의 개인 메모를 삭제할까요?')) { delete store.notes[button.dataset.id]; saveStore(); renderWrong(); }
     else if (action === 'remove-formula') { if (store.notes[button.dataset.id]) store.notes[button.dataset.id].formula = false; saveStore(); renderWrong(); }
@@ -1027,7 +1113,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=170', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=180', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
