@@ -570,7 +570,6 @@
 
   function answerQuestion(number, choice) {
     const s = state.session, question = s.questions.find((item) => item.number === number); if (!question) return;
-    if (s.mode === 'learn' && s.revealed[number] && s.answers[number] === question.answer) return;
     s.answers[number] = choice;
     if (s.mode === 'exam') {
       document.querySelectorAll?.(`.exam-choice[data-number="${number}"]`).forEach((node) => node.classList.toggle('selected', Number(node.dataset.choice) === choice));
@@ -590,7 +589,7 @@
         card.querySelectorAll('.choice[data-choice]').forEach((node) => {
           const option = Number(node.dataset.choice);
           node.classList.remove('selected');
-          node.classList.toggle('correct', option === question.answer);
+          node.classList.toggle('correct', correct && option === question.answer);
           node.classList.toggle('wrong', option === choice && choice !== question.answer);
         });
         const feedback = card.querySelector('.question-feedback');
@@ -891,7 +890,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=160', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=161', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
