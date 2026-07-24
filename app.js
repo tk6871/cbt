@@ -293,10 +293,21 @@
     const answered = Object.keys(s.answers).length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
       <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
-      <div class="learning-list">${visible.map((question) => renderLearningQuestion(question)).join('')}</div>
+      <div class="learning-list">${visible.map((question) => renderLearningItem(question)).join('')}</div>
       <div class="pagination"><button data-action="session-prev" ${s.page === 0 ? 'disabled' : ''}>‹ 이전</button><span>${s.page + 1} / ${pages}</span><button data-action="session-next" ${s.page >= pages - 1 ? 'disabled' : ''}>다음 ›</button></div>
       <div class="learning-finish"><button class="primary-button" data-action="finish-session">학습 결과 보기</button></div>`, '문제 풀이', `${s.round.shortQualification || ''} · 학습모드`);
     saveLearningProgress();
+  }
+  function renderSubjectDivider(round, question, className) {
+    const subject = subjectFor(round, question);
+    const subjectIndex = Math.max(0, round.subjects.indexOf(subject));
+    return `<div class="${className}"><span>${subjectIndex + 1}과목</span><strong>${esc(subject)}</strong><small>${question.number}번부터</small></div>`;
+  }
+  function renderLearningItem(question) {
+    const s = state.session;
+    const previous = s.questions[question.number - 2];
+    const showSubject = !s.transient && (!previous || subjectFor(s.round, previous) !== subjectFor(s.round, question));
+    return `${showSubject ? renderSubjectDivider(s.round, question, 'subject-divider') : ''}${renderLearningQuestion(question)}`;
   }
   function renderLearningQuestion(question) {
     const s = state.session, id = questionId(s.round, question), selected = s.answers[question.number], revealed = !!s.revealed[question.number], bookmarked = store.bookmarks.includes(id);
@@ -305,15 +316,16 @@
       ? `<div class="image-question-label"><strong>${question.number}번</strong><span>CBT 복원문제 · 원문 이미지</span></div><img class="source-question-main" src="${esc(question.sourceImage)}" alt="${question.number}번 복원문제 원문" loading="lazy">`
       : `<h3><span>${question.number}.</span> ${question.html || esc(question.text)}</h3>${renderImages(question.images, '문제 이미지')}`;
     return `<article class="question-card ${imagePrimary ? 'image-primary' : ''}" id="question-${question.number}"><div class="question-meta"><span>${esc(subjectFor(s.round, question))}</span><button class="bookmark-button ${bookmarked ? 'active' : ''}" data-action="toggle-bookmark" data-id="${id}" title="북마크">★</button></div>${prompt}
-      <div class="choice-list ${imagePrimary ? 'image-answer-list' : ''}">${question.choices.map((choice, index) => { const n = index + 1, cls = revealed ? (n === question.answer ? 'correct' : n === selected ? 'wrong' : '') : n === selected ? 'selected' : ''; return `<button class="choice ${cls}" data-action="answer" data-number="${question.number}" data-choice="${n}"><span>${CIRCLES[index]}</span><span>${imagePrimary ? `${n}번 선택` : (choice.html || esc(choice.text))}</span>${imagePrimary ? '' : renderImages(choice.images, '보기 이미지')}</button>`; }).join('')}</div>
+      <div class="choice-list ${imagePrimary ? 'image-answer-list' : ''}">${question.choices.map((choice, index) => { const n = index + 1, cls = revealed ? (n === selected ? (n === question.answer ? 'correct' : 'wrong') : '') : n === selected ? 'selected' : ''; return `<button class="choice ${cls}" data-action="answer" data-number="${question.number}" data-choice="${n}"><span>${CIRCLES[index]}</span><span>${imagePrimary ? `${n}번 선택` : (choice.html || esc(choice.text))}</span>${imagePrimary ? '' : renderImages(choice.images, '보기 이미지')}</button>`; }).join('')}</div>
       <div class="question-feedback">${revealed ? renderExplanation(question, selected) : '<p class="answer-guide">보기를 선택하면 정답과 해설이 표시됩니다.</p>'}</div>
       ${question.sourceImage && !imagePrimary ? `<details class="source-details"><summary>원문 이미지 확인</summary><img src="${esc(question.sourceImage)}" alt="${question.number}번 원문" loading="lazy"></details>` : ''}</article>`;
   }
   function renderExplanation(question, selected) {
     const correct = selected === question.answer;
+    if (!correct) return '<div class="explanation wrong retry-explanation"><strong>오답입니다 · 다시 골라보세요</strong><p>정답을 직접 찾으면 해설이 열립니다.</p></div>';
     const explanationBadge = question.explanationType === 'ai-reference' ? '<span class="ai-explanation-badge">AI 참고 해설 · 쉽게 풀어보기</span>' : '';
     const explanation = question.explanationHtml || (question.explanation ? esc(question.explanation).replaceAll('\n', '<br>') : '등록된 해설이 없습니다. 정답과 보기를 비교해 복습하세요.');
-    return `<div class="explanation ${correct ? 'correct' : 'wrong'}"><strong>${correct ? '정답입니다' : `오답입니다 · 정답 ${CIRCLES[question.answer - 1]}`}</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>`;
+    return `<div class="explanation correct"><strong>정답입니다</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>`;
   }
   function renderImages(images, alt) {
     return (images || []).length ? `<div class="question-images">${images.map((src) => `<img src="${esc(src)}" alt="${alt}" loading="lazy">`).join('')}</div>` : '';
@@ -338,7 +350,7 @@
     const prompt = imagePrimary
       ? `<div class="exam-image-label"><strong>${question.number}번</strong><span>CBT 복원 원문</span></div><img class="exam-source-question" src="${esc(question.sourceImage)}" alt="${question.number}번 복원문제 원문" loading="lazy">`
       : `<div class="exam-question-head"><h2><span>${question.number}.</span> ${question.html || esc(question.text)}</h2><button data-action="toggle-review" data-number="${question.number}" title="보류 표시">${held ? '★ 보류' : '☆ 보류'}</button></div>${renderImages(question.images, '문제 이미지')}`;
-    return `${showSubject ? `<div class="exam-section-title">${s.round.subjects.indexOf(subjectFor(s.round, question)) + 1}과목 : ${esc(subjectFor(s.round, question))}</div>` : ''}<article class="exam-question ${held ? 'held' : ''} ${imagePrimary ? 'image-primary' : ''}" id="exam-question-${question.number}">${prompt}${imagePrimary ? `<button class="exam-image-hold" data-action="toggle-review" data-number="${question.number}" title="보류 표시">${held ? '★ 보류' : '☆ 보류'}</button>` : ''}<div class="exam-choices ${imagePrimary ? 'exam-image-answers' : ''}">${question.choices.map((choice, index) => `<button class="exam-choice ${selected === index + 1 ? 'selected' : ''}" data-action="answer" data-number="${question.number}" data-choice="${index + 1}"><span>${CIRCLES[index]}</span><span>${imagePrimary ? `${index + 1}번 선택` : (choice.html || esc(choice.text))}</span>${imagePrimary ? '' : renderImages(choice.images, '보기 이미지')}</button>`).join('')}</div></article>`;
+    return `${showSubject ? renderSubjectDivider(s.round, question, 'exam-section-title') : ''}<article class="exam-question ${held ? 'held' : ''} ${imagePrimary ? 'image-primary' : ''}" id="exam-question-${question.number}">${prompt}${imagePrimary ? `<button class="exam-image-hold" data-action="toggle-review" data-number="${question.number}" title="보류 표시">${held ? '★ 보류' : '☆ 보류'}</button>` : ''}<div class="exam-choices ${imagePrimary ? 'exam-image-answers' : ''}">${question.choices.map((choice, index) => `<button class="exam-choice ${selected === index + 1 ? 'selected' : ''}" data-action="answer" data-number="${question.number}" data-choice="${index + 1}"><span>${CIRCLES[index]}</span><span>${imagePrimary ? `${index + 1}번 선택` : (choice.html || esc(choice.text))}</span>${imagePrimary ? '' : renderImages(choice.images, '보기 이미지')}</button>`).join('')}</div></article>`;
   }
   function renderAnswerSheet() {
     const s = state.session;
