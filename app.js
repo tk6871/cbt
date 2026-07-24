@@ -257,7 +257,9 @@
     const saved = mode === 'learn' ? store.progress[round.id] : null;
     const duration = (round.examMinutes || Math.round(round.questions.length * 1.5)) * 60;
     const savedPageSize = Number(saved?.pageSize);
-    state.session = { round, questions: round.questions, mode, answers: saved?.answers || {}, revealed: saved?.revealed || {}, review: {}, page: saved?.page || 0, pageSize: [2, 4, 6, 10, 20, 40, round.questions.length].includes(savedPageSize) ? savedPageSize : 4, duration, remaining: duration, startedAt: Date.now() };
+    const subject = mode === 'learn' && round.subjects.includes(saved?.subject) ? saved.subject : 'all';
+    const questions = subject === 'all' ? round.questions : round.questions.filter((question) => subjectFor(round, question) === subject);
+    state.session = { round, allQuestions: round.questions, questions, subject, mode, answers: saved?.answers || {}, revealed: saved?.revealed || {}, review: {}, page: saved?.page || 0, pageSize: [2, 4, 6, 10, 20, 40, questions.length].includes(savedPageSize) ? savedPageSize : 4, duration, remaining: duration, startedAt: Date.now() };
     state.modal = null; state.result = null; state.examSheetOpen = false; state.focusSidebarOpen = false; state.view = 'session';
     if (mode === 'exam') startTimer();
     renderSession();
@@ -290,12 +292,20 @@
     s.page = clamp(s.page, 0, pages - 1);
     const start = s.page * s.pageSize;
     const visible = s.questions.slice(start, start + s.pageSize);
-    const answered = Object.keys(s.answers).length;
+    const answered = s.questions.filter((question) => s.answers[question.number] != null).length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
       <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
       <div class="learning-list">${visible.map((question) => renderLearningItem(question)).join('')}</div>
       <div class="pagination"><button data-action="session-prev" ${s.page === 0 ? 'disabled' : ''}>‹ 이전</button><span>${s.page + 1} / ${pages}</span><button data-action="session-next" ${s.page >= pages - 1 ? 'disabled' : ''}>다음 ›</button></div>
       <div class="learning-finish"><button class="primary-button" data-action="finish-session">학습 결과 보기</button></div>`, '문제 풀이', `${s.round.shortQualification || ''} · 학습모드`);
+    if (!s.transient && s.round.subjects.length > 1) {
+      const options = [`<option value="all" ${s.subject === 'all' ? 'selected' : ''}>전체 과목 (${s.allQuestions.length}문제)</option>`]
+        .concat(s.round.subjects.map((subject, index) => {
+          const count = s.allQuestions.filter((question) => subjectFor(s.round, question) === subject).length;
+          return `<option value="${esc(subject)}" ${s.subject === subject ? 'selected' : ''}>${index + 1}과목 · ${esc(subject)} (${count}문제)</option>`;
+        })).join('');
+      document.querySelector('.learning-toolbar')?.insertAdjacentHTML('afterbegin', `<label class="learning-subject-select">학습 과목<select data-change="learning-subject">${options}</select></label>`);
+    }
     saveLearningProgress();
   }
   function renderSubjectDivider(round, question, className) {
@@ -305,7 +315,8 @@
   }
   function renderLearningItem(question) {
     const s = state.session;
-    const previous = s.questions[question.number - 2];
+    const index = s.questions.indexOf(question);
+    const previous = index > 0 ? s.questions[index - 1] : null;
     const showSubject = !s.transient && (!previous || subjectFor(s.round, previous) !== subjectFor(s.round, question));
     return `${showSubject ? renderSubjectDivider(s.round, question, 'subject-divider') : ''}${renderLearningQuestion(question)}`;
   }
@@ -321,11 +332,13 @@
       ${question.sourceImage && !imagePrimary ? `<details class="source-details"><summary>원문 이미지 확인</summary><img src="${esc(question.sourceImage)}" alt="${question.number}번 원문" loading="lazy"></details>` : ''}</article>`;
   }
   function renderExplanation(question, selected) {
+    const rate = question.answerRate != null && Number.isFinite(Number(question.answerRate)) ? Number(question.answerRate) : null;
+    const rateBadge = rate == null ? '' : `<div class="answer-rate-badge"><span>COMCBT 정답률</span><strong>${rate}%</strong><small>${rate < 40 ? '고난도' : rate < 65 ? '보통' : '기본'}</small></div>`;
     const correct = selected === question.answer;
-    if (!correct) return '<div class="explanation wrong retry-explanation"><strong>오답입니다 · 다시 골라보세요</strong><p>정답을 직접 찾으면 해설이 열립니다.</p></div>';
+    if (!correct) return '<div class="explanation wrong retry-explanation"><strong>오답입니다 · 다시 골라보세요</strong><p>정답을 직접 찾으면 해설이 열립니다.</p></div>' + rateBadge;
     const explanationBadge = question.explanationType === 'ai-reference' ? '<span class="ai-explanation-badge">AI 참고 해설 · 쉽게 풀어보기</span>' : '';
     const explanation = question.explanationHtml || (question.explanation ? esc(question.explanation).replaceAll('\n', '<br>') : '등록된 해설이 없습니다. 정답과 보기를 비교해 복습하세요.');
-    return `<div class="explanation correct"><strong>정답입니다</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>`;
+    return `<div class="explanation correct"><strong>정답입니다</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>${rateBadge}`;
   }
   function renderImages(images, alt) {
     return (images || []).length ? `<div class="question-images">${images.map((src) => `<img src="${esc(src)}" alt="${alt}" loading="lazy">`).join('')}</div>` : '';
@@ -384,7 +397,7 @@
         });
         const feedback = card.querySelector('.question-feedback');
         if (feedback) feedback.innerHTML = renderExplanation(question, choice);
-        const answered = Object.keys(s.answers).length;
+        const answered = s.questions.filter((item) => s.answers[item.number] != null).length;
         document.querySelectorAll('[data-learning-done]').forEach((node) => node.textContent = answered);
         return;
       }
@@ -393,11 +406,11 @@
   }
   function saveLearningProgress() {
     const s = state.session; if (!s || s.mode !== 'learn' || s.transient) return;
-    store.progress[s.round.id] = { answers: s.answers, revealed: s.revealed, page: s.page, pageSize: s.pageSize, updatedAt: Date.now() }; saveStore();
+    store.progress[s.round.id] = { answers: s.answers, revealed: s.revealed, subject: s.subject, page: s.page, pageSize: s.pageSize, updatedAt: Date.now() }; saveStore();
   }
   function finishSession(auto) {
     const s = state.session; if (!s) return;
-    const unanswered = s.questions.length - Object.keys(s.answers).length;
+    const unanswered = s.questions.filter((question) => s.answers[question.number] == null).length;
     if (!auto && s.mode === 'exam' && unanswered && !confirm(`${unanswered}문제가 미응답입니다. 지금 채점할까요?`)) return;
     clearInterval(timerHandle);
     let correct = 0;
@@ -435,7 +448,9 @@
       requestAnimationFrame(() => document.getElementById(`exam-question-${number}`)?.scrollIntoView({ block: 'start', behavior: 'smooth' }));
       return;
     }
-    s.page = Math.floor((number - 1) / s.pageSize); renderSession();
+    const index = s.questions.findIndex((question) => question.number === number);
+    if (index < 0) return;
+    s.page = Math.floor(index / s.pageSize); renderSession();
     requestAnimationFrame(() => document.getElementById(`question-${number}`)?.scrollIntoView({ block: 'start' }));
   }
   function renderJumpModal() {
@@ -536,6 +551,16 @@
     else if (key === 'font-scale') { store.fontScale = Number(event.target.value); bindFocusable(); saveStore(); }
     else if (key === 'session-page-size') {
       const s = state.session, first = s.page * s.pageSize; s.pageSize = Number(event.target.value); s.page = Math.floor(first / s.pageSize); saveLearningProgress(); renderSession();
+    }
+    else if (key === 'learning-subject') {
+      const s = state.session;
+      s.subject = event.target.value;
+      s.questions = s.subject === 'all' ? s.allQuestions : s.allQuestions.filter((question) => subjectFor(s.round, question) === s.subject);
+      s.page = 0;
+      if (s.pageSize > s.questions.length) s.pageSize = s.questions.length;
+      saveLearningProgress();
+      renderSession();
+      scrollTo(0, 0);
     }
     else if (key === 'exam-subject') {
       const s = state.session, index = Number(event.target.value), size = Math.ceil(s.questions.length / s.round.subjects.length); jumpQuestion(index * size + 1);
