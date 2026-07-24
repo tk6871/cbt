@@ -10,7 +10,8 @@
     ...(Array.isArray(window.CBT_DATA_JEWELRY) ? window.CBT_DATA_JEWELRY : [])
   ].filter(Boolean);
   const PRIMARY_KEYS = ['hvac', 'safety', 'energy', 'maintenance'];
-  const JEWELRY_KEYS = ['gem-appraiser', 'precious-industrial', 'precious-craftsman', 'gem-processing'];
+  const JEWELRY_KEYS = ['gem-appraiser', 'gem-processing', 'precious-industrial', 'precious-craftsman', 'precious-master'];
+  const JEWELRY_TARGET_SUBJECTS = ['보석 특성', '보석 감별', '다이아몬드 감정', '보석 가공'];
   const CATALOG = DATASETS.filter((item) => PRIMARY_KEYS.includes(item.key) || JEWELRY_KEYS.includes(item.key));
   const ROUNDS = CATALOG.flatMap((item) => item.rounds || []).sort((a, b) => String(b.sortKey || b.date || '').localeCompare(String(a.sortKey || a.date || '')));
   const STORAGE_KEY = 'unified-industrial-cbt-v1';
@@ -52,6 +53,9 @@
   function getRound(id) { return ROUNDS.find((round) => round.id === id); }
   function getCatalog(key) { return CATALOG.find((item) => item.key === key); }
   function activeKeys() { return state.space === 'jewelry' ? JEWELRY_KEYS : PRIMARY_KEYS; }
+  function spaceVersion(scope = state.space) {
+    return CHANGELOG.versions?.[scope] || CHANGELOG.entries?.find((entry) => (entry.scope || 'industrial') === scope)?.version || CHANGELOG.currentVersion || '-';
+  }
   function activeCatalogs() { const keys = activeKeys(); return CATALOG.filter((item) => keys.includes(item.key) && item.rounds?.length); }
   function activeRounds() { const keys = activeKeys(); return ROUNDS.filter((round) => keys.includes(round.qualificationKey)); }
   function isActiveRound(round) { return !!round && activeKeys().includes(round.qualificationKey); }
@@ -69,9 +73,25 @@
   }
   function subjectFor(round, question) {
     if (question._subject) return question._subject;
+    if (question.sourceSubject) return question.sourceSubject;
     const subjects = round.subjects?.length ? round.subjects : ['기타'];
     const size = Math.ceil(round.questions.length / subjects.length);
     return subjects[Math.min(subjects.length - 1, Math.floor((question.number - 1) / size))] || '기타';
+  }
+  function jewelryTargetSubject(round, question) {
+    if (question.targetSubject) return question.targetSubject;
+    const source = subjectFor(round, question);
+    if (source.includes('다이아몬드')) return '다이아몬드 감정';
+    if (source.includes('감별')) return '보석 감별';
+    if (source.includes('가공')) return '보석 가공';
+    return '보석 특성';
+  }
+  function isJewelryTargetQuestion(round, question) {
+    if (question.targetRelevance) return question.targetRelevance !== 'peripheral';
+    return ['gem-appraiser', 'gem-processing'].includes(round.qualificationKey);
+  }
+  function jewelryTargetItems(subject = 'all') {
+    return allQuestionItems().filter(({ round, question }) => isJewelryTargetQuestion(round, question) && (subject === 'all' || jewelryTargetSubject(round, question) === subject));
   }
   function isImagePrimary(round, question) {
     const sourceRound = question._originRoundId ? getRound(question._originRoundId) : round;
@@ -358,7 +378,7 @@
     }).join('');
     const recent = store.history.slice(0, 5).map((item) => `<li><span>${esc(item.title)}</span><strong>${item.score}점</strong><small>${new Date(item.at).toLocaleDateString('ko-KR')}</small></li>`).join('') || '<li class="empty-row">아직 완료한 시험이 없습니다.</li>';
     shell(`<div class="hero"><span class="hero-orb orb-one"></span><span class="hero-orb orb-two"></span><span class="hero-mesh"></span><div class="hero-copy"><span class="eyebrow">SMART RESPONSIVE CBT</span><h1>한곳에서 풀고,<br><em>약점만 다시 공부하세요.</em></h1><p>화면 크기에 맞춰 자동으로 재배치되고, 학습 기록은 이 기기에 안전하게 저장됩니다.</p><div class="hero-actions"><button class="primary-button glow-button" data-action="nav" data-view="rounds">회차 골라서 시작</button><button class="secondary-button" data-action="open-random">랜덤 문제</button></div></div><div class="hero-score"><span>현재 정답률</span><strong>${stats.accuracy}<small>%</small></strong><div><span>푼 문제 ${stats.answered.toLocaleString()}</span><span>오답 ${stats.wrong.toLocaleString()}</span></div></div></div>
-      <section class="home-update-bar ${state.updateReady ? 'ready' : ''}"><div><span>${state.updateReady ? '새 업데이트 준비됨' : `현재 버전 v${esc(CHANGELOG.currentVersion || '-')}`}</span><strong>${state.updateReady ? '풀이 기록을 유지한 채 최신 버전을 적용할 수 있습니다.' : '오래 켜둔 화면도 다시 돌아오면 업데이트를 자동 확인합니다.'}</strong></div><button data-action="force-refresh">${state.updateReady ? '업데이트 적용' : '최신 상태 확인'}</button></section>
+      <section class="home-update-bar ${state.updateReady ? 'ready' : ''}"><div><span>${state.updateReady ? '새 업데이트 준비됨' : `현재 버전 v${esc(spaceVersion('industrial'))}`}</span><strong>${state.updateReady ? '풀이 기록을 유지한 채 최신 버전을 적용할 수 있습니다.' : '오래 켜둔 화면도 다시 돌아오면 업데이트를 자동 확인합니다.'}</strong></div><button data-action="force-refresh">${state.updateReady ? '업데이트 적용' : '최신 상태 확인'}</button></section>
       <section class="smart-strip"><article class="daily-card"><div class="daily-ring" style="--daily:${daily.percent * 3.6}deg"><div><strong>${daily.today}</strong><span>/ ${daily.goal}</span></div></div><div><span class="smart-kicker">TODAY</span><h3>오늘의 학습 목표</h3><p>${daily.today >= daily.goal ? '오늘 목표를 달성했습니다. 대단해요!' : `${daily.goal - daily.today}문제만 더 풀면 오늘 목표 달성!`}</p></div></article><button class="smart-action violet" data-action="start-daily"><span>✦</span><div><strong>오늘의 20문제</strong><small>아직 안 푼 문제 중심 출제</small></div><b>›</b></button><button class="smart-action coral" data-action="start-weak"><span>◎</span><div><strong>약점 집중 훈련</strong><small>오답 우선 맞춤 복습</small></div><b>›</b></button>${recentRound ? `<button class="smart-action mint" data-action="continue-round" data-round="${recentRound.id}"><span>↗</span><div><strong>이어서 학습</strong><small>${esc(recentRound.shortQualification)} · ${recentRound.year}년</small></div><b>›</b></button>` : `<button class="smart-action mint" data-action="nav" data-view="rounds"><span>↗</span><div><strong>첫 학습 시작</strong><small>원하는 회차를 골라보세요</small></div><b>›</b></button>`}</section>
       <section class="section-block"><div class="section-heading"><div><span>QUALIFICATIONS</span><h2>종목 선택</h2></div></div><div class="qualification-grid">${cards}</div></section>
       <section class="dashboard-grid"><article class="panel"><div class="panel-heading"><h3>학습 현황</h3><button data-action="nav" data-view="stats">자세히</button></div><div class="metric-grid"><div><span>전체 문제</span><strong>${stats.total.toLocaleString()}</strong></div><div><span>학습 문제</span><strong>${stats.answered.toLocaleString()}</strong></div><div><span>북마크</span><strong>${stats.bookmarks.toLocaleString()}</strong></div><div><span>학습 범위</span><strong>${stats.coverage}%</strong></div></div></article><article class="panel"><div class="panel-heading"><h3>최근 시험</h3></div><ul class="history-list">${recent}</ul></article></section>
@@ -393,32 +413,39 @@
     const dueCount = dueReviewItems().length;
     const frequentCount = frequentWrongItems(20).length;
     const availableKeys = new Set(catalogs.map((item) => item.key));
+    const targetItems = jewelryTargetItems();
+    const targetCounts = Object.fromEntries(JEWELRY_TARGET_SUBJECTS.map((subject) => [subject, jewelryTargetItems(subject).length]));
     const sourceRows = [
-      ['gem-appraiser', '보석감정사(기능사)', '감정·감별 기초'],
-      ['gem-identification-industrial', '보석감정산업기사', '대비 목표 종목'],
-      ['precious-industrial', '귀금속가공산업기사', '디자인·재료·가공'],
-      ['precious-craftsman', '귀금속가공기능사', '귀금속 가공 기초'],
-      ['gem-processing', '보석가공기능사', '보석 가공 기초'],
-      ['gem-processing-industrial', '보석가공산업기사', '연관 산업기사']
+      { key: 'target-overlap', label: '보석감정산업기사', description: '취득 목표 · 4과목 겹치는 문제', status: '목표', count: `${targetItems.length.toLocaleString()}문제` },
+      { key: 'gem-appraiser', label: '보석감정기능사', description: '핵심 서브 · 감정·감별 중심', status: '핵심' },
+      { key: 'gem-processing', label: '보석가공기능사', description: '보석 특성·감별·가공 보강', status: '보강' },
+      { key: 'precious-industrial', label: '귀금속가공산업기사', description: '전체 수록 · 겹치는 문항 선별', status: '연관' },
+      { key: 'precious-craftsman', label: '귀금속가공기능사', description: '전체 수록 · 겹치는 문항 선별', status: '연관' },
+      { key: 'precious-master', label: '귀금속가공기능장', description: '기능장 전체에서 겹치는 문항만 수록', status: '연관' }
     ];
     const catalogCards = catalogs.map((item) => {
       const questions = item.rounds.reduce((sum, round) => sum + round.questions.length, 0);
-      return `<button class="jewelry-catalog-card" data-action="select-qualification" data-key="${item.key}"><span class="jewel-swatch ${item.key}"></span><span><strong>${esc(item.name)}</strong><small>${item.rounds.length}회차 · ${questions.toLocaleString()}문제</small></span><b>›</b></button>`;
+      const role = item.key === 'gem-appraiser' ? '핵심 서브' : item.key === 'gem-processing' ? '보강' : '연관 원문';
+      const scope = item.key === 'precious-master' ? '겹치는 문제만' : '전체';
+      return `<button class="jewelry-catalog-card" data-action="select-qualification" data-key="${item.key}"><span class="jewel-swatch ${item.key}"></span><span><i>${role}</i><strong>${esc(item.name)}</strong><small>${item.rounds.length}회차 · ${questions.toLocaleString()}문제 ${scope}</small></span><b>›</b></button>`;
     }).join('');
-    const sourceStatus = sourceRows.map(([key, label, description]) => {
-      const catalog = getCatalog(key);
-      const available = availableKeys.has(key);
-      return `<li class="${available ? 'available' : 'reference'}"><span>${available ? '수록' : '참고'}</span><div><strong>${esc(label)}</strong><small>${esc(description)}</small></div><b>${available ? `${catalog.rounds.length}회차` : '완성 CBT 없음'}</b></li>`;
+    const sourceStatus = sourceRows.map((row) => {
+      const catalog = getCatalog(row.key);
+      const available = row.key === 'target-overlap' || availableKeys.has(row.key);
+      const count = row.count || (catalog ? `${catalog.rounds.length}회차` : '검증 자료 없음');
+      return `<li class="${available ? 'available' : 'reference'}"><span>${esc(row.status)}</span><div><strong>${esc(row.label)}</strong><small>${esc(row.description)}</small></div><b>${esc(count)}</b></li>`;
     }).join('');
+    const targetCards = JEWELRY_TARGET_SUBJECTS.map((subject, index) => `<button data-action="start-jewelry-subject" data-subject="${esc(subject)}"><span>${index + 1}과목</span><strong>${esc(subject)}</strong><small>${targetCounts[subject].toLocaleString()}문제 선별</small><b>20문제 풀기 ›</b></button>`).join('');
     const recent = store.history.filter((item) => item.roundId && isActiveRound(getRound(item.roundId))).slice(0, 5)
       .map((item) => `<li><span>${esc(item.title)}</span><strong>${item.score}점</strong><small>${new Date(item.at).toLocaleDateString('ko-KR')}</small></li>`).join('') || '<li class="empty-row">아직 완료한 시험이 없습니다.</li>';
     shell(`<section class="jewelry-hero">
-        <div><span>GEM IDENTIFICATION & CRAFT</span><h1>보석감정산업기사<br>대비 학습관</h1><p>공개된 보석감정·귀금속가공 연관 기출을 한 공간에 모았습니다. 기존 산업기사 문제와 학습 화면·통계가 섞이지 않습니다.</p><div><button class="jewelry-primary" data-action="start-jewelry-mix">연관 문제 20개</button><button class="jewelry-secondary" data-action="nav" data-view="rounds">회차별 학습</button></div></div>
-        <dl><div><dt>검증 회차</dt><dd>${activeRounds().length}</dd></div><div><dt>수록 문항</dt><dd>${stats.total.toLocaleString()}</dd></div><div><dt>현재 정답률</dt><dd>${stats.accuracy}%</dd></div></dl>
+        <div><span>TARGET · 보석감정산업기사</span><h1>보석감정산업기사<br>합격 학습관</h1><p>보석감정기능사를 핵심 서브로 두고, 확보한 연관 기출 전체와 목표 4과목에 겹치는 문항을 분리했습니다.</p><div><button class="jewelry-primary" data-action="start-jewelry-mix">겹치는 문제 20개</button><button class="jewelry-secondary" data-action="start-jewelry-exam">4과목 모의시험</button></div></div>
+        <dl><div><dt>전체 문제</dt><dd>${stats.total.toLocaleString()}</dd></div><div><dt>겹치는 문제</dt><dd>${targetItems.length.toLocaleString()}</dd></div><div><dt>현재 정답률</dt><dd>${stats.accuracy}%</dd></div></dl>
       </section>
-      <section class="jewelry-notice"><strong>자료 구성 원칙</strong><p>문항·보기·정답이 모두 있는 회차만 수록했습니다. 복원중 회차와 확인되지 않은 보석감정산업기사 직접 기출은 섞지 않고, 연관 종목 문제로 구분합니다.</p></section>
+      <section class="jewelry-notice"><strong>학습 기준</strong><p>목표는 보석감정산업기사, 핵심 서브는 보석감정기능사입니다. 확보한 원문 회차는 모두 보관하고 목표 과목과 겹치는 문항은 별도 카테고리로 제공합니다.</p></section>
+      <section class="jewelry-target-section"><div class="section-heading"><div><span>TARGET OVERLAP</span><h2>보석감정산업기사 겹치는 문제</h2></div><button data-action="start-jewelry-exam">과목당 20문제 시험</button></div><div class="jewelry-target-grid">${targetCards}</div></section>
       <section class="jewelry-actions"><button data-action="start-daily"><span>오늘</span><strong>새 문제 20개</strong><small>${daily.today}/${daily.goal}문제 학습</small></button><button data-action="start-due"><span>복습</span><strong>1·3·7일 자동 복습</strong><small>${dueCount}문제 대기</small></button><button data-action="start-frequent"><span>약점</span><strong>자주 틀린 문제</strong><small>${frequentCount}문제 분석</small></button>${recentRound ? `<button data-action="continue-round" data-round="${recentRound.id}"><span>계속</span><strong>${esc(recentRound.shortQualification)}</strong><small>${recentRound.year}년 회차 이어 풀기</small></button>` : '<button data-action="nav" data-view="rounds"><span>시작</span><strong>첫 회차 고르기</strong><small>학습모드·시험모드 지원</small></button>'}</section>
-      <section class="jewelry-section"><div class="section-heading"><div><span>AVAILABLE CBT</span><h2>검증 완료 문제</h2></div><button data-action="open-recurring">빈출 유형 분석</button></div><div class="jewelry-catalog-grid">${catalogCards}</div></section>
+      <section class="jewelry-section"><div class="section-heading"><div><span>FULL ARCHIVE</span><h2>자격증별 전체 문제</h2></div><button data-action="nav" data-view="rounds">전체 회차 보기</button></div><div class="jewelry-catalog-grid">${catalogCards}</div></section>
       <section class="jewelry-dashboard"><article><div class="panel-heading"><h2>연관 자격 구성</h2></div><ul class="jewelry-source-list">${sourceStatus}</ul></article><article><div class="panel-heading"><h2>학습 현황</h2><button data-action="nav" data-view="stats">자세히</button></div><div class="jewelry-metrics"><span>학습 문제<strong>${stats.answered.toLocaleString()}</strong></span><span>오답<strong>${stats.wrong.toLocaleString()}</strong></span><span>북마크<strong>${stats.bookmarks.toLocaleString()}</strong></span><span>진도<strong>${stats.coverage}%</strong></span></div><div class="panel-heading jewelry-history-heading"><h2>최근 시험</h2></div><ul class="history-list">${recent}</ul></article></section>`,
       '보석·귀금속 학습관', '보석감정산업기사 대비 연관 CBT');
   }
@@ -440,7 +467,15 @@
     const count = Object.keys(progress?.answers || {}).length;
     const rate = Math.round(count / round.questions.length * 100);
     const restored = round.qualificationKey === 'hvac' && Number(round.year) >= 2021;
-    return `<article class="round-card"><div class="round-card-top"><span class="qualification-chip ${round.qualificationKey}">${esc(round.shortQualification || round.qualification)}</span><span>${round.year}년</span></div>${restored ? '<span class="restoration-chip">CBT 복원문제 · 원문 이미지</span>' : ''}<h3>${esc(round.title.replace(/\s*\(정답, 해설\)$/, ''))}</h3><p>${round.questions.length}문제 · ${round.subjects.length}과목 · 시험 ${round.examMinutes || Math.round(round.questions.length * 1.5)}분</p><div class="subject-tags">${round.subjects.map((subject) => `<span>${esc(subject)}</span>`).join('')}</div>${count ? `<div class="card-progress"><span style="width:${rate}%"></span></div><small>${count}/${round.questions.length} 학습 중</small>` : ''}<button class="card-start" data-action="open-mode" data-round="${round.id}">${count ? '이어 풀기' : '시작하기'} <span>›</span></button></article>`;
+    const validatedRestoration = round.verification === 'validated-restoration';
+    const verificationBadge = validatedRestoration
+      ? '<span class="restoration-chip">복원 표기 · 문항/보기/정답 검증 완료</span>'
+      : round.verification === 'partial-validated'
+        ? '<span class="restoration-chip">부분 복원 · 확인된 문제만 수록</span>'
+        : round.verification === 'target-filtered'
+          ? '<span class="restoration-chip">보석감정산업기사 겹치는 문제만 수록</span>'
+          : '';
+    return `<article class="round-card"><div class="round-card-top"><span class="qualification-chip ${round.qualificationKey}">${esc(round.shortQualification || round.qualification)}</span><span>${round.year}년</span></div>${restored ? '<span class="restoration-chip">CBT 복원문제 · 원문 이미지</span>' : verificationBadge}<h3>${esc(round.title.replace(/\s*\(정답, 해설\)$/, ''))}</h3><p>${round.questions.length}문제 · ${round.subjects.length}과목 · 시험 ${round.examMinutes || Math.round(round.questions.length * 1.5)}분</p><div class="subject-tags">${round.subjects.map((subject) => `<span>${esc(subject)}</span>`).join('')}</div>${count ? `<div class="card-progress"><span style="width:${rate}%"></span></div><small>${count}/${round.questions.length} 학습 중</small>` : ''}<button class="card-start" data-action="open-mode" data-round="${round.id}">${count ? '이어 풀기' : '시작하기'} <span>›</span></button></article>`;
   }
 
   function renderWrong() {
@@ -512,8 +547,11 @@
 
   function renderUpdates() {
     state.view = 'updates';
-    const entries = CHANGELOG.entries || [];
+    const scope = state.space === 'jewelry' ? 'jewelry' : 'industrial';
+    const entries = (CHANGELOG.entries || []).filter((entry) => (entry.scope || 'industrial') === scope);
     const latest = entries[0];
+    const currentVersion = CHANGELOG.versions?.[scope] || latest?.version || CHANGELOG.currentVersion || '-';
+    const jewelry = scope === 'jewelry';
     const cards = entries.map((entry, index) => `<article class="patch-card ${index === 0 ? 'latest' : ''}">
       <div class="patch-card-head"><div><span class="patch-version">v${esc(entry.version)}</span>${index === 0 ? '<span class="patch-latest">최신 버전</span>' : ''}</div><time datetime="${esc(entry.date.replaceAll('.', '-'))}">${esc(entry.date)}</time></div>
       <h2>${esc(entry.title)}</h2>
@@ -521,7 +559,7 @@
       <div class="patch-tags">${(entry.tags || []).map((tag) => `<span>${esc(tag)}</span>`).join('')}</div>
       <ul>${(entry.changes || []).map((change) => `<li>${esc(change)}</li>`).join('')}</ul>
     </article>`).join('') || '<div class="empty-state">등록된 패치노트가 없습니다.</div>';
-    shell(`<section class="patch-hero"><div><span>UPDATE HISTORY</span><h1>더 편한 학습을 위한<br>업데이트 기록</h1><p>문제·정답·화면 기능이 어떻게 바뀌었는지 버전별로 확인할 수 있습니다.</p></div><div class="patch-current"><span>현재 버전</span><strong>v${esc(CHANGELOG.currentVersion || latest?.version || '-')}</strong><small>${latest ? `${esc(latest.date)} 업데이트` : '업데이트 준비 중'}</small></div></section><div class="patch-list">${cards}</div>`, '패치노트', '버전별 추가 기능과 수정 내역을 확인합니다.');
+    shell(`<section class="patch-hero"><div><span>${jewelry ? 'JEWELRY UPDATE HISTORY' : 'UPDATE HISTORY'}</span><h1>${jewelry ? '보석 학습관의<br>업데이트 기록' : '더 편한 학습을 위한<br>업데이트 기록'}</h1><p>${jewelry ? '보석감정산업기사 대비 자료와 학습 기능의 변경 내역만 모았습니다.' : '문제·정답·화면 기능이 어떻게 바뀌었는지 버전별로 확인할 수 있습니다.'}</p></div><div class="patch-current"><span>현재 버전</span><strong>v${esc(currentVersion)}</strong><small>${latest ? `${esc(latest.date)} 업데이트` : '업데이트 준비 중'}</small></div></section><div class="patch-list">${cards}</div>`, jewelry ? '보석관 패치노트' : '패치노트', jewelry ? '보석관 전용 추가 기능과 수정 내역입니다.' : '산업기사 CBT의 버전별 추가 기능과 수정 내역입니다.');
   }
 
   function renderModal() {
@@ -576,12 +614,20 @@
     if (mode === 'exam') startTimer();
     renderSession();
   }
-  function startCollection(items, title) {
+  function startCollection(items, title, mode = 'learn', useTargetSubjects = false) {
     if (!items.length) return toast('풀 문제가 없습니다.');
-    const questions = items.map(({ round, question }, index) => Object.assign({}, question, { number: index + 1, _originalNumber: question.number, _originRoundId: round.id, _subject: `${round.shortQualification} · ${subjectFor(round, question)}` }));
+    const questions = items.map(({ round, question }, index) => Object.assign({}, question, {
+      number: index + 1,
+      _originalNumber: question.number,
+      _originRoundId: round.id,
+      _subject: useTargetSubjects ? jewelryTargetSubject(round, question) : `${round.shortQualification} · ${subjectFor(round, question)}`
+    }));
     const round = { id: `collection-${Date.now()}`, title, qualification: '맞춤 학습', shortQualification: '맞춤', qualificationKey: 'collection', year: '', subjects: [...new Set(questions.map((question) => question._subject))], questions, examMinutes: Math.max(10, Math.round(questions.length * 1.5)) };
-    state.session = { round, questions, mode: 'learn', answers: {}, revealed: {}, review: {}, page: 0, pageSize: 4, duration: 0, remaining: 0, startedAt: Date.now(), questionStartedAt: {}, timedQuestions: {}, transient: true };
-    state.modal = null; state.focusSidebarOpen = false; state.view = 'session'; renderSession();
+    const duration = round.examMinutes * 60;
+    state.session = { round, questions, mode, answers: {}, revealed: {}, review: {}, page: 0, pageSize: 4, duration, remaining: duration, startedAt: Date.now(), questionStartedAt: {}, timedQuestions: {}, transient: true };
+    state.modal = null; state.focusSidebarOpen = false; state.view = 'session';
+    if (mode === 'exam') startTimer();
+    renderSession();
   }
   function startTimer() {
     clearInterval(timerHandle);
@@ -958,20 +1004,36 @@
       startCollection(pool.slice(0, 20), `${button.dataset.subject} 취약 집중 20문제`);
     }
     else if (action === 'start-daily') {
-      const pool = allQuestionItems(), unseen = pool.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
+      const pool = state.space === 'jewelry' ? jewelryTargetItems() : allQuestionItems();
+      const unseen = pool.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
       const selected = shuffled(unseen).slice(0, 20);
       if (selected.length < 20) selected.push(...shuffled(pool.filter((item) => !selected.includes(item))).slice(0, 20 - selected.length));
-      startCollection(selected, '오늘의 20문제');
+      startCollection(selected, state.space === 'jewelry' ? '보석감정산업기사 오늘의 20문제' : '오늘의 20문제', 'learn', state.space === 'jewelry');
     }
     else if (action === 'start-jewelry-mix') {
-      const pool = allQuestionItems();
+      const pool = jewelryTargetItems();
       const unseen = pool.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
       const selected = shuffled(unseen).slice(0, 20);
       if (selected.length < 20) {
         const used = new Set(selected.map(({ round, question }) => questionId(round, question)));
         selected.push(...shuffled(pool.filter(({ round, question }) => !used.has(questionId(round, question)))).slice(0, 20 - selected.length));
       }
-      startCollection(selected, '보석감정산업기사 대비 연관 20문제');
+      startCollection(selected, '보석감정산업기사 겹치는 20문제', 'learn', true);
+    }
+    else if (action === 'start-jewelry-subject') {
+      const subject = button.dataset.subject;
+      const pool = jewelryTargetItems(subject);
+      const unseen = pool.filter(({ round, question }) => !store.attempts[questionId(round, question)]);
+      const selected = shuffled(unseen).slice(0, 20);
+      if (selected.length < 20) {
+        const used = new Set(selected.map(({ round, question }) => questionId(round, question)));
+        selected.push(...shuffled(pool.filter(({ round, question }) => !used.has(questionId(round, question)))).slice(0, 20 - selected.length));
+      }
+      startCollection(selected, `보석감정산업기사 · ${subject} 20문제`, 'learn', true);
+    }
+    else if (action === 'start-jewelry-exam') {
+      const selected = JEWELRY_TARGET_SUBJECTS.flatMap((subject) => shuffled(jewelryTargetItems(subject)).slice(0, 20));
+      startCollection(selected, `보석감정산업기사 4과목 모의시험 ${selected.length}문제`, 'exam', true);
     }
     else if (action === 'start-weak') {
       const wrong = Object.keys(store.wrong).map(findQuestion).filter((item) => item && isActiveRound(item.round));
@@ -1113,7 +1175,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=180', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=181', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
