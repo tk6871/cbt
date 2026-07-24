@@ -41,6 +41,11 @@ img { max-width: 100%; }
 .nav-button { display: flex; gap: 13px; align-items: center; padding: 13px 15px; border-radius: 11px; background: transparent; color: #bed0e5; text-align: left; }
 .nav-button > span:first-child { width: 23px; font-size: 1.2rem; text-align: center; }
 .nav-button:hover, .nav-button[aria-current="page"] { background: rgba(255,255,255,.12); color: white; }
+.space-switch { margin-top:18px; padding:13px 12px; border:1px solid rgba(255,255,255,.18); border-radius:8px; background:rgba(255,255,255,.07); color:white; display:grid; grid-template-columns:30px 1fr; column-gap:9px; text-align:left; }
+.space-switch > span { grid-row:1 / 3; width:30px; height:30px; display:grid; place-items:center; border-radius:7px; background:rgba(255,255,255,.14); font-size:.73rem; font-weight:850; }
+.space-switch strong,.space-switch small { display:block; min-width:0; }
+.space-switch strong { align-self:end; font-size:.78rem; }.space-switch small { color:#9fb5cf; font-size:.62rem; }
+.space-switch:hover { border-color:rgba(255,255,255,.4); background:rgba(255,255,255,.12); }
 .side-foot { margin-top: auto; padding: 16px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(0,0,0,.1); }
 .side-foot span, .side-foot strong { display: block; }
 .side-foot span { color: #9fb5cf; font-size: .74rem; }
@@ -53,6 +58,11 @@ img { max-width: 100%; }
 .topbar-copy span { margin-top: 3px; color: var(--muted); font-size: .76rem; }
 .top-actions { display: flex; gap: 7px; }
 .icon-button { width: 39px; height: 39px; border-radius: 10px; background: var(--surface-2); }
+.space-icon-button { font-size:.65rem; font-weight:900; }
+.space-jewelry { --primary:#087b6b; --primary-soft:#e4f6f1; --green:#087b6b; }
+.space-jewelry .sidebar { background:#163b3a; }
+.space-jewelry .brand-mark { background:#bf344e; border-color:rgba(255,255,255,.35); }
+.space-jewelry .space-switch > span { background:#bf344e; }
 .session-back-button,.session-menu-toggle { width:40px; height:40px; flex:0 0 auto; border:1px solid var(--line); border-radius:10px; color:var(--primary); background:var(--surface-2); font-size:1.15rem; }
 .session-menu-toggle { margin-right:12px; }
 .session-back-button:hover,.session-menu-toggle:hover { border-color:var(--primary); background:var(--primary-soft); }
@@ -150,6 +160,40 @@ img { max-width: 100%; }
 .panel-heading { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
 .panel-heading h2, .panel-heading h3 { margin: 0; }
 .panel-heading button { background: none; color: var(--primary); font-size: .78rem; }
+
+.jewelry-hero { min-height:330px; padding:43px 5%; color:white; background:#173f3e; border-left:7px solid #d6a72a; display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.68fr); align-items:center; gap:42px; }
+.jewelry-hero > div > span { color:#e6c65c; font-size:.68rem; font-weight:850; }
+.jewelry-hero h1 { margin:12px 0 14px; font-size:2.8rem; line-height:1.12; letter-spacing:0; }
+.jewelry-hero p { max-width:680px; margin:0; color:#cee0df; line-height:1.75; }
+.jewelry-hero > div > div { margin-top:24px; display:flex; gap:8px; }
+.jewelry-primary,.jewelry-secondary { padding:12px 17px; border-radius:7px; font-weight:800; }
+.jewelry-primary { color:#173f3e; background:#f0cc57; }.jewelry-secondary { color:white; border:1px solid rgba(255,255,255,.32); background:transparent; }
+.jewelry-hero dl { margin:0; border-top:1px solid rgba(255,255,255,.24); border-bottom:1px solid rgba(255,255,255,.24); display:grid; grid-template-columns:repeat(3,1fr); }
+.jewelry-hero dl div { padding:19px 12px; border-right:1px solid rgba(255,255,255,.18); }.jewelry-hero dl div:last-child { border-right:0; }
+.jewelry-hero dt { color:#a9c5c3; font-size:.7rem; }.jewelry-hero dd { margin:5px 0 0; color:white; font-size:1.55rem; font-weight:850; }
+.jewelry-notice { padding:15px 18px; border-bottom:1px solid var(--line); background:color-mix(in srgb,#d6a72a 9%,var(--surface)); display:grid; grid-template-columns:auto 1fr; gap:18px; align-items:center; }
+.jewelry-notice strong { color:#8a6500; font-size:.76rem; }.jewelry-notice p { margin:0; color:var(--muted); font-size:.75rem; line-height:1.6; }
+.jewelry-actions { margin-top:24px; border-top:1px solid var(--line); border-bottom:1px solid var(--line); display:grid; grid-template-columns:repeat(4,1fr); }
+.jewelry-actions button { min-height:100px; padding:17px; border-right:1px solid var(--line); background:transparent; display:grid; gap:4px; text-align:left; }
+.jewelry-actions button:last-child { border-right:0; }.jewelry-actions button:hover { background:var(--surface); }
+.jewelry-actions span { color:#bf344e; font-size:.64rem; font-weight:850; }.jewelry-actions strong { font-size:.84rem; }.jewelry-actions small { color:var(--muted); font-size:.66rem; }
+.jewelry-section { margin-top:36px; }.jewelry-section .section-heading > button { color:var(--primary); background:transparent; font-size:.75rem; font-weight:800; }
+.jewelry-catalog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.jewelry-catalog-card { min-height:96px; padding:17px; border:1px solid var(--line); border-radius:8px; background:var(--surface); display:grid; grid-template-columns:10px 1fr auto; align-items:center; gap:14px; text-align:left; }
+.jewelry-catalog-card:hover { border-color:var(--primary); transform:translateY(-2px); }
+.jewel-swatch { width:10px; height:48px; border-radius:2px; background:#bf344e; }.jewel-swatch.precious-industrial { background:#d6a72a; }.jewel-swatch.precious-craftsman { background:#278c80; }.jewel-swatch.gem-processing { background:#316bb0; }
+.jewelry-catalog-card strong,.jewelry-catalog-card small { display:block; }.jewelry-catalog-card strong { font-size:.9rem; }.jewelry-catalog-card small { margin-top:6px; color:var(--muted); font-size:.7rem; }.jewelry-catalog-card b { color:var(--muted); font-size:1.4rem; }
+.jewelry-dashboard { margin-top:28px; display:grid; grid-template-columns:1.15fr .85fr; gap:26px; }
+.jewelry-dashboard > article { padding-top:22px; border-top:3px solid #173f3e; }
+.jewelry-source-list { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); }
+.jewelry-source-list li { min-height:76px; padding:13px; background:var(--surface); display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:10px; }
+.jewelry-source-list li > span { padding:4px 6px; border-radius:4px; color:#087b6b; background:#e4f6f1; font-size:.58rem; font-weight:850; }
+.jewelry-source-list li.reference > span { color:#7a6e51; background:#f4f0e4; }.jewelry-source-list strong,.jewelry-source-list small { display:block; }.jewelry-source-list strong { font-size:.77rem; }.jewelry-source-list small { margin-top:3px; color:var(--muted); font-size:.61rem; }
+.jewelry-source-list b { color:var(--muted); font-size:.62rem; white-space:nowrap; }
+.jewelry-metrics { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line); }
+.jewelry-metrics span { padding:15px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); color:var(--muted); font-size:.68rem; }.jewelry-metrics span:nth-child(2n) { border-right:0; }.jewelry-metrics span:nth-last-child(-n+2) { border-bottom:0; }
+.jewelry-metrics strong { display:block; margin-top:4px; color:var(--text); font-size:1.25rem; }
+.jewelry-history-heading { margin-top:22px; }
 .patch-hero { position:relative; overflow:hidden; padding:38px 42px; border-radius:24px; color:white; background:linear-gradient(125deg,#102b4c,#1769c2 58%,#21a0bd); display:flex; justify-content:space-between; align-items:center; gap:30px; box-shadow:var(--shadow); }
 .patch-hero::after { content:""; position:absolute; width:260px; height:260px; right:-90px; bottom:-150px; border-radius:50%; background:rgba(255,255,255,.12); }
 .patch-hero > * { position:relative; z-index:1; }
@@ -470,6 +514,9 @@ th:first-child, td:first-child { text-align: left; }
   .smart-strip { grid-template-columns:1fr 1fr; }
   .training-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .stats-layout { grid-template-columns:1fr; }
+  .jewelry-hero { grid-template-columns:1fr; gap:28px; }
+  .jewelry-catalog-grid { grid-template-columns:1fr 1fr; }
+  .jewelry-dashboard { grid-template-columns:1fr; }
 }
 @media (max-width: 780px) {
   .app-shell { display: block; padding-bottom: 68px; }
@@ -523,6 +570,15 @@ th:first-child, td:first-child { text-align: left; }
   .patch-card { padding:22px 18px; }
   .patch-card-head { align-items:flex-start; }
   .result-hero { padding: 30px 15px; }
+  .jewelry-hero { min-height:0; padding:30px 23px; border-left-width:5px; }
+  .jewelry-hero h1 { font-size:2.1rem; }
+  .jewelry-hero dl { grid-template-columns:1fr 1fr 1fr; }
+  .jewelry-hero dl div { padding:14px 8px; }
+  .jewelry-hero dd { font-size:1.15rem; }
+  .jewelry-notice { grid-template-columns:1fr; gap:5px; }
+  .jewelry-actions { grid-template-columns:1fr 1fr; }
+  .jewelry-actions button:nth-child(2) { border-right:0; }.jewelry-actions button:nth-child(-n+2) { border-bottom:1px solid var(--line); }
+  .jewelry-catalog-grid,.jewelry-source-list { grid-template-columns:1fr; }
 
   .exam-wide { width: calc(100% - 24px); }
   .exam-top-inner { grid-template-columns: 38px minmax(0,1fr) 95px; }
@@ -560,6 +616,11 @@ th:first-child, td:first-child { text-align: left; }
   .exam-top-inner { grid-template-columns:34px minmax(0,1fr) 82px; }
   .exam-title strong { font-size:11px; }
   .exam-time > span { display:none; }
+  .space-icon-button { width:36px; }
+  .jewelry-hero > div > div { flex-direction:column; }
+  .jewelry-actions { grid-template-columns:1fr; }
+  .jewelry-actions button { min-height:82px; border-right:0; border-bottom:1px solid var(--line); }
+  .jewelry-actions button:last-child { border-bottom:0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; transition-duration:.01ms!important; }
