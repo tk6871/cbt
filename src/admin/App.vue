@@ -81,6 +81,7 @@ const attempts = ref<Attempt[]>([]);
 const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
+const showLiveVisitors = ref(false);
 const dailyChart = ref<HTMLElement | null>(null);
 const deviceChart = ref<HTMLElement | null>(null);
 let dailyChartInstance: echarts.ECharts | null = null;
@@ -89,11 +90,13 @@ let worker: Worker | null = null;
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
+let autoRefreshTimer: number | null = null;
 
-const activeNow = computed(() => {
+const activeVisitors = computed(() => {
   const since = clockNow.value - 2 * 60 * 1000;
-  return visitors.value.filter((item) => new Date(item.last_seen).getTime() >= since).length;
+  return visitors.value.filter((item) => new Date(item.last_seen).getTime() >= since);
 });
+const activeNow = computed(() => activeVisitors.value.length);
 const activeToday = computed(() => {
   const since = Date.now() - 24 * 60 * 60 * 1000;
   return new Set(visits.value.filter((item) => new Date(item.visited_at).getTime() >= since).map((item) => item.visitor_id)).size;
@@ -129,6 +132,21 @@ function shortId(value: string): string {
   return value.length > 12 ? `${value.slice(0, 8)}…` : value;
 }
 
+function viewLabel(value: string | null): string {
+  const labels: Record<string, string> = {
+    home: '첫 화면',
+    rounds: '기출 회차',
+    learning: '학습모드',
+    exam: '시험모드',
+    wrong: '오답·북마크',
+    search: '문제 검색',
+    stats: '학습 통계',
+    updates: '패치노트'
+  };
+  if (!value) return '-';
+  return labels[value] || value;
+}
+
 async function login(): Promise<void> {
   if (!client.value) return;
   loginError.value = '';
@@ -145,6 +163,7 @@ async function login(): Promise<void> {
   session.value = data.session;
   await loadData();
   startRealtime();
+  startAutoRefresh();
 }
 
 async function logout(): Promise<void> {
@@ -155,6 +174,10 @@ async function logout(): Promise<void> {
   visits.value = [];
   results.value = [];
   attempts.value = [];
+  if (autoRefreshTimer !== null) {
+    window.clearInterval(autoRefreshTimer);
+    autoRefreshTimer = null;
+  }
 }
 
 async function loadData(options: { silent?: boolean } = {}): Promise<void> {
@@ -181,6 +204,12 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   results.value = (resultResponse.data || []) as ExamResult[];
   attempts.value = (attemptResponse.data || []) as Attempt[];
   await nextTick();
+  if (!visits.value.length) {
+    dailyChartInstance?.dispose();
+    deviceChartInstance?.dispose();
+    dailyChartInstance = null;
+    deviceChartInstance = null;
+  }
   worker?.postMessage({ visits: visits.value, results: results.value, days: days.value });
   if (!silent) {
     animate('.admin-stat-card', {
@@ -224,6 +253,13 @@ function startRealtime(): void {
       else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') realtimeStatus.value = 'error';
       else if (status === 'CLOSED') realtimeStatus.value = 'closed';
     });
+}
+
+function startAutoRefresh(): void {
+  if (autoRefreshTimer !== null) window.clearInterval(autoRefreshTimer);
+  autoRefreshTimer = window.setInterval(() => {
+    void loadData({ silent: true });
+  }, 15_000);
 }
 
 function renderCharts(payload: {
@@ -281,6 +317,7 @@ onMounted(async () => {
   if (session.value) {
     await loadData();
     startRealtime();
+    startAutoRefresh();
   }
   clockTimer = window.setInterval(() => {
     clockNow.value = Date.now();
@@ -290,6 +327,7 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   stopRealtime();
   if (clockTimer !== null) window.clearInterval(clockTimer);
+  if (autoRefreshTimer !== null) window.clearInterval(autoRefreshTimer);
   worker?.terminate();
   window.removeEventListener('resize', resizeCharts);
   dailyChartInstance?.dispose();
@@ -339,16 +377,35 @@ onBeforeUnmount(() => {
       <p v-if="dataError" class="admin-error admin-data-error">{{ dataError }}</p>
 
       <section class="admin-stats">
-        <article class="admin-stat-card live-card"><span>현재 접속 추정</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>최근 2분 이내 활동</small></article>
+        <button type="button" class="admin-stat-card live-card" :aria-expanded="showLiveVisitors" @click="showLiveVisitors = !showLiveVisitors"><span>현재 접속 추정</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>{{ showLiveVisitors ? '접속 목록 닫기' : '눌러서 IP 목록 보기' }}</small></button>
         <article class="admin-stat-card"><span>최근 24시간 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저 기준</small></article>
         <article class="admin-stat-card"><span>누적 풀이 기록</span><strong>{{ solvedTotal.toLocaleString() }}</strong><small>관리자 수집 시작 이후</small></article>
         <article class="admin-stat-card"><span>완료 시험</span><strong>{{ examTotal.toLocaleString() }}</strong><small>학습 결과 포함</small></article>
         <article class="admin-stat-card"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>선택 기간 완료 시험</small></article>
       </section>
 
+      <section v-if="showLiveVisitors" class="live-access-panel">
+        <div class="live-access-heading">
+          <div><span class="admin-kicker">LIVE ACCESS</span><h2>현재 접속 중</h2><p>최근 2분 안에 일반 CBT에서 활동 신호를 보낸 접속자입니다.</p></div>
+          <strong><i></i>{{ activeNow }}명 접속 중</strong>
+        </div>
+        <div v-if="activeVisitors.length" class="live-visitor-grid">
+          <article v-for="visitor in activeVisitors" :key="visitor.visitor_id" class="live-visitor-card">
+            <div class="live-visitor-top"><span><i></i>접속 중</span><code>{{ visitor.ip_address || 'IP 확인 중' }}</code></div>
+            <dl>
+              <div><dt>기기·브라우저</dt><dd>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</dd></div>
+              <div><dt>현재 화면</dt><dd>{{ viewLabel(visitor.last_path) }}</dd></div>
+              <div><dt>마지막 신호</dt><dd>{{ formatDate(visitor.last_seen) }}</dd></div>
+              <div><dt>풀이·시험</dt><dd>{{ visitor.attempt_count }}문제 · {{ visitor.exam_count }}회</dd></div>
+            </dl>
+          </article>
+        </div>
+        <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 1분 안에 IP와 기기가 표시됩니다.</span></div></div>
+      </section>
+
       <section class="admin-chart-grid">
-        <article><div class="admin-panel-title"><span>ACCESS TREND</span><h2>일자별 접속</h2></div><div ref="dailyChart" class="chart"></div></article>
-        <article><div class="admin-panel-title"><span>DEVICE</span><h2>접속 기기</h2></div><div ref="deviceChart" class="chart"></div></article>
+        <article :class="{ 'is-empty': !visits.length }"><div class="admin-panel-title"><span>ACCESS TREND</span><h2>일자별 접속</h2></div><div v-if="visits.length" ref="dailyChart" class="chart"></div><div v-else class="chart-empty">접속 기록이 쌓이면 그래프가 표시됩니다.</div></article>
+        <article :class="{ 'is-empty': !visits.length }"><div class="admin-panel-title"><span>DEVICE</span><h2>접속 기기</h2></div><div v-if="visits.length" ref="deviceChart" class="chart"></div><div v-else class="chart-empty">아직 기기 기록이 없습니다.</div></article>
       </section>
 
       <section class="admin-panel">

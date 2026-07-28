@@ -28,6 +28,7 @@ const SESSION_KEY = 'unified-cbt-session-id';
 const LAST_VISIT_KEY = 'unified-cbt-last-visit-event';
 const LAST_NAV_KEY = 'unified-cbt-last-navigation-event';
 let flushing = false;
+let currentView = '';
 
 function randomId(): string {
   if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
@@ -152,8 +153,9 @@ window.CBTAnalytics = {
     void enqueue('result', payload as unknown as Record<string, unknown>);
   },
   trackNavigation(view) {
+    currentView = String(view).slice(0, 80);
     if (!shouldLog(LAST_NAV_KEY, 10 * 60 * 1000)) return;
-    void enqueue('navigation', { view: String(view).slice(0, 80) });
+    void enqueue('navigation', { view: currentView });
   },
   consent() {
     return enabled ? '자동 기록 사용 중' : '클라우드 기록 꺼짐';
@@ -168,14 +170,14 @@ if (enabled) {
   window.addEventListener('online', () => void flush());
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-      if (navigator.onLine) void enqueue('heartbeat');
+      if (navigator.onLine) void enqueue('heartbeat', { view: currentView });
       void flush();
     }
   });
   setInterval(() => {
-    if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat');
+    if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat', { view: currentView });
   }, 60_000);
   setInterval(() => void flush(), 60_000);
-  if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat');
+  if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat', { view: currentView });
   void flush();
 }
