@@ -27,7 +27,7 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type ExamResult = {
   score: number;
@@ -134,6 +134,12 @@ const wrongItems = computed(() => allItems.filter((item) => item.round.qualifica
 const searchResults = computed(() => searchResultIds.value.map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item)));
 const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
 const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
+const featureImageItem = computed(() => {
+  const scoped = allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
+  return scoped.find((item) => item.question.sourceImage)
+    || scoped.find((item) => item.question.images?.length || item.question.choices.some((choice) => choice.images?.length))
+    || scoped[0];
+});
 const darkActive = computed(() =>
   theme.value === 'dark'
   || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
@@ -143,6 +149,7 @@ const viewTitle = computed(() => ({
   wrong: '오답노트',
   search: '문제 검색',
   coach: '합격 엔진',
+  showcase: '신기능 체험실',
   stats: '학습 분석',
   updates: '패치노트',
 })[view.value]);
@@ -386,10 +393,11 @@ function animateCoachDashboard(): void {
 
 function animateViewDetails(next: ViewName): void {
   const selectors: Partial<Record<ViewName, string>> = {
-    home: '.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div',
+    home: '.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
     rounds: '.round-card',
     wrong: '.tool-hero,.question-library article,.empty-state',
     search: '.search-command,.search-summary,.question-library article,.empty-state',
+    showcase: '.feature-hero,.feature-tour-card,.feature-action-card,.feature-latest',
     stats: '.stats-hero,.stats-grid article,.subject-report,.subject-row',
     updates: '.patch-heading,.patch-timeline article',
   };
@@ -462,7 +470,7 @@ function showToast(message: string): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'showcase', 'stats', 'updates'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -840,6 +848,23 @@ function openCalculator(): void {
   else showToast('브라우저에서 이 사이트의 팝업을 허용해 주세요.');
 }
 
+function openFeatureAiDemo(): void {
+  if (!featureImageItem.value) {
+    showToast('체험할 문제를 찾지 못했습니다.');
+    return;
+  }
+  prepareAiQuestion(featureImageItem.value);
+}
+
+function startFeatureRound(mode: StudyMode): void {
+  const round = visibleRounds.value[0];
+  if (!round) {
+    showToast('시작할 회차를 찾지 못했습니다.');
+    return;
+  }
+  startRound(round, mode);
+}
+
 function buildBeginnerAiPrompt(item: QuestionItem): string {
   const restoredImageQuestion = item.round.qualificationKey === 'hvac'
     && Number(item.round.year) >= 2021
@@ -877,9 +902,9 @@ function buildBeginnerAiPrompt(item: QuestionItem): string {
     ? '\n- 중요: 아래 이미지 주소에 직접 접근해 원문을 먼저 확인해 주세요. OCR 텍스트와 이미지가 다르면 반드시 이미지를 기준으로 판단하고, 잘린 부분이 있으면 추측하지 말고 알려주세요.'
     : '';
 
-  return `아래 국가기술자격 CBT 문제를 직접 검토해 주세요.
-문제와 보기 전체를 먼저 다시 보여준 뒤, 현재 설정된 정답과 실제 정답이 일치하는지 분명하게 알려주세요.
-등록된 해설도 정확한지 검토하고, 처음 공부하는 사람도 이해할 수 있는 쉬운 해설을 새로 추가해 주세요.${imageInstruction}
+  return `아래 국가기술자격 CBT 문제를 초보자 눈높이로 설명해 주세요.
+현재 CBT의 설정 정답과 등록 해설은 사전 검수를 거친 기준값입니다. 근거 없이 정답을 바꾸지 말고, 답하기 전에 문제 조건·보기·공식·단위를 내부적으로 두 번 검산해 주세요.
+설정 정답과 다른 결론이 나올 때만 구체적인 반증을 제시하고 '정답 충돌 가능성'이라고 표시하세요. 확신할 수 없으면 추측하지 말고 '추가 검증 필요'라고 말해 주세요.${imageInstruction}
 
 [시험 정보]
 - 자격증: ${item.round.qualification || selectedCatalog.value.name}
@@ -899,24 +924,18 @@ ${hasImage ? `[문제 이미지 주소]\n${imageLinks}\n` : ''}
 [현재 등록된 해설]
 ${savedExplanation}
 
-[반드시 확인할 내용]
-1. 다른 자료의 정답을 그대로 믿지 말고 문제를 직접 풀어 실제 정답을 판단해 주세요.
-2. '현재 CBT 설정 정답 ${item.question.answer}번 ↔ 검토한 실제 정답'의 일치 여부를 가장 먼저 표시해 주세요.
-3. 등록된 해설에 틀린 개념·공식·단위·정답 번호가 있는지 검토해 주세요.
-4. 1~4번 보기를 각각 왜 맞거나 틀린지 짧고 명확하게 설명해 주세요.
-5. 계산문제는 공식 → 기호 뜻과 단위 → 숫자 대입 → 계산 → 답 순서로 줄을 나눠 주세요.
-6. 어려운 용어는 바로 뒤에 괄호로 쉬운 뜻을 붙이고, 시험장에서 빠르게 구별하는 요령도 알려주세요.
-7. 정보가 잘렸거나 애매하면 추측하지 말고 필요한 부분을 먼저 말해 주세요.
+[검산 규칙]
+- 설정 정답 ${item.question.answer}번을 기준으로 문제를 독립적으로 다시 풀어 교차 확인하세요.
+- 계산문제는 공식과 단위, 숫자 대입을 각각 다시 확인하세요.
+- 개념문제는 1~4번 보기를 모두 대조하세요.
+- 인터넷 검색이 가능하면 공신력 있는 자료를 우선 확인하되, 출처 불명의 답을 그대로 따르지 마세요.
 
-[답변 형식]
-① 문제와 보기 전체
-② 정답 검증: 설정 정답 / 실제 정답 / 일치 여부
-③ 등록 해설 검토
-④ 초보자용 단계별 해설
-⑤ 보기별 판단
-⑥ 공식·계산 과정(계산문제만)
-⑦ 시험장 10초 구별법
-⑧ 한 줄 암기`;
+[짧은 답변 형식]
+1. 결론: 정답 번호와 핵심 이유 한 문장
+   - 설정 정답과 다를 때만 '정답 충돌 가능성'과 구체적인 근거 표시
+2. 쉽게 풀기: 초보자가 이해할 수 있게 3~5단계
+3. 보기 확인: 1~4번의 맞음·틀림 이유를 한 줄씩
+4. 계산·암기: 계산문제는 공식과 단위, 마지막에 시험장 구별법과 한 줄 암기`;
 }
 
 function prepareAiQuestion(item: QuestionItem): void {
@@ -1253,6 +1272,20 @@ onBeforeUnmount(() => {
               <div><dt>북마크</dt><dd>{{ stats.bookmarks.toLocaleString() }}</dd></div>
             </dl>
           </section>
+
+          <section class="home-release-card" :class="{ ready: updateAvailable }">
+            <div class="home-release-icon">{{ updateAvailable ? '↻' : '✓' }}</div>
+            <div>
+              <span>{{ updateAvailable ? 'NEW VERSION READY' : 'LATEST VERSION' }}</span>
+              <strong>{{ updateAvailable ? '새 버전을 바로 적용할 수 있습니다' : `현재 v${currentVersion} 최신 버전을 사용 중입니다` }}</strong>
+              <small>{{ updateAvailable ? '학습 기록은 유지되고 화면과 기능만 최신 상태로 바뀝니다.' : '새 업데이트가 있는지 언제든 다시 확인할 수 있습니다.' }}</small>
+            </div>
+            <div class="home-release-actions">
+              <button v-if="updateAvailable" type="button" class="apply" @click="applyUpdate">신버전 적용</button>
+              <button v-else type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '업데이트 확인' }}</button>
+              <button type="button" @click="openView('updates')">패치노트 보기</button>
+            </div>
+          </section>
         </template>
 
         <template v-else-if="view === 'rounds'">
@@ -1436,6 +1469,71 @@ onBeforeUnmount(() => {
           </section>
         </template>
 
+        <template v-else-if="view === 'showcase'">
+          <section class="feature-hero">
+            <div class="feature-orb feature-orb-one" />
+            <div class="feature-orb feature-orb-two" />
+            <div class="feature-hero-copy">
+              <span><b>NEW</b> INTERACTIVE UPDATE LAB · v{{ currentVersion }}</span>
+              <h1>읽지 말고 직접 눌러보는<br><em>신기능 체험실</em></h1>
+              <p>이번 업데이트의 핵심 기능만 모았습니다. 설명을 읽는 대신 아래 버튼으로 바로 체감해 보세요.</p>
+              <div>
+                <button type="button" @click="openView('rounds')">3분 체험 시작 →</button>
+                <button type="button" @click="openView('updates')">← 패치노트로</button>
+              </div>
+            </div>
+            <div class="feature-pulse">
+              <i /><i /><i />
+              <strong>LIVE</strong>
+              <span>Vue Motion</span>
+            </div>
+          </section>
+
+          <section class="feature-tour">
+            <header><div><span>3-MINUTE TOUR</span><h2>가장 달라진 기능 세 가지</h2></div><p>순서대로 눌러보면 새 화면의 장점을 빠르게 확인할 수 있습니다.</p></header>
+            <div class="feature-tour-grid">
+              <article class="feature-tour-card blue">
+                <b>01</b><span>GLOBAL SWITCH</span><h3>어디서든 종목 전환</h3>
+                <p>현재 메뉴를 벗어나지 않고 위쪽 종목 선택칸으로 자격증과 데이터를 즉시 바꿉니다.</p>
+                <button type="button" @click="openView('rounds')">회차 화면에서 체험 →</button>
+              </article>
+              <article class="feature-tour-card violet">
+                <b>02</b><span>MOTION SYSTEM</span><h3>전 화면 동적 전환</h3>
+                <p>화면 입장, 카드 스태거와 과목 그래프가 Vue 상태에 맞춰 부드럽게 움직입니다.</p>
+                <button type="button" @click="openView('stats')">통계 애니메이션 보기 →</button>
+              </article>
+              <article class="feature-tour-card mint">
+                <b>03</b><span>AI ANSWER CHECK</span><h3>정답 검증 프롬프트</h3>
+                <p>문제와 해설, 원문 이미지 주소를 한 번에 전달하고 초보자용 설명을 요청합니다.</p>
+                <button type="button" @click="openFeatureAiDemo">실제 프롬프트 열기 →</button>
+              </article>
+            </div>
+          </section>
+
+          <section class="feature-action-section">
+            <header><div><span>QUICK EXPERIENCE</span><h2>한 번 눌러 바로 체감하기</h2></div></header>
+            <div class="feature-action-grid">
+              <button type="button" class="feature-action-card sun" @click="toggleLightDark">
+                <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
+              </button>
+              <button type="button" class="feature-action-card calc" @click="openCalculator">
+                <span>▦</span><div><strong>공학용 계산기</strong><small>별도 팝업으로 실행</small></div><b>›</b>
+              </button>
+              <button type="button" class="feature-action-card coach" @click="openView('coach')">
+                <span>✦</span><div><strong>합격 엔진</strong><small>예상 점수와 취약 과목</small></div><b>›</b>
+              </button>
+              <button type="button" class="feature-action-card exam" @click="startFeatureRound('exam')">
+                <span>OMR</span><div><strong>실전 CBT</strong><small>최신 회차 시험 화면</small></div><b>›</b>
+              </button>
+            </div>
+          </section>
+
+          <section class="feature-latest">
+            <header><div><span>LATEST CHANGES</span><h2>v{{ patchEntries[0]?.version }} 핵심 변경점</h2></div><button type="button" @click="openView('updates')">전체 패치노트 →</button></header>
+            <ul><li v-for="change in patchEntries[0]?.changes || []" :key="change">{{ change }}</li></ul>
+          </section>
+        </template>
+
         <template v-else-if="view === 'stats'">
           <section class="stats-hero">
             <div><span>LEARNING REPORT</span><h1>{{ selectedCatalog.name }} 학습 통계</h1><p>기존 CBT에서 푼 기록과 새 화면의 기록을 함께 표시합니다.</p></div>
@@ -1462,6 +1560,7 @@ onBeforeUnmount(() => {
             <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
             <div class="patch-version-actions">
               <strong>v{{ currentVersion }}</strong>
+              <button type="button" class="feature-lab-entry" @click="openView('showcase')">◉ 신기능 체험실 NEW</button>
               <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
             </div>
           </section>

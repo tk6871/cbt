@@ -1,13 +1,13 @@
-const CACHE = 'unified-industrial-cbt-v220';
+const CACHE = 'unified-industrial-cbt-v230';
 const CORE = [
   './', './index.html', './jewelry.html', './legacy.html', './next.html', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=220', './data/safety.js?v=220', './data/energy.js?v=220', './data/energy-engineer.js?v=220',
-  './data/maintenance.js?v=220', './data/jewelry.js?v=220', './data/changelog.js?v=220', './data/changelog-vue.js?v=220',
+  './data/hvac.js?v=230', './data/safety.js?v=230', './data/energy.js?v=230', './data/energy-engineer.js?v=230',
+  './data/maintenance.js?v=230', './data/jewelry.js?v=230', './data/changelog.js?v=230', './data/changelog-vue.js?v=230',
   './calculator.html', './calculator.css?v=194', './calculator.js?v=194', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  './app.css?v=220', './app.js?v=220',
-  './modern/cbt.css?v=220', './modern/cbt.js?v=220', './modern/visitor.js?v=200',
+  './app.css?v=230', './app.js?v=230',
+  './modern/cbt.css?v=230', './modern/cbt.js?v=230', './modern/visitor.js?v=200',
   './modern/chunks/import-wrapper-prod.js', './modern/chunks/index.js',
   './modern/assets/search.worker-BqvfbZXG.js'
 ];
