@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '2.3.0',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '직접 눌러보는 신기능 체험실',
+      summary: '패치노트에서 최신 기능을 바로 실행하고 차이를 빠르게 체감할 수 있는 별도 체험 화면을 추가했습니다.',
+      tags: ['신기능 체험실', '3분 체험', '업데이트 적용', 'AI 검산'],
+      changes: [
+        '패치노트의 신기능 체험실 NEW 버튼에서 이번 버전의 핵심 기능을 바로 실행할 수 있습니다.',
+        '종목 전환, 전 화면 애니메이션, AI 정답 검증, 테마, 계산기, 합격 엔진과 실전 CBT를 한곳에서 체험합니다.',
+        '메인 화면에서 새 버전을 확인하고 준비된 업데이트를 바로 적용할 수 있습니다.',
+        'AI 질문은 검수된 CBT 정답을 기준으로 공식·단위·보기를 두 번 검산하고, 명확한 반증이 있을 때만 충돌을 알리도록 개선했습니다.',
+        'AI 답변 형식을 결론, 쉽게 풀기, 보기 확인, 계산·암기의 네 구역으로 줄였습니다.'
+      ]
+    },
+    {
+      version: '2.3.0',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '보석관 신기능 체험실과 빠른 업데이트',
+      summary: '보석관 패치노트에서도 최신 기능을 한 화면에서 직접 체험하고 메인에서 새 버전을 적용할 수 있습니다.',
+      tags: ['신기능 체험실', '빠른 업데이트', 'AI 검산', '보석관'],
+      changes: [
+        '패치노트에서 별도 신기능 체험실을 열 수 있습니다.',
+        '테마, 계산기, 합격 엔진과 문제 풀이 기능을 즉시 실행할 수 있습니다.',
+        '메인 화면에 최신 버전 확인과 신버전 적용 기능을 추가했습니다.',
+        'AI 질문 결과가 짧고 정확하게 나오도록 이중 검산 지시와 네 구역 답변 형식을 적용했습니다.'
+      ]
+    },
+    {
       version: '2.2.0',
       scope: 'industrial',
       date: '2026.07.29',
@@ -208,8 +237,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.2.0';
-  changelog.versions.jewelry = '2.2.0';
-  changelog.currentVersion = '2.2.0';
+  changelog.versions.industrial = '2.3.0';
+  changelog.versions.jewelry = '2.3.0';
+  changelog.currentVersion = '2.3.0';
   window.CBT_CHANGELOG = changelog;
 })();
