@@ -139,7 +139,7 @@ img { max-width: 100%; }
 .exam-builder-subjects > div strong { margin-top:5px; font-size:.84rem; }
 .exam-builder-subjects article strong { margin:5px 0 3px; font-size:.76rem; line-height:1.35; }
 .exam-builder-subjects article small { color:var(--muted); font-size:.59rem; }
-.exam-builder-controls { margin-top:16px; display:grid; grid-template-columns:1.35fr 1fr 1fr; gap:10px; }
+.exam-builder-controls { margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .exam-builder-controls label { min-width:0; padding:12px; border:1px solid var(--line); border-radius:10px; background:var(--surface); display:grid; grid-template-columns:25px 1fr; align-items:center; gap:2px 8px; }
 .exam-builder-controls label > b,.random-step > b,.random-step-title > b { width:25px; height:25px; border-radius:7px; color:white; background:var(--primary); display:grid; place-items:center; font-size:.68rem; }
 .exam-builder-controls label > span { color:var(--muted); font-size:.65rem; font-weight:800; }
@@ -175,10 +175,23 @@ img { max-width: 100%; }
 .section-heading { display: flex; justify-content: space-between; align-items: end; margin: 22px 0 18px; }
 .section-heading span { color: var(--primary); }
 .section-heading h2 { margin: 4px 0 0; font-size: 1.55rem; }
+.home-qualification-section { position:relative; isolation:isolate; overflow:hidden; margin-top:0; padding:27px; border:1px solid color-mix(in srgb,var(--primary) 18%,var(--line)); border-radius:23px; background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 8%,var(--surface)),var(--surface) 52%,color-mix(in srgb,#7d66df 5%,var(--surface))); box-shadow:0 18px 48px rgba(22,57,94,.09); }
+.home-qualification-section::before,.home-qualification-section::after { content:""; position:absolute; z-index:-1; border-radius:50%; filter:blur(2px); pointer-events:none; }
+.home-qualification-section::before { width:220px; height:220px; right:-90px; top:-120px; background:color-mix(in srgb,var(--primary) 12%,transparent); }
+.home-qualification-section::after { width:130px; height:130px; left:42%; bottom:-95px; background:color-mix(in srgb,#7152c8 9%,transparent); }
+.home-main-heading { position:relative; z-index:1; margin:0 0 19px; align-items:center; }
+.home-main-heading h1 { margin:5px 0 7px; font-size:clamp(1.55rem,3vw,2.15rem); letter-spacing:-.04em; }
+.home-main-heading p { margin:0; color:var(--muted); font-size:.75rem; line-height:1.55; }
+.home-progress-summary { flex:0 0 auto; min-width:330px; padding:9px; border:1px solid color-mix(in srgb,var(--primary) 16%,var(--line)); border-radius:14px; background:color-mix(in srgb,var(--surface) 82%,transparent); box-shadow:0 8px 28px rgba(21,55,91,.06); backdrop-filter:blur(12px); display:grid; grid-template-columns:repeat(3,1fr); }
+.home-progress-summary span { min-width:0; padding:7px 12px; border-right:1px solid var(--line); color:var(--muted); font-size:.61rem; text-align:center; }
+.home-progress-summary span:last-child { border-right:0; }
+.home-progress-summary strong { display:block; margin-top:4px; color:var(--text); font-size:.94rem; }
 .qualification-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
 .qualification-card { position:relative; overflow:hidden; min-height:125px; padding:20px; border:1px solid var(--line); border-radius:17px; background:var(--surface); color:var(--text); display:flex; align-items:center; gap:15px; text-align:left; box-shadow:0 5px 18px rgba(18,42,70,.04); transition:.2s; }
 .qualification-card::after { content:""; position:absolute; inset:0; background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.45) 47%,transparent 64%); transform:translateX(-120%); transition:transform .65s; pointer-events:none; }.qualification-card:hover::after { transform:translateX(120%); }
 .qualification-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.qualification-card.selected { border-color:color-mix(in srgb,var(--primary) 58%,var(--line)); box-shadow:0 0 0 3px color-mix(in srgb,var(--primary) 10%,transparent),0 12px 28px rgba(20,80,145,.11); }
+.qualification-card.selected .card-arrow { color:var(--primary); transform:translateX(2px); }
 .qualification-icon { display: grid; place-items: center; width: 53px; height: 53px; flex: 0 0 auto; border-radius: 15px; font-size: 1.65rem; }
 .qualification-card.blue .qualification-icon { background: #e6f2ff; color: #126ac8; }
 .qualification-card.orange .qualification-icon { background: #fff0e7; color: #dd6728; }
@@ -592,7 +605,7 @@ th:first-child, td:first-child { text-align: left; }
 @media (max-width: 1100px) {
   .app-shell { grid-template-columns: 205px 1fr; }
   .round-grid { grid-template-columns: repeat(2, 1fr); }
-  .qualification-grid { grid-template-columns: 1fr; }
+  .qualification-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .qualification-card { min-height: 95px; }
   .smart-strip { grid-template-columns:1fr 1fr; }
   .training-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
@@ -636,6 +649,9 @@ th:first-child, td:first-child { text-align: left; }
   .hero-score > strong { font-size: 3rem; }
   .home-update-bar { align-items:flex-start; }
   .smart-strip { grid-template-columns:1fr; }
+  .home-qualification-section { padding:21px 16px; }
+  .home-main-heading { align-items:flex-start; flex-direction:column; gap:15px; }
+  .home-progress-summary { width:100%; min-width:0; }
   .exam-builder { padding:20px 16px; }
   .exam-builder-subjects { grid-template-columns:1fr 1fr; }
   .exam-builder-subjects > * { border-bottom:1px solid var(--line); }
@@ -646,6 +662,12 @@ th:first-child, td:first-child { text-align: left; }
   .training-grid { grid-template-columns:1fr; }
   .training-panel-head { align-items:flex-start; }
   .qualification-grid, .round-grid, .dashboard-grid, .review-grid, .result-grid { grid-template-columns: 1fr; }
+  .home-qualification-section .qualification-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .home-qualification-section .qualification-card { min-height:124px; padding:13px; flex-direction:column; align-items:flex-start; gap:8px; }
+  .home-qualification-section .qualification-icon { width:39px; height:39px; border-radius:11px; font-size:1.15rem; }
+  .home-qualification-section .qualification-copy strong { font-size:.78rem; line-height:1.35; }
+  .home-qualification-section .qualification-copy small { margin-top:4px; font-size:.62rem; }
+  .home-qualification-section .card-arrow { position:absolute; right:12px; top:17px; font-size:1.3rem; }
   .filter-bar { grid-template-columns: 1fr 1fr; }
   .filter-search { grid-column: 1 / -1; }
   .stat-cards { grid-template-columns: 1fr 1fr; }
