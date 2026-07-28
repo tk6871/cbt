@@ -5,6 +5,34 @@
 
   const entries = [
     {
+      version: '2.1.0',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '기록 분석형 합격 엔진과 AI 질문 도구',
+      summary: '메인 화면은 그대로 유지하면서 별도 합격 엔진에서 합격 가능성, 과락 위험, 망각 복습과 맞춤 훈련을 계산하도록 확장했습니다.',
+      tags: ['합격 엔진', '망각 복습', '맞춤 출제', 'AI 질문', '고급 애니메이션'],
+      changes: [
+        '학습 기록과 최근 모의시험을 바탕으로 예상 점수, 합격 가능성과 분석 신뢰도를 계산합니다.',
+        '과목별 예상 점수와 40점 과락 위험을 표시하고 원하는 과목을 바로 집중 훈련할 수 있습니다.',
+        '오늘의 망각 복습, 취약 문제, 계산문제, 과락 방어와 과목 균형 모의시험을 자동 구성합니다.',
+        '문제를 풀다가 AI 질문 버튼을 누르면 초보자 눈높이 설명용 프롬프트를 복사하고 ChatGPT를 열 수 있습니다.',
+        '합격 엔진 전용 오로라, 궤도, 게이지, 점수 추세와 카드 전환 애니메이션을 적용했습니다.'
+      ]
+    },
+    {
+      version: '2.1.0',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '보석관 합격 엔진과 AI 질문 도구',
+      summary: '보석·귀금속 학습 기록도 별도 합격 엔진으로 분석하고 초보자용 AI 질문 프롬프트를 사용할 수 있습니다.',
+      tags: ['합격 엔진', '맞춤 복습', 'AI 질문', '보석관'],
+      changes: [
+        '보석관 전용 학습 기록으로 숙련도, 기억 확률, 과목별 예상 점수를 계산합니다.',
+        '취약 문제와 망각 복습 문제를 자동으로 선별합니다.',
+        '문제 카드에서 초보자용 AI 질문 프롬프트를 복사할 수 있습니다.'
+      ]
+    },
+    {
       version: '2.0.4',
       scope: 'industrial',
       date: '2026.07.29',
@@ -151,8 +179,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.0.4';
-  changelog.versions.jewelry = '2.0.4';
-  changelog.currentVersion = '2.0.4';
+  changelog.versions.industrial = '2.1.0';
+  changelog.versions.jewelry = '2.1.0';
+  changelog.currentVersion = '2.1.0';
   window.CBT_CHANGELOG = changelog;
 })();
