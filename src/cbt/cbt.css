@@ -327,7 +327,7 @@ img { max-width: 100%; }
   border-radius: 14px;
   background: var(--surface-2);
   display: grid;
-  grid-template-columns: minmax(125px, .75fr) auto minmax(125px, .75fr) minmax(210px, 1.5fr);
+  grid-template-columns: minmax(190px, 1.25fr) minmax(115px, .7fr) auto minmax(115px, .7fr) minmax(210px, 1.4fr);
   align-items: end;
   gap: 10px;
 }
@@ -801,7 +801,7 @@ img { max-width: 100%; }
   .compact-stats { width: 100%; min-width: 0; }
   .qualification-section, .study-builder { padding: 18px; border-radius: 18px; }
   .builder-controls { grid-template-columns: 1fr auto 1fr; }
-  .curriculum-control { grid-column: 1 / -1; }
+  .qualification-control,.curriculum-control { grid-column: 1 / -1; }
   .scope-summary { grid-template-columns: 1fr; }
   .scope-summary > div { border-right: 0; border-bottom: 1px solid var(--line); }
   .scope-summary > div:last-child { border-bottom: 0; }
@@ -839,7 +839,7 @@ img { max-width: 100%; }
   .qualification-copy strong { min-height: 0; }
   .builder-controls { grid-template-columns: 1fr 1fr; }
   .range-arrow { display: none; }
-  .curriculum-control { grid-column: 1 / -1; }
+  .qualification-control,.curriculum-control { grid-column: 1 / -1; }
   .subject-strip { grid-template-columns: 1fr 1fr; }
   .subject-strip strong { min-height: 48px; }
   .progress-panel dl { grid-template-columns: 1fr 1fr; gap: 10px 0; }
