@@ -9,10 +9,12 @@ const props = defineProps<{
   mode: StudyMode;
   subjectStart?: boolean;
   subjectNumber?: number;
+  bookmarked?: boolean;
 }>();
 
 defineEmits<{
   choose: [choice: number];
+  toggleBookmark: [];
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
@@ -43,6 +45,13 @@ function choiceClass(index: number): Record<string, boolean> {
       </div>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="primaryImage" class="source-chip">복원 원문 이미지</span>
+      <button
+        type="button"
+        class="bookmark-button"
+        :class="{ active: bookmarked }"
+        :aria-label="bookmarked ? '북마크 제거' : '북마크 추가'"
+        @click="$emit('toggleBookmark')"
+      >★</button>
     </header>
 
     <div class="question-content">
