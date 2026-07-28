@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '2.2.0',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '전 화면 동적 전환과 공통 종목 선택',
+      summary: '합격 엔진뿐 아니라 홈, 회차, 오답, 검색, 통계와 패치노트 전 화면에 Vue 기반 동적 전환을 적용했습니다.',
+      tags: ['Vue 전환', '전 화면 애니메이션', '공통 종목 선택', '반응형 UI'],
+      changes: [
+        '어느 메뉴에서든 상단 종목 선택칸으로 자격증을 바꾸고 현재 화면을 그대로 이어볼 수 있습니다.',
+        '화면 진입 시 카드가 순서대로 나타나고 회차 진행률과 과목 통계 그래프가 자연스럽게 채워집니다.',
+        '카드 반사광, 그라데이션 흐름, 검색창 포커스와 패치노트 강조 효과를 전 화면에 맞게 적용했습니다.',
+        '답안 선택에는 화면 전환 애니메이션이 실행되지 않도록 분리해 문제 목록 깜빡임을 방지했습니다.',
+        'AI 질문 프롬프트가 문제 전체, 정답 일치 여부, 기존 해설 검토와 초보자용 단계별 설명 순서로 답하도록 개선했습니다.'
+      ]
+    },
+    {
+      version: '2.2.0',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '보석관 전 화면 애니메이션과 종목 전환',
+      summary: '보석관의 모든 학습 메뉴에도 동일한 Vue 화면 전환과 메뉴별 동적 효과를 적용했습니다.',
+      tags: ['Vue 전환', '공통 종목 선택', '보석관', '반응형 UI'],
+      changes: [
+        '회차, 오답, 검색, 합격 엔진과 통계에서 상단 종목을 바로 바꿀 수 있습니다.',
+        '메뉴별 카드 스태거, 진행률 그래프와 반응형 호버 효과를 적용했습니다.',
+        '문제 답안을 선택할 때에는 전체 화면 애니메이션이 다시 실행되지 않습니다.',
+        'AI 질문 결과가 정답 검증과 쉬운 단계별 해설 순서로 읽기 좋게 나오도록 프롬프트를 정리했습니다.'
+      ]
+    },
+    {
       version: '2.1.0',
       scope: 'industrial',
       date: '2026.07.29',
@@ -179,8 +208,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.1.0';
-  changelog.versions.jewelry = '2.1.0';
-  changelog.currentVersion = '2.1.0';
+  changelog.versions.industrial = '2.2.0';
+  changelog.versions.jewelry = '2.2.0';
+  changelog.currentVersion = '2.2.0';
   window.CBT_CHANGELOG = changelog;
 })();

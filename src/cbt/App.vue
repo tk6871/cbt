@@ -384,6 +384,40 @@ function animateCoachDashboard(): void {
   );
 }
 
+function animateViewDetails(next: ViewName): void {
+  const selectors: Partial<Record<ViewName, string>> = {
+    home: '.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div',
+    rounds: '.round-card',
+    wrong: '.tool-hero,.question-library article,.empty-state',
+    search: '.search-command,.search-summary,.question-library article,.empty-state',
+    stats: '.stats-hero,.stats-grid article,.subject-report,.subject-row',
+    updates: '.patch-heading,.patch-timeline article',
+  };
+  const selector = selectors[next];
+  if (selector) {
+    animate(
+      selector,
+      { opacity: [0, 1], y: [20, 0], scale: [.985, 1] },
+      { duration: .46, delay: stagger(.045), ease: [0.2, 0.8, 0.2, 1] },
+    );
+  }
+  if (next === 'rounds') {
+    animate(
+      '.round-progress i',
+      { scaleX: [0, 1] },
+      { duration: .72, delay: stagger(.035), ease: [0.2, 0.8, 0.2, 1] },
+    );
+  }
+  if (next === 'stats') {
+    animate(
+      '.subject-bar i',
+      { scaleX: [0, 1] },
+      { duration: .82, delay: stagger(.08), ease: [0.2, 0.8, 0.2, 1] },
+    );
+  }
+  if (next === 'coach') animateCoachDashboard();
+}
+
 function setDefaultYears(yearsBack = 10): void {
   const years = availableYears.value;
   if (!years.length) {
@@ -458,12 +492,12 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
   window.CBTAnalytics?.trackNavigation?.(`next-${next}`);
   if (next === 'updates') void checkForUpdate(false);
   void nextTick(() => {
-    animate('.page-content > *', {
+    animate('.view-stage > *', {
       opacity: [0, 1],
       y: [12, 0],
       filter: ['blur(4px)', 'blur(0px)'],
     }, { duration: .34, delay: stagger(.035) });
-    if (next === 'coach') animateCoachDashboard();
+    animateViewDetails(next);
   });
 }
 
@@ -821,34 +855,68 @@ function buildBeginnerAiPrompt(item: QuestionItem): string {
     const copy = restoredImageQuestion ? '' : stripMarkup(choice.html || choice.text);
     return `${index + 1}번. ${copy || `[${index + 1}번 보기는 첨부 이미지에서 확인]`}`;
   }).join('\n');
+  const selectedAnswer = session.value?.answers[item.id];
+  const savedExplanation = stripMarkup(item.question.explanationHtml || item.question.explanation)
+    || '[등록된 해설 없음]';
+  const imageBase = location.protocol === 'file:'
+    ? 'https://tk6871.github.io/cbt/'
+    : new URL('./', location.href).href;
+  const imagePaths = [
+    item.question.sourceImage,
+    ...(item.question.images || []),
+    ...item.question.choices.flatMap((choice) => choice.images || []),
+  ].filter((path): path is string => Boolean(path));
+  const imageLinks = [...new Set(imagePaths)].map((path, index) => {
+    try {
+      return `${index + 1}. ${new URL(path, imageBase).href}`;
+    } catch {
+      return `${index + 1}. ${path}`;
+    }
+  }).join('\n');
   const imageInstruction = hasImage
-    ? '\n- 이 문제에는 그림·도표 또는 이미지 보기가 있습니다. 내가 문제 이미지도 함께 첨부할 테니, 이미지의 기호·단위·선 연결을 먼저 정확히 읽어주세요.'
+    ? '\n- 중요: 아래 이미지 주소에 직접 접근해 원문을 먼저 확인해 주세요. OCR 텍스트와 이미지가 다르면 반드시 이미지를 기준으로 판단하고, 잘린 부분이 있으면 추측하지 말고 알려주세요.'
     : '';
 
-  return `당신은 국가기술자격 CBT를 처음 공부하는 초보자의 개인 과외 선생님입니다.
-아래 문제를 정답만 말하지 말고, 제가 처음 보는 개념이라고 생각하고 아주 쉽게 설명해주세요.
-
-[설명 규칙]
-1. 문제에서 무엇을 묻는지 먼저 쉬운 말로 한 문장으로 바꿔주세요.
-2. 정답 번호를 직접 판단하고, 정답이 되는 핵심 이유를 단계별로 설명해주세요.
-3. 1번부터 4번까지 각각 왜 맞거나 틀린지도 짧게 설명해주세요.
-4. 계산문제라면 사용할 공식, 각 기호의 뜻과 단위, 숫자를 넣는 순서, 계산 과정까지 한 줄씩 보여주세요.
-5. 어려운 전문용어는 바로 뒤에 괄호로 쉬운 뜻을 붙여주세요.
-6. 시험장에서 비슷한 문제를 10초 안에 구별하는 요령과 자주 하는 실수를 알려주세요.
-7. 마지막에는 '한 줄 암기'와 비슷한 연습문제 1개를 만들어주세요.
-8. 주어진 정보가 잘렸거나 애매하면 추측하지 말고 어떤 정보가 더 필요한지 먼저 말해주세요.${imageInstruction}
+  return `아래 국가기술자격 CBT 문제를 직접 검토해 주세요.
+문제와 보기 전체를 먼저 다시 보여준 뒤, 현재 설정된 정답과 실제 정답이 일치하는지 분명하게 알려주세요.
+등록된 해설도 정확한지 검토하고, 처음 공부하는 사람도 이해할 수 있는 쉬운 해설을 새로 추가해 주세요.${imageInstruction}
 
 [시험 정보]
 - 자격증: ${item.round.qualification || selectedCatalog.value.name}
 - 연도·회차: ${item.round.title}
 - 과목: ${item.subject}
 - 문제 번호: ${item.question.number}번
+- 현재 CBT 설정 정답: ${item.question.answer}번
+- 내가 고른 답: ${selectedAnswer ? `${selectedAnswer}번` : '아직 선택하지 않음'}
 
-[문제]
+[문제 원문]
 ${questionText}
 
 [보기]
-${choices}`;
+${choices}
+
+${hasImage ? `[문제 이미지 주소]\n${imageLinks}\n` : ''}
+[현재 등록된 해설]
+${savedExplanation}
+
+[반드시 확인할 내용]
+1. 다른 자료의 정답을 그대로 믿지 말고 문제를 직접 풀어 실제 정답을 판단해 주세요.
+2. '현재 CBT 설정 정답 ${item.question.answer}번 ↔ 검토한 실제 정답'의 일치 여부를 가장 먼저 표시해 주세요.
+3. 등록된 해설에 틀린 개념·공식·단위·정답 번호가 있는지 검토해 주세요.
+4. 1~4번 보기를 각각 왜 맞거나 틀린지 짧고 명확하게 설명해 주세요.
+5. 계산문제는 공식 → 기호 뜻과 단위 → 숫자 대입 → 계산 → 답 순서로 줄을 나눠 주세요.
+6. 어려운 용어는 바로 뒤에 괄호로 쉬운 뜻을 붙이고, 시험장에서 빠르게 구별하는 요령도 알려주세요.
+7. 정보가 잘렸거나 애매하면 추측하지 말고 필요한 부분을 먼저 말해 주세요.
+
+[답변 형식]
+① 문제와 보기 전체
+② 정답 검증: 설정 정답 / 실제 정답 / 일치 여부
+③ 등록 해설 검토
+④ 초보자용 단계별 해설
+⑤ 보기별 판단
+⑥ 공식·계산 과정(계산문제만)
+⑦ 시험장 10초 구별법
+⑧ 한 줄 암기`;
 }
 
 function prepareAiQuestion(item: QuestionItem): void {
@@ -1006,8 +1074,7 @@ onMounted(async () => {
   await refreshExamHistory();
   setupSearchWorker();
   await nextTick();
-  animate('.qualification-card', { opacity: [0, 1], y: [12, 0] }, { duration: 0.38, delay: stagger(0.055) });
-  if (view.value === 'coach') animateCoachDashboard();
+  animateViewDetails(view.value);
 });
 
 onBeforeUnmount(() => {
@@ -1052,9 +1119,14 @@ onBeforeUnmount(() => {
     <main class="main-area">
       <header class="topbar">
         <button class="menu-button" type="button" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
-        <div>
+        <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
-          <span>{{ selectedCatalog.name }}</span>
+          <label class="topbar-qualification">
+            <span>종목</span>
+            <select :value="selectedKey" aria-label="현재 화면의 자격증 종목" @change="updateQualificationFromSetup">
+              <option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option>
+            </select>
+          </label>
         </div>
         <div class="top-actions">
           <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
@@ -1065,6 +1137,8 @@ onBeforeUnmount(() => {
       </header>
 
       <div class="page-content">
+        <Transition name="view-swap" mode="out-in">
+          <div :key="view" class="view-stage">
         <template v-if="view === 'home'">
           <section class="qualification-section">
             <div class="section-title">
@@ -1403,6 +1477,8 @@ onBeforeUnmount(() => {
             </article>
           </div>
         </template>
+          </div>
+        </Transition>
       </div>
     </main>
     <nav class="mobile-tabbar">
@@ -1556,14 +1632,14 @@ onBeforeUnmount(() => {
   <div v-if="aiPromptOpen" class="ai-prompt-backdrop" @click.self="aiPromptOpen = false">
     <section class="ai-prompt-modal">
       <header>
-        <div><span>BEGINNER AI TUTOR</span><h2>초보자용 질문 프롬프트</h2></div>
+        <div><span>BEGINNER AI TUTOR</span><h2>정답 검증 + 초보자용 해설 프롬프트</h2></div>
         <button type="button" aria-label="AI 질문 창 닫기" @click="aiPromptOpen = false">×</button>
       </header>
       <div v-if="aiPromptHasImage" class="ai-image-notice">
         <span>▧</span>
-        <div><strong>그림 문제입니다</strong><small>프롬프트를 붙여넣은 뒤 현재 문제 이미지도 함께 첨부해야 정확하게 설명할 수 있습니다.</small></div>
+        <div><strong>원문 이미지 주소 포함</strong><small>AI가 링크를 열지 못하는 경우에만 현재 문제 이미지를 함께 첨부해 주세요.</small></div>
       </div>
-      <p>공식의 기호와 단위부터 보기별 이유, 시험장에서 구별하는 요령까지 설명하도록 구성했습니다.</p>
+      <p>문제 전체를 다시 보여주고 설정 정답·실제 정답·기존 해설을 검증한 뒤 쉬운 설명을 하도록 구성했습니다.</p>
       <textarea v-model="aiPromptText" aria-label="AI 질문 프롬프트" spellcheck="false" />
       <footer>
         <button type="button" class="ai-copy-button" @click="copyAiPrompt">프롬프트 복사</button>
