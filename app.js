@@ -30,7 +30,7 @@
   });
   let store = loadStore();
   let state = {
-    space: 'industrial', view: 'home', qualification: 'all', year: 'all', roundSearch: '', searchQuery: '',
+    space: 'industrial', view: 'home', qualification: 'all', year: 'all', yearFrom: 'all', yearTo: 'all', roundSearch: '', searchQuery: '',
     session: null, result: null, modal: null, examSheetOpen: false, focusSidebarOpen: false, mobileSidebarOpen: false,
     wrongFilter: 'all', updateReady: false
   };
@@ -60,6 +60,62 @@
   function activeCatalogs() { const keys = activeKeys(); return CATALOG.filter((item) => keys.includes(item.key) && item.rounds?.length); }
   function activeRounds() { const keys = activeKeys(); return ROUNDS.filter((round) => keys.includes(round.qualificationKey)); }
   function isActiveRound(round) { return !!round && activeKeys().includes(round.qualificationKey); }
+  function currentCurriculum(key) {
+    const catalog = getCatalog(key);
+    const latest = [...(catalog?.rounds || [])].sort((a, b) => String(b.sortKey || b.date || '').localeCompare(String(a.sortKey || a.date || '')))[0];
+    const subjects = latest?.subjects || [];
+    const eligibleRounds = (catalog?.rounds || []).filter((round) =>
+      round.subjects?.length === subjects.length && round.subjects.every((subject, index) => subject === subjects[index])
+    );
+    return { catalog, latest, subjects, eligibleRounds };
+  }
+  function hvacMappedSubject(subject) {
+    if (subject === '공기조화') return '공기조화설비';
+    if (subject === '냉동공학') return '냉동냉장설비';
+    if (subject === '배관일반' || subject === '전기제어공학') return '공조냉동설치운영';
+    return subject;
+  }
+  function balancedExamProfile(key, scope = 'current', yearFrom = 'all', yearTo = 'all') {
+    const current = currentCurriculum(key);
+    if (!current.catalog || !current.subjects.length) return { ...current, scope, pools: [] };
+    let sourceRounds = current.eligibleRounds;
+    let subjects = current.subjects;
+    let mapSubject = (subject) => subject;
+    if (scope === 'all-mapped') {
+      sourceRounds = current.catalog.rounds;
+      if (key === 'hvac') mapSubject = hvacMappedSubject;
+    } else if (key === 'hvac' && scope === 'legacy-original') {
+      sourceRounds = current.catalog.rounds.filter((round) => round.subjects?.length === 4);
+      subjects = sourceRounds[0]?.subjects || [];
+    }
+    const availableYears = [...new Set(sourceRounds.map((round) => Number(round.year)))].filter(Number.isFinite).sort((a, b) => b - a);
+    const from = yearFrom === 'all' ? -Infinity : Number(yearFrom);
+    const to = yearTo === 'all' ? Infinity : Number(yearTo);
+    sourceRounds = sourceRounds.filter((round) => Number(round.year) >= from && Number(round.year) <= to);
+    const pools = subjects.map((subject) => ({
+      subject,
+      items: sourceRounds.flatMap((round) => round.questions
+        .filter((question) => mapSubject(subjectFor(round, question)) === subject)
+        .map((question) => ({ round, question, subjectOverride: subject })))
+    }));
+    return { ...current, scope, subjects, sourceRounds, pools, availableYears, yearFrom, yearTo };
+  }
+  function yearRangeLabel(from, to) {
+    if (from === 'all' && to === 'all') return '전체 연도';
+    if (from === 'all') return `${to}년까지`;
+    if (to === 'all') return `${from}년부터`;
+    return `${from}~${to}년`;
+  }
+  function applyRecentYearRange(yearsBack = 10) {
+    const years = [...new Set(activeRounds()
+      .filter((round) => state.qualification === 'all' || round.qualificationKey === state.qualification)
+      .map((round) => Number(round.year)))].filter(Number.isFinite);
+    if (!years.length) return;
+    const latest = Math.max(...years);
+    const candidates = years.filter((year) => year >= latest - (yearsBack - 1));
+    state.yearFrom = String(Math.min(...candidates));
+    state.yearTo = String(latest);
+  }
   function currentStudyPlan() {
     return store.studyPlans?.[state.space] || (state.space === 'industrial' ? store.studyPlan : null);
   }
@@ -106,6 +162,56 @@
     const safe = Math.max(0, Math.floor(seconds));
     const h = Math.floor(safe / 3600), m = Math.floor((safe % 3600) / 60), s = safe % 60;
     return h ? `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  }
+  function evaluateCalculator() {
+    const input = document.getElementById('calculatorInput');
+    const output = document.getElementById('calculatorResult');
+    if (!input || !output || !window.math) return toast('계산기 라이브러리를 불러오지 못했습니다.');
+    const expression = input.value.trim().replaceAll('×', '*').replaceAll('÷', '/').replaceAll('−', '-');
+    if (!expression) return;
+    try {
+      const scope = new Map();
+      const angleMode = state.modal?.angleMode || 'deg';
+      const angle = (value) => angleMode === 'rad' ? value : window.math.unit(value, 'deg');
+      scope.set('sin', (value) => window.math.sin(angle(value)));
+      scope.set('cos', (value) => window.math.cos(angle(value)));
+      scope.set('tan', (value) => window.math.tan(angle(value)));
+      scope.set('log', (value) => window.math.log10(value));
+      scope.set('ln', (value) => window.math.log(value));
+      scope.set('ans', state.modal?.ans ?? 0);
+      const result = window.math.evaluate(expression, scope);
+      const formatted = window.math.format(result, { precision: 14 });
+      state.modal.expression = input.value;
+      state.modal.result = formatted;
+      state.modal.ans = result;
+      output.textContent = formatted;
+      output.classList.remove('error');
+    } catch (error) {
+      state.modal.expression = input.value;
+      state.modal.result = '식 오류';
+      output.textContent = '식 오류';
+      output.classList.add('error');
+    }
+  }
+  function calculatorKey(value) {
+    const input = document.getElementById('calculatorInput');
+    if (!input) return;
+    if (value === 'clear') {
+      input.value = '';
+      const output = document.getElementById('calculatorResult');
+      if (output) { output.textContent = '0'; output.classList.remove('error'); }
+      if (state.modal) { state.modal.expression = ''; state.modal.result = '0'; }
+    } else if (value === 'backspace') {
+      input.value = input.value.slice(0, -1);
+    } else if (value === 'equals') {
+      evaluateCalculator();
+    } else {
+      const start = input.selectionStart ?? input.value.length;
+      const end = input.selectionEnd ?? start;
+      input.setRangeText(value, start, end, 'end');
+      if (state.modal) state.modal.expression = input.value;
+    }
+    input.focus();
   }
   function toast(message) {
     clearTimeout(toastHandle); toastNode.textContent = message; toastNode.classList.add('show');
@@ -399,6 +505,8 @@
       <div class="training-panel-head"><div><span>ADAPTIVE STUDY</span><h2>맞춤 훈련</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
       <div class="training-grid">
         <button class="training-featured" data-action="open-recurring"><strong>전회차 빈출·유사문제</strong><small>${activeRounds().length}회차 · ${stats.total.toLocaleString()}문항을 개념별로 묶어 다시 풀기</small><b>분류해서 풀기 ›</b></button>
+        <button data-action="open-random"><strong>과목 균형 실전시험</strong><small>전체 연도에서 과목당 20문제</small><b>실전 설정 ›</b></button>
+        <button data-action="open-year-range"><strong>연도 범위 기출</strong><small>시작·끝 연도를 정해 회차 학습</small><b>최근 10년 ›</b></button>
         <button data-action="open-difficulty"><strong>고난도 문제</strong><small>COMCBT 정답률 기준 선택</small><b>설정 ›</b></button>
         <button data-action="start-due"><strong>오늘의 자동 복습</strong><small>1일·3일·7일 간격</small><b>${dueCount}문제</b></button>
         <button data-action="start-frequent"><strong>자주 틀린 20문제</strong><small>누적 오답 횟수 우선</small><b>${frequentCount}문제</b></button>
@@ -463,11 +571,13 @@
     const rounds = activeRounds();
     const catalogs = activeCatalogs();
     const years = [...new Set(rounds.filter((round) => state.qualification === 'all' || round.qualificationKey === state.qualification).map((round) => round.year))].sort((a, b) => b - a);
+    const from = state.yearFrom === 'all' ? -Infinity : Number(state.yearFrom);
+    const to = state.yearTo === 'all' ? Infinity : Number(state.yearTo);
     const query = state.roundSearch.trim().toLowerCase();
-    const filtered = rounds.filter((round) => (state.qualification === 'all' || round.qualificationKey === state.qualification) && (state.year === 'all' || String(round.year) === String(state.year)) && (!query || `${round.title} ${round.qualification}`.toLowerCase().includes(query)));
+    const filtered = rounds.filter((round) => (state.qualification === 'all' || round.qualificationKey === state.qualification) && Number(round.year) >= from && Number(round.year) <= to && (!query || `${round.title} ${round.qualification}`.toLowerCase().includes(query)));
     const qualificationOptions = `<option value="all">전체 종목</option>` + catalogs.map((item) => `<option value="${item.key}" ${state.qualification === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('');
-    shell(`<div class="filter-bar"><label>종목<select data-change="qualification">${qualificationOptions}</select></label><label>연도<select data-change="year"><option value="all">전체 연도</option>${years.map((year) => `<option ${String(state.year) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="filter-search">회차 검색<input data-input="round-search" value="${esc(state.roundSearch)}" placeholder="예: 2020년 3회"></label></div>
-      <div class="section-heading"><div><span>PAST EXAMS</span><h2>${filtered.length}개 회차</h2></div><button class="secondary-button compact" data-action="open-random">랜덤 출제</button></div>
+    shell(`<div class="filter-bar"><label>종목<select data-change="qualification">${qualificationOptions}</select></label><label>시작 연도<select data-change="year-from"><option value="all">처음부터</option>${years.map((year) => `<option value="${year}" ${String(state.yearFrom) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label>끝 연도<select data-change="year-to"><option value="all">최근까지</option>${years.map((year) => `<option value="${year}" ${String(state.yearTo) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="filter-search">회차 검색<input data-input="round-search" value="${esc(state.roundSearch)}" placeholder="예: 2020년 3회"></label></div>
+      <div class="section-heading"><div><span>PAST EXAMS · ${esc(yearRangeLabel(state.yearFrom, state.yearTo))}</span><h2>${filtered.length}개 회차</h2></div><div class="section-heading-actions"><button class="secondary-button compact" data-action="recent-ten-years">최근 10년</button><button class="secondary-button compact" data-action="open-random">과목 균형 출제</button></div></div>
       <div class="round-grid">${filtered.map(renderRoundCard).join('') || '<div class="empty-state">조건에 맞는 회차가 없습니다.</div>'}</div>`, state.space === 'jewelry' ? '보석·귀금속 기출 회차' : '기출 회차', '학습모드 또는 실제 CBT형 시험모드로 시작할 수 있습니다.');
   }
   function renderRoundCard(round) {
@@ -603,7 +713,28 @@
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">화면 테마<select data-change="theme"><option value="system">기기 설정</option><option value="light">밝게</option><option value="dark">어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
     }
     if (state.modal.type === 'random') {
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>랜덤 문제</h2><label class="setting-row">종목<select id="randomQualification">${activeCatalogs().map((item, index) => `<option value="${item.key}" ${state.qualification === item.key || (state.qualification === 'all' && index === 0) ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="primary-button wide" data-action="start-random">학습 시작</button></div></div>`;
+      const key = state.modal.qualification || (activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key);
+      const scope = state.modal.scope || 'all-mapped';
+      const yearFrom = state.modal.yearFrom || 'all';
+      const yearTo = state.modal.yearTo || 'all';
+      const profile = balancedExamProfile(key, scope, yearFrom, yearTo);
+      const total = profile.subjects.length * 20;
+      const enough = profile.pools.every((pool) => pool.items.length >= 20);
+      const scopeOptions = key === 'hvac'
+        ? `<option value="all-mapped" ${scope === 'all-mapped' ? 'selected' : ''}>전체 연도 · 구 4과목을 현 3과목에 통합 (추천)</option><option value="current" ${scope === 'current' ? 'selected' : ''}>2021년 이후 · 현 3과목만</option><option value="legacy-original" ${scope === 'legacy-original' ? 'selected' : ''}>2020년 이전 · 구 4과목 원형</option>`
+        : `<option value="all-mapped" selected>전체 연도 문제 포함</option>`;
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal random-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">SUBJECT-BALANCED CBT</span><h2>과목 균형 실전시험</h2><p>선택한 범위에서 각 과목 문제를 같은 수로 뽑아 실제 시험처럼 풉니다.</p><label class="setting-row">종목<select id="randomQualification" data-change="random-qualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">과목 체계<select id="randomScope" data-change="random-scope">${scopeOptions}</select></label><div class="random-year-grid"><label class="setting-row">시작 연도<select data-change="random-year-from"><option value="all">처음부터</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearFrom) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="setting-row">끝 연도<select data-change="random-year-to"><option value="all">최근까지</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearTo) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label></div><div class="balanced-exam-card"><span>실전 모의시험 · ${esc(yearRangeLabel(yearFrom, yearTo))}</span><strong>${profile.subjects.length}과목 × 20문제 = ${total}문제</strong><small>${profile.subjects.map(esc).join(' · ')}</small><div class="balanced-pool">${profile.pools.map((pool) => `<i>${esc(pool.subject)} ${pool.items.length.toLocaleString()}문제</i>`).join('')}</div><button class="primary-button wide" data-action="start-balanced-exam" ${enough ? '' : 'disabled'}>${enough ? `${total}문제 실전시험 시작` : '선택 범위의 과목별 문제 수가 부족합니다'}</button></div><div class="random-learning"><h3>일반 랜덤 학습</h3><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option selected>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="secondary-button wide" data-action="start-random">랜덤 학습 시작</button></div></div></div>`;
+    }
+    if (state.modal.type === 'calculator') {
+      return `<div class="modal-backdrop calculator-backdrop" data-action="close-modal"><div class="modal calculator-modal" role="dialog" aria-label="공학용 계산기"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">SCIENTIFIC CALCULATOR</span><h2>공학용 계산기</h2><div class="calculator-display"><input id="calculatorInput" value="${esc(state.modal.expression || '')}" inputmode="decimal" autocomplete="off" aria-label="계산식" placeholder="계산식을 입력하세요"><output id="calculatorResult">${esc(state.modal.result || '0')}</output></div><div class="calculator-mode"><button class="${state.modal.angleMode !== 'rad' ? 'active' : ''}" data-action="calc-angle" data-mode="deg">DEG</button><button class="${state.modal.angleMode === 'rad' ? 'active' : ''}" data-action="calc-angle" data-mode="rad">RAD</button></div><div class="calculator-grid">${[
+        ['AC', 'clear', 'function'], ['⌫', 'backspace', 'function'], ['(', '(', 'function'], [')', ')', 'function'], ['÷', '/', 'operator'],
+        ['sin', 'sin(', 'scientific'], ['cos', 'cos(', 'scientific'], ['tan', 'tan(', 'scientific'], ['√', 'sqrt(', 'scientific'], ['×', '*', 'operator'],
+        ['log', 'log(', 'scientific'], ['ln', 'ln(', 'scientific'], ['x²', '^2', 'scientific'], ['xʸ', '^', 'scientific'], ['−', '-', 'operator'],
+        ['π', 'pi', 'scientific'], ['e', 'e', 'scientific'], ['7', '7', ''], ['8', '8', ''], ['9', '9', ''], ['+', '+', 'operator'],
+        ['10ˣ', '10^(', 'scientific'], ['1/x', '^(-1)', 'scientific'], ['4', '4', ''], ['5', '5', ''], ['6', '6', ''], ['=', 'equals', 'equals'],
+        ['abs', 'abs(', 'scientific'], ['EXP', 'E', 'scientific'], ['1', '1', ''], ['2', '2', ''], ['3', '3', ''], ['Ans', 'ans', 'scientific'],
+        ['0', '0', 'zero'], ['.', '.', ''], [',', ',', '']
+      ].map(([label, value, cls]) => `<button class="${cls}" data-action="calc-key" data-value="${esc(value)}">${label}</button>`).join('')}</div><p class="calculator-note">삼각함수는 DEG/RAD 설정을 따릅니다. 키보드로 식을 직접 입력한 뒤 Enter를 눌러도 됩니다.</p></div></div>`;
     }
     return '';
   }
@@ -624,11 +755,11 @@
   }
   function startCollection(items, title, mode = 'learn', useTargetSubjects = false) {
     if (!items.length) return toast('풀 문제가 없습니다.');
-    const questions = items.map(({ round, question }, index) => Object.assign({}, question, {
+    const questions = items.map(({ round, question, subjectOverride }, index) => Object.assign({}, question, {
       number: index + 1,
       _originalNumber: question.number,
       _originRoundId: round.id,
-      _subject: useTargetSubjects ? jewelryTargetSubject(round, question) : `${round.shortQualification} · ${subjectFor(round, question)}`
+      _subject: useTargetSubjects ? jewelryTargetSubject(round, question) : `${round.shortQualification} · ${subjectOverride || subjectFor(round, question)}`
     }));
     const round = { id: `collection-${Date.now()}`, title, qualification: '맞춤 학습', shortQualification: '맞춤', qualificationKey: 'collection', year: '', subjects: [...new Set(questions.map((question) => question._subject))], questions, examMinutes: Math.max(10, Math.round(questions.length * 1.5)) };
     const duration = round.examMinutes * 60;
@@ -664,7 +795,7 @@
     });
     const answered = s.questions.filter((question) => s.answers[question.number] != null).length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
-      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
+      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-calculator">공학용 계산기</button><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
       <div class="learning-list">${visible.map((question) => renderLearningItem(question)).join('')}</div>
       <div class="pagination"><button data-action="session-prev" ${s.page === 0 ? 'disabled' : ''}>‹ 이전</button><span>${s.page + 1} / ${pages}</span><button data-action="session-next" ${s.page >= pages - 1 ? 'disabled' : ''}>다음 ›</button></div>
       <div class="learning-finish"><button class="primary-button" data-action="finish-session">학습 결과 보기</button></div>`, '문제 풀이', `${s.round.shortQualification || ''} · 학습모드`);
@@ -731,12 +862,12 @@
     const s = state.session;
     const answered = Object.keys(s.answers).length, remaining = s.questions.length - answered;
     app.innerHTML = `<div class="exam-app">
-      <header class="exam-top"><div class="exam-wide exam-top-inner"><button class="exam-exit" data-action="leave-session" aria-label="회차 목록으로 돌아가기" title="뒤로가기">←</button><div class="exam-title"><strong>${esc(s.round.title.replace(/\s*\(정답, 해설\)$/, ''))}</strong><span>${esc(s.round.shortQualification)} · CBT 시험모드</span></div><div class="exam-time"><strong data-timer>${formatTime(s.remaining)}</strong><span>경과 <b data-elapsed>${formatTime(s.duration - s.remaining)}</b> · 미응답 <b data-exam-left>${remaining}</b></span></div></div></header>
+      <header class="exam-top"><div class="exam-wide exam-top-inner"><button class="exam-exit" data-action="leave-session" aria-label="회차 목록으로 돌아가기" title="뒤로가기">←</button><div class="exam-title"><strong>${esc(s.round.title.replace(/\s*\(정답, 해설\)$/, ''))}</strong><span>${esc(s.round.shortQualification)} · CBT 시험모드</span></div><button class="exam-calculator" data-action="open-calculator">계산기</button><div class="exam-time"><strong data-timer>${formatTime(s.remaining)}</strong><span>경과 <b data-elapsed>${formatTime(s.duration - s.remaining)}</b> · 미응답 <b data-exam-left>${remaining}</b></span></div></div></header>
       <nav class="exam-subject-bar"><div class="exam-wide exam-subjects-in">${s.round.subjects.map((subject, index) => { const first = s.questions.find((question) => subjectFor(s.round, question) === subject); return `<button data-action="jump-subject" data-number="${first?.number || 1}"><b>${index + 1}</b>${esc(subject)}</button>`; }).join('')}<button class="exam-sheet-top" data-action="toggle-exam-sheet">OMR 답안지</button></div></nav>
       <div class="exam-wide exam-body"><main class="exam-question-grid">${s.questions.map((question) => renderExamQuestion(question)).join('')}</main>${renderAnswerSheet()}</div>
       <footer class="exam-footer"><div class="exam-wide exam-grade-inner"><span>응답 <b data-exam-done>${answered}</b> / ${s.questions.length} · 미응답 <b data-exam-left>${remaining}</b></span><button class="sheet-mobile-button" data-action="toggle-exam-sheet">OMR</button><button class="grade-button" data-action="finish-session">채점하기</button></div></footer>
       <button class="sheet-backdrop ${state.examSheetOpen ? 'open' : ''}" data-action="toggle-exam-sheet" aria-label="답안지 닫기"></button>
-    </div>`;
+    </div>${renderModal()}`;
   }
   function renderExamQuestion(question) {
     const s = state.session, selected = s.answers[question.number], held = !!s.review[question.number];
@@ -927,22 +1058,42 @@
       if (state.session?.mode === 'exam' && !confirm('현재 시험을 종료하고 다른 학습관으로 이동할까요?')) return;
       clearInterval(timerHandle);
       state.space = button.dataset.space === 'jewelry' ? 'jewelry' : 'industrial';
-      state.view = 'home'; state.qualification = 'all'; state.year = 'all'; state.roundSearch = ''; state.searchQuery = '';
+      state.view = 'home'; state.qualification = 'all'; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; state.roundSearch = ''; state.searchQuery = '';
       state.session = null; state.result = null; state.modal = null; state.wrongFilter = 'all';
       state.mobileSidebarOpen = false; state.focusSidebarOpen = false;
       renderHome(); scrollTo(0, 0);
     }
     else if (action === 'toggle-session-sidebar') { state.focusSidebarOpen = !state.focusSidebarOpen; renderSession(); }
     else if (action === 'toggle-mobile-sidebar') { state.mobileSidebarOpen = !state.mobileSidebarOpen; route(); }
-    else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; renderRounds(); }
+    else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; renderRounds(); }
     else if (action === 'open-mode') { state.modal = { type: 'mode', roundId: button.dataset.round }; route(); }
     else if (action === 'start-mode') startRound(button.dataset.round, button.dataset.mode);
-    else if (action === 'close-modal') { state.modal = null; route(); }
+    else if (action === 'close-modal') {
+      const calculator = state.modal?.type === 'calculator';
+      state.modal = null;
+      if (calculator) button.closest('.calculator-backdrop')?.remove();
+      else route();
+    }
     else if (action === 'open-settings') { state.modal = { type: 'settings' }; route(); }
     else if (action === 'export-backup') exportBackup();
     else if (action === 'choose-backup') document.getElementById('backupFile')?.click();
     else if (action === 'open-search') { state.view = 'search'; state.modal = null; renderSearch(); }
-    else if (action === 'open-random') { state.modal = { type: 'random' }; route(); }
+    else if (action === 'open-random') {
+      state.modal = { type: 'random', qualification: activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key, scope: 'all-mapped', yearFrom: 'all', yearTo: 'all' };
+      route();
+    }
+    else if (action === 'open-year-range') {
+      state.view = 'rounds';
+      state.yearFrom = 'all'; state.yearTo = 'all';
+      applyRecentYearRange(10);
+      renderRounds(); scrollTo(0, 0);
+    }
+    else if (action === 'recent-ten-years') { applyRecentYearRange(10); renderRounds(); }
+    else if (action === 'open-calculator') {
+      state.modal = { type: 'calculator', expression: '', result: '0', ans: 0, angleMode: 'deg' };
+      app.insertAdjacentHTML('beforeend', renderModal());
+      document.getElementById('calculatorInput')?.focus();
+    }
     else if (action === 'open-study-plan') { state.modal = { type: 'study-plan' }; route(); }
     else if (action === 'save-study-plan') {
       const qualification = document.getElementById('studyPlanQualification').value;
@@ -1073,11 +1224,37 @@
       startCollection(selected, wrong.length ? '약점 집중 훈련' : '기초 진단 20문제');
     }
     else if (action === 'continue-round') startRound(button.dataset.round, 'learn');
+    else if (action === 'start-balanced-exam') {
+      const key = state.modal?.qualification || document.getElementById('randomQualification')?.value;
+      const scope = state.modal?.scope || document.getElementById('randomScope')?.value || 'all-mapped';
+      const yearFrom = state.modal?.yearFrom || 'all';
+      const yearTo = state.modal?.yearTo || 'all';
+      const profile = balancedExamProfile(key, scope, yearFrom, yearTo);
+      if (!profile.pools.length || profile.pools.some((pool) => pool.items.length < 20)) {
+        toast('과목별로 20문제를 뽑을 수 있는 자료가 부족합니다.');
+      } else {
+        const selected = profile.pools.flatMap((pool) => shuffled(pool.items).slice(0, 20));
+        const scopeLabel = scope === 'legacy-original' ? '구 4과목' : scope === 'current' ? '현행 과목' : '전체 연도';
+        startCollection(selected, `${profile.catalog.shortName} · ${scopeLabel} ${profile.subjects.length}과목 실전 ${selected.length}문제`, 'exam');
+      }
+    }
     else if (action === 'start-random') {
-      const key = document.getElementById('randomQualification').value, count = Number(document.getElementById('randomCount').value);
-      const pool = getCatalog(key).rounds.flatMap((round) => round.questions.map((question) => ({ round, question })));
+      const key = state.modal?.qualification || document.getElementById('randomQualification').value, count = Number(document.getElementById('randomCount').value);
+      const scope = state.modal?.scope || 'all-mapped';
+      const profile = balancedExamProfile(key, scope, state.modal?.yearFrom || 'all', state.modal?.yearTo || 'all');
+      const pool = profile.sourceRounds.flatMap((round) => round.questions.map((question) => ({ round, question, subjectOverride: key === 'hvac' && scope === 'all-mapped' ? hvacMappedSubject(subjectFor(round, question)) : subjectFor(round, question) })));
       for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
       startCollection(pool.slice(0, count), `${getCatalog(key).shortName} 랜덤 ${count}문제`);
+    }
+    else if (action === 'calc-key') calculatorKey(button.dataset.value);
+    else if (action === 'calc-angle') {
+      const input = document.getElementById('calculatorInput');
+      if (state.modal) {
+        state.modal.expression = input?.value || '';
+        state.modal.angleMode = button.dataset.mode === 'rad' ? 'rad' : 'deg';
+      }
+      button.parentElement?.querySelectorAll('button').forEach((item) => item.classList.toggle('active', item.dataset.mode === state.modal?.angleMode));
+      input?.focus();
     }
     else if (action === 'answer') answerQuestion(Number(button.dataset.number), Number(button.dataset.choice));
     else if (action === 'toggle-bookmark') {
@@ -1128,8 +1305,16 @@
   function rRound() { return state.result?.round?.id ? getRound(state.result.round.id) : null; }
   function changeHandler(event) {
     const key = event.target.dataset.change; if (!key) return;
-    if (key === 'qualification') { state.qualification = event.target.value; state.year = 'all'; renderRounds(); }
+    if (key === 'qualification') { state.qualification = event.target.value; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; renderRounds(); }
     else if (key === 'year') { state.year = event.target.value; renderRounds(); }
+    else if (key === 'year-from' || key === 'year-to') {
+      if (key === 'year-from') state.yearFrom = event.target.value;
+      else state.yearTo = event.target.value;
+      if (state.yearFrom !== 'all' && state.yearTo !== 'all' && Number(state.yearFrom) > Number(state.yearTo)) {
+        [state.yearFrom, state.yearTo] = [state.yearTo, state.yearFrom];
+      }
+      renderRounds();
+    }
     else if (key === 'theme') { setTheme(event.target.value); route(); }
     else if (key === 'font-scale') { store.fontScale = Number(event.target.value); bindFocusable(); saveStore(); }
     else if (key === 'import-backup') importBackup(event.target.files?.[0]);
@@ -1147,6 +1332,16 @@
     }
     else if (key === 'recurring-qualification') { state.modal.qualification = event.target.value; route(); }
     else if (key === 'recurring-minimum') { state.modal.minimum = Number(event.target.value); route(); }
+    else if (key === 'random-qualification') { state.modal.qualification = event.target.value; state.modal.scope = 'all-mapped'; state.modal.yearFrom = 'all'; state.modal.yearTo = 'all'; route(); }
+    else if (key === 'random-scope') { state.modal.scope = event.target.value; state.modal.yearFrom = 'all'; state.modal.yearTo = 'all'; route(); }
+    else if (key === 'random-year-from' || key === 'random-year-to') {
+      if (key === 'random-year-from') state.modal.yearFrom = event.target.value;
+      else state.modal.yearTo = event.target.value;
+      if (state.modal.yearFrom !== 'all' && state.modal.yearTo !== 'all' && Number(state.modal.yearFrom) > Number(state.modal.yearTo)) {
+        [state.modal.yearFrom, state.modal.yearTo] = [state.modal.yearTo, state.modal.yearFrom];
+      }
+      route();
+    }
     else if (key === 'session-page-size') {
       const s = state.session, first = s.page * s.pageSize; s.pageSize = Number(event.target.value); s.page = Math.floor(first / s.pageSize); saveLearningProgress(); renderSession();
     }
@@ -1187,6 +1382,12 @@
   app.addEventListener('click', actionHandler);
   app.addEventListener('change', changeHandler);
   app.addEventListener('input', inputHandler);
+  app.addEventListener('keydown', (event) => {
+    if (event.target?.id === 'calculatorInput' && event.key === 'Enter') {
+      event.preventDefault();
+      evaluateCalculator();
+    }
+  });
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system'); bindFocusable(); route();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
@@ -1198,7 +1399,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=181', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=186', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
