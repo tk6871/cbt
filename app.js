@@ -438,7 +438,6 @@
     state.view = 'home';
     if (state.space === 'jewelry') return renderJewelryHome();
     const stats = overallStats();
-    const daily = dailyStats();
     const recentRound = latestProgressRound();
     const builderCatalog = getCatalog(state.examBuilderQualification) || getCatalog('hvac') || activeCatalogs()[0];
     state.examBuilderQualification = builderCatalog.key;
@@ -455,41 +454,37 @@
     const cards = CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => {
       const questions = item.rounds.reduce((sum, round) => sum + round.questions.length, 0);
       const colors = { hvac: 'blue', safety: 'orange', energy: 'green', maintenance: 'purple' };
-      return `<button class="qualification-card ${colors[item.key]}" data-action="select-qualification" data-key="${item.key}">
+      return `<button class="qualification-card ${colors[item.key]} ${builderCatalog.key === item.key ? 'selected' : ''}" data-action="choose-home-qualification" data-key="${item.key}" aria-pressed="${builderCatalog.key === item.key}">
         <span class="qualification-icon">${item.key === 'hvac' ? '❄' : item.key === 'safety' ? '⛑' : item.key === 'maintenance' ? '⚙' : '♨'}</span>
         <span class="qualification-copy"><strong>${esc(item.name)}</strong><small>${item.rounds.length}회차 · ${questions.toLocaleString()}문제</small></span><span class="card-arrow">›</span>
       </button>`;
     }).join('');
     const recent = store.history.slice(0, 5).map((item) => `<li><span>${esc(item.title)}</span><strong>${item.score}점</strong><small>${new Date(item.at).toLocaleDateString('ko-KR')}</small></li>`).join('') || '<li class="empty-row">아직 완료한 시험이 없습니다.</li>';
-    shell(`<div class="hero"><span class="hero-orb orb-one"></span><span class="hero-orb orb-two"></span><span class="hero-mesh"></span><div class="hero-copy"><span class="eyebrow">SMART RESPONSIVE CBT</span><h1>한곳에서 풀고,<br><em>약점만 다시 공부하세요.</em></h1><p>화면 크기에 맞춰 자동으로 재배치되고, 학습 기록은 이 기기에 안전하게 저장됩니다.</p><div class="hero-actions"><button class="primary-button glow-button" data-action="nav" data-view="rounds">회차 골라서 시작</button><button class="secondary-button" data-action="focus-exam-builder">10년 기출·실전시험</button></div></div><div class="hero-score"><span>현재 정답률</span><strong>${stats.accuracy}<small>%</small></strong><div><span>푼 문제 ${stats.answered.toLocaleString()}</span><span>오답 ${stats.wrong.toLocaleString()}</span></div></div></div>
-      <section class="home-update-bar ${state.updateReady ? 'ready' : ''}"><div><span>${state.updateReady ? '새 업데이트 준비됨' : `현재 버전 v${esc(spaceVersion('industrial'))}`}</span><strong>${state.updateReady ? '풀이 기록을 유지한 채 최신 버전을 적용할 수 있습니다.' : '오래 켜둔 화면도 다시 돌아오면 업데이트를 자동 확인합니다.'}</strong></div><button data-action="force-refresh">${state.updateReady ? '업데이트 적용' : '최신 상태 확인'}</button></section>
-      <section class="smart-strip"><article class="daily-card"><div class="daily-ring" style="--daily:${daily.percent * 3.6}deg"><div><strong>${daily.today}</strong><span>/ ${daily.goal}</span></div></div><div><span class="smart-kicker">TODAY</span><h3>오늘의 학습 목표</h3><p>${daily.today >= daily.goal ? '오늘 목표를 달성했습니다. 대단해요!' : `${daily.goal - daily.today}문제만 더 풀면 오늘 목표 달성!`}</p></div></article><button class="smart-action violet" data-action="start-daily"><span>✦</span><div><strong>오늘의 20문제</strong><small>아직 안 푼 문제 중심 출제</small></div><b>›</b></button><button class="smart-action coral" data-action="start-weak"><span>◎</span><div><strong>약점 집중 훈련</strong><small>오답 우선 맞춤 복습</small></div><b>›</b></button>${recentRound ? `<button class="smart-action mint" data-action="continue-round" data-round="${recentRound.id}"><span>↗</span><div><strong>이어서 학습</strong><small>${esc(recentRound.shortQualification)} · ${recentRound.year}년</small></div><b>›</b></button>` : `<button class="smart-action mint" data-action="nav" data-view="rounds"><span>↗</span><div><strong>첫 학습 시작</strong><small>원하는 회차를 골라보세요</small></div><b>›</b></button>`}</section>
-      <section class="section-block"><div class="section-heading"><div><span>QUALIFICATIONS</span><h2>종목 선택</h2></div></div><div class="qualification-grid">${cards}</div></section>
+    shell(`<section class="section-block home-qualification-section"><div class="section-heading home-main-heading"><div><span>STEP 1 · QUALIFICATION</span><h1>먼저 준비할 종목을 선택하세요</h1><p>종목을 선택하면 아래 과목과 최근 10년 학습 범위가 바로 바뀝니다.</p></div><div class="home-progress-summary"><span>현재 정답률<strong>${stats.accuracy}%</strong></span><span>학습 문제<strong>${stats.answered.toLocaleString()}</strong></span><span>누적 오답<strong>${stats.wrong.toLocaleString()}</strong></span></div></div><div class="qualification-grid">${cards}</div></section>
       <section class="dashboard-grid"><article class="panel"><div class="panel-heading"><h3>학습 현황</h3><button data-action="nav" data-view="stats">자세히</button></div><div class="metric-grid"><div><span>전체 문제</span><strong>${stats.total.toLocaleString()}</strong></div><div><span>학습 문제</span><strong>${stats.answered.toLocaleString()}</strong></div><div><span>북마크</span><strong>${stats.bookmarks.toLocaleString()}</strong></div><div><span>학습 범위</span><strong>${stats.coverage}%</strong></div></div></article><article class="panel"><div class="panel-heading"><h3>최근 시험</h3></div><ul class="history-list">${recent}</ul></article></section>
-      <aside class="streak-banner"><span>🔥</span><div><strong>${daily.streak}일 연속 학습 중</strong><small>매일 한 문제라도 풀면 연속 기록이 이어집니다.</small></div><div class="streak-dots">${Array.from({length:7},(_,i)=>`<i class="${i < Math.min(7,daily.streak) ? 'on' : ''}"></i>`).join('')}</div></aside>`, '산업기사 통합 CBT', '공조냉동 · 산업안전 · 에너지관리 · 설비보전');
+      <section class="home-update-bar ${state.updateReady ? 'ready' : ''}"><div><span>${state.updateReady ? '새 업데이트 준비됨' : `현재 버전 v${esc(spaceVersion('industrial'))}`}</span><strong>${state.updateReady ? '풀이 기록을 유지한 채 최신 버전을 적용할 수 있습니다.' : '최신 버전 확인과 업데이트는 여기에서 할 수 있습니다.'}</strong></div><button data-action="force-refresh">${state.updateReady ? '업데이트 적용' : '최신 상태 확인'}</button></section>`, '산업기사 통합 CBT', '공조냉동 · 산업안전 · 에너지관리 · 설비보전');
     const dueCount = dueReviewItems().length;
     const frequentCount = frequentWrongItems(20).length;
     const slowCount = slowQuestionItems(20).length;
     const plan = studyPlanStats();
-    const builderQualificationOptions = activeCatalogs().map((item) => `<option value="${item.key}" ${builderCatalog.key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('');
     const builderExplanation = builderCatalog.key === 'hvac'
       ? '구 4과목 기출도 빠지지 않습니다. 공기조화·냉동공학·배관일반·전기제어공학을 현재 3과목 기준으로 다시 묶어 출제합니다.'
       : `선택한 기간의 ${builderProfile.subjects.length}과목 문제를 과목별로 같은 수만큼 뽑습니다.`;
-    document.querySelector('.smart-strip')?.insertAdjacentHTML('afterend', `<section class="exam-builder" id="exam-builder">
-      <div class="exam-builder-copy"><span>10-YEAR PASS PRACTICE</span><h2>10년 기출·과목별 실전시험 만들기</h2><p>먼저 종목과 연도를 정하세요. 회차별로 차근차근 풀거나, 선택 기간에서 과목당 20문제를 뽑아 실제 CBT처럼 볼 수 있습니다.</p></div>
+    document.querySelector('.home-qualification-section')?.insertAdjacentHTML('afterend', `<section class="exam-builder" id="exam-builder">
+      <div class="exam-builder-copy"><span>STEP 2 · STUDY RANGE</span><h2>과목과 학습 기간을 확인하세요</h2><p>선택한 종목의 과목을 먼저 확인하고, 풀고 싶은 시작 연도와 끝 연도를 정하세요.</p></div>
       <div class="exam-builder-subjects"><div><span>선택 종목</span><strong>${esc(builderCatalog.name)}</strong></div>${builderProfile.subjects.map((subject, index) => `<article><b>${index + 1}과목</b><strong>${esc(subject)}</strong><small>실전시험 20문제</small></article>`).join('')}</div>
       <div class="exam-builder-controls">
-        <label><b>1</b><span>시험 종목</span><select data-change="builder-qualification">${builderQualificationOptions}</select></label>
-        <label><b>2</b><span>시작 연도</span><select data-change="builder-year-from">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearFrom) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
-        <label><b>3</b><span>끝 연도</span><select data-change="builder-year-to">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearTo) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
+        <label><b>1</b><span>시작 연도</span><select data-change="builder-year-from">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearFrom) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
+        <label><b>2</b><span>끝 연도</span><select data-change="builder-year-to">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearTo) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
       </div>
       <div class="exam-builder-summary"><div><span>선택한 학습 범위</span><strong>${esc(builderCatalog.shortName)} · ${state.examBuilderYearFrom}~${state.examBuilderYearTo}년</strong><small>${builderRoundCount}개 회차의 문제를 사용합니다.</small></div><div><span>과목 균형 실전시험</span><strong>${builderProfile.subjects.length}과목 × 20문제 = ${builderExamCount}문제</strong><small>${builderProfile.subjects.map(esc).join(' · ')}</small></div></div>
       <p class="exam-builder-note"><b>어떻게 출제되나요?</b>${esc(builderExplanation)}</p>
       <div class="exam-builder-actions"><button class="secondary-button" data-action="builder-show-rounds"><span>회차별 학습</span><strong>${state.examBuilderYearFrom}~${state.examBuilderYearTo}년 기출 목록 보기</strong><small>연도별로 순서대로 풀 때 사용</small></button><button class="primary-button" data-action="builder-open-random"><span>실전 랜덤시험</span><strong>과목별 20문제 설정하기</strong><small>OMR·타이머가 있는 시험모드</small></button></div>
     </section><section class="training-panel">
-      <div class="training-panel-head"><div><span>ADAPTIVE STUDY</span><h2>맞춤 훈련</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
+      <div class="training-panel-head"><div><span>STEP 3 · STUDY MODE</span><h2>필요한 학습 방식으로 시작하세요</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
       <div class="training-grid">
         <button class="training-featured" data-action="open-recurring"><strong>전회차 빈출·유사문제</strong><small>${activeRounds().length}회차 · ${stats.total.toLocaleString()}문항을 개념별로 묶어 다시 풀기</small><b>분류해서 풀기 ›</b></button>
+        ${recentRound ? `<button data-action="continue-round" data-round="${recentRound.id}"><strong>이어서 풀기</strong><small>${esc(recentRound.shortQualification)} · ${recentRound.year}년 학습 계속</small><b>계속 ›</b></button>` : ''}
         <button data-action="open-difficulty"><strong>고난도 문제</strong><small>COMCBT 정답률 기준 선택</small><b>설정 ›</b></button>
         <button data-action="start-due"><strong>오늘의 자동 복습</strong><small>1일·3일·7일 간격</small><b>${dueCount}문제</b></button>
         <button data-action="start-frequent"><strong>자주 틀린 20문제</strong><small>누적 오답 횟수 우선</small><b>${frequentCount}문제</b></button>
@@ -1046,6 +1041,13 @@
     }
     else if (action === 'toggle-session-sidebar') { state.focusSidebarOpen = !state.focusSidebarOpen; renderSession(); }
     else if (action === 'toggle-mobile-sidebar') { state.mobileSidebarOpen = !state.mobileSidebarOpen; route(); }
+    else if (action === 'choose-home-qualification') {
+      state.examBuilderQualification = button.dataset.key;
+      state.examBuilderYearFrom = null;
+      state.examBuilderYearTo = null;
+      renderHome();
+      requestAnimationFrame(() => document.getElementById('exam-builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+    }
     else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; renderRounds(); }
     else if (action === 'open-mode') { state.modal = { type: 'mode', roundId: button.dataset.round }; route(); }
     else if (action === 'start-mode') startRound(button.dataset.round, button.dataset.mode);
@@ -1392,7 +1394,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=188', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=189', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
