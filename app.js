@@ -304,6 +304,17 @@
     };
     if (correct) delete store.wrong[id];
     else store.wrong[id] = { at: now, selected, count: store.attempts[id].wrongCount };
+    window.CBTAnalytics?.trackAttempt({
+      qualificationKey: round.qualificationKey,
+      qualification: round.qualification || round.shortQualification,
+      roundId: round.id,
+      roundTitle: round.title,
+      questionNumber: question._originalNumber || question.number,
+      selectedAnswer: selected,
+      correctAnswer: question.answer,
+      correct,
+      mode: state.session?.mode || 'learn'
+    });
   }
   function dueReviewItems() {
     const now = Date.now();
@@ -432,6 +443,7 @@
       ${sidebarOpen ? `<button class="session-sidebar-backdrop" data-action="${sidebarToggleAction}" aria-label="메뉴 닫기"></button>` : ''}
     </div>${renderModal()}`;
     bindFocusable();
+    window.CBTAnalytics?.trackNavigation(state.session ? state.session.mode : state.view);
   }
 
   function renderHome() {
@@ -919,6 +931,18 @@
     const score = Math.round(correct / s.questions.length * 100);
     state.result = { score, correct, total: s.questions.length, unanswered, subjects: subjectMap, title: s.round.title, answers: Object.assign({}, s.answers), questions: s.questions, round: s.round, mode: s.mode };
     store.history.unshift({ roundId: s.round.id, title: s.round.title, score, correct, total: s.questions.length, at: Date.now() }); store.history = store.history.slice(0, 50); saveStore();
+    window.CBTAnalytics?.trackResult({
+      qualificationKey: s.round.qualificationKey,
+      qualification: s.round.qualification || s.round.shortQualification,
+      roundId: s.round.id,
+      title: s.round.title,
+      mode: s.mode,
+      score,
+      correct,
+      total: s.questions.length,
+      unanswered,
+      durationSeconds: Math.max(0, Math.round((Date.now() - s.startedAt) / 1000))
+    });
     state.session = null; state.view = 'result'; renderResult();
   }
   function renderResult() {
@@ -1394,7 +1418,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=189', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=190', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();

@@ -1,9 +1,10 @@
-const CACHE = 'unified-industrial-cbt-v189';
+const CACHE = 'unified-industrial-cbt-v190';
 const CORE = [
-  './', './index.html', './app.css?v=189', './app.js?v=189', './manifest.webmanifest',
+  './', './index.html', './app.css?v=190', './app.js?v=190', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=189', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=189', './data/changelog.js?v=189',
-  './calculator.html', './calculator.css?v=189', './calculator.js?v=189', './vendor/math.js?v=189'
+  './data/hvac.js?v=190', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=190', './data/changelog.js?v=190',
+  './calculator.html', './calculator.css?v=190', './calculator.js?v=190', './vendor/math.js?v=190',
+  './admin.html', './cloud-config.js?v=190', './관리자_방문기록_설정방법.txt'
 ];
 async function refreshCoreCache() {
   const cache = await caches.open(CACHE);
@@ -21,7 +22,7 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
     const sameOrigin = url.origin === location.origin;
-    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|app\.css|app\.js|data\/changelog\.js)$/.test(url.pathname));
+    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|admin\.html|cloud-config\.js|app\.css|app\.js|data\/changelog\.js)$/.test(url.pathname));
     if (networkFirst) {
       try {
         const response = await fetch(request, { cache: 'no-store' });

@@ -1,10 +1,33 @@
 window.CBT_CHANGELOG={
   "currentVersion": "1.8.3",
   "versions": {
-    "industrial": "1.7.6",
+    "industrial": "1.7.7",
     "jewelry": "1.8.3"
   },
   "entries": [
+    {
+      "version": "1.7.7",
+      "scope": "industrial",
+      "date": "2026.07.29",
+      "title": "Vue 관리자 센터·IP 방문 및 학습 통계 기반",
+      "summary": "기존 CBT를 유지하면서 Vue 3·TypeScript·Vite 기반 관리자 화면을 추가하고, 서버 연결 시 방문 IP·푼 문제·정오답·시험 점수를 관리자만 확인할 수 있는 구조를 마련했습니다.",
+      "tags": [
+        "Vue 3",
+        "관리자",
+        "IP 기록",
+        "학습 통계"
+      ],
+      "changes": [
+        "Vue 3, TypeScript, Vite 기반 관리자 전용 화면과 반응형 대시보드를 추가했습니다.",
+        "ECharts로 일자별 접속 추이와 기기 분포를 표시하고 Motion 효과를 적용했습니다.",
+        "방문 IP, 최근 접속, 접속 횟수, 푼 문제, 정오답과 시험 점수를 관리자 화면에서 확인할 수 있습니다.",
+        "관리자 데이터는 Supabase Auth 로그인과 RLS 정책으로 보호되며 등록된 관리자 이메일만 조회할 수 있습니다.",
+        "방문 기록 전송이 끊기면 IndexedDB에 임시 보관하고 인터넷 연결 후 다시 전송합니다.",
+        "IP는 브라우저가 아닌 Supabase Edge Function에서 확인하도록 구성했습니다.",
+        "클라우드 설정을 켜기 전에는 기존 CBT만 동작하며 추가 기록 스크립트를 불러오지 않습니다.",
+        "서비스워커 캐시와 정적 파일 버전을 v190으로 갱신했습니다."
+      ]
+    },
     {
       "version": "1.7.6",
       "scope": "industrial",
