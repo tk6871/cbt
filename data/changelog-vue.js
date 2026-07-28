@@ -5,6 +5,31 @@
 
   const entries = [
     {
+      version: '2.0.4',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '브라우저 뒤로가기와 학습 설정 개선',
+      summary: '마우스 뒤로가기 버튼이 CBT 안의 직전 화면으로 이동하도록 연결하고 학습 설정에서 자격증 종목을 다시 선택할 수 있게 했습니다.',
+      tags: ['뒤로가기', '학습 설정', '자격증 선택', '화면 이동'],
+      changes: [
+        '문제를 풀다가 브라우저·마우스 뒤로가기를 누르면 다른 HTML로 빠지기 전에 직전 CBT 메뉴로 돌아갑니다.',
+        '앞으로가기를 누르면 방금 나왔던 풀이 화면을 현재 브라우저 세션에서 다시 이어볼 수 있습니다.',
+        '시작 연도와 끝 연도 설정 영역에 자격증 종목 선택칸을 추가했습니다.'
+      ]
+    },
+    {
+      version: '2.0.4',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '브라우저 뒤로가기와 종목 설정 개선',
+      summary: '보석관에서도 브라우저 뒤로가기와 앞으로가기가 내부 화면 순서대로 동작하고 학습 설정에서 종목을 바꿀 수 있습니다.',
+      tags: ['뒤로가기', '종목 선택', '보석관'],
+      changes: [
+        '풀이 중 뒤로가기를 누르면 직전 보석관 메뉴로 돌아갑니다.',
+        '학습 설정에 보석·귀금속 종목 선택칸을 추가했습니다.'
+      ]
+    },
+    {
       version: '2.0.3',
       scope: 'industrial',
       date: '2026.07.29',
@@ -126,8 +151,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.0.3';
-  changelog.versions.jewelry = '2.0.3';
-  changelog.currentVersion = '2.0.3';
+  changelog.versions.industrial = '2.0.4';
+  changelog.versions.jewelry = '2.0.4';
+  changelog.currentVersion = '2.0.4';
   window.CBT_CHANGELOG = changelog;
 })();

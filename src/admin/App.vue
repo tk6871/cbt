@@ -323,7 +323,6 @@ onBeforeUnmount(() => {
       <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>방문·학습 통계</small></div></div>
       <span class="admin-kicker">SECURE ADMIN ACCESS</span>
       <h1>관리자 로그인</h1>
-      <p>등록된 관리자 계정만 방문 IP와 학습 기록을 볼 수 있습니다.</p>
       <form @submit.prevent="login">
         <label>이메일<input v-model="email" type="email" autocomplete="username" required></label>
         <label>비밀번호<input v-model="password" type="password" autocomplete="current-password" required></label>

@@ -26,6 +26,11 @@ type ExamResult = {
   passed: boolean;
   subjectRows: Array<{ subject: string; correct: number; total: number; score: number; passed: boolean }>;
 };
+type CbtHistoryState = {
+  cbtSpace: string;
+  view: ViewName;
+  sessionId?: string;
+};
 
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
@@ -69,6 +74,9 @@ let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
 let searchWorker: Worker | null = null;
+let suspendedSession: SessionState | null = null;
+let suspendedExamResult: ExamResult | null = null;
+const historyScope = `cbt-${spaceScope}`;
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
 const availableYears = computed(() => {
@@ -171,13 +179,21 @@ function setDefaultYears(yearsBack = 10): void {
   yearFrom.value = yearsBack === 0 ? Math.min(...years) : Math.max(Math.min(...years), latest - yearsBack + 1);
 }
 
-function selectQualification(key: string): void {
+function configureQualification(key: string): void {
   selectedKey.value = key;
   localStorage.setItem(qualificationStorageKey, key);
   curriculum.value = 'all-mapped';
   setDefaultYears(quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
+}
+
+function selectQualification(key: string): void {
+  configureQualification(key);
   openView('rounds');
+}
+
+function updateQualificationFromSetup(event: Event): void {
+  configureQualification((event.target as HTMLSelectElement).value);
 }
 
 function applyPreset(value: 5 | 10 | 0): void {
@@ -191,7 +207,33 @@ function showToast(message: string): void {
   toastHandle = window.setTimeout(() => { toastMessage.value = ''; }, 2400);
 }
 
-function openView(next: ViewName): void {
+function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
+  if (!value || typeof value !== 'object') return null;
+  const candidate = value as Partial<CbtHistoryState>;
+  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'stats', 'updates'];
+  if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
+  return candidate as CbtHistoryState;
+}
+
+function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
+  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}) };
+}
+
+function initializeNavigationHistory(): void {
+  const current = ownHistoryState();
+  const initialView = current?.view || 'home';
+  view.value = initialView;
+  history.replaceState(viewHistoryState(initialView), '', location.href);
+}
+
+function openView(next: ViewName, options: { fromHistory?: boolean; replace?: boolean } = {}): void {
+  if (!options.fromHistory) {
+    const current = ownHistoryState();
+    if (!current || current.view !== next || current.sessionId) {
+      const method = options.replace ? 'replaceState' : 'pushState';
+      history[method](viewHistoryState(next), '', location.href);
+    }
+  }
   view.value = next;
   mobileMenuOpen.value = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -204,6 +246,43 @@ function openView(next: ViewName): void {
       filter: ['blur(4px)', 'blur(0px)'],
     }, { duration: .34, delay: stagger(.035) });
   });
+}
+
+function deactivateSession(preserveForForward = false): void {
+  if (preserveForForward) {
+    suspendedSession = session.value;
+    suspendedExamResult = examResult.value;
+  } else {
+    suspendedSession = null;
+    suspendedExamResult = null;
+  }
+  stopTimer();
+  session.value = null;
+  examResult.value = null;
+  sessionMenuOpen.value = false;
+  document.body.classList.remove('session-active');
+}
+
+function handleBrowserHistory(event: PopStateEvent): void {
+  const target = ownHistoryState(event.state);
+  if (!target) return;
+
+  if (target.sessionId) {
+    if (suspendedSession?.id === target.sessionId) {
+      session.value = suspendedSession;
+      examResult.value = suspendedExamResult;
+      suspendedSession = null;
+      suspendedExamResult = null;
+      document.body.classList.add('session-active');
+      restartTimer();
+      window.scrollTo({ top: 0 });
+      return;
+    }
+    history.replaceState(viewHistoryState(target.view), '', location.href);
+  }
+
+  if (session.value) deactivateSession(true);
+  openView(target.view, { fromHistory: true });
 }
 
 function setupSearchWorker(): void {
@@ -268,6 +347,9 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
     remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
     finished: false,
   };
+  suspendedSession = null;
+  suspendedExamResult = null;
+  history.pushState(viewHistoryState(view.value, session.value.id), '', location.href);
   examSheetOpen.value = mode === 'exam';
   document.body.classList.add('session-active');
   restartTimer();
@@ -426,13 +508,13 @@ function leaveSession(nextView?: ViewName): void {
   if (session.value && !session.value.finished && answeredCount.value > 0) {
     if (!confirm('현재 풀이를 종료하고 이동할까요?')) return;
   }
-  stopTimer();
-  session.value = null;
-  examResult.value = null;
-  sessionMenuOpen.value = false;
-  if (nextView) view.value = nextView;
-  document.body.classList.remove('session-active');
-  window.scrollTo({ top: 0 });
+  const current = ownHistoryState();
+  if (!nextView && current?.sessionId === session.value?.id) {
+    history.back();
+    return;
+  }
+  deactivateSession(false);
+  openView(nextView || view.value, { replace: Boolean(current?.sessionId) });
 }
 
 function restartTimer(): void {
@@ -568,6 +650,8 @@ watch([yearFrom, yearTo], () => {
 
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
+  window.addEventListener('popstate', handleBrowserHistory);
+  initializeNavigationHistory();
   applyTheme(theme.value);
   setFontScale(fontScale.value);
   setDefaultYears(10);
@@ -579,6 +663,7 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
+  window.removeEventListener('popstate', handleBrowserHistory);
   stopTimer();
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
@@ -675,6 +760,12 @@ onBeforeUnmount(() => {
             </div>
 
             <div class="builder-controls">
+              <label class="qualification-control">
+                <span>자격증 종목</span>
+                <select :value="selectedKey" @change="updateQualificationFromSetup">
+                  <option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option>
+                </select>
+              </label>
               <label>
                 <span>시작 연도</span>
                 <select v-model.number="yearFrom">
