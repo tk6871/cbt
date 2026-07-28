@@ -95,6 +95,9 @@ const wrongItems = computed(() => allItems.filter((item) => item.round.qualifica
 const searchResults = computed(() => searchResultIds.value.map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item)));
 const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
 const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
+const darkActive = computed(() =>
+  theme.value === 'dark'
+  || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
 const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
@@ -186,6 +189,13 @@ function openView(next: ViewName): void {
   mobileMenuOpen.value = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   window.CBTAnalytics?.trackNavigation?.(`next-${next}`);
+  void nextTick(() => {
+    animate('.page-content > *', {
+      opacity: [0, 1],
+      y: [12, 0],
+      filter: ['blur(4px)', 'blur(0px)'],
+    }, { duration: .34, delay: stagger(.035) });
+  });
 }
 
 function setupSearchWorker(): void {
@@ -254,6 +264,10 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
   restartTimer();
   window.scrollTo({ top: 0 });
   window.CBTAnalytics?.trackNavigation?.(`next-${mode}`);
+  void nextTick(() => {
+    animate('.session-topbar', { opacity: [0, 1], y: [-10, 0] }, { duration: .28 });
+    animate('.question-card', { opacity: [0, 1], scale: [.985, 1], y: [10, 0] }, { duration: .35, delay: stagger(.055) });
+  });
 }
 
 function startRound(round: Round, mode: StudyMode): void {
@@ -441,6 +455,12 @@ function changeTheme(): void {
   showToast(theme.value === 'system' ? '기기 설정 테마' : theme.value === 'dark' ? '다크 모드' : '라이트 모드');
 }
 
+function toggleLightDark(): void {
+  theme.value = darkActive.value ? 'light' : 'dark';
+  applyTheme(theme.value);
+  showToast(darkActive.value ? '다크 모드로 전환했습니다.' : '라이트 모드로 전환했습니다.');
+}
+
 function setFontScale(value: number): void {
   fontScale.value = value;
   studyStore.fontScale = value;
@@ -542,6 +562,7 @@ onBeforeUnmount(() => {
         <div class="top-actions">
           <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
+          <button type="button" class="theme-quick-button" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
           <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
@@ -776,9 +797,9 @@ onBeforeUnmount(() => {
         <div class="setting-group">
           <span>화면 테마</span>
           <div class="theme-options">
-            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)">자동</button>
-            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)">라이트</button>
-            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)">다크</button>
+            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)"><strong>◐ 자동</strong><small>기기 설정</small></button>
+            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)"><strong>☀ 라이트</strong><small>밝은 화면</small></button>
+            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)"><strong>☾ 다크</strong><small>어두운 화면</small></button>
           </div>
         </div>
         <div class="setting-group">

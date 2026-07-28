@@ -18,6 +18,8 @@ defineEmits<{
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
+const restoredQuestion = computed(() =>
+  props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const circles = ['①', '②', '③', '④'];
 
@@ -44,7 +46,7 @@ function choiceClass(index: number): Record<string, boolean> {
         <strong>{{ item.question.number }}번</strong>
       </div>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
-      <span v-if="primaryImage" class="source-chip">복원 원문 이미지</span>
+      <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
       <button
         type="button"
         class="bookmark-button"
