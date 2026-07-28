@@ -1,10 +1,12 @@
-const CACHE = 'unified-industrial-cbt-v194';
+const CACHE = 'unified-industrial-cbt-v195';
 const CORE = [
   './', './index.html', './app.css?v=194', './app.js?v=194', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
   './data/hvac.js?v=194', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=194', './data/changelog.js?v=194',
   './calculator.html', './calculator.css?v=194', './calculator.js?v=194', './vendor/math.js?v=194',
-  './admin.html', './cloud-config.js?v=194', './관리자_방문기록_설정방법.txt'
+  './admin.html', './cloud-config.js?v=194', './관리자_방문기록_설정방법.txt',
+  './next.html', './modern/cbt.css?v=195', './modern/cbt.js?v=195',
+  './modern/chunks/import-wrapper-prod.js', './modern/chunks/index.js', './data/energy-engineer.js'
 ];
 async function refreshCoreCache() {
   const cache = await caches.open(CACHE);
@@ -22,7 +24,7 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
     const sameOrigin = url.origin === location.origin;
-    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|admin\.html|cloud-config\.js|app\.css|app\.js|data\/changelog\.js)$/.test(url.pathname));
+    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|next\.html|admin\.html|cloud-config\.js|app\.css|app\.js|modern\/cbt\.css|modern\/cbt\.js|data\/changelog\.js)$/.test(url.pathname));
     if (networkFirst) {
       try {
         const response = await fetch(request, { cache: 'no-store' });
