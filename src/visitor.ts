@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie';
 
-type AnalyticsEventType = 'visit' | 'navigation' | 'attempt' | 'result';
+type AnalyticsEventType = 'visit' | 'navigation' | 'attempt' | 'result' | 'heartbeat';
 
 type QueuedEvent = {
   id: string;
@@ -167,8 +167,15 @@ if (enabled) {
   if (shouldLog(LAST_VISIT_KEY, 30 * 60 * 1000)) void enqueue('visit');
   window.addEventListener('online', () => void flush());
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') void flush();
+    if (document.visibilityState === 'visible') {
+      if (navigator.onLine) void enqueue('heartbeat');
+      void flush();
+    }
   });
+  setInterval(() => {
+    if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat');
+  }, 60_000);
   setInterval(() => void flush(), 60_000);
+  if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat');
   void flush();
 }

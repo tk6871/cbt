@@ -1,10 +1,10 @@
-const CACHE = 'unified-industrial-cbt-v191';
+const CACHE = 'unified-industrial-cbt-v192';
 const CORE = [
-  './', './index.html', './app.css?v=191', './app.js?v=191', './manifest.webmanifest',
+  './', './index.html', './app.css?v=192', './app.js?v=192', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=191', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=191', './data/changelog.js?v=191',
-  './calculator.html', './calculator.css?v=191', './calculator.js?v=191', './vendor/math.js?v=191',
-  './admin.html', './cloud-config.js?v=191', './관리자_방문기록_설정방법.txt'
+  './data/hvac.js?v=192', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=192', './data/changelog.js?v=192',
+  './calculator.html', './calculator.css?v=192', './calculator.js?v=192', './vendor/math.js?v=192',
+  './admin.html', './cloud-config.js?v=192', './관리자_방문기록_설정방법.txt'
 ];
 async function refreshCoreCache() {
   const cache = await caches.open(CACHE);
