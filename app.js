@@ -31,6 +31,7 @@
   let store = loadStore();
   let state = {
     space: 'industrial', view: 'home', qualification: 'all', year: 'all', yearFrom: 'all', yearTo: 'all', roundSearch: '', searchQuery: '',
+    examBuilderQualification: 'hvac', examBuilderYearFrom: null, examBuilderYearTo: null,
     session: null, result: null, modal: null, examSheetOpen: false, focusSidebarOpen: false, mobileSidebarOpen: false,
     wrongFilter: 'all', updateReady: false
   };
@@ -439,6 +440,18 @@
     const stats = overallStats();
     const daily = dailyStats();
     const recentRound = latestProgressRound();
+    const builderCatalog = getCatalog(state.examBuilderQualification) || getCatalog('hvac') || activeCatalogs()[0];
+    state.examBuilderQualification = builderCatalog.key;
+    const builderYears = [...new Set(builderCatalog.rounds.map((round) => Number(round.year)))].sort((a, b) => b - a);
+    const builderLatest = Math.max(...builderYears);
+    const builderRecentYears = builderYears.filter((year) => year >= builderLatest - 9);
+    if (!builderYears.includes(Number(state.examBuilderYearFrom))) state.examBuilderYearFrom = String(Math.min(...builderRecentYears));
+    if (!builderYears.includes(Number(state.examBuilderYearTo))) state.examBuilderYearTo = String(builderLatest);
+    const builderFrom = Number(state.examBuilderYearFrom);
+    const builderTo = Number(state.examBuilderYearTo);
+    const builderRoundCount = builderCatalog.rounds.filter((round) => Number(round.year) >= builderFrom && Number(round.year) <= builderTo).length;
+    const builderProfile = balancedExamProfile(builderCatalog.key, 'all-mapped', state.examBuilderYearFrom, state.examBuilderYearTo);
+    const builderExamCount = builderProfile.subjects.length * 20;
     const cards = CATALOG.filter((item) => PRIMARY_KEYS.includes(item.key)).map((item) => {
       const questions = item.rounds.reduce((sum, round) => sum + round.questions.length, 0);
       const colors = { hvac: 'blue', safety: 'orange', energy: 'green', maintenance: 'purple' };
@@ -448,7 +461,7 @@
       </button>`;
     }).join('');
     const recent = store.history.slice(0, 5).map((item) => `<li><span>${esc(item.title)}</span><strong>${item.score}점</strong><small>${new Date(item.at).toLocaleDateString('ko-KR')}</small></li>`).join('') || '<li class="empty-row">아직 완료한 시험이 없습니다.</li>';
-    shell(`<div class="hero"><span class="hero-orb orb-one"></span><span class="hero-orb orb-two"></span><span class="hero-mesh"></span><div class="hero-copy"><span class="eyebrow">SMART RESPONSIVE CBT</span><h1>한곳에서 풀고,<br><em>약점만 다시 공부하세요.</em></h1><p>화면 크기에 맞춰 자동으로 재배치되고, 학습 기록은 이 기기에 안전하게 저장됩니다.</p><div class="hero-actions"><button class="primary-button glow-button" data-action="nav" data-view="rounds">회차 골라서 시작</button><button class="secondary-button" data-action="open-random">랜덤 문제</button></div></div><div class="hero-score"><span>현재 정답률</span><strong>${stats.accuracy}<small>%</small></strong><div><span>푼 문제 ${stats.answered.toLocaleString()}</span><span>오답 ${stats.wrong.toLocaleString()}</span></div></div></div>
+    shell(`<div class="hero"><span class="hero-orb orb-one"></span><span class="hero-orb orb-two"></span><span class="hero-mesh"></span><div class="hero-copy"><span class="eyebrow">SMART RESPONSIVE CBT</span><h1>한곳에서 풀고,<br><em>약점만 다시 공부하세요.</em></h1><p>화면 크기에 맞춰 자동으로 재배치되고, 학습 기록은 이 기기에 안전하게 저장됩니다.</p><div class="hero-actions"><button class="primary-button glow-button" data-action="nav" data-view="rounds">회차 골라서 시작</button><button class="secondary-button" data-action="focus-exam-builder">10년 기출·실전시험</button></div></div><div class="hero-score"><span>현재 정답률</span><strong>${stats.accuracy}<small>%</small></strong><div><span>푼 문제 ${stats.answered.toLocaleString()}</span><span>오답 ${stats.wrong.toLocaleString()}</span></div></div></div>
       <section class="home-update-bar ${state.updateReady ? 'ready' : ''}"><div><span>${state.updateReady ? '새 업데이트 준비됨' : `현재 버전 v${esc(spaceVersion('industrial'))}`}</span><strong>${state.updateReady ? '풀이 기록을 유지한 채 최신 버전을 적용할 수 있습니다.' : '오래 켜둔 화면도 다시 돌아오면 업데이트를 자동 확인합니다.'}</strong></div><button data-action="force-refresh">${state.updateReady ? '업데이트 적용' : '최신 상태 확인'}</button></section>
       <section class="smart-strip"><article class="daily-card"><div class="daily-ring" style="--daily:${daily.percent * 3.6}deg"><div><strong>${daily.today}</strong><span>/ ${daily.goal}</span></div></div><div><span class="smart-kicker">TODAY</span><h3>오늘의 학습 목표</h3><p>${daily.today >= daily.goal ? '오늘 목표를 달성했습니다. 대단해요!' : `${daily.goal - daily.today}문제만 더 풀면 오늘 목표 달성!`}</p></div></article><button class="smart-action violet" data-action="start-daily"><span>✦</span><div><strong>오늘의 20문제</strong><small>아직 안 푼 문제 중심 출제</small></div><b>›</b></button><button class="smart-action coral" data-action="start-weak"><span>◎</span><div><strong>약점 집중 훈련</strong><small>오답 우선 맞춤 복습</small></div><b>›</b></button>${recentRound ? `<button class="smart-action mint" data-action="continue-round" data-round="${recentRound.id}"><span>↗</span><div><strong>이어서 학습</strong><small>${esc(recentRound.shortQualification)} · ${recentRound.year}년</small></div><b>›</b></button>` : `<button class="smart-action mint" data-action="nav" data-view="rounds"><span>↗</span><div><strong>첫 학습 시작</strong><small>원하는 회차를 골라보세요</small></div><b>›</b></button>`}</section>
       <section class="section-block"><div class="section-heading"><div><span>QUALIFICATIONS</span><h2>종목 선택</h2></div></div><div class="qualification-grid">${cards}</div></section>
@@ -458,12 +471,25 @@
     const frequentCount = frequentWrongItems(20).length;
     const slowCount = slowQuestionItems(20).length;
     const plan = studyPlanStats();
-    document.querySelector('.smart-strip')?.insertAdjacentHTML('afterend', `<section class="training-panel">
+    const builderQualificationOptions = activeCatalogs().map((item) => `<option value="${item.key}" ${builderCatalog.key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('');
+    const builderExplanation = builderCatalog.key === 'hvac'
+      ? '구 4과목 기출도 빠지지 않습니다. 공기조화·냉동공학·배관일반·전기제어공학을 현재 3과목 기준으로 다시 묶어 출제합니다.'
+      : `선택한 기간의 ${builderProfile.subjects.length}과목 문제를 과목별로 같은 수만큼 뽑습니다.`;
+    document.querySelector('.smart-strip')?.insertAdjacentHTML('afterend', `<section class="exam-builder" id="exam-builder">
+      <div class="exam-builder-copy"><span>10-YEAR PASS PRACTICE</span><h2>10년 기출·과목별 실전시험 만들기</h2><p>먼저 종목과 연도를 정하세요. 회차별로 차근차근 풀거나, 선택 기간에서 과목당 20문제를 뽑아 실제 CBT처럼 볼 수 있습니다.</p></div>
+      <div class="exam-builder-subjects"><div><span>선택 종목</span><strong>${esc(builderCatalog.name)}</strong></div>${builderProfile.subjects.map((subject, index) => `<article><b>${index + 1}과목</b><strong>${esc(subject)}</strong><small>실전시험 20문제</small></article>`).join('')}</div>
+      <div class="exam-builder-controls">
+        <label><b>1</b><span>시험 종목</span><select data-change="builder-qualification">${builderQualificationOptions}</select></label>
+        <label><b>2</b><span>시작 연도</span><select data-change="builder-year-from">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearFrom) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
+        <label><b>3</b><span>끝 연도</span><select data-change="builder-year-to">${builderYears.map((year) => `<option value="${year}" ${String(state.examBuilderYearTo) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label>
+      </div>
+      <div class="exam-builder-summary"><div><span>선택한 학습 범위</span><strong>${esc(builderCatalog.shortName)} · ${state.examBuilderYearFrom}~${state.examBuilderYearTo}년</strong><small>${builderRoundCount}개 회차의 문제를 사용합니다.</small></div><div><span>과목 균형 실전시험</span><strong>${builderProfile.subjects.length}과목 × 20문제 = ${builderExamCount}문제</strong><small>${builderProfile.subjects.map(esc).join(' · ')}</small></div></div>
+      <p class="exam-builder-note"><b>어떻게 출제되나요?</b>${esc(builderExplanation)}</p>
+      <div class="exam-builder-actions"><button class="secondary-button" data-action="builder-show-rounds"><span>회차별 학습</span><strong>${state.examBuilderYearFrom}~${state.examBuilderYearTo}년 기출 목록 보기</strong><small>연도별로 순서대로 풀 때 사용</small></button><button class="primary-button" data-action="builder-open-random"><span>실전 랜덤시험</span><strong>과목별 20문제 설정하기</strong><small>OMR·타이머가 있는 시험모드</small></button></div>
+    </section><section class="training-panel">
       <div class="training-panel-head"><div><span>ADAPTIVE STUDY</span><h2>맞춤 훈련</h2></div><button data-action="nav" data-view="stats">학습 분석 보기</button></div>
       <div class="training-grid">
         <button class="training-featured" data-action="open-recurring"><strong>전회차 빈출·유사문제</strong><small>${activeRounds().length}회차 · ${stats.total.toLocaleString()}문항을 개념별로 묶어 다시 풀기</small><b>분류해서 풀기 ›</b></button>
-        <button data-action="open-random"><strong>과목 균형 실전시험</strong><small>전체 연도에서 과목당 20문제</small><b>실전 설정 ›</b></button>
-        <button data-action="open-year-range"><strong>연도 범위 기출</strong><small>시작·끝 연도를 정해 회차 학습</small><b>최근 10년 ›</b></button>
         <button data-action="open-difficulty"><strong>고난도 문제</strong><small>COMCBT 정답률 기준 선택</small><b>설정 ›</b></button>
         <button data-action="start-due"><strong>오늘의 자동 복습</strong><small>1일·3일·7일 간격</small><b>${dueCount}문제</b></button>
         <button data-action="start-frequent"><strong>자주 틀린 20문제</strong><small>누적 오답 횟수 우선</small><b>${frequentCount}문제</b></button>
@@ -677,10 +703,19 @@
       const profile = balancedExamProfile(key, scope, yearFrom, yearTo);
       const total = profile.subjects.length * 20;
       const enough = profile.pools.every((pool) => pool.items.length >= 20);
-      const scopeOptions = key === 'hvac'
-        ? `<option value="all-mapped" ${scope === 'all-mapped' ? 'selected' : ''}>전체 연도 · 구 4과목을 현 3과목에 통합 (추천)</option><option value="current" ${scope === 'current' ? 'selected' : ''}>2021년 이후 · 현 3과목만</option><option value="legacy-original" ${scope === 'legacy-original' ? 'selected' : ''}>2020년 이전 · 구 4과목 원형</option>`
-        : `<option value="all-mapped" selected>전체 연도 문제 포함</option>`;
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal random-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">SUBJECT-BALANCED CBT</span><h2>과목 균형 실전시험</h2><p>선택한 범위에서 각 과목 문제를 같은 수로 뽑아 실제 시험처럼 풉니다.</p><label class="setting-row">종목<select id="randomQualification" data-change="random-qualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">과목 체계<select id="randomScope" data-change="random-scope">${scopeOptions}</select></label><div class="random-year-grid"><label class="setting-row">시작 연도<select data-change="random-year-from"><option value="all">처음부터</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearFrom) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="setting-row">끝 연도<select data-change="random-year-to"><option value="all">최근까지</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearTo) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label></div><div class="balanced-exam-card"><span>실전 모의시험 · ${esc(yearRangeLabel(yearFrom, yearTo))}</span><strong>${profile.subjects.length}과목 × 20문제 = ${total}문제</strong><small>${profile.subjects.map(esc).join(' · ')}</small><div class="balanced-pool">${profile.pools.map((pool) => `<i>${esc(pool.subject)} ${pool.items.length.toLocaleString()}문제</i>`).join('')}</div><button class="primary-button wide" data-action="start-balanced-exam" ${enough ? '' : 'disabled'}>${enough ? `${total}문제 실전시험 시작` : '선택 범위의 과목별 문제 수가 부족합니다'}</button></div><div class="random-learning"><h3>일반 랜덤 학습</h3><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option selected>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="secondary-button wide" data-action="start-random">랜덤 학습 시작</button></div></div></div>`;
+      const scopeChoices = key === 'hvac'
+        ? [
+            ['all-mapped', '추천', '전체 기출을 현행 3과목으로 통합', '2002년 이후 구 4과목 문제도 현재 과목에 다시 분류 · 60문제'],
+            ['current', '현행', '2021년 이후 3과목만', '복원문제 중심 · 공기조화설비·냉동냉장설비·설치운영 · 60문제'],
+            ['legacy-original', '과거', '2020년 이전 구 4과목 그대로', '공기조화·냉동공학·배관일반·전기제어공학 · 80문제']
+          ].map(([value, badge, title, description]) => `<button class="scope-choice ${scope === value ? 'active' : ''}" data-action="set-random-scope" data-scope="${value}"><span>${badge}</span><strong>${title}</strong><small>${description}</small></button>`).join('')
+        : `<div class="scope-choice active static"><span>전체 기출</span><strong>모든 연도 문제 포함</strong><small>${profile.subjects.length}개 과목에서 각각 20문제씩 출제합니다.</small></div>`;
+      const scopeHelp = key === 'hvac' && scope === 'all-mapped'
+        ? '구 4과목 문제는 버리지 않고 현재 3과목에 합칩니다. 배관일반과 전기제어공학은 공조냉동설치운영으로 들어갑니다.'
+        : key === 'hvac' && scope === 'legacy-original'
+          ? '과거 시험 당시 과목 구성을 그대로 재현하므로 총 80문제가 출제됩니다.'
+          : '선택한 연도 안에서 각 과목 문제를 무작위로 20개씩 뽑습니다.';
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal random-modal"><button class="modal-close" data-action="close-modal">×</button><div class="random-modal-head"><span class="modal-kicker">SUBJECT-BALANCED CBT</span><h2>과목별 실전시험 설정</h2><p>아래 3단계만 고르면 실제 시험처럼 OMR과 타이머가 있는 모의시험이 만들어집니다.</p></div><label class="setting-row random-step"><b>1</b><span>시험 종목 선택</span><select id="randomQualification" data-change="random-qualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><div class="random-step-block"><div class="random-step-title"><b>2</b><span>사용할 과목 체계 선택</span></div><div class="scope-choice-grid">${scopeChoices}</div><p class="scope-help">${esc(scopeHelp)}</p></div><div class="random-step-block"><div class="random-step-title"><b>3</b><span>문제를 가져올 연도 선택</span></div><div class="random-year-grid"><label class="setting-row">시작 연도<select data-change="random-year-from"><option value="all">가장 오래된 연도부터</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearFrom) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label><label class="setting-row">끝 연도<select data-change="random-year-to"><option value="all">가장 최근 연도까지</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearTo) === String(year) ? 'selected' : ''}>${year}년</option>`).join('')}</select></label></div></div><div class="balanced-exam-card"><span>만들어질 시험 · ${esc(yearRangeLabel(yearFrom, yearTo))} · ${profile.sourceRounds.length}회차 사용</span><strong>${profile.subjects.length}과목 × 20문제 = 총 ${total}문제</strong><small>${profile.subjects.map((subject, index) => `${index + 1}과목 ${esc(subject)}`).join(' · ')}</small><div class="balanced-pool">${profile.pools.map((pool) => `<i>${esc(pool.subject)} 후보 ${pool.items.length.toLocaleString()}문제</i>`).join('')}</div><button class="primary-button wide" data-action="start-balanced-exam" ${enough ? '' : 'disabled'}>${enough ? `이 설정으로 ${total}문제 시험 시작` : '선택 범위의 과목별 문제 수가 부족합니다'}</button></div><details class="random-learning"><summary>시험모드 말고 일반 랜덤 학습이 필요하면 여기를 누르세요</summary><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option selected>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="secondary-button wide" data-action="start-random">정답을 바로 보는 랜덤 학습 시작</button></details></div></div>`;
     }
     return '';
   }
@@ -1023,6 +1058,27 @@
       state.modal = { type: 'random', qualification: activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key, scope: 'all-mapped', yearFrom: 'all', yearTo: 'all' };
       route();
     }
+    else if (action === 'focus-exam-builder') {
+      document.getElementById('exam-builder')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    else if (action === 'builder-show-rounds') {
+      state.qualification = state.examBuilderQualification;
+      state.yearFrom = state.examBuilderYearFrom;
+      state.yearTo = state.examBuilderYearTo;
+      state.roundSearch = '';
+      renderRounds(); scrollTo(0, 0);
+    }
+    else if (action === 'builder-open-random') {
+      state.qualification = state.examBuilderQualification;
+      state.modal = { type: 'random', qualification: state.examBuilderQualification, scope: 'all-mapped', yearFrom: state.examBuilderYearFrom, yearTo: state.examBuilderYearTo };
+      route();
+    }
+    else if (action === 'set-random-scope') {
+      state.modal.scope = button.dataset.scope;
+      state.modal.yearFrom = 'all';
+      state.modal.yearTo = 'all';
+      route();
+    }
     else if (action === 'open-year-range') {
       state.view = 'rounds';
       state.yearFrom = 'all'; state.yearTo = 'all';
@@ -1243,6 +1299,22 @@
       renderRounds();
     }
     else if (key === 'theme') { setTheme(event.target.value); route(); }
+    else if (key === 'builder-qualification') {
+      state.examBuilderQualification = event.target.value;
+      state.examBuilderYearFrom = null;
+      state.examBuilderYearTo = null;
+      renderHome();
+      requestAnimationFrame(() => document.getElementById('exam-builder')?.scrollIntoView({ block: 'center' }));
+    }
+    else if (key === 'builder-year-from' || key === 'builder-year-to') {
+      if (key === 'builder-year-from') state.examBuilderYearFrom = event.target.value;
+      else state.examBuilderYearTo = event.target.value;
+      if (Number(state.examBuilderYearFrom) > Number(state.examBuilderYearTo)) {
+        [state.examBuilderYearFrom, state.examBuilderYearTo] = [state.examBuilderYearTo, state.examBuilderYearFrom];
+      }
+      renderHome();
+      requestAnimationFrame(() => document.getElementById('exam-builder')?.scrollIntoView({ block: 'center' }));
+    }
     else if (key === 'font-scale') { store.fontScale = Number(event.target.value); bindFocusable(); saveStore(); }
     else if (key === 'import-backup') importBackup(event.target.files?.[0]);
     else if (key === 'formula-note') {
@@ -1320,7 +1392,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=187', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=188', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
