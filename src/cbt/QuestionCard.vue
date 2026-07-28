@@ -87,8 +87,11 @@ function choiceClass(index: number): Record<string, boolean> {
       >
         <span class="choice-number">{{ circles[index] || index + 1 }}</span>
         <span class="choice-copy">
-          <span v-html="choice.html || choice.text || `${index + 1}번`" />
-          <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림">
+          <span v-if="restoredQuestion && primaryImage">{{ index + 1 }}번 선택</span>
+          <template v-else>
+            <span v-html="choice.html || choice.text || `${index + 1}번`" />
+            <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림">
+          </template>
         </span>
         <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
       </button>

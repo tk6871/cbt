@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '2.0.3',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '자동 업데이트·전체 회차·복원문제 보기 개선',
+      summary: '새 버전을 자동으로 확인하고, 종목에서 전체 회차로 바로 이동하며 복원문제는 원문 기준으로 정확하게 답을 고를 수 있도록 개선했습니다.',
+      tags: ['자동 업데이트', '전체 회차', '복원문제', '풀이 메뉴'],
+      changes: [
+        '접속·화면 복귀·패치노트 진입 시 새 버전을 확인하고 업데이트 적용 알림을 표시합니다.',
+        '첫 화면의 종목 카드를 누르면 해당 종목의 전체 기출 회차로 바로 이동합니다.',
+        '각 회차 카드에서 학습모드와 CBT 시험모드를 바로 시작할 수 있습니다.',
+        '공조 복원문제의 OCR 오타가 섞인 보기 대신 1번 선택부터 4번 선택까지 정확한 답안 버튼을 표시합니다.',
+        '왼쪽 메뉴를 진한 남색으로 구분하고 풀이 중에도 옆에서 열리는 전용 메뉴를 추가했습니다.',
+        '구버전 CBT도 같은 패치노트와 데이터·캐시 갱신을 함께 받도록 연결했습니다.'
+      ]
+    },
+    {
+      version: '2.0.3',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '자동 업데이트와 전체 회차 이동 개선',
+      summary: '보석관에서도 새 버전 확인, 전체 회차 바로가기와 풀이 중 전용 메뉴를 동일하게 사용할 수 있습니다.',
+      tags: ['자동 업데이트', '전체 회차', '풀이 메뉴', '보석관'],
+      changes: [
+        '새 버전 발견 시 업데이트 적용 알림을 표시합니다.',
+        '종목 카드에서 전체 기출 회차로 바로 이동하고 학습·시험 모드를 즉시 선택할 수 있습니다.',
+        '풀이 중 왼쪽에서 열리는 전용 메뉴와 명확한 어두운 메뉴 색상을 적용했습니다.'
+      ]
+    },
+    {
       version: '2.0.2',
       scope: 'industrial',
       date: '2026.07.29',
@@ -97,8 +126,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.0.2';
-  changelog.versions.jewelry = '2.0.2';
-  changelog.currentVersion = '2.0.2';
+  changelog.versions.industrial = '2.0.3';
+  changelog.versions.jewelry = '2.0.3';
+  changelog.currentVersion = '2.0.3';
   window.CBT_CHANGELOG = changelog;
 })();
