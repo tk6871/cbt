@@ -15,6 +15,7 @@ const props = defineProps<{
 defineEmits<{
   choose: [choice: number];
   toggleBookmark: [];
+  askAi: [];
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
@@ -47,6 +48,7 @@ function choiceClass(index: number): Record<string, boolean> {
       </div>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
+      <button v-if="mode === 'learn'" type="button" class="ai-question-button" @click="$emit('askAi')">✦ AI 질문</button>
       <button
         type="button"
         class="bookmark-button"

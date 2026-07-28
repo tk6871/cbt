@@ -8,7 +8,7 @@ const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
 
 type AttemptRow = AttemptRecord & { id: string };
-type ExamRow = {
+export type ExamRecord = {
   id: string;
   qualificationKey: string;
   title: string;
@@ -21,7 +21,7 @@ type ExamRow = {
 
 class CbtDatabase extends Dexie {
   attempts!: EntityTable<AttemptRow, 'id'>;
-  exams!: EntityTable<ExamRow, 'id'>;
+  exams!: EntityTable<ExamRecord, 'id'>;
 
   constructor() {
     super(IS_JEWELRY ? 'jewelry-cbt' : 'industrial-cbt');
@@ -102,8 +102,13 @@ export function recordAttempt(id: string, choice: number, answer: number): Attem
   return next;
 }
 
-export async function recordExam(row: ExamRow): Promise<void> {
+export async function recordExam(row: ExamRecord): Promise<void> {
   await db.exams.put(row);
+}
+
+export async function loadExamRecords(qualificationKey: string): Promise<ExamRecord[]> {
+  const rows = await db.exams.where('qualificationKey').equals(qualificationKey).toArray();
+  return rows.sort((a, b) => b.finishedAt - a.finishedAt);
 }
 
 export function currentTheme(): 'system' | 'light' | 'dark' {

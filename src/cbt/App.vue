@@ -15,10 +15,20 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
-import { applyTheme, currentTheme, hydrateIndexedDb, recordAttempt, recordExam, studyStore } from './storage';
-import type { Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
+import {
+  applyTheme,
+  currentTheme,
+  hydrateIndexedDb,
+  loadExamRecords,
+  recordAttempt,
+  recordExam,
+  studyStore,
+  type ExamRecord,
+} from './storage';
+import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'stats' | 'updates';
+type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type ExamResult = {
   score: number;
   correct: number;
@@ -30,6 +40,13 @@ type CbtHistoryState = {
   cbtSpace: string;
   view: ViewName;
   sessionId?: string;
+};
+type MasteryRow = QuestionItem & {
+  mastery: number;
+  recall: number;
+  dueAt: number;
+  due: boolean;
+  attempted: boolean;
 };
 
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
@@ -70,6 +87,11 @@ const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
 const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
+const recentExamRecords = ref<ExamRecord[]>([]);
+const displayedPassChance = ref(0);
+const aiPromptOpen = ref(false);
+const aiPromptText = ref('');
+const aiPromptHasImage = ref(false);
 let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
@@ -120,6 +142,7 @@ const viewTitle = computed(() => ({
   rounds: '회차별 문제',
   wrong: '오답노트',
   search: '문제 검색',
+  coach: '합격 엔진',
   stats: '학습 분석',
   updates: '패치노트',
 })[view.value]);
@@ -166,6 +189,200 @@ const subjectStats = computed(() => {
     return { subject, total: items.length, answered: attempts.length, correct, accuracy };
   });
 });
+const masteryRows = computed<MasteryRow[]>(() => selectedItems.value.map((item) => {
+  const attempt = studyStore.attempts[item.id];
+  const dueAt = nextReviewAt(attempt);
+  return {
+    ...item,
+    mastery: attemptMastery(attempt),
+    recall: recallProbability(attempt),
+    dueAt,
+    due: Boolean(attempt && dueAt <= Date.now()),
+    attempted: Boolean(attempt),
+  };
+}));
+const coachAnswered = computed(() => masteryRows.value.filter((item) => item.attempted).length);
+const coachCoverage = computed(() =>
+  masteryRows.value.length ? Math.round((coachAnswered.value / masteryRows.value.length) * 100) : 0);
+const coachSubjectRows = computed(() => selectedSubjects.value.map((subject) => {
+  const items = masteryRows.value.filter((item) => item.subject === subject);
+  const attempted = items.filter((item) => item.attempted);
+  const accurate = attempted.filter((item) => studyStore.attempts[item.id]?.lastCorrect).length;
+  const accuracy = attempted.length ? Math.round((accurate / attempted.length) * 100) : 0;
+  const mastery = attempted.length
+    ? Math.round(attempted.reduce((sum, item) => sum + item.mastery, 0) / attempted.length)
+    : 0;
+  const coverage = items.length ? Math.round((attempted.length / items.length) * 100) : 0;
+  const predicted = clampScore(Math.round(
+    (accuracy * .56 + mastery * .29 + 50 * .15) * (.55 + .45 * Math.sqrt(coverage / 100 || 0)),
+  ));
+  return {
+    subject,
+    total: items.length,
+    answered: attempted.length,
+    accuracy,
+    mastery,
+    coverage,
+    predicted,
+    risk: predicted < 40,
+  };
+}));
+const weakestSubject = computed(() =>
+  [...coachSubjectRows.value].sort((a, b) => a.predicted - b.predicted || a.coverage - b.coverage)[0]);
+const recentExamAverage = computed(() => {
+  const rows = recentExamRecords.value.slice(0, 5);
+  return rows.length ? Math.round(rows.reduce((sum, row) => sum + row.score, 0) / rows.length) : null;
+});
+const predictedScore = computed(() => {
+  if (!coachSubjectRows.value.length) return 0;
+  const subjectPrediction = coachSubjectRows.value.reduce((sum, row) => sum + row.predicted, 0) / coachSubjectRows.value.length;
+  return clampScore(Math.round(recentExamAverage.value === null
+    ? subjectPrediction
+    : subjectPrediction * .58 + recentExamAverage.value * .42));
+});
+const passChance = computed(() => {
+  if (!coachAnswered.value) return 4;
+  const logistic = 100 / (1 + Math.exp(-(predictedScore.value - 60) / 7.5));
+  const coverageFactor = .38 + .62 * Math.sqrt(coachCoverage.value / 100);
+  const minimumSubject = Math.min(...coachSubjectRows.value.map((row) => row.predicted));
+  const cutRisk = minimumSubject < 40 ? .58 + Math.max(0, minimumSubject - 20) / 100 : 1;
+  return Math.max(3, Math.min(98, Math.round(logistic * coverageFactor * cutRisk)));
+});
+const coachConfidence = computed(() => {
+  if (coachCoverage.value < 5) return '진단 필요';
+  if (coachCoverage.value < 20) return '초기 분석';
+  if (coachCoverage.value < 45) return '보통';
+  if (recentExamRecords.value.length < 2) return '높음';
+  return '매우 높음';
+});
+const dueRows = computed(() => masteryRows.value
+  .filter((item) => item.attempted && (item.due || !studyStore.attempts[item.id]?.lastCorrect))
+  .sort((a, b) => a.recall - b.recall || a.dueAt - b.dueAt));
+const weakRows = computed(() => masteryRows.value
+  .filter((item) => item.attempted)
+  .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall));
+const unseenRows = computed(() => masteryRows.value.filter((item) => !item.attempted));
+const calculationRows = computed(() => masteryRows.value.filter(isCalculationItem));
+const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: string; description: string; count: number; tone: string }>>(() => [
+  {
+    key: 'due',
+    eyebrow: 'FORGOTTEN CURVE',
+    title: '오늘의 망각 복습',
+    description: '기억 확률이 낮아진 문제부터 다시 잡습니다.',
+    count: Math.min(20, dueRows.value.length || weakRows.value.length || unseenRows.value.length),
+    tone: 'mint',
+  },
+  {
+    key: 'weak',
+    eyebrow: 'WEAK POINT',
+    title: '취약 문제 집중',
+    description: '숙련도가 가장 낮은 문제 20개를 선별합니다.',
+    count: Math.min(20, weakRows.value.length || unseenRows.value.length),
+    tone: 'coral',
+  },
+  {
+    key: 'calculation',
+    eyebrow: 'FORMULA DRILL',
+    title: '계산문제 훈련',
+    description: '공식·단위·수치 계산이 필요한 문제만 모읍니다.',
+    count: Math.min(20, calculationRows.value.length),
+    tone: 'violet',
+  },
+  {
+    key: 'subject',
+    eyebrow: 'CUT-LINE SHIELD',
+    title: `${weakestSubject.value?.subject || '취약 과목'} 과락 방어`,
+    description: '예상 점수가 가장 낮은 과목을 우선 보강합니다.',
+    count: Math.min(20, masteryRows.value.filter((item) => item.subject === weakestSubject.value?.subject).length),
+    tone: 'amber',
+  },
+  {
+    key: 'exam',
+    eyebrow: 'PREDICTIVE MOCK',
+    title: '합격 예측 모의고사',
+    description: '현재 범위에서 과목별 20문제를 균형 출제합니다.',
+    count: Math.min(selectedSubjects.value.length * 20, masteryRows.value.length),
+    tone: 'blue',
+  },
+]);
+const reviewSchedule = computed(() => {
+  const now = Date.now();
+  const day = 86_400_000;
+  const attempted = masteryRows.value.filter((item) => item.attempted);
+  return [
+    { label: '지금 복습', count: attempted.filter((item) => item.dueAt <= now).length, tone: 'now' },
+    { label: '24시간 이내', count: attempted.filter((item) => item.dueAt > now && item.dueAt <= now + day).length, tone: 'soon' },
+    { label: '7일 이내', count: attempted.filter((item) => item.dueAt > now + day && item.dueAt <= now + 7 * day).length, tone: 'week' },
+    { label: '기억 안정', count: attempted.filter((item) => item.dueAt > now + 7 * day).length, tone: 'safe' },
+  ];
+});
+
+function clampScore(value: number): number {
+  return Math.max(0, Math.min(100, Number.isFinite(value) ? value : 0));
+}
+
+function attemptMastery(attempt?: AttemptRecord): number {
+  if (!attempt) return 0;
+  const accuracy = attempt.count ? attempt.correctCount / attempt.count : 0;
+  const recency = recallProbability(attempt) / 100;
+  const repetition = Math.min(1, attempt.count / 5);
+  const recentResult = attempt.lastCorrect ? 1 : 0;
+  return clampScore(Math.round(
+    accuracy * 47
+    + recentResult * 23
+    + repetition * 16
+    + recency * 14,
+  ));
+}
+
+function recallProbability(attempt?: AttemptRecord): number {
+  if (!attempt) return 0;
+  const elapsedDays = Math.max(0, (Date.now() - attempt.at) / 86_400_000);
+  const stabilityDays = attempt.lastCorrect
+    ? Math.min(45, 1.7 + attempt.correctCount * attempt.correctCount * 1.25 + attempt.count * .7)
+    : .35;
+  return clampScore(Math.round(100 * Math.exp(-elapsedDays / stabilityDays)));
+}
+
+function nextReviewAt(attempt?: AttemptRecord): number {
+  if (!attempt) return 0;
+  if (!attempt.lastCorrect) return attempt.at;
+  const intervalDays = Math.min(30, .8 + attempt.correctCount * attempt.correctCount * 1.15 + attempt.count * .45);
+  return attempt.at + intervalDays * 86_400_000;
+}
+
+function isCalculationItem(item: QuestionItem): boolean {
+  const source = [
+    item.question.text,
+    item.question.html,
+    ...item.question.choices.flatMap((choice) => [choice.text, choice.html]),
+  ].filter(Boolean).join(' ').replace(/<[^>]+>/g, ' ');
+  return /계산|구하|값은|몇\s|kW|kcal|COP|효율|압력|온도|습도|엔탈피|열량|유량|동력|전류|전압|저항|공식|℃|kg\/|m²|m³/i.test(source);
+}
+
+function stripMarkup(value?: string): string {
+  const node = document.createElement('div');
+  node.innerHTML = value || '';
+  return (node.textContent || '').replace(/\s+/g, ' ').trim();
+}
+
+async function refreshExamHistory(): Promise<void> {
+  recentExamRecords.value = await loadExamRecords(selectedKey.value);
+}
+
+function animateCoachDashboard(): void {
+  displayedPassChance.value = 0;
+  animate(0, passChance.value, {
+    duration: .95,
+    ease: [0.2, 0.8, 0.2, 1],
+    onUpdate: (value) => { displayedPassChance.value = Math.round(value); },
+  });
+  animate(
+    '.coach-panel,.coach-plan,.coach-subject-card',
+    { opacity: [0, 1], y: [20, 0], scale: [.985, 1] },
+    { duration: .52, delay: stagger(.055) },
+  );
+}
 
 function setDefaultYears(yearsBack = 10): void {
   const years = availableYears.value;
@@ -185,6 +402,7 @@ function configureQualification(key: string): void {
   curriculum.value = 'all-mapped';
   setDefaultYears(quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
+  void refreshExamHistory();
 }
 
 function selectQualification(key: string): void {
@@ -210,7 +428,7 @@ function showToast(message: string): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'stats', 'updates'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -245,6 +463,7 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
       y: [12, 0],
       filter: ['blur(4px)', 'blur(0px)'],
     }, { duration: .34, delay: stagger(.035) });
+    if (next === 'coach') animateCoachDashboard();
   });
 }
 
@@ -394,6 +613,51 @@ function startRangeLearning(): void {
   );
 }
 
+function startCoachPlan(key: CoachPlanKey): void {
+  if (key === 'exam') {
+    startBalancedExam();
+    return;
+  }
+
+  let pool: MasteryRow[] = [];
+  let title = '';
+  if (key === 'due') {
+    pool = dueRows.value.length ? dueRows.value : (weakRows.value.length ? weakRows.value : shuffle(unseenRows.value));
+    title = '합격 엔진 · 망각 복습';
+  } else if (key === 'weak') {
+    pool = weakRows.value.length ? weakRows.value : shuffle(unseenRows.value);
+    title = '합격 엔진 · 취약 문제 집중';
+  } else if (key === 'calculation') {
+    pool = [...calculationRows.value].sort((a, b) => a.mastery - b.mastery || a.recall - b.recall);
+    title = '합격 엔진 · 계산문제 훈련';
+  } else {
+    pool = masteryRows.value
+      .filter((item) => item.subject === weakestSubject.value?.subject)
+      .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall);
+    title = `합격 엔진 · ${weakestSubject.value?.subject || '취약 과목'} 과락 방어`;
+  }
+
+  const items = pool.slice(0, 20).map(({ mastery: _mastery, recall: _recall, dueAt: _dueAt, due: _due, attempted: _attempted, ...item }) => item);
+  if (!items.length) {
+    showToast('현재 범위에서 이 훈련에 맞는 문제를 찾지 못했습니다.');
+    return;
+  }
+  beginSession('learn', title, items);
+}
+
+function startCoachSubject(subject: string): void {
+  const items = masteryRows.value
+    .filter((item) => item.subject === subject)
+    .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall)
+    .slice(0, 20)
+    .map(({ mastery: _mastery, recall: _recall, dueAt: _dueAt, due: _due, attempted: _attempted, ...item }) => item);
+  if (!items.length) {
+    showToast('선택한 과목에서 출제 가능한 문제를 찾지 못했습니다.');
+    return;
+  }
+  beginSession('learn', `합격 엔진 · ${subject} 집중 훈련`, items);
+}
+
 function chooseAnswer(item: QuestionItem, choice: number): void {
   if (!session.value || session.value.finished) return;
   session.value.answers[item.id] = choice;
@@ -492,7 +756,7 @@ function submitExam(force = false): void {
     answered: answeredCount.value,
     total: session.value.items.length,
     finishedAt: Date.now(),
-  });
+  }).then(refreshExamHistory);
   window.CBTAnalytics?.trackResult?.({
     qualificationKey: selectedKey.value,
     qualification: selectedCatalog.value.name,
@@ -540,6 +804,89 @@ function openCalculator(): void {
   );
   if (calculator) calculator.focus();
   else showToast('브라우저에서 이 사이트의 팝업을 허용해 주세요.');
+}
+
+function buildBeginnerAiPrompt(item: QuestionItem): string {
+  const restoredImageQuestion = item.round.qualificationKey === 'hvac'
+    && Number(item.round.year) >= 2021
+    && Boolean(item.question.sourceImage);
+  const hasImage = Boolean(
+    item.question.sourceImage
+    || item.question.images?.length
+    || item.question.choices.some((choice) => choice.images?.length),
+  );
+  const questionText = stripMarkup(item.question.html || item.question.text)
+    || '[문제 내용은 첨부할 원문 이미지에 있습니다.]';
+  const choices = item.question.choices.map((choice, index) => {
+    const copy = restoredImageQuestion ? '' : stripMarkup(choice.html || choice.text);
+    return `${index + 1}번. ${copy || `[${index + 1}번 보기는 첨부 이미지에서 확인]`}`;
+  }).join('\n');
+  const imageInstruction = hasImage
+    ? '\n- 이 문제에는 그림·도표 또는 이미지 보기가 있습니다. 내가 문제 이미지도 함께 첨부할 테니, 이미지의 기호·단위·선 연결을 먼저 정확히 읽어주세요.'
+    : '';
+
+  return `당신은 국가기술자격 CBT를 처음 공부하는 초보자의 개인 과외 선생님입니다.
+아래 문제를 정답만 말하지 말고, 제가 처음 보는 개념이라고 생각하고 아주 쉽게 설명해주세요.
+
+[설명 규칙]
+1. 문제에서 무엇을 묻는지 먼저 쉬운 말로 한 문장으로 바꿔주세요.
+2. 정답 번호를 직접 판단하고, 정답이 되는 핵심 이유를 단계별로 설명해주세요.
+3. 1번부터 4번까지 각각 왜 맞거나 틀린지도 짧게 설명해주세요.
+4. 계산문제라면 사용할 공식, 각 기호의 뜻과 단위, 숫자를 넣는 순서, 계산 과정까지 한 줄씩 보여주세요.
+5. 어려운 전문용어는 바로 뒤에 괄호로 쉬운 뜻을 붙여주세요.
+6. 시험장에서 비슷한 문제를 10초 안에 구별하는 요령과 자주 하는 실수를 알려주세요.
+7. 마지막에는 '한 줄 암기'와 비슷한 연습문제 1개를 만들어주세요.
+8. 주어진 정보가 잘렸거나 애매하면 추측하지 말고 어떤 정보가 더 필요한지 먼저 말해주세요.${imageInstruction}
+
+[시험 정보]
+- 자격증: ${item.round.qualification || selectedCatalog.value.name}
+- 연도·회차: ${item.round.title}
+- 과목: ${item.subject}
+- 문제 번호: ${item.question.number}번
+
+[문제]
+${questionText}
+
+[보기]
+${choices}`;
+}
+
+function prepareAiQuestion(item: QuestionItem): void {
+  aiPromptText.value = buildBeginnerAiPrompt(item);
+  aiPromptHasImage.value = Boolean(
+    item.question.sourceImage
+    || item.question.images?.length
+    || item.question.choices.some((choice) => choice.images?.length),
+  );
+  aiPromptOpen.value = true;
+}
+
+async function copyText(value: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(value);
+  } catch {
+    const textarea = document.createElement('textarea');
+    textarea.value = value;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  }
+}
+
+async function copyAiPrompt(): Promise<void> {
+  await copyText(aiPromptText.value);
+  showToast(aiPromptHasImage.value
+    ? '프롬프트를 복사했습니다. 문제 이미지도 함께 첨부하세요.'
+    : '초보자용 AI 질문 프롬프트를 복사했습니다.');
+}
+
+function openAiAssistant(): void {
+  const assistant = window.open('https://chatgpt.com/', '_blank', 'noopener,noreferrer');
+  void copyAiPrompt();
+  if (assistant) assistant.focus();
 }
 
 function changeTheme(): void {
@@ -656,9 +1003,11 @@ onMounted(async () => {
   setFontScale(fontScale.value);
   setDefaultYears(10);
   await hydrateIndexedDb();
+  await refreshExamHistory();
   setupSearchWorker();
   await nextTick();
   animate('.qualification-card', { opacity: [0, 1], y: [12, 0] }, { duration: 0.38, delay: stagger(0.055) });
+  if (view.value === 'coach') animateCoachDashboard();
 });
 
 onBeforeUnmount(() => {
@@ -683,6 +1032,7 @@ onBeforeUnmount(() => {
         <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차별 문제</button>
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>문제 검색</button>
+        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span>✦</span>합격 엔진</button>
         <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>학습 분석</button>
         <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span>◷</span>패치노트</button>
       </nav>
@@ -898,6 +1248,120 @@ onBeforeUnmount(() => {
           <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
         </template>
 
+        <template v-else-if="view === 'coach'">
+          <section class="coach-hero">
+            <div class="coach-aurora coach-aurora-one" />
+            <div class="coach-aurora coach-aurora-two" />
+            <div class="coach-orbit" aria-hidden="true"><i /><i /><i /></div>
+            <div class="coach-hero-copy">
+              <span class="coach-kicker"><b>✦</b> PASS INTELLIGENCE 2.0</span>
+              <h1>기록이 쌓일수록<br><em>합격 전략이 선명해집니다</em></h1>
+              <p>{{ selectedCatalog.name }} · {{ yearFrom }}~{{ yearTo }}년 기록을 분석해 지금 가장 점수가 오를 문제를 고릅니다.</p>
+              <div class="coach-hero-badges">
+                <span>학습 {{ coachAnswered.toLocaleString() }}문제</span>
+                <span>분석 신뢰도 {{ coachConfidence }}</span>
+                <span :class="{ danger: weakestSubject?.risk }">{{ weakestSubject?.risk ? '과락 위험 감지' : '과락 위험 안정' }}</span>
+              </div>
+            </div>
+            <div class="coach-gauge-wrap">
+              <div class="coach-gauge" :style="{ '--coach-angle': `${displayedPassChance * 3.6}deg` }">
+                <div>
+                  <span>예상 합격 가능성</span>
+                  <strong>{{ displayedPassChance }}<small>%</small></strong>
+                  <b>{{ passChance >= 70 ? '합격권' : passChance >= 40 ? '상승 구간' : '진단·보강 필요' }}</b>
+                </div>
+              </div>
+              <small>학습 기록 기반 추정치 · 실제 결과를 보장하지 않음</small>
+            </div>
+          </section>
+
+          <section class="coach-overview">
+            <article class="coach-panel coach-score-panel">
+              <header><div><span>READINESS SIGNAL</span><h2>현재 시험 준비도</h2></div><b>{{ coachConfidence }}</b></header>
+              <div class="coach-metric-grid">
+                <div><span>예상 점수</span><strong>{{ predictedScore }}<small>점</small></strong><i :style="{ width: `${predictedScore}%` }" /></div>
+                <div><span>선택 범위 학습률</span><strong>{{ coachCoverage }}<small>%</small></strong><i :style="{ width: `${coachCoverage}%` }" /></div>
+                <div><span>지금 복습</span><strong>{{ dueRows.length }}<small>문제</small></strong><i :style="{ width: `${Math.min(100, dueRows.length * 5)}%` }" /></div>
+                <div><span>최근 모의평균</span><strong>{{ recentExamAverage ?? '—' }}<small>{{ recentExamAverage === null ? '' : '점' }}</small></strong><i :style="{ width: `${recentExamAverage || 0}%` }" /></div>
+              </div>
+              <p>정답률, 반복 횟수, 마지막 정오답, 경과 시간, 과목별 과락 위험과 최근 시험 점수를 함께 계산합니다.</p>
+            </article>
+
+            <article class="coach-panel coach-trend-panel">
+              <header><div><span>EXAM TRAJECTORY</span><h2>최근 시험 흐름</h2></div><b>{{ recentExamRecords.length }}회</b></header>
+              <div v-if="recentExamRecords.length" class="coach-trend-chart">
+                <div v-for="record in [...recentExamRecords.slice(0, 7)].reverse()" :key="record.id">
+                  <span :class="{ pass: record.passed }" :style="{ height: `${Math.max(8, record.score)}%` }"><b>{{ record.score }}</b></span>
+                  <time>{{ new Date(record.finishedAt).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' }) }}</time>
+                </div>
+                <i class="coach-pass-line"><span>60점</span></i>
+              </div>
+              <div v-else class="coach-empty-trend">
+                <span>◎</span>
+                <strong>아직 모의시험 기록이 없습니다</strong>
+                <small>한 번만 풀어도 예측 정확도가 크게 올라갑니다.</small>
+                <button type="button" @click="startCoachPlan('exam')">첫 진단시험 시작</button>
+              </div>
+            </article>
+          </section>
+
+          <section class="coach-action-section">
+            <header>
+              <div><span>ADAPTIVE TRAINING</span><h2>지금 점수가 가장 빨리 오르는 훈련</h2></div>
+              <p>현재 기록을 기준으로 문제 순서가 자동으로 다시 계산됩니다.</p>
+            </header>
+            <div class="coach-plan-grid">
+              <button
+                v-for="plan in coachPlans"
+                :key="plan.key"
+                type="button"
+                class="coach-plan"
+                :class="`coach-plan-${plan.tone}`"
+                :disabled="!plan.count"
+                @click="startCoachPlan(plan.key)"
+              >
+                <span>{{ plan.eyebrow }}</span>
+                <strong>{{ plan.title }}</strong>
+                <p>{{ plan.description }}</p>
+                <footer><b>{{ plan.count }}문제</b><em>시작하기 →</em></footer>
+              </button>
+            </div>
+          </section>
+
+          <section class="coach-detail-grid">
+            <article class="coach-panel coach-subject-panel">
+              <header><div><span>SUBJECT SHIELD</span><h2>과목별 과락 방어선</h2></div><small>40점 미만 위험 표시</small></header>
+              <div class="coach-subject-list">
+                <button
+                  v-for="row in coachSubjectRows"
+                  :key="row.subject"
+                  type="button"
+                  class="coach-subject-card"
+                  :class="{ risk: row.risk }"
+                  @click="startCoachSubject(row.subject)"
+                >
+                  <div><span>{{ row.risk ? '위험' : '안정' }}</span><strong>{{ row.subject }}</strong><small>{{ row.answered }}/{{ row.total }}문제 학습 · 숙련도 {{ row.mastery }}%</small></div>
+                  <div class="coach-readiness-ring" :style="{ '--readiness-angle': `${row.predicted * 3.6}deg` }"><strong>{{ row.predicted }}</strong><small>예상점수</small></div>
+                </button>
+              </div>
+            </article>
+
+            <article class="coach-panel coach-memory-panel">
+              <header><div><span>MEMORY QUEUE</span><h2>망각곡선 복습 대기열</h2></div><small>문제를 풀 때마다 자동 변경</small></header>
+              <div class="coach-review-schedule">
+                <div v-for="bucket in reviewSchedule" :key="bucket.label" :class="`review-${bucket.tone}`">
+                  <span><i />{{ bucket.label }}</span>
+                  <strong>{{ bucket.count }}<small>문제</small></strong>
+                </div>
+              </div>
+              <div class="coach-memory-note">
+                <b>작동 방식</b>
+                <p>맞히고 반복할수록 복습 간격을 늘리고, 틀리면 오늘 대기열 맨 앞으로 되돌립니다. 인터넷 없이도 이 기기의 기록으로 계속 계산합니다.</p>
+              </div>
+            </article>
+          </section>
+        </template>
+
         <template v-else-if="view === 'stats'">
           <section class="stats-hero">
             <div><span>LEARNING REPORT</span><h1>{{ selectedCatalog.name }} 학습 통계</h1><p>기존 CBT에서 푼 기록과 새 화면의 기록을 함께 표시합니다.</p></div>
@@ -946,6 +1410,7 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차</button>
       <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답</button>
       <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>검색</button>
+      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span>✦</span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
     </nav>
     <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
@@ -1013,6 +1478,7 @@ onBeforeUnmount(() => {
         <button type="button" @click="leaveSession('home')"><span>⌂</span><div><strong>첫 화면</strong><small>종목 선택과 학습 설정</small></div></button>
         <button type="button" @click="leaveSession('rounds')"><span>▤</span><div><strong>회차별 문제</strong><small>전체 기출 회차 선택</small></div></button>
         <button type="button" @click="leaveSession('wrong')"><span>!</span><div><strong>오답노트</strong><small>틀린 문제 다시 풀기</small></div></button>
+        <button type="button" @click="leaveSession('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>맞춤 복습과 합격 예측</small></div></button>
         <button type="button" @click="leaveSession('updates')"><span>◷</span><div><strong>패치노트</strong><small>최근 업데이트 확인</small></div></button>
       </nav>
       <footer>
@@ -1035,6 +1501,7 @@ onBeforeUnmount(() => {
             :bookmarked="studyStore.bookmarks.includes(item.id)"
             @choose="chooseAnswer(item, $event)"
             @toggle-bookmark="toggleBookmark(item)"
+            @ask-ai="prepareAiQuestion(item)"
           />
         </div>
         <footer class="pager">
@@ -1084,6 +1551,25 @@ onBeforeUnmount(() => {
         </div>
       </section>
     </div>
+  </div>
+
+  <div v-if="aiPromptOpen" class="ai-prompt-backdrop" @click.self="aiPromptOpen = false">
+    <section class="ai-prompt-modal">
+      <header>
+        <div><span>BEGINNER AI TUTOR</span><h2>초보자용 질문 프롬프트</h2></div>
+        <button type="button" aria-label="AI 질문 창 닫기" @click="aiPromptOpen = false">×</button>
+      </header>
+      <div v-if="aiPromptHasImage" class="ai-image-notice">
+        <span>▧</span>
+        <div><strong>그림 문제입니다</strong><small>프롬프트를 붙여넣은 뒤 현재 문제 이미지도 함께 첨부해야 정확하게 설명할 수 있습니다.</small></div>
+      </div>
+      <p>공식의 기호와 단위부터 보기별 이유, 시험장에서 구별하는 요령까지 설명하도록 구성했습니다.</p>
+      <textarea v-model="aiPromptText" aria-label="AI 질문 프롬프트" spellcheck="false" />
+      <footer>
+        <button type="button" class="ai-copy-button" @click="copyAiPrompt">프롬프트 복사</button>
+        <button type="button" class="ai-open-button" @click="openAiAssistant">복사 후 ChatGPT 열기 →</button>
+      </footer>
+    </section>
   </div>
 
   <Transition name="toast">
