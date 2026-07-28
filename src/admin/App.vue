@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
-import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
+import { createClient, type RealtimeChannel, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import * as echarts from 'echarts/core';
 import { LineChart, PieChart } from 'echarts/charts';
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
@@ -78,12 +78,22 @@ const visitors = ref<VisitorProfile[]>([]);
 const visits = ref<Visit[]>([]);
 const results = ref<ExamResult[]>([]);
 const attempts = ref<Attempt[]>([]);
+const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
+const realtimeUpdatedAt = ref<string | null>(null);
+const clockNow = ref(Date.now());
 const dailyChart = ref<HTMLElement | null>(null);
 const deviceChart = ref<HTMLElement | null>(null);
 let dailyChartInstance: echarts.ECharts | null = null;
 let deviceChartInstance: echarts.ECharts | null = null;
 let worker: Worker | null = null;
+let realtimeChannel: RealtimeChannel | null = null;
+let realtimeReloadTimer: number | null = null;
+let clockTimer: number | null = null;
 
+const activeNow = computed(() => {
+  const since = clockNow.value - 2 * 60 * 1000;
+  return visitors.value.filter((item) => new Date(item.last_seen).getTime() >= since).length;
+});
 const activeToday = computed(() => {
   const since = Date.now() - 24 * 60 * 60 * 1000;
   return new Set(visits.value.filter((item) => new Date(item.visited_at).getTime() >= since).map((item) => item.visitor_id)).size;
@@ -96,6 +106,12 @@ const averageScore = computed(() => results.value.length
 const accuracy = (visitor: VisitorProfile) => visitor.attempt_count
   ? Math.round(visitor.correct_count / visitor.attempt_count * 100)
   : 0;
+const realtimeLabel = computed(() => ({
+  connecting: '실시간 연결 중',
+  connected: '실시간 연결됨',
+  error: '실시간 연결 오류',
+  closed: '실시간 연결 종료'
+}[realtimeStatus.value]));
 
 function formatDate(value: string | null): string {
   if (!value) return '-';
@@ -128,9 +144,11 @@ async function login(): Promise<void> {
   }
   session.value = data.session;
   await loadData();
+  startRealtime();
 }
 
 async function logout(): Promise<void> {
+  stopRealtime();
   await client.value?.auth.signOut();
   session.value = null;
   visitors.value = [];
@@ -139,9 +157,10 @@ async function logout(): Promise<void> {
   attempts.value = [];
 }
 
-async function loadData(): Promise<void> {
+async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   if (!client.value || !session.value) return;
-  loading.value = true;
+  const silent = options.silent === true;
+  if (!silent) loading.value = true;
   dataError.value = '';
   const since = new Date(Date.now() - days.value * 24 * 60 * 60 * 1000).toISOString();
   const [visitorResponse, visitResponse, resultResponse, attemptResponse] = await Promise.all([
@@ -150,7 +169,7 @@ async function loadData(): Promise<void> {
     client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000),
     client.value.from('question_attempts').select('*').gte('answered_at', since).order('answered_at', { ascending: false }).limit(2000)
   ]);
-  loading.value = false;
+  if (!silent) loading.value = false;
   const error = visitorResponse.error || visitResponse.error || resultResponse.error || attemptResponse.error;
   if (error) {
     dataError.value = '관리자 권한이 없거나 데이터베이스 설정이 완료되지 않았습니다.';
@@ -163,10 +182,48 @@ async function loadData(): Promise<void> {
   attempts.value = (attemptResponse.data || []) as Attempt[];
   await nextTick();
   worker?.postMessage({ visits: visits.value, results: results.value, days: days.value });
-  animate('.admin-stat-card', {
-    opacity: [0, 1],
-    transform: ['translateY(12px)', 'translateY(0px)']
-  }, { duration: 0.35, delay: stagger(0.055) });
+  if (!silent) {
+    animate('.admin-stat-card', {
+      opacity: [0, 1],
+      transform: ['translateY(12px)', 'translateY(0px)']
+    }, { duration: 0.35, delay: stagger(0.055) });
+  }
+}
+
+function scheduleRealtimeReload(): void {
+  realtimeUpdatedAt.value = new Date().toISOString();
+  if (realtimeReloadTimer !== null) window.clearTimeout(realtimeReloadTimer);
+  realtimeReloadTimer = window.setTimeout(() => {
+    realtimeReloadTimer = null;
+    void loadData({ silent: true });
+  }, 350);
+}
+
+function stopRealtime(): void {
+  if (realtimeReloadTimer !== null) {
+    window.clearTimeout(realtimeReloadTimer);
+    realtimeReloadTimer = null;
+  }
+  if (realtimeChannel && client.value) void client.value.removeChannel(realtimeChannel);
+  realtimeChannel = null;
+  realtimeStatus.value = 'closed';
+}
+
+function startRealtime(): void {
+  if (!client.value || !session.value) return;
+  stopRealtime();
+  realtimeStatus.value = 'connecting';
+  realtimeChannel = client.value
+    .channel(`cbt-admin-live-${session.value.user.id}`)
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'visitor_profiles' }, scheduleRealtimeReload)
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'visit_events' }, scheduleRealtimeReload)
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'question_attempts' }, scheduleRealtimeReload)
+    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'exam_results' }, scheduleRealtimeReload)
+    .subscribe((status) => {
+      if (status === 'SUBSCRIBED') realtimeStatus.value = 'connected';
+      else if (status === 'CHANNEL_ERROR' || status === 'TIMED_OUT') realtimeStatus.value = 'error';
+      else if (status === 'CLOSED') realtimeStatus.value = 'closed';
+    });
 }
 
 function renderCharts(payload: {
@@ -221,10 +278,18 @@ onMounted(async () => {
   if (!client.value) return;
   const { data } = await client.value.auth.getSession();
   session.value = data.session;
-  if (session.value) await loadData();
+  if (session.value) {
+    await loadData();
+    startRealtime();
+  }
+  clockTimer = window.setInterval(() => {
+    clockNow.value = Date.now();
+  }, 30_000);
 });
 
 onBeforeUnmount(() => {
+  stopRealtime();
+  if (clockTimer !== null) window.clearInterval(clockTimer);
   worker?.terminate();
   window.removeEventListener('resize', resizeCharts);
   dailyChartInstance?.dispose();
@@ -259,8 +324,9 @@ onBeforeUnmount(() => {
       <header class="admin-header">
         <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>방문·문제풀이·시험점수</small></div></div>
         <div class="admin-header-actions">
-          <label>기간<select v-model.number="days" @change="loadData"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
-          <button @click="loadData" :disabled="loading">{{ loading ? '불러오는 중' : '새로고침' }}</button>
+          <div class="live-status" :class="`is-${realtimeStatus}`"><i></i><div><strong>{{ realtimeLabel }}</strong><small>현재 {{ activeNow }}명</small></div></div>
+          <label>기간<select v-model.number="days" @change="loadData()"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
+          <button @click="loadData()" :disabled="loading">{{ loading ? '불러오는 중' : '새로고침' }}</button>
           <button class="logout-button" @click="logout">로그아웃</button>
         </div>
       </header>
@@ -273,6 +339,7 @@ onBeforeUnmount(() => {
       <p v-if="dataError" class="admin-error admin-data-error">{{ dataError }}</p>
 
       <section class="admin-stats">
+        <article class="admin-stat-card live-card"><span>현재 접속 추정</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>최근 2분 이내 활동</small></article>
         <article class="admin-stat-card"><span>최근 24시간 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저 기준</small></article>
         <article class="admin-stat-card"><span>누적 풀이 기록</span><strong>{{ solvedTotal.toLocaleString() }}</strong><small>관리자 수집 시작 이후</small></article>
         <article class="admin-stat-card"><span>완료 시험</span><strong>{{ examTotal.toLocaleString() }}</strong><small>학습 결과 포함</small></article>
@@ -285,7 +352,7 @@ onBeforeUnmount(() => {
       </section>
 
       <section class="admin-panel">
-        <div class="admin-panel-title"><span>RECENT VISITORS</span><h2>최근 접속 IP</h2><p>{{ visitors.length }}개 브라우저 기록</p></div>
+        <div class="admin-panel-title"><span>RECENT VISITORS</span><h2>최근 접속 IP</h2><p>{{ visitors.length }}개 브라우저 · 마지막 실시간 반영 {{ formatDate(realtimeUpdatedAt) }}</p></div>
         <div class="admin-table-wrap">
           <table>
             <thead><tr><th>최근 접속</th><th>IP 주소</th><th>방문자 ID</th><th>기기</th><th>접속</th><th>풀이</th><th>정답률</th><th>최근/최고 점수</th></tr></thead>

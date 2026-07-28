@@ -141,6 +141,30 @@ grant select on table public.visit_events to authenticated;
 grant select on table public.question_attempts to authenticated;
 grant select on table public.exam_results to authenticated;
 
+do $$
+declare
+  realtime_table text;
+begin
+  foreach realtime_table in array array[
+    'visitor_profiles',
+    'visit_events',
+    'question_attempts',
+    'exam_results'
+  ]
+  loop
+    if not exists (
+      select 1
+      from pg_publication_tables publication_table
+      where publication_table.pubname = 'supabase_realtime'
+        and publication_table.schemaname = 'public'
+        and publication_table.tablename = realtime_table
+    ) then
+      execute format('alter publication supabase_realtime add table public.%I', realtime_table);
+    end if;
+  end loop;
+end
+$$;
+
 -- SQL Editor에서 아래 이메일을 실제 관리자 로그인 이메일로 바꿔 한 번 실행하세요.
 -- insert into public.admin_users(email) values ('your-email@example.com')
 -- on conflict (email) do nothing;

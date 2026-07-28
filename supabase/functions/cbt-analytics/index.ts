@@ -1,11 +1,11 @@
 import { createClient } from 'npm:@supabase/supabase-js@2';
 
 type IncomingEvent = {
-  type: 'visit' | 'navigation' | 'attempt' | 'result';
+  type: 'visit' | 'navigation' | 'attempt' | 'result' | 'heartbeat';
   payload: Record<string, unknown>;
 };
 
-const allowedTypes = new Set(['visit', 'navigation', 'attempt', 'result']);
+const allowedTypes = new Set(['visit', 'navigation', 'attempt', 'result', 'heartbeat']);
 
 function corsHeaders(request: Request): Record<string, string> {
   const configured = Deno.env.get('ALLOWED_ORIGIN') || '*';
