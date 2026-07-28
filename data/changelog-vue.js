@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '2.0.2',
+      scope: 'industrial',
+      date: '2026.07.29',
+      title: '다크 모드·문제 가독성·회차 카드 개선',
+      summary: '전체 다크 화면을 완성하고 문제 글자 크기와 회차별 문제 화면을 구버전의 읽기 좋은 구성으로 복원했습니다.',
+      tags: ['다크 모드', '글자 크기', '회차 카드', '가독성'],
+      changes: [
+        '회차 목록과 페이지 바깥 배경까지 다크 모드 색상으로 표시합니다.',
+        '종목 아이콘, 학습 시작 버튼, 북마크와 스크롤바의 다크 색상을 보완했습니다.',
+        '문제·보기·해설과 패치노트 글자를 구버전 수준으로 키우고 줄 간격을 넓혔습니다.',
+        '풀이 중 상단의 가−·현재 비율·가+ 버튼으로 문자 크기를 바로 바꿀 수 있습니다.',
+        '회차 카드를 종목·복원문제·회차 정보·과목·진도·이어 풀기 순서의 구버전 구성으로 복원했습니다.'
+      ]
+    },
+    {
+      version: '2.0.2',
+      scope: 'jewelry',
+      date: '2026.07.29',
+      title: '보석관 다크 모드·가독성 개선',
+      summary: '보석관의 페이지 배경과 학습 카드를 전용 다크 팔레트로 통일하고 문제 글자를 확대했습니다.',
+      tags: ['다크 모드', '보석관', '글자 크기', '가독성'],
+      changes: [
+        '페이지 바깥 배경과 스크롤 영역에 남아 있던 밝은 색상을 제거했습니다.',
+        '보석 종목 아이콘과 학습 버튼을 어두운 화면에 맞게 조정했습니다.',
+        '문제·보기·해설과 패치노트 글자를 키우고 풀이 중 문자 크기 조절 버튼을 추가했습니다.',
+        '회차별 문제 카드를 구버전의 정보 중심 구성으로 복원했습니다.'
+      ]
+    },
+    {
       version: '2.0.1',
       scope: 'industrial',
       date: '2026.07.29',
@@ -68,8 +97,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.0.1';
-  changelog.versions.jewelry = '2.0.1';
-  changelog.currentVersion = '2.0.1';
+  changelog.versions.industrial = '2.0.2';
+  changelog.versions.jewelry = '2.0.2';
+  changelog.currentVersion = '2.0.2';
   window.CBT_CHANGELOG = changelog;
 })();
