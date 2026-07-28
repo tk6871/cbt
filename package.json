@@ -1,0 +1,25 @@
+{
+  "name": "industrial-cbt-modern-tools",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.4",
+    "dexie": "^4.2.0",
+    "echarts": "^6.0.0",
+    "motion": "^12.23.24",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vue-tsc": "^3.1.1"
+  }
+}

@@ -1,0 +1,2 @@
+[functions.cbt-analytics]
+verify_jwt = true
