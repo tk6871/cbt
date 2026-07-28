@@ -710,8 +710,18 @@
     const correct = selected === question.answer;
     if (!correct) return '<div class="explanation wrong retry-explanation"><strong>오답입니다 · 다시 골라보세요</strong><p>정답을 직접 찾으면 해설이 열립니다.</p></div>' + rateBadge;
     const explanationBadge = question.explanationType === 'ai-reference' ? '<span class="ai-explanation-badge">AI 참고 해설 · 쉽게 풀어보기</span>' : '';
-    const explanation = question.explanationHtml || (question.explanation ? esc(question.explanation).replaceAll('\n', '<br>') : '등록된 해설이 없습니다. 정답과 보기를 비교해 복습하세요.');
-    return `<div class="explanation correct"><strong>정답입니다</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>${rateBadge}`;
+    const source = question.explanationHtml || (question.explanation ? esc(question.explanation).replaceAll('\n', '<br>') : '등록된 해설이 없습니다. 정답과 보기를 비교해 복습하세요.');
+    const explanation = formatMathNotation(source);
+    const mathClass = /[=≈±×÷√^_]|(?:m|cm|mm|km)[23]\b/.test(question.explanation || '') ? ' math-readable' : '';
+    return `<div class="explanation correct${mathClass}"><strong>정답입니다</strong>${explanationBadge}<p>${explanation}</p>${question.hint ? `<small>힌트: ${esc(question.hint)}</small>` : ''}</div>${rateBadge}`;
+  }
+  function formatMathNotation(value) {
+    return String(value || '')
+      .replace(/\b([A-Za-z])_([A-Za-z0-9]+)\b/g, '$1<sub>$2</sub>')
+      .replace(/\b([qQhHiItTxXpPvVwWgGcCoOR])([0-9]{1,2})\b/g, '$1<sub>$2</sub>')
+      .replace(/(^|[^A-Za-z])(mm|cm|km|m)([23])\b/g, '$1$2<sup>$3</sup>')
+      .replace(/\^(-?[0-9]+)/g, '<sup>$1</sup>')
+      .replace(/\*/g, ' × ');
   }
   function renderImages(images, alt) {
     return (images || []).length ? `<div class="question-images">${images.map((src) => `<img src="${esc(src)}" alt="${alt}" loading="lazy">`).join('')}</div>` : '';

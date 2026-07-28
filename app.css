@@ -407,6 +407,12 @@ th:first-child, td:first-child { text-align: left; }
 .explanation.wrong { border-color: var(--red); background: color-mix(in srgb, var(--red) 9%, var(--surface)); }
 .retry-explanation p { color:var(--muted); }
 .explanation p { margin: 8px 0 0; font-size: .82rem; line-height: 1.7; }
+.explanation.math-readable p { line-height: 1.9; letter-spacing: .005em; font-variant-numeric: tabular-nums; }
+.explanation.math-readable sub,
+.explanation.math-readable sup { position: relative; color: var(--primary); font-size: .72em; font-weight: 850; line-height: 0; }
+.explanation.math-readable sub { bottom: -.18em; }
+.explanation.math-readable sup { top: -.38em; }
+.explanation.math-readable p br { display: block; content: ""; margin-top: .28em; }
 .explanation small { display: block; margin-top: 10px; color: var(--muted); }
 .ai-explanation-badge { display: inline-flex; margin: 0 0 0 9px; padding: 3px 8px; border: 1px solid color-mix(in srgb, var(--primary) 35%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--primary) 10%, var(--surface)); color: var(--primary); font-size: .65rem; font-weight: 800; vertical-align: 1px; }
 .source-details { margin-top: 14px; color: var(--muted); font-size: .73rem; }
