@@ -1,0 +1,100 @@
+export type Choice = {
+  text?: string;
+  html?: string;
+  images?: string[];
+};
+
+export type Question = {
+  number: number;
+  text?: string;
+  html?: string;
+  images?: string[];
+  sourceImage?: string | null;
+  choices: Choice[];
+  answer: number;
+  answerRate?: number | null;
+  hint?: string;
+  explanation?: string;
+  explanationHtml?: string;
+  imageOnly?: boolean;
+  _subject?: string;
+  sourceSubject?: string;
+  _originRoundId?: string;
+  _originalNumber?: number;
+};
+
+export type Round = {
+  id: string;
+  qualificationKey?: string;
+  qualification?: string;
+  shortQualification?: string;
+  year: number;
+  session?: string;
+  date?: string;
+  sortKey?: string;
+  title: string;
+  subjects: string[];
+  questions: Question[];
+  kind?: string;
+};
+
+export type Catalog = {
+  key: string;
+  name: string;
+  shortName?: string;
+  rounds: Round[];
+};
+
+export type QuestionItem = {
+  round: Round;
+  question: Question;
+  subject: string;
+  id: string;
+};
+
+export type StudyMode = 'learn' | 'exam';
+export type CurriculumScope = 'all-mapped' | 'current' | 'legacy-original';
+
+export type SessionState = {
+  id: string;
+  mode: StudyMode;
+  title: string;
+  items: QuestionItem[];
+  answers: Record<string, number>;
+  page: number;
+  pageSize: number;
+  startedAt: number;
+  remainingSeconds: number;
+  finished: boolean;
+};
+
+export type AttemptRecord = {
+  count: number;
+  correctCount: number;
+  wrongCount: number;
+  lastChoice: number;
+  lastCorrect: boolean;
+  at: number;
+};
+
+export type LegacyStore = {
+  theme?: 'system' | 'light' | 'dark';
+  bookmarks?: string[];
+  wrong?: Record<string, { count?: number; at?: number } | number | boolean>;
+  attempts?: Record<string, AttemptRecord>;
+  progress?: Record<string, unknown>;
+  history?: Array<Record<string, unknown>>;
+  notes?: Record<string, unknown>;
+};
+
+declare global {
+  interface Window {
+    CBT_DATA_HVAC?: Catalog;
+    CBT_DATA_SAFETY?: Catalog;
+    CBT_DATA_ENERGY?: Catalog;
+    CBT_DATA_ENERGY_ENGINEER?: Catalog;
+    CBT_DATA_MAINTENANCE?: Catalog;
+  }
+}
+
+export {};

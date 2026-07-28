@@ -13,11 +13,12 @@ export default defineConfig({
     rollupOptions: {
       input: {
         admin: resolve(__dirname, 'src/admin/main.ts'),
-        visitor: resolve(__dirname, 'src/visitor.ts')
+        visitor: resolve(__dirname, 'src/visitor.ts'),
+        cbt: resolve(__dirname, 'src/cbt/main.ts')
       },
       output: {
         entryFileNames: '[name].js',
-        chunkFileNames: 'chunks/[name]-[hash].js',
+        chunkFileNames: 'chunks/[name].js',
         assetFileNames: (assetInfo) => assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
       }
     }
