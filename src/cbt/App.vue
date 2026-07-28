@@ -53,12 +53,14 @@ const yearTo = ref(0);
 const session = ref<SessionState | null>(null);
 const examResult = ref<ExamResult | null>(null);
 const mobileMenuOpen = ref(false);
+const sessionMenuOpen = ref(false);
 const examSheetOpen = ref(true);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
-const roundPicker = ref<Round | null>(null);
+const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
+const updateChecking = ref(false);
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
@@ -76,12 +78,18 @@ const availableYears = computed(() => {
     .filter(Number.isFinite)
     .sort((a, b) => b - a);
 });
-const visibleRounds = computed(() => {
+const rangeRounds = computed(() => {
   const rounds = roundsInRange(selectedCatalog.value, yearFrom.value, yearTo.value);
   if (selectedKey.value === 'energy') {
     return [...referenceRounds.filter((round) => round.year >= yearFrom.value && round.year <= yearTo.value), ...rounds];
   }
   return rounds;
+});
+const visibleRounds = computed(() => {
+  const rounds = sortedRounds(selectedCatalog.value);
+  if (selectedKey.value !== 'energy') return rounds;
+  return [...referenceRounds, ...rounds].sort((a, b) =>
+    b.year - a.year || String(b.date || b.session || '').localeCompare(String(a.date || a.session || ''), 'ko', { numeric: true }));
 });
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
@@ -169,9 +177,7 @@ function selectQualification(key: string): void {
   curriculum.value = 'all-mapped';
   setDefaultYears(quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
-  void nextTick(() => {
-    animate('.qualification-card', { opacity: [0.65, 1], y: [5, 0] }, { duration: 0.25, delay: stagger(0.035) });
-  });
+  openView('rounds');
 }
 
 function applyPreset(value: 5 | 10 | 0): void {
@@ -190,6 +196,7 @@ function openView(next: ViewName): void {
   mobileMenuOpen.value = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   window.CBTAnalytics?.trackNavigation?.(`next-${next}`);
+  if (next === 'updates') void checkForUpdate(false);
   void nextTick(() => {
     animate('.page-content > *', {
       opacity: [0, 1],
@@ -248,6 +255,7 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
     return;
   }
   examResult.value = null;
+  sessionMenuOpen.value = false;
   session.value = {
     id: `${mode}-${Date.now()}`,
     mode,
@@ -414,13 +422,15 @@ function submitExam(force = false): void {
   });
 }
 
-function leaveSession(): void {
+function leaveSession(nextView?: ViewName): void {
   if (session.value && !session.value.finished && answeredCount.value > 0) {
-    if (!confirm('현재 풀이를 종료하고 홈으로 돌아갈까요?')) return;
+    if (!confirm('현재 풀이를 종료하고 이동할까요?')) return;
   }
   stopTimer();
   session.value = null;
   examResult.value = null;
+  sessionMenuOpen.value = false;
+  if (nextView) view.value = nextView;
   document.body.classList.remove('session-active');
   window.scrollTo({ top: 0 });
 }
@@ -474,6 +484,37 @@ function adjustFontScale(amount: number): void {
   showToast(`문자 크기 ${Math.round(fontScale.value * 100)}%`);
 }
 
+function handleUpdateAvailable(): void {
+  updateAvailable.value = true;
+}
+
+async function checkForUpdate(notify = true): Promise<void> {
+  if (!('serviceWorker' in navigator) || location.protocol === 'file:') {
+    if (notify) showToast('온라인 홈페이지에서 업데이트를 확인할 수 있습니다.');
+    return;
+  }
+  updateChecking.value = true;
+  try {
+    const registration = await navigator.serviceWorker.getRegistration();
+    if (!registration) {
+      if (notify) showToast('업데이트 기능을 준비하는 중입니다. 잠시 후 다시 확인해 주세요.');
+      return;
+    }
+    await registration.update();
+    await new Promise((resolve) => window.setTimeout(resolve, 650));
+    if (notify) showToast(updateAvailable.value ? '새 버전을 찾았습니다.' : '현재 최신 버전입니다.');
+  } catch {
+    if (notify) showToast('업데이트 확인에 실패했습니다. 인터넷 연결을 확인해 주세요.');
+  } finally {
+    updateChecking.value = false;
+  }
+}
+
+function applyUpdate(): void {
+  if (session.value && answeredCount.value > 0 && !confirm('새 버전을 적용하면 현재 풀이 화면이 새로고침됩니다. 지금 적용할까요?')) return;
+  location.reload();
+}
+
 function exportLearningData(): void {
   const blob = new Blob([JSON.stringify({
     exportedAt: new Date().toISOString(),
@@ -521,22 +562,12 @@ function isRestoredRound(round: Round): boolean {
   return round.qualificationKey === 'hvac' && round.year >= 2021;
 }
 
-function openRoundPicker(round: Round): void {
-  roundPicker.value = round;
-}
-
-function chooseRoundMode(mode: StudyMode): void {
-  if (!roundPicker.value) return;
-  const round = roundPicker.value;
-  roundPicker.value = null;
-  startRound(round, mode);
-}
-
 watch([yearFrom, yearTo], () => {
   if (yearFrom.value > yearTo.value) [yearFrom.value, yearTo.value] = [yearTo.value, yearFrom.value];
 });
 
 onMounted(async () => {
+  window.addEventListener('cbt:update-available', handleUpdateAvailable);
   applyTheme(theme.value);
   setFontScale(fontScale.value);
   setDefaultYears(10);
@@ -547,6 +578,7 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  window.removeEventListener('cbt:update-available', handleUpdateAvailable);
   stopTimer();
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
@@ -667,7 +699,7 @@ onBeforeUnmount(() => {
             </div>
 
             <div class="scope-summary">
-              <div><span>선택 범위</span><strong>{{ yearFrom }}~{{ yearTo }}년</strong><small>{{ visibleRounds.length }}회차 사용</small></div>
+              <div><span>선택 범위</span><strong>{{ yearFrom }}~{{ yearTo }}년</strong><small>{{ rangeRounds.length }}회차 사용</small></div>
               <div><span>출제 가능</span><strong>{{ selectedItems.length.toLocaleString() }}문제</strong><small>과목별 균형 출제</small></div>
               <div><span>실전 구성</span><strong>{{ selectedSubjects.length }}과목 × 20문제</strong><small>평균 60점 · 과락 40점</small></div>
             </div>
@@ -710,8 +742,8 @@ onBeforeUnmount(() => {
 
         <template v-else-if="view === 'rounds'">
           <section class="rounds-heading">
-            <div><span>PAST EXAMS</span><h1>{{ selectedCatalog.name }} 기출문제</h1><p>{{ yearFrom }}~{{ yearTo }}년 · {{ visibleRounds.length }}회차</p></div>
-            <button type="button" @click="openView('home')">← 학습 설정으로</button>
+            <div><span>PAST EXAMS</span><h1>{{ selectedCatalog.name }} 기출문제</h1><p>수록된 전체 {{ visibleRounds.length }}회차</p></div>
+            <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
           <div class="round-grid">
             <article v-for="round in visibleRounds" :key="round.id" class="round-card">
@@ -723,7 +755,8 @@ onBeforeUnmount(() => {
               <div v-if="roundAnswered(round)" class="round-progress"><span><i :style="{ width: `${roundProgress(round)}%` }" /></span></div>
               <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
               <footer>
-                <button type="button" @click="openRoundPicker(round)">{{ roundAnswered(round) ? '이어 풀기' : '시작하기' }} <span>›</span></button>
+                <button type="button" @click="startRound(round, 'learn')">{{ roundAnswered(round) ? '이어 학습' : '학습모드' }}</button>
+                <button type="button" @click="startRound(round, 'exam')">CBT 시험모드</button>
               </footer>
             </article>
           </div>
@@ -798,7 +831,10 @@ onBeforeUnmount(() => {
         <template v-else>
           <section class="patch-heading">
             <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
-            <strong>v{{ currentVersion }}</strong>
+            <div class="patch-version-actions">
+              <strong>v{{ currentVersion }}</strong>
+              <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
+            </div>
           </section>
           <div class="patch-timeline">
             <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
@@ -821,18 +857,6 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>검색</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
     </nav>
-    <div v-if="roundPicker" class="round-mode-backdrop" @click.self="roundPicker = null">
-      <section class="round-mode-dialog" role="dialog" aria-modal="true" aria-label="풀이 방식 선택">
-        <button class="round-mode-close" type="button" aria-label="닫기" @click="roundPicker = null">×</button>
-        <span>{{ roundPicker.shortQualification || roundPicker.qualification }}</span>
-        <h2>{{ roundPicker.title }}</h2>
-        <p>{{ roundPicker.questions.length }}문제 · {{ roundPicker.subjects.length }}과목 · 시험 {{ roundExamMinutes(roundPicker) }}분</p>
-        <div>
-          <button type="button" @click="chooseRoundMode('learn')"><span>학습모드</span><strong>여러 문제씩 풀이</strong><small>정답과 쉬운 해설을 바로 확인합니다.</small></button>
-          <button type="button" @click="chooseRoundMode('exam')"><span>시험모드</span><strong>실제 CBT 형식</strong><small>OMR 답안지와 타이머로 실전처럼 풉니다.</small></button>
-        </div>
-      </section>
-    </div>
     <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
@@ -865,7 +889,10 @@ onBeforeUnmount(() => {
 
   <div v-else class="session-shell" :class="{ 'exam-mode': session.mode === 'exam', 'sheet-closed': !examSheetOpen }">
     <header class="session-topbar">
-      <button class="back-button" type="button" @click="leaveSession">← <span>뒤로가기</span></button>
+      <div class="session-leading">
+        <button class="back-button" type="button" @click="leaveSession()">← <span>뒤로가기</span></button>
+        <button class="session-menu-button" type="button" @click="sessionMenuOpen = true">☰ <span>메뉴</span></button>
+      </div>
       <div><span>{{ session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span><strong>{{ sessionTitle }}</strong></div>
       <div class="session-tools">
         <button type="button" @click="openCalculator">▦ 계산기</button>
@@ -887,6 +914,21 @@ onBeforeUnmount(() => {
         <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
       </div>
     </header>
+
+    <button v-if="sessionMenuOpen" class="session-menu-backdrop" type="button" aria-label="풀이 메뉴 닫기" @click="sessionMenuOpen = false" />
+    <aside class="session-drawer" :class="{ open: sessionMenuOpen }">
+      <header><div><span>CBT</span><strong>풀이 메뉴</strong></div><button type="button" aria-label="닫기" @click="sessionMenuOpen = false">×</button></header>
+      <nav>
+        <button type="button" @click="leaveSession('home')"><span>⌂</span><div><strong>첫 화면</strong><small>종목 선택과 학습 설정</small></div></button>
+        <button type="button" @click="leaveSession('rounds')"><span>▤</span><div><strong>회차별 문제</strong><small>전체 기출 회차 선택</small></div></button>
+        <button type="button" @click="leaveSession('wrong')"><span>!</span><div><strong>오답노트</strong><small>틀린 문제 다시 풀기</small></div></button>
+        <button type="button" @click="leaveSession('updates')"><span>◷</span><div><strong>패치노트</strong><small>최근 업데이트 확인</small></div></button>
+      </nav>
+      <footer>
+        <button type="button" @click="openCalculator">▦ 공학용 계산기</button>
+        <button type="button" @click="toggleLightDark">{{ darkActive ? '☀ 라이트 모드' : '☾ 다크 모드' }}</button>
+      </footer>
+    </aside>
 
     <main class="session-main">
       <section class="question-area">
@@ -947,11 +989,18 @@ onBeforeUnmount(() => {
         </div>
         <div class="result-actions">
           <button type="button" @click="examResult = null; session.finished = false">문제 다시 보기</button>
-          <button type="button" @click="leaveSession">홈으로</button>
+          <button type="button" @click="leaveSession('home')">홈으로</button>
         </div>
       </section>
     </div>
   </div>
+
+  <Transition name="toast">
+    <aside v-if="updateAvailable" class="update-notice">
+      <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
+      <button type="button" @click="applyUpdate">업데이트 적용</button>
+    </aside>
+  </Transition>
 
   <Transition name="toast">
     <div v-if="toastMessage" class="toast-message">{{ toastMessage }}</div>

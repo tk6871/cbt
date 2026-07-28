@@ -97,6 +97,7 @@ declare global {
     CBT_DATA_MAINTENANCE?: Catalog;
     CBT_DATA_JEWELRY?: Catalog[];
     CBT_APP_SPACE?: 'industrial' | 'jewelry';
+    CBT_UPDATE_AVAILABLE?: boolean;
     CBT_CHANGELOG?: {
       currentVersion?: string;
       versions?: Record<string, string>;

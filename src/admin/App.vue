@@ -17,6 +17,14 @@ type VisitorProfile = {
   device_type: string | null;
   browser: string | null;
   last_path: string | null;
+  location_country: string | null;
+  location_country_code: string | null;
+  location_region: string | null;
+  location_city: string | null;
+  location_latitude: number | null;
+  location_longitude: number | null;
+  location_timezone: string | null;
+  network_provider: string | null;
 };
 
 type Visit = {
@@ -76,6 +84,8 @@ const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('con
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
 const showLiveVisitors = ref(false);
+const selectedAttemptVisitor = ref<string | null>(null);
+const attemptDisplayLimit = ref(8);
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
@@ -95,6 +105,27 @@ const examTotal = computed(() => visitors.value.reduce((sum, item) => sum + Numb
 const averageScore = computed(() => results.value.length
   ? Math.round(results.value.reduce((sum, item) => sum + Number(item.score || 0), 0) / results.value.length)
   : 0);
+const attemptVisitorOptions = computed(() => {
+  const counts = new Map<string, number>();
+  attempts.value.forEach((attempt) => counts.set(attempt.visitor_id, (counts.get(attempt.visitor_id) || 0) + 1));
+  return [...counts.entries()].map(([visitorId, count]) => ({
+    visitorId,
+    count,
+    profile: visitors.value.find((visitor) => visitor.visitor_id === visitorId) || null
+  }));
+});
+const filteredAttempts = computed(() => {
+  if (selectedAttemptVisitor.value) {
+    return attempts.value.filter((attempt) => attempt.visitor_id === selectedAttemptVisitor.value);
+  }
+  const seen = new Set<string>();
+  return attempts.value.filter((attempt) => {
+    if (seen.has(attempt.visitor_id)) return false;
+    seen.add(attempt.visitor_id);
+    return true;
+  });
+});
+const visibleAttempts = computed(() => filteredAttempts.value.slice(0, attemptDisplayLimit.value));
 const accuracy = (visitor: VisitorProfile) => visitor.attempt_count
   ? Math.round(visitor.correct_count / visitor.attempt_count * 100)
   : 0;
@@ -119,6 +150,20 @@ function formatDate(value: string | null): string {
 
 function shortId(value: string): string {
   return value.length > 12 ? `${value.slice(0, 8)}…` : value;
+}
+
+function locationLabel(visitor: VisitorProfile): string {
+  const parts = [visitor.location_country, visitor.location_region, visitor.location_city].filter(Boolean);
+  return [...new Set(parts)].join(' · ') || '위치 확인 중';
+}
+
+function locationDetail(visitor: VisitorProfile): string {
+  return [visitor.network_provider, visitor.location_timezone].filter(Boolean).join(' · ') || 'IP 기반 추정 위치';
+}
+
+function selectAttemptVisitor(visitorId: string | null): void {
+  selectedAttemptVisitor.value = visitorId;
+  attemptDisplayLimit.value = 8;
 }
 
 function viewLabel(value: string | null): string {
@@ -300,7 +345,7 @@ onBeforeUnmount(() => {
       </header>
 
       <section class="admin-intro">
-        <div><span class="admin-kicker">PRIVATE ANALYTICS</span><h1>최근 접속과 학습 현황</h1><p>IP는 접속 위치의 네트워크 주소이며 실제 사람 이름과 일치하지 않을 수 있습니다.</p></div>
+        <div><span class="admin-kicker">PRIVATE ANALYTICS</span><h1>최근 접속과 학습 현황</h1><p>IP 위치는 통신사·VPN 출구 기준의 대략적인 국가·지역·도시이며 실제 현재 위치와 다를 수 있습니다.</p></div>
         <div class="admin-account"><span>로그인 계정</span><strong>{{ session.user.email }}</strong></div>
       </section>
 
@@ -324,6 +369,7 @@ onBeforeUnmount(() => {
             <div class="live-visitor-top"><span><i></i>접속 중</span><code>{{ visitor.ip_address || 'IP 확인 중' }}</code></div>
             <dl>
               <div><dt>기기·브라우저</dt><dd>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</dd></div>
+              <div><dt>추정 위치</dt><dd>{{ locationLabel(visitor) }}</dd></div>
               <div><dt>현재 화면</dt><dd>{{ viewLabel(visitor.last_path) }}</dd></div>
               <div><dt>마지막 신호</dt><dd>{{ formatDate(visitor.last_seen) }}</dd></div>
               <div><dt>풀이·시험</dt><dd>{{ visitor.attempt_count }}문제 · {{ visitor.exam_count }}회</dd></div>
@@ -337,14 +383,16 @@ onBeforeUnmount(() => {
         <div class="admin-panel-title"><span>RECENT VISITORS</span><h2>최근 접속 IP</h2><p>{{ visitors.length }}개 브라우저 · 마지막 실시간 반영 {{ formatDate(realtimeUpdatedAt) }}</p></div>
         <div class="admin-table-wrap">
           <table>
-            <thead><tr><th>최근 접속</th><th>IP 주소</th><th>방문자 ID</th><th>기기</th><th>접속</th><th>풀이</th><th>정답률</th><th>최근/최고 점수</th></tr></thead>
+            <thead><tr><th>최근 접속</th><th>IP 주소</th><th>추정 위치</th><th>방문자 ID</th><th>기기</th><th>접속</th><th>풀이</th><th>정답률</th><th>최근/최고 점수</th></tr></thead>
             <tbody>
               <tr v-for="visitor in visitors" :key="visitor.visitor_id">
-                <td>{{ formatDate(visitor.last_seen) }}</td><td><code>{{ visitor.ip_address || '-' }}</code></td><td :title="visitor.visitor_id">{{ shortId(visitor.visitor_id) }}</td>
+                <td>{{ formatDate(visitor.last_seen) }}</td><td><code>{{ visitor.ip_address || '-' }}</code></td>
+                <td class="location-cell"><strong>{{ locationLabel(visitor) }}</strong><small>{{ locationDetail(visitor) }}</small></td>
+                <td :title="visitor.visitor_id">{{ shortId(visitor.visitor_id) }}</td>
                 <td>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</td><td>{{ visitor.visit_count }}</td><td>{{ visitor.attempt_count }}</td><td>{{ accuracy(visitor) }}%</td>
                 <td>{{ visitor.last_score ?? '-' }} / {{ visitor.best_score ?? '-' }}</td>
               </tr>
-              <tr v-if="!visitors.length"><td colspan="8" class="empty-cell">아직 수집된 방문 기록이 없습니다.</td></tr>
+              <tr v-if="!visitors.length"><td colspan="9" class="empty-cell">아직 수집된 방문 기록이 없습니다.</td></tr>
             </tbody>
           </table>
         </div>
@@ -367,20 +415,39 @@ onBeforeUnmount(() => {
       </section>
 
       <section class="admin-panel">
-        <div class="admin-panel-title"><span>QUESTION ATTEMPTS</span><h2>최근 푼 문제</h2><p>선택 기간 최대 2,000건</p></div>
+        <div class="admin-panel-title"><span>QUESTION ATTEMPTS</span><h2>접속자별 최근 푼 문제</h2><p>처음에는 최근 8문제만 표시</p></div>
+        <div class="attempt-visitor-filter">
+          <button type="button" :class="{ active: selectedAttemptVisitor === null }" @click="selectAttemptVisitor(null)"><strong>전체 접속자</strong><small>접속자마다 최근 1문제</small></button>
+          <button
+            v-for="option in attemptVisitorOptions"
+            :key="option.visitorId"
+            type="button"
+            :class="{ active: selectedAttemptVisitor === option.visitorId }"
+            @click="selectAttemptVisitor(option.visitorId)"
+          >
+            <strong>{{ option.profile?.ip_address || shortId(option.visitorId) }}</strong>
+            <small>{{ option.profile ? locationLabel(option.profile) : '위치 미확인' }} · {{ option.count }}문제</small>
+          </button>
+        </div>
         <div class="admin-table-wrap">
           <table>
             <thead><tr><th>풀이 시각</th><th>IP 주소</th><th>종목</th><th>회차·문제</th><th>선택/정답</th><th>결과</th><th>모드</th></tr></thead>
             <tbody>
-              <tr v-for="attempt in attempts.slice(0, 300)" :key="attempt.id">
+              <tr v-for="attempt in visibleAttempts" :key="attempt.id">
                 <td>{{ formatDate(attempt.answered_at) }}</td><td><code>{{ attempt.ip_address || '-' }}</code></td><td>{{ attempt.qualification || '-' }}</td>
                 <td>{{ attempt.round_title || '-' }} · {{ attempt.question_number }}번</td><td>{{ attempt.selected_answer }} / {{ attempt.correct_answer }}</td>
                 <td><span :class="attempt.is_correct ? 'correct-chip' : 'wrong-chip'">{{ attempt.is_correct ? '정답' : '오답' }}</span></td><td>{{ attempt.mode === 'exam' ? '시험' : '학습' }}</td>
               </tr>
-              <tr v-if="!attempts.length"><td colspan="7" class="empty-cell">문제 풀이 기록이 없습니다.</td></tr>
+              <tr v-if="!visibleAttempts.length"><td colspan="7" class="empty-cell">문제 풀이 기록이 없습니다.</td></tr>
             </tbody>
           </table>
         </div>
+        <button
+          v-if="selectedAttemptVisitor && filteredAttempts.length > visibleAttempts.length"
+          type="button"
+          class="attempt-more-button"
+          @click="attemptDisplayLimit += 8"
+        >8문제 더 보기 ({{ visibleAttempts.length }}/{{ filteredAttempts.length }})</button>
       </section>
     </template>
   </main>

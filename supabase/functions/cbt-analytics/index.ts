@@ -37,6 +37,64 @@ function requestIp(request: Request): string | null {
   return first || null;
 }
 
+type IpLocation = {
+  country: string;
+  countryCode: string;
+  region: string;
+  city: string;
+  latitude: number | null;
+  longitude: number | null;
+  timezone: string;
+  provider: string;
+};
+
+function publicIp(value: string | null): boolean {
+  if (!value) return false;
+  if (value === '::1' || value.startsWith('fe80:') || value.startsWith('fc') || value.startsWith('fd')) return false;
+  const parts = value.split('.').map(Number);
+  if (parts.length !== 4 || parts.some((part) => !Number.isInteger(part))) return true;
+  return !(parts[0] === 10
+    || parts[0] === 127
+    || (parts[0] === 169 && parts[1] === 254)
+    || (parts[0] === 172 && parts[1] >= 16 && parts[1] <= 31)
+    || (parts[0] === 192 && parts[1] === 168));
+}
+
+async function lookupIpLocation(ipAddress: string | null, countryCodeFallback = ''): Promise<IpLocation> {
+  const fallback: IpLocation = {
+    country: '',
+    countryCode: countryCodeFallback,
+    region: '',
+    city: '',
+    latitude: null,
+    longitude: null,
+    timezone: '',
+    provider: ''
+  };
+  if (!publicIp(ipAddress)) return fallback;
+  try {
+    const fields = 'success,country,country_code,region,city,latitude,longitude,timezone,connection';
+    const response = await fetch(`https://ipwho.is/${encodeURIComponent(ipAddress!)}?fields=${fields}`, {
+      signal: AbortSignal.timeout(3000)
+    });
+    if (!response.ok) return fallback;
+    const data = await response.json();
+    if (!data?.success) return fallback;
+    return {
+      country: text(data.country, 80),
+      countryCode: text(data.country_code || countryCodeFallback, 8),
+      region: text(data.region, 100),
+      city: text(data.city, 100),
+      latitude: Number.isFinite(Number(data.latitude)) ? Number(data.latitude) : null,
+      longitude: Number.isFinite(Number(data.longitude)) ? Number(data.longitude) : null,
+      timezone: text(data.timezone?.id || data.timezone, 80),
+      provider: text(data.connection?.isp || data.connection?.org, 160)
+    };
+  } catch {
+    return fallback;
+  }
+}
+
 Deno.serve(async (request) => {
   const cors = corsHeaders(request);
   if (request.method === 'OPTIONS') return new Response('ok', { headers: cors });
@@ -74,6 +132,20 @@ Deno.serve(async (request) => {
     .select('*')
     .eq('visitor_id', visitorId)
     .maybeSingle();
+  const ipChanged = Boolean(ipAddress && String(existing?.ip_address || '') !== ipAddress);
+  const needsLocation = Boolean(ipAddress && (ipChanged || !existing?.location_country_code));
+  const location = needsLocation
+    ? await lookupIpLocation(ipAddress, text(request.headers.get('cf-ipcountry'), 8))
+    : {
+        country: text(existing?.location_country, 80),
+        countryCode: text(existing?.location_country_code, 8),
+        region: text(existing?.location_region, 100),
+        city: text(existing?.location_city, 100),
+        latitude: Number.isFinite(Number(existing?.location_latitude)) ? Number(existing.location_latitude) : null,
+        longitude: Number.isFinite(Number(existing?.location_longitude)) ? Number(existing.location_longitude) : null,
+        timezone: text(existing?.location_timezone, 80),
+        provider: text(existing?.network_provider, 160)
+      };
 
   const visitIncrement = events.filter((event) => event.type === 'visit').length;
   const attempts = events.filter((event) => event.type === 'attempt');
@@ -96,7 +168,16 @@ Deno.serve(async (request) => {
     best_score: bestScore,
     device_type: text(lastPayload.deviceType, 40),
     browser: text(lastPayload.browser, 60),
-    last_path: text(lastPayload.view || lastPayload.path, 160)
+    last_path: text(lastPayload.view || lastPayload.path, 160),
+    location_country: location.country || null,
+    location_country_code: location.countryCode || null,
+    location_region: location.region || null,
+    location_city: location.city || null,
+    location_latitude: location.latitude,
+    location_longitude: location.longitude,
+    location_timezone: location.timezone || null,
+    network_provider: location.provider || null,
+    location_updated_at: needsLocation ? now : existing?.location_updated_at || null
   });
   if (profileError) return Response.json({ error: profileError.message }, { status: 500, headers: cors });
 

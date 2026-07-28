@@ -655,6 +655,7 @@
 
   function renderUpdates() {
     state.view = 'updates';
+    checkForUpdates();
     const scope = state.space === 'jewelry' ? 'jewelry' : 'industrial';
     const entries = (CHANGELOG.entries || []).filter((entry) => (entry.scope || 'industrial') === scope);
     const latest = entries[0];
@@ -1418,7 +1419,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=194', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=203', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
