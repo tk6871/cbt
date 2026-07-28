@@ -1,10 +1,31 @@
 window.CBT_CHANGELOG={
   "currentVersion": "1.8.3",
   "versions": {
-    "industrial": "1.7.3",
+    "industrial": "1.7.4",
     "jewelry": "1.8.3"
   },
   "entries": [
+    {
+      "version": "1.7.4",
+      "scope": "industrial",
+      "date": "2026.07.29",
+      "title": "fx-570ES PLUS형 독립 공학용 계산기",
+      "summary": "문제 화면을 가리지 않는 별도 팝업 창으로 계산기를 분리하고, 실제 휴대용 공학용 계산기와 가까운 LCD·키패드·방향키 외관으로 전면 개편했습니다.",
+      "tags": [
+        "독립 팝업",
+        "계산기 UI",
+        "fx-570ES PLUS형",
+        "오프라인"
+      ],
+      "changes": [
+        "학습모드와 시험모드의 계산기 버튼을 누르면 CBT 화면과 분리된 전용 계산기 창이 열립니다.",
+        "휴대용 공학용 계산기 형태의 검은 본체, Natural LCD, SHIFT·ALPHA 색상, REPLAY 방향키와 5열 키패드를 적용했습니다.",
+        "SHIFT 보조 기능, DEG·RAD 전환, Ans, 메모리 더하기·빼기·불러오기·초기화와 계산 기록을 지원합니다.",
+        "Math.js 계산 엔진은 계산기 창에서만 불러와 메인 CBT 첫 화면의 로딩 부담을 줄였습니다.",
+        "모바일 브라우저에서는 팝업 정책에 따라 별도 탭으로 열리며 기존 문제 풀이 상태는 그대로 유지됩니다.",
+        "서비스워커 캐시와 정적 파일 버전을 v187로 갱신했습니다."
+      ]
+    },
     {
       "version": "1.7.3",
       "scope": "industrial",

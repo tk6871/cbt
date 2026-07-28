@@ -163,55 +163,12 @@
     const h = Math.floor(safe / 3600), m = Math.floor((safe % 3600) / 60), s = safe % 60;
     return h ? `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   }
-  function evaluateCalculator() {
-    const input = document.getElementById('calculatorInput');
-    const output = document.getElementById('calculatorResult');
-    if (!input || !output || !window.math) return toast('계산기 라이브러리를 불러오지 못했습니다.');
-    const expression = input.value.trim().replaceAll('×', '*').replaceAll('÷', '/').replaceAll('−', '-');
-    if (!expression) return;
-    try {
-      const scope = new Map();
-      const angleMode = state.modal?.angleMode || 'deg';
-      const angle = (value) => angleMode === 'rad' ? value : window.math.unit(value, 'deg');
-      scope.set('sin', (value) => window.math.sin(angle(value)));
-      scope.set('cos', (value) => window.math.cos(angle(value)));
-      scope.set('tan', (value) => window.math.tan(angle(value)));
-      scope.set('log', (value) => window.math.log10(value));
-      scope.set('ln', (value) => window.math.log(value));
-      scope.set('ans', state.modal?.ans ?? 0);
-      const result = window.math.evaluate(expression, scope);
-      const formatted = window.math.format(result, { precision: 14 });
-      state.modal.expression = input.value;
-      state.modal.result = formatted;
-      state.modal.ans = result;
-      output.textContent = formatted;
-      output.classList.remove('error');
-    } catch (error) {
-      state.modal.expression = input.value;
-      state.modal.result = '식 오류';
-      output.textContent = '식 오류';
-      output.classList.add('error');
-    }
-  }
-  function calculatorKey(value) {
-    const input = document.getElementById('calculatorInput');
-    if (!input) return;
-    if (value === 'clear') {
-      input.value = '';
-      const output = document.getElementById('calculatorResult');
-      if (output) { output.textContent = '0'; output.classList.remove('error'); }
-      if (state.modal) { state.modal.expression = ''; state.modal.result = '0'; }
-    } else if (value === 'backspace') {
-      input.value = input.value.slice(0, -1);
-    } else if (value === 'equals') {
-      evaluateCalculator();
-    } else {
-      const start = input.selectionStart ?? input.value.length;
-      const end = input.selectionEnd ?? start;
-      input.setRangeText(value, start, end, 'end');
-      if (state.modal) state.modal.expression = input.value;
-    }
-    input.focus();
+  function openCalculatorWindow() {
+    const url = new URL('calculator.html', location.href).href;
+    const features = 'popup=yes,width=470,height=820,resizable=yes,scrollbars=yes';
+    const calculator = window.open(url, 'cbtScientificCalculator', features);
+    if (calculator) calculator.focus();
+    else toast('팝업이 차단되었습니다. 브라우저에서 이 사이트의 팝업을 허용해 주세요.');
   }
   function toast(message) {
     clearTimeout(toastHandle); toastNode.textContent = message; toastNode.classList.add('show');
@@ -725,17 +682,6 @@
         : `<option value="all-mapped" selected>전체 연도 문제 포함</option>`;
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal random-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">SUBJECT-BALANCED CBT</span><h2>과목 균형 실전시험</h2><p>선택한 범위에서 각 과목 문제를 같은 수로 뽑아 실제 시험처럼 풉니다.</p><label class="setting-row">종목<select id="randomQualification" data-change="random-qualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${key === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">과목 체계<select id="randomScope" data-change="random-scope">${scopeOptions}</select></label><div class="random-year-grid"><label class="setting-row">시작 연도<select data-change="random-year-from"><option value="all">처음부터</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearFrom) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label><label class="setting-row">끝 연도<select data-change="random-year-to"><option value="all">최근까지</option>${profile.availableYears.map((year) => `<option value="${year}" ${String(yearTo) === String(year) ? 'selected' : ''}>${year}</option>`).join('')}</select></label></div><div class="balanced-exam-card"><span>실전 모의시험 · ${esc(yearRangeLabel(yearFrom, yearTo))}</span><strong>${profile.subjects.length}과목 × 20문제 = ${total}문제</strong><small>${profile.subjects.map(esc).join(' · ')}</small><div class="balanced-pool">${profile.pools.map((pool) => `<i>${esc(pool.subject)} ${pool.items.length.toLocaleString()}문제</i>`).join('')}</div><button class="primary-button wide" data-action="start-balanced-exam" ${enough ? '' : 'disabled'}>${enough ? `${total}문제 실전시험 시작` : '선택 범위의 과목별 문제 수가 부족합니다'}</button></div><div class="random-learning"><h3>일반 랜덤 학습</h3><label class="setting-row">문제 수<select id="randomCount"><option>10</option><option selected>20</option><option>40</option><option>60</option><option>80</option><option>100</option></select></label><button class="secondary-button wide" data-action="start-random">랜덤 학습 시작</button></div></div></div>`;
     }
-    if (state.modal.type === 'calculator') {
-      return `<div class="modal-backdrop calculator-backdrop" data-action="close-modal"><div class="modal calculator-modal" role="dialog" aria-label="공학용 계산기"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">SCIENTIFIC CALCULATOR</span><h2>공학용 계산기</h2><div class="calculator-display"><input id="calculatorInput" value="${esc(state.modal.expression || '')}" inputmode="decimal" autocomplete="off" aria-label="계산식" placeholder="계산식을 입력하세요"><output id="calculatorResult">${esc(state.modal.result || '0')}</output></div><div class="calculator-mode"><button class="${state.modal.angleMode !== 'rad' ? 'active' : ''}" data-action="calc-angle" data-mode="deg">DEG</button><button class="${state.modal.angleMode === 'rad' ? 'active' : ''}" data-action="calc-angle" data-mode="rad">RAD</button></div><div class="calculator-grid">${[
-        ['AC', 'clear', 'function'], ['⌫', 'backspace', 'function'], ['(', '(', 'function'], [')', ')', 'function'], ['÷', '/', 'operator'],
-        ['sin', 'sin(', 'scientific'], ['cos', 'cos(', 'scientific'], ['tan', 'tan(', 'scientific'], ['√', 'sqrt(', 'scientific'], ['×', '*', 'operator'],
-        ['log', 'log(', 'scientific'], ['ln', 'ln(', 'scientific'], ['x²', '^2', 'scientific'], ['xʸ', '^', 'scientific'], ['−', '-', 'operator'],
-        ['π', 'pi', 'scientific'], ['e', 'e', 'scientific'], ['7', '7', ''], ['8', '8', ''], ['9', '9', ''], ['+', '+', 'operator'],
-        ['10ˣ', '10^(', 'scientific'], ['1/x', '^(-1)', 'scientific'], ['4', '4', ''], ['5', '5', ''], ['6', '6', ''], ['=', 'equals', 'equals'],
-        ['abs', 'abs(', 'scientific'], ['EXP', 'E', 'scientific'], ['1', '1', ''], ['2', '2', ''], ['3', '3', ''], ['Ans', 'ans', 'scientific'],
-        ['0', '0', 'zero'], ['.', '.', ''], [',', ',', '']
-      ].map(([label, value, cls]) => `<button class="${cls}" data-action="calc-key" data-value="${esc(value)}">${label}</button>`).join('')}</div><p class="calculator-note">삼각함수는 DEG/RAD 설정을 따릅니다. 키보드로 식을 직접 입력한 뒤 Enter를 눌러도 됩니다.</p></div></div>`;
-    }
     return '';
   }
 
@@ -1068,12 +1014,7 @@
     else if (action === 'select-qualification') { state.qualification = button.dataset.key; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; renderRounds(); }
     else if (action === 'open-mode') { state.modal = { type: 'mode', roundId: button.dataset.round }; route(); }
     else if (action === 'start-mode') startRound(button.dataset.round, button.dataset.mode);
-    else if (action === 'close-modal') {
-      const calculator = state.modal?.type === 'calculator';
-      state.modal = null;
-      if (calculator) button.closest('.calculator-backdrop')?.remove();
-      else route();
-    }
+    else if (action === 'close-modal') { state.modal = null; route(); }
     else if (action === 'open-settings') { state.modal = { type: 'settings' }; route(); }
     else if (action === 'export-backup') exportBackup();
     else if (action === 'choose-backup') document.getElementById('backupFile')?.click();
@@ -1089,11 +1030,7 @@
       renderRounds(); scrollTo(0, 0);
     }
     else if (action === 'recent-ten-years') { applyRecentYearRange(10); renderRounds(); }
-    else if (action === 'open-calculator') {
-      state.modal = { type: 'calculator', expression: '', result: '0', ans: 0, angleMode: 'deg' };
-      app.insertAdjacentHTML('beforeend', renderModal());
-      document.getElementById('calculatorInput')?.focus();
-    }
+    else if (action === 'open-calculator') openCalculatorWindow();
     else if (action === 'open-study-plan') { state.modal = { type: 'study-plan' }; route(); }
     else if (action === 'save-study-plan') {
       const qualification = document.getElementById('studyPlanQualification').value;
@@ -1246,16 +1183,6 @@
       for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
       startCollection(pool.slice(0, count), `${getCatalog(key).shortName} 랜덤 ${count}문제`);
     }
-    else if (action === 'calc-key') calculatorKey(button.dataset.value);
-    else if (action === 'calc-angle') {
-      const input = document.getElementById('calculatorInput');
-      if (state.modal) {
-        state.modal.expression = input?.value || '';
-        state.modal.angleMode = button.dataset.mode === 'rad' ? 'rad' : 'deg';
-      }
-      button.parentElement?.querySelectorAll('button').forEach((item) => item.classList.toggle('active', item.dataset.mode === state.modal?.angleMode));
-      input?.focus();
-    }
     else if (action === 'answer') answerQuestion(Number(button.dataset.number), Number(button.dataset.choice));
     else if (action === 'toggle-bookmark') {
       const id = button.dataset.id; store.bookmarks = store.bookmarks.includes(id) ? store.bookmarks.filter((item) => item !== id) : [...store.bookmarks, id]; saveStore(); route();
@@ -1382,12 +1309,6 @@
   app.addEventListener('click', actionHandler);
   app.addEventListener('change', changeHandler);
   app.addEventListener('input', inputHandler);
-  app.addEventListener('keydown', (event) => {
-    if (event.target?.id === 'calculatorInput' && event.key === 'Enter') {
-      event.preventDefault();
-      evaluateCalculator();
-    }
-  });
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system'); bindFocusable(); route();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
@@ -1399,7 +1320,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=186', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=187', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
