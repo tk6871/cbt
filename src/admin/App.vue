@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 import { createClient, type RealtimeChannel, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import * as echarts from 'echarts/core';
-import { LineChart, PieChart } from 'echarts/charts';
-import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
 import { animate, stagger } from 'motion';
-
-echarts.use([LineChart, PieChart, GridComponent, LegendComponent, TooltipComponent, CanvasRenderer]);
 
 type VisitorProfile = {
   visitor_id: string;
@@ -82,11 +76,6 @@ const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('con
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
 const showLiveVisitors = ref(false);
-const dailyChart = ref<HTMLElement | null>(null);
-const deviceChart = ref<HTMLElement | null>(null);
-let dailyChartInstance: echarts.ECharts | null = null;
-let deviceChartInstance: echarts.ECharts | null = null;
-let worker: Worker | null = null;
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
@@ -204,13 +193,6 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   results.value = (resultResponse.data || []) as ExamResult[];
   attempts.value = (attemptResponse.data || []) as Attempt[];
   await nextTick();
-  if (!visits.value.length) {
-    dailyChartInstance?.dispose();
-    deviceChartInstance?.dispose();
-    dailyChartInstance = null;
-    deviceChartInstance = null;
-  }
-  worker?.postMessage({ visits: visits.value, results: results.value, days: days.value });
   if (!silent) {
     animate('.admin-stat-card', {
       opacity: [0, 1],
@@ -262,55 +244,7 @@ function startAutoRefresh(): void {
   }, 15_000);
 }
 
-function renderCharts(payload: {
-  daily: Array<{ date: string; visits: number; visitors: number }>;
-  devices: Array<{ name: string; value: number }>;
-}): void {
-  if (dailyChart.value) {
-    dailyChartInstance ||= echarts.init(dailyChart.value);
-    dailyChartInstance.setOption({
-      color: ['#1769d2', '#18a87a'],
-      tooltip: { trigger: 'axis' },
-      legend: { bottom: 0, data: ['접속', '방문자'] },
-      grid: { left: 42, right: 18, top: 22, bottom: 52 },
-      xAxis: {
-        type: 'category',
-        data: payload.daily.map((item) => item.date.slice(5)),
-        axisLine: { lineStyle: { color: '#cfd9e6' } }
-      },
-      yAxis: { type: 'value', minInterval: 1, splitLine: { lineStyle: { color: '#edf1f6' } } },
-      series: [
-        { name: '접속', type: 'line', smooth: true, symbol: 'none', areaStyle: { opacity: 0.09 }, data: payload.daily.map((item) => item.visits) },
-        { name: '방문자', type: 'line', smooth: true, symbol: 'none', data: payload.daily.map((item) => item.visitors) }
-      ]
-    });
-  }
-  if (deviceChart.value) {
-    deviceChartInstance ||= echarts.init(deviceChart.value);
-    deviceChartInstance.setOption({
-      color: ['#1769d2', '#18a87a', '#7d61db', '#ef835d'],
-      tooltip: { trigger: 'item' },
-      legend: { bottom: 0 },
-      series: [{
-        type: 'pie',
-        radius: ['48%', '70%'],
-        center: ['50%', '43%'],
-        label: { formatter: '{b}\n{d}%' },
-        data: payload.devices.length ? payload.devices : [{ name: '기록 없음', value: 1, itemStyle: { color: '#dbe3ed' } }]
-      }]
-    });
-  }
-}
-
-function resizeCharts(): void {
-  dailyChartInstance?.resize();
-  deviceChartInstance?.resize();
-}
-
 onMounted(async () => {
-  worker = new Worker(new URL('./stats.worker.ts', import.meta.url), { type: 'module' });
-  worker.onmessage = (event) => renderCharts(event.data);
-  window.addEventListener('resize', resizeCharts);
   if (!client.value) return;
   const { data } = await client.value.auth.getSession();
   session.value = data.session;
@@ -328,10 +262,6 @@ onBeforeUnmount(() => {
   stopRealtime();
   if (clockTimer !== null) window.clearInterval(clockTimer);
   if (autoRefreshTimer !== null) window.clearInterval(autoRefreshTimer);
-  worker?.terminate();
-  window.removeEventListener('resize', resizeCharts);
-  dailyChartInstance?.dispose();
-  deviceChartInstance?.dispose();
 });
 </script>
 
@@ -401,11 +331,6 @@ onBeforeUnmount(() => {
           </article>
         </div>
         <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 1분 안에 IP와 기기가 표시됩니다.</span></div></div>
-      </section>
-
-      <section class="admin-chart-grid">
-        <article :class="{ 'is-empty': !visits.length }"><div class="admin-panel-title"><span>ACCESS TREND</span><h2>일자별 접속</h2></div><div v-if="visits.length" ref="dailyChart" class="chart"></div><div v-else class="chart-empty">접속 기록이 쌓이면 그래프가 표시됩니다.</div></article>
-        <article :class="{ 'is-empty': !visits.length }"><div class="admin-panel-title"><span>DEVICE</span><h2>접속 기기</h2></div><div v-if="visits.length" ref="deviceChart" class="chart"></div><div v-else class="chart-empty">아직 기기 기록이 없습니다.</div></article>
       </section>
 
       <section class="admin-panel">
