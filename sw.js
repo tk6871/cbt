@@ -1,8 +1,8 @@
-const CACHE = 'unified-industrial-cbt-v184';
+const CACHE = 'unified-industrial-cbt-v185';
 const CORE = [
-  './', './index.html', './app.css?v=184', './app.js?v=184', './manifest.webmanifest',
+  './', './index.html', './app.css?v=185', './app.js?v=185', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=184', './data/changelog.js?v=184'
+  './data/hvac.js?v=185', './data/safety.js', './data/energy.js', './data/maintenance.js', './data/jewelry.js?v=185', './data/changelog.js?v=185'
 ];
 async function refreshCoreCache() {
   const cache = await caches.open(CACHE);
