@@ -2,7 +2,9 @@ import Dexie, { type EntityTable } from 'dexie';
 import { reactive, watch } from 'vue';
 import type { AttemptRecord, LegacyStore } from './types';
 
-const STORAGE_KEY = 'unified-industrial-cbt-v1';
+const IS_JEWELRY = window.CBT_APP_SPACE === 'jewelry';
+const STORAGE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-v1' : 'unified-industrial-cbt-v1';
+const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
 
 type AttemptRow = AttemptRecord & { id: string };
@@ -22,7 +24,7 @@ class CbtDatabase extends Dexie {
   exams!: EntityTable<ExamRow, 'id'>;
 
   constructor() {
-    super('industrial-cbt');
+    super(IS_JEWELRY ? 'jewelry-cbt' : 'industrial-cbt');
     this.version(1).stores({
       attempts: 'id, at, lastCorrect',
       exams: 'id, qualificationKey, finishedAt, score',
@@ -34,7 +36,17 @@ export const db = new CbtDatabase();
 
 function loadLegacy(): Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookmarks' | 'history' | 'notes'>> & LegacyStore {
   try {
-    const value = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') as LegacyStore;
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const source = saved || (IS_JEWELRY ? localStorage.getItem(LEGACY_STORAGE_KEY) : null) || '{}';
+    const value = JSON.parse(source) as LegacyStore;
+    if (IS_JEWELRY && !saved) {
+      const jewelryPrefix = /^(?:jewelry-|gem-|precious-)/;
+      value.attempts = Object.fromEntries(Object.entries(value.attempts || {}).filter(([id]) => jewelryPrefix.test(id)));
+      value.wrong = Object.fromEntries(Object.entries(value.wrong || {}).filter(([id]) => jewelryPrefix.test(id)));
+      value.bookmarks = (value.bookmarks || []).filter((id) => jewelryPrefix.test(id));
+      value.notes = Object.fromEntries(Object.entries(value.notes || {}).filter(([id]) => jewelryPrefix.test(id)));
+      value.history = [];
+    }
     return {
       ...value,
       attempts: value.attempts || {},

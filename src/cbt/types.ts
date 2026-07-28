@@ -79,6 +79,7 @@ export type AttemptRecord = {
 
 export type LegacyStore = {
   theme?: 'system' | 'light' | 'dark';
+  fontScale?: number;
   bookmarks?: string[];
   wrong?: Record<string, { count?: number; at?: number } | number | boolean>;
   attempts?: Record<string, AttemptRecord>;
@@ -94,6 +95,21 @@ declare global {
     CBT_DATA_ENERGY?: Catalog;
     CBT_DATA_ENERGY_ENGINEER?: Catalog;
     CBT_DATA_MAINTENANCE?: Catalog;
+    CBT_DATA_JEWELRY?: Catalog[];
+    CBT_APP_SPACE?: 'industrial' | 'jewelry';
+    CBT_CHANGELOG?: {
+      currentVersion?: string;
+      versions?: Record<string, string>;
+      entries?: Array<{
+        version: string;
+        scope?: string;
+        date?: string;
+        title: string;
+        summary?: string;
+        tags?: string[];
+        changes?: string[];
+      }>;
+    };
   }
 }
 

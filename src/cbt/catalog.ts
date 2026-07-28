@@ -13,6 +13,9 @@ function prepareCatalog(source: Catalog): Catalog {
 }
 
 export function loadCatalogs(): Catalog[] {
+  if (window.CBT_APP_SPACE === 'jewelry') {
+    return (window.CBT_DATA_JEWELRY || []).map(prepareCatalog);
+  }
   const sources = [
     window.CBT_DATA_HVAC,
     window.CBT_DATA_SAFETY,

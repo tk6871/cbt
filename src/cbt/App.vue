@@ -18,7 +18,7 @@ import QuestionCard from './QuestionCard.vue';
 import { applyTheme, currentTheme, hydrateIndexedDb, recordAttempt, recordExam, studyStore } from './storage';
 import type { Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'stats';
+type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'stats' | 'updates';
 type ExamResult = {
   score: number;
   correct: number;
@@ -27,6 +27,9 @@ type ExamResult = {
   subjectRows: Array<{ subject: string; correct: number; total: number; score: number; passed: boolean }>;
 };
 
+const isJewelry = window.CBT_APP_SPACE === 'jewelry';
+const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
+const spaceScope = isJewelry ? 'jewelry' : 'industrial';
 const catalogs = loadCatalogs();
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
@@ -34,10 +37,15 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   safety: { icon: '⛑', className: 'orange', description: '안전관리·위험방지' },
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
+  'gem-appraiser': { icon: '◇', className: 'jewel-red', description: '보석학·감별·다이아몬드' },
+  'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
+  'precious-craftsman': { icon: '◈', className: 'jewel-teal', description: '재료·가공·작업안전' },
+  'precious-master': { icon: '✦', className: 'jewel-purple', description: '귀금속가공 종합' },
 };
 
-const savedQualification = localStorage.getItem('modern-cbt-qualification');
-const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : 'hvac');
+const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
+const savedQualification = localStorage.getItem(qualificationStorageKey);
+const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : catalogs[0]?.key || '');
 const view = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
@@ -49,8 +57,15 @@ const examSheetOpen = ref(true);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
 const quickPreset = ref<5 | 10 | 0>(10);
+const settingsOpen = ref(false);
+const searchQuery = ref('');
+const searchResultIds = ref<string[]>([]);
+const searchReady = ref(false);
+const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
 let timerHandle = 0;
 let toastHandle = 0;
+let searchHandle = 0;
+let searchWorker: Worker | null = null;
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
 const availableYears = computed(() => {
@@ -69,6 +84,25 @@ const visibleRounds = computed(() => {
 });
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
+const allItems = catalogs.flatMap((catalog) => sortedRounds(catalog).flatMap((round) => round.questions.map((question) => ({
+  round,
+  question,
+  subject: subjectFor(round, question),
+  id: questionId(round, question),
+}))));
+const itemMap = new Map(allItems.map((item) => [item.id, item]));
+const wrongItems = computed(() => allItems.filter((item) => item.round.qualificationKey === selectedKey.value && studyStore.wrong[item.id]));
+const searchResults = computed(() => searchResultIds.value.map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item)));
+const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
+const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
+const viewTitle = computed(() => ({
+  home: '학습 홈',
+  rounds: '회차별 문제',
+  wrong: '오답노트',
+  search: '문제 검색',
+  stats: '학습 분석',
+  updates: '패치노트',
+})[view.value]);
 const stats = computed(() => {
   const all = selectedCatalog.value.rounds.flatMap((round) => round.questions.map((question) => questionId(round, question)));
   const answered = all.filter((id) => studyStore.attempts[id]);
@@ -102,6 +136,16 @@ const formattedTime = computed(() => {
     : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 });
 const sessionTitle = computed(() => session.value?.title || '산업기사 통합 CBT');
+const subjectStats = computed(() => {
+  const subjects = selectedSubjects.value;
+  return subjects.map((subject) => {
+    const items = selectedItems.value.filter((item) => item.subject === subject);
+    const attempts = items.filter((item) => studyStore.attempts[item.id]);
+    const correct = attempts.filter((item) => studyStore.attempts[item.id]?.lastCorrect).length;
+    const accuracy = attempts.length ? Math.round((correct / attempts.length) * 100) : 0;
+    return { subject, total: items.length, answered: attempts.length, correct, accuracy };
+  });
+});
 
 function setDefaultYears(yearsBack = 10): void {
   const years = availableYears.value;
@@ -117,9 +161,10 @@ function setDefaultYears(yearsBack = 10): void {
 
 function selectQualification(key: string): void {
   selectedKey.value = key;
-  localStorage.setItem('modern-cbt-qualification', key);
+  localStorage.setItem(qualificationStorageKey, key);
   curriculum.value = 'all-mapped';
   setDefaultYears(quickPreset.value);
+  if (searchQuery.value.length >= 2) requestSearch();
   void nextTick(() => {
     animate('.qualification-card', { opacity: [0.65, 1], y: [5, 0] }, { duration: 0.25, delay: stagger(0.035) });
   });
@@ -141,6 +186,40 @@ function openView(next: ViewName): void {
   mobileMenuOpen.value = false;
   window.scrollTo({ top: 0, behavior: 'smooth' });
   window.CBTAnalytics?.trackNavigation?.(`next-${next}`);
+}
+
+function setupSearchWorker(): void {
+  searchWorker = new Worker(new URL('./search.worker.ts', import.meta.url), { type: 'module' });
+  searchWorker.addEventListener('message', (event: MessageEvent) => {
+    const message = event.data as { type: 'ready' | 'results'; ids?: string[] };
+    if (message.type === 'ready') searchReady.value = true;
+    if (message.type === 'results') searchResultIds.value = message.ids || [];
+  });
+  searchWorker.postMessage({
+    type: 'index',
+    entries: allItems.map((item) => ({
+      id: item.id,
+      qualificationKey: item.round.qualificationKey,
+      haystack: [
+        item.question.text,
+        item.question.html,
+        item.subject,
+        item.round.title,
+        ...item.question.choices.map((choice) => choice.text || choice.html || ''),
+      ].join(' ').replace(/<[^>]+>/g, ' ').toLocaleLowerCase('ko'),
+    })),
+  });
+}
+
+function requestSearch(): void {
+  window.clearTimeout(searchHandle);
+  searchHandle = window.setTimeout(() => {
+    searchWorker?.postMessage({
+      type: 'search',
+      query: searchQuery.value,
+      qualificationKey: selectedKey.value,
+    });
+  }, 120);
 }
 
 function roundToItems(round: Round): QuestionItem[] {
@@ -225,6 +304,17 @@ function chooseAnswer(item: QuestionItem, choice: number): void {
       correct: attempt.lastCorrect,
       mode: 'learn',
     });
+  }
+}
+
+function toggleBookmark(item: QuestionItem): void {
+  const index = studyStore.bookmarks.indexOf(item.id);
+  if (index >= 0) {
+    studyStore.bookmarks.splice(index, 1);
+    showToast('북마크에서 제거했습니다.');
+  } else {
+    studyStore.bookmarks.push(item.id);
+    showToast('북마크에 저장했습니다.');
   }
 }
 
@@ -351,6 +441,37 @@ function changeTheme(): void {
   showToast(theme.value === 'system' ? '기기 설정 테마' : theme.value === 'dark' ? '다크 모드' : '라이트 모드');
 }
 
+function setFontScale(value: number): void {
+  fontScale.value = value;
+  studyStore.fontScale = value;
+  document.documentElement.style.fontSize = `${value * 16}px`;
+}
+
+function exportLearningData(): void {
+  const blob = new Blob([JSON.stringify({
+    exportedAt: new Date().toISOString(),
+    space: spaceScope,
+    data: studyStore,
+  }, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `${spaceScope}-cbt-learning-${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast('학습 기록 파일을 저장했습니다.');
+}
+
+function clearLearningData(): void {
+  if (!confirm('오답, 진도, 시험 기록을 모두 초기화할까요? 이 작업은 되돌릴 수 없습니다.')) return;
+  Object.keys(studyStore.attempts).forEach((key) => delete studyStore.attempts[key]);
+  Object.keys(studyStore.wrong).forEach((key) => delete studyStore.wrong[key]);
+  studyStore.bookmarks.splice(0);
+  studyStore.history.splice(0);
+  Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
+  settingsOpen.value = false;
+  showToast('학습 기록을 초기화했습니다.');
+}
+
 function subjectQuestionCount(subject: string): number {
   return selectedItems.value.filter((item) => item.subject === subject).length;
 }
@@ -367,8 +488,10 @@ watch([yearFrom, yearTo], () => {
 
 onMounted(async () => {
   applyTheme(theme.value);
+  setFontScale(fontScale.value);
   setDefaultYears(10);
   await hydrateIndexedDb();
+  setupSearchWorker();
   await nextTick();
   animate('.qualification-card', { opacity: [0, 1], y: [12, 0] }, { duration: 0.38, delay: stagger(0.055) });
 });
@@ -376,6 +499,8 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   stopTimer();
   window.clearTimeout(toastHandle);
+  window.clearTimeout(searchHandle);
+  searchWorker?.terminate();
 });
 </script>
 
@@ -383,19 +508,26 @@ onBeforeUnmount(() => {
   <div v-if="!session" class="app-frame">
     <aside class="sidebar" :class="{ open: mobileMenuOpen }">
       <button class="brand" type="button" @click="openView('home')">
-        <span>CBT</span>
-        <div><strong>산업기사 CBT</strong><small>SMART STUDY</small></div>
+        <span>{{ isJewelry ? 'GEM' : 'CBT' }}</span>
+        <div><strong>{{ spaceName }}</strong><small>{{ isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
       </button>
       <nav>
         <button :class="{ active: view === 'home' }" @click="openView('home')"><span>⌂</span>홈</button>
         <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차별 문제</button>
-        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>학습 통계</button>
-        <a href="index.html"><span>◫</span>기존 CBT</a>
+        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
+        <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>문제 검색</button>
+        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>학습 분석</button>
+        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span>◷</span>패치노트</button>
       </nav>
+      <a class="space-portal" :href="isJewelry ? 'index.html' : 'jewelry.html'">
+        <span>{{ isJewelry ? 'CBT' : '◇' }}</span>
+        <div><strong>{{ isJewelry ? '산업기사 CBT' : '보석관' }}</strong><small>독립 학습 페이지로 이동</small></div>
+        <b>›</b>
+      </a>
       <div class="sidebar-foot">
         <button type="button" @click="openCalculator"><span>▦</span>공학용 계산기</button>
-        <button type="button" @click="changeTheme"><span>◐</span>화면 테마</button>
-        <a href="admin.html"><span>⚙</span>관리자</a>
+        <button type="button" @click="settingsOpen = true"><span>⚙</span>화면·데이터 설정</button>
+        <a href="legacy.html"><span>◫</span>이전 버전</a>
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
@@ -404,12 +536,13 @@ onBeforeUnmount(() => {
       <header class="topbar">
         <button class="menu-button" type="button" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div>
-          <strong>{{ view === 'home' ? '학습 홈' : view === 'rounds' ? '회차별 문제' : '학습 통계' }}</strong>
+          <strong>{{ viewTitle }}</strong>
           <span>{{ selectedCatalog.name }}</span>
         </div>
         <div class="top-actions">
+          <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
-          <button type="button" @click="changeTheme">◐ <span>{{ theme === 'system' ? '자동' : theme === 'dark' ? '어둡게' : '밝게' }}</span></button>
+          <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
 
@@ -545,7 +678,52 @@ onBeforeUnmount(() => {
           </div>
         </template>
 
-        <template v-else>
+        <template v-else-if="view === 'wrong'">
+          <section class="tool-hero wrong-hero">
+            <div><span>WRONG ANSWERS</span><h1>틀린 문제만 빠르게 복습하세요</h1><p>{{ selectedCatalog.name }}에서 현재 {{ wrongItems.length }}문제가 복습을 기다리고 있습니다.</p></div>
+            <button v-if="wrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} 오답 복습`, wrongItems)">전체 오답 다시 풀기</button>
+          </section>
+          <div v-if="wrongItems.length" class="question-library">
+            <article v-for="item in wrongItems" :key="item.id">
+              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
+              <p>{{ item.question.text || '원문 이미지 문제' }}</p>
+              <footer>
+                <span>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
+                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item])">다시 풀기 →</button>
+              </footer>
+            </article>
+          </div>
+          <section v-else class="empty-state"><span>✓</span><h2>현재 오답이 없습니다</h2><p>학습모드에서 틀린 문제가 생기면 이곳에 자동으로 모입니다.</p><button @click="openView('home')">학습 시작하기</button></section>
+        </template>
+
+        <template v-else-if="view === 'search'">
+          <section class="search-command">
+            <span>QUESTION FINDER</span>
+            <h1>문제·보기·과목을 한 번에 검색</h1>
+            <div>
+              <b>⌕</b>
+              <input v-model="searchQuery" type="search" placeholder="예: 냉동사이클, 레이놀즈수, 안전밸브" autofocus @input="requestSearch">
+              <small>{{ searchReady ? `${selectedCatalog.name} 검색 준비 완료` : '문제 색인을 준비하는 중' }}</small>
+            </div>
+          </section>
+          <div class="search-summary">
+            <span v-if="searchQuery.length < 2">두 글자 이상 입력하면 바로 검색됩니다.</span>
+            <span v-else><strong>{{ searchResults.length }}</strong>개의 검색 결과</span>
+          </div>
+          <div v-if="searchResults.length" class="question-library search-library">
+            <article v-for="item in searchResults" :key="item.id">
+              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
+              <p>{{ item.question.text || '원문 이미지 문제' }}</p>
+              <footer>
+                <span>{{ item.round.session || item.round.title }}</span>
+                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번`, [item])">문제 열기 →</button>
+              </footer>
+            </article>
+          </div>
+          <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
+        </template>
+
+        <template v-else-if="view === 'stats'">
           <section class="stats-hero">
             <div><span>LEARNING REPORT</span><h1>{{ selectedCatalog.name }} 학습 통계</h1><p>기존 CBT에서 푼 기록과 새 화면의 기록을 함께 표시합니다.</p></div>
             <strong>{{ stats.accuracy }}<small>%</small></strong>
@@ -556,9 +734,70 @@ onBeforeUnmount(() => {
             <article><span>맞힌 문제</span><strong>{{ stats.correct.toLocaleString() }}</strong><small>최근 선택 기준</small></article>
             <article><span>복습 필요</span><strong>{{ stats.wrong.toLocaleString() }}</strong><small>현재 오답</small></article>
           </section>
+          <section class="subject-report">
+            <header><div><span>SUBJECT ANALYSIS</span><h2>과목별 학습 현황</h2></div><small>최근 선택한 답 기준</small></header>
+            <div v-for="row in subjectStats" :key="row.subject" class="subject-row">
+              <div><strong>{{ row.subject }}</strong><span>{{ row.answered.toLocaleString() }}/{{ row.total.toLocaleString() }}문제 학습</span></div>
+              <div class="subject-bar"><i :style="{ width: `${row.accuracy}%` }" /></div>
+              <b>{{ row.accuracy }}%</b>
+            </div>
+          </section>
+        </template>
+
+        <template v-else>
+          <section class="patch-heading">
+            <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
+            <strong>v{{ currentVersion }}</strong>
+          </section>
+          <div class="patch-timeline">
+            <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
+              <div class="patch-version"><span>v{{ entry.version }}</span><small>{{ entry.date }}</small></div>
+              <div>
+                <header><h2>{{ entry.title }}</h2><b v-if="index === 0">최신</b></header>
+                <p>{{ entry.summary }}</p>
+                <div class="patch-tags"><span v-for="tag in entry.tags || []" :key="tag">{{ tag }}</span></div>
+                <ul><li v-for="change in entry.changes || []" :key="change">{{ change }}</li></ul>
+              </div>
+            </article>
+          </div>
         </template>
       </div>
     </main>
+    <nav class="mobile-tabbar">
+      <button :class="{ active: view === 'home' }" @click="openView('home')"><span>⌂</span>홈</button>
+      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차</button>
+      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답</button>
+      <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>검색</button>
+      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
+    </nav>
+    <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
+      <section class="settings-panel">
+        <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group">
+          <span>화면 테마</span>
+          <div class="theme-options">
+            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)">자동</button>
+            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)">라이트</button>
+            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)">다크</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>문자 크기</span>
+          <div class="font-options">
+            <button :class="{ active: fontScale === .9 }" @click="setFontScale(.9)">작게</button>
+            <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
+            <button :class="{ active: fontScale === 1.1 }" @click="setFontScale(1.1)">크게</button>
+            <button :class="{ active: fontScale === 1.2 }" @click="setFontScale(1.2)">아주 크게</button>
+          </div>
+        </div>
+        <div class="setting-group data-setting">
+          <span>학습 기록</span>
+          <p>이 기기에 저장된 오답·진도·시험 기록을 파일로 보관하거나 초기화할 수 있습니다.</p>
+          <div><button @click="exportLearningData">기록 내보내기</button><button class="danger" @click="clearLearningData">전체 초기화</button></div>
+        </div>
+        <footer><span>현재 버전</span><strong>v{{ currentVersion }}</strong></footer>
+      </section>
+    </div>
   </div>
 
   <div v-else class="session-shell" :class="{ 'exam-mode': session.mode === 'exam', 'sheet-closed': !examSheetOpen }">
@@ -592,7 +831,9 @@ onBeforeUnmount(() => {
             :selected="session.answers[item.id]"
             :subject-start="isSubjectStart(item)"
             :subject-number="sessionSubjectNumber(item)"
+            :bookmarked="studyStore.bookmarks.includes(item.id)"
             @choose="chooseAnswer(item, $event)"
+            @toggle-bookmark="toggleBookmark(item)"
           />
         </div>
         <footer class="pager">
