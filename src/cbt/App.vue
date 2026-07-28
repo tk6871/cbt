@@ -58,6 +58,7 @@ const toastMessage = ref('');
 const theme = ref(currentTheme());
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
+const roundPicker = ref<Round | null>(null);
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
@@ -462,9 +463,15 @@ function toggleLightDark(): void {
 }
 
 function setFontScale(value: number): void {
-  fontScale.value = value;
-  studyStore.fontScale = value;
-  document.documentElement.style.fontSize = `${value * 16}px`;
+  const normalized = Math.min(1.2, Math.max(.9, Math.round(value * 10) / 10));
+  fontScale.value = normalized;
+  studyStore.fontScale = normalized;
+  document.documentElement.style.fontSize = `${normalized * 16}px`;
+}
+
+function adjustFontScale(amount: number): void {
+  setFontScale(fontScale.value + amount);
+  showToast(`문자 크기 ${Math.round(fontScale.value * 100)}%`);
 }
 
 function exportLearningData(): void {
@@ -500,6 +507,29 @@ function roundProgress(round: Round): number {
   const ids = round.questions.map((question) => questionId(round, question));
   const answered = ids.filter((id) => studyStore.attempts[id]).length;
   return ids.length ? Math.round((answered / ids.length) * 100) : 0;
+}
+
+function roundAnswered(round: Round): number {
+  return round.questions.filter((question) => studyStore.attempts[questionId(round, question)]).length;
+}
+
+function roundExamMinutes(round: Round): number {
+  return Math.round(round.questions.length * 1.5);
+}
+
+function isRestoredRound(round: Round): boolean {
+  return round.qualificationKey === 'hvac' && round.year >= 2021;
+}
+
+function openRoundPicker(round: Round): void {
+  roundPicker.value = round;
+}
+
+function chooseRoundMode(mode: StudyMode): void {
+  if (!roundPicker.value) return;
+  const round = roundPicker.value;
+  roundPicker.value = null;
+  startRound(round, mode);
 }
 
 watch([yearFrom, yearTo], () => {
@@ -685,15 +715,15 @@ onBeforeUnmount(() => {
           </section>
           <div class="round-grid">
             <article v-for="round in visibleRounds" :key="round.id" class="round-card">
-              <header><span>{{ round.year }}년</span><b>{{ round.session || '기출' }}</b></header>
+              <header><span>{{ round.shortQualification || round.qualification }}</span><b>{{ round.year }}년</b></header>
+              <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
               <h2>{{ round.title }}</h2>
+              <p>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
               <div class="round-subjects"><span v-for="subject in round.subjects" :key="subject">{{ subject }}</span></div>
-              <div class="round-progress">
-                <span><i :style="{ width: `${roundProgress(round)}%` }" /></span><b>{{ roundProgress(round) }}%</b>
-              </div>
+              <div v-if="roundAnswered(round)" class="round-progress"><span><i :style="{ width: `${roundProgress(round)}%` }" /></span></div>
+              <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
               <footer>
-                <button type="button" @click="startRound(round, 'learn')">학습모드</button>
-                <button type="button" @click="startRound(round, 'exam')">시험모드</button>
+                <button type="button" @click="openRoundPicker(round)">{{ roundAnswered(round) ? '이어 풀기' : '시작하기' }} <span>›</span></button>
               </footer>
             </article>
           </div>
@@ -791,6 +821,18 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>검색</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
     </nav>
+    <div v-if="roundPicker" class="round-mode-backdrop" @click.self="roundPicker = null">
+      <section class="round-mode-dialog" role="dialog" aria-modal="true" aria-label="풀이 방식 선택">
+        <button class="round-mode-close" type="button" aria-label="닫기" @click="roundPicker = null">×</button>
+        <span>{{ roundPicker.shortQualification || roundPicker.qualification }}</span>
+        <h2>{{ roundPicker.title }}</h2>
+        <p>{{ roundPicker.questions.length }}문제 · {{ roundPicker.subjects.length }}과목 · 시험 {{ roundExamMinutes(roundPicker) }}분</p>
+        <div>
+          <button type="button" @click="chooseRoundMode('learn')"><span>학습모드</span><strong>여러 문제씩 풀이</strong><small>정답과 쉬운 해설을 바로 확인합니다.</small></button>
+          <button type="button" @click="chooseRoundMode('exam')"><span>시험모드</span><strong>실제 CBT 형식</strong><small>OMR 답안지와 타이머로 실전처럼 풉니다.</small></button>
+        </div>
+      </section>
+    </div>
     <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
@@ -827,6 +869,11 @@ onBeforeUnmount(() => {
       <div><span>{{ session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span><strong>{{ sessionTitle }}</strong></div>
       <div class="session-tools">
         <button type="button" @click="openCalculator">▦ 계산기</button>
+        <div class="session-font-control" aria-label="문자 크기 조절">
+          <button type="button" aria-label="문자 작게" :disabled="fontScale <= .9" @click="adjustFontScale(-.1)">가−</button>
+          <button type="button" title="기본 크기로" @click="setFontScale(1)">{{ Math.round(fontScale * 100) }}%</button>
+          <button type="button" aria-label="문자 크게" :disabled="fontScale >= 1.2" @click="adjustFontScale(.1)">가+</button>
+        </div>
         <label v-if="session.mode === 'learn'">
           문제 표시
           <select v-model.number="session.pageSize" @change="session.page = 0">
