@@ -51,3 +51,15 @@ GitHub Pages 자체에는 데이터베이스와 서버 기능이 없기 때문�
 
 3. 위치는 IP 기반의 대략적인 국가·지역·도시 정보입니다.
    통신사, VPN, 회사망 환경에 따라 실제 위치와 다르게 표시될 수 있습니다.
+
+[과목별 점수·묶음 전송 업데이트]
+이미 관리자 기능을 사용 중이라면 아래 두 가지만 추가로 진행합니다.
+
+1. Supabase SQL Editor에서 supabase/subject-scores-migration.sql 내용을 실행합니다.
+
+2. Edge Functions > cbt-analytics에서 기존 코드를
+   supabase/functions/cbt-analytics/index.ts 내용으로 교체하고 다시 배포합니다.
+
+사이트 업데이트 후에는 문제 기록이 최대 20개씩 묶여 전송되고,
+접속 유지 신호는 3분 간격으로 전송됩니다.
+시험을 마치면 총점과 과목별 점수가 즉시 저장됩니다.

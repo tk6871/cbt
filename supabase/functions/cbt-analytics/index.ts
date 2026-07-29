@@ -28,6 +28,21 @@ function integer(value: unknown, min: number, max: number): number {
   return Number.isFinite(parsed) ? Math.min(max, Math.max(min, parsed)) : min;
 }
 
+function subjectScores(value: unknown): Array<{ subject: string; correct: number; total: number; score: number }> {
+  if (!Array.isArray(value)) return [];
+  return value.slice(0, 20).map((entry) => {
+    const row = entry && typeof entry === 'object' ? entry as Record<string, unknown> : {};
+    const total = integer(row.total, 1, 1000);
+    const correct = integer(row.correct, 0, total);
+    return {
+      subject: text(row.subject, 120),
+      correct,
+      total,
+      score: integer(row.score, 0, 100)
+    };
+  }).filter((row) => row.subject);
+}
+
 function requestIp(request: Request): string | null {
   const value = request.headers.get('cf-connecting-ip')
     || request.headers.get('x-forwarded-for')
@@ -224,6 +239,7 @@ Deno.serve(async (request) => {
     total_count: integer(event.payload.total, 1, 1000),
     unanswered_count: integer(event.payload.unanswered, 0, 1000),
     duration_seconds: integer(event.payload.durationSeconds, 0, 86400),
+    subject_scores: subjectScores(event.payload.subjects),
     completed_at: text(event.payload.occurredAt, 40) || now
   }));
 

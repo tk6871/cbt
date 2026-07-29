@@ -30,6 +30,12 @@ type AnalyticsResult = {
   total: number;
   unanswered: number;
   durationSeconds?: number;
+  subjects?: Array<{
+    subject: string;
+    correct: number;
+    total: number;
+    score: number;
+  }>;
 };
 
 interface Window {

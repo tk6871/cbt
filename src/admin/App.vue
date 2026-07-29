@@ -47,6 +47,12 @@ type ExamResult = {
   correct_count: number;
   total_count: number;
   unanswered_count: number;
+  subject_scores: Array<{
+    subject: string;
+    correct: number;
+    total: number;
+    score: number;
+  }> | null;
   completed_at: string;
 };
 
@@ -92,7 +98,7 @@ let clockTimer: number | null = null;
 let autoRefreshTimer: number | null = null;
 
 const activeVisitors = computed(() => {
-  const since = clockNow.value - 2 * 60 * 1000;
+  const since = clockNow.value - (3 * 60 + 15) * 1000;
   return visitors.value.filter((item) => new Date(item.last_seen).getTime() >= since);
 });
 const activeNow = computed(() => activeVisitors.value.length);
@@ -360,7 +366,7 @@ onBeforeUnmount(() => {
 
       <section v-if="showLiveVisitors" class="live-access-panel">
         <div class="live-access-heading">
-          <div><span class="admin-kicker">LIVE ACCESS</span><h2>현재 접속 중</h2><p>최근 2분 안에 일반 CBT에서 활동 신호를 보낸 접속자입니다.</p></div>
+          <div><span class="admin-kicker">LIVE ACCESS</span><h2>현재 접속 중</h2><p>최근 3분 안에 일반 CBT에서 활동 신호를 보낸 접속자입니다.</p></div>
           <strong><i></i>{{ activeNow }}명 접속 중</strong>
         </div>
         <div v-if="activeVisitors.length" class="live-visitor-grid">
@@ -375,7 +381,7 @@ onBeforeUnmount(() => {
             </dl>
           </article>
         </div>
-        <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 1분 안에 IP와 기기가 표시됩니다.</span></div></div>
+        <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 3분 안에 IP와 기기가 표시됩니다.</span></div></div>
       </section>
 
       <section class="admin-panel">
@@ -401,13 +407,20 @@ onBeforeUnmount(() => {
         <div class="admin-panel-title"><span>EXAM RESULTS</span><h2>최근 시험 점수</h2><p>선택 기간 {{ results.length }}건</p></div>
         <div class="admin-table-wrap">
           <table>
-            <thead><tr><th>완료 시각</th><th>IP 주소</th><th>종목</th><th>시험</th><th>모드</th><th>점수</th><th>정답</th></tr></thead>
+            <thead><tr><th>완료 시각</th><th>IP 주소</th><th>종목</th><th>시험</th><th>모드</th><th>총점</th><th>과목별 점수</th><th>정답</th></tr></thead>
             <tbody>
               <tr v-for="result in results.slice(0, 100)" :key="result.id">
                 <td>{{ formatDate(result.completed_at) }}</td><td><code>{{ result.ip_address || '-' }}</code></td><td>{{ result.qualification || '-' }}</td><td>{{ result.title || '-' }}</td>
-                <td>{{ result.mode === 'exam' ? '시험' : '학습' }}</td><td><strong class="score">{{ result.score }}점</strong></td><td>{{ result.correct_count }}/{{ result.total_count }}</td>
+                <td>{{ result.mode === 'exam' ? '시험' : '학습' }}</td><td><strong class="score">{{ result.score }}점</strong></td>
+                <td>
+                  <div v-if="result.subject_scores?.length" class="subject-score-list">
+                    <span v-for="subject in result.subject_scores" :key="subject.subject"><b>{{ subject.subject }}</b>{{ subject.score }}점</span>
+                  </div>
+                  <span v-else>-</span>
+                </td>
+                <td>{{ result.correct_count }}/{{ result.total_count }}</td>
               </tr>
-              <tr v-if="!results.length"><td colspan="7" class="empty-cell">완료된 시험 기록이 없습니다.</td></tr>
+              <tr v-if="!results.length"><td colspan="8" class="empty-cell">완료된 시험 기록이 없습니다.</td></tr>
             </tbody>
           </table>
         </div>
