@@ -304,17 +304,6 @@
     };
     if (correct) delete store.wrong[id];
     else store.wrong[id] = { at: now, selected, count: store.attempts[id].wrongCount };
-    window.CBTAnalytics?.trackAttempt({
-      qualificationKey: round.qualificationKey,
-      qualification: round.qualification || round.shortQualification,
-      roundId: round.id,
-      roundTitle: round.title,
-      questionNumber: question._originalNumber || question.number,
-      selectedAnswer: selected,
-      correctAnswer: question.answer,
-      correct,
-      mode: state.session?.mode || 'learn'
-    });
   }
   function dueReviewItems() {
     const now = Date.now();
@@ -914,6 +903,48 @@
     const s = state.session; if (!s || s.mode !== 'learn' || s.transient) return;
     store.progress[s.round.id] = { answers: s.answers, revealed: s.revealed, subject: s.subject, page: s.page, pageSize: s.pageSize, updatedAt: Date.now() }; saveStore();
   }
+  function sessionScoreSummary(s) {
+    let correct = 0;
+    const subjects = {};
+    s.questions.forEach((question) => {
+      const selected = s.answers[question.number];
+      const isCorrect = selected === question.answer;
+      const subject = subjectFor(s.round, question);
+      if (isCorrect) correct++;
+      subjects[subject] ||= { correct: 0, total: 0 };
+      subjects[subject].total++;
+      if (isCorrect) subjects[subject].correct++;
+    });
+    return {
+      correct,
+      total: s.questions.length,
+      unanswered: s.questions.filter((question) => s.answers[question.number] == null).length,
+      score: Math.round(correct / s.questions.length * 100),
+      subjects
+    };
+  }
+  function sendSessionAnalytics(s, summary = sessionScoreSummary(s)) {
+    if (!s || s.resultSent || Object.keys(s.answers).length === 0) return;
+    s.resultSent = true;
+    window.CBTAnalytics?.trackResult({
+      qualificationKey: s.round.qualificationKey,
+      qualification: s.round.qualification || s.round.shortQualification,
+      roundId: s.round.id,
+      title: s.round.title,
+      mode: s.mode,
+      score: summary.score,
+      correct: summary.correct,
+      total: summary.total,
+      unanswered: summary.unanswered,
+      durationSeconds: Math.max(0, Math.round((Date.now() - s.startedAt) / 1000)),
+      subjects: Object.entries(summary.subjects).map(([subject, value]) => ({
+        subject,
+        correct: value.correct,
+        total: value.total,
+        score: Math.round(value.correct / value.total * 100)
+      }))
+    });
+  }
   function finishSession(auto) {
     const s = state.session; if (!s) return;
     const unanswered = s.questions.filter((question) => s.answers[question.number] == null).length;
@@ -932,24 +963,7 @@
     const score = Math.round(correct / s.questions.length * 100);
     state.result = { score, correct, total: s.questions.length, unanswered, subjects: subjectMap, title: s.round.title, answers: Object.assign({}, s.answers), questions: s.questions, round: s.round, mode: s.mode };
     store.history.unshift({ roundId: s.round.id, title: s.round.title, score, correct, total: s.questions.length, at: Date.now() }); store.history = store.history.slice(0, 50); saveStore();
-    window.CBTAnalytics?.trackResult({
-      qualificationKey: s.round.qualificationKey,
-      qualification: s.round.qualification || s.round.shortQualification,
-      roundId: s.round.id,
-      title: s.round.title,
-      mode: s.mode,
-      score,
-      correct,
-      total: s.questions.length,
-      unanswered,
-      durationSeconds: Math.max(0, Math.round((Date.now() - s.startedAt) / 1000)),
-      subjects: Object.entries(subjectMap).map(([subject, value]) => ({
-        subject,
-        correct: value.correct,
-        total: value.total,
-        score: Math.round(value.correct / value.total * 100)
-      }))
-    });
+    sendSessionAnalytics(s, { score, correct, total: s.questions.length, unanswered, subjects: subjectMap });
     state.session = null; state.view = 'result'; renderResult();
   }
   function renderResult() {
@@ -1313,7 +1327,14 @@
       document.querySelector?.('.sheet-backdrop')?.classList.toggle('open', state.examSheetOpen);
     }
     else if (action === 'finish-session') finishSession(false);
-    else if (action === 'leave-session') { if (state.session?.mode !== 'exam' || confirm('시험을 종료하고 나갈까요? 현재 답안은 저장되지 않습니다.')) { clearInterval(timerHandle); state.session = null; renderRounds(); } }
+    else if (action === 'leave-session') {
+      if (state.session?.mode !== 'exam' || confirm('시험을 종료하고 나갈까요? 현재까지의 점수는 관리자 기록에 저장됩니다.')) {
+        clearInterval(timerHandle);
+        sendSessionAnalytics(state.session);
+        state.session = null;
+        renderRounds();
+      }
+    }
     else if (action === 'retry-result') { const round = rRound(); if (round) startRound(round.id, state.result.mode); }
     else if (action === 'force-refresh') forceRefresh();
     else if (action === 'reset-progress' && confirm('모든 학습 기록, 오답, 북마크, 메모, 풀이시간과 시험계획을 초기화할까요?')) { store = defaultStore(); saveStore(); state.modal = null; renderHome(); }
@@ -1414,6 +1435,7 @@
   app.addEventListener('click', actionHandler);
   app.addEventListener('change', changeHandler);
   app.addEventListener('input', inputHandler);
+  window.addEventListener('pagehide', () => sendSessionAnalytics(state.session));
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system'); bindFocusable(); route();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
@@ -1425,7 +1447,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=231', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=232', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();

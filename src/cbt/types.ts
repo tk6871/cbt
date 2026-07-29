@@ -66,6 +66,7 @@ export type SessionState = {
   startedAt: number;
   remainingSeconds: number;
   finished: boolean;
+  resultSent: boolean;
 };
 
 export type AttemptRecord = {

@@ -163,9 +163,7 @@ Deno.serve(async (request) => {
       };
 
   const visitIncrement = events.filter((event) => event.type === 'visit').length;
-  const attempts = events.filter((event) => event.type === 'attempt');
   const results = events.filter((event) => event.type === 'result');
-  const correctIncrement = attempts.filter((event) => Boolean(event.payload.correct)).length;
   const scores = results.map((event) => integer(event.payload.score, 0, 100));
   const lastScore = scores.length ? scores[scores.length - 1] : existing?.last_score ?? null;
   const bestScore = scores.length ? Math.max(existing?.best_score ?? 0, ...scores) : existing?.best_score ?? null;
@@ -176,8 +174,8 @@ Deno.serve(async (request) => {
     first_seen: existing?.first_seen || now,
     last_seen: now,
     visit_count: Number(existing?.visit_count || 0) + visitIncrement,
-    attempt_count: Number(existing?.attempt_count || 0) + attempts.length,
-    correct_count: Number(existing?.correct_count || 0) + correctIncrement,
+    attempt_count: Number(existing?.attempt_count || 0),
+    correct_count: Number(existing?.correct_count || 0),
     exam_count: Number(existing?.exam_count || 0) + results.length,
     last_score: lastScore,
     best_score: bestScore,
@@ -211,21 +209,6 @@ Deno.serve(async (request) => {
     app_version: text(event.payload.appVersion, 30)
   }));
 
-  const attemptRows = attempts.map((event) => ({
-    visitor_id: visitorId,
-    ip_address: ipAddress,
-    qualification_key: text(event.payload.qualificationKey, 60),
-    qualification: text(event.payload.qualification, 120),
-    round_id: text(event.payload.roundId, 120),
-    round_title: text(event.payload.roundTitle, 240),
-    question_number: integer(event.payload.questionNumber, 1, 1000),
-    selected_answer: integer(event.payload.selectedAnswer, 1, 4),
-    correct_answer: integer(event.payload.correctAnswer, 1, 4),
-    is_correct: Boolean(event.payload.correct),
-    mode: text(event.payload.mode, 30),
-    answered_at: text(event.payload.occurredAt, 40) || now
-  }));
-
   const resultRows = results.map((event) => ({
     visitor_id: visitorId,
     ip_address: ipAddress,
@@ -245,7 +228,6 @@ Deno.serve(async (request) => {
 
   const inserts = [];
   if (visitRows.length) inserts.push(supabase.from('visit_events').insert(visitRows));
-  if (attemptRows.length) inserts.push(supabase.from('question_attempts').insert(attemptRows));
   if (resultRows.length) inserts.push(supabase.from('exam_results').insert(resultRows));
   const responses = await Promise.all(inserts);
   const insertError = responses.find((response) => response.error)?.error;

@@ -56,20 +56,6 @@ type ExamResult = {
   completed_at: string;
 };
 
-type Attempt = {
-  id: number;
-  visitor_id: string;
-  ip_address: string | null;
-  qualification: string | null;
-  round_title: string | null;
-  question_number: number;
-  selected_answer: number;
-  correct_answer: number;
-  is_correct: boolean;
-  mode: string | null;
-  answered_at: string;
-};
-
 const config = window.CBT_CLOUD_CONFIG;
 const configured = Boolean(config?.enabled && config.supabaseUrl && config.supabaseAnonKey);
 const client = ref<SupabaseClient | null>(configured ? createClient(config!.supabaseUrl, config!.supabaseAnonKey, {
@@ -85,13 +71,10 @@ const days = ref(30);
 const visitors = ref<VisitorProfile[]>([]);
 const visits = ref<Visit[]>([]);
 const results = ref<ExamResult[]>([]);
-const attempts = ref<Attempt[]>([]);
 const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
 const showLiveVisitors = ref(false);
-const selectedAttemptVisitor = ref<string | null>(null);
-const attemptDisplayLimit = ref(8);
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
@@ -106,35 +89,14 @@ const activeToday = computed(() => {
   const since = Date.now() - 24 * 60 * 60 * 1000;
   return new Set(visits.value.filter((item) => new Date(item.visited_at).getTime() >= since).map((item) => item.visitor_id)).size;
 });
-const solvedTotal = computed(() => visitors.value.reduce((sum, item) => sum + Number(item.attempt_count || 0), 0));
+const answeredTotal = computed(() => results.value.reduce(
+  (sum, item) => sum + Math.max(0, Number(item.total_count || 0) - Number(item.unanswered_count || 0)),
+  0
+));
 const examTotal = computed(() => visitors.value.reduce((sum, item) => sum + Number(item.exam_count || 0), 0));
 const averageScore = computed(() => results.value.length
   ? Math.round(results.value.reduce((sum, item) => sum + Number(item.score || 0), 0) / results.value.length)
   : 0);
-const attemptVisitorOptions = computed(() => {
-  const counts = new Map<string, number>();
-  attempts.value.forEach((attempt) => counts.set(attempt.visitor_id, (counts.get(attempt.visitor_id) || 0) + 1));
-  return [...counts.entries()].map(([visitorId, count]) => ({
-    visitorId,
-    count,
-    profile: visitors.value.find((visitor) => visitor.visitor_id === visitorId) || null
-  }));
-});
-const filteredAttempts = computed(() => {
-  if (selectedAttemptVisitor.value) {
-    return attempts.value.filter((attempt) => attempt.visitor_id === selectedAttemptVisitor.value);
-  }
-  const seen = new Set<string>();
-  return attempts.value.filter((attempt) => {
-    if (seen.has(attempt.visitor_id)) return false;
-    seen.add(attempt.visitor_id);
-    return true;
-  });
-});
-const visibleAttempts = computed(() => filteredAttempts.value.slice(0, attemptDisplayLimit.value));
-const accuracy = (visitor: VisitorProfile) => visitor.attempt_count
-  ? Math.round(visitor.correct_count / visitor.attempt_count * 100)
-  : 0;
 const realtimeLabel = computed(() => ({
   connecting: '실시간 연결 중',
   connected: '실시간 연결됨',
@@ -165,11 +127,6 @@ function locationLabel(visitor: VisitorProfile): string {
 
 function locationDetail(visitor: VisitorProfile): string {
   return [visitor.network_provider, visitor.location_timezone].filter(Boolean).join(' · ') || 'IP 기반 추정 위치';
-}
-
-function selectAttemptVisitor(visitorId: string | null): void {
-  selectedAttemptVisitor.value = visitorId;
-  attemptDisplayLimit.value = 8;
 }
 
 function viewLabel(value: string | null): string {
@@ -213,7 +170,6 @@ async function logout(): Promise<void> {
   visitors.value = [];
   visits.value = [];
   results.value = [];
-  attempts.value = [];
   if (autoRefreshTimer !== null) {
     window.clearInterval(autoRefreshTimer);
     autoRefreshTimer = null;
@@ -226,14 +182,13 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   if (!silent) loading.value = true;
   dataError.value = '';
   const since = new Date(Date.now() - days.value * 24 * 60 * 60 * 1000).toISOString();
-  const [visitorResponse, visitResponse, resultResponse, attemptResponse] = await Promise.all([
+  const [visitorResponse, visitResponse, resultResponse] = await Promise.all([
     client.value.from('visitor_profiles').select('*').order('last_seen', { ascending: false }).limit(300),
     client.value.from('visit_events').select('id,visitor_id,visited_at,device_type,browser,path').gte('visited_at', since).order('visited_at', { ascending: false }).limit(3000),
-    client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000),
-    client.value.from('question_attempts').select('*').gte('answered_at', since).order('answered_at', { ascending: false }).limit(2000)
+    client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000)
   ]);
   if (!silent) loading.value = false;
-  const error = visitorResponse.error || visitResponse.error || resultResponse.error || attemptResponse.error;
+  const error = visitorResponse.error || visitResponse.error || resultResponse.error;
   if (error) {
     dataError.value = '관리자 권한이 없거나 데이터베이스 설정이 완료되지 않았습니다.';
     visitors.value = [];
@@ -242,7 +197,6 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   visitors.value = (visitorResponse.data || []) as VisitorProfile[];
   visits.value = (visitResponse.data || []) as Visit[];
   results.value = (resultResponse.data || []) as ExamResult[];
-  attempts.value = (attemptResponse.data || []) as Attempt[];
   await nextTick();
   if (!silent) {
     animate('.admin-stat-card', {
@@ -279,7 +233,6 @@ function startRealtime(): void {
     .channel(`cbt-admin-live-${session.value.user.id}`)
     .on('postgres_changes', { event: '*', schema: 'public', table: 'visitor_profiles' }, scheduleRealtimeReload)
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'visit_events' }, scheduleRealtimeReload)
-    .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'question_attempts' }, scheduleRealtimeReload)
     .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'exam_results' }, scheduleRealtimeReload)
     .subscribe((status) => {
       if (status === 'SUBSCRIBED') realtimeStatus.value = 'connected';
@@ -340,7 +293,7 @@ onBeforeUnmount(() => {
 
     <template v-else>
       <header class="admin-header">
-        <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>방문·문제풀이·시험점수</small></div></div>
+        <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>방문·학습결과·시험점수</small></div></div>
         <div class="admin-header-actions">
           <div class="live-status" :class="`is-${realtimeStatus}`"><i></i><div><strong>{{ realtimeLabel }}</strong><small>현재 {{ activeNow }}명</small></div></div>
           <label>기간<select v-model.number="days" @change="loadData()"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
@@ -359,9 +312,9 @@ onBeforeUnmount(() => {
       <section class="admin-stats">
         <button type="button" class="admin-stat-card live-card" :aria-expanded="showLiveVisitors" @click="showLiveVisitors = !showLiveVisitors"><span>현재 접속 추정</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>{{ showLiveVisitors ? '접속 목록 닫기' : '눌러서 IP 목록 보기' }}</small></button>
         <article class="admin-stat-card"><span>최근 24시간 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저 기준</small></article>
-        <article class="admin-stat-card"><span>누적 풀이 기록</span><strong>{{ solvedTotal.toLocaleString() }}</strong><small>관리자 수집 시작 이후</small></article>
-        <article class="admin-stat-card"><span>완료 시험</span><strong>{{ examTotal.toLocaleString() }}</strong><small>학습 결과 포함</small></article>
-        <article class="admin-stat-card"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>선택 기간 완료 시험</small></article>
+        <article class="admin-stat-card"><span>채점된 답안</span><strong>{{ answeredTotal.toLocaleString() }}</strong><small>선택 기간 결과 합계</small></article>
+        <article class="admin-stat-card"><span>제출 결과</span><strong>{{ examTotal.toLocaleString() }}</strong><small>학습·CBT·중도 종료 포함</small></article>
+        <article class="admin-stat-card"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>선택 기간 제출 결과</small></article>
       </section>
 
       <section v-if="showLiveVisitors" class="live-access-panel">
@@ -377,7 +330,7 @@ onBeforeUnmount(() => {
               <div><dt>추정 위치</dt><dd>{{ locationLabel(visitor) }}</dd></div>
               <div><dt>현재 화면</dt><dd>{{ viewLabel(visitor.last_path) }}</dd></div>
               <div><dt>마지막 신호</dt><dd>{{ formatDate(visitor.last_seen) }}</dd></div>
-              <div><dt>풀이·시험</dt><dd>{{ visitor.attempt_count }}문제 · {{ visitor.exam_count }}회</dd></div>
+              <div><dt>제출 결과</dt><dd>{{ visitor.exam_count }}회</dd></div>
             </dl>
           </article>
         </div>
@@ -388,30 +341,32 @@ onBeforeUnmount(() => {
         <div class="admin-panel-title"><span>RECENT VISITORS</span><h2>최근 접속 IP</h2><p>{{ visitors.length }}개 브라우저 · 마지막 실시간 반영 {{ formatDate(realtimeUpdatedAt) }}</p></div>
         <div class="admin-table-wrap">
           <table>
-            <thead><tr><th>최근 접속</th><th>IP 주소</th><th>추정 위치</th><th>방문자 ID</th><th>기기</th><th>접속</th><th>풀이</th><th>정답률</th><th>최근/최고 점수</th></tr></thead>
+            <thead><tr><th>최근 접속</th><th>IP 주소</th><th>추정 위치</th><th>방문자 ID</th><th>기기</th><th>접속</th><th>제출 결과</th><th>최근/최고 점수</th></tr></thead>
             <tbody>
               <tr v-for="visitor in visitors" :key="visitor.visitor_id">
                 <td>{{ formatDate(visitor.last_seen) }}</td><td><code>{{ visitor.ip_address || '-' }}</code></td>
                 <td class="location-cell"><strong>{{ locationLabel(visitor) }}</strong><small>{{ locationDetail(visitor) }}</small></td>
                 <td :title="visitor.visitor_id">{{ shortId(visitor.visitor_id) }}</td>
-                <td>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</td><td>{{ visitor.visit_count }}</td><td>{{ visitor.attempt_count }}</td><td>{{ accuracy(visitor) }}%</td>
+                <td>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</td><td>{{ visitor.visit_count }}</td><td>{{ visitor.exam_count }}</td>
                 <td>{{ visitor.last_score ?? '-' }} / {{ visitor.best_score ?? '-' }}</td>
               </tr>
-              <tr v-if="!visitors.length"><td colspan="9" class="empty-cell">아직 수집된 방문 기록이 없습니다.</td></tr>
+              <tr v-if="!visitors.length"><td colspan="8" class="empty-cell">아직 수집된 방문 기록이 없습니다.</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
       <section class="admin-panel">
-        <div class="admin-panel-title"><span>EXAM RESULTS</span><h2>최근 시험 점수</h2><p>선택 기간 {{ results.length }}건</p></div>
+        <div class="admin-panel-title"><span>SESSION RESULTS</span><h2>최근 학습·CBT 결과</h2><p>문제별 선택은 수집하지 않으며 선택 기간 {{ results.length }}건</p></div>
         <div class="admin-table-wrap">
           <table>
-            <thead><tr><th>완료 시각</th><th>IP 주소</th><th>종목</th><th>시험</th><th>모드</th><th>총점</th><th>과목별 점수</th><th>정답</th></tr></thead>
+            <thead><tr><th>제출 시각</th><th>IP 주소</th><th>종목</th><th>학습 범위</th><th>모드</th><th>상태</th><th>총점</th><th>과목별 점수</th><th>정답</th></tr></thead>
             <tbody>
               <tr v-for="result in results.slice(0, 100)" :key="result.id">
                 <td>{{ formatDate(result.completed_at) }}</td><td><code>{{ result.ip_address || '-' }}</code></td><td>{{ result.qualification || '-' }}</td><td>{{ result.title || '-' }}</td>
-                <td>{{ result.mode === 'exam' ? '시험' : '학습' }}</td><td><strong class="score">{{ result.score }}점</strong></td>
+                <td>{{ result.mode === 'exam' ? 'CBT' : '학습' }}</td>
+                <td><span :class="result.unanswered_count ? 'exit-chip' : 'complete-chip'">{{ result.unanswered_count ? `중도 종료 · ${result.unanswered_count}문제 미응답` : '완료' }}</span></td>
+                <td><strong class="score">{{ result.score }}점</strong></td>
                 <td>
                   <div v-if="result.subject_scores?.length" class="subject-score-list">
                     <span v-for="subject in result.subject_scores" :key="subject.subject"><b>{{ subject.subject }}</b>{{ subject.score }}점</span>
@@ -420,46 +375,10 @@ onBeforeUnmount(() => {
                 </td>
                 <td>{{ result.correct_count }}/{{ result.total_count }}</td>
               </tr>
-              <tr v-if="!results.length"><td colspan="8" class="empty-cell">완료된 시험 기록이 없습니다.</td></tr>
+              <tr v-if="!results.length"><td colspan="9" class="empty-cell">제출된 학습·CBT 결과가 없습니다.</td></tr>
             </tbody>
           </table>
         </div>
-      </section>
-
-      <section class="admin-panel">
-        <div class="admin-panel-title"><span>QUESTION ATTEMPTS</span><h2>접속자별 최근 푼 문제</h2><p>처음에는 최근 8문제만 표시</p></div>
-        <div class="attempt-visitor-filter">
-          <button type="button" :class="{ active: selectedAttemptVisitor === null }" @click="selectAttemptVisitor(null)"><strong>전체 접속자</strong><small>접속자마다 최근 1문제</small></button>
-          <button
-            v-for="option in attemptVisitorOptions"
-            :key="option.visitorId"
-            type="button"
-            :class="{ active: selectedAttemptVisitor === option.visitorId }"
-            @click="selectAttemptVisitor(option.visitorId)"
-          >
-            <strong>{{ option.profile?.ip_address || shortId(option.visitorId) }}</strong>
-            <small>{{ option.profile ? locationLabel(option.profile) : '위치 미확인' }} · {{ option.count }}문제</small>
-          </button>
-        </div>
-        <div class="admin-table-wrap">
-          <table>
-            <thead><tr><th>풀이 시각</th><th>IP 주소</th><th>종목</th><th>회차·문제</th><th>선택/정답</th><th>결과</th><th>모드</th></tr></thead>
-            <tbody>
-              <tr v-for="attempt in visibleAttempts" :key="attempt.id">
-                <td>{{ formatDate(attempt.answered_at) }}</td><td><code>{{ attempt.ip_address || '-' }}</code></td><td>{{ attempt.qualification || '-' }}</td>
-                <td>{{ attempt.round_title || '-' }} · {{ attempt.question_number }}번</td><td>{{ attempt.selected_answer }} / {{ attempt.correct_answer }}</td>
-                <td><span :class="attempt.is_correct ? 'correct-chip' : 'wrong-chip'">{{ attempt.is_correct ? '정답' : '오답' }}</span></td><td>{{ attempt.mode === 'exam' ? '시험' : '학습' }}</td>
-              </tr>
-              <tr v-if="!visibleAttempts.length"><td colspan="7" class="empty-cell">문제 풀이 기록이 없습니다.</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <button
-          v-if="selectedAttemptVisitor && filteredAttempts.length > visibleAttempts.length"
-          type="button"
-          class="attempt-more-button"
-          @click="attemptDisplayLimit += 8"
-        >8문제 더 보기 ({{ visibleAttempts.length }}/{{ filteredAttempts.length }})</button>
       </section>
     </template>
   </main>

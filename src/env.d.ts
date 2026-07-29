@@ -7,18 +7,6 @@ type CloudConfig = {
   analyticsFunction?: string;
 };
 
-type AnalyticsAttempt = {
-  qualificationKey?: string;
-  qualification?: string;
-  roundId?: string;
-  roundTitle?: string;
-  questionNumber: number;
-  selectedAnswer: number;
-  correctAnswer: number;
-  correct: boolean;
-  mode?: string;
-};
-
 type AnalyticsResult = {
   qualificationKey?: string;
   qualification?: string;
@@ -41,7 +29,7 @@ type AnalyticsResult = {
 interface Window {
   CBT_CLOUD_CONFIG?: CloudConfig;
   CBTAnalytics?: {
-    trackAttempt: (payload: AnalyticsAttempt) => void;
+    trackAttempt: () => void;
     trackResult: (payload: AnalyticsResult) => void;
     trackNavigation: (view: string) => void;
     consent: () => string;
