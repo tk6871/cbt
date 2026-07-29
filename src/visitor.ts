@@ -149,8 +149,8 @@ function shouldLog(key: string, intervalMs: number): boolean {
 }
 
 window.CBTAnalytics = {
-  trackAttempt(payload) {
-    void enqueue('attempt', payload as unknown as Record<string, unknown>);
+  trackAttempt() {
+    // 이전 캐시와의 호환용입니다. 문제별 선택은 서버로 전송하지 않습니다.
   },
   trackResult(payload) {
     void enqueue('result', payload as unknown as Record<string, unknown>);

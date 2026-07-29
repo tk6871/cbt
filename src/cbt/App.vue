@@ -542,8 +542,15 @@ function handleBrowserHistory(event: PopStateEvent): void {
     history.replaceState(viewHistoryState(target.view), '', location.href);
   }
 
-  if (session.value) deactivateSession(true);
+  if (session.value) {
+    sendCurrentSessionOnExit();
+    deactivateSession(true);
+  }
   openView(target.view, { fromHistory: true });
+}
+
+function handlePageHide(): void {
+  sendCurrentSessionOnExit();
 }
 
 function setupSearchWorker(): void {
@@ -607,6 +614,7 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
     startedAt: Date.now(),
     remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
     finished: false,
+    resultSent: false,
   };
   suspendedSession = null;
   suspendedExamResult = null;
@@ -704,17 +712,7 @@ function chooseAnswer(item: QuestionItem, choice: number): void {
   if (!session.value || session.value.finished) return;
   session.value.answers[item.id] = choice;
   if (session.value.mode === 'learn') {
-    const attempt = recordAttempt(item.id, choice, item.question.answer);
-    window.CBTAnalytics?.trackAttempt?.({
-      qualificationKey: item.round.qualificationKey,
-      qualification: item.round.qualification,
-      roundId: item.round.id,
-      questionNumber: item.question.number,
-      selectedAnswer: choice,
-      correctAnswer: item.question.answer,
-      correct: attempt.lastCorrect,
-      mode: 'learn',
-    });
+    recordAttempt(item.id, choice, item.question.answer);
   }
 }
 
@@ -760,15 +758,8 @@ function resetLearning(): void {
   showToast('현재 학습 선택을 초기화했습니다.');
 }
 
-function submitExam(force = false): void {
-  if (!session.value || session.value.mode !== 'exam' || session.value.finished) return;
-  if (!force && answeredCount.value < session.value.items.length) {
-    const remaining = session.value.items.length - answeredCount.value;
-    if (!confirm(`아직 ${remaining}문제가 남았습니다. 그래도 채점할까요?`)) return;
-  }
-  session.value.finished = true;
-  stopTimer();
-
+function calculateSessionResult(): (ExamResult & { unanswered: number }) | null {
+  if (!session.value) return null;
   const grouped = new Map<string, { correct: number; total: number }>();
   let correct = 0;
   session.value.items.forEach((item) => {
@@ -778,7 +769,6 @@ function submitExam(force = false): void {
     row.total += 1;
     if (isCorrect) row.correct += 1;
     grouped.set(item.subject, row);
-    if (session.value?.answers[item.id]) recordAttempt(item.id, session.value.answers[item.id], item.question.answer);
   });
   const score = Math.round((correct / session.value.items.length) * 100);
   const subjectRows = [...grouped.entries()].map(([subject, row]) => ({
@@ -788,39 +778,89 @@ function submitExam(force = false): void {
     passed: (row.correct / row.total) * 100 >= 40,
   }));
   const passed = score >= 60 && subjectRows.every((row) => row.passed);
-  examResult.value = { score, correct, total: session.value.items.length, passed, subjectRows };
+  return {
+    score,
+    correct,
+    total: session.value.items.length,
+    passed,
+    subjectRows,
+    unanswered: session.value.items.length - answeredCount.value,
+  };
+}
+
+function sendSessionResult(result: ExamResult & { unanswered: number }): void {
+  if (!session.value || session.value.resultSent || answeredCount.value === 0) return;
+  const roundIds = [...new Set(session.value.items.map((item) => item.round.id))];
+  session.value.resultSent = true;
+  window.CBTAnalytics?.trackResult?.({
+    qualificationKey: selectedKey.value,
+    qualification: selectedCatalog.value.name,
+    roundId: roundIds.length === 1 ? roundIds[0] : undefined,
+    title: session.value.title,
+    mode: session.value.mode,
+    score: result.score,
+    correct: result.correct,
+    total: result.total,
+    unanswered: result.unanswered,
+    durationSeconds: Math.max(0, Math.round((Date.now() - session.value.startedAt) / 1000)),
+    subjects: result.subjectRows.map(({ subject, correct, total, score }) => ({
+      subject,
+      correct,
+      total,
+      score,
+    })),
+  });
+}
+
+function submitSession(mode: StudyMode, force = false): void {
+  if (!session.value || session.value.mode !== mode || session.value.finished) return;
+  if (!force && answeredCount.value < session.value.items.length) {
+    const remaining = session.value.items.length - answeredCount.value;
+    if (!confirm(`아직 ${remaining}문제가 남았습니다. 그래도 채점할까요?`)) return;
+  }
+  session.value.finished = true;
+  stopTimer();
+  if (mode === 'exam') {
+    session.value.items.forEach((item) => {
+      const selected = session.value?.answers[item.id];
+      if (selected) recordAttempt(item.id, selected, item.question.answer);
+    });
+  }
+  const result = calculateSessionResult();
+  if (!result) return;
+  examResult.value = result;
   void recordExam({
     id: session.value.id,
     qualificationKey: selectedKey.value,
     title: session.value.title,
-    score,
-    passed,
+    score: result.score,
+    passed: result.passed,
     answered: answeredCount.value,
     total: session.value.items.length,
     finishedAt: Date.now(),
   }).then(refreshExamHistory);
-  window.CBTAnalytics?.trackResult?.({
-    qualificationKey: selectedKey.value,
-    qualification: selectedCatalog.value.name,
-    mode: 'exam',
-    score,
-    correct,
-    total: session.value.items.length,
-    unanswered: session.value.items.length - answeredCount.value,
-    durationSeconds: Math.max(0, Math.round((Date.now() - session.value.startedAt) / 1000)),
-    subjects: subjectRows.map(({ subject, correct: subjectCorrect, total, score: subjectScore }) => ({
-      subject,
-      correct: subjectCorrect,
-      total,
-      score: subjectScore,
-    })),
-  });
+  sendSessionResult(result);
+}
+
+function submitExam(force = false): void {
+  submitSession('exam', force);
+}
+
+function submitLearning(): void {
+  submitSession('learn');
+}
+
+function sendCurrentSessionOnExit(): void {
+  if (!session.value || session.value.finished || session.value.resultSent || answeredCount.value === 0) return;
+  const result = calculateSessionResult();
+  if (result) sendSessionResult(result);
 }
 
 function leaveSession(nextView?: ViewName): void {
   if (session.value && !session.value.finished && answeredCount.value > 0) {
     if (!confirm('현재 풀이를 종료하고 이동할까요?')) return;
   }
+  sendCurrentSessionOnExit();
   const current = ownHistoryState();
   if (!nextView && current?.sessionId === session.value?.id) {
     history.back();
@@ -1092,6 +1132,7 @@ watch([yearFrom, yearTo], () => {
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('popstate', handleBrowserHistory);
+  window.addEventListener('pagehide', handlePageHide);
   initializeNavigationHistory();
   applyTheme(theme.value);
   setFontScale(fontScale.value);
@@ -1106,6 +1147,7 @@ onMounted(async () => {
 onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
   window.removeEventListener('popstate', handleBrowserHistory);
+  window.removeEventListener('pagehide', handlePageHide);
   stopTimer();
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
@@ -1690,6 +1732,7 @@ onBeforeUnmount(() => {
           <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
           <span><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
           <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
+          <button v-if="session.mode === 'learn'" type="button" class="learning-result-button" @click="submitLearning">학습 결과 보기</button>
         </footer>
       </section>
 
@@ -1718,8 +1761,8 @@ onBeforeUnmount(() => {
 
     <div v-if="examResult" class="result-backdrop">
       <section class="result-card">
-        <span>{{ examResult.passed ? 'PASS' : 'REVIEW' }}</span>
-        <h2>{{ examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다' }}</h2>
+        <span>{{ session.mode === 'exam' ? (examResult.passed ? 'PASS' : 'REVIEW') : 'LEARNING RESULT' }}</span>
+        <h2>{{ session.mode === 'learn' ? '현재 학습 결과입니다' : (examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다') }}</h2>
         <div class="result-score">{{ examResult.score }}<small>점</small></div>
         <p>{{ examResult.total }}문제 중 {{ examResult.correct }}문제를 맞혔습니다.</p>
         <div class="subject-results">

@@ -821,6 +821,7 @@ img { max-width: 100%; }
 .explanation-copy { margin: 8px 0 0; color: var(--text); font-size: .64rem; line-height: 1.7; white-space: pre-wrap; }
 .pager { padding: 22px 0 10px; display: flex; align-items: center; justify-content: center; gap: 15px; }
 .pager button { min-width: 90px; min-height: 40px; border-radius: 9px; color: white; background: var(--primary); font-size: .65rem; font-weight: 750; }
+.pager .learning-result-button { min-width: 126px; background: linear-gradient(135deg, #0d9368, #24b980); }
 .pager button:disabled { opacity: .35; cursor: default; }
 .pager span { color: var(--muted); font-size: .65rem; }
 .pager strong { color: var(--text); }
