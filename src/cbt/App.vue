@@ -807,6 +807,13 @@ function submitExam(force = false): void {
     correct,
     total: session.value.items.length,
     unanswered: session.value.items.length - answeredCount.value,
+    durationSeconds: Math.max(0, Math.round((Date.now() - session.value.startedAt) / 1000)),
+    subjects: subjectRows.map(({ subject, correct: subjectCorrect, total, score: subjectScore }) => ({
+      subject,
+      correct: subjectCorrect,
+      total,
+      score: subjectScore,
+    })),
   });
 }
 

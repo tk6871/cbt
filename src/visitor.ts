@@ -27,6 +27,8 @@ const VISITOR_KEY = 'unified-cbt-visitor-id';
 const SESSION_KEY = 'unified-cbt-session-id';
 const LAST_VISIT_KEY = 'unified-cbt-last-visit-event';
 const LAST_NAV_KEY = 'unified-cbt-last-navigation-event';
+const HEARTBEAT_INTERVAL = 3 * 60 * 1000;
+const BATCH_LIMIT = 20;
 let flushing = false;
 let currentView = '';
 
@@ -102,7 +104,8 @@ async function enqueue(type: AnalyticsEventType, payload: Record<string, unknown
     createdAt: Date.now(),
     payload: { ...commonPayload(), ...payload }
   });
-  void flush();
+  const queued = await db.queue.count();
+  if (type === 'result' || queued >= BATCH_LIMIT) void flush();
 }
 
 async function flush(): Promise<void> {
@@ -176,8 +179,9 @@ if (enabled) {
   });
   setInterval(() => {
     if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat', { view: currentView });
-  }, 60_000);
-  setInterval(() => void flush(), 60_000);
+  }, HEARTBEAT_INTERVAL);
+  setInterval(() => void flush(), HEARTBEAT_INTERVAL);
+  window.addEventListener('pagehide', () => void flush());
   if (document.visibilityState === 'visible' && navigator.onLine) void enqueue('heartbeat', { view: currentView });
-  void flush();
+  window.setTimeout(() => void flush(), 1_500);
 }

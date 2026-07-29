@@ -76,8 +76,12 @@ create table if not exists public.exam_results (
   total_count integer not null check (total_count > 0),
   unanswered_count integer not null default 0 check (unanswered_count >= 0),
   duration_seconds integer,
+  subject_scores jsonb not null default '[]'::jsonb,
   completed_at timestamptz not null default now()
 );
+
+alter table public.exam_results
+  add column if not exists subject_scores jsonb not null default '[]'::jsonb;
 
 create index if not exists visitor_profiles_last_seen_idx on public.visitor_profiles(last_seen desc);
 create index if not exists visit_events_visited_at_idx on public.visit_events(visited_at desc);

@@ -942,7 +942,13 @@
       correct,
       total: s.questions.length,
       unanswered,
-      durationSeconds: Math.max(0, Math.round((Date.now() - s.startedAt) / 1000))
+      durationSeconds: Math.max(0, Math.round((Date.now() - s.startedAt) / 1000)),
+      subjects: Object.entries(subjectMap).map(([subject, value]) => ({
+        subject,
+        correct: value.correct,
+        total: value.total,
+        score: Math.round(value.correct / value.total * 100)
+      }))
     });
     state.session = null; state.view = 'result'; renderResult();
   }
@@ -1419,7 +1425,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=230', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=231', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
