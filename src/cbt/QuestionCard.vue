@@ -77,7 +77,7 @@ function choiceClass(index: number): Record<string, boolean> {
       </template>
     </div>
 
-    <div class="choice-grid">
+    <div class="choice-grid" :class="{ 'image-choice-grid': restoredQuestion && primaryImage }">
       <button
         v-for="(choice, index) in item.question.choices"
         :key="index"
@@ -85,15 +85,13 @@ function choiceClass(index: number): Record<string, boolean> {
         class="choice-button"
         :class="choiceClass(index)"
         :aria-pressed="selected === index + 1"
+        :aria-label="primaryImage ? `${index + 1}번 선택` : undefined"
         @click="$emit('choose', index + 1)"
       >
-        <span class="choice-number">{{ circles[index] || index + 1 }}</span>
-        <span class="choice-copy">
-          <span v-if="restoredQuestion && primaryImage">{{ index + 1 }}번 선택</span>
-          <template v-else>
-            <span v-html="choice.html || choice.text || `${index + 1}번`" />
-            <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림">
-          </template>
+        <span class="choice-number">{{ primaryImage ? index + 1 : (circles[index] || index + 1) }}</span>
+        <span v-if="!primaryImage" class="choice-copy">
+          <span v-html="choice.html || choice.text || `${index + 1}번`" />
+          <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림">
         </span>
         <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
       </button>

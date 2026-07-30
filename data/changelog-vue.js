@@ -5,6 +5,31 @@
 
   const entries = [
     {
+      version: '2.3.2',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '복원문제 가로 답안과 업데이트 확인 개선',
+      summary: '원문 이미지형 복원문제의 답안을 한 줄로 간결하게 배치하고 최신 버전 확인 버튼의 서버 확인 기능을 보강했습니다.',
+      tags: ['복원문제', '가로 답안', '업데이트 확인', '모바일'],
+      changes: [
+        '원문 이미지 안에 보기가 있는 복원문제는 1·2·3·4 답안 버튼을 한 줄로 표시합니다.',
+        '일반 텍스트 문제의 보기 배치는 기존처럼 유지합니다.',
+        '최신 버전 확인 버튼이 서버의 공개 버전을 직접 확인하고 새 버전이 있으면 신버전 적용 상태로 전환합니다.'
+      ]
+    },
+    {
+      version: '2.3.2',
+      scope: 'jewelry',
+      date: '2026.07.30',
+      title: '업데이트 확인 동작 개선',
+      summary: '최신 버전 확인 버튼이 GitHub Pages의 공개 버전을 직접 확인하도록 개선했습니다.',
+      tags: ['업데이트 확인', '캐시 갱신', '보석관'],
+      changes: [
+        '버튼을 누르면 서버 버전을 새로 조회해 현재 버전과 비교합니다.',
+        '새 버전이 확인되면 바로 신버전 적용 버튼을 표시합니다.'
+      ]
+    },
+    {
       version: '2.3.1',
       scope: 'industrial',
       date: '2026.07.30',
@@ -262,8 +287,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.1';
-  changelog.versions.jewelry = '2.3.1';
-  changelog.currentVersion = '2.3.1';
+  changelog.versions.industrial = '2.3.2';
+  changelog.versions.jewelry = '2.3.2';
+  changelog.currentVersion = '2.3.2';
   window.CBT_CHANGELOG = changelog;
 })();
