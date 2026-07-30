@@ -60,20 +60,22 @@ function choiceClass(index: number): Record<string, boolean> {
     </header>
 
     <div class="question-content" :class="{ 'source-image-content': primaryImage }">
-      <button
+      <div
         v-if="primaryImage && item.question.sourceImage"
-        type="button"
         class="source-image-frame"
-        :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
-        @click="imageZoomOpen = true"
       >
         <img
           class="source-question-image"
           :src="item.question.sourceImage"
           :alt="`${item.question.number}번 문제 원문`"
         >
-        <span class="source-image-zoom-hint">⌕ 크게 보기</span>
-      </button>
+        <button
+          type="button"
+          class="source-image-zoom-hint"
+          :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
+          @click="imageZoomOpen = true"
+        >⌕ 크게 보기</button>
+      </div>
       <template v-else>
         <div class="question-text" v-html="item.question.html || item.question.text" />
         <img
@@ -140,7 +142,7 @@ function choiceClass(index: number): Record<string, boolean> {
           <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
         </header>
         <div @click.self="imageZoomOpen = false">
-          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`" @click.stop>
+          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
         </div>
       </div>
     </Teleport>
