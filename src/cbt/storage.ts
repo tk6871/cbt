@@ -52,11 +52,12 @@ function loadLegacy(): Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookma
       attempts: value.attempts || {},
       wrong: value.wrong || {},
       bookmarks: value.bookmarks || [],
+      progress: value.progress || {},
       history: value.history || [],
       notes: value.notes || {},
     };
   } catch {
-    return { attempts: {}, wrong: {}, bookmarks: [], history: [], notes: {} };
+    return { attempts: {}, wrong: {}, bookmarks: [], progress: {}, history: [], notes: {} };
   }
 }
 

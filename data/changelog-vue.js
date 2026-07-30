@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '2.3.8',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '전체 초기화와 이어 풀기 기록 정리',
+      summary: '전체 초기화 후 회차에 다시 들어가면 예전 답안이 나타나던 숨은 진행 기록을 함께 제거합니다.',
+      tags: ['전체 초기화', '이어 풀기', '학습 기록', '신·구버전'],
+      changes: [
+        '신버전 전체 초기화에서 정오답 통계뿐 아니라 회차별 이어 풀기 답안과 진행 위치도 함께 제거합니다.',
+        '구버전과 신버전이 공유하던 진행 데이터가 초기화 뒤 다시 나타나지 않도록 저장소를 동시에 정리합니다.',
+        '이전 버전의 초기화 버튼도 브라우저 데이터베이스에 남은 학습·시험 기록까지 함께 비웁니다.',
+        '진행 기록이 없는 백업을 불러올 때 기존 이어 풀기 데이터가 남지 않도록 복원 동작을 보완했습니다.'
+      ]
+    },
+    {
       version: '2.3.7',
       scope: 'industrial',
       date: '2026.07.30',
@@ -381,8 +395,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.7';
+  changelog.versions.industrial = '2.3.8';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.7';
+  changelog.currentVersion = '2.3.8';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -48,6 +48,41 @@
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(store)); }
     catch (error) { toast('저장 공간이 부족합니다. 오래된 기록을 정리해 주세요.'); }
   }
+  function clearIndexedLearningDatabase(name) {
+    if (!('indexedDB' in window)) return Promise.resolve();
+    return new Promise((resolve) => {
+      const request = indexedDB.open(name);
+      request.onerror = () => resolve();
+      request.onsuccess = () => {
+        const database = request.result;
+        const stores = Array.from(database.objectStoreNames);
+        if (!stores.length) {
+          database.close();
+          resolve();
+          return;
+        }
+        const transaction = database.transaction(stores, 'readwrite');
+        stores.forEach((storeName) => transaction.objectStore(storeName).clear());
+        transaction.oncomplete = () => { database.close(); resolve(); };
+        transaction.onerror = () => { database.close(); resolve(); };
+        transaction.onabort = () => { database.close(); resolve(); };
+      };
+    });
+  }
+  async function resetAllLearningData() {
+    store = defaultStore();
+    saveStore();
+    state.session = null;
+    state.result = null;
+    state.modal = null;
+    clearInterval(timerHandle);
+    await Promise.all([
+      clearIndexedLearningDatabase('industrial-cbt'),
+      clearIndexedLearningDatabase('jewelry-cbt')
+    ]);
+    renderHome();
+    toast('이어 풀기를 포함한 모든 학습 기록을 초기화했습니다.');
+  }
   function esc(value) {
     return String(value ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
   }
@@ -1337,7 +1372,7 @@
     }
     else if (action === 'retry-result') { const round = rRound(); if (round) startRound(round.id, state.result.mode); }
     else if (action === 'force-refresh') forceRefresh();
-    else if (action === 'reset-progress' && confirm('모든 학습 기록, 오답, 북마크, 메모, 풀이시간과 시험계획을 초기화할까요?')) { store = defaultStore(); saveStore(); state.modal = null; renderHome(); }
+    else if (action === 'reset-progress' && confirm('이어 풀기 답안까지 포함해 모든 학습 기록, 오답, 북마크, 메모, 풀이시간과 시험계획을 초기화할까요?')) { void resetAllLearningData(); }
   }
   function rRound() { return state.result?.round?.id ? getRound(state.result.round.id) : null; }
   function changeHandler(event) {
@@ -1447,7 +1482,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=239', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=240', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
