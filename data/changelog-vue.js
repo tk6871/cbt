@@ -5,6 +5,19 @@
 
   const entries = [
     {
+      version: '2.3.6',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '확대 이미지 반응형 맞춤과 답안 크기 보정',
+      summary: '확대 원문이 창 크기에 따라 잘리던 현상을 수정하고 PC 답안 버튼을 한 단계 키웠습니다.',
+      tags: ['원문 이미지', '반응형 확대', '답안 버튼', '가독성'],
+      changes: [
+        '확대 이미지를 창의 가로·세로 영역 안에 원본 비율로 맞춰 어떤 창 크기에서도 잘리지 않게 했습니다.',
+        '창 크기를 바꿔도 이미지가 화면 밖으로 밀리지 않도록 최소 폭 제한을 제거했습니다.',
+        'PC 답안 버튼을 320px 묶음·42px 높이로 키워 누르기 편하게 조정했습니다.'
+      ]
+    },
+    {
       version: '2.3.5',
       scope: 'industrial',
       date: '2026.07.30',
@@ -353,8 +366,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.5';
+  changelog.versions.industrial = '2.3.6';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.5';
+  changelog.currentVersion = '2.3.6';
   window.CBT_CHANGELOG = changelog;
 })();
