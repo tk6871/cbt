@@ -1082,6 +1082,17 @@ function handleUpdateAvailable(): void {
   updateAvailable.value = true;
 }
 
+async function fetchPublishedVersion(): Promise<string> {
+  const response = await fetch(`./data/changelog-vue.js?update-check=${Date.now()}`, {
+    cache: 'no-store',
+    headers: { 'Cache-Control': 'no-cache' },
+  });
+  if (!response.ok) throw new Error('version-check-failed');
+  const source = await response.text();
+  const scopePattern = new RegExp(`changelog\\.versions\\.${spaceScope}\\s*=\\s*['"]([^'"]+)['"]`);
+  return source.match(scopePattern)?.[1] || '';
+}
+
 async function checkForUpdate(notify = true): Promise<void> {
   if (!('serviceWorker' in navigator) || location.protocol === 'file:') {
     if (notify) showToast('온라인 홈페이지에서 업데이트를 확인할 수 있습니다.');
@@ -1089,14 +1100,25 @@ async function checkForUpdate(notify = true): Promise<void> {
   }
   updateChecking.value = true;
   try {
-    const registration = await navigator.serviceWorker.getRegistration();
-    if (!registration) {
-      if (notify) showToast('업데이트 기능을 준비하는 중입니다. 잠시 후 다시 확인해 주세요.');
-      return;
+    const [publishedVersion, registration] = await Promise.all([
+      fetchPublishedVersion(),
+      navigator.serviceWorker.getRegistration(),
+    ]);
+    if (registration) {
+      await registration.update();
+      await new Promise((resolve) => window.setTimeout(resolve, 900));
     }
-    await registration.update();
-    await new Promise((resolve) => window.setTimeout(resolve, 650));
-    if (notify) showToast(updateAvailable.value ? '새 버전을 찾았습니다.' : '현재 최신 버전입니다.');
+    const serviceWorkerReady = Boolean(
+      registration?.waiting
+      || registration?.installing
+      || window.CBT_UPDATE_AVAILABLE
+    );
+    if ((publishedVersion && publishedVersion !== currentVersion.value) || serviceWorkerReady) {
+      updateAvailable.value = true;
+      if (notify) showToast(`새 버전${publishedVersion ? ` v${publishedVersion}` : ''}을 찾았습니다. 신버전 적용을 눌러주세요.`);
+    } else if (notify) {
+      showToast(`현재 v${currentVersion.value} 최신 버전입니다.`);
+    }
   } catch {
     if (notify) showToast('업데이트 확인에 실패했습니다. 인터넷 연결을 확인해 주세요.');
   } finally {

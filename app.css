@@ -474,7 +474,7 @@ th:first-child, td:first-child { text-align: left; }
 .choice.wrong { border-color: var(--red); background: color-mix(in srgb, var(--red) 11%, var(--surface)); }
 .choice .question-images { grid-column: 2; }
 .image-answer-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.image-answer-list .choice { grid-template-columns: auto 1fr; justify-content: center; text-align: center; font-weight: 700; }
+.image-answer-list .choice { grid-template-columns: 1fr; justify-items:center; justify-content: center; padding:10px 6px; text-align: center; font-size:1rem; font-weight: 800; }
 .answer-guide { color: var(--muted); font-size: .72rem; }
 .answer-rate-badge { margin-top:10px; padding:9px 11px; border:1px solid color-mix(in srgb,var(--primary) 28%,var(--line)); border-radius:8px; background:var(--primary-soft); display:flex; align-items:center; gap:8px; color:var(--muted); font-size:.7rem; }
 .answer-rate-badge strong { color:var(--primary); font-size:.92rem; }
@@ -686,7 +686,7 @@ th:first-child, td:first-child { text-align: left; }
   .session-shell .top-actions { display:none; }
   .question-card { padding: 18px 15px; }
   .learning-list { grid-template-columns:1fr; }
-  .image-answer-list { grid-template-columns: 1fr 1fr; }
+  .image-answer-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .learning-toolbar { align-items: flex-start; gap: 10px; }
   .learning-toolbar label { display: grid; gap: 5px; }
   .learning-toolbar select { margin-left: 0; }
@@ -722,7 +722,7 @@ th:first-child, td:first-child { text-align: left; }
   .exam-question-grid { grid-template-columns:1fr; gap:11px; }
   .exam-question { padding:14px; }
   .exam-question-head h2 { font-size:14px; }
-  .exam-image-answers { grid-template-columns: 1fr 1fr; }
+  .exam-image-answers { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .exam-choice { font-size: 13px; }
   .answer-sheet { position:fixed; top:0; bottom:0; right:0; width:min(88vw,340px); max-height:none; border-radius:14px 0 0 14px; z-index:80; transform:translateX(105%); transition:.2s; grid-template-rows:60px 1fr; }
   .answer-sheet.open { transform: translateX(0); }
