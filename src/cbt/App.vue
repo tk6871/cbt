@@ -18,6 +18,7 @@ import QuestionCard from './QuestionCard.vue';
 import {
   applyTheme,
   currentTheme,
+  db,
   hydrateIndexedDb,
   loadExamRecords,
   recordAttempt,
@@ -81,6 +82,7 @@ const toastMessage = ref('');
 const theme = ref(currentTheme());
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
+const learningImportInput = ref<HTMLInputElement | null>(null);
 const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
 const updateChecking = ref(false);
 const searchQuery = ref('');
@@ -1131,11 +1133,13 @@ function applyUpdate(): void {
   location.reload();
 }
 
-function exportLearningData(): void {
+async function exportLearningData(): Promise<void> {
+  const exams = await db.exams.toArray();
   const blob = new Blob([JSON.stringify({
     exportedAt: new Date().toISOString(),
     space: spaceScope,
     data: studyStore,
+    indexedDb: { exams },
   }, null, 2)], { type: 'application/json' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
@@ -1145,13 +1149,84 @@ function exportLearningData(): void {
   showToast('학습 기록 파일을 저장했습니다.');
 }
 
-function clearLearningData(): void {
+function chooseLearningDataFile(): void {
+  learningImportInput.value?.click();
+}
+
+async function importLearningData(event: Event): Promise<void> {
+  const input = event.target as HTMLInputElement;
+  const file = input.files?.[0];
+  if (!file) return;
+  try {
+    const payload = JSON.parse(await file.text()) as {
+      space?: string;
+      data?: Record<string, unknown>;
+      store?: Record<string, unknown>;
+      indexedDb?: { exams?: ExamRecord[] };
+    };
+    const source = payload.data || payload.store;
+    if (!source || typeof source !== 'object' || !source.attempts || typeof source.attempts !== 'object') {
+      throw new Error('invalid-backup');
+    }
+    if (payload.space && payload.space !== spaceScope) {
+      throw new Error('wrong-space');
+    }
+    if (!confirm('현재 기기의 학습 기록을 이 백업 파일의 내용으로 교체할까요?')) return;
+
+    Object.keys(studyStore.attempts).forEach((key) => delete studyStore.attempts[key]);
+    Object.assign(studyStore.attempts, source.attempts);
+    Object.keys(studyStore.wrong).forEach((key) => delete studyStore.wrong[key]);
+    Object.assign(studyStore.wrong, source.wrong && typeof source.wrong === 'object' ? source.wrong : {});
+    studyStore.bookmarks.splice(
+      0,
+      studyStore.bookmarks.length,
+      ...(Array.isArray(source.bookmarks) ? source.bookmarks.filter((id): id is string => typeof id === 'string') : []),
+    );
+    studyStore.history.splice(
+      0,
+      studyStore.history.length,
+      ...(Array.isArray(source.history) ? source.history as Array<Record<string, unknown>> : []),
+    );
+    Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
+    Object.assign(studyStore.notes, source.notes && typeof source.notes === 'object' ? source.notes : {});
+    if (source.progress && typeof source.progress === 'object') {
+      studyStore.progress = source.progress as Record<string, unknown>;
+    }
+    if (typeof source.fontScale === 'number') setFontScale(source.fontScale);
+
+    const attemptRows = Object.entries(studyStore.attempts).map(([id, row]) => ({ id, ...row }));
+    await db.transaction('rw', db.attempts, db.exams, async () => {
+      await db.attempts.clear();
+      if (attemptRows.length) await db.attempts.bulkPut(attemptRows);
+      if (Array.isArray(payload.indexedDb?.exams)) {
+        await db.exams.clear();
+        if (payload.indexedDb.exams.length) await db.exams.bulkPut(payload.indexedDb.exams);
+      }
+    });
+    await refreshExamHistory();
+    settingsOpen.value = false;
+    showToast(`${attemptRows.length.toLocaleString()}개 문제의 학습 기록을 불러왔습니다.`);
+  } catch (error) {
+    showToast(error instanceof Error && error.message === 'wrong-space'
+      ? '현재 학습관과 종류가 다른 백업 파일입니다.'
+      : '올바른 CBT 학습 기록 파일이 아닙니다.');
+  } finally {
+    input.value = '';
+  }
+}
+
+async function clearLearningData(): Promise<void> {
   if (!confirm('오답, 진도, 시험 기록을 모두 초기화할까요? 이 작업은 되돌릴 수 없습니다.')) return;
   Object.keys(studyStore.attempts).forEach((key) => delete studyStore.attempts[key]);
   Object.keys(studyStore.wrong).forEach((key) => delete studyStore.wrong[key]);
   studyStore.bookmarks.splice(0);
   studyStore.history.splice(0);
   Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
+  await db.transaction('rw', db.attempts, db.exams, async () => {
+    await db.attempts.clear();
+    await db.exams.clear();
+  });
+  recentExamRecords.value = [];
   settingsOpen.value = false;
   showToast('학습 기록을 초기화했습니다.');
 }
@@ -1712,8 +1787,13 @@ onBeforeUnmount(() => {
         </div>
         <div class="setting-group data-setting">
           <span>학습 기록</span>
-          <p>이 기기에 저장된 오답·진도·시험 기록을 파일로 보관하거나 초기화할 수 있습니다.</p>
-          <div><button @click="exportLearningData">기록 내보내기</button><button class="danger" @click="clearLearningData">전체 초기화</button></div>
+          <p>이 기기의 오답·진도·시험 기록을 파일로 옮기거나 다시 불러올 수 있습니다.</p>
+          <div>
+            <button @click="exportLearningData">기록 내보내기</button>
+            <button @click="chooseLearningDataFile">기록 불러오기</button>
+            <button class="danger" @click="clearLearningData">전체 초기화</button>
+          </div>
+          <input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData">
         </div>
         <footer><span>현재 버전</span><strong>v{{ currentVersion }}</strong></footer>
       </section>

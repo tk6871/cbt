@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { isImagePrimary } from './catalog';
 import type { QuestionItem, StudyMode } from './types';
 
@@ -22,6 +22,7 @@ const primaryImage = computed(() => isImagePrimary(props.item));
 const restoredQuestion = computed(() =>
   props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
+const imageZoomOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
 
 function choiceClass(index: number): Record<string, boolean> {
@@ -35,7 +36,7 @@ function choiceClass(index: number): Record<string, boolean> {
 </script>
 
 <template>
-  <article class="question-card">
+  <article class="question-card" :class="{ 'image-primary': primaryImage }">
     <div v-if="subjectStart" class="subject-divider">
       <span>{{ subjectNumber || 1 }}과목</span>
       <strong>{{ item.subject }}</strong>
@@ -58,13 +59,21 @@ function choiceClass(index: number): Record<string, boolean> {
       >★</button>
     </header>
 
-    <div class="question-content">
-      <img
+    <div class="question-content" :class="{ 'source-image-content': primaryImage }">
+      <button
         v-if="primaryImage && item.question.sourceImage"
-        class="source-question-image"
-        :src="item.question.sourceImage"
-        :alt="`${item.question.number}번 문제 원문`"
+        type="button"
+        class="source-image-frame"
+        :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
+        @click="imageZoomOpen = true"
       >
+        <img
+          class="source-question-image"
+          :src="item.question.sourceImage"
+          :alt="`${item.question.number}번 문제 원문`"
+        >
+        <span class="source-image-zoom-hint">⌕ 크게 보기</span>
+      </button>
       <template v-else>
         <div class="question-text" v-html="item.question.html || item.question.text" />
         <img
@@ -115,5 +124,25 @@ function choiceClass(index: number): Record<string, boolean> {
       <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
     </div>
+
+    <Teleport to="body">
+      <div
+        v-if="imageZoomOpen && item.question.sourceImage"
+        class="question-image-lightbox"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="`${item.question.number}번 문제 원문 확대`"
+        @click.self="imageZoomOpen = false"
+      >
+        <header>
+          <strong>{{ item.question.number }}번 원문 이미지</strong>
+          <span>확대된 원본을 스크롤해서 확인하세요.</span>
+          <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
+        </header>
+        <div>
+          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
+        </div>
+      </div>
+    </Teleport>
   </article>
 </template>

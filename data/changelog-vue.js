@@ -5,6 +5,32 @@
 
   const entries = [
     {
+      version: '2.3.3',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: 'PC 복원문제 화면과 학습 기록 복원 개선',
+      summary: 'PC의 원문 이미지형 문제 크기와 답안 버튼을 정돈하고 신버전에도 학습 기록 불러오기를 추가했습니다.',
+      tags: ['PC 가독성', '이미지 확대', '답안 버튼', '백업 복원'],
+      changes: [
+        'PC에서는 복원문제 이미지를 일정한 보기 영역에 원본 비율로 표시해 문제 카드 크기를 정돈합니다.',
+        'PC의 1·2·3·4 답안 버튼은 간결하게 줄이고 휴대폰의 터치 크기는 그대로 유지합니다.',
+        '원문 이미지를 누르면 큰 화면에서 원본을 스크롤하며 확인할 수 있습니다.',
+        '학습 기록 내보내기 파일을 다시 불러오고 시험 기록까지 함께 옮길 수 있습니다.'
+      ]
+    },
+    {
+      version: '2.3.3',
+      scope: 'jewelry',
+      date: '2026.07.30',
+      title: '학습 기록 백업 복원 개선',
+      summary: '내보낸 학습 기록을 신버전 설정에서 다시 불러오고 시험 기록까지 함께 옮길 수 있도록 개선했습니다.',
+      tags: ['학습 기록', '백업', '복원', '기기 이동'],
+      changes: [
+        '화면·데이터 설정에 기록 불러오기 버튼을 추가했습니다.',
+        '문제별 학습 기록과 시험 기록을 하나의 백업 파일로 내보내고 복원합니다.'
+      ]
+    },
+    {
       version: '2.3.2',
       scope: 'industrial',
       date: '2026.07.30',
@@ -287,8 +313,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.2';
-  changelog.versions.jewelry = '2.3.2';
-  changelog.currentVersion = '2.3.2';
+  changelog.versions.industrial = '2.3.3';
+  changelog.versions.jewelry = '2.3.3';
+  changelog.currentVersion = '2.3.3';
   window.CBT_CHANGELOG = changelog;
 })();
