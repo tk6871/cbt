@@ -5,6 +5,31 @@
 
   const entries = [
     {
+      version: '2.3.1',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '이어 학습 답안 복원 수정',
+      summary: '회차 카드의 진행률만 남고 이어 학습 화면에서 기존 선택 답안이 비어 보이던 문제를 수정했습니다.',
+      tags: ['이어 학습', '답안 복원', '진도 유지', '업데이트 수정'],
+      changes: [
+        '이어 학습을 누르면 구버전의 회차별 저장 답안과 신버전의 마지막 선택 답안을 함께 불러옵니다.',
+        '기존 선택 답안, 정오답 표시와 해설 상태를 복원합니다.',
+        '아직 풀지 않은 문제가 있으면 해당 문제가 있는 페이지부터 이어서 시작합니다.'
+      ]
+    },
+    {
+      version: '2.3.1',
+      scope: 'jewelry',
+      date: '2026.07.30',
+      title: '보석관 이어 학습 답안 복원 수정',
+      summary: '업데이트 후 보석관 회차의 기존 선택 답안이 이어 학습 화면에 표시되지 않던 문제를 수정했습니다.',
+      tags: ['이어 학습', '답안 복원', '보석관'],
+      changes: [
+        '회차별 누적 진도와 실제 선택 답안을 함께 복원합니다.',
+        '마지막으로 풀던 회차의 첫 미풀이 위치부터 이어서 학습할 수 있습니다.'
+      ]
+    },
+    {
       version: '2.3.0',
       scope: 'industrial',
       date: '2026.07.29',
@@ -237,8 +262,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.0';
-  changelog.versions.jewelry = '2.3.0';
-  changelog.currentVersion = '2.3.0';
+  changelog.versions.industrial = '2.3.1';
+  changelog.versions.jewelry = '2.3.1';
+  changelog.currentVersion = '2.3.1';
   window.CBT_CHANGELOG = changelog;
 })();
