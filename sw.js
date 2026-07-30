@@ -1,13 +1,13 @@
-const CACHE = 'unified-industrial-cbt-v235';
+const CACHE = 'unified-industrial-cbt-v236';
 const CORE = [
   './', './index.html', './jewelry.html', './legacy.html', './next.html', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=235', './data/safety.js?v=235', './data/energy.js?v=235', './data/energy-engineer.js?v=235',
-  './data/maintenance.js?v=235', './data/jewelry.js?v=235', './data/changelog.js?v=235', './data/changelog-vue.js?v=235',
+  './data/hvac.js?v=236', './data/safety.js?v=236', './data/energy.js?v=236', './data/energy-engineer.js?v=236',
+  './data/maintenance.js?v=236', './data/jewelry.js?v=236', './data/changelog.js?v=236', './data/changelog-vue.js?v=236',
   './calculator.html', './calculator.css?v=194', './calculator.js?v=194', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  './app.css?v=235', './app.js?v=235',
-  './modern/cbt.css?v=235', './modern/cbt.js?v=235', './modern/visitor.js?v=235',
+  './app.css?v=236', './app.js?v=236',
+  './modern/cbt.css?v=236', './modern/cbt.js?v=236', './modern/visitor.js?v=236',
   './modern/chunks/import-wrapper-prod.js', './modern/chunks/index.js',
   './modern/assets/search.worker-BqvfbZXG.js'
 ];
@@ -20,6 +20,9 @@ async function refreshCoreCache() {
   }));
 }
 self.addEventListener('install', (event) => event.waitUntil(refreshCoreCache().then(() => self.skipWaiting())));
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting();
+});
 self.addEventListener('activate', (event) => event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith('unified-industrial-cbt-') && key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;

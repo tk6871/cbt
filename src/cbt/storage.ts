@@ -70,6 +70,11 @@ watch(studyStore, () => {
   }, 120);
 }, { deep: true });
 
+export function persistStudyStoreNow(): void {
+  window.clearTimeout(persistHandle);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(studyStore));
+}
+
 export async function hydrateIndexedDb(): Promise<void> {
   const rows = await db.attempts.toArray();
   if (!rows.length) {

@@ -5,6 +5,32 @@
 
   const entries = [
     {
+      version: '2.3.4',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '업데이트 로딩과 학습 기록 초기화 수정',
+      summary: '신버전 적용 직후 준비 화면에서 멈추는 현상과 초기화한 기록이 다시 나타날 수 있는 현상을 수정했습니다.',
+      tags: ['업데이트 적용', '로딩 수정', '학습 기록', '초기화'],
+      changes: [
+        '업데이트 파일의 설치와 활성화가 끝난 뒤 새 화면을 열어 구버전과 신버전 파일이 섞이지 않도록 했습니다.',
+        '새 화면을 열 때 캐시 우회 주소를 사용해 별도의 F5 없이 최신 파일을 불러옵니다.',
+        '학습 기록 초기화와 백업 복원 결과를 로컬 저장소와 시험 기록 저장소에 즉시 확정합니다.',
+        'PC 복원문제의 1·2·3·4 버튼을 더 작게 정리하고 원문 확대 화면은 이미지 밖을 눌러도 닫히게 했습니다.'
+      ]
+    },
+    {
+      version: '2.3.4',
+      scope: 'jewelry',
+      date: '2026.07.30',
+      title: '업데이트 로딩과 학습 기록 초기화 수정',
+      summary: '신버전 적용 과정과 학습 기록 초기화 저장을 안정화했습니다.',
+      tags: ['업데이트 적용', '로딩 수정', '학습 기록', '보석관'],
+      changes: [
+        '업데이트 설치가 끝난 뒤 새 화면을 열도록 적용 순서를 보강했습니다.',
+        '학습 기록 초기화와 백업 복원 결과를 즉시 저장합니다.'
+      ]
+    },
+    {
       version: '2.3.3',
       scope: 'industrial',
       date: '2026.07.30',
@@ -313,8 +339,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.3';
-  changelog.versions.jewelry = '2.3.3';
-  changelog.currentVersion = '2.3.3';
+  changelog.versions.industrial = '2.3.4';
+  changelog.versions.jewelry = '2.3.4';
+  changelog.currentVersion = '2.3.4';
   window.CBT_CHANGELOG = changelog;
 })();
