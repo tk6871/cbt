@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '2.3.7',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '복원문제 전체 이미지와 가로 답안 복원',
+      summary: '화면 확대와 창 크기 변경에도 원문 이미지 전체가 보이도록 고정 높이를 제거하고 답안을 넓은 4분할 배치로 되돌렸습니다.',
+      tags: ['복원문제', '이미지 전체 표시', '가로 답안', '반응형'],
+      changes: [
+        'PC에서 복원문제 이미지를 440px·460px 높이에 강제로 맞추던 규칙을 제거했습니다.',
+        '원문 이미지는 가로·세로 원본 비율을 유지하며 문제와 보기를 포함한 전체 영역을 표시합니다.',
+        '확대 화면은 창 안에 맞춰 표시하고 필요한 경우 내부 스크롤로 이미지 끝까지 확인할 수 있습니다.',
+        '복원문제의 1·2·3·4 답안은 처음 적용했던 카드 전체 너비의 4분할 버튼 크기로 복원했습니다.',
+        '신버전과 이전 버전의 학습·시험 화면에 같은 표시 기준을 적용했습니다.'
+      ]
+    },
+    {
       version: '2.3.6',
       scope: 'industrial',
       date: '2026.07.30',
@@ -366,8 +381,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.6';
+  changelog.versions.industrial = '2.3.7';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.6';
+  changelog.currentVersion = '2.3.7';
   window.CBT_CHANGELOG = changelog;
 })();
