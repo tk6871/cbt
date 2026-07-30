@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '2.3.5',
+      scope: 'industrial',
+      date: '2026.07.30',
+      title: '원문 이미지 확대 조작과 PC 답안 크기 조정',
+      summary: '원문 이미지 확대 동작을 명확하게 분리하고 PC 답안 버튼을 보기 편한 중간 크기로 다시 조정했습니다.',
+      tags: ['원문 이미지', '확대 보기', '답안 버튼', 'PC 가독성'],
+      changes: [
+        '원문 이미지는 눌러도 열리지 않고 크게 보기 버튼을 눌렀을 때만 확대됩니다.',
+        '확대 화면에서는 이미지와 바깥 배경 어느 쪽을 눌러도 닫힙니다.',
+        'PC의 1·2·3·4 답안 버튼을 너무 크거나 작지 않은 중간 크기로 조정했습니다.',
+        '휴대폰의 답안 버튼 크기는 기존 그대로 유지합니다.'
+      ]
+    },
+    {
       version: '2.3.4',
       scope: 'industrial',
       date: '2026.07.30',
@@ -339,8 +353,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.4';
+  changelog.versions.industrial = '2.3.5';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.4';
+  changelog.currentVersion = '2.3.5';
   window.CBT_CHANGELOG = changelog;
 })();
