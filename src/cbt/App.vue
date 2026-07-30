@@ -1230,9 +1230,9 @@ async function importLearningData(event: Event): Promise<void> {
     );
     Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
     Object.assign(studyStore.notes, source.notes && typeof source.notes === 'object' ? source.notes : {});
-    if (source.progress && typeof source.progress === 'object') {
-      studyStore.progress = source.progress as Record<string, unknown>;
-    }
+    studyStore.progress = source.progress && typeof source.progress === 'object'
+      ? source.progress as Record<string, unknown>
+      : {};
     if (typeof source.fontScale === 'number') setFontScale(source.fontScale);
 
     const attemptRows = Object.entries(studyStore.attempts).map(([id, row]) => ({ id, ...row }));
@@ -1264,6 +1264,22 @@ async function clearLearningData(): Promise<void> {
   studyStore.bookmarks.splice(0);
   studyStore.history.splice(0);
   Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
+  studyStore.progress = {};
+  const legacyExtras = studyStore as typeof studyStore & {
+    questionTimes?: Record<string, unknown>;
+    studyPlan?: unknown;
+    studyPlans?: Record<string, unknown>;
+  };
+  legacyExtras.questionTimes = {};
+  legacyExtras.studyPlan = null;
+  legacyExtras.studyPlans = {};
+  if (session.value) {
+    session.value.answers = {};
+    session.value.page = 0;
+    session.value.finished = false;
+  }
+  suspendedSession = null;
+  suspendedExamResult = null;
   await db.transaction('rw', db.attempts, db.exams, async () => {
     await db.attempts.clear();
     await db.exams.clear();
