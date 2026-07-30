@@ -596,11 +596,20 @@ function roundToItems(round: Round): QuestionItem[] {
   }));
 }
 
-function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): void {
+function beginSession(
+  mode: StudyMode,
+  title: string,
+  items: QuestionItem[],
+  initialAnswers: Record<string, number> = {},
+): void {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
     return;
   }
+  const pageSize = 4;
+  const firstUnanswered = mode === 'learn'
+    ? items.findIndex((item) => initialAnswers[item.id] == null)
+    : -1;
   examResult.value = null;
   sessionMenuOpen.value = false;
   session.value = {
@@ -608,9 +617,9 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
     mode,
     title,
     items,
-    answers: {},
-    page: 0,
-    pageSize: 4,
+    answers: mode === 'learn' ? { ...initialAnswers } : {},
+    page: firstUnanswered > 0 ? Math.floor(firstUnanswered / pageSize) : 0,
+    pageSize,
     startedAt: Date.now(),
     remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
     finished: false,
@@ -630,8 +639,30 @@ function beginSession(mode: StudyMode, title: string, items: QuestionItem[]): vo
   });
 }
 
+function restoredRoundAnswers(round: Round, items: QuestionItem[]): Record<string, number> {
+  const saved = studyStore.progress?.[round.id] as { answers?: Record<string, number> } | undefined;
+  const savedAnswers = saved?.answers || {};
+  return Object.fromEntries(items.flatMap((item) => {
+    const attempt = studyStore.attempts[item.id];
+    let choice = Number(savedAnswers[String(item.question.number)] ?? attempt?.lastChoice);
+    if (!Number.isInteger(choice) || choice < 1 || choice > 4) {
+      if (!attempt) return [];
+      choice = attempt.lastCorrect
+        ? item.question.answer
+        : (item.question.answer === 1 ? 2 : 1);
+    }
+    return [[item.id, choice]];
+  }));
+}
+
 function startRound(round: Round, mode: StudyMode): void {
-  beginSession(mode, `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`, roundToItems(round));
+  const items = roundToItems(round);
+  beginSession(
+    mode,
+    `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
+    items,
+    mode === 'learn' ? restoredRoundAnswers(round, items) : {},
+  );
 }
 
 function startBalancedExam(): void {

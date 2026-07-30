@@ -1447,7 +1447,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=232', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=233', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
