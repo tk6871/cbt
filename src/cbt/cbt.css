@@ -961,10 +961,13 @@ img { max-width: 100%; }
   .question-card.image-primary .source-image-content { height:440px; }
   .question-card.image-primary .source-image-frame { height:100%; }
   .question-card.image-primary .source-question-image { width:100%; height:100%; max-height:none; object-fit:contain; object-position:top center; }
-  .question-card.image-primary .image-choice-grid { width:min(320px,62%); margin:8px auto 0; gap:6px; }
-  .question-card.image-primary .image-choice-grid .choice-button { min-height:38px; padding:4px; border-radius:8px; }
-  .question-card.image-primary .image-choice-grid .choice-number { font-size:.82rem; }
-  .question-card.image-primary .image-choice-grid .choice-button > b { font-size:.46rem; }
+}
+
+@media (min-width: 821px) {
+  .question-card.image-primary .image-choice-grid { width:min(240px,48%); margin:7px auto 0; gap:5px; }
+  .question-card.image-primary .image-choice-grid .choice-button { min-height:32px; padding:2px; border-radius:7px; }
+  .question-card.image-primary .image-choice-grid .choice-number { font-size:.7rem; }
+  .question-card.image-primary .image-choice-grid .choice-button > b { font-size:.42rem; }
 }
 
 @media (max-width: 1180px) {

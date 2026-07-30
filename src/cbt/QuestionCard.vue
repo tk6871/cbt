@@ -132,15 +132,15 @@ function choiceClass(index: number): Record<string, boolean> {
         role="dialog"
         aria-modal="true"
         :aria-label="`${item.question.number}번 문제 원문 확대`"
-        @click.self="imageZoomOpen = false"
+        @click="imageZoomOpen = false"
       >
-        <header>
+        <header @click.stop>
           <strong>{{ item.question.number }}번 원문 이미지</strong>
           <span>확대된 원본을 스크롤해서 확인하세요.</span>
           <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
         </header>
-        <div>
-          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
+        <div @click.self="imageZoomOpen = false">
+          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`" @click.stop>
         </div>
       </div>
     </Teleport>

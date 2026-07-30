@@ -21,6 +21,7 @@ import {
   db,
   hydrateIndexedDb,
   loadExamRecords,
+  persistStudyStoreNow,
   recordAttempt,
   recordExam,
   studyStore,
@@ -1128,9 +1129,49 @@ async function checkForUpdate(notify = true): Promise<void> {
   }
 }
 
-function applyUpdate(): void {
+function waitForServiceWorker(worker?: ServiceWorker | null, timeout = 12000): Promise<void> {
+  if (!worker || worker.state === 'activated' || worker.state === 'redundant') return Promise.resolve();
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (): void => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(timer);
+      worker.removeEventListener('statechange', handleState);
+      resolve();
+    };
+    const handleState = (): void => {
+      if (worker.state === 'activated' || worker.state === 'redundant') finish();
+    };
+    const timer = window.setTimeout(finish, timeout);
+    worker.addEventListener('statechange', handleState);
+  });
+}
+
+async function applyUpdate(): Promise<void> {
   if (session.value && answeredCount.value > 0 && !confirm('새 버전을 적용하면 현재 풀이 화면이 새로고침됩니다. 지금 적용할까요?')) return;
-  location.reload();
+  if (location.protocol === 'file:' || !('serviceWorker' in navigator)) {
+    location.reload();
+    return;
+  }
+  updateChecking.value = true;
+  showToast('업데이트 설치를 마친 뒤 자동으로 다시 엽니다.');
+  try {
+    const registration = await navigator.serviceWorker.getRegistration();
+    if (registration) {
+      await registration.update();
+      if (registration.waiting) registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+      await waitForServiceWorker(registration.installing || registration.waiting);
+      await navigator.serviceWorker.ready;
+      await new Promise((resolve) => window.setTimeout(resolve, 250));
+    }
+    const url = new URL(location.href);
+    url.searchParams.set('updated', String(Date.now()));
+    location.replace(url.toString());
+  } catch {
+    updateChecking.value = false;
+    showToast('업데이트 적용에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+  }
 }
 
 async function exportLearningData(): Promise<void> {
@@ -1203,6 +1244,7 @@ async function importLearningData(event: Event): Promise<void> {
         if (payload.indexedDb.exams.length) await db.exams.bulkPut(payload.indexedDb.exams);
       }
     });
+    persistStudyStoreNow();
     await refreshExamHistory();
     settingsOpen.value = false;
     showToast(`${attemptRows.length.toLocaleString()}개 문제의 학습 기록을 불러왔습니다.`);
@@ -1226,6 +1268,7 @@ async function clearLearningData(): Promise<void> {
     await db.attempts.clear();
     await db.exams.clear();
   });
+  persistStudyStoreNow();
   recentExamRecords.value = [];
   settingsOpen.value = false;
   showToast('학습 기록을 초기화했습니다.');
