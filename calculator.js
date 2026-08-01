@@ -11,6 +11,7 @@
   const historyList = document.getElementById('historyList');
   const visualStyleButton = document.querySelector('[data-action="visual-style"]');
   const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+  const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
   let angleMode = 'deg';
   let shift = false;
   let alpha = false;
@@ -26,6 +27,26 @@
       visualStyleButton.textContent = normalized === 'simpsons' ? 'CBT' : '🍩';
       visualStyleButton.title = normalized === 'simpsons' ? '기본 CBT 계산기로 바꾸기' : '심슨 계산기로 바꾸기';
     }
+  }
+
+  function applyDynamicUiPreference(value = localStorage.getItem(DYNAMIC_UI_KEY)) {
+    document.documentElement.dataset.dynamicUi = value === 'false' ? 'off' : 'on';
+  }
+
+  function switchVisualStyle() {
+    const next = document.documentElement.dataset.visualStyle === 'simpsons' ? 'default' : 'simpsons';
+    localStorage.setItem(VISUAL_STYLE_KEY, next);
+    if (document.documentElement.dataset.dynamicUi !== 'on' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      applyVisualStyle(next);
+      return;
+    }
+    document.documentElement.classList.add('calculator-style-leaving');
+    window.setTimeout(() => {
+      applyVisualStyle(next);
+      document.documentElement.classList.remove('calculator-style-leaving');
+      document.documentElement.classList.add('calculator-style-entering');
+      window.setTimeout(() => document.documentElement.classList.remove('calculator-style-entering'), 360);
+    }, 180);
   }
 
   function setModifier(type, enabled) {
@@ -184,9 +205,7 @@
       history = [];
       renderHistory();
     } else if (action === 'visual-style') {
-      const next = document.documentElement.dataset.visualStyle === 'simpsons' ? 'default' : 'simpsons';
-      localStorage.setItem(VISUAL_STYLE_KEY, next);
-      applyVisualStyle(next);
+      switchVisualStyle();
     }
   });
 
@@ -204,7 +223,9 @@
 
   window.addEventListener('storage', (event) => {
     if (event.key === VISUAL_STYLE_KEY) applyVisualStyle(event.newValue);
+    if (event.key === DYNAMIC_UI_KEY) applyDynamicUiPreference(event.newValue);
   });
+  applyDynamicUiPreference();
   applyVisualStyle();
   input.focus();
 })();
