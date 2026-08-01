@@ -144,6 +144,23 @@ const featureImageItem = computed(() => {
     || scoped.find((item) => item.question.images?.length || item.question.choices.some((choice) => choice.images?.length))
     || scoped[0];
 });
+const upscaleComparison = computed(() => isJewelry
+  ? {
+      subject: '보석관 보기 이미지',
+      original: 'assets/jewelry/gem-appraiser/9260/gf20100711m60b1.gif',
+      originalSize: '76 × 45px · 원본 GIF',
+      improved: 'assets/jewelry/gem-appraiser/9260/gf20100711m60b1.png',
+      improvedSize: '152 × 90px · 개선 PNG',
+      count: '보석관 56개 이미지',
+    }
+  : {
+      subject: '산업안전 논리회로 도표',
+      original: 'assets/safety/assets/comcbt/20140525/images/kv20140525m24.gif',
+      originalSize: '207 × 149px · 원본 GIF',
+      improved: 'assets/safety/assets/comcbt/20140525/images/kv20140525m24.png',
+      improvedSize: '414 × 298px · 개선 PNG',
+      count: '전 종목 4,050개 이미지',
+    });
 const darkActive = computed(() =>
   theme.value === 'dark'
   || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
@@ -1749,6 +1766,29 @@ onBeforeUnmount(() => {
               <strong>LIVE</strong>
               <span>Vue Motion</span>
             </div>
+          </section>
+
+          <section class="feature-upscale-compare">
+            <header>
+              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>원본과 업스케일링 후를 직접 비교하세요</h2></div>
+              <p>Real-ESRGAN 4배 처리 후 2배 bicubic 축소 · Mac M4 Pro · 256px 타일</p>
+            </header>
+            <div class="upscale-compare-grid">
+              <a :href="upscaleComparison.original" target="_blank" rel="noopener" class="upscale-compare-card original">
+                <div><span>BEFORE</span><strong>원본</strong><small>{{ upscaleComparison.originalSize }}</small></div>
+                <figure><img :src="upscaleComparison.original" :alt="`${upscaleComparison.subject} 업스케일링 전 원본`"></figure>
+                <b>눌러서 원본 크기로 보기 ↗</b>
+              </a>
+              <a :href="upscaleComparison.improved" target="_blank" rel="noopener" class="upscale-compare-card improved">
+                <div><span>AFTER</span><strong>업스케일링 후</strong><small>{{ upscaleComparison.improvedSize }}</small></div>
+                <figure><img :src="upscaleComparison.improved" :alt="`${upscaleComparison.subject} 업스케일링 후`"></figure>
+                <b>눌러서 원본 크기로 보기 ↗</b>
+              </a>
+            </div>
+            <footer>
+              <strong>{{ upscaleComparison.subject }}</strong>
+              <span>{{ upscaleComparison.count }}에 같은 처리 기준을 적용했으며, 기존 원본 파일은 그대로 보존했습니다.</span>
+            </footer>
           </section>
 
           <section class="feature-tour">
