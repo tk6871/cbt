@@ -807,8 +807,11 @@
       if (!s.timedQuestions[question.number] && !s.questionStartedAt[question.number]) s.questionStartedAt[question.number] = visibleAt;
     });
     const answered = s.questions.filter((question) => s.answers[question.number] != null).length;
+    const jumpNumbers = s.questions.map((question) => Number(question.number)).filter(Number.isFinite);
+    const jumpMin = jumpNumbers.length ? Math.min(...jumpNumbers) : 1;
+    const jumpMax = jumpNumbers.length ? Math.max(...jumpNumbers) : s.questions.length;
     shell(`<div class="session-head"><div><span>학습모드</span><h2>${esc(s.round.title)}</h2></div><div class="session-status"><strong><b data-learning-done>${answered}</b>/${s.questions.length}</strong><span>답변 완료</span></div></div>
-      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-calculator">공학용 계산기</button><button data-action="open-jump">문제 번호로 이동</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
+      <div class="learning-toolbar"><label>한 화면 문제 수<select data-change="session-page-size">${[2, 4, 6, 10, 20, 40].map((size) => `<option value="${size}" ${s.pageSize === size ? 'selected' : ''}>${size}문제</option>`).join('')}<option value="${s.questions.length}" ${s.pageSize === s.questions.length ? 'selected' : ''}>전체</option></select></label><div class="learning-jump-control"><label for="learningJumpNumber">문제 번호</label><input id="learningJumpNumber" data-input="learning-jump" type="number" inputmode="numeric" min="${jumpMin}" max="${jumpMax}" placeholder="${jumpMin}~${jumpMax}" aria-label="이동할 문제 번호"><button data-action="jump-input">이동</button></div><span>넓은 화면에서는 한 줄에 2문제씩 표시됩니다.</span><div class="learning-toolbar-actions"><button data-action="open-calculator">공학용 계산기</button><button class="learning-reset-button" data-action="reset-learning-session">현재 풀이 초기화</button></div></div>
       <div class="learning-list">${visible.map((question) => renderLearningItem(question)).join('')}</div>
       <div class="pagination"><button data-action="session-prev" ${s.page === 0 ? 'disabled' : ''}>‹ 이전</button><span>${s.page + 1} / ${pages}</span><button data-action="session-next" ${s.page >= pages - 1 ? 'disabled' : ''}>다음 ›</button></div>
       <div class="learning-finish"><button class="primary-button" data-action="finish-session">학습 결과 보기</button></div>`, '문제 풀이', `${s.round.shortQualification || ''} · 학습모드`);
@@ -1029,6 +1032,18 @@
     const s = state.session; if (!s) return;
     const input = prompt(`이동할 문제 번호를 입력하세요. (1~${s.questions.length})`);
     if (input && Number(input) >= 1 && Number(input) <= s.questions.length) jumpQuestion(Number(input));
+  }
+  function jumpFromLearningInput() {
+    const s = state.session;
+    const input = document.getElementById('learningJumpNumber');
+    if (!s || !input) return;
+    const number = Number(input.value);
+    if (!Number.isInteger(number) || !s.questions.some((question) => question.number === number)) {
+      toast(`${number || '입력한 번호'}번은 현재 학습 범위에 없습니다.`);
+      input.focus();
+      return;
+    }
+    jumpQuestion(number);
   }
   function bindFocusable() { document.documentElement.style.setProperty('--font-scale', store.fontScale || 1); }
   async function forceRefresh() {
@@ -1348,6 +1363,7 @@
       toast('현재 풀이를 처음 상태로 초기화했습니다.');
     }
     else if (action === 'open-jump') renderJumpModal();
+    else if (action === 'jump-input') jumpFromLearningInput();
     else if (action === 'jump-question') jumpQuestion(Number(button.dataset.number));
     else if (action === 'toggle-review') {
       const n = Number(button.dataset.number), active = !state.session.review[n]; state.session.review[n] = active;
@@ -1462,6 +1478,11 @@
       }, 300);
     }
   }
+  function keydownHandler(event) {
+    if (event.key !== 'Enter' || event.target?.dataset?.input !== 'learning-jump') return;
+    event.preventDefault();
+    jumpFromLearningInput();
+  }
   function route() {
     if (state.session) return renderSession();
     if (state.view === 'home') renderHome(); else if (state.view === 'rounds') renderRounds(); else if (state.view === 'wrong') renderWrong(); else if (state.view === 'search') renderSearch(); else if (state.view === 'stats') renderStats(); else if (state.view === 'updates') renderUpdates(); else if (state.view === 'result') renderResult(); else renderHome();
@@ -1470,6 +1491,7 @@
   app.addEventListener('click', actionHandler);
   app.addEventListener('change', changeHandler);
   app.addEventListener('input', inputHandler);
+  app.addEventListener('keydown', keydownHandler);
   window.addEventListener('pagehide', () => sendSessionAnalytics(state.session));
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system'); bindFocusable(); route();
@@ -1482,7 +1504,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=240', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=241', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();

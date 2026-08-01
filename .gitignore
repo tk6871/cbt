@@ -4,3 +4,11 @@ node_modules/
 .env.*
 !.env.example
 supabase/*.local.sql
+tools/realesrgan/
+samples/upscale/
+work/hvac-restored-upscaled/
+work/hvac-restored-upscale-temp/
+work/hvac-restored-upscale-logs/
+work/hvac-comcbt-upscaled/
+work/hvac-comcbt-upscale-temp/
+work/hvac-comcbt-upscale-logs/

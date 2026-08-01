@@ -89,6 +89,7 @@ const updateChecking = ref(false);
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
+const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
 const displayedPassChance = ref(0);
@@ -179,6 +180,10 @@ const currentItems = computed(() => {
 });
 const pageCount = computed(() => session.value ? Math.ceil(session.value.items.length / session.value.pageSize) : 0);
 const answeredCount = computed(() => session.value ? Object.keys(session.value.answers).length : 0);
+const sessionQuestionMax = computed(() => session.value?.items.reduce(
+  (maximum, item) => Math.max(maximum, Number(item.question.number) || 0),
+  0,
+) || 0);
 const formattedTime = computed(() => {
   const total = Math.max(0, session.value?.remainingSeconds || 0);
   const hours = Math.floor(total / 3600);
@@ -615,6 +620,7 @@ function beginSession(
     : -1;
   examResult.value = null;
   sessionMenuOpen.value = false;
+  learningJumpNumber.value = '';
   session.value = {
     id: `${mode}-${Date.now()}`,
     mode,
@@ -780,8 +786,28 @@ function goToPage(page: number): void {
 
 function goToQuestion(index: number): void {
   if (!session.value) return;
-  goToPage(Math.floor(index / session.value.pageSize));
+  const targetIndex = Math.max(0, Math.min(session.value.items.length - 1, index));
+  goToPage(Math.floor(targetIndex / session.value.pageSize));
+  void nextTick(() => {
+    document.getElementById(`session-question-${targetIndex + 1}`)
+      ?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
   if (window.innerWidth < 1100) examSheetOpen.value = false;
+}
+
+function jumpToLearningQuestion(): void {
+  if (!session.value || session.value.mode !== 'learn') return;
+  const number = Number(learningJumpNumber.value);
+  if (!Number.isInteger(number) || number < 1) {
+    showToast('이동할 문제 번호를 입력하세요.');
+    return;
+  }
+  const index = session.value.items.findIndex((item) => item.question.number === number);
+  if (index < 0) {
+    showToast(`${number}번은 현재 학습 범위에 없습니다.`);
+    return;
+  }
+  goToQuestion(index);
 }
 
 function resetLearning(): void {
@@ -1873,6 +1899,20 @@ onBeforeUnmount(() => {
           <button type="button" title="기본 크기로" @click="setFontScale(1)">{{ Math.round(fontScale * 100) }}%</button>
           <button type="button" aria-label="문자 크게" :disabled="fontScale >= 1.2" @click="adjustFontScale(.1)">가+</button>
         </div>
+        <form v-if="session.mode === 'learn'" class="session-jump-form" @submit.prevent="jumpToLearningQuestion">
+          <label for="learning-jump-number">문제 번호</label>
+          <input
+            id="learning-jump-number"
+            v-model="learningJumpNumber"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            :max="sessionQuestionMax"
+            :placeholder="`1~${sessionQuestionMax}`"
+            aria-label="이동할 문제 번호"
+          >
+          <button type="submit">이동</button>
+        </form>
         <label v-if="session.mode === 'learn'">
           문제 표시
           <select v-model.number="session.pageSize" @change="session.page = 0">
@@ -1909,6 +1949,7 @@ onBeforeUnmount(() => {
           <QuestionCard
             v-for="item in currentItems"
             :key="item.id"
+            :id="`session-question-${session.items.indexOf(item) + 1}`"
             :item="item"
             :mode="session.mode"
             :selected="session.answers[item.id]"
