@@ -9,6 +9,8 @@
   const memoryStatus = document.getElementById('memoryStatus');
   const historyPanel = document.getElementById('historyPanel');
   const historyList = document.getElementById('historyList');
+  const visualStyleButton = document.querySelector('[data-action="visual-style"]');
+  const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
   let angleMode = 'deg';
   let shift = false;
   let alpha = false;
@@ -16,6 +18,15 @@
   let memory = 0;
   let history = [];
   let fractionMode = false;
+
+  function applyVisualStyle(style = localStorage.getItem(VISUAL_STYLE_KEY)) {
+    const normalized = style === 'simpsons' ? 'simpsons' : 'default';
+    document.documentElement.dataset.visualStyle = normalized;
+    if (visualStyleButton) {
+      visualStyleButton.textContent = normalized === 'simpsons' ? 'CBT' : '🍩';
+      visualStyleButton.title = normalized === 'simpsons' ? '기본 CBT 계산기로 바꾸기' : '심슨 계산기로 바꾸기';
+    }
+  }
 
   function setModifier(type, enabled) {
     if (type === 'shift') {
@@ -172,6 +183,10 @@
     } else if (action === 'history-clear') {
       history = [];
       renderHistory();
+    } else if (action === 'visual-style') {
+      const next = document.documentElement.dataset.visualStyle === 'simpsons' ? 'default' : 'simpsons';
+      localStorage.setItem(VISUAL_STYLE_KEY, next);
+      applyVisualStyle(next);
     }
   });
 
@@ -187,5 +202,9 @@
     }
   });
 
+  window.addEventListener('storage', (event) => {
+    if (event.key === VISUAL_STYLE_KEY) applyVisualStyle(event.newValue);
+  });
+  applyVisualStyle();
   input.focus();
 })();

@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '2.4.4',
+      scope: 'industrial',
+      date: '2026.08.01',
+      title: '기본·심슨 UI 선택과 코믹 계산기',
+      summary: '기존 CBT 화면을 기본값으로 유지하면서 스프링필드풍 심슨 테마를 선택할 수 있고, 같은 스타일이 신기능 체험실과 계산기까지 이어집니다.',
+      tags: ['UI 스타일', '심슨 테마', '신기능 체험실', '계산기', '화질 개선'],
+      changes: [
+        '설정에서 기본 CBT와 심슨 테마를 선택하고 이 기기에 저장할 수 있습니다.',
+        '심슨 테마를 선택하면 메뉴, 카드, 알림, 문제 풀이와 공학용 계산기가 같은 코믹 UI로 바뀝니다.',
+        '호머와 바트 장면의 원본 이미지를 보존하고 Mac M4 Pro에서 Real-ESRGAN 4배 처리 후 2배 bicubic으로 축소한 개선본을 적용했습니다.',
+        '신기능 체험실에서 두 UI를 즉시 바꾸고 실제 개선 이미지를 확인할 수 있습니다.',
+        '이전 버전 CBT와 산업기사·보석관이 같은 UI 스타일 저장값을 공유합니다.'
+      ]
+    },
+    {
+      version: '2.4.4',
+      scope: 'jewelry',
+      date: '2026.08.01',
+      title: '기본·심슨 UI 선택과 코믹 계산기',
+      summary: '보석관의 기존 화면을 기본값으로 유지하면서 스프링필드풍 심슨 테마를 선택할 수 있고, 같은 스타일이 신기능 체험실과 계산기까지 이어집니다.',
+      tags: ['UI 스타일', '심슨 테마', '신기능 체험실', '계산기', '보석관'],
+      changes: [
+        '설정에서 기본 CBT와 심슨 테마를 선택하고 이 기기에 저장할 수 있습니다.',
+        '심슨 테마를 선택하면 보석관 메뉴, 카드, 알림, 문제 풀이와 공학용 계산기가 같은 코믹 UI로 바뀝니다.',
+        '호머와 바트 장면의 원본 이미지를 보존하고 Mac M4 Pro에서 Real-ESRGAN 4배 처리 후 2배 bicubic으로 축소한 개선본을 적용했습니다.',
+        '신기능 체험실에서 두 UI를 즉시 바꾸고 실제 개선 이미지를 확인할 수 있습니다.',
+        '이전 버전 CBT와 산업기사·보석관이 같은 UI 스타일 저장값을 공유합니다.'
+      ]
+    },
+    {
       version: '2.4.3',
       scope: 'industrial',
       date: '2026.08.01',
@@ -537,8 +567,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.4.3';
-  changelog.versions.jewelry = '2.4.3';
-  changelog.currentVersion = '2.4.3';
+  changelog.versions.industrial = '2.4.4';
+  changelog.versions.jewelry = '2.4.4';
+  changelog.currentVersion = '2.4.4';
   window.CBT_CHANGELOG = changelog;
 })();

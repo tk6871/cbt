@@ -17,7 +17,9 @@ import {
 import QuestionCard from './QuestionCard.vue';
 import {
   applyTheme,
+  applyVisualStyle,
   currentTheme,
+  currentVisualStyle,
   db,
   hydrateIndexedDb,
   loadExamRecords,
@@ -26,6 +28,7 @@ import {
   recordExam,
   studyStore,
   type ExamRecord,
+  type VisualStyle,
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
@@ -55,6 +58,7 @@ type MasteryRow = QuestionItem & {
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
 const spaceScope = isJewelry ? 'jewelry' : 'industrial';
+const simpsonsThemeImage = 'assets/theme/simpsons/homer-bart-choke-2x.webp';
 const catalogs = loadCatalogs();
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
@@ -82,6 +86,7 @@ const sessionMenuOpen = ref(false);
 const examSheetOpen = ref(true);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
+const visualStyle = ref<VisualStyle>(currentVisualStyle());
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
@@ -429,11 +434,11 @@ function animateCoachDashboard(): void {
 
 function animateViewDetails(next: ViewName): void {
   const selectors: Partial<Record<ViewName, string>> = {
-    home: '.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
+    home: '.simpsons-home-hero,.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
     rounds: '.round-card',
     wrong: '.tool-hero,.question-library article,.empty-state',
     search: '.search-command,.search-summary,.question-library article,.empty-state',
-    showcase: '.feature-hero,.feature-tour-card,.feature-action-card,.feature-latest',
+    showcase: '.feature-hero,.feature-theme-preview,.feature-upscale-compare,.feature-tour-card,.feature-action-card,.feature-latest',
     stats: '.stats-hero,.stats-grid article,.subject-report,.subject-row',
     updates: '.patch-heading,.patch-timeline article',
   };
@@ -1123,6 +1128,16 @@ function toggleLightDark(): void {
   showToast(darkActive.value ? '다크 모드로 전환했습니다.' : '라이트 모드로 전환했습니다.');
 }
 
+function setVisualStyle(style: VisualStyle): void {
+  visualStyle.value = style;
+  applyVisualStyle(style);
+  showToast(style === 'simpsons' ? '심슨 테마 UI를 적용했습니다. 🍩' : '기본 CBT UI로 돌아왔습니다.');
+}
+
+function toggleVisualStyle(): void {
+  setVisualStyle(visualStyle.value === 'simpsons' ? 'default' : 'simpsons');
+}
+
 function setFontScale(value: number): void {
   const normalized = Math.min(1.2, Math.max(.9, Math.round(value * 10) / 10));
   fontScale.value = normalized;
@@ -1376,6 +1391,7 @@ onMounted(async () => {
   window.addEventListener('pagehide', handlePageHide);
   initializeNavigationHistory();
   applyTheme(theme.value);
+  applyVisualStyle(visualStyle.value);
   setFontScale(fontScale.value);
   setDefaultYears(10);
   await hydrateIndexedDb();
@@ -1400,8 +1416,8 @@ onBeforeUnmount(() => {
   <div v-if="!session" class="app-frame">
     <aside class="sidebar" :class="{ open: mobileMenuOpen }">
       <button class="brand" type="button" @click="openView('home')">
-        <span>{{ isJewelry ? 'GEM' : 'CBT' }}</span>
-        <div><strong>{{ spaceName }}</strong><small>{{ isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
+        <span>{{ visualStyle === 'simpsons' ? '🍩' : isJewelry ? 'GEM' : 'CBT' }}</span>
+        <div><strong>{{ spaceName }}</strong><small>{{ visualStyle === 'simpsons' ? 'SPRINGFIELD STUDY' : isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
       </button>
       <nav>
         <button :class="{ active: view === 'home' }" @click="openView('home')"><span>⌂</span>홈</button>
@@ -1449,6 +1465,21 @@ onBeforeUnmount(() => {
         <Transition name="view-swap" mode="out-in">
           <div :key="view" class="view-stage">
         <template v-if="view === 'home'">
+          <section v-if="visualStyle === 'simpsons'" class="simpsons-home-hero">
+            <div class="simpsons-home-copy">
+              <span>SPRINGFIELD STUDY MODE · 🍩</span>
+              <h1>공부 안 하면<br><em>호머가 찾아옵니다!</em></h1>
+              <p>기능과 학습 기록은 그대로 두고, 화면만 심슨풍 코믹 UI로 바꿨습니다. 설정에서 언제든 기본 화면으로 돌아갈 수 있습니다.</p>
+              <div>
+                <button type="button" @click="openView('rounds')">회차 풀기 →</button>
+                <button type="button" @click="setVisualStyle('default')">기본 UI로</button>
+              </div>
+            </div>
+            <figure>
+              <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
+              <figcaption>원본 보존 · Real-ESRGAN 4× → 2× bicubic</figcaption>
+            </figure>
+          </section>
           <section class="qualification-section">
             <div class="section-title">
               <div>
@@ -1779,6 +1810,22 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
+          <section class="feature-theme-preview">
+            <div>
+              <span>LATEST EXPERIENCE · v{{ currentVersion }}</span>
+              <h2>기본 CBT와 심슨 테마를 직접 바꿔보세요</h2>
+              <p>기본값은 지금까지 사용한 CBT 화면입니다. 심슨 테마는 카드·메뉴·알림·계산기까지 스프링필드풍으로 바꾸며 학습 기록과 기능은 그대로 유지합니다.</p>
+              <div>
+                <button type="button" :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')">기본 CBT</button>
+                <button type="button" :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')">🍩 심슨 테마</button>
+              </div>
+            </div>
+            <figure>
+              <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
+              <figcaption>928×696 원본 보존 · 1856×1392 개선본 사용</figcaption>
+            </figure>
+          </section>
+
           <section class="feature-upscale-compare">
             <header>
               <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>원본과 업스케일링 후를 직접 비교하세요</h2></div>
@@ -1856,6 +1903,9 @@ onBeforeUnmount(() => {
           <section class="feature-action-section">
             <header><div><span>QUICK EXPERIENCE</span><h2>한 번 눌러 바로 체감하기</h2></div></header>
             <div class="feature-action-grid">
+              <button type="button" class="feature-action-card simpsons" @click="toggleVisualStyle">
+                <span>🍩</span><div><strong>{{ visualStyle === 'simpsons' ? '기본 CBT UI로' : '심슨 테마 UI' }}</strong><small>화면 스타일 즉시 전환</small></div><b>›</b>
+              </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
               </button>
@@ -1934,6 +1984,14 @@ onBeforeUnmount(() => {
     <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group">
+          <span>UI 스타일</span>
+          <p class="setting-description">학습 기능과 기록은 그대로 유지하고 화면 디자인만 바꿉니다.</p>
+          <div class="style-options">
+            <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>지금까지 사용한 화면</small></button>
+            <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>스프링필드 코믹 UI</small></button>
+          </div>
+        </div>
         <div class="setting-group">
           <span>화면 테마</span>
           <div class="theme-options">

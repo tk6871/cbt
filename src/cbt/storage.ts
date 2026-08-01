@@ -6,6 +6,8 @@ const IS_JEWELRY = window.CBT_APP_SPACE === 'jewelry';
 const STORAGE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-v1' : 'unified-industrial-cbt-v1';
 const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
+const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+export type VisualStyle = 'default' | 'simpsons';
 
 type AttemptRow = AttemptRecord & { id: string };
 export type ExamRecord = {
@@ -126,4 +128,13 @@ export function applyTheme(mode: 'system' | 'light' | 'dark'): void {
   localStorage.setItem(THEME_KEY, mode);
   const dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+}
+
+export function currentVisualStyle(): VisualStyle {
+  return localStorage.getItem(VISUAL_STYLE_KEY) === 'simpsons' ? 'simpsons' : 'default';
+}
+
+export function applyVisualStyle(style: VisualStyle): void {
+  localStorage.setItem(VISUAL_STYLE_KEY, style);
+  document.documentElement.dataset.visualStyle = style;
 }
