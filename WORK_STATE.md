@@ -6,8 +6,8 @@
 
 - 마지막 갱신: 2026-08-01
 - 기준 브랜치: `main`
-- 이번 Mac 작업 직전 Git HEAD: `01b251111a9d2021fe53fb77638d8424901e43b1`
-- 이번 문서에는 에너지관리 이미지 개선 작업과 실제 Mac 검증 결과가 포함됨
+- 이번 Mac 작업 직전 Git HEAD: `62549e8ea998aa79e80996487463ff8d58bbe464`
+- 이번 문서에는 공조·산업안전·에너지관리·설비보전 이미지 개선 작업과 실제 Mac 검증 결과가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
 - Windows SSH 호스트 별칭: `mac-m4`
@@ -37,7 +37,7 @@ pnpm build
 - Supabase 관리자 페이지에 방문·학습·시험 결과와 실시간 접속 상태를 구성했습니다. 문제별 매 클릭 대신 묶음 결과 전송을 사용하도록 조정했습니다.
 - 학습모드 상단에 문제 번호를 입력하여 바로 이동하는 기능을 Vue 화면과 구버전 화면에 적용했습니다.
 - 공조냉동 2021~2026 복원문제는 텍스트 변환 대신 원문 이미지 중심으로 표시합니다.
-- 패치노트 v2.3.10과 Service Worker 캐시 v242까지 반영했습니다.
+- 패치노트 v2.3.11과 Service Worker 캐시 v243까지 반영했습니다.
 - 마지막 Mac 작업에서 TypeScript 검사와 Vite production build가 통과했습니다.
 
 ## 공조냉동 문제·해설 교정 상태
@@ -55,11 +55,13 @@ pnpm build
 - 원문 문제 이미지 1,020개 처리 완료
 - Real-ESRGAN 4배 모델 처리 후 2배 크기로 축소하는 방식 사용
 - 적용 모델: `realesrgan-x4plus-anime`
-- 원본 이미지는 삭제하지 않음
+- Git 이전 기록의 원본에서 Mac M4 Pro 256px 타일 기준으로 다시 처리
+- 원본 이미지는 Git 기록과 별도 작업 폴더에 보존
 
 ### 공조냉동 2002~2020 계산식·도표
 
 - GIF 이미지 1,348개를 2배 PNG 결과로 처리하고 데이터 참조 변경
+- Mac M4 Pro 256px 타일 기준으로 원본 GIF에서 다시 처리
 - 원본 GIF 보존
 - 공조 데이터의 고유 이미지 참조 2,444개, 누락 0으로 확인
 
@@ -72,6 +74,24 @@ pnpm build
 - 적용 모델: `realesrgan-x4plus-anime`
 - 처리 파이프라인: `4x Real-ESRGAN → 2x bicubic 축소`
 - Mac M4 Pro에서는 256px 타일을 사용
+
+### 산업안전
+
+- 수식·도표·보기 GIF 이미지 481개를 2배 PNG로 처리하고 데이터 참조 변경
+- 원본 GIF 481개 보존
+- 산업안전 데이터의 고유 이미지 참조 481개, 누락 0으로 확인
+- 적용 모델: `realesrgan-x4plus-anime`
+- 처리 파이프라인: `4x Real-ESRGAN → 2x bicubic 축소`
+- Mac M4 Pro에서 256px 타일 사용
+
+### 설비보전
+
+- 수식·도표·보기 GIF 이미지 820개를 2배 PNG로 처리하고 데이터 참조 변경
+- 원본 GIF 820개 보존
+- 설비보전 데이터의 고유 이미지 참조 820개, 누락 0으로 확인
+- 적용 모델: `realesrgan-x4plus-anime`
+- 처리 파이프라인: `4x Real-ESRGAN → 2x bicubic 축소`
+- Mac M4 Pro에서 256px 타일 사용
 
 ### Windows 처리 도구
 
@@ -86,11 +106,12 @@ pnpm build
 ### Mac 처리 도구
 
 - `tools/upscale-energy-images-macos.py`
+- `tools/upscale-cbt-images-macos.py`
 - `tools/requirements-upscale-macos.txt`
 - 공식 macOS 실행 파일은 universal binary이며 `arm64`와 `x86_64`를 모두 포함
 - Mac 실행 파일 위치:
   `tools/realesrgan/realesrgan-ncnn-vulkan-20220424-macos/realesrgan-ncnn-vulkan`
-- `tools/realesrgan/`과 `work/energy-*`는 Git에 포함하지 않음
+- `tools/realesrgan/`, `work/energy-*`, `work/image-upscale-macos/`는 Git에 포함하지 않음
 - M4 Pro GPU는 NCNN/MoltenVK 경로로 사용하며 Apple Neural Engine을 직접 사용하지 않음
 
 ## 마지막 Mac 검증 결과
@@ -101,6 +122,10 @@ pnpm build
 - `node --check data/energy.js` 통과
 - `npm run typecheck` 통과
 - `npm run build` 통과
+- 공조 복원문제 1,020개와 수식·도표 1,348개를 Mac 256px 타일 기준으로 다시 처리하고 치수 검증 통과
+- 산업안전 481개와 설비보전 820개를 Mac 256px 타일 기준으로 처리하고 치수 검증 통과
+- 공조 2,444개, 에너지관리 325개, 산업안전 481개, 설비보전 820개 이미지 참조 누락 0
+- 공조·산업안전·설비보전 GPU 처리 3,669개에 실제 약 10분 소요
 - 에너지관리 적용 이미지 325개 치수 검증 통과
 - 에너지관리 이미지 참조 325개, 누락 0
 - PiperSR NPU, Real-ESRGAN 일반 모델, TTA, 타일 크기 64·256·512px를 표본 비교
@@ -108,11 +133,7 @@ pnpm build
 
 ## 다음 우선 작업
 
-다음 이미지 개선 후보는 아래 순서입니다.
-
-- 산업안전: GIF 481개
-- 설비보전: GIF 820개
-- 보석가공: GIF 56개
+다음 이미지 개선 후보는 보석가공 GIF 56개입니다.
 
 실제 작업 전에는 현재 저장소에서 이미지 수량, 참조 경로, 누락 여부를 다시 집계해야 합니다.
 
