@@ -5,6 +5,32 @@
 
   const entries = [
     {
+      version: '2.4.3',
+      scope: 'industrial',
+      date: '2026.08.01',
+      title: '화질 비교 크게 보기 개선',
+      summary: '신기능 체험실의 원본과 업스케일링 결과를 새 창이 아닌 문제 풀이 화면과 같은 크게 보기로 확인할 수 있습니다.',
+      tags: ['신기능 체험실', '화질 비교', '크게 보기', '사용성'],
+      changes: [
+        '원본과 업스케일링 후 이미지를 누르면 현재 화면 위에 문제 풀이 이미지와 같은 크게 보기가 열립니다.',
+        '새 브라우저 창이나 탭을 열지 않으며 이미지, 바깥 영역 또는 닫기 버튼을 누르면 체험실로 돌아옵니다.',
+        '산업기사와 보석관 화질 비교에 같은 확대 동작을 적용했습니다.'
+      ]
+    },
+    {
+      version: '2.4.3',
+      scope: 'jewelry',
+      date: '2026.08.01',
+      title: '화질 비교 크게 보기 개선',
+      summary: '신기능 체험실의 원본과 업스케일링 결과를 새 창이 아닌 문제 풀이 화면과 같은 크게 보기로 확인할 수 있습니다.',
+      tags: ['신기능 체험실', '화질 비교', '크게 보기', '보석관'],
+      changes: [
+        '원본과 업스케일링 후 이미지를 누르면 현재 화면 위에 문제 풀이 이미지와 같은 크게 보기가 열립니다.',
+        '새 브라우저 창이나 탭을 열지 않으며 이미지, 바깥 영역 또는 닫기 버튼을 누르면 체험실로 돌아옵니다.',
+        '산업기사와 보석관 화질 비교에 같은 확대 동작을 적용했습니다.'
+      ]
+    },
+    {
       version: '2.4.2',
       scope: 'industrial',
       date: '2026.08.01',
@@ -511,8 +537,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.4.2';
-  changelog.versions.jewelry = '2.4.2';
-  changelog.currentVersion = '2.4.2';
+  changelog.versions.industrial = '2.4.3';
+  changelog.versions.jewelry = '2.4.3';
+  changelog.currentVersion = '2.4.3';
   window.CBT_CHANGELOG = changelog;
 })();

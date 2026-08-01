@@ -31,6 +31,7 @@ import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, Sess
 
 type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
+type UpscalePreviewKind = 'original' | 'improved';
 type ExamResult = {
   score: number;
   correct: number;
@@ -93,6 +94,7 @@ const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
 const displayedPassChance = ref(0);
+const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
@@ -161,6 +163,15 @@ const upscaleComparison = computed(() => isJewelry
       improvedSize: '414 × 298px · 개선 PNG',
       count: '전 종목 4,050개 이미지',
     });
+const upscalePreview = computed(() => {
+  if (!upscalePreviewKind.value) return null;
+  const original = upscalePreviewKind.value === 'original';
+  return {
+    src: original ? upscaleComparison.value.original : upscaleComparison.value.improved,
+    title: `${upscaleComparison.value.subject} · ${original ? '원본' : '업스케일링 후'}`,
+    size: original ? upscaleComparison.value.originalSize : upscaleComparison.value.improvedSize,
+  };
+});
 const darkActive = computed(() =>
   theme.value === 'dark'
   || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
@@ -1774,22 +1785,52 @@ onBeforeUnmount(() => {
               <p>Real-ESRGAN 4배 처리 후 2배 bicubic 축소 · Mac M4 Pro · 256px 타일</p>
             </header>
             <div class="upscale-compare-grid">
-              <a :href="upscaleComparison.original" target="_blank" rel="noopener" class="upscale-compare-card original">
+              <button
+                type="button"
+                class="upscale-compare-card original"
+                :aria-label="`${upscaleComparison.subject} 원본 크게 보기`"
+                @click="upscalePreviewKind = 'original'"
+              >
                 <div><span>BEFORE</span><strong>원본</strong><small>{{ upscaleComparison.originalSize }}</small></div>
                 <figure><img :src="upscaleComparison.original" :alt="`${upscaleComparison.subject} 업스케일링 전 원본`"></figure>
-                <b>눌러서 원본 크기로 보기 ↗</b>
-              </a>
-              <a :href="upscaleComparison.improved" target="_blank" rel="noopener" class="upscale-compare-card improved">
+                <b>눌러서 크게 보기 ⌕</b>
+              </button>
+              <button
+                type="button"
+                class="upscale-compare-card improved"
+                :aria-label="`${upscaleComparison.subject} 업스케일링 후 크게 보기`"
+                @click="upscalePreviewKind = 'improved'"
+              >
                 <div><span>AFTER</span><strong>업스케일링 후</strong><small>{{ upscaleComparison.improvedSize }}</small></div>
                 <figure><img :src="upscaleComparison.improved" :alt="`${upscaleComparison.subject} 업스케일링 후`"></figure>
-                <b>눌러서 원본 크기로 보기 ↗</b>
-              </a>
+                <b>눌러서 크게 보기 ⌕</b>
+              </button>
             </div>
             <footer>
               <strong>{{ upscaleComparison.subject }}</strong>
               <span>{{ upscaleComparison.count }}에 같은 처리 기준을 적용했으며, 기존 원본 파일은 그대로 보존했습니다.</span>
             </footer>
           </section>
+
+          <Teleport to="body">
+            <div
+              v-if="upscalePreview"
+              class="question-image-lightbox"
+              role="dialog"
+              aria-modal="true"
+              :aria-label="`${upscalePreview.title} 확대`"
+              @click="upscalePreviewKind = null"
+            >
+              <header @click.stop>
+                <strong>{{ upscalePreview.title }}</strong>
+                <span>{{ upscalePreview.size }} · 문제 풀이 화면과 같은 크게 보기</span>
+                <button type="button" aria-label="확대 이미지 닫기" @click="upscalePreviewKind = null">×</button>
+              </header>
+              <div @click.self="upscalePreviewKind = null">
+                <img :src="upscalePreview.src" :alt="`${upscalePreview.title} 확대`">
+              </div>
+            </div>
+          </Teleport>
 
           <section class="feature-tour">
             <header><div><span>3-MINUTE TOUR</span><h2>가장 달라진 기능 세 가지</h2></div><p>순서대로 눌러보면 새 화면의 장점을 빠르게 확인할 수 있습니다.</p></header>
