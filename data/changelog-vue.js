@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '2.3.10',
+      scope: 'industrial',
+      date: '2026.08.01',
+      title: '에너지관리 문제 이미지 선명도 개선',
+      summary: '에너지관리 기출문제의 수식·도표·보기와 복원문제 이미지를 초해상도로 개선해 글자와 선을 더 또렷하게 표시합니다.',
+      tags: ['에너지관리', '이미지 개선', '수식·도표', '가독성'],
+      changes: [
+        '에너지관리 2002~2020년 수식·도표·보기 GIF 이미지 225장을 4배 초해상도 처리 후 2배 PNG로 정리했습니다.',
+        '에너지관리 2022년 복원문제 JPG 이미지 100장을 같은 방식으로 개선해 작은 글자와 그림의 가독성을 높였습니다.',
+        '기존 GIF 원본은 그대로 보존하고 문제 데이터의 이미지 연결만 개선된 PNG 파일로 변경했습니다.',
+        'Apple Silicon 네이티브 Real-ESRGAN과 M4 Pro GPU에 맞춘 검증형 이미지 처리 도구를 추가했습니다.',
+        '업데이트 캐시 버전을 갱신해 개선된 에너지관리 이미지가 최신 파일로 교체되도록 했습니다.'
+      ]
+    },
+    {
       version: '2.3.9',
       scope: 'industrial',
       date: '2026.08.01',
@@ -410,8 +425,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.9';
+  changelog.versions.industrial = '2.3.10';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.9';
+  changelog.currentVersion = '2.3.10';
   window.CBT_CHANGELOG = changelog;
 })();
