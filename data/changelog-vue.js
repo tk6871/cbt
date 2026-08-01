@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '2.3.9',
+      scope: 'industrial',
+      date: '2026.08.01',
+      title: '공조 문제 이미지 선명도와 학습 이동 개선',
+      summary: '공조 복원문제와 수식·도표 이미지를 초해상도로 개선하고, 학습모드 문제 번호 이동과 2026년 2회 44번 해설 오류를 수정했습니다.',
+      tags: ['공조 이미지 개선', '문제 번호 이동', '해설 교정', '학습모드'],
+      changes: [
+        '공조 2021~2026년 CBT 복원문제 1,020장을 4배 초해상도 처리 후 2배 크기로 정리해 글자와 선의 가독성을 높였습니다.',
+        '공조 2002~2020년 수식·도표·보기 이미지 1,348장을 같은 방식으로 개선하고 손실이 적은 PNG 형식으로 연결했습니다.',
+        '신버전과 이전 버전 학습모드 상단에 문제 번호 입력칸을 추가해 Enter 또는 이동 버튼으로 해당 번호에 바로 갈 수 있습니다.',
+        '공조 2026년 2회 44번의 ③ 보기 OCR을 SPTH에서 SPTW로, ④ 보기의 PS를 SPS로 고치고 해설도 원문과 맞췄습니다.',
+        '업데이트 캐시 버전을 갱신해 새 문제 이미지와 화면 기능이 최신 파일로 교체되도록 했습니다.'
+      ]
+    },
+    {
       version: '2.3.8',
       scope: 'industrial',
       date: '2026.07.30',
@@ -395,8 +410,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.3.8';
+  changelog.versions.industrial = '2.3.9';
   changelog.versions.jewelry = '2.3.4';
-  changelog.currentVersion = '2.3.8';
+  changelog.currentVersion = '2.3.9';
   window.CBT_CHANGELOG = changelog;
 })();
