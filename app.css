@@ -776,3 +776,54 @@ th:first-child, td:first-child { text-align: left; }
   .sidebar, .topbar, .mobile-nav, .learning-toolbar, .pagination, .learning-finish { display: none !important; }
   .app-shell { display: block; }.content { width: 100%; padding: 0; }.question-card { break-inside: avoid; }
 }
+
+[data-visual-style="simpsons"] {
+  color-scheme:light;
+  --bg:#74c9f1;
+  --surface:#fff9d6;
+  --surface-2:#fff1a6;
+  --text:#171717;
+  --muted:#584d3f;
+  --line:#171717;
+  --primary:#e62f83;
+  --primary-soft:#ffd1e6;
+  --green:#289f5c;
+  --orange:#e87824;
+  --red:#e53d32;
+  --shadow:5px 6px 0 #171717;
+}
+[data-visual-style="simpsons"] body {
+  background:
+    radial-gradient(ellipse 90px 36px at 12% 7%,#fff 0 48%,transparent 51%),
+    radial-gradient(ellipse 100px 39px at 84% 20%,rgba(255,255,255,.93) 0 48%,transparent 51%),
+    linear-gradient(#69c8f2,#9bdbf5);
+  background-attachment:fixed;
+  font-family:"Arial Rounded MT Bold","Noto Sans KR",system-ui,sans-serif;
+}
+[data-visual-style="simpsons"] .sidebar,
+[data-visual-style="simpsons"] .space-jewelry .sidebar { border-right:3px solid #171717; color:#171717; background:#ffd90f; box-shadow:6px 0 0 #171717; }
+[data-visual-style="simpsons"] .brand,
+[data-visual-style="simpsons"] .nav-button,
+[data-visual-style="simpsons"] .space-switch { color:#171717; }
+[data-visual-style="simpsons"] .brand small,
+[data-visual-style="simpsons"] .space-switch small,
+[data-visual-style="simpsons"] .side-foot span { color:#684e00; }
+[data-visual-style="simpsons"] .brand-mark,
+[data-visual-style="simpsons"] .space-jewelry .brand-mark { border:3px solid #171717; color:#171717; background:#f58eb7; box-shadow:3px 4px 0 #171717; }
+[data-visual-style="simpsons"] .nav-button { border:2px solid transparent; font-weight:850; }
+[data-visual-style="simpsons"] .nav-button:hover,
+[data-visual-style="simpsons"] .nav-button[aria-current="page"] { border-color:#171717; color:#171717; background:#fff; box-shadow:3px 4px 0 #171717; }
+[data-visual-style="simpsons"] .space-switch,
+[data-visual-style="simpsons"] .side-foot { border:3px solid #171717; color:#171717; background:#fff; box-shadow:3px 4px 0 #171717; }
+[data-visual-style="simpsons"] .topbar { border-bottom:3px solid #171717; background:rgba(255,249,214,.94); }
+[data-visual-style="simpsons"] .hero-card,
+[data-visual-style="simpsons"] .dashboard-card,
+[data-visual-style="simpsons"] .round-card,
+[data-visual-style="simpsons"] .question-card,
+[data-visual-style="simpsons"] .result-card,
+[data-visual-style="simpsons"] .modal { border:3px solid #171717; box-shadow:5px 6px 0 #171717; }
+[data-visual-style="simpsons"] .primary-button,
+[data-visual-style="simpsons"] .secondary-button,
+[data-visual-style="simpsons"] .icon-button { border:2px solid #171717; box-shadow:2px 3px 0 #171717; }
+[data-visual-style="simpsons"] .primary-button { color:#171717; background:#ffd90f; }
+[data-visual-style="simpsons"] #toast { border:3px solid #171717; color:#171717; background:#fff; box-shadow:5px 6px 0 #171717; }

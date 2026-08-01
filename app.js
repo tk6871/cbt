@@ -16,6 +16,7 @@
   const ROUNDS = CATALOG.flatMap((item) => item.rounds || []).sort((a, b) => String(b.sortKey || b.date || '').localeCompare(String(a.sortKey || a.date || '')));
   const STORAGE_KEY = 'unified-industrial-cbt-v1';
   const THEME_KEY = 'unified-cbt-theme';
+  const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
   const DAY_MS = 24 * 60 * 60 * 1000;
   const REVIEW_DAYS = [1, 3, 7];
   const RECURRING_STOP_PHRASES = ['다음', '보기', '설명으로', '설명 중', '대한', '관한', '가장', '옳은', '틀린', '아닌', '해당하는', '해당하지 않는', '해당되지 않는', '것은', '어느 것', '무엇인가'];
@@ -215,6 +216,11 @@
     const dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
     document.documentElement.dataset.theme = dark ? 'dark' : 'light';
     localStorage.setItem(THEME_KEY, mode); saveStore();
+  }
+  function setVisualStyle(style) {
+    const normalized = style === 'simpsons' ? 'simpsons' : 'default';
+    document.documentElement.dataset.visualStyle = normalized;
+    localStorage.setItem(VISUAL_STYLE_KEY, normalized);
   }
   function overallStats() {
     const rounds = activeRounds();
@@ -725,7 +731,8 @@
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">DAILY STUDY PLAN</span><h2>시험일 학습계획</h2><p>시험일까지 남은 미학습 문제를 날짜별로 자동 배분합니다.</p><label class="setting-row">종목<select id="studyPlanQualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${selectedKey === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">시험일<input id="studyPlanDate" type="date" min="${localDateValue()}" value="${esc(plan.examDate || localDateValue(suggested))}"></label><button class="primary-button wide" data-action="save-study-plan">학습계획 저장</button>${currentStudyPlan() ? '<button class="secondary-button wide modal-secondary" data-action="clear-study-plan">계획 삭제</button>' : ''}</div></div>`;
     }
     if (state.modal.type === 'settings') {
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">화면 테마<select data-change="theme"><option value="system">기기 설정</option><option value="light">밝게</option><option value="dark">어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
+      const visualStyle = localStorage.getItem(VISUAL_STYLE_KEY) === 'simpsons' ? 'simpsons' : 'default';
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">UI 스타일<select data-change="visual-style"><option value="default" ${visualStyle === 'default' ? 'selected' : ''}>기본 CBT</option><option value="simpsons" ${visualStyle === 'simpsons' ? 'selected' : ''}>심슨 테마</option></select></label><label class="setting-row">화면 테마<select data-change="theme"><option value="system" ${store.theme === 'system' ? 'selected' : ''}>기기 설정</option><option value="light" ${store.theme === 'light' ? 'selected' : ''}>밝게</option><option value="dark" ${store.theme === 'dark' ? 'selected' : ''}>어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
     }
     if (state.modal.type === 'random') {
       const key = state.modal.qualification || (activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key);
@@ -1404,6 +1411,7 @@
       renderRounds();
     }
     else if (key === 'theme') { setTheme(event.target.value); route(); }
+    else if (key === 'visual-style') { setVisualStyle(event.target.value); route(); }
     else if (key === 'builder-qualification') {
       state.examBuilderQualification = event.target.value;
       state.examBuilderYearFrom = null;
@@ -1494,7 +1502,9 @@
   app.addEventListener('keydown', keydownHandler);
   window.addEventListener('pagehide', () => sendSessionAnalytics(state.session));
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
-  setTheme(store.theme || 'system'); bindFocusable(); route();
+  setTheme(store.theme || 'system');
+  setVisualStyle(localStorage.getItem(VISUAL_STYLE_KEY) || 'default');
+  bindFocusable(); route();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {
     let hasControlledPage = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.addEventListener('controllerchange', () => {
@@ -1504,7 +1514,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=241', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=247', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();
