@@ -12,3 +12,7 @@ work/hvac-restored-upscale-logs/
 work/hvac-comcbt-upscaled/
 work/hvac-comcbt-upscale-temp/
 work/hvac-comcbt-upscale-logs/
+work/energy-upscaled/
+work/energy-upscale-temp/
+work/energy-upscale-logs/
+__pycache__/

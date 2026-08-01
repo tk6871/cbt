@@ -6,14 +6,14 @@
 
 - 마지막 갱신: 2026-08-01
 - 기준 브랜치: `main`
-- 갱신 직전 Git HEAD: `848ca39576731cd980120762dd966326e04c5364`
-- 갱신 직전 상태: `main...origin/main`, 미커밋 변경 없음
+- 이번 Mac 작업 직전 Git HEAD: `01b251111a9d2021fe53fb77638d8424901e43b1`
+- 이번 문서에는 에너지관리 이미지 개선 작업과 실제 Mac 검증 결과가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
 - Windows SSH 호스트 별칭: `mac-m4`
 - 공개 사이트: `https://tk6871.github.io/cbt/`
 
-> 이 문서 추가 자체는 위 기준 커밋 이후의 새 변경입니다. 다음 작업자는 먼저 `git status -sb`와 `git log -1`을 다시 확인해야 합니다.
+> 장치를 바꾸거나 새 작업을 시작할 때는 항상 `git status -sb`와 `git log -1`을 다시 확인해야 합니다.
 
 ## 프로젝트 구성
 
@@ -37,8 +37,8 @@ pnpm build
 - Supabase 관리자 페이지에 방문·학습·시험 결과와 실시간 접속 상태를 구성했습니다. 문제별 매 클릭 대신 묶음 결과 전송을 사용하도록 조정했습니다.
 - 학습모드 상단에 문제 번호를 입력하여 바로 이동하는 기능을 Vue 화면과 구버전 화면에 적용했습니다.
 - 공조냉동 2021~2026 복원문제는 텍스트 변환 대신 원문 이미지 중심으로 표시합니다.
-- 패치노트 v2.3.9와 Service Worker 캐시 v241까지 반영했습니다.
-- 마지막 Windows 작업에서 TypeScript 검사와 Vite 빌드가 통과했습니다.
+- 패치노트 v2.3.10과 Service Worker 캐시 v242까지 반영했습니다.
+- 마지막 Mac 작업에서 TypeScript 검사와 Vite production build가 통과했습니다.
 
 ## 공조냉동 문제·해설 교정 상태
 
@@ -63,6 +63,16 @@ pnpm build
 - 원본 GIF 보존
 - 공조 데이터의 고유 이미지 참조 2,444개, 누락 0으로 확인
 
+### 에너지관리
+
+- 2002~2020년 수식·도표·보기 GIF 이미지 225개를 2배 PNG로 처리하고 데이터 참조 변경
+- 2022년 복원문제 JPG 이미지 100개를 2배 JPG로 처리
+- 원본 GIF 225개 보존
+- 에너지관리 데이터의 고유 이미지 참조 325개, 누락 0으로 확인
+- 적용 모델: `realesrgan-x4plus-anime`
+- 처리 파이프라인: `4x Real-ESRGAN → 2x bicubic 축소`
+- Mac M4 Pro에서는 256px 타일을 사용
+
 ### Windows 처리 도구
 
 - `tools/upscale-hvac-restored.ps1`
@@ -73,30 +83,51 @@ pnpm build
   `tools/realesrgan/realesrgan-ncnn-vulkan-20220424-windows/realesrgan-ncnn-vulkan.exe`
 - 처리 파이프라인: `4x Real-ESRGAN → 2x bicubic 축소`
 
+### Mac 처리 도구
+
+- `tools/upscale-energy-images-macos.py`
+- `tools/requirements-upscale-macos.txt`
+- 공식 macOS 실행 파일은 universal binary이며 `arm64`와 `x86_64`를 모두 포함
+- Mac 실행 파일 위치:
+  `tools/realesrgan/realesrgan-ncnn-vulkan-20220424-macos/realesrgan-ncnn-vulkan`
+- `tools/realesrgan/`과 `work/energy-*`는 Git에 포함하지 않음
+- M4 Pro GPU는 NCNN/MoltenVK 경로로 사용하며 Apple Neural Engine을 직접 사용하지 않음
+
+## 마지막 Mac 검증 결과
+
+- `git diff --check` 통과
+- `node --check sw.js` 통과
+- `node --check data/changelog-vue.js` 통과
+- `node --check data/energy.js` 통과
+- `npm run typecheck` 통과
+- `npm run build` 통과
+- 에너지관리 적용 이미지 325개 치수 검증 통과
+- 에너지관리 이미지 참조 325개, 누락 0
+- PiperSR NPU, Real-ESRGAN 일반 모델, TTA, 타일 크기 64·256·512px를 표본 비교
+- 사용자가 Real-ESRGAN 방식으로 진행하기로 선택
+
 ## 다음 우선 작업
 
-다른 종목 이미지를 대량 처리하기 전에 Mac M4 Pro에서 공조와 동일한 결과 품질을 재현할 수 있는지 작은 표본으로 검증합니다.
+다음 이미지 개선 후보는 아래 순서입니다.
 
-과거 조사 기준 대상 수량:
-
-- 에너지관리: 약 325개(GIF 225 + JPG 100)
-- 산업안전: 약 481개 GIF
-- 설비보전: 약 820개 GIF
-- 보석가공: 약 56개 GIF
+- 산업안전: GIF 481개
+- 설비보전: GIF 820개
+- 보석가공: GIF 56개
 
 실제 작업 전에는 현재 저장소에서 이미지 수량, 참조 경로, 누락 여부를 다시 집계해야 합니다.
 
-## Mac Real-ESRGAN 검증 계획
+## Mac Real-ESRGAN 검증 결과
 
 - Windows용 `.exe`는 Mac에서 사용하지 않습니다.
-- 우선 공식 macOS NCNN 배포본의 아키텍처와 M4 호환성을 확인합니다.
-- 공식 후보:
+- 공식 macOS NCNN 배포본의 아키텍처와 M4 호환성을 확인했습니다.
+- 사용한 공식 배포본:
   `https://github.com/xinntao/Real-ESRGAN/releases/download/v0.2.5.0/realesrgan-ncnn-vulkan-20220424-macos.zip`
-- `file realesrgan-ncnn-vulkan`으로 `arm64`, universal, x86_64 여부를 확인합니다.
-- 공식 배포본이 x86_64 전용이거나 성능이 부족하면 최신 NCNN의 macOS arm64/Vulkan 지원으로 네이티브 빌드를 검토합니다.
-- Apple Neural Engine을 직접 쓰는 방식과 GPU/Metal·MoltenVK 또는 PyTorch MPS 방식은 구분해서 설명합니다.
-- 샘플 문제 몇 개로 Windows 결과와 글자 선명도, 노이즈, 파일 크기, 처리 시간을 비교한 뒤 전체 작업 여부를 결정합니다.
-- 대량 다운로드·설치·전체 변환은 사용자 확인 전에 시작하지 않습니다.
+- SHA-256:
+  `e0ad05580abfeb25f8d8fb55aaf7bedf552c375b5b4d9bd3c8d59764d2cc333a`
+- `file`과 `lipo -info`로 arm64+x86_64 universal binary임을 확인했습니다.
+- M4 Pro GPU에서 arm64 네이티브 실행과 Metal 지원을 확인했습니다.
+- 표본 비교 후 기존 공조와 같은 Real-ESRGAN 모델·축소 방식을 유지했습니다.
+- 256px 타일은 표본 큰 페이지에서 64px보다 빠르게 처리됐고 512px보다도 효율적이었습니다.
 
 ## 작업 시 반드시 유지할 사항
 
