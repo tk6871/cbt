@@ -17,6 +17,7 @@
       const dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
       document.documentElement.dataset.visualStyle = localStorage.getItem('unified-cbt-visual-style') === 'simpsons' ? 'simpsons' : 'default';
+      document.documentElement.dataset.dynamicUi = localStorage.getItem('unified-cbt-dynamic-ui') === 'false' ? 'off' : 'on';
     } catch (error) {}
   </script>
   <style>

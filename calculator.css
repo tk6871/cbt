@@ -231,6 +231,11 @@ button { border:0; cursor:pointer; user-select:none; -webkit-tap-highlight-color
 :root[data-visual-style="simpsons"] .number-grid .equals-key { color:#171717; background:#e62f83; }
 :root[data-visual-style="simpsons"] .history-panel { border:3px solid #171717; color:#171717; background:#fff9d6; box-shadow:6px 7px 0 #171717; }
 :root[data-visual-style="simpsons"] .history-panel button { background:#e62f83; }
+.calculator-style-leaving .calculator-case { animation:calculator-style-out .18s ease both; }
+.calculator-style-entering .calculator-case { animation:calculator-style-in .34s cubic-bezier(.16,1.12,.3,1) both; }
+@keyframes calculator-style-out { to { opacity:0; transform:translateX(-24px) rotate(-1deg) scale(.97); } }
+@keyframes calculator-style-in { from { opacity:0; transform:translateX(28px) rotate(1deg) scale(.96); } to { opacity:1; transform:none; } }
+:root[data-dynamic-ui="off"] .calculator-case { animation:none !important; }
 @media (max-width:430px) {
   :root[data-visual-style="simpsons"] body { background:#69c8f2; }
   :root[data-visual-style="simpsons"] .calculator-case { border-width:0; border-radius:0; box-shadow:none; }

@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#22262a">
   <title>CBT 공학용 계산기</title>
+  <script>
+    try {
+      document.documentElement.dataset.visualStyle = localStorage.getItem('unified-cbt-visual-style') === 'simpsons' ? 'simpsons' : 'default';
+      document.documentElement.dataset.dynamicUi = localStorage.getItem('unified-cbt-dynamic-ui') === 'false' ? 'off' : 'on';
+    } catch (error) {}
+  </script>
   <link rel="stylesheet" href="calculator.css?v=247">
 </head>
 <body>

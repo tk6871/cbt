@@ -16,8 +16,10 @@ import {
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
 import {
+  applyDynamicUiPreference,
   applyTheme,
   applyVisualStyle,
+  currentDynamicUiEnabled,
   currentTheme,
   currentVisualStyle,
   db,
@@ -35,6 +37,8 @@ import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, Sess
 type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
+type VisualTransitionPhase = 'leaving' | 'entering' | null;
+type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-leaving' | 'home-entering' | null;
 type ExamResult = {
   score: number;
   correct: number;
@@ -87,6 +91,12 @@ const examSheetOpen = ref(true);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
 const visualStyle = ref<VisualStyle>(currentVisualStyle());
+const dynamicUiEnabled = ref(currentDynamicUiEnabled());
+const visualTransitionPhase = ref<VisualTransitionPhase>(null);
+const visualTransitionTarget = ref<VisualStyle>(visualStyle.value);
+const experienceTransitionPhase = ref<ExperienceTransitionPhase>(null);
+const navigationDirection = ref<1 | -1>(1);
+const questionDirection = ref<1 | -1>(1);
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
@@ -99,6 +109,9 @@ const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
 const displayedPassChance = ref(0);
+const displayedResultScore = ref(0);
+const appHydrating = ref(true);
+const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
@@ -107,9 +120,13 @@ let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
 let searchWorker: Worker | null = null;
+let motionMediaQuery: MediaQueryList | null = null;
+let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
 let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 const historyScope = `cbt-${spaceScope}`;
+const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'stats', 'updates', 'showcase'];
+const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
 const availableYears = computed(() => {
@@ -180,6 +197,13 @@ const upscalePreview = computed(() => {
 const darkActive = computed(() =>
   theme.value === 'dark'
   || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
+const motionAllowed = computed(() => dynamicUiEnabled.value && !prefersReducedMotion.value);
+const viewTransitionName = computed(() => motionAllowed.value
+  ? (navigationDirection.value > 0 ? 'view-forward' : 'view-backward')
+  : '');
+const questionTransitionName = computed(() => motionAllowed.value
+  ? (questionDirection.value > 0 ? 'question-forward' : 'question-backward')
+  : '');
 const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
@@ -419,6 +443,10 @@ async function refreshExamHistory(): Promise<void> {
 }
 
 function animateCoachDashboard(): void {
+  if (!motionAllowed.value) {
+    displayedPassChance.value = passChance.value;
+    return;
+  }
   displayedPassChance.value = 0;
   animate(0, passChance.value, {
     duration: .95,
@@ -433,6 +461,10 @@ function animateCoachDashboard(): void {
 }
 
 function animateViewDetails(next: ViewName): void {
+  if (!motionAllowed.value) {
+    if (next === 'coach') displayedPassChance.value = passChance.value;
+    return;
+  }
   const selectors: Partial<Record<ViewName, string>> = {
     home: '.simpsons-home-hero,.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
     rounds: '.round-card',
@@ -446,8 +478,14 @@ function animateViewDetails(next: ViewName): void {
   if (selector) {
     animate(
       selector,
-      { opacity: [0, 1], y: [20, 0], scale: [.985, 1] },
-      { duration: .46, delay: stagger(.045), ease: [0.2, 0.8, 0.2, 1] },
+      visualStyle.value === 'simpsons'
+        ? { opacity: [0, 1], y: [30, 0], rotate: [-1.2, 0], scale: [.96, 1] }
+        : { opacity: [0, 1], y: [20, 0], scale: [.985, 1] },
+      {
+        duration: visualStyle.value === 'simpsons' ? .58 : .46,
+        delay: stagger(visualStyle.value === 'simpsons' ? .065 : .045),
+        ease: visualStyle.value === 'simpsons' ? [0.16, 1.15, 0.3, 1] : [0.2, 0.8, 0.2, 1],
+      },
     );
   }
   if (next === 'rounds') {
@@ -528,6 +566,13 @@ function initializeNavigationHistory(): void {
 }
 
 function openView(next: ViewName, options: { fromHistory?: boolean; replace?: boolean } = {}): void {
+  const previousView = view.value;
+  if (next !== view.value) {
+    if (dynamicUiEnabled.value) viewScrollPositions.set(view.value, window.scrollY);
+    const currentIndex = viewOrder.indexOf(view.value);
+    const nextIndex = viewOrder.indexOf(next);
+    navigationDirection.value = nextIndex >= currentIndex ? 1 : -1;
+  }
   if (!options.fromHistory) {
     const current = ownHistoryState();
     if (!current || current.view !== next || current.sessionId) {
@@ -537,15 +582,29 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
   }
   view.value = next;
   mobileMenuOpen.value = false;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
   window.CBTAnalytics?.trackNavigation?.(`next-${next}`);
   if (next === 'updates') void checkForUpdate(false);
   void nextTick(() => {
-    animate('.view-stage > *', {
+    window.scrollTo({ top: dynamicUiEnabled.value ? (viewScrollPositions.get(next) || 0) : 0, behavior: 'auto' });
+    if (!motionAllowed.value || next === previousView) {
+      animateViewDetails(next);
+      return;
+    }
+    animate('.view-stage > *', visualStyle.value === 'simpsons' ? {
       opacity: [0, 1],
-      y: [12, 0],
-      filter: ['blur(4px)', 'blur(0px)'],
-    }, { duration: .34, delay: stagger(.035) });
+      y: [24, 0],
+      rotate: [navigationDirection.value * 0.7, 0],
+      scale: [.975, 1],
+    } : {
+      opacity: [0, 1],
+      y: [16, 0],
+      filter: ['blur(5px)', 'blur(0px)'],
+    }, { duration: visualStyle.value === 'simpsons' ? .48 : .38, delay: stagger(.038), ease: [0.2, 0.8, 0.2, 1] });
+    animate(
+      '.sidebar nav button.active,.mobile-tabbar button.active',
+      { scale: [.9, 1], x: [navigationDirection.value * 9, 0] },
+      { duration: .32, ease: [0.2, 0.9, 0.2, 1] },
+    );
     animateViewDetails(next);
   });
 }
@@ -586,6 +645,8 @@ function handleBrowserHistory(event: PopStateEvent): void {
   if (session.value) {
     sendCurrentSessionOnExit();
     deactivateSession(true);
+    experienceTransitionPhase.value = 'home-entering';
+    window.setTimeout(() => { experienceTransitionPhase.value = null; }, motionAllowed.value ? 520 : 0);
   }
   openView(target.view, { fromHistory: true });
 }
@@ -637,16 +698,19 @@ function roundToItems(round: Round): QuestionItem[] {
   }));
 }
 
-function beginSession(
+async function beginSession(
   mode: StudyMode,
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-): void {
+): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
     return;
   }
+  if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
+  experienceTransitionPhase.value = 'home-leaving';
+  await waitForMotion(300);
   const pageSize = 4;
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
@@ -672,13 +736,23 @@ function beginSession(
   history.pushState(viewHistoryState(view.value, session.value.id), '', location.href);
   examSheetOpen.value = mode === 'exam';
   document.body.classList.add('session-active');
+  experienceTransitionPhase.value = 'session-entering';
   restartTimer();
   window.scrollTo({ top: 0 });
   window.CBTAnalytics?.trackNavigation?.(`next-${mode}`);
   void nextTick(() => {
-    animate('.session-topbar', { opacity: [0, 1], y: [-10, 0] }, { duration: .28 });
-    animate('.question-card', { opacity: [0, 1], scale: [.985, 1], y: [10, 0] }, { duration: .35, delay: stagger(.055) });
+    if (!motionAllowed.value) return;
+    animate('.session-topbar', { opacity: [0, 1], y: [-32, 0] }, { duration: .46, ease: [0.2, 0.8, 0.2, 1] });
+    animate(
+      '.question-card',
+      visualStyle.value === 'simpsons'
+        ? { opacity: [0, 1], scale: [.94, 1], y: [30, 0], rotate: [-1, 0] }
+        : { opacity: [0, 1], scale: [.975, 1], y: [22, 0] },
+      { duration: visualStyle.value === 'simpsons' ? .58 : .44, delay: stagger(.065), ease: [0.2, 0.85, 0.2, 1] },
+    );
   });
+  await waitForMotion(620);
+  experienceTransitionPhase.value = null;
 }
 
 function restoredRoundAnswers(round: Round, items: QuestionItem[]): Record<string, number> {
@@ -813,18 +887,21 @@ function sessionSubjectNumber(item: QuestionItem): number {
 
 function goToPage(page: number): void {
   if (!session.value) return;
-  session.value.page = Math.max(0, Math.min(pageCount.value - 1, page));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const nextPage = Math.max(0, Math.min(pageCount.value - 1, page));
+  if (nextPage === session.value.page) return;
+  questionDirection.value = nextPage > session.value.page ? 1 : -1;
+  session.value.page = nextPage;
+  window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
 }
 
 function goToQuestion(index: number): void {
   if (!session.value) return;
   const targetIndex = Math.max(0, Math.min(session.value.items.length - 1, index));
   goToPage(Math.floor(targetIndex / session.value.pageSize));
-  void nextTick(() => {
+  window.setTimeout(() => {
     document.getElementById(`session-question-${targetIndex + 1}`)
-      ?.scrollIntoView({ block: 'start', behavior: 'smooth' });
-  });
+      ?.scrollIntoView({ block: 'start', behavior: motionAllowed.value ? 'smooth' : 'auto' });
+  }, motionAllowed.value ? 380 : 0);
   if (window.innerWidth < 1100) examSheetOpen.value = false;
 }
 
@@ -949,18 +1026,24 @@ function sendCurrentSessionOnExit(): void {
   if (result) sendSessionResult(result);
 }
 
-function leaveSession(nextView?: ViewName): void {
+async function leaveSession(nextView?: ViewName): Promise<void> {
   if (session.value && !session.value.finished && answeredCount.value > 0) {
     if (!confirm('현재 풀이를 종료하고 이동할까요?')) return;
   }
+  if (experienceTransitionPhase.value) return;
   sendCurrentSessionOnExit();
+  experienceTransitionPhase.value = 'session-leaving';
+  await waitForMotion(300);
   const current = ownHistoryState();
   if (!nextView && current?.sessionId === session.value?.id) {
     history.back();
     return;
   }
   deactivateSession(false);
+  experienceTransitionPhase.value = 'home-entering';
   openView(nextView || view.value, { replace: Boolean(current?.sessionId) });
+  await waitForMotion(520);
+  experienceTransitionPhase.value = null;
 }
 
 function restartTimer(): void {
@@ -1128,14 +1211,40 @@ function toggleLightDark(): void {
   showToast(darkActive.value ? '다크 모드로 전환했습니다.' : '라이트 모드로 전환했습니다.');
 }
 
-function setVisualStyle(style: VisualStyle): void {
+function waitForMotion(duration: number): Promise<void> {
+  if (!motionAllowed.value) return Promise.resolve();
+  return new Promise((resolve) => window.setTimeout(resolve, duration));
+}
+
+function setDynamicUiEnabled(enabled: boolean): void {
+  dynamicUiEnabled.value = enabled;
+  applyDynamicUiPreference(enabled);
+  visualTransitionPhase.value = null;
+  experienceTransitionPhase.value = null;
+  displayedPassChance.value = passChance.value;
+  showToast(enabled
+    ? '동적 UI를 켰습니다. 새 배치와 화면 전환을 적용합니다.'
+    : '기존 UI 모드로 돌아왔습니다. 화면 전환과 재배치를 끕니다.');
+}
+
+async function setVisualStyle(style: VisualStyle): Promise<void> {
+  if (style === visualStyle.value || visualTransitionPhase.value) return;
+  visualTransitionTarget.value = style;
+  settingsOpen.value = false;
+  mobileMenuOpen.value = false;
+  visualTransitionPhase.value = 'leaving';
+  await waitForMotion(330);
   visualStyle.value = style;
   applyVisualStyle(style);
+  await nextTick();
+  visualTransitionPhase.value = 'entering';
+  await waitForMotion(style === 'simpsons' ? 690 : 560);
+  visualTransitionPhase.value = null;
   showToast(style === 'simpsons' ? '심슨 테마 UI를 적용했습니다. 🍩' : '기본 CBT UI로 돌아왔습니다.');
 }
 
 function toggleVisualStyle(): void {
-  setVisualStyle(visualStyle.value === 'simpsons' ? 'default' : 'simpsons');
+  void setVisualStyle(visualStyle.value === 'simpsons' ? 'default' : 'simpsons');
 }
 
 function setFontScale(value: number): void {
@@ -1385,6 +1494,23 @@ watch([yearFrom, yearTo], () => {
   if (yearFrom.value > yearTo.value) [yearFrom.value, yearTo.value] = [yearTo.value, yearFrom.value];
 });
 
+watch(examResult, (result) => {
+  if (!result) {
+    displayedResultScore.value = 0;
+    return;
+  }
+  if (!motionAllowed.value) {
+    displayedResultScore.value = result.score;
+    return;
+  }
+  displayedResultScore.value = 0;
+  animate(0, result.score, {
+    duration: .85,
+    ease: [0.2, 0.8, 0.2, 1],
+    onUpdate: (value) => { displayedResultScore.value = Math.round(value); },
+  });
+});
+
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('popstate', handleBrowserHistory);
@@ -1392,11 +1518,17 @@ onMounted(async () => {
   initializeNavigationHistory();
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
+  applyDynamicUiPreference(dynamicUiEnabled.value);
+  motionMediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
+  motionPreferenceHandler = (event: MediaQueryListEvent) => { prefersReducedMotion.value = event.matches; };
+  motionMediaQuery.addEventListener?.('change', motionPreferenceHandler);
+  motionMediaQuery.addListener?.(motionPreferenceHandler);
   setFontScale(fontScale.value);
   setDefaultYears(10);
   await hydrateIndexedDb();
   await refreshExamHistory();
   setupSearchWorker();
+  appHydrating.value = false;
   await nextTick();
   animateViewDetails(view.value);
 });
@@ -1405,6 +1537,10 @@ onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
   window.removeEventListener('popstate', handleBrowserHistory);
   window.removeEventListener('pagehide', handlePageHide);
+  if (motionMediaQuery && motionPreferenceHandler) {
+    motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);
+    motionMediaQuery.removeListener?.(motionPreferenceHandler);
+  }
   stopTimer();
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
@@ -1413,7 +1549,18 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="!session" class="app-frame">
+  <div
+    v-if="!session"
+    class="app-frame"
+    :class="{
+      'visual-style-leaving': visualTransitionPhase === 'leaving',
+      'visual-style-entering': visualTransitionPhase === 'entering',
+      'style-to-simpsons': visualTransitionTarget === 'simpsons',
+      'style-to-default': visualTransitionTarget === 'default',
+      'experience-home-leaving': experienceTransitionPhase === 'home-leaving',
+      'experience-home-entering': experienceTransitionPhase === 'home-entering',
+    }"
+  >
     <aside class="sidebar" :class="{ open: mobileMenuOpen }">
       <button class="brand" type="button" @click="openView('home')">
         <span>{{ visualStyle === 'simpsons' ? '🍩' : isJewelry ? 'GEM' : 'CBT' }}</span>
@@ -1456,13 +1603,19 @@ onBeforeUnmount(() => {
         <div class="top-actions">
           <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
+          <button type="button" class="visual-style-quick-button" :disabled="Boolean(visualTransitionPhase)" @click="toggleVisualStyle">
+            {{ visualStyle === 'simpsons' ? 'CBT' : '🍩' }} <span>{{ visualStyle === 'simpsons' ? '기본 UI' : '심슨 UI' }}</span>
+          </button>
           <button type="button" class="theme-quick-button" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
           <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
 
       <div class="page-content">
-        <Transition name="view-swap" mode="out-in">
+        <div v-if="appHydrating && dynamicUiEnabled" class="dashboard-skeleton" aria-label="학습 화면을 준비하는 중">
+          <i class="skeleton-title" /><i /><i /><i /><i class="skeleton-wide" />
+        </div>
+        <Transition v-else :name="viewTransitionName" mode="out-in">
           <div :key="view" class="view-stage">
         <template v-if="view === 'home'">
           <section v-if="visualStyle === 'simpsons'" class="simpsons-home-hero">
@@ -1614,7 +1767,7 @@ onBeforeUnmount(() => {
             <div><span>PAST EXAMS</span><h1>{{ selectedCatalog.name }} 기출문제</h1><p>수록된 전체 {{ visibleRounds.length }}회차</p></div>
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
-          <div class="round-grid">
+          <TransitionGroup name="list-shift" tag="div" class="round-grid">
             <article v-for="round in visibleRounds" :key="round.id" class="round-card">
               <header><span>{{ round.shortQualification || round.qualification }}</span><b>{{ round.year }}년</b></header>
               <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
@@ -1628,7 +1781,7 @@ onBeforeUnmount(() => {
                 <button type="button" @click="startRound(round, 'exam')">CBT 시험모드</button>
               </footer>
             </article>
-          </div>
+          </TransitionGroup>
         </template>
 
         <template v-else-if="view === 'wrong'">
@@ -1636,7 +1789,7 @@ onBeforeUnmount(() => {
             <div><span>WRONG ANSWERS</span><h1>틀린 문제만 빠르게 복습하세요</h1><p>{{ selectedCatalog.name }}에서 현재 {{ wrongItems.length }}문제가 복습을 기다리고 있습니다.</p></div>
             <button v-if="wrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} 오답 복습`, wrongItems)">전체 오답 다시 풀기</button>
           </section>
-          <div v-if="wrongItems.length" class="question-library">
+          <TransitionGroup v-if="wrongItems.length" name="list-shift" tag="div" class="question-library">
             <article v-for="item in wrongItems" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
@@ -1645,7 +1798,7 @@ onBeforeUnmount(() => {
                 <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item])">다시 풀기 →</button>
               </footer>
             </article>
-          </div>
+          </TransitionGroup>
           <section v-else class="empty-state"><span>✓</span><h2>현재 오답이 없습니다</h2><p>학습모드에서 틀린 문제가 생기면 이곳에 자동으로 모입니다.</p><button @click="openView('home')">학습 시작하기</button></section>
         </template>
 
@@ -1663,7 +1816,7 @@ onBeforeUnmount(() => {
             <span v-if="searchQuery.length < 2">두 글자 이상 입력하면 바로 검색됩니다.</span>
             <span v-else><strong>{{ searchResults.length }}</strong>개의 검색 결과</span>
           </div>
-          <div v-if="searchResults.length" class="question-library search-library">
+          <TransitionGroup v-if="searchResults.length" name="list-shift" tag="div" class="question-library search-library">
             <article v-for="item in searchResults" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
@@ -1672,7 +1825,7 @@ onBeforeUnmount(() => {
                 <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번`, [item])">문제 열기 →</button>
               </footer>
             </article>
-          </div>
+          </TransitionGroup>
           <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
         </template>
 
@@ -1813,11 +1966,13 @@ onBeforeUnmount(() => {
           <section class="feature-theme-preview">
             <div>
               <span>LATEST EXPERIENCE · v{{ currentVersion }}</span>
-              <h2>기본 CBT와 심슨 테마를 직접 바꿔보세요</h2>
-              <p>기본값은 지금까지 사용한 CBT 화면입니다. 심슨 테마는 카드·메뉴·알림·계산기까지 스프링필드풍으로 바꾸며 학습 기록과 기능은 그대로 유지합니다.</p>
+              <h2>테마와 동적 UI를 직접 바꿔보세요</h2>
+              <p>동적 UI는 기본으로 켜지며 화면이 움직이고 카드 배치가 달라집니다. 끄면 v2.4.2 방식의 기존 배치로 돌아가고, 심슨 테마는 학습 기록을 건드리지 않은 채 유지됩니다.</p>
               <div>
                 <button type="button" :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')">기본 CBT</button>
                 <button type="button" :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')">🍩 심슨 테마</button>
+                <button type="button" :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)">동적 UI ON</button>
+                <button type="button" :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)">기존 UI로</button>
               </div>
             </div>
             <figure>
@@ -1906,6 +2061,9 @@ onBeforeUnmount(() => {
               <button type="button" class="feature-action-card simpsons" @click="toggleVisualStyle">
                 <span>🍩</span><div><strong>{{ visualStyle === 'simpsons' ? '기본 CBT UI로' : '심슨 테마 UI' }}</strong><small>화면 스타일 즉시 전환</small></div><b>›</b>
               </button>
+              <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
+                <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
+              </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
               </button>
@@ -1981,12 +2139,21 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span>✦</span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
     </nav>
-    <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
-      <section class="settings-panel">
+    <Transition name="modal-fade">
+      <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
+        <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
         <div class="setting-group">
+          <span>동적 UI</span>
+          <p class="setting-description">켜면 새 배치와 자연스러운 화면 전환을 사용합니다. 끄면 v2.4.2 방식의 기존 배치와 즉시 전환으로 돌아갑니다.</p>
+          <div class="dynamic-ui-options">
+            <button :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)"><strong>ON</strong><span>새 동적 UI</span><small>기본 설정</small></button>
+            <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
+          </div>
+        </div>
+        <div class="setting-group">
           <span>UI 스타일</span>
-          <p class="setting-description">학습 기능과 기록은 그대로 유지하고 화면 디자인만 바꿉니다.</p>
+          <p class="setting-description">기본 CBT와 심슨 테마를 고릅니다. 동적 UI를 꺼도 색상과 캐릭터 테마는 유지됩니다.</p>
           <div class="style-options">
             <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>지금까지 사용한 화면</small></button>
             <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>스프링필드 코믹 UI</small></button>
@@ -2020,11 +2187,21 @@ onBeforeUnmount(() => {
           <input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData">
         </div>
         <footer><span>현재 버전</span><strong>v{{ currentVersion }}</strong></footer>
-      </section>
-    </div>
+        </section>
+      </div>
+    </Transition>
   </div>
 
-  <div v-else class="session-shell" :class="{ 'exam-mode': session.mode === 'exam', 'sheet-closed': !examSheetOpen }">
+  <div
+    v-else
+    class="session-shell"
+    :class="{
+      'exam-mode': session.mode === 'exam',
+      'sheet-closed': !examSheetOpen,
+      'experience-session-entering': experienceTransitionPhase === 'session-entering',
+      'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
+    }"
+  >
     <header class="session-topbar">
       <div class="session-leading">
         <button class="back-button" type="button" @click="leaveSession()">← <span>뒤로가기</span></button>
@@ -2084,22 +2261,24 @@ onBeforeUnmount(() => {
 
     <main class="session-main">
       <section class="question-area">
-        <div class="question-grid">
-          <QuestionCard
-            v-for="item in currentItems"
-            :key="item.id"
-            :id="`session-question-${session.items.indexOf(item) + 1}`"
-            :item="item"
-            :mode="session.mode"
-            :selected="session.answers[item.id]"
-            :subject-start="isSubjectStart(item)"
-            :subject-number="sessionSubjectNumber(item)"
-            :bookmarked="studyStore.bookmarks.includes(item.id)"
-            @choose="chooseAnswer(item, $event)"
-            @toggle-bookmark="toggleBookmark(item)"
-            @ask-ai="prepareAiQuestion(item)"
-          />
-        </div>
+        <Transition :name="questionTransitionName" mode="out-in">
+          <div :key="`${session.page}-${session.pageSize}`" class="question-grid">
+            <QuestionCard
+              v-for="item in currentItems"
+              :key="item.id"
+              :id="`session-question-${session.items.indexOf(item) + 1}`"
+              :item="item"
+              :mode="session.mode"
+              :selected="session.answers[item.id]"
+              :subject-start="isSubjectStart(item)"
+              :subject-number="sessionSubjectNumber(item)"
+              :bookmarked="studyStore.bookmarks.includes(item.id)"
+              @choose="chooseAnswer(item, $event)"
+              @toggle-bookmark="toggleBookmark(item)"
+              @ask-ai="prepareAiQuestion(item)"
+            />
+          </div>
+        </Transition>
         <footer class="pager">
           <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
           <span><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
@@ -2109,7 +2288,10 @@ onBeforeUnmount(() => {
       </section>
 
       <aside v-if="session.mode === 'exam'" class="omr-sheet">
-        <header><div><span>ANSWER SHEET</span><strong>답안지</strong></div><b>{{ answeredCount }}/{{ session.items.length }}</b></header>
+        <header>
+          <div><span>ANSWER SHEET</span><strong>답안지</strong></div>
+          <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
+        </header>
         <div class="omr-list">
           <button
             v-for="(item, index) in session.items"
@@ -2131,11 +2313,12 @@ onBeforeUnmount(() => {
       </aside>
     </main>
 
-    <div v-if="examResult" class="result-backdrop">
-      <section class="result-card">
+    <Transition name="result-pop" appear>
+      <div v-if="examResult" class="result-backdrop">
+        <section class="result-card">
         <span>{{ session.mode === 'exam' ? (examResult.passed ? 'PASS' : 'REVIEW') : 'LEARNING RESULT' }}</span>
         <h2>{{ session.mode === 'learn' ? '현재 학습 결과입니다' : (examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다') }}</h2>
-        <div class="result-score">{{ examResult.score }}<small>점</small></div>
+        <div class="result-score">{{ displayedResultScore }}<small>점</small></div>
         <p>{{ examResult.total }}문제 중 {{ examResult.correct }}문제를 맞혔습니다.</p>
         <div class="subject-results">
           <div v-for="row in examResult.subjectRows" :key="row.subject">
@@ -2146,8 +2329,9 @@ onBeforeUnmount(() => {
           <button type="button" @click="examResult = null; session.finished = false">문제 다시 보기</button>
           <button type="button" @click="leaveSession('home')">홈으로</button>
         </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </Transition>
   </div>
 
   <div v-if="aiPromptOpen" class="ai-prompt-backdrop" @click.self="aiPromptOpen = false">
@@ -2179,4 +2363,17 @@ onBeforeUnmount(() => {
   <Transition name="toast">
     <div v-if="toastMessage" class="toast-message">{{ toastMessage }}</div>
   </Transition>
+
+  <Teleport to="body">
+    <div
+      v-if="visualTransitionPhase"
+      class="visual-style-motion"
+      :class="[`motion-${visualTransitionPhase}`, `motion-to-${visualTransitionTarget}`]"
+      aria-hidden="true"
+    >
+      <i /><i /><i />
+      <strong>{{ visualTransitionTarget === 'simpsons' ? 'SPRINGFIELD UI' : 'CBT UI' }}</strong>
+      <span>화면을 옮기는 중</span>
+    </div>
+  </Teleport>
 </template>

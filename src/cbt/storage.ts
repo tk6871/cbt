@@ -7,6 +7,7 @@ const STORAGE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-v1' : 'unified-industrial-
 const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
 const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
 export type VisualStyle = 'default' | 'simpsons';
 
 type AttemptRow = AttemptRecord & { id: string };
@@ -137,4 +138,13 @@ export function currentVisualStyle(): VisualStyle {
 export function applyVisualStyle(style: VisualStyle): void {
   localStorage.setItem(VISUAL_STYLE_KEY, style);
   document.documentElement.dataset.visualStyle = style;
+}
+
+export function currentDynamicUiEnabled(): boolean {
+  return localStorage.getItem(DYNAMIC_UI_KEY) !== 'false';
+}
+
+export function applyDynamicUiPreference(enabled: boolean): void {
+  localStorage.setItem(DYNAMIC_UI_KEY, String(enabled));
+  document.documentElement.dataset.dynamicUi = enabled ? 'on' : 'off';
 }
