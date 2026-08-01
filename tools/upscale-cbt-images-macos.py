@@ -95,6 +95,14 @@ TARGETS = {
         expected_count=820,
         data_relative=Path("data/maintenance.js"),
     ),
+    "jewelry": Target(
+        key="jewelry",
+        source_relative=Path("assets/jewelry"),
+        source_extensions=(".gif",),
+        output_extension=".png",
+        expected_count=56,
+        data_relative=Path("data/jewelry.js"),
+    ),
 }
 
 
