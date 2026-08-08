@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '2.5.2',
+      scope: 'industrial',
+      date: '2026.08.08',
+      title: '공조 복원문제 전체 이미지 답안과 모바일 터치 개선',
+      summary: '수동 확인한 마지막 37장의 답안 위치를 반영하고 이미지 안내·확대 버튼을 이미지 밖으로 옮겨 모바일에서도 답안을 가리지 않게 했습니다.',
+      tags: ['전체 이미지 답안', '수동 검수', '모바일 터치', '크게 보기'],
+      changes: [
+        '사용자가 원문에서 직접 확인한 마지막 37장·148개 답안 좌표를 반영해 공조 복원문제 1,020장 전체에서 이미지 답안 선택을 지원합니다.',
+        '수동 클릭 오차를 고려해 선택 영역의 좌우 끝과 첫·마지막 행을 확장하고, 좁은 마지막 답안 행은 모바일에서도 누르기 쉽도록 최소 영역을 확보했습니다.',
+        '크게 보기 버튼과 이미지 답안 안내를 이미지 위에서 완전히 제거하고 이미지 아래 별도 도구 줄로 옮겼습니다.',
+        '휴대폰에서는 안내 글씨와 크게 보기 버튼을 키우고 터치 뒤 불필요한 hover 표시가 남지 않도록 조정했습니다.',
+        '키보드 초점 표시와 모바일 탭 반응을 보완해 직접 답안 선택 접근성을 높였습니다.',
+        '서비스워커 캐시를 v258로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.1',
       scope: 'industrial',
       date: '2026.08.08',
@@ -786,8 +802,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.1';
+  changelog.versions.industrial = '2.5.2';
   changelog.versions.jewelry = '2.4.9';
-  changelog.currentVersion = '2.5.1';
+  changelog.currentVersion = '2.5.2';
   window.CBT_CHANGELOG = changelog;
 })();
