@@ -7,6 +7,7 @@
     "audit:questions": "node tools/audit-question-data.mjs",
     "build": "vite build",
     "dev": "vite --host 127.0.0.1",
+    "test:hotspot-editor": "node tools/test-hvac-hotspot-editor.mjs",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {

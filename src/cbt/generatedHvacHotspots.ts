@@ -931,6 +931,36 @@ export const hvacAnswerHotspots: Record<string, Array<{ choice: number; x: numbe
       "y" : 70.15
     }
   ],
+  "assets/hvac/assets/questions/2021_1/32.jpg" : [
+    {
+      "choice" : 1,
+      "height" : 10.5,
+      "width" : 20.5,
+      "x" : 10.5,
+      "y" : 64.5
+    },
+    {
+      "choice" : 2,
+      "height" : 10.5,
+      "width" : 67.5,
+      "x" : 31,
+      "y" : 64.5
+    },
+    {
+      "choice" : 3,
+      "height" : 11,
+      "width" : 20.5,
+      "x" : 10.5,
+      "y" : 75
+    },
+    {
+      "choice" : 4,
+      "height" : 11,
+      "width" : 67.5,
+      "x" : 31,
+      "y" : 75
+    }
+  ],
   "assets/hvac/assets/questions/2021_1/33.jpg" : [
     {
       "choice" : 1,
@@ -13859,6 +13889,36 @@ export const hvacAnswerHotspots: Record<string, Array<{ choice: number; x: numbe
       "width" : 92.27,
       "x" : 6.23,
       "y" : 82.68
+    }
+  ],
+  "assets/hvac/assets/questions/2023_3/03.jpg" : [
+    {
+      "choice" : 1,
+      "height" : 12.5,
+      "width" : 93.5,
+      "x" : 5,
+      "y" : 21.5
+    },
+    {
+      "choice" : 2,
+      "height" : 20.5,
+      "width" : 93.5,
+      "x" : 5,
+      "y" : 34
+    },
+    {
+      "choice" : 3,
+      "height" : 20,
+      "width" : 93.5,
+      "x" : 5,
+      "y" : 54.5
+    },
+    {
+      "choice" : 4,
+      "height" : 13,
+      "width" : 93.5,
+      "x" : 5,
+      "y" : 74.5
     }
   ],
   "assets/hvac/assets/questions/2023_3/04.jpg" : [

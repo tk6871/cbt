@@ -34,6 +34,26 @@ const fixes = [
     globalName: 'CBT_DATA_HVAC',
     catalogKey: 'hvac',
     roundId: 'hvac-20211',
+    number: 32,
+    patch: {
+      text: '매시간 30℃의 물 2000kg을 -10℃의 얼음으로 만드는 냉동장치가 있다. 이 냉동장치의 냉각수 입구온도가 32℃, 냉각수 출구온도가 37℃이며, 냉각수량이 60m³/h일 때, 압축기의 소요동력은 얼마인가?',
+      html: '매시간 30℃의 물 2000kg을 -10℃의 얼음으로 만드는 냉동장치가 있다. 이 냉동장치의 냉각수 입구온도가 32℃, 냉각수 출구온도가 37℃이며, 냉각수량이 60m³/h일 때, 압축기의 소요동력은 얼마인가?',
+      choices: [
+        { text: '83kW', html: '83kW', images: [] },
+        { text: '88kW', html: '88kW', images: [] },
+        { text: '90kW', html: '90kW', images: [] },
+        { text: '117kW', html: '117kW', images: [] },
+      ],
+      answer: 1,
+      explanationConfidence: 'high',
+      correctionSource: '2021년 1회 배포 PDF 대조 및 잘린 원문 이미지 복원',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20211',
     number: 52,
     patch: {
       text: '120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?',
@@ -204,6 +224,26 @@ const fixes = [
         '같은 펌프에서는 토출량이 회전수에 비례합니다.<br>N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.',
       explanationConfidence: 'high',
       correctionSource: '2022년 2회 배포 PDF 대조 및 원문 이미지 복원',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20233',
+    number: 3,
+    patch: {
+      text: '다음 기술내용은 온수난방의 특징을 기술한 것이다. 적합하지 못한 항목은?',
+      html: '다음 기술내용은 온수난방의 특징을 기술한 것이다. 적합하지 못한 항목은?',
+      choices: [
+        { text: '온수온도를 계절적으로 중앙기계실에서 자동적으로 용이하게 조절할 수 있다.', html: '온수온도를 계절적으로 중앙기계실에서 자동적으로 용이하게 조절할 수 있다.', images: [] },
+        { text: '연속 운전 시 종합 열손실이 크다.', html: '연속 운전 시 종합 열손실이 크다.', images: [] },
+        { text: '증기난방보다 일반적으로 설비비가 많이 든다.', html: '증기난방보다 일반적으로 설비비가 많이 든다.', images: [] },
+        { text: '저온방열이므로 안전하고 양호한 온열환경이 얻어진다.', html: '저온방열이므로 안전하고 양호한 온열환경이 얻어진다.', images: [] },
+      ],
+      answer: 2,
+      explanationConfidence: 'high',
+      correctionSource: '2023년 3회 배포 PDF의 열 나눔 문제를 한 장으로 복원',
     },
   },
   {
