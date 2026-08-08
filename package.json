@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "audit:questions": "node tools/audit-question-data.mjs",
     "build": "vite build",
     "dev": "vite --host 127.0.0.1",
     "typecheck": "vue-tsc --noEmit"

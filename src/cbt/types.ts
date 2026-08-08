@@ -21,6 +21,7 @@ export type Question = {
   sourceSubject?: string;
   _originRoundId?: string;
   _originalNumber?: number;
+  answerHotspots?: Array<{ choice: number; x: number; y: number; width: number; height: number }>;
 };
 
 export type Round = {
@@ -68,6 +69,7 @@ export type SessionState = {
   remainingSeconds: number;
   finished: boolean;
   resultSent: boolean;
+  calculationMode?: boolean;
 };
 
 export type AttemptRecord = {

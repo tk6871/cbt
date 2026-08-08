@@ -7,11 +7,12 @@
   <title>CBT 공학용 계산기</title>
   <script>
     try {
-      document.documentElement.dataset.visualStyle = localStorage.getItem('unified-cbt-visual-style') === 'simpsons' ? 'simpsons' : 'default';
+      const visualStyle = localStorage.getItem('unified-cbt-visual-style');
+      document.documentElement.dataset.visualStyle = visualStyle === 'simpsons' || visualStyle === 'sunjae' ? visualStyle : 'default';
       document.documentElement.dataset.dynamicUi = localStorage.getItem('unified-cbt-dynamic-ui') === 'false' ? 'off' : 'on';
     } catch (error) {}
   </script>
-  <link rel="stylesheet" href="calculator.css?v=248">
+  <link rel="stylesheet" href="calculator.css?v=249">
 </head>
 <body>
   <main class="calculator-case" aria-label="공학용 계산기">
@@ -20,7 +21,7 @@
         <strong>CBT SCIENTIFIC</strong>
         <span>fx-570ES PLUS STYLE</span>
       </div>
-      <button class="calculator-style-toggle" type="button" data-action="visual-style" aria-label="기본 CBT와 심슨 계산기 테마 전환" title="계산기 테마 바꾸기">🍩</button>
+      <button class="calculator-style-toggle" type="button" data-action="visual-style" aria-label="기본 CBT, 심슨, 선재 업고 튀어 계산기 테마 전환" title="계산기 테마 바꾸기">🍩</button>
       <div class="model-copy">
         <b>NATURAL-V.P.A.M.</b>
         <small>TWO WAY POWER</small>
@@ -121,6 +122,6 @@
     <footer>독립형 CBT 공학용 계산기 · DEG/RAD · SHIFT · MEMORY</footer>
   </main>
   <script src="vendor/math.js?v=194"></script>
-  <script src="calculator.js?v=248"></script>
+  <script src="calculator.js?v=249"></script>
 </body>
 </html>

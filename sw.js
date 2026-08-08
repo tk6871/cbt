@@ -1,17 +1,20 @@
-const CACHE = 'unified-industrial-cbt-v248';
+const CACHE = 'unified-industrial-cbt-v249';
 const CORE = [
   './', './index.html', './jewelry.html', './legacy.html', './next.html', './manifest.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=248', './data/safety.js?v=248', './data/energy.js?v=248', './data/energy-engineer.js?v=248',
-  './data/maintenance.js?v=248', './data/jewelry.js?v=248', './data/changelog.js?v=248', './data/changelog-vue.js?v=248',
-  './calculator.html', './calculator.css?v=248', './calculator.js?v=248', './vendor/math.js?v=194',
+  './data/hvac.js?v=249', './data/safety.js?v=249', './data/energy.js?v=249', './data/energy-engineer.js?v=249',
+  './data/maintenance.js?v=249', './data/jewelry.js?v=249', './data/changelog.js?v=249', './data/changelog-vue.js?v=249',
+  './calculator.html', './calculator.css?v=249', './calculator.js?v=249', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  './app.css?v=248', './app.js?v=248',
-  './modern/cbt.css?v=248', './modern/cbt.js?v=248', './modern/visitor.js?v=248',
+  './app.css?v=249', './app.js?v=249',
+  './modern/cbt.css?v=249', './modern/cbt.js?v=249', './modern/visitor.js?v=249',
   './modern/chunks/import-wrapper-prod.js', './modern/chunks/index.js',
   './modern/assets/search.worker-BqvfbZXG.js',
   './assets/theme/simpsons/homer-bart-choke-original.jpg',
-  './assets/theme/simpsons/homer-bart-choke-2x.webp'
+  './assets/theme/simpsons/homer-bart-choke-2x.webp',
+  './assets/theme/sunjae/lovely-runner-banner.jpg',
+  './assets/theme/sunjae/sunjae-encourage.jpg',
+  './assets/theme/sunjae/sunjae-praise.jpg'
 ];
 async function refreshCoreCache() {
   const cache = await caches.open(CACHE);

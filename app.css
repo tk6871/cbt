@@ -827,3 +827,40 @@ th:first-child, td:first-child { text-align: left; }
 [data-visual-style="simpsons"] .icon-button { border:2px solid #171717; box-shadow:2px 3px 0 #171717; }
 [data-visual-style="simpsons"] .primary-button { color:#171717; background:#ffd90f; }
 [data-visual-style="simpsons"] #toast { border:3px solid #171717; color:#171717; background:#fff; box-shadow:5px 6px 0 #171717; }
+
+[data-visual-style="sunjae"] {
+  color-scheme:light;
+  --bg:#edf7fc;
+  --surface:#fff;
+  --surface-2:#eef7fc;
+  --text:#173b55;
+  --muted:#678196;
+  --line:#c7dce8;
+  --primary:#4e8fb6;
+  --primary-soft:#dceef8;
+  --green:#3f9277;
+  --orange:#d78a55;
+  --red:#c9566f;
+  --shadow:0 18px 42px rgba(45,93,124,.14);
+}
+[data-visual-style="sunjae"] body {
+  background:linear-gradient(145deg,#d7eefb 0,#f7edf3 48%,#fff8e1 100%);
+  background-attachment:fixed;
+}
+[data-visual-style="sunjae"] .sidebar,
+[data-visual-style="sunjae"] .space-jewelry .sidebar { color:#173b55; background:linear-gradient(180deg,#dceffa,#f4e8ef); box-shadow:8px 0 30px rgba(48,91,119,.14); }
+[data-visual-style="sunjae"] .brand,
+[data-visual-style="sunjae"] .nav-button,
+[data-visual-style="sunjae"] .space-switch { color:#173b55; }
+[data-visual-style="sunjae"] .brand-mark,
+[data-visual-style="sunjae"] .space-jewelry .brand-mark { color:#fff; background:linear-gradient(145deg,#69a8ce,#d58cab); box-shadow:0 8px 20px rgba(68,117,147,.25); }
+[data-visual-style="sunjae"] .nav-button:hover,
+[data-visual-style="sunjae"] .nav-button[aria-current="page"] { color:#173b55; background:rgba(255,255,255,.78); box-shadow:0 8px 20px rgba(45,93,124,.12); }
+[data-visual-style="sunjae"] .topbar { background:rgba(246,251,254,.9); backdrop-filter:blur(16px); }
+[data-visual-style="sunjae"] .hero-card,
+[data-visual-style="sunjae"] .dashboard-card,
+[data-visual-style="sunjae"] .round-card,
+[data-visual-style="sunjae"] .question-card,
+[data-visual-style="sunjae"] .result-card,
+[data-visual-style="sunjae"] .modal { background:rgba(255,255,255,.9); box-shadow:0 18px 42px rgba(45,93,124,.14); }
+[data-visual-style="sunjae"] .primary-button { background:linear-gradient(135deg,#5c9fc6,#397da5); }

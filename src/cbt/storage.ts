@@ -8,7 +8,7 @@ const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
 const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
 const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
-export type VisualStyle = 'default' | 'simpsons';
+export type VisualStyle = 'default' | 'simpsons' | 'sunjae';
 
 type AttemptRow = AttemptRecord & { id: string };
 export type ExamRecord = {
@@ -149,7 +149,8 @@ export function applyTheme(mode: 'system' | 'light' | 'dark'): void {
 }
 
 export function currentVisualStyle(): VisualStyle {
-  return localStorage.getItem(VISUAL_STYLE_KEY) === 'simpsons' ? 'simpsons' : 'default';
+  const saved = localStorage.getItem(VISUAL_STYLE_KEY);
+  return saved === 'simpsons' || saved === 'sunjae' ? saved : 'default';
 }
 
 export function applyVisualStyle(style: VisualStyle): void {

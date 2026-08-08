@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { isImagePrimary } from './catalog';
+import { calculationGuideFor, calculationSource } from './calculationGuide';
 import type { QuestionItem, StudyMode } from './types';
 
 const props = defineProps<{
@@ -11,6 +12,8 @@ const props = defineProps<{
   subjectNumber?: number;
   bookmarked?: boolean;
   kept?: boolean;
+  calculationMode?: boolean;
+  imageAnswerMode?: 'buttons' | 'hotspot';
 }>();
 
 defineEmits<{
@@ -24,6 +27,9 @@ const primaryImage = computed(() => isImagePrimary(props.item));
 const restoredQuestion = computed(() =>
   props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
+const calculationGuide = computed(() => calculationGuideFor(props.item));
+const calculationValues = computed(() => calculationSource(props.item).match(/-?\d+(?:\.\d+)?\s*(?:kW|W|kcal\/h|kcal|kg\/s|kg\/h|kg|m³\/s|m³\/min|m³\/h|m³|m²|m\/s|mm|cm|m|kPa|MPa|Pa|bar|℃|K|V|A|Ω|%|rpm)/gi)?.slice(0, 8) || []);
+const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
 const imageZoomOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
 
@@ -75,19 +81,32 @@ function choiceClass(index: number): Record<string, boolean> {
         v-if="primaryImage && item.question.sourceImage"
         class="source-image-frame"
       >
-        <img
-          class="source-question-image"
-          :src="item.question.sourceImage"
-          :alt="`${item.question.number}번 문제 원문`"
-          loading="lazy"
-          decoding="async"
-        >
+        <div class="source-image-stage">
+          <img
+            class="source-question-image"
+            :src="item.question.sourceImage"
+            :alt="`${item.question.number}번 문제 원문`"
+            loading="lazy"
+            decoding="async"
+          >
+          <button
+            v-for="hotspot in verifiedHotspots"
+            :key="hotspot.choice"
+            type="button"
+            class="image-answer-hotspot"
+            :class="{ selected: selected === hotspot.choice }"
+            :style="{ left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` }"
+            :aria-label="`이미지에서 ${hotspot.choice}번 선택`"
+            @click="$emit('choose', hotspot.choice)"
+          >{{ hotspot.choice }}</button>
+        </div>
         <button
           type="button"
           class="source-image-zoom-hint"
           :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
           @click="imageZoomOpen = true"
         >⌕ 크게 보기</button>
+        <small v-if="imageAnswerMode === 'hotspot' && !verifiedHotspots.length" class="hotspot-fallback-note">선택 위치 미검증 · 아래 답안 버튼 사용</small>
       </div>
       <template v-else>
         <div class="question-text" v-html="item.question.html || item.question.text" />
@@ -103,7 +122,7 @@ function choiceClass(index: number): Record<string, boolean> {
       </template>
     </div>
 
-    <div class="choice-grid" :class="{ 'image-choice-grid': restoredQuestion && primaryImage }">
+    <div v-if="!verifiedHotspots.length" class="choice-grid" :class="{ 'image-choice-grid': restoredQuestion && primaryImage }">
       <button
         v-for="(choice, index) in item.question.choices"
         :key="index"
@@ -132,6 +151,14 @@ function choiceClass(index: number): Record<string, boolean> {
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
         <strong>쉽게 풀어보기</strong>
+      </div>
+      <div v-if="calculationMode" class="calculation-explanation">
+        <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
+        <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
+        <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
+        <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
+        <div><span>5</span><p><strong>숫자 넣기</strong>{{ calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.' }}</p></div>
+        <div><span>6</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
       </div>
       <div
         v-if="item.question.explanationHtml"
