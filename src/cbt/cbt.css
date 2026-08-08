@@ -914,9 +914,9 @@ img { max-width: 100%; }
 .image-answer-area-highlight { position:absolute; z-index:3; border:2px solid rgba(23,115,207,.95); border-radius:9px; background:rgba(23,115,207,.18); box-shadow:0 0 0 2px rgba(255,255,255,.8),0 0 0 4px rgba(23,115,207,.22); pointer-events:none; transition:left .16s ease,top .16s ease,width .16s ease,height .16s ease; }
 .image-answer-area-highlight.correct { border-color:rgba(20,149,109,.95); background:rgba(20,149,109,.18); }
 .image-answer-area-highlight.wrong { border-color:rgba(228,85,85,.95); background:rgba(228,85,85,.18); }
-.image-answer-pick-marker { position:absolute; z-index:3; top:2px; left:2px; width:24px; height:24px; border:2px solid white; border-radius:50%; color:white; background:var(--primary); box-shadow:0 2px 8px rgba(7,35,65,.34); display:grid; place-items:center; font-size:.72rem; font-weight:950; pointer-events:none; }
-.image-answer-hotspot.correct .image-answer-pick-marker { background:var(--green); }
-.image-answer-hotspot.wrong .image-answer-pick-marker { background:var(--red); }
+.image-answer-pick-marker { position:absolute; z-index:4; width:24px; height:24px; border:2px solid white; border-radius:50%; color:white; background:var(--primary); box-shadow:0 2px 8px rgba(7,35,65,.34); display:grid; place-items:center; font-size:.72rem; font-weight:950; pointer-events:none; transform:translate(-58%,-38%); }
+.image-answer-pick-marker.correct { background:var(--green); }
+.image-answer-pick-marker.wrong { background:var(--red); }
 .source-image-selected-answer { display:flex; align-items:center; gap:7px; }
 .source-image-selected-answer strong { padding:4px 7px; border-radius:999px; color:white; background:var(--primary); font-size:.61rem; white-space:nowrap; }
 .source-image-selected-answer > span { color:var(--muted); font-size:.58rem; }

@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '2.5.4',
+      scope: 'industrial',
+      date: '2026.08.08',
+      title: '이미지 답안 선택 표시 정렬 보완',
+      summary: '체크 마커와 영역 색상 박스가 같은 실제 보기 글자 범위를 기준으로 표시되도록 정리했습니다.',
+      tags: ['이미지 답안', '선택 표시', '정렬', '모바일'],
+      changes: [
+        '체크 마커를 넓은 터치 영역의 시작점이 아니라 실제 보기 글자 범위에 맞춰 표시합니다.',
+        '글자 범위를 안전하게 찾지 못한 이미지에서는 어긋난 체크 마커 대신 이미지 아래 선택 번호 안내를 유지합니다.',
+        '체크 마커와 영역 색상 박스가 같은 보기 기준 좌표를 사용하므로 두 표시 방식의 위치가 일치합니다.',
+        '서비스워커 캐시를 v260으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.3',
       scope: 'industrial',
       date: '2026.08.08',
@@ -820,8 +834,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.3';
+  changelog.versions.industrial = '2.5.4';
   changelog.versions.jewelry = '2.4.9';
-  changelog.currentVersion = '2.5.3';
+  changelog.currentVersion = '2.5.4';
   window.CBT_CHANGELOG = changelog;
 })();

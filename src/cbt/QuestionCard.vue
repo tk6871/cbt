@@ -34,6 +34,14 @@ const calculationValues = computed(() => calculationSource(props.item).match(/-?
 const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
 const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
 const selectedAreaHighlightStyle = computed(() => props.selected ? answerHighlightStyles.value[props.selected] : undefined);
+const selectedMarkerStyle = computed(() => {
+  const highlight = selectedAreaHighlightStyle.value;
+  return highlight ? { left: highlight.left, top: highlight.top } : undefined;
+});
+const selectedAnswerState = computed(() => ({
+  correct: props.mode === 'learn' && props.selected === props.item.question.answer,
+  wrong: props.mode === 'learn' && props.selected !== props.item.question.answer,
+}));
 const sourceImageRef = ref<HTMLImageElement | null>(null);
 const imageZoomOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
@@ -124,6 +132,7 @@ function calculateAnswerHighlights(image: HTMLImageElement): void {
 }
 
 watch(verifiedHotspots, (hotspots) => {
+  answerHighlightStyles.value = {};
   if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
 }, { flush: 'post' });
 </script>
@@ -185,17 +194,18 @@ watch(verifiedHotspots, (hotspots) => {
             :style="hotspotStyle(hotspot)"
             :aria-label="`이미지에서 ${hotspot.choice}번 선택`"
             @click="$emit('choose', hotspot.choice)"
-          >
-            <span
-              v-if="selected === hotspot.choice && (hotspotIndicator !== 'area' || !answerHighlightStyles[hotspot.choice])"
-              class="image-answer-pick-marker"
-              aria-hidden="true"
-            >✓</span>
-          </button>
+          ></button>
+          <span
+            v-if="selected && hotspotIndicator === 'marker' && selectedMarkerStyle"
+            class="image-answer-pick-marker"
+            :class="selectedAnswerState"
+            :style="selectedMarkerStyle"
+            aria-hidden="true"
+          >✓</span>
           <span
             v-if="selected && hotspotIndicator === 'area' && selectedAreaHighlightStyle"
             class="image-answer-area-highlight"
-            :class="{ correct: mode === 'learn' && selected === item.question.answer, wrong: mode === 'learn' && selected !== item.question.answer }"
+            :class="selectedAnswerState"
             :style="selectedAreaHighlightStyle"
             aria-hidden="true"
           ></span>

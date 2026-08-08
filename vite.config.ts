@@ -1,6 +1,9 @@
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+
+const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
   base: './',
@@ -12,9 +15,9 @@ export default defineConfig({
     cssCodeSplit: true,
     rollupOptions: {
       input: {
-        admin: resolve(__dirname, 'src/admin/main.ts'),
-        visitor: resolve(__dirname, 'src/visitor.ts'),
-        cbt: resolve(__dirname, 'src/cbt/main.ts')
+        admin: resolve(projectRoot, 'src/admin/main.ts'),
+        visitor: resolve(projectRoot, 'src/visitor.ts'),
+        cbt: resolve(projectRoot, 'src/cbt/main.ts')
       },
       output: {
         entryFileNames: '[name].js',
