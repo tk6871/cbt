@@ -10,7 +10,9 @@
   const historyPanel = document.getElementById('historyPanel');
   const historyList = document.getElementById('historyList');
   const visualStyleButton = document.querySelector('[data-action="visual-style"]');
-  const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+  const CALCULATOR_SPACE = new URLSearchParams(location.search).get('space') === 'jewelry' ? 'jewelry' : 'industrial';
+  const LEGACY_VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+  const VISUAL_STYLE_KEY = CALCULATOR_SPACE === 'jewelry' ? 'unified-jewelry-cbt-visual-style' : 'unified-industrial-cbt-visual-style';
   const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
   let angleMode = 'deg';
   let shift = false;
@@ -20,14 +22,21 @@
   let history = [];
   let fractionMode = false;
 
-  function applyVisualStyle(style = localStorage.getItem(VISUAL_STYLE_KEY)) {
-    const normalized = style === 'simpsons' || style === 'sunjae' ? style : 'default';
+  function savedVisualStyle() {
+    const saved = localStorage.getItem(VISUAL_STYLE_KEY) || localStorage.getItem(LEGACY_VISUAL_STYLE_KEY);
+    if (saved === 'simpsons') return saved;
+    if (saved === 'sunjae' && CALCULATOR_SPACE === 'jewelry') return saved;
+    return 'default';
+  }
+
+  function applyVisualStyle(style = savedVisualStyle()) {
+    const normalized = style === 'simpsons' || (style === 'sunjae' && CALCULATOR_SPACE === 'jewelry') ? style : 'default';
     document.documentElement.dataset.visualStyle = normalized;
     if (visualStyleButton) {
-      visualStyleButton.textContent = normalized === 'default' ? '🍩' : normalized === 'simpsons' ? '☂' : 'CBT';
+      visualStyleButton.textContent = normalized === 'default' ? '🍩' : normalized === 'simpsons' && CALCULATOR_SPACE === 'jewelry' ? '☂' : 'CBT';
       visualStyleButton.title = normalized === 'default'
         ? '심슨 계산기로 바꾸기'
-        : normalized === 'simpsons'
+        : normalized === 'simpsons' && CALCULATOR_SPACE === 'jewelry'
           ? '선재 업고 튀어 계산기로 바꾸기'
           : '기본 CBT 계산기로 바꾸기';
     }
@@ -39,7 +48,7 @@
 
   function switchVisualStyle() {
     const current = document.documentElement.dataset.visualStyle;
-    const next = current === 'default' ? 'simpsons' : current === 'simpsons' ? 'sunjae' : 'default';
+    const next = current === 'default' ? 'simpsons' : current === 'simpsons' && CALCULATOR_SPACE === 'jewelry' ? 'sunjae' : 'default';
     localStorage.setItem(VISUAL_STYLE_KEY, next);
     if (document.documentElement.dataset.dynamicUi !== 'on' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       applyVisualStyle(next);

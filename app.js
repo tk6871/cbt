@@ -16,7 +16,9 @@
   const ROUNDS = CATALOG.flatMap((item) => item.rounds || []).sort((a, b) => String(b.sortKey || b.date || '').localeCompare(String(a.sortKey || a.date || '')));
   const STORAGE_KEY = 'unified-industrial-cbt-v1';
   const THEME_KEY = 'unified-cbt-theme';
-  const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+  const LEGACY_VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+  const INDUSTRIAL_VISUAL_STYLE_KEY = 'unified-industrial-cbt-visual-style';
+  const JEWELRY_VISUAL_STYLE_KEY = 'unified-jewelry-cbt-visual-style';
   const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
   const DAY_MS = 24 * 60 * 60 * 1000;
   const REVIEW_DAYS = [1, 3, 7];
@@ -202,7 +204,9 @@
     return h ? `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}` : `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   }
   function openCalculatorWindow() {
-    const url = new URL('calculator.html', location.href).href;
+    const calculatorUrl = new URL('calculator.html', location.href);
+    calculatorUrl.searchParams.set('space', state.space);
+    const url = calculatorUrl.href;
     const features = 'popup=yes,width=470,height=820,resizable=yes,scrollbars=yes';
     const calculator = window.open(url, 'cbtScientificCalculator', features);
     if (calculator) calculator.focus();
@@ -219,9 +223,16 @@
     localStorage.setItem(THEME_KEY, mode); saveStore();
   }
   function setVisualStyle(style) {
-    const normalized = style === 'simpsons' || style === 'sunjae' ? style : 'default';
+    const normalized = style === 'simpsons' || (style === 'sunjae' && state.space === 'jewelry') ? style : 'default';
     document.documentElement.dataset.visualStyle = normalized;
-    localStorage.setItem(VISUAL_STYLE_KEY, normalized);
+    localStorage.setItem(state.space === 'jewelry' ? JEWELRY_VISUAL_STYLE_KEY : INDUSTRIAL_VISUAL_STYLE_KEY, normalized);
+  }
+  function savedVisualStyle(space = state.space) {
+    const key = space === 'jewelry' ? JEWELRY_VISUAL_STYLE_KEY : INDUSTRIAL_VISUAL_STYLE_KEY;
+    const saved = localStorage.getItem(key) || localStorage.getItem(LEGACY_VISUAL_STYLE_KEY);
+    if (saved === 'simpsons') return saved;
+    if (saved === 'sunjae' && space === 'jewelry') return saved;
+    return 'default';
   }
   function setDynamicUiEnabled(enabled) {
     const normalized = enabled !== false;
@@ -737,10 +748,9 @@
       return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><span class="modal-kicker">DAILY STUDY PLAN</span><h2>시험일 학습계획</h2><p>시험일까지 남은 미학습 문제를 날짜별로 자동 배분합니다.</p><label class="setting-row">종목<select id="studyPlanQualification">${activeCatalogs().map((item) => `<option value="${item.key}" ${selectedKey === item.key ? 'selected' : ''}>${esc(item.name)}</option>`).join('')}</select></label><label class="setting-row">시험일<input id="studyPlanDate" type="date" min="${localDateValue()}" value="${esc(plan.examDate || localDateValue(suggested))}"></label><button class="primary-button wide" data-action="save-study-plan">학습계획 저장</button>${currentStudyPlan() ? '<button class="secondary-button wide modal-secondary" data-action="clear-study-plan">계획 삭제</button>' : ''}</div></div>`;
     }
     if (state.modal.type === 'settings') {
-      const savedVisualStyle = localStorage.getItem(VISUAL_STYLE_KEY);
-      const visualStyle = savedVisualStyle === 'simpsons' || savedVisualStyle === 'sunjae' ? savedVisualStyle : 'default';
+      const visualStyle = savedVisualStyle();
       const dynamicUi = localStorage.getItem(DYNAMIC_UI_KEY) === 'false' ? 'off' : 'on';
-      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">동적 UI<select data-change="dynamic-ui"><option value="on" ${dynamicUi === 'on' ? 'selected' : ''}>켜기 · 새 UI</option><option value="off" ${dynamicUi === 'off' ? 'selected' : ''}>끄기 · 기존 UI</option></select></label><label class="setting-row">UI 스타일<select data-change="visual-style"><option value="default" ${visualStyle === 'default' ? 'selected' : ''}>기본 CBT</option><option value="simpsons" ${visualStyle === 'simpsons' ? 'selected' : ''}>심슨 테마</option><option value="sunjae" ${visualStyle === 'sunjae' ? 'selected' : ''}>선재 업고 튀어 테마</option></select></label><label class="setting-row">화면 테마<select data-change="theme"><option value="system" ${store.theme === 'system' ? 'selected' : ''}>기기 설정</option><option value="light" ${store.theme === 'light' ? 'selected' : ''}>밝게</option><option value="dark" ${store.theme === 'dark' ? 'selected' : ''}>어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
+      return `<div class="modal-backdrop" data-action="close-modal"><div class="modal small-modal"><button class="modal-close" data-action="close-modal">×</button><h2>화면·데이터 설정</h2><label class="setting-row">동적 UI<select data-change="dynamic-ui"><option value="on" ${dynamicUi === 'on' ? 'selected' : ''}>켜기 · 새 UI</option><option value="off" ${dynamicUi === 'off' ? 'selected' : ''}>끄기 · 기존 UI</option></select></label><label class="setting-row">UI 스타일<select data-change="visual-style"><option value="default" ${visualStyle === 'default' ? 'selected' : ''}>기본 CBT</option><option value="simpsons" ${visualStyle === 'simpsons' ? 'selected' : ''}>심슨 테마</option>${state.space === 'jewelry' ? `<option value="sunjae" ${visualStyle === 'sunjae' ? 'selected' : ''}>선재 업고 튀어 테마</option>` : ''}</select></label><label class="setting-row">화면 테마<select data-change="theme"><option value="system" ${store.theme === 'system' ? 'selected' : ''}>기기 설정</option><option value="light" ${store.theme === 'light' ? 'selected' : ''}>밝게</option><option value="dark" ${store.theme === 'dark' ? 'selected' : ''}>어둡게</option></select></label><label class="setting-row">글자 크기<input type="range" min="0.9" max="1.25" step="0.05" value="${store.fontScale}" data-change="font-scale"></label><div class="backup-actions"><button data-action="export-backup">학습 기록 백업</button><button data-action="choose-backup">백업 파일 복원</button><input id="backupFile" type="file" accept="application/json,.json" data-change="import-backup" hidden></div><p class="setting-note">오답, 메모, 풀이시간, 시험계획과 통계를 JSON 파일로 백업합니다. 학습 기록은 서버로 전송되지 않습니다.</p><button class="danger-button" data-action="reset-progress">학습 기록 초기화</button></div></div>`;
     }
     if (state.modal.type === 'random') {
       const key = state.modal.qualification || (activeKeys().includes(state.qualification) ? state.qualification : activeCatalogs()[0]?.key);
@@ -1147,6 +1157,7 @@
       state.view = 'home'; state.qualification = 'all'; state.year = 'all'; state.yearFrom = 'all'; state.yearTo = 'all'; state.roundSearch = ''; state.searchQuery = '';
       state.session = null; state.result = null; state.modal = null; state.wrongFilter = 'all';
       state.mobileSidebarOpen = false; state.focusSidebarOpen = false;
+      setVisualStyle(savedVisualStyle());
       renderHome(); scrollTo(0, 0);
     }
     else if (action === 'toggle-session-sidebar') { state.focusSidebarOpen = !state.focusSidebarOpen; renderSession(); }
@@ -1512,7 +1523,7 @@
   window.addEventListener('pagehide', () => sendSessionAnalytics(state.session));
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
   setTheme(store.theme || 'system');
-  setVisualStyle(localStorage.getItem(VISUAL_STYLE_KEY) || 'default');
+  setVisualStyle(savedVisualStyle());
   setDynamicUiEnabled(localStorage.getItem(DYNAMIC_UI_KEY) !== 'false');
   bindFocusable(); route();
   if ('serviceWorker' in navigator && location.protocol !== 'file:') {

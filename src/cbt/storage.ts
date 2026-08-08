@@ -6,7 +6,8 @@ const IS_JEWELRY = window.CBT_APP_SPACE === 'jewelry';
 const STORAGE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-v1' : 'unified-industrial-cbt-v1';
 const LEGACY_STORAGE_KEY = 'unified-industrial-cbt-v1';
 const THEME_KEY = 'unified-cbt-theme';
-const VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+const LEGACY_VISUAL_STYLE_KEY = 'unified-cbt-visual-style';
+const VISUAL_STYLE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-visual-style' : 'unified-industrial-cbt-visual-style';
 const DYNAMIC_UI_KEY = 'unified-cbt-dynamic-ui';
 export type VisualStyle = 'default' | 'simpsons' | 'sunjae';
 
@@ -149,7 +150,8 @@ export function applyTheme(mode: 'system' | 'light' | 'dark'): void {
 }
 
 export function currentVisualStyle(): VisualStyle {
-  const saved = localStorage.getItem(VISUAL_STYLE_KEY);
+  const saved = localStorage.getItem(VISUAL_STYLE_KEY) || localStorage.getItem(LEGACY_VISUAL_STYLE_KEY);
+  if (!IS_JEWELRY && saved === 'sunjae') return 'default';
   return saved === 'simpsons' || saved === 'sunjae' ? saved : 'default';
 }
 

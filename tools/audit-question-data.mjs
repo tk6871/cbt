@@ -27,12 +27,65 @@ const referencedImages = new Set();
 const manualReview = [];
 const catalogRows = [];
 const roundIds = new Set();
+const duplicateSignatures = new Map();
+const answerConflicts = [];
+const explanationAnswerReviewCandidates = [];
 
 function addImage(image, location) {
   if (!image || /^(?:https?:|data:)/i.test(image)) return;
   const clean = decodeURIComponent(String(image).split(/[?#]/)[0]).replace(/^\//, '');
   referencedImages.add(clean);
   if (!fs.existsSync(path.join(root, clean))) missingImages.push({ location, image: clean });
+}
+
+function cleanImageReference(image) {
+  if (!image || /^(?:https?:|data:)/i.test(image)) return '';
+  return decodeURIComponent(String(image).split(/[?#]/)[0]).replace(/^\//, '');
+}
+
+function originalForImage(image) {
+  const clean = cleanImageReference(image);
+  if (!clean) return null;
+  const extension = path.extname(clean).toLowerCase();
+  if (extension === '.png') {
+    const gif = clean.slice(0, -extension.length) + '.gif';
+    if (fs.existsSync(path.join(root, gif))) return { type: 'preserved-file', image: gif };
+  }
+  if (clean.startsWith('assets/hvac/assets/questions/')) {
+    return { type: 'git-history', revision: '1d38c97^', image: clean };
+  }
+  if (clean.startsWith('assets/energy/assets/engineer-2022/')) {
+    return { type: 'git-history', revision: '62549e8^', image: clean };
+  }
+  return { type: 'current-file', image: clean };
+}
+
+function plainText(value) {
+  return String(value || '')
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
+function duplicateSignature(question) {
+  if (question.sourceImage || question.images?.length || question.choices?.some((choice) => choice.images?.length)) return '';
+  const questionText = plainText(question.text || question.html);
+  const choices = (question.choices || []).map((choice) => plainText(choice.text || choice.html));
+  const combined = [questionText, ...choices].join('|');
+  return combined.replace(/^\d+\s*[.)번]\s*/, '').length >= 24 ? combined : '';
+}
+
+function statedExplanationAnswer(question) {
+  const explanation = plainText(question.explanation || question.explanationHtml);
+  if (!explanation) return null;
+  const matches = [
+    ...explanation.matchAll(/(?:^|[^가-힣])(?:정답|답)\s*(?:은|:|=)?\s*([①②③④])(?:\s*(?:입니다|이다|임|맞습니다)|[.]|$)/g),
+    ...explanation.matchAll(/(?:^|[^가-힣])(?:정답|답)\s*(?:은|:|=)?\s*([1-4])\s*번(?:\s*(?:입니다|이다|임|맞습니다)|[.]|$)/g),
+  ].map((match) => ({ '①': 1, '②': 2, '③': 3, '④': 4 })[match[1]] || Number(match[1]));
+  const unique = [...new Set(matches)];
+  return unique.length === 1 ? unique[0] : null;
 }
 
 for (const catalog of catalogs) {
@@ -71,11 +124,43 @@ for (const catalog of catalogs) {
           errors.push({ location: questionLocation, issue: `이미지 답안 좌표 오류: ${JSON.stringify(hotspot)}` });
         }
       }
-      if (question.imageOnly && !question.sourceImage) manualReview.push({ location: questionLocation, issue: 'imageOnly인데 sourceImage 없음' });
-      if (images.length && !question.explanation && !question.explanationHtml) manualReview.push({ location: questionLocation, issue: '이미지 문제·해설 없음: 원본 육안 검수 필요' });
+      if (question.imageOnly && !question.sourceImage && !(question.images || []).length) {
+        manualReview.push({ location: questionLocation, issue: 'imageOnly인데 표시할 문제 이미지 없음' });
+      }
+      if (images.length && !question.explanation && !question.explanationHtml) {
+        manualReview.push({
+          location: questionLocation,
+          issue: '이미지 문제·해설 없음: 원본 육안 검수 필요',
+          answer: question.answer,
+          images: images.map(cleanImageReference).filter(Boolean),
+          originals: images.map(originalForImage).filter(Boolean),
+        });
+      }
+      const signature = duplicateSignature(question);
+      if (signature) {
+        const existing = duplicateSignatures.get(signature) || [];
+        existing.push({ location: questionLocation, answer: question.answer });
+        duplicateSignatures.set(signature, existing);
+      }
+      const explanationAnswer = statedExplanationAnswer(question);
+      if (explanationAnswer && explanationAnswer !== question.answer) {
+        explanationAnswerReviewCandidates.push({
+          location: questionLocation,
+          answer: question.answer,
+          explanationAnswer,
+          question: plainText(question.text || question.html),
+          choices: choices.map((choice) => plainText(choice.text || choice.html)),
+          explanation: plainText(question.explanation || question.explanationHtml),
+        });
+      }
     }
   }
   catalogRows.push({ key: catalog.key, rounds: catalog.rounds?.length || 0, questions: questionCount, imageQuestions: imageQuestionCount, explanations: explanationCount });
+}
+
+for (const rows of duplicateSignatures.values()) {
+  const answers = [...new Set(rows.map((row) => row.answer))];
+  if (rows.length > 1 && answers.length > 1) answerConflicts.push({ answers, rows });
 }
 
 const report = {
@@ -90,12 +175,16 @@ const report = {
     warnings: warnings.length,
     missingImages: missingImages.length,
     manualReviewCandidates: manualReview.length,
+    duplicateAnswerConflicts: answerConflicts.length,
+    explanationAnswerReviewCandidates: explanationAnswerReviewCandidates.length,
   },
   catalogs: catalogRows,
   errors,
   warnings,
   missingImages,
   manualReview,
+  answerConflicts,
+  explanationAnswerReviewCandidates,
 };
 
 const reportIndex = process.argv.indexOf('--report');
