@@ -43,7 +43,7 @@ type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
 type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-leaving' | 'home-entering' | null;
 type SunjaeResultPhase = 'grading' | 'reveal';
-type AnswerLayout = 'classic' | 'inline';
+type AnswerLayout = 'classic' | 'inline' | 'hotspot';
 type ExamResult = {
   score: number;
   correct: number;
@@ -179,7 +179,7 @@ const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
 const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
-const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' ? 'inline' : 'classic');
+const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' || savedAnswerLayout === 'hotspot' ? savedAnswerLayout : 'classic');
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
@@ -1569,7 +1569,9 @@ function setSunjaeRotationSeconds(seconds: number): void {
 function setAnswerLayout(layout: AnswerLayout): void {
   answerLayout.value = layout;
   localStorage.setItem('unified-cbt-answer-layout', layout);
-  showToast(layout === 'inline' ? '번호 옆에 답안 문구를 표시합니다.' : '기존 큰 번호 답안으로 돌아왔습니다.');
+  showToast(layout === 'hotspot'
+    ? '원문 이미지 속 답안을 직접 누릅니다.'
+    : layout === 'inline' ? '번호 옆에 답안 문구를 표시합니다.' : '기존 큰 번호 답안으로 돌아왔습니다.');
 }
 
 function sunjaeRotationLabel(seconds: number): string {
@@ -2648,8 +2650,8 @@ onBeforeUnmount(() => {
               <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
                 <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
               </button>
-              <button type="button" class="feature-action-card exam" @click="setAnswerLayout(answerLayout === 'inline' ? 'classic' : 'inline')">
-                <span>①</span><div><strong>{{ answerLayout === 'inline' ? '기존 번호 답안으로' : '답안 문구 방식으로' }}</strong><small>정식 답안 표시 즉시 전환</small></div><b>›</b>
+              <button type="button" class="feature-action-card exam" @click="setAnswerLayout('hotspot')">
+                <span>☝</span><div><strong>{{ answerLayout === 'hotspot' ? '이미지 직접 선택 사용 중' : '이미지에서 답 고르기' }}</strong><small>원문 속 ①·②·③·④를 바로 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
@@ -2776,6 +2778,7 @@ onBeforeUnmount(() => {
           <span>답안 선택 방식</span>
           <p class="setting-description">베타가 아닌 정식 설정입니다. 복원 이미지 문제의 답안 표시만 바뀌며 학습 기록에는 영향을 주지 않습니다.</p>
           <div class="answer-layout-options">
+            <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
             <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
             <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
           </div>
@@ -2886,7 +2889,7 @@ onBeforeUnmount(() => {
               :bookmarked="studyStore.bookmarks.includes(item.id)"
               :kept="session.kept.includes(item.id)"
               :calculation-mode="session.calculationMode"
-              image-answer-mode="hotspot"
+              :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
               :answer-layout="answerLayout"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
@@ -3009,6 +3012,7 @@ onBeforeUnmount(() => {
         <div class="setting-group standard-solving-setting">
           <span>답안 선택 방식</span>
           <div class="answer-layout-options">
+            <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
             <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
             <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
           </div>

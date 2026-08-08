@@ -1,4 +1,4 @@
-const CACHE = 'unified-industrial-cbt-v255';
+const CACHE = 'unified-industrial-cbt-v256';
 const CORE = [
   './', './index.html', './jewelry.html', './legacy.html', './next.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
