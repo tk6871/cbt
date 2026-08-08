@@ -10,11 +10,13 @@ const props = defineProps<{
   subjectStart?: boolean;
   subjectNumber?: number;
   bookmarked?: boolean;
+  kept?: boolean;
 }>();
 
 defineEmits<{
   choose: [choice: number];
   toggleBookmark: [];
+  toggleKeep: [];
   askAi: [];
 }>();
 
@@ -57,6 +59,15 @@ function choiceClass(index: number): Record<string, boolean> {
         :aria-label="bookmarked ? '북마크 제거' : '북마크 추가'"
         @click="$emit('toggleBookmark')"
       >★</button>
+      <button
+        v-if="mode === 'exam'"
+        type="button"
+        class="keep-button"
+        :class="{ active: kept }"
+        :aria-label="kept ? '현재 시험 킵 해제' : '현재 시험에서 나중에 풀기'"
+        :aria-pressed="kept"
+        @click="$emit('toggleKeep')"
+      >{{ kept ? 'KEEP' : '킵' }}</button>
     </header>
 
     <div class="question-content" :class="{ 'source-image-content': primaryImage }">
@@ -68,6 +79,8 @@ function choiceClass(index: number): Record<string, boolean> {
           class="source-question-image"
           :src="item.question.sourceImage"
           :alt="`${item.question.number}번 문제 원문`"
+          loading="lazy"
+          decoding="async"
         >
         <button
           type="button"
@@ -84,6 +97,8 @@ function choiceClass(index: number): Record<string, boolean> {
           class="question-image"
           :src="image"
           alt="문제 참고 그림"
+          loading="lazy"
+          decoding="async"
         >
       </template>
     </div>
@@ -102,7 +117,7 @@ function choiceClass(index: number): Record<string, boolean> {
         <span class="choice-number">{{ primaryImage ? index + 1 : (circles[index] || index + 1) }}</span>
         <span v-if="!primaryImage" class="choice-copy">
           <span v-html="choice.html || choice.text || `${index + 1}번`" />
-          <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림">
+          <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
         </span>
         <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
       </button>

@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie';
 import { reactive, watch } from 'vue';
-import type { AttemptRecord, LegacyStore } from './types';
+import type { AttemptRecord, LegacyStore, StudyMode } from './types';
 
 const IS_JEWELRY = window.CBT_APP_SPACE === 'jewelry';
 const STORAGE_KEY = IS_JEWELRY ? 'unified-jewelry-cbt-v1' : 'unified-industrial-cbt-v1';
@@ -14,11 +14,24 @@ type AttemptRow = AttemptRecord & { id: string };
 export type ExamRecord = {
   id: string;
   qualificationKey: string;
+  roundId?: string;
+  year?: number;
+  session?: string;
+  mode?: StudyMode;
   title: string;
   score: number;
   passed: boolean;
   answered: number;
   total: number;
+  subjectRows?: Array<{ subject: string; correct: number; total: number; score: number; passed: boolean }>;
+  answers?: Record<string, number>;
+  wrongAnswers?: Array<{
+    id: string;
+    subject: string;
+    number: number;
+    selected: number;
+    answer: number;
+  }>;
   finishedAt: number;
 };
 
@@ -31,6 +44,10 @@ class CbtDatabase extends Dexie {
     this.version(1).stores({
       attempts: 'id, at, lastCorrect',
       exams: 'id, qualificationKey, finishedAt, score',
+    });
+    this.version(2).stores({
+      attempts: 'id, at, lastCorrect',
+      exams: 'id, qualificationKey, roundId, mode, finishedAt, score',
     });
   }
 }

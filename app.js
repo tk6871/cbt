@@ -1523,7 +1523,7 @@
       }
       markUpdateReady();
     });
-    navigator.serviceWorker.register('sw.js?v=247', { updateViaCache: 'none' })
+    navigator.serviceWorker.register('sw.js?v=248', { updateViaCache: 'none' })
       .then((registration) => {
         swRegistration = registration;
         if (registration.waiting) markUpdateReady();

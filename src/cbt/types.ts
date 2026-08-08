@@ -61,6 +61,7 @@ export type SessionState = {
   title: string;
   items: QuestionItem[];
   answers: Record<string, number>;
+  kept: string[];
   page: number;
   pageSize: number;
   startedAt: number;
