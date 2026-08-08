@@ -113,13 +113,16 @@ function choiceClass(index: number): Record<string, boolean> {
             @click="$emit('choose', hotspot.choice)"
           ></button>
         </div>
-        <button
-          type="button"
-          class="source-image-zoom-hint"
-          :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
-          @click="imageZoomOpen = true"
-        >⌕ 크게 보기</button>
-        <small v-if="verifiedHotspots.length" class="hotspot-fallback-note">이미지 속 답안을 직접 누를 수 있습니다.</small>
+        <div class="source-image-actions">
+          <small v-if="verifiedHotspots.length"><span aria-hidden="true">☝</span> 이미지의 ①·②·③·④를 눌러 답하세요</small>
+          <span v-else></span>
+          <button
+            type="button"
+            class="source-image-zoom-hint"
+            :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
+            @click="imageZoomOpen = true"
+          >⌕ 크게 보기</button>
+        </div>
       </div>
       <template v-else>
         <div class="question-text" v-html="item.question.html || item.question.text" />
