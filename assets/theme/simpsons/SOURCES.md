@@ -7,3 +7,20 @@
   - 《심슨 가족》 시즌 7 7화 `King-Size Homer` 본편 스틸(꽃무늬 무무를 입은 호머)
   - 출처 페이지: https://www.imdb.com/title/tt0701144/mediaviewer/rm1730397185/
   - 원본 이미지: 1430×1080 JPEG, 추가 업스케일링 없이 사용
+- `king-size-homer-hardhat.jpg`, `king-size-homer-dr-nick.jpg`, `king-size-homer-cool.jpg`, `king-size-homer-bart.jpg`, `king-size-homer-grin.jpg`, `king-size-homer-phone.jpg`, `king-size-homer-exercise.jpg`, `king-size-homer-exhausted.jpg`
+  - 《심슨 가족》 시즌 7 7화 `King-Size Homer` 본편의 서로 다른 장면 8장
+  - 출처 페이지: https://lardlad.com/episodes/season-7/3F05-King-Size-Homer/
+  - 원본 스크린그랩 번호: 008, 021, 034, 069, 088, 107, 118, 126
+  - 768×576 JPEG로 메뉴 아이콘과 작은 장면 모음에 사용하며 추가 업스케일링 없이 사용
+- `mr-burns-excellent.jpg`
+  - 손가락을 맞대고 웃는 번즈의 `Excellent` 장면
+  - 사용자가 제공한 420×315 JPEG를 합격 엔진 아이콘과 작은 장면 모음에 사용
+- `mr-burns-excellent-pink.jpg`
+  - 분홍색 실내에서 손가락을 맞댄 번즈 장면
+  - 출처 페이지: https://imgflip.com/memetemplate/566968311/Mr-Burns-Excellent
+  - 1080×810 JPEG
+- `mr-burns-excellent-smithers.jpg`
+  - 발전소에서 스미더스와 함께 손가락을 맞댄 번즈 장면
+  - 출처 페이지: https://www.dailymotion.com/video/xgs3fw
+  - 640×480 JPEG
+- 번즈 `Excellent` 장면 3장은 페이지를 열 때 무작위로 하나를 골라 합격 엔진 아이콘과 홈 장면에 표시
