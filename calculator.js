@@ -21,11 +21,15 @@
   let fractionMode = false;
 
   function applyVisualStyle(style = localStorage.getItem(VISUAL_STYLE_KEY)) {
-    const normalized = style === 'simpsons' ? 'simpsons' : 'default';
+    const normalized = style === 'simpsons' || style === 'sunjae' ? style : 'default';
     document.documentElement.dataset.visualStyle = normalized;
     if (visualStyleButton) {
-      visualStyleButton.textContent = normalized === 'simpsons' ? 'CBT' : '🍩';
-      visualStyleButton.title = normalized === 'simpsons' ? '기본 CBT 계산기로 바꾸기' : '심슨 계산기로 바꾸기';
+      visualStyleButton.textContent = normalized === 'default' ? '🍩' : normalized === 'simpsons' ? '☂' : 'CBT';
+      visualStyleButton.title = normalized === 'default'
+        ? '심슨 계산기로 바꾸기'
+        : normalized === 'simpsons'
+          ? '선재 업고 튀어 계산기로 바꾸기'
+          : '기본 CBT 계산기로 바꾸기';
     }
   }
 
@@ -34,7 +38,8 @@
   }
 
   function switchVisualStyle() {
-    const next = document.documentElement.dataset.visualStyle === 'simpsons' ? 'default' : 'simpsons';
+    const current = document.documentElement.dataset.visualStyle;
+    const next = current === 'default' ? 'simpsons' : current === 'simpsons' ? 'sunjae' : 'default';
     localStorage.setItem(VISUAL_STYLE_KEY, next);
     if (document.documentElement.dataset.dynamicUi !== 'on' || matchMedia('(prefers-reduced-motion: reduce)').matches) {
       applyVisualStyle(next);

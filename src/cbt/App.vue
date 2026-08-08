@@ -15,6 +15,8 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import { isCalculationItem } from './calculationGuide';
+import { hvacStudyGuideSections } from './hvacStudyGuide';
 import { qualificationRuleFor } from './qualificationRules';
 import {
   applyDynamicUiPreference,
@@ -35,8 +37,9 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'coach' | 'showcase' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
+type CbtBetaLayout = 'legacy' | 'simpsons-classic' | 'cbt-classic' | 'cbt-modern';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
 type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-leaving' | 'home-entering' | null;
@@ -67,6 +70,9 @@ const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
 const spaceScope = isJewelry ? 'jewelry' : 'industrial';
 const simpsonsThemeImage = 'assets/theme/simpsons/homer-bart-choke-2x.webp';
+const sunjaeThemeBanner = 'assets/theme/sunjae/lovely-runner-banner.jpg';
+const sunjaePraiseImage = 'assets/theme/sunjae/sunjae-praise.jpg';
+const sunjaeEncourageImage = 'assets/theme/sunjae/sunjae-encourage.jpg';
 const catalogs = loadCatalogs();
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
@@ -110,6 +116,8 @@ const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
 const wrongRoundFilter = ref('');
+const calculationSubjectFilter = ref('all');
+const calculationRoundFilter = ref('all');
 const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
@@ -123,6 +131,12 @@ const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
+const savedBetaLayout = localStorage.getItem('unified-cbt-beta-layout');
+const cbtBetaLayout = ref<CbtBetaLayout>(['legacy', 'simpsons-classic', 'cbt-classic', 'cbt-modern'].includes(savedBetaLayout || '') ? savedBetaLayout as CbtBetaLayout : 'legacy');
+const betaImageFit = ref(localStorage.getItem('unified-cbt-beta-image-fit') === 'true');
+const betaOmrAutoScroll = ref(localStorage.getItem('unified-cbt-beta-omr-scroll') === 'true');
+const betaImageHotspots = ref(localStorage.getItem('unified-cbt-beta-image-hotspots') === 'true');
+const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
@@ -131,8 +145,9 @@ let motionMediaQuery: MediaQueryList | null = null;
 let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
 let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
+let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
-const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'stats', 'updates', 'showcase'];
+const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
@@ -158,12 +173,15 @@ const visibleRounds = computed(() => {
 });
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
-const allItems = catalogs.flatMap((catalog) => sortedRounds(catalog).flatMap((round) => round.questions.map((question) => ({
+const allItems = [
+  ...catalogs.flatMap((catalog) => sortedRounds(catalog)),
+  ...referenceRounds,
+].flatMap((round) => round.questions.map((question) => ({
   round,
   question,
   subject: subjectFor(round, question),
   id: questionId(round, question),
-}))));
+})));
 const itemMap = new Map(allItems.map((item) => [item.id, item]));
 const legacyWrongItems = computed(() => allItems.filter((item) => item.round.qualificationKey === selectedKey.value && studyStore.wrong[item.id]));
 const wrongRoundGroups = computed(() => {
@@ -191,6 +209,21 @@ const wrongRoundGroups = computed(() => {
     existing.attempts += 1;
     groups.set(record.roundId, existing);
   });
+  legacyWrongItems.value.forEach((item) => {
+    const existing = groups.get(item.round.id) || {
+      roundId: item.round.id,
+      title: item.round.title,
+      year: item.round.year,
+      session: item.round.session || item.round.date || '',
+      finishedAt: Number(studyStore.attempts[item.id]?.at) || 0,
+      items: [],
+      attempts: 0,
+    };
+    if (!existing.items.some((existingItem) => existingItem.id === item.id)) existing.items.push(item);
+    existing.finishedAt = Math.max(existing.finishedAt, Number(studyStore.attempts[item.id]?.at) || 0);
+    existing.attempts = Math.max(1, existing.attempts);
+    groups.set(item.round.id, existing);
+  });
   return [...groups.values()].sort((a, b) => b.finishedAt - a.finishedAt);
 });
 const wrongItems = computed(() => {
@@ -212,8 +245,15 @@ const wrongAnswerDetailMap = computed(() => {
       if (!details.has(wrong.id)) details.set(wrong.id, { selected: wrong.selected, answer: wrong.answer });
     });
   });
+  wrongItems.value.forEach((item) => {
+    const attempt = studyStore.attempts[item.id];
+    if (!details.has(item.id) && attempt && !attempt.lastCorrect) {
+      details.set(item.id, { selected: attempt.lastChoice, answer: item.question.answer });
+    }
+  });
   return details;
 });
+const roundWrongGroupMap = computed(() => new Map(wrongRoundGroups.value.map((group) => [group.roundId, group])));
 const roundRecordMap = computed(() => {
   const records = new Map<string, ExamRecord>();
   recentExamRecords.value.forEach((record) => {
@@ -273,6 +313,8 @@ const viewTitle = computed(() => ({
   rounds: '회차별 문제',
   wrong: '오답노트',
   search: '문제 검색',
+  calculation: '계산문제만 풀기',
+  guide: '공조 시험 암기장',
   coach: '합격 엔진',
   showcase: '신기능 체험실',
   stats: '학습 분석',
@@ -400,6 +442,19 @@ const weakRows = computed(() => masteryRows.value
   .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall));
 const unseenRows = computed(() => masteryRows.value.filter((item) => !item.attempted));
 const calculationRows = computed(() => masteryRows.value.filter(isCalculationItem));
+const calculationSubjects = computed(() => [...new Set(calculationRows.value.map((item) => item.subject))]);
+const calculationRounds = computed(() => {
+  const rows = new Map<string, { id: string; label: string; year: number }>();
+  calculationRows.value.forEach((item) => rows.set(item.round.id, {
+    id: item.round.id,
+    label: `${item.round.year}년 ${item.round.session || item.round.date || item.round.title.replace(/^.*?:\s*/, '')}`,
+    year: item.round.year,
+  }));
+  return [...rows.values()].sort((a, b) => b.year - a.year || b.label.localeCompare(a.label, 'ko', { numeric: true }));
+});
+const filteredCalculationRows = computed(() => calculationRows.value.filter((item) =>
+  (calculationSubjectFilter.value === 'all' || item.subject === calculationSubjectFilter.value)
+  && (calculationRoundFilter.value === 'all' || item.round.id === calculationRoundFilter.value)));
 const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: string; description: string; count: number; tone: string }>>(() => [
   {
     key: 'due',
@@ -486,15 +541,6 @@ function nextReviewAt(attempt?: AttemptRecord): number {
   if (!attempt.lastCorrect) return attempt.at;
   const intervalDays = Math.min(30, .8 + attempt.correctCount * attempt.correctCount * 1.15 + attempt.count * .45);
   return attempt.at + intervalDays * 86_400_000;
-}
-
-function isCalculationItem(item: QuestionItem): boolean {
-  const source = [
-    item.question.text,
-    item.question.html,
-    ...item.question.choices.flatMap((choice) => [choice.text, choice.html]),
-  ].filter(Boolean).join(' ').replace(/<[^>]+>/g, ' ');
-  return /계산|구하|값은|몇\s|kW|kcal|COP|효율|압력|온도|습도|엔탈피|열량|유량|동력|전류|전압|저항|공식|℃|kg\/|m²|m³/i.test(source);
 }
 
 function stripMarkup(value?: string): string {
@@ -590,6 +636,8 @@ function configureQualification(key: string): void {
   selectedKey.value = key;
   localStorage.setItem(qualificationStorageKey, key);
   curriculum.value = 'all-mapped';
+  calculationSubjectFilter.value = 'all';
+  calculationRoundFilter.value = 'all';
   setDefaultYears(quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
   void refreshExamHistory();
@@ -618,7 +666,7 @@ function showToast(message: string): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'coach', 'showcase', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation', 'guide', 'coach', 'showcase', 'stats', 'updates'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -772,6 +820,7 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
+  options: { calculationMode?: boolean } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -800,6 +849,7 @@ async function beginSession(
     remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
     finished: false,
     resultSent: false,
+    calculationMode: options.calculationMode,
   };
   suspendedSession = null;
   suspendedExamResult = null;
@@ -851,6 +901,15 @@ function startRound(round: Round, mode: StudyMode): void {
   );
 }
 
+function openRoundWrongAnswers(round: Round): void {
+  if (!roundWrongGroupMap.value.has(round.id)) {
+    showToast('이 회차에 저장된 오답이 없습니다.');
+    return;
+  }
+  wrongRoundFilter.value = round.id;
+  openView('wrong');
+}
+
 function startBalancedExam(): void {
   const items = selectedItems.value;
   const subjects = selectedSubjects.value;
@@ -885,6 +944,10 @@ function startCoachPlan(key: CoachPlanKey): void {
     startBalancedExam();
     return;
   }
+  if (key === 'calculation') {
+    openView('calculation');
+    return;
+  }
 
   let pool: MasteryRow[] = [];
   let title = '';
@@ -894,9 +957,6 @@ function startCoachPlan(key: CoachPlanKey): void {
   } else if (key === 'weak') {
     pool = weakRows.value.length ? weakRows.value : shuffle(unseenRows.value);
     title = '합격 엔진 · 취약 문제 집중';
-  } else if (key === 'calculation') {
-    pool = [...calculationRows.value].sort((a, b) => a.mastery - b.mastery || a.recall - b.recall);
-    title = '합격 엔진 · 계산문제 훈련';
   } else {
     pool = masteryRows.value
       .filter((item) => item.subject === weakestSubject.value?.subject)
@@ -910,6 +970,18 @@ function startCoachPlan(key: CoachPlanKey): void {
     return;
   }
   beginSession('learn', title, items);
+}
+
+function startCalculationLearning(limit?: number): void {
+  const rows = [...filteredCalculationRows.value]
+    .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall);
+  const selected = (limit ? rows.slice(0, limit) : rows)
+    .map(({ mastery: _mastery, recall: _recall, dueAt: _dueAt, due: _due, attempted: _attempted, ...item }) => item);
+  const subjectLabel = calculationSubjectFilter.value === 'all' ? '전체 과목' : calculationSubjectFilter.value;
+  const roundLabel = calculationRoundFilter.value === 'all'
+    ? '전체 회차'
+    : calculationRounds.value.find((round) => round.id === calculationRoundFilter.value)?.label || '선택 회차';
+  beginSession('learn', `계산문제 · ${subjectLabel} · ${roundLabel}`, selected, {}, { calculationMode: true });
 }
 
 function startCoachSubject(subject: string): void {
@@ -1403,13 +1475,39 @@ async function setVisualStyle(style: VisualStyle): Promise<void> {
   applyVisualStyle(style);
   await nextTick();
   visualTransitionPhase.value = 'entering';
-  await waitForMotion(style === 'simpsons' ? 690 : 560);
+  await waitForMotion(style === 'simpsons' ? 690 : 600);
   visualTransitionPhase.value = null;
-  showToast(style === 'simpsons' ? '심슨 테마 UI를 적용했습니다. 🍩' : '기본 CBT UI로 돌아왔습니다.');
+  showToast(style === 'simpsons'
+    ? '심슨 테마 UI를 적용했습니다. 🍩'
+    : style === 'sunjae' ? '선재 업고 튀어 테마를 적용했습니다. ☂' : '기본 CBT UI로 돌아왔습니다.');
 }
 
 function toggleVisualStyle(): void {
-  void setVisualStyle(visualStyle.value === 'simpsons' ? 'default' : 'simpsons');
+  void setVisualStyle(visualStyle.value === 'default' ? 'simpsons' : visualStyle.value === 'simpsons' ? 'sunjae' : 'default');
+}
+
+function setCbtBetaLayout(layout: CbtBetaLayout): void {
+  cbtBetaLayout.value = layout;
+  localStorage.setItem('unified-cbt-beta-layout', layout);
+}
+
+function setBetaPreference(key: 'image-fit' | 'omr-scroll' | 'image-hotspots', enabled: boolean): void {
+  localStorage.setItem(`unified-cbt-beta-${key}`, String(enabled));
+}
+
+function markOmrManualScroll(): void {
+  omrManualScrollUntil = Date.now() + 1200;
+}
+
+function syncOmrToCurrentPage(): void {
+  if (!betaOmrAutoScroll.value || Date.now() < omrManualScrollUntil || !session.value || session.value.mode !== 'exam') return;
+  const index = session.value.page * session.value.pageSize;
+  const target = omrListRef.value?.querySelector<HTMLElement>(`[data-omr-index="${index}"]`);
+  if (!target || !omrListRef.value) return;
+  const listRect = omrListRef.value.getBoundingClientRect();
+  const targetRect = target.getBoundingClientRect();
+  if (targetRect.top >= listRect.top && targetRect.bottom <= listRect.bottom) return;
+  target.scrollIntoView({ block: 'nearest', behavior: motionAllowed.value ? 'smooth' : 'auto' });
 }
 
 function setFontScale(value: number): void {
@@ -1663,6 +1761,10 @@ watch([yearFrom, yearTo], () => {
   if (yearFrom.value > yearTo.value) [yearFrom.value, yearTo.value] = [yearTo.value, yearFrom.value];
 });
 
+watch(() => session.value?.page, () => {
+  void nextTick(syncOmrToCurrentPage);
+});
+
 watch(examResult, (result) => {
   if (!result) {
     displayedResultScore.value = 0;
@@ -1725,6 +1827,7 @@ onBeforeUnmount(() => {
       'visual-style-leaving': visualTransitionPhase === 'leaving',
       'visual-style-entering': visualTransitionPhase === 'entering',
       'style-to-simpsons': visualTransitionTarget === 'simpsons',
+      'style-to-sunjae': visualTransitionTarget === 'sunjae',
       'style-to-default': visualTransitionTarget === 'default',
       'experience-home-leaving': experienceTransitionPhase === 'home-leaving',
       'experience-home-entering': experienceTransitionPhase === 'home-entering',
@@ -1732,17 +1835,19 @@ onBeforeUnmount(() => {
   >
     <aside class="sidebar" :class="{ open: mobileMenuOpen }">
       <button class="brand" type="button" @click="openView('home')">
-        <span>{{ visualStyle === 'simpsons' ? '🍩' : isJewelry ? 'GEM' : 'CBT' }}</span>
-        <div><strong>{{ spaceName }}</strong><small>{{ visualStyle === 'simpsons' ? 'SPRINGFIELD STUDY' : isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
+        <span><img v-if="visualStyle === 'sunjae'" :src="sunjaePraiseImage" alt=""><img v-else-if="visualStyle === 'simpsons'" :src="simpsonsThemeImage" alt=""><template v-else>{{ isJewelry ? 'GEM' : 'CBT' }}</template></span>
+        <div><strong>{{ spaceName }}</strong><small>{{ visualStyle === 'simpsons' ? 'SPRINGFIELD STUDY' : visualStyle === 'sunjae' ? 'LOVELY RUNNER STUDY' : isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
       </button>
       <nav>
-        <button :class="{ active: view === 'home' }" @click="openView('home')"><span>⌂</span>홈</button>
-        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차별 문제</button>
-        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
-        <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>문제 검색</button>
-        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span>✦</span>합격 엔진</button>
-        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>학습 분석</button>
-        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span>◷</span>패치노트</button>
+        <button :class="{ active: view === 'home' }" @click="openView('home')"><span>{{ visualStyle === 'sunjae' ? '☂' : visualStyle === 'simpsons' ? '🍩' : '⌂' }}</span>홈</button>
+        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>{{ visualStyle === 'sunjae' ? '🎞' : visualStyle === 'simpsons' ? '📺' : '▤' }}</span>회차별 문제</button>
+        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>{{ visualStyle === 'sunjae' ? '💔' : visualStyle === 'simpsons' ? '😵' : '!' }}</span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
+        <button :class="{ active: view === 'search' }" @click="openView('search')"><span>{{ visualStyle === 'sunjae' ? '🔎' : visualStyle === 'simpsons' ? '🔍' : '⌕' }}</span>문제 검색</button>
+        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span>{{ visualStyle === 'sunjae' ? '✎' : visualStyle === 'simpsons' ? '🧮' : '∑' }}</span>계산문제만 풀기</button>
+        <button v-if="selectedKey === 'hvac'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span>{{ visualStyle === 'sunjae' ? '📘' : visualStyle === 'simpsons' ? '📕' : '▣' }}</span>공조 시험 암기장</button>
+        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span>{{ visualStyle === 'sunjae' ? '★' : visualStyle === 'simpsons' ? '⭐' : '✦' }}</span>합격 엔진</button>
+        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>{{ visualStyle === 'sunjae' ? '♡' : visualStyle === 'simpsons' ? '📊' : '▥' }}</span>학습 분석</button>
+        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span>{{ visualStyle === 'sunjae' ? '⏱' : visualStyle === 'simpsons' ? '📰' : '◷' }}</span>패치노트</button>
       </nav>
       <a class="space-portal" :href="isJewelry ? 'index.html' : 'jewelry.html'">
         <span>{{ isJewelry ? 'CBT' : '◇' }}</span>
@@ -1773,7 +1878,7 @@ onBeforeUnmount(() => {
           <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
           <button type="button" class="visual-style-quick-button" :disabled="Boolean(visualTransitionPhase)" @click="toggleVisualStyle">
-            {{ visualStyle === 'simpsons' ? 'CBT' : '🍩' }} <span>{{ visualStyle === 'simpsons' ? '기본 UI' : '심슨 UI' }}</span>
+            {{ visualStyle === 'default' ? '🍩' : visualStyle === 'simpsons' ? '☂' : 'CBT' }} <span>{{ visualStyle === 'default' ? '심슨 UI' : visualStyle === 'simpsons' ? '선재 UI' : '기본 UI' }}</span>
           </button>
           <button type="button" class="theme-quick-button" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
           <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
@@ -1800,6 +1905,15 @@ onBeforeUnmount(() => {
             <figure>
               <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
             </figure>
+          </section>
+          <section v-else-if="visualStyle === 'sunjae'" class="sunjae-home-hero">
+            <img :src="sunjaeThemeBanner" alt="선재 업고 튀어 공식 드라마 배너">
+            <div>
+              <span>LOVELY RUNNER STUDY MODE · ☂</span>
+              <h1>오늘의 공부도<br><em>선재와 같이 달려요</em></h1>
+              <p>공식 tvN 드라마 이미지를 사용한 선택형 테마입니다. 학습 기능과 기록은 기존 화면과 똑같이 유지됩니다.</p>
+              <button type="button" @click="openView('rounds')">회차 풀기 →</button>
+            </div>
           </section>
           <section class="qualification-section">
             <div class="section-title">
@@ -1951,6 +2065,7 @@ onBeforeUnmount(() => {
               <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
               <footer>
                 <button type="button" @click="startRound(round, 'learn')">{{ roundAnswered(round) ? '이어 학습' : '학습모드' }}</button>
+                <button v-if="roundWrongGroupMap.get(round.id)" type="button" class="round-wrong-button" @click="openRoundWrongAnswers(round)">오답 {{ roundWrongGroupMap.get(round.id)?.items.length }}개</button>
                 <button type="button" @click="startRound(round, 'exam')">CBT 시험모드</button>
               </footer>
             </article>
@@ -2013,6 +2128,46 @@ onBeforeUnmount(() => {
             </article>
           </TransitionGroup>
           <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
+        </template>
+
+        <template v-else-if="view === 'calculation'">
+          <section class="tool-hero calculation-hero">
+            <div><span>FORMULA PRACTICE</span><h1>계산이 필요한 문제만 골라 푸세요</h1><p>{{ selectedCatalog.name }} · 현재 범위에서 {{ calculationRows.length.toLocaleString() }}문제 감지</p></div>
+            <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning(20)">취약순 20문제 시작</button>
+          </section>
+          <section class="calculation-filter-panel">
+            <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
+            <div class="calculation-filter-grid">
+              <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
+              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }}</option></select></label>
+              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">선택한 계산문제 전체 풀기 →</button>
+            </div>
+            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
+          </section>
+          <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
+            <article v-for="item in filteredCalculationRows.slice(0, 40)" :key="item.id">
+              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
+              <p>{{ stripMarkup(item.question.text || item.question.html) || '원문 이미지 계산 문제' }}</p>
+              <footer><span>{{ item.round.session || item.round.title }}</span><button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 계산 풀이`, [item], {}, { calculationMode: true })">풀어보기 →</button></footer>
+            </article>
+          </TransitionGroup>
+          <p v-if="filteredCalculationRows.length > 40" class="calculation-preview-note">목록은 처음 40문제만 미리 보여주며, ‘전체 풀기’에는 선택된 {{ filteredCalculationRows.length.toLocaleString() }}문제가 모두 포함됩니다.</p>
+          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
+        </template>
+
+        <template v-else-if="view === 'guide'">
+          <section class="tool-hero guide-hero">
+            <div><span>HVAC LAST-MINUTE GUIDE</span><h1>공조냉동 시험 직전 암기장</h1><p>등록된 기출에서 반복해서 마주치는 공식·단위·장치 역할을 짧게 정리했습니다.</p></div>
+            <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
+          </section>
+          <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
+          <div class="hvac-guide-grid">
+            <article v-for="(section, index) in hvacStudyGuideSections" :key="section.title">
+              <header><span>{{ String(index + 1).padStart(2, '0') }}</span><h2>{{ section.title }}</h2></header>
+              <p>{{ section.summary }}</p>
+              <ul><li v-for="point in section.points" :key="point">{{ point }}</li></ul>
+            </article>
+          </div>
         </template>
 
         <template v-else-if="view === 'coach'">
@@ -2157,6 +2312,7 @@ onBeforeUnmount(() => {
               <div>
                 <button type="button" :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')">기본 CBT</button>
                 <button type="button" :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')">🍩 심슨 테마</button>
+                <button type="button" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')">☂ 선재 테마</button>
                 <button type="button" :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)">동적 UI ON</button>
                 <button type="button" :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)">기존 UI로</button>
               </div>
@@ -2245,7 +2401,7 @@ onBeforeUnmount(() => {
             <header><div><span>QUICK EXPERIENCE</span><h2>한 번 눌러 바로 체감하기</h2></div></header>
             <div class="feature-action-grid">
               <button type="button" class="feature-action-card simpsons" @click="toggleVisualStyle">
-                <span>🍩</span><div><strong>{{ visualStyle === 'simpsons' ? '기본 CBT UI로' : '심슨 테마 UI' }}</strong><small>화면 스타일 즉시 전환</small></div><b>›</b>
+                <span>{{ visualStyle === 'default' ? '🍩' : visualStyle === 'simpsons' ? '☂' : 'CBT' }}</span><div><strong>{{ visualStyle === 'default' ? '심슨 테마 UI' : visualStyle === 'simpsons' ? '선재 테마 UI' : '기본 CBT UI로' }}</strong><small>화면 스타일 즉시 전환</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
                 <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
@@ -2339,10 +2495,11 @@ onBeforeUnmount(() => {
         </div>
         <div class="setting-group">
           <span>UI 스타일</span>
-          <p class="setting-description">기본 CBT와 심슨 테마를 고릅니다. 동적 UI를 꺼도 색상과 캐릭터 테마는 유지됩니다.</p>
+          <p class="setting-description">기본 CBT, 심슨, 선재 업고 튀어 테마를 고릅니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.</p>
           <div class="style-options">
             <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>지금까지 사용한 화면</small></button>
             <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>스프링필드 코믹 UI</small></button>
+            <button :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>선재 업고 튀어 감성 UI</small></button>
           </div>
         </div>
         <div class="setting-group">
@@ -2361,6 +2518,21 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
             <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div class="setting-group beta-setting-group">
+          <span>베타 문제풀이</span>
+          <p class="setting-description">기본값은 기존 UI입니다. 아래 기능은 하나씩 켜서 비교할 수 있고 언제든 원래대로 돌아갈 수 있습니다.</p>
+          <div class="beta-layout-options">
+            <button :class="{ active: cbtBetaLayout === 'legacy' }" @click="setCbtBetaLayout('legacy')"><strong>기존</strong><small>현재 문제풀이 UI</small></button>
+            <button :class="{ active: cbtBetaLayout === 'simpsons-classic' }" @click="setCbtBetaLayout('simpsons-classic')"><strong>심슨 클래식</strong><small>코믹형 문제 + 소형 OMR</small></button>
+            <button :class="{ active: cbtBetaLayout === 'cbt-classic' }" @click="setCbtBetaLayout('cbt-classic')"><strong>CBT 클래식</strong><small>익숙한 시험지형 배치</small></button>
+            <button :class="{ active: cbtBetaLayout === 'cbt-modern' }" @click="setCbtBetaLayout('cbt-modern')"><strong>CBT 모던</strong><small>넓은 문제 + 접이식 OMR</small></button>
+          </div>
+          <div class="beta-toggle-list">
+            <label><input v-model="betaImageFit" type="checkbox" @change="setBetaPreference('image-fit', betaImageFit)"><span><strong>문제 이미지 맞춤 크기</strong><small>비율과 잘림 방지, 작은 이미지는 과도하게 확대하지 않음</small></span></label>
+            <label><input v-model="betaOmrAutoScroll" type="checkbox" @change="setBetaPreference('omr-scroll', betaOmrAutoScroll)"><span><strong>OMR 현재 문제 자동 스크롤</strong><small>화면 밖으로 나간 경우에만 이동하며 직접 스크롤 중에는 멈춤</small></span></label>
+            <label><input v-model="betaImageHotspots" type="checkbox" @change="setBetaPreference('image-hotspots', betaImageHotspots)"><span><strong>이미지 안 보기 직접 선택</strong><small>위치 데이터가 검증된 문제만 적용하고 나머지는 큰 답안 버튼 유지</small></span></label>
           </div>
         </div>
         <div class="setting-group data-setting">
@@ -2382,12 +2554,17 @@ onBeforeUnmount(() => {
   <div
     v-else
     class="session-shell"
-    :class="{
-      'exam-mode': session.mode === 'exam',
-      'sheet-closed': !examSheetOpen,
-      'experience-session-entering': experienceTransitionPhase === 'session-entering',
-      'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
-    }"
+    :class="[
+      `beta-ui-${cbtBetaLayout}`,
+      {
+        'exam-mode': session.mode === 'exam',
+        'sheet-closed': !examSheetOpen,
+        'beta-image-fit': betaImageFit,
+        'beta-image-hotspots': betaImageHotspots,
+        'experience-session-entering': experienceTransitionPhase === 'session-entering',
+        'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
+      },
+    ]"
   >
     <header class="session-topbar">
       <div class="session-leading">
@@ -2461,6 +2638,8 @@ onBeforeUnmount(() => {
               :subject-number="sessionSubjectNumber(item)"
               :bookmarked="studyStore.bookmarks.includes(item.id)"
               :kept="session.kept.includes(item.id)"
+              :calculation-mode="session.calculationMode"
+              :image-answer-mode="betaImageHotspots ? 'hotspot' : 'buttons'"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
               @toggle-keep="toggleKeep(item)"
@@ -2484,10 +2663,11 @@ onBeforeUnmount(() => {
             <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
           </div>
         </header>
-        <div class="omr-list">
+        <div ref="omrListRef" class="omr-list" @pointerdown="markOmrManualScroll" @wheel.passive="markOmrManualScroll">
           <button
             v-for="(item, index) in session.items"
             :key="item.id"
+            :data-omr-index="index"
             type="button"
             :class="{ current: Math.floor(index / session.pageSize) === session.page, kept: session.kept.includes(item.id) }"
             @click="goToQuestion(index)"
@@ -2508,6 +2688,14 @@ onBeforeUnmount(() => {
     <Transition name="result-pop" appear>
       <div v-if="examResult" class="result-backdrop">
         <section class="result-card">
+        <div v-if="visualStyle === 'simpsons'" class="simpsons-result-message">
+          <img :src="simpsonsThemeImage" alt="호머와 바트">
+          <p><strong>{{ examResult.score >= 60 ? '오늘은 목 조르기 면제!' : '호머가 오기 전에 오답 복습!' }}</strong><span>{{ examResult.score >= 60 ? '바트도 놀랄 만큼 잘 풀었습니다.' : '이번 회차 오답만 다시 풀면 점수가 금방 올라갑니다.' }}</span></p>
+        </div>
+        <div v-if="visualStyle === 'sunjae'" class="sunjae-result-message" :class="{ praise: examResult.score >= 60 }">
+          <img :src="examResult.score >= 60 ? sunjaePraiseImage : sunjaeEncourageImage" :alt="examResult.score >= 60 ? '웃으며 칭찬하는 선재' : '다음 학습을 응원하는 선재'">
+          <p><strong>{{ examResult.score >= 60 ? '잘했어요!' : '조금만 더 해봐요' }}</strong><span>{{ examResult.score >= 60 ? '오늘도 끝까지 풀어낸 거, 정말 멋져요.' : '아쉬워도 괜찮아요. 오답만 다시 보면 다음엔 분명 올라가요.' }}</span></p>
+        </div>
         <span>{{ session.mode === 'exam' ? (examResult.passed ? 'PASS' : 'REVIEW') : 'LEARNING RESULT' }}</span>
         <h2>{{ session.mode === 'learn' ? '현재 학습 결과입니다' : (examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다') }}</h2>
         <div class="result-score">{{ displayedResultScore }}<small>점</small></div>
@@ -2571,7 +2759,7 @@ onBeforeUnmount(() => {
       aria-hidden="true"
     >
       <i /><i /><i />
-      <strong>{{ visualTransitionTarget === 'simpsons' ? 'SPRINGFIELD UI' : 'CBT UI' }}</strong>
+      <strong>{{ visualTransitionTarget === 'simpsons' ? 'SPRINGFIELD UI' : visualTransitionTarget === 'sunjae' ? 'LOVELY RUNNER UI' : 'CBT UI' }}</strong>
       <span>화면을 옮기는 중</span>
     </div>
   </Teleport>
