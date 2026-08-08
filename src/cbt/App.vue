@@ -70,9 +70,26 @@ const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
 const spaceScope = isJewelry ? 'jewelry' : 'industrial';
 const simpsonsThemeImage = 'assets/theme/simpsons/homer-bart-choke-2x.webp';
-const sunjaeThemeBanner = 'assets/theme/sunjae/lovely-runner-banner.jpg';
-const sunjaePraiseImage = 'assets/theme/sunjae/sunjae-praise.jpg';
+const simpsonsKingSizeImage = 'assets/theme/simpsons/king-size-homer.jpg';
+const sunjaeThemeBanner = 'assets/theme/sunjae/sunjae-cherry-capture.jpg';
+const sunjaePraiseImage = 'assets/theme/sunjae/sunjae-smile-capture.jpg';
 const sunjaeEncourageImage = 'assets/theme/sunjae/sunjae-encourage.jpg';
+const sunjaeCherryImage = 'assets/theme/sunjae/sunjae-cherry-capture.jpg';
+const sunjaeImages = [
+  sunjaeCherryImage,
+  sunjaePraiseImage,
+  sunjaeEncourageImage,
+  'assets/theme/sunjae/sunjae-track.png',
+  'assets/theme/sunjae/sunjae-campus.png',
+  'assets/theme/sunjae/sunjae-school.jpg',
+  'assets/theme/sunjae/wooseok-casual.jpg',
+  'assets/theme/sunjae/wooseok-coffee.png',
+  'assets/theme/sunjae/wooseok-cafe.jpg',
+  'assets/theme/sunjae/wooseok-sunlight.jpg',
+];
+const savedSunjaeRotationValue = localStorage.getItem('unified-cbt-sunjae-rotation-seconds');
+const savedSunjaeRotationSeconds = savedSunjaeRotationValue === null ? Number.NaN : Number(savedSunjaeRotationValue);
+const sunjaeRotationChoices = [0, 5, 10, 30, 60, 180, 300];
 const catalogs = loadCatalogs();
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
@@ -101,6 +118,8 @@ const examSheetOpen = ref(true);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
 const visualStyle = ref<VisualStyle>(currentVisualStyle());
+const sunjaeImageIndex = ref(0);
+const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 10);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
 const visualTransitionTarget = ref<VisualStyle>(visualStyle.value);
@@ -140,6 +159,8 @@ const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
+let resizeSettleHandle = 0;
+let sunjaeRotationHandle = 0;
 let searchWorker: Worker | null = null;
 let motionMediaQuery: MediaQueryList | null = null;
 let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
@@ -151,6 +172,7 @@ const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
+const currentSunjaeImage = computed(() => sunjaeImages[sunjaeImageIndex.value % sunjaeImages.length] || sunjaeThemeBanner);
 const availableYears = computed(() => {
   const years = yearsFor(selectedCatalog.value);
   if (selectedKey.value !== 'energy') return years;
@@ -1464,6 +1486,31 @@ function setDynamicUiEnabled(enabled: boolean): void {
     : '기존 UI 모드로 돌아왔습니다. 화면 전환과 재배치를 끕니다.');
 }
 
+function sunjaeImageAt(offset: number): string {
+  return sunjaeImages[(sunjaeImageIndex.value + offset) % sunjaeImages.length] || sunjaeThemeBanner;
+}
+
+function restartSunjaeRotation(): void {
+  window.clearInterval(sunjaeRotationHandle);
+  sunjaeRotationHandle = 0;
+  if (visualStyle.value !== 'sunjae' || sunjaeRotationSeconds.value <= 0) return;
+  sunjaeRotationHandle = window.setInterval(() => {
+    sunjaeImageIndex.value = (sunjaeImageIndex.value + 1) % sunjaeImages.length;
+  }, sunjaeRotationSeconds.value * 1000);
+}
+
+function setSunjaeRotationSeconds(seconds: number): void {
+  sunjaeRotationSeconds.value = seconds;
+  localStorage.setItem('unified-cbt-sunjae-rotation-seconds', String(seconds));
+  restartSunjaeRotation();
+  showToast(seconds ? `선재 사진을 ${seconds}초마다 바꿉니다.` : '선재 사진 자동 교체를 껐습니다.');
+}
+
+function sunjaeRotationLabel(seconds: number): string {
+  if (!seconds) return '끔';
+  return seconds < 60 ? `${seconds}초` : `${seconds / 60}분`;
+}
+
 async function setVisualStyle(style: VisualStyle): Promise<void> {
   if (style === visualStyle.value || visualTransitionPhase.value) return;
   visualTransitionTarget.value = style;
@@ -1473,6 +1520,7 @@ async function setVisualStyle(style: VisualStyle): Promise<void> {
   await waitForMotion(330);
   visualStyle.value = style;
   applyVisualStyle(style);
+  restartSunjaeRotation();
   await nextTick();
   visualTransitionPhase.value = 'entering';
   await waitForMotion(style === 'simpsons' ? 690 : 600);
@@ -1480,10 +1528,6 @@ async function setVisualStyle(style: VisualStyle): Promise<void> {
   showToast(style === 'simpsons'
     ? '심슨 테마 UI를 적용했습니다. 🍩'
     : style === 'sunjae' ? '선재 업고 튀어 테마를 적용했습니다. ☂' : '기본 CBT UI로 돌아왔습니다.');
-}
-
-function toggleVisualStyle(): void {
-  void setVisualStyle(visualStyle.value === 'default' ? 'simpsons' : visualStyle.value === 'simpsons' ? 'sunjae' : 'default');
 }
 
 function setCbtBetaLayout(layout: CbtBetaLayout): void {
@@ -1782,14 +1826,24 @@ watch(examResult, (result) => {
   });
 });
 
+function markViewportResizing(): void {
+  document.documentElement.dataset.resizing = 'true';
+  window.clearTimeout(resizeSettleHandle);
+  resizeSettleHandle = window.setTimeout(() => {
+    delete document.documentElement.dataset.resizing;
+  }, 160);
+}
+
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('popstate', handleBrowserHistory);
   window.addEventListener('pagehide', handlePageHide);
+  window.addEventListener('resize', markViewportResizing, { passive: true });
   initializeNavigationHistory();
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
   applyDynamicUiPreference(dynamicUiEnabled.value);
+  restartSunjaeRotation();
   motionMediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
   motionPreferenceHandler = (event: MediaQueryListEvent) => { prefersReducedMotion.value = event.matches; };
   motionMediaQuery.addEventListener?.('change', motionPreferenceHandler);
@@ -1808,6 +1862,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
   window.removeEventListener('popstate', handleBrowserHistory);
   window.removeEventListener('pagehide', handlePageHide);
+  window.removeEventListener('resize', markViewportResizing);
   if (motionMediaQuery && motionPreferenceHandler) {
     motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);
     motionMediaQuery.removeListener?.(motionPreferenceHandler);
@@ -1815,6 +1870,9 @@ onBeforeUnmount(() => {
   stopTimer();
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
+  window.clearTimeout(resizeSettleHandle);
+  window.clearInterval(sunjaeRotationHandle);
+  delete document.documentElement.dataset.resizing;
   searchWorker?.terminate();
 });
 </script>
@@ -1835,19 +1893,19 @@ onBeforeUnmount(() => {
   >
     <aside class="sidebar" :class="{ open: mobileMenuOpen }">
       <button class="brand" type="button" @click="openView('home')">
-        <span><img v-if="visualStyle === 'sunjae'" :src="sunjaePraiseImage" alt=""><img v-else-if="visualStyle === 'simpsons'" :src="simpsonsThemeImage" alt=""><template v-else>{{ isJewelry ? 'GEM' : 'CBT' }}</template></span>
+        <span><img v-if="visualStyle === 'sunjae'" :key="`sunjae-brand-${sunjaeImageIndex}`" :src="currentSunjaeImage" alt=""><img v-else-if="visualStyle === 'simpsons'" :src="simpsonsKingSizeImage" alt=""><template v-else>{{ isJewelry ? 'GEM' : 'CBT' }}</template></span>
         <div><strong>{{ spaceName }}</strong><small>{{ visualStyle === 'simpsons' ? 'SPRINGFIELD STUDY' : visualStyle === 'sunjae' ? 'LOVELY RUNNER STUDY' : isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
       </button>
       <nav>
-        <button :class="{ active: view === 'home' }" @click="openView('home')"><span>{{ visualStyle === 'sunjae' ? '☂' : visualStyle === 'simpsons' ? '🍩' : '⌂' }}</span>홈</button>
-        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>{{ visualStyle === 'sunjae' ? '🎞' : visualStyle === 'simpsons' ? '📺' : '▤' }}</span>회차별 문제</button>
-        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>{{ visualStyle === 'sunjae' ? '💔' : visualStyle === 'simpsons' ? '😵' : '!' }}</span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
-        <button :class="{ active: view === 'search' }" @click="openView('search')"><span>{{ visualStyle === 'sunjae' ? '🔎' : visualStyle === 'simpsons' ? '🔍' : '⌕' }}</span>문제 검색</button>
-        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span>{{ visualStyle === 'sunjae' ? '✎' : visualStyle === 'simpsons' ? '🧮' : '∑' }}</span>계산문제만 풀기</button>
-        <button v-if="selectedKey === 'hvac'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span>{{ visualStyle === 'sunjae' ? '📘' : visualStyle === 'simpsons' ? '📕' : '▣' }}</span>공조 시험 암기장</button>
-        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span>{{ visualStyle === 'sunjae' ? '★' : visualStyle === 'simpsons' ? '⭐' : '✦' }}</span>합격 엔진</button>
-        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>{{ visualStyle === 'sunjae' ? '♡' : visualStyle === 'simpsons' ? '📊' : '▥' }}</span>학습 분석</button>
-        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span>{{ visualStyle === 'sunjae' ? '⏱' : visualStyle === 'simpsons' ? '📰' : '◷' }}</span>패치노트</button>
+        <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-face" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaeImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
+        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-shirt" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaeImageAt(1)" alt=""><template v-else>▤</template></span>회차별 문제</button>
+        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-face" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaeImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
+        <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaeImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
+        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-medal" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaeImageAt(4)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
+        <button v-if="selectedKey === 'hvac'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-shirt" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaeImageAt(5)" alt=""><template v-else>▣</template></span>공조 시험 암기장</button>
+        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-face" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaeImageAt(1)" alt=""><template v-else>✦</template></span>합격 엔진</button>
+        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaeImageAt(4)" alt=""><template v-else>▥</template></span>학습 분석</button>
+        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-medal" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaeImageAt(0)" alt=""><template v-else>◷</template></span>패치노트</button>
       </nav>
       <a class="space-portal" :href="isJewelry ? 'index.html' : 'jewelry.html'">
         <span>{{ isJewelry ? 'CBT' : '◇' }}</span>
@@ -1877,9 +1935,6 @@ onBeforeUnmount(() => {
         <div class="top-actions">
           <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
-          <button type="button" class="visual-style-quick-button" :disabled="Boolean(visualTransitionPhase)" @click="toggleVisualStyle">
-            {{ visualStyle === 'default' ? '🍩' : visualStyle === 'simpsons' ? '☂' : 'CBT' }} <span>{{ visualStyle === 'default' ? '심슨 UI' : visualStyle === 'simpsons' ? '선재 UI' : '기본 UI' }}</span>
-          </button>
           <button type="button" class="theme-quick-button" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
           <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
@@ -1899,19 +1954,27 @@ onBeforeUnmount(() => {
               <p>기능과 학습 기록은 그대로 두고, 화면만 심슨풍 코믹 UI로 바꿨습니다. 설정에서 언제든 기본 화면으로 돌아갈 수 있습니다.</p>
               <div>
                 <button type="button" @click="openView('rounds')">회차 풀기 →</button>
-                <button type="button" @click="setVisualStyle('default')">기본 UI로</button>
+                <button type="button" @click="settingsOpen = true">테마 설정</button>
               </div>
             </div>
-            <figure>
-              <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
-            </figure>
+            <div class="simpsons-hero-gallery">
+              <figure class="simpsons-hero-primary">
+                <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" fetchpriority="high">
+              </figure>
+              <figure class="simpsons-hero-secondary">
+                <img :src="simpsonsKingSizeImage" alt="꽃무늬 옷을 입은 뚱뚱한 호머 심슨 본편 장면" loading="lazy" decoding="async">
+                <figcaption>일단 공부부터 시작!</figcaption>
+              </figure>
+            </div>
           </section>
           <section v-else-if="visualStyle === 'sunjae'" class="sunjae-home-hero">
-            <img :src="sunjaeThemeBanner" alt="선재 업고 튀어 공식 드라마 배너">
+            <Transition name="sunjae-photo-fade" mode="out-in">
+              <img :key="currentSunjaeImage" :src="currentSunjaeImage" alt="선재 업고 튀어 류선재 단독 장면">
+            </Transition>
             <div>
               <span>LOVELY RUNNER STUDY MODE · ☂</span>
               <h1>오늘의 공부도<br><em>선재와 같이 달려요</em></h1>
-              <p>공식 tvN 드라마 이미지를 사용한 선택형 테마입니다. 학습 기능과 기록은 기존 화면과 똑같이 유지됩니다.</p>
+              <p>류선재 단독 장면이 설정한 시간마다 바뀝니다. 학습 기능과 기록은 기존 화면과 똑같이 유지됩니다.</p>
               <button type="button" @click="openView('rounds')">회차 풀기 →</button>
             </div>
           </section>
@@ -2310,16 +2373,13 @@ onBeforeUnmount(() => {
               <h2>테마와 동적 UI를 직접 바꿔보세요</h2>
               <p>동적 UI는 기본으로 켜지며 화면이 움직이고 카드 배치가 달라집니다. 끄면 v2.4.2 방식의 기존 배치로 돌아가고, 심슨 테마는 학습 기록을 건드리지 않은 채 유지됩니다.</p>
               <div>
-                <button type="button" :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')">기본 CBT</button>
-                <button type="button" :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')">🍩 심슨 테마</button>
-                <button type="button" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')">☂ 선재 테마</button>
+                <button type="button" @click="settingsOpen = true">⚙ 테마 설정 열기</button>
                 <button type="button" :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)">동적 UI ON</button>
                 <button type="button" :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)">기존 UI로</button>
               </div>
             </div>
             <figure>
-              <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
-              <figcaption>928×696 원본 보존 · 1856×1392 개선본 사용</figcaption>
+              <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" loading="lazy" decoding="async">
             </figure>
           </section>
 
@@ -2400,8 +2460,8 @@ onBeforeUnmount(() => {
           <section class="feature-action-section">
             <header><div><span>QUICK EXPERIENCE</span><h2>한 번 눌러 바로 체감하기</h2></div></header>
             <div class="feature-action-grid">
-              <button type="button" class="feature-action-card simpsons" @click="toggleVisualStyle">
-                <span>{{ visualStyle === 'default' ? '🍩' : visualStyle === 'simpsons' ? '☂' : 'CBT' }}</span><div><strong>{{ visualStyle === 'default' ? '심슨 테마 UI' : visualStyle === 'simpsons' ? '선재 테마 UI' : '기본 CBT UI로' }}</strong><small>화면 스타일 즉시 전환</small></div><b>›</b>
+              <button type="button" class="feature-action-card simpsons" @click="settingsOpen = true">
+                <span>⚙</span><div><strong>테마 설정 열기</strong><small>기본·심슨·선재 UI 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
                 <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
@@ -2474,12 +2534,12 @@ onBeforeUnmount(() => {
       </div>
     </main>
     <nav class="mobile-tabbar">
-      <button :class="{ active: view === 'home' }" @click="openView('home')"><span>⌂</span>홈</button>
-      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span>▤</span>회차</button>
-      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span>!</span>오답</button>
-      <button :class="{ active: view === 'search' }" @click="openView('search')"><span>⌕</span>검색</button>
-      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span>✦</span>합격</button>
-      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span>▥</span>통계</button>
+      <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" :src="sunjaeImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
+      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" :src="sunjaeImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
+      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" :src="sunjaeImageAt(2)" alt=""><template v-else>!</template></span>오답</button>
+      <button :class="{ active: view === 'search' }" @click="openView('search')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-search-${sunjaeImageIndex}`" :src="sunjaeImageAt(3)" alt=""><template v-else>⌕</template></span>검색</button>
+      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsKingSizeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" :src="sunjaeImageAt(4)" alt=""><template v-else>✦</template></span>합격</button>
+      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" :src="sunjaeImageAt(5)" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
     <Transition name="modal-fade">
       <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
@@ -2495,11 +2555,18 @@ onBeforeUnmount(() => {
         </div>
         <div class="setting-group">
           <span>UI 스타일</span>
-          <p class="setting-description">기본 CBT, 심슨, 선재 업고 튀어 테마를 고릅니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.</p>
+          <p class="setting-description">기본 CBT, 심슨, 선재 업고 튀어 테마는 이 설정 화면에서만 바꿀 수 있습니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.</p>
           <div class="style-options">
             <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>지금까지 사용한 화면</small></button>
             <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>스프링필드 코믹 UI</small></button>
             <button :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>선재 업고 튀어 감성 UI</small></button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>선재 사진 자동 교체</span>
+          <p class="setting-description">선재 테마의 홈·로고·메뉴 사진이 바뀌는 시간을 고릅니다. 끔을 선택하면 현재 사진을 그대로 유지합니다.</p>
+          <div class="sunjae-rotation-options">
+            <button v-for="seconds in sunjaeRotationChoices" :key="seconds" :class="{ active: sunjaeRotationSeconds === seconds }" @click="setSunjaeRotationSeconds(seconds)">{{ sunjaeRotationLabel(seconds) }}</button>
           </div>
         </div>
         <div class="setting-group">
@@ -2689,7 +2756,7 @@ onBeforeUnmount(() => {
       <div v-if="examResult" class="result-backdrop">
         <section class="result-card">
         <div v-if="visualStyle === 'simpsons'" class="simpsons-result-message">
-          <img :src="simpsonsThemeImage" alt="호머와 바트">
+          <img :src="examResult.score >= 60 ? simpsonsKingSizeImage : simpsonsThemeImage" :alt="examResult.score >= 60 ? '꽃무늬 옷을 입은 뚱뚱한 호머' : '호머와 바트'">
           <p><strong>{{ examResult.score >= 60 ? '오늘은 목 조르기 면제!' : '호머가 오기 전에 오답 복습!' }}</strong><span>{{ examResult.score >= 60 ? '바트도 놀랄 만큼 잘 풀었습니다.' : '이번 회차 오답만 다시 풀면 점수가 금방 올라갑니다.' }}</span></p>
         </div>
         <div v-if="visualStyle === 'sunjae'" class="sunjae-result-message" :class="{ praise: examResult.score >= 60 }">
