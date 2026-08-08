@@ -179,7 +179,7 @@ const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
 const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
-const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'classic' ? 'classic' : 'inline');
+const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' ? 'inline' : 'classic');
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
