@@ -15,6 +15,7 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import { qualificationRuleFor } from './qualificationRules';
 import {
   applyDynamicUiPreference,
   applyTheme,
@@ -44,6 +45,9 @@ type ExamResult = {
   correct: number;
   total: number;
   passed: boolean;
+  official: boolean;
+  criteria: string;
+  source?: string;
   subjectRows: Array<{ subject: string; correct: number; total: number; score: number; passed: boolean }>;
 };
 type CbtHistoryState = {
@@ -105,9 +109,12 @@ const updateChecking = ref(false);
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
+const wrongRoundFilter = ref('');
 const learningJumpNumber = ref('');
-const fontScale = ref(Math.min(1.2, Math.max(.9, Number(studyStore.fontScale) || 1)));
+const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
+const officialRule = computed(() => qualificationRuleFor(selectedKey.value));
+const officialExamRecords = computed(() => recentExamRecords.value.filter((record) => !record.mode || record.mode === 'exam'));
 const displayedPassChance = ref(0);
 const displayedResultScore = ref(0);
 const appHydrating = ref(true);
@@ -158,7 +165,64 @@ const allItems = catalogs.flatMap((catalog) => sortedRounds(catalog).flatMap((ro
   id: questionId(round, question),
 }))));
 const itemMap = new Map(allItems.map((item) => [item.id, item]));
-const wrongItems = computed(() => allItems.filter((item) => item.round.qualificationKey === selectedKey.value && studyStore.wrong[item.id]));
+const legacyWrongItems = computed(() => allItems.filter((item) => item.round.qualificationKey === selectedKey.value && studyStore.wrong[item.id]));
+const wrongRoundGroups = computed(() => {
+  const groups = new Map<string, { roundId: string; title: string; year: number; session: string; finishedAt: number; items: QuestionItem[]; attempts: number }>();
+  recentExamRecords.value.forEach((record) => {
+    if (!record.roundId || !record.wrongAnswers?.length) return;
+    const existing = groups.get(record.roundId) || {
+      roundId: record.roundId,
+      title: record.title,
+      year: record.year || 0,
+      session: record.session || '',
+      finishedAt: record.finishedAt,
+      items: [],
+      attempts: 0,
+    };
+    const ids = new Set(existing.items.map((item) => item.id));
+    record.wrongAnswers.forEach((wrong) => {
+      const item = itemMap.get(wrong.id);
+      if (item && !ids.has(item.id)) {
+        existing.items.push(item);
+        ids.add(item.id);
+      }
+    });
+    existing.finishedAt = Math.max(existing.finishedAt, record.finishedAt);
+    existing.attempts += 1;
+    groups.set(record.roundId, existing);
+  });
+  return [...groups.values()].sort((a, b) => b.finishedAt - a.finishedAt);
+});
+const wrongItems = computed(() => {
+  if (wrongRoundGroups.value.length) {
+    const selected = wrongRoundGroups.value.find((group) => group.roundId === wrongRoundFilter.value)
+      || wrongRoundGroups.value[0];
+    return selected.items;
+  }
+  return legacyWrongItems.value;
+});
+const selectedWrongRoundId = computed(() => wrongRoundGroups.value.find((group) => group.roundId === wrongRoundFilter.value)?.roundId
+  || wrongRoundGroups.value[0]?.roundId
+  || '');
+const wrongAnswerDetailMap = computed(() => {
+  const details = new Map<string, { selected: number; answer: number }>();
+  recentExamRecords.value.forEach((record) => {
+    if (record.roundId !== selectedWrongRoundId.value) return;
+    record.wrongAnswers?.forEach((wrong) => {
+      if (!details.has(wrong.id)) details.set(wrong.id, { selected: wrong.selected, answer: wrong.answer });
+    });
+  });
+  return details;
+});
+const roundRecordMap = computed(() => {
+  const records = new Map<string, ExamRecord>();
+  recentExamRecords.value.forEach((record) => {
+    if (!record.roundId || (record.mode && record.mode !== 'exam') || records.has(record.roundId)) return;
+    records.set(record.roundId, record);
+  });
+  return records;
+});
+const lastRoundRecord = computed(() => recentExamRecords.value.find((record) => record.roundId && (!record.mode || record.mode === 'exam')) || null);
 const searchResults = computed(() => searchResultIds.value.map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item)));
 const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
 const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
@@ -237,6 +301,7 @@ const currentItems = computed(() => {
 });
 const pageCount = computed(() => session.value ? Math.ceil(session.value.items.length / session.value.pageSize) : 0);
 const answeredCount = computed(() => session.value ? Object.keys(session.value.answers).length : 0);
+const keptCount = computed(() => session.value?.kept.length || 0);
 const sessionQuestionMax = computed(() => session.value?.items.reduce(
   (maximum, item) => Math.max(maximum, Number(item.question.number) || 0),
   0,
@@ -302,7 +367,7 @@ const coachSubjectRows = computed(() => selectedSubjects.value.map((subject) => 
 const weakestSubject = computed(() =>
   [...coachSubjectRows.value].sort((a, b) => a.predicted - b.predicted || a.coverage - b.coverage)[0]);
 const recentExamAverage = computed(() => {
-  const rows = recentExamRecords.value.slice(0, 5);
+  const rows = officialExamRecords.value.slice(0, 5);
   return rows.length ? Math.round(rows.reduce((sum, row) => sum + row.score, 0) / rows.length) : null;
 });
 const predictedScore = computed(() => {
@@ -324,7 +389,7 @@ const coachConfidence = computed(() => {
   if (coachCoverage.value < 5) return '진단 필요';
   if (coachCoverage.value < 20) return '초기 분석';
   if (coachCoverage.value < 45) return '보통';
-  if (recentExamRecords.value.length < 2) return '높음';
+  if (officialExamRecords.value.length < 2) return '높음';
   return '매우 높음';
 });
 const dueRows = computed(() => masteryRows.value
@@ -440,6 +505,10 @@ function stripMarkup(value?: string): string {
 
 async function refreshExamHistory(): Promise<void> {
   recentExamRecords.value = await loadExamRecords(selectedKey.value);
+  const availableRoundIds = new Set(recentExamRecords.value.flatMap((record) => record.roundId ? [record.roundId] : []));
+  if (!wrongRoundFilter.value || !availableRoundIds.has(wrongRoundFilter.value)) {
+    wrongRoundFilter.value = recentExamRecords.value.find((record) => record.roundId && record.wrongAnswers?.length)?.roundId || '';
+  }
 }
 
 function animateCoachDashboard(): void {
@@ -724,6 +793,7 @@ async function beginSession(
     title,
     items,
     answers: mode === 'learn' ? { ...initialAnswers } : {},
+    kept: [],
     page: firstUnanswered > 0 ? Math.floor(firstUnanswered / pageSize) : 0,
     pageSize,
     startedAt: Date.now(),
@@ -857,10 +927,32 @@ function startCoachSubject(subject: string): void {
 
 function chooseAnswer(item: QuestionItem, choice: number): void {
   if (!session.value || session.value.finished) return;
+  if (session.value.answers[item.id] === choice) {
+    delete session.value.answers[item.id];
+    return;
+  }
   session.value.answers[item.id] = choice;
   if (session.value.mode === 'learn') {
     recordAttempt(item.id, choice, item.question.answer);
   }
+}
+
+function toggleKeep(item: QuestionItem): void {
+  if (!session.value || session.value.mode !== 'exam' || session.value.finished) return;
+  const index = session.value.kept.indexOf(item.id);
+  if (index >= 0) session.value.kept.splice(index, 1);
+  else session.value.kept.push(item.id);
+}
+
+function goToNextKept(): void {
+  if (!session.value || !session.value.kept.length) return;
+  const currentIndex = session.value.page * session.value.pageSize;
+  const keptIndexes = session.value.kept
+    .map((id) => session.value?.items.findIndex((item) => item.id === id) ?? -1)
+    .filter((index) => index >= 0)
+    .sort((a, b) => a - b);
+  const nextIndex = keptIndexes.find((index) => index > currentIndex) ?? keptIndexes[0];
+  if (nextIndex != null) goToQuestion(nextIndex);
 }
 
 function toggleBookmark(item: QuestionItem): void {
@@ -941,18 +1033,34 @@ function calculateSessionResult(): (ExamResult & { unanswered: number }) | null 
     grouped.set(item.subject, row);
   });
   const score = Math.round((correct / session.value.items.length) * 100);
+  const rule = officialRule.value;
+  const subjectMinimum = rule?.scoring === 'subject-average' ? (rule.subjectMinimum || 40) : 0;
   const subjectRows = [...grouped.entries()].map(([subject, row]) => ({
     subject,
     ...row,
     score: Math.round((row.correct / row.total) * 100),
-    passed: (row.correct / row.total) * 100 >= 40,
+    passed: subjectMinimum === 0 || (row.correct / row.total) * 100 >= subjectMinimum,
   }));
-  const passed = score >= 60 && subjectRows.every((row) => row.passed);
+  const roundIds = [...new Set(session.value.items.map((item) => item.round.id))];
+  const fullSingleRound = roundIds.length === 1
+    && session.value.items.length === session.value.items[0]?.round.questions.length;
+  const balancedFullExam = session.value.mode === 'exam'
+    && subjectRows.length === selectedSubjects.value.length
+    && subjectRows.every((row) => row.total === rule?.questionsPerSubject);
+  const official = Boolean(rule && (rule.scoring === 'subject-average'
+    ? (fullSingleRound || balancedFullExam) && subjectRows.every((row) => row.total === rule.questionsPerSubject)
+    : fullSingleRound && session.value.items.length === rule.totalQuestions));
+  const passed = official && rule ? score >= rule.passScore && subjectRows.every((row) => row.passed) : false;
   return {
     score,
     correct,
     total: session.value.items.length,
     passed,
+    official,
+    criteria: rule
+      ? `${official ? '' : '전체 시험 분량을 푼 경우 적용 · '}${rule.note}`
+      : '공식 합격 기준 확인이 필요합니다.',
+    source: rule?.officialSource,
     subjectRows,
     unanswered: session.value.items.length - answeredCount.value,
   };
@@ -984,9 +1092,13 @@ function sendSessionResult(result: ExamResult & { unanswered: number }): void {
 
 function submitSession(mode: StudyMode, force = false): void {
   if (!session.value || session.value.mode !== mode || session.value.finished) return;
-  if (!force && answeredCount.value < session.value.items.length) {
+  if (!force && (answeredCount.value < session.value.items.length || keptCount.value > 0)) {
     const remaining = session.value.items.length - answeredCount.value;
-    if (!confirm(`아직 ${remaining}문제가 남았습니다. 그래도 채점할까요?`)) return;
+    const messages = [
+      remaining > 0 ? `미응답 ${remaining}문제` : '',
+      keptCount.value > 0 ? `킵 ${keptCount.value}문제` : '',
+    ].filter(Boolean).join(', ');
+    if (!confirm(`${messages}가 있습니다. 그래도 채점할까요?`)) return;
   }
   session.value.finished = true;
   stopTimer();
@@ -999,14 +1111,34 @@ function submitSession(mode: StudyMode, force = false): void {
   const result = calculateSessionResult();
   if (!result) return;
   examResult.value = result;
+  const roundIds = [...new Set(session.value.items.map((item) => item.round.id))];
+  const singleRound = roundIds.length === 1 ? session.value.items[0]?.round : undefined;
+  const wrongAnswers = session.value.items.flatMap((item) => {
+    const selected = session.value?.answers[item.id];
+    if (!selected || selected === item.question.answer) return [];
+    return [{
+      id: item.id,
+      subject: item.subject,
+      number: item.question.number,
+      selected,
+      answer: item.question.answer,
+    }];
+  });
   void recordExam({
     id: session.value.id,
     qualificationKey: selectedKey.value,
+    roundId: singleRound?.id,
+    year: singleRound?.year,
+    session: singleRound?.session || singleRound?.date,
+    mode,
     title: session.value.title,
     score: result.score,
     passed: result.passed,
     answered: answeredCount.value,
     total: session.value.items.length,
+    subjectRows: result.subjectRows,
+    answers: { ...session.value.answers },
+    wrongAnswers,
     finishedAt: Date.now(),
   }).then(refreshExamHistory);
   sendSessionResult(result);
@@ -1018,6 +1150,39 @@ function submitExam(force = false): void {
 
 function submitLearning(): void {
   submitSession('learn');
+}
+
+function openResultWrongAnswers(resetAnswers: boolean): void {
+  if (!session.value || !examResult.value) return;
+  const wrong = session.value.items.filter((item) => {
+    const selected = session.value?.answers[item.id];
+    return Boolean(selected && selected !== item.question.answer);
+  });
+  if (!wrong.length) {
+    showToast('이번 풀이에는 틀린 문제가 없습니다.');
+    return;
+  }
+  const previousAnswers = { ...session.value.answers };
+  session.value = {
+    ...session.value,
+    id: `wrong-review-${Date.now()}`,
+    mode: 'learn',
+    title: `${session.value.title} · 이번 회차 오답`,
+    items: wrong,
+    answers: resetAnswers
+      ? {}
+      : Object.fromEntries(wrong.flatMap((item) => previousAnswers[item.id] ? [[item.id, previousAnswers[item.id]]] : [])),
+    kept: [],
+    page: 0,
+    pageSize: 4,
+    startedAt: Date.now(),
+    remainingSeconds: 0,
+    finished: false,
+    resultSent: false,
+  };
+  examResult.value = null;
+  examSheetOpen.value = false;
+  window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
 }
 
 function sendCurrentSessionOnExit(): void {
@@ -1248,10 +1413,14 @@ function toggleVisualStyle(): void {
 }
 
 function setFontScale(value: number): void {
-  const normalized = Math.min(1.2, Math.max(.9, Math.round(value * 10) / 10));
+  const normalized = Math.min(1.6, Math.max(.8, Math.round(value * 10) / 10));
   fontScale.value = normalized;
   studyStore.fontScale = normalized;
-  document.documentElement.style.fontSize = `${normalized * 16}px`;
+  document.documentElement.dataset.questionScale = normalized >= 1.3 ? 'large' : 'normal';
+  document.documentElement.style.setProperty('--question-text-size', `${(.96 * normalized).toFixed(3)}rem`);
+  document.documentElement.style.setProperty('--choice-text-size', `${(.86 * normalized).toFixed(3)}rem`);
+  document.documentElement.style.setProperty('--explanation-text-size', `${(.82 * normalized).toFixed(3)}rem`);
+  document.documentElement.style.setProperty('--question-number-size', `${(.95 * normalized).toFixed(3)}rem`);
 }
 
 function adjustFontScale(amount: number): void {
@@ -1630,7 +1799,6 @@ onBeforeUnmount(() => {
             </div>
             <figure>
               <img :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면">
-              <figcaption>원본 보존 · Real-ESRGAN 4× → 2× bicubic</figcaption>
             </figure>
           </section>
           <section class="qualification-section">
@@ -1709,7 +1877,7 @@ onBeforeUnmount(() => {
             <div class="scope-summary">
               <div><span>선택 범위</span><strong>{{ yearFrom }}~{{ yearTo }}년</strong><small>{{ rangeRounds.length }}회차 사용</small></div>
               <div><span>출제 가능</span><strong>{{ selectedItems.length.toLocaleString() }}문제</strong><small>과목별 균형 출제</small></div>
-              <div><span>실전 구성</span><strong>{{ selectedSubjects.length }}과목 × 20문제</strong><small>평균 60점 · 과락 40점</small></div>
+              <div><span>실전 구성</span><strong>{{ selectedSubjects.length }}과목 × 20문제</strong><small>{{ officialRule?.note || '공식 기준 확인 필요' }}</small></div>
             </div>
 
             <div class="subject-strip">
@@ -1770,6 +1938,11 @@ onBeforeUnmount(() => {
           <TransitionGroup name="list-shift" tag="div" class="round-grid">
             <article v-for="round in visibleRounds" :key="round.id" class="round-card">
               <header><span>{{ round.shortQualification || round.qualification }}</span><b>{{ round.year }}년</b></header>
+              <div v-if="roundRecordMap.get(round.id)" class="round-record-badge" :class="{ latest: lastRoundRecord?.roundId === round.id }">
+                <span>{{ lastRoundRecord?.roundId === round.id ? '마지막으로 푼 회차' : '최근 CBT 기록' }}</span>
+                <strong>{{ roundRecordMap.get(round.id)?.score }}점</strong>
+                <small>{{ new Date(roundRecordMap.get(round.id)!.finishedAt).toLocaleDateString('ko-KR') }}</small>
+              </div>
               <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
               <h2>{{ round.title }}</h2>
               <p>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
@@ -1786,15 +1959,28 @@ onBeforeUnmount(() => {
 
         <template v-else-if="view === 'wrong'">
           <section class="tool-hero wrong-hero">
-            <div><span>WRONG ANSWERS</span><h1>틀린 문제만 빠르게 복습하세요</h1><p>{{ selectedCatalog.name }}에서 현재 {{ wrongItems.length }}문제가 복습을 기다리고 있습니다.</p></div>
-            <button v-if="wrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} 오답 복습`, wrongItems)">전체 오답 다시 풀기</button>
+            <div><span>WRONG ANSWERS BY ROUND</span><h1>회차별 오답만 골라 복습하세요</h1><p>{{ selectedCatalog.name }} · 선택한 회차 {{ wrongItems.length }}문제</p></div>
+            <button v-if="wrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} 회차별 오답 복습`, wrongItems)">이 회차 오답 다시 풀기</button>
           </section>
+          <div v-if="wrongRoundGroups.length" class="wrong-round-filter" role="group" aria-label="오답 회차 선택">
+            <button
+              v-for="group in wrongRoundGroups"
+              :key="group.roundId"
+              type="button"
+              :class="{ active: wrongRoundFilter === group.roundId }"
+              @click="wrongRoundFilter = group.roundId"
+            >
+              <strong>{{ group.year }}년 {{ group.session || group.title.replace(/^.*?:\s*/, '') }}</strong>
+              <span>{{ group.items.length }}문제 · 기록 {{ group.attempts }}회</span>
+            </button>
+          </div>
           <TransitionGroup v-if="wrongItems.length" name="list-shift" tag="div" class="question-library">
             <article v-for="item in wrongItems" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
               <footer>
-                <span>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
+                <span v-if="wrongAnswerDetailMap.get(item.id)">내 답 {{ wrongAnswerDetailMap.get(item.id)?.selected }}번 · 정답 {{ wrongAnswerDetailMap.get(item.id)?.answer }}번</span>
+                <span v-else>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
                 <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item])">다시 풀기 →</button>
               </footer>
             </article>
@@ -1869,9 +2055,9 @@ onBeforeUnmount(() => {
             </article>
 
             <article class="coach-panel coach-trend-panel">
-              <header><div><span>EXAM TRAJECTORY</span><h2>최근 시험 흐름</h2></div><b>{{ recentExamRecords.length }}회</b></header>
-              <div v-if="recentExamRecords.length" class="coach-trend-chart">
-                <div v-for="record in [...recentExamRecords.slice(0, 7)].reverse()" :key="record.id">
+              <header><div><span>EXAM TRAJECTORY</span><h2>최근 시험 흐름</h2></div><b>{{ officialExamRecords.length }}회</b></header>
+              <div v-if="officialExamRecords.length" class="coach-trend-chart">
+                <div v-for="record in [...officialExamRecords.slice(0, 7)].reverse()" :key="record.id">
                   <span :class="{ pass: record.passed }" :style="{ height: `${Math.max(8, record.score)}%` }"><b>{{ record.score }}</b></span>
                   <time>{{ new Date(record.finishedAt).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' }) }}</time>
                 </div>
@@ -2169,11 +2355,12 @@ onBeforeUnmount(() => {
         </div>
         <div class="setting-group">
           <span>문자 크기</span>
+          <p class="setting-description">문제·보기·해설 글씨만 80%부터 160%까지 조절합니다.</p>
           <div class="font-options">
-            <button :class="{ active: fontScale === .9 }" @click="setFontScale(.9)">작게</button>
+            <button :class="{ active: fontScale === .8 }" @click="setFontScale(.8)">아주 작게</button>
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
-            <button :class="{ active: fontScale === 1.1 }" @click="setFontScale(1.1)">크게</button>
-            <button :class="{ active: fontScale === 1.2 }" @click="setFontScale(1.2)">아주 크게</button>
+            <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
+            <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
           </div>
         </div>
         <div class="setting-group data-setting">
@@ -2211,9 +2398,9 @@ onBeforeUnmount(() => {
       <div class="session-tools">
         <button type="button" @click="openCalculator">▦ 계산기</button>
         <div class="session-font-control" aria-label="문자 크기 조절">
-          <button type="button" aria-label="문자 작게" :disabled="fontScale <= .9" @click="adjustFontScale(-.1)">가−</button>
+          <button type="button" aria-label="문자 작게" :disabled="fontScale <= .8" @click="adjustFontScale(-.1)">가−</button>
           <button type="button" title="기본 크기로" @click="setFontScale(1)">{{ Math.round(fontScale * 100) }}%</button>
-          <button type="button" aria-label="문자 크게" :disabled="fontScale >= 1.2" @click="adjustFontScale(.1)">가+</button>
+          <button type="button" aria-label="문자 크게" :disabled="fontScale >= 1.6" @click="adjustFontScale(.1)">가+</button>
         </div>
         <form v-if="session.mode === 'learn'" class="session-jump-form" @submit.prevent="jumpToLearningQuestion">
           <label for="learning-jump-number">문제 번호</label>
@@ -2273,8 +2460,10 @@ onBeforeUnmount(() => {
               :subject-start="isSubjectStart(item)"
               :subject-number="sessionSubjectNumber(item)"
               :bookmarked="studyStore.bookmarks.includes(item.id)"
+              :kept="session.kept.includes(item.id)"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
+              @toggle-keep="toggleKeep(item)"
               @ask-ai="prepareAiQuestion(item)"
             />
           </div>
@@ -2290,17 +2479,20 @@ onBeforeUnmount(() => {
       <aside v-if="session.mode === 'exam'" class="omr-sheet">
         <header>
           <div><span>ANSWER SHEET</span><strong>답안지</strong></div>
-          <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
+          <div class="omr-summary">
+            <button v-if="keptCount" type="button" @click="goToNextKept">킵 {{ keptCount }}</button>
+            <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
+          </div>
         </header>
         <div class="omr-list">
           <button
             v-for="(item, index) in session.items"
             :key="item.id"
             type="button"
-            :class="{ current: Math.floor(index / session.pageSize) === session.page }"
+            :class="{ current: Math.floor(index / session.pageSize) === session.page, kept: session.kept.includes(item.id) }"
             @click="goToQuestion(index)"
           >
-            <strong>{{ index + 1 }}.</strong>
+            <strong>{{ index + 1 }}.<i v-if="session.kept.includes(item.id)">K</i></strong>
             <span
               v-for="choice in 4"
               :key="choice"
@@ -2320,13 +2512,20 @@ onBeforeUnmount(() => {
         <h2>{{ session.mode === 'learn' ? '현재 학습 결과입니다' : (examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다') }}</h2>
         <div class="result-score">{{ displayedResultScore }}<small>점</small></div>
         <p>{{ examResult.total }}문제 중 {{ examResult.correct }}문제를 맞혔습니다.</p>
+        <p class="result-criteria">
+          <span>{{ examResult.official ? 'Q-Net 필기 기준' : '기준 확인 필요' }}</span>
+          <strong>{{ examResult.criteria }}</strong>
+          <a v-if="examResult.source" :href="examResult.source" target="_blank" rel="noopener">공식 기준 보기</a>
+        </p>
         <div class="subject-results">
           <div v-for="row in examResult.subjectRows" :key="row.subject">
-            <span>{{ row.subject }}</span><strong>{{ row.score }}점</strong><small :class="{ fail: !row.passed }">{{ row.passed ? '통과' : '과락' }}</small>
+            <span>{{ row.subject }}</span><strong>{{ row.score }}점</strong><small :class="{ fail: officialRule?.scoring === 'subject-average' && !row.passed }">{{ officialRule?.scoring === 'total-only' ? '참고' : (row.passed ? '통과' : '과락') }}</small>
           </div>
         </div>
         <div class="result-actions">
           <button type="button" @click="examResult = null; session.finished = false">문제 다시 보기</button>
+          <button type="button" @click="openResultWrongAnswers(false)">이번 회차 오답 보기</button>
+          <button type="button" @click="openResultWrongAnswers(true)">오답만 다시 풀기</button>
           <button type="button" @click="leaveSession('home')">홈으로</button>
         </div>
         </section>
