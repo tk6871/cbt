@@ -14,6 +14,7 @@ const props = defineProps<{
   kept?: boolean;
   calculationMode?: boolean;
   imageAnswerMode?: 'buttons' | 'hotspot';
+  answerLayout?: 'classic' | 'inline';
 }>();
 
 defineEmits<{
@@ -32,6 +33,18 @@ const calculationValues = computed(() => calculationSource(props.item).match(/-?
 const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
 const imageZoomOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
+
+function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
+  if (choice.images?.length) return true;
+  const text = (choice.text || choice.html || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return Boolean(text) && !new RegExp(`^(?:[①②③④]|${index + 1}(?:번)?)$`).test(text);
+}
+
+const hasReadableChoices = computed(() => props.item.question.choices.some(hasReadableChoice));
 
 function choiceClass(index: number): Record<string, boolean> {
   const number = index + 1;
@@ -106,7 +119,7 @@ function choiceClass(index: number): Record<string, boolean> {
           :aria-label="`${item.question.number}번 문제 원문 크게 보기`"
           @click="imageZoomOpen = true"
         >⌕ 크게 보기</button>
-        <small v-if="imageAnswerMode === 'hotspot' && !verifiedHotspots.length" class="hotspot-fallback-note">선택 위치 미검증 · 아래 답안 버튼 사용</small>
+        <small v-if="verifiedHotspots.length" class="hotspot-fallback-note">이미지 속 답안을 직접 누를 수 있습니다.</small>
       </div>
       <template v-else>
         <div class="question-text" v-html="item.question.html || item.question.text" />
@@ -122,7 +135,14 @@ function choiceClass(index: number): Record<string, boolean> {
       </template>
     </div>
 
-    <div v-if="!verifiedHotspots.length" class="choice-grid" :class="{ 'image-choice-grid': restoredQuestion && primaryImage }">
+    <div
+      v-if="!verifiedHotspots.length"
+      class="choice-grid"
+      :class="{
+        'image-choice-grid': restoredQuestion && primaryImage && (answerLayout === 'classic' || !hasReadableChoices),
+        'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout !== 'classic' && hasReadableChoices,
+      }"
+    >
       <button
         v-for="(choice, index) in item.question.choices"
         :key="index"
@@ -130,11 +150,11 @@ function choiceClass(index: number): Record<string, boolean> {
         class="choice-button"
         :class="choiceClass(index)"
         :aria-pressed="selected === index + 1"
-        :aria-label="primaryImage ? `${index + 1}번 선택` : undefined"
+        :aria-label="primaryImage ? `${index + 1}번 ${choice.text || '답안'} 선택` : undefined"
         @click="$emit('choose', index + 1)"
       >
-        <span class="choice-number">{{ primaryImage ? index + 1 : (circles[index] || index + 1) }}</span>
-        <span v-if="!primaryImage" class="choice-copy">
+        <span class="choice-number">{{ circles[index] || index + 1 }}</span>
+        <span v-if="!primaryImage || (answerLayout !== 'classic' && hasReadableChoice(choice, index))" class="choice-copy">
           <span v-html="choice.html || choice.text || `${index + 1}번`" />
           <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
         </span>

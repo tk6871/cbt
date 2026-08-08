@@ -1,0 +1,16 @@
+{
+  "id": "./jewelry.html",
+  "name": "보석·귀금속 CBT 학습관",
+  "short_name": "보석관 CBT",
+  "description": "보석감정사·귀금속가공 자격 기출문제 전용 학습관",
+  "lang": "ko",
+  "start_url": "./jewelry.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f3f4",
+  "theme_color": "#8d2745",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

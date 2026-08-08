@@ -39,11 +39,11 @@ import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, Sess
 
 type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
-type CbtBetaLayout = 'legacy' | 'simpsons-classic' | 'cbt-classic' | 'cbt-modern';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
 type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-leaving' | 'home-entering' | null;
 type SunjaeResultPhase = 'grading' | 'reveal';
+type AnswerLayout = 'classic' | 'inline';
 type ExamResult = {
   score: number;
   correct: number;
@@ -79,6 +79,8 @@ const simpsonsBurnsImages = [
 ];
 const simpsonsBurnsImage = simpsonsBurnsImages[Math.floor(Math.random() * simpsonsBurnsImages.length)] || simpsonsBurnsImages[0];
 const simpsonsFunnyImages = [
+  'assets/theme/simpsons/homer-serious-hd.jpg',
+  'assets/theme/simpsons/homer-bart-hospital-hd.jpg',
   'assets/theme/simpsons/king-size-homer-grin.jpg',
   'assets/theme/simpsons/king-size-homer-cool.jpg',
   'assets/theme/simpsons/king-size-homer-phone.jpg',
@@ -144,7 +146,7 @@ const toastMessage = ref('');
 const theme = ref(currentTheme());
 const visualStyle = ref<VisualStyle>(currentVisualStyle());
 const sunjaeImageIndex = ref(0);
-const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 10);
+const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 180);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
 const visualTransitionTarget = ref<VisualStyle>(visualStyle.value);
@@ -176,16 +178,14 @@ const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
-const savedBetaLayout = localStorage.getItem('unified-cbt-beta-layout');
-const cbtBetaLayout = ref<CbtBetaLayout>(['legacy', 'simpsons-classic', 'cbt-classic', 'cbt-modern'].includes(savedBetaLayout || '') ? savedBetaLayout as CbtBetaLayout : 'legacy');
-const betaImageFit = ref(localStorage.getItem('unified-cbt-beta-image-fit') === 'true');
-const betaOmrAutoScroll = ref(localStorage.getItem('unified-cbt-beta-omr-scroll') === 'true');
-const betaImageHotspots = ref(localStorage.getItem('unified-cbt-beta-image-hotspots') === 'true');
+const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
+const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'classic' ? 'classic' : 'inline');
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
 let searchHandle = 0;
 let resizeSettleHandle = 0;
+let resizeAnimationFrame = 0;
 let sunjaeRotationHandle = 0;
 let sunjaeResultHandle = 0;
 let searchWorker: Worker | null = null;
@@ -388,7 +388,7 @@ const viewTitle = computed(() => ({
   calculation: '계산문제만 풀기',
   guide: '공조 시험 암기장',
   coach: '합격 엔진',
-  showcase: '신기능 체험실',
+  showcase: '신기술 학습관',
   stats: '학습 분석',
   updates: '패치노트',
 })[view.value]);
@@ -1563,7 +1563,13 @@ function setSunjaeRotationSeconds(seconds: number): void {
   sunjaeRotationSeconds.value = seconds;
   localStorage.setItem('unified-cbt-sunjae-rotation-seconds', String(seconds));
   restartSunjaeRotation();
-  showToast(seconds ? `선재 사진을 ${seconds}초마다 바꿉니다.` : '선재 사진 자동 교체를 껐습니다.');
+  showToast(seconds ? `선재 사진을 ${sunjaeRotationLabel(seconds)}마다 바꿉니다.` : '선재 사진 자동 교체를 껐습니다.');
+}
+
+function setAnswerLayout(layout: AnswerLayout): void {
+  answerLayout.value = layout;
+  localStorage.setItem('unified-cbt-answer-layout', layout);
+  showToast(layout === 'inline' ? '번호 옆에 답안 문구를 표시합니다.' : '기존 큰 번호 답안으로 돌아왔습니다.');
 }
 
 function sunjaeRotationLabel(seconds: number): string {
@@ -1609,21 +1615,12 @@ async function setVisualStyle(style: VisualStyle): Promise<void> {
     : style === 'sunjae' ? '선재 업고 튀어 테마를 적용했습니다. ☂' : '기본 CBT UI로 돌아왔습니다.');
 }
 
-function setCbtBetaLayout(layout: CbtBetaLayout): void {
-  cbtBetaLayout.value = layout;
-  localStorage.setItem('unified-cbt-beta-layout', layout);
-}
-
-function setBetaPreference(key: 'image-fit' | 'omr-scroll' | 'image-hotspots', enabled: boolean): void {
-  localStorage.setItem(`unified-cbt-beta-${key}`, String(enabled));
-}
-
 function markOmrManualScroll(): void {
   omrManualScrollUntil = Date.now() + 1200;
 }
 
 function syncOmrToCurrentPage(): void {
-  if (!betaOmrAutoScroll.value || Date.now() < omrManualScrollUntil || !session.value || session.value.mode !== 'exam') return;
+  if (Date.now() < omrManualScrollUntil || !session.value || session.value.mode !== 'exam') return;
   const index = session.value.page * session.value.pageSize;
   const target = omrListRef.value?.querySelector<HTMLElement>(`[data-omr-index="${index}"]`);
   if (!target || !omrListRef.value) return;
@@ -1921,11 +1918,16 @@ watch(examResult, (result) => {
 });
 
 function markViewportResizing(): void {
-  document.documentElement.dataset.resizing = 'true';
+  if (!resizeAnimationFrame) {
+    resizeAnimationFrame = window.requestAnimationFrame(() => {
+      document.documentElement.dataset.resizing = 'true';
+      resizeAnimationFrame = 0;
+    });
+  }
   window.clearTimeout(resizeSettleHandle);
   resizeSettleHandle = window.setTimeout(() => {
     delete document.documentElement.dataset.resizing;
-  }, 160);
+  }, 220);
 }
 
 onMounted(async () => {
@@ -1965,6 +1967,7 @@ onBeforeUnmount(() => {
   window.clearTimeout(toastHandle);
   window.clearTimeout(searchHandle);
   window.clearTimeout(resizeSettleHandle);
+  window.cancelAnimationFrame(resizeAnimationFrame);
   window.clearInterval(sunjaeRotationHandle);
   window.clearTimeout(sunjaeResultHandle);
   delete document.documentElement.dataset.resizing;
@@ -2021,9 +2024,9 @@ onBeforeUnmount(() => {
         <b>›</b>
       </a>
       <div class="sidebar-foot">
-        <button type="button" @click="openCalculator"><span>▦</span>공학용 계산기</button>
-        <button type="button" @click="settingsOpen = true"><span>⚙</span>화면·데이터 설정</button>
-        <a href="legacy.html"><span>◫</span>이전 버전</a>
+        <button type="button" @click="openCalculator"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(4)" alt=""><template v-else>▦</template></span>공학용 계산기</button>
+        <button type="button" @click="settingsOpen = true"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><template v-else>⚙</template></span>화면·데이터 설정</button>
+        <a href="legacy.html"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(1)" alt=""><template v-else>◫</template></span>이전 버전</a>
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
@@ -2531,9 +2534,9 @@ onBeforeUnmount(() => {
             <div class="feature-orb feature-orb-one" />
             <div class="feature-orb feature-orb-two" />
             <div class="feature-hero-copy">
-              <span><b>NEW</b> INTERACTIVE UPDATE LAB · v{{ currentVersion }}</span>
-              <h1>읽지 말고 직접 눌러보는<br><em>신기능 체험실</em></h1>
-              <p>이번 업데이트의 핵심 기능만 모았습니다. 설명을 읽는 대신 아래 버튼으로 바로 체감해 보세요.</p>
+              <span><b>NEW</b> INTERACTIVE LEARNING LAB · v{{ currentVersion }}</span>
+              <h1>새 기능을 바로 배우고 눌러보는<br><em>신기술 학습관</em></h1>
+              <p>정식으로 적용된 문제풀이와 화면 기능을 한곳에서 익힐 수 있습니다.</p>
               <div>
                 <button type="button" @click="openView('rounds')">3분 체험 시작 →</button>
                 <button type="button" @click="openView('updates')">← 패치노트로</button>
@@ -2616,22 +2619,22 @@ onBeforeUnmount(() => {
           </Teleport>
 
           <section class="feature-tour">
-            <header><div><span>3-MINUTE TOUR</span><h2>가장 달라진 기능 세 가지</h2></div><p>순서대로 눌러보면 새 화면의 장점을 빠르게 확인할 수 있습니다.</p></header>
+            <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 세 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
             <div class="feature-tour-grid">
               <article class="feature-tour-card blue">
-                <b>01</b><span>GLOBAL SWITCH</span><h3>어디서든 종목 전환</h3>
-                <p>현재 메뉴를 벗어나지 않고 위쪽 종목 선택칸으로 자격증과 데이터를 즉시 바꿉니다.</p>
-                <button type="button" @click="openView('rounds')">회차 화면에서 체험 →</button>
+                <b>01</b><span>ANSWER LAYOUT</span><h3>답안 표시를 직접 선택</h3>
+                <p>번호 옆 답안 문구 방식과 기존 큰 번호 방식 중 편한 화면을 설정에서 고릅니다.</p>
+                <button type="button" @click="settingsOpen = true">답안 표시 설정 →</button>
               </article>
               <article class="feature-tour-card violet">
-                <b>02</b><span>MOTION SYSTEM</span><h3>전 화면 동적 전환</h3>
-                <p>화면 입장, 카드 스태거와 과목 그래프가 Vue 상태에 맞춰 부드럽게 움직입니다.</p>
-                <button type="button" @click="openView('stats')">통계 애니메이션 보기 →</button>
+                <b>02</b><span>IN-SESSION SETTINGS</span><h3>풀이 중에도 설정</h3>
+                <p>답안과 타이머를 유지하면서 테마·글씨·답안 배치·OMR을 바로 바꿉니다.</p>
+                <button type="button" @click="startFeatureRound('learn')">학습 화면에서 체험 →</button>
               </article>
               <article class="feature-tour-card mint">
-                <b>03</b><span>AI ANSWER CHECK</span><h3>정답 검증 프롬프트</h3>
-                <p>문제와 해설, 원문 이미지 주소를 한 번에 전달하고 초보자용 설명을 요청합니다.</p>
-                <button type="button" @click="openFeatureAiDemo">실제 프롬프트 열기 →</button>
+                <b>03</b><span>SMART OMR</span><h3>현재 문제 자동 따라가기</h3>
+                <p>CBT에서 다음 문제로 이동하면 OMR도 필요한 때만 부드럽게 따라옵니다.</p>
+                <button type="button" @click="startFeatureRound('exam')">실전 CBT에서 체험 →</button>
               </article>
             </div>
           </section>
@@ -2644,6 +2647,9 @@ onBeforeUnmount(() => {
               </button>
               <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
                 <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
+              </button>
+              <button type="button" class="feature-action-card exam" @click="setAnswerLayout(answerLayout === 'inline' ? 'classic' : 'inline')">
+                <span>①</span><div><strong>{{ answerLayout === 'inline' ? '기존 번호 답안으로' : '답안 문구 방식으로' }}</strong><small>정식 답안 표시 즉시 전환</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
@@ -2692,7 +2698,7 @@ onBeforeUnmount(() => {
             <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
             <div class="patch-version-actions">
               <strong>v{{ currentVersion }}</strong>
-              <button type="button" class="feature-lab-entry" @click="openView('showcase')">◉ 신기능 체험실 NEW</button>
+              <button type="button" class="feature-lab-entry" @click="openView('showcase')">◉ 신기술 학습관 NEW</button>
               <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
             </div>
           </section>
@@ -2766,19 +2772,16 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
           </div>
         </div>
-        <div class="setting-group beta-setting-group">
-          <span>베타 문제풀이</span>
-          <p class="setting-description">기본값은 기존 UI입니다. 아래 기능은 하나씩 켜서 비교할 수 있고 언제든 원래대로 돌아갈 수 있습니다.</p>
-          <div class="beta-layout-options">
-            <button :class="{ active: cbtBetaLayout === 'legacy' }" @click="setCbtBetaLayout('legacy')"><strong>기존</strong><small>현재 문제풀이 UI</small></button>
-            <button :class="{ active: cbtBetaLayout === 'simpsons-classic' }" @click="setCbtBetaLayout('simpsons-classic')"><strong>심슨 클래식</strong><small>코믹형 문제 + 소형 OMR</small></button>
-            <button :class="{ active: cbtBetaLayout === 'cbt-classic' }" @click="setCbtBetaLayout('cbt-classic')"><strong>CBT 클래식</strong><small>익숙한 시험지형 배치</small></button>
-            <button :class="{ active: cbtBetaLayout === 'cbt-modern' }" @click="setCbtBetaLayout('cbt-modern')"><strong>CBT 모던</strong><small>넓은 문제 + 접이식 OMR</small></button>
+        <div class="setting-group standard-solving-setting">
+          <span>답안 선택 방식</span>
+          <p class="setting-description">베타가 아닌 정식 설정입니다. 복원 이미지 문제의 답안 표시만 바뀌며 학습 기록에는 영향을 주지 않습니다.</p>
+          <div class="answer-layout-options">
+            <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
+            <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
           </div>
-          <div class="beta-toggle-list">
-            <label><input v-model="betaImageFit" type="checkbox" @change="setBetaPreference('image-fit', betaImageFit)"><span><strong>문제 이미지 맞춤 크기</strong><small>비율과 잘림 방지, 작은 이미지는 과도하게 확대하지 않음</small></span></label>
-            <label><input v-model="betaOmrAutoScroll" type="checkbox" @change="setBetaPreference('omr-scroll', betaOmrAutoScroll)"><span><strong>OMR 현재 문제 자동 스크롤</strong><small>화면 밖으로 나간 경우에만 이동하며 직접 스크롤 중에는 멈춤</small></span></label>
-            <label><input v-model="betaImageHotspots" type="checkbox" @change="setBetaPreference('image-hotspots', betaImageHotspots)"><span><strong>이미지 안 보기 직접 선택</strong><small>위치 데이터가 검증된 문제만 적용하고 나머지는 큰 답안 버튼 유지</small></span></label>
+          <div class="standard-solving-list">
+            <span><b>✓</b><strong>이미지 잘림 방지</strong></span>
+            <span><b>✓</b><strong>OMR 자동 따라가기</strong></span>
           </div>
         </div>
         <div class="setting-group data-setting">
@@ -2800,17 +2803,13 @@ onBeforeUnmount(() => {
   <div
     v-else
     class="session-shell"
-    :class="[
-      `beta-ui-${cbtBetaLayout}`,
-      {
-        'exam-mode': session.mode === 'exam',
-        'sheet-closed': !examSheetOpen,
-        'beta-image-fit': betaImageFit,
-        'beta-image-hotspots': betaImageHotspots,
-        'experience-session-entering': experienceTransitionPhase === 'session-entering',
-        'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
-      },
-    ]"
+    :class="{
+      'exam-mode': session.mode === 'exam',
+      'sheet-closed': !examSheetOpen,
+      'standard-image-fit': true,
+      'experience-session-entering': experienceTransitionPhase === 'session-entering',
+      'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
+    }"
   >
     <header class="session-topbar">
       <div class="session-leading">
@@ -2820,6 +2819,7 @@ onBeforeUnmount(() => {
       <div><span>{{ session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span><strong>{{ sessionTitle }}</strong></div>
       <div class="session-tools">
         <button type="button" @click="openCalculator">▦ 계산기</button>
+        <button type="button" @click="settingsOpen = true">⚙ 설정</button>
         <div class="session-font-control" aria-label="문자 크기 조절">
           <button type="button" aria-label="문자 작게" :disabled="fontScale <= .8" @click="adjustFontScale(-.1)">가−</button>
           <button type="button" title="기본 크기로" @click="setFontScale(1)">{{ Math.round(fontScale * 100) }}%</button>
@@ -2864,6 +2864,7 @@ onBeforeUnmount(() => {
         <button type="button" @click="leaveSession('updates')"><span>◷</span><div><strong>패치노트</strong><small>최근 업데이트 확인</small></div></button>
       </nav>
       <footer>
+        <button type="button" @click="settingsOpen = true; sessionMenuOpen = false">⚙ 화면·문제풀이 설정</button>
         <button type="button" @click="openCalculator">▦ 공학용 계산기</button>
         <button type="button" @click="toggleLightDark">{{ darkActive ? '☀ 라이트 모드' : '☾ 다크 모드' }}</button>
       </footer>
@@ -2885,7 +2886,8 @@ onBeforeUnmount(() => {
               :bookmarked="studyStore.bookmarks.includes(item.id)"
               :kept="session.kept.includes(item.id)"
               :calculation-mode="session.calculationMode"
-              :image-answer-mode="betaImageHotspots ? 'hotspot' : 'buttons'"
+              image-answer-mode="hotspot"
+              :answer-layout="answerLayout"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
               @toggle-keep="toggleKeep(item)"
@@ -2972,6 +2974,54 @@ onBeforeUnmount(() => {
       </div>
     </Transition>
   </div>
+
+  <Transition name="modal-fade">
+    <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
+      <section class="settings-panel session-settings-panel">
+        <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group">
+          <span>UI 스타일</span>
+          <p class="setting-description">답안과 진행 상태는 그대로 둔 채 풀이 화면의 테마를 바로 바꿉니다.</p>
+          <div class="style-options">
+            <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>깔끔한 시험 화면</small></button>
+            <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>다크 모드 지원</small></button>
+            <button v-if="isJewelry" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>보석관 전용 UI</small></button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>화면 테마</span>
+          <div class="theme-options">
+            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)"><strong>◐ 자동</strong><small>기기 설정</small></button>
+            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)"><strong>☀ 라이트</strong><small>밝은 화면</small></button>
+            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)"><strong>☾ 다크</strong><small>어두운 화면</small></button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>문자 크기</span>
+          <p class="setting-description">현재 문제를 유지한 채 80%부터 160%까지 바꿉니다.</p>
+          <div class="font-options">
+            <button :class="{ active: fontScale === .8 }" @click="setFontScale(.8)">아주 작게</button>
+            <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
+            <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
+            <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div class="setting-group standard-solving-setting">
+          <span>답안 선택 방식</span>
+          <div class="answer-layout-options">
+            <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
+            <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
+          </div>
+          <div class="standard-solving-list">
+            <span><b>✓</b><strong>이미지 비율·잘림 자동 보호</strong></span>
+            <span><b>✓</b><strong>현재 문제 OMR 자동 이동</strong></span>
+          </div>
+          <button v-if="session.mode === 'exam'" type="button" class="session-setting-action" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
+        </div>
+        <footer><span>답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>
+      </section>
+    </div>
+  </Transition>
 
   <div v-if="aiPromptOpen" class="ai-prompt-backdrop" @click.self="aiPromptOpen = false">
     <section class="ai-prompt-modal">
