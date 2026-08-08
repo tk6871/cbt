@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>공조 이미지 답안 수동 보정</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #edf3f8; color: #17212b; }
+    header { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 12px 16px; background: #fff; box-shadow: 0 2px 12px #2342; }
+    header strong { margin-right: auto; }
+    button { min-height: 40px; padding: 8px 13px; border: 1px solid #a8b7c6; border-radius: 9px; background: #fff; font-weight: 700; cursor: pointer; }
+    button.primary { border-color: #1967b3; background: #1967b3; color: #fff; }
+    button:disabled { opacity: .45; cursor: default; }
+    main { width: min(1180px, 100%); margin: 0 auto; padding: 18px; }
+    .guide { margin: 0 0 12px; padding: 12px 14px; border-radius: 12px; background: #fff; line-height: 1.55; }
+    .stage { position: relative; overflow: hidden; border: 2px solid #b9c8d6; border-radius: 14px; background: #fff; user-select: none; }
+    .stage img { display: block; width: 100%; height: auto; }
+    .marker { position: absolute; translate: -50% -50%; display: grid; place-items: center; width: 34px; height: 34px; border: 3px solid #fff; border-radius: 50%; background: #e83274; color: #fff; box-shadow: 0 2px 8px #0008; font-weight: 900; pointer-events: none; }
+    .saved { margin-top: 12px; padding: 10px 12px; border-radius: 10px; background: #dff5e9; color: #075d38; font-weight: 750; }
+    code { word-break: break-all; }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>공조 답안 좌표 수동 보정 <span id="progress"></span></strong>
+    <button id="prev">이전</button>
+    <button id="undo">마지막 점 취소</button>
+    <button id="reset">현재 이미지 초기화</button>
+    <button id="next" class="primary">다음</button>
+    <button id="export">JSON 내보내기</button>
+  </header>
+  <main>
+    <p class="guide">
+      이미지 속 <b>①, ②, ③, ④의 동그라미 중심</b>을 반드시 이 순서로 한 번씩 누르세요.
+      네 점을 누르면 자동 저장됩니다. 선택지 문장 가운데가 아니라 번호 동그라미 가운데를 누르는 것이 중요합니다.<br>
+      현재 파일: <code id="path"></code>
+    </p>
+    <div id="stage" class="stage"><img id="image" alt="수동 보정할 문제"></div>
+    <p id="saved" class="saved" hidden></p>
+  </main>
+  <script>
+    const files = [
+      'assets/hvac/assets/questions/2021_1/32.jpg', 'assets/hvac/assets/questions/2021_1/40.jpg',
+      'assets/hvac/assets/questions/2021_1/47.jpg', 'assets/hvac/assets/questions/2021_2/05.jpg',
+      'assets/hvac/assets/questions/2021_2/29.jpg', 'assets/hvac/assets/questions/2022_1/31.jpg',
+      'assets/hvac/assets/questions/2022_1/45.jpg', 'assets/hvac/assets/questions/2022_2/15.jpg',
+      'assets/hvac/assets/questions/2022_2/16.jpg', 'assets/hvac/assets/questions/2022_2/28.jpg',
+      'assets/hvac/assets/questions/2022_2/36.jpg', 'assets/hvac/assets/questions/2022_2/42.jpg',
+      'assets/hvac/assets/questions/2022_2/58.jpg', 'assets/hvac/assets/questions/2022_3/18.jpg',
+      'assets/hvac/assets/questions/2022_3/26.jpg', 'assets/hvac/assets/questions/2022_3/45.jpg',
+      'assets/hvac/assets/questions/2022_3/48.jpg', 'assets/hvac/assets/questions/2023_1/11.jpg',
+      'assets/hvac/assets/questions/2023_2/07.jpg', 'assets/hvac/assets/questions/2023_2/41.jpg',
+      'assets/hvac/assets/questions/2023_3/03.jpg', 'assets/hvac/assets/questions/2023_3/45.jpg',
+      'assets/hvac/assets/questions/2024_1/50.jpg', 'assets/hvac/assets/questions/2024_1/53.jpg',
+      'assets/hvac/assets/questions/2024_2/30.jpg', 'assets/hvac/assets/questions/2024_3/58.jpg',
+      'assets/hvac/assets/questions/2025_1/45.jpg', 'assets/hvac/assets/questions/2025_2/39.jpg',
+      'assets/hvac/assets/questions/2025_2/46.jpg', 'assets/hvac/assets/questions/2025_2/50.jpg',
+      'assets/hvac/assets/questions/2025_3/18.jpg', 'assets/hvac/assets/questions/2026_1/13.jpg',
+      'assets/hvac/assets/questions/2026_1/18.jpg', 'assets/hvac/assets/questions/2026_1/22.jpg',
+      'assets/hvac/assets/questions/2026_1/39.jpg', 'assets/hvac/assets/questions/2026_1/50.jpg',
+      'assets/hvac/assets/questions/2026_2/25.jpg', 'assets/hvac/assets/questions/2026_2/31.jpg',
+      'assets/hvac/assets/questions/2026_2/52.jpg'
+    ];
+    const storageKey = 'cbt-hvac-manual-hotspots-v1';
+    const savedMap = JSON.parse(localStorage.getItem(storageKey) || '{}');
+    let index = Math.max(0, Number(localStorage.getItem(`${storageKey}-index`) || 0));
+    let points = [];
+    const stage = document.querySelector('#stage');
+    const image = document.querySelector('#image');
+    const pathLabel = document.querySelector('#path');
+    const progress = document.querySelector('#progress');
+    const savedLabel = document.querySelector('#saved');
+
+    function round(value) { return Math.round(value * 100) / 100; }
+
+    function makeHotspots(markers) {
+      const xs = markers.map((point) => point.x);
+      const ys = markers.map((point) => point.y);
+      const twoColumns = Math.max(...xs) - Math.min(...xs) > 22;
+      if (twoColumns) {
+        const left = markers.filter((point) => point.x < (Math.min(...xs) + Math.max(...xs)) / 2);
+        const right = markers.filter((point) => !left.includes(point));
+        if (left.length === 2 && right.length === 2) {
+          const boundaryX = round((Math.max(...left.map((p) => p.x)) + Math.min(...right.map((p) => p.x))) / 2);
+          const topY = round((markers[0].y + markers[1].y + markers[2].y + markers[3].y) / 4);
+          const rowBoundary = round((Math.min(...ys) + Math.max(...ys)) / 2);
+          return markers.map((point, choice) => {
+            const isLeft = point.x < boundaryX;
+            const isTop = point.y < topY || point.y < rowBoundary;
+            return {
+              choice: choice + 1,
+              x: isLeft ? 1 : boundaryX,
+              y: isTop ? Math.max(0, round(Math.min(...ys) - 5)) : rowBoundary,
+              width: isLeft ? round(boundaryX - 1) : round(99 - boundaryX),
+              height: isTop ? round(rowBoundary - Math.max(0, Math.min(...ys) - 5)) : round(Math.min(100, Math.max(...ys) + 5) - rowBoundary)
+            };
+          });
+        }
+      }
+      const sortedY = [...markers].sort((a, b) => a.y - b.y);
+      const boundaries = sortedY.slice(0, -1).map((point, i) => round((point.y + sortedY[i + 1].y) / 2));
+      return markers.map((point, choice) => {
+        const row = sortedY.indexOf(point);
+        const top = row === 0 ? Math.max(0, round(point.y - 5)) : boundaries[row - 1];
+        const bottom = row === 3 ? Math.min(100, round(point.y + 5)) : boundaries[row];
+        return { choice: choice + 1, x: 1, y: top, width: 98, height: round(bottom - top) };
+      });
+    }
+
+    function persist() {
+      localStorage.setItem(storageKey, JSON.stringify(savedMap));
+      localStorage.setItem(`${storageKey}-index`, String(index));
+    }
+
+    function renderMarkers() {
+      stage.querySelectorAll('.marker').forEach((element) => element.remove());
+      points.forEach((point, pointIndex) => {
+        const marker = document.createElement('span');
+        marker.className = 'marker';
+        marker.textContent = String(pointIndex + 1);
+        marker.style.left = `${point.x}%`;
+        marker.style.top = `${point.y}%`;
+        stage.append(marker);
+      });
+    }
+
+    function show() {
+      index = Math.min(Math.max(index, 0), files.length - 1);
+      const file = files[index];
+      pathLabel.textContent = file;
+      image.src = `../${file}`;
+      points = savedMap[file]?.points ? [...savedMap[file].points] : [];
+      const done = Object.keys(savedMap).filter((key) => savedMap[key]?.hotspots?.length === 4).length;
+      progress.textContent = `(${index + 1}/${files.length} · 완료 ${done})`;
+      savedLabel.hidden = points.length !== 4;
+      savedLabel.textContent = points.length === 4 ? '이 이미지는 저장되었습니다. 필요하면 초기화 후 다시 찍을 수 있습니다.' : '';
+      document.querySelector('#prev').disabled = index === 0;
+      document.querySelector('#next').disabled = index === files.length - 1;
+      renderMarkers();
+      persist();
+    }
+
+    stage.addEventListener('click', (event) => {
+      if (points.length >= 4) return;
+      const rect = image.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      points.push({ x: round((event.clientX - rect.left) / rect.width * 100), y: round((event.clientY - rect.top) / rect.height * 100) });
+      if (points.length === 4) {
+        savedMap[files[index]] = { points: [...points], hotspots: makeHotspots(points) };
+        persist();
+      }
+      show();
+    });
+    document.querySelector('#prev').onclick = () => { index -= 1; show(); };
+    document.querySelector('#next').onclick = () => { index += 1; show(); };
+    document.querySelector('#undo').onclick = () => {
+      if (!points.length) return;
+      points.pop();
+      delete savedMap[files[index]];
+      persist();
+      show();
+    };
+    document.querySelector('#reset').onclick = () => {
+      points = [];
+      delete savedMap[files[index]];
+      persist();
+      show();
+    };
+    document.querySelector('#export').onclick = () => {
+      const output = Object.fromEntries(Object.entries(savedMap).map(([file, value]) => [file, value.hotspots]));
+      const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'hvac-manual-hotspots.json';
+      link.click();
+      URL.revokeObjectURL(link.href);
+    };
+    show();
+  </script>
+</body>
+</html>

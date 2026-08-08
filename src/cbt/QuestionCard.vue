@@ -14,7 +14,7 @@ const props = defineProps<{
   kept?: boolean;
   calculationMode?: boolean;
   imageAnswerMode?: 'buttons' | 'hotspot';
-  answerLayout?: 'classic' | 'inline';
+  answerLayout?: 'classic' | 'inline' | 'hotspot';
 }>();
 
 defineEmits<{
@@ -107,11 +107,11 @@ function choiceClass(index: number): Record<string, boolean> {
             :key="hotspot.choice"
             type="button"
             class="image-answer-hotspot"
-            :class="{ selected: selected === hotspot.choice }"
+            :class="choiceClass(hotspot.choice - 1)"
             :style="{ left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` }"
             :aria-label="`이미지에서 ${hotspot.choice}번 선택`"
             @click="$emit('choose', hotspot.choice)"
-          >{{ hotspot.choice }}</button>
+          ></button>
         </div>
         <button
           type="button"
@@ -139,8 +139,8 @@ function choiceClass(index: number): Record<string, boolean> {
       v-if="!verifiedHotspots.length"
       class="choice-grid"
       :class="{
-        'image-choice-grid': restoredQuestion && primaryImage && (answerLayout === 'classic' || !hasReadableChoices),
-        'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout !== 'classic' && hasReadableChoices,
+        'image-choice-grid': restoredQuestion && primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
+        'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout === 'inline' && hasReadableChoices,
       }"
     >
       <button
@@ -154,7 +154,7 @@ function choiceClass(index: number): Record<string, boolean> {
         @click="$emit('choose', index + 1)"
       >
         <span class="choice-number">{{ circles[index] || index + 1 }}</span>
-        <span v-if="!primaryImage || (answerLayout !== 'classic' && hasReadableChoice(choice, index))" class="choice-copy">
+        <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
           <span v-html="choice.html || choice.text || `${index + 1}번`" />
           <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
         </span>

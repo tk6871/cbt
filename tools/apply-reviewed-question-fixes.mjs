@@ -6,6 +6,207 @@ const root = process.cwd();
 
 const fixes = [
   {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20261',
+    number: 14,
+    patch: {
+      text: '냉각수 출입구 온도차를 5℃, 냉각수의 처리 열량을 4.55kW로 하면 냉각수량(L/min)은? (단, 냉각수의 비열은 4.2kJ/kg·℃로 한다.)',
+      html: '냉각수 출입구 온도차를 5℃, 냉각수의 처리 열량을 4.55kW로 하면 냉각수량(L/min)은? (단, 냉각수의 비열은 4.2kJ/kg·℃로 한다.)',
+      choices: [
+        { text: '10', html: '10', images: [] },
+        { text: '13', html: '13', images: [] },
+        { text: '18', html: '18', images: [] },
+        { text: '20', html: '20', images: [] },
+      ],
+      answer: 2,
+      explanation:
+        '열수량식 Q=ṁcΔt를 사용합니다. 냉각수량은 4.55kW÷(4.2kJ/kg·℃×5℃)=0.2167kg/s입니다. 물 1kg은 약 1L이므로 0.2167×60=약 13L/min입니다. 따라서 정답은 ②입니다.',
+      explanationHtml:
+        '열수량식 Q=ṁcΔt를 사용합니다.<br>냉각수량은 4.55kW÷(4.2kJ/kg·℃×5℃)=0.2167kg/s입니다.<br>물 1kg은 약 1L이므로 0.2167×60=약 13L/min입니다. 따라서 정답은 ②입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2026년 1회 수정 배포 PDF',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20211',
+    number: 52,
+    patch: {
+      text: '120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?',
+      html: '120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?',
+      choices: [
+        { text: '직렬접속', html: '직렬접속', images: [] },
+        { text: '병렬접속', html: '병렬접속', images: [] },
+        { text: '직병렬접속', html: '직병렬접속', images: [] },
+        { text: '병직렬접속', html: '병직렬접속', images: [] },
+      ],
+      answer: 2,
+      explanation:
+        '같은 저항을 병렬로 연결할수록 전체 저항은 작아집니다. 120Ω 저항 4개를 모두 병렬로 연결하면 합성저항은 120÷4=30Ω으로 가장 작으므로 정답은 ②입니다.',
+      explanationHtml:
+        '같은 저항을 병렬로 연결할수록 전체 저항은 작아집니다.<br>120Ω 저항 4개를 모두 병렬로 연결하면 합성저항은 120÷4=30Ω으로 가장 작으므로 정답은 ②입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 1회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20211',
+    number: 55,
+    patch: {
+      text: '그림과 같은 논리회로의 출력 Y는?',
+      html: '그림과 같은 논리회로의 출력 Y는?',
+      choices: [
+        { text: 'Y = AB + AB̅', html: 'Y = AB + AB̅', images: [] },
+        { text: 'Y = A̅B + AB', html: 'Y = A̅B + AB', images: [] },
+        { text: 'Y = A̅B + AB̅', html: 'Y = A̅B + AB̅', images: [] },
+        { text: 'Y = A̅B̅ + AB̅', html: 'Y = A̅B̅ + AB̅', images: [] },
+      ],
+      images: [],
+      answer: 1,
+      explanation:
+        '위쪽 AND 게이트는 A와 B의 반전값을 받아 AB̅가 되고, 아래쪽 AND 게이트는 A와 B를 받아 AB가 됩니다. 두 출력을 OR로 더하면 Y=AB+AB̅이므로 정답은 ①입니다.',
+      explanationHtml:
+        '위쪽 AND 게이트는 A와 B의 반전값을 받아 AB̅가 되고, 아래쪽 AND 게이트는 A와 B를 받아 AB가 됩니다.<br>두 출력을 OR로 더하면 Y=AB+AB̅이므로 정답은 ①입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 1회 배포 PDF 대조 및 원문 이미지 복원',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20212',
+    number: 25,
+    patch: {
+      text: '몰리에르 선도상에서 건조도 x에 관한 설명으로 옳은 것은?',
+      html: '몰리에르 선도상에서 건조도 x에 관한 설명으로 옳은 것은?',
+      choices: [
+        { text: '몰리에르 선도의 포화액선상 건조도는 1이다.', html: '몰리에르 선도의 포화액선상 건조도는 1이다.', images: [] },
+        { text: '액체 70%, 증기 30%인 냉매의 건조도는 0.70이다.', html: '액체 70%, 증기 30%인 냉매의 건조도는 0.70이다.', images: [] },
+        { text: '건조도는 습포화증기 구역 내에서만 존재한다.', html: '건조도는 습포화증기 구역 내에서만 존재한다.', images: [] },
+        { text: '건조도라 함은 과열증기 중 증기에 대한 포화액체의 양을 말한다.', html: '건조도라 함은 과열증기 중 증기에 대한 포화액체의 양을 말한다.', images: [] },
+      ],
+      answer: 3,
+      explanation:
+        '건조도는 습증기 속에서 증기가 차지하는 질량비입니다. 액체와 증기가 함께 있는 습포화증기 구역에서만 의미가 있으므로 정답은 ③입니다.',
+      explanationHtml:
+        '건조도는 습증기 속에서 증기가 차지하는 질량비입니다.<br>액체와 증기가 함께 있는 습포화증기 구역에서만 의미가 있으므로 정답은 ③입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 2회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20212',
+    number: 58,
+    patch: {
+      answer: 1,
+      explanation:
+        '서지 전압은 순간적으로 매우 크게 치솟는 이상 전압입니다. 바리스터는 전압이 급상승하면 저항이 작아져 서지 전류를 흘려 보내므로 보호용으로 사용합니다. 따라서 정답은 ①입니다.',
+      explanationHtml:
+        '서지 전압은 순간적으로 매우 크게 치솟는 이상 전압입니다.<br>바리스터는 전압이 급상승하면 저항이 작아져 서지 전류를 흘려 보내므로 보호용으로 사용합니다. 따라서 정답은 ①입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 2회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20213',
+    number: 2,
+    patch: {
+      text: '에어와셔에서 공기의 입·출구 엔탈피를 i₁, i₂, 입·출구 수온을 tw₁, tw₂라 할 때 수공기비(L/G)를 나타낸 것은? (단, L: 수량, G: 공기량)',
+      html: '에어와셔에서 공기의 입·출구 엔탈피를 i₁, i₂, 입·출구 수온을 tw₁, tw₂라 할 때 수공기비(L/G)를 나타낸 것은? (단, L: 수량, G: 공기량)',
+      choices: [
+        { text: 'L/G = (i₁-i₂)/(tw₂-tw₁)', html: 'L/G = (i₁-i₂)/(tw₂-tw₁)', images: [] },
+        { text: 'L/G = (tw₂-tw₁)/(i₁-i₂)', html: 'L/G = (tw₂-tw₁)/(i₁-i₂)', images: [] },
+        { text: 'L/G = (tw₁-tw₂)·(i₁-i₂)', html: 'L/G = (tw₁-tw₂)·(i₁-i₂)', images: [] },
+        { text: 'L/G = (i₁-i₂)·(tw₂-tw₁)', html: 'L/G = (i₁-i₂)·(tw₂-tw₁)', images: [] },
+      ],
+      answer: 1,
+      explanation:
+        '수공기비 L/G는 물이 잃은 열량과 공기가 얻은 열량이 같다는 열수지에서 구합니다. 따라서 L/G=(i₁-i₂)/(tᴡ₂-tᴡ₁)가 되어 정답은 ①입니다.',
+      explanationHtml:
+        '수공기비 L/G는 물이 잃은 열량과 공기가 얻은 열량이 같다는 열수지에서 구합니다.<br>따라서 L/G=(i₁-i₂)/(t<sub>w2</sub>-t<sub>w1</sub>)가 되어 정답은 ①입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 3회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20213',
+    number: 44,
+    patch: {
+      answer: 1,
+      explanation:
+        '리드관 접합에 사용하는 공구에는 익스팬더, 플레어링 툴, 벤딩 툴 등이 있습니다. 사이징 툴은 관의 치수를 바로잡는 공구로서 이 접합 작업에 사용하는 공구가 아니므로 정답은 ①입니다.',
+      explanationHtml:
+        '리드관 접합에 사용하는 공구에는 익스팬더, 플레어링 툴, 벤딩 툴 등이 있습니다.<br>사이징 툴은 관의 치수를 바로잡는 공구로서 이 접합 작업에 사용하는 공구가 아니므로 정답은 ①입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 3회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20221',
+    number: 46,
+    patch: {
+      text: '캐비테이션 현상의 발생원인으로 옳지 않은 것은?',
+      html: '캐비테이션 현상의 발생원인으로 옳지 않은 것은?',
+      choices: [
+        { text: '흡입양정이 작을 경우', html: '흡입양정이 작을 경우', images: [] },
+        { text: '액체 온도가 높을 경우', html: '액체 온도가 높을 경우', images: [] },
+        { text: '날개차의 원주속도가 클 경우', html: '날개차의 원주속도가 클 경우', images: [] },
+        { text: '날개차의 모양이 적당하지 않을 경우', html: '날개차의 모양이 적당하지 않을 경우', images: [] },
+      ],
+      answer: 1,
+      explanation:
+        '캐비테이션은 펌프 흡입부의 압력이 너무 낮아질 때 발생합니다. 흡입양정이 크거나, 액체 온도와 날개차 속도가 높을수록 발생하기 쉽습니다. 따라서 발생 원인이 아닌 것은 흡입양정이 작은 경우인 ①입니다.',
+      explanationHtml:
+        '캐비테이션은 펌프 흡입부의 압력이 너무 낮아질 때 발생합니다.<br>흡입양정이 크거나, 액체 온도와 날개차 속도가 높을수록 발생하기 쉽습니다. 따라서 발생 원인이 아닌 것은 흡입양정이 작은 경우인 ①입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2022년 1회 배포 PDF 대조 및 원문 이미지 복원',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20222',
+    number: 33,
+    patch: {
+      text: '12kW 펌프의 회전수가 800rpm, 토출량 1.5m³/min인 경우 펌프의 토출량을 1.8m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?',
+      html: '12kW 펌프의 회전수가 800rpm, 토출량 1.5m³/min인 경우 펌프의 토출량을 1.8m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?',
+      choices: [
+        { text: '850rpm', html: '850rpm', images: [] },
+        { text: '960rpm', html: '960rpm', images: [] },
+        { text: '1025rpm', html: '1025rpm', images: [] },
+        { text: '1365rpm', html: '1365rpm', images: [] },
+      ],
+      answer: 2,
+      explanation:
+        '같은 펌프에서는 토출량이 회전수에 비례합니다. N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.',
+      explanationHtml:
+        '같은 펌프에서는 토출량이 회전수에 비례합니다.<br>N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2022년 2회 배포 PDF 대조 및 원문 이미지 복원',
+    },
+  },
+  {
     file: 'safety.js',
     globalName: 'CBT_DATA_SAFETY',
     catalogKey: 'safety',
@@ -75,7 +276,7 @@ for (const fix of fixes) {
   const exported = context.window[fix.globalName];
   const catalogs = Array.isArray(exported) ? exported : [exported];
   const catalog = catalogs.find((item) => item?.key === fix.catalogKey);
-  const round = catalog?.rounds?.find((item) => item.date === fix.date);
+  const round = catalog?.rounds?.find((item) => fix.roundId ? item.id === fix.roundId : item.date === fix.date);
   const question = round?.questions?.find((item) => item.number === fix.number);
   if (!question) throw new Error(`${fix.catalogKey} ${fix.date} ${fix.number}번 문항을 찾지 못했습니다.`);
 
@@ -86,5 +287,5 @@ for (const fix of fixes) {
     throw new Error(`${fix.file}: 대상 문항의 원문 범위를 하나로 특정하지 못했습니다.`);
   }
   fs.writeFileSync(filePath, `${source.slice(0, first)}${after}${source.slice(first + before.length)}`);
-  console.log(`${fix.catalogKey} ${fix.date} ${fix.number}번 반영 완료`);
+  console.log(`${fix.catalogKey} ${fix.roundId || fix.date} ${fix.number}번 반영 완료`);
 }
