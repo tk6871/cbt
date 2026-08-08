@@ -42,8 +42,8 @@
   </main>
   <script>
     const files = [
-      'assets/hvac/assets/questions/2021_1/32.jpg', 'assets/hvac/assets/questions/2021_1/40.jpg',
-      'assets/hvac/assets/questions/2021_1/47.jpg', 'assets/hvac/assets/questions/2021_2/05.jpg',
+      'assets/hvac/assets/questions/2021_1/40.jpg', 'assets/hvac/assets/questions/2021_1/47.jpg',
+      'assets/hvac/assets/questions/2021_2/05.jpg',
       'assets/hvac/assets/questions/2021_2/29.jpg', 'assets/hvac/assets/questions/2022_1/31.jpg',
       'assets/hvac/assets/questions/2022_1/45.jpg', 'assets/hvac/assets/questions/2022_2/15.jpg',
       'assets/hvac/assets/questions/2022_2/16.jpg', 'assets/hvac/assets/questions/2022_2/28.jpg',
@@ -52,7 +52,7 @@
       'assets/hvac/assets/questions/2022_3/26.jpg', 'assets/hvac/assets/questions/2022_3/45.jpg',
       'assets/hvac/assets/questions/2022_3/48.jpg', 'assets/hvac/assets/questions/2023_1/11.jpg',
       'assets/hvac/assets/questions/2023_2/07.jpg', 'assets/hvac/assets/questions/2023_2/41.jpg',
-      'assets/hvac/assets/questions/2023_3/03.jpg', 'assets/hvac/assets/questions/2023_3/45.jpg',
+      'assets/hvac/assets/questions/2023_3/45.jpg',
       'assets/hvac/assets/questions/2024_1/50.jpg', 'assets/hvac/assets/questions/2024_1/53.jpg',
       'assets/hvac/assets/questions/2024_2/30.jpg', 'assets/hvac/assets/questions/2024_3/58.jpg',
       'assets/hvac/assets/questions/2025_1/45.jpg', 'assets/hvac/assets/questions/2025_2/39.jpg',
@@ -114,6 +114,16 @@
       localStorage.setItem(`${storageKey}-index`, String(index));
     }
 
+    function saveCurrentPoints() {
+      const file = files[index];
+      if (!points.length) delete savedMap[file];
+      else savedMap[file] = {
+        points: [...points],
+        hotspots: points.length === 4 ? makeHotspots(points) : []
+      };
+      persist();
+    }
+
     function renderMarkers() {
       stage.querySelectorAll('.marker').forEach((element) => element.remove());
       points.forEach((point, pointIndex) => {
@@ -132,10 +142,12 @@
       pathLabel.textContent = file;
       image.src = `../${file}`;
       points = savedMap[file]?.points ? [...savedMap[file].points] : [];
-      const done = Object.keys(savedMap).filter((key) => savedMap[key]?.hotspots?.length === 4).length;
+      const done = files.filter((file) => savedMap[file]?.hotspots?.length === 4).length;
       progress.textContent = `(${index + 1}/${files.length} · 완료 ${done})`;
-      savedLabel.hidden = points.length !== 4;
-      savedLabel.textContent = points.length === 4 ? '이 이미지는 저장되었습니다. 필요하면 초기화 후 다시 찍을 수 있습니다.' : '';
+      savedLabel.hidden = points.length === 0;
+      savedLabel.textContent = points.length === 4
+        ? '저장 완료: ①·②·③·④ 네 점이 모두 저장되었습니다.'
+        : `현재 ${points.length}/4개 저장됨: 다음은 ${'①②③④'[points.length]} 중심을 누르세요.`;
       document.querySelector('#prev').disabled = index === 0;
       document.querySelector('#next').disabled = index === files.length - 1;
       renderMarkers();
@@ -147,10 +159,7 @@
       const rect = image.getBoundingClientRect();
       if (!rect.width || !rect.height) return;
       points.push({ x: round((event.clientX - rect.left) / rect.width * 100), y: round((event.clientY - rect.top) / rect.height * 100) });
-      if (points.length === 4) {
-        savedMap[files[index]] = { points: [...points], hotspots: makeHotspots(points) };
-        persist();
-      }
+      saveCurrentPoints();
       show();
     });
     document.querySelector('#prev').onclick = () => { index -= 1; show(); };
@@ -158,8 +167,7 @@
     document.querySelector('#undo').onclick = () => {
       if (!points.length) return;
       points.pop();
-      delete savedMap[files[index]];
-      persist();
+      saveCurrentPoints();
       show();
     };
     document.querySelector('#reset').onclick = () => {
@@ -169,7 +177,14 @@
       show();
     };
     document.querySelector('#export').onclick = () => {
-      const output = Object.fromEntries(Object.entries(savedMap).map(([file, value]) => [file, value.hotspots]));
+      const completed = files
+        .filter((file) => savedMap[file]?.hotspots?.length === 4)
+        .map((file) => [file, savedMap[file]]);
+      if (!completed.length) {
+        alert('①·②·③·④ 네 점을 모두 저장한 이미지가 아직 없습니다.');
+        return;
+      }
+      const output = Object.fromEntries(completed.map(([file, value]) => [file, value.hotspots]));
       const blob = new Blob([JSON.stringify(output, null, 2)], { type: 'application/json' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);

@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '2.5.1',
+      scope: 'industrial',
+      date: '2026.08.08',
+      title: '잘린 복원 이미지와 수동 보정 저장 수정',
+      summary: '잘려 있던 공조 복원문제 두 장을 원문에서 다시 만들고, 수동 답안 좌표가 저장·표시·내보내기 되지 않던 문제를 수정했습니다.',
+      tags: ['복원 이미지', '수동 보정', 'JSON 내보내기', '답안 직접 선택'],
+      changes: [
+        '2021년 1회 32번의 잘린 문제와 보기를 배포 PDF에서 다시 추출하고 기존 방식으로 업스케일링했습니다.',
+        '2023년 3회 3번은 PDF의 왼쪽 아래 ①·②와 오른쪽 위 ③·④를 문제 순서대로 한 장에 이어 붙여 전체 보기를 복원했습니다.',
+        '수동 보정 화면에서 첫 번째부터 세 번째까지 누른 점이 즉시 사라지던 저장 오류를 수정했습니다.',
+        '누른 번호를 화면에 표시하고 현재 몇 개가 저장됐는지 안내하며, 네 점이 완료된 문제만 JSON으로 내보냅니다.',
+        '복원된 두 문제의 직접 선택 좌표를 추가해 지원 범위가 983장으로 늘었고 수동 보정 대상은 37장으로 줄었습니다.',
+        '서비스워커 캐시를 v257로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5',
       scope: 'industrial',
       date: '2026.08.08',
@@ -770,8 +786,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5';
+  changelog.versions.industrial = '2.5.1';
   changelog.versions.jewelry = '2.4.9';
-  changelog.currentVersion = '2.5';
+  changelog.currentVersion = '2.5.1';
   window.CBT_CHANGELOG = changelog;
 })();
