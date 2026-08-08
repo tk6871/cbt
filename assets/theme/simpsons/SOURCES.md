@@ -12,6 +12,11 @@
   - 출처 페이지: https://lardlad.com/episodes/season-7/3F05-King-Size-Homer/
   - 원본 스크린그랩 번호: 008, 021, 034, 069, 088, 107, 118, 126
   - 768×576 JPEG로 메뉴 아이콘과 작은 장면 모음에 사용하며 추가 업스케일링 없이 사용
+- `homer-serious-hd.jpg`, `homer-bart-hospital-hd.jpg`
+  - 《심슨 가족》 시즌 2 `Bart the Daredevil` 본편의 호머·바트 장면 2장
+  - 출처 페이지: https://lardlad.com/episodes/season-2/7F06-Bart-the-Daredevil/
+  - 원본 스크린그랩 번호: 100, 113
+  - 768×576 JPEG 원본 화질이 메뉴 아이콘과 카드에 충분해 추가 업스케일링 없이 사용
 - `mr-burns-excellent.jpg`
   - 손가락을 맞대고 웃는 번즈의 `Excellent` 장면
   - 사용자가 제공한 420×315 JPEG를 합격 엔진 아이콘과 작은 장면 모음에 사용
