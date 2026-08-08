@@ -5,6 +5,24 @@
 
   const entries = [
     {
+      version: '2.5.3',
+      scope: 'industrial',
+      date: '2026.08.08',
+      title: '풀이 화면 답안 방식 안내',
+      summary: '문제 풀이 상단에서 현재 답안 선택 방식을 확인하고, 이미지 답안 선택 표시는 보기 내용을 가리지 않는 체크 방식으로 개선했습니다.',
+      tags: ['답안 선택', '풀이 중 설정', '선택 표시', '모바일 안내'],
+      changes: [
+        '학습·CBT 풀이 상단에 현재 사용 중인 답안 선택 방식을 항상 표시합니다.',
+        '안내 바를 누르면 설정창의 답안 선택 방식 항목으로 바로 이동합니다.',
+        '두 줄 답안이나 가로 배치에서 선택 영역이 다른 글자를 덮지 않도록 넓은 색상 박스를 작은 체크 마커로 바꿨습니다.',
+        '설정에서 체크 마커와 영역 색상 박스 중 원하는 이미지 답안 선택 표시를 고를 수 있으며 기본값은 체크 마커입니다.',
+        '영역 색상 박스는 이미지의 실제 글자 픽셀을 분석해 두 줄 답안을 모두 감싸면서도 인접 보기 경계를 넘지 않도록 자동 조절합니다.',
+        '이미지 아래에 선택한 답 번호와 같은 답을 다시 누르면 취소된다는 안내를 표시합니다.',
+        '휴대폰에서는 안내 문구를 짧게 줄여 문제 화면을 과도하게 가리지 않도록 했습니다.',
+        '서비스워커 캐시를 v259로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.2',
       scope: 'industrial',
       date: '2026.08.08',
@@ -802,8 +820,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.2';
+  changelog.versions.industrial = '2.5.3';
   changelog.versions.jewelry = '2.4.9';
-  changelog.currentVersion = '2.5.2';
+  changelog.currentVersion = '2.5.3';
   window.CBT_CHANGELOG = changelog;
 })();

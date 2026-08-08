@@ -44,6 +44,7 @@ type VisualTransitionPhase = 'leaving' | 'entering' | null;
 type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-leaving' | 'home-entering' | null;
 type SunjaeResultPhase = 'grading' | 'reveal';
 type AnswerLayout = 'classic' | 'inline' | 'hotspot';
+type HotspotIndicator = 'marker' | 'area';
 type ExamResult = {
   score: number;
   correct: number;
@@ -180,6 +181,12 @@ const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
 const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
 const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' || savedAnswerLayout === 'hotspot' ? savedAnswerLayout : 'classic');
+const savedHotspotIndicator = localStorage.getItem('unified-cbt-hotspot-indicator');
+const hotspotIndicator = ref<HotspotIndicator>(savedHotspotIndicator === 'area' ? 'area' : 'marker');
+const answerLayoutLabel = computed(() => answerLayout.value === 'hotspot'
+  ? '이미지 직접 선택'
+  : answerLayout.value === 'inline' ? '답안 문구' : '기존 번호 버튼');
+const sessionAnswerLayoutSettingRef = ref<HTMLElement | null>(null);
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
@@ -1574,6 +1581,21 @@ function setAnswerLayout(layout: AnswerLayout): void {
     : layout === 'inline' ? '번호 옆에 답안 문구를 표시합니다.' : '기존 큰 번호 답안으로 돌아왔습니다.');
 }
 
+function setHotspotIndicator(indicator: HotspotIndicator): void {
+  hotspotIndicator.value = indicator;
+  localStorage.setItem('unified-cbt-hotspot-indicator', indicator);
+  showToast(indicator === 'area' ? '선택한 답을 영역 색상 박스로 표시합니다.' : '선택한 답을 체크 마커로 표시합니다.');
+}
+
+async function openAnswerLayoutSettings(): Promise<void> {
+  settingsOpen.value = true;
+  await nextTick();
+  sessionAnswerLayoutSettingRef.value?.scrollIntoView({
+    behavior: motionAllowed.value ? 'smooth' : 'auto',
+    block: 'center',
+  });
+}
+
 function sunjaeRotationLabel(seconds: number): string {
   if (!seconds) return '끔';
   return seconds < 60 ? `${seconds}초` : `${seconds / 60}분`;
@@ -2782,6 +2804,13 @@ onBeforeUnmount(() => {
             <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
             <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
           </div>
+          <div class="hotspot-indicator-setting">
+            <span>이미지 답안 선택 표시</span>
+            <div>
+              <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>기존 방식 · 선택 범위 강조</small></button>
+            </div>
+          </div>
           <div class="standard-solving-list">
             <span><b>✓</b><strong>이미지 잘림 방지</strong></span>
             <span><b>✓</b><strong>OMR 자동 따라가기</strong></span>
@@ -2854,6 +2883,17 @@ onBeforeUnmount(() => {
         <button v-else type="button" class="timer-button">남은 시간 <strong>{{ formattedTime }}</strong></button>
         <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
       </div>
+      <button
+        type="button"
+        class="session-answer-guide"
+        :aria-label="`현재 답안 선택 방식은 ${answerLayoutLabel}입니다. 설정에서 답안 클릭 방식을 변경합니다.`"
+        @click="openAnswerLayoutSettings"
+      >
+        <span>NEW</span>
+        <strong>답안: {{ answerLayoutLabel }}</strong>
+        <small>설정에서 답안 클릭 방식을 바꿀 수 있어요.</small>
+        <b>변경 ›</b>
+      </button>
     </header>
 
     <button v-if="sessionMenuOpen" class="session-menu-backdrop" type="button" aria-label="풀이 메뉴 닫기" @click="sessionMenuOpen = false" />
@@ -2891,6 +2931,7 @@ onBeforeUnmount(() => {
               :calculation-mode="session.calculationMode"
               :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
               :answer-layout="answerLayout"
+              :hotspot-indicator="hotspotIndicator"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
               @toggle-keep="toggleKeep(item)"
@@ -3009,12 +3050,19 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
           </div>
         </div>
-        <div class="setting-group standard-solving-setting">
+        <div ref="sessionAnswerLayoutSettingRef" class="setting-group standard-solving-setting">
           <span>답안 선택 방식</span>
           <div class="answer-layout-options">
             <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
             <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
             <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
+          </div>
+          <div class="hotspot-indicator-setting">
+            <span>이미지 답안 선택 표시</span>
+            <div>
+              <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>기존 방식 · 선택 범위 강조</small></button>
+            </div>
           </div>
           <div class="standard-solving-list">
             <span><b>✓</b><strong>이미지 비율·잘림 자동 보호</strong></span>

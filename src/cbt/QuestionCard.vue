@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { isImagePrimary } from './catalog';
 import { calculationGuideFor, calculationSource } from './calculationGuide';
 import type { QuestionItem, StudyMode } from './types';
@@ -15,6 +15,7 @@ const props = defineProps<{
   calculationMode?: boolean;
   imageAnswerMode?: 'buttons' | 'hotspot';
   answerLayout?: 'classic' | 'inline' | 'hotspot';
+  hotspotIndicator?: 'marker' | 'area';
 }>();
 
 defineEmits<{
@@ -31,6 +32,9 @@ const correctSelected = computed(() => props.selected === props.item.question.an
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationValues = computed(() => calculationSource(props.item).match(/-?\d+(?:\.\d+)?\s*(?:kW|W|kcal\/h|kcal|kg\/s|kg\/h|kg|m³\/s|m³\/min|m³\/h|m³|m²|m\/s|mm|cm|m|kPa|MPa|Pa|bar|℃|K|V|A|Ω|%|rpm)/gi)?.slice(0, 8) || []);
 const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
+const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
+const selectedAreaHighlightStyle = computed(() => props.selected ? answerHighlightStyles.value[props.selected] : undefined);
+const sourceImageRef = ref<HTMLImageElement | null>(null);
 const imageZoomOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
 
@@ -54,6 +58,74 @@ function choiceClass(index: number): Record<string, boolean> {
     wrong: props.mode === 'learn' && props.selected === number && number !== props.item.question.answer,
   };
 }
+
+function hotspotStyle(hotspot: NonNullable<QuestionItem['question']['answerHotspots']>[number]): Record<string, string> {
+  return { left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` };
+}
+
+function calculateAnswerHighlights(image: HTMLImageElement): void {
+  if (!image.naturalWidth || !image.naturalHeight || !verifiedHotspots.value.length) return;
+
+  const scale = Math.min(1, 1000 / image.naturalWidth);
+  const width = Math.max(1, Math.round(image.naturalWidth * scale));
+  const height = Math.max(1, Math.round(image.naturalHeight * scale));
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext('2d', { willReadFrequently: true });
+  if (!context) return;
+
+  try {
+    context.drawImage(image, 0, 0, width, height);
+    const pixels = context.getImageData(0, 0, width, height).data;
+    const result: Record<number, Record<string, string>> = {};
+
+    for (const hotspot of verifiedHotspots.value) {
+      const cellLeft = Math.max(0, Math.floor(width * hotspot.x / 100));
+      const cellTop = Math.max(0, Math.floor(height * hotspot.y / 100));
+      const cellRight = Math.min(width, Math.ceil(width * (hotspot.x + hotspot.width) / 100));
+      const cellBottom = Math.min(height, Math.ceil(height * (hotspot.y + hotspot.height) / 100));
+      const inset = Math.max(2, Math.round(2 * scale));
+      const columnInk = new Uint16Array(Math.max(0, cellRight - cellLeft));
+      const rowInk = new Uint16Array(Math.max(0, cellBottom - cellTop));
+
+      for (let y = cellTop + inset; y < cellBottom - inset; y += 1) {
+        for (let x = cellLeft + inset; x < cellRight - inset; x += 1) {
+          const offset = (y * width + x) * 4;
+          if (pixels[offset + 3] < 80) continue;
+          const luminance = pixels[offset] * .2126 + pixels[offset + 1] * .7152 + pixels[offset + 2] * .0722;
+          if (luminance < 188) {
+            columnInk[x - cellLeft] += 1;
+            rowInk[y - cellTop] += 1;
+          }
+        }
+      }
+
+      const inkColumns = [...columnInk.keys()].filter((index) => columnInk[index] >= 2);
+      const inkRows = [...rowInk.keys()].filter((index) => rowInk[index] >= 2);
+      if (!inkColumns.length || !inkRows.length) continue;
+
+      const padding = Math.max(5, Math.round(7 * scale));
+      const left = Math.max(cellLeft, cellLeft + inkColumns[0] - padding);
+      const top = Math.max(cellTop, cellTop + inkRows[0] - padding);
+      const right = Math.min(cellRight, cellLeft + inkColumns[inkColumns.length - 1] + padding + 1);
+      const bottom = Math.min(cellBottom, cellTop + inkRows[inkRows.length - 1] + padding + 1);
+      result[hotspot.choice] = {
+        left: `${left / width * 100}%`,
+        top: `${top / height * 100}%`,
+        width: `${Math.max(1, right - left) / width * 100}%`,
+        height: `${Math.max(1, bottom - top) / height * 100}%`,
+      };
+    }
+    answerHighlightStyles.value = result;
+  } catch {
+    answerHighlightStyles.value = {};
+  }
+}
+
+watch(verifiedHotspots, (hotspots) => {
+  if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
+}, { flush: 'post' });
 </script>
 
 <template>
@@ -96,11 +168,13 @@ function choiceClass(index: number): Record<string, boolean> {
       >
         <div class="source-image-stage">
           <img
+            ref="sourceImageRef"
             class="source-question-image"
             :src="item.question.sourceImage"
             :alt="`${item.question.number}번 문제 원문`"
             loading="lazy"
             decoding="async"
+            @load="calculateAnswerHighlights($event.currentTarget as HTMLImageElement)"
           >
           <button
             v-for="hotspot in verifiedHotspots"
@@ -108,13 +182,30 @@ function choiceClass(index: number): Record<string, boolean> {
             type="button"
             class="image-answer-hotspot"
             :class="choiceClass(hotspot.choice - 1)"
-            :style="{ left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` }"
+            :style="hotspotStyle(hotspot)"
             :aria-label="`이미지에서 ${hotspot.choice}번 선택`"
             @click="$emit('choose', hotspot.choice)"
-          ></button>
+          >
+            <span
+              v-if="selected === hotspot.choice && (hotspotIndicator !== 'area' || !answerHighlightStyles[hotspot.choice])"
+              class="image-answer-pick-marker"
+              aria-hidden="true"
+            >✓</span>
+          </button>
+          <span
+            v-if="selected && hotspotIndicator === 'area' && selectedAreaHighlightStyle"
+            class="image-answer-area-highlight"
+            :class="{ correct: mode === 'learn' && selected === item.question.answer, wrong: mode === 'learn' && selected !== item.question.answer }"
+            :style="selectedAreaHighlightStyle"
+            aria-hidden="true"
+          ></span>
         </div>
         <div class="source-image-actions">
-          <small v-if="verifiedHotspots.length"><span aria-hidden="true">☝</span> 이미지의 ①·②·③·④를 눌러 답하세요</small>
+          <small v-if="verifiedHotspots.length && selected" class="source-image-selected-answer">
+            <strong>{{ circles[selected - 1] || selected }}번 선택됨</strong>
+            <span>같은 답을 다시 누르면 취소</span>
+          </small>
+          <small v-else-if="verifiedHotspots.length"><span aria-hidden="true">☝</span> 이미지의 ①·②·③·④를 눌러 답하세요</small>
           <span v-else></span>
           <button
             type="button"
