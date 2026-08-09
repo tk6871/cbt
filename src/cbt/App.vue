@@ -2,6 +2,7 @@
 import { animate, stagger } from 'motion';
 import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
+  GEM_APPRAISER_TARGET_KEY,
   latestSubjects,
   loadCatalogs,
   loadReferenceRounds,
@@ -126,6 +127,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
   'gem-appraiser': { icon: '◇', className: 'jewel-red', description: '보석학·감별·다이아몬드' },
+  'gem-appraiser-target': { icon: '✦', className: 'jewel-target', description: '큐넷 4과목 통합 모의시험' },
   'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
   'precious-craftsman': { icon: '◈', className: 'jewel-teal', description: '재료·가공·작업안전' },
   'precious-master': { icon: '✦', className: 'jewel-purple', description: '귀금속가공 종합' },
@@ -206,6 +208,7 @@ const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
+const sourceCatalogs = catalogs.filter((catalog) => !catalog.isVirtual);
 const currentSunjaeImage = computed(() => sunjaeImages[sunjaeImageIndex.value % sunjaeImages.length] || sunjaeThemeBanner);
 const themeBackdropStyle = computed<Record<string, string>>(() => {
   if (visualStyle.value === 'sunjae') return { '--theme-main-photo': `url("${currentSunjaeImage.value}")` };
@@ -252,8 +255,16 @@ const visibleRounds = computed(() => {
 });
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
+const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_APPRAISER_TARGET_KEY)?.rounds || [])
+  .flatMap((round) => round.questions.map((question) => ({
+    round,
+    question,
+    subject: subjectFor(round, question),
+    id: questionId(round, question),
+  })))
+  .map((item) => [item.id, item]));
 const allItems = [
-  ...catalogs.flatMap((catalog) => sortedRounds(catalog)),
+  ...sourceCatalogs.flatMap((catalog) => sortedRounds(catalog)),
   ...referenceRounds,
 ].flatMap((round) => round.questions.map((question) => ({
   round,
@@ -262,7 +273,12 @@ const allItems = [
   id: questionId(round, question),
 })));
 const itemMap = new Map(allItems.map((item) => [item.id, item]));
-const legacyWrongItems = computed(() => allItems.filter((item) => item.round.qualificationKey === selectedKey.value && studyStore.wrong[item.id]));
+const legacyWrongItems = computed(() => allItems.filter((item) => {
+  const targetItem = selectedCatalog.value.isVirtual
+    ? item.question.targetRelevance !== 'peripheral'
+    : item.round.qualificationKey === selectedKey.value;
+  return targetItem && studyStore.wrong[item.id];
+}));
 const wrongRoundGroups = computed(() => {
   const groups = new Map<string, { roundId: string; title: string; year: number; session: string; finishedAt: number; items: QuestionItem[]; attempts: number }>();
   recentExamRecords.value.forEach((record) => {
@@ -342,11 +358,16 @@ const roundRecordMap = computed(() => {
   return records;
 });
 const lastRoundRecord = computed(() => recentExamRecords.value.find((record) => record.roundId && (!record.mode || record.mode === 'exam')) || null);
-const searchResults = computed(() => searchResultIds.value.map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item)));
+const searchResults = computed(() => {
+  const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap;
+  return searchResultIds.value.map((id) => lookup.get(id)).filter((item): item is QuestionItem => Boolean(item));
+});
 const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
 const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
 const featureImageItem = computed(() => {
-  const scoped = allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
+  const scoped = selectedCatalog.value.isVirtual
+    ? [...targetItemMap.values()]
+    : allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
   return scoped.find((item) => item.question.sourceImage)
     || scoped.find((item) => item.question.images?.length || item.question.choices.some((choice) => choice.images?.length))
     || scoped[0];
@@ -717,7 +738,7 @@ function configureQualification(key: string): void {
   curriculum.value = 'all-mapped';
   calculationSubjectFilter.value = 'all';
   calculationRoundFilter.value = 'all';
-  setDefaultYears(quickPreset.value);
+  setDefaultYears(key === GEM_APPRAISER_TARGET_KEY ? 0 : quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
   void refreshExamHistory();
 }
@@ -880,7 +901,7 @@ function requestSearch(): void {
     searchWorker?.postMessage({
       type: 'search',
       query: searchQuery.value,
-      qualificationKey: selectedKey.value,
+      qualificationKey: selectedCatalog.value.isVirtual ? undefined : selectedKey.value,
     });
   }, 120);
 }
@@ -998,7 +1019,8 @@ function startBalancedExam(): void {
   }
   const selected = subjects.flatMap((subject) => {
     const pool = items.filter((item) => item.subject === subject);
-    return shuffle(pool).slice(0, Math.min(20, pool.length));
+    if (!selectedCatalog.value.isVirtual) return shuffle(pool).slice(0, Math.min(20, pool.length));
+    return selectGemTargetExamItems(pool);
   });
   if (selected.length < subjects.length * 20) {
     showToast('일부 과목은 문제가 부족해 가능한 문항만 출제했습니다.');
@@ -1008,6 +1030,39 @@ function startBalancedExam(): void {
     `${selectedCatalog.value.shortName || selectedCatalog.value.name} · ${yearFrom.value}~${yearTo.value} 랜덤시험`,
     selected,
   );
+}
+
+function selectGemTargetExamItems(pool: QuestionItem[]): QuestionItem[] {
+  const direct = pool.filter((item) => item.question.targetRelevance === 'core');
+  const related = pool.filter((item) => item.question.targetRelevance === 'related');
+  const selected = takeDiverseItems(direct, Math.min(15, direct.length));
+  selected.push(...takeDiverseItems(related, Math.min(5, related.length), new Set(selected.map((item) => item.id))));
+  if (selected.length < 20) {
+    selected.push(...takeDiverseItems(
+      [...direct, ...related],
+      20 - selected.length,
+      new Set(selected.map((item) => item.id)),
+    ));
+  }
+  return shuffle(selected);
+}
+
+function takeDiverseItems(pool: QuestionItem[], count: number, excluded = new Set<string>()): QuestionItem[] {
+  const selected: QuestionItem[] = [];
+  const roundCount = new Map<string, number>();
+  const ordered = shuffle(pool).filter((item) => !excluded.has(item.id));
+  const addEligible = (allowExtraFromRound: boolean): void => {
+    for (const item of ordered) {
+      if (selected.length >= count || selected.some((entry) => entry.id === item.id)) continue;
+      const roundId = item.question._originRoundId || item.round.id;
+      if (!allowExtraFromRound && (roundCount.get(roundId) || 0) >= 2) continue;
+      selected.push(item);
+      roundCount.set(roundId, (roundCount.get(roundId) || 0) + 1);
+    }
+  };
+  addEligible(false);
+  if (selected.length < count) addEligible(true);
+  return selected;
 }
 
 function startRangeLearning(): void {
@@ -1969,7 +2024,7 @@ onMounted(async () => {
   motionMediaQuery.addEventListener?.('change', motionPreferenceHandler);
   motionMediaQuery.addListener?.(motionPreferenceHandler);
   setFontScale(fontScale.value);
-  setDefaultYears(10);
+  setDefaultYears(selectedCatalog.value.isVirtual ? 0 : 10);
   await hydrateIndexedDb();
   await refreshExamHistory();
   setupSearchWorker();
@@ -2123,7 +2178,7 @@ onBeforeUnmount(() => {
                     <label><span>종목</span><select :value="selectedKey" @change="updateQualificationFromSetup"><option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option></select></label>
                     <label><span>시작</span><select v-model.number="yearFrom"><option v-for="year in [...availableYears].reverse()" :key="year" :value="year">{{ year }}년</option></select></label>
                     <label><span>끝</span><select v-model.number="yearTo"><option v-for="year in availableYears" :key="year" :value="year">{{ year }}년</option></select></label>
-                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함' }}</option><option value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac'" value="legacy-original">구 4과목 원형</option></select></label>
+                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : (selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac'" value="legacy-original">구 4과목 원형</option></select></label>
                   </div>
                   <div class="sunjae-ticket-summary"><span><b>{{ yearFrom }}~{{ yearTo }}</b>년</span><span><b>{{ rangeRounds.length }}</b>회차</span><span><b>{{ selectedItems.length.toLocaleString() }}</b>문제</span></div>
                 </div>
@@ -2245,8 +2300,8 @@ onBeforeUnmount(() => {
               <label class="curriculum-control">
                 <span>출제 체계</span>
                 <select v-model="curriculum">
-                  <option value="all-mapped">{{ selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함' }}</option>
-                  <option value="current">현재 과목 체계만</option>
+                  <option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : (selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option>
+                  <option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option>
                   <option v-if="selectedKey === 'hvac'" value="legacy-original">구 4과목 원형</option>
                 </select>
               </label>
@@ -2257,6 +2312,10 @@ onBeforeUnmount(() => {
               <div><span>출제 가능</span><strong>{{ selectedItems.length.toLocaleString() }}문제</strong><small>과목별 균형 출제</small></div>
               <div><span>실전 구성</span><strong>{{ selectedSubjects.length }}과목 × 20문제</strong><small>{{ officialRule?.note || '공식 기준 확인 필요' }}</small></div>
             </div>
+
+            <p v-if="selectedCatalog.isVirtual" class="target-exam-note">
+              보석감정사 옛 4과목은 현재 큐넷 4과목으로 직접 통폐합하고, 귀금속가공 3종목의 보석 관련 문항만 유사 보강으로 사용합니다. 실전 랜덤시험은 과목마다 직접 연계 15문제와 유사 보강 최대 5문제를 섞습니다.
+            </p>
 
             <div class="subject-strip">
               <article v-for="(subject, index) in selectedSubjects" :key="subject">

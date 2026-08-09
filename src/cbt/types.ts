@@ -19,6 +19,10 @@ export type Question = {
   imageOnly?: boolean;
   _subject?: string;
   sourceSubject?: string;
+  targetSubject?: string;
+  targetRelevance?: 'core' | 'related' | 'peripheral';
+  targetMapping?: 'legacy-subject' | 'related-concept';
+  sourceQualification?: string;
   _originRoundId?: string;
   _originalNumber?: number;
   answerHotspots?: Array<{ choice: number; x: number; y: number; width: number; height: number }>;
@@ -37,6 +41,7 @@ export type Round = {
   subjects: string[];
   questions: Question[];
   kind?: string;
+  sourceQualification?: string;
 };
 
 export type Catalog = {
@@ -44,6 +49,7 @@ export type Catalog = {
   name: string;
   shortName?: string;
   rounds: Round[];
+  isVirtual?: boolean;
 };
 
 export type QuestionItem = {
