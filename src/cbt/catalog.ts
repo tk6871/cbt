@@ -4,6 +4,16 @@ import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
 const primaryKeys = ['hvac', 'safety', 'energy', 'maintenance'];
 
+export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
+export const gemAppraiserTargetSubjects = ['보석 특성', '보석 감별', '다이아몬드 감정', '보석 가공'];
+
+const legacyGemSubjectMap: Record<string, string> = {
+  보석학일반: '보석 특성',
+  보석감별법: '보석 감별',
+  다이아몬드감정법: '다이아몬드 감정',
+  보석가공기법: '보석 가공',
+};
+
 function prepareCatalog(source: Catalog): Catalog {
   const rounds = (source.rounds || []).map((round) => ({
     ...round,
@@ -24,7 +34,8 @@ function prepareCatalog(source: Catalog): Catalog {
 
 export function loadCatalogs(): Catalog[] {
   if (window.CBT_APP_SPACE === 'jewelry') {
-    return (window.CBT_DATA_JEWELRY || []).map(prepareCatalog);
+    const sourceCatalogs = (window.CBT_DATA_JEWELRY || []).map(prepareCatalog);
+    return [createGemAppraiserTargetCatalog(sourceCatalogs), ...sourceCatalogs];
   }
   const sources = [
     window.CBT_DATA_HVAC,
@@ -36,6 +47,51 @@ export function loadCatalogs(): Catalog[] {
   return sources
     .filter((item) => primaryKeys.includes(item.key))
     .map(prepareCatalog);
+}
+
+function targetSubjectFor(sourceCatalog: Catalog, question: Question): string {
+  if (sourceCatalog.key === 'gem-appraiser') {
+    return legacyGemSubjectMap[question.sourceSubject || ''] || question.targetSubject || '보석 특성';
+  }
+  return question.targetSubject || '보석 특성';
+}
+
+function createGemAppraiserTargetCatalog(sourceCatalogs: Catalog[]): Catalog {
+  const rounds: Round[] = sourceCatalogs.flatMap((sourceCatalog) => sourceCatalog.rounds.flatMap((sourceRound) => {
+    const targetMapping: NonNullable<Question['targetMapping']> = sourceCatalog.key === 'gem-appraiser'
+      ? 'legacy-subject'
+      : 'related-concept';
+    const questions = sourceRound.questions
+      .filter((question) => question.targetRelevance !== 'peripheral')
+      .map((question) => ({
+        ...question,
+        _originRoundId: question._originRoundId || sourceRound.id,
+        _originalNumber: question._originalNumber || question.number,
+        _subject: targetSubjectFor(sourceCatalog, question),
+        targetSubject: targetSubjectFor(sourceCatalog, question),
+        targetMapping,
+        sourceQualification: sourceRound.shortQualification || sourceRound.qualification || sourceCatalog.shortName || sourceCatalog.name,
+      }));
+    if (!questions.length) return [];
+    return [{
+      ...sourceRound,
+      id: `${GEM_APPRAISER_TARGET_KEY}-${sourceRound.id}`,
+      qualificationKey: GEM_APPRAISER_TARGET_KEY,
+      qualification: '보석감정산업기사 모의시험',
+      shortQualification: '보석감정산업기사',
+      subjects: gemAppraiserTargetSubjects,
+      questions,
+      sourceQualification: sourceRound.shortQualification || sourceRound.qualification || sourceCatalog.shortName || sourceCatalog.name,
+    }];
+  }));
+
+  return {
+    key: GEM_APPRAISER_TARGET_KEY,
+    name: '보석감정산업기사 모의시험',
+    shortName: '보석감정산업기사',
+    isVirtual: true,
+    rounds,
+  };
 }
 
 export function loadReferenceRounds(): Round[] {

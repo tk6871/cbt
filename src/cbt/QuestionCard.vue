@@ -151,6 +151,9 @@ watch(verifiedHotspots, (hotspots) => {
       </div>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
+      <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
+        {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
+      </span>
       <button v-if="mode === 'learn'" type="button" class="ai-question-button" @click="$emit('askAi')">✦ AI 질문</button>
       <button
         type="button"
