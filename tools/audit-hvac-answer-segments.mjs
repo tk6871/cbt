@@ -17,6 +17,10 @@ const missingImages = [];
 const missingChoices = [];
 let segmentCount = 0;
 let closeAnswerPairs = 0;
+const minimumWrappedLines = [
+  ['assets/hvac/assets/questions/2023_2/25.jpg', 4, 3],
+  ['assets/hvac/assets/questions/2023_3/47.jpg', 4, 2],
+];
 
 for (const [image, imageHotspots] of Object.entries(hotspots)) {
   const choices = imageHotspots.map((item) => item.choice).sort((left, right) => left - right);
@@ -27,6 +31,13 @@ for (const [image, imageHotspots] of Object.entries(hotspots)) {
     if (hotspot.width < 2 || hotspot.height < 2) {
       errors.push(`${image}/${hotspot.choice}: 클릭 구역이 너무 작습니다. ${JSON.stringify(hotspot)}`);
     }
+  }
+}
+
+for (const [image, choice, minimum] of minimumWrappedLines) {
+  const count = segments[image]?.[choice]?.length || 0;
+  if (count < minimum) {
+    errors.push(`${image}/${choice}: 여러 줄 답안이 ${count}줄만 잡혔습니다. 최소 ${minimum}줄이어야 합니다.`);
   }
 }
 

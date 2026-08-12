@@ -127,13 +127,18 @@ def main() -> None:
     parser.add_argument("--generated-hotspots", type=Path)
     parser.add_argument("--reviewed-hotspots", type=Path)
     parser.add_argument("--segments", type=Path)
+    parser.add_argument("--include", action="append", default=[])
     args = parser.parse_args()
 
     generated = read_typescript_object(args.generated_hotspots or args.root / "src/cbt/generatedHvacHotspots.ts")
     reviewed = read_typescript_object(args.reviewed_hotspots or args.root / "src/cbt/reviewedHvacHotspots.ts")
     hotspots = {**generated, **reviewed}
     segments = read_typescript_object(args.segments or args.root / "src/cbt/generatedHvacAnswerSegments.ts")
-    paths = sorted(hotspots, key=natural_key)
+    selected = set(args.include)
+    paths = sorted((path for path in hotspots if not selected or path in selected), key=natural_key)
+    if selected - set(paths):
+        missing = ", ".join(sorted(selected - set(paths)))
+        raise ValueError(f"좌표 데이터에 없는 이미지: {missing}")
     args.output.mkdir(parents=True, exist_ok=True)
 
     title_font = font(22)

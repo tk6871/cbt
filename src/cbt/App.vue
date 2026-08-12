@@ -46,6 +46,7 @@ type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-
 type SunjaeResultPhase = 'grading' | 'reveal';
 type AnswerLayout = 'classic' | 'inline' | 'hotspot';
 type HotspotIndicator = 'marker' | 'area';
+type RestoredImageTheme = 'auto' | 'contrast' | 'original';
 type ExamResult = {
   score: number;
   correct: number;
@@ -73,6 +74,7 @@ const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
 const spaceScope = isJewelry ? 'jewelry' : 'industrial';
 const simpsonsThemeImage = 'assets/theme/simpsons/homer-bart-choke-2x.webp';
+const restoredDarkPreviewImage = 'assets/hvac/assets/questions/2022_1/43.jpg';
 const simpsonsKingSizeImage = 'assets/theme/simpsons/king-size-homer.jpg';
 const simpsonsBurnsImages = [
   'assets/theme/simpsons/mr-burns-excellent.jpg',
@@ -185,6 +187,12 @@ const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
 const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' || savedAnswerLayout === 'hotspot' ? savedAnswerLayout : 'classic');
 const savedHotspotIndicator = localStorage.getItem('unified-cbt-hotspot-indicator');
 const hotspotIndicator = ref<HotspotIndicator>(savedHotspotIndicator === 'area' ? 'area' : 'marker');
+const savedRestoredImageTheme = localStorage.getItem('unified-cbt-restored-image-theme');
+const restoredImageTheme = ref<RestoredImageTheme>(
+  savedRestoredImageTheme === 'contrast' || savedRestoredImageTheme === 'original'
+    ? savedRestoredImageTheme
+    : 'auto',
+);
 const answerLayoutLabel = computed(() => answerLayout.value === 'hotspot'
   ? '이미지 직접 선택'
   : answerLayout.value === 'inline' ? '답안 문구' : '기존 번호 버튼');
@@ -1642,6 +1650,14 @@ function setHotspotIndicator(indicator: HotspotIndicator): void {
   showToast(indicator === 'area' ? 'PaddleOCR 좌표로 선택한 답의 글자 줄을 강조합니다.' : '선택한 답을 체크 마커로 표시합니다.');
 }
 
+function setRestoredImageTheme(mode: RestoredImageTheme): void {
+  restoredImageTheme.value = mode;
+  localStorage.setItem('unified-cbt-restored-image-theme', mode);
+  showToast(mode === 'auto'
+    ? '다크 모드에서 복원문제의 눈부심을 줄입니다.'
+    : mode === 'contrast' ? '다크 모드에서 복원문제를 검정 고대비로 표시합니다.' : '복원문제를 항상 원본 색상으로 표시합니다.');
+}
+
 async function openAnswerLayoutSettings(): Promise<void> {
   settingsOpen.value = true;
   await nextTick();
@@ -2681,6 +2697,28 @@ onBeforeUnmount(() => {
             </footer>
           </section>
 
+          <section v-if="!isJewelry" class="feature-restored-dark">
+            <header>
+              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>복원문제 다크 이미지를 눈으로 비교하세요</h2></div>
+              <p>원본 파일과 답안 좌표는 바꾸지 않고 화면 색상만 전환합니다.</p>
+            </header>
+            <div class="restored-dark-preview-grid">
+              <button type="button" class="restored-dark-preview original" :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')">
+                <figure><img :src="restoredDarkPreviewImage" alt="원본 흰색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
+                <strong>항상 원본</strong><small>흰 문제지 그대로</small>
+              </button>
+              <button type="button" class="restored-dark-preview comfort" :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')">
+                <figure><img :src="restoredDarkPreviewImage" alt="눈부심을 줄인 남색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
+                <strong>눈부심 완화</strong><small>추천 · 짙은 남색</small>
+              </button>
+              <button type="button" class="restored-dark-preview contrast" :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')">
+                <figure><img :src="restoredDarkPreviewImage" alt="검정 고대비 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
+                <strong>고대비 검정</strong><small>선명한 완전 반전</small>
+              </button>
+            </div>
+            <footer><strong>설정 위치</strong><span>화면·데이터 설정과 풀이 중 설정에서 언제든 바꿀 수 있습니다. 선택한 방식은 다크 모드에서 적용됩니다.</span></footer>
+          </section>
+
           <Teleport to="body">
             <div
               v-if="upscalePreview"
@@ -2702,7 +2740,7 @@ onBeforeUnmount(() => {
           </Teleport>
 
           <section class="feature-tour">
-            <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 세 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
+            <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 네 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
             <div class="feature-tour-grid">
               <article class="feature-tour-card blue">
                 <b>01</b><span>PADDLE OCR</span><h3>보기 글자를 줄마다 강조</h3>
@@ -2718,6 +2756,11 @@ onBeforeUnmount(() => {
                 <b>03</b><span>SMART OMR</span><h3>현재 문제 자동 따라가기</h3>
                 <p>CBT에서 다음 문제로 이동하면 OMR도 필요한 때만 부드럽게 따라옵니다.</p>
                 <button type="button" @click="startFeatureRound('exam')">실전 CBT에서 체험 →</button>
+              </article>
+              <article v-if="!isJewelry" class="feature-tour-card midnight">
+                <b>04</b><span>RESTORED IMAGE DARK</span><h3>복원문제까지 편안한 다크</h3>
+                <p>원본 이미지와 답안 좌표는 보존하고 눈부심 완화·고대비 검정·원본 중 원하는 표시를 고릅니다.</p>
+                <button type="button" @click="theme = 'dark'; applyTheme(theme); setRestoredImageTheme('auto')">눈부심 완화 체험 →</button>
               </article>
             </div>
           </section>
@@ -2739,6 +2782,9 @@ onBeforeUnmount(() => {
               </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
+              </button>
+              <button v-if="!isJewelry" type="button" class="feature-action-card midnight" @click="settingsOpen = true">
+                <span>◐</span><div><strong>복원 이미지 다크 설정</strong><small>남색·검정·원본 중 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card calc" @click="openCalculator">
                 <span>▦</span><div><strong>공학용 계산기</strong><small>별도 팝업으로 실행</small></div><b>›</b>
@@ -2856,6 +2902,15 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
             <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div v-if="!isJewelry" class="setting-group">
+          <span>복원문제 이미지</span>
+          <p class="setting-description">원본 픽셀과 답안 좌표는 그대로 두고, 다크 모드에서만 읽기 편한 색상으로 바꿉니다.</p>
+          <div class="restored-image-options">
+            <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
+            <button :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')"><strong>● 고대비 검정</strong><small>선명한 완전 반전</small></button>
+            <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </div>
         <div class="setting-group standard-solving-setting">
@@ -2994,6 +3049,7 @@ onBeforeUnmount(() => {
               :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
               :answer-layout="answerLayout"
               :hotspot-indicator="hotspotIndicator"
+              :restored-image-theme="restoredImageTheme"
               @choose="chooseAnswer(item, $event)"
               @toggle-bookmark="toggleBookmark(item)"
               @toggle-keep="toggleKeep(item)"
@@ -3110,6 +3166,15 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
             <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div v-if="!isJewelry" class="setting-group">
+          <span>복원문제 이미지</span>
+          <p class="setting-description">현재 문제와 답안은 유지한 채 다크 이미지 표시만 바꿉니다.</p>
+          <div class="restored-image-options">
+            <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
+            <button :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')"><strong>● 고대비 검정</strong><small>선명한 완전 반전</small></button>
+            <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </div>
         <div ref="sessionAnswerLayoutSettingRef" class="setting-group standard-solving-setting">
