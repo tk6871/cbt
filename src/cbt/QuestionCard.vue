@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
+import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
 import { calculationGuideFor, calculationSource } from './calculationGuide';
-import type { AnswerHotspot, AnswerHotspotSegment, QuestionItem, StudyMode } from './types';
+import type { QuestionItem, StudyMode } from './types';
 
 const props = defineProps<{
   item: QuestionItem;
@@ -36,56 +37,12 @@ const correctSelected = computed(() => props.selected === props.item.question.an
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationValues = computed(() => calculationSource(props.item).match(/-?\d+(?:\.\d+)?\s*(?:kW|W|kcal\/h|kcal|kg\/s|kg\/h|kg|m³\/s|m³\/min|m³\/h|m³|m²|m\/s|mm|cm|m|kPa|MPa|Pa|bar|℃|K|V|A|Ω|%|rpm)/gi)?.slice(0, 8) || []);
 const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
-const interactiveHotspots = computed(() => {
-  const hotspots = verifiedHotspots.value.map((hotspot) => ({ ...hotspot }));
-  if (!hotspots.some((hotspot) => hotspot.segments?.length)) return hotspots;
-
-  const minX = Math.min(...hotspots.map((hotspot) => hotspot.x));
-  const maxX = Math.max(...hotspots.map((hotspot) => hotspot.x));
-  const columnBoundary = (minX + maxX) / 2;
-  const columns = maxX - minX > 24
-    ? [hotspots.filter((hotspot) => hotspot.x < columnBoundary), hotspots.filter((hotspot) => hotspot.x >= columnBoundary)]
-    : [hotspots];
-
-  for (const column of columns) {
-    const sorted = column.sort((left, right) => left.y - right.y);
-    const bounds = sorted.map((hotspot) => {
-      const segments = hotspot.segments || [];
-      return {
-        top: segments.length ? Math.min(...segments.map((segment) => segment.y)) : hotspot.y,
-        bottom: segments.length
-          ? Math.max(...segments.map((segment) => segment.y + segment.height))
-          : hotspot.y + hotspot.height,
-      };
-    });
-    const boundaries = bounds.slice(0, -1).map((bound, index) => {
-      const next = bounds[index + 1];
-      return bound.bottom < next.top
-        ? (bound.bottom + next.top) / 2
-        : (sorted[index].y + sorted[index].height + sorted[index + 1].y) / 2;
-    });
-    sorted.forEach((hotspot, index) => {
-      const top = index ? boundaries[index - 1] : Math.max(0, Math.min(hotspot.y, bounds[index].top - 1));
-      const bottom = index < boundaries.length
-        ? boundaries[index]
-        : Math.min(100, Math.max(hotspot.y + hotspot.height, bounds[index].bottom + 1));
-      hotspot.y = top;
-      hotspot.height = Math.max(1, bottom - top);
-    });
-  }
-  return hotspots;
-});
+const unifiedHotspots = computed(() => unifiedAnswerHotspots(verifiedHotspots.value));
 const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
 const selectedAreaHighlightStyles = computed(() => {
   if (!props.selected) return [];
-  const hotspot = verifiedHotspots.value.find((item) => item.choice === props.selected);
-  const interactive = interactiveHotspots.value.find((item) => item.choice === props.selected);
-  if (hotspot?.segments?.length && interactive) {
-    return hotspot.segments
-      .map((segment) => clipSegmentToHotspot(segment, interactive))
-      .filter((segment): segment is AnswerHotspotSegment => Boolean(segment))
-      .map(hotspotStyle);
-  }
+  const hotspot = unifiedHotspots.value.find((item) => item.choice === props.selected);
+  if (hotspot?.segments?.length) return [hotspotStyle(hotspot)];
   const fallback = answerHighlightStyles.value[props.selected];
   return fallback ? [fallback] : [];
 });
@@ -120,22 +77,6 @@ function choiceClass(index: number): Record<string, boolean> {
     correct: props.mode === 'learn' && props.selected === number && number === props.item.question.answer,
     wrong: props.mode === 'learn' && props.selected === number && number !== props.item.question.answer,
   };
-}
-
-function hotspotStyle(hotspot: AnswerHotspotSegment | AnswerHotspot): Record<string, string> {
-  return { left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` };
-}
-
-function clipSegmentToHotspot(
-  segment: AnswerHotspotSegment,
-  hotspot: AnswerHotspot,
-): AnswerHotspotSegment | undefined {
-  const x = Math.max(segment.x, hotspot.x);
-  const y = Math.max(segment.y, hotspot.y);
-  const right = Math.min(segment.x + segment.width, hotspot.x + hotspot.width);
-  const bottom = Math.min(segment.y + segment.height, hotspot.y + hotspot.height);
-  if (right <= x || bottom <= y) return undefined;
-  return { x, y, width: right - x, height: bottom - y };
 }
 
 function calculateAnswerHighlights(image: HTMLImageElement): void {
@@ -261,7 +202,7 @@ watch(verifiedHotspots, (hotspots) => {
             @load="calculateAnswerHighlights($event.currentTarget as HTMLImageElement)"
           >
           <button
-            v-for="hotspot in interactiveHotspots"
+            v-for="hotspot in unifiedHotspots"
             :key="hotspot.choice"
             type="button"
             class="image-answer-hotspot"

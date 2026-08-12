@@ -924,10 +924,11 @@ img { max-width: 100%; }
 .source-image-stage { position:relative; width:fit-content; max-width:100%; margin:0 auto; }
 .source-image-frame .source-question-image { width:auto; height:auto; max-width:100%; max-height:none; }
 .image-answer-hotspot { position:absolute; z-index:2; border:2px solid transparent; border-radius:9px; color:transparent; background:transparent; cursor:pointer; touch-action:manipulation; -webkit-tap-highlight-color:transparent; transition:border-color .16s ease,background .16s ease,box-shadow .16s ease; }
-@media (hover:hover) { .image-answer-hotspot:hover { border-color:rgba(26,111,196,.72); background:rgba(25,108,195,.1); box-shadow:0 0 0 2px rgba(255,255,255,.72); } }
+@media (hover:hover) { .image-answer-hotspot:hover { border-color:rgba(26,111,196,.72); background:rgba(25,108,195,.1); box-shadow:inset 0 0 0 1px rgba(255,255,255,.72); } }
 .image-answer-hotspot:focus-visible { outline:3px solid color-mix(in srgb,var(--primary) 75%,white); outline-offset:-3px; background:rgba(23,115,207,.12); }
 .image-answer-hotspot.selected,.image-answer-hotspot.correct,.image-answer-hotspot.wrong { border-color:transparent; background:transparent; box-shadow:none; }
-.image-answer-area-highlight { position:absolute; z-index:3; border:2px solid rgba(23,115,207,.95); border-radius:6px; background:rgba(23,115,207,.15); box-shadow:0 0 0 1px rgba(255,255,255,.76),0 0 0 3px rgba(23,115,207,.18); pointer-events:none; transition:left .16s ease,top .16s ease,width .16s ease,height .16s ease; }
+@media (hover:hover) { .image-answer-hotspot.selected:hover,.image-answer-hotspot.correct:hover,.image-answer-hotspot.wrong:hover { border-color:rgba(26,111,196,.72); background:rgba(25,108,195,.1); box-shadow:inset 0 0 0 1px rgba(255,255,255,.72); } }
+.image-answer-area-highlight { position:absolute; z-index:3; border:2px solid rgba(23,115,207,.95); border-radius:6px; background:rgba(23,115,207,.15); box-shadow:inset 0 0 0 1px rgba(255,255,255,.76),inset 0 0 0 3px rgba(23,115,207,.12); pointer-events:none; transition:left .16s ease,top .16s ease,width .16s ease,height .16s ease; }
 .image-answer-area-highlight.correct { border-color:rgba(20,149,109,.95); background:rgba(20,149,109,.18); }
 .image-answer-area-highlight.wrong { border-color:rgba(228,85,85,.95); background:rgba(228,85,85,.18); }
 .image-answer-pick-marker { position:absolute; z-index:4; width:24px; height:24px; border:2px solid white; border-radius:50%; color:white; background:var(--primary); box-shadow:0 2px 8px rgba(7,35,65,.34); display:grid; place-items:center; font-size:.72rem; font-weight:950; pointer-events:none; transform:translate(-58%,-38%); }
