@@ -344,8 +344,15 @@ def reassign_boundary_fragments(choices, image_hotspots):
             choices[str(current_choice)] = sorted(fragments + current, key=lambda item: (item["y"], item["x"]))
 
 
-def remove_cross_column_number_fragments(choices, image_hotspots):
-    """Drop a right-column answer number clipped into the left answer cell."""
+def reassign_cross_column_number_fragments(choices, image_hotspots):
+    """Move a right-column answer number clipped into the left answer cell.
+
+    The Apple Vision click cell intentionally reaches the next column marker.
+    Paddle can therefore detect ②/④ as a tiny final fragment of ①/③. Dropping
+    that fragment keeps it out of the left answer, but also makes the right
+    answer box start after its number. Move it to the matched right choice so
+    hover, click, and selection all include the printed marker.
+    """
     min_x = min(item["x"] for item in image_hotspots)
     max_x = max(item["x"] for item in image_hotspots)
     if max_x - min_x <= 24:
@@ -370,6 +377,8 @@ def remove_cross_column_number_fragments(choices, image_hotspots):
         ]
         if fragments:
             choices[key] = [item for item in segments if item not in fragments]
+            right_key = str(right["choice"])
+            choices[right_key] = sorted(fragments + choices.get(right_key, []), key=lambda item: (item["y"], item["x"]))
 
 
 def write_output(path: Path, result: dict[str, Any]) -> None:
@@ -432,7 +441,7 @@ def main() -> None:
                 choices[str(hotspot["choice"])] = segments
         for key in list(choices):
             choices[key] = merge_clipped_line_parts(choices[key])
-        remove_cross_column_number_fragments(choices, image_hotspots)
+        reassign_cross_column_number_fragments(choices, image_hotspots)
         reassign_boundary_fragments(choices, image_hotspots)
         if choices:
             result[relative] = choices

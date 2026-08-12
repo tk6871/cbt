@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '2.6',
+      scope: 'industrial',
+      date: '2026.08.12',
+      title: '이미지 답안 한 박스 선택과 번호 좌표 보완',
+      summary: '마우스 올림·클릭·선택 표시를 같은 답안 박스로 통일하고, 여러 줄 보기도 번호부터 마지막 줄까지 한 번에 표시합니다.',
+      tags: ['이미지 답안', '한 박스 선택', '여러 줄 보기', '전수 검사'],
+      changes: [
+        '복원 이미지 답안의 마우스 올림, 실제 클릭, 선택 색상 표시가 같은 좌표 한 개를 사용하도록 통일했습니다.',
+        '두 줄·세 줄·수식·그림 보기의 OCR 조각을 답 번호부터 마지막 줄까지 하나의 박스로 합쳤습니다.',
+        '2023년 2회 29번과 2022년 2회 23번에서 ②·④ 번호가 왼쪽 답에 포함되던 좌표를 올바른 답으로 옮겼습니다.',
+        '1,019장·4,076개 답안·4,988개 OCR 좌표를 검사해 답안 박스 겹침과 누락이 0건인지 확인합니다.',
+        '서비스워커 캐시를 v266으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.9',
       scope: 'industrial',
       date: '2026.08.12',
@@ -934,8 +949,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.9';
+  changelog.versions.industrial = '2.6';
   changelog.versions.jewelry = '2.5.6';
-  changelog.currentVersion = '2.5.9';
+  changelog.currentVersion = '2.6';
   window.CBT_CHANGELOG = changelog;
 })();

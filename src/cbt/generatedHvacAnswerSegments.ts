@@ -2092,6 +2092,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
     ],
     "2": [
       {
+        "x": 43.62,
+        "y": 66.0,
+        "width": 4.08,
+        "height": 6.76
+      },
+      {
         "height": 4.34,
         "width": 9.37,
         "x": 56.94,
@@ -10254,6 +10260,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
     ],
     "2": [
       {
+        "height": 23.73,
+        "width": 6.67,
+        "x": 56.84,
+        "y": 36.35
+      },
+      {
         "height": 23.55,
         "width": 11.89,
         "x": 63.51,
@@ -10269,6 +10281,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
       }
     ],
     "4": [
+      {
+        "height": 25.11,
+        "width": 6.46,
+        "x": 57.05,
+        "y": 67.58
+      },
       {
         "height": 24.92,
         "width": 11.89,
@@ -16040,6 +16058,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
   "assets/hvac/assets/questions/2023_1/54.jpg": {
     "1": [
       {
+        "x": 8.62,
+        "y": 65.17,
+        "width": 4.12,
+        "height": 6.72
+      },
+      {
         "height": 4.5,
         "width": 9.67,
         "x": 23.15,
@@ -17455,6 +17479,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
     "2": [
       {
         "height": 6.13,
+        "width": 3.91,
+        "x": 59.16,
+        "y": 84.28
+      },
+      {
+        "height": 6.13,
         "width": 14.78,
         "x": 63.03,
         "y": 84.28
@@ -17469,6 +17499,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
       }
     ],
     "4": [
+      {
+        "height": 6.29,
+        "width": 4.02,
+        "x": 59.05,
+        "y": 91.82
+      },
       {
         "height": 6.51,
         "width": 14.99,
@@ -25606,6 +25642,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
     ],
     "2": [
       {
+        "x": 57.79,
+        "y": 75.99,
+        "width": 4.08,
+        "height": 4.4
+      },
+      {
         "height": 3.93,
         "width": 7.15,
         "x": 64.87,
@@ -25645,6 +25687,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
       }
     ],
     "4": [
+      {
+        "x": 57.79,
+        "y": 90.53,
+        "width": 4.08,
+        "height": 4.4
+      },
       {
         "height": 3.71,
         "width": 7.78,
@@ -28502,6 +28550,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
     ],
     "2": [
       {
+        "x": 8.62,
+        "y": 69.39,
+        "width": 4.12,
+        "height": 4.11
+      },
+      {
         "height": 3.14,
         "width": 5.94,
         "x": 30.31,
@@ -30919,6 +30973,12 @@ export const hvacAnswerSegments: Record<string, Record<number, Array<{ x: number
   },
   "assets/hvac/assets/questions/2025_2/12.jpg": {
     "1": [
+      {
+        "x": 8.62,
+        "y": 52.75,
+        "width": 4.12,
+        "height": 8.58
+      },
       {
         "height": 17.76,
         "width": 26.23,
