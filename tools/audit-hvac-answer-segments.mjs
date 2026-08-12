@@ -16,11 +16,75 @@ const errors = [];
 const missingImages = [];
 const missingChoices = [];
 let segmentCount = 0;
-let closeAnswerPairs = 0;
+let crossAnswerLeaks = 0;
+let interactiveOverlapCount = 0;
+let clippedHighlightOverlapCount = 0;
 const minimumWrappedLines = [
   ['assets/hvac/assets/questions/2023_2/25.jpg', 4, 3],
   ['assets/hvac/assets/questions/2023_3/47.jpg', 4, 2],
 ];
+
+function interactiveHotspotsFor(imageHotspots, imageSegments = {}) {
+  const hotspots = imageHotspots.map((hotspot) => ({
+    ...hotspot,
+    segments: imageSegments[hotspot.choice] || [],
+  }));
+  if (!hotspots.some((hotspot) => hotspot.segments.length)) return hotspots;
+
+  const minX = Math.min(...hotspots.map((hotspot) => hotspot.x));
+  const maxX = Math.max(...hotspots.map((hotspot) => hotspot.x));
+  const columnBoundary = (minX + maxX) / 2;
+  const columns = maxX - minX > 24
+    ? [hotspots.filter((hotspot) => hotspot.x < columnBoundary), hotspots.filter((hotspot) => hotspot.x >= columnBoundary)]
+    : [hotspots];
+
+  for (const column of columns) {
+    const sorted = column.sort((left, right) => left.y - right.y);
+    const bounds = sorted.map((hotspot) => ({
+      top: hotspot.segments.length ? Math.min(...hotspot.segments.map((segment) => segment.y)) : hotspot.y,
+      bottom: hotspot.segments.length
+        ? Math.max(...hotspot.segments.map((segment) => segment.y + segment.height))
+        : hotspot.y + hotspot.height,
+    }));
+    const boundaries = bounds.slice(0, -1).map((bound, index) => {
+      const next = bounds[index + 1];
+      return bound.bottom < next.top
+        ? (bound.bottom + next.top) / 2
+        : (sorted[index].y + sorted[index].height + sorted[index + 1].y) / 2;
+    });
+    sorted.forEach((hotspot, index) => {
+      const top = index ? boundaries[index - 1] : Math.max(0, Math.min(hotspot.y, bounds[index].top - 1));
+      const bottom = index < boundaries.length
+        ? boundaries[index]
+        : Math.min(100, Math.max(hotspot.y + hotspot.height, bounds[index].bottom + 1));
+      hotspot.y = top;
+      hotspot.height = Math.max(1, bottom - top);
+    });
+  }
+  return hotspots;
+}
+
+function intersection(left, right) {
+  const x = Math.max(left.x, right.x);
+  const y = Math.max(left.y, right.y);
+  const edgeX = Math.min(left.x + left.width, right.x + right.width);
+  const edgeY = Math.min(left.y + left.height, right.y + right.height);
+  return { width: edgeX - x, height: edgeY - y };
+}
+
+function clippedSegment(segment, hotspot) {
+  const x = Math.max(segment.x, hotspot.x);
+  const y = Math.max(segment.y, hotspot.y);
+  const right = Math.min(segment.x + segment.width, hotspot.x + hotspot.width);
+  const bottom = Math.min(segment.y + segment.height, hotspot.y + hotspot.height);
+  return right > x && bottom > y ? { x, y, width: right - x, height: bottom - y } : null;
+}
+
+const hotspotCss = fs.readFileSync('src/cbt/cbt.css', 'utf8')
+  .match(/\.image-answer-hotspot\s*\{[^}]+\}/)?.[0] || '';
+if (/min-(?:width|height)\s*:/.test(hotspotCss)) {
+  errors.push('모바일에서 답안 클릭 구역을 겹치게 만드는 CSS 최소 크기가 남아 있습니다.');
+}
 
 for (const [image, imageHotspots] of Object.entries(hotspots)) {
   const choices = imageHotspots.map((item) => item.choice).sort((left, right) => left - right);
@@ -30,6 +94,38 @@ for (const [image, imageHotspots] of Object.entries(hotspots)) {
   for (const hotspot of imageHotspots) {
     if (hotspot.width < 2 || hotspot.height < 2) {
       errors.push(`${image}/${hotspot.choice}: 클릭 구역이 너무 작습니다. ${JSON.stringify(hotspot)}`);
+    }
+  }
+
+  const runtimeHotspots = interactiveHotspotsFor(imageHotspots, segments[image]);
+  for (let leftIndex = 0; leftIndex < runtimeHotspots.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < runtimeHotspots.length; rightIndex += 1) {
+      const overlap = intersection(runtimeHotspots[leftIndex], runtimeHotspots[rightIndex]);
+      // JSON 좌표의 0.01% 반올림 오차는 실제 클릭 중복으로 보지 않습니다.
+      if (overlap.width > 0.05 && overlap.height > 0.05) {
+        interactiveOverlapCount += 1;
+        errors.push(`${image}/${runtimeHotspots[leftIndex].choice}-${runtimeHotspots[rightIndex].choice}: 실제 클릭 구역이 겹칩니다.`);
+      }
+    }
+  }
+
+  const clippedByChoice = Object.fromEntries(runtimeHotspots.map((hotspot) => [
+    hotspot.choice,
+    (segments[image]?.[hotspot.choice] || []).map((segment) => clippedSegment(segment, hotspot)).filter(Boolean),
+  ]));
+  for (let leftIndex = 0; leftIndex < runtimeHotspots.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < runtimeHotspots.length; rightIndex += 1) {
+      const left = runtimeHotspots[leftIndex];
+      const right = runtimeHotspots[rightIndex];
+      for (const leftSegment of clippedByChoice[left.choice]) {
+        for (const rightSegment of clippedByChoice[right.choice]) {
+          const overlap = intersection(leftSegment, rightSegment);
+          if (overlap.width > 0.05 && overlap.height > 0.05) {
+            clippedHighlightOverlapCount += 1;
+            errors.push(`${image}/${left.choice}-${right.choice}: 화면에 표시되는 답안 영역이 겹칩니다.`);
+          }
+        }
+      }
     }
   }
 }
@@ -75,6 +171,23 @@ for (const [image, imageSegments] of Object.entries(segments)) {
   const columns = maxX - minX > 24
     ? [imageHotspots.filter((item) => item.x < boundary), imageHotspots.filter((item) => item.x >= boundary)]
     : [imageHotspots];
+  if (columns.length === 2) {
+    const [leftColumn, rightColumn] = columns;
+    for (const hotspot of leftColumn) {
+      const right = rightColumn.reduce((best, item) => Math.abs(item.y - hotspot.y) < Math.abs(best.y - hotspot.y) ? item : best, rightColumn[0]);
+      const choiceSegments = imageSegments[hotspot.choice] || [];
+      const maximumWidth = Math.max(0, ...choiceSegments.map((item) => item.width));
+      const leaked = choiceSegments.filter((item) =>
+        Math.abs(item.x + item.width - right.x) <= 0.7
+        && item.width <= 8
+        && item.width < maximumWidth * 0.6
+        && choiceSegments.some((other) => other !== item && other.x + other.width + 1.5 < item.x));
+      if (leaked.length) {
+        crossAnswerLeaks += leaked.length;
+        errors.push(`${image}/${hotspot.choice}: 오른쪽 ${right.choice}번 답안 조각이 선택 표시 좌표에 포함됐습니다.`);
+      }
+    }
+  }
   for (const column of columns) {
     const ordered = [...column].sort((left, right) => left.y - right.y);
     for (let index = 0; index < ordered.length - 1; index += 1) {
@@ -84,7 +197,8 @@ for (const [image, imageSegments] of Object.entries(segments)) {
       const currentBottom = Math.max(...current.map((item) => item.y + item.height));
       const nextTop = Math.min(...next.map((item) => item.y));
       if (currentBottom > nextTop + 1.5) {
-        closeAnswerPairs += 1;
+        crossAnswerLeaks += 1;
+        errors.push(`${image}/${ordered[index].choice}→${ordered[index + 1].choice}: 인접 답안 선택 표시가 ${Number(currentBottom - nextTop).toFixed(2)}% 겹칩니다.`);
       }
     }
   }
@@ -99,7 +213,9 @@ for (const [image, imageHotspots] of Object.entries(hotspots)) {
 
 console.log(`PaddleOCR 줄 좌표: ${Object.keys(segments).length}/${Object.keys(hotspots).length}장, ${segmentCount.toLocaleString()}개`);
 console.log(`픽셀 분석 대체: 이미지 ${missingImages.length}장, 답안 ${missingChoices.length}개`);
-console.log(`인접 답안 패딩 겹침: ${closeAnswerPairs}쌍 (한 답안만 표시하므로 시각 충돌 없음)`);
+console.log(`다른 답안 표시 침범: ${crossAnswerLeaks}건`);
+console.log(`실제 클릭 구역 겹침: ${interactiveOverlapCount}건`);
+console.log(`화면 표시 영역 겹침: ${clippedHighlightOverlapCount}건`);
 if (missingImages.length) console.log(`이미지 대체 대상: ${missingImages.join(', ')}`);
 if (missingChoices.length) console.log(`답안 대체 대상: ${missingChoices.join(', ')}`);
 if (errors.length) {
