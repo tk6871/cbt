@@ -86,7 +86,10 @@ def segments_for_hotspot(polys, scores, hotspot, image_width: int, image_height:
     cell_top = hotspot["y"] / 100 * image_height
     cell_right = (hotspot["x"] + hotspot["width"]) / 100 * image_width
     normal_bottom = (hotspot["y"] + hotspot["height"]) / 100 * image_height
-    cell_bottom = min(image_height, normal_bottom + image_height * 0.08) if extend_bottom else normal_bottom
+    # The last answer often wraps below the coarse click cell. Individual
+    # restored-question images end with that answer, so inspect to the image
+    # bottom and let the line-gap checks below stop unrelated content.
+    cell_bottom = image_height if extend_bottom else normal_bottom
     matches = []
     for poly, score in zip(polys, scores):
         if float(score) < 0.25:
@@ -145,12 +148,19 @@ def keep_bottom_answer_line(segments):
     return candidates or segments
 
 
-def pixel_line_segments(image: Image.Image, hotspot, image_width: int, image_height: int):
+def pixel_line_segments(
+    image: Image.Image,
+    hotspot,
+    image_width: int,
+    image_height: int,
+    extend_bottom: bool = False,
+):
     """Return tight ink bounds when OCR sees only part of a formula or diagram."""
     cell_left = max(0, int(hotspot["x"] / 100 * image_width))
     cell_top = max(0, int(hotspot["y"] / 100 * image_height))
     cell_right = min(image_width, int((hotspot["x"] + hotspot["width"]) / 100 * image_width + 0.999))
-    cell_bottom = min(image_height, int((hotspot["y"] + hotspot["height"]) / 100 * image_height + 0.999))
+    normal_bottom = (hotspot["y"] + hotspot["height"]) / 100 * image_height
+    cell_bottom = image_height if extend_bottom else min(image_height, int(normal_bottom + 0.999))
     if cell_right <= cell_left or cell_bottom <= cell_top:
         return [], set()
 
@@ -175,7 +185,9 @@ def pixel_line_segments(image: Image.Image, hotspot, image_width: int, image_hei
     # Stop at a clearly separated footer, next-subject banner, or watermark.
     # Real multi-line answers and fractions have much smaller row gaps.
     nearby_groups = [groups[0]]
-    max_content_gap = max(7, round(image_height * 0.035))
+    # Large Korean glyphs can leave a 25~30px blank gap between wrapped lines.
+    # A smaller limit clipped cases such as 2023-2 #25 and 2023-3 #47.
+    max_content_gap = max(7, round(image_height * 0.08))
     for group in groups[1:]:
         if group[0] - nearby_groups[-1][-1] > max_content_gap:
             break
@@ -212,6 +224,37 @@ def pixel_line_segments(image: Image.Image, hotspot, image_width: int, image_hei
                 if item["x"] <= anchor_limit or item["x"] <= anchor_right + hotspot["width"] * 0.05
             ]
     return result, ink
+
+
+def expand_ocr_segments_to_ink(ocr_segments, pixel_segments):
+    """Expand matched OCR rows to their real dark-pixel bounds.
+
+    OCR polygons are usually a few pixels shorter than the bottom of Korean
+    glyphs. We only expand (never shrink) and only when both methods found the
+    same ordered line count, which avoids attaching diagrams or footer text.
+    """
+    if not ocr_segments or len(ocr_segments) != len(pixel_segments):
+        return ocr_segments
+    expanded = []
+    for ocr, pixel in zip(ocr_segments, pixel_segments):
+        ocr_top = ocr["y"]
+        ocr_bottom = ocr["y"] + ocr["height"]
+        pixel_top = pixel["y"]
+        pixel_bottom = pixel["y"] + pixel["height"]
+        overlap = min(ocr_bottom, pixel_bottom) - max(ocr_top, pixel_top)
+        if overlap < min(ocr["height"], pixel["height"]) * 0.35:
+            return ocr_segments
+        left = min(ocr["x"], pixel["x"])
+        top = min(ocr_top, pixel_top)
+        right = max(ocr["x"] + ocr["width"], pixel["x"] + pixel["width"])
+        bottom = max(ocr_bottom, pixel_bottom)
+        expanded.append({
+            "x": round2(left),
+            "y": round2(top),
+            "width": round2(right - left),
+            "height": round2(bottom - top),
+        })
+    return expanded
 
 
 def needs_pixel_fallback(ocr_segments, pixel_segments, ink, hotspot, image_width: int, image_height: int):
@@ -337,9 +380,11 @@ def main() -> None:
                 prediction["dt_polys"], prediction["dt_scores"], hotspot, width, height, extend_bottom
             )
             segments = [item for item in segments if has_dark_ink(image, item, width, height)]
-            pixel_segments, ink = pixel_line_segments(image, hotspot, width, height)
+            pixel_segments, ink = pixel_line_segments(image, hotspot, width, height, extend_bottom)
             if needs_pixel_fallback(segments, pixel_segments, ink, hotspot, width, height):
                 segments = pixel_segments
+            else:
+                segments = expand_ocr_segments_to_ink(segments, pixel_segments)
             if relative in reviewed and not one_column_layout and hotspot["height"] <= 12:
                 segments = keep_bottom_answer_line(segments)
             if segments:

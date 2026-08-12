@@ -33,6 +33,30 @@ const fixes = [
     file: 'hvac.js',
     globalName: 'CBT_DATA_HVAC',
     catalogKey: 'hvac',
+    roundId: 'hvac-20262',
+    number: 14,
+    patch: {
+      text: '복사난방에서 바닥패널의 적당한 온도는 얼마인가?',
+      html: '복사난방에서 바닥패널의 적당한 온도는 얼마인가?',
+      choices: [
+        { text: '80℃', html: '80℃', images: [] },
+        { text: '60℃', html: '60℃', images: [] },
+        { text: '50℃', html: '50℃', images: [] },
+        { text: '30℃', html: '30℃', images: [] },
+      ],
+      answer: 4,
+      explanation:
+        '바닥복사난방은 넓은 바닥에서 낮은 온도의 복사열을 고르게 전달합니다. 바닥패널 온도를 너무 높이면 발이 불편하고 실내가 과열될 수 있으므로 약 30℃가 적당합니다. 수정 배포 답안표도 ④를 제시하므로 정답은 ④ 30℃입니다.',
+      explanationHtml:
+        '바닥복사난방은 넓은 바닥에서 낮은 온도의 복사열을 고르게 전달합니다.<br>바닥패널 온도를 너무 높이면 발이 불편하고 실내가 과열될 수 있으므로 약 30℃가 적당합니다.<br>수정 배포 답안표도 ④를 제시하므로 정답은 ④ 30℃입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2026년 2회 수정 배포 PDF 답안표 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
     roundId: 'hvac-20211',
     number: 32,
     patch: {
@@ -224,6 +248,54 @@ const fixes = [
         '같은 펌프에서는 토출량이 회전수에 비례합니다.<br>N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.',
       explanationConfidence: 'high',
       correctionSource: '2022년 2회 배포 PDF 대조 및 원문 이미지 복원',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20223',
+    number: 5,
+    patch: {
+      text: '다음 난방방식 중 자연환기가 많이 일어나도 비교적 난방효율이 좋은 것은?',
+      html: '다음 난방방식 중 자연환기가 많이 일어나도 비교적 난방효율이 좋은 것은?',
+      choices: [
+        { text: '온수난방', html: '온수난방', images: [] },
+        { text: '증기난방', html: '증기난방', images: [] },
+        { text: '온풍난방', html: '온풍난방', images: [] },
+        { text: '복사난방', html: '복사난방', images: [] },
+      ],
+      answer: 4,
+      explanation:
+        '자연환기가 많으면 데운 공기가 빠져나가지만, 복사난방은 공기보다 사람과 물체를 직접 데워 그 영향을 덜 받습니다. 따라서 비교적 난방효율이 좋은 복사난방 ④가 정답입니다.',
+      explanationHtml:
+        '자연환기가 많으면 데운 공기가 빠져나가지만, 복사난방은 공기보다 사람과 물체를 직접 데워 그 영향을 덜 받습니다.<br>따라서 비교적 난방효율이 좋은 복사난방 ④가 정답입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2022년 3회 수정 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20223',
+    number: 6,
+    patch: {
+      text: '감습장치에 해당되지 않는 것은?',
+      html: '감습장치에 해당되지 않는 것은?',
+      choices: [
+        { text: '냉각감습장치', html: '냉각감습장치', images: [] },
+        { text: '흡착감습장치', html: '흡착감습장치', images: [] },
+        { text: '흡수식감습장치', html: '흡수식감습장치', images: [] },
+        { text: '가열감습장치', html: '가열감습장치', images: [] },
+      ],
+      answer: 4,
+      explanation:
+        '감습은 공기 중 수분을 줄이는 과정입니다. 냉각으로 수증기를 응축하거나 흡착제·흡수액으로 수분을 제거할 수 있지만, 단순히 가열하면 상대습도만 낮아질 뿐 수분량은 줄지 않습니다. 따라서 감습장치가 아닌 것은 ④ 가열감습장치입니다.',
+      explanationHtml:
+        '감습은 공기 중 수분을 줄이는 과정입니다.<br>냉각으로 수증기를 응축하거나 흡착제·흡수액으로 수분을 제거할 수 있지만, 단순히 가열하면 상대습도만 낮아질 뿐 수분량은 줄지 않습니다.<br>따라서 감습장치가 아닌 것은 ④ 가열감습장치입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2022년 3회 수정 배포 PDF 대조 및 중복 원문 이미지 교체',
     },
   },
   {

@@ -16,6 +16,7 @@ const props = defineProps<{
   imageAnswerMode?: 'buttons' | 'hotspot';
   answerLayout?: 'classic' | 'inline' | 'hotspot';
   hotspotIndicator?: 'marker' | 'area';
+  restoredImageTheme?: 'auto' | 'contrast' | 'original';
 }>();
 
 defineEmits<{
@@ -28,6 +29,9 @@ defineEmits<{
 const primaryImage = computed(() => isImagePrimary(props.item));
 const restoredQuestion = computed(() =>
   props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
+const restoredImageClass = computed(() => restoredQuestion.value
+  ? `restored-image-${props.restoredImageTheme || 'auto'}`
+  : undefined);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationValues = computed(() => calculationSource(props.item).match(/-?\d+(?:\.\d+)?\s*(?:kW|W|kcal\/h|kcal|kg\/s|kg\/h|kg|m³\/s|m³\/min|m³\/h|m³|m²|m\/s|mm|cm|m|kPa|MPa|Pa|bar|℃|K|V|A|Ω|%|rpm)/gi)?.slice(0, 8) || []);
@@ -231,6 +235,7 @@ watch(verifiedHotspots, (hotspots) => {
           <img
             ref="sourceImageRef"
             class="source-question-image"
+            :class="restoredImageClass"
             :src="item.question.sourceImage"
             :alt="`${item.question.number}번 문제 원문`"
             loading="lazy"
@@ -361,7 +366,7 @@ watch(verifiedHotspots, (hotspots) => {
           <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
         </header>
         <div @click.self="imageZoomOpen = false">
-          <img :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
+          <img :class="restoredImageClass" :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
         </div>
       </div>
     </Teleport>

@@ -11,11 +11,11 @@ guard let path = arguments.first,
     exit(2)
 }
 
-if arguments.count == 3, let pageNumber = Int(arguments[1]),
+if arguments.count >= 3, let pageNumber = Int(arguments[1]),
    pageNumber >= 1, pageNumber <= document.pageCount,
    let page = document.page(at: pageNumber - 1) {
     let bounds = page.bounds(for: .mediaBox)
-    let scale: CGFloat = 2
+    let scale = arguments.count >= 4 ? CGFloat(Double(arguments[3]) ?? 2) : 2
     let image = NSImage(size: NSSize(width: bounds.width * scale, height: bounds.height * scale))
     image.lockFocus()
     NSColor.white.setFill()
