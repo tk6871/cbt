@@ -1639,7 +1639,7 @@ function setAnswerLayout(layout: AnswerLayout): void {
 function setHotspotIndicator(indicator: HotspotIndicator): void {
   hotspotIndicator.value = indicator;
   localStorage.setItem('unified-cbt-hotspot-indicator', indicator);
-  showToast(indicator === 'area' ? '선택한 답을 영역 색상 박스로 표시합니다.' : '선택한 답을 체크 마커로 표시합니다.');
+  showToast(indicator === 'area' ? 'PaddleOCR 좌표로 선택한 답의 글자 줄을 강조합니다.' : '선택한 답을 체크 마커로 표시합니다.');
 }
 
 async function openAnswerLayoutSettings(): Promise<void> {
@@ -2705,9 +2705,9 @@ onBeforeUnmount(() => {
             <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 세 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
             <div class="feature-tour-grid">
               <article class="feature-tour-card blue">
-                <b>01</b><span>ANSWER LAYOUT</span><h3>답안 표시를 직접 선택</h3>
-                <p>번호 옆 답안 문구 방식과 기존 큰 번호 방식 중 편한 화면을 설정에서 고릅니다.</p>
-                <button type="button" @click="settingsOpen = true">답안 표시 설정 →</button>
+                <b>01</b><span>PADDLE OCR</span><h3>보기 글자를 줄마다 강조</h3>
+                <p>두 줄·세 줄 답안도 하나로 선택하면서 글자 모양에 맞는 작은 영역 박스를 줄마다 표시합니다.</p>
+                <button type="button" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">이미지 답안 강조 켜기 →</button>
               </article>
               <article class="feature-tour-card violet">
                 <b>02</b><span>IN-SESSION SETTINGS</span><h3>풀이 중에도 설정</h3>
@@ -2733,6 +2733,9 @@ onBeforeUnmount(() => {
               </button>
               <button type="button" class="feature-action-card exam" @click="setAnswerLayout('hotspot')">
                 <span>☝</span><div><strong>{{ answerLayout === 'hotspot' ? '이미지 직접 선택 사용 중' : '이미지에서 답 고르기' }}</strong><small>원문 속 ①·②·③·④를 바로 선택</small></div><b>›</b>
+              </button>
+              <button type="button" class="feature-action-card coach" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">
+                <span>▰</span><div><strong>PaddleOCR 줄별 강조</strong><small>여러 줄 답안을 한 번에 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
@@ -2867,7 +2870,7 @@ onBeforeUnmount(() => {
             <span>이미지 답안 선택 표시</span>
             <div>
               <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>기존 방식 · 선택 범위 강조</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 글자 줄별 강조</small></button>
             </div>
           </div>
           <div class="standard-solving-list">
@@ -3120,7 +3123,7 @@ onBeforeUnmount(() => {
             <span>이미지 답안 선택 표시</span>
             <div>
               <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>기존 방식 · 선택 범위 강조</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 글자 줄별 강조</small></button>
             </div>
           </div>
           <div class="standard-solving-list">

@@ -1,5 +1,6 @@
 import type { Catalog, CurriculumScope, Question, QuestionItem, Round } from './types';
 import { hvacAnswerHotspots } from './generatedHvacHotspots';
+import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
 const primaryKeys = ['hvac', 'safety', 'energy', 'maintenance'];
@@ -21,12 +22,20 @@ function prepareCatalog(source: Catalog): Catalog {
     qualification: round.qualification || source.name,
     shortQualification: round.shortQualification || source.shortName || source.name,
     questions: source.key === 'hvac'
-      ? round.questions.map((question) => ({
-          ...question,
-          answerHotspots: question.sourceImage
-            ? reviewedHvacHotspots[question.sourceImage] || hvacAnswerHotspots[question.sourceImage] || question.answerHotspots
-            : question.answerHotspots,
-        }))
+      ? round.questions.map((question) => {
+          const sourceImage = question.sourceImage || '';
+          const hotspots = sourceImage
+            ? reviewedHvacHotspots[sourceImage] || hvacAnswerHotspots[sourceImage] || question.answerHotspots
+            : question.answerHotspots;
+          const segments = sourceImage ? hvacAnswerSegments[sourceImage] : undefined;
+          return {
+            ...question,
+            answerHotspots: hotspots?.map((hotspot) => ({
+              ...hotspot,
+              segments: segments?.[hotspot.choice],
+            })),
+          };
+        })
       : round.questions,
   }));
   return { ...source, rounds };

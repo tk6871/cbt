@@ -4,6 +4,18 @@ export type Choice = {
   images?: string[];
 };
 
+export type AnswerHotspotSegment = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export type AnswerHotspot = AnswerHotspotSegment & {
+  choice: number;
+  segments?: AnswerHotspotSegment[];
+};
+
 export type Question = {
   number: number;
   text?: string;
@@ -25,7 +37,7 @@ export type Question = {
   sourceQualification?: string;
   _originRoundId?: string;
   _originalNumber?: number;
-  answerHotspots?: Array<{ choice: number; x: number; y: number; width: number; height: number }>;
+  answerHotspots?: AnswerHotspot[];
 };
 
 export type Round = {

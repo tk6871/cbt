@@ -5,6 +5,23 @@
 
   const entries = [
     {
+      version: '2.5.6',
+      scope: 'industrial',
+      date: '2026.08.12',
+      title: 'PaddleOCR 답안 줄별 강조',
+      summary: '공조 복원문제의 선택 영역을 PaddleOCR로 다시 분석해 두 줄·세 줄 답안도 글자 줄마다 정확히 표시합니다.',
+      tags: ['PaddleOCR', '이미지 답안', '여러 줄 보기', '모바일 최적화'],
+      changes: [
+        '공조 복원문제 1,020장의 기존 클릭 구역과 수동 검수 좌표를 보존한 채 PaddleOCR PP-OCRv5 글자 탐지 좌표를 추가했습니다.',
+        '영역 색상 박스는 큰 직사각형 하나가 아니라 실제 글자 모양에 맞는 작은 박스를 줄마다 표시합니다.',
+        '여러 줄 박스는 내부적으로 같은 ①·②·③·④ 답안으로 묶이므로 어느 줄을 눌러도 같은 답으로 선택됩니다.',
+        'Paddle이 답 번호를 잘못 읽어도 정답이 뒤바뀌지 않도록 기존 검수 클릭 좌표를 답 번호 기준으로 사용합니다.',
+        '도형·회로처럼 글자 탐지가 어려운 1장·22개 답안은 기존 이미지 픽셀 분석으로 자동 대체합니다.',
+        '신기술 학습관에서 PaddleOCR 줄별 강조를 바로 켜서 체험할 수 있습니다.',
+        '서비스워커 캐시를 v262로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.5',
       scope: 'jewelry',
       date: '2026.08.09',
@@ -850,8 +867,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.4';
+  changelog.versions.industrial = '2.5.6';
   changelog.versions.jewelry = '2.5.5';
-  changelog.currentVersion = '2.5.5';
+  changelog.currentVersion = '2.5.6';
   window.CBT_CHANGELOG = changelog;
 })();
