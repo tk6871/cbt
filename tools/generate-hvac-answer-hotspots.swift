@@ -33,24 +33,69 @@ func recognize(_ path: String) throws -> [Detection] {
         .standardizedFileURL
     try VNImageRequestHandler(url: url).perform([request])
 
-    return (request.results ?? []).compactMap { observation in
-        guard let text = observation.topCandidates(1).first?.string else { return nil }
-        let box = observation.boundingBox
-        return Detection(
-            text: text,
-            x: box.minX * 100,
-            y: (1 - box.maxY) * 100,
-            width: box.width * 100,
-            height: box.height * 100
-        )
+    let symbols = ["①", "②", "③", "④", "⑤"]
+    return (request.results ?? []).flatMap { observation -> [Detection] in
+        guard let candidate = observation.topCandidates(1).first else { return [] }
+        return symbols.flatMap { symbol -> [Detection] in
+            var detections: [Detection] = []
+            var searchRange = candidate.string.startIndex..<candidate.string.endIndex
+            while let range = candidate.string.range(of: symbol, range: searchRange) {
+                let characterObservation: VNRectangleObservation?
+                do {
+                    characterObservation = try candidate.boundingBox(for: range)
+                } catch {
+                    characterObservation = nil
+                }
+                let box = characterObservation?.boundingBox ?? observation.boundingBox
+                detections.append(Detection(
+                    text: symbol,
+                    x: box.minX * 100,
+                    y: (1 - box.maxY) * 100,
+                    width: box.width * 100,
+                    height: box.height * 100
+                ))
+                searchRange = range.upperBound..<candidate.string.endIndex
+            }
+            return detections
+        }
     }
 }
 
 func makeHotspots(_ detections: [Detection]) -> [Hotspot] {
     let symbols = ["①", "②", "③", "④"]
-    var choices: [(choice: Int, detection: Detection)] = symbols.enumerated().compactMap { index, symbol in
-        guard let detection = detections.filter({ $0.text.contains(symbol) }).max(by: { $0.y < $1.y }) else { return nil }
-        return (index + 1, detection)
+    var markerDetections: [Detection] = []
+    for detection in detections.filter({ symbols.contains($0.text) }).sorted(by: { $0.y > $1.y }) {
+        if !markerDetections.contains(where: { abs($0.x - detection.x) < 7 && abs($0.y - detection.y) < 2.2 }) {
+            markerDetections.append(detection)
+        }
+    }
+    markerDetections = Array(markerDetections.prefix(4))
+
+    // Restored sheets occasionally print a duplicated or wrong circled number.
+    // The answers still follow the visual order: top-to-bottom in one column,
+    // or 1·3 on the left and 2·4 on the right. Assign by position whenever four
+    // markers are visible instead of trusting the printed glyph.
+    var choices: [(choice: Int, detection: Detection)]
+    if markerDetections.count == 4 {
+        let markerMinX = markerDetections.map(\.x).min() ?? 0
+        let markerMaxX = markerDetections.map(\.x).max() ?? 0
+        if markerMaxX - markerMinX > 24 {
+            let xBoundary = (markerMinX + markerMaxX) / 2
+            let left = markerDetections.filter { $0.x < xBoundary }.sorted { $0.y < $1.y }
+            let right = markerDetections.filter { $0.x >= xBoundary }.sorted { $0.y < $1.y }
+            if left.count == 2, right.count == 2 {
+                choices = [(1, left[0]), (2, right[0]), (3, left[1]), (4, right[1])]
+            } else {
+                choices = markerDetections.sorted { $0.y < $1.y }.enumerated().map { ($0 + 1, $1) }
+            }
+        } else {
+            choices = markerDetections.sorted { $0.y < $1.y }.enumerated().map { ($0 + 1, $1) }
+        }
+    } else {
+        choices = symbols.enumerated().compactMap { index, symbol in
+            guard let detection = detections.filter({ $0.text == symbol }).max(by: { $0.y < $1.y }) else { return nil }
+            return (index + 1, detection)
+        }
     }
 
     if choices.count == 3 {
@@ -84,15 +129,31 @@ func makeHotspots(_ detections: [Detection]) -> [Hotspot] {
     }
     guard choices.count == 4 else { return [] }
 
+    // A fifth circled number below the detected ①~④ sequence usually means the
+    // image contains labelled diagram points rather than four selectable answers.
+    // In that case the regular answer buttons are safer than false image clicks.
+    if let fourth = choices.first(where: { $0.choice == 4 }) {
+        let markerColumns = choices.map(\.detection.x)
+        let hasAlignedFifth = detections.filter({ $0.text == "⑤" }).contains { fifth in
+            let belowFourth = fifth.y + fifth.height / 2 >= fourth.detection.y + fourth.detection.height / 2 - 1
+            let alignedWithMarker = markerColumns.contains { abs($0 - fifth.x) < 7 }
+            return belowFourth && alignedWithMarker
+        }
+        if hasAlignedFifth { return [] }
+    }
+
     let minX = choices.map(\.detection.x).min() ?? 0
     let maxX = choices.map(\.detection.x).max() ?? 0
     let twoColumns = maxX - minX > 24
-    let columnBoundary = twoColumns ? (minX + maxX) / 2 + 4 : 100
+    // The right-hand answer begins at maxX. Using the midpoint between the two
+    // circled numbers cuts long left-hand formulas in half. Keep the left cell
+    // open until just before the right-hand choice marker instead.
+    let columnBoundary = twoColumns ? maxX - 2.5 : 100
     let groups: [[(choice: Int, detection: Detection)]]
     if twoColumns {
         groups = [
-            choices.filter { $0.detection.x < columnBoundary },
-            choices.filter { $0.detection.x >= columnBoundary },
+            choices.filter { $0.choice == 1 || $0.choice == 3 },
+            choices.filter { $0.choice == 2 || $0.choice == 4 },
         ]
         guard groups.allSatisfy({ $0.count == 2 }) else { return [] }
     } else {
@@ -104,14 +165,21 @@ func makeHotspots(_ detections: [Detection]) -> [Hotspot] {
         let sorted = group.sorted { $0.detection.y < $1.detection.y }
         let xStart = twoColumns ? (columnIndex == 0 ? max(0, minX - 2.5) : columnBoundary) : max(0, minX - 2.5)
         let xEnd = twoColumns ? (columnIndex == 0 ? columnBoundary : 98.5) : 98.5
-        let centers = sorted.map { $0.detection.y + $0.detection.height / 2 }
+        let markerGaps = zip(sorted, sorted.dropFirst()).map { current, next in
+            next.detection.y - current.detection.y
+        }
+        let averageMarkerGap = markerGaps.isEmpty
+            ? (sorted.first?.detection.height ?? 5) + 3
+            : markerGaps.reduce(0, +) / Double(markerGaps.count)
         for (index, item) in sorted.enumerated() {
-            let top = index == 0
-                ? max(0, item.detection.y - 2.2)
-                : (centers[index - 1] + centers[index]) / 2
+            // Each choice begins at its circled number. Using the midpoint
+            // between two markers can cut the final line of a long answer in
+            // half, so end the previous cell immediately before the next
+            // marker instead.
+            let top = max(0, item.detection.y - 1.5)
             let bottom = index == sorted.count - 1
-                ? min(100, item.detection.y + item.detection.height + 2.2)
-                : (centers[index] + centers[index + 1]) / 2
+                ? min(98.5, top + averageMarkerGap)
+                : max(top + item.detection.height, sorted[index + 1].detection.y - 1.5)
             result.append(Hotspot(
                 choice: item.choice,
                 x: rounded(xStart),
@@ -161,13 +229,20 @@ func generate(root: String, output: String) throws {
 }
 
 let arguments = Array(CommandLine.arguments.dropFirst())
+if arguments.first == "--detect", arguments.count == 2 {
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+    FileHandle.standardOutput.write(try encoder.encode(recognize(arguments[1])))
+    FileHandle.standardOutput.write(Data("\n".utf8))
+    exit(0)
+}
 if arguments.first == "--generate", arguments.count == 3 {
     try generate(root: arguments[1], output: arguments[2])
     exit(0)
 }
 
 guard !arguments.isEmpty else {
-    fputs("사용법:\n  generate-hvac-answer-hotspots.swift <이미지...>\n  generate-hvac-answer-hotspots.swift --generate <이미지 루트> <출력 TS>\n", stderr)
+    fputs("사용법:\n  generate-hvac-answer-hotspots.swift <이미지...>\n  generate-hvac-answer-hotspots.swift --detect <이미지>\n  generate-hvac-answer-hotspots.swift --generate <이미지 루트> <출력 TS>\n", stderr)
     exit(2)
 }
 

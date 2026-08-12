@@ -18,6 +18,18 @@ const missingChoices = [];
 let segmentCount = 0;
 let closeAnswerPairs = 0;
 
+for (const [image, imageHotspots] of Object.entries(hotspots)) {
+  const choices = imageHotspots.map((item) => item.choice).sort((left, right) => left - right);
+  if (imageHotspots.length !== 4 || choices.join(',') !== '1,2,3,4') {
+    errors.push(`${image}: 클릭 구역이 보기 1·2·3·4를 정확히 한 개씩 포함하지 않습니다.`);
+  }
+  for (const hotspot of imageHotspots) {
+    if (hotspot.width < 2 || hotspot.height < 2) {
+      errors.push(`${image}/${hotspot.choice}: 클릭 구역이 너무 작습니다. ${JSON.stringify(hotspot)}`);
+    }
+  }
+}
+
 for (const [image, imageSegments] of Object.entries(segments)) {
   const imageHotspots = hotspots[image];
   if (!imageHotspots) {
