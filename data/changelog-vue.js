@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '2.5.7',
+      scope: 'industrial',
+      date: '2026.08.12',
+      title: '공조 복원문제 답안 영역 전체 검수',
+      summary: '공조 복원문제 1,020장을 전수 확인해 가로형·여러 줄·수식·그림 보기의 선택 영역을 다시 맞췄습니다.',
+      tags: ['전수 검수', '이미지 답안', '수식·그림', '가로형 보기'],
+      changes: [
+        '2021~2026년 공조 복원문제 1,020장을 답 번호별 색상 검수표 68장으로 나눠 전체 육안 확인했습니다.',
+        'Mac Vision이 문장 전체가 아닌 ①·②·③·④ 글자 각각의 실제 위치를 사용하도록 바꿔 가로 2열 보기의 서로 침범하는 영역을 고쳤습니다.',
+        'PaddleOCR이 수식·분수·회로·그림의 일부만 찾으면 원본의 어두운 글자와 선 범위를 함께 비교해 보기 전체를 감싸도록 보완했습니다.',
+        '원본에 보기 번호가 중복 인쇄된 문제도 화면상 위치 순서로 1·2·3·4를 연결해 네 답안을 모두 선택할 수 있습니다.',
+        '실제 선택지가 이미지에 없는 2021년 1회 12번은 잘못된 이미지 클릭 대신 기존 큰 답안 버튼을 사용합니다.',
+        '서비스워커 캐시를 v263으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.5.6',
       scope: 'industrial',
       date: '2026.08.12',
@@ -867,8 +883,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.5.6';
+  changelog.versions.industrial = '2.5.7';
   changelog.versions.jewelry = '2.5.5';
-  changelog.currentVersion = '2.5.6';
+  changelog.currentVersion = '2.5.7';
   window.CBT_CHANGELOG = changelog;
 })();

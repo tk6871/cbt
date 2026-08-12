@@ -145,6 +145,149 @@ def keep_bottom_answer_line(segments):
     return candidates or segments
 
 
+def pixel_line_segments(image: Image.Image, hotspot, image_width: int, image_height: int):
+    """Return tight ink bounds when OCR sees only part of a formula or diagram."""
+    cell_left = max(0, int(hotspot["x"] / 100 * image_width))
+    cell_top = max(0, int(hotspot["y"] / 100 * image_height))
+    cell_right = min(image_width, int((hotspot["x"] + hotspot["width"]) / 100 * image_width + 0.999))
+    cell_bottom = min(image_height, int((hotspot["y"] + hotspot["height"]) / 100 * image_height + 0.999))
+    if cell_right <= cell_left or cell_bottom <= cell_top:
+        return [], set()
+
+    gray = image.crop((cell_left, cell_top, cell_right, cell_bottom)).convert("L")
+    pixels = gray.load()
+    width, height = gray.size
+    # The restored pages use a white background. A conservative threshold keeps
+    # black answer ink while ignoring the pale ComCBT watermark.
+    ink = {(x, y) for y in range(height) for x in range(width) if pixels[x, y] < 150}
+    if len(ink) < 5:
+        return [], ink
+
+    active_rows = sorted({y for _, y in ink})
+    groups: list[list[int]] = []
+    max_row_gap = max(2, round(image_height * 0.004))
+    for row in active_rows:
+        if not groups or row - groups[-1][-1] > max_row_gap:
+            groups.append([row])
+        else:
+            groups[-1].append(row)
+
+    # Stop at a clearly separated footer, next-subject banner, or watermark.
+    # Real multi-line answers and fractions have much smaller row gaps.
+    nearby_groups = [groups[0]]
+    max_content_gap = max(7, round(image_height * 0.035))
+    for group in groups[1:]:
+        if group[0] - nearby_groups[-1][-1] > max_content_gap:
+            break
+        nearby_groups.append(group)
+    groups = nearby_groups
+
+    padding_x = max(2, round(image_width * 0.0035))
+    padding_y = max(2, round(image_height * 0.003))
+    result = []
+    for rows in groups:
+        y1, y2 = rows[0], rows[-1]
+        points = [(x, y) for x, y in ink if y1 <= y <= y2]
+        if len(points) < 4:
+            continue
+        x1 = min(x for x, _ in points)
+        x2 = max(x for x, _ in points)
+        left = max(cell_left, cell_left + x1 - padding_x)
+        top = max(cell_top, cell_top + y1 - padding_y)
+        right = min(cell_right, cell_left + x2 + 1 + padding_x)
+        bottom = min(cell_bottom, cell_top + y2 + 1 + padding_y)
+        result.append({
+            "x": round2(left / image_width * 100),
+            "y": round2(top / image_height * 100),
+            "width": round2((right - left) / image_width * 100),
+            "height": round2((bottom - top) / image_height * 100),
+        })
+    if result:
+        anchor_limit = hotspot["x"] + hotspot["width"] * 0.28
+        anchored = [item for item in result if item["x"] <= anchor_limit]
+        if anchored:
+            anchor_right = max(item["x"] + item["width"] for item in anchored)
+            result = [
+                item for item in result
+                if item["x"] <= anchor_limit or item["x"] <= anchor_right + hotspot["width"] * 0.05
+            ]
+    return result, ink
+
+
+def needs_pixel_fallback(ocr_segments, pixel_segments, ink, hotspot, image_width: int, image_height: int):
+    if not pixel_segments or not ink:
+        return False
+    if not ocr_segments:
+        return True
+
+    cell_left = hotspot["x"] / 100 * image_width
+    cell_top = hotspot["y"] / 100 * image_height
+    covered = 0
+    for x, y in ink:
+        absolute_x = cell_left + x
+        absolute_y = cell_top + y
+        if any(
+            item["x"] / 100 * image_width <= absolute_x <= (item["x"] + item["width"]) / 100 * image_width
+            and item["y"] / 100 * image_height <= absolute_y <= (item["y"] + item["height"]) / 100 * image_height
+            for item in ocr_segments
+        ):
+            covered += 1
+    coverage = covered / len(ink)
+
+    ocr_left = min(item["x"] for item in ocr_segments)
+    ocr_top = min(item["y"] for item in ocr_segments)
+    ocr_right = max(item["x"] + item["width"] for item in ocr_segments)
+    ocr_bottom = max(item["y"] + item["height"] for item in ocr_segments)
+    pixel_left = min(item["x"] for item in pixel_segments)
+    pixel_top = min(item["y"] for item in pixel_segments)
+    pixel_right = max(item["x"] + item["width"] for item in pixel_segments)
+    pixel_bottom = max(item["y"] + item["height"] for item in pixel_segments)
+    width_ratio = (ocr_right - ocr_left) / max(0.01, pixel_right - pixel_left)
+    height_ratio = (ocr_bottom - ocr_top) / max(0.01, pixel_bottom - pixel_top)
+    return coverage < 0.68 or width_ratio < 0.58 or height_ratio < 0.58
+
+
+def has_dark_ink(image: Image.Image, segment, image_width: int, image_height: int):
+    left = max(0, int(segment["x"] / 100 * image_width))
+    top = max(0, int(segment["y"] / 100 * image_height))
+    right = min(image_width, int((segment["x"] + segment["width"]) / 100 * image_width + 0.999))
+    bottom = min(image_height, int((segment["y"] + segment["height"]) / 100 * image_height + 0.999))
+    if right <= left or bottom <= top:
+        return False
+    histogram = image.crop((left, top, right, bottom)).convert("L").histogram()
+    return sum(histogram[:150]) >= 4
+
+
+def reassign_boundary_fragments(choices, image_hotspots):
+    """Move a clipped numerator/superscript to the formula that starts below it."""
+    min_x = min(item["x"] for item in image_hotspots)
+    max_x = max(item["x"] for item in image_hotspots)
+    if max_x - min_x > 24:
+        columns = ([1, 3], [2, 4])
+    else:
+        columns = ([1, 2, 3, 4],)
+    hotspots_by_choice = {item["choice"]: item for item in image_hotspots}
+    for column in columns:
+        for previous_choice, current_choice in zip(column, column[1:]):
+            previous = choices.get(str(previous_choice), [])
+            current = choices.get(str(current_choice), [])
+            if not previous or not current:
+                continue
+            boundary = hotspots_by_choice[current_choice]["y"]
+            reference_height = max(item["height"] for item in current)
+            reference_width = max(item["width"] for item in current)
+            fragments = [
+                item for item in previous
+                if abs(item["y"] + item["height"] - boundary) <= 0.45
+                and item["height"] < reference_height * 0.58
+                and item["width"] < reference_width * 0.75
+            ]
+            if not fragments:
+                continue
+            choices[str(previous_choice)] = [item for item in previous if item not in fragments]
+            choices[str(current_choice)] = sorted(fragments + current, key=lambda item: (item["y"], item["x"]))
+
+
 def write_output(path: Path, result: dict[str, Any]) -> None:
     payload = json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True)
     source = (
@@ -180,7 +323,8 @@ def main() -> None:
     started = time.perf_counter()
     for index, relative in enumerate(paths, 1):
         image_path = args.image_root / relative
-        with Image.open(image_path) as image:
+        with Image.open(image_path) as opened_image:
+            image = opened_image.convert("RGB")
             width, height = image.size
         prediction = list(detector.predict(str(image_path)))[0].json["res"]
         choices = {}
@@ -192,25 +336,17 @@ def main() -> None:
             segments = segments_for_hotspot(
                 prediction["dt_polys"], prediction["dt_scores"], hotspot, width, height, extend_bottom
             )
-            if not one_column_layout and hotspot["height"] <= 12:
+            segments = [item for item in segments if has_dark_ink(image, item, width, height)]
+            pixel_segments, ink = pixel_line_segments(image, hotspot, width, height)
+            if needs_pixel_fallback(segments, pixel_segments, ink, hotspot, width, height):
+                segments = pixel_segments
+            if relative in reviewed and not one_column_layout and hotspot["height"] <= 12:
                 segments = keep_bottom_answer_line(segments)
             if segments:
                 choices[str(hotspot["choice"])] = segments
-        one_column = max(item["x"] for item in image_hotspots) - min(item["x"] for item in image_hotspots) < 12
-        if one_column:
-            for choice in range(2, 5):
-                key = str(choice)
-                previous_key = str(choice - 1)
-                segments = choices.get(key, [])
-                if len(segments) < 2:
-                    continue
-                anchor_index = min(range(len(segments)), key=lambda item: (segments[item]["x"], segments[item]["y"]))
-                if anchor_index and min(item["x"] for item in segments[:anchor_index]) - segments[anchor_index]["x"] > 1.5:
-                    choices.setdefault(previous_key, []).extend(segments[:anchor_index])
-                    choices[previous_key].sort(key=lambda item: (item["y"], item["x"]))
-                    choices[key] = segments[anchor_index:]
         for key in list(choices):
             choices[key] = merge_clipped_line_parts(choices[key])
+        reassign_boundary_fragments(choices, image_hotspots)
         if choices:
             result[relative] = choices
         if index % 25 == 0 or index == len(paths):

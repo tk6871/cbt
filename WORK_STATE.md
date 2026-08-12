@@ -7,7 +7,7 @@
 - 마지막 갱신: 2026-08-12
 - 기준 브랜치: `main`
 - 이번 CBT 수정 작업 시작 Git HEAD: `4288a88`
-- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.5.6 PaddleOCR 복원 이미지 답안 줄별 강조와 v2.5.5 보석감정산업기사 통합 모의시험 상태가 포함됨
+- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.5.7 공조 복원 이미지 답안 영역 전수 검수와 v2.5.5 보석감정산업기사 통합 모의시험 상태가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
 - Windows SSH 호스트 별칭: `mac-m4`
@@ -40,7 +40,7 @@ npm run audit:questions
 - Supabase 관리자 페이지에 방문·학습·시험 결과와 실시간 접속 상태를 구성했습니다. 문제별 매 클릭 대신 묶음 결과 전송을 사용하도록 조정했습니다.
 - 학습모드 상단에 문제 번호를 입력하여 바로 이동하는 기능을 Vue 화면과 구버전 화면에 적용했습니다.
 - 공조냉동 2021~2026 복원문제는 텍스트 변환 대신 원문 이미지 중심으로 표시합니다.
-- 산업기사 패치노트 v2.5.4와 보석관 패치노트 v2.5.5, Service Worker 캐시 v261까지 반영했습니다.
+- 산업기사 패치노트 v2.5.7과 보석관 패치노트 v2.5.5, Service Worker 캐시 v263까지 반영했습니다.
 - 기존 CBT 화면을 기본 UI로 유지하면서 설정 화면에서만 테마를 선택하도록 구성했습니다. 산업기사는 기본·심슨, 보석관은 기본·심슨·선재 테마를 제공합니다.
 - UI 스타일 선택값은 산업기사와 보석관에 각각 저장되며, 계산기는 어느 학습관에서 열었는지에 맞는 테마를 사용합니다. 산업기사에 남아 있는 이전 선재 저장값은 기본 테마로 정규화합니다.
 - 심슨 테마에서 메뉴, 카드, 알림, 문제 풀이와 계산기를 스프링필드풍 코믹 UI로 표시합니다.
@@ -84,6 +84,10 @@ npm run audit:questions
 - v2.5.6에서 공조 복원문제 1,020장에 PaddleOCR PP-OCRv5 글자 탐지를 적용해 1,019장·4,973개의 줄별 강조 좌표를 생성했습니다. 기존 자동 클릭 좌표와 사용자가 확인한 수동 좌표는 답 번호 기준으로 그대로 유지하므로 OCR이 ④를 ③으로 잘못 읽어도 답이 뒤바뀌지 않습니다.
 - 두 줄·세 줄 답안은 글자 줄마다 작은 박스를 표시하지만 내부적으로 같은 답안으로 묶입니다. 글자 탐지가 어려운 회로·도형 중심 1장과 일부 답안 22개는 기존 브라우저 픽셀 분석으로 자동 대체합니다.
 - `tools/generate-hvac-answer-segments.py`가 Paddle 탐지 좌표를 `src/cbt/generatedHvacAnswerSegments.ts`로 만들고, `npm run audit:answer-segments`가 전체 이미지 수·답안 대체·좌표 범위와 기존 클릭 구역 연결을 검사합니다.
+- v2.5.7에서 공조 복원문제 1,020장을 답 번호별 색상 검수표 68장으로 나눠 전체 육안 확인했습니다. `tools/render-hvac-answer-segment-audit.py`로 같은 검수표를 다시 만들 수 있습니다.
+- Mac Vision은 OCR 문장 전체 상자가 아니라 각 ①·②·③·④ 글자의 실제 상자를 사용하며, 가로형 보기는 왼쪽 1·3과 오른쪽 2·4의 화면 위치 순서로 연결합니다. 원본에 번호가 중복 인쇄돼도 네 답안을 유지합니다.
+- PaddleOCR이 수식·분수·회로·그림을 일부만 찾으면 원본의 어두운 픽셀 범위를 함께 비교해 자동 보완하며, 희미한 워터마크와 다음 과목 띠는 제외합니다.
+- 실제 선택지가 이미지에 없는 2021년 1회 12번만 기존 큰 답안 버튼을 사용합니다. 나머지 1,019장은 직접 선택 구역 4,076개와 강조 좌표 4,979개가 모두 연결됐고 미검출 답안은 0개입니다.
 - Paddle 좌표가 있는 답안은 브라우저에서 이미지 픽셀을 다시 훑지 않도록 해 모바일 계산 부담을 줄였고, 줄 좌표를 기준으로 실제 터치 구역 경계도 다시 계산합니다.
 - PaddleOCR 임시 환경은 Mac의 `/private/tmp/cbt-paddleocr-venv`에 Python 3.12 arm64, PaddlePaddle 3.3.1, PaddleOCR 3.7.0으로 만들었습니다. 생성 결과는 저장소에 들어 있으므로 Windows나 다른 장치에서 일반 빌드할 때 Paddle 설치는 필요 없습니다.
 - 보석관 전용 `jewelry.webmanifest`를 추가해 보석관 페이지에서 설치한 PWA는 `jewelry.html`로 바로 시작합니다.
@@ -103,6 +107,7 @@ npm run audit:questions
 - v2.5.4 검증: `pnpm run typecheck`, `node ./node_modules/vite/bin/vite.js build --configLoader runner`, `pnpm run audit:questions`, `pnpm run test:hotspot-editor`, `node --check sw.js`, `node --check data/changelog-vue.js` 통과. 9개 종목·248회차·19,610문제·이미지 참조 4,125개의 구조 오류와 누락 이미지가 모두 0건입니다.
 - v2.5.5 검증: `pnpm run typecheck`, `pnpm run test:gem-target-exam`, `pnpm run audit:questions`, `node ./node_modules/vite/bin/vite.js build --configLoader runner`, `node --check sw.js`, `node --check data/changelog-vue.js`를 통과했습니다. 목표 출제 풀 2,107문항, 옛 보석감정사 과목별 직접 연계 450문항씩, 유사 보강을 포함한 4과목 × 20문항 구성과 중복 방지 규칙을 검사했습니다.
 - v2.5.6 검증: `npm run audit:answer-segments`, `npm run typecheck`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. Paddle 좌표 1,019/1,020장·4,973개, 픽셀 분석 대체 1장·22개 답안, 전체 19,610문제·4,125개 이미지 참조의 구조 오류와 누락 이미지 0건을 확인했습니다.
+- v2.5.7 검증: `npm run audit:answer-segments`, `npm run typecheck`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 직접 선택 가능 1,019장에 4,979개 강조 좌표가 모두 생성됐고 픽셀 분석 대체와 미검출 답안은 0개입니다.
 - v2.5.6 육안 검증: 여러 줄 텍스트, 가로 2열, 표, 수식, 그래프·회로 후보를 원본 위 좌표 접촉시트로 확인했습니다. 2021년 1회 47번 표의 마지막 숫자 행이 답안으로 잡히던 후보를 제거해 ① 20A·② 25A·③ 32A·④ 40A만 강조하도록 보정했습니다.
 - 390×844 휴대폰과 820×1180 태블릿 로컬 화면에서 2021년 1회 47번을 확인했습니다. 이미지 끝과 안내·확대 도구 줄이 겹치지 않았고 네 답안의 실제 터치 영역은 약 34~37px 높이로 분리됐으며 ④ 선택·정답·해설 표시와 브라우저 오류 0건을 확인했습니다.
 - v2.5 Chrome 로컬 검증에서 설정의 세 가지 답안 방식, 직접 선택 문제의 답안 클릭, 미검출 2021년 1회 32번의 기존 버튼 자동 대체, 2021년 1회 55번 복원 이미지 표시와 수동 좌표 보정 도구 로딩을 확인했습니다.
