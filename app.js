@@ -29,7 +29,7 @@
   const toastNode = document.getElementById('toast');
 
   const defaultStore = () => ({
-    theme: 'system', fontScale: 1, bookmarks: [], wrong: {}, attempts: {}, progress: {}, history: [], notes: {},
+    theme: 'dark', fontScale: 1, bookmarks: [], wrong: {}, attempts: {}, progress: {}, history: [], notes: {},
     questionTimes: {}, studyPlan: null, studyPlans: {}
   });
   let store = loadStore();
@@ -1131,7 +1131,7 @@
       });
       store = restored;
       state.session = null; state.modal = null; state.view = 'home';
-      setTheme(store.theme || 'system');
+      setTheme(store.theme || 'dark');
       saveStore();
       renderHome();
       toast('학습 기록을 복원했습니다.');
@@ -1522,7 +1522,7 @@
   app.addEventListener('keydown', keydownHandler);
   window.addEventListener('pagehide', () => sendSessionAnalytics(state.session));
   matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { if (store.theme === 'system') setTheme('system'); });
-  setTheme(store.theme || 'system');
+  setTheme(store.theme || 'dark');
   setVisualStyle(savedVisualStyle());
   setDynamicUiEnabled(localStorage.getItem(DYNAMIC_UI_KEY) !== 'false');
   bindFocusable(); route();

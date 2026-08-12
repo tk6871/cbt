@@ -46,7 +46,7 @@ type ExperienceTransitionPhase = 'home-leaving' | 'session-entering' | 'session-
 type SunjaeResultPhase = 'grading' | 'reveal';
 type AnswerLayout = 'classic' | 'inline' | 'hotspot';
 type HotspotIndicator = 'marker' | 'area';
-type RestoredImageTheme = 'auto' | 'contrast' | 'original';
+type RestoredImageTheme = 'auto' | 'original';
 type ExamResult = {
   score: number;
   correct: number;
@@ -189,9 +189,7 @@ const savedHotspotIndicator = localStorage.getItem('unified-cbt-hotspot-indicato
 const hotspotIndicator = ref<HotspotIndicator>(savedHotspotIndicator === 'area' ? 'area' : 'marker');
 const savedRestoredImageTheme = localStorage.getItem('unified-cbt-restored-image-theme');
 const restoredImageTheme = ref<RestoredImageTheme>(
-  savedRestoredImageTheme === 'contrast' || savedRestoredImageTheme === 'original'
-    ? savedRestoredImageTheme
-    : 'auto',
+  savedRestoredImageTheme === 'original' ? 'original' : 'auto',
 );
 const answerLayoutLabel = computed(() => answerLayout.value === 'hotspot'
   ? '이미지 직접 선택'
@@ -1655,7 +1653,7 @@ function setRestoredImageTheme(mode: RestoredImageTheme): void {
   localStorage.setItem('unified-cbt-restored-image-theme', mode);
   showToast(mode === 'auto'
     ? '다크 모드에서 복원문제의 눈부심을 줄입니다.'
-    : mode === 'contrast' ? '다크 모드에서 복원문제를 검정 고대비로 표시합니다.' : '복원문제를 항상 원본 색상으로 표시합니다.');
+    : '복원문제를 항상 원본 색상으로 표시합니다.');
 }
 
 async function openAnswerLayoutSettings(): Promise<void> {
@@ -2711,10 +2709,6 @@ onBeforeUnmount(() => {
                 <figure><img :src="restoredDarkPreviewImage" alt="눈부심을 줄인 남색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
                 <strong>눈부심 완화</strong><small>추천 · 짙은 남색</small>
               </button>
-              <button type="button" class="restored-dark-preview contrast" :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')">
-                <figure><img :src="restoredDarkPreviewImage" alt="검정 고대비 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
-                <strong>고대비 검정</strong><small>선명한 완전 반전</small>
-              </button>
             </div>
             <footer><strong>설정 위치</strong><span>화면·데이터 설정과 풀이 중 설정에서 언제든 바꿀 수 있습니다. 선택한 방식은 다크 모드에서 적용됩니다.</span></footer>
           </section>
@@ -2759,7 +2753,7 @@ onBeforeUnmount(() => {
               </article>
               <article v-if="!isJewelry" class="feature-tour-card midnight">
                 <b>04</b><span>RESTORED IMAGE DARK</span><h3>복원문제까지 편안한 다크</h3>
-                <p>원본 이미지와 답안 좌표는 보존하고 눈부심 완화·고대비 검정·원본 중 원하는 표시를 고릅니다.</p>
+                <p>원본 이미지와 답안 좌표는 보존하고 눈부심 완화·원본 중 원하는 표시를 고릅니다.</p>
                 <button type="button" @click="theme = 'dark'; applyTheme(theme); setRestoredImageTheme('auto')">눈부심 완화 체험 →</button>
               </article>
             </div>
@@ -2909,7 +2903,6 @@ onBeforeUnmount(() => {
           <p class="setting-description">원본 픽셀과 답안 좌표는 그대로 두고, 다크 모드에서만 읽기 편한 색상으로 바꿉니다.</p>
           <div class="restored-image-options">
             <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
-            <button :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')"><strong>● 고대비 검정</strong><small>선명한 완전 반전</small></button>
             <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </div>
@@ -3173,7 +3166,6 @@ onBeforeUnmount(() => {
           <p class="setting-description">현재 문제와 답안은 유지한 채 다크 이미지 표시만 바꿉니다.</p>
           <div class="restored-image-options">
             <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
-            <button :class="{ active: restoredImageTheme === 'contrast' }" @click="setRestoredImageTheme('contrast')"><strong>● 고대비 검정</strong><small>선명한 완전 반전</small></button>
             <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </div>

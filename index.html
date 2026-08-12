@@ -8,11 +8,11 @@
   <title>산업기사 통합 CBT</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-  <link rel="stylesheet" href="modern/cbt.css?v=258">
+  <link rel="stylesheet" href="modern/cbt.css?v=265">
   <script>
     window.CBT_APP_SPACE = 'industrial';
     try {
-      const mode = localStorage.getItem('unified-cbt-theme') || 'system';
+      const mode = localStorage.getItem('unified-cbt-theme') || 'dark';
       const dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
       const visualStyle = localStorage.getItem('unified-cbt-visual-style');
@@ -38,8 +38,8 @@
   <script src="data/energy-engineer.js?v=255"></script>
   <script src="data/maintenance.js?v=255"></script>
   <script src="data/changelog.js?v=255"></script>
-  <script src="data/changelog-vue.js?v=264"></script>
-  <script type="module" src="modern/cbt.js?v=264"></script>
+  <script src="data/changelog-vue.js?v=265"></script>
+  <script type="module" src="modern/cbt.js?v=265"></script>
   <script type="module">
     if (window.CBT_CLOUD_CONFIG?.enabled) import('./modern/visitor.js?v=255');
   </script>

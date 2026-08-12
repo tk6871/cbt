@@ -140,7 +140,7 @@ export async function loadExamRecords(qualificationKey: string): Promise<ExamRec
 
 export function currentTheme(): 'system' | 'light' | 'dark' {
   const mode = localStorage.getItem(THEME_KEY);
-  return mode === 'light' || mode === 'dark' ? mode : 'system';
+  return mode === 'system' || mode === 'light' || mode === 'dark' ? mode : 'dark';
 }
 
 export function applyTheme(mode: 'system' | 'light' | 'dark'): void {

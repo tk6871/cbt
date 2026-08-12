@@ -5434,31 +5434,31 @@ export const hvacAnswerHotspots: Record<string, Array<{ choice: number; x: numbe
   "assets/hvac/assets/questions/2022_1/06.jpg" : [
     {
       "choice" : 1,
-      "height" : 17.84,
-      "width" : 93.6,
-      "x" : 4.9,
-      "y" : 39.58
+      "height" : 15.71,
+      "width" : 94.16,
+      "x" : 4.34,
+      "y" : 37.19
     },
     {
       "choice" : 2,
-      "height" : 17.57,
-      "width" : 93.6,
-      "x" : 4.9,
-      "y" : 57.42
+      "height" : 15.48,
+      "width" : 94.16,
+      "x" : 4.34,
+      "y" : 52.9
     },
     {
       "choice" : 3,
-      "height" : 16.76,
-      "width" : 93.6,
-      "x" : 4.9,
-      "y" : 74.99
+      "height" : 14.52,
+      "width" : 94.16,
+      "x" : 4.34,
+      "y" : 68.38
     },
     {
       "choice" : 4,
-      "height" : 6.76,
-      "width" : 93.6,
-      "x" : 4.9,
-      "y" : 91.74
+      "height" : 15.24,
+      "width" : 94.16,
+      "x" : 4.34,
+      "y" : 82.9
     }
   ],
   "assets/hvac/assets/questions/2022_1/07.jpg" : [

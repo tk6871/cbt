@@ -327,8 +327,49 @@ def reassign_boundary_fragments(choices, image_hotspots):
             ]
             if not fragments:
                 continue
+            fragment_top = min(item["y"] for item in fragments)
+            fragment_bottom = max(item["y"] + item["height"] for item in fragments)
+            # A wrapped answer can start slightly above the coarse hotspot
+            # boundary. When its choice-number fragment is reassigned, move
+            # the text on that same row as well. Otherwise selecting the
+            # previous answer also highlights the next answer's first line.
+            companions = [
+                item for item in previous
+                if item not in fragments
+                and min(item["y"] + item["height"], fragment_bottom) - max(item["y"], fragment_top)
+                >= min(item["height"], fragment_bottom - fragment_top) * 0.35
+            ]
+            fragments.extend(companions)
             choices[str(previous_choice)] = [item for item in previous if item not in fragments]
             choices[str(current_choice)] = sorted(fragments + current, key=lambda item: (item["y"], item["x"]))
+
+
+def remove_cross_column_number_fragments(choices, image_hotspots):
+    """Drop a right-column answer number clipped into the left answer cell."""
+    min_x = min(item["x"] for item in image_hotspots)
+    max_x = max(item["x"] for item in image_hotspots)
+    if max_x - min_x <= 24:
+        return
+
+    boundary = (min_x + max_x) / 2
+    left_hotspots = [item for item in image_hotspots if item["x"] < boundary]
+    right_hotspots = [item for item in image_hotspots if item["x"] >= boundary]
+    for hotspot in left_hotspots:
+        right = min(right_hotspots, key=lambda item: abs(item["y"] - hotspot["y"]))
+        key = str(hotspot["choice"])
+        segments = choices.get(key, [])
+        if len(segments) < 2:
+            continue
+        maximum_width = max(item["width"] for item in segments)
+        fragments = [
+            item for item in segments
+            if abs(item["x"] + item["width"] - right["x"]) <= 0.7
+            and item["width"] <= 8
+            and item["width"] < maximum_width * 0.6
+            and any(other is not item and other["x"] + other["width"] + 1.5 < item["x"] for other in segments)
+        ]
+        if fragments:
+            choices[key] = [item for item in segments if item not in fragments]
 
 
 def write_output(path: Path, result: dict[str, Any]) -> None:
@@ -391,6 +432,7 @@ def main() -> None:
                 choices[str(hotspot["choice"])] = segments
         for key in list(choices):
             choices[key] = merge_clipped_line_parts(choices[key])
+        remove_cross_column_number_fragments(choices, image_hotspots)
         reassign_boundary_fragments(choices, image_hotspots)
         if choices:
             result[relative] = choices

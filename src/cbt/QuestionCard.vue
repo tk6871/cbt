@@ -16,7 +16,7 @@ const props = defineProps<{
   imageAnswerMode?: 'buttons' | 'hotspot';
   answerLayout?: 'classic' | 'inline' | 'hotspot';
   hotspotIndicator?: 'marker' | 'area';
-  restoredImageTheme?: 'auto' | 'contrast' | 'original';
+  restoredImageTheme?: 'auto' | 'original';
 }>();
 
 defineEmits<{
@@ -79,7 +79,13 @@ const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
 const selectedAreaHighlightStyles = computed(() => {
   if (!props.selected) return [];
   const hotspot = verifiedHotspots.value.find((item) => item.choice === props.selected);
-  if (hotspot?.segments?.length) return hotspot.segments.map(hotspotStyle);
+  const interactive = interactiveHotspots.value.find((item) => item.choice === props.selected);
+  if (hotspot?.segments?.length && interactive) {
+    return hotspot.segments
+      .map((segment) => clipSegmentToHotspot(segment, interactive))
+      .filter((segment): segment is AnswerHotspotSegment => Boolean(segment))
+      .map(hotspotStyle);
+  }
   const fallback = answerHighlightStyles.value[props.selected];
   return fallback ? [fallback] : [];
 });
@@ -118,6 +124,18 @@ function choiceClass(index: number): Record<string, boolean> {
 
 function hotspotStyle(hotspot: AnswerHotspotSegment | AnswerHotspot): Record<string, string> {
   return { left: `${hotspot.x}%`, top: `${hotspot.y}%`, width: `${hotspot.width}%`, height: `${hotspot.height}%` };
+}
+
+function clipSegmentToHotspot(
+  segment: AnswerHotspotSegment,
+  hotspot: AnswerHotspot,
+): AnswerHotspotSegment | undefined {
+  const x = Math.max(segment.x, hotspot.x);
+  const y = Math.max(segment.y, hotspot.y);
+  const right = Math.min(segment.x + segment.width, hotspot.x + hotspot.width);
+  const bottom = Math.min(segment.y + segment.height, hotspot.y + hotspot.height);
+  if (right <= x || bottom <= y) return undefined;
+  return { x, y, width: right - x, height: bottom - y };
 }
 
 function calculateAnswerHighlights(image: HTMLImageElement): void {
