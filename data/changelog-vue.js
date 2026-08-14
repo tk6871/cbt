@@ -5,6 +5,39 @@
 
   const entries = [
     {
+      version: '2.8',
+      scope: 'industrial',
+      date: '2026.08.14',
+      title: '선택형 COMCBT·컴뱃 CBT 문제풀이 화면',
+      summary: '기존 CBT를 기본값으로 유지하면서, 6문제 고밀도 COMCBT와 1문제 집중 컴뱃 CBT를 설정에서 골라 사용할 수 있습니다.',
+      tags: ['기존 CBT 기본', 'COMCBT', '컴뱃 CBT', '빠른 OMR', '키보드 조작'],
+      changes: [
+        '기존 v2.7 카드형 CBT를 기본값으로 유지하고, 설정에서 COMCBT 모드와 컴뱃 CBT를 선택할 수 있습니다.',
+        'COMCBT 모드는 데스크톱 한 화면 6문제·독립 2열·고정 하단 이동 바를 적용해 문제와 답안을 더 촘촘하게 표시합니다.',
+        '컴뱃 CBT는 한 번에 1문제에 집중하는 진행 HUD와 미션형 화면을 제공합니다.',
+        '전체·미응답·킵·현재 과목 OMR 필터와 다음 미응답 바로 이동 기능을 추가했습니다.',
+        '1~4 답 선택, 방향키 이동, K 킵, B 북마크, E 해설 패널 단축키를 지원합니다.',
+        'COMCBT·컴뱃 CBT 해설은 PC 오른쪽 패널과 모바일 아래쪽 시트로 열리며 현재 문제 위치를 유지합니다.',
+        '모바일 CBT는 OMR을 닫은 상태로 시작하고, 신기술 학습관에서 세 가지 화면을 비교할 수 있습니다.',
+        '서비스워커 캐시를 v280으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '2.8',
+      scope: 'jewelry',
+      date: '2026.08.14',
+      title: '세 가지 문제풀이 화면과 빠른 OMR',
+      summary: '보석관에서도 기존 카드형 CBT를 기본으로 사용하며 COMCBT 고밀도 화면과 컴뱃 CBT 집중 화면을 선택할 수 있습니다.',
+      tags: ['기존 CBT 기본', 'COMCBT', '컴뱃 CBT', '모바일 OMR'],
+      changes: [
+        '기존 카드형 CBT를 기본값으로 유지하고 COMCBT와 컴뱃 CBT를 설정에서 선택할 수 있습니다.',
+        '고정 하단 이동 바, OMR 필터, 다음 미응답 이동과 문제풀이 키보드 단축키를 적용했습니다.',
+        '해설을 PC 오른쪽 패널·모바일 아래쪽 시트로 표시해 문제 위치를 유지합니다.',
+        '모바일 CBT에서 OMR을 닫은 상태로 시작하고 신기술 학습관에 세 화면 비교를 추가했습니다.',
+        '서비스워커 캐시를 v280으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.7.1',
       scope: 'industrial',
       date: '2026.08.14',
@@ -979,8 +1012,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.7.1';
-  changelog.versions.jewelry = '2.5.6';
-  changelog.currentVersion = '2.7.1';
+  changelog.versions.industrial = '2.8';
+  changelog.versions.jewelry = '2.8';
+  changelog.currentVersion = '2.8';
   window.CBT_CHANGELOG = changelog;
 })();

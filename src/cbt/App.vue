@@ -47,6 +47,8 @@ type SunjaeResultPhase = 'grading' | 'reveal';
 type AnswerLayout = 'classic' | 'inline' | 'hotspot';
 type HotspotIndicator = 'marker' | 'area';
 type RestoredImageTheme = 'auto' | 'original';
+type SolveLayoutMode = 'standard' | 'comcbt' | 'combat';
+type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type ExamResult = {
   score: number;
   correct: number;
@@ -191,6 +193,12 @@ const savedRestoredImageTheme = localStorage.getItem('unified-cbt-restored-image
 const restoredImageTheme = ref<RestoredImageTheme>(
   savedRestoredImageTheme === 'original' ? 'original' : 'auto',
 );
+const savedSolveLayout = localStorage.getItem('unified-cbt-solve-layout');
+const solveLayoutMode = ref<SolveLayoutMode>(
+  savedSolveLayout === 'comcbt' || savedSolveLayout === 'combat' ? savedSolveLayout : 'standard',
+);
+const omrFilter = ref<OmrFilter>('all');
+const activeSessionItemId = ref('');
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
@@ -445,12 +453,32 @@ const currentItems = computed(() => {
 });
 const currentItemColumns = computed(() => {
   const items = currentItems.value;
+  if (solveLayoutMode.value === 'combat') return [items];
   const split = Math.ceil(items.length / 2);
   return [items.slice(0, split), items.slice(split)].filter((column) => column.length);
 });
 const pageCount = computed(() => session.value ? Math.ceil(session.value.items.length / session.value.pageSize) : 0);
 const answeredCount = computed(() => session.value ? Object.keys(session.value.answers).length : 0);
+const unansweredCount = computed(() => Math.max(0, (session.value?.items.length || 0) - answeredCount.value));
 const keptCount = computed(() => session.value?.kept.length || 0);
+const activeSessionItem = computed(() => {
+  if (!session.value) return undefined;
+  return session.value.items.find((item) => item.id === activeSessionItemId.value) || currentItems.value[0];
+});
+const omrRows = computed(() => {
+  if (!session.value) return [];
+  const activeSubject = activeSessionItem.value?.subject;
+  return session.value.items.map((item, index) => ({ item, index })).filter(({ item }) => {
+    if (omrFilter.value === 'unanswered') return session.value?.answers[item.id] == null;
+    if (omrFilter.value === 'kept') return session.value?.kept.includes(item.id);
+    if (omrFilter.value === 'subject') return item.subject === activeSubject;
+    return true;
+  });
+});
+const sessionProgress = computed(() => session.value?.items.length
+  ? Math.round(answeredCount.value / session.value.items.length * 100)
+  : 0);
+const preferredPageSize = computed(() => solveLayoutMode.value === 'combat' ? 1 : solveLayoutMode.value === 'comcbt' ? 6 : 4);
 const sessionQuestionMax = computed(() => session.value?.items.reduce(
   (maximum, item) => Math.max(maximum, Number(item.question.number) || 0),
   0,
@@ -936,7 +964,7 @@ async function beginSession(
   if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
   experienceTransitionPhase.value = 'home-leaving';
   await waitForMotion(300);
-  const pageSize = 4;
+  const pageSize = preferredPageSize.value;
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
     : -1;
@@ -958,10 +986,12 @@ async function beginSession(
     resultSent: false,
     calculationMode: options.calculationMode,
   };
+  activeSessionItemId.value = items[Math.max(0, firstUnanswered)]?.id || items[0]?.id || '';
+  omrFilter.value = 'all';
   suspendedSession = null;
   suspendedExamResult = null;
   history.pushState(viewHistoryState(view.value, session.value.id), '', location.href);
-  examSheetOpen.value = mode === 'exam';
+  examSheetOpen.value = mode === 'exam' && window.innerWidth >= 1100;
   document.body.classList.add('session-active');
   experienceTransitionPhase.value = 'session-entering';
   restartTimer();
@@ -1196,6 +1226,7 @@ function goToPage(page: number): void {
   if (nextPage === session.value.page) return;
   questionDirection.value = nextPage > session.value.page ? 1 : -1;
   session.value.page = nextPage;
+  activeSessionItemId.value = session.value.items[nextPage * session.value.pageSize]?.id || '';
   window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
 }
 
@@ -1203,11 +1234,69 @@ function goToQuestion(index: number): void {
   if (!session.value) return;
   const targetIndex = Math.max(0, Math.min(session.value.items.length - 1, index));
   goToPage(Math.floor(targetIndex / session.value.pageSize));
+  activeSessionItemId.value = session.value.items[targetIndex]?.id || '';
   window.setTimeout(() => {
     document.getElementById(`session-question-${targetIndex + 1}`)
       ?.scrollIntoView({ block: 'start', behavior: motionAllowed.value ? 'smooth' : 'auto' });
   }, motionAllowed.value ? 380 : 0);
   if (window.innerWidth < 1100) examSheetOpen.value = false;
+}
+
+function goToNextUnanswered(): void {
+  if (!session.value) return;
+  const activeIndex = session.value.items.findIndex((item) => item.id === activeSessionItem.value?.id);
+  const unanswered = session.value.items
+    .map((item, index) => ({ item, index }))
+    .filter(({ item }) => session.value?.answers[item.id] == null);
+  if (!unanswered.length) {
+    showToast('미응답 문제가 없습니다.');
+    return;
+  }
+  const target = unanswered.find(({ index }) => index > activeIndex) || unanswered[0];
+  goToQuestion(target.index);
+}
+
+function setSessionPageSize(size: number): void {
+  if (!session.value) return;
+  const activeIndex = Math.max(0, session.value.items.findIndex((item) => item.id === activeSessionItem.value?.id));
+  session.value.pageSize = size;
+  session.value.page = Math.floor(activeIndex / size);
+  activeSessionItemId.value = session.value.items[activeIndex]?.id || '';
+}
+
+function activateSessionItem(item: QuestionItem): void {
+  activeSessionItemId.value = item.id;
+}
+
+function handleSessionKeydown(event: KeyboardEvent): void {
+  if (!session.value || session.value.finished || settingsOpen.value || aiPromptOpen.value || examResult.value) return;
+  const target = event.target as HTMLElement | null;
+  if (target?.closest('input,select,textarea,button,[contenteditable="true"]') || event.metaKey || event.ctrlKey || event.altKey) return;
+  const item = activeSessionItem.value;
+  if (/^[1-4]$/.test(event.key) && item) {
+    event.preventDefault();
+    chooseAnswer(item, Number(event.key));
+    return;
+  }
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    goToPage((session.value?.page || 0) - 1);
+  } else if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    goToPage((session.value?.page || 0) + 1);
+  } else if (event.key.toLowerCase() === 'k' && item && session.value.mode === 'exam') {
+    event.preventDefault();
+    toggleKeep(item);
+  } else if (event.key.toLowerCase() === 'b' && item) {
+    event.preventDefault();
+    toggleBookmark(item);
+  } else if (event.key.toLowerCase() === 'e') {
+    const trigger = document.querySelector<HTMLElement>('.question-card.keyboard-active .compact-explanation-trigger');
+    if (trigger) {
+      event.preventDefault();
+      trigger.click();
+    }
+  }
 }
 
 function jumpToLearningQuestion(): void {
@@ -1387,12 +1476,13 @@ function openResultWrongAnswers(resetAnswers: boolean): void {
       : Object.fromEntries(wrong.flatMap((item) => previousAnswers[item.id] ? [[item.id, previousAnswers[item.id]]] : [])),
     kept: [],
     page: 0,
-    pageSize: 4,
+    pageSize: preferredPageSize.value,
     startedAt: Date.now(),
     remainingSeconds: 0,
     finished: false,
     resultSent: false,
   };
+  activeSessionItemId.value = wrong[0]?.id || '';
   examResult.value = null;
   examSheetOpen.value = false;
   window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
@@ -1655,6 +1745,25 @@ function setRestoredImageTheme(mode: RestoredImageTheme): void {
   showToast(mode === 'auto'
     ? '다크 모드에서 복원문제의 눈부심을 줄입니다.'
     : '복원문제를 항상 원본 색상으로 표시합니다.');
+}
+
+function setSolveLayoutMode(mode: SolveLayoutMode): void {
+  if (mode === solveLayoutMode.value) return;
+  const currentIndex = session.value ? session.value.page * session.value.pageSize : 0;
+  solveLayoutMode.value = mode;
+  localStorage.setItem('unified-cbt-solve-layout', mode);
+  if (session.value) {
+    const nextSize = preferredPageSize.value;
+    session.value.pageSize = nextSize;
+    session.value.page = Math.floor(currentIndex / nextSize);
+    activeSessionItemId.value = session.value.items[currentIndex]?.id || session.value.items[0]?.id || '';
+    void nextTick(syncOmrToCurrentPage);
+  }
+  showToast(mode === 'combat'
+    ? '컴뱃 CBT 전용 집중 화면으로 전환했습니다.'
+    : mode === 'comcbt'
+      ? 'COMCBT형 고밀도 시험 화면으로 전환했습니다.'
+      : '기존 v2.7 CBT 화면으로 돌아왔습니다.');
 }
 
 function sunjaeRotationLabel(seconds: number): string {
@@ -2020,6 +2129,7 @@ onMounted(async () => {
   window.addEventListener('popstate', handleBrowserHistory);
   window.addEventListener('pagehide', handlePageHide);
   window.addEventListener('resize', markViewportResizing, { passive: true });
+  window.addEventListener('keydown', handleSessionKeydown);
   initializeNavigationHistory();
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
@@ -2044,6 +2154,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('popstate', handleBrowserHistory);
   window.removeEventListener('pagehide', handlePageHide);
   window.removeEventListener('resize', markViewportResizing);
+  window.removeEventListener('keydown', handleSessionKeydown);
   if (motionMediaQuery && motionPreferenceHandler) {
     motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);
     motionMediaQuery.removeListener?.(motionPreferenceHandler);
@@ -2334,7 +2445,7 @@ onBeforeUnmount(() => {
             <div class="start-actions">
               <button class="learning-start" type="button" @click="startRangeLearning">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(1)" alt="">
-                <span>차근차근 익히기</span><strong>선택 범위 학습모드</strong><small>한 화면 4문제 · 즉시 채점 · 쉬운 해설</small>
+                <span>차근차근 익히기</span><strong>선택 범위 학습모드</strong><small>한 화면 {{ preferredPageSize }}문제 · 즉시 채점 · 쉬운 해설</small>
               </button>
               <button class="exam-start" type="button" @click="startBalancedExam">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(5)" alt="">
@@ -2654,6 +2765,19 @@ onBeforeUnmount(() => {
             </figure>
           </section>
 
+          <section class="feature-layout-lab">
+            <header>
+              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>세 가지 문제풀이 화면</h2></div>
+              <p>선택한 화면은 다음 학습과 CBT부터 적용되며 풀이 중 설정에서도 바로 바꿀 수 있습니다.</p>
+            </header>
+            <div>
+              <button type="button" :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><b>CBT</b><strong>기본 CBT</strong><span>기존 v2.7 카드형 · 기본값</span></button>
+              <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>COMCBT 모드</strong><span>고밀도 2열 · 고정 OMR · 빠른 이동</span></button>
+              <button type="button" class="combat" :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><b>⚡</b><strong>컴뱃 CBT</strong><span>진행 HUD · 1문제 집중 · 미션형 화면</span></button>
+            </div>
+            <footer><strong>키보드</strong><span>1~4 답 선택 · ←/→ 이동 · K 킵 · B 북마크 · E 해설</span></footer>
+          </section>
+
           <section class="feature-upscale-compare">
             <header>
               <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>원본과 업스케일링 후를 직접 비교하세요</h2></div>
@@ -2856,6 +2980,15 @@ onBeforeUnmount(() => {
             <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
           </div>
         </div>
+        <div class="setting-group solve-layout-setting">
+          <span>문제풀이 화면</span>
+          <p class="setting-description">세 화면을 언제든 바꿀 수 있습니다. 답안·진도·타이머는 그대로 유지됩니다.</p>
+          <div class="solve-layout-options">
+            <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
+            <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT 모드</span><small>선택형 · 고밀도 시험지형</small></button>
+            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>집중 HUD · 전용 화면</small></button>
+          </div>
+        </div>
         <div class="setting-group">
           <span>UI 스타일</span>
           <p class="setting-description">{{ isJewelry ? '기본 CBT, 심슨, 선재 테마' : '기본 CBT와 심슨 테마' }}는 이 설정 화면에서만 바꿀 수 있습니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.</p>
@@ -2940,6 +3073,9 @@ onBeforeUnmount(() => {
     :class="{
       'exam-mode': session.mode === 'exam',
       'sheet-closed': !examSheetOpen,
+      'layout-standard': solveLayoutMode === 'standard',
+      'layout-comcbt': solveLayoutMode === 'comcbt',
+      'layout-combat': solveLayoutMode === 'combat',
       'standard-image-fit': true,
       'experience-session-entering': experienceTransitionPhase === 'session-entering',
       'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
@@ -2950,7 +3086,11 @@ onBeforeUnmount(() => {
         <button class="back-button" type="button" @click="leaveSession()">← <span>뒤로가기</span></button>
         <button class="session-menu-button" type="button" @click="sessionMenuOpen = true">☰ <span>메뉴</span></button>
       </div>
-      <div><span>{{ session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span><strong>{{ sessionTitle }}</strong></div>
+      <div>
+        <span>{{ solveLayoutMode === 'combat' ? 'COMBAT CBT · MISSION' : session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span>
+        <strong>{{ sessionTitle }}</strong>
+        <div v-if="solveLayoutMode === 'combat'" class="combat-progress-track"><i :style="{ width: `${sessionProgress}%` }" /></div>
+      </div>
       <div class="session-tools">
         <button type="button" @click="openCalculator">▦ 계산기</button>
         <button type="button" @click="settingsOpen = true">⚙ 설정</button>
@@ -2975,7 +3115,8 @@ onBeforeUnmount(() => {
         </form>
         <label v-if="session.mode === 'learn'">
           문제 표시
-          <select v-model.number="session.pageSize" @change="session.page = 0">
+          <select :value="session.pageSize" @change="setSessionPageSize(Number(($event.target as HTMLSelectElement).value))">
+            <option :value="1">1문제</option>
             <option :value="2">2문제</option>
             <option :value="4">4문제</option>
             <option :value="6">6문제</option>
@@ -2984,6 +3125,12 @@ onBeforeUnmount(() => {
         <button v-if="session.mode === 'learn'" type="button" class="reset-button" @click="resetLearning">선택 초기화</button>
         <button v-else type="button" class="timer-button">남은 시간 <strong>{{ formattedTime }}</strong></button>
         <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
+      </div>
+      <div v-if="solveLayoutMode === 'combat'" class="combat-hud-stats">
+        <span><small>진행</small><strong>{{ sessionProgress }}%</strong></span>
+        <span><small>완료</small><strong>{{ answeredCount }}</strong></span>
+        <span><small>미응답</small><strong>{{ unansweredCount }}</strong></span>
+        <span v-if="session.mode === 'exam'"><small>KEEP</small><strong>{{ keptCount }}</strong></span>
       </div>
     </header>
 
@@ -3025,10 +3172,13 @@ onBeforeUnmount(() => {
                 :answer-layout="answerLayout"
                 :hotspot-indicator="hotspotIndicator"
                 :restored-image-theme="restoredImageTheme"
+                :solve-layout="solveLayoutMode"
+                :active="activeSessionItem?.id === item.id"
                 @choose="chooseAnswer(item, $event)"
                 @toggle-bookmark="toggleBookmark(item)"
                 @toggle-keep="toggleKeep(item)"
                 @ask-ai="prepareAiQuestion(item)"
+                @activate="activateSessionItem(item)"
               />
             </div>
           </div>
@@ -3049,9 +3199,15 @@ onBeforeUnmount(() => {
             <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
           </div>
         </header>
+        <div v-if="solveLayoutMode !== 'standard'" class="omr-filter-bar" aria-label="OMR 빠른 필터">
+          <button :class="{ active: omrFilter === 'all' }" @click="omrFilter = 'all'">전체</button>
+          <button :class="{ active: omrFilter === 'unanswered' }" @click="omrFilter = 'unanswered'">미응답 {{ unansweredCount }}</button>
+          <button :class="{ active: omrFilter === 'kept' }" @click="omrFilter = 'kept'">킵 {{ keptCount }}</button>
+          <button :class="{ active: omrFilter === 'subject' }" @click="omrFilter = 'subject'">현재 과목</button>
+        </div>
         <div ref="omrListRef" class="omr-list" @pointerdown="markOmrManualScroll" @wheel.passive="markOmrManualScroll">
           <button
-            v-for="(item, index) in session.items"
+            v-for="({ item, index }) in omrRows"
             :key="item.id"
             :data-omr-index="index"
             type="button"
@@ -3066,10 +3222,25 @@ onBeforeUnmount(() => {
               @click.stop="chooseAnswer(item, choice)"
             >{{ choice }}</span>
           </button>
+          <p v-if="!omrRows.length" class="omr-empty">해당 문제가 없습니다.</p>
         </div>
-        <footer><button type="button" @click="submitExam(false)">채점하기</button></footer>
+        <footer>
+          <button v-if="solveLayoutMode !== 'standard' && unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
+          <button type="button" @click="submitExam(false)">채점하기</button>
+        </footer>
       </aside>
     </main>
+
+    <nav v-if="solveLayoutMode !== 'standard'" class="compact-session-pager" aria-label="문제 페이지 이동">
+      <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
+      <div>
+        <span>{{ solveLayoutMode === 'combat' ? 'MISSION PROGRESS' : '문제 페이지' }}</span>
+        <strong>{{ session.page + 1 }} / {{ pageCount }}</strong>
+        <small>{{ answeredCount }}개 완료 · {{ unansweredCount }}개 미응답</small>
+      </div>
+      <button v-if="unansweredCount" type="button" class="unanswered-jump" @click="goToNextUnanswered">미응답</button>
+      <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>다음</span> →</button>
+    </nav>
 
     <Transition name="result-pop" appear>
       <div v-if="examResult" class="result-backdrop">
@@ -3117,6 +3288,15 @@ onBeforeUnmount(() => {
     <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel session-settings-panel">
         <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group solve-layout-setting">
+          <span>문제풀이 화면</span>
+          <p class="setting-description">현재 답안과 타이머를 유지한 채 즉시 전환합니다.</p>
+          <div class="solve-layout-options">
+            <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
+            <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT</span><small>고밀도 2열</small></button>
+            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>집중 HUD</small></button>
+          </div>
+        </div>
         <div class="setting-group">
           <span>UI 스타일</span>
           <p class="setting-description">답안과 진행 상태는 그대로 둔 채 풀이 화면의 테마를 바로 바꿉니다.</p>

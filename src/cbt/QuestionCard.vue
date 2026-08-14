@@ -18,6 +18,8 @@ const props = defineProps<{
   answerLayout?: 'classic' | 'inline' | 'hotspot';
   hotspotIndicator?: 'marker' | 'area';
   restoredImageTheme?: 'auto' | 'original';
+  solveLayout?: 'standard' | 'comcbt' | 'combat';
+  active?: boolean;
 }>();
 
 defineEmits<{
@@ -25,6 +27,7 @@ defineEmits<{
   toggleBookmark: [];
   toggleKeep: [];
   askAi: [];
+  activate: [];
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
@@ -56,6 +59,7 @@ const selectedAnswerState = computed(() => ({
 }));
 const sourceImageRef = ref<HTMLImageElement | null>(null);
 const imageZoomOpen = ref(false);
+const explanationOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
 
 function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
@@ -83,6 +87,18 @@ const compactTextChoices = computed(() => {
     && Math.max(...lengths) <= 34
     && lengths.reduce((sum, length) => sum + length, 0) <= 96;
 });
+const compactSolveLayout = computed(() => props.solveLayout === 'comcbt' || props.solveLayout === 'combat');
+const combatDenseChoices = computed(() => {
+  if (!compactSolveLayout.value || primaryImage.value || props.item.question.choices.some((choice) => choice.images?.length)) return false;
+  const lengths = props.item.question.choices.map((choice) => (choice.text || choice.html || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[^;]+;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim().length);
+  return lengths.length === 4 && Math.max(...lengths) <= 52 && lengths.reduce((sum, length) => sum + length, 0) <= 160;
+});
+const combatUltraShortChoices = computed(() => combatDenseChoices.value && props.item.question.choices.every((choice) =>
+  (choice.text || choice.html || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().length <= 10));
 
 function choiceClass(index: number): Record<string, boolean> {
   const number = index + 1;
@@ -161,17 +177,30 @@ watch(verifiedHotspots, (hotspots) => {
   answerHighlightStyles.value = {};
   if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
 }, { flush: 'post' });
+watch(() => [props.item.id, props.selected], () => {
+  explanationOpen.value = false;
+});
 </script>
 
 <template>
-  <article class="question-card" :class="{ 'image-primary': primaryImage }">
+  <article
+    class="question-card"
+    :class="{
+      'image-primary': primaryImage,
+      'compact-solve-card': compactSolveLayout,
+      'combat-solve-card': solveLayout === 'combat',
+      'keyboard-active': active,
+    }"
+    @pointerdown="$emit('activate')"
+    @focusin="$emit('activate')"
+  >
     <div v-if="subjectStart" class="subject-divider">
       <span>{{ subjectNumber || 1 }}과목</span>
       <strong>{{ item.subject }}</strong>
     </div>
 
     <header class="question-head">
-      <div>
+      <div v-if="!compactSolveLayout || primaryImage">
         <span class="question-subject">{{ item.subject }}</span>
         <strong>{{ item.question.number }}번</strong>
       </div>
@@ -257,7 +286,10 @@ watch(verifiedHotspots, (hotspots) => {
         </div>
       </div>
       <template v-else>
-        <div class="question-text" v-html="item.question.html || item.question.text" />
+        <div class="compact-question-copy">
+          <strong class="compact-question-number">{{ item.question.number }}.</strong>
+          <div class="question-text" v-html="item.question.html || item.question.text" />
+        </div>
         <img
           v-for="image in item.question.images || []"
           :key="image"
@@ -278,6 +310,8 @@ watch(verifiedHotspots, (hotspots) => {
         'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout === 'inline' && hasReadableChoices,
         'compact-choice-grid': compactTextChoices,
         'compact-visual-choice-grid': compactVisualChoices,
+        'combat-dense-choice-grid': combatDenseChoices,
+        'combat-ultra-choice-grid': combatUltraShortChoices,
       }"
     >
       <button
@@ -304,7 +338,14 @@ watch(verifiedHotspots, (hotspots) => {
       <span>다른 보기를 선택해 보세요. 정답과 해설은 맞힌 뒤 표시됩니다.</span>
     </div>
 
-    <div v-if="mode === 'learn' && correctSelected" class="explanation-box">
+    <button
+      v-if="mode === 'learn' && correctSelected && compactSolveLayout"
+      type="button"
+      class="compact-explanation-trigger"
+      @click="explanationOpen = true"
+    ><span>정답 {{ item.question.answer }}번</span><strong>해설 패널 열기</strong><small>E 키</small></button>
+
+    <div v-if="mode === 'learn' && correctSelected && !compactSolveLayout" class="explanation-box">
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
         <strong>쉽게 풀어보기</strong>
@@ -327,6 +368,37 @@ watch(verifiedHotspots, (hotspots) => {
     </div>
 
     <Teleport to="body">
+      <div
+        v-if="explanationOpen && compactSolveLayout && mode === 'learn' && correctSelected"
+        class="compact-explanation-backdrop"
+        :class="{ 'combat-explanation': solveLayout === 'combat' }"
+        role="dialog"
+        aria-modal="true"
+        :aria-label="`${item.question.number}번 해설`"
+        @click.self="explanationOpen = false"
+      >
+        <section class="compact-explanation-panel">
+          <header>
+            <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${item.question.number}번` }}</span><strong>쉽게 풀어보기</strong></div>
+            <button type="button" aria-label="해설 닫기" @click="explanationOpen = false">×</button>
+          </header>
+          <div class="compact-explanation-scroll">
+            <div class="explanation-title"><span>정답 {{ item.question.answer }}번</span><strong>핵심부터 차근차근 확인하세요</strong></div>
+            <div v-if="calculationMode" class="calculation-explanation">
+              <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
+              <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
+              <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
+              <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
+              <div><span>5</span><p><strong>숫자 넣기</strong>{{ calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.' }}</p></div>
+              <div><span>6</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
+            </div>
+            <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
+            <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
+            <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
+          </div>
+          <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
+        </section>
+      </div>
       <div
         v-if="imageZoomOpen && item.question.sourceImage"
         class="question-image-lightbox"
