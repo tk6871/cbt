@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { App as CapacitorApp } from '@capacitor/app';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 import { animate, stagger } from 'motion';
 import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
@@ -162,6 +165,8 @@ const navigationDirection = ref<1 | -1>(1);
 const questionDirection = ref<1 | -1>(1);
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
+const nativeMoreOpen = ref(false);
+const nativeCalculatorOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
 const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
 const updateChecking = ref(false);
@@ -180,6 +185,8 @@ const displayedPassChance = ref(0);
 const displayedResultScore = ref(0);
 const sunjaeResultPhase = ref<SunjaeResultPhase>('reveal');
 const appHydrating = ref(true);
+const isNativeApp = document.documentElement.dataset.nativeApp === 'true';
+const androidApkUrl = 'https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -210,6 +217,7 @@ let sunjaeResultHandle = 0;
 let searchWorker: Worker | null = null;
 let motionMediaQuery: MediaQueryList | null = null;
 let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
+let nativeBackHandle: PluginListenerHandle | null = null;
 let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
@@ -1268,7 +1276,12 @@ function activateSessionItem(item: QuestionItem): void {
 }
 
 function handleSessionKeydown(event: KeyboardEvent): void {
-  if (!session.value || session.value.finished || settingsOpen.value || aiPromptOpen.value || examResult.value) return;
+  if (solveLayoutMode.value !== 'comcbt'
+    || !session.value
+    || session.value.finished
+    || settingsOpen.value
+    || aiPromptOpen.value
+    || examResult.value) return;
   const target = event.target as HTMLElement | null;
   if (target?.closest('input,select,textarea,button,[contenteditable="true"]') || event.metaKey || event.ctrlKey || event.altKey) return;
   const item = activeSessionItem.value;
@@ -1529,6 +1542,11 @@ function stopTimer(): void {
 }
 
 function openCalculator(): void {
+  if (document.documentElement.dataset.nativeApp === 'true') {
+    nativeCalculatorOpen.value = true;
+    nativeMoreOpen.value = false;
+    return;
+  }
   const calculatorUrl = new URL('calculator.html', location.href);
   calculatorUrl.searchParams.set('space', isJewelry ? 'jewelry' : 'industrial');
   const calculator = window.open(
@@ -2123,12 +2141,73 @@ function markViewportResizing(): void {
   }, 220);
 }
 
+function closeNativeOverlays(): boolean {
+  if (nativeCalculatorOpen.value) {
+    nativeCalculatorOpen.value = false;
+    return true;
+  }
+  if (settingsOpen.value) {
+    settingsOpen.value = false;
+    return true;
+  }
+  if (aiPromptOpen.value) {
+    aiPromptOpen.value = false;
+    return true;
+  }
+  if (nativeMoreOpen.value) {
+    nativeMoreOpen.value = false;
+    return true;
+  }
+  if (sessionMenuOpen.value) {
+    sessionMenuOpen.value = false;
+    return true;
+  }
+  if (mobileMenuOpen.value) {
+    mobileMenuOpen.value = false;
+    return true;
+  }
+  if (examSheetOpen.value) {
+    examSheetOpen.value = false;
+    return true;
+  }
+  if (examResult.value && session.value) {
+    examResult.value = null;
+    session.value.finished = false;
+    return true;
+  }
+  return false;
+}
+
+async function handleNativeBackButton(): Promise<void> {
+  if (closeNativeOverlays()) return;
+  if (session.value) {
+    await leaveSession();
+    return;
+  }
+  if (view.value !== 'home') {
+    openView('home');
+    return;
+  }
+  await CapacitorApp.exitApp();
+}
+
+function syncNativeStatusBar(): void {
+  if (document.documentElement.dataset.nativeApp !== 'true') return;
+  void StatusBar.setStyle({ style: darkActive.value ? Style.Light : Style.Dark });
+}
+
+watch(darkActive, syncNativeStatusBar);
+
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('popstate', handleBrowserHistory);
   window.addEventListener('pagehide', handlePageHide);
   window.addEventListener('resize', markViewportResizing, { passive: true });
   window.addEventListener('keydown', handleSessionKeydown);
+  if (document.documentElement.dataset.nativeApp === 'true') {
+    nativeBackHandle = await CapacitorApp.addListener('backButton', () => { void handleNativeBackButton(); });
+    syncNativeStatusBar();
+  }
   initializeNavigationHistory();
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
@@ -2140,10 +2219,20 @@ onMounted(async () => {
   motionMediaQuery.addListener?.(motionPreferenceHandler);
   setFontScale(fontScale.value);
   setDefaultYears(selectedCatalog.value.isVirtual ? 0 : 10);
-  await hydrateIndexedDb();
-  await refreshExamHistory();
-  setupSearchWorker();
-  appHydrating.value = false;
+  try {
+    await hydrateIndexedDb();
+    await refreshExamHistory();
+  } catch (error) {
+    console.error('학습 기록을 불러오지 못했습니다.', error);
+    showToast('저장된 학습 기록을 불러오지 못했지만 문제 풀이는 계속할 수 있습니다.');
+  } finally {
+    appHydrating.value = false;
+  }
+  try {
+    setupSearchWorker();
+  } catch (error) {
+    console.error('문제 검색 색인을 시작하지 못했습니다.', error);
+  }
   await nextTick();
   animateViewDetails(view.value);
 });
@@ -2154,6 +2243,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('pagehide', handlePageHide);
   window.removeEventListener('resize', markViewportResizing);
   window.removeEventListener('keydown', handleSessionKeydown);
+  void nativeBackHandle?.remove();
   if (motionMediaQuery && motionPreferenceHandler) {
     motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);
     motionMediaQuery.removeListener?.(motionPreferenceHandler);
@@ -2484,6 +2574,7 @@ onBeforeUnmount(() => {
               <button v-if="updateAvailable" type="button" class="apply" @click="applyUpdate">신버전 적용</button>
               <button v-else type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '업데이트 확인' }}</button>
               <button type="button" @click="openView('updates')">패치노트 보기</button>
+              <a v-if="!isNativeApp" class="android-download" :href="androidApkUrl" target="_blank" rel="noopener">Android APK 받기</a>
             </div>
           </section>
         </template>
@@ -2774,7 +2865,7 @@ onBeforeUnmount(() => {
               <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>COMCBT 모드</strong><span>고밀도 2열 · 고정 OMR · 빠른 이동</span></button>
               <button type="button" class="combat" :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><b>⚡</b><strong>컴뱃 CBT</strong><span>진행 HUD · 4문제 연속 · 미션형 화면</span></button>
             </div>
-            <footer><strong>키보드</strong><span>1~4 답 선택 · ←/→ 이동 · K 킵 · B 북마크 · E 해설</span></footer>
+            <footer><strong>COMCBT 전용 키보드</strong><span>1~4 답 선택 · ←/→ 이동 · K 킵 · B 북마크 · E 해설</span></footer>
           </section>
 
           <section class="feature-upscale-compare">
@@ -2967,6 +3058,28 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>✦</template></span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
+    <nav class="native-app-tabbar" aria-label="Android 앱 메뉴">
+      <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
+      <button :class="{ active: view === 'rounds' }" @click="nativeMoreOpen = false; openView('rounds')"><span>▤</span><strong>회차</strong></button>
+      <button :class="{ active: view === 'wrong' }" @click="nativeMoreOpen = false; openView('wrong')"><span>!</span><strong>오답</strong><b v-if="stats.wrong">{{ Math.min(99, stats.wrong) }}</b></button>
+      <button :class="{ active: view === 'search' }" @click="nativeMoreOpen = false; openView('search')"><span>⌕</span><strong>검색</strong></button>
+      <button :class="{ active: nativeMoreOpen }" @click="nativeMoreOpen = !nativeMoreOpen"><span>•••</span><strong>더보기</strong></button>
+    </nav>
+    <Transition name="modal-fade">
+      <div v-if="nativeMoreOpen" class="native-more-backdrop" @click.self="nativeMoreOpen = false">
+        <section class="native-more-sheet">
+          <header><div><span>QUICK MENU</span><strong>더보기</strong></div><button type="button" aria-label="더보기 닫기" @click="nativeMoreOpen = false">×</button></header>
+          <nav>
+            <button type="button" @click="nativeMoreOpen = false; openView('calculation')"><span>∑</span><div><strong>계산문제</strong><small>공식부터 차근차근</small></div></button>
+            <button type="button" @click="nativeMoreOpen = false; openView('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>취약 과목과 복습</small></div></button>
+            <button type="button" @click="nativeMoreOpen = false; openView('stats')"><span>▥</span><div><strong>학습 통계</strong><small>점수와 학습 기록</small></div></button>
+            <button type="button" @click="nativeMoreOpen = false; openCalculator()"><span>▦</span><div><strong>계산기</strong><small>공학용 계산 도구</small></div></button>
+            <button type="button" @click="nativeMoreOpen = false; settingsOpen = true"><span>⚙</span><div><strong>설정</strong><small>테마·글씨·문제 화면</small></div></button>
+            <button type="button" @click="nativeMoreOpen = false; openView('updates')"><span>◷</span><div><strong>업데이트</strong><small>패치노트 확인</small></div></button>
+          </nav>
+        </section>
+      </div>
+    </Transition>
     <Transition name="modal-fade">
       <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
         <section class="settings-panel">
@@ -3179,7 +3292,7 @@ onBeforeUnmount(() => {
                 :hotspot-indicator="hotspotIndicator"
                 :restored-image-theme="restoredImageTheme"
                 :solve-layout="solveLayoutMode"
-                :active="activeSessionItem?.id === item.id"
+                :active="solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id"
                 @choose="chooseAnswer(item, $event)"
                 @toggle-bookmark="toggleBookmark(item)"
                 @toggle-keep="toggleKeep(item)"
@@ -3205,7 +3318,7 @@ onBeforeUnmount(() => {
             <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
           </div>
         </header>
-        <div v-if="solveLayoutMode !== 'standard'" class="omr-filter-bar" aria-label="OMR 빠른 필터">
+        <div v-if="solveLayoutMode === 'comcbt'" class="omr-filter-bar" aria-label="OMR 빠른 필터">
           <button :class="{ active: omrFilter === 'all' }" @click="omrFilter = 'all'">전체</button>
           <button :class="{ active: omrFilter === 'unanswered' }" @click="omrFilter = 'unanswered'">미응답 {{ unansweredCount }}</button>
           <button :class="{ active: omrFilter === 'kept' }" @click="omrFilter = 'kept'">킵 {{ keptCount }}</button>
@@ -3231,16 +3344,26 @@ onBeforeUnmount(() => {
           <p v-if="!omrRows.length" class="omr-empty">해당 문제가 없습니다.</p>
         </div>
         <footer>
-          <button v-if="solveLayoutMode !== 'standard' && unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
+          <button v-if="solveLayoutMode === 'comcbt' && unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
           <button type="button" @click="submitExam(false)">채점하기</button>
         </footer>
       </aside>
     </main>
 
-    <nav v-if="solveLayoutMode !== 'standard'" class="compact-session-pager" aria-label="문제 페이지 이동">
+    <nav class="native-session-bar" aria-label="Android 풀이 도구">
+      <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)"><span>‹</span><strong>이전</strong></button>
+      <button v-if="session.mode === 'exam'" type="button" :class="{ active: examSheetOpen }" @click="examSheetOpen = !examSheetOpen"><span>OMR</span><strong>답안지</strong><b v-if="unansweredCount">{{ unansweredCount }}</b></button>
+      <button v-else type="button" @click="settingsOpen = true"><span>가</span><strong>글씨·설정</strong></button>
+      <button type="button" @click="openCalculator"><span>▦</span><strong>계산기</strong></button>
+      <button v-if="session.mode === 'exam' && activeSessionItem" type="button" :class="{ active: session.kept.includes(activeSessionItem.id) }" @click="toggleKeep(activeSessionItem)"><span>K</span><strong>킵</strong></button>
+      <button v-else type="button" @click="sessionMenuOpen = true"><span>☰</span><strong>메뉴</strong></button>
+      <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>›</span><strong>다음</strong></button>
+    </nav>
+
+    <nav v-if="solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
       <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
       <div>
-        <span>{{ solveLayoutMode === 'combat' ? 'MISSION PROGRESS' : '문제 페이지' }}</span>
+        <span>COMCBT PAGE</span>
         <strong>{{ session.page + 1 }} / {{ pageCount }}</strong>
         <small>{{ answeredCount }}개 완료 · {{ unansweredCount }}개 미응답</small>
       </div>
@@ -3361,6 +3484,16 @@ onBeforeUnmount(() => {
         <footer><span>답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>
       </section>
     </div>
+  </Transition>
+
+  <Transition name="modal-fade">
+    <section v-if="nativeCalculatorOpen" class="native-calculator-shell">
+      <header>
+        <div><span>ANDROID TOOL</span><strong>공학용 계산기</strong></div>
+        <button type="button" @click="nativeCalculatorOpen = false">풀이로 돌아가기</button>
+      </header>
+      <iframe src="calculator.html?native=1" title="공학용 계산기" />
+    </section>
   </Transition>
 
   <div v-if="aiPromptOpen" class="ai-prompt-backdrop" @click.self="aiPromptOpen = false">

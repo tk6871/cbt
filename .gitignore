@@ -1,4 +1,14 @@
 .DS_Store
+modern/**/* [2-9].*
+modern/* [2-9].*
+android/app/src/main/res/xml/config [2-9].xml
+.android-web/
+android/.gradle/
+android/local.properties
+android/signing/
+dist/
+*.jks
+*.keystore
 work/jewelry-import/
 node_modules/
 .env
