@@ -108,6 +108,9 @@ export type LegacyStore = {
   progress?: Record<string, unknown>;
   history?: Array<Record<string, unknown>>;
   notes?: Record<string, unknown>;
+  sync?: {
+    bookmarks?: Record<string, { value: boolean; at: number }>;
+  };
 };
 
 declare global {

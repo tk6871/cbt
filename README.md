@@ -16,7 +16,7 @@
 
 ### [https://tk6871.github.io/cbt/](https://tk6871.github.io/cbt/)
 
-별도의 회원가입이나 프로그램 설치 없이 브라우저에서 바로 사용할 수 있습니다.  
+회원가입 없이도 브라우저에서 바로 사용할 수 있으며, 여러 기기에서 기록을 이어 볼 때만 선택적으로 동기화 계정을 만들 수 있습니다.
 휴대폰에서는 브라우저의 **홈 화면에 추가** 기능을 사용하면 앱처럼 실행할 수 있습니다.
 
 ### Android 앱
@@ -26,7 +26,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지 최상단의 `ANDROID 전용` 배너에서도 같은 최신 APK를 바로 받을 수 있습니다. iPhone과 iPad에는 설치할 수 없습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v2.9.1.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.0.apk`를 생성합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
 

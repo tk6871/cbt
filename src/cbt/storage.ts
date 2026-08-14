@@ -76,9 +76,12 @@ function loadLegacy(): Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookma
       progress: value.progress || {},
       history: value.history || [],
       notes: value.notes || {},
+      sync: {
+        bookmarks: value.sync?.bookmarks || {},
+      },
     };
   } catch {
-    return { attempts: {}, wrong: {}, bookmarks: [], progress: {}, history: [], notes: {} };
+    return { attempts: {}, wrong: {}, bookmarks: [], progress: {}, history: [], notes: {}, sync: { bookmarks: {} } };
   }
 }
 
@@ -95,6 +98,12 @@ watch(studyStore, () => {
 export function persistStudyStoreNow(): void {
   window.clearTimeout(persistHandle);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(studyStore));
+}
+
+export function markBookmarkSyncState(id: string, value: boolean): void {
+  studyStore.sync ||= {};
+  studyStore.sync.bookmarks ||= {};
+  studyStore.sync.bookmarks[id] = { value, at: Date.now() };
 }
 
 export async function hydrateIndexedDb(): Promise<void> {

@@ -20,6 +20,18 @@ import {
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
 import { isCalculationItem } from './calculationGuide';
+import {
+  clearCloudLearningState,
+  cloudSyncState,
+  initializeCloudSync,
+  requestSyncPasswordReset,
+  scheduleLearningSync,
+  signInForSync,
+  signOutFromSync,
+  signUpForSync,
+  syncLearningData,
+  updateSyncPassword,
+} from './cloudSync';
 import { hvacStudyGuideSections } from './hvacStudyGuide';
 import { qualificationRuleFor } from './qualificationRules';
 import {
@@ -32,6 +44,7 @@ import {
   db,
   hydrateIndexedDb,
   loadExamRecords,
+  markBookmarkSyncState,
   persistStudyStoreNow,
   recordAttempt,
   recordExam,
@@ -165,6 +178,16 @@ const navigationDirection = ref<1 | -1>(1);
 const questionDirection = ref<1 | -1>(1);
 const quickPreset = ref<5 | 10 | 0>(10);
 const settingsOpen = ref(false);
+const syncLoginOpen = ref(false);
+const syncEmailStorageKey = `cbt-sync-email-${spaceScope}`;
+const syncRememberStorageKey = `cbt-sync-remember-${spaceScope}`;
+const rememberedSyncEmail = localStorage.getItem(syncEmailStorageKey) || '';
+const syncEmail = ref(rememberedSyncEmail);
+const syncPassword = ref('');
+const syncNewPassword = ref('');
+const syncRememberEmail = ref(localStorage.getItem(syncRememberStorageKey) !== 'false');
+const syncBusy = ref(false);
+const syncFormMessage = ref('');
 const nativeMoreOpen = ref(false);
 const nativeCalculatorOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
@@ -380,7 +403,15 @@ const searchResults = computed(() => {
   const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap;
   return searchResultIds.value.map((id) => lookup.get(id)).filter((item): item is QuestionItem => Boolean(item));
 });
-const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || []).filter((entry) => (entry.scope || 'industrial') === spaceScope));
+const hiddenPatchTerms = /선재|변우석|류선재|선재 업고 튀어|tvN/i;
+const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || [])
+  .filter((entry) => (entry.scope || 'industrial') === spaceScope)
+  .filter((entry) => !hiddenPatchTerms.test(entry.title) && !hiddenPatchTerms.test(entry.summary || ''))
+  .map((entry) => ({
+    ...entry,
+    tags: (entry.tags || []).filter((tag) => !hiddenPatchTerms.test(tag)),
+    changes: (entry.changes || []).filter((change) => !hiddenPatchTerms.test(change)),
+  })));
 const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScope] || patchEntries.value[0]?.version || '-');
 const featureImageItem = computed(() => {
   const scoped = selectedCatalog.value.isVirtual
@@ -1209,9 +1240,11 @@ function toggleBookmark(item: QuestionItem): void {
   const index = studyStore.bookmarks.indexOf(item.id);
   if (index >= 0) {
     studyStore.bookmarks.splice(index, 1);
+    markBookmarkSyncState(item.id, false);
     showToast('북마크에서 제거했습니다.');
   } else {
     studyStore.bookmarks.push(item.id);
+    markBookmarkSyncState(item.id, true);
     showToast('북마크에 저장했습니다.');
   }
 }
@@ -1454,7 +1487,10 @@ function submitSession(mode: StudyMode, force = false): void {
     answers: { ...session.value.answers },
     wrongAnswers,
     finishedAt: Date.now(),
-  }).then(refreshExamHistory);
+  }).then(() => {
+    scheduleLearningSync(100);
+    return refreshExamHistory();
+  });
   sendSessionResult(result);
 }
 
@@ -2035,12 +2071,20 @@ async function importLearningData(event: Event): Promise<void> {
 
 async function clearLearningData(): Promise<void> {
   if (!confirm('오답, 진도, 시험 기록을 모두 초기화할까요? 이 작업은 되돌릴 수 없습니다.')) return;
+  try {
+    await clearCloudLearningState();
+  } catch (error) {
+    console.error('클라우드 기록 초기화 실패', error);
+    showToast('클라우드 기록을 지우지 못해 초기화를 중단했습니다. 인터넷 연결을 확인해 주세요.');
+    return;
+  }
   Object.keys(studyStore.attempts).forEach((key) => delete studyStore.attempts[key]);
   Object.keys(studyStore.wrong).forEach((key) => delete studyStore.wrong[key]);
   studyStore.bookmarks.splice(0);
   studyStore.history.splice(0);
   Object.keys(studyStore.notes).forEach((key) => delete studyStore.notes[key]);
   studyStore.progress = {};
+  studyStore.sync = { bookmarks: {} };
   const legacyExtras = studyStore as typeof studyStore & {
     questionTimes?: Record<string, unknown>;
     studyPlan?: unknown;
@@ -2062,8 +2106,90 @@ async function clearLearningData(): Promise<void> {
   });
   persistStudyStoreNow();
   recentExamRecords.value = [];
+  scheduleLearningSync(100);
   settingsOpen.value = false;
   showToast('학습 기록을 초기화했습니다.');
+}
+
+async function submitSyncLogin(): Promise<void> {
+  if (!syncEmail.value.trim() || !syncPassword.value) {
+    syncFormMessage.value = '이메일과 비밀번호를 입력해 주세요.';
+    return;
+  }
+  syncBusy.value = true;
+  syncFormMessage.value = '';
+  const error = await signInForSync(syncEmail.value, syncPassword.value);
+  syncBusy.value = false;
+  syncFormMessage.value = error || '로그인했습니다. 이 기기의 기록과 클라우드 기록을 합칩니다.';
+  if (!error) {
+    localStorage.setItem(syncRememberStorageKey, String(syncRememberEmail.value));
+    if (syncRememberEmail.value) localStorage.setItem(syncEmailStorageKey, syncEmail.value.trim());
+    else localStorage.removeItem(syncEmailStorageKey);
+    syncPassword.value = '';
+  }
+}
+
+async function submitSyncSignup(): Promise<void> {
+  if (!syncEmail.value.trim() || syncPassword.value.length < 8) {
+    syncFormMessage.value = '이메일과 8자 이상의 비밀번호를 입력해 주세요.';
+    return;
+  }
+  syncBusy.value = true;
+  syncFormMessage.value = '';
+  const result = await signUpForSync(syncEmail.value, syncPassword.value);
+  syncBusy.value = false;
+  syncFormMessage.value = result || '계정을 만들고 로그인했습니다. 기록 동기화를 시작합니다.';
+  if (!result || result.startsWith('확인 메일을 보냈습니다.')) {
+    localStorage.setItem(syncRememberStorageKey, String(syncRememberEmail.value));
+    if (syncRememberEmail.value) localStorage.setItem(syncEmailStorageKey, syncEmail.value.trim());
+    else localStorage.removeItem(syncEmailStorageKey);
+    syncPassword.value = '';
+  }
+}
+
+async function logoutSyncAccount(): Promise<void> {
+  await signOutFromSync();
+  syncLoginOpen.value = false;
+  syncPassword.value = '';
+  syncFormMessage.value = '';
+  showToast('동기화 계정에서 로그아웃했습니다. 기기에 저장된 기록은 그대로 유지됩니다.');
+}
+
+async function sendSyncPasswordReset(): Promise<void> {
+  syncBusy.value = true;
+  const error = await requestSyncPasswordReset(syncEmail.value);
+  syncBusy.value = false;
+  syncFormMessage.value = error || '비밀번호 재설정 메일을 보냈습니다. 메일의 링크를 눌러 주세요.';
+}
+
+function showSyncIdHelp(): void {
+  syncFormMessage.value = syncEmail.value.trim()
+    ? `현재 입력된 이메일이 동기화 아이디입니다: ${syncEmail.value.trim()}`
+    : '동기화 아이디는 회원가입할 때 사용한 이메일 주소입니다.';
+}
+
+async function saveNewSyncPassword(): Promise<void> {
+  syncBusy.value = true;
+  const error = await updateSyncPassword(syncNewPassword.value);
+  syncBusy.value = false;
+  syncFormMessage.value = error || '새 비밀번호로 변경했습니다. 자동 로그인이 유지됩니다.';
+  if (!error) syncNewPassword.value = '';
+}
+
+function cloudSyncTimeLabel(): string {
+  if (!cloudSyncState.lastSyncedAt) return '아직 동기화하지 않음';
+  return new Intl.DateTimeFormat('ko-KR', { hour: '2-digit', minute: '2-digit' })
+    .format(new Date(cloudSyncState.lastSyncedAt));
+}
+
+function handleCloudSynced(): void {
+  void refreshExamHistory();
+}
+
+function handlePasswordRecovery(): void {
+  settingsOpen.value = true;
+  syncLoginOpen.value = true;
+  syncFormMessage.value = '새 비밀번호를 입력해 주세요.';
 }
 
 function subjectQuestionCount(subject: string): number {
@@ -2204,6 +2330,8 @@ onMounted(async () => {
   window.addEventListener('pagehide', handlePageHide);
   window.addEventListener('resize', markViewportResizing, { passive: true });
   window.addEventListener('keydown', handleSessionKeydown);
+  window.addEventListener('cbt:cloud-synced', handleCloudSynced);
+  window.addEventListener('cbt:password-recovery', handlePasswordRecovery);
   if (document.documentElement.dataset.nativeApp === 'true') {
     nativeBackHandle = await CapacitorApp.addListener('backButton', () => { void handleNativeBackButton(); });
     syncNativeStatusBar();
@@ -2228,6 +2356,7 @@ onMounted(async () => {
   } finally {
     appHydrating.value = false;
   }
+  void initializeCloudSync();
   try {
     setupSearchWorker();
   } catch (error) {
@@ -2243,6 +2372,8 @@ onBeforeUnmount(() => {
   window.removeEventListener('pagehide', handlePageHide);
   window.removeEventListener('resize', markViewportResizing);
   window.removeEventListener('keydown', handleSessionKeydown);
+  window.removeEventListener('cbt:cloud-synced', handleCloudSynced);
+  window.removeEventListener('cbt:password-recovery', handlePasswordRecovery);
   void nativeBackHandle?.remove();
   if (motionMediaQuery && motionPreferenceHandler) {
     motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);
@@ -3178,6 +3309,43 @@ onBeforeUnmount(() => {
             <span><b>✓</b><strong>이미지 잘림 방지</strong></span>
             <span><b>✓</b><strong>OMR 자동 따라가기</strong></span>
           </div>
+        </div>
+        <div class="setting-group cloud-sync-setting">
+          <span>기기 간 학습 기록 동기화</span>
+          <p class="setting-description">로그인하지 않아도 모든 문제를 풀 수 있습니다. PC·태블릿·휴대폰에서 같은 기록을 쓰고 싶을 때만 로그인하세요.</p>
+          <template v-if="cloudSyncState.passwordRecovery">
+            <form class="cloud-sync-form" @submit.prevent="saveNewSyncPassword">
+              <label><span>새 비밀번호</span><input v-model="syncNewPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8자 이상"></label>
+              <p v-if="syncFormMessage">{{ syncFormMessage }}</p>
+              <div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '변경 중…' : '새 비밀번호 저장' }}</button></div>
+            </form>
+          </template>
+          <template v-else-if="cloudSyncState.email">
+            <div class="cloud-sync-account">
+              <div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || `마지막 동기화 ${cloudSyncTimeLabel()}` }}</small></div>
+              <i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i>
+            </div>
+            <div class="cloud-sync-actions">
+              <button type="button" :disabled="cloudSyncState.status === 'syncing'" @click="syncLearningData">지금 동기화</button>
+              <button type="button" class="secondary" @click="logoutSyncAccount">로그아웃</button>
+            </div>
+          </template>
+          <template v-else>
+            <button v-if="!syncLoginOpen" type="button" class="cloud-sync-open" @click="syncLoginOpen = true">동기화 로그인</button>
+            <form v-else class="cloud-sync-form" @submit.prevent="submitSyncLogin">
+              <label><span>이메일</span><input v-model.trim="syncEmail" type="email" autocomplete="username" required placeholder="name@example.com"></label>
+              <label><span>비밀번호</span><input v-model="syncPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="8자 이상"></label>
+              <label class="cloud-sync-remember"><input v-model="syncRememberEmail" type="checkbox"><span>아이디 기억</span><small>자동 로그인은 이 기기의 안전한 로그인 세션으로 유지됩니다.</small></label>
+              <p v-if="syncFormMessage">{{ syncFormMessage }}</p>
+              <div>
+                <button type="submit" :disabled="syncBusy">{{ syncBusy ? '확인 중…' : '로그인' }}</button>
+                <button type="button" :disabled="syncBusy" class="secondary" @click="submitSyncSignup">처음이면 계정 만들기</button>
+                <button type="button" class="secondary" @click="showSyncIdHelp">아이디 찾기</button>
+                <button type="button" :disabled="syncBusy" class="secondary" @click="sendSyncPasswordReset">비밀번호 찾기</button>
+                <button type="button" class="text-button" @click="syncLoginOpen = false; syncFormMessage = ''">닫기</button>
+              </div>
+            </form>
+          </template>
         </div>
         <div class="setting-group data-setting">
           <span>학습 기록</span>

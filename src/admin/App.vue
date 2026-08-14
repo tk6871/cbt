@@ -157,6 +157,15 @@ async function login(): Promise<void> {
     loginError.value = '로그인 정보를 확인해 주세요.';
     return;
   }
+  const { data: adminRegistration, error: adminError } = await client.value
+    .from('admin_users')
+    .select('email')
+    .maybeSingle();
+  if (adminError || !adminRegistration) {
+    await client.value.auth.signOut();
+    loginError.value = '관리자 권한이 없는 계정입니다.';
+    return;
+  }
   session.value = data.session;
   await loadData();
   startRealtime();
@@ -251,7 +260,11 @@ function startAutoRefresh(): void {
 onMounted(async () => {
   if (!client.value) return;
   const { data } = await client.value.auth.getSession();
-  session.value = data.session;
+  if (data.session) {
+    const { data: adminRegistration } = await client.value.from('admin_users').select('email').maybeSingle();
+    if (!adminRegistration) await client.value.auth.signOut();
+    else session.value = data.session;
+  }
   if (session.value) {
     await loadData();
     startRealtime();
