@@ -9,6 +9,30 @@ const fixes = [
     file: 'hvac.js',
     globalName: 'CBT_DATA_HVAC',
     catalogKey: 'hvac',
+    roundId: 'hvac-20231',
+    number: 60,
+    patch: {
+      text: '다음 중 기계설비 기술기준에서 정하는 기계설비에 해당하지 않는 것은?',
+      html: '다음 중 기계설비 기술기준에서 정하는 기계설비에 해당하지 않는 것은?',
+      choices: [
+        { text: '우수배수설비', html: '우수배수설비', images: [] },
+        { text: '플랜트설비', html: '플랜트설비', images: [] },
+        { text: '가스설비', html: '가스설비', images: [] },
+        { text: '오수정화설비', html: '오수정화설비', images: [] },
+      ],
+      answer: 3,
+      explanation:
+        '이 문제는 기계설비 기술기준의 설비 목록에 없는 것을 찾는 문제입니다. 우수배수설비, 플랜트설비, 오수정화설비는 기술기준에 포함되지만 가스설비는 이 목록에 포함되지 않습니다. 따라서 정답은 ③ 가스설비입니다.',
+      explanationHtml:
+        '이 문제는 기계설비 기술기준의 설비 목록에 없는 것을 찾는 문제입니다.<br>우수배수설비, 플랜트설비, 오수정화설비는 기술기준에 포함되지만 가스설비는 이 목록에 포함되지 않습니다.<br>따라서 정답은 ③ 가스설비입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '국가법령정보센터 기계설비 기술기준 및 2023년 1회 배포 PDF 대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
     roundId: 'hvac-20261',
     number: 14,
     patch: {

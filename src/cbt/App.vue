@@ -191,10 +191,6 @@ const savedRestoredImageTheme = localStorage.getItem('unified-cbt-restored-image
 const restoredImageTheme = ref<RestoredImageTheme>(
   savedRestoredImageTheme === 'original' ? 'original' : 'auto',
 );
-const answerLayoutLabel = computed(() => answerLayout.value === 'hotspot'
-  ? '이미지 직접 선택'
-  : answerLayout.value === 'inline' ? '답안 문구' : '기존 번호 버튼');
-const sessionAnswerLayoutSettingRef = ref<HTMLElement | null>(null);
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
@@ -446,6 +442,11 @@ const currentItems = computed(() => {
   if (!session.value) return [];
   const start = session.value.page * session.value.pageSize;
   return session.value.items.slice(start, start + session.value.pageSize);
+});
+const currentItemColumns = computed(() => {
+  const items = currentItems.value;
+  const split = Math.ceil(items.length / 2);
+  return [items.slice(0, split), items.slice(split)].filter((column) => column.length);
 });
 const pageCount = computed(() => session.value ? Math.ceil(session.value.items.length / session.value.pageSize) : 0);
 const answeredCount = computed(() => session.value ? Object.keys(session.value.answers).length : 0);
@@ -1656,15 +1657,6 @@ function setRestoredImageTheme(mode: RestoredImageTheme): void {
     : '복원문제를 항상 원본 색상으로 표시합니다.');
 }
 
-async function openAnswerLayoutSettings(): Promise<void> {
-  settingsOpen.value = true;
-  await nextTick();
-  sessionAnswerLayoutSettingRef.value?.scrollIntoView({
-    behavior: motionAllowed.value ? 'smooth' : 'auto',
-    block: 'center',
-  });
-}
-
 function sunjaeRotationLabel(seconds: number): string {
   if (!seconds) return '끔';
   return seconds < 60 ? `${seconds}초` : `${seconds / 60}분`;
@@ -2772,7 +2764,7 @@ onBeforeUnmount(() => {
                 <span>☝</span><div><strong>{{ answerLayout === 'hotspot' ? '이미지 직접 선택 사용 중' : '이미지에서 답 고르기' }}</strong><small>원문 속 ①·②·③·④를 바로 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card coach" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">
-                <span>▰</span><div><strong>PaddleOCR 줄별 강조</strong><small>여러 줄 답안을 한 번에 선택</small></div><b>›</b>
+                <span>▰</span><div><strong>PaddleOCR 답안 박스</strong><small>여러 줄 답안도 한 박스로 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card sun" @click="toggleLightDark">
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
@@ -2918,7 +2910,7 @@ onBeforeUnmount(() => {
             <span>이미지 답안 선택 표시</span>
             <div>
               <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 글자 줄별 강조</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 보기 전체 한 박스</small></button>
             </div>
           </div>
           <div class="standard-solving-list">
@@ -2993,17 +2985,6 @@ onBeforeUnmount(() => {
         <button v-else type="button" class="timer-button">남은 시간 <strong>{{ formattedTime }}</strong></button>
         <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
       </div>
-      <button
-        type="button"
-        class="session-answer-guide"
-        :aria-label="`현재 답안 선택 방식은 ${answerLayoutLabel}입니다. 설정에서 답안 클릭 방식을 변경합니다.`"
-        @click="openAnswerLayoutSettings"
-      >
-        <span>NEW</span>
-        <strong>답안: {{ answerLayoutLabel }}</strong>
-        <small>설정에서 답안 클릭 방식을 바꿀 수 있어요.</small>
-        <b>변경 ›</b>
-      </button>
     </header>
 
     <button v-if="sessionMenuOpen" class="session-menu-backdrop" type="button" aria-label="풀이 메뉴 닫기" @click="sessionMenuOpen = false" />
@@ -3026,28 +3007,30 @@ onBeforeUnmount(() => {
     <main class="session-main">
       <section class="question-area">
         <Transition :name="questionTransitionName" mode="out-in">
-          <div :key="`${session.page}-${session.pageSize}`" class="question-grid">
-            <QuestionCard
-              v-for="item in currentItems"
-              :key="item.id"
-              :id="`session-question-${session.items.indexOf(item) + 1}`"
-              :item="item"
-              :mode="session.mode"
-              :selected="session.answers[item.id]"
-              :subject-start="isSubjectStart(item)"
-              :subject-number="sessionSubjectNumber(item)"
-              :bookmarked="studyStore.bookmarks.includes(item.id)"
-              :kept="session.kept.includes(item.id)"
-              :calculation-mode="session.calculationMode"
-              :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
-              :answer-layout="answerLayout"
-              :hotspot-indicator="hotspotIndicator"
-              :restored-image-theme="restoredImageTheme"
-              @choose="chooseAnswer(item, $event)"
-              @toggle-bookmark="toggleBookmark(item)"
-              @toggle-keep="toggleKeep(item)"
-              @ask-ai="prepareAiQuestion(item)"
-            />
+          <div :key="`${session.page}-${session.pageSize}`" class="question-columns">
+            <div v-for="(column, columnIndex) in currentItemColumns" :key="columnIndex" class="question-column">
+              <QuestionCard
+                v-for="item in column"
+                :key="item.id"
+                :id="`session-question-${session.items.indexOf(item) + 1}`"
+                :item="item"
+                :mode="session.mode"
+                :selected="session.answers[item.id]"
+                :subject-start="isSubjectStart(item)"
+                :subject-number="sessionSubjectNumber(item)"
+                :bookmarked="studyStore.bookmarks.includes(item.id)"
+                :kept="session.kept.includes(item.id)"
+                :calculation-mode="session.calculationMode"
+                :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
+                :answer-layout="answerLayout"
+                :hotspot-indicator="hotspotIndicator"
+                :restored-image-theme="restoredImageTheme"
+                @choose="chooseAnswer(item, $event)"
+                @toggle-bookmark="toggleBookmark(item)"
+                @toggle-keep="toggleKeep(item)"
+                @ask-ai="prepareAiQuestion(item)"
+              />
+            </div>
           </div>
         </Transition>
         <footer class="pager">
@@ -3169,7 +3152,7 @@ onBeforeUnmount(() => {
             <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </div>
-        <div ref="sessionAnswerLayoutSettingRef" class="setting-group standard-solving-setting">
+        <div class="setting-group standard-solving-setting">
           <span>답안 선택 방식</span>
           <div class="answer-layout-options">
             <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
@@ -3180,7 +3163,7 @@ onBeforeUnmount(() => {
             <span>이미지 답안 선택 표시</span>
             <div>
               <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 글자 줄별 강조</small></button>
+              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 보기 전체 한 박스</small></button>
             </div>
           </div>
           <div class="standard-solving-list">

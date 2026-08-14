@@ -934,31 +934,31 @@ export const reviewedHvacHotspots: Record<string, Array<{ choice: number; x: num
   "assets/hvac/assets/questions/2026_1/22.jpg": [
     {
       "choice": 1,
-      "x": 0,
-      "y": 38.53,
-      "width": 31.6,
-      "height": 29.54
+      "x": 5,
+      "y": 12,
+      "width": 43,
+      "height": 40
     },
     {
       "choice": 2,
-      "x": 31.6,
-      "y": 38.53,
-      "width": 68.4,
-      "height": 29.54
+      "x": 48,
+      "y": 12,
+      "width": 47,
+      "height": 40
     },
     {
       "choice": 3,
-      "x": 0,
-      "y": 68.07,
-      "width": 31.6,
-      "height": 29.53
+      "x": 5,
+      "y": 52,
+      "width": 43,
+      "height": 47
     },
     {
       "choice": 4,
-      "x": 31.6,
-      "y": 68.07,
-      "width": 68.4,
-      "height": 29.53
+      "x": 48,
+      "y": 52,
+      "width": 47,
+      "height": 47
     }
   ],
   "assets/hvac/assets/questions/2026_1/39.jpg": [
@@ -1109,6 +1109,36 @@ export const reviewedHvacHotspots: Record<string, Array<{ choice: number; x: num
       "y": 78.33,
       "width": 63.72,
       "height": 17.14
+    }
+  ],
+  "assets/hvac/assets/questions/2021_1/59.jpg": [
+    {
+      "choice": 1,
+      "x": 2.2,
+      "y": 87.1,
+      "width": 41.03,
+      "height": 6
+    },
+    {
+      "choice": 2,
+      "x": 43.23,
+      "y": 87.1,
+      "width": 55.27,
+      "height": 5.8
+    },
+    {
+      "choice": 3,
+      "x": 2.2,
+      "y": 93.1,
+      "width": 41.03,
+      "height": 5.4
+    },
+    {
+      "choice": 4,
+      "x": 43.23,
+      "y": 92.9,
+      "width": 55.27,
+      "height": 5.6
     }
   ]
 };

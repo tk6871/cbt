@@ -10,7 +10,11 @@ function readObject(path) {
 
 const generated = readObject('src/cbt/generatedHvacHotspots.ts');
 const reviewed = readObject('src/cbt/reviewedHvacHotspots.ts');
-const segments = readObject('src/cbt/generatedHvacAnswerSegments.ts');
+const segmentsArgument = process.argv.indexOf('--segments');
+const segmentsPath = segmentsArgument >= 0
+  ? process.argv[segmentsArgument + 1]
+  : 'src/cbt/generatedHvacAnswerSegments.ts';
+const segments = readObject(segmentsPath);
 const hotspots = { ...generated, ...reviewed };
 const errors = [];
 const missingImages = [];
@@ -20,10 +24,6 @@ let multiLineChoices = 0;
 let unifiedBoxCount = 0;
 let unifiedOverlapCount = 0;
 let containedSegmentCount = 0;
-const minimumWrappedLines = [
-  ['assets/hvac/assets/questions/2023_2/25.jpg', 4, 3],
-  ['assets/hvac/assets/questions/2023_3/47.jpg', 4, 2],
-];
 
 function intersection(left, right) {
   const x = Math.max(left.x, right.x);
@@ -152,11 +152,6 @@ for (const [image, choice, axis, maximum] of boxRegressions) {
   if (!box || box[axis] > maximum + 0.001) {
     errors.push(`${image}/${choice}: 번호·분수 포함 회귀 검사 실패 (${axis}=${box?.[axis]})`);
   }
-}
-
-for (const [image, choice, minimum] of minimumWrappedLines) {
-  const count = segments[image]?.[choice]?.length || 0;
-  if (count < minimum) errors.push(`${image}/${choice}: 여러 줄 답안이 ${count}줄만 잡혔습니다. 최소 ${minimum}줄이어야 합니다.`);
 }
 
 for (const [image, imageSegments] of Object.entries(segments)) {
