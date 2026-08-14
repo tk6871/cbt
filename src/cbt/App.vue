@@ -723,7 +723,7 @@ function animateViewDetails(next: ViewName): void {
     return;
   }
   const selectors: Partial<Record<ViewName, string>> = {
-    home: '.simpsons-home-hero,.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
+    home: '.android-app-promo,.simpsons-home-hero,.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
     rounds: '.round-card',
     wrong: '.tool-hero,.question-library article,.empty-state',
     search: '.search-command,.search-summary,.question-library article,.empty-state',
@@ -2343,6 +2343,23 @@ onBeforeUnmount(() => {
         <Transition v-else :name="viewTransitionName" mode="out-in">
           <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
         <template v-if="view === 'home'">
+          <section v-if="!isNativeApp" class="android-app-promo" aria-labelledby="android-app-promo-title">
+            <div class="android-app-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
+                <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
+                <circle cx="19" cy="15" r="1.3" /><circle cx="29" cy="15" r="1.3" />
+              </svg>
+            </div>
+            <div class="android-app-copy">
+              <span><b>ANDROID 전용</b> 휴대폰·태블릿 앱</span>
+              <strong id="android-app-promo-title">CBT를 앱으로 설치해서 더 편하게 풀어보세요</strong>
+              <small>Android 7.0 이상 · iPhone·iPad 설치 불가 · 약 8MB</small>
+            </div>
+            <a :href="androidApkUrl" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 다운로드">
+              <span>정식 APK 다운로드</span><b aria-hidden="true">↓</b>
+            </a>
+          </section>
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
               <Transition name="sunjae-photo-fade" mode="out-in">
@@ -2574,7 +2591,6 @@ onBeforeUnmount(() => {
               <button v-if="updateAvailable" type="button" class="apply" @click="applyUpdate">신버전 적용</button>
               <button v-else type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '업데이트 확인' }}</button>
               <button type="button" @click="openView('updates')">패치노트 보기</button>
-              <a v-if="!isNativeApp" class="android-download" :href="androidApkUrl" target="_blank" rel="noopener">Android APK 받기</a>
             </div>
           </section>
         </template>

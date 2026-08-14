@@ -5,6 +5,34 @@
 
   const entries = [
     {
+      version: '2.9.1',
+      scope: 'industrial',
+      date: '2026.08.15',
+      title: '홈페이지 Android 앱 다운로드 안내',
+      summary: '홈페이지 상단에서 Android 전용 정식 APK를 바로 받을 수 있도록 다운로드 안내를 눈에 잘 띄게 배치했습니다.',
+      tags: ['Android 전용', 'APK 다운로드', '홈페이지', '모바일 안내'],
+      changes: [
+        '홈페이지 최상단에 Android 휴대폰·태블릿 전용 앱 다운로드 배너를 추가했습니다.',
+        'iPhone·iPad에는 설치할 수 없다는 안내와 지원 버전·대략적인 용량을 함께 표시합니다.',
+        '기본·심슨·선재 테마와 PC·모바일 화면에 맞춰 다운로드 배너가 반응형으로 표시됩니다.',
+        '서비스워커 캐시를 v291로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '2.9.1',
+      scope: 'jewelry',
+      date: '2026.08.15',
+      title: '보석관 Android 앱 다운로드 안내',
+      summary: '보석관 홈페이지에서도 Android 전용 정식 APK 다운로드 위치를 바로 확인할 수 있습니다.',
+      tags: ['Android 전용', 'APK 다운로드', '보석관', '반응형'],
+      changes: [
+        '보석관 홈페이지 최상단에 Android 전용 앱 다운로드 배너를 추가했습니다.',
+        'Android 7.0 이상 지원과 iPhone·iPad 설치 불가 안내를 함께 표시합니다.',
+        '기본·심슨·선재 테마에 맞는 색상과 모바일 전체 너비 다운로드 버튼을 적용했습니다.',
+        '서비스워커 캐시를 v291로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.9',
       scope: 'industrial',
       date: '2026.08.14',
@@ -1077,8 +1105,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.9';
-  changelog.versions.jewelry = '2.9';
-  changelog.currentVersion = '2.9';
+  changelog.versions.industrial = '2.9.1';
+  changelog.versions.jewelry = '2.9.1';
+  changelog.currentVersion = '2.9.1';
   window.CBT_CHANGELOG = changelog;
 })();
