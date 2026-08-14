@@ -45,7 +45,7 @@ npm run audit:questions
 - Android APK에는 앱 코드와 문제 데이터를 포함하고 큰 문제·테마 이미지는 GitHub Pages에서 불러옵니다. 디버그 APK는 약 9MB, RSA 4096비트 키로 서명한 release APK는 약 7.2MB입니다.
 - Android 전용 뒤로가기는 계산기·설정·메뉴·OMR을 먼저 닫고 세션·홈·앱 종료 순서로 동작합니다. 시험 OMR은 처음에 닫혀 있으며 사용자가 눌러야 열립니다.
 - 릴리스 서명키와 비밀번호는 Git에서 제외된 `android/signing/`에만 있습니다. 이 폴더를 잃으면 설치된 release 앱을 같은 서명으로 업데이트할 수 없으므로 별도 백업이 필요합니다.
-- `.github/workflows/android-apk.yml`은 main Push 시 서명 APK를 만들고 `android-latest` GitHub Release의 고정 다운로드 파일을 갱신합니다. GitHub Actions 비밀값 `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD` 4개는 2026-08-14에 등록을 완료했습니다. 실제 첫 자동 빌드는 이번 변경을 main에 Push한 뒤 확인해야 합니다.
+- `.github/workflows/android-apk.yml`은 main Push 시 서명 APK를 만들고 `android-latest` GitHub Release의 고정 다운로드 파일을 갱신합니다. GitHub Actions 비밀값 `ANDROID_KEYSTORE_BASE64`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD` 4개는 2026-08-14에 등록을 완료했습니다. 같은 날 첫 자동 빌드도 성공했고 `industrial-cbt-latest.apk` 공개 Release 파일 생성을 확인했습니다.
 - 문제풀이 화면은 `기본 CBT`·`COMCBT 모드`·`컴뱃 CBT` 세 가지를 제공합니다. 저장값이 없는 기본 상태는 기존 v2.7 카드형 `기본 CBT`이며, 다른 두 화면은 설정에서 선택한 경우에만 적용됩니다.
 - COMCBT 모드는 데스크톱 한 화면 6문제·독립 2열·고정 하단 이동 바를 사용하고, 컴뱃 CBT는 한 화면 4문제·독립 2열·진행 HUD를 사용합니다. 모바일에서는 모두 한 열로 전환하며 화면을 바꿔도 답안·진도·타이머는 유지됩니다.
 - COMCBT·컴뱃 CBT에 전체·미응답·킵·현재 과목 OMR 필터, 다음 미응답 이동, 반응형 해설 패널을 적용했습니다. PC·모바일 CBT는 OMR을 닫은 상태로 시작하고 사용자가 열기 버튼을 눌러야 표시합니다.
@@ -247,7 +247,7 @@ npm run audit:questions
 ## 마지막 Mac 검증 결과
 
 - v2.9 `npm run typecheck`, `npm run audit:questions`, `npm run audit:answer-segments`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run build`, Android debug·release Gradle 빌드, workflow YAML 검사와 `git diff --check`를 통과했습니다. 전체 248회차·19,610문제·이미지 참조 4,125개에서 구조 오류·누락·경고 0건, 공조 1,019장·4,076개 답안 박스 겹침 0건입니다.
-- Galaxy S25(`SM-S931N`)에 v2.9 debug APK를 설치해 앱 로딩 완료, 휴대폰 전용 하단 5탭, GitHub Pages 원문 이미지 로딩, 문제 검색 Worker, 학습 정답 후 해설 자동 표시, 시험 시작 OMR 닫힘·버튼 열기·Android 뒤로가기로 OMR만 닫기를 실제 기기에서 확인했습니다. 테스트로 생성한 학습 기록 1건은 검증 직후 삭제해 원상복구했습니다.
+- Galaxy S25(`SM-S931N`)에 v2.9 debug APK로 휴대폰 전용 하단 5탭, GitHub Pages 원문 이미지 로딩, 문제 검색 Worker, 학습 정답 후 해설 자동 표시, 시험 시작 OMR 닫힘·버튼 열기·Android 뒤로가기로 OMR만 닫기를 실제 확인했습니다. 테스트 기록은 검증 직후 삭제했고, 2026-08-14에는 debug 앱을 제거한 뒤 RSA 4096비트 키로 서명한 정식 v2.9 APK를 설치·실행해 `versionCode=29`, `versionName=2.9`, 비디버그 빌드까지 확인했습니다.
 - `npm run android:release`로 `/Users/sh/Documents/GitHub/cbt/dist/industrial-cbt-v2.9.apk`를 생성했습니다. 약 7.2MB이며 `apksigner verify --verbose --print-certs`에서 APK Signature Scheme v2, RSA 4096비트 서명과 서명자 1명을 확인했습니다.
 - Android 앱 초기 로딩을 막던 교차 출처 검색 Worker 오류는 Vite 생성 Worker를 APK 내부에 유지해 해결했습니다. IndexedDB·시험 기록 초기화가 실패하더라도 스켈레톤 화면에 계속 멈추지 않도록 초기화 `finally` 안전장치도 추가했습니다.
 - 실제 Android 태블릿 검증은 아직 하지 않았습니다. 태블릿 전용 세로 메뉴·가로 2열 문제·우측 OMR은 CSS와 타입 검사까지만 완료했습니다.
@@ -301,7 +301,7 @@ npm run audit:questions
 
 ## 다음 우선 작업
 
-공조 복원문제 1,019장의 클릭·표시 좌표 전수 검사는 완료됐습니다. v2.7.1 기준 4,076개 답안은 마우스 올림·클릭·선택 표시가 같은 단일 박스를 사용하며, 5,024개 OCR 조각과 수동 검수 좌표를 4,076개 보기 박스로 통합했습니다. 두 줄·세 줄·수식 보기 763개를 보존했고 박스 겹침은 0건입니다. 기존 육안 검수 기준과 996장은 완전히 동일하며, 달라진 23장은 검수표 4장으로 원본 위 좌표를 다시 확인했습니다. 원본 PDF가 현재 첨부되어 있지 않은 2025년 1회 13번·45번, 2025년 2회 52번, 2025년 3회 60번은 하단 글자나 도형이 원본 이미지 끝에 닿은 추가 복원 후보입니다. 해당 2025년 배포 PDF를 받으면 추측 없이 같은 방식으로 아래쪽을 복원해야 합니다. 다음 우선 작업은 GitHub Desktop에서 이번 변경을 커밋하고 main에 Push한 뒤 첫 자동 APK Release와 Pages 배포를 확인하는 것입니다. 실제 Android 태블릿 UI 검증도 남아 있습니다.
+공조 복원문제 1,019장의 클릭·표시 좌표 전수 검사는 완료됐습니다. v2.7.1 기준 4,076개 답안은 마우스 올림·클릭·선택 표시가 같은 단일 박스를 사용하며, 5,024개 OCR 조각과 수동 검수 좌표를 4,076개 보기 박스로 통합했습니다. 두 줄·세 줄·수식 보기 763개를 보존했고 박스 겹침은 0건입니다. 기존 육안 검수 기준과 996장은 완전히 동일하며, 달라진 23장은 검수표 4장으로 원본 위 좌표를 다시 확인했습니다. 원본 PDF가 현재 첨부되어 있지 않은 2025년 1회 13번·45번, 2025년 2회 52번, 2025년 3회 60번은 하단 글자나 도형이 원본 이미지 끝에 닿은 추가 복원 후보입니다. 해당 2025년 배포 PDF를 받으면 추측 없이 같은 방식으로 아래쪽을 복원해야 합니다. Android signed APK의 첫 자동 Release와 S25 정식 설치 검증도 완료됐습니다. 실제 Android 태블릿 UI 검증은 아직 남아 있습니다.
 
 - v2.6 검증: `npm run audit:answer-segments`, `npm run typecheck`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 실제 브라우저에서 2023년 2회 29번의 ①~④ 버튼과 선택 박스가 같은 좌표임을 확인했고, 2023년 2회 25번 ④와 2023년 3회 47번 ④가 각각 한 박스로 표시되는 것을 확인했습니다.
 - v2.7에서 데스크톱 문제 카드를 두 개의 독립 열로 바꿔 짧은 카드가 옆의 긴 카드 높이에 끌려가지 않도록 했습니다. 일반 문제의 짧은 글 보기와 4개 이미지 보기는 2×2, 긴 보기는 한 줄로 자동 배치하며 820px 이하와 큰 글씨 모드에서는 문제 카드를 한 열로 유지합니다.
