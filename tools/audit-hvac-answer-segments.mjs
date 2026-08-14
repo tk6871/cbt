@@ -14,7 +14,12 @@ const segmentsArgument = process.argv.indexOf('--segments');
 const segmentsPath = segmentsArgument >= 0
   ? process.argv[segmentsArgument + 1]
   : 'src/cbt/generatedHvacAnswerSegments.ts';
-const segments = readObject(segmentsPath);
+const generatedSegments = readObject(segmentsPath);
+const reviewedSegments = readObject('src/cbt/reviewedHvacAnswerSegments.ts');
+const segments = Object.fromEntries(
+  [...new Set([...Object.keys(generatedSegments), ...Object.keys(reviewedSegments)])]
+    .map((image) => [image, { ...generatedSegments[image], ...reviewedSegments[image] }]),
+);
 const hotspots = { ...generated, ...reviewed };
 const errors = [];
 const missingImages = [];
@@ -154,6 +159,18 @@ for (const [image, choice, axis, maximum] of boxRegressions) {
   }
 }
 
+const minimumSpanRegressions = [
+  ['assets/hvac/assets/questions/2023_2/25.jpg', 4, 'height', 35],
+  ['assets/hvac/assets/questions/2023_3/47.jpg', 4, 'height', 25],
+];
+for (const [image, choice, axis, minimum] of minimumSpanRegressions) {
+  const boxes = unifiedAnswerHotspots(hotspots[image], segments[image]);
+  const box = boxes.find((item) => item.choice === choice);
+  if (!box || box[axis] < minimum) {
+    errors.push(`${image}/${choice}: 여러 줄 답안 회귀 검사 실패 (${axis}=${box?.[axis]})`);
+  }
+}
+
 for (const [image, imageSegments] of Object.entries(segments)) {
   const imageHotspots = hotspots[image];
   if (!imageHotspots) {
@@ -183,6 +200,16 @@ for (const [image, imageHotspots] of Object.entries(hotspots)) {
   for (const hotspot of imageHotspots) {
     if (!segments[image]?.[hotspot.choice]?.length) missingChoices.push(`${image}/${hotspot.choice}`);
   }
+}
+
+// The visually reviewed baseline contains hundreds of wrapped/formula answers.
+// A generator regression once dropped continuation lines across the catalog
+// while still leaving one valid box per choice, so guard the global coverage.
+if (multiLineChoices < 750) {
+  errors.push(`여러 줄·수식 답안이 비정상적으로 줄었습니다. (${multiLineChoices}/최소 750)`);
+}
+if (segmentCount < 5000) {
+  errors.push(`OCR 답안 조각이 비정상적으로 줄었습니다. (${segmentCount}/최소 5,000)`);
 }
 
 console.log(`PaddleOCR 좌표: ${Object.keys(segments).length}/${Object.keys(hotspots).length}장, ${segmentCount.toLocaleString()}개`);

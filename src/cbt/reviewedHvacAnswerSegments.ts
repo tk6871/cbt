@@ -95,5 +95,46 @@ export const reviewedHvacAnswerSegments: Record<string, Record<number, Array<{ x
     "2": [{ "x": 50.43, "y": 8.3, "width": 35.68, "height": 45.53 }],
     "3": [{ "x": 8.55, "y": 54, "width": 37.29, "height": 44.72 }],
     "4": [{ "x": 50.43, "y": 54, "width": 35.68, "height": 44.72 }]
+  },
+  "assets/hvac/assets/questions/2021_1/57.jpg": {
+    "2": [
+      { "x": 56.94, "y": 64.8, "width": 9.37, "height": 4.34 },
+      { "x": 43.62, "y": 66, "width": 4.08, "height": 6.76 },
+      { "x": 49.76, "y": 69.08, "width": 23, "height": 8.93 }
+    ]
+  },
+  "assets/hvac/assets/questions/2023_1/54.jpg": {
+    "1": [
+      { "x": 23.15, "y": 63.97, "width": 9.67, "height": 4.5 },
+      { "x": 8.62, "y": 65.17, "width": 4.12, "height": 6.72 },
+      { "x": 15.03, "y": 68.94, "width": 25.27, "height": 8.33 }
+    ]
+  },
+  "assets/hvac/assets/questions/2024_2/57.jpg": {
+    "2": [
+      { "x": 64.87, "y": 74.56, "width": 7.15, "height": 3.93 },
+      { "x": 57.79, "y": 75.99, "width": 4.08, "height": 4.4 },
+      { "x": 63.81, "y": 77.33, "width": 7.89, "height": 7.42 },
+      { "x": 65.51, "y": 85.05, "width": 7.78, "height": 4.05 }
+    ],
+    "4": [
+      { "x": 65.51, "y": 89.1, "width": 7.78, "height": 3.71 },
+      { "x": 57.79, "y": 90.53, "width": 4.08, "height": 4.4 },
+      { "x": 63.39, "y": 91.76, "width": 10.43, "height": 6.74 }
+    ]
+  },
+  "assets/hvac/assets/questions/2025_1/13.jpg": {
+    "2": [
+      { "x": 30.31, "y": 68.19, "width": 5.94, "height": 3.14 },
+      { "x": 8.62, "y": 69.39, "width": 4.12, "height": 4.11 },
+      { "x": 14.5, "y": 69.7, "width": 6.79, "height": 3.38 },
+      { "x": 21.98, "y": 71.04, "width": 20.46, "height": 6.17 }
+    ]
+  },
+  "assets/hvac/assets/questions/2025_2/12.jpg": {
+    "1": [
+      { "x": 8.62, "y": 52.75, "width": 4.12, "height": 8.58 },
+      { "x": 13.43, "y": 52.02, "width": 26.23, "height": 17.76 }
+    ]
   }
 };

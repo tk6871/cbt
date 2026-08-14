@@ -127,6 +127,7 @@ def main() -> None:
     parser.add_argument("--generated-hotspots", type=Path)
     parser.add_argument("--reviewed-hotspots", type=Path)
     parser.add_argument("--segments", type=Path)
+    parser.add_argument("--reviewed-segments", type=Path)
     parser.add_argument("--include", action="append", default=[])
     args = parser.parse_args()
 
@@ -134,6 +135,13 @@ def main() -> None:
     reviewed = read_typescript_object(args.reviewed_hotspots or args.root / "src/cbt/reviewedHvacHotspots.ts")
     hotspots = {**generated, **reviewed}
     segments = read_typescript_object(args.segments or args.root / "src/cbt/generatedHvacAnswerSegments.ts")
+    reviewed_segments = read_typescript_object(
+        args.reviewed_segments or args.root / "src/cbt/reviewedHvacAnswerSegments.ts"
+    )
+    segments = {
+        path: {**segments.get(path, {}), **reviewed_segments.get(path, {})}
+        for path in set(segments) | set(reviewed_segments)
+    }
     selected = set(args.include)
     paths = sorted((path for path in hotspots if not selected or path in selected), key=natural_key)
     if selected - set(paths):

@@ -1,6 +1,7 @@
 import type { Catalog, CurriculumScope, Question, QuestionItem, Round } from './types';
 import { hvacAnswerHotspots } from './generatedHvacHotspots';
 import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
+import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
 const primaryKeys = ['hvac', 'safety', 'energy', 'maintenance'];
@@ -27,7 +28,9 @@ function prepareCatalog(source: Catalog): Catalog {
           const hotspots = sourceImage
             ? reviewedHvacHotspots[sourceImage] || hvacAnswerHotspots[sourceImage] || question.answerHotspots
             : question.answerHotspots;
-          const segments = sourceImage ? hvacAnswerSegments[sourceImage] : undefined;
+          const segments = sourceImage
+            ? { ...hvacAnswerSegments[sourceImage], ...reviewedHvacAnswerSegments[sourceImage] }
+            : undefined;
           return {
             ...question,
             answerHotspots: hotspots?.map((hotspot) => ({
