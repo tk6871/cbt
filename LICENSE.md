@@ -1,4 +1,12 @@
-# License and Copyright Notice
+# Proprietary Source-Available Notice
+
+> **This is not an open-source license.** The repository is publicly viewable,
+> but the original project code is not granted for general reuse,
+> redistribution, derivative deployment, or commercial use.
+
+> **이 저장소는 오픈소스 라이선스로 배포되지 않습니다.** 소스 코드를
+> 공개적으로 열람할 수 있지만, 원본 프로젝트 코드의 일반적인 재사용·재배포·
+> 파생 서비스 배포·상업적 이용 권한은 부여하지 않습니다.
 
 Copyright © 2026 tk6871. All rights reserved.
 
@@ -14,6 +22,13 @@ copyright holder.
 
 Making this repository publicly viewable on GitHub does not grant any rights
 beyond those provided by GitHub's Terms of Service or applicable law.
+
+You may view the repository and use the official deployed website. Rights to
+view and fork the public repository on GitHub are governed by GitHub's Terms
+of Service. Separately, the copyright holder grants limited permission to
+modify a fork only as necessary to prepare and submit a contribution to this
+repository. This limited permission does not permit publishing, deploying, or
+distributing a separate copy or derivative service.
 
 ## 2. Third-Party Materials
 
@@ -45,6 +60,12 @@ contributions unless separately agreed otherwise.
 Contributors must not knowingly submit material that they do not have the
 right to contribute.
 
+By intentionally submitting a contribution for inclusion in this project,
+the contributor grants the repository maintainer a perpetual, worldwide,
+non-exclusive, royalty-free license to use, reproduce, modify, distribute,
+and sublicense that contribution as part of this project. This grant does not
+transfer ownership of the contributor's copyright.
+
 ## 4. Personal and Educational Use
 
 This project is primarily maintained as a personal study and educational tool.
@@ -71,6 +92,12 @@ information contained in the project.
 재배포, 수정, 판매, 상업적으로 이용하거나 별도의 파생 서비스로
 배포하는 것을 허가하지 않습니다.
 
+공식 배포 사이트는 누구나 이용할 수 있습니다. GitHub 공개 저장소를 열람하고
+Fork하는 플랫폼상 권리는 GitHub 이용약관을 따릅니다. 이와 별도로 저작권자는
+이 저장소에 기여하기 위한 Fork 수정과 Pull Request 작성 범위만 제한적으로
+허용합니다. 이는 별도 복제본이나 파생 서비스를 공개·배포·운영할 권한을
+의미하지 않습니다.
+
 이 저장소에 포함된 시험 문제, 문제 이미지, 해설, 방송·미디어 이미지,
 캐릭터, 상표 및 기타 제3자 자료는 본 권리 고지의 적용 대상이 아닙니다.
 
@@ -79,3 +106,7 @@ information contained in the project.
 
 제3자 자료를 별도로 이용하려는 사용자는 해당 자료의 이용 조건을
 직접 확인하고 필요한 경우 권리자의 허가를 받아야 합니다.
+
+이 프로젝트에 포함할 목적으로 기여물을 제출하면, 기여자는 자신의 저작권을
+보유하면서도 저장소 관리자가 해당 기여물을 프로젝트의 일부로 사용·복제·수정·
+배포·재허가할 수 있는 영구적이고 전 세계적인 비독점·무상 권한을 부여합니다.

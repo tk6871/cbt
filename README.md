@@ -7,6 +7,7 @@
 ![Vue 3](https://img.shields.io/badge/Vue_3-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![PWA](https://img.shields.io/badge/PWA-Offline_Ready-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)
+![License](https://img.shields.io/badge/License-Proprietary-red?style=for-the-badge)
 
 산업기사 통합 CBT는 여러 자격증 기출문제를 하나의 화면에서 선택하고 학습할 수 있도록 만든 개인 학습용 프로젝트입니다.  
 회차별 학습, 실제 시험형 CBT, 오답노트, 계산문제 학습, 합격 분석, 공학용 계산기와 오프라인 실행을 지원합니다. 기존 CBT 화면을 기본값으로 사용하며, 산업기사와 보석관에서 심슨 테마를 선택할 수 있고 보석관에서는 선재 업고 튀어 테마도 선택할 수 있습니다.
@@ -93,8 +94,10 @@
 
 - 새 배치와 화면 전환을 한 번에 켜고 끄는 동적 UI 옵션(기본값 ON)
 - 문제풀이 화면은 `기본 CBT`(기존 v2.7 화면·기본값)·`COMCBT 모드`·`컴뱃 CBT` 중 설정에서 선택
-- COMCBT 모드는 데스크톱에서 한 화면 6문제·독립 2열·고정 하단 이동 바를 사용해 스크롤을 줄이고, 컴뱃 CBT는 한 번에 1문제와 진행 HUD에 집중
+- COMCBT 모드는 데스크톱에서 한 화면 6문제·독립 2열·고정 하단 이동 바를 사용해 스크롤을 줄이고, 컴뱃 CBT는 한 화면 4문제·진행 HUD를 사용
 - COMCBT·컴뱃 CBT에서 전체·미응답·킵·현재 과목 OMR 필터와 `다음 미응답` 이동 지원
+- 시험모드 OMR은 PC·모바일 모두 닫힌 상태로 시작하고 사용자가 `OMR 열기`를 눌렀을 때만 표시
+- 기본 CBT·COMCBT·컴뱃 CBT 상단에 진행률·완료·미응답·킵 현황을 계속 표시
 - 문제풀이 중 `1`~`4` 답 선택, 방향키 이동, `K` 킵, `B` 북마크, `E` 해설 패널 단축키 지원
 - COMCBT·컴뱃 CBT의 해설은 PC에서 오른쪽 패널, 모바일에서 아래쪽 시트로 열어 문제 위치를 유지
 - 설정 화면에서만 기본 CBT·심슨 테마 UI 선택과 학습관별 저장
@@ -289,6 +292,18 @@ https://tk6871.github.io/cbt/
 ## 📝 변경 기록
 
 자세한 기능 추가와 수정 내용은 [CHANGELOG.md](./CHANGELOG.md)에서 확인할 수 있습니다.
+
+## 📄 라이선스와 참여 안내
+
+이 저장소는 소스 코드를 공개적으로 열람할 수 있지만 **오픈소스 라이선스로
+배포되는 프로젝트는 아닙니다**. 원본 프로젝트 코드의 일반적인 복제·재배포·
+파생 서비스 배포·상업적 이용은 허용되지 않으며, 시험 문제·이미지·방송 장면 등
+제3자 자료의 권리는 각각의 권리자에게 있습니다.
+
+- [라이선스 및 권리 안내](./LICENSE.md)
+- [기여 방법](./CONTRIBUTING.md)
+- [행동 강령](./CODE_OF_CONDUCT.md)
+- [보안 취약점 신고](./SECURITY.md)
 
 ---
 

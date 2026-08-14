@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '2.8.1',
+      scope: 'industrial',
+      date: '2026.08.14',
+      title: '다중 문제 컴뱃 화면과 가벼운 스크롤',
+      summary: '컴뱃 CBT를 4문제 화면으로 넓히고 무거운 그림자와 블러를 줄였으며, 모든 시험 OMR은 필요할 때만 열리도록 바꿨습니다.',
+      tags: ['컴뱃 CBT', '4문제', '스크롤 최적화', 'OMR', '진행 현황'],
+      changes: [
+        '컴뱃 CBT를 한 화면 1문제에서 4문제·독립 2열로 바꾸고 모바일에서는 한 열로 자동 전환합니다.',
+        '컴뱃 문제 카드와 고정 하단 바의 외부 그림자·배경 블러를 제거하고 화면 밖 카드 렌더링을 줄였습니다.',
+        '시험모드는 PC·모바일 모두 OMR을 닫은 상태로 시작하며 OMR 열기를 누른 경우에만 표시합니다.',
+        '기본 CBT·COMCBT·컴뱃 CBT 상단에 진행률·완료·미응답·킵 현황을 표시합니다.',
+        '설정의 세 문제풀이 화면 아이콘 색상 순서를 바로잡았습니다.',
+        '서비스워커 캐시를 v281로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '2.8.1',
+      scope: 'jewelry',
+      date: '2026.08.14',
+      title: '컴뱃 화면 밀도와 OMR 시작 방식 개선',
+      summary: '컴뱃 CBT를 4문제 화면으로 바꾸고 그림자·블러를 줄였으며 시험 OMR은 필요할 때만 열립니다.',
+      tags: ['컴뱃 CBT', '스크롤 최적화', 'OMR', '반응형'],
+      changes: [
+        '컴뱃 CBT를 한 화면 4문제·독립 2열로 바꾸고 모바일에서는 한 열로 전환합니다.',
+        '문제 카드 그림자와 고정 화면 블러를 줄여 스크롤 부담을 낮췄습니다.',
+        'PC·모바일 시험 OMR을 닫은 상태로 시작하고 세 문제풀이 화면 상단에 진행 현황을 추가했습니다.',
+        '서비스워커 캐시를 v281로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.8',
       scope: 'industrial',
       date: '2026.08.14',
@@ -1012,8 +1042,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.8';
-  changelog.versions.jewelry = '2.8';
-  changelog.currentVersion = '2.8';
+  changelog.versions.industrial = '2.8.1';
+  changelog.versions.jewelry = '2.8.1';
+  changelog.currentVersion = '2.8.1';
   window.CBT_CHANGELOG = changelog;
 })();
