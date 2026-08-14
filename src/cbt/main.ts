@@ -1,10 +1,29 @@
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
 import { createApp } from 'vue';
 import App from './App.vue';
 import './cbt.css';
 
+const nativeApp = Capacitor.isNativePlatform();
+
+function updateNativeFormFactor(): void {
+  if (!nativeApp) return;
+  const shortestSide = Math.min(window.innerWidth, window.innerHeight);
+  document.documentElement.dataset.nativeApp = 'true';
+  document.documentElement.dataset.nativeFormFactor = shortestSide >= 600 ? 'tablet' : 'phone';
+  document.documentElement.dataset.nativeOrientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+}
+
+if (nativeApp) {
+  updateNativeFormFactor();
+  window.addEventListener('resize', updateNativeFormFactor, { passive: true });
+  void StatusBar.setOverlaysWebView({ overlay: true });
+  void StatusBar.setStyle({ style: Style.Light });
+}
+
 createApp(App).mount('#next-app');
 
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:') {
   const hadController = Boolean(navigator.serviceWorker.controller);
   let updateAnnounced = false;
   const announceUpdate = (): void => {
@@ -16,7 +35,7 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') {
 
   navigator.serviceWorker.addEventListener('controllerchange', announceUpdate);
   window.addEventListener('load', () => {
-    void navigator.serviceWorker.register('./sw.js?v=265', { updateViaCache: 'none' }).then((registration) => {
+    void navigator.serviceWorker.register('./sw.js?v=290', { updateViaCache: 'none' }).then((registration) => {
       const watchInstallingWorker = (): void => {
         const worker = registration.installing;
         if (!worker || !hadController) return;

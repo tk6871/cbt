@@ -5,6 +5,41 @@
 
   const entries = [
     {
+      version: '2.9',
+      scope: 'industrial',
+      date: '2026.08.14',
+      title: 'Android 전용 휴대폰·태블릿 CBT',
+      summary: 'Galaxy 휴대폰과 Android 태블릿에 설치하는 경량 앱을 추가하고, 터치 전용 메뉴·풀이 도구·OMR·계산기를 구성했습니다.',
+      tags: ['Android APK', '휴대폰 UI', '태블릿 UI', 'ADB 실기기', '자동 해설'],
+      changes: [
+        'Capacitor 8 기반 Android 앱과 Galaxy S25 ADB 설치·검수 절차를 추가했습니다.',
+        '휴대폰은 5개 하단 탭과 풀이 전용 하단 도구, 태블릿은 세로 메뉴 레일과 가로 2열 문제 배치를 사용합니다.',
+        'OMR은 자동으로 열지 않고 사용자가 누를 때 휴대폰 아래 시트 또는 태블릿 패널로 표시합니다.',
+        '공학용 계산기는 풀이 상태를 유지하는 Android 전용 전체 화면으로 열립니다.',
+        '앱 코드와 문제 데이터는 내장하고 큰 문제·테마 이미지만 온라인에서 불러와 디버그 APK를 약 9MB로 줄였습니다.',
+        'RSA 4096비트 전용 키로 서명한 약 7.2MB release APK와 Push 후 고정 다운로드 링크를 갱신하는 자동 빌드를 추가했습니다.',
+        'Android 뒤로가기는 계산기·설정·OMR·메뉴를 먼저 닫고 그다음 문제풀이와 앱을 종료합니다.',
+        '1~4·방향키·K·B·E 단축키와 빠른 OMR 필터·고정 이동 바는 COMCBT 모드에서만 작동합니다.',
+        '학습모드에서 정답을 맞히면 기본·COMCBT·컴뱃 화면 모두 해설이 즉시 자동으로 표시됩니다.',
+        '서비스워커 캐시를 v290으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '2.9',
+      scope: 'jewelry',
+      date: '2026.08.14',
+      title: '보석관 Android 전용 학습 화면',
+      summary: '보석·귀금속 문제도 같은 Android 앱에서 휴대폰·태블릿 전용 화면으로 풀 수 있습니다.',
+      tags: ['Android APK', '보석관', '태블릿', '자동 해설'],
+      changes: [
+        'Android 앱의 홈·회차·오답·검색·더보기 터치 메뉴에서 보석관으로 이동할 수 있습니다.',
+        '휴대폰 풀이 하단 도구와 태블릿 2열 문제·OMR 패널을 보석관에도 동일하게 적용했습니다.',
+        '정답을 맞히면 해설이 자동으로 표시되고 COMCBT 키보드 기능은 해당 화면에서만 작동합니다.',
+        '큰 테마·문제 이미지는 온라인으로 불러와 APK 용량을 줄였습니다.',
+        '서비스워커 캐시를 v290으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.8.1',
       scope: 'industrial',
       date: '2026.08.14',
@@ -1042,8 +1077,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.8.1';
-  changelog.versions.jewelry = '2.8.1';
-  changelog.currentVersion = '2.8.1';
+  changelog.versions.industrial = '2.9';
+  changelog.versions.jewelry = '2.9';
+  changelog.currentVersion = '2.9';
   window.CBT_CHANGELOG = changelog;
 })();

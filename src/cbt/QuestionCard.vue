@@ -87,9 +87,11 @@ const compactTextChoices = computed(() => {
     && Math.max(...lengths) <= 34
     && lengths.reduce((sum, length) => sum + length, 0) <= 96;
 });
-const compactSolveLayout = computed(() => props.solveLayout === 'comcbt' || props.solveLayout === 'combat');
+const compactSolveLayout = computed(() => props.solveLayout === 'comcbt');
 const combatDenseChoices = computed(() => {
-  if (!compactSolveLayout.value || primaryImage.value || props.item.question.choices.some((choice) => choice.images?.length)) return false;
+  if ((props.solveLayout !== 'comcbt' && props.solveLayout !== 'combat')
+    || primaryImage.value
+    || props.item.question.choices.some((choice) => choice.images?.length)) return false;
   const lengths = props.item.question.choices.map((choice) => (choice.text || choice.html || '')
     .replace(/<[^>]+>/g, ' ')
     .replace(/&[^;]+;/g, ' ')
@@ -177,8 +179,12 @@ watch(verifiedHotspots, (hotspots) => {
   answerHighlightStyles.value = {};
   if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
 }, { flush: 'post' });
-watch(() => [props.item.id, props.selected], () => {
-  explanationOpen.value = false;
+watch(() => [props.item.id, props.selected, props.solveLayout], () => {
+  explanationOpen.value = Boolean(
+    props.mode === 'learn'
+    && correctSelected.value
+    && compactSolveLayout.value,
+  );
 });
 </script>
 
@@ -343,7 +349,7 @@ watch(() => [props.item.id, props.selected], () => {
       type="button"
       class="compact-explanation-trigger"
       @click="explanationOpen = true"
-    ><span>정답 {{ item.question.answer }}번</span><strong>해설 패널 열기</strong><small>E 키</small></button>
+    ><span>정답 {{ item.question.answer }}번</span><strong>해설 다시 보기</strong><small v-if="solveLayout === 'comcbt'">E 키</small><small v-else>자동 열림</small></button>
 
     <div v-if="mode === 'learn' && correctSelected && !compactSolveLayout" class="explanation-box">
       <div class="explanation-title">
