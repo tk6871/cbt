@@ -301,106 +301,6 @@ def has_dark_ink(image: Image.Image, segment, image_width: int, image_height: in
     return sum(histogram[:150]) >= 4
 
 
-def assign_raw_detections_to_choices(
-    polys,
-    scores,
-    image_hotspots,
-    seed_choices,
-    image_width: int,
-    image_height: int,
-):
-    """Assign complete Paddle boxes to the nearest seeded answer row/column.
-
-    Coarse hotspots describe ownership cells, not exact ink. Clipping a Paddle
-    polygon to those cells cut the top of formulas and occasionally attached
-    the next answer to the previous one. The first pass is still useful as a
-    row anchor; this pass keeps each original polygon whole and assigns it to
-    the closest seeded answer in the same column.
-    """
-    min_x = min(item["x"] for item in image_hotspots)
-    max_x = max(item["x"] for item in image_hotspots)
-    two_columns = max_x - min_x > 24
-    columns = ([1, 3], [2, 4]) if two_columns else ([1, 2, 3, 4],)
-    hotspots_by_choice = {item["choice"]: item for item in image_hotspots}
-    anchors = {}
-    anchor_boxes = {}
-    for hotspot in image_hotspots:
-        choice = hotspot["choice"]
-        candidates = seed_choices.get(str(choice), [])
-        if candidates:
-            seed = min(
-                candidates,
-                key=lambda item: abs(item["y"] + item["height"] / 2 - hotspot["y"]),
-            )
-            anchors[choice] = seed["y"] + seed["height"] / 2
-            anchor_boxes[choice] = seed
-        else:
-            anchors[choice] = hotspot["y"] + min(hotspot["height"] * 0.35, 4.5)
-            anchor_boxes[choice] = hotspot
-
-    column_boundary = None
-    if two_columns:
-        left_right = max(anchor_boxes[choice]["x"] + anchor_boxes[choice]["width"] for choice in columns[0])
-        right_left = min(anchor_boxes[choice]["x"] for choice in columns[1])
-        column_boundary = (left_right + right_left) / 2
-
-    assigned: dict[str, list[tuple[float, float, float, float]]] = {}
-    for poly, score in zip(polys, scores):
-        if float(score) < 0.25:
-            continue
-        xs = [float(point[0]) for point in poly]
-        ys = [float(point[1]) for point in poly]
-        left, top, right, bottom = min(xs), min(ys), max(xs), max(ys)
-        center_x = (left + right) / 2 / image_width * 100
-        center_y = (top + bottom) / 2 / image_height * 100
-        column = columns[0] if not two_columns or center_x < column_boundary else columns[1]
-        ordered = sorted(column, key=lambda choice: anchors[choice])
-        choice = min(ordered, key=lambda item: abs(center_y - anchors[item]))
-        anchor_gaps = [anchors[right_choice] - anchors[left_choice]
-                       for left_choice, right_choice in zip(ordered, ordered[1:])]
-        nearest_gap = min(
-            [abs(anchors[choice] - anchors[item]) for item in ordered if item != choice] or [12]
-        )
-        maximum_distance = max(5.5, nearest_gap * 0.68)
-        if abs(center_y - anchors[choice]) > maximum_distance:
-            continue
-        hotspot = hotspots_by_choice[choice]
-        column_left = hotspot["x"] - 3
-        column_right = hotspot["x"] + hotspot["width"] + 3
-        if right / image_width * 100 < column_left or left / image_width * 100 > column_right:
-            continue
-        assigned.setdefault(str(choice), []).append((left, top, right, bottom))
-
-    result = {}
-    padding_x = image_width * 0.0035
-    padding_y = image_height * 0.003
-    for choice_text, boxes in assigned.items():
-        merged = merge_nearby_segments(boxes, image_width)
-        choice = int(choice_text)
-        hotspot = hotspots_by_choice[choice]
-        vertical_allowance = max(3.5, hotspot["height"] * 0.55)
-        merged = [
-            item for item in merged
-            if abs(((item[1] + item[3]) / 2 / image_height * 100) - anchors[choice])
-            <= vertical_allowance
-        ]
-        items = []
-        for left, top, right, bottom in merged:
-            left = max(0, left - padding_x)
-            top = max(0, top - padding_y)
-            right = min(image_width, right + padding_x)
-            bottom = min(image_height, bottom + padding_y)
-            items.append({
-                "x": round2(left / image_width * 100),
-                "y": round2(top / image_height * 100),
-                "width": round2((right - left) / image_width * 100),
-                "height": round2((bottom - top) / image_height * 100),
-            })
-        if items:
-            result[choice_text] = items
-    return result
-
-
 def reassign_boundary_fragments(choices, image_hotspots):
     """Move a clipped numerator/superscript to the formula that starts below it."""
     min_x = min(item["x"] for item in image_hotspots)
@@ -541,11 +441,8 @@ def main() -> None:
                 choices[str(hotspot["choice"])] = segments
         for key in list(choices):
             choices[key] = merge_clipped_line_parts(choices[key])
-        reassigned = assign_raw_detections_to_choices(
-            prediction["dt_polys"], prediction["dt_scores"], image_hotspots, choices, width, height
-        )
-        if reassigned:
-            choices = reassigned
+        reassign_cross_column_number_fragments(choices, image_hotspots)
+        reassign_boundary_fragments(choices, image_hotspots)
         if choices:
             result[relative] = choices
         if index % 25 == 0 or index == len(paths):

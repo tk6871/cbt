@@ -78,14 +78,26 @@ function answerSearchCells(hotspots, currentBoxes) {
   const cells = new Map();
 
   for (const [columnIndex, column] of columns.entries()) {
+    const orderedColumn = [...column].sort((leftItem, rightItem) => leftItem.y - rightItem.y);
     const left = columnIndex === 0 ? Math.max(0, Math.min(...column.map((item) => item.x)) - 2) : columnBoundary;
     const right = twoColumns && columnIndex === 0
       ? columnBoundary
       : Math.min(100, Math.max(...column.map((item) => item.x + item.width)) + 2);
-    for (const item of column) {
+    for (const [itemIndex, item] of orderedColumn.entries()) {
       const current = currentByChoice.get(item.choice);
-      const top = Math.max(0, Math.min(item.y, current.y - 8));
-      const bottom = Math.min(100, Math.max(item.y + item.height, current.y + current.height + 8));
+      const previous = orderedColumn[itemIndex - 1];
+      const next = orderedColumn[itemIndex + 1];
+      const topBoundary = previous
+        ? (previous.y + previous.height + item.y) / 2
+        : Math.max(0, Math.min(item.y, current.y) - 2);
+      const bottomBoundary = next
+        ? (item.y + item.height + next.y) / 2
+        : 100;
+      const top = Math.max(0, Math.min(topBoundary, current.y - 2));
+      const isLastInColumn = itemIndex === orderedColumn.length - 1;
+      const bottom = isLastInColumn
+        ? 100
+        : Math.min(100, Math.max(bottomBoundary, current.y + current.height + 0.5));
       cells.set(item.choice, { x: left, y: top, width: right - left, height: bottom - top });
     }
   }
@@ -93,9 +105,7 @@ function answerSearchCells(hotspots, currentBoxes) {
 }
 
 function inspectionCell(searchCell, current) {
-  const top = Math.max(searchCell.y, current.y - 8);
-  const bottom = Math.min(searchCell.y + searchCell.height, current.y + current.height + 8);
-  return { x: searchCell.x, y: top, width: searchCell.width, height: Math.max(0.01, bottom - top) };
+  return searchCell;
 }
 
 function actualInkBox(bitmap, cell, current, sourceSegments, threshold) {
@@ -129,10 +139,18 @@ function actualInkBox(bitmap, cell, current, sourceSegments, threshold) {
   const segmentCenters = sourceSegments.length
     ? sourceSegments.map((segment) => bitmap.height * (segment.y + segment.height / 2) / 100 - top)
     : [currentCenter];
-  const selectedGroups = [...new Set(segmentCenters.map((center) => rowGroups.reduce((closest, group) => {
+  const anchoredGroups = [...new Set(segmentCenters.map((center) => rowGroups.reduce((closest, group) => {
     const distance = Math.abs((group.start + group.end) / 2 - center);
     return !closest || distance < closest.distance ? { group, distance } : closest;
   }, null).group))];
+  let firstGroupIndex = Math.min(...anchoredGroups.map((group) => rowGroups.indexOf(group)));
+  let lastGroupIndex = Math.max(...anchoredGroups.map((group) => rowGroups.indexOf(group)));
+  const maximumContentGap = Math.max(7, Math.round(bitmap.height * 0.08));
+  while (lastGroupIndex < rowGroups.length - 1
+    && rowGroups[lastGroupIndex + 1].start - rowGroups[lastGroupIndex].end <= maximumContentGap) {
+    lastGroupIndex += 1;
+  }
+  const selectedGroups = rowGroups.slice(firstGroupIndex, lastGroupIndex + 1);
   const firstRow = Math.min(...selectedGroups.map((group) => group.start));
   const lastRow = Math.max(...selectedGroups.map((group) => group.end));
   const columnInk = new Uint32Array(Math.max(0, right - left));
@@ -168,13 +186,11 @@ function actualInkBox(bitmap, cell, current, sourceSegments, threshold) {
 }
 
 function relevantSegments(hotspot, segments = []) {
-  const relevant = segments.filter((segment) => {
-    const centerX = segment.x + segment.width / 2;
-    const centerY = segment.y + segment.height / 2;
-    return centerX >= hotspot.x - 1 && centerX <= hotspot.x + hotspot.width + 1
-      && centerY >= hotspot.y - 1 && centerY <= hotspot.y + hotspot.height + 1;
-  });
-  return relevant.length ? relevant : segments;
+  // Wrapped lines can legitimately extend below the old coarse hotspot cell.
+  // Dropping those segments here made the audit approve only the first line.
+  // Choice ownership is established by the generator and overlap audit, so the
+  // pixel audit must inspect every segment that will be used by the browser.
+  return segments;
 }
 
 function unionSegments(hotspot, segments) {
