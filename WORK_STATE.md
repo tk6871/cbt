@@ -40,10 +40,11 @@ npm run audit:questions
 - Supabase 관리자 페이지에 방문·학습·시험 결과와 실시간 접속 상태를 구성했습니다. 문제별 매 클릭 대신 묶음 결과 전송을 사용하도록 조정했습니다.
 - 학습모드 상단에 문제 번호를 입력하여 바로 이동하는 기능을 Vue 화면과 구버전 화면에 적용했습니다.
 - 공조냉동 2021~2026 복원문제는 텍스트 변환 대신 원문 이미지 중심으로 표시합니다.
-- 산업기사·보석관 패치노트 v2.8과 Service Worker 캐시 v280까지 반영했습니다.
+- 산업기사·보석관 패치노트 v2.8.1과 Service Worker 캐시 v281까지 반영했습니다.
 - 문제풀이 화면은 `기본 CBT`·`COMCBT 모드`·`컴뱃 CBT` 세 가지를 제공합니다. 저장값이 없는 기본 상태는 기존 v2.7 카드형 `기본 CBT`이며, 다른 두 화면은 설정에서 선택한 경우에만 적용됩니다.
-- COMCBT 모드는 데스크톱 한 화면 6문제·독립 2열·고정 하단 이동 바를 사용하고, 컴뱃 CBT는 한 화면 1문제·진행 HUD·미션형 화면을 사용합니다. 화면을 전환해도 답안·진도·타이머는 유지됩니다.
-- COMCBT·컴뱃 CBT에 전체·미응답·킵·현재 과목 OMR 필터, 다음 미응답 이동, 반응형 해설 패널을 적용했습니다. 모바일 CBT는 OMR을 닫은 상태로 시작합니다.
+- COMCBT 모드는 데스크톱 한 화면 6문제·독립 2열·고정 하단 이동 바를 사용하고, 컴뱃 CBT는 한 화면 4문제·독립 2열·진행 HUD를 사용합니다. 모바일에서는 모두 한 열로 전환하며 화면을 바꿔도 답안·진도·타이머는 유지됩니다.
+- COMCBT·컴뱃 CBT에 전체·미응답·킵·현재 과목 OMR 필터, 다음 미응답 이동, 반응형 해설 패널을 적용했습니다. PC·모바일 CBT는 OMR을 닫은 상태로 시작하고 사용자가 열기 버튼을 눌러야 표시합니다.
+- 기본 CBT·COMCBT·컴뱃 CBT 상단에 진행률·완료·미응답·킵 현황을 표시합니다. 컴뱃 문제 카드와 고정 하단 바는 외부 그림자와 배경 블러를 제거하고 화면 밖 카드 렌더링을 줄여 스크롤 부담을 낮췄습니다.
 - 문제풀이 단축키는 `1`~`4` 답 선택, 좌우 방향키 이동, `K` 킵, `B` 북마크, `E` 해설 패널을 지원합니다. 입력창·선택창·버튼을 조작할 때는 단축키가 개입하지 않습니다.
 - 신기술 학습관에 세 가지 문제풀이 화면 비교와 단축키 안내를 추가했습니다.
 - 기존 CBT 화면을 기본 UI로 유지하면서 설정 화면에서만 테마를 선택하도록 구성했습니다. 산업기사는 기본·심슨, 보석관은 기본·심슨·선재 테마를 제공합니다.
@@ -297,6 +298,7 @@ npm run audit:questions
 - v2.7.1 좌표 검증: PaddleOCR 3.7.0·PaddlePaddle 3.3.1 임시 arm64 환경으로 공조 복원문제 1,019장을 다시 처리했습니다. 4,076개 답안·5,024개 OCR 조각, 여러 조각 보기 763개, 단일 박스 겹침 0이며 수식·도표 47개 답안은 원본 직접 검수 좌표로 고정했습니다. 2023년 2회 25번 ④와 2023년 3회 47번 ④의 최소 박스 높이 및 전체 여러 줄 보기 수가 줄어들면 자동 검사가 실패합니다.
 - v2.7.1 최종 검증: `npm run audit:answer-segments`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run typecheck`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `node --check app.js`, `git diff --check`를 통과했습니다. Chrome에서 1436×837 두 독립 열·글/이미지 보기 2×2, 820×1180과 390×844 한 열·가로 넘침 0, 상단 안내 바 제거, v273 설정 문구와 오류 로그 0건을 확인했습니다. 2023년 1회 60번은 정답 ③ 선택 시 클릭 버튼과 영역 색상 박스가 같은 좌표·크기로 표시되고 교정 해설이 노출되는 것을 확인했습니다. 두 줄 회귀 수정 후 2023년 2회 25번 ④·2023년 3회 47번 ④의 클릭·선택 한 박스와 변경 23장 검수표를 추가 확인했습니다.
 - v2.8 최종 검증: `npm run audit:answer-segments`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run typecheck`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `node --check app.js`, `git diff --check`를 통과했습니다. Chrome에서 COMCBT 데스크톱 6문제 독립 2열, 컴뱃 CBT 데스크톱·모바일 1문제 HUD, 키보드 답 선택·페이지 이동, 모바일 시험 OMR 닫힘·필터, 반응형 해설 패널을 확인했습니다. 다시 기본 CBT를 선택하면 기존 4문제 카드형 화면과 고정 하단 바 없음으로 돌아가는 것도 확인했습니다.
+- v2.8.1 검증: `npm run audit:answer-segments`, `npm run audit:questions`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run typecheck`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. Chrome 1436×781에서 컴뱃 CBT 4문제·독립 2열, COMCBT 6문제·상단 29px 진행 현황, 카드·하단 바 외부 그림자 0, 하단 바 블러 0, 기본·COMCBT·컴뱃 시험 OMR 닫힘과 `OMR 열기` 버튼을 확인했습니다. 모바일 규칙은 820px 이하 컴뱃 한 열, 560px 이하 4칸 진행 현황, 모드별 OMR 상단 88px·116px·126px과 화면 밖 카드 렌더링 생략을 정적으로 확인했습니다.
 
 ## Mac Real-ESRGAN 검증 결과
 

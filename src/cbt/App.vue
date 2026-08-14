@@ -148,7 +148,7 @@ const session = ref<SessionState | null>(null);
 const examResult = ref<ExamResult | null>(null);
 const mobileMenuOpen = ref(false);
 const sessionMenuOpen = ref(false);
-const examSheetOpen = ref(true);
+const examSheetOpen = ref(false);
 const toastMessage = ref('');
 const theme = ref(currentTheme());
 const visualStyle = ref<VisualStyle>(currentVisualStyle());
@@ -453,7 +453,6 @@ const currentItems = computed(() => {
 });
 const currentItemColumns = computed(() => {
   const items = currentItems.value;
-  if (solveLayoutMode.value === 'combat') return [items];
   const split = Math.ceil(items.length / 2);
   return [items.slice(0, split), items.slice(split)].filter((column) => column.length);
 });
@@ -478,7 +477,7 @@ const omrRows = computed(() => {
 const sessionProgress = computed(() => session.value?.items.length
   ? Math.round(answeredCount.value / session.value.items.length * 100)
   : 0);
-const preferredPageSize = computed(() => solveLayoutMode.value === 'combat' ? 1 : solveLayoutMode.value === 'comcbt' ? 6 : 4);
+const preferredPageSize = computed(() => solveLayoutMode.value === 'comcbt' ? 6 : 4);
 const sessionQuestionMax = computed(() => session.value?.items.reduce(
   (maximum, item) => Math.max(maximum, Number(item.question.number) || 0),
   0,
@@ -991,7 +990,7 @@ async function beginSession(
   suspendedSession = null;
   suspendedExamResult = null;
   history.pushState(viewHistoryState(view.value, session.value.id), '', location.href);
-  examSheetOpen.value = mode === 'exam' && window.innerWidth >= 1100;
+  examSheetOpen.value = false;
   document.body.classList.add('session-active');
   experienceTransitionPhase.value = 'session-entering';
   restartTimer();
@@ -1760,7 +1759,7 @@ function setSolveLayoutMode(mode: SolveLayoutMode): void {
     void nextTick(syncOmrToCurrentPage);
   }
   showToast(mode === 'combat'
-    ? '컴뱃 CBT 전용 집중 화면으로 전환했습니다.'
+    ? '컴뱃 CBT 다중 문제 HUD 화면으로 전환했습니다.'
     : mode === 'comcbt'
       ? 'COMCBT형 고밀도 시험 화면으로 전환했습니다.'
       : '기존 v2.7 CBT 화면으로 돌아왔습니다.');
@@ -2773,7 +2772,7 @@ onBeforeUnmount(() => {
             <div>
               <button type="button" :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><b>CBT</b><strong>기본 CBT</strong><span>기존 v2.7 카드형 · 기본값</span></button>
               <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>COMCBT 모드</strong><span>고밀도 2열 · 고정 OMR · 빠른 이동</span></button>
-              <button type="button" class="combat" :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><b>⚡</b><strong>컴뱃 CBT</strong><span>진행 HUD · 1문제 집중 · 미션형 화면</span></button>
+              <button type="button" class="combat" :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><b>⚡</b><strong>컴뱃 CBT</strong><span>진행 HUD · 4문제 연속 · 미션형 화면</span></button>
             </div>
             <footer><strong>키보드</strong><span>1~4 답 선택 · ←/→ 이동 · K 킵 · B 북마크 · E 해설</span></footer>
           </section>
@@ -2986,7 +2985,7 @@ onBeforeUnmount(() => {
           <div class="solve-layout-options">
             <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
             <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT 모드</span><small>선택형 · 고밀도 시험지형</small></button>
-            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>집중 HUD · 전용 화면</small></button>
+            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>4문제 · 진행 HUD</small></button>
           </div>
         </div>
         <div class="setting-group">
@@ -3126,11 +3125,18 @@ onBeforeUnmount(() => {
         <button v-else type="button" class="timer-button">남은 시간 <strong>{{ formattedTime }}</strong></button>
         <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
       </div>
-      <div v-if="solveLayoutMode === 'combat'" class="combat-hud-stats">
+      <div
+        class="session-status-strip"
+        :class="{
+          'combat-hud-stats': solveLayoutMode === 'combat',
+          'comcbt-status-strip': solveLayoutMode === 'comcbt',
+        }"
+        aria-label="현재 풀이 진행 상태"
+      >
         <span><small>진행</small><strong>{{ sessionProgress }}%</strong></span>
         <span><small>완료</small><strong>{{ answeredCount }}</strong></span>
         <span><small>미응답</small><strong>{{ unansweredCount }}</strong></span>
-        <span v-if="session.mode === 'exam'"><small>KEEP</small><strong>{{ keptCount }}</strong></span>
+        <span><small>킵</small><strong>{{ session.mode === 'exam' ? keptCount : '-' }}</strong></span>
       </div>
     </header>
 
@@ -3294,7 +3300,7 @@ onBeforeUnmount(() => {
           <div class="solve-layout-options">
             <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
             <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT</span><small>고밀도 2열</small></button>
-            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>집중 HUD</small></button>
+            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>4문제 HUD</small></button>
           </div>
         </div>
         <div class="setting-group">
