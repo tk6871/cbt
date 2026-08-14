@@ -6,6 +6,7 @@
   "scripts": {
     "audit:questions": "node tools/audit-question-data.mjs",
     "audit:answer-segments": "node tools/audit-hvac-answer-segments.mjs",
+    "audit:answer-pixels": "node tools/audit-hvac-answer-pixels.mjs",
     "build": "vite build",
     "dev": "vite --host 127.0.0.1",
     "test:gem-target-exam": "node tools/test-gem-target-exam.mjs",

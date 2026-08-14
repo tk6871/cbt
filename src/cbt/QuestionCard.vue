@@ -69,6 +69,20 @@ function hasReadableChoice(choice: QuestionItem['question']['choices'][number], 
 }
 
 const hasReadableChoices = computed(() => props.item.question.choices.some(hasReadableChoice));
+const compactVisualChoices = computed(() => !restoredQuestion.value
+  && props.item.question.choices.length === 4
+  && props.item.question.choices.some((choice) => choice.images?.length));
+const compactTextChoices = computed(() => {
+  if (primaryImage.value || props.item.question.choices.some((choice) => choice.images?.length)) return false;
+  const lengths = props.item.question.choices.map((choice) => (choice.text || choice.html || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[^;]+;/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim().length);
+  return lengths.length === 4
+    && Math.max(...lengths) <= 34
+    && lengths.reduce((sum, length) => sum + length, 0) <= 96;
+});
 
 function choiceClass(index: number): Record<string, boolean> {
   const number = index + 1;
@@ -262,6 +276,8 @@ watch(verifiedHotspots, (hotspots) => {
       :class="{
         'image-choice-grid': restoredQuestion && primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
         'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout === 'inline' && hasReadableChoices,
+        'compact-choice-grid': compactTextChoices,
+        'compact-visual-choice-grid': compactVisualChoices,
       }"
     >
       <button
