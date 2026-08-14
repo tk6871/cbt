@@ -7,7 +7,7 @@
 - 마지막 갱신: 2026-08-15
 - 기준 브랜치: `main`
 - 이번 CBT 수정 작업 시작 Git HEAD: `d141981`
-- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.7 간결한 문제 배치, v2.8 선택형 문제풀이 화면과 v2.9 Android 전용 앱 상태가 포함됨
+- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.7 간결한 문제 배치, v2.8 선택형 문제풀이 화면, v2.9 Android 전용 앱과 v3.0 기기 동기화 상태가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
 - Windows SSH 호스트 별칭: `mac-m4`
@@ -40,7 +40,11 @@ npm run audit:questions
 - Supabase 관리자 페이지에 방문·학습·시험 결과와 실시간 접속 상태를 구성했습니다. 문제별 매 클릭 대신 묶음 결과 전송을 사용하도록 조정했습니다.
 - 학습모드 상단에 문제 번호를 입력하여 바로 이동하는 기능을 Vue 화면과 구버전 화면에 적용했습니다.
 - 공조냉동 2021~2026 복원문제는 텍스트 변환 대신 원문 이미지 중심으로 표시합니다.
-- 산업기사·보석관 패치노트 v2.9.1과 Service Worker 캐시 v291까지 반영했습니다.
+- 산업기사·보석관 패치노트 v3.0과 Service Worker 캐시 v300까지 반영했습니다.
+- v3.0에서 설정을 직접 눌렀을 때만 여는 선택형 동기화 로그인을 추가했습니다. 비로그인 상태에서도 기존처럼 모든 문제를 풀 수 있습니다.
+- 동기화 계정은 이메일 회원가입·로그인·아이디 기억·자동 로그인·비밀번호 찾기를 지원합니다. 비밀번호는 앱에서 따로 저장하지 않고 Supabase Auth 세션만 유지합니다.
+- 로그인한 사용자의 산업기사·보석관 기록을 분리해 문제별 진도·오답·북마크·시험 기록을 PC·태블릿·휴대폰 사이에서 병합합니다. `user_learning_states`는 RLS가 켜져 있고 각 사용자는 본인 `user_id` 행만 읽고 쓸 수 있습니다.
+- 태블릿 웹 문제풀이의 이전·다음 버튼을 1024px 기준 90×40px에서 132×54px로 확대했고 Android 태블릿 하단 풀이 바도 높이와 너비를 확장했습니다.
 - Capacitor 8 Android 앱을 추가했습니다. 휴대폰은 5개 하단 탭과 풀이 전용 하단 도구, 태블릿은 세로 메뉴 레일과 가로 2열 문제 화면을 사용합니다.
 - Android APK에는 앱 코드와 문제 데이터를 포함하고 큰 문제·테마 이미지는 GitHub Pages에서 불러옵니다. 디버그 APK는 약 9MB, RSA 4096비트 키로 서명한 현재 release APK는 약 7.4MiB입니다.
 - Android 전용 뒤로가기는 계산기·설정·메뉴·OMR을 먼저 닫고 세션·홈·앱 종료 순서로 동작합니다. 시험 OMR은 처음에 닫혀 있으며 사용자가 눌러야 열립니다.
@@ -247,6 +251,10 @@ npm run audit:questions
 
 ## 마지막 Mac 검증 결과
 
+- v3.0 `npm run typecheck`, `npm run audit:questions`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`를 통과했습니다. 248회차·19,610문제·이미지 참조 4,125개에서 구조 오류·경고·누락 이미지 0건입니다.
+- Supabase 프로젝트에서 `user_learning_states` 테이블 생성, RLS 활성화, authenticated 전용 SELECT·INSERT·UPDATE·DELETE 정책의 `auth.uid() = user_id` 조건을 직접 재조회했습니다.
+- 브라우저 1024×768에서 비로그인 홈 즉시 표시, 초기 로그인창 미표시, 설정의 동기화 로그인 클릭 후 이메일·비밀번호·아이디 기억·회원가입·비밀번호 찾기 표시, 공개 관리자 문구 없음, v3.0 표시를 확인했습니다. 태블릿 이전·다음 버튼은 각각 132×54px로 측정했습니다.
+- 실제 계정 생성·로그인과 두 실기기 간 데이터 왕복은 개인 로그인 정보가 필요하므로 배포 후 PC와 Galaxy/태블릿에서 최종 확인이 남아 있습니다.
 - v2.9.1 `npm run typecheck`, `npm run build`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 브라우저 1280×800과 390×844에서 홈페이지 최상단 Android 전용 배너, 실제 Release 링크, 모바일 전체 너비 버튼, 가로 넘침 0을 확인했습니다. `npm run android:release`도 통과해 APK Signature Scheme v2·RSA 4096비트로 서명된 7,769,716바이트 `industrial-cbt-v2.9.1.apk`를 생성했습니다.
 - Android 리소스 폴더에 macOS가 만든 `config 2.xml`, `config 3.xml` 복제본이 있으면 Gradle 파일명 규칙 때문에 빌드가 실패합니다. 두 파일은 원본과 해시가 같은 중복본이므로 저장소 밖으로 옮긴 뒤 빌드해야 하며 Git에는 포함하지 않습니다.
 - v2.9 `npm run typecheck`, `npm run audit:questions`, `npm run audit:answer-segments`, `npm run test:hotspot-editor`, `npm run test:gem-target-exam`, `npm run build`, Android debug·release Gradle 빌드, workflow YAML 검사와 `git diff --check`를 통과했습니다. 전체 248회차·19,610문제·이미지 참조 4,125개에서 구조 오류·누락·경고 0건, 공조 1,019장·4,076개 답안 박스 겹침 0건입니다.

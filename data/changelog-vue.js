@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '3.0',
+      scope: 'industrial',
+      date: '2026.08.15',
+      title: 'PC·태블릿·휴대폰 학습 기록 동기화',
+      summary: '선택형 동기화 계정으로 오답·진도·북마크·시험 점수를 여러 기기에서 이어서 볼 수 있습니다.',
+      tags: ['기기 동기화', '자동 로그인', '회원가입', '태블릿 UI'],
+      changes: [
+        '로그인하지 않아도 기존처럼 모든 문제를 풀 수 있으며, 설정에서 동기화 로그인을 직접 누른 경우에만 계정 화면이 열립니다.',
+        '이메일 회원가입·로그인·아이디 기억·자동 로그인·비밀번호 찾기를 추가했습니다.',
+        'PC·태블릿·휴대폰의 오답, 문제별 학습 진도, 북마크, 회차별 시험 점수를 안전하게 합쳐 자동 동기화합니다.',
+        '태블릿 문제풀이의 이전·다음 버튼과 하단 이동 영역을 더 크게 조정했습니다.',
+        '서비스워커 캐시를 v300으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.0',
+      scope: 'jewelry',
+      date: '2026.08.15',
+      title: '보석관 학습 기록 기기 동기화',
+      summary: '보석관 오답·진도·북마크·시험 기록도 선택형 계정으로 여러 기기에서 이어서 학습할 수 있습니다.',
+      tags: ['기기 동기화', '자동 로그인', '회원가입', '태블릿 UI'],
+      changes: [
+        '비로그인 문제풀이는 그대로 유지하고, 설정에서 사용자가 원할 때만 동기화 계정 화면을 엽니다.',
+        '이메일 회원가입·로그인·아이디 기억·자동 로그인·비밀번호 찾기를 지원합니다.',
+        '보석관 학습 기록과 시험 점수를 PC·태블릿·휴대폰 사이에서 자동으로 합칩니다.',
+        '태블릿 문제풀이의 이전·다음 버튼과 하단 이동 영역을 더 크게 조정했습니다.',
+        '서비스워커 캐시를 v300으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '2.9.1',
       scope: 'industrial',
       date: '2026.08.15',
@@ -1105,8 +1135,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '2.9.1';
-  changelog.versions.jewelry = '2.9.1';
-  changelog.currentVersion = '2.9.1';
+  changelog.versions.industrial = '3.0';
+  changelog.versions.jewelry = '3.0';
+  changelog.currentVersion = '3.0';
   window.CBT_CHANGELOG = changelog;
 })();
