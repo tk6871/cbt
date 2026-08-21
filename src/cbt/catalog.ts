@@ -4,7 +4,7 @@ import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
-const primaryKeys = ['hvac', 'safety', 'energy', 'maintenance'];
+const primaryKeys = ['hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance'];
 
 export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
 export const gemAppraiserTargetSubjects = ['보석 특성', '보석 감별', '다이아몬드 감정', '보석 가공'];
@@ -51,6 +51,7 @@ export function loadCatalogs(): Catalog[] {
   }
   const sources = [
     window.CBT_DATA_HVAC,
+    window.CBT_DATA_HANSOL_HVAC,
     window.CBT_DATA_SAFETY,
     window.CBT_DATA_ENERGY,
     window.CBT_DATA_MAINTENANCE,
@@ -130,7 +131,7 @@ export function subjectFor(round: Round, question: Question): string {
 }
 
 export function mappedSubject(key: string, subject: string): string {
-  if (key !== 'hvac') return subject;
+  if (key !== 'hvac' && key !== 'hvac-hansol') return subject;
   if (subject === '공기조화') return '공기조화설비';
   if (subject === '냉동공학') return '냉동냉장설비';
   if (subject === '배관일반' || subject === '전기제어공학') return '공조냉동설치운영';
@@ -172,7 +173,7 @@ export function questionItems(
     rounds = rounds.filter((round) =>
       round.subjects.length === currentSubjects.length
       && round.subjects.every((subject, index) => subject === currentSubjects[index]));
-  } else if (scope === 'legacy-original' && catalog.key === 'hvac') {
+  } else if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol')) {
     rounds = rounds.filter((round) => round.subjects.length === 4);
   } else if (scope === 'all-mapped') {
     subjectMap = (subject) => mappedSubject(catalog.key, subject);
@@ -187,14 +188,17 @@ export function questionItems(
 }
 
 export function subjectsForScope(catalog: Catalog, scope: CurriculumScope): string[] {
-  if (scope === 'legacy-original' && catalog.key === 'hvac') {
+  if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol')) {
     return catalog.rounds.find((round) => round.subjects.length === 4)?.subjects || [];
   }
   return latestSubjects(catalog);
 }
 
 export function isImagePrimary(item: QuestionItem): boolean {
-  return Boolean(item.question.sourceImage && item.round.qualificationKey === 'hvac' && Number(item.round.year) >= 2021);
+  return Boolean(item.question.sourceImage && (
+    (item.round.qualificationKey === 'hvac' && Number(item.round.year) >= 2021)
+    || item.round.qualificationKey === 'hvac-hansol'
+  ));
 }
 
 export function shuffle<T>(items: T[]): T[] {
