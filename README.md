@@ -26,7 +26,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지 최상단의 `ANDROID 전용` 배너에서도 같은 최신 APK를 바로 받을 수 있습니다. iPhone과 iPad에는 설치할 수 없습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.2.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.2.1.apk`를 생성합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
 
@@ -302,6 +302,7 @@ https://tk6871.github.io/cbt/
 | 심슨 테마 킹 사이즈 호머 장면 | [Lardlad 에피소드 갤러리](https://lardlad.com/episodes/season-7/3F05-King-Size-Homer/) | 여러 본편 장면을 전용 대시보드·메뉴·카드에 사용 |
 | 심슨 테마 번즈 장면 | [Imgflip 템플릿](https://imgflip.com/memetemplate/566968311/Mr-Burns-Excellent), [Dailymotion 영상](https://www.dailymotion.com/video/xgs3fw) | 손가락을 맞댄 여러 장면을 무작위 카드에 사용 |
 | 선재·변우석 테마 | [이미지별 출처 목록](./assets/theme/sunjae/SOURCES.md) | 류선재 단독 장면과 변우석 SNS·일상 사진을 선택형 테마와 결과 응원 화면에 표시 |
+| UI 글꼴 | [나눔고딕](https://github.com/google/fonts/tree/main/ofl/nanumgothic) | SIL Open Font License 1.1 · [글꼴 라이선스](./assets/fonts/OFL.txt) |
 
 - 일부 복원 자료는 자료 제공자에게 재사용 허가를 받아 반영했습니다.
 - COMCBT에 등록된 이용자 해설은 원문에 작성자 표기가 있는 경우 그 표기를 유지합니다.
