@@ -1,3 +1,4 @@
+@font-face { font-family:"Nanum Gothic"; src:url("assets/fonts/NanumGothic-Regular.ttf") format("truetype"); font-style:normal; font-weight:400; font-display:swap; }
 :root {
   --font-scale: 1;
   --bg: #f4f7fb;
@@ -20,7 +21,7 @@
 }
 * { box-sizing: border-box; }
 html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
-body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; background-image:radial-gradient(circle at 85% 8%,color-mix(in srgb,var(--primary) 9%,transparent),transparent 24rem); background-attachment:fixed; }
+body { margin:0; min-width:320px; background:var(--bg); color:var(--text); font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; background-image:radial-gradient(circle at 85% 8%,color-mix(in srgb,var(--primary) 9%,transparent),transparent 24rem); background-attachment:fixed; }
 button, input, select { font: inherit; color: inherit; }
 button { border: 0; cursor: pointer; }
 button:disabled { opacity: .35; cursor: default; }
@@ -471,6 +472,13 @@ th:first-child, td:first-child { text-align: left; }
 .source-question-main { display: block; width: auto; max-width: 100%; max-height: none; margin: 8px auto 18px; border: 1px solid var(--line); border-radius: 8px; background: white; image-rendering: auto; }
 .question-images { margin: 14px 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .question-images img { max-height: 410px; width: auto; object-fit: contain; border-radius: 6px; }
+:root[data-theme="dark"] .question-images img,
+:root[data-theme="dark"] .source-question-main,
+:root[data-theme="dark"] .source-details img,
+:root[data-theme="dark"] .exam-source-question {
+  background:#0d1824;
+  filter:invert(.91) sepia(.08) saturate(1.18) hue-rotate(176deg) brightness(.82) contrast(.98);
+}
 .choice-list { display: grid; gap: 8px; }
 .choice { min-height: 48px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); display: grid; grid-template-columns: 30px 1fr; align-items: center; text-align: left; line-height: 1.55; }
 .choice.selected { border-color: var(--primary); background: var(--primary-soft); }
@@ -509,7 +517,7 @@ th:first-child, td:first-child { text-align: left; }
 .learning-finish { text-align: center; }
 
 /* Current app UI with the supplied index.html layout: 2-up questions + side OMR. */
-.exam-app { --exam-bg:var(--bg); --exam-surface:var(--surface); --exam-surface2:var(--surface-2); --exam-line:var(--line); --exam-text:var(--text); --exam-muted:var(--muted); --exam-accent:var(--primary); min-height:100vh; padding-bottom:78px; background:var(--exam-bg); color:var(--exam-text); font-family:"Pretendard","Malgun Gothic",system-ui,sans-serif; }
+.exam-app { --exam-bg:var(--bg); --exam-surface:var(--surface); --exam-surface2:var(--surface-2); --exam-line:var(--line); --exam-text:var(--text); --exam-muted:var(--muted); --exam-accent:var(--primary); min-height:100vh; padding-bottom:78px; background:var(--exam-bg); color:var(--exam-text); font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; }
 .exam-wide { width:min(1120px,calc(100% - 32px)); margin:0 auto; }
 .exam-top { position:sticky; top:0; z-index:40; border-bottom:1px solid var(--exam-line); background:color-mix(in srgb,var(--exam-surface) 94%,transparent); backdrop-filter:blur(12px); }
 .exam-top-inner { min-height:62px; display:grid; grid-template-columns:42px minmax(0,1fr) auto auto; align-items:center; gap:10px; }
@@ -798,7 +806,7 @@ th:first-child, td:first-child { text-align: left; }
     radial-gradient(ellipse 100px 39px at 84% 20%,rgba(255,255,255,.93) 0 48%,transparent 51%),
     linear-gradient(#69c8f2,#9bdbf5);
   background-attachment:fixed;
-  font-family:"Arial Rounded MT Bold","Noto Sans KR",system-ui,sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
 }
 [data-visual-style="simpsons"] .sidebar,
 [data-visual-style="simpsons"] .space-jewelry .sidebar { border-right:3px solid #171717; color:#171717; background:#ffd90f; box-shadow:6px 0 0 #171717; }

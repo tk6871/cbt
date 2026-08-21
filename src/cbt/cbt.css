@@ -1,3 +1,11 @@
+@font-face {
+  font-family:"Nanum Gothic";
+  src:url("../../assets/fonts/NanumGothic-Regular.ttf") format("truetype");
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+
 :root {
   color-scheme: light;
   --bg: #f2f6fb;
@@ -15,6 +23,9 @@
   --red-soft: #fff0f0;
   --shadow: 0 18px 50px rgba(26, 59, 96, .09);
   --sidebar: 222px;
+  --topbar-control-bg:#ffffff;
+  --topbar-control-text:#10243f;
+  --topbar-control-border:#b9c9db;
 }
 
 :root[data-theme="dark"] {
@@ -33,6 +44,9 @@
   --red: #ff8585;
   --red-soft: #422528;
   --shadow: 0 18px 50px rgba(0, 0, 0, .24);
+  --topbar-control-bg:#1a293a;
+  --topbar-control-text:#f7fbff;
+  --topbar-control-border:#52677f;
 }
 
 :root[data-space="jewelry"] {
@@ -104,7 +118,7 @@ body {
     radial-gradient(circle at 96% 16%, color-mix(in srgb,#8367df 6%,transparent), transparent 30rem),
     var(--bg);
   color: var(--text);
-  font-family: "IBM Plex Sans KR", "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 button, select, input { font: inherit; }
@@ -223,9 +237,10 @@ img { max-width: 100%; }
 .topbar strong { font-size: .87rem; }
 .topbar-context { display:flex; align-items:center; gap:13px; }
 .topbar-context > strong { flex:0 0 auto; padding-right:13px; border-right:1px solid var(--line); white-space:nowrap; }
-.topbar-qualification { min-width:0; max-width:330px; height:42px; padding:0 8px 0 11px; border:1px solid var(--line); border-radius:11px; background:var(--surface); display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:8px; box-shadow:0 4px 14px rgba(18,52,86,.04); }
-.topbar .topbar-qualification > span { margin:0; padding:3px 6px; border-radius:6px; color:var(--primary); background:var(--primary-soft); font-size:.55rem; font-weight:850; }
-.topbar-qualification select { min-width:0; width:100%; border:0; color:var(--text); background:transparent; font-size:.7rem; font-weight:750; outline:0; text-overflow:ellipsis; cursor:pointer; }
+.topbar-qualification { min-width:0; max-width:330px; height:42px; padding:0 7px 0 10px; border:1px solid var(--topbar-control-border); border-radius:11px; color:var(--topbar-control-text); background:var(--topbar-control-bg); display:grid; grid-template-columns:auto minmax(0,1fr); align-items:center; gap:7px; box-shadow:0 4px 14px rgba(18,52,86,.08); isolation:isolate; }
+.topbar .topbar-qualification > span { margin:0; padding:4px 6px; border:1px solid color-mix(in srgb,var(--primary) 22%,transparent); border-radius:6px; color:var(--primary); background:var(--primary-soft); font-size:.55rem; font-weight:850; line-height:1; }
+.topbar-qualification select { min-width:0; width:100%; height:30px; padding:0 25px 0 7px; border:0; border-radius:7px; color:var(--topbar-control-text); -webkit-text-fill-color:var(--topbar-control-text); background:var(--topbar-control-bg); font-size:.7rem; font-weight:800; outline:0; opacity:1; text-overflow:ellipsis; text-shadow:none; cursor:pointer; }
+.topbar-qualification select option { color:var(--topbar-control-text); background:var(--topbar-control-bg); }
 .menu-button { display: none; }
 .top-actions { display: flex; gap: 7px; }
 .top-actions button {
@@ -807,7 +822,7 @@ img { max-width: 100%; }
 .ai-prompt-modal > header h2 { margin:5px 0 0; font-size:1.08rem; }
 .ai-prompt-modal > header button { width:35px; height:35px; border-radius:9px; color:var(--muted); background:var(--surface-2); font-size:1.15rem; }
 .ai-prompt-modal > p { margin:15px 23px 10px; color:var(--muted); font-size:.68rem; line-height:1.65; }
-.ai-prompt-modal textarea { min-height:400px; margin:0 23px; padding:19px; resize:vertical; border:1px solid var(--line); border-radius:13px; color:var(--text); background:var(--surface-2); font-family:"IBM Plex Sans KR","Pretendard",sans-serif; font-size:.78rem; line-height:1.82; outline:none; }
+.ai-prompt-modal textarea { min-height:400px; margin:0 23px; padding:19px; resize:vertical; border:1px solid var(--line); border-radius:13px; color:var(--text); background:var(--surface-2); font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif; font-size:.78rem; line-height:1.82; outline:none; }
 .ai-prompt-modal textarea:focus { border-color:#8367df; box-shadow:0 0 0 3px rgba(131,103,223,.12); }
 .ai-image-notice { margin:15px 23px 0; padding:12px 14px; border:1px solid color-mix(in srgb,#df9a2f 28%,var(--line)); border-radius:11px; background:color-mix(in srgb,#df9a2f 8%,var(--surface)); display:flex; align-items:center; gap:10px; }
 .ai-image-notice > span { width:34px; height:34px; border-radius:9px; color:#c47c11; background:rgba(223,154,47,.12); display:grid; place-items:center; }
@@ -1000,8 +1015,8 @@ img { max-width: 100%; }
 :root[data-theme="dark"] .choice-copy img,
 :root[data-theme="dark"] .source-question-image.hansol-source-image,
 :root[data-theme="dark"] .question-image-lightbox img.hansol-source-image {
-  background:#18212b;
-  filter:brightness(.68) contrast(1.08) saturate(.86);
+  background:#0d1824;
+  filter:invert(.91) sepia(.08) saturate(1.18) hue-rotate(176deg) brightness(.82) contrast(.98);
 }
 .choice-grid { margin-top: 10px; display: grid; gap: 6px; }
 .compact-choice-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px 7px; }
@@ -1328,6 +1343,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .topbar-qualification select { font-size:.62rem; }
   .top-actions { gap:4px; }
   .top-actions button { width:37px; padding:0; }
+  .top-actions .theme-quick-button { min-width:37px; }
   .qualification-grid { grid-template-columns: 1fr; }
   .qualification-card { min-height: 102px; }
   .qualification-copy strong { min-height: 0; }
@@ -1724,7 +1740,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
     radial-gradient(ellipse 100px 39px at 84% 20%,rgba(255,255,255,.93) 0 48%,transparent 51%),
     linear-gradient(#69c8f2,#9bdbf5);
   background-attachment:fixed;
-  font-family:"Arial Rounded MT Bold","Noto Sans KR",system-ui,sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
 }
 :root[data-visual-style="simpsons"] .app-frame::before { background-image:linear-gradient(135deg,rgba(105,200,242,.82),rgba(255,217,15,.6)),var(--theme-main-photo); background-position:center 28%; opacity:.72; }
 :root[data-visual-style="simpsons"] button,

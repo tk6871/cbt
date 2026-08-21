@@ -1,6 +1,7 @@
+@font-face { font-family:"Nanum Gothic"; src:url("assets/fonts/NanumGothic-Regular.ttf") format("truetype"); font-style:normal; font-weight:400; font-display:swap; }
 :root {
   color-scheme: dark;
-  font-family: Arial, "Noto Sans KR", sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;
 }
 * { box-sizing:border-box; }
 body {
@@ -189,7 +190,7 @@ button { border:0; cursor:pointer; user-select:none; -webkit-tap-highlight-color
     radial-gradient(ellipse 80px 32px at 14% 10%,#fff 0 48%,transparent 51%),
     radial-gradient(ellipse 105px 40px at 85% 18%,#fff 0 48%,transparent 51%),
     linear-gradient(#69c8f2,#a1def7);
-  font-family:"Arial Rounded MT Bold","Noto Sans KR",sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
 }
 :root[data-visual-style="simpsons"] .calculator-case {
   border:4px solid #171717;
@@ -235,7 +236,7 @@ button { border:0; cursor:pointer; user-select:none; -webkit-tap-highlight-color
 :root[data-visual-style="sunjae"] body {
   color:#183a55;
   background:linear-gradient(155deg,#b9ddf4 0,#f5e5ef 48%,#fff7df 100%);
-  font-family:"Noto Sans KR",Arial,sans-serif;
+  font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",Arial,sans-serif;
 }
 :root[data-visual-style="sunjae"] .calculator-case {
   border:1px solid rgba(37,87,119,.34);
