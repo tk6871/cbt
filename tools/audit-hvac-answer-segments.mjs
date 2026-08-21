@@ -171,6 +171,61 @@ for (const [image, choice, axis, minimum] of minimumSpanRegressions) {
   }
 }
 
+// 2026-08-21 원본 1,019장을 통합 박스와 겹쳐 직접 본 뒤 확정한 회귀 조건입니다.
+// 좌표 데이터끼리만 비교하면 한 줄씩 밀린 박스와 과목명 침범도 통과하므로,
+// 실제 원본에서 확인한 시작·끝 경계를 별도 기준으로 고정합니다.
+const maximumBottomRegressions = [
+  ['assets/hvac/assets/questions/2021_2/40.jpg', 4, 76],
+  ['assets/hvac/assets/questions/2021_3/20.jpg', 4, 78],
+  ['assets/hvac/assets/questions/2022_1/40.jpg', 4, 72],
+  ['assets/hvac/assets/questions/2023_1/20.jpg', 4, 74],
+  ['assets/hvac/assets/questions/2024_2/40.jpg', 4, 68],
+  ['assets/hvac/assets/questions/2024_3/40.jpg', 4, 70],
+  ['assets/hvac/assets/questions/2025_3/20.jpg', 4, 68],
+];
+for (const [image, choice, maximum] of maximumBottomRegressions) {
+  const box = unifiedAnswerHotspots(hotspots[image], segments[image]).find((item) => item.choice === choice);
+  const bottom = box ? box.y + box.height : Number.POSITIVE_INFINITY;
+  if (bottom > maximum) errors.push(`${image}/${choice}: 과목명·하단 문구 침범 회귀 검사 실패 (bottom=${bottom})`);
+}
+
+const visualBoundaryRegressions = [
+  ['assets/hvac/assets/questions/2021_1/60.jpg', 1, 'bottomMax', 52],
+  ['assets/hvac/assets/questions/2021_1/60.jpg', 4, 'topMax', 75.6],
+  ['assets/hvac/assets/questions/2021_1/60.jpg', 4, 'bottomMin', 93],
+  ['assets/hvac/assets/questions/2022_1/54.jpg', 1, 'bottomMax', 60],
+  ['assets/hvac/assets/questions/2022_1/54.jpg', 3, 'topMax', 62.3],
+  ['assets/hvac/assets/questions/2022_1/60.jpg', 1, 'bottomMax', 45],
+  ['assets/hvac/assets/questions/2022_1/60.jpg', 4, 'topMax', 80.2],
+  ['assets/hvac/assets/questions/2022_2/60.jpg', 1, 'bottomMax', 45],
+  ['assets/hvac/assets/questions/2022_2/60.jpg', 4, 'topMax', 81.2],
+  ['assets/hvac/assets/questions/2023_1/60.jpg', 1, 'bottomMax', 45],
+  ['assets/hvac/assets/questions/2023_2/58.jpg', 1, 'bottomMax', 65],
+  ['assets/hvac/assets/questions/2023_2/58.jpg', 3, 'topMax', 74.4],
+  ['assets/hvac/assets/questions/2023_3/60.jpg', 1, 'bottomMax', 45],
+  ['assets/hvac/assets/questions/2024_2/60.jpg', 1, 'bottomMax', 45],
+  ['assets/hvac/assets/questions/2025_1/45.jpg', 1, 'widthMin', 40],
+  ['assets/hvac/assets/questions/2025_1/45.jpg', 4, 'heightMin', 33],
+  ['assets/hvac/assets/questions/2025_3/18.jpg', 3, 'rightMin', 47.5],
+  ['assets/hvac/assets/questions/2026_1/60.jpg', 1, 'bottomMax', 51],
+  ['assets/hvac/assets/questions/2026_1/60.jpg', 4, 'topMax', 74.5],
+  ['assets/hvac/assets/questions/2026_1/60.jpg', 4, 'bottomMin', 92],
+  ['assets/hvac/assets/questions/2026_2/60.jpg', 1, 'bottomMax', 73],
+  ['assets/hvac/assets/questions/2026_2/60.jpg', 3, 'topMax', 77.4],
+  ['assets/hvac/assets/questions/2026_2/60.jpg', 3, 'heightMin', 13.5],
+];
+for (const [image, choice, rule, expected] of visualBoundaryRegressions) {
+  const box = unifiedAnswerHotspots(hotspots[image], segments[image]).find((item) => item.choice === choice);
+  const value = !box ? Number.NaN
+    : rule === 'bottomMax' || rule === 'bottomMin' ? box.y + box.height
+      : rule === 'topMax' ? box.y
+        : rule === 'rightMin' ? box.x + box.width
+          : rule === 'widthMin' ? box.width : box.height;
+  const failed = !Number.isFinite(value)
+    || (rule.endsWith('Max') ? value > expected : value < expected);
+  if (failed) errors.push(`${image}/${choice}: 원본 육안 검수 경계 회귀 실패 (${rule}=${value}, 기준=${expected})`);
+}
+
 for (const [image, imageSegments] of Object.entries(segments)) {
   const imageHotspots = hotspots[image];
   if (!imageHotspots) {

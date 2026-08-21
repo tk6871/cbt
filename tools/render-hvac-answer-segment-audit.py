@@ -54,6 +54,59 @@ def percent_box(item: dict[str, float], width: int, height: int):
     )
 
 
+def unified_boxes(hotspots, segments):
+    boxes = []
+    for hotspot in hotspots:
+        items = segments.get(str(hotspot["choice"]), [])
+        if not items:
+            boxes.append(dict(hotspot))
+            continue
+        left = min(item["x"] for item in items)
+        top = min(item["y"] for item in items)
+        right = max(item["x"] + item["width"] for item in items)
+        bottom = max(item["y"] + item["height"] for item in items)
+        boxes.append({
+            "choice": hotspot["choice"],
+            "x": left,
+            "y": top,
+            "width": right - left,
+            "height": bottom - top,
+        })
+
+    min_x = min(item["x"] for item in hotspots)
+    max_x = max(item["x"] for item in hotspots)
+    two_columns = max_x - min_x > 24
+    columns = (
+        ([box for box in boxes if box["choice"] in (1, 3)],
+         [box for box in boxes if box["choice"] in (2, 4)])
+        if two_columns else (boxes,)
+    )
+    if two_columns:
+        left_column, right_column = columns
+        left_edge = max(box["x"] + box["width"] for box in left_column)
+        right_edge = min(box["x"] for box in right_column)
+        if left_edge > right_edge:
+            boundary = (left_edge + right_edge) / 2
+            for box in left_column:
+                box["width"] = min(box["width"], boundary - box["x"])
+            for box in right_column:
+                edge = box["x"] + box["width"]
+                box["x"] = max(box["x"], boundary)
+                box["width"] = edge - box["x"]
+    for column in columns:
+        ordered = sorted(column, key=lambda item: item["y"])
+        for upper, lower in zip(ordered, ordered[1:]):
+            upper_edge = upper["y"] + upper["height"]
+            if upper_edge <= lower["y"]:
+                continue
+            boundary = (upper_edge + lower["y"]) / 2
+            upper["height"] = boundary - upper["y"]
+            lower_edge = lower["y"] + lower["height"]
+            lower["y"] = boundary
+            lower["height"] = lower_edge - boundary
+    return boxes
+
+
 def natural_key(path: str):
     match = re.search(r"/(\d{4})_(\d)/(\d+)\.", path)
     if not match:
@@ -67,6 +120,7 @@ def render_panel(
     hotspots: list[dict[str, Any]],
     segments: dict[str, list[dict[str, float]]],
     panel_width: int,
+    unified: bool,
 ):
     with Image.open(root / relative) as source:
         image = source.convert("RGBA")
@@ -82,6 +136,7 @@ def render_panel(
     overlay = Image.new("RGBA", image.size)
     draw = ImageDraw.Draw(overlay)
     missing = []
+    normalized = {item["choice"]: item for item in unified_boxes(hotspots, segments)} if unified else {}
     for hotspot in hotspots:
         choice = hotspot["choice"]
         items = segments.get(str(choice), [])
@@ -91,7 +146,8 @@ def render_panel(
             x1, y1, x2, y2 = percent_box(hotspot, image.width, image.height)
             draw.rectangle((x1, y1, x2, y2), fill=(*colour, 28), outline=(*colour, 255), width=5)
             continue
-        for item in items:
+        visible_items = [normalized[choice]] if unified and items else items
+        for item in visible_items:
             x1, y1, x2, y2 = percent_box(item, image.width, image.height)
             radius = max(2, round(min(x2 - x1, y2 - y1) * 0.12))
             draw.rounded_rectangle(
@@ -129,6 +185,8 @@ def main() -> None:
     parser.add_argument("--segments", type=Path)
     parser.add_argument("--reviewed-segments", type=Path)
     parser.add_argument("--include", action="append", default=[])
+    parser.add_argument("--match", default="", help="경로에 이 문자열이 들어간 이미지만 검수")
+    parser.add_argument("--unified", action="store_true", help="실제 화면처럼 답마다 통합 박스 한 개를 표시")
     args = parser.parse_args()
 
     generated = read_typescript_object(args.generated_hotspots or args.root / "src/cbt/generatedHvacHotspots.ts")
@@ -143,7 +201,10 @@ def main() -> None:
         for path in set(segments) | set(reviewed_segments)
     }
     selected = set(args.include)
-    paths = sorted((path for path in hotspots if not selected or path in selected), key=natural_key)
+    paths = sorted((
+        path for path in hotspots
+        if (not selected or path in selected) and (not args.match or args.match in path)
+    ), key=natural_key)
     if selected - set(paths):
         missing = ", ".join(sorted(selected - set(paths)))
         raise ValueError(f"좌표 데이터에 없는 이미지: {missing}")
@@ -156,7 +217,7 @@ def main() -> None:
     for sheet_index, start in enumerate(range(0, len(paths), args.per_sheet), 1):
         batch = paths[start : start + args.per_sheet]
         panels = [
-            render_panel(args.root, path, hotspots[path], segments.get(path, {}), args.panel_width)
+            render_panel(args.root, path, hotspots[path], segments.get(path, {}), args.panel_width, args.unified)
             for path in batch
         ]
         rows = math.ceil(len(panels) / args.columns)

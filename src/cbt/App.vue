@@ -87,6 +87,19 @@ type MasteryRow = QuestionItem & {
   due: boolean;
   attempted: boolean;
 };
+type SavedLearningSession = {
+  version: 1;
+  qualificationKey: string;
+  title: string;
+  itemIds: string[];
+  answers: Record<string, number>;
+  kept: string[];
+  page: number;
+  pageSize: number;
+  startedAt: number;
+  calculationMode?: boolean;
+  savedAt: number;
+};
 
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
 const spaceName = isJewelry ? '보석·귀금속 학습관' : '산업기사 통합 CBT';
@@ -154,6 +167,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
 };
 
 const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
+const learningSessionStorageKey = `unified-cbt-learning-session-${spaceScope}`;
 const savedQualification = localStorage.getItem(qualificationStorageKey);
 const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : catalogs[0]?.key || '');
 const view = ref<ViewName>('home');
@@ -237,6 +251,7 @@ let resizeSettleHandle = 0;
 let resizeAnimationFrame = 0;
 let sunjaeRotationHandle = 0;
 let sunjaeResultHandle = 0;
+let learningSessionSaveHandle = 0;
 let searchWorker: Worker | null = null;
 let motionMediaQuery: MediaQueryList | null = null;
 let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
@@ -314,6 +329,17 @@ const allItems = [
   id: questionId(round, question),
 })));
 const itemMap = new Map(allItems.map((item) => [item.id, item]));
+function readSavedLearningSession(): SavedLearningSession | null {
+  try {
+    const saved = JSON.parse(localStorage.getItem(learningSessionStorageKey) || 'null') as SavedLearningSession | null;
+    if (!saved || saved.version !== 1 || !Array.isArray(saved.itemIds) || !saved.itemIds.length) return null;
+    return saved;
+  } catch {
+    localStorage.removeItem(learningSessionStorageKey);
+    return null;
+  }
+}
+const savedLearningSession = ref<SavedLearningSession | null>(readSavedLearningSession());
 const legacyWrongItems = computed(() => allItems.filter((item) => {
   const targetItem = selectedCatalog.value.isVirtual
     ? item.question.targetRelevance !== 'peripheral'
@@ -942,6 +968,7 @@ function handleBrowserHistory(event: PopStateEvent): void {
 }
 
 function handlePageHide(): void {
+  saveActiveLearningSession();
   sendCurrentSessionOnExit();
 }
 
@@ -988,12 +1015,46 @@ function roundToItems(round: Round): QuestionItem[] {
   }));
 }
 
+function saveActiveLearningSession(): void {
+  window.clearTimeout(learningSessionSaveHandle);
+  learningSessionSaveHandle = 0;
+  const active = session.value;
+  if (!active || active.mode !== 'learn' || active.finished) return;
+  const saved: SavedLearningSession = {
+    version: 1,
+    qualificationKey: selectedKey.value,
+    title: active.title,
+    itemIds: active.items.map((item) => item.id),
+    answers: { ...active.answers },
+    kept: [...active.kept],
+    page: active.page,
+    pageSize: active.pageSize,
+    startedAt: active.startedAt,
+    calculationMode: active.calculationMode,
+    savedAt: Date.now(),
+  };
+  localStorage.setItem(learningSessionStorageKey, JSON.stringify(saved));
+  savedLearningSession.value = saved;
+}
+
+function scheduleLearningSessionSave(): void {
+  window.clearTimeout(learningSessionSaveHandle);
+  learningSessionSaveHandle = window.setTimeout(saveActiveLearningSession, 180);
+}
+
+function clearSavedLearningSession(): void {
+  window.clearTimeout(learningSessionSaveHandle);
+  learningSessionSaveHandle = 0;
+  localStorage.removeItem(learningSessionStorageKey);
+  savedLearningSession.value = null;
+}
+
 async function beginSession(
   mode: StudyMode,
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { calculationMode?: boolean } = {},
+  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; kept?: string[] } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -1002,7 +1063,7 @@ async function beginSession(
   if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
   experienceTransitionPhase.value = 'home-leaving';
   await waitForMotion(300);
-  const pageSize = preferredPageSize.value;
+  const pageSize = Math.max(1, Number(options.pageSize) || preferredPageSize.value);
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
     : -1;
@@ -1015,10 +1076,12 @@ async function beginSession(
     title,
     items,
     answers: mode === 'learn' ? { ...initialAnswers } : {},
-    kept: [],
-    page: firstUnanswered > 0 ? Math.floor(firstUnanswered / pageSize) : 0,
+    kept: mode === 'learn' ? [...(options.kept || [])] : [],
+    page: options.page != null
+      ? Math.min(Math.max(0, options.page), Math.max(0, Math.ceil(items.length / pageSize) - 1))
+      : firstUnanswered > 0 ? Math.floor(firstUnanswered / pageSize) : 0,
     pageSize,
-    startedAt: Date.now(),
+    startedAt: options.startedAt || Date.now(),
     remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
     finished: false,
     resultSent: false,
@@ -1048,6 +1111,31 @@ async function beginSession(
   });
   await waitForMotion(620);
   experienceTransitionPhase.value = null;
+}
+
+function resumeSavedLearning(): void {
+  const saved = savedLearningSession.value;
+  if (!saved) return;
+  const items = saved.itemIds.flatMap((id) => {
+    const item = itemMap.get(id) || targetItemMap.get(id);
+    return item ? [item] : [];
+  });
+  if (!items.length || items.length !== saved.itemIds.length) {
+    clearSavedLearningSession();
+    showToast('저장된 문제 구성이 바뀌어 이어하기 기록을 정리했습니다.');
+    return;
+  }
+  if (catalogs.some((catalog) => catalog.key === saved.qualificationKey)) {
+    selectedKey.value = saved.qualificationKey;
+    localStorage.setItem(qualificationStorageKey, saved.qualificationKey);
+  }
+  void beginSession('learn', saved.title, items, saved.answers, {
+    calculationMode: saved.calculationMode,
+    page: saved.page,
+    pageSize: saved.pageSize,
+    startedAt: saved.startedAt,
+    kept: saved.kept,
+  });
 }
 
 function restoredRoundAnswers(round: Round, items: QuestionItem[]): Record<string, number> {
@@ -1145,6 +1233,34 @@ function startRangeLearning(): void {
     'learn',
     `${selectedCatalog.value.shortName || selectedCatalog.value.name} · ${yearFrom.value}~${yearTo.value} 학습`,
     selectedItems.value,
+  );
+}
+
+function startRandomLearning60(): void {
+  const pool = selectedItems.value;
+  const subjects = selectedSubjects.value;
+  if (!pool.length || !subjects.length) {
+    showToast('선택한 연도와 출제 체계를 다시 확인해 주세요.');
+    return;
+  }
+  const target = Math.min(60, pool.length);
+  const selected: QuestionItem[] = [];
+  const used = new Set<string>();
+  subjects.forEach((subject, index) => {
+    const quota = Math.floor(target / subjects.length) + (index < target % subjects.length ? 1 : 0);
+    shuffle(pool.filter((item) => item.subject === subject)).slice(0, quota).forEach((item) => {
+      selected.push(item);
+      used.add(item.id);
+    });
+  });
+  if (selected.length < target) {
+    shuffle(pool.filter((item) => !used.has(item.id))).slice(0, target - selected.length).forEach((item) => selected.push(item));
+  }
+  if (selected.length < 60) showToast(`출제 가능한 ${selected.length}문제로 학습을 시작합니다.`);
+  void beginSession(
+    'learn',
+    `${selectedCatalog.value.shortName || selectedCatalog.value.name} · ${yearFrom.value}~${yearTo.value} 랜덤 ${selected.length}문제 학습`,
+    shuffle(selected),
   );
 }
 
@@ -1448,6 +1564,7 @@ function submitSession(mode: StudyMode, force = false): void {
     if (!confirm(`${messages}가 있습니다. 그래도 채점할까요?`)) return;
   }
   session.value.finished = true;
+  if (mode === 'learn') clearSavedLearningSession();
   stopTimer();
   if (mode === 'exam') {
     session.value.items.forEach((item) => {
@@ -2222,8 +2339,13 @@ watch(() => session.value?.page, () => {
   void nextTick(syncOmrToCurrentPage);
 });
 
+watch(session, (active) => {
+  if (active?.mode === 'learn' && !active.finished) scheduleLearningSessionSave();
+}, { deep: true });
+
 watch(examResult, (result) => {
   window.clearTimeout(sunjaeResultHandle);
+  window.clearTimeout(learningSessionSaveHandle);
   sunjaeResultHandle = 0;
   if (!result) {
     displayedResultScore.value = 0;
@@ -2542,6 +2664,7 @@ onBeforeUnmount(() => {
                 <header><span>03 · WHAT SHALL WE DO?</span><h2>오늘 나랑 뭐 할래?</h2><p>네가 고르면 바로 옆에서 같이 시작할게.</p></header>
                 <div>
                   <button type="button" @click="startRangeLearning"><img :src="sunjaePortraitImageAt(0)" alt=""><span>천천히 같이 보자</span><strong>학습모드</strong><small>즉시 채점 · 쉬운 해설</small></button>
+                  <button type="button" @click="startRandomLearning60"><img :src="sunjaePortraitImageAt(0)" alt=""><span>오늘은 딱 60문제</span><strong>랜덤 60문제</strong><small>과목 균형 · 자동 이어하기</small></button>
                   <button type="button" @click="startBalancedExam"><img :src="sunjaePortraitImageAt(1)" alt=""><span>내가 채점해줄게</span><strong>랜덤시험</strong><small>과목 균형 · OMR · 타이머</small></button>
                   <button type="button" @click="openView('rounds')"><img :src="sunjaePortraitImageAt(2)" alt=""><span>원하는 날을 골라</span><strong>회차별 문제</strong><small>{{ yearFrom }}~{{ yearTo }}년</small></button>
                   <button type="button" @click="openView('wrong')"><img :src="sunjaePortraitImageAt(3)" alt=""><span>이번엔 같이 맞히자</span><strong>오답만 보기</strong><small>{{ stats.wrong.toLocaleString() }}문제 기다리는 중</small></button>
@@ -2620,6 +2743,12 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
+          <section v-if="savedLearningSession" class="resume-learning-card">
+            <div><span>자동 저장된 학습</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이 · 창을 닫아도 이어집니다</small></div>
+            <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
+            <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
+          </section>
+
           <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="study-builder">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" :src="simpsonsFunnyImageAt(4)" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
@@ -2683,6 +2812,10 @@ onBeforeUnmount(() => {
               <button class="learning-start" type="button" @click="startRangeLearning">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(1)" alt="">
                 <span>차근차근 익히기</span><strong>선택 범위 학습모드</strong><small>한 화면 {{ preferredPageSize }}문제 · 즉시 채점 · 쉬운 해설</small>
+              </button>
+              <button class="random-learning-start" type="button" @click="startRandomLearning60">
+                <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(8)" alt="">
+                <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>과목 균형 · 즉시 채점 · 자동 이어하기</small>
               </button>
               <button class="exam-start" type="button" @click="startBalancedExam">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(5)" alt="">
@@ -3491,6 +3624,7 @@ onBeforeUnmount(() => {
           <span><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
           <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
           <button v-if="session.mode === 'learn'" type="button" class="learning-result-button" @click="submitLearning">학습 결과 보기</button>
+          <button v-else type="button" class="exam-submit-button" @click="submitExam(false)">시험 제출·채점</button>
         </footer>
       </section>
 
