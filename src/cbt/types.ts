@@ -38,6 +38,9 @@ export type Question = {
   _originRoundId?: string;
   _originalNumber?: number;
   answerHotspots?: AnswerHotspot[];
+  source?: string;
+  explanationProvenance?: string;
+  explanationMatchScore?: number;
 };
 
 export type Round = {
@@ -116,6 +119,7 @@ export type LegacyStore = {
 declare global {
   interface Window {
     CBT_DATA_HVAC?: Catalog;
+    CBT_DATA_HANSOL_HVAC?: Catalog;
     CBT_DATA_SAFETY?: Catalog;
     CBT_DATA_ENERGY?: Catalog;
     CBT_DATA_ENERGY_ENGINEER?: Catalog;

@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '3.2',
+      scope: 'industrial',
+      date: '2026.08.21',
+      title: '한솔 공조 문제관과 전체 이미지 다크 표시',
+      summary: '한솔아카데미 공조 문제 27회차를 별도 학습관으로 추가하고, 일반 문제 이미지까지 다크 모드의 눈부심을 줄였습니다.',
+      tags: ['한솔 공조 1,920문제', '원문 이미지', '스캔 화질 개선', 'SI 단위 암기'],
+      changes: [
+        '2017~2025년 한솔아카데미 공조냉동기계산업기사 27회차·1,920문항을 기존 공조 문제와 분리된 전용 종목으로 추가했습니다.',
+        '벡터 PDF는 고해상도로 직접 렌더링하고, 2020년 스캔 160장은 Real-ESRGAN x4plus-anime 타일 256px로 4배 처리한 뒤 2배 bicubic으로 축소했습니다.',
+        '문제·보기·정답이 안전하게 일치하는 1,255문항에는 기존 초보자 해설을 연결하고, 별도 해설이 없거나 일치가 불확실한 665문항은 PDF 정답 기준임을 분명히 표시했습니다.',
+        '다크 모드에서 일반 문제·전 과목 선택지·한솔 원문 이미지도 밝기와 대비를 조절해 눈부심을 줄였습니다.',
+        '공조 시험 암기장에 SI 단위 변환, 압력, 비열·잠열과 계산 40제의 침입외기·냉매량·얼음·열전도 풀이 순서를 초보자용으로 추가했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.2로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.1',
       scope: 'industrial',
       date: '2026.08.21',
@@ -1165,8 +1181,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.1';
+  changelog.versions.industrial = '3.2';
   changelog.versions.jewelry = '3.1';
-  changelog.currentVersion = '3.1';
+  changelog.currentVersion = '3.2';
   window.CBT_CHANGELOG = changelog;
 })();

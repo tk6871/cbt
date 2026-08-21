@@ -31,6 +31,7 @@ defineEmits<{
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
+const hansolQuestion = computed(() => props.item.round.qualificationKey === 'hvac-hansol');
 const restoredQuestion = computed(() =>
   props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
 const restoredImageClass = computed(() => restoredQuestion.value
@@ -212,6 +213,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       </div>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
+      <span v-else-if="hansolQuestion" class="source-chip hansol-source-chip">한솔아카데미 원문</span>
       <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
       </span>
@@ -243,7 +245,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
           <img
             ref="sourceImageRef"
             class="source-question-image"
-            :class="restoredImageClass"
+            :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]"
             :src="item.question.sourceImage"
             :alt="`${item.question.number}번 문제 원문`"
             loading="lazy"
@@ -312,8 +314,8 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       v-if="!verifiedHotspots.length"
       class="choice-grid"
       :class="{
-        'image-choice-grid': restoredQuestion && primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
-        'image-inline-choice-grid': restoredQuestion && primaryImage && answerLayout === 'inline' && hasReadableChoices,
+        'image-choice-grid': primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
+        'image-inline-choice-grid': primaryImage && answerLayout === 'inline' && hasReadableChoices,
         'compact-choice-grid': compactTextChoices,
         'compact-visual-choice-grid': compactVisualChoices,
         'combat-dense-choice-grid': combatDenseChoices,
@@ -419,7 +421,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
           <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
         </header>
         <div @click.self="imageZoomOpen = false">
-          <img :class="restoredImageClass" :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
+          <img :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]" :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
         </div>
       </div>
     </Teleport>

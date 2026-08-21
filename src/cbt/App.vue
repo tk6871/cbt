@@ -156,6 +156,7 @@ const catalogs = loadCatalogs();
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
   hvac: { icon: '❄', className: 'blue', description: '공조·냉동·설치운영' },
+  'hvac-hansol': { icon: 'H', className: 'hansol-blue', description: '한솔 원문 · 별도 회차 학습' },
   safety: { icon: '⛑', className: 'orange', description: '안전관리·위험방지' },
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
@@ -2551,7 +2552,7 @@ onBeforeUnmount(() => {
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
         <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(4)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
-        <button v-if="selectedKey === 'hvac'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>공조 시험 암기장</button>
+        <button v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>공조 시험 암기장</button>
         <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>✦</template></span>합격 엔진</button>
         <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>▥</template></span>학습 분석</button>
         <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" :src="simpsonsFunnyImageAt(7)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>◷</template></span>패치노트</button>
@@ -2654,7 +2655,7 @@ onBeforeUnmount(() => {
                     <label><span>종목</span><select :value="selectedKey" @change="updateQualificationFromSetup"><option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option></select></label>
                     <label><span>시작</span><select v-model.number="yearFrom"><option v-for="year in [...availableYears].reverse()" :key="year" :value="year">{{ year }}년</option></select></label>
                     <label><span>끝</span><select v-model.number="yearTo"><option v-for="year in availableYears" :key="year" :value="year">{{ year }}년</option></select></label>
-                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : (selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac'" value="legacy-original">구 4과목 원형</option></select></label>
+                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option></select></label>
                   </div>
                   <div class="sunjae-ticket-summary"><span><b>{{ yearFrom }}~{{ yearTo }}</b>년</span><span><b>{{ rangeRounds.length }}</b>회차</span><span><b>{{ selectedItems.length.toLocaleString() }}</b>문제</span></div>
                 </div>
@@ -2783,9 +2784,9 @@ onBeforeUnmount(() => {
               <label class="curriculum-control">
                 <span>출제 체계</span>
                 <select v-model="curriculum">
-                  <option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : (selectedKey === 'hvac' ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option>
+                  <option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option>
                   <option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option>
-                  <option v-if="selectedKey === 'hvac'" value="legacy-original">구 4과목 원형</option>
+                  <option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option>
                 </select>
               </label>
             </div>

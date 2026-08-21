@@ -32,6 +32,7 @@ const totalRule = (officialName: string, officialSource: string): QualificationR
 
 export const qualificationRules: Record<string, QualificationRule> = {
   hvac: industrialRule('공조냉동기계산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503&jmCd=2590'),
+  'hvac-hansol': industrialRule('공조냉동기계산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503&jmCd=2590'),
   safety: industrialRule('산업안전산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2381&jmInfoDivCcd=B0'),
   energy: industrialRule('에너지관리산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2960&jmInfoDivCcd=B0'),
   maintenance: industrialRule('설비보전산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2035&jmInfoDivCcd=B0'),

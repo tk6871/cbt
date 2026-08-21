@@ -1,0 +1,171 @@
+{
+  "rounds": [
+    {
+      "slug": "2017_1",
+      "questions": 80,
+      "matchedExplanations": 64,
+      "fallbackExplanations": 16
+    },
+    {
+      "slug": "2017_2",
+      "questions": 80,
+      "matchedExplanations": 59,
+      "fallbackExplanations": 21
+    },
+    {
+      "slug": "2017_3",
+      "questions": 80,
+      "matchedExplanations": 68,
+      "fallbackExplanations": 12
+    },
+    {
+      "slug": "2018_1",
+      "questions": 80,
+      "matchedExplanations": 64,
+      "fallbackExplanations": 16
+    },
+    {
+      "slug": "2018_2",
+      "questions": 80,
+      "matchedExplanations": 71,
+      "fallbackExplanations": 9
+    },
+    {
+      "slug": "2018_3",
+      "questions": 80,
+      "matchedExplanations": 64,
+      "fallbackExplanations": 16
+    },
+    {
+      "slug": "2019_1",
+      "questions": 80,
+      "matchedExplanations": 71,
+      "fallbackExplanations": 9
+    },
+    {
+      "slug": "2019_2",
+      "questions": 80,
+      "matchedExplanations": 71,
+      "fallbackExplanations": 9
+    },
+    {
+      "slug": "2019_3",
+      "questions": 80,
+      "matchedExplanations": 78,
+      "fallbackExplanations": 2
+    },
+    {
+      "slug": "2020_1",
+      "questions": 80,
+      "matchedExplanations": 80,
+      "fallbackExplanations": 0
+    },
+    {
+      "slug": "2020_3",
+      "questions": 80,
+      "matchedExplanations": 78,
+      "fallbackExplanations": 2
+    },
+    {
+      "slug": "2020_4",
+      "questions": 80,
+      "matchedExplanations": 35,
+      "fallbackExplanations": 45
+    },
+    {
+      "slug": "2021_1",
+      "questions": 80,
+      "matchedExplanations": 38,
+      "fallbackExplanations": 42
+    },
+    {
+      "slug": "2021_2",
+      "questions": 80,
+      "matchedExplanations": 39,
+      "fallbackExplanations": 41
+    },
+    {
+      "slug": "2021_3",
+      "questions": 80,
+      "matchedExplanations": 35,
+      "fallbackExplanations": 45
+    },
+    {
+      "slug": "2022_1",
+      "questions": 60,
+      "matchedExplanations": 30,
+      "fallbackExplanations": 30
+    },
+    {
+      "slug": "2022_2",
+      "questions": 60,
+      "matchedExplanations": 20,
+      "fallbackExplanations": 40
+    },
+    {
+      "slug": "2022_3",
+      "questions": 60,
+      "matchedExplanations": 21,
+      "fallbackExplanations": 39
+    },
+    {
+      "slug": "2023_1",
+      "questions": 60,
+      "matchedExplanations": 25,
+      "fallbackExplanations": 35
+    },
+    {
+      "slug": "2023_2",
+      "questions": 60,
+      "matchedExplanations": 25,
+      "fallbackExplanations": 35
+    },
+    {
+      "slug": "2023_3",
+      "questions": 60,
+      "matchedExplanations": 36,
+      "fallbackExplanations": 24
+    },
+    {
+      "slug": "2024_1",
+      "questions": 60,
+      "matchedExplanations": 31,
+      "fallbackExplanations": 29
+    },
+    {
+      "slug": "2024_2",
+      "questions": 60,
+      "matchedExplanations": 31,
+      "fallbackExplanations": 29
+    },
+    {
+      "slug": "2024_3",
+      "questions": 60,
+      "matchedExplanations": 40,
+      "fallbackExplanations": 20
+    },
+    {
+      "slug": "2025_1",
+      "questions": 60,
+      "matchedExplanations": 28,
+      "fallbackExplanations": 32
+    },
+    {
+      "slug": "2025_2",
+      "questions": 60,
+      "matchedExplanations": 20,
+      "fallbackExplanations": 40
+    },
+    {
+      "slug": "2025_3",
+      "questions": 60,
+      "matchedExplanations": 33,
+      "fallbackExplanations": 27
+    }
+  ],
+  "totals": {
+    "questions": 1920,
+    "matched_explanations": 1255,
+    "fallback_explanations": 665
+  }
+}
