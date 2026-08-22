@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
-import { calculationGivenValues, calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
+import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
 import type { QuestionItem, StudyMode } from './types';
 
 const props = defineProps<{
@@ -42,7 +42,6 @@ const restoredImageClass = computed(() => restoredQuestion.value
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationProblem = computed(() => isCalculationItem(props.item));
-const calculationValues = computed(() => calculationGivenValues(props.item));
 const calculationNumberOrigins = computed(() => {
   const guideOrigins = calculationGuide.value.numberOrigins || [];
   const guideText = guideOrigins.join(' ');
@@ -172,10 +171,6 @@ const memoryTip = computed(() => {
     ? `반대말 문제: ‘틀린 것·아닌 것’을 먼저 찾고, 예외는 ${props.item.question.answer}번 “${answer}”로 연결하세요.`
     : `핵심 연결: “${stem.slice(0, 42)}” → ${props.item.question.answer}번 “${answer}”.`;
 });
-const memoryTipSource = computed(() => conciseExplanationTip(comcbtExplanationText.value)
-  ? 'COMCBT 해설에서 뽑은 암기말'
-  : '문제 핵심을 줄인 암기말');
-
 function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
   if (choice.images?.length) return true;
   const text = (choice.text || choice.html || '')
@@ -487,23 +482,20 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       />
       <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
-      <section v-if="calculationMode || calculationProblem" class="nested-explanation calculation-nested-explanation">
-        <button type="button" class="nested-explanation-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
-          <span>＋</span><strong>쉽게 풀어보기</strong><small>문제에 없는 숫자의 출처까지 {{ beginnerCalculationOpen ? '접기' : '보기' }}</small><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
+      <div class="explanation-extra-actions">
+        <button v-if="calculationMode || calculationProblem" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+          <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
         </button>
-        <div v-if="beginnerCalculationOpen" class="calculation-explanation beginner-calculation-explanation">
-          <div><span>구할 것</span><p>{{ calculationGuide.goal }}</p></div>
-          <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
-          <div><span>숫자</span><p><template v-if="calculationNumberOrigins.length"><strong>문제에 바로 없는 숫자는 여기서 나옵니다.</strong><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else><strong>새로 튀어나온 숫자는 없습니다.</strong>문제에 적힌 {{ calculationValues.length ? calculationValues.join(', ') : '수치' }}를 그대로 사용합니다.</template></p></div>
-          <div><span>계산</span><p>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.` : '문제에 주어진 숫자를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.') }}<small>{{ calculationGuide.unitTip }}</small></p></div>
-        </div>
-      </section>
-      <aside class="nested-explanation memory-tip">
-        <button type="button" class="nested-explanation-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
-          <span>🧠</span><strong>쉽게 외우기</strong><small>{{ memoryTipSource }}</small><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
+        <button type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+          <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
         </button>
-        <p v-if="memoryTipOpen">{{ memoryTip }}</p>
-      </aside>
+      </div>
+      <div v-if="beginnerCalculationOpen && (calculationMode || calculationProblem)" class="calculation-explanation beginner-calculation-explanation">
+        <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+        <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
+        <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+      </div>
+      <aside v-if="memoryTipOpen" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
     </div>
 
     <Teleport to="body">
@@ -526,23 +518,20 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
             <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
             <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
             <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
-            <section v-if="calculationMode || calculationProblem" class="nested-explanation calculation-nested-explanation">
-              <button type="button" class="nested-explanation-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
-                <span>＋</span><strong>쉽게 풀어보기</strong><small>문제에 없는 숫자의 출처까지 {{ beginnerCalculationOpen ? '접기' : '보기' }}</small><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
+            <div class="explanation-extra-actions">
+              <button v-if="calculationMode || calculationProblem" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+                <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
               </button>
-              <div v-if="beginnerCalculationOpen" class="calculation-explanation beginner-calculation-explanation">
-                <div><span>구할 것</span><p>{{ calculationGuide.goal }}</p></div>
-                <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
-                <div><span>숫자</span><p><template v-if="calculationNumberOrigins.length"><strong>문제에 바로 없는 숫자는 여기서 나옵니다.</strong><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else><strong>새로 튀어나온 숫자는 없습니다.</strong>문제에 적힌 {{ calculationValues.length ? calculationValues.join(', ') : '수치' }}를 그대로 사용합니다.</template></p></div>
-                <div><span>계산</span><p>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.` : '문제에 주어진 숫자를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.') }}<small>{{ calculationGuide.unitTip }}</small></p></div>
-              </div>
-            </section>
-            <aside class="nested-explanation memory-tip">
-              <button type="button" class="nested-explanation-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
-                <span>🧠</span><strong>쉽게 외우기</strong><small>{{ memoryTipSource }}</small><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
+              <button type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+                <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
               </button>
-              <p v-if="memoryTipOpen">{{ memoryTip }}</p>
-            </aside>
+            </div>
+            <div v-if="beginnerCalculationOpen && (calculationMode || calculationProblem)" class="calculation-explanation beginner-calculation-explanation">
+              <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+              <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
+              <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+            </div>
+            <aside v-if="memoryTipOpen" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
           </div>
           <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
         </section>
