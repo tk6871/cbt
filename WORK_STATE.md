@@ -7,7 +7,7 @@
 - 마지막 갱신: 2026-08-23
 - 기준 브랜치: `main`
 - 이번 v3.5 수정 작업 시작 Git HEAD: `458cb7c`
-- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.7~v3.4.5의 문제풀이·Android·동기화·한솔·계산 해설 개선, v3.5 실제 창 너비 보기 배열·학교 시험 준비관, v3.5.1 iPhone·iPad 무료 PWA 설치 안내와 v3.5.2 모바일 확대 방지·iPhone 하단 UI 보정 상태가 포함됨
+- 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, v2.7~v3.4.5의 문제풀이·Android·동기화·한솔·계산 해설 개선, v3.5 실제 창 너비 보기 배열·학교 시험 준비관, v3.5.1 iPhone·iPad 무료 PWA 설치 안내, v3.5.2 모바일 확대 방지·iPhone 하단 UI 보정과 v3.5.3 iPhone 상단 안전영역·학교 사진 정리본 병합 상태가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
 - Windows SSH 호스트 별칭: `mac-m4`
@@ -43,6 +43,7 @@ npm run audit:questions
 - 산업기사·보석관 패치노트 v3.5와 Service Worker 캐시 v350까지 반영했습니다.
 - v3.5.1에서 iPhone·iPad Safari 첫 접속 시 `공유 → 홈 화면에 추가 → 웹 앱으로 열기` 순서를 보여 주는 무료 PWA 설치 안내를 추가했습니다. 설치 전에는 하단 버튼과 패치노트에서 안내를 다시 열 수 있고, 홈 화면의 standalone 웹앱으로 실행하면 자동으로 숨깁니다. 산업기사와 보석관은 각각의 매니페스트 시작 주소를 유지하며 Apple 홈 화면·상태 표시 메타데이터, Service Worker 캐시 v351과 Android 앱 버전 3.5.1을 함께 갱신했습니다.
 - v3.5.2에서 산업기사와 보석관의 모바일 확대·축소를 viewport 설정, `touch-action`, iOS 제스처·멀티터치 방지로 고정했습니다. 모바일 홈 하단 6개 메뉴는 홈 표시줄 안전영역을 바 자체 높이에 포함하고, 기본 CBT 이전·다음·미응답·제출은 2열로 재배치했습니다. COMCBT 하단의 이전·페이지·미응답·다음·결과 다섯 기능은 393px 화면 안에서 잘리지 않도록 모바일 전용 5열로 맞췄습니다. Service Worker 캐시는 v352, Android 앱 버전은 3.5.2입니다.
+- v3.5.3에서 iPhone 홈 화면 PWA의 홈·문제풀이 상단바, OMR, 풀이 메뉴, 설정·결과·AI·이미지 크게 보기 화면에 상단 노치·다이내믹 아일랜드 안전영역을 반영했습니다. 학습 내역과 학교 시험 준비 사이드 메뉴에는 기본 기호와 심슨 테마 장면 아이콘을 적용하고, 보석관 학습 내역에는 선재 테마 아이콘도 추가했습니다. 학교 시험 준비관은 사진을 Codex에서 OCR·정답 대조한 JSON 정리본으로 받아 기존 시험지·범위·주관식 카드와 ID 기준 병합할 수 있으며, 직접 입력은 선택 기능으로 유지합니다. Service Worker 캐시는 v353, Android 앱 버전은 3.5.3입니다.
 - v3.5에서 보기 하나가 실제 렌더링 폭에서 두 줄로 넘어가면 네 보기를 모두 세로 한 열로 전환합니다. 960px 반쪽 FHD 창에서는 짧은 보기 2열과 줄바꿈 보기 1열을 실제 브라우저에서 각각 확인했습니다.
 - v3.5에서 COMCBT 원본 문제의 자동 `쉽게 외우기`를 제거하고, COMCBT 해설에 확인되는 계산식을 `쉽게 풀어보기`에 우선 사용합니다. 근거가 부족한 일반 문구형 계산 안내는 표시하지 않습니다.
 - v3.5에서 산업기사 화면에 학교 중간·기말고사 준비관을 추가했습니다. 객관식 기출·정답·해설, 주관식 암기카드, 교재 페이지와 선생님 강조사항을 자격증 데이터와 분리해 브라우저에 저장하고 JSON으로 백업·복원할 수 있습니다.
@@ -362,6 +363,8 @@ npm run audit:questions
 
 - v3.5.1 검증: `npm run typecheck`, `npm run build`, `npm run build:android:web`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 정적 빌드에서 v351 공통 청크 4개와 Service Worker 캐시 v351을 확인했습니다. 로컬 390×844 화면에서 iPhone 설치 팝업은 343×490px로 가로 넘침과 세로 잘림 없이 표시됐고, 닫기·하단 다시 열기·패치노트 설치 카드·v3.5.1 표시를 실제 브라우저로 확인했습니다. 실제 iPhone Safari의 홈 화면 추가 동작은 배포 후 기기에서 최종 확인해야 합니다.
 - v3.5.2 검증: `npm run typecheck`, `npm run build`, `npm run build:android:web`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 정적 빌드에서 v352 공통 청크 4개와 Service Worker 캐시 v352를 확인했습니다. 로컬 iPhone 14 Pro 크기 393×852에서 홈 하단 메뉴 6개, 기본 CBT 이전·다음·미응답·결과 버튼, COMCBT 하단 다섯 기능의 가로 넘침이 모두 0인 것을 실제 렌더링 크기로 확인했습니다. 브라우저 viewport에는 확대 제한 메타와 `touch-action: pan-x pan-y`가 적용됐으며 실제 iPhone의 34px 홈 표시줄 안전영역 체감은 배포 후 기기에서 최종 확인해야 합니다.
+
+- v3.5.3 검증: `npm run typecheck`, `npm run build`, `npm run build:android:web`, `node --check sw.js`, `node --check data/changelog-vue.js`, `git diff --check`를 통과했습니다. 정적 빌드에서 v353 공통 청크 4개와 Service Worker 캐시 v353을 확인했습니다. 로컬 iPhone 14 Pro 크기 393×852에서 설정 버튼이 상단에 표시되고 학교 시험 준비 화면의 사진 정리본 추가·백업 버튼, 3단계 사진 등록 안내와 직접 입력 선택 영역이 가로 넘침 0으로 표시되는 것을 확인했습니다. 브라우저 모의 화면의 `safe-area-inset-top`은 0px이므로 실제 노치 높이에서의 최종 체감은 GitHub Pages 배포 후 iPhone 홈 화면 PWA에서 확인해야 합니다. 이번 검증은 기존 자동 저장 학습을 시작·삭제하거나 답안을 선택하지 않았고 Android 웹 번들만 생성했으며 APK 실기기 설치는 실행하지 않았습니다.
 
 - v3.5 검증: `npm run typecheck`, `npm run build:android:web`, `npm run audit:questions`, `npm run audit:hansol`, `npm run audit:answer-segments`, `npm run test:gem-target-exam`, 계산 가이드 19,080문항 별도 검사와 `git diff --check`를 통과했습니다. 전체 10종목·275회차·21,530문항·이미지 참조 6,045개의 구조 오류·누락·경고는 0건이고 한솔 1,920문항·7,680답안, 공조 복원 1,019장·4,076답안의 좌표 오류·박스 겹침도 0건입니다. 계산형 3,608문항 중 2,763문항은 신뢰 가능한 가이드가 있고 1,671문항은 COMCBT 계산식을 직접 사용하며 근거가 부족한 845문항은 `쉽게 풀어보기`를 숨깁니다. 로컬 정적 배포 화면에서 v3.5와 v350 청크를 확인했고 960×1080 학교 시험 2열·가로 넘침 0, 390×844 학교 시험 1열·가로 넘침 0, 객관식 시험지 생성·문제 저장·학습 실행을 확인했습니다. 960px에서 짧은 보기 2열과 실제 줄바꿈 보기 전체 1열을 확인했으며, COMCBT 도수율 문제에서 `쉽게 풀어보기`만 표시되고 원문 해설의 도수율 계산식이 나오는 것도 확인했습니다. Android 웹 번들은 생성했지만 이번 작업에서 APK 실기기 설치는 실행하지 않았습니다.
 

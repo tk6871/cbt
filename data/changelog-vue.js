@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '3.5.3',
+      scope: 'industrial',
+      date: '2026.08.23',
+      title: 'iPhone 웹앱 상단 노치 안전영역 보정',
+      summary: '홈 화면에 설치한 iPhone 웹앱에서 문제풀이 상단바와 설정 버튼이 노치·다이내믹 아일랜드 뒤에 가려지지 않도록 수정했습니다.',
+      tags: ['iPhone', '웹앱', '노치', '상단 UI'],
+      changes: [
+        '홈과 문제풀이 상단바 높이에 iPhone 상태 표시줄 안전영역을 자동으로 포함합니다.',
+        '기본 CBT·COMCBT·컴뱃 CBT의 상단 조작 버튼과 OMR 시작 위치를 함께 보정했습니다.',
+        '풀이 메뉴, 설정창, 결과창, 이미지 크게 보기와 AI 질문창도 노치와 홈 표시줄 안쪽에 표시합니다.',
+        '학습 내역과 학교 시험 준비 메뉴에 기본 아이콘을 정리하고 심슨 테마 전용 장면 아이콘을 추가했습니다.',
+        '학교 시험 사진은 채팅에서 정리한 JSON을 불러오면 기존 자료를 지우지 않고 합쳐지며, 직접 입력은 선택 기능으로 남겼습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.3으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.5.3',
+      scope: 'jewelry',
+      date: '2026.08.23',
+      title: '보석관 iPhone 웹앱 상단 안전영역',
+      summary: '보석관 홈 화면 웹앱에서도 메뉴와 설정이 노치·상태 표시줄 아래에 안전하게 배치됩니다.',
+      tags: ['iPhone', '웹앱', '노치', '보석관'],
+      changes: [
+        '홈·문제풀이·설정·결과 화면에 iPhone 상단 안전영역을 반영했습니다.',
+        '문제풀이 메뉴와 설정 닫기 버튼이 노치 뒤에 가려지지 않도록 조정했습니다.',
+        '학습 내역 메뉴에 기본 아이콘과 심슨·선재 테마용 인물 아이콘을 적용했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.3으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.5.2',
       scope: 'industrial',
       date: '2026.08.23',
@@ -1563,8 +1593,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.5.2';
-  changelog.versions.jewelry = '3.5.2';
-  changelog.currentVersion = '3.5.2';
+  changelog.versions.industrial = '3.5.3';
+  changelog.versions.jewelry = '3.5.3';
+  changelog.currentVersion = '3.5.3';
   window.CBT_CHANGELOG = changelog;
 })();
