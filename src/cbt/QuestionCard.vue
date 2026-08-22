@@ -11,6 +11,7 @@ const props = defineProps<{
   mode: StudyMode;
   subjectStart?: boolean;
   subjectNumber?: number;
+  displayNumber?: number;
   bookmarked?: boolean;
   kept?: boolean;
   calculationMode?: boolean;
@@ -89,6 +90,7 @@ const compactTextChoices = computed(() => {
     && lengths.reduce((sum, length) => sum + length, 0) <= 96;
 });
 const compactSolveLayout = computed(() => props.solveLayout === 'comcbt');
+const inlineCompactExplanation = computed(() => props.solveLayout === 'comcbt');
 const combatDenseChoices = computed(() => {
   if ((props.solveLayout !== 'comcbt' && props.solveLayout !== 'combat')
     || primaryImage.value
@@ -184,7 +186,8 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
   explanationOpen.value = Boolean(
     props.mode === 'learn'
     && correctSelected.value
-    && compactSolveLayout.value,
+    && compactSolveLayout.value
+    && !inlineCompactExplanation.value,
   );
 });
 </script>
@@ -209,8 +212,9 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     <header class="question-head">
       <div v-if="!compactSolveLayout || primaryImage">
         <span class="question-subject">{{ item.subject }}</span>
-        <strong>{{ item.question.number }}번</strong>
+        <strong>{{ displayNumber || item.question.number }}번</strong>
       </div>
+      <span v-if="displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
       <span v-else-if="hansolQuestion" class="source-chip hansol-source-chip">한솔아카데미 원문</span>
@@ -295,7 +299,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       </div>
       <template v-else>
         <div class="compact-question-copy">
-          <strong class="compact-question-number">{{ item.question.number }}.</strong>
+          <strong class="compact-question-number">{{ displayNumber || item.question.number }}.</strong>
           <div class="question-text" v-html="item.question.html || item.question.text" />
         </div>
         <img
@@ -347,13 +351,13 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     </div>
 
     <button
-      v-if="mode === 'learn' && correctSelected && compactSolveLayout"
+      v-if="mode === 'learn' && correctSelected && compactSolveLayout && !inlineCompactExplanation"
       type="button"
       class="compact-explanation-trigger"
       @click="explanationOpen = true"
     ><span>정답 {{ item.question.answer }}번</span><strong>해설 다시 보기</strong><small v-if="solveLayout === 'comcbt'">E 키</small><small v-else>자동 열림</small></button>
 
-    <div v-if="mode === 'learn' && correctSelected && !compactSolveLayout" class="explanation-box">
+    <div v-if="mode === 'learn' && correctSelected && (!compactSolveLayout || inlineCompactExplanation)" class="explanation-box" :class="{ 'comcbt-inline-explanation': inlineCompactExplanation }">
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
         <strong>쉽게 풀어보기</strong>
@@ -377,7 +381,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
 
     <Teleport to="body">
       <div
-        v-if="explanationOpen && compactSolveLayout && mode === 'learn' && correctSelected"
+        v-if="explanationOpen && compactSolveLayout && !inlineCompactExplanation && mode === 'learn' && correctSelected"
         class="compact-explanation-backdrop"
         :class="{ 'combat-explanation': solveLayout === 'combat' }"
         role="dialog"
@@ -387,7 +391,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       >
         <section class="compact-explanation-panel">
           <header>
-            <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${item.question.number}번` }}</span><strong>쉽게 풀어보기</strong></div>
+            <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${displayNumber || item.question.number}번` }}</span><strong>쉽게 풀어보기</strong></div>
             <button type="button" aria-label="해설 닫기" @click="explanationOpen = false">×</button>
           </header>
           <div class="compact-explanation-scroll">

@@ -76,6 +76,19 @@ SOURCES = [
     Source(2025, 3, "공조냉동기계산업기사-2025년 3회.pdf", "main", 60),
 ]
 
+# Six source pages either print a malformed circled number (for example @ or
+# a duplicated ②) or contain diagram-only choices that OCR cannot label
+# reliably.  These rectangles were checked against the final saved WebP.
+REVIEWED_HOTSPOTS: dict[tuple[str, int], list[tuple[float, float, float, float]]] = {
+    ("2018_3", 60): [(6.49, 14.92, 15.35, 12.12), (50.77, 14.92, 15.35, 12.12), (6.49, 27.04, 15.35, 12.35), (50.77, 27.04, 15.35, 12.35)],
+    ("2020_1", 50): [(10.85, 45.90, 21.35, 21.48), (51.37, 45.90, 20.98, 21.48), (10.85, 68.36, 21.35, 20.51), (51.37, 68.36, 20.98, 20.51)],
+    ("2020_1", 80): [(11.53, 33.90, 39.27, 17.18), (51.87, 33.90, 38.90, 17.18), (11.53, 51.08, 39.27, 17.03), (51.87, 51.08, 38.90, 17.03)],
+    ("2020_3", 14): [(7.14, 22.00, 46.22, 37.01), (53.78, 22.00, 42.86, 37.01), (7.14, 59.01, 46.22, 36.48), (53.78, 59.01, 42.86, 36.48)],
+    ("2020_3", 15): [(7.65, 67.91, 27.21, 14.77), (54.42, 67.91, 30.61, 14.77), (7.65, 82.68, 27.21, 15.75), (54.42, 82.68, 30.61, 15.75)],
+    ("2020_3", 74): [(8.58, 53.32, 72.39, 8.50), (8.58, 64.91, 72.39, 8.50), (8.58, 76.51, 72.39, 8.50), (8.58, 88.10, 72.39, 9.66)],
+    ("2022_3", 59): [(1.77, 22.76, 59.70, 15.86), (1.77, 40.00, 59.70, 17.93), (1.77, 57.93, 59.70, 18.62), (1.77, 76.55, 59.70, 19.31)],
+}
+
 
 def load_hvac() -> dict[str, Any]:
     source = (PROJECT_ROOT / "data/hvac.js").read_text(encoding="utf-8")
@@ -95,6 +108,8 @@ def clean_block_text(value: str, number: int) -> str:
     value = value.replace("\x00", " ")
     value = re.sub(r"한솔아카데미.*?(?=\n|$)", " ", value)
     value = re.sub(r"(?:온라인|학원)강의.*?(?=\n|$)", " ", value)
+    value = re.sub(r"시행일\s*20\d{2}년\s*\d+회\s*필기", " ", value)
+    value = re.sub(r"\S*\s*미리\s*알려드립니다\.?", " ", value)
     value = re.sub(rf"^\s*0?{number}\s*[.)]?\s*", "", value.strip())
     return re.sub(r"\s+", " ", value).strip()
 
@@ -108,6 +123,108 @@ def split_question(value: str) -> tuple[str, list[str]]:
         if choice:
             choices[choice - 1] = parts[index + 1].strip()
     return stem, choices
+
+
+def hansol_answer_hotspots(
+    crop_box: tuple[float, float, float, float],
+    markers: list[dict[str, Any]],
+    text_boxes: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Build one tight, non-overlapping clickable rectangle per printed answer."""
+    x0, top, x1, bottom = crop_box
+    width, height = max(1.0, x1 - x0), max(1.0, bottom - top)
+    selected: dict[int, dict[str, Any]] = {}
+    for marker in markers:
+        choice = marker.get("choice")
+        if choice not in CIRCLED.values():
+            continue
+        # Diagrams can also contain circled labels. Printed choices are normally
+        # the lowest complete ①~④ set, so retain the lowest occurrence.
+        if choice not in selected or marker["top"] > selected[choice]["top"]:
+            selected[choice] = marker
+    if set(selected) != {1, 2, 3, 4}:
+        return []
+
+    marker_x = {choice: selected[choice]["x0"] for choice in selected}
+    two_columns = max(marker_x.values()) - min(marker_x.values()) > width * .24
+    columns = [[1, 3], [2, 4]] if two_columns else [[1, 2, 3, 4]]
+    x_boundary = (max(marker_x[choice] for choice in columns[0])
+                  + min(marker_x[choice] for choice in columns[-1])) / 2 if two_columns else x1
+    output: list[dict[str, Any]] = []
+
+    for column_index, choices in enumerate(columns):
+        ordered = sorted(choices, key=lambda choice: selected[choice]["top"])
+        gaps = [selected[right]["top"] - selected[left]["top"] for left, right in zip(ordered, ordered[1:])]
+        fallback_gap = sorted(gaps)[len(gaps) // 2] if gaps else height * .11
+        for index, choice in enumerate(ordered):
+            marker = selected[choice]
+            owner_left = x0 if not two_columns or column_index == 0 else x_boundary
+            owner_right = x1 if not two_columns or column_index == 1 else x_boundary
+            owner_top = marker["top"] - max(2.0, marker["bottom"] - marker["top"]) * .22
+            owner_bottom = (selected[ordered[index + 1]]["top"] - 1
+                            if index + 1 < len(ordered)
+                            else min(bottom, marker["top"] + max(fallback_gap, height * .065)))
+            relevant = [box for box in text_boxes
+                        if owner_left <= (box["x0"] + box["x1"]) / 2 <= owner_right
+                        and owner_top <= (box["top"] + box["bottom"]) / 2 <= owner_bottom
+                        and not re.search(r"한솔아카데미|온라인강의|학원강의|TEL", box.get("text", ""), re.I)]
+            relevant.append(marker)
+            left = max(owner_left, min(box["x0"] for box in relevant) - width * .004)
+            rect_top = max(top, min(box["top"] for box in relevant) - height * .004)
+            right = min(owner_right, max(box["x1"] for box in relevant) + width * .004)
+            rect_bottom = min(owner_bottom, max(box["bottom"] for box in relevant) + height * .004)
+            rect = {
+                "x": round((left - x0) / width * 100, 2),
+                "y": round((rect_top - top) / height * 100, 2),
+                "width": round(max(1.0, right - left) / width * 100, 2),
+                "height": round(max(1.0, rect_bottom - rect_top) / height * 100, 2),
+            }
+            output.append({"choice": choice, **rect, "segments": [rect]})
+    # Rounded OCR/PDF margins can overlap a neighbouring answer by a few
+    # pixels.  Hover, click and selection all use this same rectangle in the
+    # app, so split every shared sliver before writing the catalog.
+    for _ in range(4):
+        changed = False
+        for left_index in range(len(output)):
+            for right_index in range(left_index + 1, len(output)):
+                left_box, right_box = output[left_index], output[right_index]
+                overlap_x = min(left_box["x"] + left_box["width"], right_box["x"] + right_box["width"]) - max(left_box["x"], right_box["x"])
+                overlap_y = min(left_box["y"] + left_box["height"], right_box["y"] + right_box["height"]) - max(left_box["y"], right_box["y"])
+                if overlap_x <= 0 or overlap_y <= 0:
+                    continue
+                left_center = left_box["x"] + left_box["width"] / 2
+                right_center = right_box["x"] + right_box["width"] / 2
+                top_center = left_box["y"] + left_box["height"] / 2
+                bottom_center = right_box["y"] + right_box["height"] / 2
+                # Same-row answers are separated horizontally; same-column
+                # answers are separated vertically.  For diagonal OCR noise,
+                # trim the axis that loses the smaller relative amount.
+                horizontal_cost = overlap_x / max(.01, min(left_box["width"], right_box["width"]))
+                vertical_cost = overlap_y / max(.01, min(left_box["height"], right_box["height"]))
+                split_x = abs(left_center - right_center) > 18 or horizontal_cost < vertical_cost
+                if split_x:
+                    first, second = (left_box, right_box) if left_center <= right_center else (right_box, left_box)
+                    first_edge = first["x"] + first["width"]
+                    boundary = round((first_edge + second["x"]) / 2, 3)
+                    first["width"] = round(max(.01, boundary - first["x"]), 3)
+                    second_edge = second["x"] + second["width"]
+                    second["x"] = boundary
+                    second["width"] = round(max(.01, second_edge - boundary), 3)
+                else:
+                    first, second = (left_box, right_box) if top_center <= bottom_center else (right_box, left_box)
+                    first_edge = first["y"] + first["height"]
+                    boundary = round((first_edge + second["y"]) / 2, 3)
+                    first["height"] = round(max(.01, boundary - first["y"]), 3)
+                    second_edge = second["y"] + second["height"]
+                    second["y"] = boundary
+                    second["height"] = round(max(.01, second_edge - boundary), 3)
+                changed = True
+        if not changed:
+            break
+
+    for item in output:
+        item["segments"] = [{key: item[key] for key in ("x", "y", "width", "height")}]
+    return sorted(output, key=lambda item: item["choice"])
 
 
 def grouped_lines(words: list[dict[str, Any]]) -> list[list[str]]:
@@ -246,17 +363,87 @@ def remove_yellow(image: Image.Image) -> Image.Image:
     return rgb
 
 
-def trim_and_save(image: Image.Image, destination: Path, remove_highlight: bool) -> None:
+def prepare_question_image(image: Image.Image, remove_highlight: bool) -> tuple[Image.Image, int, int]:
+    """Return final image plus the source-crop origin represented at (0, 0).
+
+    The returned offsets let PDF/OCR rectangles follow the exact whitespace
+    trim and 14px border applied to the saved WebP.
+    """
     image = remove_yellow(image) if remove_highlight else image.convert("RGB")
     gray = ImageOps.grayscale(image)
     mask = gray.point(lambda value: 255 if value < 248 else 0)
     bbox = mask.getbbox()
     if bbox:
-        image = image.crop((max(0, bbox[0] - 8), max(0, bbox[1] - 8),
-                            min(image.width, bbox[2] + 8), min(image.height, bbox[3] + 8)))
+        left, upper = max(0, bbox[0] - 8), max(0, bbox[1] - 8)
+        image = image.crop((left, upper, min(image.width, bbox[2] + 8), min(image.height, bbox[3] + 8)))
+    else:
+        left, upper = 0, 0
     image = ImageOps.expand(image, border=14, fill="white")
+    return image, left - 14, upper - 14
+
+
+def save_question_image(image: Image.Image, destination: Path) -> None:
     destination.parent.mkdir(parents=True, exist_ok=True)
     image.save(destination, "WEBP", lossless=True, method=6)
+
+
+def transform_boxes(
+    boxes: list[dict[str, Any]],
+    scale_x: float,
+    scale_y: float,
+    crop_box: tuple[int, int, int, int],
+    offset_x: int,
+    offset_y: int,
+) -> list[dict[str, Any]]:
+    transformed = []
+    for box in boxes:
+        transformed.append({
+            **box,
+            "x0": box["x0"] * scale_x - crop_box[0] - offset_x,
+            "x1": box["x1"] * scale_x - crop_box[0] - offset_x,
+            "top": box["top"] * scale_y - crop_box[1] - offset_y,
+            "bottom": box["bottom"] * scale_y - crop_box[1] - offset_y,
+        })
+    return transformed
+
+
+def remove_joined_page_chrome(
+    image: Image.Image,
+    text_boxes: list[dict[str, Any]],
+    marker_boxes: list[dict[str, Any]],
+) -> tuple[Image.Image, list[dict[str, Any]], list[dict[str, Any]]]:
+    """Remove an exam-page heading that lands inside a cross-page question.
+
+    The actual question pixels and answer rectangles remain unchanged; only
+    the intervening `시행일 / 20xx년 n회 필기` announcement strip is removed.
+    """
+    anchors = [box for box in text_boxes
+               if re.search(r"시행일|20\d{2}년|알려드립니다", str(box.get("text", "")))]
+    if not anchors:
+        return image, text_boxes, marker_boxes
+
+    top = max(0, int(min(box["top"] for box in anchors) - 34))
+    bottom = min(image.height, int(max(box["bottom"] for box in anchors) + 42))
+    if bottom <= top or bottom - top > image.height * .32:
+        return image, text_boxes, marker_boxes
+    cleaned = Image.new("RGB", (image.width, image.height - (bottom - top)), "white")
+    cleaned.paste(image.crop((0, 0, image.width, top)), (0, 0))
+    cleaned.paste(image.crop((0, bottom, image.width, image.height)), (0, top))
+
+    def adjust(boxes: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        result = []
+        removed = bottom - top
+        for source_box in boxes:
+            center = (source_box["top"] + source_box["bottom"]) / 2
+            if center < top:
+                result.append({**source_box, "bottom": min(source_box["bottom"], top)})
+            elif center > bottom:
+                result.append({**source_box,
+                               "top": max(source_box["top"], bottom) - removed,
+                               "bottom": source_box["bottom"] - removed})
+        return result
+
+    return cleaned, adjust(text_boxes), adjust(marker_boxes)
 
 
 def inline_highlight_answers(document: pdfplumber.PDF, bounds: dict[int, tuple[int, int, float, float, float, float]]) -> dict[int, int]:
@@ -311,6 +498,31 @@ def best_explanation(question_copy: str, answer: int, candidates: list[dict[str,
     return "", "", best[0]
 
 
+def best_stem_explanation(stem: str, answer: int, candidates: list[dict[str, Any]]) -> tuple[str, str, float]:
+    """Recover explanations when PDF choice extraction differs but the stem is the same."""
+    target = normalize(stem)
+    if len(target) < 8:
+        return "", "", 0.0
+    exact = [item for item in candidates if item["stem"] == target and item["answer"] == answer and item["explanation"]]
+    if exact:
+        return exact[0]["explanation"], exact[0]["id"], 1.0
+    target_chars = set(target)
+    best: tuple[float, dict[str, Any] | None] = (0.0, None)
+    for item in candidates:
+        other = item["stem"]
+        if item["answer"] != answer or not item["explanation"] or not other:
+            continue
+        length_ratio = min(len(target), len(other)) / max(len(target), len(other), 1)
+        if length_ratio < .72 or len(target_chars & set(other)) / max(1, len(target_chars)) < .72:
+            continue
+        score = difflib.SequenceMatcher(None, target, other, autojunk=False).ratio()
+        if score > best[0]:
+            best = (score, item)
+    if best[1] and best[0] >= .975:
+        return best[1]["explanation"], best[1]["id"], best[0]
+    return "", "", best[0]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--main-root", type=Path, required=True)
@@ -323,7 +535,11 @@ def main() -> None:
     parser.add_argument("--render-cache", type=Path, default=Path("/private/tmp/cbt-hansol-render-cache"))
     parser.add_argument("--skip-images", action="store_true",
                         help="이미지는 유지하고 문제 데이터와 해설 연결만 다시 생성")
+    parser.add_argument("--save-image", action="append", default=[],
+                        help="slug/번호 형식으로 지정한 이미지만 다시 저장")
     args = parser.parse_args()
+    scan_hotspots_path = PROJECT_ROOT / "data/hansol-scan-hotspots.json"
+    scan_hotspots = json.loads(scan_hotspots_path.read_text(encoding="utf-8")) if scan_hotspots_path.is_file() else {}
 
     hvac = load_hvac()
     rounds_by_id = {round_["id"]: round_ for round_ in hvac["rounds"]}
@@ -333,6 +549,7 @@ def main() -> None:
             text = question.get("text") or question.get("html") or ""
             explanation_candidates.append({
                 "id": f'{round_["id"]}:{question["number"]}',
+                "stem": normalize(text),
                 "normalized": normalize(" ".join([
                     text,
                     *[(choice.get("text") or choice.get("html") or "")
@@ -384,19 +601,137 @@ def main() -> None:
                     page_image = Image.open(page_images[page_index])
                     if source.scanned:
                         crop_box = (int(x0), int(top), int(x1), int(bottom))
-                        block_text = " ".join(
-                            line["text"] for line in ocr_pages[page_index]["lines"]
+                        scale_x = scale_y = 1.0
+                        question_lines = [line for line in ocr_pages[page_index]["lines"]
                             if x0 <= (line["box"][0] + line["box"][2]) / 2 <= x1
                             and top <= (line["box"][1] + line["box"][3]) / 2 <= bottom
-                        )
+                        ]
+                        block_text = " ".join(line["text"] for line in question_lines)
+                        marker_boxes = []
+                        text_boxes = []
+                        for line in question_lines:
+                            lx0, ltop, lx1, lbottom = map(float, line["box"])
+                            text = line["text"]
+                            positions = [(index, CIRCLED[symbol]) for index, symbol in enumerate(text) if symbol in CIRCLED]
+                            if positions:
+                                for position_index, (character_index, choice) in enumerate(positions):
+                                    next_index = positions[position_index + 1][0] if position_index + 1 < len(positions) else len(text)
+                                    char_left = lx0 + (lx1 - lx0) * character_index / max(1, len(text))
+                                    char_right = min(lx1, char_left + max(6.0, lbottom - ltop))
+                                    marker_boxes.append({"choice": choice, "x0": char_left, "top": ltop, "x1": char_right, "bottom": lbottom, "text": text[character_index:character_index + 1]})
+                                    text_boxes.append({"x0": char_left, "top": ltop,
+                                                       "x1": lx0 + (lx1 - lx0) * next_index / max(1, len(text)),
+                                                       "bottom": lbottom, "text": text[character_index:next_index]})
+                            else:
+                                text_boxes.append({"x0": lx0, "top": ltop, "x1": lx1, "bottom": lbottom, "text": text})
                     else:
                         scale_x = page_image.width / document.pages[page_index].width
                         scale_y = page_image.height / document.pages[page_index].height
                         crop_box = (int(x0 * scale_x), int(top * scale_y), int(x1 * scale_x), int(bottom * scale_y))
-                        block_text = document.pages[page_index].crop((x0, top, x1, bottom)).extract_text() or ""
+                        source_page = document.pages[page_index]
+                        block_text = source_page.crop((x0, top, x1, bottom)).extract_text() or ""
+                        text_boxes = [{"x0": float(word["x0"]), "top": float(word["top"]),
+                                       "x1": float(word["x1"]), "bottom": float(word["bottom"]), "text": word["text"]}
+                                      for word in source_page.extract_words(x_tolerance=1, y_tolerance=2)
+                                      if x0 <= (float(word["x0"]) + float(word["x1"])) / 2 <= x1
+                                      and top <= (float(word["top"]) + float(word["bottom"])) / 2 <= bottom]
+                        marker_boxes = [{"choice": CIRCLED[character["text"]], "x0": float(character["x0"]),
+                                         "top": float(character["top"]), "x1": float(character["x1"]),
+                                         "bottom": float(character["bottom"]), "text": character["text"]}
+                                        for character in source_page.chars
+                                        if character.get("text") in CIRCLED
+                                        and x0 <= (float(character["x0"]) + float(character["x1"])) / 2 <= x1
+                                        and top <= (float(character["top"]) + float(character["bottom"])) / 2 <= bottom]
                     destination = args.output_assets / source.slug / f"{number:02}.webp"
-                    if not args.skip_images:
-                        trim_and_save(page_image.crop(crop_box), destination, source.year == 2025)
+                    prepared_image, trim_x, trim_y = prepare_question_image(page_image.crop(crop_box), source.year == 2025)
+                    marker_boxes = transform_boxes(marker_boxes, scale_x, scale_y, crop_box, trim_x, trim_y)
+                    text_boxes = transform_boxes(text_boxes, scale_x, scale_y, crop_box, trim_x, trim_y)
+                    layout_crop = (0.0, 0.0, float(prepared_image.width), float(prepared_image.height))
+                    answer_hotspots = hansol_answer_hotspots(layout_crop, marker_boxes, text_boxes)
+                    # Some two-column PDFs continue the last question of one
+                    # column at the top of the next column/page.  Rebuild only
+                    # those incomplete crops as one vertically joined image.
+                    current_start = starts[number - 1]
+                    next_start = starts[number] if number < source.count else None
+                    crossed_slot = next_start and (current_start["page"], current_start["column"]) != (next_start["page"], next_start["column"])
+                    if not answer_hotspots and not source.scanned and crossed_slot:
+                        regions = []
+                        current_page = document.pages[current_start["page"]]
+                        current_width, current_height = float(current_page.width), float(current_page.height)
+                        current_left = 12 if current_start["column"] == 0 else current_width / 2 + 2
+                        current_right = current_width / 2 - 2 if current_start["column"] == 0 else current_width - 12
+                        regions.append((current_start["page"], current_left, max(0, current_start["top"] - 4), current_right, current_height - 48))
+                        next_page = document.pages[next_start["page"]]
+                        next_width = float(next_page.width)
+                        next_left = 12 if next_start["column"] == 0 else next_width / 2 + 2
+                        next_right = next_width / 2 - 2 if next_start["column"] == 0 else next_width - 12
+                        regions.append((next_start["page"], next_left, 35.0, next_right, next_start["top"] - 3))
+
+                        pieces = []
+                        joined_markers: list[dict[str, Any]] = []
+                        joined_text: list[dict[str, Any]] = []
+                        joined_copy = []
+                        cursor_y = 0
+                        for region_page, rx0, rtop, rx1, rbottom in regions:
+                            region_source = document.pages[region_page]
+                            region_image = Image.open(page_images[region_page])
+                            region_scale_x = region_image.width / region_source.width
+                            region_scale_y = region_image.height / region_source.height
+                            region_crop = (int(rx0 * region_scale_x), int(rtop * region_scale_y),
+                                           int(rx1 * region_scale_x), int(rbottom * region_scale_y))
+                            piece = region_image.crop(region_crop).convert("RGB")
+                            pieces.append(piece)
+                            region_words = [{"x0": float(word["x0"]), "top": float(word["top"]),
+                                             "x1": float(word["x1"]), "bottom": float(word["bottom"]), "text": word["text"]}
+                                            for word in region_source.extract_words(x_tolerance=1, y_tolerance=2)
+                                            if rx0 <= (float(word["x0"]) + float(word["x1"])) / 2 <= rx1
+                                            and rtop <= (float(word["top"]) + float(word["bottom"])) / 2 <= rbottom]
+                            region_markers = [{"choice": CIRCLED[character["text"]], "x0": float(character["x0"]),
+                                               "top": float(character["top"]), "x1": float(character["x1"]),
+                                               "bottom": float(character["bottom"]), "text": character["text"]}
+                                              for character in region_source.chars
+                                              if character.get("text") in CIRCLED
+                                              and rx0 <= (float(character["x0"]) + float(character["x1"])) / 2 <= rx1
+                                              and rtop <= (float(character["top"]) + float(character["bottom"])) / 2 <= rbottom]
+                            local_crop = region_crop
+                            for target, source_boxes in ((joined_text, region_words), (joined_markers, region_markers)):
+                                local_boxes = transform_boxes(source_boxes, region_scale_x, region_scale_y, local_crop, 0, 0)
+                                for box in local_boxes:
+                                    box["top"] += cursor_y
+                                    box["bottom"] += cursor_y
+                                    target.append(box)
+                            joined_copy.append(region_source.crop((rx0, rtop, rx1, rbottom)).extract_text() or "")
+                            cursor_y += piece.height
+
+                        joined_width = max(piece.width for piece in pieces)
+                        joined_image = Image.new("RGB", (joined_width, cursor_y), "white")
+                        cursor_y = 0
+                        for piece in pieces:
+                            joined_image.paste(piece, (0, cursor_y))
+                            cursor_y += piece.height
+                        joined_image, joined_text, joined_markers = remove_joined_page_chrome(
+                            joined_image, joined_text, joined_markers)
+                        cursor_y = joined_image.height
+                        prepared_image, trim_x, trim_y = prepare_question_image(joined_image, source.year == 2025)
+                        marker_boxes = transform_boxes(joined_markers, 1, 1, (0, 0, joined_width, cursor_y), trim_x, trim_y)
+                        text_boxes = transform_boxes(joined_text, 1, 1, (0, 0, joined_width, cursor_y), trim_x, trim_y)
+                        block_text = " ".join(joined_copy)
+                        layout_crop = (0.0, 0.0, float(prepared_image.width), float(prepared_image.height))
+                        answer_hotspots = hansol_answer_hotspots(layout_crop, marker_boxes, text_boxes)
+
+                    reviewed = REVIEWED_HOTSPOTS.get((source.slug, number))
+                    scan_reviewed = scan_hotspots.get(f"{source.slug}/{number}") if source.scanned else None
+                    if scan_reviewed:
+                        answer_hotspots = scan_reviewed
+                    if reviewed:
+                        answer_hotspots = []
+                        for choice, (rx, ry, rw, rh) in enumerate(reviewed, 1):
+                            rect = {"x": rx, "y": ry, "width": rw, "height": rh}
+                            answer_hotspots.append({"choice": choice, **rect, "segments": [rect]})
+
+                    save_key = f"{source.slug}/{number}"
+                    if not args.skip_images and (not args.save_image or save_key in args.save_image):
+                        save_question_image(prepared_image, destination)
 
                     cleaned = clean_block_text(block_text, number)
                     stem, choices = split_question(cleaned)
@@ -413,6 +748,8 @@ def main() -> None:
                         match_score = 1.0
                     if not explanation:
                         explanation, provenance, match_score = best_explanation(cleaned, answer, explanation_candidates)
+                    if not explanation:
+                        explanation, provenance, match_score = best_stem_explanation(stem or cleaned, answer, explanation_candidates)
                     if explanation:
                         matched += 1
                     else:
@@ -431,6 +768,7 @@ def main() -> None:
                         "choices": [{"text": choice or f"{index + 1}번", "html": html.escape(choice or f"{index + 1}번"), "images": []}
                                     for index, choice in enumerate(choices)],
                         "answer": answer,
+                        "answerHotspots": answer_hotspots,
                         "answerRate": None,
                         "hint": "",
                         "explanation": explanation,

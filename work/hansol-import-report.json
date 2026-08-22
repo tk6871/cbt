@@ -9,32 +9,32 @@
     {
       "slug": "2017_2",
       "questions": 80,
-      "matchedExplanations": 59,
-      "fallbackExplanations": 21
+      "matchedExplanations": 60,
+      "fallbackExplanations": 20
     },
     {
       "slug": "2017_3",
-      "questions": 80,
-      "matchedExplanations": 68,
-      "fallbackExplanations": 12
-    },
-    {
-      "slug": "2018_1",
-      "questions": 80,
-      "matchedExplanations": 64,
-      "fallbackExplanations": 16
-    },
-    {
-      "slug": "2018_2",
       "questions": 80,
       "matchedExplanations": 71,
       "fallbackExplanations": 9
     },
     {
+      "slug": "2018_1",
+      "questions": 80,
+      "matchedExplanations": 66,
+      "fallbackExplanations": 14
+    },
+    {
+      "slug": "2018_2",
+      "questions": 80,
+      "matchedExplanations": 73,
+      "fallbackExplanations": 7
+    },
+    {
       "slug": "2018_3",
       "questions": 80,
-      "matchedExplanations": 64,
-      "fallbackExplanations": 16
+      "matchedExplanations": 71,
+      "fallbackExplanations": 9
     },
     {
       "slug": "2019_1",
@@ -69,44 +69,44 @@
     {
       "slug": "2020_4",
       "questions": 80,
-      "matchedExplanations": 35,
-      "fallbackExplanations": 45
+      "matchedExplanations": 47,
+      "fallbackExplanations": 33
     },
     {
       "slug": "2021_1",
       "questions": 80,
-      "matchedExplanations": 38,
-      "fallbackExplanations": 42
+      "matchedExplanations": 50,
+      "fallbackExplanations": 30
     },
     {
       "slug": "2021_2",
       "questions": 80,
-      "matchedExplanations": 39,
-      "fallbackExplanations": 41
+      "matchedExplanations": 45,
+      "fallbackExplanations": 35
     },
     {
       "slug": "2021_3",
       "questions": 80,
-      "matchedExplanations": 35,
-      "fallbackExplanations": 45
+      "matchedExplanations": 43,
+      "fallbackExplanations": 37
     },
     {
       "slug": "2022_1",
       "questions": 60,
-      "matchedExplanations": 30,
-      "fallbackExplanations": 30
+      "matchedExplanations": 32,
+      "fallbackExplanations": 28
     },
     {
       "slug": "2022_2",
       "questions": 60,
-      "matchedExplanations": 20,
-      "fallbackExplanations": 40
+      "matchedExplanations": 24,
+      "fallbackExplanations": 36
     },
     {
       "slug": "2022_3",
       "questions": 60,
-      "matchedExplanations": 21,
-      "fallbackExplanations": 39
+      "matchedExplanations": 23,
+      "fallbackExplanations": 37
     },
     {
       "slug": "2023_1",
@@ -117,55 +117,61 @@
     {
       "slug": "2023_2",
       "questions": 60,
-      "matchedExplanations": 25,
-      "fallbackExplanations": 35
+      "matchedExplanations": 27,
+      "fallbackExplanations": 33
     },
     {
       "slug": "2023_3",
       "questions": 60,
-      "matchedExplanations": 36,
-      "fallbackExplanations": 24
+      "matchedExplanations": 37,
+      "fallbackExplanations": 23
     },
     {
       "slug": "2024_1",
       "questions": 60,
-      "matchedExplanations": 31,
-      "fallbackExplanations": 29
+      "matchedExplanations": 35,
+      "fallbackExplanations": 25
     },
     {
       "slug": "2024_2",
       "questions": 60,
-      "matchedExplanations": 31,
-      "fallbackExplanations": 29
+      "matchedExplanations": 35,
+      "fallbackExplanations": 25
     },
     {
       "slug": "2024_3",
       "questions": 60,
-      "matchedExplanations": 40,
-      "fallbackExplanations": 20
+      "matchedExplanations": 46,
+      "fallbackExplanations": 14
     },
     {
       "slug": "2025_1",
       "questions": 60,
-      "matchedExplanations": 28,
-      "fallbackExplanations": 32
+      "matchedExplanations": 35,
+      "fallbackExplanations": 25
     },
     {
       "slug": "2025_2",
       "questions": 60,
-      "matchedExplanations": 20,
-      "fallbackExplanations": 40
+      "matchedExplanations": 24,
+      "fallbackExplanations": 36
     },
     {
       "slug": "2025_3",
       "questions": 60,
-      "matchedExplanations": 33,
-      "fallbackExplanations": 27
+      "matchedExplanations": 36,
+      "fallbackExplanations": 24
     }
   ],
   "totals": {
     "questions": 1920,
-    "matched_explanations": 1255,
-    "fallback_explanations": 665
+    "matched_explanations": 1347,
+    "fallback_explanations": 573
+  },
+  "enrichment": {
+    "linkedExplanations": 1387,
+    "beginnerAuthoredExplanations": 533,
+    "answerOnlyExplanations": 0,
+    "restoredQuestionsWithHansolSupplement": 1
   }
 }
