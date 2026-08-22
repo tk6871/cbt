@@ -9,6 +9,7 @@ vm.runInNewContext(fs.readFileSync(path.join(root, 'data/hvac-hansol.js'), 'utf8
 });
 
 const catalog = context.window.CBT_DATA_HANSOL_HVAC;
+const pixelOverrides = JSON.parse(fs.readFileSync(path.join(root, 'data/hansol-pixel-hotspot-overrides.json'), 'utf8'));
 const errors = [];
 const images = new Set();
 let questions = 0;
@@ -18,6 +19,7 @@ let authoredExplanations = 0;
 let hotspots = 0;
 let answerCorrections = 0;
 let genericFallbackExplanations = 0;
+let pixelOverrideQuestions = 0;
 
 const reviewedHotspotRegressions = new Map([
   ['hvac-hansol-2019-3:60', [[6.50, 10.10, 19.50, 3.10], [47.00, 10.10, 20.00, 3.10], [6.50, 13.90, 19.50, 4.20], [47.00, 13.90, 18.00, 5.00]]],
@@ -50,6 +52,14 @@ for (const round of catalog?.rounds || []) {
     if (question.choices?.length !== 4) errors.push(`${location}: 보기 4개가 아닙니다.`);
     if (!question.explanation) errors.push(`${location}: 해설 안내가 없습니다.`);
     const boxes = question.answerHotspots || [];
+    const slug = String(question.sourceImage || '').split('/').at(-2);
+    const override = pixelOverrides[`${slug}/${question.number}`];
+    if (override) {
+      pixelOverrideQuestions += 1;
+      if (JSON.stringify(override) !== JSON.stringify(boxes)) {
+        errors.push(`${location}: 픽셀 검수 좌표가 현재 문제 데이터와 다릅니다.`);
+      }
+    }
     if (boxes.length !== 4) errors.push(`${location}: 답안 박스가 ${boxes.length}개입니다.`);
     const choices = new Set();
     boxes.forEach((box) => {
@@ -114,7 +124,8 @@ if (linkedExplanations + authoredExplanations + answerOnlyExplanations !== 1920)
 if (hotspots !== 7680) errors.push(`답안 박스 수가 7,680개가 아닙니다: ${hotspots}`);
 if (answerOnlyExplanations) errors.push(`정답만 안내하는 해설이 남아 있습니다: ${answerOnlyExplanations}`);
 if (genericFallbackExplanations) errors.push(`문제별 원리 없이 공통 문장만 사용한 해설이 남아 있습니다: ${genericFallbackExplanations}`);
-if (answerCorrections !== 44) errors.push(`검증 정답 교정 수가 44개가 아닙니다: ${answerCorrections}`);
+if (answerCorrections !== 54) errors.push(`검증 정답 교정 수가 54개가 아닙니다: ${answerCorrections}`);
+if (pixelOverrideQuestions !== 79) errors.push(`픽셀 검수 고정 문제가 79개가 아닙니다: ${pixelOverrideQuestions}`);
 
 console.log(JSON.stringify({
   rounds: catalog?.rounds?.length || 0,
@@ -126,6 +137,7 @@ console.log(JSON.stringify({
   answerOnlyExplanations,
   genericFallbackExplanations,
   answerCorrections,
+  pixelOverrideQuestions,
   errors: errors.length,
 }, null, 2));
 

@@ -142,6 +142,8 @@ def clean_block_text(value: str, number: int) -> str:
     value = re.sub(r"(?:온라인|학원)강의.*?(?=\n|$)", " ", value)
     value = re.sub(r"시행일\s*20\d{2}년\s*\d+회\s*필기", " ", value)
     value = re.sub(r"\S*\s*미리\s*알려드립니다\.?", " ", value)
+    value = re.sub(r"제\s*\d\s*과목\s*[:：].*$", " ", value, flags=re.DOTALL)
+    value = re.sub(r"TEL\.?\s*\d{3,4}[-－]\d{4}.*$", " ", value, flags=re.IGNORECASE | re.DOTALL)
     value = re.sub(rf"^\s*0?{number}\s*[.)]?\s*", "", value.strip())
     return re.sub(r"\s+", " ", value).strip()
 
@@ -589,6 +591,8 @@ def main() -> None:
     args = parser.parse_args()
     scan_hotspots_path = PROJECT_ROOT / "data/hansol-scan-hotspots.json"
     scan_hotspots = json.loads(scan_hotspots_path.read_text(encoding="utf-8")) if scan_hotspots_path.is_file() else {}
+    pixel_hotspots_path = PROJECT_ROOT / "data/hansol-pixel-hotspot-overrides.json"
+    pixel_hotspots = json.loads(pixel_hotspots_path.read_text(encoding="utf-8")) if pixel_hotspots_path.is_file() else {}
 
     hvac = load_hvac()
     rounds_by_id = {round_["id"]: round_ for round_ in hvac["rounds"]}
@@ -777,6 +781,9 @@ def main() -> None:
                         for choice, (rx, ry, rw, rh) in enumerate(reviewed, 1):
                             rect = {"x": rx, "y": ry, "width": rw, "height": rh}
                             answer_hotspots.append({"choice": choice, **rect, "segments": [rect]})
+                    pixel_reviewed = pixel_hotspots.get(f"{source.slug}/{number}")
+                    if pixel_reviewed:
+                        answer_hotspots = pixel_reviewed
 
                     save_key = f"{source.slug}/{number}"
                     if not args.skip_images and (not args.save_image or save_key in args.save_image):

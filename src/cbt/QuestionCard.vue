@@ -62,7 +62,34 @@ const selectedAnswerState = computed(() => ({
 const sourceImageRef = ref<HTMLImageElement | null>(null);
 const imageZoomOpen = ref(false);
 const explanationOpen = ref(false);
+const explanationDismissed = ref(false);
 const circles = ['①', '②', '③', '④'];
+
+function readableText(value = ''): string {
+  return String(value)
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+const correctAnswerText = computed(() => readableText(
+  props.item.question.choices[props.item.question.answer - 1]?.text
+  || props.item.question.choices[props.item.question.answer - 1]?.html
+  || `${props.item.question.answer}번`,
+));
+const memoryTip = computed(() => {
+  const stem = readableText(props.item.question.text || props.item.question.html);
+  const answer = correctAnswerText.value.slice(0, 90) || `${props.item.question.answer}번`;
+  const negative = /틀린|옳지 않은|아닌|거리가 먼|해당하지 않는|잘못된/.test(stem);
+  if (props.calculationMode || /계산|구하|얼마|몇\s*(?:배|%|℃|kW|kg|m|Pa|V|A|Ω|rpm|RT)/i.test(stem)) {
+    return `계산 암기 4칸: ① 구할 값에 밑줄 → ② 단위를 하나로 맞춤 → ③ ${calculationGuide.value.formula} → ④ 숫자를 넣고 정답 ${props.item.question.answer}번과 비교하세요. 해설을 닫고 이 네 칸을 말한 뒤, 막히면 ★로 저장해 오늘 밤과 다음 날 아침에 다시 풉니다.`;
+  }
+  if (negative) {
+    return `예외 카드로 외우세요: 문제의 ‘틀린 것·아닌 것’에 동그라미를 치고, 정답 ${props.item.question.answer}번 ‘${answer}’을 반대편에 적습니다. 해설을 닫고 10초 뒤 답을 말해 본 다음, 틀리면 ★로 저장해 오늘 밤과 다음 날 아침에 다시 확인합니다.`;
+  }
+  return `짝꿍 카드로 외우세요: 앞면에는 문제의 핵심어를, 뒷면에는 정답 ${props.item.question.answer}번 ‘${answer}’을 적습니다. 해설을 닫고 10초 뒤 답을 말해 보고, 막히면 ★로 저장해 오늘 밤과 다음 날 아침에 한 번씩 더 꺼내 봅니다.`;
+});
 
 function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
   if (choice.images?.length) return true;
@@ -183,6 +210,7 @@ watch(verifiedHotspots, (hotspots) => {
   if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
 }, { flush: 'post' });
 watch(() => [props.item.id, props.selected, props.solveLayout], () => {
+  explanationDismissed.value = false;
   explanationOpen.value = Boolean(
     props.mode === 'learn'
     && correctSelected.value
@@ -351,16 +379,17 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     </div>
 
     <button
-      v-if="mode === 'learn' && correctSelected && compactSolveLayout && !inlineCompactExplanation"
+      v-if="mode === 'learn' && correctSelected && (explanationDismissed || (compactSolveLayout && !inlineCompactExplanation))"
       type="button"
       class="compact-explanation-trigger"
-      @click="explanationOpen = true"
-    ><span>정답 {{ item.question.answer }}번</span><strong>해설 다시 보기</strong><small v-if="solveLayout === 'comcbt'">E 키</small><small v-else>자동 열림</small></button>
+      @click="explanationDismissed = false; explanationOpen = true"
+    ><span>정답 {{ item.question.answer }}번</span><strong>해설 다시 보기</strong><small>열기</small></button>
 
-    <div v-if="mode === 'learn' && correctSelected && (!compactSolveLayout || inlineCompactExplanation)" class="explanation-box" :class="{ 'comcbt-inline-explanation': inlineCompactExplanation }">
+    <div v-if="mode === 'learn' && correctSelected && !explanationDismissed && (!compactSolveLayout || inlineCompactExplanation)" class="explanation-box" :class="{ 'comcbt-inline-explanation': inlineCompactExplanation }">
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
         <strong>쉽게 풀어보기</strong>
+        <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="explanationDismissed = true">닫기 ×</button>
       </div>
       <div v-if="calculationMode" class="calculation-explanation">
         <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
@@ -377,6 +406,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       />
       <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
+      <aside class="memory-tip"><strong>🧠 쉽게 외우기</strong><p>{{ memoryTip }}</p></aside>
     </div>
 
     <Teleport to="body">
@@ -407,6 +437,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
             <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
             <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
             <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
+            <aside class="memory-tip"><strong>🧠 쉽게 외우기</strong><p>{{ memoryTip }}</p></aside>
           </div>
           <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
         </section>

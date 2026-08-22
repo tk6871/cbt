@@ -1,0 +1,1188 @@
+{
+  "questions": 1920,
+  "hotspots": 7680,
+  "detectedAnswerLines": 9879,
+  "candidateSummary": {
+    "rawFindings": 117,
+    "singleChoiceFindings": 10,
+    "sharedBoundaryFindings": 8,
+    "manualReviewedFindings": 2,
+    "unresolvedSingleChoiceFindings": 0,
+    "detectorJoinedChoiceFindings": 107,
+    "highReviewFindings": 0,
+    "highReviewQuestions": 0,
+    "note": "후보 수는 오류 수가 아닙니다. OCR 외곽선과 두 답안 결합 탐지를 포함하며 고위험 검수표는 별도로 육안 확인합니다."
+  },
+  "findings": [
+    {
+      "question": "2018_1:4",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2018_1/04.webp",
+      "score": 0.8485,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 285.9
+      }
+    },
+    {
+      "question": "2018_1:49",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2018_1/49.webp",
+      "score": 0.8647,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 3.38
+      }
+    },
+    {
+      "question": "2018_1:49",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2018_1/49.webp",
+      "score": 0.8935,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "right": 3.39
+      }
+    },
+    {
+      "question": "2018_2:9",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2018_2/09.webp",
+      "score": 0.8708,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 2.37
+      }
+    },
+    {
+      "question": "2018_2:68",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2018_2/68.webp",
+      "score": 0.6017,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 8.1
+      }
+    },
+    {
+      "question": "2018_2:68",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2018_2/68.webp",
+      "score": 0.697,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 7.02
+      }
+    },
+    {
+      "question": "2019_1:72",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2019_1/72.webp",
+      "score": 0.8581,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 4.25
+      }
+    },
+    {
+      "question": "2019_1:72",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2019_1/72.webp",
+      "score": 0.7964,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 4.25
+      }
+    },
+    {
+      "question": "2019_3:60",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2019_3/60.webp",
+      "score": 0.6145,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 7.89
+      }
+    },
+    {
+      "question": "2019_3:60",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2019_3/60.webp",
+      "score": 0.6196,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 5.86
+      }
+    },
+    {
+      "question": "2020_1:1",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_1/01.webp",
+      "score": 0.9188,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 8.08
+      }
+    },
+    {
+      "question": "2020_1:2",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/02.webp",
+      "score": 0.8466,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 1.7
+      }
+    },
+    {
+      "question": "2020_1:2",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/02.webp",
+      "score": 0.8999,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 1.7
+      }
+    },
+    {
+      "question": "2020_1:3",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/03.webp",
+      "score": 0.8549,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 3.18
+      }
+    },
+    {
+      "question": "2020_1:4",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/04.webp",
+      "score": 0.8636,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 220.02
+      }
+    },
+    {
+      "question": "2020_1:5",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/05.webp",
+      "score": 0.8735,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 68.49
+      }
+    },
+    {
+      "question": "2020_1:5",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/05.webp",
+      "score": 0.8974,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 69.49
+      }
+    },
+    {
+      "question": "2020_1:7",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/07.webp",
+      "score": 0.9176,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 26.69
+      }
+    },
+    {
+      "question": "2020_1:7",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/07.webp",
+      "score": 0.8457,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 24.69
+      }
+    },
+    {
+      "question": "2020_1:10",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/10.webp",
+      "score": 0.8497,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 77.6
+      }
+    },
+    {
+      "question": "2020_1:10",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/10.webp",
+      "score": 0.8538,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 123.6
+      }
+    },
+    {
+      "question": "2020_1:18",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/18.webp",
+      "score": 0.8552,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 157.43
+      }
+    },
+    {
+      "question": "2020_1:18",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/18.webp",
+      "score": 0.8639,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 108.43
+      }
+    },
+    {
+      "question": "2020_1:19",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/19.webp",
+      "score": 0.9065,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 50.76
+      }
+    },
+    {
+      "question": "2020_1:23",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/23.webp",
+      "score": 0.8836,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 57.01
+      }
+    },
+    {
+      "question": "2020_1:24",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/24.webp",
+      "score": 0.8904,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 4.92
+      }
+    },
+    {
+      "question": "2020_1:24",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/24.webp",
+      "score": 0.9151,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.92
+      }
+    },
+    {
+      "question": "2020_1:24",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_1/24.webp",
+      "score": 0.8638,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 5.92
+      }
+    },
+    {
+      "question": "2020_1:25",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/25.webp",
+      "score": 0.8848,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 29.47
+      }
+    },
+    {
+      "question": "2020_1:25",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/25.webp",
+      "score": 0.8543,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 124.47
+      }
+    },
+    {
+      "question": "2020_1:37",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/37.webp",
+      "score": 0.838,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 51.49
+      }
+    },
+    {
+      "question": "2020_1:39",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_1/39.webp",
+      "score": 0.8765,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 81.92
+      }
+    },
+    {
+      "question": "2020_1:42",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/42.webp",
+      "score": 0.9073,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.76
+      }
+    },
+    {
+      "question": "2020_1:42",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/42.webp",
+      "score": 0.8636,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 1.76
+      }
+    },
+    {
+      "question": "2020_1:48",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/48.webp",
+      "score": 0.9059,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 27.34
+      }
+    },
+    {
+      "question": "2020_1:49",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_1/49.webp",
+      "score": 0.8429,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 254.49
+      }
+    },
+    {
+      "question": "2020_1:53",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/53.webp",
+      "score": 0.9372,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 11.18
+      }
+    },
+    {
+      "question": "2020_1:54",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/54.webp",
+      "score": 0.9002,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 26.69
+      }
+    },
+    {
+      "question": "2020_1:57",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/57.webp",
+      "score": 0.8705,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 155.54
+      }
+    },
+    {
+      "question": "2020_1:57",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/57.webp",
+      "score": 0.89,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 197.53
+      }
+    },
+    {
+      "question": "2020_1:62",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/62.webp",
+      "score": 0.8689,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 52.73
+      }
+    },
+    {
+      "question": "2020_1:66",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/66.webp",
+      "score": 0.7678,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 113.12
+      }
+    },
+    {
+      "question": "2020_1:66",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_1/66.webp",
+      "score": 0.773,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 113.12
+      }
+    },
+    {
+      "question": "2020_1:69",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_1/69.webp",
+      "score": 0.8786,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 1.54
+      }
+    },
+    {
+      "question": "2020_1:75",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/75.webp",
+      "score": 0.9031,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 47.49
+      }
+    },
+    {
+      "question": "2020_1:77",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/77.webp",
+      "score": 0.8872,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 49.14
+      }
+    },
+    {
+      "question": "2020_1:78",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_1/78.webp",
+      "score": 0.8413,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 113.5
+      }
+    },
+    {
+      "question": "2020_1:78",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_1/78.webp",
+      "score": 0.8443,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 111.5
+      }
+    },
+    {
+      "question": "2020_3:4",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/04.webp",
+      "score": 0.9096,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 4.28
+      }
+    },
+    {
+      "question": "2020_3:4",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/04.webp",
+      "score": 0.8372,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.28
+      }
+    },
+    {
+      "question": "2020_3:6",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/06.webp",
+      "score": 0.8665,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 3.38
+      }
+    },
+    {
+      "question": "2020_3:6",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/06.webp",
+      "score": 0.9225,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 4.38
+      }
+    },
+    {
+      "question": "2020_3:7",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/07.webp",
+      "score": 0.8655,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 58.87
+      }
+    },
+    {
+      "question": "2020_3:7",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/07.webp",
+      "score": 0.8208,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 155.87
+      }
+    },
+    {
+      "question": "2020_3:17",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/17.webp",
+      "score": 0.8494,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 7.34
+      }
+    },
+    {
+      "question": "2020_3:17",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/17.webp",
+      "score": 0.8089,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 5.34
+      }
+    },
+    {
+      "question": "2020_3:17",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/17.webp",
+      "score": 0.8313,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 6.34
+      }
+    },
+    {
+      "question": "2020_3:24",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/24.webp",
+      "score": 0.8854,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 5.04
+      }
+    },
+    {
+      "question": "2020_3:32",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/32.webp",
+      "score": 0.9051,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 7.18
+      }
+    },
+    {
+      "question": "2020_3:36",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/36.webp",
+      "score": 0.898,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 74.49
+      }
+    },
+    {
+      "question": "2020_3:36",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/36.webp",
+      "score": 0.8393,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 75.49
+      }
+    },
+    {
+      "question": "2020_3:39",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/39.webp",
+      "score": 0.9005,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.34
+      }
+    },
+    {
+      "question": "2020_3:45",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/45.webp",
+      "score": 0.8947,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.2
+      }
+    },
+    {
+      "question": "2020_3:45",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/45.webp",
+      "score": 0.9244,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.2
+      }
+    },
+    {
+      "question": "2020_3:53",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/53.webp",
+      "score": 0.8808,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 24.68
+      }
+    },
+    {
+      "question": "2020_3:53",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/53.webp",
+      "score": 0.8923,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 74.68
+      }
+    },
+    {
+      "question": "2020_3:55",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/55.webp",
+      "score": 0.8859,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.62
+      }
+    },
+    {
+      "question": "2020_3:55",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/55.webp",
+      "score": 0.8778,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 4.62
+      }
+    },
+    {
+      "question": "2020_3:56",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/56.webp",
+      "score": 0.8837,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 79.55
+      }
+    },
+    {
+      "question": "2020_3:56",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/56.webp",
+      "score": 0.8987,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 31.55
+      }
+    },
+    {
+      "question": "2020_3:57",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/57.webp",
+      "score": 0.8262,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 127.23
+      }
+    },
+    {
+      "question": "2020_3:58",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/58.webp",
+      "score": 0.8311,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 3.16
+      }
+    },
+    {
+      "question": "2020_3:59",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/59.webp",
+      "score": 0.9123,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 17.11
+      }
+    },
+    {
+      "question": "2020_3:60",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/60.webp",
+      "score": 0.8609,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 22.5
+      }
+    },
+    {
+      "question": "2020_3:61",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/61.webp",
+      "score": 0.8746,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 105.88
+      }
+    },
+    {
+      "question": "2020_3:62",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/62.webp",
+      "score": 0.8744,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 50.03
+      }
+    },
+    {
+      "question": "2020_3:63",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/63.webp",
+      "score": 0.8414,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 23.88
+      }
+    },
+    {
+      "question": "2020_3:63",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/63.webp",
+      "score": 0.8927,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 45.88
+      }
+    },
+    {
+      "question": "2020_3:63",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/63.webp",
+      "score": 0.8725,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 27.88
+      }
+    },
+    {
+      "question": "2020_3:66",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/66.webp",
+      "score": 0.898,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 75.51
+      }
+    },
+    {
+      "question": "2020_3:66",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/66.webp",
+      "score": 0.8722,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 156.51
+      }
+    },
+    {
+      "question": "2020_3:70",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/70.webp",
+      "score": 0.8888,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 56.87
+      }
+    },
+    {
+      "question": "2020_3:70",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2020_3/70.webp",
+      "score": 0.8695,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 181.87
+      }
+    },
+    {
+      "question": "2020_3:71",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2020_3/71.webp",
+      "score": 0.9574,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 2.26
+      }
+    },
+    {
+      "question": "2020_3:76",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2020_3/76.webp",
+      "score": 0.7223,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 16.51
+      }
+    },
+    {
+      "question": "2020_3:76",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2020_3/76.webp",
+      "score": 0.7186,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 6.51
+      }
+    },
+    {
+      "question": "2021_1:4",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2021_1/04.webp",
+      "score": 0.7207,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 4.65
+      }
+    },
+    {
+      "question": "2022_1:12",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2022_1/12.webp",
+      "score": 0.8607,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 2.99
+      }
+    },
+    {
+      "question": "2022_3:2",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2022_3/02.webp",
+      "score": 0.7042,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 10.37
+      }
+    },
+    {
+      "question": "2022_3:2",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2022_3/02.webp",
+      "score": 0.6861,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 12.37
+      }
+    },
+    {
+      "question": "2023_2:30",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2023_2/30.webp",
+      "score": 0.8503,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 289.0
+      }
+    },
+    {
+      "question": "2023_2:45",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2023_2/45.webp",
+      "score": 0.9222,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "right": 1.55
+      }
+    },
+    {
+      "question": "2023_2:45",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2023_2/45.webp",
+      "score": 0.8297,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 1.54
+      }
+    },
+    {
+      "question": "2023_3:3",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2023_3/03.webp",
+      "score": 0.9014,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 8.47
+      }
+    },
+    {
+      "question": "2023_3:3",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2023_3/03.webp",
+      "score": 0.8889,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 6.47
+      }
+    },
+    {
+      "question": "2024_1:2",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2024_1/02.webp",
+      "score": 0.8488,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 117.17
+      }
+    },
+    {
+      "question": "2024_1:2",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_1/02.webp",
+      "score": 0.8874,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 117.17
+      }
+    },
+    {
+      "question": "2024_1:35",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2024_1/35.webp",
+      "score": 0.8424,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 386.8
+      }
+    },
+    {
+      "question": "2024_1:35",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_1/35.webp",
+      "score": 0.8943,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 386.29
+      }
+    },
+    {
+      "question": "2024_2:3",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2024_2/03.webp",
+      "score": 0.9049,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 8.4
+      }
+    },
+    {
+      "question": "2024_2:35",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_2/35.webp",
+      "score": 0.8596,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 241.11
+      }
+    },
+    {
+      "question": "2024_2:56",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2024_2/56.webp",
+      "score": 0.9175,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 4.79
+      }
+    },
+    {
+      "question": "2024_2:56",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_2/56.webp",
+      "score": 0.9007,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 4.79
+      }
+    },
+    {
+      "question": "2024_3:1",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2024_3/01.webp",
+      "score": 0.8616,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 391.93
+      }
+    },
+    {
+      "question": "2024_3:1",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_3/01.webp",
+      "score": 0.8699,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 353.54
+      }
+    },
+    {
+      "question": "2024_3:19",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2024_3/19.webp",
+      "score": 0.8726,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 2.42
+      }
+    },
+    {
+      "question": "2024_3:19",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_3/19.webp",
+      "score": 0.9154,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "right": 2.42
+      }
+    },
+    {
+      "question": "2024_3:59",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2024_3/59.webp",
+      "score": 0.8952,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 6.64
+      }
+    },
+    {
+      "question": "2024_3:59",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2024_3/59.webp",
+      "score": 0.8489,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 5.64
+      }
+    },
+    {
+      "question": "2025_1:5",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2025_1/05.webp",
+      "score": 0.7283,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 12.19
+      }
+    },
+    {
+      "question": "2025_1:5",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2025_1/05.webp",
+      "score": 0.7204,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "top": 10.19
+      }
+    },
+    {
+      "question": "2025_1:55",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2025_1/55.webp",
+      "score": 0.8501,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 7.89
+      }
+    },
+    {
+      "question": "2025_1:55",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2025_1/55.webp",
+      "score": 0.8497,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "bottom": 6.89
+      }
+    },
+    {
+      "question": "2025_2:20",
+      "choice": 2,
+      "image": "assets/hvac-hansol/questions/2025_2/20.webp",
+      "score": 0.8189,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "left": 391.93
+      }
+    },
+    {
+      "question": "2025_2:31",
+      "choice": 3,
+      "image": "assets/hvac-hansol/questions/2025_2/31.webp",
+      "score": 0.8699,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "right": 4.38
+      }
+    },
+    {
+      "question": "2025_2:31",
+      "choice": 4,
+      "image": "assets/hvac-hansol/questions/2025_2/31.webp",
+      "score": 0.861,
+      "joinedChoices": 1,
+      "deficitPixels": {
+        "left": 4.38
+      }
+    },
+    {
+      "question": "2025_3:31",
+      "choice": 1,
+      "image": "assets/hvac-hansol/questions/2025_3/31.webp",
+      "score": 0.8511,
+      "joinedChoices": 2,
+      "deficitPixels": {
+        "right": 289.2
+      }
+    }
+  ]
+}
