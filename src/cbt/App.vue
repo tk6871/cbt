@@ -4008,11 +4008,11 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </Transition>
-        <footer class="pager">
-          <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
-          <span><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
+        <footer class="pager" :class="{ 'has-unanswered': unansweredCount }">
+          <button type="button" class="pager-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
+          <span class="pager-position"><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
           <button v-if="unansweredCount" type="button" class="pager-unanswered-button" @click="goToNextUnanswered">다음 미응답</button>
-          <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
+          <button type="button" class="pager-next" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
           <button v-if="session.mode === 'learn'" type="button" class="learning-result-button" @click="submitLearning">학습 결과 보기</button>
           <button v-else type="button" class="exam-submit-button" @click="submitExam(false)">시험 제출·채점</button>
         </footer>
@@ -4070,14 +4070,14 @@ onBeforeUnmount(() => {
     </nav>
 
     <nav v-if="solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
-      <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
+      <button type="button" class="compact-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
       <div>
         <span>COMCBT PAGE</span>
         <strong>{{ session.page + 1 }} / {{ pageCount }}</strong>
         <small>{{ answeredCount }}개 완료 · {{ unansweredCount }}개 미응답</small>
       </div>
       <button v-if="unansweredCount" type="button" class="unanswered-jump" @click="goToNextUnanswered">미응답</button>
-      <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>다음</span> →</button>
+      <button type="button" class="compact-next" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>다음</span> →</button>
       <button v-if="session.mode === 'learn'" type="button" class="compact-submit learning" @click="submitLearning">학습 결과 보기</button>
       <button v-else type="button" class="compact-submit exam" @click="submitExam(false)">시험 제출·채점</button>
     </nav>

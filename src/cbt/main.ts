@@ -6,6 +6,22 @@ import './cbt.css';
 
 const nativeApp = Capacitor.isNativePlatform();
 
+function preventAccidentalBrowserZoom(): void {
+  if (navigator.maxTouchPoints < 1) return;
+
+  const preventGesture = (event: Event): void => event.preventDefault();
+  const preventMultiTouchZoom = (event: TouchEvent): void => {
+    if (event.touches.length > 1) event.preventDefault();
+  };
+
+  document.addEventListener('gesturestart', preventGesture, { passive: false });
+  document.addEventListener('gesturechange', preventGesture, { passive: false });
+  document.addEventListener('gestureend', preventGesture, { passive: false });
+  document.addEventListener('touchstart', preventMultiTouchZoom, { passive: false });
+}
+
+preventAccidentalBrowserZoom();
+
 function updateNativeFormFactor(): void {
   if (!nativeApp) return;
   const shortestSide = Math.min(window.innerWidth, window.innerHeight);
@@ -35,7 +51,7 @@ if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:')
 
   navigator.serviceWorker.addEventListener('controllerchange', announceUpdate);
   window.addEventListener('load', () => {
-    void navigator.serviceWorker.register('./sw.js?v=351', { updateViaCache: 'none' }).then((registration) => {
+    void navigator.serviceWorker.register('./sw.js?v=352', { updateViaCache: 'none' }).then((registration) => {
       const watchInstallingWorker = (): void => {
         const worker = registration.installing;
         if (!worker || !hadController) return;

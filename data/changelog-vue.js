@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '3.5.2',
+      scope: 'industrial',
+      date: '2026.08.23',
+      title: '모바일 확대 방지와 iPhone 하단 UI 보정',
+      summary: '문제를 풀다 실수로 화면이 확대되는 현상을 막고 iPhone 홈 표시줄 영역에서도 하단 메뉴와 이동 버튼이 잘리지 않게 조정했습니다.',
+      tags: ['모바일', 'iPhone', '확대 방지', '하단 UI'],
+      changes: [
+        '휴대폰과 태블릿에서 손가락 확대·축소와 두 번 누르기 확대가 발생하지 않도록 고정했습니다.',
+        'iPhone 14 Pro를 포함한 홈 표시줄 기기에서 하단 메뉴가 안전영역 안쪽에 정확히 배치됩니다.',
+        '기본 CBT의 이전·다음·미응답·제출 버튼을 모바일 2열 구조로 정리해 화면 밖으로 잘리지 않게 했습니다.',
+        'COMCBT 하단 이동 바는 작은 화면에서 다섯 기능을 한 줄 안에 맞추고 홈 표시줄 높이까지 자동 반영합니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.2로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.5.2',
+      scope: 'jewelry',
+      date: '2026.08.23',
+      title: 'iPhone 하단 메뉴와 화면 크기 안정화',
+      summary: '보석관 모바일 화면도 실수로 확대되지 않으며 iPhone 홈 표시줄과 겹치지 않도록 하단 UI를 맞췄습니다.',
+      tags: ['모바일', 'iPhone', '확대 방지', '보석관'],
+      changes: [
+        '휴대폰과 태블릿에서 실수로 화면이 확대·축소되지 않게 고정했습니다.',
+        'iPhone의 홈 표시줄 안전영역을 하단 메뉴와 문제 이동 버튼 높이에 포함했습니다.',
+        '좁은 화면의 이전·다음·미응답·결과 버튼이 화면 밖으로 잘리지 않도록 재배치했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.2로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.5.1',
       scope: 'industrial',
       date: '2026.08.23',
@@ -1534,8 +1563,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.5.1';
-  changelog.versions.jewelry = '3.5.1';
-  changelog.currentVersion = '3.5.1';
+  changelog.versions.industrial = '3.5.2';
+  changelog.versions.jewelry = '3.5.2';
+  changelog.currentVersion = '3.5.2';
   window.CBT_CHANGELOG = changelog;
 })();
