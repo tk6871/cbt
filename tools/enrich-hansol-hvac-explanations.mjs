@@ -621,6 +621,22 @@ for (const round of hvac.rounds) {
   }
 }
 
+const detailedCalculationExplanations = new Map([
+  ['hvac-20213:31', '진공압 300mmHg는 압력이 300mmHg라는 뜻이 아니라, 표준대기압보다 300mmHg만큼 낮다는 뜻입니다. 그래서 먼저 표준대기압 760mmHg에서 300mmHg를 빼면 절대압력은 460mmHg입니다. 여기서 760mmHg와 101.325kPa는 서로 다른 압력이 아니라 둘 다 표준대기압 1기압을 나타냅니다. 따라서 460mmHg가 1기압의 얼마인지 비율 460/760을 만든 뒤 101.325kPa를 곱합니다. 계산하면 (760-300)×101.325÷760=약 61.3kPa이므로 정답은 ③입니다.'],
+]);
+for (const round of hvac.rounds) {
+  for (const question of round.questions) {
+    const detailed = detailedCalculationExplanations.get(`${round.id}:${question.number}`);
+    if (!detailed) continue;
+    const supplement = String(question.explanation || '').includes('\n\n[COMCBT 동일 문제 추가 해설]\n')
+      ? `\n\n[COMCBT 동일 문제 추가 해설]\n${String(question.explanation).split('\n\n[COMCBT 동일 문제 추가 해설]\n').slice(1).join('\n\n[COMCBT 동일 문제 추가 해설]\n')}`
+      : '';
+    question.explanation = `${detailed}${supplement}`;
+    question.explanationHtml = question.explanation;
+    question.explanationProvenance = 'manual-detailed-calculation';
+  }
+}
+
 fs.writeFileSync(path.join(root, 'data/hvac-hansol.js'), `window.CBT_DATA_HANSOL_HVAC=${JSON.stringify(hansol)};\n`);
 fs.writeFileSync(path.join(root, 'data/hvac.js'), `window.CBT_DATA_HVAC=${JSON.stringify(hvac)};\n`);
 

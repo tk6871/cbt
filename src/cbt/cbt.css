@@ -714,6 +714,7 @@ img { max-width: 100%; }
 .calculation-explanation > div > span { width:25px; height:25px; border-radius:8px; color:white; background:#7556d8; display:grid; place-items:center; font-size:.57rem; font-weight:900; }
 .calculation-explanation p { margin:0; color:var(--text); font-size:calc(.68rem * var(--font-scale,1)); line-height:1.65; }
 .calculation-explanation p strong { margin-right:7px; color:#6547c2; }
+.number-origin-line { display:block; margin-top:4px; padding-left:10px; border-left:2px solid color-mix(in srgb,#7957dd 35%,var(--line)); }
 .empty-state { min-height:330px; margin-top:14px; padding:35px; border:1px dashed var(--line); border-radius:18px; background:var(--surface); display:grid; place-content:center; justify-items:center; text-align:center; }
 .empty-state > span { width:50px; height:50px; border-radius:15px; color:var(--primary); background:var(--primary-soft); display:grid; place-items:center; font-size:1.3rem; }
 .empty-state h2 { margin:14px 0 4px; font-size:1rem; }.empty-state p { margin:0; color:var(--muted); font-size:.65rem; }
