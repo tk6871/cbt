@@ -220,7 +220,14 @@ const options = parseArguments(process.argv.slice(2));
 const generated = readObject(path.join(root, 'src/cbt/generatedHvacHotspots.ts'));
 const reviewed = readObject(path.join(root, 'src/cbt/reviewedHvacHotspots.ts'));
 const reviewedSegments = readObject(path.join(root, 'src/cbt/reviewedHvacAnswerSegments.ts'));
-const segments = readObject(path.resolve(root, options.segments));
+const generatedSegments = readObject(path.resolve(root, options.segments));
+// The browser overlays reviewed segments on top of generated OCR segments.
+// Audit that same merged data; otherwise a manually fixed box is excluded as
+// "reviewed" while the pixel measurement still inspects its stale generator box.
+const segments = Object.fromEntries(
+  [...new Set([...Object.keys(generatedSegments), ...Object.keys(reviewedSegments)])]
+    .map((image) => [image, { ...generatedSegments[image], ...reviewedSegments[image] }]),
+);
 const hotspots = { ...generated, ...reviewed };
 const reviewedKeys = new Set(Object.entries(reviewedSegments).flatMap(([image, choices]) => (
   Object.keys(choices).map((choice) => `${image}/${choice}`)

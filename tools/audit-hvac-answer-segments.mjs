@@ -193,6 +193,12 @@ const visualBoundaryRegressions = [
   ['assets/hvac/assets/questions/2021_1/60.jpg', 1, 'bottomMax', 52],
   ['assets/hvac/assets/questions/2021_1/60.jpg', 4, 'topMax', 75.6],
   ['assets/hvac/assets/questions/2021_1/60.jpg', 4, 'bottomMin', 93],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 1, 'topMax', 83],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 1, 'bottomMax', 89],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 2, 'bottomMax', 89],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 3, 'topMin', 90.5],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 4, 'topMin', 90.5],
+  ['assets/hvac/assets/questions/2021_3/60.jpg', 4, 'heightMin', 5.5],
   ['assets/hvac/assets/questions/2022_1/54.jpg', 1, 'bottomMax', 60],
   ['assets/hvac/assets/questions/2022_1/54.jpg', 3, 'topMax', 62.3],
   ['assets/hvac/assets/questions/2022_1/60.jpg', 1, 'bottomMax', 45],
@@ -218,7 +224,7 @@ for (const [image, choice, rule, expected] of visualBoundaryRegressions) {
   const box = unifiedAnswerHotspots(hotspots[image], segments[image]).find((item) => item.choice === choice);
   const value = !box ? Number.NaN
     : rule === 'bottomMax' || rule === 'bottomMin' ? box.y + box.height
-      : rule === 'topMax' ? box.y
+      : rule === 'topMax' || rule === 'topMin' ? box.y
         : rule === 'rightMin' ? box.x + box.width
           : rule === 'widthMin' ? box.width : box.height;
   const failed = !Number.isFinite(value)
