@@ -247,7 +247,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v343';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v344';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -2168,7 +2168,7 @@ function setFontScale(value: number): void {
   document.documentElement.dataset.questionScale = normalized >= 1.3 ? 'large' : 'normal';
   document.documentElement.style.setProperty('--question-text-size', `${(.96 * normalized).toFixed(3)}rem`);
   document.documentElement.style.setProperty('--choice-text-size', `${(.86 * normalized).toFixed(3)}rem`);
-  document.documentElement.style.setProperty('--explanation-text-size', `${(.82 * normalized).toFixed(3)}rem`);
+  document.documentElement.style.setProperty('--explanation-text-size', `${(.9 * normalized).toFixed(3)}rem`);
   document.documentElement.style.setProperty('--question-number-size', `${(.95 * normalized).toFixed(3)}rem`);
 }
 

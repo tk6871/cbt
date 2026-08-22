@@ -74,6 +74,8 @@ const sourceImageRef = ref<HTMLImageElement | null>(null);
 const imageZoomOpen = ref(false);
 const explanationOpen = ref(false);
 const explanationDismissed = ref(false);
+const beginnerCalculationOpen = ref(false);
+const memoryTipOpen = ref(false);
 const circles = ['①', '②', '③', '④'];
 
 function readableText(value = ''): string {
@@ -84,23 +86,95 @@ function readableText(value = ''): string {
     .trim();
 }
 
+function leadingQuestionNumberPattern(number: number): RegExp {
+  return new RegExp(`^(?:\\s|&nbsp;)*${number}\\s*(?:[.)：:]|번(?:\\s*[.)：:]?)?)(?:\\s|&nbsp;)*`);
+}
+
+function leadingChoiceMarkerPattern(index: number): RegExp {
+  const number = index + 1;
+  return new RegExp(`^(?:\\s|&nbsp;)*(?:${circles[index]}|${number}\\s*(?:[.)：:]|번(?:\\s*[.)：:]?)?))(?:\\s|&nbsp;)*`);
+}
+
+const displayedQuestionMarkup = computed(() => {
+  const source = props.item.question.html || props.item.question.text || '';
+  return String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
+});
+const embeddedChoiceMarkers = computed(() => props.item.question.choices.length === 4
+  && props.item.question.choices.every((choice, index) => leadingChoiceMarkerPattern(index)
+    .test(String(choice.html || choice.text || ''))));
+const displayedChoices = computed(() => props.item.question.choices.map((choice, index) => {
+  const source = String(choice.html || choice.text || `${index + 1}번`);
+  return embeddedChoiceMarkers.value ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
+}));
+const showQuestionIdentity = computed(() => primaryImage.value
+  && Boolean(props.displayNumber)
+  && props.displayNumber !== props.item.question.number);
+
 const correctAnswerText = computed(() => readableText(
   props.item.question.choices[props.item.question.answer - 1]?.text
   || props.item.question.choices[props.item.question.answer - 1]?.html
   || `${props.item.question.answer}번`,
 ));
+const explanationText = computed(() => readableText(
+  props.item.question.explanationHtml || props.item.question.explanation || '',
+));
+const comcbtExplanationText = computed(() => {
+  const source = props.item.question.explanation || props.item.question.explanationHtml || '';
+  const matched = source.split('[COMCBT 동일 문제 추가 해설]')[1];
+  if (matched) return readableText(matched.replace(/\[해설작성자[^\]]*\]/g, ' '));
+  const provenance = props.item.question.explanationProvenance || '';
+  if (props.item.question.source !== 'comcbt.com' || /local-|ai-reference|beginner-authored/i.test(provenance)) return '';
+  return readableText(source.replace(/\[해설작성자[^\]]*\]/g, ' '));
+});
+
+function conciseExplanationTip(source: string): string {
+  if (!source) return '';
+  const pieces = source
+    .split(/(?:\n+|(?<=[.!?])\s+)/)
+    .map((part) => part.replace(/\[해설작성자[^\]]*\]/g, '').trim())
+    .filter((part) => part.length >= 5 && part.length <= 120);
+  return pieces.find((part) => /외우|암기|기억|연상|줄임|두문/i.test(part))
+    || pieces.find((part) => /→|->|=|비례|반비례/.test(part) && part.length <= 90)
+    || '';
+}
+
 const memoryTip = computed(() => {
   const stem = readableText(props.item.question.text || props.item.question.html);
   const answer = correctAnswerText.value.slice(0, 90) || `${props.item.question.answer}번`;
+  const source = `${stem} ${answer} ${explanationText.value}`;
+  const comcbtTip = conciseExplanationTip(comcbtExplanationText.value);
+  if (comcbtTip) return `COMCBT 암기말: ${comcbtTip}`;
+
+  const rules: Array<[RegExp, string]> = [
+    [/펠티어|제백|seebeck|peltier/i, '제백은 온도차 → 전압, 펠티어는 전류 → 흡열·발열(온도차). 방향을 반대로 짝지어 외우세요.'],
+    [/송풍기.*(?:상사|회전수)|(?:풍량|압력|동력).*제곱/i, '풍·압·동 = 1·2·3. 회전수에 대해 풍량 1제곱, 압력 2제곱, 동력 3제곱입니다.'],
+    [/송풍기.*(?:지름|직경)/i, '지름 법칙은 풍·압·동 = 3·2·5. 회전수의 1·2·3과 구분하세요.'],
+    [/캐비테이션|공동현상/i, '캐비 방지는 “굵·짧·곧·천”: 흡입관은 굵고 짧고 곧게, 펌프 회전은 천천히.'],
+    [/아연도금.*덕트|덕트.*아연도금/i, '일반 덕트 = 아연도금 강판. “덕트는 녹 방지 아연”으로 연결하세요.'],
+    [/바이오.*클린룸|미생물.*클린룸/i, '사람·약·식품처럼 미생물까지 막으면 바이오 클린룸. “바이오=살아 있는 오염”입니다.'],
+    [/활성탄.*(?:냄새|가스)|(?:냄새|가스).*활성탄/i, '활성탄 = 냄새·가스 흡착, HEPA = 미세입자 제거. “탄은 냄새, 헤파는 먼지”로 외우세요.'],
+    [/팽창밸브.*(?:적게|닫|조이)/i, '팽창밸브를 조이면 냉매가 적게 들어가므로 증발압력↓·냉동능력↓·과열도↑. “조이면 압·능↓, 과열↑”.'],
+    [/역지밸브|체크밸브/i, '역지(체크)밸브 = 한쪽 방향만 통과. “역류를 막는 역지”로 외우세요.'],
+    [/시퀀스제어|순서.*제어/i, '미리 정한 순서대로 움직이면 시퀀스. “순서=시퀀스” 한 쌍만 기억하세요.'],
+    [/냉동톤|\bUSRT\b|\bJRT\b/i, 'USRT는 3.517kW(3,024kcal/h), JRT는 3,320kcal/h. “미국 3024, 일본 3320”.'],
+    [/성능계수|\bCOP\b/i, 'COP = 얻은 냉동효과 ÷ 넣은 압축일. “얻은 것 ÷ 넣은 것”입니다.'],
+    [/3상.*전력|전력.*√3|역률/i, '3상 전력 = √3×전압×전류×역률. “루트3·V·I·역률” 순서로 붙여 외우세요.'],
+    [/열관류|벽.*열손실/i, '벽 열량은 K·A·ΔT. “관류율×면적×온도차” 세 가지만 묶으세요.'],
+    [/유량.*단면적|단면적.*유속/i, '유량 Q = 넓이 A × 속도 v. “넓게, 빠르게 흐를수록 유량이 크다”입니다.'],
+  ];
+  const curated = rules.find(([pattern]) => pattern.test(source));
+  if (curated) return curated[1];
+  if (calculationProblem.value) {
+    return `공식 한 줄: ${calculationGuide.value.formula} 구할 값과 단위를 먼저 확인한 뒤 이 식에 문제의 숫자를 넣으세요.`;
+  }
   const negative = /틀린|옳지 않은|아닌|거리가 먼|해당하지 않는|잘못된/.test(stem);
-  if (props.calculationMode || calculationProblem.value) {
-    return `계산 암기 4칸: ① 구할 값에 밑줄 → ② 단위를 하나로 맞춤 → ③ ${calculationGuide.value.formula} → ④ 숫자를 넣고 정답 ${props.item.question.answer}번과 비교하세요. 해설을 닫고 이 네 칸을 말한 뒤, 막히면 ★로 저장해 오늘 밤과 다음 날 아침에 다시 풉니다.`;
-  }
-  if (negative) {
-    return `예외 카드로 외우세요: 문제의 ‘틀린 것·아닌 것’에 동그라미를 치고, 정답 ${props.item.question.answer}번 ‘${answer}’을 반대편에 적습니다. 해설을 닫고 10초 뒤 답을 말해 본 다음, 틀리면 ★로 저장해 오늘 밤과 다음 날 아침에 다시 확인합니다.`;
-  }
-  return `짝꿍 카드로 외우세요: 앞면에는 문제의 핵심어를, 뒷면에는 정답 ${props.item.question.answer}번 ‘${answer}’을 적습니다. 해설을 닫고 10초 뒤 답을 말해 보고, 막히면 ★로 저장해 오늘 밤과 다음 날 아침에 한 번씩 더 꺼내 봅니다.`;
+  return negative
+    ? `반대말 문제: ‘틀린 것·아닌 것’을 먼저 찾고, 예외는 ${props.item.question.answer}번 “${answer}”로 연결하세요.`
+    : `핵심 연결: “${stem.slice(0, 42)}” → ${props.item.question.answer}번 “${answer}”.`;
 });
+const memoryTipSource = computed(() => conciseExplanationTip(comcbtExplanationText.value)
+  ? 'COMCBT 해설에서 뽑은 암기말'
+  : '문제 핵심을 줄인 암기말');
 
 function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
   if (choice.images?.length) return true;
@@ -118,7 +192,7 @@ const compactVisualChoices = computed(() => !restoredQuestion.value
   && props.item.question.choices.some((choice) => choice.images?.length));
 const compactTextChoices = computed(() => {
   if (primaryImage.value || props.item.question.choices.some((choice) => choice.images?.length)) return false;
-  const lengths = props.item.question.choices.map((choice) => (choice.text || choice.html || '')
+  const lengths = displayedChoices.value.map((choice) => choice
     .replace(/<[^>]+>/g, ' ')
     .replace(/&[^;]+;/g, ' ')
     .replace(/\s+/g, ' ')
@@ -130,7 +204,7 @@ const compactTextChoices = computed(() => {
 const compactSolveLayout = computed(() => props.solveLayout === 'comcbt');
 const inlineCompactExplanation = computed(() => props.solveLayout === 'comcbt');
 const combatDenseChoices = computed(() => {
-  if ((props.solveLayout !== 'comcbt' && props.solveLayout !== 'combat')
+  if (props.solveLayout !== 'combat'
     || primaryImage.value
     || props.item.question.choices.some((choice) => choice.images?.length)) return false;
   const lengths = props.item.question.choices.map((choice) => (choice.text || choice.html || '')
@@ -222,6 +296,8 @@ watch(verifiedHotspots, (hotspots) => {
 }, { flush: 'post' });
 watch(() => [props.item.id, props.selected, props.solveLayout], () => {
   explanationDismissed.value = false;
+  beginnerCalculationOpen.value = false;
+  memoryTipOpen.value = false;
   explanationOpen.value = Boolean(
     props.mode === 'learn'
     && correctSelected.value
@@ -249,10 +325,11 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     </div>
 
     <header class="question-head">
-      <div v-if="!compactSolveLayout || primaryImage">
-        <span class="question-subject">{{ item.subject }}</span>
-        <strong>{{ displayNumber || item.question.number }}번</strong>
+      <div v-if="showQuestionIdentity" class="question-current-identity">
+        <span>현재 문제</span>
+        <strong>{{ displayNumber }}번</strong>
       </div>
+      <span v-else class="question-head-spacer" aria-hidden="true"></span>
       <span v-if="displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="fieldReportQuestion" class="source-chip field-report-source-chip">비공식 제보 재구성</span>
@@ -340,7 +417,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       <template v-else>
         <div class="compact-question-copy">
           <strong class="compact-question-number">{{ displayNumber || item.question.number }}.</strong>
-          <div class="question-text" v-html="item.question.html || item.question.text" />
+          <div class="question-text" v-html="displayedQuestionMarkup" />
         </div>
         <img
           v-for="image in item.question.images || []"
@@ -378,7 +455,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       >
         <span class="choice-number">{{ circles[index] || index + 1 }}</span>
         <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
-          <span v-html="choice.html || choice.text || `${index + 1}번`" />
+          <span v-html="displayedChoices[index]" />
           <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
         </span>
         <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
@@ -400,17 +477,8 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     <div v-if="mode === 'learn' && correctSelected && !explanationDismissed && (!compactSolveLayout || inlineCompactExplanation)" class="explanation-box" :class="{ 'comcbt-inline-explanation': inlineCompactExplanation }">
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
-        <strong>쉽게 풀어보기</strong>
+        <strong>정답 해설</strong>
         <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="explanationDismissed = true">닫기 ×</button>
-      </div>
-      <div v-if="calculationMode || calculationProblem" class="calculation-explanation">
-        <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
-        <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
-        <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
-        <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
-        <div><span>5</span><p><strong>숫자는 어디서 나왔나요?</strong><template v-if="calculationNumberOrigins.length"><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else>문제에 직접 적힌 수치와 단위에서 가져옵니다. 외워야 하는 환산값이 있으면 기존 해설과 함께 확인합니다.</template></p></div>
-        <div><span>6</span><p><strong>숫자 넣기</strong>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.') }}</p></div>
-        <div><span>7</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
       </div>
       <div
         v-if="item.question.explanationHtml"
@@ -419,7 +487,23 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       />
       <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
-      <aside class="memory-tip"><strong>🧠 쉽게 외우기</strong><p>{{ memoryTip }}</p></aside>
+      <section v-if="calculationMode || calculationProblem" class="nested-explanation calculation-nested-explanation">
+        <button type="button" class="nested-explanation-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+          <span>＋</span><strong>쉽게 풀어보기</strong><small>문제에 없는 숫자의 출처까지 {{ beginnerCalculationOpen ? '접기' : '보기' }}</small><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
+        </button>
+        <div v-if="beginnerCalculationOpen" class="calculation-explanation beginner-calculation-explanation">
+          <div><span>구할 것</span><p>{{ calculationGuide.goal }}</p></div>
+          <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+          <div><span>숫자</span><p><template v-if="calculationNumberOrigins.length"><strong>문제에 바로 없는 숫자는 여기서 나옵니다.</strong><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else><strong>새로 튀어나온 숫자는 없습니다.</strong>문제에 적힌 {{ calculationValues.length ? calculationValues.join(', ') : '수치' }}를 그대로 사용합니다.</template></p></div>
+          <div><span>계산</span><p>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.` : '문제에 주어진 숫자를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.') }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+        </div>
+      </section>
+      <aside class="nested-explanation memory-tip">
+        <button type="button" class="nested-explanation-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+          <span>🧠</span><strong>쉽게 외우기</strong><small>{{ memoryTipSource }}</small><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
+        </button>
+        <p v-if="memoryTipOpen">{{ memoryTip }}</p>
+      </aside>
     </div>
 
     <Teleport to="body">
@@ -434,24 +518,31 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       >
         <section class="compact-explanation-panel">
           <header>
-            <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${displayNumber || item.question.number}번` }}</span><strong>쉽게 풀어보기</strong></div>
+            <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${displayNumber || item.question.number}번` }}</span><strong>정답 해설</strong></div>
             <button type="button" aria-label="해설 닫기" @click="explanationOpen = false">×</button>
           </header>
           <div class="compact-explanation-scroll">
             <div class="explanation-title"><span>정답 {{ item.question.answer }}번</span><strong>핵심부터 차근차근 확인하세요</strong></div>
-            <div v-if="calculationMode || calculationProblem" class="calculation-explanation">
-              <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
-              <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
-              <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
-              <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
-              <div><span>5</span><p><strong>숫자는 어디서 나왔나요?</strong><template v-if="calculationNumberOrigins.length"><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else>문제에 직접 적힌 수치와 단위에서 가져옵니다. 외워야 하는 환산값이 있으면 기존 해설과 함께 확인합니다.</template></p></div>
-              <div><span>6</span><p><strong>숫자 넣기</strong>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.') }}</p></div>
-              <div><span>7</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
-            </div>
             <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
             <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
             <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
-            <aside class="memory-tip"><strong>🧠 쉽게 외우기</strong><p>{{ memoryTip }}</p></aside>
+            <section v-if="calculationMode || calculationProblem" class="nested-explanation calculation-nested-explanation">
+              <button type="button" class="nested-explanation-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+                <span>＋</span><strong>쉽게 풀어보기</strong><small>문제에 없는 숫자의 출처까지 {{ beginnerCalculationOpen ? '접기' : '보기' }}</small><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
+              </button>
+              <div v-if="beginnerCalculationOpen" class="calculation-explanation beginner-calculation-explanation">
+                <div><span>구할 것</span><p>{{ calculationGuide.goal }}</p></div>
+                <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+                <div><span>숫자</span><p><template v-if="calculationNumberOrigins.length"><strong>문제에 바로 없는 숫자는 여기서 나옵니다.</strong><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else><strong>새로 튀어나온 숫자는 없습니다.</strong>문제에 적힌 {{ calculationValues.length ? calculationValues.join(', ') : '수치' }}를 그대로 사용합니다.</template></p></div>
+                <div><span>계산</span><p>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.` : '문제에 주어진 숫자를 같은 단위로 맞춘 뒤 공식 자리에 하나씩 넣습니다.') }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+              </div>
+            </section>
+            <aside class="nested-explanation memory-tip">
+              <button type="button" class="nested-explanation-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+                <span>🧠</span><strong>쉽게 외우기</strong><small>{{ memoryTipSource }}</small><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
+              </button>
+              <p v-if="memoryTipOpen">{{ memoryTip }}</p>
+            </aside>
           </div>
           <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
         </section>
