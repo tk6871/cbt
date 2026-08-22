@@ -247,7 +247,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v344';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v345';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -1123,7 +1123,7 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; kept?: string[] } = {},
+  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; kept?: string[]; resume?: boolean } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -1136,6 +1136,7 @@ async function beginSession(
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
     : -1;
+  if (mode === 'learn' && !options.resume) clearSavedLearningSession();
   examResult.value = null;
   sessionMenuOpen.value = false;
   learningJumpNumber.value = '';
@@ -1178,6 +1179,7 @@ async function beginSession(
       { duration: visualStyle.value === 'simpsons' ? .58 : .44, delay: stagger(.065), ease: [0.2, 0.85, 0.2, 1] },
     );
   });
+  if (mode === 'learn') scheduleLearningSessionSave();
   await waitForMotion(620);
   experienceTransitionPhase.value = null;
 }
@@ -1204,23 +1206,8 @@ function resumeSavedLearning(): void {
     pageSize: saved.pageSize,
     startedAt: saved.startedAt,
     kept: saved.kept,
+    resume: true,
   });
-}
-
-function restoredRoundAnswers(round: Round, items: QuestionItem[]): Record<string, number> {
-  const saved = studyStore.progress?.[round.id] as { answers?: Record<string, number> } | undefined;
-  const savedAnswers = saved?.answers || {};
-  return Object.fromEntries(items.flatMap((item) => {
-    const attempt = studyStore.attempts[item.id];
-    let choice = Number(savedAnswers[String(item.question.number)] ?? attempt?.lastChoice);
-    if (!Number.isInteger(choice) || choice < 1 || choice > 4) {
-      if (!attempt) return [];
-      choice = attempt.lastCorrect
-        ? item.question.answer
-        : (item.question.answer === 1 ? 2 : 1);
-    }
-    return [[item.id, choice]];
-  }));
 }
 
 function startRound(round: Round, mode: StudyMode): void {
@@ -1229,7 +1216,7 @@ function startRound(round: Round, mode: StudyMode): void {
     mode,
     `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
     items,
-    mode === 'learn' ? restoredRoundAnswers(round, items) : {},
+    {},
   );
 }
 

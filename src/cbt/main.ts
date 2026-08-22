@@ -35,7 +35,7 @@ if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:')
 
   navigator.serviceWorker.addEventListener('controllerchange', announceUpdate);
   window.addEventListener('load', () => {
-    void navigator.serviceWorker.register('./sw.js?v=344', { updateViaCache: 'none' }).then((registration) => {
+    void navigator.serviceWorker.register('./sw.js?v=345', { updateViaCache: 'none' }).then((registration) => {
       const watchInstallingWorker = (): void => {
         const worker = registration.installing;
         if (!worker || !hadController) return;
