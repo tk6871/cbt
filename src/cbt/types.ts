@@ -65,6 +65,9 @@ export type Catalog = {
   shortName?: string;
   rounds: Round[];
   isVirtual?: boolean;
+  isPlaceholder?: boolean;
+  roundCount?: number;
+  questionCount?: number;
 };
 
 export type QuestionItem = {
@@ -126,6 +129,16 @@ declare global {
     CBT_DATA_MAINTENANCE?: Catalog;
     CBT_DATA_JEWELRY?: Catalog[];
     CBT_APP_SPACE?: 'industrial' | 'jewelry';
+    CBT_DISPLAY_MODE?: 'mobile' | 'desktop';
+    CBT_DISPLAY_PREFERENCE?: 'auto' | 'mobile' | 'desktop';
+    CBT_LOADED_QUALIFICATION?: string;
+    CBT_CATALOG_INDEX?: Array<{
+      key: string;
+      name: string;
+      shortName?: string;
+      rounds: number;
+      questions: number;
+    }>;
     CBT_UPDATE_AVAILABLE?: boolean;
     CBT_CHANGELOG?: {
       currentVersion?: string;

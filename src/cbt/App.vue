@@ -54,7 +54,7 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
@@ -65,6 +65,8 @@ type HotspotIndicator = 'marker' | 'area';
 type RestoredImageTheme = 'auto' | 'original';
 type SolveLayoutMode = 'standard' | 'comcbt' | 'combat';
 type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
+type DisplayPreference = 'auto' | 'mobile' | 'desktop';
+type FontFamilyPreference = 'regular' | 'bold';
 type ExamResult = {
   score: number;
   correct: number;
@@ -171,6 +173,12 @@ const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
 const learningSessionStorageKey = `unified-cbt-learning-session-${spaceScope}`;
 const savedQualification = localStorage.getItem(qualificationStorageKey);
 const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : catalogs[0]?.key || '');
+const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE === 'mobile' || window.CBT_DISPLAY_PREFERENCE === 'desktop'
+  ? window.CBT_DISPLAY_PREFERENCE : 'auto');
+const resolvedDisplayMode = window.CBT_DISPLAY_MODE || 'desktop';
+const savedFontFamily = localStorage.getItem('unified-cbt-font-family');
+const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold' ? 'bold' : 'regular');
+document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
@@ -261,7 +269,7 @@ let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
-const viewOrder: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
+const viewOrder: ViewName[] = ['home', 'rounds', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
@@ -487,6 +495,7 @@ const questionTransitionName = computed(() => motionAllowed.value
 const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
+  history: '학습 내역',
   wrong: '오답노트',
   search: '문제 검색',
   calculation: '계산문제만 풀기',
@@ -544,10 +553,7 @@ const sessionProgress = computed(() => session.value?.items.length
   ? Math.round(answeredCount.value / session.value.items.length * 100)
   : 0);
 const preferredPageSize = computed(() => solveLayoutMode.value === 'comcbt' ? 6 : 4);
-const sessionQuestionMax = computed(() => session.value?.items.reduce(
-  (maximum, item) => Math.max(maximum, Number(item.question.number) || 0),
-  0,
-) || 0);
+const sessionQuestionMax = computed(() => session.value?.items.length || 0);
 const formattedTime = computed(() => {
   const total = Math.max(0, session.value?.remainingSeconds || 0);
   const hours = Math.floor(total / 3600);
@@ -833,6 +839,12 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 function configureQualification(key: string): void {
+  const target = catalogs.find((catalog) => catalog.key === key);
+  if (target?.isPlaceholder) {
+    localStorage.setItem(qualificationStorageKey, key);
+    location.reload();
+    return;
+  }
   selectedKey.value = key;
   localStorage.setItem(qualificationStorageKey, key);
   curriculum.value = 'all-mapped';
@@ -850,6 +862,19 @@ function selectQualification(key: string): void {
 
 function updateQualificationFromSetup(event: Event): void {
   configureQualification((event.target as HTMLSelectElement).value);
+}
+
+function setDisplayPreference(mode: DisplayPreference): void {
+  localStorage.setItem('unified-cbt-display-mode', mode);
+  displayPreference.value = mode;
+  location.reload();
+}
+
+function setFontFamilyPreference(mode: FontFamilyPreference): void {
+  fontFamilyPreference.value = mode;
+  localStorage.setItem('unified-cbt-font-family', mode);
+  document.documentElement.dataset.fontFamily = mode;
+  showToast(mode === 'bold' ? '나눔고딕 Bold 글꼴을 적용했습니다.' : '나눔고딕 Regular 글꼴을 적용했습니다.');
 }
 
 function applyPreset(value: 5 | 10 | 0): void {
@@ -1310,6 +1335,22 @@ function startCalculationLearning(limit?: number): void {
   beginSession('learn', `계산문제 · ${subjectLabel} · ${roundLabel}`, selected, {}, { calculationMode: true });
 }
 
+function replayHistoryRecord(record: ExamRecord): void {
+  let items = (record.itemIds || []).map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item));
+  if (!items.length && record.roundId) {
+    const round = selectedCatalog.value.rounds.find((item) => item.id === record.roundId);
+    if (round) items = roundToItems(round);
+  }
+  if (!items.length) {
+    items = Object.keys(record.answers || {}).map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item));
+  }
+  if (!items.length) {
+    showToast('이 기록의 문제를 현재 데이터에서 찾지 못했습니다. 해당 종목을 다시 선택해 주세요.');
+    return;
+  }
+  beginSession(record.mode || 'learn', `${record.title} · 다시 풀기`, items);
+}
+
 function startCoachSubject(subject: string): void {
   const items = masteryRows.value
     .filter((item) => item.subject === subject)
@@ -1327,12 +1368,14 @@ function chooseAnswer(item: QuestionItem, choice: number): void {
   if (!session.value || session.value.finished) return;
   if (session.value.answers[item.id] === choice) {
     delete session.value.answers[item.id];
+    scheduleLearningSessionSave();
     return;
   }
   session.value.answers[item.id] = choice;
   if (session.value.mode === 'learn') {
     recordAttempt(item.id, choice, item.question.answer);
   }
+  scheduleLearningSessionSave();
 }
 
 function toggleKeep(item: QuestionItem): void {
@@ -1384,6 +1427,7 @@ function goToPage(page: number): void {
   questionDirection.value = nextPage > session.value.page ? 1 : -1;
   session.value.page = nextPage;
   activeSessionItemId.value = session.value.items[nextPage * session.value.pageSize]?.id || '';
+  scheduleLearningSessionSave();
   window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
 }
 
@@ -1453,8 +1497,12 @@ function handleSessionKeydown(event: KeyboardEvent): void {
     event.preventDefault();
     toggleBookmark(item);
   } else if (event.key.toLowerCase() === 'e') {
+    const explanation = document.querySelector<HTMLElement>('.question-card.keyboard-active .explanation-box');
     const trigger = document.querySelector<HTMLElement>('.question-card.keyboard-active .compact-explanation-trigger');
-    if (trigger) {
+    if (explanation) {
+      event.preventDefault();
+      explanation.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else if (trigger) {
       event.preventDefault();
       trigger.click();
     }
@@ -1468,8 +1516,8 @@ function jumpToLearningQuestion(): void {
     showToast('이동할 문제 번호를 입력하세요.');
     return;
   }
-  const index = session.value.items.findIndex((item) => item.question.number === number);
-  if (index < 0) {
+  const index = number - 1;
+  if (index < 0 || index >= session.value.items.length) {
     showToast(`${number}번은 현재 학습 범위에 없습니다.`);
     return;
   }
@@ -1603,6 +1651,7 @@ function submitSession(mode: StudyMode, force = false): void {
     total: session.value.items.length,
     subjectRows: result.subjectRows,
     answers: { ...session.value.answers },
+    itemIds: session.value.items.map((item) => item.id),
     wrongAnswers,
     finishedAt: Date.now(),
   }).then(() => {
@@ -1928,6 +1977,7 @@ function setSolveLayoutMode(mode: SolveLayoutMode): void {
     session.value.pageSize = nextSize;
     session.value.page = Math.floor(currentIndex / nextSize);
     activeSessionItemId.value = session.value.items[currentIndex]?.id || session.value.items[0]?.id || '';
+    scheduleLearningSessionSave();
     void nextTick(syncOmrToCurrentPage);
   }
   showToast(mode === 'combat'
@@ -2340,10 +2390,6 @@ watch(() => session.value?.page, () => {
   void nextTick(syncOmrToCurrentPage);
 });
 
-watch(session, (active) => {
-  if (active?.mode === 'learn' && !active.finished) scheduleLearningSessionSave();
-}, { deep: true });
-
 watch(examResult, (result) => {
   window.clearTimeout(sunjaeResultHandle);
   window.clearTimeout(learningSessionSaveHandle);
@@ -2549,6 +2595,7 @@ onBeforeUnmount(() => {
       <nav>
         <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
         <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차별 문제</button>
+        <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><template>◴</template></span>학습 내역</button>
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
         <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(4)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
@@ -2641,7 +2688,7 @@ onBeforeUnmount(() => {
                     <img :src="sunjaeImageAt(catalogIndex + 1)" alt="">
                     <span>{{ selectedKey === catalog.key ? '우리 오늘 이거 하자' : '같이 골라볼래?' }}</span>
                     <strong>{{ catalog.name }}</strong>
-                    <small>{{ catalog.rounds.length }}회차 · {{ catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0).toLocaleString() }}문제</small>
+                    <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
                   </button>
                 </div>
               </section>
@@ -2736,7 +2783,7 @@ onBeforeUnmount(() => {
                 <span class="qualification-icon">{{ qualificationMeta[catalog.key]?.icon }}</span>
                 <span class="qualification-copy">
                   <strong>{{ catalog.name }}</strong>
-                  <small>{{ catalog.rounds.length }}회차 · {{ catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0).toLocaleString() }}문제</small>
+                  <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
                   <em>{{ qualificationMeta[catalog.key]?.description }}</em>
                 </span>
                 <b>›</b>
@@ -2886,6 +2933,26 @@ onBeforeUnmount(() => {
               </footer>
             </article>
           </TransitionGroup>
+        </template>
+
+        <template v-else-if="view === 'history'">
+          <section class="tool-hero history-hero">
+            <div><span>LEARNING HISTORY</span><h1>풀었던 문제와 이어할 학습</h1><p>{{ selectedCatalog.name }} · 최근 완료 기록 {{ recentExamRecords.length }}개</p></div>
+            <button v-if="savedLearningSession" type="button" @click="resumeSavedLearning">마지막 학습 이어하기</button>
+          </section>
+          <section v-if="savedLearningSession" class="history-resume-card">
+            <div><span>진행 중</span><strong>{{ savedLearningSession.title }}</strong><small>{{ new Date(savedLearningSession.savedAt).toLocaleString('ko-KR') }} · {{ Object.keys(savedLearningSession.answers).length }}/{{ savedLearningSession.itemIds.length }}문제</small></div>
+            <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
+          </section>
+          <div v-if="recentExamRecords.length" class="history-grid">
+            <article v-for="record in recentExamRecords" :key="record.id">
+              <header><span>{{ record.mode === 'exam' ? 'CBT 시험' : '학습모드' }}</span><time>{{ new Date(record.finishedAt).toLocaleString('ko-KR') }}</time></header>
+              <h2>{{ record.title }}</h2>
+              <div><strong>{{ record.score }}점</strong><span>{{ record.answered }}/{{ record.total }}문제 풀이</span><span>오답 {{ record.wrongAnswers?.length || 0 }}개</span></div>
+              <footer><button type="button" @click="replayHistoryRecord(record)">같은 문제 다시 풀기</button></footer>
+            </article>
+          </div>
+          <section v-else-if="!savedLearningSession" class="empty-state"><span>◴</span><h2>아직 학습 내역이 없습니다</h2><p>회차별 문제나 연도별 학습을 시작하면 여기에 날짜·점수·문제 수가 기록됩니다.</p><button @click="openView('rounds')">회차 선택하기</button></section>
         </template>
 
         <template v-else-if="view === 'wrong'">
@@ -3224,8 +3291,8 @@ onBeforeUnmount(() => {
             <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 네 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
             <div class="feature-tour-grid">
               <article class="feature-tour-card blue">
-                <b>01</b><span>PADDLE OCR</span><h3>보기 글자를 줄마다 강조</h3>
-                <p>두 줄·세 줄 답안도 하나로 선택하면서 글자 모양에 맞는 작은 영역 박스를 줄마다 표시합니다.</p>
+                <b>01</b><span>PADDLE OCR</span><h3>여러 줄 보기도 한 박스로 선택</h3>
+                <p>두 줄·세 줄 답안의 전체 글자를 하나의 정확한 박스로 묶어 누릅니다.</p>
                 <button type="button" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">이미지 답안 강조 켜기 →</button>
               </article>
               <article class="feature-tour-card violet">
@@ -3265,7 +3332,7 @@ onBeforeUnmount(() => {
                 <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
               </button>
               <button v-if="!isJewelry" type="button" class="feature-action-card midnight" @click="settingsOpen = true">
-                <span>◐</span><div><strong>복원 이미지 다크 설정</strong><small>남색·검정·원본 중 선택</small></div><b>›</b>
+                <span>◐</span><div><strong>복원 이미지 다크 설정</strong><small>눈부심 완화·원본 중 선택</small></div><b>›</b>
               </button>
               <button type="button" class="feature-action-card calc" @click="openCalculator">
                 <span>▦</span><div><strong>공학용 계산기</strong><small>별도 팝업으로 실행</small></div><b>›</b>
@@ -3351,6 +3418,7 @@ onBeforeUnmount(() => {
         <section class="native-more-sheet">
           <header><div><span>QUICK MENU</span><strong>더보기</strong></div><button type="button" aria-label="더보기 닫기" @click="nativeMoreOpen = false">×</button></header>
           <nav>
+            <button type="button" @click="nativeMoreOpen = false; openView('history')"><span>◴</span><div><strong>학습 내역</strong><small>이어하기·점수·재도전</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('calculation')"><span>∑</span><div><strong>계산문제</strong><small>공식부터 차근차근</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>취약 과목과 복습</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('stats')"><span>▥</span><div><strong>학습 통계</strong><small>점수와 학습 기록</small></div></button>
@@ -3365,6 +3433,15 @@ onBeforeUnmount(() => {
       <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
         <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group display-mode-setting">
+          <span>기기 화면 모드</span>
+          <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 모드를 바꾸면 현재 기록을 저장한 뒤 화면만 다시 엽니다.</p>
+          <div class="display-mode-options">
+            <button :class="{ active: displayPreference === 'auto' }" @click="setDisplayPreference('auto')"><strong>자동</strong><span>{{ resolvedDisplayMode === 'mobile' ? '현재 모바일·태블릿' : '현재 PC' }}</span><small>기기 자동 인식</small></button>
+            <button :class="{ active: displayPreference === 'mobile' }" @click="setDisplayPreference('mobile')"><strong>모바일</strong><span>모바일·태블릿</span><small>경량 화면 고정</small></button>
+            <button :class="{ active: displayPreference === 'desktop' }" @click="setDisplayPreference('desktop')"><strong>PC</strong><span>데스크톱 화면</span><small>PC 배치 고정</small></button>
+          </div>
+        </div>
         <div class="setting-group">
           <span>동적 UI</span>
           <p class="setting-description">켜면 새 배치와 자연스러운 화면 전환을 사용합니다. 끄면 v2.4.2 방식의 기존 배치와 즉시 전환으로 돌아갑니다.</p>
@@ -3414,6 +3491,14 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
             <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>글씨체</span>
+          <p class="setting-description">문제·보기·해설과 메뉴 글꼴을 함께 바꿉니다.</p>
+          <div class="font-family-options">
+            <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
+            <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">
@@ -3577,6 +3662,7 @@ onBeforeUnmount(() => {
       <nav>
         <button type="button" @click="leaveSession('home')"><span>⌂</span><div><strong>첫 화면</strong><small>종목 선택과 학습 설정</small></div></button>
         <button type="button" @click="leaveSession('rounds')"><span>▤</span><div><strong>회차별 문제</strong><small>전체 기출 회차 선택</small></div></button>
+        <button type="button" @click="leaveSession('history')"><span>◴</span><div><strong>학습 내역</strong><small>이어하기와 지난 점수</small></div></button>
         <button type="button" @click="leaveSession('wrong')"><span>!</span><div><strong>오답노트</strong><small>틀린 문제 다시 풀기</small></div></button>
         <button type="button" @click="leaveSession('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>맞춤 복습과 합격 예측</small></div></button>
         <button type="button" @click="leaveSession('updates')"><span>◷</span><div><strong>패치노트</strong><small>최근 업데이트 확인</small></div></button>
@@ -3602,6 +3688,7 @@ onBeforeUnmount(() => {
                 :selected="session.answers[item.id]"
                 :subject-start="isSubjectStart(item)"
                 :subject-number="sessionSubjectNumber(item)"
+                :display-number="session.items.indexOf(item) + 1"
                 :bookmarked="studyStore.bookmarks.includes(item.id)"
                 :kept="session.kept.includes(item.id)"
                 :calculation-mode="session.calculationMode"
@@ -3770,6 +3857,14 @@ onBeforeUnmount(() => {
             <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
             <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
             <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>글씨체</span>
+          <p class="setting-description">현재 문제와 답안을 유지한 채 바로 바꿉니다.</p>
+          <div class="font-family-options">
+            <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
+            <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">

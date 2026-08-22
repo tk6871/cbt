@@ -57,9 +57,20 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_MAINTENANCE,
   ].filter((item): item is Catalog => Boolean(item));
 
-  return sources
+  const loaded = sources
     .filter((item) => primaryKeys.includes(item.key))
     .map(prepareCatalog);
+  const loadedByKey = new Map(loaded.map((catalog) => [catalog.key, catalog]));
+  if (!window.CBT_CATALOG_INDEX?.length) return loaded;
+  return window.CBT_CATALOG_INDEX.map((item) => loadedByKey.get(item.key) || {
+    key: item.key,
+    name: item.name,
+    shortName: item.shortName,
+    rounds: [],
+    isPlaceholder: true,
+    roundCount: item.rounds,
+    questionCount: item.questions,
+  });
 }
 
 function targetSubjectFor(sourceCatalog: Catalog, question: Question): string {

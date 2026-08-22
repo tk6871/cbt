@@ -1,13 +1,13 @@
-const CACHE = 'unified-industrial-cbt-v321';
+const CACHE = 'unified-industrial-cbt-v330';
 const CORE = [
   './', './index.html', './jewelry.html', './legacy.html', './next.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/hvac.js?v=255', './data/safety.js?v=255', './data/energy.js?v=255', './data/energy-engineer.js?v=255',
-  './data/maintenance.js?v=255', './data/hvac-hansol.js?v=321', './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=321',
+  './data/catalog-index.js?v=330', './data/catalog-bootstrap.js?v=330',
+  './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=330',
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
   './app.css?v=321', './app.js?v=321',
-  './modern/cbt.css?v=321', './modern/cbt.js?v=321', './modern/visitor.js?v=255',
+  './modern/cbt.css?v=330', './modern/cbt.js?v=330', './modern/mobile.js?v=330', './modern/visitor.js?v=255',
   './modern/chunks/import-wrapper-prod.js', './modern/chunks/index.js',
   './modern/assets/search.worker-BqvfbZXG.js'
 ];
@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
     const sameOrigin = url.origin === location.origin;
-    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|jewelry\.html|legacy\.html|next\.html|admin\.html|cloud-config\.js|app\.css|app\.js|modern\/cbt\.css|modern\/cbt\.js|data\/changelog(?:-vue)?\.js)$/.test(url.pathname));
+    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|jewelry\.html|legacy\.html|next\.html|admin\.html|cloud-config\.js|app\.css|app\.js|modern\/(?:cbt|mobile)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname));
     if (networkFirst) {
       try {
         const response = await fetch(request, { cache: 'no-store' });

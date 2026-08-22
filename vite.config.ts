@@ -17,7 +17,8 @@ export default defineConfig({
       input: {
         admin: resolve(projectRoot, 'src/admin/main.ts'),
         visitor: resolve(projectRoot, 'src/visitor.ts'),
-        cbt: resolve(projectRoot, 'src/cbt/main.ts')
+        cbt: resolve(projectRoot, 'src/cbt/main.ts'),
+        mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
       },
       output: {
         entryFileNames: '[name].js',

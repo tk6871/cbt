@@ -26,6 +26,7 @@ export type ExamRecord = {
   total: number;
   subjectRows?: Array<{ subject: string; correct: number; total: number; score: number; passed: boolean }>;
   answers?: Record<string, number>;
+  itemIds?: string[];
   wrongAnswers?: Array<{
     id: string;
     subject: string;
