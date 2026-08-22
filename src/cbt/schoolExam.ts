@@ -24,6 +24,7 @@ export type SchoolMemoryCard = {
   answer: string;
   sourcePage?: string;
   teacherHint?: string;
+  sourceImage?: string;
   important?: boolean;
   reviewCount?: number;
   knownCount?: number;
@@ -72,7 +73,7 @@ export function normalizeSchoolExamData(value: unknown): SchoolExamData {
     questions: round.questions.map((question, index) => ({
       ...question,
       number: index + 1,
-      source: 'school-user',
+      source: question.source || 'school-user',
       choices: question.choices.slice(0, 4),
       answer: Math.min(4, Math.max(1, Number(question.answer) || 1)),
     })),
@@ -86,6 +87,22 @@ export function normalizeSchoolExamData(value: unknown): SchoolExamData {
     && typeof card.prompt === 'string'
     && typeof card.answer === 'string') as SchoolMemoryCard[] : [];
   return { version: 1, rounds, scopes, memoryCards };
+}
+
+function mergeById<T extends { id: string }>(current: T[], incoming: T[]): T[] {
+  const incomingIds = new Set(incoming.map((item) => item.id));
+  return [...incoming, ...current.filter((item) => !incomingIds.has(item.id))];
+}
+
+export function mergeSchoolExamData(current: SchoolExamData, incoming: unknown): SchoolExamData {
+  const normalizedCurrent = normalizeSchoolExamData(current);
+  const normalizedIncoming = normalizeSchoolExamData(incoming);
+  return normalizeSchoolExamData({
+    version: 1,
+    rounds: mergeById(normalizedCurrent.rounds, normalizedIncoming.rounds),
+    scopes: mergeById(normalizedCurrent.scopes, normalizedIncoming.scopes),
+    memoryCards: mergeById(normalizedCurrent.memoryCards, normalizedIncoming.memoryCards),
+  });
 }
 
 export function loadSchoolExamData(): SchoolExamData {
