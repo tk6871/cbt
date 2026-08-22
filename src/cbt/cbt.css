@@ -527,6 +527,22 @@ img { max-width: 100%; }
 .android-apk-popup-actions button,.android-apk-popup-actions a { min-height:46px; padding:0 12px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:.66rem; font-weight:850; text-decoration:none; }
 .android-apk-popup-actions button { color:var(--muted); background:var(--surface-2); }
 .android-apk-popup-actions a { color:white; background:linear-gradient(135deg,#20a95f,#137d43); box-shadow:0 10px 24px rgba(22,135,74,.2); }
+.ios-pwa-floating-trigger { position:fixed; z-index:132; right:18px; bottom:18px; min-height:50px; padding:7px 15px; border:1px solid #176fd1; border-radius:15px; color:white; background:linear-gradient(135deg,#2688ee,#1359b5); box-shadow:0 13px 34px rgba(15,77,151,.3); display:grid; align-content:center; justify-items:start; transition:transform .2s ease,box-shadow .2s ease; }
+.ios-pwa-floating-trigger:hover { transform:translateY(-2px); box-shadow:0 17px 38px rgba(15,77,151,.36); }
+.ios-pwa-floating-trigger span { font-size:.42rem; font-weight:900; letter-spacing:.11em; }
+.ios-pwa-floating-trigger strong { margin-top:1px; font-size:.66rem; }
+.ios-pwa-popup { border-color:color-mix(in srgb,#2688ee 52%,var(--line)); background:linear-gradient(145deg,color-mix(in srgb,#2688ee 13%,var(--surface)),var(--surface) 54%,color-mix(in srgb,#6a4deb 9%,var(--surface))); }
+.ios-pwa-popup .ios-pwa-app-mark { width:58px; height:58px; margin:0 auto 16px; border-radius:17px; color:white; background:linear-gradient(145deg,#2688ee,#1258b7); box-shadow:0 11px 26px rgba(20,92,181,.25); display:grid; place-items:center; font-size:.72rem; font-weight:950; letter-spacing:.04em; }
+.ios-pwa-popup > span { background:#176fd1; }
+.ios-pwa-popup > p strong { color:var(--text); }
+.ios-pwa-browser-warning { padding:10px 12px; border:1px solid color-mix(in srgb,#e49120 42%,var(--line)); border-radius:11px; background:color-mix(in srgb,#e49120 9%,var(--surface)); }
+.ios-pwa-steps { margin:18px 0 15px; padding:0; display:grid; gap:9px; list-style:none; text-align:left; }
+.ios-pwa-steps li { min-height:49px; padding:9px 11px; border:1px solid var(--line); border-radius:12px; background:color-mix(in srgb,#2688ee 5%,var(--surface-2)); display:grid; grid-template-columns:28px minmax(0,1fr); align-items:center; gap:10px; }
+.ios-pwa-steps li > b { width:28px; height:28px; border-radius:9px; color:white; background:#176fd1; display:grid; place-items:center; font-size:.62rem; }
+.ios-pwa-steps li span { color:var(--muted); font-size:.64rem; line-height:1.55; }
+.ios-pwa-steps li strong { color:var(--text); }
+.ios-pwa-steps li i { color:#176fd1; font-size:.8rem; font-style:normal; font-weight:900; }
+.ios-pwa-popup-actions .ios-pwa-ready { color:white; background:linear-gradient(135deg,#2688ee,#1359b5); box-shadow:0 10px 24px rgba(23,111,209,.22); }
 .patch-apk-download { margin-top:15px; padding:17px 19px; border:1px solid color-mix(in srgb,#35bf72 42%,var(--line)); border-radius:16px; background:linear-gradient(110deg,color-mix(in srgb,#35bf72 11%,var(--surface)),var(--surface)); display:grid; grid-template-columns:52px minmax(0,1fr) auto; align-items:center; gap:14px; }
 .patch-apk-download > div:nth-child(2) { min-width:0; }
 .patch-apk-download span,.patch-apk-download strong,.patch-apk-download small { display:block; }
@@ -534,6 +550,10 @@ img { max-width: 100%; }
 .patch-apk-download strong { margin-top:4px; font-size:.78rem; }
 .patch-apk-download small { margin-top:3px; color:var(--muted); font-size:.58rem; line-height:1.5; }
 .patch-apk-download > a { min-height:43px; padding:0 14px; border-radius:11px; color:white; background:linear-gradient(135deg,#20a95f,#137d43); display:flex; align-items:center; justify-content:center; gap:8px; font-size:.62rem; font-weight:850; text-decoration:none; }
+.ios-pwa-patch { border-color:color-mix(in srgb,#2688ee 44%,var(--line)); background:linear-gradient(110deg,color-mix(in srgb,#2688ee 11%,var(--surface)),var(--surface)); }
+.ios-pwa-patch .ios-pwa-app-mark { width:52px; height:52px; border-radius:16px; color:white; background:linear-gradient(145deg,#2688ee,#1258b7); display:grid; place-items:center; font-size:.63rem; font-weight:950; }
+.ios-pwa-patch span { color:#176fd1; }
+.ios-pwa-patch > button { min-height:43px; padding:0 14px; border-radius:11px; color:white; background:linear-gradient(135deg,#2688ee,#1359b5); font-size:.62rem; font-weight:850; }
 
 .progress-panel {
   margin-top: 18px;
@@ -1384,7 +1404,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .home-release-card { grid-template-columns:48px minmax(0,1fr); }
   .home-release-actions { grid-column:1/-1; }
   .patch-apk-download { grid-template-columns:52px minmax(0,1fr); }
-  .patch-apk-download > a { grid-column:1/-1; }
+  .patch-apk-download > a,.patch-apk-download > button { grid-column:1/-1; }
   .feature-hero { min-height:0; padding:35px; grid-template-columns:1fr; }
   .feature-pulse { display:none; }
   .feature-tour > header { align-items:flex-start; flex-direction:column; }
@@ -1442,10 +1462,13 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .android-app-mark { width:46px; height:46px; border-radius:13px; }
   .android-app-mark svg { width:30px; height:30px; }
   .android-apk-floating-trigger { right:10px; bottom:82px; min-height:45px; padding:6px 12px; }
+  .ios-pwa-floating-trigger { right:10px; bottom:82px; min-height:45px; padding:6px 12px; }
   .android-apk-popup { padding:25px 18px 20px; border-radius:21px; }
   .android-apk-popup-actions { grid-template-columns:1fr; }
+  .ios-pwa-popup-actions { grid-template-columns:1fr 1fr; }
+  .ios-pwa-steps li { min-height:46px; padding:8px 9px; }
   .patch-apk-download { padding:14px; grid-template-columns:46px minmax(0,1fr); gap:10px; }
-  .patch-apk-download > a { width:100%; min-height:46px; grid-column:1/-1; }
+  .patch-apk-download > a,.patch-apk-download > button { width:100%; min-height:46px; grid-column:1/-1; }
   .session-topbar { grid-template-columns:auto 1fr; }
   .session-topbar > div:nth-child(2) { display:none; }
   .session-tools { justify-self:end; }
@@ -1821,7 +1844,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
 :root[data-visual-style="sunjae"] .android-app-mark { color:#4e8fc5; background:#deeff9; }
 :root[data-visual-style="sunjae"] .android-apk-popup,:root[data-visual-style="sunjae"] .patch-apk-download { border-color:rgba(255,255,255,.94); background:linear-gradient(110deg,rgba(239,249,255,.98),rgba(255,239,247,.98)); }
 :root[data-visual-style="sunjae"] .android-apk-popup > span,:root[data-visual-style="sunjae"] .patch-apk-download span { background:#e7629b; color:white; }
-:root[data-visual-style="sunjae"] .android-apk-popup-actions a,:root[data-visual-style="sunjae"] .patch-apk-download > a,:root[data-visual-style="sunjae"] .android-apk-floating-trigger { background:linear-gradient(135deg,#4e8fc5,#e7629b); }
+:root[data-visual-style="sunjae"] .android-apk-popup-actions a,:root[data-visual-style="sunjae"] .ios-pwa-popup-actions .ios-pwa-ready,:root[data-visual-style="sunjae"] .patch-apk-download > a,:root[data-visual-style="sunjae"] .patch-apk-download > button,:root[data-visual-style="sunjae"] .android-apk-floating-trigger,:root[data-visual-style="sunjae"] .ios-pwa-floating-trigger { background:linear-gradient(135deg,#4e8fc5,#e7629b); }
 
 .sunjae-result-card { overflow:hidden; width:min(760px,calc(100% - 28px)); min-height:480px; padding:18px; border:2px solid rgba(255,255,255,.9); border-radius:34px; background:linear-gradient(145deg,#f7fcff,#fff0f6); box-shadow:0 35px 100px rgba(20,53,79,.35); }
 .sunjae-grading-stage { min-height:440px; display:grid; grid-template-columns:minmax(260px,46%) 1fr; align-items:stretch; }
@@ -1856,7 +1879,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
 :root[data-visual-style="simpsons"] .android-app-mark { color:#171717; border:2px solid #171717; background:#75c9f2; box-shadow:2px 3px 0 #171717; }
 :root[data-visual-style="simpsons"] .android-apk-popup,:root[data-visual-style="simpsons"] .patch-apk-download { border:3px solid #171717; background:linear-gradient(110deg,#fff9d6,#ffd90f); box-shadow:5px 6px 0 #171717; }
 :root[data-visual-style="simpsons"] .android-apk-popup > span { color:#171717; background:#f58eb7; }
-:root[data-visual-style="simpsons"] .android-apk-popup-actions a,:root[data-visual-style="simpsons"] .patch-apk-download > a,:root[data-visual-style="simpsons"] .android-apk-floating-trigger { color:#171717; border:2px solid #171717; background:#f58eb7; box-shadow:3px 4px 0 #171717; }
+:root[data-visual-style="simpsons"] .android-apk-popup-actions a,:root[data-visual-style="simpsons"] .ios-pwa-popup-actions .ios-pwa-ready,:root[data-visual-style="simpsons"] .patch-apk-download > a,:root[data-visual-style="simpsons"] .patch-apk-download > button,:root[data-visual-style="simpsons"] .android-apk-floating-trigger,:root[data-visual-style="simpsons"] .ios-pwa-floating-trigger { color:#171717; border:2px solid #171717; background:#f58eb7; box-shadow:3px 4px 0 #171717; }
 :root[data-visual-style="simpsons"],
 :root[data-visual-style="simpsons"] body,
 :root[data-visual-style="simpsons"] .app-frame,

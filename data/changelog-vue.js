@@ -5,6 +5,35 @@
 
   const entries = [
     {
+      version: '3.5.1',
+      scope: 'industrial',
+      date: '2026.08.23',
+      title: 'iPhone·iPad 무료 앱 설치 안내',
+      summary: 'Apple 개발자 결제나 7일 재서명 없이 Safari 홈 화면에 CBT를 앱처럼 설치할 수 있도록 안내를 추가했습니다.',
+      tags: ['iPhone', 'iPad', '무료 PWA', '홈 화면 설치'],
+      changes: [
+        'iPhone과 iPad의 Safari에서 처음 접속하면 공유 → 홈 화면에 추가 → 웹 앱으로 열기 순서를 바로 확인할 수 있습니다.',
+        '설치 전에는 화면 아래의 무료 앱 설치 버튼으로 안내를 다시 열 수 있고, 홈 화면 앱으로 실행하면 설치 안내를 자동으로 숨깁니다.',
+        'Safari가 아닌 iPhone 브라우저에서는 Safari로 먼저 열어야 한다는 안내를 표시합니다.',
+        '홈 화면 아이콘, 전체 화면 실행, 오프라인 캐시와 자동 웹 업데이트를 유지하며 7일 서명 만료가 없습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.1로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.5.1',
+      scope: 'jewelry',
+      date: '2026.08.23',
+      title: 'iPhone·iPad 무료 홈 화면 앱',
+      summary: '보석관도 Safari 홈 화면에 직접 설치해 주소창 없는 앱 화면으로 사용할 수 있습니다.',
+      tags: ['iPhone', 'iPad', '무료 PWA', '보석관'],
+      changes: [
+        'iPhone·iPad Safari에서 보석관 전용 아이콘과 시작 주소를 유지한 채 홈 화면 앱으로 설치할 수 있습니다.',
+        '처음 접속할 때 단계별 설치 방법을 보여 주고 설치된 웹앱에서는 안내를 숨깁니다.',
+        '7일 재서명이나 유료 개발자 계정 없이 웹 업데이트가 자동으로 적용됩니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.1로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.5',
       scope: 'industrial',
       date: '2026.08.22',
@@ -1505,8 +1534,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.5';
-  changelog.versions.jewelry = '3.5';
-  changelog.currentVersion = '3.5';
+  changelog.versions.industrial = '3.5.1';
+  changelog.versions.jewelry = '3.5.1';
+  changelog.currentVersion = '3.5.1';
   window.CBT_CHANGELOG = changelog;
 })();

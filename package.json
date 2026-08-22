@@ -16,7 +16,7 @@
     "android:debug": "npm run android:sync && node tools/build-android-debug.mjs",
     "android:release": "npm run android:sync && node tools/build-android-release.mjs",
     "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
-    "android:install:release": "adb install -r dist/industrial-cbt-v3.5.apk",
+    "android:install:release": "adb install -r dist/industrial-cbt-v3.5.1.apk",
     "dev": "vite --host 127.0.0.1",
     "test:gem-target-exam": "node tools/test-gem-target-exam.mjs",
     "test:hotspot-editor": "node tools/test-hvac-hotspot-editor.mjs",
