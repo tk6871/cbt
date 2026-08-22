@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
-import { calculationGuideFor, calculationSource } from './calculationGuide';
+import { calculationGivenValues, calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
 import type { QuestionItem, StudyMode } from './types';
 
 const props = defineProps<{
@@ -40,7 +40,17 @@ const restoredImageClass = computed(() => restoredQuestion.value
   : undefined);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const calculationGuide = computed(() => calculationGuideFor(props.item));
-const calculationValues = computed(() => calculationSource(props.item).match(/-?\d+(?:\.\d+)?\s*(?:kW|W|kcal\/h|kcal|kg\/s|kg\/h|kg|m³\/s|m³\/min|m³\/h|m³|m²|m\/s|mm|cm|m|kPa|MPa|Pa|bar|℃|K|V|A|Ω|%|rpm)/gi)?.slice(0, 8) || []);
+const calculationProblem = computed(() => isCalculationItem(props.item));
+const calculationValues = computed(() => calculationGivenValues(props.item));
+const calculationNumberOrigins = computed(() => {
+  const guideOrigins = calculationGuide.value.numberOrigins || [];
+  const guideText = guideOrigins.join(' ');
+  const commonOrigins = commonCalculationNumberOrigins(props.item).filter((origin) => {
+    const keyNumber = origin.match(/(?:\d[\d,.]*|√3)/)?.[0];
+    return !keyNumber || !guideText.includes(keyNumber);
+  });
+  return [...new Set([...guideOrigins, ...commonOrigins])];
+});
 const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
 const unifiedHotspots = computed(() => unifiedAnswerHotspots(verifiedHotspots.value));
 const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
@@ -82,7 +92,7 @@ const memoryTip = computed(() => {
   const stem = readableText(props.item.question.text || props.item.question.html);
   const answer = correctAnswerText.value.slice(0, 90) || `${props.item.question.answer}번`;
   const negative = /틀린|옳지 않은|아닌|거리가 먼|해당하지 않는|잘못된/.test(stem);
-  if (props.calculationMode || /계산|구하|얼마|몇\s*(?:배|%|℃|kW|kg|m|Pa|V|A|Ω|rpm|RT)/i.test(stem)) {
+  if (props.calculationMode || calculationProblem.value) {
     return `계산 암기 4칸: ① 구할 값에 밑줄 → ② 단위를 하나로 맞춤 → ③ ${calculationGuide.value.formula} → ④ 숫자를 넣고 정답 ${props.item.question.answer}번과 비교하세요. 해설을 닫고 이 네 칸을 말한 뒤, 막히면 ★로 저장해 오늘 밤과 다음 날 아침에 다시 풉니다.`;
   }
   if (negative) {
@@ -391,13 +401,14 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
         <strong>쉽게 풀어보기</strong>
         <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="explanationDismissed = true">닫기 ×</button>
       </div>
-      <div v-if="calculationMode" class="calculation-explanation">
+      <div v-if="calculationMode || calculationProblem" class="calculation-explanation">
         <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
         <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
         <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
         <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
-        <div><span>5</span><p><strong>숫자 넣기</strong>{{ calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.' }}</p></div>
-        <div><span>6</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
+        <div><span>5</span><p><strong>숫자는 어디서 나왔나요?</strong><template v-if="calculationNumberOrigins.length"><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else>문제에 직접 적힌 수치와 단위에서 가져옵니다. 외워야 하는 환산값이 있으면 기존 해설과 함께 확인합니다.</template></p></div>
+        <div><span>6</span><p><strong>숫자 넣기</strong>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.') }}</p></div>
+        <div><span>7</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
       </div>
       <div
         v-if="item.question.explanationHtml"
@@ -426,13 +437,14 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
           </header>
           <div class="compact-explanation-scroll">
             <div class="explanation-title"><span>정답 {{ item.question.answer }}번</span><strong>핵심부터 차근차근 확인하세요</strong></div>
-            <div v-if="calculationMode" class="calculation-explanation">
+            <div v-if="calculationMode || calculationProblem" class="calculation-explanation">
               <div><span>1</span><p><strong>무엇을 구하나요?</strong>{{ calculationGuide.goal }}</p></div>
               <div><span>2</span><p><strong>사용할 공식</strong>{{ calculationGuide.formula }}</p></div>
               <div><span>3</span><p><strong>기호의 뜻</strong>{{ calculationGuide.symbols }}</p></div>
               <div><span>4</span><p><strong>왜 이 공식을 쓰나요?</strong>{{ calculationGuide.reason }}</p></div>
-              <div><span>5</span><p><strong>숫자 넣기</strong>{{ calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.' }}</p></div>
-              <div><span>6</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
+              <div><span>5</span><p><strong>숫자는 어디서 나왔나요?</strong><template v-if="calculationNumberOrigins.length"><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></template><template v-else>문제에 직접 적힌 수치와 단위에서 가져옵니다. 외워야 하는 환산값이 있으면 기존 해설과 함께 확인합니다.</template></p></div>
+              <div><span>6</span><p><strong>숫자 넣기</strong>{{ calculationGuide.substitution || (calculationValues.length ? `문제에서 찾은 ${calculationValues.join(', ')}를 같은 단위로 맞춘 뒤 공식의 해당 자리에 넣습니다.` : '문제에서 주어진 숫자를 표시하고, 각 기호 자리에 하나씩 넣습니다.') }}</p></div>
+              <div><span>7</span><p><strong>계산과 단위</strong>{{ calculationGuide.unitTip }} 계산이 끝나면 보기의 값과 단위를 함께 비교해 정답 {{ item.question.answer }}번을 확인합니다.</p></div>
             </div>
             <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
             <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
