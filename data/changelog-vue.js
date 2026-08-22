@@ -5,6 +5,37 @@
 
   const entries = [
     {
+      version: '3.3.1',
+      scope: 'industrial',
+      date: '2026.08.22',
+      title: 'D2Coding·Android 다운로드와 한솔 답안 좌표 개선',
+      summary: 'D2Coding과 Android 앱 다운로드 동선을 정리하고 한솔 1,920문제의 이미지 답안 좌표를 전수 재검사했습니다.',
+      tags: ['D2Coding', 'Android 전용', 'APK 팝업', '한솔 좌표 전수검사'],
+      changes: [
+        'D2Coding Regular·Bold 글꼴 선택을 작은 업데이트 버전 규칙에 맞춰 정식 반영했습니다.',
+        '홈페이지 상단을 차지하던 고정 배너를 없애고 Android 브라우저에서만 열고 닫을 수 있는 APK 다운로드 팝업으로 바꿨습니다.',
+        '팝업을 닫은 뒤에도 화면의 앱 받기 버튼으로 다시 열 수 있습니다.',
+        '패치노트에서 정식 APK를 따로 받을 수 있으며 iPhone·iPad에서는 APK 관련 화면을 표시하지 않습니다.',
+        '한솔 1,920문제·7,680개 답안을 PDF 글자 위치와 PP-OCRv5 픽셀로 전수 검사하고, 한 줄 4개·좁은 2×2·그림형 보기의 생성 규칙을 바로잡았습니다.',
+        '2025년 3회 3번의 네 답안 전체와 그림·수식형 5문제, 하단 광고가 섞인 3문제의 직접 선택 박스를 원문 기준으로 교정했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.3.1로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.3.1',
+      scope: 'jewelry',
+      date: '2026.08.22',
+      title: 'D2Coding 글꼴과 Android 앱 다운로드 개선',
+      summary: 'D2Coding 글꼴과 Android 전용 앱 다운로드 동선을 보석관에도 함께 적용했습니다.',
+      tags: ['D2Coding', 'Android 전용', 'APK 팝업', '패치노트 다운로드'],
+      changes: [
+        'D2Coding Regular·Bold 글꼴 선택을 작은 업데이트 버전 규칙에 맞춰 정식 반영했습니다.',
+        'Android 브라우저에서만 열고 닫는 APK 안내와 다시 열기 버튼을 표시합니다.',
+        '패치노트에서 정식 APK를 따로 받을 수 있고 iPhone·iPad에서는 APK 관련 화면을 표시하지 않습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.3.1로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.3',
       scope: 'industrial',
       date: '2026.08.22',
@@ -1246,8 +1277,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.3';
-  changelog.versions.jewelry = '3.3';
-  changelog.currentVersion = '3.3';
+  changelog.versions.industrial = '3.3.1';
+  changelog.versions.jewelry = '3.3.1';
+  changelog.currentVersion = '3.3.1';
   window.CBT_CHANGELOG = changelog;
 })();

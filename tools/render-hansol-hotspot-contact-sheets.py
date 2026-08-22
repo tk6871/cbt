@@ -28,9 +28,18 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--round", action="append", dest="rounds", default=[])
     parser.add_argument("--question", action="append", dest="questions", default=[])
+    parser.add_argument("--audit", type=Path,
+                        help="픽셀 감사 JSON의 실제 검토 후보만 렌더링")
+    parser.add_argument("--minimum-deficit", type=float, default=8.0)
     parser.add_argument("--per-sheet", type=int, default=20)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
+
+    if args.audit:
+        audit = json.loads(args.audit.read_text(encoding="utf-8"))
+        args.questions = sorted({item["question"] for item in audit.get("findings", [])
+                                 if item.get("joinedChoices") == 1
+                                 and max(item.get("deficitPixels", {}).values(), default=0) >= args.minimum_deficit})
 
     entries = []
     for round_ in load_catalog()["rounds"]:

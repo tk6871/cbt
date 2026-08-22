@@ -234,6 +234,14 @@ const sunjaeResultPhase = ref<SunjaeResultPhase>('reveal');
 const appHydrating = ref(true);
 const isNativeApp = document.documentElement.dataset.nativeApp === 'true';
 const androidApkUrl = 'https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk';
+const platformUserAgent = navigator.userAgent || '';
+const isIosDevice = /iPad|iPhone|iPod/i.test(platformUserAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isAndroidDevice = /Android/i.test(platformUserAgent);
+const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
+const showAndroidApkPatchDownload = !isIosDevice;
+const androidApkPopupOpen = ref(false);
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v331';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -1474,6 +1482,11 @@ function activateSessionItem(item: QuestionItem): void {
 }
 
 function handleSessionKeydown(event: KeyboardEvent): void {
+  if (event.key === 'Escape' && androidApkPopupOpen.value) {
+    event.preventDefault();
+    androidApkPopupOpen.value = false;
+    return;
+  }
   if (solveLayoutMode.value !== 'comcbt'
     || !session.value
     || session.value.finished
@@ -2513,6 +2526,16 @@ onMounted(async () => {
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
   applyDynamicUiPreference(dynamicUiEnabled.value);
+  if (showAndroidApkPopup) {
+    try {
+      if (sessionStorage.getItem(androidApkPopupSeenKey) !== 'true') {
+        androidApkPopupOpen.value = true;
+        sessionStorage.setItem(androidApkPopupSeenKey, 'true');
+      }
+    } catch {
+      androidApkPopupOpen.value = true;
+    }
+  }
   restartSunjaeRotation();
   motionMediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
   motionPreferenceHandler = (event: MediaQueryListEvent) => { prefersReducedMotion.value = event.matches; };
@@ -2648,23 +2671,6 @@ onBeforeUnmount(() => {
         <Transition v-else :name="viewTransitionName" mode="out-in">
           <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
         <template v-if="view === 'home'">
-          <section v-if="!isNativeApp" class="android-app-promo" aria-labelledby="android-app-promo-title">
-            <div class="android-app-mark" aria-hidden="true">
-              <svg viewBox="0 0 48 48" role="img">
-                <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
-                <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
-                <circle cx="19" cy="15" r="1.3" /><circle cx="29" cy="15" r="1.3" />
-              </svg>
-            </div>
-            <div class="android-app-copy">
-              <span><b>ANDROID 전용</b> 휴대폰·태블릿 앱</span>
-              <strong id="android-app-promo-title">CBT를 앱으로 설치해서 더 편하게 풀어보세요</strong>
-              <small>Android 7.0 이상 · iPhone·iPad 설치 불가 · 약 8MB</small>
-            </div>
-            <a :href="androidApkUrl" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 다운로드">
-              <span>정식 APK 다운로드</span><b aria-hidden="true">↓</b>
-            </a>
-          </section>
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
               <Transition name="sunjae-photo-fade" mode="out-in">
@@ -3386,6 +3392,21 @@ onBeforeUnmount(() => {
               <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
             </div>
           </section>
+          <section v-if="showAndroidApkPatchDownload" class="patch-apk-download" aria-labelledby="patch-apk-download-title">
+            <div class="android-app-mark" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
+                <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
+                <circle cx="19" cy="15" r="1.3" /><circle cx="29" cy="15" r="1.3" />
+              </svg>
+            </div>
+            <div>
+              <span>ANDROID APP</span>
+              <strong id="patch-apk-download-title">휴대폰·태블릿용 정식 APK</strong>
+              <small>Android 7.0 이상 · 약 8MB · 최신 버전으로 교체 설치할 수 있습니다.</small>
+            </div>
+            <a :href="androidApkUrl" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 받기">정식 APK 받기 <b aria-hidden="true">↓</b></a>
+          </section>
           <div class="patch-timeline">
             <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
               <div class="patch-version"><span>v{{ entry.version }}</span><small>{{ entry.date }}</small></div>
@@ -3402,6 +3423,31 @@ onBeforeUnmount(() => {
         </Transition>
       </div>
     </main>
+    <button v-if="showAndroidApkPopup" type="button" class="android-apk-floating-trigger" aria-label="Android 앱 다운로드 안내 열기" @click="androidApkPopupOpen = true">
+      <span>ANDROID</span><strong>앱 받기</strong>
+    </button>
+    <Transition name="modal-fade">
+      <div v-if="showAndroidApkPopup && androidApkPopupOpen" class="android-apk-popup-backdrop" @click.self="androidApkPopupOpen = false">
+        <section class="android-apk-popup" role="dialog" aria-modal="true" aria-labelledby="android-apk-popup-title">
+          <button type="button" class="android-apk-popup-close" aria-label="Android 앱 안내 닫기" @click="androidApkPopupOpen = false">×</button>
+          <div class="android-app-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
+              <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
+              <circle cx="19" cy="15" r="1.3" /><circle cx="29" cy="15" r="1.3" />
+            </svg>
+          </div>
+          <span>ANDROID 전용</span>
+          <h2 id="android-apk-popup-title">CBT 앱으로 더 편하게 풀어보세요</h2>
+          <p>휴대폰·태블릿 전용 화면과 터치 메뉴를 사용할 수 있습니다.</p>
+          <small>Android 7.0 이상 · 약 8MB</small>
+          <div class="android-apk-popup-actions">
+            <button type="button" @click="androidApkPopupOpen = false">나중에</button>
+            <a :href="androidApkUrl" target="_blank" rel="noopener" @click="androidApkPopupOpen = false">정식 APK 다운로드 <b aria-hidden="true">↓</b></a>
+          </div>
+        </section>
+      </div>
+    </Transition>
     <nav class="mobile-tabbar">
       <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
       <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
