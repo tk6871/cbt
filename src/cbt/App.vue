@@ -32,6 +32,8 @@ import {
   syncLearningData,
   updateSyncPassword,
 } from './cloudSync';
+import { hvacFieldReportRelatedGroups, hvacFieldReportRound } from './hvacFieldReportPractice';
+import { buildHvacPredictionSet } from './hvacPrediction';
 import { hvacStudyGuideSections } from './hvacStudyGuide';
 import { qualificationRuleFor } from './qualificationRules';
 import {
@@ -67,6 +69,7 @@ type SolveLayoutMode = 'standard' | 'comcbt' | 'combat';
 type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
+type PredictionRange = 'selected' | 'recent' | 'all';
 type ExamResult = {
   score: number;
   correct: number;
@@ -201,6 +204,8 @@ const experienceTransitionPhase = ref<ExperienceTransitionPhase>(null);
 const navigationDirection = ref<1 | -1>(1);
 const questionDirection = ref<1 | -1>(1);
 const quickPreset = ref<5 | 10 | 0>(10);
+const predictionRange = ref<PredictionRange>('selected');
+const includeHansolInRandom = ref(localStorage.getItem('unified-cbt-random-include-hansol') !== 'false');
 const settingsOpen = ref(false);
 const syncLoginOpen = ref(false);
 const syncEmailStorageKey = `cbt-sync-email-${spaceScope}`;
@@ -242,7 +247,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v342';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v343';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -341,6 +346,7 @@ const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_AP
 const allItems = [
   ...sourceCatalogs.flatMap((catalog) => sortedRounds(catalog)),
   ...referenceRounds,
+  ...(!isJewelry ? [hvacFieldReportRound] : []),
 ].flatMap((round) => round.questions.map((question) => ({
   round,
   question,
@@ -1068,6 +1074,16 @@ function roundToItems(round: Round): QuestionItem[] {
   }));
 }
 
+function startHvacFieldReportPractice(): void {
+  selectedKey.value = 'hvac';
+  localStorage.setItem(qualificationStorageKey, 'hvac');
+  void beginSession(
+    'learn',
+    '2026년 8월 22일 비공식 실전 복원 훈련',
+    roundToItems(hvacFieldReportRound),
+  );
+}
+
 function saveActiveLearningSession(): void {
   window.clearTimeout(learningSessionSaveHandle);
   learningSessionSaveHandle = 0;
@@ -1226,8 +1242,40 @@ function openRoundWrongAnswers(round: Round): void {
   openView('wrong');
 }
 
+function randomQuestionSignature(item: QuestionItem): string {
+  return [
+    stripMarkup(item.question.text || item.question.html),
+    ...item.question.choices.map((choice) => stripMarkup(choice.text || choice.html)),
+  ].join('|')
+    .replace(/^\d+[.)\s-]*/, '')
+    .replace(/[\s'"“”‘’]+/g, '')
+    .toLocaleLowerCase('ko');
+}
+
+function deduplicateRandomPool(items: QuestionItem[]): QuestionItem[] {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    const signature = randomQuestionSignature(item);
+    if (!signature || signature.length < 8) return true;
+    if (seen.has(signature)) return false;
+    seen.add(signature);
+    return true;
+  });
+}
+
+function randomSessionPool(): QuestionItem[] {
+  if (selectedKey.value !== 'hvac') return selectedItems.value;
+  if (!includeHansolInRandom.value) return deduplicateRandomPool(selectedItems.value);
+  const hansolCatalog = catalogs.find((catalog) => catalog.key === 'hvac-hansol');
+  if (!hansolCatalog?.rounds.length) return selectedItems.value;
+  return deduplicateRandomPool([
+    ...selectedItems.value,
+    ...questionItems(hansolCatalog, yearFrom.value, yearTo.value, curriculum.value),
+  ]);
+}
+
 function startBalancedExam(): void {
-  const items = selectedItems.value;
+  const items = randomSessionPool();
   const subjects = selectedSubjects.value;
   if (!items.length || !subjects.length) {
     showToast('선택한 연도와 출제 체계를 다시 확인해 주세요.');
@@ -1290,7 +1338,7 @@ function startRangeLearning(): void {
 }
 
 function startRandomLearning60(): void {
-  const pool = selectedItems.value;
+  const pool = randomSessionPool();
   const subjects = selectedSubjects.value;
   if (!pool.length || !subjects.length) {
     showToast('선택한 연도와 출제 체계를 다시 확인해 주세요.');
@@ -1314,6 +1362,42 @@ function startRandomLearning60(): void {
     'learn',
     `${selectedCatalog.value.shortName || selectedCatalog.value.name} · ${yearFrom.value}~${yearTo.value} 랜덤 ${selected.length}문제 학습`,
     shuffle(selected),
+  );
+}
+
+function startHvacPrediction60(mode: StudyMode): void {
+  const hvacCatalog = catalogs.find((catalog) => catalog.key === 'hvac');
+  const hansolCatalog = catalogs.find((catalog) => catalog.key === 'hvac-hansol');
+  if (!hvacCatalog || !hansolCatalog) {
+    showToast('공조 문제 데이터를 불러오지 못했습니다.');
+    return;
+  }
+  const latestYear = Math.max(...yearsFor(hvacCatalog));
+  const fromYear = predictionRange.value === 'selected'
+    ? yearFrom.value
+    : predictionRange.value === 'recent' ? Math.max(2002, latestYear - 9) : 2002;
+  const toYear = predictionRange.value === 'selected' ? yearTo.value : latestYear;
+  const rangeLabel = predictionRange.value === 'selected'
+    ? `현재 설정 ${fromYear}~${toYear}년`
+    : predictionRange.value === 'recent' ? `${fromYear}~${toYear}년` : `전회차 ${fromYear}~${toYear}년`;
+  const pool = deduplicateRandomPool([
+    ...roundToItems(hvacFieldReportRound),
+    ...questionItems(hvacCatalog, fromYear, toYear, 'all-mapped'),
+    ...(includeHansolInRandom.value ? questionItems(hansolCatalog, fromYear, toYear, 'all-mapped') : []),
+  ]);
+  const selected = buildHvacPredictionSet(pool);
+  const subjectCounts = new Map<string, number>();
+  selected.forEach((item) => subjectCounts.set(item.subject, (subjectCounts.get(item.subject) || 0) + 1));
+  if (selected.length !== 60 || [...subjectCounts.values()].some((count) => count !== 20)) {
+    showToast('예상 문제 구성을 확인하지 못했습니다. 잠시 후 다시 시도해 주세요.');
+    return;
+  }
+  selectedKey.value = 'hvac';
+  localStorage.setItem(qualificationStorageKey, 'hvac');
+  void beginSession(
+    mode,
+    `공조 시험 예상 60문제 · ${rangeLabel} · ${mode === 'exam' ? 'CBT' : '학습'}`,
+    selected,
   );
 }
 
@@ -2418,6 +2502,10 @@ watch([yearFrom, yearTo], () => {
   if (yearFrom.value > yearTo.value) [yearFrom.value, yearTo.value] = [yearTo.value, yearFrom.value];
 });
 
+watch(includeHansolInRandom, (enabled) => {
+  localStorage.setItem('unified-cbt-random-include-hansol', String(enabled));
+});
+
 watch(() => session.value?.page, () => {
   void nextTick(syncOmrToCurrentPage);
 });
@@ -2880,6 +2968,12 @@ onBeforeUnmount(() => {
               </article>
             </div>
 
+            <label v-if="selectedKey === 'hvac'" class="hansol-random-toggle">
+              <input v-model="includeHansolInRandom" type="checkbox">
+              <span><strong>랜덤 문제에 한솔 섞기</strong><small>ON이면 현재 선택한 {{ yearFrom }}~{{ yearTo }}년에 해당하는 한솔 문제도 후보에 합치며, 같은 문제는 한 번만 남깁니다.</small></span>
+              <i aria-hidden="true" />
+            </label>
+
             <div class="start-actions">
               <button class="learning-start" type="button" @click="startRangeLearning">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(1)" alt="">
@@ -2887,11 +2981,24 @@ onBeforeUnmount(() => {
               </button>
               <button class="random-learning-start" type="button" @click="startRandomLearning60">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(8)" alt="">
-                <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>과목 균형 · 즉시 채점 · 자동 이어하기</small>
+                <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>{{ selectedKey === 'hvac' && includeHansolInRandom ? '일반 공조 + 한솔 후보' : '과목 균형' }} · 즉시 채점 · 자동 이어하기</small>
               </button>
+              <section v-if="selectedKey === 'hvac'" class="prediction-start-card">
+                <header><div><span>0822 제보 + {{ includeHansolInRandom ? '일반·한솔' : '일반 공조' }} 반복 기출</span><strong>시험 예상 60문제</strong><small>제보 13문제 고정 · 유사 기출 47문제 랜덤 · 3과목 × 20문제</small></div><b>예상</b></header>
+                <div class="prediction-range-options" aria-label="시험 예상 문제 연도 범위">
+                  <button type="button" :class="{ active: predictionRange === 'selected' }" @click="predictionRange = 'selected'">현재 설정 {{ yearFrom }}~{{ yearTo }}</button>
+                  <button type="button" :class="{ active: predictionRange === 'recent' }" @click="predictionRange = 'recent'">최근 10년</button>
+                  <button type="button" :class="{ active: predictionRange === 'all' }" @click="predictionRange = 'all'">전회차 2002~2026</button>
+                </div>
+                <div class="prediction-mode-actions">
+                  <button type="button" @click="startHvacPrediction60('learn')"><span>해설을 바로 보며</span><strong>예상 60 학습모드</strong></button>
+                  <button type="button" @click="startHvacPrediction60('exam')"><span>OMR·타이머로</span><strong>예상 60 CBT</strong></button>
+                </div>
+                <p>출제를 보장하는 공식 예상문제가 아니라, 8월 22일 제보와 저장소의 반복 출제 개념을 우선한 시험 직전 훈련입니다.</p>
+              </section>
               <button class="exam-start" type="button" @click="startBalancedExam">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(5)" alt="">
-                <span>실제 시험처럼</span><strong>과목 균형 랜덤시험</strong><small>과목별 20문제 · OMR · 타이머</small>
+                <span>실제 시험처럼</span><strong>과목 균형 랜덤시험</strong><small>과목별 20문제{{ selectedKey === 'hvac' && includeHansolInRandom ? ' · 한솔 후보 포함' : '' }} · OMR · 타이머</small>
               </button>
               <button class="round-start" type="button" @click="openView('rounds')">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(7)" alt="">
@@ -3076,6 +3183,21 @@ onBeforeUnmount(() => {
             <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
           </section>
           <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
+          <section class="field-report-practice">
+            <div class="field-report-copy">
+              <span>2026.08.22 · 비공식 실전 제보</span>
+              <h2>제보 키워드로 만든 13문제</h2>
+              <p>정확한 원문이 아닌 수험생 기억을 바탕으로 재구성했습니다. 저장소의 반복 기출과 대조한 개념만 문제로 만들었고, 문장이 불분명한 내용은 확정 정답처럼 단정하지 않았습니다.</p>
+              <div class="field-report-stats"><strong>13문제</strong><span>공기조화 · 냉동 · 설치운영</span><span>정답 뒤 쉬운 해설</span></div>
+              <button type="button" @click="startHvacFieldReportPractice">0822 실전 제보 문제 풀기 →</button>
+            </div>
+            <div class="field-report-related">
+              <strong>저장소에서 찾은 유사 기출</strong>
+              <ul>
+                <li v-for="group in hvacFieldReportRelatedGroups" :key="group.topic"><b>{{ group.topic }}</b><span>{{ group.matches }}</span></li>
+              </ul>
+            </div>
+          </section>
           <div class="hvac-guide-grid">
             <article v-for="(section, index) in hvacStudyGuideSections" :key="section.title">
               <header><span>{{ String(index + 1).padStart(2, '0') }}</span><h2>{{ section.title }}</h2></header>

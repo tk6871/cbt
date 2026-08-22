@@ -33,8 +33,9 @@ defineEmits<{
 
 const primaryImage = computed(() => isImagePrimary(props.item));
 const hansolQuestion = computed(() => props.item.round.qualificationKey === 'hvac-hansol');
+const fieldReportQuestion = computed(() => props.item.round.kind === 'field-report-practice');
 const restoredQuestion = computed(() =>
-  props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
+  !fieldReportQuestion.value && props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
 const restoredImageClass = computed(() => restoredQuestion.value
   ? `restored-image-${props.restoredImageTheme || 'auto'}`
   : undefined);
@@ -254,7 +255,8 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       </div>
       <span v-if="displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
-      <span v-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
+      <span v-if="fieldReportQuestion" class="source-chip field-report-source-chip">비공식 제보 재구성</span>
+      <span v-else-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
       <span v-else-if="hansolQuestion" class="source-chip hansol-source-chip">한솔아카데미 원문</span>
       <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
