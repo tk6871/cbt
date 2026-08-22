@@ -87,6 +87,16 @@ REVIEWED_HOTSPOTS: dict[tuple[str, int], list[tuple[float, float, float, float]]
     ("2020_3", 15): [(7.65, 67.91, 27.21, 14.77), (54.42, 67.91, 30.61, 14.77), (7.65, 82.68, 27.21, 15.75), (54.42, 82.68, 30.61, 15.75)],
     ("2020_3", 74): [(8.58, 53.32, 72.39, 8.50), (8.58, 64.91, 72.39, 8.50), (8.58, 76.51, 72.39, 8.50), (8.58, 88.10, 72.39, 9.66)],
     ("2022_3", 59): [(1.77, 22.76, 59.70, 15.86), (1.77, 40.00, 59.70, 17.93), (1.77, 57.93, 59.70, 18.62), (1.77, 76.55, 59.70, 19.31)],
+    # Diagram-only choices and unusually compact 2x2 answers need the full
+    # printed choice, not only the circled marker detected in the PDF layer.
+    ("2019_3", 60): [(6.50, 10.10, 19.50, 3.10), (47.00, 10.10, 20.00, 3.10), (6.50, 13.90, 19.50, 4.20), (47.00, 13.90, 18.00, 5.00)],
+    ("2020_4", 29): [(2.00, 83.50, 39.00, 7.80), (46.30, 83.50, 39.00, 7.80), (2.00, 91.50, 39.00, 8.00), (46.30, 91.50, 39.00, 8.00)],
+    ("2021_1", 4): [(1.91, 27.03, 29.03, 16.59), (1.91, 43.62, 29.03, 14.95), (1.91, 58.57, 29.03, 13.24), (1.91, 72.01, 29.03, 14.50)],
+    ("2021_2", 17): [(1.91, 14.42, 73.45, 7.25), (1.91, 24.97, 93.61, 18.56), (1.91, 46.61, 93.61, 17.59), (1.91, 67.37, 93.61, 18.00)],
+    ("2021_3", 70): [(4.59, 33.58, 22.50, 14.33), (4.59, 47.91, 29.63, 12.71), (4.59, 60.62, 21.58, 12.77), (4.59, 73.39, 28.70, 13.00)],
+    ("2023_3", 2): [(1.50, 36.60, 74.00, 10.00), (1.50, 48.00, 74.00, 10.00), (1.50, 59.30, 74.00, 10.00), (1.50, 70.70, 74.00, 10.30)],
+    ("2024_1", 2): [(1.90, 69.00, 14.20, 11.80), (17.00, 69.00, 15.20, 11.80), (1.90, 83.20, 14.20, 11.80), (17.00, 83.20, 15.20, 11.80)],
+    ("2024_2", 2): [(1.50, 46.90, 74.00, 10.30), (1.50, 60.80, 74.00, 10.30), (1.50, 74.40, 74.00, 10.30), (1.50, 88.00, 74.00, 10.20)],
 }
 
 # The 2021 source prints an unrelated stem above the delay-time choices, while
@@ -167,41 +177,58 @@ def hansol_answer_hotspots(
     if set(selected) != {1, 2, 3, 4}:
         return []
 
-    marker_x = {choice: selected[choice]["x0"] for choice in selected}
-    two_columns = max(marker_x.values()) - min(marker_x.values()) > width * .24
-    columns = [[1, 3], [2, 4]] if two_columns else [[1, 2, 3, 4]]
-    x_boundary = (max(marker_x[choice] for choice in columns[0])
-                  + min(marker_x[choice] for choice in columns[-1])) / 2 if two_columns else x1
+    # Circled markers on the same printed row share nearly the same baseline.
+    # A tolerance derived from glyph height can become larger than the gap
+    # between compact 2x2 rows, so use the final crop height instead.
+    row_tolerance = max(2.0, height * .012)
+    vertical_gaps = sorted(
+        abs(left["top"] - right["top"])
+        for left in selected.values()
+        for right in selected.values()
+        if abs(left["top"] - right["top"]) > row_tolerance
+    )
+    fallback_gap = vertical_gaps[len(vertical_gaps) // 2] if vertical_gaps else height * .065
     output: list[dict[str, Any]] = []
 
-    for column_index, choices in enumerate(columns):
-        ordered = sorted(choices, key=lambda choice: selected[choice]["top"])
-        gaps = [selected[right]["top"] - selected[left]["top"] for left, right in zip(ordered, ordered[1:])]
-        fallback_gap = sorted(gaps)[len(gaps) // 2] if gaps else height * .11
-        for index, choice in enumerate(ordered):
-            marker = selected[choice]
-            owner_left = x0 if not two_columns or column_index == 0 else x_boundary
-            owner_right = x1 if not two_columns or column_index == 1 else x_boundary
-            owner_top = marker["top"] - max(2.0, marker["bottom"] - marker["top"]) * .22
-            owner_bottom = (selected[ordered[index + 1]]["top"] - 1
-                            if index + 1 < len(ordered)
-                            else min(bottom, marker["top"] + max(fallback_gap, height * .065)))
-            relevant = [box for box in text_boxes
-                        if owner_left <= (box["x0"] + box["x1"]) / 2 <= owner_right
-                        and owner_top <= (box["top"] + box["bottom"]) / 2 <= owner_bottom
-                        and not re.search(r"한솔아카데미|온라인강의|학원강의|TEL", box.get("text", ""), re.I)]
-            relevant.append(marker)
-            left = max(owner_left, min(box["x0"] for box in relevant) - width * .004)
-            rect_top = max(top, min(box["top"] for box in relevant) - height * .004)
-            right = min(owner_right, max(box["x1"] for box in relevant) + width * .004)
-            rect_bottom = min(owner_bottom, max(box["bottom"] for box in relevant) + height * .004)
-            rect = {
-                "x": round((left - x0) / width * 100, 2),
-                "y": round((rect_top - top) / height * 100, 2),
-                "width": round(max(1.0, right - left) / width * 100, 2),
-                "height": round(max(1.0, rect_bottom - rect_top) / height * 100, 2),
-            }
-            output.append({"choice": choice, **rect, "segments": [rect]})
+    for choice in sorted(selected):
+        marker = selected[choice]
+        marker_center_y = (marker["top"] + marker["bottom"]) / 2
+        same_row = sorted(
+            (other_choice for other_choice, other in selected.items()
+             if abs((other["top"] + other["bottom"]) / 2 - marker_center_y) <= row_tolerance),
+            key=lambda other_choice: selected[other_choice]["x0"],
+        )
+        row_index = same_row.index(choice)
+        # Each answer owns the space from just before its printed marker to
+        # just before the next marker in the same row. This handles 1-column,
+        # 2x2 and four-answers-on-one-line layouts without assuming a fixed
+        # numbering order, and it does not cut long left-hand text in half.
+        owner_left = x0 if row_index == 0 else marker["x0"] - width * .008
+        owner_right = (selected[same_row[row_index + 1]]["x0"] - width * .008
+                       if row_index + 1 < len(same_row) else x1)
+        owner_top = marker["top"] - max(2.0, marker["bottom"] - marker["top"]) * .22
+        below = [other for other in selected.values()
+                 if other["top"] > marker["top"] + row_tolerance
+                 and abs(other["x0"] - marker["x0"]) <= width * .12]
+        next_marker = min(below, key=lambda other: other["top"], default=None)
+        owner_bottom = (next_marker["top"] - 1 if next_marker
+                        else min(bottom, marker["top"] + max(fallback_gap, height * .065)))
+        relevant = [box for box in text_boxes
+                    if owner_left <= (box["x0"] + box["x1"]) / 2 <= owner_right
+                    and owner_top <= (box["top"] + box["bottom"]) / 2 <= owner_bottom
+                    and not re.search(r"한솔아카데미|온라인강의|학원강의|inup\.co\.kr|1670[-－]?\d+|TEL", box.get("text", ""), re.I)]
+        relevant.append(marker)
+        left = max(owner_left, min(box["x0"] for box in relevant) - width * .004)
+        rect_top = max(top, min(box["top"] for box in relevant) - height * .004)
+        right = min(owner_right, max(box["x1"] for box in relevant) + width * .004)
+        rect_bottom = min(owner_bottom, max(box["bottom"] for box in relevant) + height * .004)
+        rect = {
+            "x": round((left - x0) / width * 100, 2),
+            "y": round((rect_top - top) / height * 100, 2),
+            "width": round(max(1.0, right - left) / width * 100, 2),
+            "height": round(max(1.0, rect_bottom - rect_top) / height * 100, 2),
+        }
+        output.append({"choice": choice, **rect, "segments": [rect]})
     # Rounded OCR/PDF margins can overlap a neighbouring answer by a few
     # pixels.  Hover, click and selection all use this same rectangle in the
     # app, so split every shared sliver before writing the catalog.

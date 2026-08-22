@@ -314,6 +314,26 @@ const correctedQuestionText = new Map([
 const correctedChoices = new Map([
   ['hvac-hansol-2020-4:29', ['① 0.5, ② 3.8', '① 3.9, ② 2.8', '① 3.5, ② 2.5', '① 4.3, ② 2.8']],
 ]);
+// These questions were previously confirmed against an identical question in
+// the verified HVAC catalog. Keep the provenance even when a newer importer
+// already emits the corrected answer and no value has to be changed again.
+const verifiedAnswerCorrectionIds = new Set([
+  'hvac-hansol-2017-2:69', 'hvac-hansol-2017-2:70',
+  'hvac-hansol-2020-3:1', 'hvac-hansol-2020-3:2', 'hvac-hansol-2020-3:3',
+  'hvac-hansol-2020-3:4', 'hvac-hansol-2020-3:5', 'hvac-hansol-2020-3:6',
+  'hvac-hansol-2020-3:8', 'hvac-hansol-2020-3:9', 'hvac-hansol-2020-3:16',
+  'hvac-hansol-2020-3:17', 'hvac-hansol-2020-3:24', 'hvac-hansol-2020-3:26',
+  'hvac-hansol-2020-3:27', 'hvac-hansol-2020-3:28', 'hvac-hansol-2020-3:29',
+  'hvac-hansol-2020-3:31', 'hvac-hansol-2020-3:32', 'hvac-hansol-2020-3:34',
+  'hvac-hansol-2020-3:35', 'hvac-hansol-2020-3:37', 'hvac-hansol-2020-3:38',
+  'hvac-hansol-2020-3:39', 'hvac-hansol-2020-3:42', 'hvac-hansol-2020-3:43',
+  'hvac-hansol-2020-3:44', 'hvac-hansol-2020-3:45', 'hvac-hansol-2020-3:48',
+  'hvac-hansol-2020-3:50', 'hvac-hansol-2020-3:51', 'hvac-hansol-2020-3:52',
+  'hvac-hansol-2020-3:53', 'hvac-hansol-2020-3:57', 'hvac-hansol-2020-3:60',
+  'hvac-hansol-2020-3:61', 'hvac-hansol-2020-3:62', 'hvac-hansol-2020-3:67',
+  'hvac-hansol-2020-3:68', 'hvac-hansol-2020-3:72', 'hvac-hansol-2020-3:73',
+  'hvac-hansol-2020-3:79', 'hvac-hansol-2020-3:80', 'hvac-hansol-2025-2:54',
+]);
 for (const round of hansol.rounds) {
   for (const question of round.questions) {
     const key = `${round.id}:${question.number}`;
@@ -394,6 +414,9 @@ for (const round of hansol.rounds) {
     }
     if (!verified || verified.answers.size !== 1) continue;
     const [verifiedAnswer] = verified.answers;
+    if (verifiedAnswerCorrectionIds.has(`${round.id}:${question.number}`)) {
+      question.answerCorrectionSource = verified.sources[0];
+    }
     if (Number(question.answer) === verifiedAnswer) continue;
     question.answer = verifiedAnswer;
     question.answerCorrectionSource = verified.sources[0];
