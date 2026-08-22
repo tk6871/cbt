@@ -220,6 +220,7 @@ const updateChecking = ref(false);
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
+const searchBookmarksOnly = ref(false);
 const wrongRoundFilter = ref('');
 const calculationSubjectFilter = ref('all');
 const calculationRoundFilter = ref('all');
@@ -241,7 +242,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v331';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v340';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -446,6 +447,20 @@ const lastRoundRecord = computed(() => recentExamRecords.value.find((record) => 
 const searchResults = computed(() => {
   const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap;
   return searchResultIds.value.map((id) => lookup.get(id)).filter((item): item is QuestionItem => Boolean(item));
+});
+const searchableCatalogItems = computed(() => {
+  if (selectedCatalog.value.isVirtual) return [...targetItemMap.values()];
+  return allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
+});
+const displayedSearchResults = computed(() => {
+  if (searchQuery.value.length >= 2) {
+    return searchBookmarksOnly.value
+      ? searchResults.value.filter((item) => studyStore.bookmarks.includes(item.id))
+      : searchResults.value;
+  }
+  return searchBookmarksOnly.value
+    ? searchableCatalogItems.value.filter((item) => studyStore.bookmarks.includes(item.id))
+    : [];
 });
 const hiddenPatchTerms = /선재|변우석|류선재|선재 업고 튀어|tvN/i;
 const patchEntries = computed(() => (window.CBT_CHANGELOG?.entries || [])
@@ -2639,7 +2654,6 @@ onBeforeUnmount(() => {
       <div class="sidebar-foot">
         <button type="button" @click="openCalculator"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(4)" alt=""><template v-else>▦</template></span>공학용 계산기</button>
         <button type="button" @click="settingsOpen = true"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><template v-else>⚙</template></span>화면·데이터 설정</button>
-        <a href="legacy.html"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(1)" alt=""><template v-else>◫</template></span>이전 버전</a>
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
@@ -3005,13 +3019,20 @@ onBeforeUnmount(() => {
               <input v-model="searchQuery" type="search" placeholder="예: 냉동사이클, 레이놀즈수, 안전밸브" autofocus @input="requestSearch">
               <small>{{ searchReady ? `${selectedCatalog.name} 검색 준비 완료` : '문제 색인을 준비하는 중' }}</small>
             </div>
+            <button
+              type="button"
+              class="bookmark-search-toggle"
+              :class="{ active: searchBookmarksOnly }"
+              :aria-pressed="searchBookmarksOnly"
+              @click="searchBookmarksOnly = !searchBookmarksOnly"
+            >★ {{ searchBookmarksOnly ? '즐겨찾기만 보는 중' : '즐겨찾기 문제만 보기' }}</button>
           </section>
           <div class="search-summary">
-            <span v-if="searchQuery.length < 2">두 글자 이상 입력하면 바로 검색됩니다.</span>
-            <span v-else><strong>{{ searchResults.length }}</strong>개의 검색 결과</span>
+            <span v-if="searchQuery.length < 2 && !searchBookmarksOnly">두 글자 이상 입력하면 바로 검색됩니다.</span>
+            <span v-else><strong>{{ displayedSearchResults.length }}</strong>개의 {{ searchBookmarksOnly ? '즐겨찾기' : '검색' }} 결과</span>
           </div>
-          <TransitionGroup v-if="searchResults.length" name="list-shift" tag="div" class="question-library search-library">
-            <article v-for="item in searchResults" :key="item.id">
+          <TransitionGroup v-if="displayedSearchResults.length" name="list-shift" tag="div" class="question-library search-library">
+            <article v-for="item in displayedSearchResults" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
               <footer>
@@ -3020,6 +3041,7 @@ onBeforeUnmount(() => {
               </footer>
             </article>
           </TransitionGroup>
+          <section v-else-if="searchBookmarksOnly" class="empty-state"><span>★</span><h2>조건에 맞는 즐겨찾기 문제가 없습니다</h2><p>문제의 별표를 눌러 저장하거나 검색어를 지워 보세요.</p></section>
           <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
         </template>
 
@@ -3195,6 +3217,19 @@ onBeforeUnmount(() => {
               <strong>LIVE</strong>
               <span>Vue Motion</span>
             </div>
+          </section>
+
+          <section class="feature-layout-lab">
+            <header>
+              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>시험 직전 공조 도구</h2></div>
+              <p>이번 버전의 쉬운 계산 암기장, 즐겨찾기 문제 모아보기와 COMCBT 제출 동선을 바로 체험할 수 있습니다.</p>
+            </header>
+            <div>
+              <button type="button" @click="openView('guide')"><b>SI</b><strong>초등 계산 암기장</strong><span>열량 · COP · 냉각수 · 송풍기 공식</span></button>
+              <button type="button" @click="searchBookmarksOnly = true; openView('search')"><b>★</b><strong>즐겨찾기만 보기</strong><span>검색어 없이 저장한 문제만 모아보기</span></button>
+              <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>제출 버튼 체험</strong><span>학습 결과 · 시험 제출을 하단에서 바로</span></button>
+            </div>
+            <footer><strong>한솔·공조 해설 보강</strong><span>쉬운 핵심 해설을 먼저 읽고, 확인된 COMCBT 동일 문제 해설은 아래에서 함께 볼 수 있습니다.</span></footer>
           </section>
 
           <section class="feature-theme-preview">
@@ -3827,6 +3862,8 @@ onBeforeUnmount(() => {
       </div>
       <button v-if="unansweredCount" type="button" class="unanswered-jump" @click="goToNextUnanswered">미응답</button>
       <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>다음</span> →</button>
+      <button v-if="session.mode === 'learn'" type="button" class="compact-submit learning" @click="submitLearning">학습 결과 보기</button>
+      <button v-else type="button" class="compact-submit exam" @click="submitExam(false)">시험 제출·채점</button>
     </nav>
 
     <Transition name="result-pop" appear>

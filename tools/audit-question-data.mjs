@@ -144,7 +144,7 @@ for (const catalog of catalogs) {
         duplicateSignatures.set(signature, existing);
       }
       const explanationAnswer = statedExplanationAnswer(question);
-      if (explanationAnswer && explanationAnswer !== question.answer) {
+      if (explanationAnswer && explanationAnswer !== question.answer && !question.explanationAnswerReviewed) {
         explanationAnswerReviewCandidates.push({
           location: questionLocation,
           answer: question.answer,

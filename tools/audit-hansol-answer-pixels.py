@@ -20,6 +20,11 @@ from paddleocr import TextDetection
 
 
 ROOT = Path(__file__).resolve().parents[1]
+MANUALLY_REVIEWED = {
+    "2018_3:60", "2019_3:60", "2020_1:50", "2020_1:80", "2020_3:14",
+    "2020_3:15", "2020_3:74", "2020_4:29", "2021_1:4", "2021_2:17",
+    "2021_3:70", "2022_3:59", "2023_3:2", "2024_1:2", "2024_2:2",
+}
 
 
 def load_catalog() -> dict[str, Any]:
@@ -126,6 +131,27 @@ def main() -> None:
             print(f"진행: {index}/{len(entries)}, 후보 {len(findings)}, {elapsed:.1f}초", flush=True)
 
     single_choice_findings = [item for item in findings if item["joinedChoices"] == 1]
+    shared_boundary_indexes: set[int] = set()
+    for left_index, left in enumerate(single_choice_findings):
+        left_deficits = left["deficitPixels"]
+        for right_index in range(left_index + 1, len(single_choice_findings)):
+            right = single_choice_findings[right_index]
+            if left["question"] != right["question"]:
+                continue
+            right_deficits = right["deficitPixels"]
+            mirrored = (
+                "right" in left_deficits and "left" in right_deficits
+                and abs(left_deficits["right"] - right_deficits["left"]) <= 1.5
+            ) or (
+                "left" in left_deficits and "right" in right_deficits
+                and abs(left_deficits["left"] - right_deficits["right"]) <= 1.5
+            )
+            if mirrored:
+                shared_boundary_indexes.update((left_index, right_index))
+    manual_reviewed_findings = [item for item in single_choice_findings if item["question"] in MANUALLY_REVIEWED]
+    unresolved_single_choice_findings = [item for index, item in enumerate(single_choice_findings)
+                                         if index not in shared_boundary_indexes
+                                         and item["question"] not in MANUALLY_REVIEWED]
     high_review_findings = [item for item in single_choice_findings
                             if max(item["deficitPixels"].values(), default=0) >= 8]
     result = {
@@ -135,6 +161,9 @@ def main() -> None:
         "candidateSummary": {
             "rawFindings": len(findings),
             "singleChoiceFindings": len(single_choice_findings),
+            "sharedBoundaryFindings": len(shared_boundary_indexes),
+            "manualReviewedFindings": len(manual_reviewed_findings),
+            "unresolvedSingleChoiceFindings": len(unresolved_single_choice_findings),
             "detectorJoinedChoiceFindings": len(findings) - len(single_choice_findings),
             "highReviewFindings": len(high_review_findings),
             "highReviewQuestions": len({item["question"] for item in high_review_findings}),

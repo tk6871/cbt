@@ -15,6 +15,14 @@ function plain(value = '') {
   return String(value).replace(/<[^>]+>/g, ' ').replace(/&(?:nbsp|amp|lt|gt);/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+function withoutPrintedFooter(value = '') {
+  return String(value)
+    .replace(/\s*제\s*\d\s*과목\s*[:：].*$/s, '')
+    .replace(/\s*한솔아카데미.*$/s, '')
+    .replace(/\s*TEL\.?\s*\d{3,4}[-－]\d{4}.*$/is, '')
+    .trim();
+}
+
 function normalized(value = '') {
   return plain(value).normalize('NFKC').toLowerCase().replace(/[^0-9a-z가-힣]/g, '');
 }
@@ -50,6 +58,11 @@ function stripHansolSupplement(value = '') {
   return String(value).split(/\n\n\[(?:한솔아카데미 동일 문제 보충 해설|COMCBT 동일 문제 추가 해설)\]/)[0].trim();
 }
 
+function supplementOnly(value = '') {
+  const parts = String(value).split(/\n\n\[(?:한솔아카데미 동일 문제 보충 해설|COMCBT 동일 문제 추가 해설)\]\n/);
+  return (parts.length > 1 ? parts.slice(1).join('\n\n') : parts[0]).trim();
+}
+
 function stemKey(question) {
   return normalized(question.text || question.html || '');
 }
@@ -60,6 +73,7 @@ function fullKey(question) {
 
 function calculationGuide(source) {
   const rules = [
+    [/실내.*현열.*송풍량|송풍량.*현열/i, '송풍량 Q = 현열량 ÷ (공기밀도 × 공기비열 × 실내·취출 온도차)', 'kW는 kJ/s이므로 먼저 m³/s를 구하고, m³/h가 필요하면 마지막에 3,600을 곱합니다.'],
     [/이론.*성적계수.*실제.*성적계수|압축효율.*기계효율/i, '이론 COP = 냉동효과 ÷ 이론 압축일, 실제 COP ≈ 이론 COP × 압축효율 × 기계효율', '그림에서 냉동효과는 395.5-135.5=260, 압축일은 462-395.5=66.5이므로 이론 COP는 약 3.9입니다. 실제 COP는 3.9×0.80×0.9≈2.8입니다.'],
     [/열\s*통과율.*열전도율|열관류율.*열전도율/i, '1/K = 1/αᵢ + L/λ + 1/αₒ', '전체 열저항 1/K에서 실내·외 표면 열저항을 빼면 벽체 열저항 L/λ가 됩니다. 따라서 λ = L ÷ 남은 열저항으로 구합니다.'],
     [/절연저항.*(?:전압계|내부저항)|전압계.*절연저항/i, '절연저항 Rₓ = 전압계 내부저항 Rₘ × (측정 전압 V ÷ 전압계 지시값 e - 1)', '먼저 V를 e로 나누고 1을 뺀 다음 Rₘ과 곱합니다. MΩ로 바꿀 때는 Ω 값을 1,000,000으로 나눕니다.'],
@@ -81,10 +95,11 @@ function calculationGuide(source) {
     [/가스.*소\s*모량|연료.*소\s*비량|보일러.*발열량.*효율/i, '연료량 = 필요한 열량 ÷ (연료 발열량 × 효율)', '먼저 물의 열량 m×c×온도차를 구하고, 효율 95%는 0.95로 바꿔 발열량과 곱한 값으로 나눕니다.'],
     [/2전력계|두.*전력계/i, '3상 소비전력 = 첫째 전력계 P₁ + 둘째 전력계 P₂', '두 전력계가 가리킨 값을 그대로 더합니다.'],
     [/성능계수|\bCOP\b/i, '냉동 COP = 냉동효과(Qₗ) ÷ 압축기에 넣은 일(W)', '분자와 분모의 단위를 같게 맞춘 뒤 나눕니다. COP에는 단위가 남지 않습니다.'],
-    [/냉동톤|\bRT\b/i, '1 USRT = 약 3.517 kW = 약 3,024 kcal/h', 'RT를 kW로 바꿀 때는 3.517을 곱하고, 반대로 바꿀 때는 3.517로 나눕니다.'],
+    [/냉동톤|(?:냉동능력|냉동기).*\b(?:US)?RT\b|\b(?:US)?RT\b.*(?:냉동능력|냉동기)/i, '1 USRT = 약 3.517 kW = 약 3,024 kcal/h', 'RT를 kW로 바꿀 때는 3.517을 곱하고, 반대로 바꿀 때는 3.517로 나눕니다.'],
     [/상대습도|수증기분압/i, '상대습도(%) = 현재 수증기압 ÷ 포화수증기압 × 100', '두 압력의 단위를 같게 맞춘 뒤 나누고 마지막에 100을 곱합니다.'],
     [/옴의 법칙|저항.*(?:전류|전압)|(?:전류|전압).*저항/i, 'V = I × R (I = V ÷ R, R = V ÷ I)', 'V·A·Ω 단위를 확인하고, 모르는 값 하나만 왼쪽에 남깁니다.'],
-    [/3상|삼상|역률.*(?:전력|전압|전류)|유효전력/i, '3상 유효전력 P = √3 × V × I × cosφ', 'W로 계산한 뒤 kW가 필요하면 1,000으로 나눕니다.'],
+    [/무효전력|역률.*(?:무효|var)/i, '피상전력 S=V×I, 무효전력 Q=S×√(1-cos²φ)', '역률 80%는 cosφ=0.8이고 sinφ=√(1-0.8²)=0.6입니다. 단상이라면 V×I×0.6으로 무효전력을 구합니다.'],
+    [/3상|삼상|유효전력/i, '3상 유효전력 P = √3 × V × I × cosφ', 'W로 계산한 뒤 kW가 필요하면 1,000으로 나눕니다.'],
     [/펌프|양정|수동력|축동력/i, '펌프 동력 P = ρ × g × Q × H ÷ η', '유량 Q를 m³/s로 맞추고 효율은 %가 아닌 소수로 넣습니다.'],
     [/송풍기|팬.*법칙|상사법칙/i, '팬 법칙: 풍량 Q∝N, 압력 H∝N², 동력 P∝N³', '회전수 비를 먼저 만들고 풍량은 1제곱, 압력은 2제곱, 동력은 3제곱합니다.'],
     [/유량|유속|단면적/i, '체적유량 Q = 단면적 A × 속도 v', '지름이 주어지면 A = πd²÷4로 면적을 먼저 구하고 mm는 m로 바꿉니다.'],
@@ -110,6 +125,31 @@ function calculationGuide(source) {
 
 function conceptGuide(source, answerText, negative) {
   const rules = [
+    [/열\s*통과\s*저항|구조체.*\bRt\b/i, '열통과저항 Rt는 벽과 양쪽 표면이 열의 흐름을 막는 저항을 모두 더한 값입니다. 열관류율 K는 그 역수이므로 K=1/Rt이고, 손실열량은 Q=(1/Rt)×A×온도차로 구합니다.'],
+    [/권선형.*유도전동기.*2차.*저항|2차회로.*저항기/i, '권선형 유도전동기의 2차 회로에 외부저항을 넣으면 기동전류를 줄이고 기동토크를 크게 하며 속도도 조절할 수 있습니다. 최대토크가 생기는 슬립은 바뀌지만 최대토크의 크기 자체를 키우는 목적은 아닙니다.'],
+    [/몰리엘|P-h.*선도/i, '냉매 P-h 선도에는 압력·엔탈피와 등온선·등엔트로피선·등비체적선·건조도 등이 나타납니다. 비열은 상태선으로 직접 표시하는 값이 아닙니다.'],
+    [/터보식.*(?:용량제어|부하)|터보.*냉동기.*제어/i, '터보냉동기는 회전수, 흡입 가이드베인, 흡입댐퍼 등으로 용량을 조절합니다. 실린더의 틈을 바꾸는 클리어런스 증대법은 왕복동 압축기 쪽 방법입니다.'],
+    [/냉온수.*배관|에어벤트.*설치|공기빼기.*밸브/i, '물배관의 높은 곳에는 공기가 모이므로 에어벤트를 설치하고, 낮은 곳에는 물빼기를 둡니다. 공기가 차면 순환불량·소음·부식이 생길 수 있습니다.'],
+    [/중앙식.*전공기|전공기.*공기조화/i, '전공기 방식은 공기로 냉난방 열을 운반하므로 환기·외기냉방과 공기청정에 유리하지만 큰 덕트와 비교적 큰 송풍동력이 필요합니다.'],
+    [/공기조화.*(?:실내부하|장치부하)|냉동기.*발생.*열/i, '공조부하는 실내에서 생기는 열, 외기부하, 덕트·팬 등 장치부하로 나눕니다. 냉동기 자체에서 발생한 열은 실내·장치 냉방부하로 그대로 더하는 항목이 아닙니다.'],
+    [/주철관.*특징/i, '주철관은 내식성과 내구성은 좋지만 재질이 취성이어서 충격에 약합니다. 무겁고 긴 직관 제작이 어려운 점도 함께 구분합니다.'],
+    [/온풍.*난방|공기의 대류.*난방/i, '온풍난방은 데운 공기를 보내 대류로 난방합니다. 예열이 빠르고 설비가 비교적 단순하지만 기류·소음과 실내 상하 온도차가 커질 수 있습니다.'],
+    [/등온.*압축|열역학.*P.*V/i, '이상기체를 온도를 일정하게 압축하면 보일 법칙에 따라 P₁V₁=P₂V₂가 성립합니다. 압력이 커지는 만큼 체적은 작아집니다.'],
+    [/풍량조절.*댐퍼|댐퍼.*설치위치/i, '풍량조절댐퍼는 분기 덕트와 취출구의 풍량을 맞추는 곳에 둡니다. 방화구획이나 연소 위험 개구부에는 목적에 맞는 방화·방연댐퍼를 사용해야 합니다.'],
+    [/유인비|취출공기.*1차공기/i, '유인비는 유닛이 끌어들인 2차 공기량을 노즐에서 나온 1차 공기량으로 나눈 비입니다. 전공기량에 대한 1차 공기 비율과는 다릅니다.'],
+    [/가용전|용전|퓨즈.*플러그/i, '가용전은 이상 고온에서 녹아 압력을 빼는 안전장치입니다. 안전밸브를 대신해 임의로 아주 작게 만드는 것이 아니라 필요한 방출능력과 설치기준을 만족해야 합니다.'],
+    [/열이동.*단위|열전도율.*(?:W|kW).*mK/i, '열전도율의 단위는 W/(m·K), 열관류율은 W/(m²·K), 열량은 J, 열유량은 W입니다. 분모의 면적 m²가 있는지로 구분합니다.'],
+    [/구조체.*열관류|벽체.*열관류/i, '벽체 열관류량은 Q=K×A×온도차입니다. 표면 풍속은 표면 열전달률을 바꾸므로 전체 열관류율과 관계가 있습니다.'],
+    [/흡수식.*냉동기/i, '흡수식냉동기는 압축기 대신 흡수기·발생기와 열원을 사용합니다. 전력 사용과 소음·진동은 작지만 냉각탑이 크고 COP는 증기압축식보다 낮습니다. 물을 냉매로 쓰는 계통도 있습니다.'],
+    [/액봉.*사고|액봉.*압력/i, '액체가 밸브 사이에 갇힌 액봉 구간은 온도가 조금만 올라가도 압력이 매우 커질 수 있으므로 안전한 압력릴리프 장치가 필요합니다.'],
+    [/전열교환기|열회수장치/i, '전열교환기는 버리는 배기에서 현열과 잠열을 회수해 들어오는 외기를 미리 냉각·가열하므로 외기부하를 줄입니다.'],
+    [/PD.*동작|진동.*억제.*응답/i, 'PD제어는 현재 오차의 P동작에 오차 변화속도를 보는 D동작을 더해 진동과 오버슈트를 줄이고 응답을 빠르게 합니다.'],
+    [/암모니아.*기밀시험|CO.?2.*기밀/i, '암모니아 냉동장치의 기밀시험에는 건조 질소 같은 불활성 기체를 사용합니다. 이산화탄소는 암모니아와 반응할 수 있어 사용하지 않습니다.'],
+    [/위상차.*시간|주파수.*위상차/i, '한 주기 시간은 T=1/f이고, 위상차 시간을 구할 때는 Δt=(위상각÷2π)×T를 사용합니다.'],
+    [/상당외기온도차/i, '상당외기온도차는 외기온도에 일사흡수율·일사량·외표면 열전달률의 영향을 합쳐 외벽 취득열을 계산하는 값입니다. 벽 재료의 열전도율은 열관류율 계산에 따로 반영합니다.'],
+    [/글로브.*밸브|유량.*조절.*밸브/i, '글로브밸브는 유로를 굽혀 저항은 크지만 유량을 세밀하게 조절하기 좋습니다. 게이트밸브는 보통 완전 개방·차단용입니다.'],
+    [/프로세스.*제어/i, '프로세스제어는 온도·압력·유량·액위처럼 공정의 물리량을 목표값에 맞게 유지하는 제어입니다.'],
+    [/현열.*잠열/i, '현열은 온도만 바꾸는 열이고 잠열은 수분의 증발·응축처럼 상태를 바꾸는 열입니다. 유리창을 통한 일사 취득열은 실내 온도를 올리는 현열입니다.'],
     [/일의 열당량|427.*kcal/i, '일의 열당량은 기계적 일과 열량의 환산관계입니다. 1kcal≈427kgf·m이므로 반대로 1kgf·m≈1/427kcal입니다.'],
     [/특성방정식.*근|방정식의 근/i, '전달함수의 특성근은 분모를 0으로 놓고 인수분해해 구합니다. 예를 들어 s²+s-6=(s+3)(s-2)이므로 근은 -3과 2입니다.'],
     [/헬라이드.*토치|토치.*불꽃.*누설/i, '헬라이드 토치는 할로겐계 냉매가 불꽃에 들어오면 색이 변하는 성질을 이용합니다. 누설량이 작을 때는 녹색, 많아지면 청록·청색 계열로 변합니다.'],
@@ -245,7 +285,10 @@ function conceptGuide(source, answerText, negative) {
     [/급수|급탕|위생기구/, '급수·급탕설비는 필요한 수량과 압력을 확보하면서 역류와 수격을 막아야 합니다. 위생기구 수, 동시사용률, 배관 손실을 함께 고려합니다.'],
     [/전압|전류|전력|저항|옴/, '전기회로는 전압 V, 전류 I, 저항 R의 관계 V=IR을 기본으로 봅니다. 전력은 직류·저항회로에서 P=VI=I²R=V²/R로 서로 바꿔 계산할 수 있습니다.'],
     [/전동기|유도전동기/, '유도전동기는 회전자계가 회전자에 전류를 유도해 토크를 만듭니다. 실제 회전속도는 동기속도보다 느리며 그 차이를 슬립으로 나타냅니다.'],
-    [/법령|산업안전|고압가스|기계설비법/, '법령 문항은 대상 설비, 수치, 주체와 검사·신고 시점을 서로 바꾸어 출제하는 경우가 많습니다. 문제의 원문 기준에서 해당되는 대상과 예외를 구분해야 합니다.'],
+    [/법령|산업안전|고압가스|기계설비법|방호조치/, '법령 문항은 대상 설비, 수치, 주체와 검사·신고 시점을 서로 바꾸어 출제하는 경우가 많습니다. 문제의 원문 기준에서 해당되는 대상과 예외를 구분해야 합니다.'],
+    [/시퀀스|시퀸스|정해.*순서|순차/, '시퀀스제어는 미리 정한 순서와 조건에 따라 각 단계가 차례로 진행되는 제어입니다. 출력 오차를 계속 되돌려 비교하는 피드백제어와 구분합니다.'],
+    [/터보.*냉동기.*특징/i, '터보냉동기는 고속 회전하는 임펠러로 냉매를 압축하므로 흡입·토출밸브가 없고 대용량에 적합합니다. 회전운동은 동적 균형을 잡기 쉬운 편이므로 “어렵다”는 설명이 틀립니다.'],
+    [/냉동장치.*운전.*준비작업/i, '운전 준비에는 냉각수펌프 가동, 벨트·밸브·윤활 상태 확인과 유압 확인이 포함됩니다. 압축기 자체를 기동하는 것은 준비가 끝난 뒤의 실제 운전 단계입니다.'],
   ];
   const guide = rules.find(([pattern]) => pattern.test(source))?.[1];
   if (!guide) return '';
@@ -256,12 +299,20 @@ function beginnerExplanation(question) {
   const answer = question.answer;
   const answerText = plain(question.choices[answer - 1]?.text || question.choices[answer - 1]?.html || `${answer}번`);
   const stem = plain(question.text || question.html || '문제의 조건');
-  const source = `${stem} ${question.choices.map((choice) => plain(choice.text || choice.html)).join(' ')}`;
-  const asksNumber = /계산|구하|산출|얼마|몇\s*(?:개|배|%|℃|도|kW|W|kcal|kg|m|Pa|V|A|Ω|rpm|RT)?|수치는|값은\??$/i.test(stem)
-    || /(?:신축량|손실량|효율|표면온도|열전도율|열관류율|절대압력|저항|면적|방열량|환기량)(?:은|는|이|가)?\??/i.test(stem)
+  const formulaSource = stem;
+  const conceptSource = `${stem} ${answerText}`;
+  const normalizedPolarity = normalized(stem);
+  const negative = /옳지않|아닌|틀린|거리가먼|해당되지않|관계없는|잘못된|부적당|필요하지않|될수없는/.test(normalizedPolarity);
+  const numericInputs = stem.match(/[-+]?\d+(?:\.\d+)?/g) || [];
+  const hasNumericInput = numericInputs.length > 0;
+  const asksDefinition = /무엇을?\s*(?:나타|의미)|뜻은|명칭은|기호는|단위는|어떤\s*것/i.test(stem);
+  const formulaAnswer = !answerText || /\d|[A-Za-z]|[=×÷+\-]|[π√∫∑]/.test(answerText)
+    || (numericInputs.length >= 2 && /얼마|몇/.test(stem));
+  const asksNumber = !asksDefinition && !negative && formulaAnswer && (/계산|산출|얼마|몇\s*(?:개|배|%|℃|도|kW|W|kcal|kg|m|Pa|V|A|Ω|rpm|RT)?|수치는|값은\??$/i.test(stem)
+    || (hasNumericInput && /구하|(?:신축량|손실량|효율|표면온도|열전도율|열관류율|절대압력|저항|면적|방열량|환기량)(?:은|는|이|가)?\??/i.test(stem))
     || (/[-+]?\d+(?:\.\d+)?\s*(?:kW|W|kcal|kg|m³|m2|m²|Pa|MPa|V|A|Ω|rpm|RT|℃|%)/i.test(stem)
-      && /동력|전력|유량|풍량|열량|효율|능력|온도|압력|저항/i.test(stem));
-  const guide = calculationGuide(source);
+      && /동력|전력|유량|풍량|열량|효율|능력|온도|압력|저항/i.test(stem)));
+  const guide = calculationGuide(formulaSource);
   if (asksNumber && guide) {
     return [
       `핵심은 문제에서 요구한 값을 먼저 표시하고 단위를 맞추는 것입니다. 사용할 식은 ${guide[0]}입니다.`,
@@ -269,9 +320,7 @@ function beginnerExplanation(question) {
       `계산값과 단위가 ‘${answerText}’와 일치하므로 정답은 ${answer}번입니다.`,
     ].join(' ');
   }
-  const normalizedPolarity = normalized(stem);
-  const negative = /옳지않|아닌|틀린|거리가먼|해당되지않|관계없는|잘못된|부적당/.test(normalizedPolarity);
-  const concept = conceptGuide(source, answerText, negative);
+  const concept = conceptGuide(conceptSource, answerText, negative);
   if (concept) {
     return `${concept} ${negative ? '' : `이 원리에 맞는 보기는 ‘${answerText}’이므로 `}정답은 ${answer}번입니다.`.replace(/\s+/g, ' ').trim();
   }
@@ -336,6 +385,13 @@ const verifiedAnswerCorrectionIds = new Set([
 ]);
 for (const round of hansol.rounds) {
   for (const question of round.questions) {
+    question.text = withoutPrintedFooter(question.text);
+    question.html = withoutPrintedFooter(question.html);
+    question.choices = question.choices.map((choice) => ({
+      ...choice,
+      text: withoutPrintedFooter(choice.text),
+      html: withoutPrintedFooter(choice.html),
+    }));
     const key = `${round.id}:${question.number}`;
     const correction = correctedQuestionText.get(key);
     if (correction) {
@@ -422,6 +478,18 @@ for (const round of hansol.rounds) {
     question.answerCorrectionSource = verified.sources[0];
   }
 }
+const manuallyVerifiedAnswers = new Map([
+  ['hvac-hansol-2020-3:30', { answer: 3, source: 'hvac-20200822:31' }],
+  ['hvac-hansol-2023-2:29', { answer: 3, source: 'manual-image-review' }],
+]);
+for (const round of hansol.rounds) {
+  for (const question of round.questions) {
+    const verified = manuallyVerifiedAnswers.get(`${round.id}:${question.number}`);
+    if (!verified) continue;
+    question.answer = verified.answer;
+    question.answerCorrectionSource = verified.source;
+  }
+}
 const allHansol = hansol.rounds.flatMap((round) => round.questions.map((question) => ({ round, question })));
 const hvacExplanationCandidates = hvac.rounds.flatMap((round) => round.questions
   .filter((question) => stripHansolSupplement(question.explanation))
@@ -464,14 +532,14 @@ for (const { question } of allHansol) {
   const source = sourceByFull.get(`${answerKey}:${fullKey(question)}`)
     || sourceByStem.get(`${answerKey}:${stemKey(question)}`);
   if (source) {
-    question.explanation = explanationFromSource(question, source);
+    question.explanation = `${beginnerExplanation(question)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, source)}`;
     question.explanationProvenance = `${source.round.id}:${source.question.number}`;
     question.explanationMatchScore = 1;
     propagated += 1;
   } else {
     const fuzzySource = fuzzyExplanationSource(question, hvacExplanationCandidates);
     if (fuzzySource) {
-      question.explanation = explanationFromSource(question, fuzzySource);
+      question.explanation = `${beginnerExplanation(question)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, fuzzySource)}`;
       question.explanationProvenance = `${fuzzySource.round.id}:${fuzzySource.question.number}`;
       question.explanationMatchScore = Number(fuzzySource.score.toFixed(4));
       propagated += 1;
@@ -500,7 +568,7 @@ const linkedCandidates = hansolLinked.map((entry) => ({
   stem: plain(entry.question.text || entry.question.html || ''),
   normalizedStem: normalized(entry.question.text || entry.question.html || ''),
   answerText: correctChoice(entry.question),
-  explanation: entry.question.explanation,
+  explanation: supplementOnly(entry.question.explanation),
 }));
 
 let restoredMerged = 0;
@@ -517,12 +585,39 @@ for (const round of hvac.rounds) {
     if (!source) continue;
     const sourceQuestion = source.question;
     const sourceRound = source.round;
-    const supplement = plain(sourceQuestion.explanation);
+    const supplement = plain(supplementOnly(sourceQuestion.explanation));
     const current = plain(currentBase);
     if (!supplement || current.includes(supplement) || (current && supplement.includes(current))) continue;
-    question.explanation = `${currentBase || ''}\n\n[COMCBT 동일 문제 추가 해설]\n${sourceQuestion.explanation}`.trim();
+    question.explanation = `${currentBase || ''}\n\n[COMCBT 동일 문제 추가 해설]\n${supplementOnly(sourceQuestion.explanation)}`.trim();
     question.explanationSupplementSource = `${sourceRound.id}:${sourceQuestion.number}`;
     restoredMerged += 1;
+  }
+}
+
+let existingHvacAuthored = 0;
+for (const round of hvac.rounds) {
+  for (const question of round.questions) {
+    if (String(question.explanation || '').trim() && question.explanationProvenance !== 'local-beginner-authored') continue;
+    question.explanation = beginnerExplanation(question);
+    question.explanationHtml = question.explanation;
+    question.explanationType = 'ai-reference';
+    question.explanationConfidence = 'medium';
+    question.explanationProvenance = 'local-beginner-authored';
+    existingHvacAuthored += 1;
+  }
+}
+
+const reviewedExplanationConflicts = new Map([
+  ['hvac-20140302:49', '설정 정답 ④를 유지합니다. 바닥 아래 송풍은 터미널 유닛으로 공기를 고르게 분배하므로 “온·습도 조건이 국소적으로 불만족하다”는 설명이 특징이 아닙니다. 아래의 ② 주장 문장은 이용자 오류 신고 기록이며 적용 정답이 아닙니다.'],
+  ['hvac-20160306:17', '설정 정답 ③을 유지합니다. 유리창을 통과하거나 일사로 들어오는 열은 수분을 더하지 않아 현열입니다. 아래의 ④ 주장 문장은 이용자 오류 신고 기록이며 적용 정답이 아닙니다.'],
+]);
+for (const round of hvac.rounds) {
+  for (const question of round.questions) {
+    const review = reviewedExplanationConflicts.get(`${round.id}:${question.number}`);
+    if (!review) continue;
+    const base = String(question.explanation || '').split('\n\n[정답·해설 대조 완료]\n')[0].trim();
+    question.explanation = `${base}\n\n[정답·해설 대조 완료]\n${review}`;
+    question.explanationAnswerReviewed = true;
   }
 }
 
@@ -555,6 +650,7 @@ console.log(JSON.stringify({
   fuzzyLinked,
   authored,
   restoredMerged,
+  existingHvacAuthored,
   hansolQuestions: allHansol.length,
   finalLinked,
   finalAuthored,

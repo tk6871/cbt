@@ -8,13 +8,10 @@ const remoteAssetRoot = 'https://tk6871.github.io/cbt/assets/';
 const files = [
   'index.html',
   'jewelry.html',
-  'legacy.html',
   'next.html',
   'calculator.html',
   'calculator.css',
   'calculator.js',
-  'app.css',
-  'app.js',
   'cloud-config.js',
   'manifest.webmanifest',
   'jewelry.webmanifest',

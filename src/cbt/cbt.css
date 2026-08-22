@@ -728,6 +728,9 @@ img { max-width: 100%; }
 .search-command input { width:100%; height:64px; padding:0 160px 0 52px; border:2px solid var(--primary); border-radius:17px; color:var(--text); background:var(--surface); box-shadow:0 14px 38px rgba(18,104,211,.12); font-size:.9rem; outline:0; }
 .search-command > div > b { position:absolute; left:19px; top:18px; color:var(--primary); font-size:1.1rem; }
 .search-command > div > small { position:absolute; right:15px; top:23px; color:var(--muted); font-size:.52rem; }
+.bookmark-search-toggle { min-height:40px; margin-top:14px; padding:0 16px; border:1px solid color-mix(in srgb,var(--primary) 28%,var(--line)); border-radius:999px; color:var(--primary); background:var(--surface); font-size:.62rem; font-weight:850; }
+.bookmark-search-toggle.active { border-color:#e4a51a; color:#7d5500; background:#fff3c8; }
+:root[data-theme="dark"] .bookmark-search-toggle.active { color:#ffd978; background:#4a370d; }
 .search-summary { min-height:47px; padding:16px 3px 8px; color:var(--muted); font-size:.62rem; }.search-summary strong { color:var(--primary); }
 
 .subject-report { margin-top:14px; padding:22px; border:1px solid var(--line); border-radius:17px; background:var(--surface); }
@@ -1094,6 +1097,10 @@ img { max-width: 100%; }
 .explanation-title { display: flex; align-items: center; gap: 7px; }
 .explanation-title span { padding: 3px 6px; border-radius: 5px; color: white; background: var(--green); font-size: .52rem; font-weight: 750; }
 .explanation-title strong { color: var(--green); font-size: .65rem; }
+.explanation-close-button { min-height:30px; margin-left:auto; padding:4px 8px; border:1px solid color-mix(in srgb,var(--green) 30%,var(--line)); border-radius:7px; color:var(--green); background:var(--surface); font-size:.52rem; font-weight:850; }
+.memory-tip { margin-top:11px; padding:10px 11px; border:1px solid color-mix(in srgb,#e0a72c 40%,var(--line)); border-radius:9px; background:color-mix(in srgb,#ffd95a 14%,var(--surface)); }
+.memory-tip strong { color:#9a6500; font-size:calc(.62rem * var(--font-scale,1)); }
+.memory-tip p { margin:5px 0 0; color:var(--text); font-size:calc(.62rem * var(--font-scale,1)); line-height:1.62; }
 .explanation-copy { margin: 8px 0 0; color: var(--text); font-size: .64rem; line-height: 1.7; white-space: pre-wrap; }
 .pager { padding: 22px 0 10px; display: flex; align-items: center; justify-content: center; gap: 15px; }
 .pager button { min-width: 90px; min-height: 40px; border-radius: 9px; color: white; background: var(--primary); font-size: .65rem; font-weight: 750; }
@@ -2751,6 +2758,9 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
 
 .compact-session-pager { position:fixed; z-index:78; inset:auto 0 0; min-height:66px; padding:8px max(14px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left)); border-top:1px solid var(--line); background:var(--surface); backdrop-filter:none; box-shadow:none; display:flex; align-items:center; justify-content:center; gap:9px; }
 .compact-session-pager > button { min-width:86px; min-height:42px; padding:0 13px; border-radius:9px; color:white; background:var(--primary); font-size:.65rem; font-weight:850; }.compact-session-pager > button:disabled { opacity:.35; }.compact-session-pager > .unanswered-jump { min-width:70px; color:var(--primary); background:var(--primary-soft); }
+.compact-session-pager > .compact-submit { min-width:122px; }
+.compact-session-pager > .compact-submit.learning { background:linear-gradient(135deg,#0d9368,#24b980); }
+.compact-session-pager > .compact-submit.exam { background:linear-gradient(135deg,#d94b4b,#b52738); }
 .compact-session-pager > div { min-width:150px; text-align:center; }.compact-session-pager > div span,.compact-session-pager > div strong,.compact-session-pager > div small { display:block; }.compact-session-pager > div span { color:var(--primary); font-size:.45rem; font-weight:900; letter-spacing:.1em; }.compact-session-pager > div strong { margin-top:2px; font-size:.75rem; }.compact-session-pager > div small { margin-top:2px; color:var(--muted); font-size:.48rem; }
 
 .session-status-strip { grid-column:1 / -1; width:100%; padding-top:7px; border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
@@ -2790,6 +2800,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .layout-comcbt .question-card { padding:8px; }.layout-comcbt .subject-divider { margin:-8px -8px 6px; }
   .combat-ultra-choice-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .compact-session-pager { gap:5px; padding-left:7px; padding-right:7px; }.compact-session-pager > button { min-width:64px; padding:0 9px; }.compact-session-pager > div { min-width:108px; }.compact-session-pager > .unanswered-jump { min-width:58px; }
+  .compact-session-pager > .compact-submit { min-width:96px; }
   .layout-combat .session-topbar { min-height:116px; grid-template-columns:auto minmax(0,1fr) auto; }.combat-hud-stats { grid-template-columns:repeat(4,minmax(64px,1fr)); }.combat-hud-stats > span { padding:3px 5px; }
   .layout-combat .question-columns { grid-template-columns:1fr; }
   .layout-combat .question-area { padding:9px; }.layout-combat .question-card { padding:14px; clip-path:none; }.layout-combat .subject-divider { margin:-14px -14px 12px; }
@@ -2802,5 +2813,10 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .session-status-strip { grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; }.session-status-strip > span { padding:3px 5px; }.session-status-strip small { font-size:.43rem; }.session-status-strip strong { font-size:.6rem; }
   .layout-combat .session-topbar { min-height:126px; padding-left:8px; padding-right:8px; }.combat-hud-stats small { letter-spacing:0; }.combat-hud-stats strong { font-size:.62rem; }
   .layout-combat .omr-sheet { inset:126px 0 0; }
+  .compact-session-pager { gap:3px; padding-left:4px; padding-right:4px; }
+  .compact-session-pager > button { min-width:46px; padding:0 5px; }
+  .compact-session-pager > div { min-width:72px; }
+  .compact-session-pager > .unanswered-jump { min-width:50px; }
   .compact-session-pager > div small { display:none; }.compact-session-pager > button span { display:none; }
+  .compact-session-pager > .compact-submit { min-width:78px; padding:0 5px; font-size:.53rem; }
 }
