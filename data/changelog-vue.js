@@ -5,6 +5,32 @@
 
   const entries = [
     {
+      version: '3.5.4',
+      scope: 'industrial',
+      date: '2026.08.23',
+      title: '학교 시험 사진 요청문 바로 복사',
+      summary: '학교 시험 준비 화면에서 사진과 함께 보낼 OCR·문제 정리 요청문을 잊지 않고 바로 복사할 수 있습니다.',
+      tags: ['학교 시험', '사진 OCR', '요청문 복사', 'JSON 병합'],
+      changes: [
+        '학교 시험 준비관에 사진 자료용 요청문을 접어서 보관하는 영역을 추가했습니다.',
+        '과목·시험·교재 범위만 바꾼 뒤 버튼 한 번으로 요청문 전체를 복사할 수 있습니다.',
+        '객관식·주관식 구분, 정답 불확실 항목 분리, 그림·도표 연결과 기존 자료 병합 조건을 요청문에 포함했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.5.4로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.5.4',
+      scope: 'jewelry',
+      date: '2026.08.23',
+      title: '공통 앱 업데이트 안정화',
+      summary: '산업기사 학교 시험 준비 기능 갱신과 함께 공통 앱 캐시를 최신 버전으로 맞췄습니다.',
+      tags: ['캐시', '업데이트', '보석관'],
+      changes: [
+        '공통 Vue 화면과 서비스워커 캐시를 v3.5.4로 갱신했습니다.',
+        '보석관의 문제·학습 기록·테마 기능은 기존과 동일하게 유지됩니다.'
+      ]
+    },
+    {
       version: '3.5.3',
       scope: 'industrial',
       date: '2026.08.23',
@@ -1593,8 +1619,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.5.3';
-  changelog.versions.jewelry = '3.5.3';
-  changelog.currentVersion = '3.5.3';
+  changelog.versions.industrial = '3.5.4';
+  changelog.versions.jewelry = '3.5.4';
+  changelog.currentVersion = '3.5.4';
   window.CBT_CHANGELOG = changelog;
 })();
