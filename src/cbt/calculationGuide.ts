@@ -8,6 +8,7 @@ export type CalculationGuide = {
   unitTip: string;
   numberOrigins?: string[];
   substitution?: string;
+  reliable?: boolean;
 };
 
 function plainText(value?: string): string {
@@ -20,6 +21,71 @@ export function calculationSource(item: QuestionItem): string {
     item.question.html,
     ...item.question.choices.flatMap((choice) => [choice.text, choice.html]),
   ].filter(Boolean).map(plainText).join(' ');
+}
+
+export function comcbtCalculationExplanation(item: QuestionItem): string {
+  const raw = item.question.explanation || item.question.explanationHtml || '';
+  const supplement = raw.split('[COMCBT 동일 문제 추가 해설]')[1];
+  if (supplement) return plainText(supplement.replace(/\[해설작성자[^\]]*\]/g, ' '));
+  const provenance = item.question.explanationProvenance || '';
+  if (!/(?:^|\.)comcbt\.com(?:\/|$)/i.test(item.question.source || '') || /local-|ai-reference|beginner-authored/i.test(provenance)) return '';
+  return plainText(raw.replace(/\[해설작성자[^\]]*\]/g, ' '));
+}
+
+function numericTokens(value: string): string[] {
+  return [...value.matchAll(/-?\d+(?:[,.]\d+)?/g)]
+    .map((match) => match[0].replace(/,/g, ''))
+    .filter((token) => token !== '1' && token !== '2' && token !== '3' && token !== '4');
+}
+
+function comcbtEquationGuide(item: QuestionItem, explanation: string): Pick<CalculationGuide, 'formula' | 'reason' | 'symbols' | 'unitTip' | 'substitution'> | null {
+  if (!explanation || /맞는지\s*모르|오류|오답|정정|틀린\s*해설|아닌\s*것/i.test(explanation)) return null;
+  const nativeComcbt = /(?:^|\.)comcbt\.com(?:\/|$)/i.test(item.question.source || '');
+  const answerChoice = plainText(item.question.choices[item.question.answer - 1]?.text || item.question.choices[item.question.answer - 1]?.html);
+  const answerNumbers = numericTokens(answerChoice);
+  const explanationNumbers = numericTokens(explanation);
+  const normalizedExplanation = explanation.replace(/,/g, '');
+  const answerSupported = nativeComcbt || answerNumbers.some((number) => normalizedExplanation.includes(number))
+    || answerNumbers.some((number) => {
+      const answerValue = Number(number);
+      return Number.isFinite(answerValue) && explanationNumbers.some((candidate) => {
+        const candidateValue = Number(candidate);
+        const tolerance = Math.max(.2, Math.abs(answerValue) * .015);
+        return Number.isFinite(candidateValue) && Math.abs(candidateValue - answerValue) <= tolerance;
+      });
+    })
+    || (answerChoice.length >= 2 && normalizedExplanation.includes(answerChoice.replace(/,/g, '')));
+  if (!answerSupported) return null;
+
+  const lines = explanation
+    .split(/(?:\n+|(?<=[.!?])\s+)/)
+    .map((line) => line.replace(/\[해설작성자[^\]]*\]/g, '').replace(/\s+/g, ' ').trim())
+    .filter((line) => line.length >= 4 && line.length <= 240)
+    .filter((line) => /(?:=|＝|∝|×|÷|\*|\/|제곱|비례|공식)/i.test(line))
+    .filter((line) => !/https?:|정답\s*(?:은|:|=)?\s*[1-4]\s*번만/i.test(line));
+  if (!lines.length) return null;
+
+  const score = (line: string): number => {
+    let value = 0;
+    if (/(?:공식|성적계수|COP|열량|효율|압력|동력|전력|유량|풍량|엔트로피|PV|RT|Δ|√)/i.test(line)) value += 4;
+    if (/[A-Za-z가-힣]\s*(?:=|＝|∝)/.test(line)) value += 3;
+    if (/(?:=|＝).*(?:=|＝)/.test(line)) value += 2;
+    if (answerNumbers.some((number) => line.replace(/,/g, '').includes(number))) value += 1;
+    return value;
+  };
+  const formula = [...lines].sort((left, right) => score(right) - score(left))[0];
+  const substitution = lines.find((line) => line !== formula
+    && answerNumbers.some((number) => line.replace(/,/g, '').includes(number))
+    && numericTokens(line).length >= 2);
+  return {
+    formula: `COMCBT 풀이식: ${formula}`,
+    reason: nativeComcbt
+      ? '이 문제의 COMCBT 원문 해설에서 계산식을 확인해 그대로 기준으로 삼았습니다.'
+      : '동일 문제의 COMCBT 추가 해설에 계산식과 정답값이 함께 확인되어 이 식을 기준으로 정리했습니다.',
+    symbols: '식에 나온 기호와 숫자는 문제 조건을 같은 순서로 대응해 확인하세요.',
+    substitution,
+    unitTip: '',
+  };
 }
 
 export function calculationGivenValues(item: QuestionItem): string[] {
@@ -67,12 +133,24 @@ export function isCalculationItem(item: QuestionItem): boolean {
   const asksForQuantity = /계산(?:값|하|하시오|하여)?|구하|산출|얼마(?:인가|인지|가)|몇\s*(?:개|배|%|℃|도|kW|W|kcal|kg|m|Pa|V|A|Ω|rpm|RT)?|값은|필요(?:한)?\s*(?:열량|동력|전력|유량|풍량)|소요(?:되는)?\s*(?:동력|전력|열량)/i.test(prompt);
   const hasFormulaSignal = /\bCOP\b|성능계수|냉동톤|\bRT\b|kW|kcal|엔탈피|열량|유량|풍량|동력|전력|전류|전압|저항|효율|압력|온도|습도|℃|kg\/|m²|m³|kPa|MPa|Pa|rpm|역률|비열|열관류/i.test(source);
   const numericChoiceCount = choices.filter((choice) => /(?:^|\s|[①-④])[-+]?\d|√|π|%|℃|kW|kcal|kg|m²|m³|Pa|V|A|Ω|rpm|RT/i.test(choice)).length;
-  return asksForQuantity || (hasFormulaSignal && numericChoiceCount >= 3 && /다음|조건|때|경우|관계/i.test(prompt));
+  const explanation = plainText(item.question.explanation || item.question.explanationHtml);
+  const explanationHasEquation = /(?:공식|계산|산출|=|＝|×|÷|\*|\/|제곱|비례)/i.test(explanation)
+    && /\d/.test(explanation);
+  return asksForQuantity
+    || (hasFormulaSignal && numericChoiceCount >= 3 && /다음|조건|때|경우|관계/i.test(prompt))
+    || (numericChoiceCount >= 3 && explanationHasEquation);
 }
 
 export function calculationGuideFor(item: QuestionItem): CalculationGuide {
-  const source = calculationSource(item);
+  const questionSource = calculationSource(item);
+  const comcbtExplanation = comcbtCalculationExplanation(item);
+  const source = `${questionSource} ${comcbtExplanation}`.trim();
   const goal = plainText(item.question.text || item.question.html) || `${item.subject}의 조건을 읽고 보기와 일치하는 값을 찾는 문제`;
+  const comcbtGuide = comcbtEquationGuide(item, comcbtExplanation);
+  if (comcbtGuide) return {
+    goal,
+    ...comcbtGuide,
+  };
 
   if (/진공압|mmHg.*절대압력|절대압력.*mmHg/i.test(source)) {
     const vacuum = Number(source.match(/진공압\s*([0-9]+(?:\.[0-9]+)?)/i)?.[1] || 0);
@@ -272,5 +350,6 @@ export function calculationGuideFor(item: QuestionItem): CalculationGuide {
     symbols: '기호 옆에 문제에서 주어진 숫자와 단위를 하나씩 적습니다.',
     reason: '문제 문장만으로 공식을 단정하면 다른 조건을 놓칠 수 있어 기존 해설과 함께 확인해야 합니다.',
     unitTip: '서로 다른 단위를 먼저 맞추고, 숫자 대입 → 계산 → 보기와 비교 순서로 풉니다.',
+    reliable: false,
   };
 }

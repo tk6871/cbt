@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
 import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
@@ -33,6 +33,7 @@ defineEmits<{
 
 const primaryImage = computed(() => isImagePrimary(props.item));
 const hansolQuestion = computed(() => props.item.round.qualificationKey === 'hvac-hansol');
+const nativeComcbtQuestion = computed(() => /(?:^|\.)comcbt\.com(?:\/|$)/i.test(props.item.question.source || ''));
 const fieldReportQuestion = computed(() => props.item.round.kind === 'field-report-practice');
 const restoredQuestion = computed(() =>
   !fieldReportQuestion.value && props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
@@ -42,6 +43,8 @@ const restoredImageClass = computed(() => restoredQuestion.value
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationProblem = computed(() => isCalculationItem(props.item));
+const beginnerCalculationAvailable = computed(() => (props.calculationMode || calculationProblem.value)
+  && calculationGuide.value.reliable !== false);
 const calculationNumberOrigins = computed(() => {
   const guideOrigins = calculationGuide.value.numberOrigins || [];
   const guideText = guideOrigins.join(' ');
@@ -122,7 +125,7 @@ const comcbtExplanationText = computed(() => {
   const matched = source.split('[COMCBT 동일 문제 추가 해설]')[1];
   if (matched) return readableText(matched.replace(/\[해설작성자[^\]]*\]/g, ' '));
   const provenance = props.item.question.explanationProvenance || '';
-  if (props.item.question.source !== 'comcbt.com' || /local-|ai-reference|beginner-authored/i.test(provenance)) return '';
+  if (!/(?:^|\.)comcbt\.com(?:\/|$)/i.test(props.item.question.source || '') || /local-|ai-reference|beginner-authored/i.test(provenance)) return '';
   return readableText(source.replace(/\[해설작성자[^\]]*\]/g, ' '));
 });
 
@@ -196,6 +199,39 @@ const compactTextChoices = computed(() => {
     && Math.max(...lengths) <= 34
     && lengths.reduce((sum, length) => sum + length, 0) <= 96;
 });
+const choiceLayoutProbeRef = ref<HTMLElement | null>(null);
+const forceVerticalTextChoices = ref(false);
+const twoColumnTextChoices = computed(() => compactTextChoices.value && !forceVerticalTextChoices.value);
+let choiceLayoutObserver: ResizeObserver | null = null;
+
+function measureChoiceWrapping(): void {
+  const probe = choiceLayoutProbeRef.value;
+  if (!probe || !compactTextChoices.value) {
+    forceVerticalTextChoices.value = false;
+    return;
+  }
+  const wraps = [...probe.querySelectorAll<HTMLElement>('.choice-copy > span')].some((copy) => {
+    const lineBox = copy.parentElement || copy;
+    const lineHeight = Number.parseFloat(getComputedStyle(lineBox).lineHeight) || 18;
+    return copy.getBoundingClientRect().height > lineHeight * 1.45 || copy.getClientRects().length > 1;
+  });
+  forceVerticalTextChoices.value = wraps;
+}
+
+async function reconnectChoiceLayoutProbe(): Promise<void> {
+  choiceLayoutObserver?.disconnect();
+  choiceLayoutObserver = null;
+  await nextTick();
+  const probe = choiceLayoutProbeRef.value;
+  if (!probe) {
+    forceVerticalTextChoices.value = false;
+    return;
+  }
+  choiceLayoutObserver = new ResizeObserver(measureChoiceWrapping);
+  choiceLayoutObserver.observe(probe);
+  measureChoiceWrapping();
+  void document.fonts?.ready.then(measureChoiceWrapping);
+}
 const compactSolveLayout = computed(() => props.solveLayout === 'comcbt');
 const inlineCompactExplanation = computed(() => props.solveLayout === 'comcbt');
 const combatDenseChoices = computed(() => {
@@ -300,6 +336,11 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
     && !inlineCompactExplanation.value,
   );
 });
+watch(() => [props.item.id, props.solveLayout, compactTextChoices.value], () => {
+  void reconnectChoiceLayoutProbe();
+}, { flush: 'post' });
+onMounted(() => { void reconnectChoiceLayoutProbe(); });
+onBeforeUnmount(() => choiceLayoutObserver?.disconnect());
 </script>
 
 <template>
@@ -326,6 +367,7 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       </div>
       <span v-else class="question-head-spacer" aria-hidden="true"></span>
       <span v-if="displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
+      <span v-if="!subjectStart" class="source-chip subject-source-chip">{{ item.subject }}</span>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="fieldReportQuestion" class="source-chip field-report-source-chip">비공식 제보 재구성</span>
       <span v-else-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
@@ -426,35 +468,42 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       </template>
     </div>
 
-    <div
-      v-if="!verifiedHotspots.length"
-      class="choice-grid"
-      :class="{
-        'image-choice-grid': primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
-        'image-inline-choice-grid': primaryImage && answerLayout === 'inline' && hasReadableChoices,
-        'compact-choice-grid': compactTextChoices,
-        'compact-visual-choice-grid': compactVisualChoices,
-        'combat-dense-choice-grid': combatDenseChoices,
-        'combat-ultra-choice-grid': combatUltraShortChoices,
-      }"
-    >
-      <button
-        v-for="(choice, index) in item.question.choices"
-        :key="index"
-        type="button"
-        class="choice-button"
-        :class="choiceClass(index)"
-        :aria-pressed="selected === index + 1"
-        :aria-label="primaryImage ? `${index + 1}번 ${choice.text || '답안'} 선택` : undefined"
-        @click="$emit('choose', index + 1)"
+    <div v-if="!verifiedHotspots.length" class="choice-grid-shell">
+      <div
+        class="choice-grid"
+        :class="{
+          'image-choice-grid': primaryImage && (answerLayout !== 'inline' || !hasReadableChoices),
+          'image-inline-choice-grid': primaryImage && answerLayout === 'inline' && hasReadableChoices,
+          'compact-choice-grid': twoColumnTextChoices,
+          'compact-visual-choice-grid': compactVisualChoices,
+          'combat-dense-choice-grid': combatDenseChoices,
+          'combat-ultra-choice-grid': combatUltraShortChoices,
+        }"
       >
-        <span class="choice-number">{{ circles[index] || index + 1 }}</span>
-        <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
-          <span v-html="displayedChoices[index]" />
-          <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
-        </span>
-        <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
-      </button>
+        <button
+          v-for="(choice, index) in item.question.choices"
+          :key="index"
+          type="button"
+          class="choice-button"
+          :class="choiceClass(index)"
+          :aria-pressed="selected === index + 1"
+          :aria-label="primaryImage ? `${index + 1}번 ${choice.text || '답안'} 선택` : undefined"
+          @click="$emit('choose', index + 1)"
+        >
+          <span class="choice-number">{{ circles[index] || index + 1 }}</span>
+          <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
+            <span v-html="displayedChoices[index]" />
+            <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
+          </span>
+          <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
+        </button>
+      </div>
+      <div v-if="compactTextChoices" ref="choiceLayoutProbeRef" class="choice-grid compact-choice-grid choice-layout-probe" aria-hidden="true">
+        <div v-for="(choice, index) in item.question.choices" :key="index" class="choice-button">
+          <span class="choice-number">{{ circles[index] || index + 1 }}</span>
+          <span class="choice-copy"><span v-html="displayedChoices[index]" /></span>
+        </div>
+      </div>
     </div>
 
     <div v-if="mode === 'learn' && selected && !correctSelected" class="retry-message">
@@ -483,19 +532,19 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
       <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
       <div class="explanation-extra-actions">
-        <button v-if="calculationMode || calculationProblem" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+        <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
           <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
         </button>
-        <button type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+        <button v-if="!nativeComcbtQuestion" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
           <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
         </button>
       </div>
-      <div v-if="beginnerCalculationOpen && (calculationMode || calculationProblem)" class="calculation-explanation beginner-calculation-explanation">
+      <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
         <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
         <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
         <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
       </div>
-      <aside v-if="memoryTipOpen" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+      <aside v-if="memoryTipOpen && !nativeComcbtQuestion" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
     </div>
 
     <Teleport to="body">
@@ -519,19 +568,19 @@ watch(() => [props.item.id, props.selected, props.solveLayout], () => {
             <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
             <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
             <div class="explanation-extra-actions">
-              <button v-if="calculationMode || calculationProblem" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+              <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
                 <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
               </button>
-              <button type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+              <button v-if="!nativeComcbtQuestion" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
                 <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
               </button>
             </div>
-            <div v-if="beginnerCalculationOpen && (calculationMode || calculationProblem)" class="calculation-explanation beginner-calculation-explanation">
+            <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
               <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
               <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
               <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
             </div>
-            <aside v-if="memoryTipOpen" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+            <aside v-if="memoryTipOpen && !nativeComcbtQuestion" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
           </div>
           <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
         </section>
