@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '3.6',
+      scope: 'industrial',
+      date: '2026.08.23',
+      title: '기존 화면과 비교 가능한 베타 학습 도구',
+      summary: '확신도·실수 원인·문제 메모·읽어주기와 시험 속도 예측을 한 번에 켜거나 기존 화면으로 돌아갈 수 있습니다.',
+      tags: ['베타 기능', '확신도', '문제 메모', '시험 속도'],
+      changes: [
+        '설정에 실험 기능 전체 ON/OFF를 추가해 베타 UI를 한 번에 표시하거나 숨길 수 있습니다.',
+        '문제마다 확신·애매·찍음, 개념·공식·단위·잘못 읽음 원인과 500자 내 메모를 기록합니다.',
+        '애매하거나 찍은 문제, 확신했지만 틀린 문제, 메모한 문제와 실수 원인별 문제를 최대 20개 다시 풀 수 있습니다.',
+        '브라우저의 한국어 음성으로 문제와 보기를 읽어 주고 시험 중에는 현재 속도로 완료 예상 시간과 시간 여유를 계산합니다.',
+        '전체 OFF해도 현재 답안·타이머·기존 학습 기록과 베타 메모는 삭제하지 않습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.6으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.6',
+      scope: 'jewelry',
+      date: '2026.08.23',
+      title: '선택형 베타 학습 도구',
+      summary: '보석관에서도 확신도·메모·읽어주기와 시험 속도 예측을 선택해서 사용할 수 있습니다.',
+      tags: ['베타 기능', '보석관', '문제 메모', '속도 예측'],
+      changes: [
+        '보석관 문제풀이에도 확신도, 실수 원인, 문제 메모와 읽어주기를 적용했습니다.',
+        '시험모드에서는 현재 답안 속도로 완료 예상 시간과 시간 여유를 표시합니다.',
+        '설정에서 전체 OFF하면 기존 문제풀이와 테마 화면을 그대로 사용하고 기록은 보존합니다.',
+        '공통 Vue 화면과 서비스워커 캐시를 v3.6으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.5.4',
       scope: 'industrial',
       date: '2026.08.23',
@@ -1619,8 +1649,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.5.4';
-  changelog.versions.jewelry = '3.5.4';
-  changelog.currentVersion = '3.5.4';
+  changelog.versions.industrial = '3.6';
+  changelog.versions.jewelry = '3.6';
+  changelog.currentVersion = '3.6';
   window.CBT_CHANGELOG = changelog;
 })();

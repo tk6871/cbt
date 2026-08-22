@@ -33,7 +33,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.5.4.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.6.apk`를 생성합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
 
@@ -88,6 +88,11 @@
 - 연도 범위별 랜덤 출제
 - 정답률이 낮은 문제와 반복 출제 유형 학습
 - 망각곡선 기반 복습 대기열과 취약 과목 분석
+- 선택형 베타 학습 도구에서 문제별 확신·애매·찍음, 실수 원인과 내 메모 기록
+- 확신이 낮거나 메모한 문제만 자동으로 모아 최대 20문제 다시 풀기
+- 시험모드의 현재 답안 속도로 완료 예상 시간과 남는 시간 계산
+- 브라우저의 한국어 음성으로 문제와 보기 읽어주기
+- 설정의 `실험 기능 전체`를 OFF하면 추가 UI만 숨기고 기존 문제풀이 화면으로 즉시 복귀
 
 ### 4. 합격 엔진과 학습 통계
 

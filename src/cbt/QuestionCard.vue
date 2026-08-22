@@ -21,6 +21,10 @@ const props = defineProps<{
   restoredImageTheme?: 'auto' | 'original';
   solveLayout?: 'standard' | 'comcbt' | 'combat';
   active?: boolean;
+  experimentalFeatures?: boolean;
+  confidence?: 'sure' | 'unsure' | 'guess';
+  mistakeReason?: 'concept' | 'formula' | 'unit' | 'careless';
+  studyNote?: string;
 }>();
 
 defineEmits<{
@@ -29,6 +33,9 @@ defineEmits<{
   toggleKeep: [];
   askAi: [];
   activate: [];
+  setConfidence: [confidence: 'sure' | 'unsure' | 'guess'];
+  setMistakeReason: [reason: 'concept' | 'formula' | 'unit' | 'careless'];
+  updateStudyNote: [note: string];
 }>();
 
 const primaryImage = computed(() => isImagePrimary(props.item));
@@ -78,6 +85,8 @@ const explanationOpen = ref(false);
 const explanationDismissed = ref(false);
 const beginnerCalculationOpen = ref(false);
 const memoryTipOpen = ref(false);
+const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+const speechSpeaking = ref(false);
 const circles = ['①', '②', '③', '④'];
 
 function readableText(value = ''): string {
@@ -108,6 +117,28 @@ const displayedChoices = computed(() => props.item.question.choices.map((choice,
   const source = String(choice.html || choice.text || `${index + 1}번`);
   return embeddedChoiceMarkers.value ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
 }));
+const canReadQuestion = computed(() => speechAvailable
+  && readableText(displayedQuestionMarkup.value).length >= 4
+  && displayedChoices.value.some((choice) => readableText(choice).length >= 1));
+
+function toggleQuestionSpeech(): void {
+  if (!canReadQuestion.value) return;
+  if (speechSpeaking.value) {
+    window.speechSynthesis.cancel();
+    speechSpeaking.value = false;
+    return;
+  }
+  const choiceText = displayedChoices.value.map((choice, index) =>
+    `${index + 1}번. ${readableText(choice)}`).join('. ');
+  const utterance = new SpeechSynthesisUtterance(`${readableText(displayedQuestionMarkup.value)}. ${choiceText}`);
+  utterance.lang = 'ko-KR';
+  utterance.rate = .92;
+  utterance.onend = () => { speechSpeaking.value = false; };
+  utterance.onerror = () => { speechSpeaking.value = false; };
+  speechSpeaking.value = true;
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.speak(utterance);
+}
 const showQuestionIdentity = computed(() => primaryImage.value
   && Boolean(props.displayNumber)
   && props.displayNumber !== props.item.question.number);
@@ -340,7 +371,10 @@ watch(() => [props.item.id, props.solveLayout, compactTextChoices.value], () => 
   void reconnectChoiceLayoutProbe();
 }, { flush: 'post' });
 onMounted(() => { void reconnectChoiceLayoutProbe(); });
-onBeforeUnmount(() => choiceLayoutObserver?.disconnect());
+onBeforeUnmount(() => {
+  choiceLayoutObserver?.disconnect();
+  if (speechSpeaking.value) window.speechSynthesis.cancel();
+});
 </script>
 
 <template>
@@ -510,6 +544,43 @@ onBeforeUnmount(() => choiceLayoutObserver?.disconnect());
       <strong>아직 정답이 아닙니다.</strong>
       <span>다른 보기를 선택해 보세요. 정답과 해설은 맞힌 뒤 표시됩니다.</span>
     </div>
+
+    <details v-if="experimentalFeatures" class="beta-question-tools">
+      <summary>
+        <span><b>BETA</b><strong>내 판단·메모</strong></span>
+        <small>{{ confidence === 'sure' ? '확신' : confidence === 'unsure' ? '애매' : confidence === 'guess' ? '찍음' : studyNote ? '메모 있음' : '열기' }}</small>
+      </summary>
+      <div class="beta-question-tools-body">
+        <button v-if="canReadQuestion" type="button" class="beta-read-aloud" @click="toggleQuestionSpeech">{{ speechSpeaking ? '■ 읽기 멈춤' : '🔊 문제와 보기 읽어주기' }}</button>
+        <section v-if="selected" class="beta-confidence-tools">
+          <span>이 답을 고를 때</span>
+          <div>
+            <button type="button" :class="{ active: confidence === 'sure' }" @click="$emit('setConfidence', 'sure')">✓ 확신</button>
+            <button type="button" :class="{ active: confidence === 'unsure' }" @click="$emit('setConfidence', 'unsure')">△ 애매</button>
+            <button type="button" :class="{ active: confidence === 'guess' }" @click="$emit('setConfidence', 'guess')">? 찍음</button>
+          </div>
+        </section>
+        <section v-if="selected" class="beta-mistake-tools">
+          <span>다시 볼 이유</span>
+          <div>
+            <button type="button" :class="{ active: mistakeReason === 'concept' }" @click="$emit('setMistakeReason', 'concept')">개념</button>
+            <button type="button" :class="{ active: mistakeReason === 'formula' }" @click="$emit('setMistakeReason', 'formula')">공식·계산</button>
+            <button type="button" :class="{ active: mistakeReason === 'unit' }" @click="$emit('setMistakeReason', 'unit')">단위</button>
+            <button type="button" :class="{ active: mistakeReason === 'careless' }" @click="$emit('setMistakeReason', 'careless')">잘못 읽음</button>
+          </div>
+        </section>
+        <label class="beta-study-note">
+          <span>내 메모 <small>기기 간 동기화 대상 · 500자</small></span>
+          <textarea
+            :value="studyNote || ''"
+            rows="2"
+            maxlength="500"
+            placeholder="예: 101.325는 1기압을 kPa로 쓴 값"
+            @input="$emit('updateStudyNote', ($event.target as HTMLTextAreaElement).value)"
+          />
+        </label>
+      </div>
+    </details>
 
     <button
       v-if="mode === 'learn' && correctSelected && (explanationDismissed || (compactSolveLayout && !inlineCompactExplanation))"
