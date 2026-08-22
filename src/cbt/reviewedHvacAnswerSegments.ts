@@ -26,6 +26,12 @@ export const reviewedHvacAnswerSegments: Record<string, Record<number, Array<{ x
       { "height": 6.39, "width": 33.29, "x": 13.22, "y": 70.47 }
     ]
   },
+  "assets/hvac/assets/questions/2021_3/60.jpg": {
+    "1": [{ "x": 5.9, "y": 82.8, "width": 11.4, "height": 5.8 }],
+    "2": [{ "x": 56.4, "y": 82.8, "width": 11.4, "height": 5.8 }],
+    "3": [{ "x": 5.9, "y": 90.8, "width": 13.5, "height": 5.8 }],
+    "4": [{ "x": 56.4, "y": 90.8, "width": 13.5, "height": 5.8 }]
+  },
   "assets/hvac/assets/questions/2022_1/40.jpg": {
     "4": [{ "height": 9.03, "width": 62.99, "x": 8.2, "y": 59.94 }]
   },

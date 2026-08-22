@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '3.4.2',
+      scope: 'industrial',
+      date: '2026.08.22',
+      title: '미응답 바로 찾기와 복원 답안 영역 정밀 보정',
+      summary: '학습·CBT의 모든 화면과 PC·모바일에서 다음 미응답으로 이동하고, 2021년 3회 60번 이미지 답안 영역을 원문 기준으로 바로잡았습니다.',
+      tags: ['미응답 이동', '학습·CBT', '모바일', '복원 좌표'],
+      changes: [
+        '기본 CBT·COMCBT·컴뱃 CBT의 상단 미응답 수를 눌러 다음 미응답 문제로 바로 이동할 수 있습니다.',
+        '기본 화면 하단, CBT OMR과 Android 휴대폰·태블릿 하단 도구에도 미응답 이동 버튼을 추가했습니다.',
+        '학습모드와 CBT 시험모드 모두 현재 문제 뒤의 미응답을 찾고, 끝까지 갔으면 처음 미응답으로 돌아옵니다.',
+        '공조 복원 2021년 3회 60번의 ①·② 행 침범과 ④ 글자 누락을 원문 확대 대조로 수동 교정했습니다.',
+        '해당 문제의 위·아래 행과 ④ 높이를 고정하는 원본 경계 회귀검사를 추가했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.4.2로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.4.2',
+      scope: 'jewelry',
+      date: '2026.08.22',
+      title: '학습·CBT 미응답 바로 찾기',
+      summary: 'PC·모바일의 모든 문제풀이 화면에서 남은 미응답 문제로 한 번에 이동합니다.',
+      tags: ['미응답 이동', '학습·CBT', '모바일'],
+      changes: [
+        '기본 CBT·COMCBT·컴뱃 CBT의 상단 미응답 수를 이동 버튼으로 바꿨습니다.',
+        '기본 화면 하단, CBT OMR과 Android 휴대폰·태블릿 하단 도구에서도 다음 미응답을 바로 찾을 수 있습니다.',
+        '현재 문제 뒤의 미응답을 우선 찾고 마지막에서는 처음 미응답으로 순환합니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.4.2로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.4.1',
       scope: 'industrial',
       date: '2026.08.22',
@@ -1341,8 +1371,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.4.1';
-  changelog.versions.jewelry = '3.4.1';
-  changelog.currentVersion = '3.4.1';
+  changelog.versions.industrial = '3.4.2';
+  changelog.versions.jewelry = '3.4.2';
+  changelog.currentVersion = '3.4.2';
   window.CBT_CHANGELOG = changelog;
 })();

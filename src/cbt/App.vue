@@ -242,7 +242,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v341';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v342';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -3738,7 +3738,13 @@ onBeforeUnmount(() => {
       >
         <span><small>진행</small><strong>{{ sessionProgress }}%</strong></span>
         <span><small>완료</small><strong>{{ answeredCount }}</strong></span>
-        <span><small>미응답</small><strong>{{ unansweredCount }}</strong></span>
+        <button
+          type="button"
+          class="session-unanswered-status"
+          :disabled="!unansweredCount"
+          :title="unansweredCount ? '다음 미응답 문제로 이동' : '모든 문제에 답했습니다'"
+          @click="goToNextUnanswered"
+        ><small>미응답</small><strong>{{ unansweredCount }}</strong></button>
         <span><small>킵</small><strong>{{ session.mode === 'exam' ? keptCount : '-' }}</strong></span>
       </div>
     </header>
@@ -3797,6 +3803,7 @@ onBeforeUnmount(() => {
         <footer class="pager">
           <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
           <span><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
+          <button v-if="unansweredCount" type="button" class="pager-unanswered-button" @click="goToNextUnanswered">다음 미응답</button>
           <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
           <button v-if="session.mode === 'learn'" type="button" class="learning-result-button" @click="submitLearning">학습 결과 보기</button>
           <button v-else type="button" class="exam-submit-button" @click="submitExam(false)">시험 제출·채점</button>
@@ -3837,14 +3844,15 @@ onBeforeUnmount(() => {
           <p v-if="!omrRows.length" class="omr-empty">해당 문제가 없습니다.</p>
         </div>
         <footer>
-          <button v-if="solveLayoutMode === 'comcbt' && unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
+          <button v-if="unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
           <button type="button" @click="submitExam(false)">채점하기</button>
         </footer>
       </aside>
     </main>
 
-    <nav class="native-session-bar" aria-label="Android 풀이 도구">
+    <nav class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
       <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)"><span>‹</span><strong>이전</strong></button>
+      <button v-if="unansweredCount" type="button" class="native-unanswered-button" @click="goToNextUnanswered"><span>?</span><strong>미응답</strong><b>{{ unansweredCount }}</b></button>
       <button v-if="session.mode === 'exam'" type="button" :class="{ active: examSheetOpen }" @click="examSheetOpen = !examSheetOpen"><span>OMR</span><strong>답안지</strong><b v-if="unansweredCount">{{ unansweredCount }}</b></button>
       <button v-else type="button" @click="settingsOpen = true"><span>가</span><strong>글씨·설정</strong></button>
       <button type="button" @click="openCalculator"><span>▦</span><strong>계산기</strong></button>
