@@ -169,9 +169,10 @@
     "fallback_explanations": 573
   },
   "enrichment": {
-    "linkedExplanations": 1387,
-    "beginnerAuthoredExplanations": 533,
+    "linkedExplanations": 1146,
+    "beginnerAuthoredExplanations": 774,
     "answerOnlyExplanations": 0,
-    "restoredQuestionsWithHansolSupplement": 1
+    "restoredQuestionsWithHansolSupplement": 25,
+    "exactQuestionAnswerCorrections": 44
   }
 }

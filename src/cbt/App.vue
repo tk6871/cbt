@@ -66,7 +66,7 @@ type RestoredImageTheme = 'auto' | 'original';
 type SolveLayoutMode = 'standard' | 'comcbt' | 'combat';
 type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
-type FontFamilyPreference = 'regular' | 'bold';
+type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type ExamResult = {
   score: number;
   correct: number;
@@ -177,7 +177,8 @@ const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE =
   ? window.CBT_DISPLAY_PREFERENCE : 'auto');
 const resolvedDisplayMode = window.CBT_DISPLAY_MODE || 'desktop';
 const savedFontFamily = localStorage.getItem('unified-cbt-font-family');
-const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold' ? 'bold' : 'regular');
+const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold' || savedFontFamily === 'd2coding' || savedFontFamily === 'd2coding-bold'
+  ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
@@ -874,7 +875,10 @@ function setFontFamilyPreference(mode: FontFamilyPreference): void {
   fontFamilyPreference.value = mode;
   localStorage.setItem('unified-cbt-font-family', mode);
   document.documentElement.dataset.fontFamily = mode;
-  showToast(mode === 'bold' ? '나눔고딕 Bold 글꼴을 적용했습니다.' : '나눔고딕 Regular 글꼴을 적용했습니다.');
+  const label = mode === 'bold' ? '나눔고딕 Bold'
+    : mode === 'd2coding' ? 'D2Coding Regular'
+      : mode === 'd2coding-bold' ? 'D2Coding Bold' : '나눔고딕 Regular';
+  showToast(`${label} 글꼴을 적용했습니다.`);
 }
 
 function applyPreset(value: 5 | 10 | 0): void {
@@ -3499,6 +3503,8 @@ onBeforeUnmount(() => {
           <div class="font-family-options">
             <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
             <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
+            <button :class="{ active: fontFamilyPreference === 'd2coding' }" @click="setFontFamilyPreference('d2coding')"><strong>D2Coding</strong><small>Regular · 고정폭</small></button>
+            <button :class="{ active: fontFamilyPreference === 'd2coding-bold' }" @click="setFontFamilyPreference('d2coding-bold')"><strong>D2Coding Bold</strong><small>굵은 고정폭</small></button>
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">
@@ -3865,6 +3871,8 @@ onBeforeUnmount(() => {
           <div class="font-family-options">
             <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
             <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
+            <button :class="{ active: fontFamilyPreference === 'd2coding' }" @click="setFontFamilyPreference('d2coding')"><strong>D2Coding</strong><small>Regular · 고정폭</small></button>
+            <button :class="{ active: fontFamilyPreference === 'd2coding-bold' }" @click="setFontFamilyPreference('d2coding-bold')"><strong>D2Coding Bold</strong><small>굵은 고정폭</small></button>
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">

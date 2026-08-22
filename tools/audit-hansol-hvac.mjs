@@ -16,6 +16,8 @@ let linkedExplanations = 0;
 let answerOnlyExplanations = 0;
 let authoredExplanations = 0;
 let hotspots = 0;
+let answerCorrections = 0;
+let genericFallbackExplanations = 0;
 
 function overlap(left, right) {
   const width = Math.min(left.x + left.width, right.x + right.width) - Math.max(left.x, right.x);
@@ -64,8 +66,12 @@ for (const round of catalog?.rounds || []) {
       if (!fs.existsSync(path.join(root, clean))) errors.push(`${location}: 이미지 파일 누락 ${clean}`);
     }
     if (question.explanationProvenance === 'hansol-answer-only') answerOnlyExplanations += 1;
-    else if (question.explanationProvenance === 'hansol-beginner-authored') authoredExplanations += 1;
+    else if (question.explanationProvenance === 'hansol-beginner-authored') {
+      authoredExplanations += 1;
+      if (question.explanation.startsWith('핵심 조건은')) genericFallbackExplanations += 1;
+    }
     else linkedExplanations += 1;
+    if (question.answerCorrectionSource) answerCorrections += 1;
   });
 }
 
@@ -76,6 +82,8 @@ if (linkedExplanations + authoredExplanations + answerOnlyExplanations !== 1920)
 }
 if (hotspots !== 7680) errors.push(`답안 박스 수가 7,680개가 아닙니다: ${hotspots}`);
 if (answerOnlyExplanations) errors.push(`정답만 안내하는 해설이 남아 있습니다: ${answerOnlyExplanations}`);
+if (genericFallbackExplanations) errors.push(`문제별 원리 없이 공통 문장만 사용한 해설이 남아 있습니다: ${genericFallbackExplanations}`);
+if (answerCorrections !== 44) errors.push(`검증 정답 교정 수가 44개가 아닙니다: ${answerCorrections}`);
 
 console.log(JSON.stringify({
   rounds: catalog?.rounds?.length || 0,
@@ -85,6 +93,8 @@ console.log(JSON.stringify({
   linkedExplanations,
   authoredExplanations,
   answerOnlyExplanations,
+  genericFallbackExplanations,
+  answerCorrections,
   errors: errors.length,
 }, null, 2));
 
