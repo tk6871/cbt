@@ -65,7 +65,7 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
@@ -79,6 +79,14 @@ type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
+type BetaConfidence = 'sure' | 'unsure' | 'guess';
+type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
+type BetaQuestionMeta = {
+  confidence?: BetaConfidence;
+  reason?: BetaMistakeReason;
+  note?: string;
+  at?: number;
+};
 type ExamResult = {
   score: number;
   correct: number;
@@ -210,6 +218,8 @@ const visualStyle = ref<VisualStyle>(currentVisualStyle());
 const sunjaeImageIndex = ref(0);
 const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 180);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
+const experimentalFeaturesEnabled = ref(localStorage.getItem('unified-cbt-experimental-features') !== 'false');
+document.documentElement.dataset.experimentalFeatures = experimentalFeaturesEnabled.value ? 'on' : 'off';
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
 const visualTransitionTarget = ref<VisualStyle>(visualStyle.value);
 const experienceTransitionPhase = ref<ExperienceTransitionPhase>(null);
@@ -305,7 +315,7 @@ let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
-const viewOrder: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
+const viewOrder: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'stats', 'updates', 'showcase'];
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
@@ -553,6 +563,7 @@ const viewTitle = computed(() => ({
   calculation: '계산문제만 풀기',
   guide: '공조 시험 암기장',
   coach: '합격 엔진',
+  beta: '베타 학습 도구',
   showcase: '신기술 학습관',
   stats: '학습 분석',
   updates: '패치노트',
@@ -615,6 +626,24 @@ const formattedTime = computed(() => {
     ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 });
+const examPace = computed(() => {
+  if (!experimentalFeaturesEnabled.value || session.value?.mode !== 'exam' || session.value.finished) return null;
+  const totalSeconds = Math.max(90 * 60, Math.ceil(session.value.items.length * 90));
+  const elapsedSeconds = Math.max(0, totalSeconds - session.value.remainingSeconds);
+  if (answeredCount.value < 2 || elapsedSeconds < 20) {
+    return { ready: false, label: '2문제부터 계산', detail: '답안 속도 측정 중', tone: 'measuring' };
+  }
+  const secondsPerQuestion = elapsedSeconds / answeredCount.value;
+  const neededSeconds = Math.round(secondsPerQuestion * unansweredCount.value);
+  const marginSeconds = session.value.remainingSeconds - neededSeconds;
+  const tone = marginSeconds >= 15 * 60 ? 'safe' : marginSeconds >= 5 * 60 ? 'steady' : 'risk';
+  return {
+    ready: true,
+    label: `${formatStudyDuration(neededSeconds)} 뒤 완료 예상`,
+    detail: `문제당 ${Math.round(secondsPerQuestion)}초 · ${marginSeconds >= 0 ? `${formatStudyDuration(marginSeconds)} 여유` : `${formatStudyDuration(Math.abs(marginSeconds))} 부족`}`,
+    tone,
+  };
+});
 const sessionTitle = computed(() => session.value?.title || '산업기사 통합 CBT');
 const subjectStats = computed(() => {
   const subjects = selectedSubjects.value;
@@ -638,6 +667,21 @@ const masteryRows = computed<MasteryRow[]>(() => selectedItems.value.map((item) 
     attempted: Boolean(attempt),
   };
 }));
+const betaTaggedRows = computed(() => selectedItems.value.map((item) => ({ item, meta: betaQuestionMeta(item.id) }))
+  .filter((row) => row.meta.confidence || row.meta.note || row.meta.reason));
+const betaLowConfidenceRows = computed(() => betaTaggedRows.value
+  .filter((row) => row.meta.confidence === 'unsure' || row.meta.confidence === 'guess')
+  .sort((a, b) => (a.meta.confidence === 'guess' ? -1 : 0) - (b.meta.confidence === 'guess' ? -1 : 0)
+    || Number(b.meta.at || 0) - Number(a.meta.at || 0)));
+const betaMemoRows = computed(() => betaTaggedRows.value.filter((row) => Boolean(row.meta.note?.trim())));
+const betaFalseConfidenceRows = computed(() => betaTaggedRows.value.filter((row) =>
+  row.meta.confidence === 'sure' && studyStore.attempts[row.item.id] && !studyStore.attempts[row.item.id]?.lastCorrect));
+const betaReasonRows = computed(() => ([
+  { key: 'concept' as const, label: '개념 부족', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'concept').length },
+  { key: 'formula' as const, label: '공식·계산', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'formula').length },
+  { key: 'unit' as const, label: '단위 실수', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'unit').length },
+  { key: 'careless' as const, label: '문제 잘못 읽음', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'careless').length },
+]));
 const coachAnswered = computed(() => masteryRows.value.filter((item) => item.attempted).length);
 const coachCoverage = computed(() =>
   masteryRows.value.length ? Math.round((coachAnswered.value / masteryRows.value.length) * 100) : 0);
@@ -962,10 +1006,101 @@ function showToast(message: string): void {
   toastHandle = window.setTimeout(() => { toastMessage.value = ''; }, 2400);
 }
 
+function formatStudyDuration(totalSeconds: number): string {
+  const seconds = Math.max(0, Math.round(totalSeconds));
+  const minutes = Math.floor(seconds / 60);
+  if (minutes >= 60) {
+    const hours = Math.floor(minutes / 60);
+    const rest = minutes % 60;
+    return rest ? `${hours}시간 ${rest}분` : `${hours}시간`;
+  }
+  return minutes ? `${minutes}분` : `${seconds}초`;
+}
+
+function betaQuestionMeta(id: string): BetaQuestionMeta {
+  const value = studyStore.notes[`beta-question:${id}`];
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+  const source = value as BetaQuestionMeta;
+  return {
+    confidence: source.confidence === 'sure' || source.confidence === 'unsure' || source.confidence === 'guess'
+      ? source.confidence : undefined,
+    reason: source.reason === 'concept' || source.reason === 'formula' || source.reason === 'unit' || source.reason === 'careless'
+      ? source.reason : undefined,
+    note: typeof source.note === 'string' ? source.note : undefined,
+    at: Number(source.at) || 0,
+  };
+}
+
+function updateBetaQuestionMeta(id: string, patch: Partial<BetaQuestionMeta>): void {
+  const key = `beta-question:${id}`;
+  const previous = betaQuestionMeta(id);
+  const next: BetaQuestionMeta = { ...previous, ...patch, at: Date.now() };
+  if (!next.confidence && !next.reason && !next.note?.trim()) delete studyStore.notes[key];
+  else studyStore.notes[key] = next;
+}
+
+function setQuestionConfidence(item: QuestionItem, confidence: BetaConfidence): void {
+  const current = betaQuestionMeta(item.id).confidence;
+  updateBetaQuestionMeta(item.id, { confidence: current === confidence ? undefined : confidence });
+}
+
+function setQuestionMistakeReason(item: QuestionItem, reason: BetaMistakeReason): void {
+  const current = betaQuestionMeta(item.id).reason;
+  updateBetaQuestionMeta(item.id, { reason: current === reason ? undefined : reason });
+}
+
+function setQuestionStudyNote(item: QuestionItem, note: string): void {
+  updateBetaQuestionMeta(item.id, { note: note.slice(0, 500) });
+}
+
+function setExperimentalFeatures(enabled: boolean): void {
+  experimentalFeaturesEnabled.value = enabled;
+  localStorage.setItem('unified-cbt-experimental-features', String(enabled));
+  document.documentElement.dataset.experimentalFeatures = enabled ? 'on' : 'off';
+  if (!enabled && view.value === 'beta') openView('home', { replace: true });
+  showToast(enabled
+    ? '실험 기능을 켰습니다. 문제 화면과 베타 학습 도구에 적용합니다.'
+    : '실험 기능을 모두 껐습니다. 기존 CBT 화면으로 돌아갑니다.');
+}
+
+function startBetaReview(kind: 'confidence' | 'memo' | 'false-confidence' | BetaMistakeReason): void {
+  let title = '베타 맞춤 복습';
+  let rows: QuestionItem[] = [];
+  if (kind === 'confidence') {
+    title = '베타 · 애매하거나 찍은 문제';
+    rows = betaLowConfidenceRows.value.map((row) => row.item);
+  } else if (kind === 'memo') {
+    title = '베타 · 내 메모 문제';
+    rows = betaMemoRows.value.map((row) => row.item);
+  } else if (kind === 'false-confidence') {
+    title = '베타 · 확신했지만 틀린 문제';
+    rows = betaFalseConfidenceRows.value.map((row) => row.item);
+  } else {
+    const label = betaReasonRows.value.find((row) => row.key === kind)?.label || '실수 원인';
+    title = `베타 · ${label} 집중`;
+    rows = betaTaggedRows.value.filter((row) => row.meta.reason === kind).map((row) => row.item);
+  }
+  const unique = [...new Map(rows.map((item) => [item.id, item])).values()];
+  if (!unique.length) {
+    showToast('아직 이 조건으로 기록된 문제가 없습니다. 문제를 풀며 표시해 주세요.');
+    return;
+  }
+  beginSession('learn', title, shuffle([...unique]).slice(0, 20));
+}
+
+function startBetaTrial(): void {
+  const rows = shuffle([...selectedItems.value]).slice(0, Math.min(5, selectedItems.value.length));
+  if (!rows.length) {
+    showToast('현재 연도 범위에서 체험할 문제를 찾지 못했습니다.');
+    return;
+  }
+  beginSession('learn', '베타 기능 5문제 비교', rows);
+}
+
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'showcase', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'showcase', 'stats', 'updates'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -976,12 +1111,19 @@ function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
 
 function initializeNavigationHistory(): void {
   const current = ownHistoryState();
-  const initialView = current?.view || 'home';
+  const initialView = current?.view === 'beta' && !experimentalFeaturesEnabled.value
+    ? 'home'
+    : current?.view || 'home';
   view.value = initialView;
   history.replaceState(viewHistoryState(initialView), '', location.href);
 }
 
 function openView(next: ViewName, options: { fromHistory?: boolean; replace?: boolean } = {}): void {
+  if (next === 'beta' && !experimentalFeaturesEnabled.value) {
+    settingsOpen.value = true;
+    showToast('설정에서 실험 기능 전체를 켜면 베타 학습 도구를 비교할 수 있습니다.');
+    return;
+  }
   const previousView = view.value;
   if (next !== view.value) {
     if (dynamicUiEnabled.value) viewScrollPositions.set(view.value, window.scrollY);
@@ -1064,7 +1206,7 @@ function handleBrowserHistory(event: PopStateEvent): void {
     experienceTransitionPhase.value = 'home-entering';
     window.setTimeout(() => { experienceTransitionPhase.value = null; }, motionAllowed.value ? 520 : 0);
   }
-  openView(target.view, { fromHistory: true });
+  openView(target.view === 'beta' && !experimentalFeaturesEnabled.value ? 'home' : target.view, { fromHistory: true });
 }
 
 function handlePageHide(): void {
@@ -2779,6 +2921,7 @@ onBeforeUnmount(() => {
         <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(4)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
         <button v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>공조 시험 암기장</button>
         <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>✦</template></span>합격 엔진</button>
+        <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(6)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>β</template></span>베타 학습 도구</button>
         <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>▥</template></span>학습 분석</button>
         <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" :src="simpsonsFunnyImageAt(7)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>◷</template></span>패치노트</button>
       </nav>
@@ -3373,6 +3516,53 @@ onBeforeUnmount(() => {
           </section>
         </template>
 
+        <template v-else-if="view === 'beta'">
+          <section class="beta-lab-hero">
+            <div>
+              <span><b>β</b> OPTIONAL LEARNING TOOLS</span>
+              <h1>기존 CBT와 바로 비교하는<br><em>베타 학습 도구</em></h1>
+              <p>문제와 정답 데이터는 건드리지 않고 확신도·실수 원인·내 메모만 별도로 저장합니다. 설정에서 전체 OFF하면 기존 화면으로 즉시 돌아갑니다.</p>
+              <div><button type="button" @click="startBetaTrial">5문제로 비교하기</button><button type="button" class="secondary" @click="settingsOpen = true">전체 ON/OFF 설정</button></div>
+            </div>
+            <aside>
+              <strong>실험 기능 전체 ON</strong>
+              <span>기존 학습 기록 유지</span>
+              <small>OFF해도 베타 기록은 삭제하지 않습니다.</small>
+            </aside>
+          </section>
+
+          <section class="beta-summary-grid">
+            <article><span>애매·찍음</span><strong>{{ betaLowConfidenceRows.length }}</strong><small>확신 낮은 문제</small></article>
+            <article><span>내 메모</span><strong>{{ betaMemoRows.length }}</strong><small>동기화되는 문제 메모</small></article>
+            <article><span>확신 오답</span><strong>{{ betaFalseConfidenceRows.length }}</strong><small>알았다고 생각했지만 틀림</small></article>
+            <article><span>전체 표시</span><strong>{{ betaTaggedRows.length }}</strong><small>현재 종목·연도 범위</small></article>
+          </section>
+
+          <section class="beta-review-grid">
+            <button type="button" :disabled="!betaLowConfidenceRows.length" @click="startBetaReview('confidence')">
+              <span>01 · CONFIDENCE</span><strong>애매·찍음 다시 풀기</strong><p>정답 여부와 별개로 확신이 없었던 문제를 최대 20개 다시 냅니다.</p><b>{{ betaLowConfidenceRows.length }}문제 →</b>
+            </button>
+            <button type="button" :disabled="!betaFalseConfidenceRows.length" @click="startBetaReview('false-confidence')">
+              <span>02 · BLIND SPOT</span><strong>확신했지만 틀린 문제</strong><p>잘못 알고 있던 개념을 일반 오답보다 먼저 찾아냅니다.</p><b>{{ betaFalseConfidenceRows.length }}문제 →</b>
+            </button>
+            <button type="button" :disabled="!betaMemoRows.length" @click="startBetaReview('memo')">
+              <span>03 · MY NOTE</span><strong>메모한 문제 모아 풀기</strong><p>문제마다 적은 공식·주의점을 유지한 채 다시 학습합니다.</p><b>{{ betaMemoRows.length }}문제 →</b>
+            </button>
+          </section>
+
+          <section class="beta-reason-panel">
+            <header><div><span>MISTAKE MAP</span><h2>실수 원인별 복습</h2></div><p>풀이 화면에서 이유를 눌러야 이곳에 모입니다.</p></header>
+            <div>
+              <button v-for="row in betaReasonRows" :key="row.key" type="button" :disabled="!row.count" @click="startBetaReview(row.key)"><span>{{ row.label }}</span><strong>{{ row.count }}</strong><small>문제 다시 풀기 →</small></button>
+            </div>
+          </section>
+
+          <section class="beta-compare-panel">
+            <div><b>ON</b><strong>문제 아래에 확신도·실수 원인·내 메모가 표시됩니다.</strong><span>시험모드에서는 답안 속도를 계산해 완료 예상과 시간 여유를 보여 줍니다.</span></div>
+            <div><b>OFF</b><strong>v3.5.4와 같은 기존 문제풀이 화면으로 돌아갑니다.</strong><span>추가 버튼과 베타 메뉴만 숨고 답안·오답·메모 기록은 보존됩니다.</span></div>
+          </section>
+        </template>
+
         <template v-else-if="view === 'showcase'">
           <section class="feature-hero">
             <div class="feature-orb feature-orb-one" />
@@ -3714,6 +3904,7 @@ onBeforeUnmount(() => {
             <button type="button" @click="nativeMoreOpen = false; openView('history')"><span>◴</span><div><strong>학습 내역</strong><small>이어하기·점수·재도전</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('calculation')"><span>∑</span><div><strong>계산문제</strong><small>공식부터 차근차근</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>취약 과목과 복습</small></div></button>
+            <button v-if="experimentalFeaturesEnabled" type="button" @click="nativeMoreOpen = false; openView('beta')"><span>β</span><div><strong>베타 학습 도구</strong><small>확신도·메모·맞춤 복습</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('stats')"><span>▥</span><div><strong>학습 통계</strong><small>점수와 학습 기록</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openCalculator()"><span>▦</span><div><strong>계산기</strong><small>공학용 계산 도구</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; settingsOpen = true"><span>⚙</span><div><strong>설정</strong><small>테마·글씨·문제 화면</small></div></button>
@@ -3742,6 +3933,15 @@ onBeforeUnmount(() => {
             <button :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)"><strong>ON</strong><span>새 동적 UI</span><small>기본 설정</small></button>
             <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
           </div>
+        </div>
+        <div class="setting-group experimental-setting">
+          <span>실험 기능 전체</span>
+          <p class="setting-description">확신도·실수 원인·문제 메모·시험 속도 예측을 한 번에 켜고 끕니다. OFF하면 기존 v3.5.4 문제 화면과 바로 비교할 수 있고 저장한 기록은 지우지 않습니다.</p>
+          <div class="dynamic-ui-options experimental-options">
+            <button :class="{ active: experimentalFeaturesEnabled }" @click="setExperimentalFeatures(true)"><strong>β ON</strong><span>베타 기능 사용</span><small>현재 적용</small></button>
+            <button :class="{ active: !experimentalFeaturesEnabled }" @click="setExperimentalFeatures(false)"><strong>OFF</strong><span>기존 화면</span><small>v3.5.4 비교</small></button>
+          </div>
+          <button v-if="experimentalFeaturesEnabled" type="button" class="experimental-open-button" @click="settingsOpen = false; openView('beta')">베타 학습 도구 열기 →</button>
         </div>
         <div class="setting-group solve-layout-setting">
           <span>문제풀이 화면</span>
@@ -3955,6 +4155,9 @@ onBeforeUnmount(() => {
         ><small>미응답</small><strong>{{ unansweredCount }}</strong></button>
         <span><small>킵</small><strong>{{ session.mode === 'exam' ? keptCount : '-' }}</strong></span>
       </div>
+      <div v-if="examPace" class="beta-exam-pace" :class="`is-${examPace.tone}`" aria-live="polite">
+        <b>β 속도 예측</b><strong>{{ examPace.label }}</strong><span>{{ examPace.detail }}</span>
+      </div>
     </header>
 
     <button v-if="sessionMenuOpen" class="session-menu-backdrop" type="button" aria-label="풀이 메뉴 닫기" @click="sessionMenuOpen = false" />
@@ -3999,11 +4202,18 @@ onBeforeUnmount(() => {
                 :restored-image-theme="restoredImageTheme"
                 :solve-layout="solveLayoutMode"
                 :active="solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id"
+                :experimental-features="experimentalFeaturesEnabled"
+                :confidence="betaQuestionMeta(item.id).confidence"
+                :mistake-reason="betaQuestionMeta(item.id).reason"
+                :study-note="betaQuestionMeta(item.id).note"
                 @choose="chooseAnswer(item, $event)"
                 @toggle-bookmark="toggleBookmark(item)"
                 @toggle-keep="toggleKeep(item)"
                 @ask-ai="prepareAiQuestion(item)"
                 @activate="activateSessionItem(item)"
+                @set-confidence="setQuestionConfidence(item, $event)"
+                @set-mistake-reason="setQuestionMistakeReason(item, $event)"
+                @update-study-note="setQuestionStudyNote(item, $event)"
               />
             </div>
           </div>
@@ -4128,6 +4338,14 @@ onBeforeUnmount(() => {
     <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel session-settings-panel">
         <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group experimental-setting">
+          <span>실험 기능 전체</span>
+          <p class="setting-description">현재 답안과 타이머는 유지하고 베타 도구만 숨기거나 다시 표시합니다.</p>
+          <div class="dynamic-ui-options experimental-options">
+            <button :class="{ active: experimentalFeaturesEnabled }" @click="setExperimentalFeatures(true)"><strong>β ON</strong><span>베타 기능</span><small>확신도·메모·속도</small></button>
+            <button :class="{ active: !experimentalFeaturesEnabled }" @click="setExperimentalFeatures(false)"><strong>OFF</strong><span>기존 화면</span><small>즉시 비교</small></button>
+          </div>
+        </div>
         <div class="setting-group solve-layout-setting">
           <span>문제풀이 화면</span>
           <p class="setting-description">현재 답안과 타이머를 유지한 채 즉시 전환합니다.</p>
