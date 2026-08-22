@@ -19,7 +19,16 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import SchoolExamManager from './SchoolExamManager.vue';
 import { isCalculationItem } from './calculationGuide';
+import {
+  SCHOOL_EXAM_CATALOG_KEY,
+  loadSchoolExamData,
+  normalizeSchoolExamData,
+  saveSchoolExamData,
+  schoolExamCatalog,
+  type SchoolExamData,
+} from './schoolExam';
 import {
   clearCloudLearningState,
   cloudSyncState,
@@ -56,7 +65,7 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
-type ViewName = 'home' | 'rounds' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
@@ -157,7 +166,9 @@ const sunjaePortraitImages = [
 const savedSunjaeRotationValue = localStorage.getItem('unified-cbt-sunjae-rotation-seconds');
 const savedSunjaeRotationSeconds = savedSunjaeRotationValue === null ? Number.NaN : Number(savedSunjaeRotationValue);
 const sunjaeRotationChoices = [0, 5, 10, 30, 60, 180, 300];
-const catalogs = loadCatalogs();
+const schoolExamData = ref(loadSchoolExamData());
+const schoolCatalog = reactive(schoolExamCatalog(schoolExamData.value));
+const catalogs = [...loadCatalogs(), ...(!isJewelry ? [schoolCatalog] : [])];
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
   hvac: { icon: '❄', className: 'blue', description: '공조·냉동·설치운영' },
@@ -170,6 +181,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
   'precious-craftsman': { icon: '◈', className: 'jewel-teal', description: '재료·가공·작업안전' },
   'precious-master': { icon: '✦', className: 'jewel-purple', description: '귀금속가공 종합' },
+  [SCHOOL_EXAM_CATALOG_KEY]: { icon: '✎', className: 'school-navy', description: '중간·기말 · 주관식 암기 · 교재 범위' },
 };
 
 const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
@@ -247,7 +259,7 @@ const isAndroidDevice = /Android/i.test(platformUserAgent);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v345';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v350';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -284,7 +296,7 @@ let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
-const viewOrder: ViewName[] = ['home', 'rounds', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
+const viewOrder: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'stats', 'updates', 'showcase'];
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
@@ -343,7 +355,7 @@ const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_AP
     id: questionId(round, question),
   })))
   .map((item) => [item.id, item]));
-const allItems = [
+const allItems = computed(() => [
   ...sourceCatalogs.flatMap((catalog) => sortedRounds(catalog)),
   ...referenceRounds,
   ...(!isJewelry ? [hvacFieldReportRound] : []),
@@ -352,8 +364,8 @@ const allItems = [
   question,
   subject: subjectFor(round, question),
   id: questionId(round, question),
-})));
-const itemMap = new Map(allItems.map((item) => [item.id, item]));
+}))));
+const itemMap = computed(() => new Map(allItems.value.map((item) => [item.id, item])));
 function readSavedLearningSession(): SavedLearningSession | null {
   try {
     const saved = JSON.parse(localStorage.getItem(learningSessionStorageKey) || 'null') as SavedLearningSession | null;
@@ -365,7 +377,7 @@ function readSavedLearningSession(): SavedLearningSession | null {
   }
 }
 const savedLearningSession = ref<SavedLearningSession | null>(readSavedLearningSession());
-const legacyWrongItems = computed(() => allItems.filter((item) => {
+const legacyWrongItems = computed(() => allItems.value.filter((item) => {
   const targetItem = selectedCatalog.value.isVirtual
     ? item.question.targetRelevance !== 'peripheral'
     : item.round.qualificationKey === selectedKey.value;
@@ -386,7 +398,7 @@ const wrongRoundGroups = computed(() => {
     };
     const ids = new Set(existing.items.map((item) => item.id));
     record.wrongAnswers.forEach((wrong) => {
-      const item = itemMap.get(wrong.id);
+      const item = itemMap.value.get(wrong.id);
       if (item && !ids.has(item.id)) {
         existing.items.push(item);
         ids.add(item.id);
@@ -451,12 +463,12 @@ const roundRecordMap = computed(() => {
 });
 const lastRoundRecord = computed(() => recentExamRecords.value.find((record) => record.roundId && (!record.mode || record.mode === 'exam')) || null);
 const searchResults = computed(() => {
-  const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap;
+  const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap.value;
   return searchResultIds.value.map((id) => lookup.get(id)).filter((item): item is QuestionItem => Boolean(item));
 });
 const searchableCatalogItems = computed(() => {
   if (selectedCatalog.value.isVirtual) return [...targetItemMap.values()];
-  return allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
+  return allItems.value.filter((item) => item.round.qualificationKey === selectedKey.value);
 });
 const displayedSearchResults = computed(() => {
   if (searchQuery.value.length >= 2) {
@@ -481,7 +493,7 @@ const currentVersion = computed(() => window.CBT_CHANGELOG?.versions?.[spaceScop
 const featureImageItem = computed(() => {
   const scoped = selectedCatalog.value.isVirtual
     ? [...targetItemMap.values()]
-    : allItems.filter((item) => item.round.qualificationKey === selectedKey.value);
+    : allItems.value.filter((item) => item.round.qualificationKey === selectedKey.value);
   return scoped.find((item) => item.question.sourceImage)
     || scoped.find((item) => item.question.images?.length || item.question.choices.some((choice) => choice.images?.length))
     || scoped[0];
@@ -525,6 +537,7 @@ const questionTransitionName = computed(() => motionAllowed.value
 const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
+  school: '학교 시험 준비',
   history: '학습 내역',
   wrong: '오답노트',
   search: '문제 검색',
@@ -887,11 +900,30 @@ function configureQualification(key: string): void {
 
 function selectQualification(key: string): void {
   configureQualification(key);
-  openView('rounds');
+  openView(key === SCHOOL_EXAM_CATALOG_KEY ? 'school' : 'rounds');
 }
 
 function updateQualificationFromSetup(event: Event): void {
-  configureQualification((event.target as HTMLSelectElement).value);
+  const key = (event.target as HTMLSelectElement).value;
+  configureQualification(key);
+  if (key === SCHOOL_EXAM_CATALOG_KEY) openView('school');
+  else if (view.value === 'school') openView('rounds');
+}
+
+function updateSchoolExamData(next: SchoolExamData): void {
+  const normalized = normalizeSchoolExamData(next);
+  schoolExamData.value = normalized;
+  saveSchoolExamData(normalized);
+  schoolCatalog.rounds.splice(0, schoolCatalog.rounds.length, ...normalized.rounds);
+  schoolCatalog.roundCount = normalized.rounds.length;
+  schoolCatalog.questionCount = normalized.rounds.reduce((sum, round) => sum + round.questions.length, 0);
+  if (selectedKey.value === SCHOOL_EXAM_CATALOG_KEY) setDefaultYears(0);
+  indexSearchItems();
+}
+
+function startSchoolExamRound(payload: { round: Round; mode: StudyMode }): void {
+  configureQualification(SCHOOL_EXAM_CATALOG_KEY);
+  startRound(payload.round, payload.mode);
 }
 
 function setDisplayPreference(mode: DisplayPreference): void {
@@ -924,7 +956,7 @@ function showToast(message: string): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'wrong', 'search', 'calculation', 'guide', 'coach', 'showcase', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'showcase', 'stats', 'updates'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -1038,9 +1070,13 @@ function setupSearchWorker(): void {
     if (message.type === 'ready') searchReady.value = true;
     if (message.type === 'results') searchResultIds.value = message.ids || [];
   });
-  searchWorker.postMessage({
+  indexSearchItems();
+}
+
+function indexSearchItems(): void {
+  searchWorker?.postMessage({
     type: 'index',
-    entries: allItems.map((item) => ({
+    entries: allItems.value.map((item) => ({
       id: item.id,
       qualificationKey: item.round.qualificationKey,
       haystack: [
@@ -1188,7 +1224,7 @@ function resumeSavedLearning(): void {
   const saved = savedLearningSession.value;
   if (!saved) return;
   const items = saved.itemIds.flatMap((id) => {
-    const item = itemMap.get(id) || targetItemMap.get(id);
+    const item = itemMap.value.get(id) || targetItemMap.get(id);
     return item ? [item] : [];
   });
   if (!items.length || items.length !== saved.itemIds.length) {
@@ -1434,13 +1470,13 @@ function startCalculationLearning(limit?: number): void {
 }
 
 function replayHistoryRecord(record: ExamRecord): void {
-  let items = (record.itemIds || []).map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item));
+  let items = (record.itemIds || []).map((id) => itemMap.value.get(id)).filter((item): item is QuestionItem => Boolean(item));
   if (!items.length && record.roundId) {
     const round = selectedCatalog.value.rounds.find((item) => item.id === record.roundId);
     if (round) items = roundToItems(round);
   }
   if (!items.length) {
-    items = Object.keys(record.answers || {}).map((id) => itemMap.get(id)).filter((item): item is QuestionItem => Boolean(item));
+    items = Object.keys(record.answers || {}).map((id) => itemMap.value.get(id)).filter((item): item is QuestionItem => Boolean(item));
   }
   if (!items.length) {
     showToast('이 기록의 문제를 현재 데이터에서 찾지 못했습니다. 해당 종목을 다시 선택해 주세요.');
@@ -2712,6 +2748,7 @@ onBeforeUnmount(() => {
       <nav>
         <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
         <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차별 문제</button>
+        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="selectQualification(SCHOOL_EXAM_CATALOG_KEY)"><span data-theme-symbol="✎"><template>✎</template></span>학교 시험 준비</button>
         <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><template>◴</template></span>학습 내역</button>
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
@@ -2896,7 +2933,7 @@ onBeforeUnmount(() => {
             <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
           </section>
 
-          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="study-builder">
+          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" :src="simpsonsFunnyImageAt(4)" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
               <div><span>STUDY SETUP</span><h2>연도와 출제 체계를 정하세요</h2></div>
@@ -3023,6 +3060,10 @@ onBeforeUnmount(() => {
               <button type="button" @click="openView('updates')">패치노트 보기</button>
             </div>
           </section>
+        </template>
+
+        <template v-else-if="view === 'school'">
+          <SchoolExamManager :data="schoolExamData" @update="updateSchoolExamData" @start="startSchoolExamRound" />
         </template>
 
         <template v-else-if="view === 'rounds'">

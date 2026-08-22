@@ -41,6 +41,8 @@ export type Question = {
   source?: string;
   explanationProvenance?: string;
   explanationMatchScore?: number;
+  sourcePage?: string;
+  teacherHint?: string;
 };
 
 export type Round = {
@@ -57,6 +59,9 @@ export type Round = {
   questions: Question[];
   kind?: string;
   sourceQualification?: string;
+  semester?: 1 | 2;
+  examKind?: 'midterm' | 'final' | 'quiz' | 'other';
+  textbook?: string;
 };
 
 export type Catalog = {
