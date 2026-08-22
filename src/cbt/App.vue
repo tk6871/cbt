@@ -256,10 +256,19 @@ const platformUserAgent = navigator.userAgent || '';
 const isIosDevice = /iPad|iPhone|iPod/i.test(platformUserAgent)
   || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const isAndroidDevice = /Android/i.test(platformUserAgent);
+const isIosInstallPreview = /^(?:127\.0\.0\.1|localhost)$/.test(location.hostname)
+  && new URLSearchParams(location.search).has('preview-ios-install');
+const isIosSafari = (isIosDevice && /Safari/i.test(platformUserAgent) && !/(CriOS|FxiOS|EdgiOS|OPiOS)/i.test(platformUserAgent))
+  || isIosInstallPreview;
+const isStandaloneWebApp = matchMedia('(display-mode: standalone)').matches
+  || Boolean((navigator as Navigator & { standalone?: boolean }).standalone);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
-const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v350';
+const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v351';
+const showIosPwaPrompt = (isIosDevice && !isNativeApp && !isStandaloneWebApp) || isIosInstallPreview;
+const iosPwaInstallOpen = ref(false);
+const iosPwaPopupSeenKey = 'unified-cbt-ios-pwa-popup-seen-v351';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -1604,6 +1613,11 @@ function activateSessionItem(item: QuestionItem): void {
 }
 
 function handleSessionKeydown(event: KeyboardEvent): void {
+  if (event.key === 'Escape' && iosPwaInstallOpen.value) {
+    event.preventDefault();
+    iosPwaInstallOpen.value = false;
+    return;
+  }
   if (event.key === 'Escape' && androidApkPopupOpen.value) {
     event.preventDefault();
     androidApkPopupOpen.value = false;
@@ -2662,6 +2676,16 @@ onMounted(async () => {
       androidApkPopupOpen.value = true;
     }
   }
+  if (showIosPwaPrompt) {
+    try {
+      if (sessionStorage.getItem(iosPwaPopupSeenKey) !== 'true') {
+        iosPwaInstallOpen.value = true;
+        sessionStorage.setItem(iosPwaPopupSeenKey, 'true');
+      }
+    } catch {
+      iosPwaInstallOpen.value = true;
+    }
+  }
   restartSunjaeRotation();
   motionMediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
   motionPreferenceHandler = (event: MediaQueryListEvent) => { prefersReducedMotion.value = event.matches; };
@@ -3592,6 +3616,15 @@ onBeforeUnmount(() => {
             </div>
             <a :href="androidApkUrl" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 받기">정식 APK 받기 <b aria-hidden="true">↓</b></a>
           </section>
+          <section v-if="showIosPwaPrompt" class="patch-apk-download ios-pwa-patch" aria-labelledby="ios-pwa-patch-title">
+            <div class="ios-pwa-app-mark" aria-hidden="true">CBT</div>
+            <div>
+              <span>IPHONE · IPAD 무료</span>
+              <strong id="ios-pwa-patch-title">7일 만료 없는 홈 화면 앱</strong>
+              <small>Safari에서 한 번 설치하면 주소창 없이 실행되고 웹 업데이트가 자동 적용됩니다.</small>
+            </div>
+            <button type="button" @click="iosPwaInstallOpen = true">설치 방법 보기</button>
+          </section>
           <div class="patch-timeline">
             <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
               <div class="patch-version"><span>v{{ entry.version }}</span><small>{{ entry.date }}</small></div>
@@ -3611,6 +3644,9 @@ onBeforeUnmount(() => {
     <button v-if="showAndroidApkPopup" type="button" class="android-apk-floating-trigger" aria-label="Android 앱 다운로드 안내 열기" @click="androidApkPopupOpen = true">
       <span>ANDROID</span><strong>앱 받기</strong>
     </button>
+    <button v-if="showIosPwaPrompt" type="button" class="ios-pwa-floating-trigger" aria-label="iPhone 앱 설치 안내 열기" @click="iosPwaInstallOpen = true">
+      <span>IPHONE · IPAD</span><strong>무료 앱 설치</strong>
+    </button>
     <Transition name="modal-fade">
       <div v-if="showAndroidApkPopup && androidApkPopupOpen" class="android-apk-popup-backdrop" @click.self="androidApkPopupOpen = false">
         <section class="android-apk-popup" role="dialog" aria-modal="true" aria-labelledby="android-apk-popup-title">
@@ -3629,6 +3665,28 @@ onBeforeUnmount(() => {
           <div class="android-apk-popup-actions">
             <button type="button" @click="androidApkPopupOpen = false">나중에</button>
             <a :href="androidApkUrl" target="_blank" rel="noopener" @click="androidApkPopupOpen = false">정식 APK 다운로드 <b aria-hidden="true">↓</b></a>
+          </div>
+        </section>
+      </div>
+    </Transition>
+    <Transition name="modal-fade">
+      <div v-if="showIosPwaPrompt && iosPwaInstallOpen" class="android-apk-popup-backdrop" @click.self="iosPwaInstallOpen = false">
+        <section class="android-apk-popup ios-pwa-popup" role="dialog" aria-modal="true" aria-labelledby="ios-pwa-popup-title">
+          <button type="button" class="android-apk-popup-close" aria-label="iPhone 앱 설치 안내 닫기" @click="iosPwaInstallOpen = false">×</button>
+          <div class="ios-pwa-app-mark" aria-hidden="true">CBT</div>
+          <span>완전 무료 · 7일 만료 없음</span>
+          <h2 id="ios-pwa-popup-title">홈 화면에 CBT 앱 설치</h2>
+          <p v-if="isIosSafari">Safari에서 아래 순서대로 한 번만 설정하면 주소창 없이 앱처럼 실행됩니다.</p>
+          <p v-else class="ios-pwa-browser-warning"><strong>먼저 Safari로 이 홈페이지를 열어주세요.</strong><br>현재 브라우저에서는 설치 메뉴의 위치가 다르거나 보이지 않을 수 있습니다.</p>
+          <ol class="ios-pwa-steps">
+            <li><b>1</b><span>Safari 아래쪽의 <strong>공유</strong> <i aria-hidden="true">□↑</i> 버튼 누르기</span></li>
+            <li><b>2</b><span>메뉴를 내려 <strong>홈 화면에 추가</strong> 선택하기</span></li>
+            <li><b>3</b><span><strong>웹 앱으로 열기</strong>를 켠 뒤 <strong>추가</strong> 누르기</span></li>
+          </ol>
+          <small>설치 후에는 이 안내가 표시되지 않으며 홈페이지 업데이트도 자동으로 적용됩니다.</small>
+          <div class="android-apk-popup-actions ios-pwa-popup-actions">
+            <button type="button" @click="iosPwaInstallOpen = false">나중에</button>
+            <button type="button" class="ios-pwa-ready" @click="iosPwaInstallOpen = false">설치 방법 확인</button>
           </div>
         </section>
       </div>

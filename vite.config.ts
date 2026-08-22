@@ -22,7 +22,7 @@ export default defineConfig({
       },
       output: {
         entryFileNames: '[name].js',
-        chunkFileNames: 'chunks/[name]-v350.js',
+        chunkFileNames: 'chunks/[name]-v351.js',
         assetFileNames: (assetInfo) => assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
       }
     }

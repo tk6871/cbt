@@ -17,7 +17,14 @@
 ### [https://tk6871.github.io/cbt/](https://tk6871.github.io/cbt/)
 
 회원가입 없이도 브라우저에서 바로 사용할 수 있으며, 여러 기기에서 기록을 이어 볼 때만 선택적으로 동기화 계정을 만들 수 있습니다.
-휴대폰에서는 브라우저의 **홈 화면에 추가** 기능을 사용하면 앱처럼 실행할 수 있습니다.
+휴대폰에서는 브라우저의 **홈 화면에 추가** 기능을 사용하면 앱처럼 실행할 수 있습니다. iPhone·iPad는 Safari에서 처음 접속할 때 표시되는 무료 설치 안내에 따라 `공유 → 홈 화면에 추가 → 웹 앱으로 열기`를 선택하면 7일 만료 없이 사용할 수 있습니다.
+
+### iPhone·iPad 무료 웹앱
+
+- Apple 개발자 계정과 프로파일 서명이 필요 없는 PWA 방식입니다.
+- Safari 홈 화면에 산업기사 CBT 또는 보석관 전용 아이콘으로 설치됩니다.
+- 주소창 없는 전체 화면, 학습 기록 저장, 오프라인 캐시와 자동 웹 업데이트를 지원합니다.
+- 설치된 웹앱으로 실행하면 홈페이지의 설치 안내는 자동으로 숨겨집니다.
 
 ### Android 앱
 
@@ -26,7 +33,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.5.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.5.1.apk`를 생성합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
 
