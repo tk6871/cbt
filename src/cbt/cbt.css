@@ -12,6 +12,20 @@
   font-weight:400;
   font-display:swap;
 }
+@font-face {
+  font-family:"D2Coding";
+  src:url("../../assets/fonts/D2Coding-Regular.ttf") format("truetype");
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
+@font-face {
+  font-family:"D2Coding Bold";
+  src:url("../../assets/fonts/D2Coding-Bold.ttf") format("truetype");
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+}
 
 :root {
   color-scheme: light;
@@ -36,6 +50,8 @@
   --app-font-family:"Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
 }
 :root[data-font-family="bold"] { --app-font-family:"Nanum Gothic Bold","Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif; }
+:root[data-font-family="d2coding"] { --app-font-family:"D2Coding","Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",monospace; }
+:root[data-font-family="d2coding-bold"] { --app-font-family:"D2Coding Bold","D2Coding","Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",monospace; }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
@@ -2189,7 +2205,9 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
 .display-mode-options button span { font-size:.55rem; font-weight:750; }
 .display-mode-options button small,.font-family-options button small { color:var(--muted); font-size:.49rem; }
 .display-mode-options button.active,.font-family-options button.active { border-color:var(--primary); background:var(--primary-soft); box-shadow:0 0 0 2px color-mix(in srgb,var(--primary) 12%,transparent); }
-.font-family-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.font-family-options { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; }
+@media (max-width:720px) { .font-family-options { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:360px) { .font-family-options { grid-template-columns:1fr; } }
 .history-resume-card { margin:16px 0; padding:16px; border:1px solid color-mix(in srgb,var(--primary) 34%,var(--line)); border-radius:15px; background:var(--primary-soft); display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:12px; }
 .history-resume-card div { display:grid; gap:4px; }.history-resume-card span { color:var(--primary); font-size:.55rem; font-weight:850; }.history-resume-card strong { font-size:.78rem; }.history-resume-card small { color:var(--muted); font-size:.55rem; }.history-resume-card button { min-height:42px; padding:0 15px; border-radius:10px; color:white; background:var(--primary); font-weight:850; }
 .history-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }

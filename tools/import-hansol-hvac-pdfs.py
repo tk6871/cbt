@@ -89,6 +89,24 @@ REVIEWED_HOTSPOTS: dict[tuple[str, int], list[tuple[float, float, float, float]]
     ("2022_3", 59): [(1.77, 22.76, 59.70, 15.86), (1.77, 40.00, 59.70, 17.93), (1.77, 57.93, 59.70, 18.62), (1.77, 76.55, 59.70, 19.31)],
 }
 
+# The 2021 source prints an unrelated stem above the delay-time choices, while
+# the 2025 text layer cuts one duct question off mid-sentence. Keep the visible
+# study text aligned with the printed choices and the known COMCBT source.
+QUESTION_TEXT_CORRECTIONS: dict[tuple[str, int], str] = {
+    ("2020_4", 29): ("암모니아 냉동기의 증발온도 -20℃, 응축온도 35℃일 때 ① 이론 성적계수와 "
+                      "② 실제 성적계수는 약 얼마인가? (단, 팽창밸브 직전의 액온도는 32℃, "
+                      "흡입가스는 건포화증기이고, 체적효율은 0.65, 압축효율은 0.80, "
+                      "기계효율은 0.9로 한다.)"),
+    ("2021_2", 79): "자동제어계에서 과도응답 중 지연시간을 옳게 정의한 것은?",
+    ("2025_3", 9): ("다음 그림과 같은 덕트에서 점 ①의 정압 P₁=15mmAq, 속도 V₁=10m/s일 때, "
+                    "점 ②에서의 전압은? (단, ①-② 구간의 전압손실은 2mmAq, "
+                    "공기의 밀도는 1kg/m³로 한다.)"),
+}
+
+QUESTION_CHOICE_CORRECTIONS: dict[tuple[str, int], list[str]] = {
+    ("2020_4", 29): ["① 0.5, ② 3.8", "① 3.9, ② 2.8", "① 3.5, ② 2.5", "① 4.3, ② 2.8"],
+}
+
 
 def load_hvac() -> dict[str, Any]:
     source = (PROJECT_ROOT / "data/hvac.js").read_text(encoding="utf-8")
@@ -102,6 +120,10 @@ def normalize(value: str) -> str:
     value = unicodedata.normalize("NFKC", html.unescape(value or "")).replace("\x00", "")
     value = re.sub(r"<[^>]+>", " ", value)
     return "".join(ch.lower() for ch in value if ch.isalnum() or "가" <= ch <= "힣")
+
+
+def question_signature(stem: str, choices: list[str]) -> str:
+    return normalize(" ".join([stem, *choices]))
 
 
 def clean_block_text(value: str, number: int) -> str:
@@ -735,10 +757,21 @@ def main() -> None:
 
                     cleaned = clean_block_text(block_text, number)
                     stem, choices = split_question(cleaned)
+                    stem = QUESTION_TEXT_CORRECTIONS.get((source.slug, number), stem)
+                    choices = QUESTION_CHOICE_CORRECTIONS.get((source.slug, number), choices)
                     answer = answers[number]
                     base_question = None
                     if source_round:
-                        base_question = next((item for item in source_round["questions"] if item["number"] == number), None)
+                        signature = question_signature(stem or cleaned, choices)
+                        base_question = next((item for item in source_round["questions"]
+                                              if question_signature(item.get("text") or item.get("html", ""),
+                                                                    [choice.get("text") or choice.get("html", "")
+                                                                     for choice in item.get("choices", [])]) == signature), None)
+                        if base_question and base_question.get("answer"):
+                            # The two scanned 2020 PDFs print questions in a
+                            # different order from the answer table. An exact
+                            # stem+choice match is safer than the PDF slot.
+                            answer = int(base_question["answer"])
                     explanation = ""
                     provenance = ""
                     match_score = 0.0
