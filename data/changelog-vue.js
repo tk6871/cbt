@@ -5,6 +5,33 @@
 
   const entries = [
     {
+      version: '3.9.2',
+      scope: 'industrial',
+      date: '2026.08.24',
+      title: 'AI 질문 이미지 첨부 안정화',
+      summary: '사진 문제를 URL로만 전달하지 않고 실제 PNG로 복사하거나 모바일에서 질문과 함께 공유해 GPT 이미지 캐시 오류를 피합니다.',
+      tags: ['AI 질문', '이미지 첨부', '모바일 공유', '안정성'],
+      changes: [
+        '문제 이미지를 PNG로 복사해 ChatGPT 입력창에 직접 붙여넣을 수 있습니다.',
+        '문제와 보기 이미지가 여러 장이면 읽는 순서대로 한 장의 세로 PNG로 합칩니다.',
+        '모바일에서는 질문과 이미지를 한 번에 공유하고, 클립보드가 막히면 PNG 파일 다운로드로 자동 전환합니다.',
+        '이미지 URL에는 새 요청 식별값을 붙이고 AI 안내문은 첨부 이미지를 최우선 원문으로 판독하도록 개선했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.9.2로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.9.2',
+      scope: 'jewelry',
+      date: '2026.08.24',
+      title: '공통 앱 안정성 갱신',
+      summary: '공통 서비스워커 캐시를 최신 상태로 맞췄습니다.',
+      tags: ['업데이트', 'PWA', '보석관'],
+      changes: [
+        '산업기사 AI 질문 개선과 함께 공통 서비스워커 캐시를 v392로 올렸습니다.',
+        '보석관의 문제·해설·테마 구성은 기존과 동일하게 유지합니다.'
+      ]
+    },
+    {
       version: '3.9.1',
       scope: 'industrial',
       date: '2026.08.24',
@@ -1858,8 +1885,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.9.1';
-  changelog.versions.jewelry = '3.9.1';
-  changelog.currentVersion = '3.9.1';
+  changelog.versions.industrial = '3.9.2';
+  changelog.versions.jewelry = '3.9.2';
+  changelog.currentVersion = '3.9.2';
   window.CBT_CHANGELOG = changelog;
 })();
