@@ -144,7 +144,11 @@ export function isCalculationItem(item: QuestionItem): boolean {
 export function calculationGuideFor(item: QuestionItem): CalculationGuide {
   const questionSource = calculationSource(item);
   const comcbtExplanation = comcbtCalculationExplanation(item);
-  const source = `${questionSource} ${comcbtExplanation}`.trim();
+  const primaryExplanation = plainText(String(item.question.explanation || item.question.explanationHtml || '')
+    .split(/\n\n\[(?:COMCBT 동일 문제 추가 해설|한솔아카데미 동일 문제 보충 해설|정답·해설 대조 완료)\]\n/)[0]);
+  // 동일 문제 COMCBT 해설뿐 아니라 이미 사람이 다듬은 쉬운 해설의 공식·용어도
+  // 유형 판별에 사용한다. 화면에 자세한 해설이 있는데도 일반 안내로 떨어지는 일을 막는다.
+  const source = `${questionSource} ${primaryExplanation} ${comcbtExplanation}`.trim();
   const goal = plainText(item.question.text || item.question.html) || `${item.subject}의 조건을 읽고 보기와 일치하는 값을 찾는 문제`;
   const comcbtGuide = comcbtEquationGuide(item, comcbtExplanation);
   if (comcbtGuide) return {

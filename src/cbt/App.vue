@@ -3,7 +3,7 @@ import { App as CapacitorApp } from '@capacitor/app';
 import type { PluginListenerHandle } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { animate, stagger } from 'motion';
-import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
   GEM_APPRAISER_TARGET_KEY,
   latestSubjects,
@@ -71,6 +71,8 @@ import {
 } from './storage';
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
+const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
+
 type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
@@ -118,6 +120,8 @@ type MasteryRow = QuestionItem & {
 type SavedLearningSession = {
   version: 1;
   qualificationKey: string;
+  mode?: StudyMode;
+  roundId?: string;
   title: string;
   itemIds: string[];
   answers: Record<string, number>;
@@ -125,8 +129,20 @@ type SavedLearningSession = {
   page: number;
   pageSize: number;
   startedAt: number;
+  remainingSeconds?: number;
   calculationMode?: boolean;
   savedAt: number;
+};
+type ClearedLearningSession = {
+  version: 1;
+  itemIds: [];
+  savedAt: number;
+  cleared: true;
+};
+type SessionReturnState = {
+  view: ViewName;
+  scrollY: number;
+  roundId?: string;
 };
 
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
@@ -200,6 +216,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
 
 const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
 const learningSessionStorageKey = `unified-cbt-learning-session-${spaceScope}`;
+const learningSessionProgressKey = 'activeLearningSessionV1';
 const savedQualification = localStorage.getItem(qualificationStorageKey);
 const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : catalogs[0]?.key || '');
 const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE === 'mobile' || window.CBT_DISPLAY_PREFERENCE === 'desktop'
@@ -250,6 +267,7 @@ const nativeCalculatorOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
 const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
 const updateChecking = ref(false);
+const openUpdatesAfterRefreshKey = `cbt-open-updates-after-refresh-${spaceScope}`;
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
@@ -257,6 +275,8 @@ const searchBookmarksOnly = ref(false);
 const wrongRoundFilter = ref('');
 const calculationSubjectFilter = ref('all');
 const calculationRoundFilter = ref('all');
+const bookmarkRoundFilter = ref('all');
+const questionJudgmentEnabled = ref(localStorage.getItem('unified-cbt-question-judgment') === 'true');
 const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
@@ -304,6 +324,7 @@ const solveLayoutMode = ref<SolveLayoutMode>(
 );
 const omrFilter = ref<OmrFilter>('all');
 const activeSessionItemId = ref('');
+let sessionReturnState: SessionReturnState | null = null;
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
 let toastHandle = 0;
@@ -391,7 +412,16 @@ const allItems = computed(() => [
   id: questionId(round, question),
 }))));
 const itemMap = computed(() => new Map(allItems.value.map((item) => [item.id, item])));
-function readSavedLearningSession(): SavedLearningSession | null {
+function learningProgressValue(): SavedLearningSession | ClearedLearningSession | null {
+  const value = studyStore.progress?.[learningSessionProgressKey];
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
+  const candidate = value as SavedLearningSession | ClearedLearningSession;
+  if (candidate.version !== 1 || !Array.isArray(candidate.itemIds) || !Number(candidate.savedAt)) return null;
+  if (!candidate.itemIds.length) return (candidate as ClearedLearningSession).cleared ? candidate : null;
+  return candidate as SavedLearningSession;
+}
+
+function readLocalLearningSession(): SavedLearningSession | null {
   try {
     const saved = JSON.parse(localStorage.getItem(learningSessionStorageKey) || 'null') as SavedLearningSession | null;
     if (!saved || saved.version !== 1 || !Array.isArray(saved.itemIds) || !saved.itemIds.length) return null;
@@ -401,7 +431,25 @@ function readSavedLearningSession(): SavedLearningSession | null {
     return null;
   }
 }
+
+function readSavedLearningSession(): SavedLearningSession | null {
+  const local = readLocalLearningSession();
+  const synced = learningProgressValue();
+  if (synced && synced.savedAt >= Number(local?.savedAt || 0)) {
+    if (!synced.itemIds.length) {
+      localStorage.removeItem(learningSessionStorageKey);
+      return null;
+    }
+    localStorage.setItem(learningSessionStorageKey, JSON.stringify(synced));
+    return synced as SavedLearningSession;
+  }
+  return local;
+}
 const savedLearningSession = ref<SavedLearningSession | null>(readSavedLearningSession());
+if (savedLearningSession.value && !learningProgressValue()) {
+  studyStore.progress ||= {};
+  studyStore.progress[learningSessionProgressKey] = savedLearningSession.value;
+}
 const legacyWrongItems = computed(() => allItems.value.filter((item) => {
   const targetItem = selectedCatalog.value.isVirtual
     ? item.question.targetRelevance !== 'peripheral'
@@ -495,14 +543,35 @@ const searchableCatalogItems = computed(() => {
   if (selectedCatalog.value.isVirtual) return [...targetItemMap.values()];
   return allItems.value.filter((item) => item.round.qualificationKey === selectedKey.value);
 });
+const bookmarkedCatalogItems = computed(() => searchableCatalogItems.value
+  .filter((item) => studyStore.bookmarks.includes(item.id)));
+const bookmarkRounds = computed(() => {
+  const rows = new Map<string, { id: string; label: string; year: number; count: number }>();
+  bookmarkedCatalogItems.value.forEach((item) => {
+    const existing = rows.get(item.round.id);
+    if (existing) {
+      existing.count += 1;
+      return;
+    }
+    rows.set(item.round.id, {
+      id: item.round.id,
+      label: `${item.round.year}년 ${item.round.session || item.round.date || item.round.title.replace(/^.*?:\s*/, '')}`,
+      year: item.round.year,
+      count: 1,
+    });
+  });
+  return [...rows.values()].sort((a, b) => b.year - a.year || b.label.localeCompare(a.label, 'ko', { numeric: true }));
+});
 const displayedSearchResults = computed(() => {
+  const filterBookmarkRound = (items: QuestionItem[]) => items.filter((item) =>
+    bookmarkRoundFilter.value === 'all' || item.round.id === bookmarkRoundFilter.value);
   if (searchQuery.value.length >= 2) {
     return searchBookmarksOnly.value
-      ? searchResults.value.filter((item) => studyStore.bookmarks.includes(item.id))
+      ? filterBookmarkRound(searchResults.value.filter((item) => studyStore.bookmarks.includes(item.id)))
       : searchResults.value;
   }
   return searchBookmarksOnly.value
-    ? searchableCatalogItems.value.filter((item) => studyStore.bookmarks.includes(item.id))
+    ? filterBookmarkRound(bookmarkedCatalogItems.value)
     : [];
 });
 const hiddenPatchTerms = /선재|변우석|류선재|선재 업고 튀어|tvN/i;
@@ -752,14 +821,33 @@ const unseenRows = computed(() => masteryRows.value.filter((item) => !item.attem
 const calculationRows = computed(() => masteryRows.value.filter(isCalculationItem));
 const calculationSubjects = computed(() => [...new Set(calculationRows.value.map((item) => item.subject))]);
 const calculationRounds = computed(() => {
-  const rows = new Map<string, { id: string; label: string; year: number }>();
-  calculationRows.value.forEach((item) => rows.set(item.round.id, {
-    id: item.round.id,
-    label: `${item.round.year}년 ${item.round.session || item.round.date || item.round.title.replace(/^.*?:\s*/, '')}`,
-    year: item.round.year,
-  }));
+  const rows = new Map<string, { id: string; label: string; year: number; count: number }>();
+  calculationRows.value.forEach((item) => {
+    const existing = rows.get(item.round.id);
+    if (existing) {
+      existing.count += 1;
+      return;
+    }
+    rows.set(item.round.id, {
+      id: item.round.id,
+      label: `${item.round.year}년 ${item.round.session || item.round.date || item.round.title.replace(/^.*?:\s*/, '')}`,
+      year: item.round.year,
+      count: 1,
+    });
+  });
   return [...rows.values()].sort((a, b) => b.year - a.year || b.label.localeCompare(a.label, 'ko', { numeric: true }));
 });
+const formulaRenderSamples = [
+  { title: '공기 현열', plain: 'Q = 공기 밀도 × 풍량 × 공기 비열 × 온도차', tex: 'Q = \\rho \\dot{V} c_p \\Delta T' },
+  { title: '이상기체 상태변화', plain: 'P₁V₁/T₁ = P₂V₂/T₂', tex: '\\frac{P_1 V_1}{T_1} = \\frac{P_2 V_2}{T_2}' },
+  { title: '대수평균온도차', plain: 'LMTD = (ΔT₁-ΔT₂) ÷ ln(ΔT₁/ΔT₂)', tex: '\\mathrm{LMTD} = \\frac{\\Delta T_1 - \\Delta T_2}{\\ln(\\Delta T_1 / \\Delta T_2)}' },
+  {
+    title: '실제 원문 인식 · 2025년 3회 26번',
+    plain: '\\mathrm{COP}=\\frac{i_{4}-i_{3}}{i_{3}-i_{2}}',
+    tex: '\\mathrm{COP}=\\frac{i_{4}-i_{3}}{i_{3}-i_{2}}',
+    sourceImage: 'assets/hvac/formula-samples/2025_3_26_choice1.png',
+  },
+];
 const filteredCalculationRows = computed(() => calculationRows.value.filter((item) =>
   (calculationSubjectFilter.value === 'all' || item.subject === calculationSubjectFilter.value)
   && (calculationRoundFilter.value === 'all' || item.round.id === calculationRoundFilter.value)));
@@ -952,6 +1040,7 @@ function configureQualification(key: string): void {
   curriculum.value = 'all-mapped';
   calculationSubjectFilter.value = 'all';
   calculationRoundFilter.value = 'all';
+  bookmarkRoundFilter.value = 'all';
   setDefaultYears(key === GEM_APPRAISER_TARGET_KEY ? 0 : quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
   void refreshExamHistory();
@@ -1069,6 +1158,14 @@ function setExperimentalFeatures(enabled: boolean): void {
     : '실험 기능을 모두 껐습니다. 기존 CBT 화면으로 돌아갑니다.');
 }
 
+function setQuestionJudgmentEnabled(enabled: boolean): void {
+  questionJudgmentEnabled.value = enabled;
+  localStorage.setItem('unified-cbt-question-judgment', String(enabled));
+  showToast(enabled
+    ? '문제 아래의 내 판단·메모 도구를 표시합니다.'
+    : '내 판단·메모를 숨겼습니다. 기존 기록은 보존됩니다.');
+}
+
 function startBetaReview(kind: 'confidence' | 'memo' | 'false-confidence' | BetaMistakeReason): void {
   let title = '베타 맞춤 복습';
   let rows: QuestionItem[] = [];
@@ -1117,9 +1214,17 @@ function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
 
 function initializeNavigationHistory(): void {
   const current = ownHistoryState();
-  const initialView = current?.view === 'beta' && !experimentalFeaturesEnabled.value
+  let openUpdatesAfterRefresh = false;
+  try {
+    openUpdatesAfterRefresh = sessionStorage.getItem(openUpdatesAfterRefreshKey) === 'true';
+    if (openUpdatesAfterRefresh) sessionStorage.removeItem(openUpdatesAfterRefreshKey);
+  } catch {
+    openUpdatesAfterRefresh = false;
+  }
+  const restoredView = openUpdatesAfterRefresh ? 'updates' : current?.view || 'home';
+  const initialView = restoredView === 'beta' && !experimentalFeaturesEnabled.value
     ? 'home'
-    : current?.view || 'home';
+    : restoredView;
   view.value = initialView;
   history.replaceState(viewHistoryState(initialView), '', location.href);
 }
@@ -1173,6 +1278,17 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
   });
 }
 
+function restoreSessionReturnPosition(state: SessionReturnState | null): void {
+  if (!state) return;
+  void nextTick(() => window.requestAnimationFrame(() => {
+    const roundCard = state.view === 'rounds' && state.roundId
+      ? document.getElementById(`round-card-${state.roundId}`)
+      : null;
+    if (roundCard) roundCard.scrollIntoView({ block: 'center', behavior: motionAllowed.value ? 'smooth' : 'auto' });
+    else window.scrollTo({ top: state.scrollY, behavior: 'auto' });
+  }));
+}
+
 function deactivateSession(preserveForForward = false): void {
   if (preserveForForward) {
     suspendedSession = session.value;
@@ -1213,6 +1329,10 @@ function handleBrowserHistory(event: PopStateEvent): void {
     window.setTimeout(() => { experienceTransitionPhase.value = null; }, motionAllowed.value ? 520 : 0);
   }
   openView(target.view === 'beta' && !experimentalFeaturesEnabled.value ? 'home' : target.view, { fromHistory: true });
+  if (sessionReturnState?.view === target.view) {
+    restoreSessionReturnPosition(sessionReturnState);
+    sessionReturnState = null;
+  }
 }
 
 function handlePageHide(): void {
@@ -1281,10 +1401,14 @@ function saveActiveLearningSession(): void {
   window.clearTimeout(learningSessionSaveHandle);
   learningSessionSaveHandle = 0;
   const active = session.value;
-  if (!active || active.mode !== 'learn' || active.finished) return;
+  if (!active || active.finished) return;
   const saved: SavedLearningSession = {
     version: 1,
     qualificationKey: selectedKey.value,
+    mode: active.mode,
+    roundId: active.items.every((item) => item.round.id === active.items[0]?.round.id)
+      ? active.items[0]?.round.id
+      : undefined,
     title: active.title,
     itemIds: active.items.map((item) => item.id),
     answers: { ...active.answers },
@@ -1292,10 +1416,13 @@ function saveActiveLearningSession(): void {
     page: active.page,
     pageSize: active.pageSize,
     startedAt: active.startedAt,
+    remainingSeconds: active.remainingSeconds,
     calculationMode: active.calculationMode,
     savedAt: Date.now(),
   };
   localStorage.setItem(learningSessionStorageKey, JSON.stringify(saved));
+  studyStore.progress ||= {};
+  studyStore.progress[learningSessionProgressKey] = saved;
   savedLearningSession.value = saved;
 }
 
@@ -1308,7 +1435,18 @@ function clearSavedLearningSession(): void {
   window.clearTimeout(learningSessionSaveHandle);
   learningSessionSaveHandle = 0;
   localStorage.removeItem(learningSessionStorageKey);
+  studyStore.progress ||= {};
+  studyStore.progress[learningSessionProgressKey] = {
+    version: 1,
+    itemIds: [],
+    savedAt: Date.now(),
+    cleared: true,
+  } satisfies ClearedLearningSession;
   savedLearningSession.value = null;
+}
+
+function refreshSavedLearningSessionFromStore(): void {
+  savedLearningSession.value = readSavedLearningSession();
 }
 
 async function beginSession(
@@ -1316,20 +1454,25 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; kept?: string[]; resume?: boolean } = {},
+  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
     return;
   }
   if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
+  sessionReturnState = {
+    view: view.value,
+    scrollY: window.scrollY,
+    roundId: items.every((item) => item.round.id === items[0]?.round.id) ? items[0]?.round.id : undefined,
+  };
   experienceTransitionPhase.value = 'home-leaving';
   await waitForMotion(300);
   const pageSize = Math.max(1, Number(options.pageSize) || preferredPageSize.value);
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
     : -1;
-  if (mode === 'learn' && !options.resume) clearSavedLearningSession();
+  if (!options.resume) clearSavedLearningSession();
   examResult.value = null;
   sessionMenuOpen.value = false;
   learningJumpNumber.value = '';
@@ -1338,19 +1481,24 @@ async function beginSession(
     mode,
     title,
     items,
-    answers: mode === 'learn' ? { ...initialAnswers } : {},
-    kept: mode === 'learn' ? [...(options.kept || [])] : [],
+    answers: mode === 'learn' || options.resume ? { ...initialAnswers } : {},
+    kept: [...(options.kept || [])],
     page: options.page != null
       ? Math.min(Math.max(0, options.page), Math.max(0, Math.ceil(items.length / pageSize) - 1))
       : firstUnanswered > 0 ? Math.floor(firstUnanswered / pageSize) : 0,
     pageSize,
     startedAt: options.startedAt || Date.now(),
-    remainingSeconds: mode === 'exam' ? Math.max(90 * 60, Math.ceil(items.length * 90)) : 0,
+    remainingSeconds: mode === 'exam'
+      ? Math.max(1, Number(options.remainingSeconds) || Math.max(90 * 60, Math.ceil(items.length * 90)))
+      : 0,
     finished: false,
     resultSent: false,
     calculationMode: options.calculationMode,
   };
-  activeSessionItemId.value = items[Math.max(0, firstUnanswered)]?.id || items[0]?.id || '';
+  const initialIndex = options.page != null
+    ? Math.min(items.length - 1, Math.max(0, session.value.page * pageSize))
+    : Math.max(0, firstUnanswered);
+  activeSessionItemId.value = items[initialIndex]?.id || items[0]?.id || '';
   omrFilter.value = 'all';
   suspendedSession = null;
   suspendedExamResult = null;
@@ -1372,7 +1520,7 @@ async function beginSession(
       { duration: visualStyle.value === 'simpsons' ? .58 : .44, delay: stagger(.065), ease: [0.2, 0.85, 0.2, 1] },
     );
   });
-  if (mode === 'learn') scheduleLearningSessionSave();
+  scheduleLearningSessionSave();
   await waitForMotion(620);
   experienceTransitionPhase.value = null;
 }
@@ -1393,11 +1541,12 @@ function resumeSavedLearning(): void {
     selectedKey.value = saved.qualificationKey;
     localStorage.setItem(qualificationStorageKey, saved.qualificationKey);
   }
-  void beginSession('learn', saved.title, items, saved.answers, {
+  void beginSession(saved.mode || 'learn', saved.title, items, saved.answers, {
     calculationMode: saved.calculationMode,
     page: saved.page,
     pageSize: saved.pageSize,
     startedAt: saved.startedAt,
+    remainingSeconds: saved.remainingSeconds,
     kept: saved.kept,
     resume: true,
   });
@@ -1405,12 +1554,37 @@ function resumeSavedLearning(): void {
 
 function startRound(round: Round, mode: StudyMode): void {
   const items = roundToItems(round);
+  const saved = savedLearningSession.value;
+  const sameSavedRound = saved && (saved.roundId === round.id
+    || (saved.itemIds.length === items.length && saved.itemIds.every((id, index) => id === items[index]?.id)));
+  if (sameSavedRound && (saved.mode || 'learn') === mode) {
+    resumeSavedLearning();
+    return;
+  }
+  if (mode === 'learn') {
+    const previousAnswers = Object.fromEntries(items.flatMap((item) => {
+      const choice = studyStore.attempts[item.id]?.lastChoice;
+      return choice ? [[item.id, choice]] : [];
+    }));
+    beginSession(
+      mode,
+      `${round.year}년 ${round.session || ''} 학습`,
+      items,
+      previousAnswers,
+      { resume: true },
+    );
+    return;
+  }
   beginSession(
     mode,
     `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
     items,
     {},
   );
+}
+
+function restartRoundLearning(round: Round): void {
+  beginSession('learn', `${round.year}년 ${round.session || ''} 처음부터 학습`, roundToItems(round));
 }
 
 function openRoundWrongAnswers(round: Round): void {
@@ -1670,10 +1844,11 @@ function chooseAnswer(item: QuestionItem, choice: number): void {
 }
 
 function toggleKeep(item: QuestionItem): void {
-  if (!session.value || session.value.mode !== 'exam' || session.value.finished) return;
+  if (!session.value || session.value.finished) return;
   const index = session.value.kept.indexOf(item.id);
   if (index >= 0) session.value.kept.splice(index, 1);
   else session.value.kept.push(item.id);
+  scheduleLearningSessionSave();
 }
 
 function goToNextKept(): void {
@@ -1914,7 +2089,7 @@ function submitSession(mode: StudyMode, force = false): void {
     if (!confirm(`${messages}가 있습니다. 그래도 채점할까요?`)) return;
   }
   session.value.finished = true;
-  if (mode === 'learn') clearSavedLearningSession();
+  clearSavedLearningSession();
   stopTimer();
   if (mode === 'exam') {
     session.value.items.forEach((item) => {
@@ -2023,9 +2198,13 @@ async function leaveSession(nextView?: ViewName): Promise<void> {
     history.back();
     return;
   }
+  const returnState = sessionReturnState;
   deactivateSession(false);
   experienceTransitionPhase.value = 'home-entering';
-  openView(nextView || view.value, { replace: Boolean(current?.sessionId) });
+  const returnView = nextView || returnState?.view || view.value;
+  openView(returnView, { replace: Boolean(current?.sessionId) });
+  if (!nextView && returnState?.view === returnView) restoreSessionReturnPosition(returnState);
+  sessionReturnState = null;
   await waitForMotion(520);
   experienceTransitionPhase.value = null;
 }
@@ -2430,7 +2609,17 @@ function waitForServiceWorker(worker?: ServiceWorker | null, timeout = 12000): P
 }
 
 async function applyUpdate(): Promise<void> {
-  if (session.value && answeredCount.value > 0 && !confirm('새 버전을 적용하면 현재 풀이 화면이 새로고침됩니다. 지금 적용할까요?')) return;
+  saveActiveLearningSession();
+  persistStudyStoreNow();
+  if (cloudSyncState.email) {
+    showToast('학습 기록을 동기화한 뒤 새 버전을 적용합니다.');
+    await syncLearningData();
+  }
+  try {
+    sessionStorage.setItem(openUpdatesAfterRefreshKey, 'true');
+  } catch {
+    // 사생활 보호 모드 등 sessionStorage가 막힌 환경에서는 현재 화면만 새로고침합니다.
+  }
   if (location.protocol === 'file:' || !('serviceWorker' in navigator)) {
     location.reload();
     return;
@@ -2453,6 +2642,15 @@ async function applyUpdate(): Promise<void> {
     updateChecking.value = false;
     showToast('업데이트 적용에 실패했습니다. 잠시 후 다시 시도해 주세요.');
   }
+}
+
+function openPwaRecovery(): void {
+  if (isNativeApp) {
+    showToast('Android 앱은 PWA 캐시 복구가 필요하지 않습니다. 홈페이지에서만 사용합니다.');
+    return;
+  }
+  if (!confirm('학습 기록은 그대로 두고 CBT 캐시와 서비스워커만 정리할까요?')) return;
+  location.href = `./recovery.html?return=${isJewelry ? 'jewelry.html' : 'index.html'}`;
 }
 
 async function exportLearningData(): Promise<void> {
@@ -2647,11 +2845,14 @@ async function saveNewSyncPassword(): Promise<void> {
 
 function cloudSyncTimeLabel(): string {
   if (!cloudSyncState.lastSyncedAt) return '아직 동기화하지 않음';
-  return new Intl.DateTimeFormat('ko-KR', { hour: '2-digit', minute: '2-digit' })
+  return new Intl.DateTimeFormat('ko-KR', {
+    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+  })
     .format(new Date(cloudSyncState.lastSyncedAt));
 }
 
 function handleCloudSynced(): void {
+  refreshSavedLearningSessionFromStore();
   void refreshExamHistory();
 }
 
@@ -3101,7 +3302,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="savedLearningSession" class="resume-learning-card">
-            <div><span>자동 저장된 학습</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이 · 창을 닫아도 이어집니다</small></div>
+            <div><span>자동 저장된 {{ savedLearningSession.mode === 'exam' ? 'CBT 시험' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이 · 다른 기기에서도 이어집니다</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
             <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
           </section>
@@ -3245,7 +3446,7 @@ onBeforeUnmount(() => {
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
           <TransitionGroup name="list-shift" tag="div" class="round-grid">
-            <article v-for="round in visibleRounds" :key="round.id" class="round-card">
+            <article v-for="round in visibleRounds" :id="`round-card-${round.id}`" :key="round.id" class="round-card">
               <header><span>{{ round.shortQualification || round.qualification }}</span><b>{{ round.year }}년</b></header>
               <div v-if="roundRecordMap.get(round.id)" class="round-record-badge" :class="{ latest: lastRoundRecord?.roundId === round.id }">
                 <span>{{ lastRoundRecord?.roundId === round.id ? '마지막으로 푼 회차' : '최근 CBT 기록' }}</span>
@@ -3260,6 +3461,7 @@ onBeforeUnmount(() => {
               <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
               <footer>
                 <button type="button" @click="startRound(round, 'learn')">{{ roundAnswered(round) ? '이어 학습' : '학습모드' }}</button>
+                <button v-if="roundAnswered(round)" type="button" class="round-restart-button" @click="restartRoundLearning(round)">처음부터</button>
                 <button v-if="roundWrongGroupMap.get(round.id)" type="button" class="round-wrong-button" @click="openRoundWrongAnswers(round)">오답 {{ roundWrongGroupMap.get(round.id)?.items.length }}개</button>
                 <button type="button" @click="startRound(round, 'exam')">CBT 시험모드</button>
               </footer>
@@ -3273,7 +3475,7 @@ onBeforeUnmount(() => {
             <button v-if="savedLearningSession" type="button" @click="resumeSavedLearning">마지막 학습 이어하기</button>
           </section>
           <section v-if="savedLearningSession" class="history-resume-card">
-            <div><span>진행 중</span><strong>{{ savedLearningSession.title }}</strong><small>{{ new Date(savedLearningSession.savedAt).toLocaleString('ko-KR') }} · {{ Object.keys(savedLearningSession.answers).length }}/{{ savedLearningSession.itemIds.length }}문제</small></div>
+            <div><span>진행 중 · {{ savedLearningSession.mode === 'exam' ? 'CBT 시험' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ new Date(savedLearningSession.savedAt).toLocaleString('ko-KR') }} · {{ Object.keys(savedLearningSession.answers).length }}/{{ savedLearningSession.itemIds.length }}문제</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
           </section>
           <div v-if="recentExamRecords.length" class="history-grid">
@@ -3334,6 +3536,13 @@ onBeforeUnmount(() => {
               :aria-pressed="searchBookmarksOnly"
               @click="searchBookmarksOnly = !searchBookmarksOnly"
             >★ {{ searchBookmarksOnly ? '즐겨찾기만 보는 중' : '즐겨찾기 문제만 보기' }}</button>
+            <label v-if="searchBookmarksOnly" class="bookmark-round-filter">
+              <span>즐겨찾기 회차</span>
+              <select v-model="bookmarkRoundFilter">
+                <option value="all">전체 회차 · {{ bookmarkedCatalogItems.length }}문제</option>
+                <option v-for="round in bookmarkRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ round.count }}문제</option>
+              </select>
+            </label>
           </section>
           <div class="search-summary">
             <span v-if="searchQuery.length < 2 && !searchBookmarksOnly">두 글자 이상 입력하면 바로 검색됩니다.</span>
@@ -3389,13 +3598,25 @@ onBeforeUnmount(() => {
                 </article>
               </div>
             </details>
+            <details class="formula-render-compare">
+              <summary><span><b>ƒ</b><strong>계산식 텍스트 표시 비교</strong><small>기존 글자와 KaTeX 수식을 직접 비교</small></span><em>열기</em></summary>
+              <div class="formula-render-grid">
+                <article v-for="sample in formulaRenderSamples" :key="sample.title">
+                  <h3>{{ sample.title }}</h3>
+                  <img v-if="sample.sourceImage" class="formula-source-image restored-image-original" :src="sample.sourceImage" alt="PP-FormulaNet으로 인식한 공조 원문 수식">
+                  <section><span>{{ sample.sourceImage ? 'PP-FormulaNet-plus-M 인식 LaTeX' : '기존 텍스트' }}</span><p>{{ sample.plain }}</p></section>
+                  <section class="is-katex"><span>KaTeX</span><MathFormula :tex="sample.tex" :label="`${sample.title} 수식`" /></section>
+                </article>
+              </div>
+              <p>PP-FormulaNet-plus-M을 Mac M4 Pro의 arm64 CPU로 실행한 실제 원문 샘플입니다. 자동 전수 적용은 오인식 검수 방식까지 비교한 뒤 결정합니다.</p>
+            </details>
             <ul class="calculator-memory-notes"><li v-for="note in hvacCalculatorSheetNotes" :key="note">{{ note }}</li></ul>
           </section>
           <section class="calculation-filter-panel">
             <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
             <div class="calculation-filter-grid">
               <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
-              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }}</option></select></label>
+              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차 · {{ calculationRows.length }}문제</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ round.count }}문제</option></select></label>
               <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">선택한 계산문제 전체 풀기 →</button>
             </div>
             <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
@@ -3826,6 +4047,7 @@ onBeforeUnmount(() => {
             <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
             <div class="patch-version-actions">
               <strong>v{{ currentVersion }}</strong>
+              <button v-if="savedLearningSession" type="button" class="resume-after-update" @click="resumeSavedLearning">▶ 저장한 문제 이어서 풀기</button>
               <button type="button" class="feature-lab-entry" @click="openView('showcase')">◉ 신기술 학습관 NEW</button>
               <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
             </div>
@@ -3982,6 +4204,14 @@ onBeforeUnmount(() => {
           </div>
           <button v-if="experimentalFeaturesEnabled" type="button" class="experimental-open-button" @click="settingsOpen = false; openView('beta')">베타 학습 도구 열기 →</button>
         </div>
+        <div class="setting-group experimental-setting">
+          <span>내 판단·메모</span>
+          <p class="setting-description">문제 아래의 확신도·실수 원인·내 메모만 따로 표시합니다. OFF해도 기존 기록은 삭제하지 않습니다.</p>
+          <div class="dynamic-ui-options experimental-options">
+            <button :class="{ active: questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(true)"><strong>ON</strong><span>판단·메모 표시</span><small>문제 아래 열기</small></button>
+            <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
+          </div>
+        </div>
         <div class="setting-group solve-layout-setting">
           <span>문제풀이 화면</span>
           <p class="setting-description">세 화면을 언제든 바꿀 수 있습니다. 답안·진도·타이머는 그대로 유지됩니다.</p>
@@ -4036,8 +4266,8 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">
-          <span>복원문제 이미지</span>
-          <p class="setting-description">원본 픽셀과 답안 좌표는 그대로 두고, 다크 모드에서만 읽기 편한 색상으로 바꿉니다.</p>
+          <span>문제 이미지 다크 표시</span>
+          <p class="setting-description">복원·한솔·일반 문제 그림의 원본 픽셀은 그대로 두고, 다크 모드 표시만 바꿉니다.</p>
           <div class="restored-image-options">
             <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
             <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
@@ -4066,6 +4296,7 @@ onBeforeUnmount(() => {
         <div class="setting-group cloud-sync-setting">
           <span>기기 간 학습 기록 동기화</span>
           <p class="setting-description">로그인하지 않아도 모든 문제를 풀 수 있습니다. PC·태블릿·휴대폰에서 같은 기록을 쓰고 싶을 때만 로그인하세요.</p>
+          <small class="cloud-sync-last-time">최근 동기화 {{ cloudSyncTimeLabel() }}</small>
           <template v-if="cloudSyncState.passwordRecovery">
             <form class="cloud-sync-form" @submit.prevent="saveNewSyncPassword">
               <label><span>새 비밀번호</span><input v-model="syncNewPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8자 이상"></label>
@@ -4075,7 +4306,7 @@ onBeforeUnmount(() => {
           </template>
           <template v-else-if="cloudSyncState.email">
             <div class="cloud-sync-account">
-              <div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || `마지막 동기화 ${cloudSyncTimeLabel()}` }}</small></div>
+              <div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || '기기 간 기록 동기화가 연결되었습니다.' }}</small></div>
               <i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i>
             </div>
             <div class="cloud-sync-actions">
@@ -4099,6 +4330,11 @@ onBeforeUnmount(() => {
               </div>
             </form>
           </template>
+        </div>
+        <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting">
+          <span>PWA 업데이트 복구</span>
+          <p>업데이트 뒤 화면이 꼬였을 때 학습 기록은 보존하고 이 사이트의 캐시와 서비스워커만 다시 설정합니다.</p>
+          <div><button type="button" @click="openPwaRecovery">복구 화면 열기</button></div>
         </div>
         <div class="setting-group data-setting">
           <span>학습 기록</span>
@@ -4192,7 +4428,7 @@ onBeforeUnmount(() => {
           :title="unansweredCount ? '다음 미응답 문제로 이동' : '모든 문제에 답했습니다'"
           @click="goToNextUnanswered"
         ><small>미응답</small><strong>{{ unansweredCount }}</strong></button>
-        <span><small>킵</small><strong>{{ session.mode === 'exam' ? keptCount : '-' }}</strong></span>
+        <button type="button" class="session-kept-status" :disabled="!keptCount" @click="goToNextKept"><small>킵</small><strong>{{ keptCount }}</strong></button>
       </div>
       <div v-if="examPace" class="beta-exam-pace" :class="`is-${examPace.tone}`" aria-live="polite">
         <b>β 속도 예측</b><strong>{{ examPace.label }}</strong><span>{{ examPace.detail }}</span>
@@ -4241,7 +4477,7 @@ onBeforeUnmount(() => {
                 :restored-image-theme="restoredImageTheme"
                 :solve-layout="solveLayoutMode"
                 :active="solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id"
-                :experimental-features="experimentalFeaturesEnabled"
+                :experimental-features="experimentalFeaturesEnabled && questionJudgmentEnabled"
                 :confidence="betaQuestionMeta(item.id).confidence"
                 :mistake-reason="betaQuestionMeta(item.id).reason"
                 :study-note="betaQuestionMeta(item.id).note"
@@ -4365,7 +4601,7 @@ onBeforeUnmount(() => {
           <button type="button" @click="examResult = null; session.finished = false">문제 다시 보기</button>
           <button type="button" @click="openResultWrongAnswers(false)">이번 회차 오답 보기</button>
           <button type="button" @click="openResultWrongAnswers(true)">오답만 다시 풀기</button>
-          <button type="button" @click="leaveSession('home')">홈으로</button>
+          <button type="button" @click="leaveSession()">시작 화면으로</button>
         </div>
         </template>
         </section>
@@ -4377,12 +4613,37 @@ onBeforeUnmount(() => {
     <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel session-settings-panel">
         <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <div class="setting-group display-mode-setting">
+          <span>기기 화면 모드</span>
+          <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 전환 전에 현재 풀이 위치를 저장합니다.</p>
+          <div class="display-mode-options">
+            <button :class="{ active: displayPreference === 'auto' }" @click="setDisplayPreference('auto')"><strong>자동</strong><span>{{ resolvedDisplayMode === 'mobile' ? '현재 모바일·태블릿' : '현재 PC' }}</span><small>기기 자동 인식</small></button>
+            <button :class="{ active: displayPreference === 'mobile' }" @click="setDisplayPreference('mobile')"><strong>모바일</strong><span>모바일·태블릿</span><small>경량 화면 고정</small></button>
+            <button :class="{ active: displayPreference === 'desktop' }" @click="setDisplayPreference('desktop')"><strong>PC</strong><span>데스크톱 화면</span><small>PC 배치 고정</small></button>
+          </div>
+        </div>
+        <div class="setting-group">
+          <span>동적 UI</span>
+          <p class="setting-description">현재 답안은 유지하고 화면 전환 모션과 동적 배치만 바꿉니다.</p>
+          <div class="dynamic-ui-options">
+            <button :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)"><strong>ON</strong><span>새 동적 UI</span><small>기본 설정</small></button>
+            <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
+          </div>
+        </div>
         <div class="setting-group experimental-setting">
           <span>실험 기능 전체</span>
           <p class="setting-description">현재 답안과 타이머는 유지하고 베타 도구만 숨기거나 다시 표시합니다.</p>
           <div class="dynamic-ui-options experimental-options">
             <button :class="{ active: experimentalFeaturesEnabled }" @click="setExperimentalFeatures(true)"><strong>β ON</strong><span>베타 기능</span><small>확신도·메모·속도</small></button>
             <button :class="{ active: !experimentalFeaturesEnabled }" @click="setExperimentalFeatures(false)"><strong>OFF</strong><span>기존 화면</span><small>즉시 비교</small></button>
+          </div>
+        </div>
+        <div class="setting-group experimental-setting">
+          <span>내 판단·메모</span>
+          <p class="setting-description">현재 답안은 유지하고 문제 아래의 판단·메모 도구만 따로 켜거나 끕니다.</p>
+          <div class="dynamic-ui-options experimental-options">
+            <button :class="{ active: questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(true)"><strong>ON</strong><span>판단·메모 표시</span><small>기존 기록 유지</small></button>
+            <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
           </div>
         </div>
         <div class="setting-group solve-layout-setting">
@@ -4401,6 +4662,13 @@ onBeforeUnmount(() => {
             <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>깔끔한 시험 화면</small></button>
             <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>다크 모드 지원</small></button>
             <button v-if="isJewelry" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>보석관 전용 UI</small></button>
+          </div>
+        </div>
+        <div v-if="isJewelry" class="setting-group">
+          <span>선재 사진 자동 교체</span>
+          <p class="setting-description">선재 테마의 홈·로고·메뉴 사진이 바뀌는 시간을 고릅니다.</p>
+          <div class="sunjae-rotation-options">
+            <button v-for="seconds in sunjaeRotationChoices" :key="seconds" :class="{ active: sunjaeRotationSeconds === seconds }" @click="setSunjaeRotationSeconds(seconds)">{{ sunjaeRotationLabel(seconds) }}</button>
           </div>
         </div>
         <div class="setting-group">
@@ -4432,8 +4700,8 @@ onBeforeUnmount(() => {
           </div>
         </div>
         <div v-if="!isJewelry" class="setting-group">
-          <span>복원문제 이미지</span>
-          <p class="setting-description">현재 문제와 답안은 유지한 채 다크 이미지 표시만 바꿉니다.</p>
+          <span>문제 이미지 다크 표시</span>
+          <p class="setting-description">현재 문제와 답안은 유지하고 복원·한솔·일반 문제 그림의 표시만 바꿉니다.</p>
           <div class="restored-image-options">
             <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
             <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
@@ -4459,7 +4727,28 @@ onBeforeUnmount(() => {
           </div>
           <button v-if="session.mode === 'exam'" type="button" class="session-setting-action" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
         </div>
-        <footer><span>답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>
+        <div class="setting-group cloud-sync-setting">
+          <span>기기 간 학습 기록 동기화</span>
+          <p class="setting-description">현재 풀이 위치도 함께 저장합니다. 다른 기기에서는 동기화가 끝난 뒤 이어 학습을 누르세요.</p>
+          <small class="cloud-sync-last-time">최근 동기화 {{ cloudSyncTimeLabel() }}</small>
+          <template v-if="cloudSyncState.passwordRecovery">
+            <form class="cloud-sync-form" @submit.prevent="saveNewSyncPassword"><label><span>새 비밀번호</span><input v-model="syncNewPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8자 이상"></label><p v-if="syncFormMessage">{{ syncFormMessage }}</p><div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '변경 중…' : '새 비밀번호 저장' }}</button></div></form>
+          </template>
+          <template v-else-if="cloudSyncState.email">
+            <div class="cloud-sync-account"><div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || '기기 간 기록 동기화가 연결되었습니다.' }}</small></div><i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i></div>
+            <div class="cloud-sync-actions"><button type="button" :disabled="cloudSyncState.status === 'syncing'" @click="syncLearningData">지금 동기화</button><button type="button" class="secondary" @click="logoutSyncAccount">로그아웃</button></div>
+          </template>
+          <template v-else>
+            <button v-if="!syncLoginOpen" type="button" class="cloud-sync-open" @click="syncLoginOpen = true">동기화 로그인</button>
+            <form v-else class="cloud-sync-form" @submit.prevent="submitSyncLogin">
+              <label><span>이메일</span><input v-model.trim="syncEmail" type="email" autocomplete="username" required placeholder="name@example.com"></label><label><span>비밀번호</span><input v-model="syncPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="8자 이상"></label><label class="cloud-sync-remember"><input v-model="syncRememberEmail" type="checkbox"><span>아이디 기억</span><small>안전한 로그인 세션으로 자동 로그인을 유지합니다.</small></label><p v-if="syncFormMessage">{{ syncFormMessage }}</p>
+              <div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '확인 중…' : '로그인' }}</button><button type="button" :disabled="syncBusy" class="secondary" @click="submitSyncSignup">처음이면 계정 만들기</button><button type="button" class="secondary" @click="showSyncIdHelp">아이디 찾기</button><button type="button" :disabled="syncBusy" class="secondary" @click="sendSyncPasswordReset">비밀번호 찾기</button><button type="button" class="text-button" @click="syncLoginOpen = false; syncFormMessage = ''">닫기</button></div>
+            </form>
+          </template>
+        </div>
+        <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting"><span>PWA 업데이트 복구</span><p>학습 기록은 유지하고 홈페이지 캐시와 서비스워커만 다시 설정합니다.</p><div><button type="button" @click="openPwaRecovery">복구 화면 열기</button></div></div>
+        <div class="setting-group data-setting"><span>학습 기록</span><p>오답·진도·시험 기록을 파일로 옮기거나 다시 불러올 수 있습니다.</p><div><button @click="exportLearningData">기록 내보내기</button><button @click="chooseLearningDataFile">기록 불러오기</button><button class="danger" @click="clearLearningData">전체 초기화</button></div><input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData"></div>
+        <footer><span>현재 v{{ currentVersion }} · 답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>
       </section>
     </div>
   </Transition>
@@ -4494,7 +4783,7 @@ onBeforeUnmount(() => {
   </div>
 
   <Transition name="toast">
-    <aside v-if="updateAvailable" class="update-notice">
+    <aside v-if="updateAvailable && !session" class="update-notice">
       <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
       <button type="button" @click="applyUpdate">업데이트 적용</button>
     </aside>

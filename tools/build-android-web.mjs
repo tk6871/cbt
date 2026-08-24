@@ -24,6 +24,7 @@ await Promise.all(directories.map((directory) =>
   cp(resolve(root, directory), resolve(output, directory), { recursive: true })));
 await mkdir(resolve(output, 'assets'), { recursive: true });
 await cp(resolve(root, 'assets/icons'), resolve(output, 'assets/icons'), { recursive: true });
+await cp(resolve(root, 'assets/hvac/formula-samples'), resolve(output, 'assets/hvac/formula-samples'), { recursive: true });
 
 async function pointAssetsToPublishedSite(file) {
   const target = resolve(output, file);

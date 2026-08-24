@@ -40,13 +40,10 @@ defineEmits<{
 
 const primaryImage = computed(() => isImagePrimary(props.item));
 const hansolQuestion = computed(() => props.item.round.qualificationKey === 'hvac-hansol');
-const nativeComcbtQuestion = computed(() => /(?:^|\.)comcbt\.com(?:\/|$)/i.test(props.item.question.source || ''));
 const fieldReportQuestion = computed(() => props.item.round.kind === 'field-report-practice');
 const restoredQuestion = computed(() =>
   !fieldReportQuestion.value && props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021);
-const restoredImageClass = computed(() => restoredQuestion.value
-  ? `restored-image-${props.restoredImageTheme || 'auto'}`
-  : undefined);
+const restoredImageClass = computed(() => `restored-image-${props.restoredImageTheme || 'auto'}`);
 const correctSelected = computed(() => props.selected === props.item.question.answer);
 const calculationGuide = computed(() => calculationGuideFor(props.item));
 const calculationProblem = computed(() => isCalculationItem(props.item));
@@ -84,7 +81,8 @@ const imageZoomOpen = ref(false);
 const explanationOpen = ref(false);
 const explanationDismissed = ref(false);
 const beginnerCalculationOpen = ref(false);
-const memoryTipOpen = ref(false);
+const explanationAutoCloseSeconds = ref(0);
+let explanationAutoCloseTimer: number | undefined;
 const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 const speechSpeaking = ref(false);
 const circles = ['①', '②', '③', '④'];
@@ -95,6 +93,40 @@ function readableText(value = ''): string {
     .replace(/&nbsp;|&#160;/gi, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function stopExplanationAutoClose(): void {
+  if (explanationAutoCloseTimer !== undefined) window.clearInterval(explanationAutoCloseTimer);
+  explanationAutoCloseTimer = undefined;
+  explanationAutoCloseSeconds.value = 0;
+}
+
+function closeInlineExplanation(): void {
+  stopExplanationAutoClose();
+  explanationDismissed.value = true;
+}
+
+function closeCompactExplanation(): void {
+  stopExplanationAutoClose();
+  explanationOpen.value = false;
+}
+
+function reopenExplanation(): void {
+  stopExplanationAutoClose();
+  explanationDismissed.value = false;
+  explanationOpen.value = true;
+}
+
+function startExplanationAutoClose(): void {
+  stopExplanationAutoClose();
+  explanationAutoCloseSeconds.value = 20;
+  explanationAutoCloseTimer = window.setInterval(() => {
+    explanationAutoCloseSeconds.value -= 1;
+    if (explanationAutoCloseSeconds.value > 0) return;
+    if (compactSolveLayout.value && !inlineCompactExplanation.value) explanationOpen.value = false;
+    else explanationDismissed.value = true;
+    stopExplanationAutoClose();
+  }, 1000);
 }
 
 function leadingQuestionNumberPattern(number: number): RegExp {
@@ -143,67 +175,27 @@ const showQuestionIdentity = computed(() => primaryImage.value
   && Boolean(props.displayNumber)
   && props.displayNumber !== props.item.question.number);
 
-const correctAnswerText = computed(() => readableText(
-  props.item.question.choices[props.item.question.answer - 1]?.text
-  || props.item.question.choices[props.item.question.answer - 1]?.html
-  || `${props.item.question.answer}번`,
-));
-const explanationText = computed(() => readableText(
+const explanationRaw = computed(() => String(
   props.item.question.explanationHtml || props.item.question.explanation || '',
 ));
-const comcbtExplanationText = computed(() => {
-  const source = props.item.question.explanation || props.item.question.explanationHtml || '';
-  const matched = source.split('[COMCBT 동일 문제 추가 해설]')[1];
-  if (matched) return readableText(matched.replace(/\[해설작성자[^\]]*\]/g, ' '));
-  const provenance = props.item.question.explanationProvenance || '';
-  if (!/(?:^|\.)comcbt\.com(?:\/|$)/i.test(props.item.question.source || '') || /local-|ai-reference|beginner-authored/i.test(provenance)) return '';
-  return readableText(source.replace(/\[해설작성자[^\]]*\]/g, ' '));
+const primaryExplanationText = computed(() => readableText(explanationRaw.value
+  .split(/\n\n\[(?:COMCBT 동일 문제 추가 해설|한솔아카데미 동일 문제 보충 해설|정답·해설 대조 완료)\]\n/)[0]));
+const legacyAdditionalExplanation = computed(() => {
+  const source = explanationRaw.value;
+  const matched = source.split(/\[(?:COMCBT 동일 문제 추가 해설|한솔아카데미 동일 문제 보충 해설)\]/)[1];
+  if (matched) return readableText(matched
+    .split(/\[정답·해설 대조 완료\]/)[0]
+    .replace(/\[해설작성자[^\]]*\]/g, ' '));
+  return '';
 });
-
-function conciseExplanationTip(source: string): string {
-  if (!source) return '';
-  const pieces = source
-    .split(/(?:\n+|(?<=[.!?])\s+)/)
-    .map((part) => part.replace(/\[해설작성자[^\]]*\]/g, '').trim())
-    .filter((part) => part.length >= 5 && part.length <= 120);
-  return pieces.find((part) => /외우|암기|기억|연상|줄임|두문/i.test(part))
-    || pieces.find((part) => /→|->|=|비례|반비례/.test(part) && part.length <= 90)
-    || '';
-}
-
-const memoryTip = computed(() => {
-  const stem = readableText(props.item.question.text || props.item.question.html);
-  const answer = correctAnswerText.value.slice(0, 90) || `${props.item.question.answer}번`;
-  const source = `${stem} ${answer} ${explanationText.value}`;
-  const comcbtTip = conciseExplanationTip(comcbtExplanationText.value);
-  if (comcbtTip) return `COMCBT 암기말: ${comcbtTip}`;
-
-  const rules: Array<[RegExp, string]> = [
-    [/펠티어|제백|seebeck|peltier/i, '제백은 온도차 → 전압, 펠티어는 전류 → 흡열·발열(온도차). 방향을 반대로 짝지어 외우세요.'],
-    [/송풍기.*(?:상사|회전수)|(?:풍량|압력|동력).*제곱/i, '풍·압·동 = 1·2·3. 회전수에 대해 풍량 1제곱, 압력 2제곱, 동력 3제곱입니다.'],
-    [/송풍기.*(?:지름|직경)/i, '지름 법칙은 풍·압·동 = 3·2·5. 회전수의 1·2·3과 구분하세요.'],
-    [/캐비테이션|공동현상/i, '캐비 방지는 “굵·짧·곧·천”: 흡입관은 굵고 짧고 곧게, 펌프 회전은 천천히.'],
-    [/아연도금.*덕트|덕트.*아연도금/i, '일반 덕트 = 아연도금 강판. “덕트는 녹 방지 아연”으로 연결하세요.'],
-    [/바이오.*클린룸|미생물.*클린룸/i, '사람·약·식품처럼 미생물까지 막으면 바이오 클린룸. “바이오=살아 있는 오염”입니다.'],
-    [/활성탄.*(?:냄새|가스)|(?:냄새|가스).*활성탄/i, '활성탄 = 냄새·가스 흡착, HEPA = 미세입자 제거. “탄은 냄새, 헤파는 먼지”로 외우세요.'],
-    [/팽창밸브.*(?:적게|닫|조이)/i, '팽창밸브를 조이면 냉매가 적게 들어가므로 증발압력↓·냉동능력↓·과열도↑. “조이면 압·능↓, 과열↑”.'],
-    [/역지밸브|체크밸브/i, '역지(체크)밸브 = 한쪽 방향만 통과. “역류를 막는 역지”로 외우세요.'],
-    [/시퀀스제어|순서.*제어/i, '미리 정한 순서대로 움직이면 시퀀스. “순서=시퀀스” 한 쌍만 기억하세요.'],
-    [/냉동톤|\bUSRT\b|\bJRT\b/i, 'USRT는 3.517kW(3,024kcal/h), JRT는 3,320kcal/h. “미국 3024, 일본 3320”.'],
-    [/성능계수|\bCOP\b/i, 'COP = 얻은 냉동효과 ÷ 넣은 압축일. “얻은 것 ÷ 넣은 것”입니다.'],
-    [/3상.*전력|전력.*√3|역률/i, '3상 전력 = √3×전압×전류×역률. “루트3·V·I·역률” 순서로 붙여 외우세요.'],
-    [/열관류|벽.*열손실/i, '벽 열량은 K·A·ΔT. “관류율×면적×온도차” 세 가지만 묶으세요.'],
-    [/유량.*단면적|단면적.*유속/i, '유량 Q = 넓이 A × 속도 v. “넓게, 빠르게 흐를수록 유량이 크다”입니다.'],
-  ];
-  const curated = rules.find(([pattern]) => pattern.test(source));
-  if (curated) return curated[1];
-  if (calculationProblem.value) {
-    return `공식 한 줄: ${calculationGuide.value.formula} 구할 값과 단위를 먼저 확인한 뒤 이 식에 문제의 숫자를 넣으세요.`;
+const additionalExplanationSections = computed(() => {
+  const sections = [...(props.item.question.additionalExplanations || [])]
+    .map((entry) => ({ ...entry, text: readableText(entry.text) }))
+    .filter((entry) => entry.text);
+  if (legacyAdditionalExplanation.value && !sections.some((entry) => entry.text === legacyAdditionalExplanation.value)) {
+    sections.push({ label: '추가 해설', source: '동일 문제 원문', text: legacyAdditionalExplanation.value });
   }
-  const negative = /틀린|옳지 않은|아닌|거리가 먼|해당하지 않는|잘못된/.test(stem);
-  return negative
-    ? `반대말 문제: ‘틀린 것·아닌 것’을 먼저 찾고, 예외는 ${props.item.question.answer}번 “${answer}”로 연결하세요.`
-    : `핵심 연결: “${stem.slice(0, 42)}” → ${props.item.question.answer}번 “${answer}”.`;
+  return sections;
 });
 function hasReadableChoice(choice: QuestionItem['question']['choices'][number], index: number): boolean {
   if (choice.images?.length) return true;
@@ -214,16 +206,6 @@ function hasReadableChoice(choice: QuestionItem['question']['choices'][number], 
     .trim();
   return Boolean(text) && !new RegExp(`^(?:[①②③④]|${index + 1}(?:번)?)$`).test(text);
 }
-
-const memoryTipAvailable = computed(() => {
-  if (nativeComcbtQuestion.value) return false;
-  const source = readableText(props.item.question.text || props.item.question.html);
-  if (/원문\s*인식\s*확인\s*필요/i.test(source)) return false;
-  const answerIndex = props.item.question.answer - 1;
-  const answerChoice = props.item.question.choices[answerIndex];
-  if (primaryImage.value && (!answerChoice || !hasReadableChoice(answerChoice, answerIndex))) return false;
-  return Boolean(memoryTip.value.trim());
-});
 
 const hasReadableChoices = computed(() => props.item.question.choices.some(hasReadableChoice));
 const compactVisualChoices = computed(() => !restoredQuestion.value
@@ -366,23 +348,37 @@ watch(verifiedHotspots, (hotspots) => {
   answerHighlightStyles.value = {};
   if (hotspots.length && sourceImageRef.value?.complete) calculateAnswerHighlights(sourceImageRef.value);
 }, { flush: 'post' });
-watch(() => [props.item.id, props.selected, props.solveLayout], () => {
+watch(
+  () => ({ itemId: props.item.id, selected: props.selected, solveLayout: props.solveLayout }),
+  ({ itemId, selected }, previous) => {
+  stopExplanationAutoClose();
   explanationDismissed.value = false;
-  beginnerCalculationOpen.value = false;
-  memoryTipOpen.value = false;
+  // 계산문제는 정답을 맞힌 즉시 초보 계산 순서를 보여 준다. 사용자가 접을 수는 있다.
+  beginnerCalculationOpen.value = Boolean(
+    props.mode === 'learn'
+    && correctSelected.value
+    && beginnerCalculationAvailable.value,
+  );
   explanationOpen.value = Boolean(
     props.mode === 'learn'
     && correctSelected.value
     && compactSolveLayout.value
     && !inlineCompactExplanation.value,
   );
-});
+  const firstCorrectOpen = props.mode === 'learn'
+    && correctSelected.value
+    && previous?.itemId === itemId
+    && previous.selected !== selected;
+  if (firstCorrectOpen) startExplanationAutoClose();
+  },
+);
 watch(() => [props.item.id, props.solveLayout, compactTextChoices.value], () => {
   void reconnectChoiceLayoutProbe();
 }, { flush: 'post' });
 onMounted(() => { void reconnectChoiceLayoutProbe(); });
 onBeforeUnmount(() => {
   choiceLayoutObserver?.disconnect();
+  stopExplanationAutoClose();
   if (speechSpeaking.value) window.speechSynthesis.cancel();
 });
 </script>
@@ -428,11 +424,10 @@ onBeforeUnmount(() => {
         @click="$emit('toggleBookmark')"
       >★</button>
       <button
-        v-if="mode === 'exam'"
         type="button"
         class="keep-button"
         :class="{ active: kept }"
-        :aria-label="kept ? '현재 시험 킵 해제' : '현재 시험에서 나중에 풀기'"
+        :aria-label="kept ? '현재 문제 킵 해제' : '현재 문제를 나중에 다시 보기'"
         :aria-pressed="kept"
         @click="$emit('toggleKeep')"
       >{{ kept ? 'KEEP' : '킵' }}</button>
@@ -504,6 +499,7 @@ onBeforeUnmount(() => {
           v-for="image in item.question.images || []"
           :key="image"
           class="question-image"
+          :class="restoredImageClass"
           :src="image"
           alt="문제 참고 그림"
           loading="lazy"
@@ -537,7 +533,7 @@ onBeforeUnmount(() => {
           <span class="choice-number">{{ circles[index] || index + 1 }}</span>
           <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
             <span v-html="displayedChoices[index]" />
-            <img v-for="image in choice.images || []" :key="image" :src="image" alt="보기 그림" loading="lazy" decoding="async">
+            <img v-for="image in choice.images || []" :key="image" :class="restoredImageClass" :src="image" alt="보기 그림" loading="lazy" decoding="async">
           </span>
           <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
         </button>
@@ -596,36 +592,36 @@ onBeforeUnmount(() => {
       v-if="mode === 'learn' && correctSelected && (explanationDismissed || (compactSolveLayout && !inlineCompactExplanation))"
       type="button"
       class="compact-explanation-trigger"
-      @click="explanationDismissed = false; explanationOpen = true"
+      @click="reopenExplanation"
     ><span>정답 {{ item.question.answer }}번</span><strong>해설 다시 보기</strong><small>열기</small></button>
 
     <div v-if="mode === 'learn' && correctSelected && !explanationDismissed && (!compactSolveLayout || inlineCompactExplanation)" class="explanation-box" :class="{ 'comcbt-inline-explanation': inlineCompactExplanation }">
       <div class="explanation-title">
         <span>정답 {{ item.question.answer }}번</span>
         <strong>정답 해설</strong>
-        <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="explanationDismissed = true">닫기 ×</button>
+        <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
+        <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="closeInlineExplanation">닫기 ×</button>
       </div>
-      <div
-        v-if="item.question.explanationHtml"
-        class="explanation-copy"
-        v-html="item.question.explanationHtml"
-      />
-      <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
+      <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
       <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
       <div class="explanation-extra-actions">
-        <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+        <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
           <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
-        </button>
-        <button v-if="memoryTipAvailable" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
-          <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
         </button>
       </div>
       <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
-        <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+        <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong></p></div>
+        <div><span>왜?</span><p>{{ calculationGuide.reason }}</p></div>
+        <div v-if="calculationGuide.symbols"><span>기호</span><p>{{ calculationGuide.symbols }}</p></div>
         <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
-        <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+        <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
+        <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
       </div>
-      <aside v-if="memoryTipOpen && memoryTipAvailable" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+      <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @toggle="stopExplanationAutoClose">
+        <summary><span>추가 해설</span><strong>{{ section.label }}</strong><b>열기</b></summary>
+        <small>{{ section.source }}</small>
+        <p>{{ section.text }}</p>
+      </details>
     </div>
 
     <Teleport to="body">
@@ -636,34 +632,41 @@ onBeforeUnmount(() => {
         role="dialog"
         aria-modal="true"
         :aria-label="`${item.question.number}번 해설`"
-        @click.self="explanationOpen = false"
+        @click.self="closeCompactExplanation"
       >
         <section class="compact-explanation-panel">
           <header>
             <div><span>{{ solveLayout === 'combat' ? 'MISSION DEBRIEF' : `${item.subject} · ${displayNumber || item.question.number}번` }}</span><strong>정답 해설</strong></div>
-            <button type="button" aria-label="해설 닫기" @click="explanationOpen = false">×</button>
+            <button type="button" aria-label="해설 닫기" @click="closeCompactExplanation">×</button>
           </header>
           <div class="compact-explanation-scroll">
-            <div class="explanation-title"><span>정답 {{ item.question.answer }}번</span><strong>핵심부터 차근차근 확인하세요</strong></div>
-            <div v-if="item.question.explanationHtml" class="explanation-copy" v-html="item.question.explanationHtml" />
-            <p v-else-if="item.question.explanation" class="explanation-copy">{{ item.question.explanation }}</p>
+            <div class="explanation-title">
+              <span>정답 {{ item.question.answer }}번</span>
+              <strong>핵심부터 차근차근 확인하세요</strong>
+              <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
+            </div>
+            <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
             <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
             <div class="explanation-extra-actions">
-              <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
+              <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
                 <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
-              </button>
-              <button v-if="memoryTipAvailable" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
-                <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
               </button>
             </div>
             <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
-              <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong>{{ calculationGuide.reason }}<small>{{ calculationGuide.symbols }}</small></p></div>
+              <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong></p></div>
+              <div><span>왜?</span><p>{{ calculationGuide.reason }}</p></div>
+              <div v-if="calculationGuide.symbols"><span>기호</span><p>{{ calculationGuide.symbols }}</p></div>
               <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
-              <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
+              <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
+              <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
             </div>
-            <aside v-if="memoryTipOpen && memoryTipAvailable" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+            <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @toggle="stopExplanationAutoClose">
+              <summary><span>추가 해설</span><strong>{{ section.label }}</strong><b>열기</b></summary>
+              <small>{{ section.source }}</small>
+              <p>{{ section.text }}</p>
+            </details>
           </div>
-          <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
+          <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="closeCompactExplanation">문제로 돌아가기</button></footer>
         </section>
       </div>
       <div

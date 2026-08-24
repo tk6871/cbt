@@ -175,6 +175,22 @@ const fixes = [
     globalName: 'CBT_DATA_HVAC',
     catalogKey: 'hvac',
     roundId: 'hvac-20212',
+    number: 31,
+    patch: {
+      answer: 2,
+      explanation:
+        '팽창밸브 개도를 작게 하면 증발기로 들어가는 냉매가 줄어 냉동능력과 압축기 흡입압력이 내려갑니다. 냉매가 적게 들어오므로 증발기 출구의 과열도는 커질 수 있지만, 액 냉매가 압축기로 들어가 생기는 액압축은 일어나기 어렵습니다. 따라서 발생 현상과 가장 거리가 먼 것은 ② 증발기에서 액압축이 일어난다입니다.',
+      explanationHtml:
+        '팽창밸브 개도를 작게 하면 증발기로 들어가는 냉매가 줄어 냉동능력과 압축기 흡입압력이 내려갑니다.<br>냉매가 적게 들어오므로 증발기 출구의 과열도는 커질 수 있지만, 액 냉매가 압축기로 들어가 생기는 액압축은 일어나기 어렵습니다.<br>따라서 발생 현상과 가장 거리가 먼 것은 ② 증발기에서 액압축이 일어난다입니다.',
+      explanationConfidence: 'high',
+      correctionSource: '2021년 2회 원문 이미지와 적용 정답 재대조',
+    },
+  },
+  {
+    file: 'hvac.js',
+    globalName: 'CBT_DATA_HVAC',
+    catalogKey: 'hvac',
+    roundId: 'hvac-20212',
     number: 58,
     patch: {
       answer: 1,

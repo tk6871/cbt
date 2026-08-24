@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { mergeSchoolExamData, normalizeSchoolExamData, type SchoolExamData, type SchoolExamKind, type SchoolMemoryCard } from './schoolExam';
+import { generalChatPatchPrompt, schoolPhotoJsonPrompt } from './schoolExamPrompts';
 import type { Round, StudyMode } from './types';
 
 const props = defineProps<{ data: SchoolExamData }>();
@@ -11,7 +12,7 @@ const emit = defineEmits<{
 
 const importInput = ref<HTMLInputElement | null>(null);
 const mergeInput = ref<HTMLInputElement | null>(null);
-const photoPromptCopied = ref(false);
+const copiedPrompt = ref<'photo' | 'patch' | ''>('');
 const selectedRoundId = ref(props.data.rounds[0]?.id || '');
 const memoryOpenId = ref('');
 const subject = ref('');
@@ -34,25 +35,6 @@ const memoryHint = ref('');
 
 const selectedRound = computed(() => props.data.rounds.find((round) => round.id === selectedRoundId.value) || null);
 const kindLabel: Record<SchoolExamKind, string> = { midterm: '중간고사', final: '기말고사', quiz: '쪽지시험', other: '기타 시험' };
-const schoolPhotoPrompt = `학교 시험 준비용 자료야.
-
-과목: [과목명]
-시험: [2026년 1학기 중간고사]
-교재와 범위: [교재명, 20~45쪽]
-사진 순서: 첨부한 순서대로
-정답표: [있으면 첨부하거나 번호별로 작성]
-
-사진을 OCR해서 학교 시험 준비관용 JSON으로 만들어줘.
-
-- 객관식은 문제, 보기 4개, 정답, 쉬운 해설로 정리
-- 주관식은 질문과 외울 정답을 암기카드로 정리
-- 선생님이 강조한 내용은 '강조사항'에 기록
-- 교재 쪽수가 보이면 함께 기록
-- 글자가 불확실하면 추측하지 말고 따로 알려주기
-- 정답표가 없거나 정답이 불확실한 문제는 임의로 만들지 말고 검토 목록으로 분리
-- 기존 학교 시험 자료를 지우지 않고 '사진 정리본 추가'로 병합 가능한 JSON 파일로 만들기
-- 그림·도표·수식이 꼭 필요한 문제는 글자로만 바꾸지 말고 문제용 이미지로 저장소에 넣어 연결하기`;
-
 function uid(prefix: string): string {
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -65,12 +47,12 @@ function scopeFor(round: Round) {
   return props.data.scopes.find((scope) => scope.id === round.id);
 }
 
-async function copySchoolPhotoPrompt(): Promise<void> {
+async function copyPrompt(prompt: string, kind: 'photo' | 'patch'): Promise<void> {
   try {
-    await navigator.clipboard.writeText(schoolPhotoPrompt);
+    await navigator.clipboard.writeText(prompt);
   } catch {
     const textarea = document.createElement('textarea');
-    textarea.value = schoolPhotoPrompt;
+    textarea.value = prompt;
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
@@ -78,8 +60,10 @@ async function copySchoolPhotoPrompt(): Promise<void> {
     document.execCommand('copy');
     textarea.remove();
   }
-  photoPromptCopied.value = true;
-  window.setTimeout(() => { photoPromptCopied.value = false; }, 1800);
+  copiedPrompt.value = kind;
+  window.setTimeout(() => {
+    if (copiedPrompt.value === kind) copiedPrompt.value = '';
+  }, 1800);
 }
 
 function addScopeAndRound(): void {
@@ -244,11 +228,20 @@ async function mergeData(event: Event): Promise<void> {
   </section>
 
   <details class="school-photo-prompt">
-    <summary><span><b>사진과 함께 보낼 요청문</b><small>까먹어도 여기서 바로 복사하세요.</small></span><strong>열기</strong></summary>
+    <summary><span><b>학교 사진 → CBT JSON 요청문</b><small>일반 ChatGPT에서도 정확한 가져오기 파일을 만들도록 형식을 지정합니다.</small></span><strong>열기</strong></summary>
     <div>
-      <textarea :value="schoolPhotoPrompt" rows="15" readonly aria-label="학교 시험 사진 정리 요청문" @focus="($event.target as HTMLTextAreaElement).select()" />
-      <button type="button" @click="copySchoolPhotoPrompt">{{ photoPromptCopied ? '✓ 복사했습니다' : '요청문 전체 복사' }}</button>
-      <p aria-live="polite">사진을 첨부한 뒤 복사한 내용을 채팅에 붙여넣고 과목·시험·범위만 바꾸면 됩니다.</p>
+      <textarea :value="schoolPhotoJsonPrompt" rows="18" readonly aria-label="학교 시험 사진 JSON 정리 요청문" @focus="($event.target as HTMLTextAreaElement).select()" />
+      <button type="button" @click="copyPrompt(schoolPhotoJsonPrompt, 'photo')">{{ copiedPrompt === 'photo' ? '✓ 복사했습니다' : 'JSON 요청문 전체 복사' }}</button>
+      <p aria-live="polite">사진을 첨부한 뒤 과목·시험·교재·범위만 바꾸세요. 불확실한 정답은 가져오기 파일에서 자동으로 분리하도록 요청합니다.</p>
+    </div>
+  </details>
+
+  <details class="school-photo-prompt school-code-prompt">
+    <summary><span><b>Codex 한도 부족 시 수정안 요청문</b><small>일반 ChatGPT에서 안전한 코드 패치를 받은 뒤 Codex에 전달할 때 사용합니다.</small></span><strong>열기</strong></summary>
+    <div>
+      <textarea :value="generalChatPatchPrompt" rows="14" readonly aria-label="일반 ChatGPT 코드 수정안 요청문" @focus="($event.target as HTMLTextAreaElement).select()" />
+      <button type="button" @click="copyPrompt(generalChatPatchPrompt, 'patch')">{{ copiedPrompt === 'patch' ? '✓ 복사했습니다' : '수정안 요청문 전체 복사' }}</button>
+      <p aria-live="polite">일반 ChatGPT가 실제 파일을 고쳤다고 가정하지 않고, 적용 가능한 diff와 검증 명령을 만들게 합니다.</p>
     </div>
   </details>
 

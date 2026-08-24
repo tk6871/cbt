@@ -41,6 +41,11 @@ export type Question = {
   source?: string;
   explanationProvenance?: string;
   explanationMatchScore?: number;
+  additionalExplanations?: Array<{
+    label: string;
+    source: string;
+    text: string;
+  }>;
   sourcePage?: string;
   teacherHint?: string;
 };
