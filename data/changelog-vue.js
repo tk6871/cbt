@@ -5,6 +5,34 @@
 
   const entries = [
     {
+      version: '3.9.1',
+      scope: 'industrial',
+      date: '2026.08.24',
+      title: '공조 원문·정답·해설 정밀 대조',
+      summary: '공조·한솔의 동일 문제 해설을 원문 문제와 정답 보기까지 함께 대조하고, 수식 OCR 때문에 생긴 잘못된 연결과 정답을 바로잡았습니다.',
+      tags: ['공조 검수', '원문 대조', '정답 교정', '해설 보강'],
+      changes: [
+        '2020년 8월 22일 27번은 적용 정답 ①을 유지하면서 임펠러가 가속하고 디퓨저가 속도 에너지를 압력으로 바꾸는 실제 역할을 구분했습니다.',
+        '한솔 2025년 2회 54번은 원문 PDF의 표시와 R-L-C 공진 공식에 맞게 정답을 ④에서 ①로 교정했습니다.',
+        '수식·그림 보기 OCR이 비어 있는 문제는 문장만 비슷하다는 이유로 다른 해설이나 정답을 가져오지 못하도록 차단했습니다.',
+        '원문 근거가 부족했던 추가 해설 48개를 제거하고 수식·그림형 15문제는 원본 이미지에 맞는 짧은 해설로 보강했습니다.',
+        '추가 해설과 정답 교정은 원문 문제 문장과 정답 보기가 함께 일치해야 검사를 통과합니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.9.1로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.9.1',
+      scope: 'jewelry',
+      date: '2026.08.24',
+      title: '공통 앱 안정성 갱신',
+      summary: '공통 서비스워커와 Android 앱 버전을 최신 상태로 맞췄습니다.',
+      tags: ['업데이트', 'PWA', '보석관'],
+      changes: [
+        '산업기사 공조 데이터 교정과 함께 공통 서비스워커 캐시를 v391로 올렸습니다.',
+        '보석관의 문제·해설·테마 구성은 기존과 동일하게 유지합니다.'
+      ]
+    },
+    {
       version: '3.9',
       scope: 'industrial',
       date: '2026.08.24',
@@ -1830,8 +1858,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.9';
-  changelog.versions.jewelry = '3.9';
-  changelog.currentVersion = '3.9';
+  changelog.versions.industrial = '3.9.1';
+  changelog.versions.jewelry = '3.9.1';
+  changelog.currentVersion = '3.9.1';
   window.CBT_CHANGELOG = changelog;
 })();

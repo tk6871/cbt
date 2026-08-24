@@ -128,6 +128,7 @@ function calculationGuide(source) {
 
 function conceptGuide(source) {
   const rules = [
+    [/터보.*속도.*압력.*디퓨[저져]/i, '터보 압축기에서 임펠러는 냉매가스를 빠르게 가속하고, 디퓨저는 그 가스의 속도를 낮추면서 속도 에너지를 압력 에너지로 바꿉니다.'],
     [/A\s*상태.*B\s*상태.*현열비/i, '그림에서 전체 냉방 변화는 h₁-h₂이고, 현열 변화는 hᶜ-h₂입니다. 따라서 현열비는 (hᶜ-h₂)÷(h₁-h₂)입니다.'],
     [/밀폐계.*400\s*kJ.*150\s*kJ/i, '밀폐계의 에너지식은 받은 열 Q = 내부에너지 증가 ΔU + 계가 한 일 W입니다. 따라서 W=400-150=250kJ입니다.'],
     [/실횻값|실효치|실효값/i, '정현파 교류의 실효값은 최댓값÷√2, 즉 최댓값의 약 0.707배입니다.'],
@@ -463,7 +464,7 @@ const verifiedAnswerCorrectionIds = new Set([
   'hvac-hansol-2020-3:53', 'hvac-hansol-2020-3:57', 'hvac-hansol-2020-3:60',
   'hvac-hansol-2020-3:61', 'hvac-hansol-2020-3:62', 'hvac-hansol-2020-3:67',
   'hvac-hansol-2020-3:68', 'hvac-hansol-2020-3:72', 'hvac-hansol-2020-3:73',
-  'hvac-hansol-2020-3:79', 'hvac-hansol-2020-3:80', 'hvac-hansol-2025-2:54',
+  'hvac-hansol-2020-3:79', 'hvac-hansol-2020-3:80',
 ]);
 for (const round of hansol.rounds) {
   for (const question of round.questions) {
@@ -489,6 +490,8 @@ const verifiedAnswerByChoices = new Map();
 const verifiedAnswerCandidates = [];
 for (const round of hvac.rounds) {
   for (const question of round.questions) {
+    const recognizedChoices = question.choices.filter((choice) => normalized(choice.text || choice.html)).length;
+    if (!normalized(correctChoice(question)) || recognizedChoices < 3) continue;
     const key = fullKey(question);
     if (!key) continue;
     const current = verifiedAnswerByFullQuestion.get(key) || { answers: new Set(), sources: [] };
@@ -563,6 +566,7 @@ for (const round of hansol.rounds) {
 const manuallyVerifiedAnswers = new Map([
   ['hvac-hansol-2020-3:30', { answer: 3, source: 'hvac-20200822:31' }],
   ['hvac-hansol-2023-2:29', { answer: 3, source: 'manual-image-review' }],
+  ['hvac-hansol-2025-2:54', { answer: 1, source: 'manual-pdf-highlight-review' }],
 ]);
 for (const round of hansol.rounds) {
   for (const question of round.questions) {
@@ -572,9 +576,29 @@ for (const round of hansol.rounds) {
     question.answerCorrectionSource = verified.source;
   }
 }
+const ambiguousTurboImpellerExplanation = [
+    '시험 적용 정답: ① 임펠러',
+    '• 임펠러: 냉매가스를 고속으로 가속해 속도 에너지를 줍니다.',
+    '• 디퓨저: 가스의 속도를 낮추면서 속도 에너지를 압력 에너지로 바꿉니다.',
+    '엄밀히 말하면 변환 역할은 디퓨저입니다. 다만 이 문제의 보기에는 디퓨저가 없고, 제공된 원문 답안표와 COMCBT가 터보 압축기의 핵심 회전부를 묻는 뜻으로 ① 임펠러를 정답 처리합니다. ② 베인은 보통 용량을 조절하는 흡입 가이드 베인을 뜻합니다.',
+  ].join('\n');
+const manuallyReviewedHvacExplanations = new Map([
+  ['hvac-20200822:27', ambiguousTurboImpellerExplanation],
+  ['hvac-20231:30', ambiguousTurboImpellerExplanation],
+]);
+for (const round of hvac.rounds) {
+  for (const question of round.questions) {
+    const reviewed = manuallyReviewedHvacExplanations.get(`${round.id}:${question.number}`);
+    if (!reviewed) continue;
+    question.explanation = reviewed;
+    question.explanationHtml = reviewed;
+    question.explanationProvenance = 'manual-source-and-principle-review';
+    question.explanationAnswerReviewed = true;
+  }
+}
 const allHansol = hansol.rounds.flatMap((round) => round.questions.map((question) => ({ round, question })));
 const hvacExplanationCandidates = hvac.rounds.flatMap((round) => round.questions
-  .filter((question) => stripHansolSupplement(question.explanation))
+  .filter((question) => stripHansolSupplement(question.explanation) && normalized(correctChoice(question)))
   .map((question) => ({
     round,
     question,
@@ -587,6 +611,7 @@ const sourceByStem = new Map();
 const sourceByFull = new Map();
 for (const entry of hvacExplanationCandidates) {
   const answerKey = normalized(entry.answerText);
+  if (!answerKey) continue;
   sourceByStem.set(`${answerKey}:${stemKey(entry.question)}`, entry);
   sourceByFull.set(`${answerKey}:${fullKey(entry.question)}`, entry);
 }
@@ -684,6 +709,34 @@ for (const { question } of allHansol) {
   }
 }
 
+const manuallyReviewedHansolExplanations = new Map([
+  ['hvac-hansol-2017-1:72', '그래프는 t=0부터 크기가 1로 계속 유지되는 단위계단함수 u(t)입니다. 단위계단함수의 라플라스 변환은 L{u(t)}=1/s이므로 정답은 ②입니다.'],
+  ['hvac-hansol-2018-1:67', '증폭도 A가 무한히 크면 입력 오차를 거의 0으로 보는 이상적인 피드백 회로가 됩니다. 그림의 R-C 피드백망을 정리하면 전체 주파수 전달함수는 1+1/(jωCR)이므로 정답은 ②입니다.'],
+  ['hvac-hansol-2018-2:9', 'A→B의 전체 냉방 변화는 h₁-h₂이고, 수분량이 변하지 않는 현열 변화 A→C는 hᶜ-h₂입니다. 따라서 현열비는 (hᶜ-h₂)/(h₁-h₂)이므로 정답은 ④입니다.'],
+  ['hvac-hansol-2018-3:67', '출력 C가 H를 거쳐 합산점으로 되먹임됩니다. 식을 C=GR±HC로 놓고 C를 한쪽으로 모으면 C/R=G/(1∓H) 형태가 되므로, 부호를 ±로 표시한 ② G/(1±H)가 정답입니다.'],
+  ['hvac-hansol-2019-1:64', '세 갈래는 비례 KₚR, 미분 Kᴅ(dR/dt), 적분 Kᵢ∫Rdt이고 합산점에서 모두 더해집니다. 이 세 항을 그대로 더한 식이 ①이므로 정답은 ①입니다.'],
+  ['hvac-hansol-2019-2:70', '그림은 출력이 H(s)를 거쳐 빼기 단자로 돌아오는 음의 피드백입니다. 음의 피드백의 전체 전달함수는 G(s)/{1+G(s)H(s)}이므로 정답은 ③입니다.'],
+  ['hvac-hansol-2019-2:77', '병렬 R-L-C에서 전류가 전압보다 앞서려면 회로가 용량성, 즉 콘덴서 쪽 전류가 더 커야 합니다. 공진주파수보다 높을 때 f>1/(2π√LC)가 되므로 정답은 ②입니다.'],
+  ['hvac-hansol-2019-3:74', 'PI 제어의 전달함수는 G(s)=Kₚ(1+1/(Tᵢs))입니다. Kₚ=5, Tᵢ=3을 넣으면 5(1+1/(3s))=(15s+5)/(3s)이므로 정답은 ④입니다.'],
+  ['hvac-hansol-2019-3:79', '접점회로는 직렬을 AND(곱), 병렬을 OR(더하기), b접점을 NOT(윗줄)으로 바꿉니다. 그림의 두 도통 경로를 식으로 쓰면 xy+x̄ȳ이므로 정답은 ④입니다.'],
+  ['hvac-hansol-2021-1:65', '출력 B(s)가 H(s)를 거쳐 빼기 단자로 돌아오는 음의 피드백입니다. 따라서 전체 전달함수는 G(s)/{1+G(s)H(s)}이고 정답은 ④입니다.'],
+  ['hvac-hansol-2021-1:70', 'R-L-C 직렬회로의 전류가 최대가 되려면 유도리액턴스와 용량리액턴스가 서로 같아져야 합니다. 즉 ωL=1/(ωC)이므로 정답은 ④입니다.'],
+  ['hvac-hansol-2021-3:70', '되먹임 블록이 따로 없는 1인 음의 피드백 회로입니다. 기본식 G/(1+GH)에 H=1을 넣으면 G(s)/{1+G(s)}이므로 정답은 ①입니다.'],
+  ['hvac-hansol-2022-1:56', '① XY+XȲ=X, ② X(X+Y)=X, ④ X+XY=X입니다. 반면 ③ X(X̄+Y)=XX̄+XY=XY가 되어 나머지와 다르므로 정답은 ③입니다.'],
+  ['hvac-hansol-2024-3:58', 'A와 B 접점은 병렬이므로 A+B, C와 D 접점도 병렬이므로 C+D입니다. 두 묶음은 서로 직렬이므로 전체 논리식은 (A+B)(C+D), 정답은 ③입니다.'],
+  ['hvac-hansol-2025-2:54', 'R-L-C 직렬회로에서 전류가 최대가 되는 공진 조건은 ωL=1/(ωC)입니다. 양변을 정리하면 ω²=1/(LC), 따라서 ω=1/√(LC)이므로 원문 표시 정답은 ①입니다.'],
+]);
+for (const { round, question } of allHansol) {
+  const reviewed = manuallyReviewedHansolExplanations.get(`${round.id}:${question.number}`);
+  if (!reviewed) continue;
+  question.explanation = reviewed;
+  question.explanationHtml = reviewed;
+  question.explanationProvenance = 'hansol-beginner-authored';
+  question.explanationMatchScore = 0;
+  question.explanationOriginalReviewed = true;
+  question.explanationAnswerReviewed = true;
+}
+
 const hansolLinked = allHansol.filter(({ question }) => question.explanation
   && question.explanationProvenance !== 'hansol-beginner-authored'
   && question.explanationProvenance !== 'hansol-answer-only');
@@ -691,10 +744,11 @@ const linkedByStem = new Map();
 const linkedByFull = new Map();
 for (const entry of hansolLinked) {
   const answerKey = normalized(correctChoice(entry.question));
+  if (!answerKey) continue;
   linkedByStem.set(`${answerKey}:${stemKey(entry.question)}`, entry);
   linkedByFull.set(`${answerKey}:${fullKey(entry.question)}`, entry);
 }
-const linkedCandidates = hansolLinked.map((entry) => ({
+const linkedCandidates = hansolLinked.filter((entry) => normalized(correctChoice(entry.question))).map((entry) => ({
   ...entry,
   stem: plain(entry.question.text || entry.question.html || ''),
   normalizedStem: normalized(entry.question.text || entry.question.html || ''),
@@ -710,9 +764,11 @@ for (const round of hvac.rounds) {
     question.explanation = currentBase;
     delete question.explanationSupplementSource;
     const answerKey = normalized(correctChoice(question));
-    const source = linkedByFull.get(`${answerKey}:${fullKey(question)}`)
-      || linkedByStem.get(`${answerKey}:${stemKey(question)}`)
-      || fuzzyExplanationSource(question, linkedCandidates, 0.93);
+    const source = answerKey
+      ? linkedByFull.get(`${answerKey}:${fullKey(question)}`)
+        || linkedByStem.get(`${answerKey}:${stemKey(question)}`)
+        || fuzzyExplanationSource(question, linkedCandidates, 0.93)
+      : null;
     if (!source) continue;
     const sourceQuestion = source.question;
     const sourceRound = source.round;

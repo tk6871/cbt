@@ -28,9 +28,71 @@ function plain(value = '') {
   return String(value).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
-for (const filename of files) {
+function normalized(value = '') {
+  return plain(value).normalize('NFKC').toLowerCase().replace(/[^0-9a-z가-힣]/g, '');
+}
+
+function bigrams(value) {
+  const source = normalized(value);
+  const result = new Map();
+  for (let index = 0; index < source.length - 1; index += 1) {
+    const gram = source.slice(index, index + 2);
+    result.set(gram, (result.get(gram) || 0) + 1);
+  }
+  return result;
+}
+
+function diceSimilarity(left, right) {
+  const a = normalized(left);
+  const b = normalized(right);
+  if (a === b) return a ? 1 : 0;
+  if (a.length < 2 || b.length < 2) return 0;
+  const aBigrams = bigrams(a);
+  const bBigrams = bigrams(b);
+  let shared = 0;
+  for (const [gram, count] of aBigrams) shared += Math.min(count, bBigrams.get(gram) || 0);
+  return (2 * shared) / ((a.length - 1) + (b.length - 1));
+}
+
+function correctChoice(question) {
+  const choice = question.choices?.[Number(question.answer || 1) - 1] || {};
+  return plain(choice.text || choice.html || '');
+}
+
+function sourceKind(catalog, round) {
+  if (catalog.key === 'hvac-hansol') return '한솔 공조';
+  return Number(round.year) >= 2021 ? '공조 복원' : 'COMCBT';
+}
+
+function sourceDescription(catalog, round, question) {
+  const session = String(round.session || '').replace(/^.*?:\s*/, '');
+  return `${sourceKind(catalog, round)} · ${round.year}년 ${session || round.title} ${question.number}번`;
+}
+
+function sourceMatches(target, source, answerThreshold = 0.9) {
+  const targetAnswer = correctChoice(target.question);
+  const sourceAnswer = correctChoice(source.question);
+  if (!normalized(targetAnswer) || !normalized(sourceAnswer)) return false;
+  if (diceSimilarity(targetAnswer, sourceAnswer) < answerThreshold) return false;
+  return diceSimilarity(
+    target.question.text || target.question.html || '',
+    source.question.text || source.question.html || '',
+  ) >= 0.9;
+}
+
+const parsedCatalogs = files.flatMap((filename) => {
   const parsed = readCatalog(filename);
-  for (const catalog of Array.isArray(parsed) ? parsed : [parsed]) {
+  return (Array.isArray(parsed) ? parsed : [parsed]).map((catalog) => ({ filename, catalog }));
+});
+const sourceRows = parsedCatalogs.flatMap(({ catalog }) => (catalog.rounds || []).flatMap((round) => (round.questions || []).map((question) => ({
+  catalog,
+  round,
+  question,
+}))));
+const sourceByDescription = new Map(sourceRows.map((row) => [sourceDescription(row.catalog, row.round, row.question), row]));
+const sourceById = new Map(sourceRows.map((row) => [`${row.round.id}:${row.question.number}`, row]));
+
+for (const { filename, catalog } of parsedCatalogs) {
     const counts = { catalog: catalog.key || filename, questions: 0, explained: 0, deferredImageOcr: 0, conciseGenerated: 0 };
     for (const round of catalog.rounds || []) {
       for (const question of round.questions || []) {
@@ -55,11 +117,35 @@ for (const filename of files) {
           const sourceKey = `${plain(addition.label)}:${plain(addition.source)}`;
           if (seenAdditionalSources.has(sourceKey)) errors.push(`${location}: 같은 출처의 추가 해설이 중복되어 있습니다.`);
           seenAdditionalSources.add(sourceKey);
+          const source = sourceByDescription.get(plain(addition.source));
+          if (!source) {
+            errors.push(`${location}: 추가 해설 원문을 찾을 수 없습니다. (${plain(addition.source)})`);
+          } else if (!sourceMatches({ catalog, round, question }, source)) {
+            errors.push(`${location}: 추가 해설의 원문 문제·정답 보기가 일치하지 않습니다. (${plain(addition.source)})`);
+          }
+        }
+        const linkedIds = [question.explanationProvenance, question.explanationSupplementSource]
+          .filter((value) => typeof value === 'string' && /^[^:]+:\d+$/.test(value));
+        for (const linkedId of linkedIds) {
+          const source = sourceById.get(linkedId);
+          if (!source) {
+            errors.push(`${location}: 연결된 해설 원문을 찾을 수 없습니다. (${linkedId})`);
+          } else if (!sourceMatches({ catalog, round, question }, source)) {
+            errors.push(`${location}: 연결된 해설의 원문 문제·정답 보기가 일치하지 않습니다. (${linkedId})`);
+          }
+        }
+        const correctionId = question.answerCorrectionSource;
+        if (typeof correctionId === 'string' && /^[^:]+:\d+$/.test(correctionId)) {
+          const source = sourceById.get(correctionId);
+          if (!source) {
+            errors.push(`${location}: 정답 교정 원문을 찾을 수 없습니다. (${correctionId})`);
+          } else if (!sourceMatches({ catalog, round, question }, source, 0.8)) {
+            errors.push(`${location}: 정답 교정 원문의 문제·정답 보기가 일치하지 않습니다. (${correctionId})`);
+          }
         }
       }
     }
     report.push(counts);
-  }
 }
 
 console.log(JSON.stringify({ report, errors: errors.slice(0, 50), errorCount: errors.length }, null, 2));
