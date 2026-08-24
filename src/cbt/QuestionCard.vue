@@ -215,6 +215,16 @@ function hasReadableChoice(choice: QuestionItem['question']['choices'][number], 
   return Boolean(text) && !new RegExp(`^(?:[①②③④]|${index + 1}(?:번)?)$`).test(text);
 }
 
+const memoryTipAvailable = computed(() => {
+  if (nativeComcbtQuestion.value) return false;
+  const source = readableText(props.item.question.text || props.item.question.html);
+  if (/원문\s*인식\s*확인\s*필요/i.test(source)) return false;
+  const answerIndex = props.item.question.answer - 1;
+  const answerChoice = props.item.question.choices[answerIndex];
+  if (primaryImage.value && (!answerChoice || !hasReadableChoice(answerChoice, answerIndex))) return false;
+  return Boolean(memoryTip.value.trim());
+});
+
 const hasReadableChoices = computed(() => props.item.question.choices.some(hasReadableChoice));
 const compactVisualChoices = computed(() => !restoredQuestion.value
   && props.item.question.choices.length === 4
@@ -606,7 +616,7 @@ onBeforeUnmount(() => {
         <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
           <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
         </button>
-        <button v-if="!nativeComcbtQuestion" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+        <button v-if="memoryTipAvailable" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
           <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
         </button>
       </div>
@@ -615,7 +625,7 @@ onBeforeUnmount(() => {
         <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
         <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
       </div>
-      <aside v-if="memoryTipOpen && !nativeComcbtQuestion" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+      <aside v-if="memoryTipOpen && memoryTipAvailable" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
     </div>
 
     <Teleport to="body">
@@ -642,7 +652,7 @@ onBeforeUnmount(() => {
               <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="beginnerCalculationOpen = !beginnerCalculationOpen">
                 <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
               </button>
-              <button v-if="!nativeComcbtQuestion" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
+              <button v-if="memoryTipAvailable" type="button" class="explanation-extra-toggle memory-tip-toggle" :aria-expanded="memoryTipOpen" @click="memoryTipOpen = !memoryTipOpen">
                 <span>🧠</span><strong>쉽게 외우기</strong><b>{{ memoryTipOpen ? '−' : '＋' }}</b>
               </button>
             </div>
@@ -651,7 +661,7 @@ onBeforeUnmount(() => {
               <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
               <div v-if="calculationGuide.substitution"><span>대입</span><p>{{ calculationGuide.substitution }}<small>{{ calculationGuide.unitTip }}</small></p></div>
             </div>
-            <aside v-if="memoryTipOpen && !nativeComcbtQuestion" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
+            <aside v-if="memoryTipOpen && memoryTipAvailable" class="memory-tip-content"><p>{{ memoryTip }}</p></aside>
           </div>
           <footer><span>다른 문제는 밀리지 않습니다.</span><button type="button" @click="explanationOpen = false">문제로 돌아가기</button></footer>
         </section>

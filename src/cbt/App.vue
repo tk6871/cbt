@@ -3358,35 +3358,9 @@ onBeforeUnmount(() => {
             <div><span>FORMULA PRACTICE</span><h1>계산이 필요한 문제만 골라 푸세요</h1><p>{{ selectedCatalog.name }} · 현재 범위에서 {{ calculationRows.length.toLocaleString() }}문제 감지</p></div>
             <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning(20)">취약순 20문제 시작</button>
           </section>
-          <section class="calculation-filter-panel">
-            <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
-            <div class="calculation-filter-grid">
-              <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
-              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }}</option></select></label>
-              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">선택한 계산문제 전체 풀기 →</button>
-            </div>
-            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
-          </section>
-          <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
-            <article v-for="item in filteredCalculationRows.slice(0, 40)" :key="item.id">
-              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
-              <p>{{ stripMarkup(item.question.text || item.question.html) || '원문 이미지 계산 문제' }}</p>
-              <footer><span>{{ item.round.session || item.round.title }}</span><button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 계산 풀이`, [item], {}, { calculationMode: true })">풀어보기 →</button></footer>
-            </article>
-          </TransitionGroup>
-          <p v-if="filteredCalculationRows.length > 40" class="calculation-preview-note">목록은 처음 40문제만 미리 보여주며, ‘전체 풀기’에는 선택된 {{ filteredCalculationRows.length.toLocaleString() }}문제가 모두 포함됩니다.</p>
-          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
-        </template>
-
-        <template v-else-if="view === 'guide'">
-          <section class="tool-hero guide-hero">
-            <div><span>HVAC LAST-MINUTE GUIDE</span><h1>공조냉동 시험 직전 암기장</h1><p>등록된 기출에서 반복해서 마주치는 공식·단위·장치 역할을 짧게 정리했습니다.</p></div>
-            <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
-          </section>
-          <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
-          <section class="calculator-memory-sheet">
+          <section v-if="selectedCatalog.key === 'hvac' || selectedCatalog.key === 'hvac-hansol'" class="calculator-memory-sheet">
             <header>
-              <div><span>FX-991EX MEMORY MAP</span><h2>전체 공식 전에 보는 계산기 저장표</h2><p>AB 공기 · CD 물 · EF 온도와 습도 · XY 냉동톤 · M 힘과 수두</p></div>
+              <div><span>FX-991EX MEMORY MAP</span><h2>전체 단위·공식 전에 보는 계산기 저장표</h2><p>AB 공기 · CD 물 · EF 온도와 습도 · XY 냉동톤 · M 힘과 수두</p></div>
               <strong>9개 저장</strong>
             </header>
             <div class="calculator-memory-groups">
@@ -3417,7 +3391,32 @@ onBeforeUnmount(() => {
             </details>
             <ul class="calculator-memory-notes"><li v-for="note in hvacCalculatorSheetNotes" :key="note">{{ note }}</li></ul>
           </section>
-          <div class="guide-section-divider"><span>FULL HVAC GUIDE</span><strong>전체 단위·공식·시험 직전 암기</strong></div>
+          <section class="calculation-filter-panel">
+            <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
+            <div class="calculation-filter-grid">
+              <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
+              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }}</option></select></label>
+              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">선택한 계산문제 전체 풀기 →</button>
+            </div>
+            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
+          </section>
+          <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
+            <article v-for="item in filteredCalculationRows.slice(0, 40)" :key="item.id">
+              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
+              <p>{{ stripMarkup(item.question.text || item.question.html) || '원문 이미지 계산 문제' }}</p>
+              <footer><span>{{ item.round.session || item.round.title }}</span><button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 계산 풀이`, [item], {}, { calculationMode: true })">풀어보기 →</button></footer>
+            </article>
+          </TransitionGroup>
+          <p v-if="filteredCalculationRows.length > 40" class="calculation-preview-note">목록은 처음 40문제만 미리 보여주며, ‘전체 풀기’에는 선택된 {{ filteredCalculationRows.length.toLocaleString() }}문제가 모두 포함됩니다.</p>
+          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
+        </template>
+
+        <template v-else-if="view === 'guide'">
+          <section class="tool-hero guide-hero">
+            <div><span>HVAC LAST-MINUTE GUIDE</span><h1>공조냉동 시험 직전 암기장</h1><p>등록된 기출에서 반복해서 마주치는 공식·단위·장치 역할을 짧게 정리했습니다.</p></div>
+            <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
+          </section>
+          <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
           <section class="field-report-practice">
             <div class="field-report-copy">
               <span>2026.08.22 · 비공식 실전 제보</span>

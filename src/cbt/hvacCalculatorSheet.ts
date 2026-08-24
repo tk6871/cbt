@@ -46,26 +46,26 @@ export const hvacFrequentFormulas: HvacFrequentFormula[] = [
   },
   {
     title: '물·냉각수 열량', frequency: '55문제', target: '물을 데우거나 식히는 열량',
-    formula: 'Q = 물 질량 × 물 비열 × 온도차', calculatorFormula: 'Q = 질량 × (C) × ΔT',
-    steps: ['물의 질량 또는 초당 유량을 찾습니다.', '큰 온도에서 작은 온도를 빼 온도차를 만듭니다.', '질량 × (C) × 온도차를 누릅니다.'],
-    caution: '문제에서 물의 비열을 따로 주면 (C) 대신 문제의 값을 넣습니다.',
+    formula: 'Q = 물 질량 × 물 비열(C) × 온도차', calculatorFormula: 'Q = 질량 × 물 비열(C) × ΔT',
+    steps: ['물의 질량 또는 초당 유량을 찾습니다.', '큰 온도에서 작은 온도를 빼 온도차를 만듭니다.', '질량 × 물 비열(C) × 온도차를 누릅니다.'],
+    caution: '문제에서 물의 비열을 따로 주면 물 비열(C) 대신 문제의 값을 넣습니다.',
   },
   {
     title: '공기 현열·송풍량', frequency: '47문제', target: '공기의 온도만 바뀌는 열량',
-    formula: 'Q = 공기밀도 × 풍량 × 공기비열 × 온도차', calculatorFormula: 'Q(kW) = (A) × 풍량(m³/s) × (B) × ΔT',
-    steps: ['풍량을 m³/s로 맞춥니다.', '온도차를 구합니다.', '(A)×풍량×(B)×온도차를 계산합니다.'],
+    formula: 'Q = 공기 밀도(A) × 풍량 × 공기 비열(B) × 온도차', calculatorFormula: 'Q(kW) = 공기 밀도(A) × 풍량(m³/s) × 공기 비열(B) × ΔT',
+    steps: ['풍량을 m³/s로 맞춥니다.', '온도차를 구합니다.', '공기 밀도(A) × 풍량 × 공기 비열(B) × 온도차를 계산합니다.'],
     caution: '풍량이 m³/h라면 먼저 3,600으로 나눕니다.',
   },
   {
     title: '공기 잠열', frequency: '열·습도 문제', target: '공기에서 빠지거나 더해지는 수분 열량',
-    formula: 'Qₗ = 공기밀도 × 풍량 × 증발잠열 × 절대습도차', calculatorFormula: 'Qₗ(kW) = (A) × 풍량(m³/s) × (D) × Δx',
-    steps: ['실내외 절대습도의 차 Δx를 구합니다.', '풍량을 m³/s로 맞춥니다.', '(A)×풍량×(D)×Δx를 계산합니다.'],
+    formula: 'Qₗ = 공기 밀도(A) × 풍량 × 수증기 증발잠열(D) × 절대습도차', calculatorFormula: 'Qₗ(kW) = 공기 밀도(A) × 풍량(m³/s) × 수증기 증발잠열(D) × Δx',
+    steps: ['실내외 절대습도의 차 Δx를 구합니다.', '풍량을 m³/s로 맞춥니다.', '공기 밀도(A) × 풍량 × 수증기 증발잠열(D) × Δx를 계산합니다.'],
     caution: '절대습도 단위는 kg/kg입니다. g/kg이면 1,000으로 나눕니다.',
   },
   {
     title: '상대습도·수증기분압', frequency: '40문제', target: '절대습도로 수증기분압과 상대습도 구하기',
-    formula: 'Pv = xP ÷ (0.622+x), RH = Pv ÷ Ps × 100', calculatorFormula: 'Pv = x × P ÷ ((F)+x)',
-    steps: ['절대습도 x와 대기압 P를 찾습니다.', 'x×P÷((F)+x)로 수증기분압 Pv를 구합니다.', 'Pv를 포화수증기압 Ps로 나누고 100을 곱합니다.'],
+    formula: 'Pv = xP ÷ [공기·수증기 분자량비(F)+x], RH = Pv ÷ Ps × 100', calculatorFormula: 'Pv = x × P ÷ [공기·수증기 분자량비(F)+x]',
+    steps: ['절대습도 x와 대기압 P를 찾습니다.', 'x×P÷[공기·수증기 분자량비(F)+x]로 수증기분압 Pv를 구합니다.', 'Pv를 포화수증기압 Ps로 나누고 100을 곱합니다.'],
     caution: 'P와 Ps는 mmHg끼리 또는 kPa끼리 같은 단위로 맞춥니다.',
   },
   {
@@ -76,9 +76,9 @@ export const hvacFrequentFormulas: HvacFrequentFormula[] = [
   },
   {
     title: '냉동톤 환산', frequency: '33문제', target: '냉동톤을 kW 또는 kcal/h로 바꾸기',
-    formula: 'SI: kW = JRT × 3.86, 과거 단위: kcal/h = JRT × 3,320', calculatorFormula: 'kW = RT × (X), kcal/h = RT × (Y)',
-    steps: ['문제가 kW를 요구하면 RT×(X)를 누릅니다.', '과거 kcal/h 문제이면 RT×(Y)를 누릅니다.', '문제에서 1RT 값을 따로 주면 그 값을 우선합니다.'],
-    caution: '(X)는 SOLVE를 사용하면 덮어써질 수 있으므로 다시 3.86을 저장합니다.',
+    formula: 'SI: kW = JRT × SI 냉동톤값(X), 과거 단위: kcal/h = JRT × 과거 냉동톤값(Y)', calculatorFormula: 'kW = RT × SI 냉동톤값(X), kcal/h = RT × 과거 냉동톤값(Y)',
+    steps: ['문제가 kW를 요구하면 RT×SI 냉동톤값(X)을 누릅니다.', '과거 kcal/h 문제이면 RT×과거 냉동톤값(Y)을 누릅니다.', '문제에서 1RT 값을 따로 주면 그 값을 우선합니다.'],
+    caution: 'SI 냉동톤값(X)은 SOLVE를 사용하면 덮어써질 수 있으므로 다시 3.86을 저장합니다.',
   },
   {
     title: '절대압력·진공압', frequency: '55문제', target: '게이지압력과 절대압력 바꾸기',
@@ -88,15 +88,15 @@ export const hvacFrequentFormulas: HvacFrequentFormula[] = [
   },
   {
     title: '이상기체 상태변화', frequency: '30문제', target: '압력·체적·온도 변화',
-    formula: 'P₁V₁/T₁ = P₂V₂/T₂', calculatorFormula: '절대온도 T = ℃ + (E)',
-    steps: ['두 온도에 각각 (E)를 더해 K로 바꿉니다.', '압력은 둘 다 절대압력으로 맞춥니다.', '모르는 값 하나만 남기고 비례식으로 풉니다.'],
+    formula: 'P₁V₁/T₁ = P₂V₂/T₂, 절대온도 T = ℃ + 절대온도 기준값(E)', calculatorFormula: '절대온도 T = ℃ + 절대온도 기준값(E)',
+    steps: ['두 온도에 각각 절대온도 기준값(E)을 더해 K로 바꿉니다.', '압력은 둘 다 절대압력으로 맞춥니다.', '모르는 값 하나만 남기고 비례식으로 풉니다.'],
     caution: '℃를 그대로 식에 넣으면 틀립니다.',
   },
   {
     title: '펌프 동력', frequency: '29문제', target: '유량과 양정으로 필요한 펌프 동력 구하기',
-    formula: 'P = ρgQH ÷ η', calculatorFormula: 'P(kW) = 밀도 × (M) × 유량(m³/s) × 양정 ÷ 효율 ÷ 1000',
-    steps: ['유량을 m³/s, 양정을 m로 맞춥니다.', '효율 80%는 0.8로 넣습니다.', '밀도×(M)×유량×양정÷효율÷1000을 누릅니다.'],
-    caution: '문제에서 g=9.8 또는 9.81을 주면 (M) 대신 문제 값을 씁니다.',
+    formula: 'P = 밀도(ρ) × 중력가속도(M) × 유량(Q) × 양정(H) ÷ 효율(η)', calculatorFormula: 'P(kW) = 밀도 × 중력가속도(M) × 유량(m³/s) × 양정 ÷ 효율 ÷ 1000',
+    steps: ['유량을 m³/s, 양정을 m로 맞춥니다.', '효율 80%는 0.8로 넣습니다.', '밀도×중력가속도(M)×유량×양정÷효율÷1000을 누릅니다.'],
+    caution: '문제에서 중력가속도 g=9.8 또는 9.81을 주면 중력가속도(M) 대신 문제 값을 씁니다.',
   },
   {
     title: '송풍기·펌프 상사법칙', frequency: '25문제', target: '회전수가 바뀔 때 풍량·압력·동력',
@@ -136,9 +136,9 @@ export const hvacFrequentFormulas: HvacFrequentFormula[] = [
   },
   {
     title: '얼음 제조 냉동부하', frequency: '18문제', target: '물을 식혀 얼음으로 만드는 전체 열량',
-    formula: 'Q = m[4.2×물 온도 + 335 + 2.1×얼음 온도차]', calculatorFormula: '물 냉각 구간에는 (C)를 사용',
+    formula: 'Q = m[물 비열(C)×물 온도차 + 335 + 2.1×얼음 온도차]', calculatorFormula: '물 냉각 구간: 물 비열(C) 사용',
     steps: ['물을 0℃까지 식히는 열을 구합니다.', '0℃ 물을 얼리는 잠열 335를 더합니다.', '0℃ 얼음을 영하로 더 식히는 열을 더합니다.'],
-    caution: '문제에서 비열·잠열을 제시하면 4.2·335·2.1 대신 제시값을 씁니다.',
+    caution: '물 비열(C)=4.2를 저장했습니다. 문제에서 비열·잠열을 제시하면 저장값보다 제시값을 씁니다.',
   },
   {
     title: '대수평균온도차 LMTD', frequency: '반복 출제', target: '열교환기 양 끝의 평균 온도차',
