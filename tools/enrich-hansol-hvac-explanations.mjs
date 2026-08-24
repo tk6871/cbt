@@ -73,6 +73,9 @@ function fullKey(question) {
 
 function calculationGuide(source) {
   const rules = [
+    [/이상기체.*가스상수/i, '가스상수 R = 압력 P × 비체적 v ÷ 절대온도 T', 'P=0.5MPa=500,000Pa, v=0.4m³/kg, T=150+273=423K이므로 R=500,000×0.4÷423≈472.8J/(kg·K)입니다.'],
+    [/A\s*상태.*B\s*상태.*현열비/i, '그림의 현열비 SHF = (hᶜ - h₂) ÷ (h₁ - h₂)', 'A→C는 수분량이 변하지 않는 현열 변화이고, C→B는 잠열 변화입니다. 전체 변화 A→B에 대한 현열 부분의 비를 고르면 ④입니다.'],
+    [/밀폐계.*400\s*kJ.*150\s*kJ|400\s*kJ.*내부에너지.*150\s*kJ/i, '계가 한 일 W = 받은 열 Q - 내부에너지 증가 ΔU', '400-150=250kJ입니다. 받은 열 중 150kJ은 내부에너지로 남고, 나머지 250kJ이 바깥에 한 일이 됩니다.'],
     [/실내.*현열.*송풍량|송풍량.*현열/i, '송풍량 Q = 현열량 ÷ (공기밀도 × 공기비열 × 실내·취출 온도차)', 'kW는 kJ/s이므로 먼저 m³/s를 구하고, m³/h가 필요하면 마지막에 3,600을 곱합니다.'],
     [/이론.*성적계수.*실제.*성적계수|압축효율.*기계효율/i, '이론 COP = 냉동효과 ÷ 이론 압축일, 실제 COP ≈ 이론 COP × 압축효율 × 기계효율', '그림에서 냉동효과는 395.5-135.5=260, 압축일은 462-395.5=66.5이므로 이론 COP는 약 3.9입니다. 실제 COP는 3.9×0.80×0.9≈2.8입니다.'],
     [/열\s*통과율.*열전도율|열관류율.*열전도율/i, '1/K = 1/αᵢ + L/λ + 1/αₒ', '전체 열저항 1/K에서 실내·외 표면 열저항을 빼면 벽체 열저항 L/λ가 됩니다. 따라서 λ = L ÷ 남은 열저항으로 구합니다.'],
@@ -125,6 +128,25 @@ function calculationGuide(source) {
 
 function conceptGuide(source) {
   const rules = [
+    [/A\s*상태.*B\s*상태.*현열비/i, '그림에서 전체 냉방 변화는 h₁-h₂이고, 현열 변화는 hᶜ-h₂입니다. 따라서 현열비는 (hᶜ-h₂)÷(h₁-h₂)입니다.'],
+    [/밀폐계.*400\s*kJ.*150\s*kJ/i, '밀폐계의 에너지식은 받은 열 Q = 내부에너지 증가 ΔU + 계가 한 일 W입니다. 따라서 W=400-150=250kJ입니다.'],
+    [/실횻값|실효치|실효값/i, '정현파 교류의 실효값은 최댓값÷√2, 즉 최댓값의 약 0.707배입니다.'],
+    [/위치.*각도.*기계적.*변위|서보기구/i, '서보기구는 위치·각도·방위 같은 기계적 위치량이 목표값을 따라가도록 만드는 추종제어계입니다.'],
+    [/목푯?값.*다른\s*양.*일정한\s*비율|비율제어/i, '비율제어는 한 물리량이 다른 물리량과 미리 정한 비율을 유지하도록 제어하는 방식입니다.'],
+    [/얼음.*제조.*교반.*송\s*풍압력|빙\s*관.*공기.*교반/i, '투명한 얼음을 만들 때 빙관의 물을 공기로 저어 주며, 이 교반 공기의 송풍압력은 약 19.6~34.3kPa입니다.'],
+    [/항공기.*내한.*냉동기/i, '항공기 재료의 내한시험은 매우 낮은 온도가 필요하고 시험 부하가 비교적 작으므로 저온 운전에 알맞은 왕복동식 냉동기를 사용합니다.'],
+    [/스트레이너/i, '스트레이너는 배관 속 토사·녹·이물질을 거르는 여과기입니다. 밸브나 기기를 이물질로부터 보호하려고 배관 중간에 설치합니다.'],
+    [/추종제어/i, '추종제어는 위치·방위·자세처럼 계속 변하는 목표를 따라가는 제어입니다. 유량은 보통 공정값을 일정하게 유지하는 프로세스제어에 해당합니다.'],
+    [/제어대상.*출력|제어된.*양|제어량/i, '제어량은 제어해서 원하는 값으로 맞추려는 실제 출력입니다. 목표값과 실제 제어량의 차이가 편차입니다.'],
+    [/플렉시블.*이음|방진.*방음.*이음/i, '플렉시블 이음쇠는 펌프·압축기 등의 진동이 배관으로 전달되는 것을 줄여 방진과 방음 역할을 합니다.'],
+    [/프레온.*배관재료|냉동장치.*배관재료.*동/i, '프레온 냉동장치에는 안쪽이 깨끗하고 가공·접합이 쉬운 냉동용 동관을 주로 사용합니다.'],
+    [/블[력록].*선도.*신호전달.*특성|전달요소/i, '블록선도에서 입력 신호를 일정한 특성에 따라 출력 신호로 바꾸어 전달하는 부분을 전달요소라고 합니다.'],
+    [/상태를\s*변화시키는\s*열|잠열/i, '잠열은 온도 변화 없이 물질의 상태를 바꾸는 열입니다. 얼음이 녹거나 물이 증발·응축할 때 드나드는 열이 잠열입니다.'],
+    [/건조도.*습포화|건도.*습포화/i, '건조도는 습포화증기 속에서 증기 질량이 차지하는 비율입니다. 액체와 증기가 함께 있는 습포화 구역에서만 0~1의 값으로 사용합니다.'],
+    [/스크[루류].*냉동기.*경부하|경부하.*동력.*스크[루류]/i, '스크루 냉동기는 회전부품이 적어 고장이 적고 작아도 큰 용량을 낼 수 있지만, 경부하에서는 효율이 떨어져 상대적으로 동력 소모가 적지 않습니다.'],
+    [/제어요소.*구성|조절부.*조작부|동작신호.*조작량.*제어\s*요소/i, '제어요소는 조절부와 조작부로 이루어집니다. 조절부가 필요한 동작을 정하고, 조작부가 그 신호를 실제 조작량으로 바꿉니다.'],
+    [/서보모터.*(?:어디|속하)|조작기기.*서보모터/i, '서보모터는 제어기의 신호를 받아 밸브나 기구를 실제로 움직이는 조작기기입니다.'],
+    [/목표치.*미리.*시간적.*변화|프로그래밍제어/i, '프로그래밍제어는 목표값이 미리 정한 시간표나 순서에 따라 변하도록 제어하는 방식입니다.'],
     [/백연.*현상/i, '냉각탑의 따뜻하고 습한 배기가 차가운 외기와 섞일 때 수증기가 작은 물방울로 응축되어 흰 연기처럼 보이는 현상이 백연입니다.'],
     [/카르노.*(?:관련\s*없는|상태\s*변화)/i, '카르노 사이클은 등온 과정 두 개와 단열 과정 두 개로 이루어집니다. 등적팽창은 카르노 사이클의 과정이 아닙니다.'],
     [/정압식.*팽창.*밸브/i, '정압식 팽창밸브는 증발기 압력을 감지해 증발압력이 일정하도록 냉매 유량을 조절합니다.'],
@@ -584,6 +606,40 @@ function explanationFromSource(target, source) {
   return [...notes, original].filter(Boolean).join('\n\n');
 }
 
+function comcbtPrimarySummary(target, source) {
+  const original = String(source.question.explanation || source.question.explanationHtml || '');
+  const reviewed = original.split('\n\n[정답·해설 대조 완료]\n')[1]?.trim();
+  if (!reviewed && /아래와 같은 오류 신고가 있었습니다/i.test(original)) return '';
+  const withoutReports = (reviewed || original)
+    .split(/\n\s*아래와 같은 오류 신고가 있었습니다\.?/i)[0]
+    .replace(/\[해설작성자[^\]]*\]/g, '')
+    .replace(/\[관리자 입니다[\s\S]*$/g, '')
+    .replace(/취츨구/g, '취출구')
+    .replace(/축류형취출구/g, '축류형 취출구')
+    .replace(/기류을/g, '기류를')
+    .replace(/분사함으로/g, '분사하므로')
+    .replace(/,\s*/g, ', ')
+    .trim();
+  const lines = withoutReports.split(/\n+/)
+    .map((line) => plain(line).replace(/^\*\s*/, '• '))
+    .filter((line) => line && !/^(?:여러분들의 많은 의견|추후 여러분들의 의견|참고로 정답 변경)/.test(line));
+  const selected = [];
+  for (const line of lines) {
+    if (selected.length && `${selected.join('\n')}\n${line}`.length > 520) break;
+    selected.push(line);
+    if (selected.length >= 6) break;
+  }
+  let summary = selected.join('\n').trim();
+  if (summary.length > 520) summary = conciseSentences(summary, 4, 520);
+  if (summary.length < 18 || /^(?:문제|본문|보기).{0,30}(?:참고|확인|읽어)|해설\s*(?:없음|준비\s*중)/i.test(summary)) return '';
+  const answer = Number(target.answer);
+  const answerText = correctChoice(target);
+  const statesAnswer = new RegExp(`(?:정답|답)\\s*(?:은|:|=)?\\s*(?:${answer}|${answerLabel(answer)})`).test(summary)
+    || (summary.includes(answerLabel(answer)) && summary.includes(answerText));
+  if (!statesAnswer) summary = `${summary}\n따라서 정답은 ${answerLabel(answer)} ‘${answerText}’입니다.`;
+  return summary;
+}
+
 function primaryExplanation(target, source) {
   const restored = Number(source?.round?.year) >= 2021
     && Number(target.answer) === Number(source.question.answer)
@@ -591,7 +647,12 @@ function primaryExplanation(target, source) {
     : '';
   const isReusableRestored = restored
     && !/핵심 조건은|핵심은 문제에서 요구한 값|이 원리에 맞는 보기는|보기가 일반 원리와 맞지 않는 예외/.test(restored);
-  return isReusableRestored ? restored : beginnerExplanation(target);
+  if (isReusableRestored) return restored;
+  const provenance = String(source?.question?.explanationProvenance || '');
+  const isOriginalComcbt = Number(source?.round?.year) < 2021
+    && !/^(?:local-beginner-authored|concise-answer-guide|cross-catalog:)/.test(provenance);
+  const comcbtSummary = isOriginalComcbt ? comcbtPrimarySummary(target, source) : '';
+  return comcbtSummary || beginnerExplanation(target);
 }
 
 let propagated = 0;

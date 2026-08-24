@@ -3783,7 +3783,7 @@ onBeforeUnmount(() => {
               <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차 · {{ calculationResultFilter === 'wrong' ? calculationWrongRows.length : calculationRows.length }}문제</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ calculationResultFilter === 'wrong' ? round.wrongCount : round.count }}문제</option></select></label>
               <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">{{ calculationResultFilter === 'wrong' ? '선택한 계산 오답 풀기 →' : '선택한 계산문제 전체 풀기 →' }}</button>
             </div>
-            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
+            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 공식과 숫자 출처, 계산 순서를 간단히 확인할 수 있습니다.</p>
           </section>
           <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
             <article v-for="item in filteredCalculationRows.slice(0, 40)" :key="item.id">
