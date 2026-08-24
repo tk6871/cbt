@@ -703,8 +703,6 @@ onBeforeUnmount(() => {
       </div>
       <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
         <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong></p></div>
-        <div><span>왜?</span><p>{{ calculationGuide.reason }}</p></div>
-        <div v-if="calculationGuide.symbols"><span>기호</span><p>{{ calculationGuide.symbols }}</p></div>
         <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
         <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
         <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
@@ -746,8 +744,6 @@ onBeforeUnmount(() => {
             </div>
             <div v-if="beginnerCalculationOpen && beginnerCalculationAvailable" class="calculation-explanation beginner-calculation-explanation">
               <div><span>공식</span><p><strong>{{ calculationGuide.formula }}</strong></p></div>
-              <div><span>왜?</span><p>{{ calculationGuide.reason }}</p></div>
-              <div v-if="calculationGuide.symbols"><span>기호</span><p>{{ calculationGuide.symbols }}</p></div>
               <div v-if="calculationNumberOrigins.length"><span>숫자 출처</span><p><span v-for="origin in calculationNumberOrigins" :key="origin" class="number-origin-line">{{ origin }}</span></p></div>
               <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
               <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
