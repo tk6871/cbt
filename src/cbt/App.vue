@@ -89,11 +89,18 @@ type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
+type BetaModeMeta = {
+  confidence?: BetaConfidence;
+  reason?: BetaMistakeReason;
+  correct?: boolean;
+  at?: number;
+};
 type BetaQuestionMeta = {
   confidence?: BetaConfidence;
   reason?: BetaMistakeReason;
   note?: string;
   at?: number;
+  modes?: Partial<Record<StudyMode, BetaModeMeta>>;
 };
 type ExamResult = {
   score: number;
@@ -273,10 +280,13 @@ const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
 const searchBookmarksOnly = ref(false);
 const wrongRoundFilter = ref('');
+const wrongTypeFilter = ref<'all' | 'calculation'>('all');
 const calculationSubjectFilter = ref('all');
 const calculationRoundFilter = ref('all');
+const calculationResultFilter = ref<'all' | 'wrong'>('all');
 const bookmarkRoundFilter = ref('all');
 const questionJudgmentEnabled = ref(localStorage.getItem('unified-cbt-question-judgment') === 'true');
+const betaModeFilter = ref<StudyMode>('learn');
 const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
@@ -506,6 +516,13 @@ const wrongItems = computed(() => {
   }
   return legacyWrongItems.value;
 });
+const wrongQuestionIds = computed(() => new Set(
+  wrongRoundGroups.value.flatMap((group) => group.items.map((item) => item.id)),
+));
+const displayedWrongItems = computed(() => wrongTypeFilter.value === 'calculation'
+  ? wrongItems.value.filter(isCalculationItem)
+  : wrongItems.value);
+const selectedWrongCalculationCount = computed(() => wrongItems.value.filter(isCalculationItem).length);
 const selectedWrongRoundId = computed(() => wrongRoundGroups.value.find((group) => group.roundId === wrongRoundFilter.value)?.roundId
   || wrongRoundGroups.value[0]?.roundId
   || '');
@@ -742,21 +759,58 @@ const masteryRows = computed<MasteryRow[]>(() => selectedItems.value.map((item) 
     attempted: Boolean(attempt),
   };
 }));
-const betaTaggedRows = computed(() => selectedItems.value.map((item) => ({ item, meta: betaQuestionMeta(item.id) }))
-  .filter((row) => row.meta.confidence || row.meta.note || row.meta.reason));
+const betaTaggedRows = computed(() => selectedItems.value.map((item) => ({
+  item,
+  meta: betaModeMeta(item.id, betaModeFilter.value),
+  note: betaQuestionMeta(item.id).note,
+}))
+  .filter((row) => row.meta.confidence || row.note || row.meta.reason));
 const betaLowConfidenceRows = computed(() => betaTaggedRows.value
   .filter((row) => row.meta.confidence === 'unsure' || row.meta.confidence === 'guess')
   .sort((a, b) => (a.meta.confidence === 'guess' ? -1 : 0) - (b.meta.confidence === 'guess' ? -1 : 0)
     || Number(b.meta.at || 0) - Number(a.meta.at || 0)));
-const betaMemoRows = computed(() => betaTaggedRows.value.filter((row) => Boolean(row.meta.note?.trim())));
+const betaMemoRows = computed(() => betaTaggedRows.value.filter((row) => Boolean(row.note?.trim())));
 const betaFalseConfidenceRows = computed(() => betaTaggedRows.value.filter((row) =>
-  row.meta.confidence === 'sure' && studyStore.attempts[row.item.id] && !studyStore.attempts[row.item.id]?.lastCorrect));
+  row.meta.confidence === 'sure' && row.meta.correct === false));
 const betaReasonRows = computed(() => ([
   { key: 'concept' as const, label: '개념 부족', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'concept').length },
   { key: 'formula' as const, label: '공식·계산', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'formula').length },
   { key: 'unit' as const, label: '단위 실수', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'unit').length },
   { key: 'careless' as const, label: '문제 잘못 읽음', count: betaTaggedRows.value.filter((row) => row.meta.reason === 'careless').length },
 ]));
+const betaWeakRows = computed(() => selectedItems.value.map((item) => {
+  const meta = betaModeMeta(item.id, betaModeFilter.value);
+  const history = betaModeHistory(item.id, betaModeFilter.value);
+  let score = 0;
+  if (meta.confidence === 'guess') score += 4;
+  else if (meta.confidence === 'unsure') score += 2;
+  if (meta.correct === false) score += 3;
+  if (meta.reason) score += 1;
+  if (history.attempts) score += Math.round(history.wrongRate * 4);
+  if (history.latestWrong) score += 2;
+  return { item, meta, history, score };
+}).filter((row) => row.score >= 3)
+  .sort((a, b) => b.score - a.score || b.history.wrongRate - a.history.wrongRate || Number(b.meta.at || 0) - Number(a.meta.at || 0)));
+const betaModeSummaries = computed(() => (['learn', 'exam'] as StudyMode[]).map((mode) => {
+  const rows = selectedItems.value.map((item) => ({ item, meta: betaModeMeta(item.id, mode) }));
+  const weak = selectedItems.value.filter((item) => {
+    const meta = betaModeMeta(item.id, mode);
+    const history = betaModeHistory(item.id, mode);
+    const score = (meta.confidence === 'guess' ? 4 : meta.confidence === 'unsure' ? 2 : 0)
+      + (meta.correct === false ? 3 : 0)
+      + (meta.reason ? 1 : 0)
+      + (history.attempts ? Math.round(history.wrongRate * 4) : 0)
+      + (history.latestWrong ? 2 : 0);
+    return score >= 3;
+  }).length;
+  return {
+    mode,
+    sure: rows.filter((row) => row.meta.confidence === 'sure').length,
+    unsure: rows.filter((row) => row.meta.confidence === 'unsure').length,
+    guess: rows.filter((row) => row.meta.confidence === 'guess').length,
+    weak,
+  };
+}));
 const coachAnswered = computed(() => masteryRows.value.filter((item) => item.attempted).length);
 const coachCoverage = computed(() =>
   masteryRows.value.length ? Math.round((coachAnswered.value / masteryRows.value.length) * 100) : 0);
@@ -819,13 +873,15 @@ const weakRows = computed(() => masteryRows.value
   .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall));
 const unseenRows = computed(() => masteryRows.value.filter((item) => !item.attempted));
 const calculationRows = computed(() => masteryRows.value.filter(isCalculationItem));
+const calculationWrongRows = computed(() => calculationRows.value.filter((item) => wrongQuestionIds.value.has(item.id)));
 const calculationSubjects = computed(() => [...new Set(calculationRows.value.map((item) => item.subject))]);
 const calculationRounds = computed(() => {
-  const rows = new Map<string, { id: string; label: string; year: number; count: number }>();
+  const rows = new Map<string, { id: string; label: string; year: number; count: number; wrongCount: number }>();
   calculationRows.value.forEach((item) => {
     const existing = rows.get(item.round.id);
     if (existing) {
       existing.count += 1;
+      if (wrongQuestionIds.value.has(item.id)) existing.wrongCount += 1;
       return;
     }
     rows.set(item.round.id, {
@@ -833,6 +889,7 @@ const calculationRounds = computed(() => {
       label: `${item.round.year}년 ${item.round.session || item.round.date || item.round.title.replace(/^.*?:\s*/, '')}`,
       year: item.round.year,
       count: 1,
+      wrongCount: wrongQuestionIds.value.has(item.id) ? 1 : 0,
     });
   });
   return [...rows.values()].sort((a, b) => b.year - a.year || b.label.localeCompare(a.label, 'ko', { numeric: true }));
@@ -849,6 +906,8 @@ const formulaRenderSamples = [
   },
 ];
 const filteredCalculationRows = computed(() => calculationRows.value.filter((item) =>
+  (calculationResultFilter.value === 'all' || wrongQuestionIds.value.has(item.id))
+  &&
   (calculationSubjectFilter.value === 'all' || item.subject === calculationSubjectFilter.value)
   && (calculationRoundFilter.value === 'all' || item.round.id === calculationRoundFilter.value)));
 const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: string; description: string; count: number; tone: string }>>(() => [
@@ -1040,6 +1099,8 @@ function configureQualification(key: string): void {
   curriculum.value = 'all-mapped';
   calculationSubjectFilter.value = 'all';
   calculationRoundFilter.value = 'all';
+  calculationResultFilter.value = 'all';
+  wrongTypeFilter.value = 'all';
   bookmarkRoundFilter.value = 'all';
   setDefaultYears(key === GEM_APPRAISER_TARGET_KEY ? 0 : quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
@@ -1116,6 +1177,18 @@ function betaQuestionMeta(id: string): BetaQuestionMeta {
   const value = studyStore.notes[`beta-question:${id}`];
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
   const source = value as BetaQuestionMeta;
+  const normalizeMode = (modeValue?: BetaModeMeta): BetaModeMeta | undefined => {
+    if (!modeValue || typeof modeValue !== 'object') return undefined;
+    const normalized: BetaModeMeta = {
+      confidence: modeValue.confidence === 'sure' || modeValue.confidence === 'unsure' || modeValue.confidence === 'guess'
+        ? modeValue.confidence : undefined,
+      reason: modeValue.reason === 'concept' || modeValue.reason === 'formula' || modeValue.reason === 'unit' || modeValue.reason === 'careless'
+        ? modeValue.reason : undefined,
+      correct: typeof modeValue.correct === 'boolean' ? modeValue.correct : undefined,
+      at: Number(modeValue.at) || 0,
+    };
+    return normalized.confidence || normalized.reason || normalized.correct !== undefined ? normalized : undefined;
+  };
   return {
     confidence: source.confidence === 'sure' || source.confidence === 'unsure' || source.confidence === 'guess'
       ? source.confidence : undefined,
@@ -1123,25 +1196,85 @@ function betaQuestionMeta(id: string): BetaQuestionMeta {
       ? source.reason : undefined,
     note: typeof source.note === 'string' ? source.note : undefined,
     at: Number(source.at) || 0,
+    modes: {
+      learn: normalizeMode(source.modes?.learn),
+      exam: normalizeMode(source.modes?.exam),
+    },
   };
 }
 
-function updateBetaQuestionMeta(id: string, patch: Partial<BetaQuestionMeta>): void {
+function betaModeMeta(id: string, mode: StudyMode): BetaModeMeta {
+  const source = betaQuestionMeta(id);
+  const scoped = source.modes?.[mode];
+  if (scoped) return scoped;
+  if (mode === 'learn') {
+    return {
+      confidence: source.confidence,
+      reason: source.reason,
+      correct: source.confidence && studyStore.attempts[id] ? studyStore.attempts[id].lastCorrect : undefined,
+      at: source.at,
+    };
+  }
+  return {};
+}
+
+function betaModeHistory(id: string, mode: StudyMode): { attempts: number; wrong: number; wrongRate: number; latestWrong: boolean } {
+  const rows = recentExamRecords.value
+    .filter((record) => (record.mode || 'exam') === mode && record.itemIds?.includes(id))
+    .sort((a, b) => b.finishedAt - a.finishedAt);
+  const wrong = rows.filter((record) => record.wrongAnswers?.some((entry) => entry.id === id)).length;
+  return {
+    attempts: rows.length,
+    wrong,
+    wrongRate: rows.length ? wrong / rows.length : 0,
+    latestWrong: Boolean(rows[0]?.wrongAnswers?.some((entry) => entry.id === id)),
+  };
+}
+
+function updateBetaQuestionMeta(id: string, patch: Partial<Pick<BetaQuestionMeta, 'note'>>): void {
   const key = `beta-question:${id}`;
   const previous = betaQuestionMeta(id);
   const next: BetaQuestionMeta = { ...previous, ...patch, at: Date.now() };
-  if (!next.confidence && !next.reason && !next.note?.trim()) delete studyStore.notes[key];
+  if (!next.confidence && !next.reason && !next.note?.trim() && !next.modes?.learn && !next.modes?.exam) delete studyStore.notes[key];
+  else studyStore.notes[key] = next;
+}
+
+function updateBetaModeMeta(id: string, mode: StudyMode, patch: Partial<BetaModeMeta>): void {
+  const key = `beta-question:${id}`;
+  const previous = betaQuestionMeta(id);
+  const currentMode = betaModeMeta(id, mode);
+  const nextMode: BetaModeMeta = { ...currentMode, ...patch, at: Date.now() };
+  const hasModeValue = Boolean(nextMode.confidence || nextMode.reason || nextMode.correct !== undefined);
+  const modes = { ...(previous.modes || {}), [mode]: hasModeValue ? nextMode : undefined };
+  const next: BetaQuestionMeta = { ...previous, modes, at: Date.now() };
+  if (!next.confidence && !next.reason && !next.note?.trim() && !modes.learn && !modes.exam) delete studyStore.notes[key];
   else studyStore.notes[key] = next;
 }
 
 function setQuestionConfidence(item: QuestionItem, confidence: BetaConfidence): void {
-  const current = betaQuestionMeta(item.id).confidence;
-  updateBetaQuestionMeta(item.id, { confidence: current === confidence ? undefined : confidence });
+  const mode = session.value?.mode || 'learn';
+  const currentMeta = betaModeMeta(item.id, mode);
+  const nextConfidence = currentMeta.confidence === confidence ? undefined : confidence;
+  const selected = session.value?.answers[item.id];
+  updateBetaModeMeta(item.id, mode, {
+    confidence: nextConfidence,
+    correct: nextConfidence || currentMeta.reason
+      ? (selected ? selected === item.question.answer : undefined)
+      : undefined,
+  });
 }
 
 function setQuestionMistakeReason(item: QuestionItem, reason: BetaMistakeReason): void {
-  const current = betaQuestionMeta(item.id).reason;
-  updateBetaQuestionMeta(item.id, { reason: current === reason ? undefined : reason });
+  const mode = session.value?.mode || 'learn';
+  const currentMeta = betaModeMeta(item.id, mode);
+  const nextReason = currentMeta.reason === reason ? undefined : reason;
+  const selected = session.value?.answers[item.id];
+  updateBetaModeMeta(item.id, mode, {
+    reason: nextReason,
+    correct: currentMeta.confidence || nextReason
+      ? (selected ? selected === item.question.answer : undefined)
+      : undefined,
+  });
 }
 
 function setQuestionStudyNote(item: QuestionItem, note: string): void {
@@ -1166,7 +1299,7 @@ function setQuestionJudgmentEnabled(enabled: boolean): void {
     : '내 판단·메모를 숨겼습니다. 기존 기록은 보존됩니다.');
 }
 
-function startBetaReview(kind: 'confidence' | 'memo' | 'false-confidence' | BetaMistakeReason): void {
+function startBetaReview(kind: 'confidence' | 'memo' | 'false-confidence' | 'weak' | BetaMistakeReason): void {
   let title = '베타 맞춤 복습';
   let rows: QuestionItem[] = [];
   if (kind === 'confidence') {
@@ -1178,6 +1311,9 @@ function startBetaReview(kind: 'confidence' | 'memo' | 'false-confidence' | Beta
   } else if (kind === 'false-confidence') {
     title = '베타 · 확신했지만 틀린 문제';
     rows = betaFalseConfidenceRows.value.map((row) => row.item);
+  } else if (kind === 'weak') {
+    title = `베타 · ${betaModeFilter.value === 'exam' ? 'CBT' : '학습'} 자동 취약 문제`;
+    rows = betaWeakRows.value.map((row) => row.item);
   } else {
     const label = betaReasonRows.value.find((row) => row.key === kind)?.label || '실수 원인';
     title = `베타 · ${label} 집중`;
@@ -1797,7 +1933,8 @@ function startCalculationLearning(limit?: number): void {
   const roundLabel = calculationRoundFilter.value === 'all'
     ? '전체 회차'
     : calculationRounds.value.find((round) => round.id === calculationRoundFilter.value)?.label || '선택 회차';
-  beginSession('learn', `계산문제 · ${subjectLabel} · ${roundLabel}`, selected, {}, { calculationMode: true });
+  const resultLabel = calculationResultFilter.value === 'wrong' ? '계산 오답' : '계산문제';
+  beginSession('learn', `${resultLabel} · ${subjectLabel} · ${roundLabel}`, selected, {}, { calculationMode: true });
 }
 
 function replayHistoryRecord(record: ExamRecord): void {
@@ -3491,8 +3628,8 @@ onBeforeUnmount(() => {
 
         <template v-else-if="view === 'wrong'">
           <section class="tool-hero wrong-hero">
-            <div><span>WRONG ANSWERS BY ROUND</span><h1>회차별 오답만 골라 복습하세요</h1><p>{{ selectedCatalog.name }} · 선택한 회차 {{ wrongItems.length }}문제</p></div>
-            <button v-if="wrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} 회차별 오답 복습`, wrongItems)">이 회차 오답 다시 풀기</button>
+            <div><span>WRONG ANSWERS BY ROUND</span><h1>회차별 오답만 골라 복습하세요</h1><p>{{ selectedCatalog.name }} · 선택한 회차 {{ displayedWrongItems.length }}문제</p></div>
+            <button v-if="displayedWrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} ${wrongTypeFilter === 'calculation' ? '계산 오답' : '회차별 오답'} 복습`, displayedWrongItems, {}, { calculationMode: wrongTypeFilter === 'calculation' })">{{ wrongTypeFilter === 'calculation' ? '계산 오답 다시 풀기' : '이 회차 오답 다시 풀기' }}</button>
           </section>
           <div v-if="wrongRoundGroups.length" class="wrong-round-filter" role="group" aria-label="오답 회차 선택">
             <button
@@ -3503,21 +3640,25 @@ onBeforeUnmount(() => {
               @click="wrongRoundFilter = group.roundId"
             >
               <strong>{{ group.year }}년 {{ group.session || group.title.replace(/^.*?:\s*/, '') }}</strong>
-              <span>{{ group.items.length }}문제 · 기록 {{ group.attempts }}회</span>
+              <span>{{ group.items.length }}문제 · 계산 오답 {{ group.items.filter(isCalculationItem).length }} · 기록 {{ group.attempts }}회</span>
             </button>
           </div>
-          <TransitionGroup v-if="wrongItems.length" name="list-shift" tag="div" class="question-library">
-            <article v-for="item in wrongItems" :key="item.id">
+          <div v-if="wrongItems.length" class="problem-kind-filter" role="group" aria-label="오답 종류 선택">
+            <button type="button" :class="{ active: wrongTypeFilter === 'all' }" @click="wrongTypeFilter = 'all'">전체 오답 <strong>{{ wrongItems.length }}</strong></button>
+            <button type="button" :class="{ active: wrongTypeFilter === 'calculation' }" @click="wrongTypeFilter = 'calculation'">계산 오답 <strong>{{ selectedWrongCalculationCount }}</strong></button>
+          </div>
+          <TransitionGroup v-if="displayedWrongItems.length" name="list-shift" tag="div" class="question-library">
+            <article v-for="item in displayedWrongItems" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
               <footer>
                 <span v-if="wrongAnswerDetailMap.get(item.id)">내 답 {{ wrongAnswerDetailMap.get(item.id)?.selected }}번 · 정답 {{ wrongAnswerDetailMap.get(item.id)?.answer }}번</span>
                 <span v-else>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
-                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item])">다시 풀기 →</button>
+                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item], {}, { calculationMode: isCalculationItem(item) })">다시 풀기 →</button>
               </footer>
             </article>
           </TransitionGroup>
-          <section v-else class="empty-state"><span>✓</span><h2>현재 오답이 없습니다</h2><p>학습모드에서 틀린 문제가 생기면 이곳에 자동으로 모입니다.</p><button @click="openView('home')">학습 시작하기</button></section>
+          <section v-else class="empty-state"><span>✓</span><h2>{{ wrongTypeFilter === 'calculation' ? '이 회차에는 계산 오답이 없습니다' : '현재 오답이 없습니다' }}</h2><p>{{ wrongTypeFilter === 'calculation' ? '다른 회차를 선택하거나 전체 오답으로 바꿔 보세요.' : '학습모드에서 틀린 문제가 생기면 이곳에 자동으로 모입니다.' }}</p><button v-if="wrongTypeFilter === 'calculation'" @click="wrongTypeFilter = 'all'">전체 오답 보기</button><button v-else @click="openView('home')">학습 시작하기</button></section>
         </template>
 
         <template v-else-if="view === 'search'">
@@ -3614,10 +3755,14 @@ onBeforeUnmount(() => {
           </section>
           <section class="calculation-filter-panel">
             <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
+            <div class="problem-kind-filter" role="group" aria-label="계산문제 학습 종류 선택">
+              <button type="button" :class="{ active: calculationResultFilter === 'all' }" @click="calculationResultFilter = 'all'">전체 계산문제 <strong>{{ calculationRows.length.toLocaleString() }}</strong></button>
+              <button type="button" :class="{ active: calculationResultFilter === 'wrong' }" @click="calculationResultFilter = 'wrong'">계산 오답 <strong>{{ calculationWrongRows.length.toLocaleString() }}</strong></button>
+            </div>
             <div class="calculation-filter-grid">
               <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
-              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차 · {{ calculationRows.length }}문제</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ round.count }}문제</option></select></label>
-              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">선택한 계산문제 전체 풀기 →</button>
+              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차 · {{ calculationResultFilter === 'wrong' ? calculationWrongRows.length : calculationRows.length }}문제</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ calculationResultFilter === 'wrong' ? round.wrongCount : round.count }}문제</option></select></label>
+              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">{{ calculationResultFilter === 'wrong' ? '선택한 계산 오답 풀기 →' : '선택한 계산문제 전체 풀기 →' }}</button>
             </div>
             <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 ‘구할 것 → 공식 → 기호 → 단위’ 순서의 쉬운 풀이 안내가 함께 표시됩니다.</p>
           </section>
@@ -3791,11 +3936,19 @@ onBeforeUnmount(() => {
             </aside>
           </section>
 
+          <section class="beta-mode-compare" aria-label="학습모드와 CBT모드 기록 선택">
+            <button v-for="summary in betaModeSummaries" :key="summary.mode" type="button" :class="{ active: betaModeFilter === summary.mode }" @click="betaModeFilter = summary.mode">
+              <span>{{ summary.mode === 'learn' ? 'LEARNING MODE' : 'CBT MODE' }}</span>
+              <strong>{{ summary.mode === 'learn' ? '학습모드 기록' : 'CBT모드 기록' }}</strong>
+              <div><small>확신 <b>{{ summary.sure }}</b></small><small>애매 <b>{{ summary.unsure }}</b></small><small>찍음 <b>{{ summary.guess }}</b></small><small>자동 취약 <b>{{ summary.weak }}</b></small></div>
+            </button>
+          </section>
+
           <section class="beta-summary-grid">
-            <article><span>애매·찍음</span><strong>{{ betaLowConfidenceRows.length }}</strong><small>확신 낮은 문제</small></article>
+            <article><span>{{ betaModeFilter === 'learn' ? '학습' : 'CBT' }} 애매·찍음</span><strong>{{ betaLowConfidenceRows.length }}</strong><small>확신 낮은 문제</small></article>
             <article><span>내 메모</span><strong>{{ betaMemoRows.length }}</strong><small>동기화되는 문제 메모</small></article>
             <article><span>확신 오답</span><strong>{{ betaFalseConfidenceRows.length }}</strong><small>알았다고 생각했지만 틀림</small></article>
-            <article><span>전체 표시</span><strong>{{ betaTaggedRows.length }}</strong><small>현재 종목·연도 범위</small></article>
+            <article><span>자동 취약</span><strong>{{ betaWeakRows.length }}</strong><small>오답·확신도를 함께 분석</small></article>
           </section>
 
           <section class="beta-review-grid">
@@ -3807,6 +3960,9 @@ onBeforeUnmount(() => {
             </button>
             <button type="button" :disabled="!betaMemoRows.length" @click="startBetaReview('memo')">
               <span>03 · MY NOTE</span><strong>메모한 문제 모아 풀기</strong><p>문제마다 적은 공식·주의점을 유지한 채 다시 학습합니다.</p><b>{{ betaMemoRows.length }}문제 →</b>
+            </button>
+            <button type="button" :disabled="!betaWeakRows.length" @click="startBetaReview('weak')">
+              <span>04 · WEAKNESS ENGINE</span><strong>{{ betaModeFilter === 'learn' ? '학습' : 'CBT' }} 취약 문제 자동 검출</strong><p>오답률, 최근 오답, 애매·찍음, 확신 오답을 합쳐 약한 문제부터 냅니다.</p><b>{{ betaWeakRows.length }}문제 →</b>
             </button>
           </section>
 
@@ -4478,8 +4634,8 @@ onBeforeUnmount(() => {
                 :solve-layout="solveLayoutMode"
                 :active="solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id"
                 :experimental-features="experimentalFeaturesEnabled && questionJudgmentEnabled"
-                :confidence="betaQuestionMeta(item.id).confidence"
-                :mistake-reason="betaQuestionMeta(item.id).reason"
+                :confidence="betaModeMeta(item.id, session.mode).confidence"
+                :mistake-reason="betaModeMeta(item.id, session.mode).reason"
                 :study-note="betaQuestionMeta(item.id).note"
                 @choose="chooseAnswer(item, $event)"
                 @toggle-bookmark="toggleBookmark(item)"

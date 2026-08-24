@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
 import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
+import { submitQuestionIssue, type QuestionIssueType } from './cloudSync';
 import type { QuestionItem, StudyMode } from './types';
 
 const props = defineProps<{
@@ -86,6 +87,68 @@ let explanationAutoCloseTimer: number | undefined;
 const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
 const speechSpeaking = ref(false);
 const circles = ['①', '②', '③', '④'];
+const issueTypeOptions: Array<{ value: QuestionIssueType; label: string }> = [
+  { value: 'missing-image', label: '그림 없음' },
+  { value: 'wrong-image', label: '그림 오류·잘림' },
+  { value: 'answer-hotspot', label: '답안 클릭 영역' },
+  { value: 'answer', label: '정답 오류' },
+  { value: 'explanation', label: '해설 오류·부족' },
+  { value: 'text-ocr', label: '글자·수식 오류' },
+  { value: 'layout', label: '화면 배치 문제' },
+  { value: 'other', label: '기타' },
+];
+const issueReportOpen = ref(false);
+const issueReportTypes = ref<QuestionIssueType[]>([]);
+const issueReportDetails = ref('');
+const issueReportSending = ref(false);
+const issueReportError = ref('');
+const issueReportSubmitted = ref(false);
+
+function toggleIssueType(type: QuestionIssueType): void {
+  const index = issueReportTypes.value.indexOf(type);
+  if (index >= 0) issueReportTypes.value.splice(index, 1);
+  else issueReportTypes.value.push(type);
+  issueReportError.value = '';
+}
+
+async function sendIssueReport(): Promise<void> {
+  issueReportError.value = '';
+  if (!issueReportTypes.value.length || issueReportDetails.value.trim().length < 3) {
+    issueReportError.value = '문제 유형을 고르고 무엇이 이상한지 3자 이상 적어 주세요.';
+    return;
+  }
+  issueReportSending.value = true;
+  const question = props.item.question;
+  const error = await submitQuestionIssue({
+    space: window.CBT_APP_SPACE === 'jewelry' ? 'jewelry' : 'industrial',
+    qualification_key: props.item.round.qualificationKey || 'unknown',
+    qualification: props.item.round.qualification,
+    round_id: props.item.round.id,
+    round_title: props.item.round.title,
+    round_year: props.item.round.year,
+    round_session: props.item.round.session,
+    question_id: props.item.id,
+    question_number: question.number,
+    display_number: props.displayNumber,
+    subject: props.item.subject,
+    issue_types: issueReportTypes.value,
+    details: issueReportDetails.value,
+    question_text: readableText(question.html || question.text || ''),
+    choices_snapshot: question.choices.map((choice) => readableText(choice.html || choice.text || '')),
+    configured_answer: question.answer,
+    source_image: question.sourceImage || undefined,
+    page_url: window.location.href,
+    app_version: window.CBT_CHANGELOG?.currentVersion,
+    device_info: `${navigator.platform || 'unknown'} · ${navigator.userAgent.slice(0, 300)}`,
+  });
+  issueReportSending.value = false;
+  if (error) {
+    issueReportError.value = error;
+    return;
+  }
+  issueReportSubmitted.value = true;
+  issueReportOpen.value = false;
+}
 
 function readableText(value = ''): string {
   return String(value)
@@ -350,28 +413,37 @@ watch(verifiedHotspots, (hotspots) => {
 }, { flush: 'post' });
 watch(
   () => ({ itemId: props.item.id, selected: props.selected, solveLayout: props.solveLayout }),
-  ({ itemId, selected }, previous) => {
-  stopExplanationAutoClose();
-  explanationDismissed.value = false;
-  // 계산문제는 정답을 맞힌 즉시 초보 계산 순서를 보여 준다. 사용자가 접을 수는 있다.
-  beginnerCalculationOpen.value = Boolean(
-    props.mode === 'learn'
-    && correctSelected.value
-    && beginnerCalculationAvailable.value,
-  );
-  explanationOpen.value = Boolean(
-    props.mode === 'learn'
-    && correctSelected.value
-    && compactSolveLayout.value
-    && !inlineCompactExplanation.value,
-  );
-  const firstCorrectOpen = props.mode === 'learn'
-    && correctSelected.value
-    && previous?.itemId === itemId
-    && previous.selected !== selected;
-  if (firstCorrectOpen) startExplanationAutoClose();
+  ({ itemId, selected }) => {
+    stopExplanationAutoClose();
+    explanationDismissed.value = false;
+    // 계산문제는 정답을 맞힌 즉시 초보 계산 순서를 보여 준다. 사용자가 접을 수는 있다.
+    beginnerCalculationOpen.value = Boolean(
+      props.mode === 'learn'
+      && correctSelected.value
+      && beginnerCalculationAvailable.value,
+    );
+    explanationOpen.value = Boolean(
+      props.mode === 'learn'
+      && correctSelected.value
+      && compactSolveLayout.value
+      && !inlineCompactExplanation.value,
+    );
+    if (props.mode === 'learn' && correctSelected.value) {
+      void nextTick(() => {
+        if (props.item.id === itemId && props.selected === selected && correctSelected.value) {
+          startExplanationAutoClose();
+        }
+      });
+    }
   },
 );
+watch(() => props.item.id, () => {
+  issueReportOpen.value = false;
+  issueReportTypes.value = [];
+  issueReportDetails.value = '';
+  issueReportError.value = '';
+  issueReportSubmitted.value = false;
+});
 watch(() => [props.item.id, props.solveLayout, compactTextChoices.value], () => {
   void reconnectChoiceLayoutProbe();
 }, { flush: 'post' });
@@ -431,7 +503,31 @@ onBeforeUnmount(() => {
         :aria-pressed="kept"
         @click="$emit('toggleKeep')"
       >{{ kept ? 'KEEP' : '킵' }}</button>
+      <button
+        type="button"
+        class="question-issue-button"
+        :class="{ active: issueReportOpen, submitted: issueReportSubmitted }"
+        :aria-expanded="issueReportOpen"
+        @click="issueReportOpen = !issueReportOpen"
+      >{{ issueReportSubmitted ? '✓ 접수됨' : issueReportOpen ? '☑ 이상 신고' : '☐ 이상 신고' }}</button>
     </header>
+
+    <form v-if="issueReportOpen" class="question-issue-form" @submit.prevent="sendIssueReport">
+      <header><div><strong>이 문제에서 이상한 점을 알려주세요</strong><span>여러 항목을 함께 고를 수 있습니다.</span></div><button type="button" aria-label="신고창 닫기" @click="issueReportOpen = false">×</button></header>
+      <div class="question-issue-types" aria-label="문제 유형">
+        <button
+          v-for="option in issueTypeOptions"
+          :key="option.value"
+          type="button"
+          :class="{ active: issueReportTypes.includes(option.value) }"
+          :aria-pressed="issueReportTypes.includes(option.value)"
+          @click="toggleIssueType(option.value)"
+        ><span>{{ issueReportTypes.includes(option.value) ? '✓' : '○' }}</span>{{ option.label }}</button>
+      </div>
+      <label><span>무엇이 문제인가요?</span><textarea v-model="issueReportDetails" rows="3" maxlength="1500" placeholder="예: 문제에 필요한 그림이 보이지 않습니다." /></label>
+      <p v-if="issueReportError" class="question-issue-error">{{ issueReportError }}</p>
+      <footer><small>{{ issueReportDetails.length }}/1500자 · 관리자 확인용으로만 저장됩니다.</small><button type="submit" :disabled="issueReportSending">{{ issueReportSending ? '저장 중…' : '이상 문제 저장' }}</button></footer>
+    </form>
 
     <div class="question-content" :class="{ 'source-image-content': primaryImage }">
       <div
@@ -617,7 +713,7 @@ onBeforeUnmount(() => {
         <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
         <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
       </div>
-      <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @toggle="stopExplanationAutoClose">
+      <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @click="stopExplanationAutoClose">
         <summary><span>추가 해설</span><strong>{{ section.label }}</strong><b>열기</b></summary>
         <small>{{ section.source }}</small>
         <p>{{ section.text }}</p>
@@ -660,7 +756,7 @@ onBeforeUnmount(() => {
               <div v-if="calculationGuide.substitution"><span>계산 순서</span><p>{{ calculationGuide.substitution }}</p></div>
               <div v-if="calculationGuide.unitTip"><span>단위 확인</span><p>{{ calculationGuide.unitTip }}</p></div>
             </div>
-            <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @toggle="stopExplanationAutoClose">
+            <details v-for="(section, index) in additionalExplanationSections" :key="`${section.source}-${index}`" class="source-explanation-details" @click="stopExplanationAutoClose">
               <summary><span>추가 해설</span><strong>{{ section.label }}</strong><b>열기</b></summary>
               <small>{{ section.source }}</small>
               <p>{{ section.text }}</p>
