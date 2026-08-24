@@ -18,6 +18,28 @@ function normalized(value = '') {
   return plain(value).normalize('NFKC').toLowerCase().replace(/[^0-9a-z가-힣]/g, '');
 }
 
+function bigrams(value) {
+  const source = normalized(value);
+  const result = new Map();
+  for (let index = 0; index < source.length - 1; index += 1) {
+    const gram = source.slice(index, index + 2);
+    result.set(gram, (result.get(gram) || 0) + 1);
+  }
+  return result;
+}
+
+function diceSimilarity(left, right) {
+  const a = normalized(left);
+  const b = normalized(right);
+  if (a === b) return a ? 1 : 0;
+  if (a.length < 2 || b.length < 2) return 0;
+  const aBigrams = bigrams(a);
+  const bBigrams = bigrams(b);
+  let shared = 0;
+  for (const [gram, count] of aBigrams) shared += Math.min(count, bBigrams.get(gram) || 0);
+  return (2 * shared) / ((a.length - 1) + (b.length - 1));
+}
+
 function primaryExplanation(question) {
   return String(question.explanation || question.explanationHtml || '')
     .split(/\n\n\[(?:한솔아카데미 동일 문제 보충 해설|COMCBT 동일 문제 추가 해설|정답·해설 대조 완료)\]\n/)[0]
@@ -57,7 +79,20 @@ function explanationForTarget(target, source, value) {
 }
 
 function signature(question) {
-  return `${normalized(correctChoice(question))}:${normalized(question.text || question.html || '')}`;
+  const answer = normalized(correctChoice(question));
+  const stem = normalized(question.text || question.html || '');
+  return answer && stem ? `${answer}:${stem}` : '';
+}
+
+function safeSourceMatch(target, source) {
+  const targetAnswer = correctChoice(target.question);
+  const sourceAnswer = correctChoice(source.question);
+  if (!normalized(targetAnswer) || !normalized(sourceAnswer)) return false;
+  if (diceSimilarity(targetAnswer, sourceAnswer) < 0.9) return false;
+  return diceSimilarity(
+    target.question.text || target.question.html || '',
+    source.question.text || source.question.html || '',
+  ) >= 0.9;
 }
 
 const hvac = readCatalog('data/hvac.js');
@@ -74,7 +109,7 @@ const byId = new Map();
 
 for (const row of rows) {
   const key = signature(row.question);
-  if (key.split(':')[1]) {
+  if (key) {
     const group = bySignature.get(key) || [];
     group.push(row);
     bySignature.set(key, group);
@@ -100,7 +135,7 @@ for (const target of rows) {
 
   const usedKinds = new Set();
   for (const source of candidates) {
-    if (source === target || source.kind === target.kind || usedKinds.has(source.kind)) continue;
+    if (source === target || source.kind === target.kind || usedKinds.has(source.kind) || !safeSourceMatch(target, source)) continue;
     const text = explanationForTarget(target, source, source.primary);
     const key = normalized(text);
     if (!text || !key || seenTexts.has(key)) continue;
@@ -115,10 +150,10 @@ for (const target of rows) {
     usedKinds.add(source.kind);
   }
 
-  const linkedMarkerSource = explicitIds.map((id) => byId.get(id)).find(Boolean);
+  const linkedMarkerSource = explicitIds.map((id) => byId.get(id)).find((source) => source && safeSourceMatch(target, source));
   const marker = linkedMarkerSource
     ? explanationForTarget(target, linkedMarkerSource, markerSupplement(target.question).replace(/\[해설작성자[^\]]*\]/g, ' '))
-    : plain(markerSupplement(target.question).replace(/\[해설작성자[^\]]*\]/g, ' '));
+    : '';
   const markerKey = normalized(marker);
   if (marker && markerKey && !seenTexts.has(markerKey)) {
     const linked = linkedMarkerSource;

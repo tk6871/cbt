@@ -169,8 +169,8 @@
     "fallback_explanations": 736
   },
   "enrichment": {
-    "linkedExplanations": 1296,
-    "beginnerAuthoredExplanations": 624,
+    "linkedExplanations": 1281,
+    "beginnerAuthoredExplanations": 639,
     "answerOnlyExplanations": 0,
     "restoredQuestionsWithHansolSupplement": 32,
     "exactQuestionAnswerCorrections": 54
