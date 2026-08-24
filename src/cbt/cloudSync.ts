@@ -12,6 +12,39 @@ type SyncPayload = {
   exams: ExamRecord[];
 };
 
+export type QuestionIssueType =
+  | 'missing-image'
+  | 'wrong-image'
+  | 'answer-hotspot'
+  | 'answer'
+  | 'explanation'
+  | 'text-ocr'
+  | 'layout'
+  | 'other';
+
+export type QuestionIssueSubmission = {
+  space: 'industrial' | 'jewelry';
+  qualification_key: string;
+  qualification?: string;
+  round_id: string;
+  round_title?: string;
+  round_year?: number;
+  round_session?: string;
+  question_id: string;
+  question_number: number;
+  display_number?: number;
+  subject?: string;
+  issue_types: QuestionIssueType[];
+  details: string;
+  question_text?: string;
+  choices_snapshot?: string[];
+  configured_answer?: number;
+  source_image?: string;
+  page_url?: string;
+  app_version?: string;
+  device_info?: string;
+};
+
 export const cloudSyncState = reactive({
   configured: false,
   email: '',
@@ -299,4 +332,37 @@ export async function clearCloudLearningState(): Promise<void> {
   if (!client || !session) return;
   const { error } = await client.from('user_learning_states').delete().eq('space', space);
   if (error) throw error;
+}
+
+export async function submitQuestionIssue(payload: QuestionIssueSubmission): Promise<string | null> {
+  if (!config?.enabled || !config.supabaseUrl || !config.supabaseAnonKey) {
+    return '온라인 신고 저장소가 연결되어 있지 않습니다.';
+  }
+  if (!payload.issue_types.length || payload.details.trim().length < 3) {
+    return '문제 유형을 고르고 내용을 3자 이상 적어 주세요.';
+  }
+  try {
+    const response = await fetch(`${config.supabaseUrl.replace(/\/$/, '')}/rest/v1/question_issue_reports`, {
+      method: 'POST',
+      headers: {
+        apikey: config.supabaseAnonKey,
+        Authorization: `Bearer ${config.supabaseAnonKey}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal',
+      },
+      body: JSON.stringify({
+        ...payload,
+        details: payload.details.trim(),
+        issue_types: [...new Set(payload.issue_types)],
+      }),
+    });
+    if (!response.ok) {
+      console.error('문제 이상 신고 저장 실패', response.status, await response.text());
+      return '신고를 저장하지 못했습니다. 잠시 후 다시 시도해 주세요.';
+    }
+    return null;
+  } catch (error) {
+    console.error('문제 이상 신고 전송 실패', error);
+    return '인터넷 연결을 확인한 뒤 다시 시도해 주세요.';
+  }
 }
