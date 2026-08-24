@@ -996,8 +996,10 @@ img { max-width: 100%; }
 .ai-image-notice { margin:15px 23px 0; padding:12px 14px; border:1px solid color-mix(in srgb,#df9a2f 28%,var(--line)); border-radius:11px; background:color-mix(in srgb,#df9a2f 8%,var(--surface)); display:flex; align-items:center; gap:10px; }
 .ai-image-notice > span { width:34px; height:34px; border-radius:9px; color:#c47c11; background:rgba(223,154,47,.12); display:grid; place-items:center; }
 .ai-image-notice strong,.ai-image-notice small { display:block; }.ai-image-notice strong { font-size:.65rem; }.ai-image-notice small { margin-top:3px; color:var(--muted); font-size:.57rem; line-height:1.5; }
-.ai-prompt-modal > footer { padding:15px 23px 21px; display:grid; grid-template-columns:.72fr 1.28fr; gap:8px; }
+.ai-prompt-modal > footer { padding:15px 23px 21px; display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; }
 .ai-prompt-modal > footer button { min-height:45px; border-radius:10px; font-size:.68rem; font-weight:800; }
+.ai-prompt-modal > footer .ai-image-copy-button { color:#6d480c; background:color-mix(in srgb,#f2b84b 26%,var(--surface-2)); }
+.ai-prompt-modal > footer .ai-share-button { color:#1a634c; background:color-mix(in srgb,#49c998 22%,var(--surface-2)); }
 .ai-copy-button { color:#7655d0; background:color-mix(in srgb,#8367df 10%,var(--surface)); }
 .ai-open-button { color:white; background:linear-gradient(135deg,#6749c7,#437fdb); box-shadow:0 10px 24px rgba(92,73,190,.2); }
 .mobile-tabbar { display:none; }

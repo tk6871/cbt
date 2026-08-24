@@ -321,6 +321,10 @@ const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
 const aiPromptText = ref('');
 const aiPromptHasImage = ref(false);
+const aiPromptImageUrls = ref<string[]>([]);
+const aiPromptImageFilename = ref('cbt-question.png');
+const aiImageBusy = ref(false);
+const canShareAiQuestion = typeof navigator.share === 'function';
 const savedAnswerLayout = localStorage.getItem('unified-cbt-answer-layout');
 const answerLayout = ref<AnswerLayout>(savedAnswerLayout === 'inline' || savedAnswerLayout === 'hotspot' ? savedAnswerLayout : 'classic');
 const savedHotspotIndicator = localStorage.getItem('unified-cbt-hotspot-indicator');
@@ -2396,7 +2400,27 @@ function startFeatureRound(mode: StudyMode): void {
   startRound(round, mode);
 }
 
-function buildBeginnerAiPrompt(item: QuestionItem): string {
+function resolvedQuestionImageUrls(item: QuestionItem): string[] {
+  const imageBase = location.protocol === 'file:'
+    ? 'https://tk6871.github.io/cbt/'
+    : new URL('./', location.href).href;
+  const imagePaths = [
+    item.question.sourceImage,
+    ...(item.question.images || []),
+    ...item.question.choices.flatMap((choice) => choice.images || []),
+  ].filter((path): path is string => Boolean(path));
+  return [...new Set(imagePaths)].map((path) => {
+    try {
+      const url = new URL(path, imageBase);
+      url.searchParams.set('cbt_ai', `${currentVersion.value}-${Date.now().toString(36)}`);
+      return url.href;
+    } catch {
+      return path;
+    }
+  });
+}
+
+function buildBeginnerAiPrompt(item: QuestionItem, imageUrls = resolvedQuestionImageUrls(item)): string {
   const restoredImageQuestion = item.round.qualificationKey === 'hvac'
     && Number(item.round.year) >= 2021
     && Boolean(item.question.sourceImage);
@@ -2414,23 +2438,9 @@ function buildBeginnerAiPrompt(item: QuestionItem): string {
   const selectedAnswer = session.value?.answers[item.id];
   const savedExplanation = stripMarkup(item.question.explanationHtml || item.question.explanation)
     || '[등록된 해설 없음]';
-  const imageBase = location.protocol === 'file:'
-    ? 'https://tk6871.github.io/cbt/'
-    : new URL('./', location.href).href;
-  const imagePaths = [
-    item.question.sourceImage,
-    ...(item.question.images || []),
-    ...item.question.choices.flatMap((choice) => choice.images || []),
-  ].filter((path): path is string => Boolean(path));
-  const imageLinks = [...new Set(imagePaths)].map((path, index) => {
-    try {
-      return `${index + 1}. ${new URL(path, imageBase).href}`;
-    } catch {
-      return `${index + 1}. ${path}`;
-    }
-  }).join('\n');
+  const imageLinks = imageUrls.map((url, index) => `${index + 1}. ${url}`).join('\n');
   const imageInstruction = hasImage
-    ? '\n- 중요: 아래 이미지 주소에 직접 접근해 원문을 먼저 확인해 주세요. OCR 텍스트와 이미지가 다르면 반드시 이미지를 기준으로 판단하고, 잘린 부분이 있으면 추측하지 말고 알려주세요.'
+    ? '\n- 중요: 이 질문과 함께 대화창에 붙여넣거나 공유한 문제 이미지가 있으면 그 첨부 이미지를 가장 먼저 확인하세요. 아래 주소는 보조 수단이며 외부 캐시 오류로 열리지 않을 수 있습니다. OCR 텍스트와 이미지가 다르면 반드시 첨부 이미지를 기준으로 판단하고, 첨부도 주소도 확인할 수 없으면 추측하지 말고 이미지 첨부를 요청하세요.'
     : '';
 
   return `아래 국가기술자격 CBT 문제를 초보자 눈높이로 설명해 주세요.
@@ -2470,13 +2480,140 @@ ${savedExplanation}
 }
 
 function prepareAiQuestion(item: QuestionItem): void {
-  aiPromptText.value = buildBeginnerAiPrompt(item);
+  aiPromptImageUrls.value = resolvedQuestionImageUrls(item);
+  aiPromptText.value = buildBeginnerAiPrompt(item, aiPromptImageUrls.value);
   aiPromptHasImage.value = Boolean(
     item.question.sourceImage
     || item.question.images?.length
     || item.question.choices.some((choice) => choice.images?.length),
   );
+  aiPromptImageFilename.value = `CBT-${item.round.year}-${item.round.session || item.round.title}-${item.question.number}번.png`
+    .replace(/[\\/:*?"<>|]/g, '-')
+    .replace(/\s+/g, '-');
   aiPromptOpen.value = true;
+}
+
+function canvasPngBlob(canvas: HTMLCanvasElement): Promise<Blob> {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('PNG 변환 실패'));
+    }, 'image/png');
+  });
+}
+
+async function loadAiImage(url: string): Promise<HTMLImageElement> {
+  const response = await fetch(url, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`이미지 응답 오류 ${response.status}`);
+  const objectUrl = URL.createObjectURL(await response.blob());
+  const image = new Image();
+  try {
+    image.src = objectUrl;
+    await image.decode();
+    return image;
+  } catch (error) {
+    URL.revokeObjectURL(objectUrl);
+    throw error;
+  }
+}
+
+async function buildAiQuestionImage(): Promise<Blob> {
+  if (!aiPromptImageUrls.value.length) throw new Error('복사할 문제 이미지가 없습니다.');
+  const images = await Promise.all(aiPromptImageUrls.value.map(loadAiImage));
+  try {
+    const padding = 24;
+    const contentWidth = Math.min(1600, Math.max(...images.map((image) => image.naturalWidth)));
+    const sizes = images.map((image) => {
+      const scale = Math.min(1, contentWidth / Math.max(1, image.naturalWidth));
+      return {
+        width: Math.max(1, Math.round(image.naturalWidth * scale)),
+        height: Math.max(1, Math.round(image.naturalHeight * scale)),
+      };
+    });
+    const canvas = document.createElement('canvas');
+    canvas.width = contentWidth + padding * 2;
+    canvas.height = sizes.reduce((sum, size) => sum + size.height, padding * (images.length + 1));
+    const context = canvas.getContext('2d');
+    if (!context) throw new Error('이미지 합성 기능을 사용할 수 없습니다.');
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    let y = padding;
+    images.forEach((image, index) => {
+      const size = sizes[index];
+      const x = Math.round((canvas.width - size.width) / 2);
+      context.drawImage(image, x, y, size.width, size.height);
+      y += size.height + padding;
+    });
+    return canvasPngBlob(canvas);
+  } finally {
+    images.forEach((image) => URL.revokeObjectURL(image.src));
+  }
+}
+
+function downloadAiQuestionImage(blob: Blob): void {
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.download = aiPromptImageFilename.value;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+async function copyAiQuestionImage(): Promise<void> {
+  if (aiImageBusy.value) return;
+  aiImageBusy.value = true;
+  try {
+    const blob = await buildAiQuestionImage();
+    if (!navigator.clipboard?.write || typeof ClipboardItem === 'undefined') {
+      downloadAiQuestionImage(blob);
+      showToast('클립보드 제한으로 문제 PNG를 저장했습니다. ChatGPT에 첨부해 주세요.');
+      return;
+    }
+    try {
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+      showToast('문제 이미지를 복사했습니다. ChatGPT 입력창에 붙여넣으세요.');
+    } catch {
+      downloadAiQuestionImage(blob);
+      showToast('이미지 복사가 제한되어 문제 PNG를 저장했습니다. ChatGPT에 첨부해 주세요.');
+    }
+  } catch {
+    showToast('문제 이미지를 준비하지 못했습니다. 크게 보기에서 이미지를 저장해 첨부해 주세요.');
+  } finally {
+    aiImageBusy.value = false;
+  }
+}
+
+async function shareAiQuestion(): Promise<void> {
+  if (aiImageBusy.value || !canShareAiQuestion) return;
+  aiImageBusy.value = true;
+  let blob: Blob | null = null;
+  try {
+    blob = await buildAiQuestionImage();
+    const file = new File([blob], aiPromptImageFilename.value, { type: 'image/png' });
+    const shareData: ShareData = {
+      title: 'CBT AI 해설 질문',
+      text: aiPromptText.value,
+      files: [file],
+    };
+    if (navigator.canShare && !navigator.canShare(shareData)) {
+      downloadAiQuestionImage(blob);
+      await copyText(aiPromptText.value);
+      showToast('공유가 제한되어 질문은 복사하고 문제 PNG는 저장했습니다.');
+      return;
+    }
+    await navigator.share(shareData);
+  } catch (error) {
+    if (error instanceof DOMException && error.name === 'AbortError') return;
+    await copyText(aiPromptText.value);
+    if (blob) downloadAiQuestionImage(blob);
+    showToast(blob
+      ? '공유가 제한되어 질문은 복사하고 문제 PNG는 저장했습니다.'
+      : '문제 이미지를 준비하지 못했습니다. 크게 보기에서 이미지를 저장해 첨부해 주세요.');
+  } finally {
+    aiImageBusy.value = false;
+  }
 }
 
 async function copyText(value: string): Promise<void> {
@@ -2497,7 +2634,7 @@ async function copyText(value: string): Promise<void> {
 async function copyAiPrompt(): Promise<void> {
   await copyText(aiPromptText.value);
   showToast(aiPromptHasImage.value
-    ? '프롬프트를 복사했습니다. 문제 이미지도 함께 첨부하세요.'
+    ? '프롬프트를 복사했습니다. 문제 이미지 복사도 눌러 함께 붙여넣으세요.'
     : '초보자용 AI 질문 프롬프트를 복사했습니다.');
 }
 
@@ -4946,13 +5083,15 @@ onBeforeUnmount(() => {
       </header>
       <div v-if="aiPromptHasImage" class="ai-image-notice">
         <span>▧</span>
-        <div><strong>원문 이미지 주소 포함</strong><small>AI가 링크를 열지 못하는 경우에만 현재 문제 이미지를 함께 첨부해 주세요.</small></div>
+        <div><strong>문제 이미지를 실제 첨부할 수 있습니다</strong><small>URL 캐시 오류를 피하려면 프롬프트를 붙여넣은 뒤 `문제 이미지 복사`도 눌러 ChatGPT에 붙여넣으세요. 모바일은 `질문+이미지 공유`를 사용할 수 있습니다.</small></div>
       </div>
       <p>문제 전체를 다시 보여주고 설정 정답·실제 정답·기존 해설을 검증한 뒤 쉬운 설명을 하도록 구성했습니다.</p>
       <textarea v-model="aiPromptText" aria-label="AI 질문 프롬프트" spellcheck="false" />
       <footer>
         <button type="button" class="ai-copy-button" @click="copyAiPrompt">프롬프트 복사</button>
-        <button type="button" class="ai-open-button" @click="openAiAssistant">복사 후 ChatGPT 열기 →</button>
+        <button v-if="aiPromptHasImage" type="button" class="ai-image-copy-button" :disabled="aiImageBusy" @click="copyAiQuestionImage">{{ aiImageBusy ? '이미지 준비 중…' : '문제 이미지 복사' }}</button>
+        <button v-if="aiPromptHasImage && canShareAiQuestion" type="button" class="ai-share-button" :disabled="aiImageBusy" @click="shareAiQuestion">질문+이미지 공유</button>
+        <button type="button" class="ai-open-button" @click="openAiAssistant">프롬프트 복사 후 ChatGPT 열기 →</button>
       </footer>
     </section>
   </div>
