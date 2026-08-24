@@ -79,7 +79,8 @@ function duplicateSignature(question) {
 }
 
 function statedExplanationAnswer(question) {
-  const explanation = plainText(question.explanation || question.explanationHtml);
+  const explanation = plainText(String(question.explanation || question.explanationHtml || '')
+    .split(/\n\n\[(?:한솔아카데미 동일 문제 보충 해설|COMCBT 동일 문제 추가 해설|정답·해설 대조 완료)\]\n/)[0]);
   if (!explanation) return null;
   const matches = [
     ...explanation.matchAll(/(?:^|[^가-힣])(?:정답|답)\s*(?:은|:|=)?\s*([①②③④])(?:\s*(?:입니다|이다|임|맞습니다)|[.]|$)/g),
@@ -87,6 +88,24 @@ function statedExplanationAnswer(question) {
   ].map((match) => ({ '①': 1, '②': 2, '③': 3, '④': 4 })[match[1]] || Number(match[1]));
   const unique = [...new Set(matches)];
   return unique.length === 1 ? unique[0] : null;
+}
+
+function quotedExplanationAnswerMismatch(question) {
+  const source = String(question.explanation || question.explanationHtml || '')
+    .split(/\n\n\[(?:한솔아카데미 동일 문제 보충 해설|COMCBT 동일 문제 추가 해설|정답·해설 대조 완료)\]\n/)[0];
+  const normalize = (value) => plainText(value).replace(/[^0-9a-z가-힣]/gi, '');
+  const choiceTexts = (question.choices || []).map((choice) => normalize(choice.text || choice.html));
+  const circleMap = { '①': 1, '②': 2, '③': 3, '④': 4 };
+  for (const match of source.matchAll(/[‘']([^’']{2,160})[’'][^.!?\n]{0,70}?(?:([①②③④])|([1-4])\s*번)/g)) {
+    const quoted = normalize(match[1]);
+    const matchedChoices = choiceTexts.map((choice, index) => choice === quoted ? index + 1 : 0).filter(Boolean);
+    const stated = circleMap[match[2]] || Number(match[3]);
+    if (matchedChoices.length === 1
+      && (matchedChoices[0] !== question.answer || stated !== question.answer || stated !== matchedChoices[0])) {
+      return { quotedChoice: matchedChoices[0], stated };
+    }
+  }
+  return null;
 }
 
 for (const catalog of catalogs) {
@@ -153,6 +172,23 @@ for (const catalog of catalogs) {
           choices: choices.map((choice) => plainText(choice.text || choice.html)),
           explanation: plainText(question.explanation || question.explanationHtml),
         });
+      }
+      const quotedMismatch = quotedExplanationAnswerMismatch(question);
+      if (quotedMismatch && !question.explanationAnswerReviewed) {
+        explanationAnswerReviewCandidates.push({
+          location: questionLocation,
+          answer: question.answer,
+          ...quotedMismatch,
+          question: plainText(question.text || question.html),
+          choices: choices.map((choice) => plainText(choice.text || choice.html)),
+          explanation: plainText(question.explanation || question.explanationHtml),
+        });
+      }
+      for (const [index, addition] of (question.additionalExplanations || []).entries()) {
+        const additionLocation = `${questionLocation}/additionalExplanations/${index}`;
+        if (!plainText(addition.label) || !plainText(addition.source) || !plainText(addition.text)) {
+          errors.push({ location: additionLocation, issue: '추가 해설의 출처·제목·내용이 비어 있습니다.' });
+        }
       }
     }
   }

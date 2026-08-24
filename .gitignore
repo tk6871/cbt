@@ -11,6 +11,7 @@ dist/
 *.keystore
 work/jewelry-import/
 node_modules/
+.pnpm-store/
 .env
 .env.*
 !.env.example

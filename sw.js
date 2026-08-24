@@ -1,14 +1,14 @@
-const CACHE = 'unified-industrial-cbt-v362';
+const CACHE = 'unified-industrial-cbt-v370';
 const CORE = [
-  './', './index.html', './jewelry.html', './next.html', './manifest.webmanifest', './jewelry.webmanifest',
+  './', './index.html', './jewelry.html', './next.html', './recovery.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/catalog-index.js?v=362', './data/catalog-bootstrap.js?v=362',
-  './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=362',
+  './data/catalog-index.js?v=370', './data/catalog-bootstrap.js?v=370',
+  './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=370',
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  './modern/cbt.css?v=362', './modern/cbt.js?v=362', './modern/mobile.js?v=362', './modern/visitor.js?v=255',
-  './modern/chunks/import-wrapper-prod-v362.js', './modern/chunks/index-v362.js',
-  './modern/chunks/preload-helper-v362.js', './modern/chunks/web-v362.js',
+  './modern/cbt.css?v=370', './modern/cbt.js?v=370', './modern/mobile.js?v=370', './modern/visitor.js?v=255',
+  './modern/chunks/import-wrapper-prod-v370.js', './modern/chunks/index-v370.js',
+  './modern/chunks/preload-helper-v370.js', './modern/chunks/web-v370.js',
   './modern/assets/search.worker-BqvfbZXG.js'
 ];
 async function refreshCoreCache() {
@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
     const request = event.request;
     const url = new URL(request.url);
     const sameOrigin = url.origin === location.origin;
-    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|jewelry\.html|next\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname));
+    const networkFirst = sameOrigin && (url.pathname.endsWith('/') || /\/(?:index\.html|jewelry\.html|next\.html|recovery\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname));
     if (networkFirst) {
       try {
         const response = await fetch(request, { cache: 'no-store' });

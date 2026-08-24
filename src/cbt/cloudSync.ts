@@ -55,6 +55,23 @@ function bookmarkStates(store: SyncStore): Record<string, BookmarkState> {
   return states;
 }
 
+function mergeProgress(
+  local: Record<string, unknown>,
+  remote: Record<string, unknown>,
+): Record<string, unknown> {
+  const merged = { ...remote, ...local };
+  const key = 'activeLearningSessionV1';
+  const localSession = local[key];
+  const remoteSession = remote[key];
+  const savedAt = (value: unknown): number => {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return 0;
+    return Number((value as { savedAt?: unknown }).savedAt) || 0;
+  };
+  if (savedAt(remoteSession) > savedAt(localSession)) merged[key] = clone(remoteSession);
+  else if (localSession !== undefined) merged[key] = clone(localSession);
+  return merged;
+}
+
 function mergeAttempt(local?: AttemptRecord, remote?: AttemptRecord): AttemptRecord | undefined {
   if (!local) return remote ? clone(remote) : undefined;
   if (!remote) return clone(local);
@@ -104,7 +121,7 @@ function mergeStores(localValue: LegacyStore, remoteValue: LegacyStore): SyncSto
     bookmarks: Object.entries(mergedBookmarks).filter(([, state]) => state.value).map(([id]) => id),
     history: local.history.length >= remote.history.length ? local.history : remote.history,
     notes: { ...remote.notes, ...local.notes },
-    progress: { ...remote.progress, ...local.progress },
+    progress: mergeProgress(local.progress, remote.progress),
     sync: { bookmarks: mergedBookmarks },
   };
 }

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#10243b">
+  <title>CBT 업데이트 복구</title>
+  <style>
+    :root{color-scheme:dark;font-family:"Nanum Gothic",system-ui,sans-serif;background:#09131f;color:#ecf4ff}*{box-sizing:border-box}body{min-height:100vh;margin:0;padding:24px;display:grid;place-items:center;background:radial-gradient(circle at top,#173452,#09131f 60%)}main{width:min(560px,100%);padding:28px;border:1px solid #35516e;border-radius:24px;background:#102238;box-shadow:0 24px 80px #0008}span{color:#70c8ff;font-size:.75rem;font-weight:900;letter-spacing:.12em}h1{margin:8px 0 12px;font-size:1.55rem}p{color:#bdcde0;line-height:1.7}ul{padding-left:20px;color:#d8e5f3;line-height:1.8}.actions{display:grid;gap:10px;margin-top:22px}button,a{min-height:50px;border:0;border-radius:13px;font:inherit;font-weight:900;display:grid;place-items:center;text-decoration:none;cursor:pointer}button{color:#062037;background:#72d0ff}button:disabled{opacity:.55;cursor:wait}a{color:#d8e8f8;background:#1d3854}#status{min-height:24px;margin-top:16px;color:#91e3ba;font-size:.85rem;font-weight:800}.note{font-size:.76rem;color:#90a6bd}
+  </style>
+</head>
+<body>
+  <main>
+    <span>PWA SAFE RECOVERY</span>
+    <h1>업데이트 화면이 꼬였을 때 복구</h1>
+    <p>학습 기록·오답·로그인은 지우지 않고, 이 사이트의 서비스워커와 CBT 캐시만 정리한 뒤 최신 화면을 다시 엽니다.</p>
+    <ul><li>IndexedDB와 localStorage 학습 기록 보존</li><li>통합 산업기사 CBT 캐시만 삭제</li><li>최신 서비스워커를 새로 등록</li></ul>
+    <div class="actions">
+      <button id="recover" type="button">캐시 정리 후 최신 CBT 열기</button>
+      <a href="./index.html">복구하지 않고 돌아가기</a>
+    </div>
+    <div id="status" role="status" aria-live="polite"></div>
+    <p class="note">인터넷이 연결된 상태에서 사용하세요. 계정과 학습 데이터는 초기화되지 않습니다.</p>
+  </main>
+  <script>
+    const button = document.getElementById('recover');
+    const status = document.getElementById('status');
+    button.addEventListener('click', async () => {
+      button.disabled = true;
+      status.textContent = '서비스워커와 이전 CBT 캐시를 정리하는 중…';
+      try {
+        if ('serviceWorker' in navigator) {
+          const registrations = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(registrations.map((registration) => registration.unregister()));
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.filter((key) => key.startsWith('unified-industrial-cbt-')).map((key) => caches.delete(key)));
+        }
+        status.textContent = '복구 완료. 최신 화면을 여는 중…';
+        const requestedReturn = new URLSearchParams(location.search).get('return');
+        const returnPage = requestedReturn === 'jewelry.html' ? 'jewelry.html' : 'index.html';
+        const target = new URL(`./${returnPage}`, location.href);
+        target.searchParams.set('recovered', Date.now().toString());
+        location.replace(target.href);
+      } catch (error) {
+        console.error(error);
+        status.textContent = '자동 복구에 실패했습니다. 인터넷 연결 후 다시 눌러 주세요.';
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
