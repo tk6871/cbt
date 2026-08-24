@@ -89,6 +89,7 @@ const linkedByKind = { COMCBT: 0, '공조 복원': 0, '한솔 공조': 0 };
 for (const target of rows) {
   const additions = [];
   const seenTexts = new Set([normalized(target.primary)]);
+  const seenSources = new Set();
   const candidates = [...(bySignature.get(signature(target.question)) || [])];
   const explicitIds = [target.question.explanationProvenance, target.question.explanationSupplementSource]
     .filter((value) => typeof value === 'string' && /:\d+$/.test(value));
@@ -103,12 +104,14 @@ for (const target of rows) {
     const text = explanationForTarget(target, source, source.primary);
     const key = normalized(text);
     if (!text || !key || seenTexts.has(key)) continue;
+    const sourceText = sourceDescription(source.kind, source.round, source.question);
     additions.push({
       label: sourceLabel(source.kind),
-      source: sourceDescription(source.kind, source.round, source.question),
+      source: sourceText,
       text,
     });
     seenTexts.add(key);
+    seenSources.add(`${source.kind}:${sourceText}`);
     usedKinds.add(source.kind);
   }
 
@@ -120,12 +123,16 @@ for (const target of rows) {
   if (marker && markerKey && !seenTexts.has(markerKey)) {
     const linked = linkedMarkerSource;
     const kind = linked?.kind || (target.kind === '한솔 공조' ? 'COMCBT' : '한솔 공조');
-    additions.push({
-      label: sourceLabel(kind),
-      source: linked ? sourceDescription(kind, linked.round, linked.question) : `${kind} 동일 문제`,
-      text: marker,
-    });
-    seenTexts.add(markerKey);
+    const sourceText = linked ? sourceDescription(kind, linked.round, linked.question) : `${kind} 동일 문제`;
+    if (!seenSources.has(`${kind}:${sourceText}`)) {
+      additions.push({
+        label: sourceLabel(kind),
+        source: sourceText,
+        text: marker,
+      });
+      seenTexts.add(markerKey);
+      seenSources.add(`${kind}:${sourceText}`);
+    }
   }
 
   if (additions.length) {

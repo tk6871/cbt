@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "audit:questions": "node tools/audit-question-data.mjs",
+    "audit:explanations": "node tools/audit-explanation-quality.mjs",
     "audit:hvac-learning": "node tools/audit-hvac-learning-content.mjs",
     "audit:hansol": "node tools/audit-hansol-hvac.mjs",
     "audit:answer-segments": "node tools/audit-hvac-answer-segments.mjs",
@@ -18,7 +19,7 @@
     "android:debug": "npm run android:sync && node tools/build-android-debug.mjs",
     "android:release": "npm run android:sync && node tools/build-android-release.mjs",
     "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
-    "android:install:release": "adb install -r dist/industrial-cbt-v3.8.1.apk",
+    "android:install:release": "adb install -r dist/industrial-cbt-v3.9.apk",
     "dev": "vite --host 127.0.0.1",
     "test:gem-target-exam": "node tools/test-gem-target-exam.mjs",
     "test:hotspot-editor": "node tools/test-hvac-hotspot-editor.mjs",
