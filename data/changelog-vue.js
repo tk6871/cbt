@@ -5,6 +5,32 @@
 
   const entries = [
     {
+      version: '3.6.1',
+      scope: 'industrial',
+      date: '2026.08.24',
+      title: '시험장 계산기 저장표와 빈출 공식',
+      summary: 'fx-991EX의 A~M 저장값을 공기·물·습도·냉동톤 묶음으로 정리하고 실제 공조 계산문제의 빈출 공식에 바로 대입해 볼 수 있습니다.',
+      tags: ['공조 계산', 'fx-991EX', 'SI 단위', '빈출 공식'],
+      changes: [
+        '공조 시험 암기장 최상단에 AB 공기, CD 물, EF 온도·습도, XY 냉동톤, M 힘·수두 계산기 저장표를 추가했습니다.',
+        '공조 일반·복원·한솔 7,100문제에서 계산형 1,163문제를 분류해 자주 나온 18개 계산 유형의 구하는 방법과 공식을 정리했습니다.',
+        '공식 안에 (A)~(M) 저장 변수를 함께 표시하고 문제에서 별도 상수를 주는 경우 문제 값을 우선하도록 안내했습니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.6.1로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.6.1',
+      scope: 'jewelry',
+      date: '2026.08.24',
+      title: '공통 앱 업데이트 안정화',
+      summary: '산업기사 공조 계산기 암기장 추가와 함께 공통 Vue 화면과 캐시를 최신 버전으로 맞췄습니다.',
+      tags: ['캐시', '업데이트', '보석관'],
+      changes: [
+        '공통 Vue 화면과 서비스워커 캐시를 v3.6.1로 갱신했습니다.',
+        '보석관의 문제·학습 기록·테마 기능은 기존과 동일하게 유지됩니다.'
+      ]
+    },
+    {
       version: '3.6',
       scope: 'industrial',
       date: '2026.08.23',
@@ -1649,8 +1675,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.6';
-  changelog.versions.jewelry = '3.6';
-  changelog.currentVersion = '3.6';
+  changelog.versions.industrial = '3.6.1';
+  changelog.versions.jewelry = '3.6.1';
+  changelog.currentVersion = '3.6.1';
   window.CBT_CHANGELOG = changelog;
 })();
