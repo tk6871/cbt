@@ -42,6 +42,12 @@ import {
   updateSyncPassword,
 } from './cloudSync';
 import { hvacFieldReportRelatedGroups, hvacFieldReportRound } from './hvacFieldReportPractice';
+import {
+  hvacCalculatorMemory,
+  hvacCalculatorMemoryGroups,
+  hvacCalculatorSheetNotes,
+  hvacFrequentFormulas,
+} from './hvacCalculatorSheet';
 import { buildHvacPredictionSet } from './hvacPrediction';
 import { hvacStudyGuideSections } from './hvacStudyGuide';
 import { qualificationRuleFor } from './qualificationRules';
@@ -3378,6 +3384,40 @@ onBeforeUnmount(() => {
             <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
           </section>
           <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
+          <section class="calculator-memory-sheet">
+            <header>
+              <div><span>FX-991EX MEMORY MAP</span><h2>전체 공식 전에 보는 계산기 저장표</h2><p>AB 공기 · CD 물 · EF 온도와 습도 · XY 냉동톤 · M 힘과 수두</p></div>
+              <strong>9개 저장</strong>
+            </header>
+            <div class="calculator-memory-groups">
+              <article v-for="group in hvacCalculatorMemoryGroups" :key="group.key" :class="`memory-group-${group.key}`">
+                <h3>{{ group.title }}</h3>
+                <div>
+                  <section v-for="item in hvacCalculatorMemory.filter((entry) => entry.group === group.key)" :key="item.variable">
+                    <b>{{ item.variable }}</b>
+                    <strong>{{ item.value }}</strong>
+                    <span>{{ item.name }}</span>
+                    <small>{{ item.unit }} · {{ item.use }}</small>
+                  </section>
+                </div>
+              </article>
+            </div>
+            <details class="calculator-formula-sheet">
+              <summary><span><b>∑</b><strong>저장한 A~M으로 자주 나온 공식 보기</strong><small>실제 공조 계산문제에서 반복된 유형 {{ hvacFrequentFormulas.length }}개</small></span><em>열기</em></summary>
+              <div class="calculator-formula-grid">
+                <article v-for="formula in hvacFrequentFormulas" :key="formula.title">
+                  <header><span>{{ formula.frequency }}</span><h3>{{ formula.title }}</h3></header>
+                  <p><b>구하는 것</b>{{ formula.target }}</p>
+                  <strong class="formula-line">{{ formula.formula }}</strong>
+                  <strong v-if="formula.calculatorFormula" class="stored-formula-line">저장값 사용: {{ formula.calculatorFormula }}</strong>
+                  <ol><li v-for="step in formula.steps" :key="step">{{ step }}</li></ol>
+                  <small v-if="formula.caution">주의 · {{ formula.caution }}</small>
+                </article>
+              </div>
+            </details>
+            <ul class="calculator-memory-notes"><li v-for="note in hvacCalculatorSheetNotes" :key="note">{{ note }}</li></ul>
+          </section>
+          <div class="guide-section-divider"><span>FULL HVAC GUIDE</span><strong>전체 단위·공식·시험 직전 암기</strong></div>
           <section class="field-report-practice">
             <div class="field-report-copy">
               <span>2026.08.22 · 비공식 실전 제보</span>

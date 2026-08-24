@@ -1,14 +1,14 @@
-const CACHE = 'unified-industrial-cbt-v360';
+const CACHE = 'unified-industrial-cbt-v361';
 const CORE = [
   './', './index.html', './jewelry.html', './next.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  './data/catalog-index.js?v=360', './data/catalog-bootstrap.js?v=360',
-  './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=360',
+  './data/catalog-index.js?v=361', './data/catalog-bootstrap.js?v=361',
+  './data/jewelry.js?v=255', './data/changelog.js?v=255', './data/changelog-vue.js?v=361',
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  './modern/cbt.css?v=360', './modern/cbt.js?v=360', './modern/mobile.js?v=360', './modern/visitor.js?v=255',
-  './modern/chunks/import-wrapper-prod-v360.js', './modern/chunks/index-v360.js',
-  './modern/chunks/preload-helper-v360.js', './modern/chunks/web-v360.js',
+  './modern/cbt.css?v=361', './modern/cbt.js?v=361', './modern/mobile.js?v=361', './modern/visitor.js?v=255',
+  './modern/chunks/import-wrapper-prod-v361.js', './modern/chunks/index-v361.js',
+  './modern/chunks/preload-helper-v361.js', './modern/chunks/web-v361.js',
   './modern/assets/search.worker-BqvfbZXG.js'
 ];
 async function refreshCoreCache() {
