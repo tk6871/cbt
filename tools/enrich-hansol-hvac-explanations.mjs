@@ -123,8 +123,17 @@ function calculationGuide(source) {
   return rules.find(([pattern]) => pattern.test(source))?.slice(1) || null;
 }
 
-function conceptGuide(source, answerText, negative) {
+function conceptGuide(source) {
   const rules = [
+    [/백연.*현상/i, '냉각탑의 따뜻하고 습한 배기가 차가운 외기와 섞일 때 수증기가 작은 물방울로 응축되어 흰 연기처럼 보이는 현상이 백연입니다.'],
+    [/카르노.*(?:관련\s*없는|상태\s*변화)/i, '카르노 사이클은 등온 과정 두 개와 단열 과정 두 개로 이루어집니다. 등적팽창은 카르노 사이클의 과정이 아닙니다.'],
+    [/정압식.*팽창.*밸브/i, '정압식 팽창밸브는 증발기 압력을 감지해 증발압력이 일정하도록 냉매 유량을 조절합니다.'],
+    [/냉각탑.*직교류|직교류형/i, '직교류형 냉각탑은 물이 위에서 아래로 흐르고 공기는 옆으로 지나가 두 흐름이 직각으로 교차합니다.'],
+    [/백연|전반\s*환기/i, '전반환기는 실내 전체에 공기를 공급해 넓게 발생한 오염물질을 희석한 뒤 배출하는 방식입니다. 특정 발생원만 빨아들이는 국소환기와 구분합니다.'],
+    [/유인형.*VAV|VAV.*유인/i, '유인형 VAV 유닛은 1차 공기의 분출력으로 실내의 2차 공기를 끌어들여 함께 취출합니다.'],
+    [/위상여유/i, '위상여유가 양수이면 일반적으로 폐루프 제어계는 안정 여유가 있습니다. 값이 클수록 진동하기 어려운 쪽입니다.'],
+    [/팽창탱크/i, '팽창탱크는 물이 가열되어 부피가 늘 때 증가한 물을 받아 압력 상승을 막고, 배관의 공기나 증기를 분리·배출할 공간도 제공합니다.'],
+    [/취득.*열량.*잠열|잠열.*포함.*(?:않|없는)/i, '인체·외기·증기소독기에서 생기는 열에는 잠열이 포함되지만, 조명기구의 발열은 현열뿐입니다.'],
     [/열\s*통과\s*저항|구조체.*\bRt\b/i, '열통과저항 Rt는 벽과 양쪽 표면이 열의 흐름을 막는 저항을 모두 더한 값입니다. 열관류율 K는 그 역수이므로 K=1/Rt이고, 손실열량은 Q=(1/Rt)×A×온도차로 구합니다.'],
     [/권선형.*유도전동기.*2차.*저항|2차회로.*저항기/i, '권선형 유도전동기의 2차 회로에 외부저항을 넣으면 기동전류를 줄이고 기동토크를 크게 하며 속도도 조절할 수 있습니다. 최대토크가 생기는 슬립은 바뀌지만 최대토크의 크기 자체를 키우는 목적은 아닙니다.'],
     [/몰리엘|P-h.*선도/i, '냉매 P-h 선도에는 압력·엔탈피와 등온선·등엔트로피선·등비체적선·건조도 등이 나타납니다. 비열은 상태선으로 직접 표시하는 값이 아닙니다.'],
@@ -290,9 +299,50 @@ function conceptGuide(source, answerText, negative) {
     [/터보.*냉동기.*특징/i, '터보냉동기는 고속 회전하는 임펠러로 냉매를 압축하므로 흡입·토출밸브가 없고 대용량에 적합합니다. 회전운동은 동적 균형을 잡기 쉬운 편이므로 “어렵다”는 설명이 틀립니다.'],
     [/냉동장치.*운전.*준비작업/i, '운전 준비에는 냉각수펌프 가동, 벨트·밸브·윤활 상태 확인과 유압 확인이 포함됩니다. 압축기 자체를 기동하는 것은 준비가 끝난 뒤의 실제 운전 단계입니다.'],
   ];
-  const guide = rules.find(([pattern]) => pattern.test(source))?.[1];
-  if (!guide) return '';
-  return `${guide}${negative ? ` 따라서 ‘${answerText}’ 보기가 일반 원리와 맞지 않는 예외입니다.` : ''}`;
+  return rules.find(([pattern]) => pattern.test(source))?.[1] || '';
+}
+
+function answerLabel(answer) {
+  return ['①', '②', '③', '④'][Number(answer) - 1] || `${answer}번`;
+}
+
+function conciseSentences(value, maxSentences = 2, maxLength = 150) {
+  const source = plain(value);
+  const sentences = source.match(/[^.!?]+[.!?]?/g) || [source];
+  const selected = [];
+  for (const sentence of sentences) {
+    const clean = sentence.trim();
+    if (!clean) continue;
+    if (selected.length && `${selected.join(' ')} ${clean}`.length > maxLength) break;
+    selected.push(clean);
+    if (selected.length >= maxSentences) break;
+  }
+  return selected.join(' ').trim();
+}
+
+function conciseQuestionTopic(stem) {
+  return plain(stem)
+    .replace(/^\d+[.,]?\s*/, '')
+    .replace(/^다음(?:\s*중|의)?\s*/, '')
+    .replace(/\?$/, '')
+    .replace(/\s*(?:것|설명|항목)(?:은|이|인가)?$/i, '')
+    .replace(/\s*(?:가장\s*)?(?:옳은|알맞은|적절한|적당한|틀린|옳지\s*않(?:은|는)|아닌|거리가\s*(?:가장\s*)?먼|관계가\s*(?:가장\s*)?적은|해당\s*(?:되)?지\s*않는|관계\s*없는|잘못된|부적당한|적절치\s*못한|적합하지\s*않(?:은|는)|필요하지\s*않(?:은|는)|될\s*수\s*없는)$/i, '')
+    .replace(/\s*(?:이|가|으로|로|에|와|과)$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function describedConcept(stem) {
+  const clean = plain(stem).replace(/^다음(?:\s*중|의)?\s*/, '').replace(/\?$/, '').trim();
+  const patterns = [
+    /^(.{12,180}?)(?:을|를|이|가)\s*(?:무엇이라|무엇이라고|무엇으로)\s*(?:하는가|하는지|부르는가|하는 것인가)?$/i,
+    /^(.{12,180}?)(?:을|를)\s*(?:뜻하는|의미하는|나타내는)\s*(?:것은|용어는)?$/i,
+  ];
+  for (const pattern of patterns) {
+    const match = clean.match(pattern);
+    if (match) return match[1].replace(/\s+/g, ' ').trim();
+  }
+  return '';
 }
 
 function beginnerExplanation(question) {
@@ -315,23 +365,33 @@ function beginnerExplanation(question) {
   const guide = calculationGuide(formulaSource);
   if (asksNumber && guide) {
     return [
-      `핵심은 문제에서 요구한 값을 먼저 표시하고 단위를 맞추는 것입니다. 사용할 식은 ${guide[0]}입니다.`,
-      guide[1],
-      `계산값과 단위가 ‘${answerText}’와 일치하므로 정답은 ${answer}번입니다.`,
+      `${guide[0]}.`,
+      conciseSentences(guide[1], 2, 170),
+      `계산 결과는 ‘${answerText}’, 정답은 ${answerLabel(answer)}입니다.`,
     ].join(' ');
   }
-  const concept = conceptGuide(conceptSource, answerText, negative);
+  const concept = conciseSentences(conceptGuide(conceptSource), 2, 150);
   if (concept) {
-    return `${concept} ${negative ? '' : `이 원리에 맞는 보기는 ‘${answerText}’이므로 `}정답은 ${answer}번입니다.`.replace(/\s+/g, ' ').trim();
+    return `${concept} ${negative
+      ? `${answerLabel(answer)} ‘${answerText}’만 이 원리와 맞지 않습니다.`
+      : `따라서 정답은 ${answerLabel(answer)} ‘${answerText}’입니다.`}`.replace(/\s+/g, ' ').trim();
   }
-  const clue = stem.replace(/\([^)]*\)/g, ' ').replace(/(?:으로|로)?\s*(?:옳은|알맞은|적당한|틀린|옳지 않은|거리가 먼|해당하지 않는)?\s*것은\??$/g, '').replace(/\s+/g, ' ').trim();
-  return [
-    `핵심 조건은 ‘${clue || stem}’입니다.`,
-    negative
-      ? `이 조건의 일반적인 설명과 맞지 않는 예외가 ‘${answerText}’이므로 ${answer}번이 정답입니다.`
-      : `이 조건을 그대로 나타내는 보기 또는 계산 결과가 ‘${answerText}’이므로 ${answer}번이 정답입니다.`,
-    '문제의 부정 표현과 단위를 한 번 더 확인하면 비슷한 보기를 구분하기 쉽습니다.',
-  ].join(' ');
+  const topic = conciseQuestionTopic(stem).slice(0, 90);
+  if (negative && topic) {
+    const otherLabels = [1, 2, 3, 4].filter((choice) => choice !== Number(answer)).map(answerLabel).join('·');
+    return `${otherLabels} 보기는 모두 ${topic}에 해당합니다. ${answerLabel(answer)} ‘${answerText}’만 해당하지 않습니다.`;
+  }
+  const described = describedConcept(stem);
+  if (described) {
+    return `문제에서 설명한 ‘${described.slice(0, 150)}’의 명칭이 ${answerLabel(answer)} ‘${answerText}’입니다.`;
+  }
+  if (asksDefinition) {
+    return `이 설명에 해당하는 용어는 ${answerLabel(answer)} ‘${answerText}’입니다.`;
+  }
+  if (asksNumber) {
+    return `주어진 수치를 계산하면 ${answerLabel(answer)} ‘${answerText}’입니다.`;
+  }
+  return `정답은 ${answerLabel(answer)} ‘${answerText}’입니다.`;
 }
 
 function fuzzyExplanationSource(question, candidates, minimumStem = 0.9) {
@@ -524,6 +584,16 @@ function explanationFromSource(target, source) {
   return [...notes, original].filter(Boolean).join('\n\n');
 }
 
+function primaryExplanation(target, source) {
+  const restored = Number(source?.round?.year) >= 2021
+    && Number(target.answer) === Number(source.question.answer)
+    ? stripHansolSupplement(source.explanation)
+    : '';
+  const isReusableRestored = restored
+    && !/핵심 조건은|핵심은 문제에서 요구한 값|이 원리에 맞는 보기는|보기가 일반 원리와 맞지 않는 예외/.test(restored);
+  return isReusableRestored ? restored : beginnerExplanation(target);
+}
+
 let propagated = 0;
 let authored = 0;
 let fuzzyLinked = 0;
@@ -532,14 +602,14 @@ for (const { question } of allHansol) {
   const source = sourceByFull.get(`${answerKey}:${fullKey(question)}`)
     || sourceByStem.get(`${answerKey}:${stemKey(question)}`);
   if (source) {
-    question.explanation = `${beginnerExplanation(question)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, source)}`;
+    question.explanation = `${primaryExplanation(question, source)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, source)}`;
     question.explanationProvenance = `${source.round.id}:${source.question.number}`;
     question.explanationMatchScore = 1;
     propagated += 1;
   } else {
     const fuzzySource = fuzzyExplanationSource(question, hvacExplanationCandidates);
     if (fuzzySource) {
-      question.explanation = `${beginnerExplanation(question)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, fuzzySource)}`;
+      question.explanation = `${primaryExplanation(question, fuzzySource)}\n\n[COMCBT 동일 문제 추가 해설]\n${explanationFromSource(question, fuzzySource)}`;
       question.explanationProvenance = `${fuzzySource.round.id}:${fuzzySource.question.number}`;
       question.explanationMatchScore = Number(fuzzySource.score.toFixed(4));
       propagated += 1;

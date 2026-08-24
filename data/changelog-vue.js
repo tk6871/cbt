@@ -5,6 +5,34 @@
 
   const entries = [
     {
+      version: '3.9',
+      scope: 'industrial',
+      date: '2026.08.24',
+      title: '전 종목 해설 품질 개선',
+      summary: '공조·한솔·산업안전·에너지관리·설비보전의 비어 있거나 짧았던 해설을 보강하고, 같은 문제의 출처별 해설을 함께 볼 수 있습니다.',
+      tags: ['해설 보강', '한솔 공조', '추가 해설', '전 종목 검수'],
+      changes: [
+        '한솔 공조 해설을 공조 복원문제처럼 핵심 원리와 정답 이유가 먼저 보이도록 간결하게 정리했습니다.',
+        '한솔·COMCBT·공조 복원에서 같은 문제를 찾아 기존 해설을 지우지 않고 출처별 추가 해설로 연결했습니다.',
+        '산업안전·에너지관리·설비보전의 비어 있거나 정답만 적힌 해설을 개념·공식 중심으로 보강했습니다.',
+        '“핵심 조건은” 같은 반복 문장과 어색한 부정형 해설을 제거하고 자동 품질 검사를 추가했습니다.',
+        '원문 보기가 이미지에만 있는 문항은 내용을 추측하지 않고 원문 대조가 필요하다고 표시합니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.9로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.9',
+      scope: 'jewelry',
+      date: '2026.08.24',
+      title: '공통 앱 안정성 갱신',
+      summary: '공통 서비스워커와 Android 앱 버전을 최신 상태로 맞췄습니다.',
+      tags: ['업데이트', 'PWA', '보석관'],
+      changes: [
+        '산업기사 해설 데이터 갱신과 함께 공통 서비스워커 캐시를 v390으로 올렸습니다.',
+        '보석관의 문제·해설·테마 구성은 기존과 동일하게 유지합니다.'
+      ]
+    },
+    {
       version: '3.8.1',
       scope: 'industrial',
       date: '2026.08.24',
@@ -1800,8 +1828,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.8.1';
-  changelog.versions.jewelry = '3.8.1';
-  changelog.currentVersion = '3.8.1';
+  changelog.versions.industrial = '3.9';
+  changelog.versions.jewelry = '3.9';
+  changelog.currentVersion = '3.9';
   window.CBT_CHANGELOG = changelog;
 })();
