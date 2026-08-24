@@ -273,6 +273,7 @@ const nativeMoreOpen = ref(false);
 const nativeCalculatorOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
 const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
+const pwaRegistrationError = ref(Boolean(window.CBT_PWA_REGISTRATION_ERROR));
 const updateChecking = ref(false);
 const openUpdatesAfterRefreshKey = `cbt-open-updates-after-refresh-${spaceScope}`;
 const searchQuery = ref('');
@@ -2682,6 +2683,14 @@ function handleUpdateAvailable(): void {
   updateAvailable.value = true;
 }
 
+function handlePwaRegistrationError(): void {
+  pwaRegistrationError.value = true;
+}
+
+function handlePwaReady(): void {
+  pwaRegistrationError.value = false;
+}
+
 async function fetchPublishedVersion(): Promise<string> {
   const response = await fetch(`./data/changelog-vue.js?update-check=${Date.now()}`, {
     cache: 'no-store',
@@ -2764,6 +2773,7 @@ async function applyUpdate(): Promise<void> {
   updateChecking.value = true;
   showToast('업데이트 설치를 마친 뒤 자동으로 다시 엽니다.');
   try {
+    if (window.CBT_APPLY_PWA_UPDATE) await window.CBT_APPLY_PWA_UPDATE(false);
     const registration = await navigator.serviceWorker.getRegistration();
     if (registration) {
       await registration.update();
@@ -2777,7 +2787,8 @@ async function applyUpdate(): Promise<void> {
     location.replace(url.toString());
   } catch {
     updateChecking.value = false;
-    showToast('업데이트 적용에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+    pwaRegistrationError.value = true;
+    showToast('업데이트 적용에 실패했습니다. 화면의 PWA 자동 복구를 이용해 주세요.');
   }
 }
 
@@ -2787,6 +2798,10 @@ function openPwaRecovery(): void {
     return;
   }
   if (!confirm('학습 기록은 그대로 두고 CBT 캐시와 서비스워커만 정리할까요?')) return;
+  location.href = `./recovery.html?return=${isJewelry ? 'jewelry.html' : 'index.html'}`;
+}
+
+function openPwaRecoveryFromError(): void {
   location.href = `./recovery.html?return=${isJewelry ? 'jewelry.html' : 'index.html'}`;
 }
 
@@ -3138,6 +3153,8 @@ watch(darkActive, syncNativeStatusBar);
 
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
+  window.addEventListener('cbt:pwa-error', handlePwaRegistrationError);
+  window.addEventListener('cbt:pwa-ready', handlePwaReady);
   window.addEventListener('popstate', handleBrowserHistory);
   window.addEventListener('pagehide', handlePageHide);
   window.addEventListener('resize', markViewportResizing, { passive: true });
@@ -3200,6 +3217,8 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
+  window.removeEventListener('cbt:pwa-error', handlePwaRegistrationError);
+  window.removeEventListener('cbt:pwa-ready', handlePwaReady);
   window.removeEventListener('popstate', handleBrowserHistory);
   window.removeEventListener('pagehide', handlePageHide);
   window.removeEventListener('resize', markViewportResizing);
@@ -4942,6 +4961,16 @@ onBeforeUnmount(() => {
     <aside v-if="updateAvailable && !session" class="update-notice">
       <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
       <button type="button" @click="applyUpdate">업데이트 적용</button>
+    </aside>
+  </Transition>
+
+  <Transition name="toast">
+    <aside v-if="pwaRegistrationError && !updateAvailable && !session" class="update-notice pwa-error-notice">
+      <div><span>PWA RECOVERY</span><strong>업데이트 연결을 자동으로 복구할 수 있습니다</strong><small>학습 기록·오답·로그인은 보존하고 서비스워커와 CBT 캐시만 다시 설정합니다.</small></div>
+      <div class="pwa-error-actions">
+        <button type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>
+        <button type="button" class="secondary" @click="pwaRegistrationError = false">나중에</button>
+      </div>
     </aside>
   </Transition>
 

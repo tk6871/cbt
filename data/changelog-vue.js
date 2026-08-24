@@ -5,6 +5,36 @@
 
   const entries = [
     {
+      version: '3.8.1',
+      scope: 'industrial',
+      date: '2026.08.24',
+      title: 'PWA 업데이트 자동 복구',
+      summary: '업데이트 연결 오류를 화면에서 바로 확인하고 학습 기록을 보존한 채 안전하게 복구할 수 있습니다.',
+      tags: ['PWA', '업데이트', '자동 복구', 'Vite'],
+      changes: [
+        'Vite PWA 빌드 검증을 적용해 서비스워커 오류를 배포 전에 확인합니다.',
+        '서비스워커 등록이나 업데이트 적용이 실패하면 홈 화면에 PWA 자동 복구 안내가 나타납니다.',
+        '자동 복구는 학습 기록·오답·로그인은 보존하고 CBT 캐시와 서비스워커만 다시 설정합니다.',
+        '풀이 중에는 업데이트·복구 안내를 띄우지 않아 현재 답안 입력을 방해하지 않습니다.',
+        '계산문제의 쉽게 풀어보기는 자동으로 펼치지 않고 사용자가 눌렀을 때만 표시합니다.',
+        '서비스워커 캐시와 Android 앱 버전을 v3.8.1로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '3.8.1',
+      scope: 'jewelry',
+      date: '2026.08.24',
+      title: 'PWA 업데이트 자동 복구',
+      summary: '보석관에서도 업데이트 오류를 감지하고 저장 기록을 보존한 채 PWA를 복구할 수 있습니다.',
+      tags: ['PWA', '업데이트', '자동 복구', '보석관'],
+      changes: [
+        '업데이트 연결 오류가 발생하면 보석관 홈에서 자동 복구 화면을 바로 열 수 있습니다.',
+        '학습 기록·오답·로그인은 지우지 않고 CBT 캐시와 서비스워커만 다시 설정합니다.',
+        '계산문제의 쉽게 풀어보기는 눌렀을 때만 펼쳐져 해설 공간을 덜 차지합니다.',
+        '공통 서비스워커 캐시와 Android 앱 버전을 v3.8.1로 갱신했습니다.'
+      ]
+    },
+    {
       version: '3.8',
       scope: 'industrial',
       date: '2026.08.24',
@@ -1770,8 +1800,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.8';
-  changelog.versions.jewelry = '3.8';
-  changelog.currentVersion = '3.8';
+  changelog.versions.industrial = '3.8.1';
+  changelog.versions.jewelry = '3.8.1';
+  changelog.currentVersion = '3.8.1';
   window.CBT_CHANGELOG = changelog;
 })();

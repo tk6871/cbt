@@ -150,6 +150,8 @@ declare global {
       questions: number;
     }>;
     CBT_UPDATE_AVAILABLE?: boolean;
+    CBT_PWA_REGISTRATION_ERROR?: boolean;
+    CBT_APPLY_PWA_UPDATE?: (reloadPage?: boolean) => Promise<void>;
     CBT_CHANGELOG?: {
       currentVersion?: string;
       versions?: Record<string, string>;

@@ -40,37 +40,9 @@ if (nativeApp) {
 createApp(App).mount('#next-app');
 
 if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:') {
-  const hadController = Boolean(navigator.serviceWorker.controller);
-  let updateAnnounced = false;
-  const announceUpdate = (): void => {
-    if (!hadController || updateAnnounced) return;
-    updateAnnounced = true;
-    window.CBT_UPDATE_AVAILABLE = true;
-    window.dispatchEvent(new CustomEvent('cbt:update-available'));
-  };
-
-  navigator.serviceWorker.addEventListener('controllerchange', announceUpdate);
-  window.addEventListener('load', () => {
-    void navigator.serviceWorker.register('./sw.js?v=370', { updateViaCache: 'none' }).then((registration) => {
-      const watchInstallingWorker = (): void => {
-        const worker = registration.installing;
-        if (!worker || !hadController) return;
-        worker.addEventListener('statechange', () => {
-          if (worker.state === 'installed' || worker.state === 'activated') announceUpdate();
-        });
-      };
-
-      if (registration.waiting) announceUpdate();
-      registration.addEventListener('updatefound', watchInstallingWorker);
-      void registration.update();
-
-      window.setInterval(() => {
-        if (document.visibilityState === 'visible') void registration.update();
-      }, 15 * 60 * 1000);
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') void registration.update();
-      });
-    });
+  void import('./pwa').catch((error) => {
+    console.error('PWA 업데이트 모듈을 불러오지 못했습니다.', error);
+    window.CBT_PWA_REGISTRATION_ERROR = true;
+    window.dispatchEvent(new CustomEvent('cbt:pwa-error'));
   });
 }

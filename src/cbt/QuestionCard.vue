@@ -416,12 +416,8 @@ watch(
   ({ itemId, selected }) => {
     stopExplanationAutoClose();
     explanationDismissed.value = false;
-    // 계산문제는 정답을 맞힌 즉시 초보 계산 순서를 보여 준다. 사용자가 접을 수는 있다.
-    beginnerCalculationOpen.value = Boolean(
-      props.mode === 'learn'
-      && correctSelected.value
-      && beginnerCalculationAvailable.value,
-    );
+    // 계산 풀이가 해설 공간을 밀지 않도록 매 문제에서 닫힌 상태로 시작한다.
+    beginnerCalculationOpen.value = false;
     explanationOpen.value = Boolean(
       props.mode === 'learn'
       && correctSelected.value
