@@ -2,12 +2,34 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
+const buildVersion = '381';
 
 export default defineConfig({
   base: './',
-  plugins: [vue()],
+  define: {
+    __CBT_BUILD_VERSION__: JSON.stringify(buildVersion),
+  },
+  plugins: [
+    vue(),
+    VitePWA({
+      strategies: 'injectManifest',
+      srcDir: 'src',
+      filename: 'sw.ts',
+      outDir: 'modern/pwa-build',
+      injectRegister: false,
+      registerType: 'prompt',
+      manifest: false,
+      injectManifest: {
+        injectionPoint: undefined,
+        rollupFormat: 'iife',
+        minify: true,
+        sourcemap: false,
+      },
+    }),
+  ],
   build: {
     outDir: 'modern',
     emptyOutDir: true,
@@ -22,7 +44,7 @@ export default defineConfig({
       },
       output: {
         entryFileNames: '[name].js',
-        chunkFileNames: 'chunks/[name]-v380.js',
+        chunkFileNames: `chunks/[name]-v${buildVersion}.js`,
         assetFileNames: (assetInfo) => assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
       }
     }
