@@ -1,6 +1,6 @@
 # 산업기사 통합 CBT
 
-> 공조냉동기계·산업안전·에너지관리·설비보전산업기사 기출문제를  
+> 공조냉동기계·산업안전·에너지관리·설비보전산업기사와 전기·가스·위험물기능사 기출문제를
 > PC, 휴대폰, 태블릿에서 학습하고 실제 CBT처럼 시험 볼 수 있는 반응형 웹 애플리케이션
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-1268D3?style=for-the-badge&logo=github)](https://tk6871.github.io/cbt/)
@@ -33,7 +33,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v3.9.2.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v4.0.apk`를 생성합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
 
@@ -46,13 +46,17 @@
 | 산업기사 | 산업안전산업기사 | 2002–2020 | 55회 | 5,500문제 |
 | 산업기사 | 에너지관리산업기사 | 2002–2020 | 33회 | 2,640문제 |
 | 산업기사 | 설비보전산업기사 | 2002–2020 | 48회 | 3,840문제 |
+| 기능사 | 전기기능사 | 2002–2016 | 57회 | 3,420문제 |
+| 기능사 | 가스기능사 | 2001–2016 | 58회 | 3,480문제 |
+| 기능사 | 위험물기능사 | 2001–2016 | 62회 | 3,720문제 |
 | 추가 자료 | 에너지관리기사 | 2022 | 1회 | 100문제 |
 | 별도 학습관 | 보석감정사·귀금속가공 종목 | 2002–2016 | 42회 | 2,350문제 |
 
-**전체 275회차 · 21,530문제**
+**전체 452회차 · 32,150문제**
 
 > 공조냉동기계산업기사 2021년 이후 문제는 CBT 복원문제로, 원문 이미지 중심으로 표시됩니다.
 > 한솔아카데미 문제는 기존 공조 기출과 섞지 않고 별도 종목에서 풀 수 있으며, 제공 PDF 원문 이미지를 기준으로 표시합니다.
+> 전기·가스·위험물기능사는 공개 COMCBT 시험 페이지의 텍스트 문제·보기·해설을 사용하며, 도표가 필요한 문항만 원문 이미지를 함께 표시합니다.
 
 ## 🚀 주요 기능
 

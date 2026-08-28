@@ -49,7 +49,7 @@ import {
   hvacFrequentFormulas,
 } from './hvacCalculatorSheet';
 import { buildHvacPredictionSet } from './hvacPrediction';
-import { hvacStudyGuideSections } from './hvacStudyGuide';
+import { practicalPrompts, practicalSources, studyGuidePages } from './qualificationStudyGuides';
 import { qualificationRuleFor } from './qualificationRules';
 import {
   applyDynamicUiPreference,
@@ -213,6 +213,9 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   safety: { icon: '⛑', className: 'orange', description: '안전관리·위험방지' },
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
+  'electric-craftsman': { icon: '⚡', className: 'blue', description: '전기이론·기기·설비' },
+  'gas-craftsman': { icon: '◉', className: 'green', description: '가스안전·장치·일반' },
+  'hazardous-craftsman': { icon: '◆', className: 'orange', description: '화재예방·위험물 취급' },
   'gem-appraiser': { icon: '◇', className: 'jewel-red', description: '보석학·감별·다이아몬드' },
   'gem-appraiser-target': { icon: '✦', className: 'jewel-target', description: '큐넷 4과목 통합 모의시험' },
   'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
@@ -658,13 +661,18 @@ const viewTitle = computed(() => ({
   wrong: '오답노트',
   search: '문제 검색',
   calculation: '계산문제만 풀기',
-  guide: '공조 시험 암기장',
+  guide: studyGuidePages[selectedKey.value]?.title || '시험 자료실',
   coach: '합격 엔진',
   beta: '베타 학습 도구',
   showcase: '신기술 학습관',
   stats: '학습 분석',
   updates: '패치노트',
 })[view.value]);
+const activeStudyGuide = computed(() => studyGuidePages[selectedKey.value] || null);
+const studyGuideAvailable = computed(() => Boolean(activeStudyGuide.value));
+const hvacPracticalAvailable = computed(() =>
+  (selectedKey.value === 'hvac' || selectedKey.value === 'hvac-hansol')
+  && Boolean(cloudSyncState.email));
 const stats = computed(() => {
   const all = selectedCatalog.value.rounds.flatMap((round) => round.questions.map((question) => questionId(round, question)));
   const answered = all.filter((id) => studyStore.attempts[id]);
@@ -723,9 +731,16 @@ const formattedTime = computed(() => {
     ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
     : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 });
+function examDurationSeconds(questionCount: number): number {
+  const rule = officialRule.value;
+  if (!rule) return Math.max(90 * 60, Math.ceil(questionCount * 90));
+  const officialQuestionCount = rule.totalQuestions
+    || (Math.max(1, selectedSubjects.value.length) * (rule.questionsPerSubject || 20));
+  return Math.max(60, Math.ceil(questionCount / officialQuestionCount * rule.examMinutes * 60));
+}
 const examPace = computed(() => {
   if (!experimentalFeaturesEnabled.value || session.value?.mode !== 'exam' || session.value.finished) return null;
-  const totalSeconds = Math.max(90 * 60, Math.ceil(session.value.items.length * 90));
+  const totalSeconds = examDurationSeconds(session.value.items.length);
   const elapsedSeconds = Math.max(0, totalSeconds - session.value.remainingSeconds);
   if (answeredCount.value < 2 || elapsedSeconds < 20) {
     return { ready: false, label: '2문제부터 계산', detail: '답안 속도 측정 중', tone: 'measuring' };
@@ -1630,7 +1645,7 @@ async function beginSession(
     pageSize,
     startedAt: options.startedAt || Date.now(),
     remainingSeconds: mode === 'exam'
-      ? Math.max(1, Number(options.remainingSeconds) || Math.max(90 * 60, Math.ceil(items.length * 90)))
+      ? Math.max(1, Number(options.remainingSeconds) || examDurationSeconds(items.length))
       : 0,
     finished: false,
     resultSent: false,
@@ -1776,12 +1791,18 @@ function startBalancedExam(): void {
     showToast('선택한 연도와 출제 체계를 다시 확인해 주세요.');
     return;
   }
-  const selected = subjects.flatMap((subject) => {
-    const pool = items.filter((item) => item.subject === subject);
-    if (!selectedCatalog.value.isVirtual) return shuffle(pool).slice(0, Math.min(20, pool.length));
-    return selectGemTargetExamItems(pool);
-  });
-  if (selected.length < subjects.length * 20) {
+  const totalOnly = officialRule.value?.scoring === 'total-only';
+  const targetCount = totalOnly
+    ? (officialRule.value?.totalQuestions || 60)
+    : subjects.length * (officialRule.value?.questionsPerSubject || 20);
+  const selected = totalOnly
+    ? shuffle(items).slice(0, Math.min(targetCount, items.length))
+    : subjects.flatMap((subject) => {
+        const pool = items.filter((item) => item.subject === subject);
+        if (!selectedCatalog.value.isVirtual) return shuffle(pool).slice(0, Math.min(20, pool.length));
+        return selectGemTargetExamItems(pool);
+      });
+  if (selected.length < targetCount) {
     showToast('일부 과목은 문제가 부족해 가능한 문항만 출제했습니다.');
   }
   beginSession(
@@ -3166,6 +3187,10 @@ function roundAnswered(round: Round): number {
 }
 
 function roundExamMinutes(round: Round): number {
+  const rule = qualificationRuleFor(round.qualificationKey || selectedKey.value);
+  if (rule?.scoring === 'total-only' && rule.totalQuestions) {
+    return Math.max(1, Math.round(round.questions.length / rule.totalQuestions * rule.examMinutes));
+  }
   return Math.round(round.questions.length * 1.5);
 }
 
@@ -3419,7 +3444,7 @@ onBeforeUnmount(() => {
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
         <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(4)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
-        <button v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>공조 시험 암기장</button>
+        <button v-if="studyGuideAvailable" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>시험 자료실</button>
         <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>✦</template></span>합격 엔진</button>
         <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(6)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>β</template></span>베타 학습 도구</button>
         <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>▥</template></span>학습 분석</button>
@@ -3933,13 +3958,20 @@ onBeforeUnmount(() => {
           <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
         </template>
 
-        <template v-else-if="view === 'guide'">
+        <template v-else-if="view === 'guide' && activeStudyGuide">
           <section class="tool-hero guide-hero">
-            <div><span>HVAC LAST-MINUTE GUIDE</span><h1>공조냉동 시험 직전 암기장</h1><p>등록된 기출에서 반복해서 마주치는 공식·단위·장치 역할을 짧게 정리했습니다.</p></div>
+            <div><span>{{ activeStudyGuide.kicker }}</span><h1>{{ activeStudyGuide.title }}</h1><p>{{ activeStudyGuide.description }}</p></div>
             <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
           </section>
-          <section class="guide-notice"><strong>사용법</strong><p>공식을 통째로 외우기보다 ‘무엇을 구할 때 쓰는지’를 먼저 읽고, 헷갈린 항목은 계산문제에서 바로 확인하세요.</p></section>
-          <section class="field-report-practice">
+          <section class="guide-notice"><strong>사용법</strong><p>{{ activeStudyGuide.notice }}</p></section>
+          <section v-if="activeStudyGuide.formulas.length" class="study-formula-grid">
+            <article v-for="formula in activeStudyGuide.formulas" :key="formula.label">
+              <span>{{ formula.label }}</span>
+              <MathFormula :tex="formula.tex" :label="formula.label" />
+              <p>{{ formula.note }}</p>
+            </article>
+          </section>
+          <section v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" class="field-report-practice">
             <div class="field-report-copy">
               <span>2026.08.22 · 비공식 실전 제보</span>
               <h2>제보 키워드로 만든 13문제</h2>
@@ -3954,8 +3986,18 @@ onBeforeUnmount(() => {
               </ul>
             </div>
           </section>
+          <section v-if="hvacPracticalAvailable" class="practical-study-room">
+            <header><div><span>LOGIN ONLY · WRITTEN PRACTICE</span><h2>공조냉동 실기 필답형 연습</h2><p>공식 출제범위와 공개 복원자료에서 반복 확인되는 유형을 우리 문장과 풀이로 다시 만들었습니다.</p></div><strong>{{ practicalPrompts.length }}문제</strong></header>
+            <div class="practical-source-links"><a v-for="source in practicalSources" :key="source.href" :href="source.href" target="_blank" rel="noreferrer">{{ source.label }} ↗</a></div>
+            <div class="practical-question-grid">
+              <details v-for="(prompt, index) in practicalPrompts" :key="prompt.question">
+                <summary><span>{{ String(index + 1).padStart(2, '0') }}</span><strong>{{ prompt.question }}</strong><b>답 보기</b></summary>
+                <div><p><b>정답</b>{{ prompt.answer }}</p><p><b>쉬운 풀이</b>{{ prompt.explanation }}</p><small>{{ prompt.sourceNote }}</small></div>
+              </details>
+            </div>
+          </section>
           <div class="hvac-guide-grid">
-            <article v-for="(section, index) in hvacStudyGuideSections" :key="section.title">
+            <article v-for="(section, index) in activeStudyGuide.sections" :key="section.title">
               <header><span>{{ String(index + 1).padStart(2, '0') }}</span><h2>{{ section.title }}</h2></header>
               <p>{{ section.summary }}</p>
               <ul><li v-for="point in section.points" :key="point">{{ point }}</li></ul>
@@ -4476,6 +4518,7 @@ onBeforeUnmount(() => {
           <nav>
             <button type="button" @click="nativeMoreOpen = false; openView('history')"><span>◴</span><div><strong>학습 내역</strong><small>이어하기·점수·재도전</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('calculation')"><span>∑</span><div><strong>계산문제</strong><small>공식부터 차근차근</small></div></button>
+            <button v-if="studyGuideAvailable" type="button" @click="nativeMoreOpen = false; openView('guide')"><span>▣</span><div><strong>시험 자료실</strong><small>공식·핵심 개념{{ hvacPracticalAvailable ? '·필답형' : '' }}</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>취약 과목과 복습</small></div></button>
             <button v-if="experimentalFeaturesEnabled" type="button" @click="nativeMoreOpen = false; openView('beta')"><span>β</span><div><strong>베타 학습 도구</strong><small>확신도·메모·맞춤 복습</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('stats')"><span>▥</span><div><strong>학습 통계</strong><small>점수와 학습 기록</small></div></button>
