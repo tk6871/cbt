@@ -4,7 +4,10 @@ import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
-const primaryKeys = ['hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance'];
+const primaryKeys = [
+  'hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance',
+  'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
+];
 
 export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
 export const gemAppraiserTargetSubjects = ['보석 특성', '보석 감별', '다이아몬드 감정', '보석 가공'];
@@ -55,6 +58,9 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_SAFETY,
     window.CBT_DATA_ENERGY,
     window.CBT_DATA_MAINTENANCE,
+    window.CBT_DATA_ELECTRIC_CRAFTSMAN,
+    window.CBT_DATA_GAS_CRAFTSMAN,
+    window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
   ].filter((item): item is Catalog => Boolean(item));
 
   const loaded = sources
@@ -206,7 +212,7 @@ export function subjectsForScope(catalog: Catalog, scope: CurriculumScope): stri
 }
 
 export function isImagePrimary(item: QuestionItem): boolean {
-  return Boolean(item.question.sourceImage && (
+  return Boolean(item.question.sourceImage && (item.question.imageOnly ||
     (item.round.qualificationKey === 'hvac' && Number(item.round.year) >= 2021)
     || item.round.qualificationKey === 'hvac-hansol'
   ));

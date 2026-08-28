@@ -5,6 +5,34 @@
 
   const entries = [
     {
+      version: '4.0',
+      scope: 'industrial',
+      date: '2026.08.28',
+      title: '기능사 3종과 시험 자료실 확장',
+      summary: '전기·가스·위험물기능사를 텍스트형 문제로 추가하고 에너지·설비보전 학습 자료와 로그인 전용 공조 필답 연습을 확장했습니다.',
+      tags: ['기능사 3종', '시험 자료실', '공조 필답', '문제 이미지 보강'],
+      changes: [
+        '전기기능사 57회·가스기능사 58회·위험물기능사 62회, 총 177회차 10,620문항을 문제·보기·해설 텍스트로 추가했습니다.',
+        '세 기능사는 공식 시험 구성에 맞춘 총 60문항·60분 모의시험과 총점 합격 판정을 지원합니다.',
+        '에너지관리 문제에서 빠졌던 공개 원문 도표 45장을 복원하고 전체 이미지 연결 누락을 다시 검사했습니다.',
+        '에너지관리·설비보전 시험 자료실에 초보자용 핵심 개념과 계산 공식을 추가했습니다.',
+        '로그인한 사용자만 볼 수 있는 공조 필답형 연습관에 공개 출제 유형을 바탕으로 만든 연습문제와 풀이를 추가했습니다.',
+        '서비스워커 캐시 v400, Android 앱 v4.0으로 갱신했습니다.'
+      ]
+    },
+    {
+      version: '4.0',
+      scope: 'jewelry',
+      date: '2026.08.28',
+      title: '공통 앱 안정성 갱신',
+      summary: '공통 서비스워커 캐시를 v4.0으로 맞췄습니다.',
+      tags: ['업데이트', 'PWA', '보석관'],
+      changes: [
+        '산업기사 학습관 확장과 함께 공통 서비스워커 캐시를 v400으로 올렸습니다.',
+        '보석관의 문제·해설·테마 구성은 기존과 동일하게 유지합니다.'
+      ]
+    },
+    {
       version: '3.9.2',
       scope: 'industrial',
       date: '2026.08.24',
@@ -1885,8 +1913,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '3.9.2';
-  changelog.versions.jewelry = '3.9.2';
-  changelog.currentVersion = '3.9.2';
+  changelog.versions.industrial = '4.0';
+  changelog.versions.jewelry = '4.0';
+  changelog.currentVersion = '4.0';
   window.CBT_CHANGELOG = changelog;
 })();
