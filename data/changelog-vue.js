@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '4.3',
+      scope: 'industrial',
+      date: '2026.08.29',
+      title: '공조 필답형 95문제와 실전 훈련',
+      summary: '공조 필답형을 총 95문제로 늘리고 직접 답안 작성·자가채점·복습·12문제 90분 모의훈련을 추가했습니다.',
+      tags: ['공조 필답형', '95문제', '자가채점', '90분 모의훈련'],
+      changes: [
+        '기존 공개 자료 47문제와 기초 연습 12문제에 독자 심화 연습 36문제를 더해 총 95문제로 확장했습니다.',
+        '장치·냉동사이클·계산·고장진단·배관·공기조화·안전 분야별 필터와 문제 검색을 지원합니다.',
+        '답안을 먼저 직접 작성한 뒤 정답과 채점 핵심어를 비교하고 정답·부분 정답·다시 보기로 자가채점할 수 있습니다.',
+        '다시 볼 문제만 모아 복습하고 무작위 12문제·90분·60점 모의훈련을 새로고침 뒤에도 이어갈 수 있습니다.',
+        'Q-Net 공개 시험 구성과 공개 도면의 치수·구성이 실제 시험에서 달라질 수 있다는 안내를 반영했습니다.',
+        '서비스워커 캐시 v430, Android 앱 v4.3으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.2',
       scope: 'industrial',
       date: '2026.08.29',
@@ -1944,8 +1960,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.2';
+  changelog.versions.industrial = '4.3';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.2';
+  changelog.currentVersion = '4.3';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -1,5 +1,9 @@
 import { hvacStudyGuideSections, type HvacGuideSection } from './hvacStudyGuide';
 import practicalSourceRows from '../../data/hvac-practical-moducbt.json';
+import { hvacPracticalDrills } from './hvacPracticalDrills';
+import type { PracticalCategory, PracticalPrompt } from './hvacPracticalTypes';
+
+export type { PracticalPrompt } from './hvacPracticalTypes';
 
 export type StudyFormula = { label: string; tex: string; note: string };
 export type StudyGuidePage = {
@@ -10,17 +14,6 @@ export type StudyGuidePage = {
   sections: HvacGuideSection[];
   formulas: StudyFormula[];
 };
-export type PracticalPrompt = {
-  id: string;
-  group: 'foundation' | 'public';
-  question: string;
-  answer: string;
-  explanation: string;
-  sourceNote: string;
-  image?: string;
-  sourceUrl?: string;
-};
-
 const energySections: HvacGuideSection[] = [
   {
     title: '보일러 열정산의 출발점',
@@ -165,7 +158,17 @@ const foundationPracticalPrompts: PracticalPrompt[] = ([
   { question: '압축기 액압축이 위험한 이유를 설명하세요.', answer: '액체 냉매는 거의 압축되지 않아 밸브·피스톤·스크롤 등에 큰 충격과 손상을 줄 수 있기 때문입니다.', explanation: '압축기는 기체를 압축하도록 설계됩니다. 증발되지 않은 액체가 돌아오면 순간 압력이 크게 올라 기계 부품과 오일을 손상시킬 수 있습니다.', sourceNote: '공식 안전운전·고장진단 범위를 바탕으로 만든 연습문제' },
   { question: '진공압이 300 mmHg일 때 절대압력을 kPa로 구하세요. 표준대기압은 760 mmHg=101.325 kPa입니다.', answer: '약 61.3 kPa', explanation: '남은 절대압력은 760-300=460 mmHg입니다. 같은 1기압 비율로 바꾸면 460×101.325÷760≈61.3 kPa입니다.', sourceNote: '압력 환산 반복유형 독자 연습문제' },
   { question: '냉동설비 시운전 전에 확인할 항목을 네 가지 쓰세요.', answer: '기밀·진공 상태, 밸브 개폐 상태, 전원·회전방향, 냉각수·송풍 상태 등을 확인합니다.', explanation: '누설과 수분을 막고, 막힌 밸브나 역회전·냉각 불량으로 장치가 손상되는 일을 예방하는 순서입니다.', sourceNote: '공식 출제기준의 시운전·안전관리 범위를 바탕으로 만든 연습문제' },
-] satisfies Omit<PracticalPrompt, 'id' | 'group'>[]).map((prompt, index) => ({ ...prompt, id: `hvac-practical-foundation-${index + 1}`, group: 'foundation' }));
+] satisfies Omit<PracticalPrompt, 'id' | 'group' | 'category' | 'difficulty' | 'points'>[]).map((prompt, index) => {
+  const categories: PracticalCategory[] = ['cycle', 'calculation', 'calculation', 'safety', 'piping', 'piping', 'cycle', 'calculation', 'operation', 'operation', 'calculation', 'safety'];
+  return {
+    ...prompt,
+    id: `hvac-practical-foundation-${index + 1}`,
+    group: 'foundation' as const,
+    category: categories[index] || 'equipment',
+    difficulty: index < 4 ? 'basic' as const : 'standard' as const,
+    points: 5,
+  };
+});
 
 type CuratedPracticalAnswer = { answer: string; explanation: string };
 
@@ -225,6 +228,9 @@ const publicPracticalPrompts: PracticalPrompt[] = practicalSourceRows.map((row) 
   return {
     id: row.id,
     group: 'public',
+    category: row.number === 41 || row.number === 42 ? 'air' : row.number === 36 || row.number === 47 ? 'safety' : 'equipment',
+    difficulty: 'basic',
+    points: 5,
     question: row.question.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ').trim(),
     answer: curated.answer,
     explanation: curated.explanation,
@@ -234,7 +240,7 @@ const publicPracticalPrompts: PracticalPrompt[] = practicalSourceRows.map((row) 
   };
 });
 
-export const practicalPrompts: PracticalPrompt[] = [...publicPracticalPrompts, ...foundationPracticalPrompts];
+export const practicalPrompts: PracticalPrompt[] = [...publicPracticalPrompts, ...foundationPracticalPrompts, ...hvacPracticalDrills];
 
 export const practicalSources = [
   { label: '모두CBT 공조냉동 필답형 대비 47문항', href: 'https://www.moducbt.com/exam/solution/4200' },
