@@ -7,6 +7,7 @@ import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance',
   'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
+  'information-engineer',
 ];
 
 export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
@@ -61,6 +62,7 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_ELECTRIC_CRAFTSMAN,
     window.CBT_DATA_GAS_CRAFTSMAN,
     window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
+    window.CBT_DATA_INFORMATION_ENGINEER,
   ].filter((item): item is Catalog => Boolean(item));
 
   const loaded = sources
@@ -148,6 +150,13 @@ export function subjectFor(round: Round, question: Question): string {
 }
 
 export function mappedSubject(key: string, subject: string): string {
+  if (key === 'information-engineer') {
+    if (subject === '데이터베이스') return '데이터베이스 구축';
+    if (subject === '소프트웨어공학') return '소프트웨어 설계';
+    if (subject === '운영체제' || subject === '데이터통신') return '정보시스템 구축관리';
+    if (subject === '전자계산기구조') return '프로그래밍 언어 활용';
+    return subject;
+  }
   if (key !== 'hvac' && key !== 'hvac-hansol') return subject;
   if (subject === '공기조화') return '공기조화설비';
   if (subject === '냉동공학') return '냉동냉장설비';
@@ -190,8 +199,10 @@ export function questionItems(
     rounds = rounds.filter((round) =>
       round.subjects.length === currentSubjects.length
       && round.subjects.every((subject, index) => subject === currentSubjects[index]));
-  } else if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol')) {
-    rounds = rounds.filter((round) => round.subjects.length === 4);
+  } else if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol' || catalog.key === 'information-engineer')) {
+    rounds = catalog.key === 'information-engineer'
+      ? rounds.filter((round) => Number(round.year) < 2020)
+      : rounds.filter((round) => round.subjects.length === 4);
   } else if (scope === 'all-mapped') {
     subjectMap = (subject) => mappedSubject(catalog.key, subject);
   }
@@ -205,8 +216,10 @@ export function questionItems(
 }
 
 export function subjectsForScope(catalog: Catalog, scope: CurriculumScope): string[] {
-  if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol')) {
-    return catalog.rounds.find((round) => round.subjects.length === 4)?.subjects || [];
+  if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol' || catalog.key === 'information-engineer')) {
+    return catalog.key === 'information-engineer'
+      ? catalog.rounds.find((round) => Number(round.year) < 2020)?.subjects || []
+      : catalog.rounds.find((round) => round.subjects.length === 4)?.subjects || [];
   }
   return latestSubjects(catalog);
 }

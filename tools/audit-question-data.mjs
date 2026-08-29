@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
-const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-engineer.js', 'maintenance.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'jewelry.js'];
+const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-engineer.js', 'maintenance.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'jewelry.js'];
 const context = { window: {} };
 
 for (const file of dataFiles) {
@@ -21,6 +21,7 @@ const catalogs = [
   context.window.CBT_DATA_ELECTRIC_CRAFTSMAN,
   context.window.CBT_DATA_GAS_CRAFTSMAN,
   context.window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
+  context.window.CBT_DATA_INFORMATION_ENGINEER,
   ...(context.window.CBT_DATA_JEWELRY || []),
 ].filter(Boolean);
 

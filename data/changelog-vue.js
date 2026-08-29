@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '4.2',
+      scope: 'industrial',
+      date: '2026.08.29',
+      title: '정보처리기사 66회차 추가',
+      summary: '정보처리기사 2001~2022년 66회차·6,600문제를 추가하고 개편 전·후 과목과 공식 시험 기준을 적용했습니다.',
+      tags: ['정보처리기사', '6,600문제', '전 회차', '공식 합격 기준'],
+      changes: [
+        '정보처리기사 공개 기출 66회차·6,600문제를 검색 가능한 텍스트 문제·보기·해설로 추가했습니다.',
+        '도표·코드·그림이 필요한 문항은 공개 원문 자산 1,362개를 함께 표시합니다.',
+        '2020년 개편 전 구 5과목과 개편 후 현행 5과목을 구분하고 원하는 체계만 골라 풀 수 있습니다.',
+        '공식 100문항·150분, 과목별 40점 이상·평균 60점 이상 기준으로 합격 여부를 판정합니다.',
+        '동일한 문제와 정답 보기가 확인된 338문항은 기존 공개 해설을 재사용했습니다.',
+        '서비스워커 캐시 v420, Android 앱 v4.2로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.1',
       scope: 'industrial',
       date: '2026.08.29',
@@ -1928,8 +1944,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.1';
+  changelog.versions.industrial = '4.2';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.1';
+  changelog.currentVersion = '4.2';
   window.CBT_CHANGELOG = changelog;
 })();
