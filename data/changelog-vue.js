@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '4.1',
+      scope: 'industrial',
+      date: '2026.08.29',
+      title: '공조 필답형 59문항과 해설 보강',
+      summary: '공개 필답형 대비 이미지 47문항을 교정해 추가하고 기존 기초 연습 12문항을 함께 유지했습니다. 에너지·설비보전의 반복 개념과 계산 해설도 보강했습니다.',
+      tags: ['공조 필답형', '59문항', '에너지관리', '설비보전', '쉬운 해설'],
+      changes: [
+        '로그인 전용 공조 필답형 연습관에 공개 대비 문제 이미지 47장과 교정 답안·초보자 풀이를 추가했습니다.',
+        '공개 자료 47문항, 기초 연습 12문항, 전체 59문항을 버튼으로 나눠 볼 수 있습니다.',
+        '원자료에서 잘리거나 부정확한 답안은 그대로 복사하지 않고 냉동장치의 작동 원리와 안전 기준에 맞게 교정했습니다.',
+        '에너지관리·설비보전의 계측·제어·보일러·진동·유공압·계산형 반복문제 해설에 원리와 공식을 보강했습니다.',
+        '서비스워커 캐시 v410, Android 앱 v4.1로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.0',
       scope: 'industrial',
       date: '2026.08.28',
@@ -1913,8 +1928,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.0';
+  changelog.versions.industrial = '4.1';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.0';
+  changelog.currentVersion = '4.1';
   window.CBT_CHANGELOG = changelog;
 })();

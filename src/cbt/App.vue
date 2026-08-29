@@ -87,6 +87,7 @@ type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
+type PracticalPromptFilter = 'all' | 'public' | 'foundation';
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
 type BetaModeMeta = {
@@ -673,6 +674,10 @@ const studyGuideAvailable = computed(() => Boolean(activeStudyGuide.value));
 const hvacPracticalAvailable = computed(() =>
   (selectedKey.value === 'hvac' || selectedKey.value === 'hvac-hansol')
   && Boolean(cloudSyncState.email));
+const practicalPromptFilter = ref<PracticalPromptFilter>('all');
+const visiblePracticalPrompts = computed(() => practicalPromptFilter.value === 'all'
+  ? practicalPrompts
+  : practicalPrompts.filter((prompt) => prompt.group === practicalPromptFilter.value));
 const stats = computed(() => {
   const all = selectedCatalog.value.rounds.flatMap((round) => round.questions.map((question) => questionId(round, question)));
   const answered = all.filter((id) => studyStore.attempts[id]);
@@ -3987,12 +3992,21 @@ onBeforeUnmount(() => {
             </div>
           </section>
           <section v-if="hvacPracticalAvailable" class="practical-study-room">
-            <header><div><span>LOGIN ONLY · WRITTEN PRACTICE</span><h2>공조냉동 실기 필답형 연습</h2><p>공식 출제범위와 공개 복원자료에서 반복 확인되는 유형을 우리 문장과 풀이로 다시 만들었습니다.</p></div><strong>{{ practicalPrompts.length }}문제</strong></header>
+            <header><div><span>LOGIN ONLY · WRITTEN PRACTICE</span><h2>공조냉동 실기 필답형 연습</h2><p>공개 필답형 대비 이미지 47문항을 원문과 대조해 답안을 교정하고, 기존 기초 연습 12문항도 함께 보존했습니다.</p></div><strong>{{ visiblePracticalPrompts.length }} / {{ practicalPrompts.length }}문제</strong></header>
             <div class="practical-source-links"><a v-for="source in practicalSources" :key="source.href" :href="source.href" target="_blank" rel="noreferrer">{{ source.label }} ↗</a></div>
+            <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
+              <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 59</button>
+              <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 47</button>
+              <button type="button" :class="{ active: practicalPromptFilter === 'foundation' }" @click="practicalPromptFilter = 'foundation'">기초 연습 12</button>
+            </div>
             <div class="practical-question-grid">
-              <details v-for="(prompt, index) in practicalPrompts" :key="prompt.question">
+              <details v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id">
                 <summary><span>{{ String(index + 1).padStart(2, '0') }}</span><strong>{{ prompt.question }}</strong><b>답 보기</b></summary>
-                <div><p><b>정답</b>{{ prompt.answer }}</p><p><b>쉬운 풀이</b>{{ prompt.explanation }}</p><small>{{ prompt.sourceNote }}</small></div>
+                <div>
+                  <img v-if="prompt.image" class="practical-prompt-image" :src="prompt.image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림`" loading="lazy">
+                  <p><b>정답</b>{{ prompt.answer }}</p><p><b>쉬운 풀이</b>{{ prompt.explanation }}</p>
+                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">원문 보기 ↗</a></small>
+                </div>
               </details>
             </div>
           </section>
