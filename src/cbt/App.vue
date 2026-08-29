@@ -217,6 +217,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   'electric-craftsman': { icon: '⚡', className: 'blue', description: '전기이론·기기·설비' },
   'gas-craftsman': { icon: '◉', className: 'green', description: '가스안전·장치·일반' },
   'hazardous-craftsman': { icon: '◆', className: 'orange', description: '화재예방·위험물 취급' },
+  'information-engineer': { icon: 'IT', className: 'violet', description: '설계·개발·DB·프로그래밍·시스템' },
   'gem-appraiser': { icon: '◇', className: 'jewel-red', description: '보석학·감별·다이아몬드' },
   'gem-appraiser-target': { icon: '✦', className: 'jewel-target', description: '큐넷 4과목 통합 모의시험' },
   'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
@@ -3535,7 +3536,7 @@ onBeforeUnmount(() => {
                     <label><span>종목</span><select :value="selectedKey" @change="updateQualificationFromSetup"><option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option></select></label>
                     <label><span>시작</span><select v-model.number="yearFrom"><option v-for="year in [...availableYears].reverse()" :key="year" :value="year">{{ year }}년</option></select></label>
                     <label><span>끝</span><select v-model.number="yearTo"><option v-for="year in availableYears" :key="year" :value="year">{{ year }}년</option></select></label>
-                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option></select></label>
+                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : (selectedKey === 'information-engineer' ? '현행 5과목 · 구문제 연결' : '전체 기출문제 포함')) }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option><option v-if="selectedKey === 'information-engineer'" value="legacy-original">구 5과목 원형</option></select></label>
                   </div>
                   <div class="sunjae-ticket-summary"><span><b>{{ yearFrom }}~{{ yearTo }}</b>년</span><span><b>{{ rangeRounds.length }}</b>회차</span><span><b>{{ selectedItems.length.toLocaleString() }}</b>문제</span></div>
                 </div>
@@ -3667,6 +3668,7 @@ onBeforeUnmount(() => {
                   <option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option>
                   <option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option>
                   <option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option>
+                  <option v-if="selectedKey === 'information-engineer'" value="legacy-original">구 5과목 원형</option>
                 </select>
               </label>
             </div>

@@ -141,6 +141,7 @@ declare global {
     CBT_DATA_ELECTRIC_CRAFTSMAN?: Catalog;
     CBT_DATA_GAS_CRAFTSMAN?: Catalog;
     CBT_DATA_HAZARDOUS_CRAFTSMAN?: Catalog;
+    CBT_DATA_INFORMATION_ENGINEER?: Catalog;
     CBT_DATA_JEWELRY?: Catalog[];
     CBT_APP_SPACE?: 'industrial' | 'jewelry';
     CBT_DISPLAY_MODE?: 'mobile' | 'desktop';

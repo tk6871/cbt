@@ -6,5 +6,6 @@ window.CBT_CATALOG_INDEX = [
   { key: "maintenance", name: "설비보전산업기사", shortName: "설비보전", rounds: 48, questions: 3840 },
   { key: "electric-craftsman", name: "전기기능사", shortName: "전기기능사", rounds: 57, questions: 3420 },
   { key: "gas-craftsman", name: "가스기능사", shortName: "가스기능사", rounds: 58, questions: 3480 },
-  { key: "hazardous-craftsman", name: "위험물기능사", shortName: "위험물기능사", rounds: 62, questions: 3720 }
+  { key: "hazardous-craftsman", name: "위험물기능사", shortName: "위험물기능사", rounds: 62, questions: 3720 },
+  { key: "information-engineer", name: "정보처리기사", shortName: "정보처리기사", rounds: 66, questions: 6600 }
 ];

@@ -15,6 +15,7 @@ const files = [
   'data/electric-craftsman.js',
   'data/gas-craftsman.js',
   'data/hazardous-craftsman.js',
+  'data/information-engineer.js',
   'data/jewelry.js',
 ];
 const forbidden = /아닌에 해당|않는에 해당|가장 부에 해당|이 조건을 그대로 나타내는|문제의 부정 표현과 단위|핵심은 문제에서 요구한 값/i;
