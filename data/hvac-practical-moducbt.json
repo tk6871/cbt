@@ -1,0 +1,378 @@
+[
+  {
+    "id": "moducbt-hvac-practical-1",
+    "number": 1,
+    "question": "압력계 명칭 , 특징을 서술하시오",
+    "sourceAnswer": "명칭: 부르동관 압력계\n특징: 측정할수있는 압력범위가 넓다",
+    "image": "assets/hvac-practical/moducbt/01.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-2",
+    "number": 2,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 개방형 왕복동식 압축기\n특징: 압축기 회전수 조절이 용이하다",
+    "image": "assets/hvac-practical/moducbt/02.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-3",
+    "number": 3,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 회전식 압축기\n특징: 고속 회전에도 진동 및 소음이 적다\n원리) 로터가 실린더 내를 회전하면서 냉매가스를 압축하는 원리이다",
+    "image": "assets/hvac-practical/moducbt/03.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-4",
+    "number": 4,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 밀폐형 왕복동식 압축기\n특징: 과부하 운전이 가능하다",
+    "image": "assets/hvac-practical/moducbt/04.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-5",
+    "number": 5,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 스크롤 압축기\n특징:부품수가 적고 고속회전에 적합하다\n원리)고정스크롤과 선회스크롤 사이에 형성된 압축공간이 점차 감소되어 냉매가스를 압축하는 원리이다",
+    "image": "assets/hvac-practical/moducbt/05.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-6",
+    "number": 6,
+    "question": "EHP의 사이클이다 보기 중 어떤 사이클인지 그림을 보고 서술하시오",
+    "sourceAnswer": "왼쪽: 공기열원 히트펌프 냉방사이클\n오른쪽: 공기열원 히트펌프 난방사이클",
+    "image": "assets/hvac-practical/moducbt/06.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-7",
+    "number": 7,
+    "question": "보기를 보고 어떤 설비 명칭, 원리 특징을 서술하시오",
+    "sourceAnswer": "명칭: 빙축열식 냉방설비\n원리: 냉동기로 얼음을 제조해 축열조에 저장해놓았다가 필요시 부하 증가시 사용한다\n특징: 값싼 심야전력을 이용할수있다",
+    "image": "assets/hvac-practical/moducbt/07.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-8",
+    "number": 8,
+    "question": "다음 사진을보고 어떤 응축기인지 명칭이랑 특징을 서술하시오",
+    "sourceAnswer": "명칭: 공냉식 응축기\n특징: 크기가 크고 응축온도가 높다\n원리) 송풍기로 공기를 불어 응축시키는 원리이다",
+    "image": "assets/hvac-practical/moducbt/08.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-9",
+    "number": 9,
+    "question": "다음 사진을 보고, 어떤 응축기인지 명칭이랑 특징을 적으시오",
+    "sourceAnswer": "명칭: 수냉식 응축기\n특징:냉각관 청소가 어렵다\n원리: 냉각탑으로부터 냉각수를 순환시켜 응축시키는 방법이다",
+    "image": "assets/hvac-practical/moducbt/09.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-10",
+    "number": 10,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 터보압축기\n특징: 저압냉매 취급이 용이하다\n원리) 고속으로 회전하는 임펠러의 원심력을 이용해 냉매가스 속도에너지를 압력으로 바꾸어 압축하는 형식이다",
+    "image": "assets/hvac-practical/moducbt/10.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-11",
+    "number": 11,
+    "question": "원통 내에 나선 모양의 코일이 감겨져 있는 구조로 되어 있는 응축기이다 다음 사진을 보고 명칭이랑 특징을 서술하시오",
+    "sourceAnswer": "명칭:쉘앤 코일식 응축기\n특징: 냉각관 청소가어렵다",
+    "image": "assets/hvac-practical/moducbt/11.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-12",
+    "number": 12,
+    "question": "다음 보여주는 기구의 명칭과 사용목적을 서술하시오",
+    "sourceAnswer": "명칭: 매니폴드 게이지\n사용목적: 냉매나 오일 충전 및 회수, 압력확인 진공작업 누설시 사용한다\n추가) 청색:저압 , 황색:냉매용기 , 적색: 고압연결",
+    "image": "assets/hvac-practical/moducbt/12.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-13",
+    "number": 13,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭: 스크류 압축기\n특징: 부품수가 적어 고장률이 적다\n원리) 암나사와 수나사로된 두개의 로터가 맞물림에 의해 냉매가스를 흡입->압축->토출시킨다",
+    "image": "assets/hvac-practical/moducbt/13.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-14",
+    "number": 14,
+    "question": "다음 사진을 보고 어떤 응축기인지 명칭이랑 특징을 서술하시오",
+    "sourceAnswer": "명칭:2중관식 응축기\n특징: 고압에 잘견딘다",
+    "image": "assets/hvac-practical/moducbt/14.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-15",
+    "number": 15,
+    "question": "어떤 응축기인지 명칭이랑 특징을 서술하시오",
+    "sourceAnswer": "명칭: 증발식 응축기\n특징: 외기 습구온도 영향을 많이받는다",
+    "image": "assets/hvac-practical/moducbt/15.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-16",
+    "number": 16,
+    "question": "다음 사진을 보고 어떤 팽창밸브인지 명칭이랑, 사용목적 , 원리를 서술하시오",
+    "sourceAnswer": "명칭:정압식 팽창밸브\n사용목적: 증발압력을 일정하게 유지하기 위해 사용한다\n원리: 증발압력이 상승하면 닫히고, 증발압력이 저하되면 열린다",
+    "image": "assets/hvac-practical/moducbt/16.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-17",
+    "number": 17,
+    "question": "다음 사진을 보고 명칭, 사용목적을 적으시오",
+    "sourceAnswer": "명칭: 냉매분배기\n사용목적: 증발기의 입구에 설치하여 냉매공급을 균일하게 분배한다",
+    "image": "assets/hvac-practical/moducbt/17.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-18",
+    "number": 18,
+    "question": "다음 장치 명칭 원리 특징을 서술하시오",
+    "sourceAnswer": "명칭: 대향류형 냉각탑\n원리: 냉각수를 공기와 접촉시켜 물의 증발잠열을 이용해 냉각수 온도를 낮추는 장치\n특징: 물과 공기가 서로 반대방향으로 흘러 냉각효율이 높다",
+    "image": "assets/hvac-practical/moducbt/18.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-19",
+    "number": 19,
+    "question": "다음 나와 있는 사진은 증발기 중 하나이다 명칭 특징을 서술하시오",
+    "sourceAnswer": "명칭: 플레이트형 증발기\n특징: 스테인리스 판 두장을 압접하여 그 사이에 통로를 만들어 냉매를 통과하도록 한 구조이다",
+    "image": "assets/hvac-practical/moducbt/19.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-20",
+    "number": 20,
+    "question": "다음 사진을 보고 어떤 기구인지 명칭, 사용목적을 서술하시오",
+    "sourceAnswer": "명칭:전자식 팽창밸브\n사용목적: 온도 센서에 의하여 증발기 출구 과열도를 측정하, 냉매량을 정밀하게 제어한다",
+    "image": "assets/hvac-practical/moducbt/20.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-21",
+    "number": 21,
+    "question": "다음 나와 있는 사진은 증발기 중 하나이다 ,명칭 특징을 서술하시오",
+    "sourceAnswer": "명칭: 관 코일식 증발기\n특징: 전열이 불량해 관이 길어져 압력강하가 크",
+    "image": "assets/hvac-practical/moducbt/21.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-22",
+    "number": 22,
+    "question": "다음 나와 있는 사진이 어떤 장치인지 사용목적을 서술하시오",
+    "sourceAnswer": "명칭: 사이트글라스(투시경)\n사용목적: 냉매 충전량의 적정여부를 확인하기 위해 응축기 팽창밸브 사이 설치한다\n건조시:녹색\n요주의:황록색\n다량혼힙: 황색",
+    "image": "assets/hvac-practical/moducbt/22.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-23",
+    "number": 23,
+    "question": "다음 장치도를 보고 열교환기 명칭, 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 액가스 열교환기\n설치목적: 압축기 흡입가스를 과열시켜 압축기에서 액압축을 방지한다",
+    "image": "assets/hvac-practical/moducbt/23.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-24",
+    "number": 24,
+    "question": "다음 사진을 보고 어떤 장치인지 , 명칭 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 액분리기\n설치목적: 증발기와 압축기 사이에 설치하여 ,압축기로 액이 넘어가는 것을 방지하여 액압축을 방지한",
+    "image": "assets/hvac-practical/moducbt/24.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-25",
+    "number": 25,
+    "question": "다음 사진을 보고 어떤 장치인지 명칭 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 스톱 밸브\n설치목적: 액체 및 가스흐름을 열거나 차단할때 사용한다",
+    "image": "assets/hvac-practical/moducbt/25.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-26",
+    "number": 26,
+    "question": "다음 사진을 보고 어떤 장치인지 명칭 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 플렉시블관\n설치목적: 압축기에서 나온 진동이 덕트로 전달되지 않도록 진동을 흡수하는 배관 부속품이다",
+    "image": "assets/hvac-practical/moducbt/26.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-27",
+    "number": 27,
+    "question": "다음 사진을 보고 어떤 장치인지 명칭 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 로타록 밸브\n설치목적: 고압가스를 고압차단 스위치로 보내주는 용도이",
+    "image": "assets/hvac-practical/moducbt/27.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-28",
+    "number": 28,
+    "question": "안전 장치 중 하나이다 , 어떤 안전장치 인지랑 원리를 서술하시오",
+    "sourceAnswer": "명칭: 파열판\n원리: 압력용기나 냉매용기 상부측에 설치하여, 내부압력 상승시 스스로 파멸되어 고압에 의한 위해를 방지한",
+    "image": "assets/hvac-practical/moducbt/28.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-29",
+    "number": 29,
+    "question": "안전 장치 중 하나이다 , 어떤 안전장치 인지랑 원리를 서술하시오",
+    "sourceAnswer": "명칭: 가용전\n원리: 열에 의해 합금이 녹아 가스를 외부로 방출한",
+    "image": "assets/hvac-practical/moducbt/29.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-30",
+    "number": 30,
+    "question": "다음 사진을 보고 어떤 장치인지 랑 설치목적을 서술하시오",
+    "sourceAnswer": "장치: 유압차단 스위치\n설치목적: 유압이 일정 이하로 내려가면 압축기를 차단시키기 위해 설치한",
+    "image": "assets/hvac-practical/moducbt/30.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-31",
+    "number": 31,
+    "question": "증발기 출구에 설치하는 장치이다, 명칭이랑 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 증발압력 조정밸브\n설치목적: 증발압력이 일정 이하로 내려가는 것을 방지한",
+    "image": "assets/hvac-practical/moducbt/31.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-32",
+    "number": 32,
+    "question": "압축기 흡입관에 설치하는 장치이다, 명칭이랑 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 흡입압력 조정밸브\n설치목적: 흡입압력이 일정 이상으로 되었을때 과부하로 인한 전동기 소손을 방지한다",
+    "image": "assets/hvac-practical/moducbt/32.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-33",
+    "number": 33,
+    "question": "응축기 냉각수 출구배관에 설치하는 장치이다 명칭이랑 설치목적을 서술하시오",
+    "sourceAnswer": "명칭: 절수밸브\n설치목적: 응축압력을 일정하게 유지하고 냉각수를 절약하기 위해 설치한",
+    "image": "assets/hvac-practical/moducbt/33.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-34",
+    "number": 34,
+    "question": "다음 사진에 나와있는 기구 명칭이랑 측정하는 3가지를 적으시오",
+    "sourceAnswer": "명칭: 버니어 갤리퍼스\n측정: 외경, 내경, 높이",
+    "image": "assets/hvac-practical/moducbt/34.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-35",
+    "number": 35,
+    "question": "다음 사진에 나와있는 기구 명칭이랑 측정하는 3가지를 적으시오",
+    "sourceAnswer": "명칭: 마이크로미터\n측정: 종이 두께, 철사 ,직",
+    "image": "assets/hvac-practical/moducbt/35.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-36",
+    "number": 36,
+    "question": "다음 사진에 나와있는 기구 명칭이랑 설치목적을 적으시오",
+    "sourceAnswer": "명칭: 역화방지기\n설치목적: 가스 역류에 의한 역화 사고로 인한 폭발을 방지하기 위해 설치한다",
+    "image": "assets/hvac-practical/moducbt/36.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-37",
+    "number": 37,
+    "question": "다음 기구 명칭과 사용목적을 서술하시오",
+    "sourceAnswer": "명칭:감압밸브\n사용목적: 고압의 압력을 저압으로 낮추는 밸브이",
+    "image": "assets/hvac-practical/moducbt/37.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-38",
+    "number": 38,
+    "question": "다음 나와 있는 사진이 어떤 장치인지 사용목적을 서술하시오",
+    "sourceAnswer": "명칭: 유분리기\n사용목적: 압축기에서 토출된 냉매가스 중에 혼홥 된 오일을 분리시키기 위하여 사용한",
+    "image": "assets/hvac-practical/moducbt/38.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-39",
+    "number": 39,
+    "question": "다음 나와 있는 사진이 어떤 장치인지 사용목적을 서술하시오",
+    "sourceAnswer": "명칭: 코어 쉘 필터 드라이어\n사용목적: 냉동장치 내부 수분을 제거한다\n건조제: 실리카겔, 소바 비이드, 활성 알루미나겔",
+    "image": "assets/hvac-practical/moducbt/39.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-40",
+    "number": 40,
+    "question": "다음 나와 있는 사진이 어떤 장치인지 사용목적을 서술하시오",
+    "sourceAnswer": "명칭: 공기뺴기 밸브\n사용목적: 배관 기기중 공기를 제거하여 유체 순환을 양호하게 하기 위해 사용",
+    "image": "assets/hvac-practical/moducbt/40.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-41",
+    "number": 41,
+    "question": "다음 공기조화장치를 보고 습공기선도 각 상태점을 완성하시오",
+    "sourceAnswer": "",
+    "image": "assets/hvac-practical/moducbt/41.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-42",
+    "number": 42,
+    "question": "다음 공기조화장치를 보고 습공기선도 각 상태점을 완성하시오",
+    "sourceAnswer": "",
+    "image": "assets/hvac-practical/moducbt/42.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-43",
+    "number": 43,
+    "question": "에어필터 종류중 하나이다 어떤 필터인지 명칭이랑 사용목적을 적으시오",
+    "sourceAnswer": "명칭:프리필터\n사용목적: 실내에 청정한 공기를 공급하기 위한 필터이다",
+    "image": "assets/hvac-practical/moducbt/43.png",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-44",
+    "number": 44,
+    "question": "에어필터 종류중 하나이다 어떤 필터인지 명칭이랑 사용목적을 적으시오",
+    "sourceAnswer": "명칭: 미디엄 필터\n사용목적: 실내 청정도를 높이는 중성필",
+    "image": "assets/hvac-practical/moducbt/44.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-45",
+    "number": 45,
+    "question": "다음 장치 명칭 특징을 서술하시오",
+    "sourceAnswer": "명칭:다익형 송풍기\n특징: 다른 형식에 비해 회전수가 작",
+    "image": "assets/hvac-practical/moducbt/45.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-46",
+    "number": 46,
+    "question": "다음 장치 명칭 특징을 서술하시오",
+    "sourceAnswer": "명칭: 터보형 송풍기\n특징: 고속회전에도 비교적 정숙한 운전이 가능하다",
+    "image": "assets/hvac-practical/moducbt/46.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  },
+  {
+    "id": "moducbt-hvac-practical-47",
+    "number": 47,
+    "question": "다음 사진에 나와있는 밸브 명칭과 기능을 적으시오",
+    "sourceAnswer": "명칭: 스프링식 안전밸브\n기능: 증기압력이 이상 상승하게 되면 밸브가 열려 폭발을 방지한",
+    "image": "assets/hvac-practical/moducbt/47.jpg",
+    "sourceUrl": "https://www.moducbt.com/exam/solution/4200"
+  }
+]

@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '400';
+const buildVersion = '410';
 
 export default defineConfig({
   base: './',

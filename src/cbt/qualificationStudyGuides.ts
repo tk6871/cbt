@@ -1,4 +1,5 @@
 import { hvacStudyGuideSections, type HvacGuideSection } from './hvacStudyGuide';
+import practicalSourceRows from '../../data/hvac-practical-moducbt.json';
 
 export type StudyFormula = { label: string; tex: string; note: string };
 export type StudyGuidePage = {
@@ -9,7 +10,16 @@ export type StudyGuidePage = {
   sections: HvacGuideSection[];
   formulas: StudyFormula[];
 };
-export type PracticalPrompt = { question: string; answer: string; explanation: string; sourceNote: string };
+export type PracticalPrompt = {
+  id: string;
+  group: 'foundation' | 'public';
+  question: string;
+  answer: string;
+  explanation: string;
+  sourceNote: string;
+  image?: string;
+  sourceUrl?: string;
+};
 
 const energySections: HvacGuideSection[] = [
   {
@@ -142,7 +152,7 @@ const maintenanceSections: HvacGuideSection[] = [
   },
 ];
 
-export const practicalPrompts: PracticalPrompt[] = [
+const foundationPracticalPrompts: PracticalPrompt[] = ([
   { question: '냉동 사이클의 네 주요 장치를 냉매 흐름 순서대로 쓰고 각 장치의 역할을 설명하세요.', answer: '증발기 → 압축기 → 응축기 → 팽창장치', explanation: '증발기는 열을 흡수하고, 압축기는 냉매증기의 압력과 온도를 높입니다. 응축기는 열을 버려 액체로 만들고, 팽창장치는 압력을 낮춰 증발기로 보냅니다.', sourceNote: '공식 출제기준의 냉동장치 운전·점검 범위를 바탕으로 만든 연습문제' },
   { question: '냉동능력 12 kW, 압축기 입력 3 kW인 냉동기의 성능계수(COP)를 구하세요.', answer: 'COP = 12 ÷ 3 = 4', explanation: '냉동 COP는 증발기에서 얻은 냉동효과를 압축기에 넣은 일로 나눈 값입니다. 같은 kW끼리 나누므로 단위는 없습니다.', sourceNote: '2023~2024 공개 복원 강의에서 반복되는 성능계수 유형을 독자 문항으로 재작성' },
   { question: '냉동능력이 12 kW이고 압축기 입력이 3 kW일 때 응축기 방열량을 구하세요.', answer: '15 kW', explanation: '응축기는 증발기에서 가져온 12 kW와 압축기가 보탠 3 kW를 모두 버립니다. 따라서 12+3=15 kW입니다.', sourceNote: '열수지 기본형 독자 연습문제' },
@@ -155,9 +165,79 @@ export const practicalPrompts: PracticalPrompt[] = [
   { question: '압축기 액압축이 위험한 이유를 설명하세요.', answer: '액체 냉매는 거의 압축되지 않아 밸브·피스톤·스크롤 등에 큰 충격과 손상을 줄 수 있기 때문입니다.', explanation: '압축기는 기체를 압축하도록 설계됩니다. 증발되지 않은 액체가 돌아오면 순간 압력이 크게 올라 기계 부품과 오일을 손상시킬 수 있습니다.', sourceNote: '공식 안전운전·고장진단 범위를 바탕으로 만든 연습문제' },
   { question: '진공압이 300 mmHg일 때 절대압력을 kPa로 구하세요. 표준대기압은 760 mmHg=101.325 kPa입니다.', answer: '약 61.3 kPa', explanation: '남은 절대압력은 760-300=460 mmHg입니다. 같은 1기압 비율로 바꾸면 460×101.325÷760≈61.3 kPa입니다.', sourceNote: '압력 환산 반복유형 독자 연습문제' },
   { question: '냉동설비 시운전 전에 확인할 항목을 네 가지 쓰세요.', answer: '기밀·진공 상태, 밸브 개폐 상태, 전원·회전방향, 냉각수·송풍 상태 등을 확인합니다.', explanation: '누설과 수분을 막고, 막힌 밸브나 역회전·냉각 불량으로 장치가 손상되는 일을 예방하는 순서입니다.', sourceNote: '공식 출제기준의 시운전·안전관리 범위를 바탕으로 만든 연습문제' },
-];
+] satisfies Omit<PracticalPrompt, 'id' | 'group'>[]).map((prompt, index) => ({ ...prompt, id: `hvac-practical-foundation-${index + 1}`, group: 'foundation' }));
+
+type CuratedPracticalAnswer = { answer: string; explanation: string };
+
+const curatedPracticalAnswers: Record<number, CuratedPracticalAnswer> = {
+  1: { answer: '부르동관 압력계', explanation: '압력이 올라가면 굽은 금속관이 펴지려는 힘이 생기고, 그 움직임을 바늘에 전달합니다. 측정 범위가 넓고 구조가 단순해 냉동설비 압력 측정에 많이 씁니다.' },
+  2: { answer: '개방형 왕복동 압축기', explanation: '전동기와 압축기가 분리되어 축과 벨트로 연결됩니다. 풀리 비를 바꾸면 회전수 조절이 쉽지만 축봉부에서 냉매가 샐 수 있어 점검이 필요합니다.' },
+  3: { answer: '회전식 압축기', explanation: '실린더 안의 로터가 돌면서 냉매가 들어갈 공간을 점점 줄여 압축합니다. 부품 수가 적고 연속 회전하므로 진동과 소음이 비교적 작습니다.' },
+  4: { answer: '밀폐형 왕복동 압축기', explanation: '전동기와 압축기를 하나의 용접 케이싱 안에 넣은 형식입니다. 냉매 누설과 소음은 적지만 분해 수리가 어렵고, 과부하 운전이 가능하다는 뜻은 아닙니다.' },
+  5: { answer: '스크롤 압축기', explanation: '고정 스크롤과 선회 스크롤 사이의 냉매 공간이 중심으로 이동하며 작아져 압축됩니다. 부품 수가 적고 진동·소음이 작으며 고속 운전에 알맞습니다.' },
+  6: { answer: '왼쪽은 공기열원 히트펌프 냉방 사이클, 오른쪽은 난방 사이클', explanation: '사방밸브가 냉매 흐름을 바꿉니다. 냉방 때 실내 열교환기는 증발기, 난방 때는 응축기 역할을 합니다.' },
+  7: { answer: '빙축열식 냉방설비', explanation: '부하가 적고 전기요금이 싼 밤에 얼음을 만들어 저장하고, 낮의 냉방 부하가 클 때 녹여 사용합니다. 최대전력을 줄일 수 있지만 축열조와 추가 설비 공간이 필요합니다.' },
+  8: { answer: '공냉식 응축기', explanation: '송풍기로 바깥 공기를 핀 코일에 통과시켜 냉매의 열을 버립니다. 냉각수가 필요 없지만 수냉식보다 응축온도가 높아지기 쉽고 설치 면적이 커질 수 있습니다.' },
+  9: { answer: '수냉식 응축기', explanation: '냉각수를 순환시켜 냉매의 열을 빼앗습니다. 공냉식보다 응축온도를 낮게 유지하기 쉽지만 냉각수·냉각탑과 스케일 청소가 필요합니다.' },
+  10: { answer: '터보 압축기', explanation: '고속 임펠러가 냉매에 속도를 주고 디퓨저가 그 속도에너지를 압력으로 바꿉니다. 대용량에 알맞고 운전이 매끄럽지만 서지 방지와 정밀한 운전 관리가 필요합니다.' },
+  11: { answer: '셸 앤드 코일식 응축기', explanation: '원통 셸 안에 나선형 냉각수 코일을 둔 구조입니다. 비교적 간단하고 소형 장치에 쓰지만 코일 안쪽을 기계적으로 청소하기 어렵습니다.' },
+  12: { answer: '매니폴드 게이지', explanation: '저압측(청색)과 고압측(적색)의 압력을 확인하고, 가운데 호스로 진공·냉매 충전·회수 작업을 합니다. 밸브를 잘못 열면 고압 냉매가 역류할 수 있어 연결 순서를 지켜야 합니다.' },
+  13: { answer: '스크루 압축기', explanation: '암·수 로터가 맞물려 돌면서 냉매 공간을 줄여 흡입·압축·토출합니다. 부품 수가 적고 대용량 연속 운전에 알맞습니다.' },
+  14: { answer: '이중관식 응축기', explanation: '한 관 안에 다른 관을 넣어 냉매와 냉각수가 서로 다른 통로로 흐르게 합니다. 구조가 단순하고 고압에 견디기 쉬워 소용량 수냉식 장치에 사용합니다.' },
+  15: { answer: '증발식 응축기', explanation: '코일에 물을 뿌리고 공기를 통과시켜 물이 증발할 때 빼앗는 열로 냉매를 응축합니다. 외기 건구온도보다 습구온도의 영향을 크게 받습니다.' },
+  16: { answer: '정압식 팽창밸브', explanation: '증발압력을 일정하게 유지하도록 냉매량을 조절합니다. 증발압력이 내려가면 더 열리고, 올라가면 닫히는 방향으로 작동합니다.' },
+  17: { answer: '냉매 분배기', explanation: '여러 회로로 나뉜 증발기 입구에 냉매를 고르게 나눠 줍니다. 분배가 불균일하면 일부 회로는 냉매가 부족하고 다른 회로는 과다해질 수 있습니다.' },
+  18: { answer: '대향류형 냉각탑', explanation: '아래에서 올라가는 공기와 위에서 떨어지는 냉각수가 반대 방향으로 만나며, 물 일부가 증발할 때 열을 빼앗아 냉각수 온도를 낮춥니다.' },
+  19: { answer: '플레이트형 증발기', explanation: '얇은 금속판 사이에 냉매 통로를 만들어 넓은 면적으로 열을 교환합니다. 작고 열전달이 좋지만 통로가 좁아 오염과 동결 관리가 중요합니다.' },
+  20: { answer: '전자식 팽창밸브', explanation: '센서와 제어기가 증발기 출구 과열도를 보고 밸브 개도를 세밀하게 바꿉니다. 부하 변화에 빠르게 대응해 냉매 공급량을 정밀하게 조절합니다.' },
+  21: { answer: '관 코일식 증발기', explanation: '냉각하려는 공간이나 액체 속에 코일을 두고 그 안으로 냉매를 흐르게 합니다. 구조는 단순하지만 전열면적을 늘리려면 관이 길어져 압력강하가 커질 수 있습니다.' },
+  22: { answer: '사이트 글라스(투시경)', explanation: '보통 응축기와 팽창장치 사이 액관에 설치해 냉매 흐름의 기포와 수분 지시 상태를 확인합니다. 수분 지시 색은 제품마다 기준이 다르므로 해당 표시표를 따라야 합니다.' },
+  23: { answer: '액-가스 열교환기', explanation: '고압 액냉매와 저압 흡입가스가 서로 열을 주고받습니다. 액냉매는 과냉되고 흡입가스는 과열되어 플래시가스와 압축기 액압축 위험을 줄입니다.' },
+  24: { answer: '액분리기(흡입 액분리기)', explanation: '증발기와 압축기 사이에서 액체 냉매를 임시로 가둬 기체 위주로 압축기에 보내 액압축을 막습니다.' },
+  25: { answer: '스톱 밸브(차단밸브)', explanation: '냉매나 유체의 통로를 완전히 열거나 닫아 장치 일부를 격리할 때 씁니다. 유량을 정밀 조절하는 밸브와 목적이 다릅니다.' },
+  26: { answer: '플렉시블 조인트(플렉시블 관)', explanation: '압축기나 송풍기에서 생긴 진동이 배관·덕트로 전달되는 것을 줄이고, 약간의 변위와 열팽창을 흡수합니다.' },
+  27: { answer: '로터록(Rotalock) 밸브', explanation: '압축기나 수액기 접속부에서 냉매 회로를 차단·격리하고 서비스 작업을 할 수 있게 하는 밸브입니다. 서비스 포트로 압력 측정 장치를 연결할 수도 있습니다.' },
+  28: { answer: '파열판', explanation: '내부 압력이 설정값을 넘으면 얇은 금속판이 파열되어 압력을 방출합니다. 한 번 작동하면 다시 닫히지 않으므로 새것으로 교체해야 합니다.' },
+  29: { answer: '가용전', explanation: '온도가 비정상적으로 올라가면 저융점 합금이 녹아 냉매를 방출해 용기 파열을 막습니다. 압력 자체보다 온도에 반응하는 안전장치입니다.' },
+  30: { answer: '유압 안전스위치(오일 차압 스위치)', explanation: '오일펌프 토출압과 크랭크케이스 압력의 차가 부족한 상태가 일정 시간 계속되면 압축기를 정지시켜 윤활 불량 손상을 막습니다.' },
+  31: { answer: '증발압력 조정밸브(EPR)', explanation: '증발기 출구에 설치해 증발압력이 설정값 아래로 떨어지지 않게 합니다. 따라서 증발온도와 냉각 대상의 온도가 지나치게 낮아지는 것을 막습니다.' },
+  32: { answer: '흡입압력 조정밸브(CPR)', explanation: '압축기 흡입압력이 설정값보다 높아지지 않게 제한합니다. 시동이나 큰 부하 때 압축기와 전동기의 과부하를 막는 장치입니다.' },
+  33: { answer: '절수밸브', explanation: '응축압력 변화에 따라 냉각수 유량을 조절해 응축압력을 알맞게 유지하면서 물 사용량을 줄입니다.' },
+  34: { answer: '버니어 캘리퍼스 — 외경·내경·깊이 측정', explanation: '큰 턱은 바깥지름, 작은 턱은 안지름, 끝의 깊이봉은 구멍 깊이를 잽니다. 본척과 버니어 눈금을 함께 읽습니다.' },
+  35: { answer: '외측 마이크로미터 — 두께·바깥지름 측정', explanation: '스핀들과 앤빌 사이에 물체를 가볍게 끼워 종이·판·철사·축의 두께나 외경을 정밀하게 측정합니다. 일반 외측형은 내경·깊이 측정용이 아닙니다.' },
+  36: { answer: '역화방지기', explanation: '가스 용접·절단 때 화염이 호스와 용기 쪽으로 거꾸로 번지는 것을 차단해 화재와 폭발을 막습니다.' },
+  37: { answer: '감압밸브', explanation: '높은 입구 압력을 필요한 낮은 출구 압력으로 낮추고, 입구 압력이 변해도 출구 압력을 가능한 일정하게 유지합니다.' },
+  38: { answer: '유분리기', explanation: '압축기 토출가스에 섞여 나온 냉동기유를 분리해 압축기로 되돌립니다. 열교환기 안에 기름이 쌓이는 것을 줄여 성능과 윤활을 지킵니다.' },
+  39: { answer: '교환식 코어 필터드라이어', explanation: '액관의 수분·산·이물질을 흡착·여과합니다. 건조제로 분자체, 활성 알루미나, 실리카겔 등을 쓰며 정비할 때 코어를 교환할 수 있습니다.' },
+  40: { answer: '공기빼기 밸브(에어 벤트)', explanation: '배관의 높은 곳에 모인 공기를 밖으로 빼 유체 순환 불량, 소음, 부식과 펌프 성능 저하를 줄입니다.' },
+  41: { answer: '① 외기, ② 환기, ③ 혼합공기, ④ 냉각코일 출구, ⑤ 재열코일 출구(급기)', explanation: '①과 ②를 섞은 점이 ③입니다. 냉각·제습하면 ③에서 왼쪽 아래의 ④로 이동하고, 재열이 있으면 습도비는 거의 그대로인 채 오른쪽의 ⑤로 이동합니다.' },
+  42: { answer: '① 외기, ② 환기, ③ 혼합공기, ④ 가열코일 출구, ⑤ 가습기 출구(급기)', explanation: '①과 ②를 섞어 ③을 만들고, 현열가열하면 습도비가 거의 일정한 채 오른쪽의 ④로 이동합니다. 가습하면 수분이 늘어 ⑤로 이동합니다.' },
+  43: { answer: '프리필터', explanation: '큰 먼지와 섬유 같은 조대입자를 먼저 제거해 뒤쪽의 중성능·고성능 필터를 보호하고 수명을 늘립니다.' },
+  44: { answer: '미디엄 필터(중성능 필터)', explanation: '프리필터를 지난 더 작은 먼지를 제거해 실내 청정도를 높입니다. 보통 프리필터 뒤, 고성능 필터 앞 단계에 둡니다.' },
+  45: { answer: '다익형 송풍기(전향익형)', explanation: '앞으로 굽은 날개가 많아 낮은 회전수에서 큰 풍량을 내기 좋습니다. 비교적 저압 공조용에 많이 쓰며 과부하와 오염에 주의합니다.' },
+  46: { answer: '터보형 송풍기(후향익형)', explanation: '뒤로 굽은 날개를 사용해 효율이 높고 비교적 높은 압력에 알맞습니다. 동력의 과부하 경향이 작고 고속에서도 비교적 정숙합니다.' },
+  47: { answer: '스프링식 안전밸브', explanation: '증기나 냉매 압력이 설정값을 넘으면 압력이 스프링 힘을 이겨 밸브가 열리고 유체를 방출합니다. 압력이 내려가면 다시 닫힙니다.' },
+};
+
+const publicPracticalPrompts: PracticalPrompt[] = practicalSourceRows.map((row) => {
+  const curated = curatedPracticalAnswers[row.number];
+  if (!curated) throw new Error(`필답형 ${row.number}번 교정 답안이 없습니다.`);
+  return {
+    id: row.id,
+    group: 'public',
+    question: row.question.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ').trim(),
+    answer: curated.answer,
+    explanation: curated.explanation,
+    sourceNote: '모두CBT 공개 필답형 대비 자료의 문제 이미지를 대조하고, 잘리거나 부정확한 원문 답안은 교정했습니다.',
+    image: row.image,
+    sourceUrl: row.sourceUrl,
+  };
+});
+
+export const practicalPrompts: PracticalPrompt[] = [...publicPracticalPrompts, ...foundationPracticalPrompts];
 
 export const practicalSources = [
+  { label: '모두CBT 공조냉동 필답형 대비 47문항', href: 'https://www.moducbt.com/exam/solution/4200' },
   { label: 'Q-Net 공조냉동기계산업기사 공개문제', href: 'https://www.q-net.or.kr/cst006.do?artlSeq=5205330&brdId=Q006&gSite=Q&id=cst00602' },
   { label: '2024년 1회 필답형 공개 복원 강의', href: 'https://www.youtube.com/watch?v=0unqvzhRN4E' },
   { label: '2023년 2회 필답형 공개 복원 강의', href: 'https://www.youtube.com/watch?v=FKI9B_8YmXI' },
