@@ -1,4 +1,4 @@
-export type PracticalPromptGroup = 'public' | 'foundation' | 'drill';
+export type PracticalPromptGroup = 'public' | 'restored' | 'foundation' | 'drill';
 export type PracticalCategory = 'equipment' | 'cycle' | 'calculation' | 'operation' | 'piping' | 'air' | 'safety';
 export type PracticalDifficulty = 'basic' | 'standard' | 'advanced';
 
@@ -14,7 +14,12 @@ export type PracticalPrompt = {
   sourceNote: string;
   keyPoints?: string[];
   image?: string;
+  images?: string[];
+  answerImages?: string[];
   sourceUrl?: string;
+  year?: number;
+  session?: string;
+  number?: number;
 };
 
 export const practicalCategoryLabels: Record<PracticalCategory, string> = {

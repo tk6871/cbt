@@ -1,6 +1,7 @@
 import { hvacStudyGuideSections, type HvacGuideSection } from './hvacStudyGuide';
 import practicalSourceRows from '../../data/hvac-practical-moducbt.json';
 import { hvacPracticalDrills } from './hvacPracticalDrills';
+import { hvacPracticalRestored } from './hvacPracticalRestored';
 import type { PracticalCategory, PracticalPrompt } from './hvacPracticalTypes';
 
 export type { PracticalPrompt } from './hvacPracticalTypes';
@@ -240,7 +241,12 @@ const publicPracticalPrompts: PracticalPrompt[] = practicalSourceRows.map((row) 
   };
 });
 
-export const practicalPrompts: PracticalPrompt[] = [...publicPracticalPrompts, ...foundationPracticalPrompts, ...hvacPracticalDrills];
+export const practicalPrompts: PracticalPrompt[] = [
+  ...hvacPracticalRestored,
+  ...publicPracticalPrompts,
+  ...foundationPracticalPrompts,
+  ...hvacPracticalDrills,
+];
 
 export const practicalSources = [
   { label: '모두CBT 공조냉동 필답형 대비 47문항', href: 'https://www.moducbt.com/exam/solution/4200' },

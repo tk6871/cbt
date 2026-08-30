@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="700" viewBox="0 0 960 700">
+  <rect width="960" height="700" fill="#fff"/>
+  <g stroke="#263238" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="230" y="95" width="500" height="170" rx="85"/>
+    <path d="M230 205H730" stroke="#3b82f6"/>
+    <rect x="310" y="390" width="340" height="175" rx="12"/>
+    <path d="M350 430c70-55 150 55 230 0v95c-70-55-150 55-230 0z"/>
+    <path d="M330 390V245H350M630 390V245H610"/>
+    <path d="M350 245V205M610 245V135"/>
+    <path d="M730 150H845M845 150l-24-14M845 150l-24 14"/>
+    <path d="M125 205H230M125 205l24-14M125 205l24 14"/>
+    <path d="M125 205v360h185"/>
+    <path d="M310 565l-24-14M310 565l-24 14"/>
+  </g>
+  <g fill="#263238" font-family="sans-serif" font-size="26" font-weight="700">
+    <text x="365" y="145">저압 수액기</text><text x="425" y="485">증발기</text><text x="755" y="125">압축기 방향</text><text x="55" y="185">팽창장치</text>
+  </g>
+</svg>

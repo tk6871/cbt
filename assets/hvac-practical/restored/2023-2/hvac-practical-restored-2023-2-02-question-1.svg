@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520">
+  <rect width="920" height="520" fill="#fff"/>
+  <g stroke="#334155" stroke-width="5" fill="none">
+    <path d="M90 430H850M120 465V70"/>
+    <path d="M240 330H700" stroke="#2563eb" stroke-width="9" marker-end="url(#arrow)"/>
+    <path d="M180 400C260 210 420 130 800 95" stroke="#94a3b8" stroke-width="4"/>
+  </g>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2563eb"/></marker></defs>
+  <circle cx="240" cy="330" r="13" fill="#dc2626"/><circle cx="700" cy="330" r="13" fill="#dc2626"/>
+  <g font-family="sans-serif" fill="#111827" font-size="28"><text x="205" y="375">A: 19℃</text><text x="670" y="375">B: 28℃</text><text x="430" y="305">수평 가열</text><text x="350" y="495">절대습도 일정</text></g>
+</svg>

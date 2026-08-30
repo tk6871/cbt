@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+  <rect width="900" height="520" fill="#fff"/>
+  <g stroke="#1f2937" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="210" y="70" width="480" height="310" rx="28" fill="#e5e7eb"/>
+    <circle cx="355" cy="210" r="92" fill="#fff"/>
+    <circle cx="545" cy="210" r="92" fill="#fff"/>
+    <path d="M355 210l42-46M545 210l-35 54"/>
+    <path d="M285 210h24M401 210h24M355 140v24M475 210h24M591 210h24M545 140v24" stroke-width="5"/>
+    <path d="M300 380v70M600 380v70M270 450h60M570 450h60"/>
+    <rect x="390" y="330" width="120" height="85" rx="12" fill="#d1d5db"/>
+  </g>
+  <text x="450" y="495" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#475569">냉동장치 압력 보호 스위치</text>
+</svg>
