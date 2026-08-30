@@ -93,7 +93,7 @@ type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
-type PracticalPromptFilter = 'all' | 'public' | 'foundation' | 'drill' | 'review';
+type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'review';
 type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; updatedAt: number };
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number };
@@ -686,7 +686,10 @@ const hvacPracticalAvailable = computed(() =>
   && (Boolean(cloudSyncState.email) || location.hostname === '127.0.0.1' || location.hostname === 'localhost'));
 const practicalPromptFilter = ref<PracticalPromptFilter>('all');
 const practicalCategoryFilter = ref<'all' | PracticalCategory>('all');
+const practicalRoundFilter = ref('all');
 const practicalSearch = ref('');
+const practicalPage = ref(1);
+const practicalPageSize = 12;
 const practicalCategoryOptions = Object.entries(practicalCategoryLabels) as [PracticalCategory, string][];
 const practicalProgressStorageKey = 'unified-cbt-hvac-practical-progress-v1';
 const practicalSessionStorageKey = 'unified-cbt-hvac-practical-session-v1';
@@ -737,6 +740,18 @@ const practicalReviewCount = computed(() => practicalPrompts.filter((prompt) => 
 }).length);
 const practicalMasteredCount = computed(() => practicalPrompts.filter((prompt) => practicalProgress[prompt.id]?.grade === 'correct').length);
 const practicalPartialCount = computed(() => practicalPrompts.filter((prompt) => practicalProgress[prompt.id]?.grade === 'partial').length);
+const practicalGroupCounts = computed(() => practicalPrompts.reduce<Record<PracticalPrompt['group'], number>>((counts, prompt) => {
+  counts[prompt.group] += 1;
+  return counts;
+}, { public: 0, restored: 0, foundation: 0, drill: 0 }));
+const practicalRoundOptions = computed(() => {
+  const rounds = new Map<string, string>();
+  for (const prompt of practicalPrompts) {
+    if (!prompt.year || !prompt.session) continue;
+    rounds.set(`${prompt.year}-${prompt.session}`, `${prompt.year}년 ${formatPracticalSession(prompt.session)}`);
+  }
+  return [...rounds.entries()].sort(([a], [b]) => b.localeCompare(a, 'ko', { numeric: true }));
+});
 const practicalFilteredPrompts = computed(() => {
   const query = practicalSearch.value.trim().toLocaleLowerCase('ko');
   return practicalPrompts.filter((prompt) => {
@@ -746,13 +761,26 @@ const practicalFilteredPrompts = computed(() => {
         ? progress?.grade === 'partial' || progress?.grade === 'review'
         : prompt.group === practicalPromptFilter.value);
     const categoryMatches = practicalCategoryFilter.value === 'all' || prompt.category === practicalCategoryFilter.value;
+    const roundMatches = practicalRoundFilter.value === 'all'
+      || `${prompt.year || ''}-${prompt.session || ''}` === practicalRoundFilter.value;
     const queryMatches = !query || `${prompt.question} ${prompt.answer} ${prompt.explanation}`.toLocaleLowerCase('ko').includes(query);
-    return sourceMatches && categoryMatches && queryMatches;
+    return sourceMatches && categoryMatches && roundMatches && queryMatches;
   });
 });
-const visiblePracticalPrompts = computed(() => practicalSessionActive.value
-  ? practicalSessionIds.value.map((id) => practicalPromptById.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt))
-  : practicalFilteredPrompts.value);
+const practicalPageCount = computed(() => Math.max(1, Math.ceil(practicalFilteredPrompts.value.length / practicalPageSize)));
+const visiblePracticalPrompts = computed(() => {
+  if (practicalSessionActive.value) {
+    return practicalSessionIds.value.map((id) => practicalPromptById.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt));
+  }
+  const start = (practicalPage.value - 1) * practicalPageSize;
+  return practicalFilteredPrompts.value.slice(start, start + practicalPageSize);
+});
+watch([practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalSearch], () => {
+  practicalPage.value = 1;
+});
+watch(practicalPromptFilter, (filter) => {
+  if (filter !== 'all' && filter !== 'restored' && filter !== 'review') practicalRoundFilter.value = 'all';
+});
 const practicalSessionRemainingSeconds = computed(() => {
   if (!practicalSessionActive.value) return 0;
   if (practicalSessionFinished.value) return practicalSessionStoppedSeconds.value;
@@ -825,8 +853,24 @@ function practicalGradeLabel(grade?: PracticalGrade): string {
 
 function practicalGroupLabel(group: PracticalPrompt['group']): string {
   if (group === 'public') return '공개 자료';
+  if (group === 'restored') return '회차별 복원';
   if (group === 'foundation') return '기초 연습';
   return '심화 연습';
+}
+
+function formatPracticalSession(session: string): string {
+  const variant = session.match(/^(\d+)([AB])$/i);
+  return variant ? `${variant[1]}회 ${variant[2].toUpperCase()}형` : `${session}회`;
+}
+
+function practicalListNumber(index: number): string {
+  const number = practicalSessionActive.value ? index + 1 : ((practicalPage.value - 1) * practicalPageSize) + index + 1;
+  return String(number).padStart(2, '0');
+}
+
+function changePracticalPage(nextPage: number): void {
+  practicalPage.value = Math.min(practicalPageCount.value, Math.max(1, nextPage));
+  void nextTick(() => document.querySelector('.practical-filter-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
 }
 
 function formatPracticalTime(seconds: number): string {
@@ -835,8 +879,18 @@ function formatPracticalTime(seconds: number): string {
   return `${String(minutes).padStart(2, '0')}:${String(remainder).padStart(2, '0')}`;
 }
 
+function uniquePracticalCandidates(candidates: PracticalPrompt[]): PracticalPrompt[] {
+  const seen = new Set<string>();
+  return candidates.filter((prompt) => {
+    const key = `${prompt.question} ${prompt.answer}`.normalize('NFKC').toLocaleLowerCase('ko').replace(/[^0-9a-z가-힣]+/g, '');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
 function startPracticalMock(): void {
-  const candidates = practicalFilteredPrompts.value.length ? practicalFilteredPrompts.value : practicalPrompts;
+  const candidates = uniquePracticalCandidates(practicalFilteredPrompts.value);
   const selected = shuffle(candidates).slice(0, Math.min(12, candidates.length));
   if (!selected.length) {
     showToast('현재 조건에 맞는 필답형 문제가 없습니다.');
@@ -4211,8 +4265,8 @@ onBeforeUnmount(() => {
           </section>
           <section v-if="hvacPracticalAvailable" class="practical-study-room">
             <header>
-              <div><span>LOGIN ONLY · WRITTEN PRACTICE 2.0</span><h2>공조냉동 실기 필답형 훈련관</h2><p>공개 자료 47문항에 독자 기초·심화 48문항을 더했습니다. 답을 직접 쓰고 채점한 뒤, 부족한 문제만 다시 모아 풀 수 있습니다.</p></div>
-              <strong>{{ visiblePracticalPrompts.length }} / {{ practicalPrompts.length }}문제</strong>
+              <div><span>LOGIN ONLY · WRITTEN PRACTICE 3.0</span><h2>공조냉동 실기 필답형 훈련관</h2><p>공개 자료와 독자 연습문제에 회차별 복원 기출을 더했습니다. 답을 직접 쓰고 채점한 뒤, 부족한 문제만 다시 모아 풀 수 있습니다.</p></div>
+              <strong>{{ practicalFilteredPrompts.length }} / {{ practicalPrompts.length }}문제</strong>
             </header>
             <div class="practical-exam-facts">
               <span><b>12문제</b> 실제 필답 구성</span><span><b>90분</b> 공식 시험시간</span><span><b>60점</b> 필답 배점</span><span><b>40점</b> 동관 작업</span>
@@ -4231,9 +4285,10 @@ onBeforeUnmount(() => {
             <template v-else>
               <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
                 <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 47</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'foundation' }" @click="practicalPromptFilter = 'foundation'">기초 연습 12</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'drill' }" @click="practicalPromptFilter = 'drill'">심화 연습 36</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 복원 {{ practicalGroupCounts.restored }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 {{ practicalGroupCounts.public }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'foundation' }" @click="practicalPromptFilter = 'foundation'">기초 연습 {{ practicalGroupCounts.foundation }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'drill' }" @click="practicalPromptFilter = 'drill'">심화 연습 {{ practicalGroupCounts.drill }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'review' }" @click="practicalPromptFilter = 'review'">복습 {{ practicalReviewCount }}</button>
               </div>
               <div class="practical-category-tabs" aria-label="필답형 분야 선택">
@@ -4242,18 +4297,22 @@ onBeforeUnmount(() => {
               </div>
               <div class="practical-toolbar">
                 <label><span>문제 검색</span><input v-model="practicalSearch" type="search" placeholder="예: 과열도, 진공, 냉각수"></label>
-                <button type="button" @click="startPracticalMock"><strong>랜덤 12문제 실전</strong><small>90분 타이머 · 직접 답안 작성</small></button>
+                <label v-if="practicalRoundOptions.length && (practicalPromptFilter === 'all' || practicalPromptFilter === 'restored' || practicalPromptFilter === 'review')" class="practical-round-select"><span>복원 회차</span><select v-model="practicalRoundFilter"><option value="all">전체 회차</option><option v-for="([value, label]) in practicalRoundOptions" :key="value" :value="value">{{ label }}</option></select></label>
+                <button type="button" @click="startPracticalMock"><strong>랜덤 12문제 실전</strong><small>중복 유형 제외 · 90분 타이머</small></button>
               </div>
             </template>
             <p v-if="!visiblePracticalPrompts.length" class="practical-empty">현재 조건에 맞는 문제가 없습니다. 분야나 문제 묶음을 바꿔 보세요.</p>
             <div v-else class="practical-question-grid">
               <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :class="`grade-${practicalProgress[prompt.id]?.grade || 'none'}`">
                 <header>
-                  <span>{{ String(index + 1).padStart(2, '0') }}</span>
-                  <div><small>{{ practicalGroupLabel(prompt.group) }} · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }}</small><h3>{{ prompt.question }}</h3></div>
+                  <span>{{ practicalListNumber(index) }}</span>
+                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.number }}번</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }}</small><h3>{{ prompt.question }}</h3></div>
                   <b>{{ practicalGradeLabel(practicalProgress[prompt.id]?.grade) }}</b>
                 </header>
                 <img v-if="prompt.image" class="practical-prompt-image" :src="prompt.image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림`" loading="lazy">
+                <div v-if="prompt.images?.length" class="practical-prompt-images">
+                  <img v-for="(image, imageIndex) in prompt.images" :key="image" class="practical-prompt-image" :src="image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림 ${imageIndex + 1}`" loading="lazy">
+                </div>
                 <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
                 <div class="practical-answer-actions">
                   <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '정답 닫기' : '정답·채점 기준 보기' }}</button>
@@ -4262,6 +4321,7 @@ onBeforeUnmount(() => {
                 <div v-if="practicalAnswerRevealed(prompt.id)" class="practical-solution">
                   <p><b>모범답안</b>{{ prompt.answer }}</p>
                   <p><b>쉬운 풀이</b>{{ prompt.explanation }}</p>
+                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
                   <div v-if="prompt.keyPoints?.length" class="practical-key-points"><strong>채점 핵심어</strong><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></div>
                   <div class="practical-self-grade" aria-label="자가 채점">
                     <span>내 답과 비교해 채점</span>
@@ -4273,6 +4333,11 @@ onBeforeUnmount(() => {
                 </div>
               </article>
             </div>
+            <nav v-if="!practicalSessionActive && practicalPageCount > 1" class="practical-pagination" aria-label="필답형 문제 페이지">
+              <button type="button" :disabled="practicalPage === 1" @click="changePracticalPage(practicalPage - 1)">← 이전 12문제</button>
+              <span><b>{{ practicalPage }}</b> / {{ practicalPageCount }} 페이지</span>
+              <button type="button" :disabled="practicalPage === practicalPageCount" @click="changePracticalPage(practicalPage + 1)">다음 12문제 →</button>
+            </nav>
           </section>
           <div class="hvac-guide-grid">
             <article v-for="(section, index) in activeStudyGuide.sections" :key="section.title">

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="700" viewBox="0 0 960 700">
+  <rect width="960" height="700" fill="#fff"/>
+  <g stroke="#263238" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="210" y="90" width="540" height="500" rx="18"/>
+    <circle cx="480" cy="145" r="45"/><path d="M480 100V60M430 145H390M530 145H570"/>
+    <path d="M335 220H625"/><path d="M355 220v35M405 220v35M455 220v35M505 220v35M555 220v35M605 220v35"/>
+    <path d="M355 285c80-55 170 55 250 0v180c-80-55-170 55-250 0z"/>
+    <path d="M280 520H680"/><path d="M300 520v45M660 520v45"/>
+    <path d="M270 565H690"/><path d="M305 565V220H335"/><circle cx="305" cy="445" r="28"/>
+    <path d="M480 190V125M480 125l-14 24M480 125l14 24"/>
+    <path d="M325 495V310M325 310l-13 24M325 310l13 24M635 495V310M635 310l-13 24M635 310l13 24" stroke="#3b82f6"/>
+  </g>
+  <g fill="#263238" font-family="sans-serif" font-size="25" font-weight="700">
+    <text x="545" y="305">냉매 코일</text><text x="350" y="605">물받이</text><text x="220" y="455">펌프</text><text x="585" y="205">분무노즐</text><text x="505" y="78">공기 배출</text>
+  </g>
+</svg>

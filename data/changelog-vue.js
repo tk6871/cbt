@@ -5,6 +5,22 @@
 
   const entries = [
     {
+      version: '4.4',
+      scope: 'industrial',
+      date: '2026.08.30',
+      title: '공조 필답형 복원 312문제 확장',
+      summary: '2018년 3회부터 2026년 2회까지 회차별 복원 312문제를 더해 필답형 훈련관을 총 407문제로 확장했습니다.',
+      tags: ['공조 필답형', '312문제', '26회차', '회차별 복원'],
+      changes: [
+        '사용자 제공 복원 자료를 회차·문제별로 정리해 2018년 3회부터 2026년 2회까지 26회차·312문제를 추가했습니다.',
+        '기존 공개·기초·심화 95문제는 그대로 유지해 필답형 훈련관에서 총 407문제를 풀 수 있습니다.',
+        '모범답안과 채점 핵심어, 처음 공부하는 사람도 원리를 따라갈 수 있는 짧은 풀이를 문제마다 제공합니다.',
+        '회로·배관·장치 그림과 답안 도식을 연결하고 회차·분야·검색 필터와 12문제 페이지 이동을 추가했습니다.',
+        '무작위 실전은 현재 선택한 회차·분야·검색 조건을 따르고 같은 문제·답 유형은 한 번만 출제합니다.',
+        '서비스워커 캐시 v440, Android 앱 v4.4로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.3',
       scope: 'industrial',
       date: '2026.08.29',
@@ -1960,8 +1976,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.3';
+  changelog.versions.industrial = '4.4';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.3';
+  changelog.currentVersion = '4.4';
   window.CBT_CHANGELOG = changelog;
 })();
