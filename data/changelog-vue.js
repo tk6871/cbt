@@ -5,6 +5,23 @@
 
   const entries = [
     {
+      version: '4.5',
+      scope: 'industrial',
+      date: '2026.08.31',
+      title: '공조 필답형 실전 답안지와 암기 모드',
+      summary: '태블릿 펜으로 실제 답안처럼 쓰는 답안지와 문제·정답·도식을 함께 보는 암기 모드를 추가하고, 가려진 복원 그림을 교체했습니다.',
+      tags: ['공조 필답형', '손글씨 답안지', '암기 모드', '복원 그림 개선'],
+      changes: [
+        '필답형 공부 방식을 직접 입력, 실전 손글씨 답안지, 답까지 암기 세 가지로 나눴습니다.',
+        '실전 답안지는 S펜 압력과 팜 리젝션을 지원하며 펜·손가락·마우스 입력, 지우개·되돌리기·전체 지우기·PNG 저장을 제공합니다.',
+        '손글씨 답안은 문제마다 현재 기기에 자동 보존되어 정답을 펼친 뒤에도 다시 비교할 수 있습니다.',
+        '암기 모드에서는 문제와 모범답안·쉬운 풀이·채점 핵심어·답안 도식을 한 화면에서 함께 봅니다.',
+        '강의자에게 주요 내용이 가려졌던 최근 복원 문제 8개를 같은 원본 영상의 깨끗한 장면으로 교체하고 완성 답안 도식 8장을 분리했습니다.',
+        'Android 앱은 최신 웹 화면을 불러오므로 일반 문제·해설·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영되며, 연결 실패 시 APK 내장 v4.5 화면으로 자동 전환됩니다.',
+        '서비스워커 캐시 v450, Android 앱 v4.5로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.4',
       scope: 'industrial',
       date: '2026.08.30',
@@ -1976,8 +1993,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.4';
+  changelog.versions.industrial = '4.5';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.4';
+  changelog.currentVersion = '4.5';
   window.CBT_CHANGELOG = changelog;
 })();

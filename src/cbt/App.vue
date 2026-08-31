@@ -78,6 +78,7 @@ import {
 import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, SessionState, StudyMode } from './types';
 
 const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
+const PracticalAnswerPad = defineAsyncComponent(() => import('./PracticalAnswerPad.vue'));
 
 type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
@@ -96,6 +97,7 @@ type PredictionRange = 'selected' | 'recent' | 'all';
 type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'review';
 type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; updatedAt: number };
+type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number };
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
@@ -689,7 +691,12 @@ const practicalCategoryFilter = ref<'all' | PracticalCategory>('all');
 const practicalRoundFilter = ref('all');
 const practicalSearch = ref('');
 const practicalPage = ref(1);
-const practicalPageSize = 12;
+const practicalStudyModeStorageKey = 'unified-cbt-hvac-practical-study-mode-v1';
+const storedPracticalStudyMode = localStorage.getItem(practicalStudyModeStorageKey);
+const practicalStudyMode = ref<PracticalStudyMode>(
+  storedPracticalStudyMode === 'handwrite' || storedPracticalStudyMode === 'memorize' ? storedPracticalStudyMode : 'type',
+);
+const practicalPageSize = computed(() => practicalStudyMode.value === 'handwrite' ? 1 : 12);
 const practicalCategoryOptions = Object.entries(practicalCategoryLabels) as [PracticalCategory, string][];
 const practicalProgressStorageKey = 'unified-cbt-hvac-practical-progress-v1';
 const practicalSessionStorageKey = 'unified-cbt-hvac-practical-session-v1';
@@ -767,19 +774,23 @@ const practicalFilteredPrompts = computed(() => {
     return sourceMatches && categoryMatches && roundMatches && queryMatches;
   });
 });
-const practicalPageCount = computed(() => Math.max(1, Math.ceil(practicalFilteredPrompts.value.length / practicalPageSize)));
+const practicalPagedPrompts = computed(() => practicalSessionActive.value
+  ? practicalSessionIds.value.map((id) => practicalPromptById.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt))
+  : practicalFilteredPrompts.value);
+const practicalPageCount = computed(() => Math.max(1, Math.ceil(practicalPagedPrompts.value.length / practicalPageSize.value)));
 const visiblePracticalPrompts = computed(() => {
-  if (practicalSessionActive.value) {
-    return practicalSessionIds.value.map((id) => practicalPromptById.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt));
-  }
-  const start = (practicalPage.value - 1) * practicalPageSize;
-  return practicalFilteredPrompts.value.slice(start, start + practicalPageSize);
+  const start = (practicalPage.value - 1) * practicalPageSize.value;
+  return practicalPagedPrompts.value.slice(start, start + practicalPageSize.value);
 });
 watch([practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalSearch], () => {
   practicalPage.value = 1;
 });
 watch(practicalPromptFilter, (filter) => {
   if (filter !== 'all' && filter !== 'restored' && filter !== 'review') practicalRoundFilter.value = 'all';
+});
+watch(practicalStudyMode, (mode) => {
+  practicalPage.value = 1;
+  localStorage.setItem(practicalStudyModeStorageKey, mode);
 });
 const practicalSessionRemainingSeconds = computed(() => {
   if (!practicalSessionActive.value) return 0;
@@ -864,13 +875,14 @@ function formatPracticalSession(session: string): string {
 }
 
 function practicalListNumber(index: number): string {
-  const number = practicalSessionActive.value ? index + 1 : ((practicalPage.value - 1) * practicalPageSize) + index + 1;
+  const number = ((practicalPage.value - 1) * practicalPageSize.value) + index + 1;
   return String(number).padStart(2, '0');
 }
 
 function changePracticalPage(nextPage: number): void {
   practicalPage.value = Math.min(practicalPageCount.value, Math.max(1, nextPage));
-  void nextTick(() => document.querySelector('.practical-filter-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+  void nextTick(() => (document.querySelector('.practical-filter-tabs') || document.querySelector('.practical-mode-switch'))
+    ?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
 }
 
 function formatPracticalTime(seconds: number): string {
@@ -906,7 +918,9 @@ function startPracticalMock(): void {
   practicalSessionStoppedSeconds.value = 0;
   practicalSessionDeadline.value = Date.now() + 90 * 60 * 1000;
   practicalClock.value = Date.now();
+  practicalPage.value = 1;
   practicalRevealedIds.value = [];
+  if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'handwrite';
   persistPracticalSession();
   showToast(selected.length === 12 ? '필답형 12문제 실전을 시작합니다.' : `${selected.length}문제 맞춤 연습을 시작합니다.`);
   void nextTick(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
@@ -928,6 +942,7 @@ function closePracticalMock(): void {
   practicalSessionFinished.value = false;
   practicalSessionStoppedSeconds.value = 0;
   practicalRevealedIds.value = [];
+  practicalPage.value = 1;
   persistPracticalSession();
 }
 
@@ -4278,6 +4293,16 @@ onBeforeUnmount(() => {
               <div><span>다시 보기</span><strong>{{ practicalReviewCount }}</strong><small>문제</small></div>
               <button type="button" @click="showPracticalReview">복습 문제 모아보기</button>
             </div>
+            <div class="practical-mode-switch" role="group" aria-label="필답형 공부 방식">
+              <div>
+                <button type="button" :class="{ active: practicalStudyMode === 'type' }" @click="practicalStudyMode = 'type'"><b>직접 입력</b><small>키보드로 답안 작성</small></button>
+                <button type="button" :class="{ active: practicalStudyMode === 'handwrite' }" @click="practicalStudyMode = 'handwrite'"><b>실전 답안지</b><small>펜으로 쓰고 도식 그리기</small></button>
+                <button v-if="!practicalSessionActive" type="button" :class="{ active: practicalStudyMode === 'memorize' }" @click="practicalStudyMode = 'memorize'"><b>답까지 암기</b><small>문제·정답·도식 함께 보기</small></button>
+              </div>
+              <p v-if="practicalStudyMode === 'memorize'"><b>암기 순서</b> 문제를 읽고 3초간 답을 떠올린 뒤, 바로 아래 모범답안에서 핵심어와 도식을 함께 확인하세요.</p>
+              <p v-else-if="practicalStudyMode === 'handwrite'"><b>실전 연습</b> 답을 먼저 손으로 쓰고 정답을 펼쳐 핵심어를 비교하세요. 작성한 답안은 문제별로 이 기기에 보존됩니다.</p>
+              <p v-else><b>기본 연습</b> 짧은 문장보다 채점 핵심어를 빠뜨리지 않는 연습이 중요합니다.</p>
+            </div>
             <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
               <div><span>{{ practicalSessionFinished ? 'SELF GRADING COMPLETE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionIds.length * 5}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small></div>
               <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">실전 종료·점수 보기</button><button type="button" @click="closePracticalMock">목록으로 돌아가기</button></div>
@@ -4303,7 +4328,7 @@ onBeforeUnmount(() => {
             </template>
             <p v-if="!visiblePracticalPrompts.length" class="practical-empty">현재 조건에 맞는 문제가 없습니다. 분야나 문제 묶음을 바꿔 보세요.</p>
             <div v-else class="practical-question-grid">
-              <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :class="`grade-${practicalProgress[prompt.id]?.grade || 'none'}`">
+              <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :class="[`grade-${practicalProgress[prompt.id]?.grade || 'none'}`, { 'memorize-mode': practicalStudyMode === 'memorize' }]">
                 <header>
                   <span>{{ practicalListNumber(index) }}</span>
                   <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.number }}번</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }}</small><h3>{{ prompt.question }}</h3></div>
@@ -4313,17 +4338,18 @@ onBeforeUnmount(() => {
                 <div v-if="prompt.images?.length" class="practical-prompt-images">
                   <img v-for="(image, imageIndex) in prompt.images" :key="image" class="practical-prompt-image" :src="image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림 ${imageIndex + 1}`" loading="lazy">
                 </div>
-                <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
-                <div class="practical-answer-actions">
+                <label v-if="practicalStudyMode === 'type'" class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
+                <PracticalAnswerPad v-else-if="practicalStudyMode === 'handwrite'" :prompt-id="prompt.id" :disabled="practicalSessionFinished" />
+                <div v-if="practicalStudyMode !== 'memorize'" class="practical-answer-actions">
                   <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '정답 닫기' : '정답·채점 기준 보기' }}</button>
                   <button v-if="practicalProgress[prompt.id]" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
                 </div>
-                <div v-if="practicalAnswerRevealed(prompt.id)" class="practical-solution">
+                <div v-if="practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id)" class="practical-solution">
                   <p><b>모범답안</b>{{ prompt.answer }}</p>
                   <p><b>쉬운 풀이</b>{{ prompt.explanation }}</p>
                   <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
                   <div v-if="prompt.keyPoints?.length" class="practical-key-points"><strong>채점 핵심어</strong><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></div>
-                  <div class="practical-self-grade" aria-label="자가 채점">
+                  <div v-if="practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
                     <span>내 답과 비교해 채점</span>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'correct' }" @click="markPracticalPrompt(prompt.id, 'correct')">✓ 정답 5점</button>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 2.5점</button>
@@ -4333,10 +4359,10 @@ onBeforeUnmount(() => {
                 </div>
               </article>
             </div>
-            <nav v-if="!practicalSessionActive && practicalPageCount > 1" class="practical-pagination" aria-label="필답형 문제 페이지">
-              <button type="button" :disabled="practicalPage === 1" @click="changePracticalPage(practicalPage - 1)">← 이전 12문제</button>
+            <nav v-if="practicalPageCount > 1" class="practical-pagination" aria-label="필답형 문제 페이지">
+              <button type="button" :disabled="practicalPage === 1" @click="changePracticalPage(practicalPage - 1)">← {{ practicalStudyMode === 'handwrite' ? '이전 문제' : '이전 12문제' }}</button>
               <span><b>{{ practicalPage }}</b> / {{ practicalPageCount }} 페이지</span>
-              <button type="button" :disabled="practicalPage === practicalPageCount" @click="changePracticalPage(practicalPage + 1)">다음 12문제 →</button>
+              <button type="button" :disabled="practicalPage === practicalPageCount" @click="changePracticalPage(practicalPage + 1)">{{ practicalStudyMode === 'handwrite' ? '다음 문제' : '다음 12문제' }} →</button>
             </nav>
           </section>
           <div class="hvac-guide-grid">

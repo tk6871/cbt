@@ -2,10 +2,12 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '440';
+const buildVersion = '450';
+const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
   base: './',
@@ -28,6 +30,13 @@ export default defineConfig({
         minify: true,
         sourcemap: false,
       },
+    }),
+    analyzeBundle && visualizer({
+      filename: `work/bundle-report-v${buildVersion}.html`,
+      gzipSize: true,
+      brotliSize: true,
+      open: false,
+      template: 'treemap',
     }),
   ],
   build: {

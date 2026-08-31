@@ -28,4 +28,5 @@ work/energy-upscaled/
 work/energy-upscale-temp/
 work/energy-upscale-logs/
 work/image-upscale-macos/
+work/bundle-report-*.html
 __pycache__/

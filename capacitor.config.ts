@@ -8,6 +8,12 @@ const config: CapacitorConfig = {
   android: {
     backgroundColor: '#0d1622',
   },
+  server: {
+    url: 'https://tk6871.github.io/cbt/',
+    cleartext: false,
+    allowNavigation: ['tk6871.github.io'],
+    errorPath: 'index.html',
+  },
   plugins: {
     StatusBar: {
       overlaysWebView: true,
