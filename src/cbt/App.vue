@@ -19,6 +19,7 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import CloudSyncPanel from './CloudSyncPanel.vue';
 import SchoolExamManager from './SchoolExamManager.vue';
 import { isCalculationItem } from './calculationGuide';
 import {
@@ -33,13 +34,8 @@ import {
   clearCloudLearningState,
   cloudSyncState,
   initializeCloudSync,
-  requestSyncPasswordReset,
   scheduleLearningSync,
-  signInForSync,
-  signOutFromSync,
-  signUpForSync,
   syncLearningData,
-  updateSyncPassword,
 } from './cloudSync';
 import { hvacFieldReportRelatedGroups, hvacFieldReportRound } from './hvacFieldReportPractice';
 import {
@@ -275,16 +271,6 @@ const quickPreset = ref<5 | 10 | 0>(10);
 const predictionRange = ref<PredictionRange>('selected');
 const includeHansolInRandom = ref(localStorage.getItem('unified-cbt-random-include-hansol') !== 'false');
 const settingsOpen = ref(false);
-const syncLoginOpen = ref(false);
-const syncEmailStorageKey = `cbt-sync-email-${spaceScope}`;
-const syncRememberStorageKey = `cbt-sync-remember-${spaceScope}`;
-const rememberedSyncEmail = localStorage.getItem(syncEmailStorageKey) || '';
-const syncEmail = ref(rememberedSyncEmail);
-const syncPassword = ref('');
-const syncNewPassword = ref('');
-const syncRememberEmail = ref(localStorage.getItem(syncRememberStorageKey) !== 'false');
-const syncBusy = ref(false);
-const syncFormMessage = ref('');
 const nativeMoreOpen = ref(false);
 const nativeCalculatorOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
@@ -3369,79 +3355,6 @@ async function clearLearningData(): Promise<void> {
   showToast('학습 기록을 초기화했습니다.');
 }
 
-async function submitSyncLogin(): Promise<void> {
-  if (!syncEmail.value.trim() || !syncPassword.value) {
-    syncFormMessage.value = '이메일과 비밀번호를 입력해 주세요.';
-    return;
-  }
-  syncBusy.value = true;
-  syncFormMessage.value = '';
-  const error = await signInForSync(syncEmail.value, syncPassword.value);
-  syncBusy.value = false;
-  syncFormMessage.value = error || '로그인했습니다. 이 기기의 기록과 클라우드 기록을 합칩니다.';
-  if (!error) {
-    localStorage.setItem(syncRememberStorageKey, String(syncRememberEmail.value));
-    if (syncRememberEmail.value) localStorage.setItem(syncEmailStorageKey, syncEmail.value.trim());
-    else localStorage.removeItem(syncEmailStorageKey);
-    syncPassword.value = '';
-  }
-}
-
-async function submitSyncSignup(): Promise<void> {
-  if (!syncEmail.value.trim() || syncPassword.value.length < 8) {
-    syncFormMessage.value = '이메일과 8자 이상의 비밀번호를 입력해 주세요.';
-    return;
-  }
-  syncBusy.value = true;
-  syncFormMessage.value = '';
-  const result = await signUpForSync(syncEmail.value, syncPassword.value);
-  syncBusy.value = false;
-  syncFormMessage.value = result || '계정을 만들고 로그인했습니다. 기록 동기화를 시작합니다.';
-  if (!result || result.startsWith('확인 메일을 보냈습니다.')) {
-    localStorage.setItem(syncRememberStorageKey, String(syncRememberEmail.value));
-    if (syncRememberEmail.value) localStorage.setItem(syncEmailStorageKey, syncEmail.value.trim());
-    else localStorage.removeItem(syncEmailStorageKey);
-    syncPassword.value = '';
-  }
-}
-
-async function logoutSyncAccount(): Promise<void> {
-  await signOutFromSync();
-  syncLoginOpen.value = false;
-  syncPassword.value = '';
-  syncFormMessage.value = '';
-  showToast('동기화 계정에서 로그아웃했습니다. 기기에 저장된 기록은 그대로 유지됩니다.');
-}
-
-async function sendSyncPasswordReset(): Promise<void> {
-  syncBusy.value = true;
-  const error = await requestSyncPasswordReset(syncEmail.value);
-  syncBusy.value = false;
-  syncFormMessage.value = error || '비밀번호 재설정 메일을 보냈습니다. 메일의 링크를 눌러 주세요.';
-}
-
-function showSyncIdHelp(): void {
-  syncFormMessage.value = syncEmail.value.trim()
-    ? `현재 입력된 이메일이 동기화 아이디입니다: ${syncEmail.value.trim()}`
-    : '동기화 아이디는 회원가입할 때 사용한 이메일 주소입니다.';
-}
-
-async function saveNewSyncPassword(): Promise<void> {
-  syncBusy.value = true;
-  const error = await updateSyncPassword(syncNewPassword.value);
-  syncBusy.value = false;
-  syncFormMessage.value = error || '새 비밀번호로 변경했습니다. 자동 로그인이 유지됩니다.';
-  if (!error) syncNewPassword.value = '';
-}
-
-function cloudSyncTimeLabel(): string {
-  if (!cloudSyncState.lastSyncedAt) return '아직 동기화하지 않음';
-  return new Intl.DateTimeFormat('ko-KR', {
-    year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
-  })
-    .format(new Date(cloudSyncState.lastSyncedAt));
-}
-
 function handleCloudSynced(): void {
   refreshSavedLearningSessionFromStore();
   void refreshExamHistory();
@@ -3449,8 +3362,6 @@ function handleCloudSynced(): void {
 
 function handlePasswordRecovery(): void {
   settingsOpen.value = true;
-  syncLoginOpen.value = true;
-  syncFormMessage.value = '새 비밀번호를 입력해 주세요.';
 }
 
 function subjectQuestionCount(subject: string): number {
@@ -5017,44 +4928,7 @@ onBeforeUnmount(() => {
             <span><b>✓</b><strong>OMR 자동 따라가기</strong></span>
           </div>
         </div>
-        <div class="setting-group cloud-sync-setting">
-          <span>기기 간 학습 기록 동기화</span>
-          <p class="setting-description">로그인하지 않아도 모든 문제를 풀 수 있습니다. PC·태블릿·휴대폰에서 같은 기록을 쓰고 싶을 때만 로그인하세요.</p>
-          <small class="cloud-sync-last-time">최근 동기화 {{ cloudSyncTimeLabel() }}</small>
-          <template v-if="cloudSyncState.passwordRecovery">
-            <form class="cloud-sync-form" @submit.prevent="saveNewSyncPassword">
-              <label><span>새 비밀번호</span><input v-model="syncNewPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8자 이상"></label>
-              <p v-if="syncFormMessage">{{ syncFormMessage }}</p>
-              <div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '변경 중…' : '새 비밀번호 저장' }}</button></div>
-            </form>
-          </template>
-          <template v-else-if="cloudSyncState.email">
-            <div class="cloud-sync-account">
-              <div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || '기기 간 기록 동기화가 연결되었습니다.' }}</small></div>
-              <i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i>
-            </div>
-            <div class="cloud-sync-actions">
-              <button type="button" :disabled="cloudSyncState.status === 'syncing'" @click="syncLearningData">지금 동기화</button>
-              <button type="button" class="secondary" @click="logoutSyncAccount">로그아웃</button>
-            </div>
-          </template>
-          <template v-else>
-            <button v-if="!syncLoginOpen" type="button" class="cloud-sync-open" @click="syncLoginOpen = true">동기화 로그인</button>
-            <form v-else class="cloud-sync-form" @submit.prevent="submitSyncLogin">
-              <label><span>이메일</span><input v-model.trim="syncEmail" type="email" autocomplete="username" required placeholder="name@example.com"></label>
-              <label><span>비밀번호</span><input v-model="syncPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="8자 이상"></label>
-              <label class="cloud-sync-remember"><input v-model="syncRememberEmail" type="checkbox"><span>아이디 기억</span><small>자동 로그인은 이 기기의 안전한 로그인 세션으로 유지됩니다.</small></label>
-              <p v-if="syncFormMessage">{{ syncFormMessage }}</p>
-              <div>
-                <button type="submit" :disabled="syncBusy">{{ syncBusy ? '확인 중…' : '로그인' }}</button>
-                <button type="button" :disabled="syncBusy" class="secondary" @click="submitSyncSignup">처음이면 계정 만들기</button>
-                <button type="button" class="secondary" @click="showSyncIdHelp">아이디 찾기</button>
-                <button type="button" :disabled="syncBusy" class="secondary" @click="sendSyncPasswordReset">비밀번호 찾기</button>
-                <button type="button" class="text-button" @click="syncLoginOpen = false; syncFormMessage = ''">닫기</button>
-              </div>
-            </form>
-          </template>
-        </div>
+        <CloudSyncPanel description="로그인하지 않아도 모든 문제를 풀 수 있습니다. PC·태블릿·휴대폰에서 같은 기록을 쓰고 싶을 때만 로그인하세요." />
         <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting">
           <span>PWA 업데이트 복구</span>
           <p>업데이트 뒤 화면이 꼬였을 때 학습 기록은 보존하고 이 사이트의 캐시와 서비스워커만 다시 설정합니다.</p>
@@ -5451,25 +5325,7 @@ onBeforeUnmount(() => {
           </div>
           <button v-if="session.mode === 'exam'" type="button" class="session-setting-action" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
         </div>
-        <div class="setting-group cloud-sync-setting">
-          <span>기기 간 학습 기록 동기화</span>
-          <p class="setting-description">현재 풀이 위치도 함께 저장합니다. 다른 기기에서는 동기화가 끝난 뒤 이어 학습을 누르세요.</p>
-          <small class="cloud-sync-last-time">최근 동기화 {{ cloudSyncTimeLabel() }}</small>
-          <template v-if="cloudSyncState.passwordRecovery">
-            <form class="cloud-sync-form" @submit.prevent="saveNewSyncPassword"><label><span>새 비밀번호</span><input v-model="syncNewPassword" type="password" autocomplete="new-password" minlength="8" required placeholder="8자 이상"></label><p v-if="syncFormMessage">{{ syncFormMessage }}</p><div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '변경 중…' : '새 비밀번호 저장' }}</button></div></form>
-          </template>
-          <template v-else-if="cloudSyncState.email">
-            <div class="cloud-sync-account"><div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || '기기 간 기록 동기화가 연결되었습니다.' }}</small></div><i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i></div>
-            <div class="cloud-sync-actions"><button type="button" :disabled="cloudSyncState.status === 'syncing'" @click="syncLearningData">지금 동기화</button><button type="button" class="secondary" @click="logoutSyncAccount">로그아웃</button></div>
-          </template>
-          <template v-else>
-            <button v-if="!syncLoginOpen" type="button" class="cloud-sync-open" @click="syncLoginOpen = true">동기화 로그인</button>
-            <form v-else class="cloud-sync-form" @submit.prevent="submitSyncLogin">
-              <label><span>이메일</span><input v-model.trim="syncEmail" type="email" autocomplete="username" required placeholder="name@example.com"></label><label><span>비밀번호</span><input v-model="syncPassword" type="password" autocomplete="current-password" minlength="8" required placeholder="8자 이상"></label><label class="cloud-sync-remember"><input v-model="syncRememberEmail" type="checkbox"><span>아이디 기억</span><small>안전한 로그인 세션으로 자동 로그인을 유지합니다.</small></label><p v-if="syncFormMessage">{{ syncFormMessage }}</p>
-              <div><button type="submit" :disabled="syncBusy">{{ syncBusy ? '확인 중…' : '로그인' }}</button><button type="button" :disabled="syncBusy" class="secondary" @click="submitSyncSignup">처음이면 계정 만들기</button><button type="button" class="secondary" @click="showSyncIdHelp">아이디 찾기</button><button type="button" :disabled="syncBusy" class="secondary" @click="sendSyncPasswordReset">비밀번호 찾기</button><button type="button" class="text-button" @click="syncLoginOpen = false; syncFormMessage = ''">닫기</button></div>
-            </form>
-          </template>
-        </div>
+        <CloudSyncPanel description="현재 풀이 위치도 함께 저장합니다. 다른 기기에서는 동기화가 끝난 뒤 이어 학습을 누르세요." />
         <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting"><span>PWA 업데이트 복구</span><p>학습 기록은 유지하고 홈페이지 캐시와 서비스워커만 다시 설정합니다.</p><div><button type="button" @click="openPwaRecovery">복구 화면 열기</button></div></div>
         <div class="setting-group data-setting"><span>학습 기록</span><p>오답·진도·시험 기록을 파일로 옮기거나 다시 불러올 수 있습니다.</p><div><button @click="exportLearningData">기록 내보내기</button><button @click="chooseLearningDataFile">기록 불러오기</button><button class="danger" @click="clearLearningData">전체 초기화</button></div><input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData"></div>
         <footer><span>현재 v{{ currentVersion }} · 답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>

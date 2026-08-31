@@ -5,6 +5,21 @@
 
   const entries = [
     {
+      version: '4.6',
+      scope: 'industrial',
+      date: '2026.08.31',
+      title: '동기화 계정 가입과 복구',
+      summary: '기기 간 학습 기록 동기화에 회원가입, 아이디 확인, 비밀번호 재설정과 로그인 정보 기억 화면을 추가했습니다.',
+      tags: ['기기 간 동기화', '회원가입', '계정 찾기', '비밀번호 재설정'],
+      changes: [
+        '로그인하지 않아도 기존처럼 모든 문제를 풀 수 있고, 원하는 사용자만 무료 동기화 계정을 만들 수 있습니다.',
+        '동기화 아이디가 가입 이메일임을 분명히 표시하고 이 기기에 기억된 아이디를 다시 확인할 수 있게 했습니다.',
+        '가입 이메일 확인 링크와 비밀번호 재설정 링크를 요청하는 계정 복구 화면을 추가했습니다.',
+        '로그인 세션을 유지해 다시 열었을 때 자동으로 기록을 합치며, 아이디 기억은 기기별로 끌 수 있습니다.',
+        '서비스워커 캐시 v460, Android 앱 v4.6으로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.5',
       scope: 'industrial',
       date: '2026.08.31',
@@ -1993,8 +2008,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.5';
+  changelog.versions.industrial = '4.6';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.5';
+  changelog.currentVersion = '4.6';
   window.CBT_CHANGELOG = changelog;
 })();
