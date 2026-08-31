@@ -52,7 +52,7 @@ button { cursor:pointer; }
 .admin-stat-card.issue-stat-card { border-color:#edcfac; background:#fffaf4; }
 .admin-stat-card.issue-stat-card strong { color:#b66517; }
 
-.admin-section-nav { scroll-margin-top:90px; margin:10px 0; padding:5px; border:1px solid #d7dfe8; border-radius:12px; background:#fff; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
+.admin-section-nav { scroll-margin-top:90px; margin:10px 0; padding:5px; border:1px solid #d7dfe8; border-radius:12px; background:#fff; display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:5px; }
 .admin-section-nav button { min-height:55px; padding:7px 10px; border:0; border-radius:8px; color:#607086; background:transparent; display:grid; grid-template-columns:30px 1fr; grid-template-rows:auto auto; align-items:center; text-align:left; }
 .admin-section-nav i { grid-row:1/3; width:25px; height:25px; border-radius:7px; background:#edf2f8; display:grid; place-items:center; font-size:.68rem; font-style:normal; font-weight:900; }
 .admin-section-nav span { font-size:.68rem; font-weight:900; }
@@ -148,6 +148,23 @@ td code { padding:3px 5px; border-radius:5px; color:#205c9b; background:#edf5ff;
 .issue-note-cell { min-width:230px; }
 .issue-note-cell textarea { width:100%; min-height:66px; resize:vertical; padding:7px; border:1px solid #d8e1eb; border-radius:7px; color:#26394f; background:#f8fafc; font-size:.57rem; line-height:1.45; }
 
+.account-panel-title { align-items:center; }
+.account-panel-title > div p { margin:4px 0 0; color:#8291a4; font-size:.58rem; }
+.account-panel-title button:disabled,.temp-password-button:disabled { opacity:.5; cursor:wait; }
+.admin-account-message { margin:0 0 10px; padding:9px 11px; border-radius:8px; color:#225e9c; background:#edf5ff; font-size:.6rem; }
+.issued-credentials { margin-bottom:12px; padding:13px; border:1px solid #9fd1be; border-radius:10px; background:#f2faf7; display:grid; grid-template-columns:minmax(180px,1fr) minmax(340px,1.4fr) auto; align-items:center; gap:14px; }
+.issued-credentials span,.issued-credentials strong,.issued-credentials small { display:block; }
+.issued-credentials span { color:#08775a; font-size:.55rem; font-weight:900; }
+.issued-credentials strong { margin-top:4px; font-size:.72rem; }
+.issued-credentials small { margin-top:4px; color:#6f807b; font-size:.53rem; line-height:1.45; }
+.issued-credentials dl { margin:0; display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.issued-credentials dl div { padding:8px; border-radius:7px; background:#fff; }
+.issued-credentials dt { color:#74857f; font-size:.52rem; }
+.issued-credentials dd { margin:4px 0 0; color:#174f40; font-family:"Cascadia Code",monospace; font-size:.65rem; font-weight:850; overflow-wrap:anywhere; }
+.issued-credentials button,.temp-password-button { min-height:34px; padding:0 10px; border:1px solid #b9cce1; border-radius:7px; color:#1769d2; background:#f7faff; font-size:.57rem; font-weight:850; }
+.issued-credentials button { color:#fff; border-color:#13805f; background:#13805f; }
+.account-table-wrap table { min-width:720px; }
+
 .admin-auth-card { width:min(440px,calc(100% - 24px)); margin:9vh auto 0; padding:29px; border:1px solid #d7e1ec; border-radius:18px; background:#fff; box-shadow:0 22px 60px rgba(24,55,90,.13); }
 .admin-auth-card .admin-brand { margin-bottom:22px; }
 .admin-auth-card h1 { margin:6px 0 8px; font-size:1.45rem; }
@@ -178,6 +195,7 @@ td code { padding:3px 5px; border-radius:5px; color:#205c9b; background:#edf5ff;
   .admin-overview-grid,.live-visitor-grid { grid-template-columns:1fr; }
   .issue-panel-title { align-items:flex-start; flex-direction:column; }
   .issue-panel-actions { width:100%; flex-wrap:wrap; }
+  .issued-credentials { grid-template-columns:1fr; }
 }
 @media (max-width:520px) {
   .admin-stats { grid-template-columns:1fr 1fr; }

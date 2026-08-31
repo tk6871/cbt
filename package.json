@@ -10,6 +10,7 @@
     "audit:hvac-learning": "node tools/audit-hvac-learning-content.mjs",
     "audit:hansol": "node tools/audit-hansol-hvac.mjs",
     "audit:hvac-practical": "node tools/audit-hvac-practical.mjs",
+    "audit:hvac-practical-images": "node tools/audit-hvac-practical-image-crops.mjs",
     "import:hvac-practical-restored": "node tools/import-hvac-practical-restored.mjs",
     "audit:answer-segments": "node tools/audit-hvac-answer-segments.mjs",
     "audit:answer-pixels": "node tools/audit-hvac-answer-pixels.mjs",
