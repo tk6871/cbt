@@ -48,15 +48,14 @@ export type QuestionIssueSubmission = {
 export const cloudSyncState = reactive({
   configured: false,
   email: '',
+  mustChangePassword: false,
   status: 'disabled' as 'disabled' | 'signed-out' | 'syncing' | 'synced' | 'error',
   message: '',
   lastSyncedAt: 0,
-  passwordRecovery: false,
 });
 
 const space = window.CBT_APP_SPACE === 'jewelry' ? 'jewelry' : 'industrial';
 const config = window.CBT_CLOUD_CONFIG;
-const authRedirectUrl = 'https://tk6871.github.io/cbt/';
 let client: SupabaseClient | null = null;
 let session: Session | null = null;
 let syncTimer = 0;
@@ -277,73 +276,105 @@ export async function initializeCloudSync(): Promise<void> {
   });
   client.auth.onAuthStateChange((event, nextSession) => {
     session = nextSession;
-    cloudSyncState.email = nextSession?.user.email || '';
+    cloudSyncState.email = String(nextSession?.user.user_metadata?.sync_username || nextSession?.user.email || '');
+    cloudSyncState.mustChangePassword = Boolean(nextSession?.user.user_metadata?.must_change_password);
     cloudSyncState.status = nextSession ? 'syncing' : 'signed-out';
     cloudSyncState.message = nextSession ? '로그인 확인 완료 · 기록을 불러오는 중…' : '';
     if (nextSession) window.setTimeout(() => { void syncLearningData(); }, 0);
-    if (event === 'PASSWORD_RECOVERY') {
-      cloudSyncState.passwordRecovery = true;
-      window.dispatchEvent(new CustomEvent('cbt:password-recovery'));
-    }
   });
   const { data } = await client.auth.getSession();
   session = data.session;
-  cloudSyncState.email = session?.user.email || '';
+  cloudSyncState.email = String(session?.user.user_metadata?.sync_username || session?.user.email || '');
+  cloudSyncState.mustChangePassword = Boolean(session?.user.user_metadata?.must_change_password);
   cloudSyncState.status = session ? 'syncing' : 'signed-out';
   stopStoreWatch ||= watch(studyStore, () => scheduleLearningSync(), { deep: true });
   window.addEventListener('online', () => scheduleLearningSync(100));
   if (session) await syncLearningData();
 }
 
-export async function signInForSync(email: string, password: string): Promise<string | null> {
-  if (!client) return '클라우드 연결 설정을 확인해 주세요.';
-  const { error } = await client.auth.signInWithPassword({ email: email.trim(), password });
-  return error ? '이메일 또는 비밀번호를 확인해 주세요.' : null;
+async function digest(value: string): Promise<string> {
+  const bytes = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest('SHA-256', bytes);
+  return [...new Uint8Array(hash)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
 }
 
-export async function signUpForSync(email: string, password: string): Promise<string | null> {
+function normalizedUsername(value: string): string {
+  return value.normalize('NFKC').trim().toLocaleLowerCase('ko-KR');
+}
+
+async function usernameEmail(username: string): Promise<string> {
+  const hash = await digest(`cbt-sync:${normalizedUsername(username)}`);
+  return `${hash.slice(0, 40)}@accounts.cbt.invalid`;
+}
+
+type AccountFunctionResult = {
+  error?: string;
+  username?: string;
+  internalEmail?: string;
+  recoveryCode?: string;
+};
+
+async function accountFunction(body: Record<string, unknown>): Promise<AccountFunctionResult> {
+  if (!config?.enabled || !config.supabaseUrl || !config.supabaseAnonKey) {
+    return { error: '클라우드 연결 설정을 확인해 주세요.' };
+  }
+  try {
+    const response = await fetch(`${config.supabaseUrl.replace(/\/$/, '')}/functions/v1/sync-account`, {
+      method: 'POST',
+      headers: {
+        apikey: config.supabaseAnonKey,
+        Authorization: `Bearer ${config.supabaseAnonKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    const result = await response.json() as AccountFunctionResult;
+    return response.ok ? result : { error: result.error || '계정 요청을 처리하지 못했습니다.' };
+  } catch {
+    return { error: '인터넷 연결을 확인한 뒤 다시 시도해 주세요.' };
+  }
+}
+
+export async function signInForSync(identifier: string, password: string): Promise<string | null> {
   if (!client) return '클라우드 연결 설정을 확인해 주세요.';
-  const { data, error } = await client.auth.signUp({
-    email: email.trim().toLowerCase(),
-    password,
-    options: { emailRedirectTo: authRedirectUrl },
-  });
-  if (error) return error.message.includes('Password') ? '비밀번호는 8자 이상으로 입력해 주세요.' : '계정을 만들지 못했습니다. 이메일을 확인해 주세요.';
-  return data.session ? null : '확인 메일을 보냈습니다. 메일 인증 후 같은 정보로 로그인해 주세요.';
+  const clean = identifier.trim();
+  const email = clean.includes('@') ? clean.toLowerCase() : await usernameEmail(clean);
+  const { error } = await client.auth.signInWithPassword({ email, password });
+  return error ? '아이디 또는 비밀번호를 확인해 주세요.' : null;
+}
+
+export async function signUpForSync(username: string, password: string): Promise<AccountFunctionResult> {
+  if (!client) return { error: '클라우드 연결 설정을 확인해 주세요.' };
+  const result = await accountFunction({ action: 'signup', username, password });
+  if (result.error || !result.internalEmail) return result;
+  const { error } = await client.auth.signInWithPassword({ email: result.internalEmail, password });
+  return error ? { error: '계정은 만들어졌지만 자동 로그인하지 못했습니다. 아이디로 다시 로그인해 주세요.', recoveryCode: result.recoveryCode } : result;
 }
 
 export async function signOutFromSync(): Promise<void> {
   await client?.auth.signOut();
 }
 
-export async function requestSyncPasswordReset(email: string): Promise<string | null> {
-  if (!client) return '클라우드 연결 설정을 확인해 주세요.';
-  if (!email.trim()) return '먼저 이메일을 입력해 주세요.';
-  const { error } = await client.auth.resetPasswordForEmail(email.trim(), {
-    redirectTo: authRedirectUrl,
-  });
-  return error ? '재설정 메일을 보내지 못했습니다. 이메일을 확인해 주세요.' : null;
+export async function findSyncId(recoveryCode: string): Promise<AccountFunctionResult> {
+  return accountFunction({ action: 'find-id', recoveryCode });
 }
 
-export async function requestSyncLoginLink(email: string): Promise<string | null> {
-  if (!client) return '클라우드 연결 설정을 확인해 주세요.';
-  if (!email.trim()) return '확인할 이메일을 입력해 주세요.';
-  const { error } = await client.auth.signInWithOtp({
-    email: email.trim().toLowerCase(),
-    options: {
-      shouldCreateUser: false,
-      emailRedirectTo: authRedirectUrl,
-    },
-  });
-  return error ? '확인 메일을 보내지 못했습니다. 잠시 후 다시 시도해 주세요.' : null;
+export async function resetSyncPassword(username: string, recoveryCode: string, password: string): Promise<AccountFunctionResult> {
+  return accountFunction({ action: 'reset-password', username, recoveryCode, password });
 }
 
 export async function updateSyncPassword(password: string): Promise<string | null> {
-  if (!client || !session) return '재설정 링크가 만료되었습니다. 다시 요청해 주세요.';
+  if (!client || !session) return '먼저 로그인해 주세요.';
   if (password.length < 8) return '새 비밀번호는 8자 이상으로 입력해 주세요.';
-  const { error } = await client.auth.updateUser({ password });
-  if (!error) cloudSyncState.passwordRecovery = false;
-  return error ? '비밀번호를 바꾸지 못했습니다. 재설정 링크를 다시 요청해 주세요.' : null;
+  const { data, error } = await client.auth.updateUser({
+    password,
+    data: { ...session.user.user_metadata, must_change_password: false },
+  });
+  if (!error && data.user) {
+    session = { ...session, user: data.user };
+    cloudSyncState.mustChangePassword = false;
+  }
+  return error ? '비밀번호를 바꾸지 못했습니다. 잠시 후 다시 시도해 주세요.' : null;
 }
 
 export async function clearCloudLearningState(): Promise<void> {

@@ -3360,10 +3360,6 @@ function handleCloudSynced(): void {
   void refreshExamHistory();
 }
 
-function handlePasswordRecovery(): void {
-  settingsOpen.value = true;
-}
-
 function subjectQuestionCount(subject: string): number {
   return selectedItems.value.filter((item) => item.subject === subject).length;
 }
@@ -3514,7 +3510,6 @@ onMounted(async () => {
   window.addEventListener('resize', markViewportResizing, { passive: true });
   window.addEventListener('keydown', handleSessionKeydown);
   window.addEventListener('cbt:cloud-synced', handleCloudSynced);
-  window.addEventListener('cbt:password-recovery', handlePasswordRecovery);
   practicalTimerHandle = window.setInterval(() => {
     if (!practicalSessionActive.value || practicalSessionFinished.value) return;
     practicalClock.value = Date.now();
@@ -3587,7 +3582,6 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', markViewportResizing);
   window.removeEventListener('keydown', handleSessionKeydown);
   window.removeEventListener('cbt:cloud-synced', handleCloudSynced);
-  window.removeEventListener('cbt:password-recovery', handlePasswordRecovery);
   void nativeBackHandle?.remove();
   if (motionMediaQuery && motionPreferenceHandler) {
     motionMediaQuery.removeEventListener?.('change', motionPreferenceHandler);

@@ -57,7 +57,17 @@ type ExamResult = {
 };
 
 type QuestionIssueStatus = 'open' | 'reviewing' | 'resolved' | 'deferred';
-type AdminSection = 'overview' | 'issues' | 'visitors' | 'results';
+type AdminSection = 'overview' | 'issues' | 'visitors' | 'results' | 'accounts';
+type SyncAccountRow = {
+  username: string;
+  createdAt: string;
+  updatedAt: string;
+};
+type IssuedCredentials = {
+  username: string;
+  temporaryPassword: string;
+  recoveryCode: string;
+};
 type QuestionIssueReport = {
   id: number;
   space: 'industrial' | 'jewelry';
@@ -105,6 +115,10 @@ const results = ref<ExamResult[]>([]);
 const issueReports = ref<QuestionIssueReport[]>([]);
 const issueStatusFilter = ref<'all' | QuestionIssueStatus>('open');
 const issueSavingId = ref<number | null>(null);
+const syncAccounts = ref<SyncAccountRow[]>([]);
+const accountLoading = ref(false);
+const accountError = ref('');
+const issuedCredentials = ref<IssuedCredentials | null>(null);
 const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
@@ -147,7 +161,64 @@ const realtimeLabel = computed(() => ({
 
 function openSection(section: AdminSection): void {
   activeSection.value = section;
+  if (section === 'accounts' && !syncAccounts.value.length) void loadSyncAccounts();
   void nextTick(() => document.querySelector('.admin-section-nav')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
+
+async function accountRequest(body: Record<string, unknown>): Promise<Record<string, unknown>> {
+  if (!config || !session.value) return { error: '관리자 로그인이 필요합니다.' };
+  try {
+    const response = await fetch(`${config.supabaseUrl.replace(/\/$/, '')}/functions/v1/sync-account`, {
+      method: 'POST',
+      headers: {
+        apikey: config.supabaseAnonKey,
+        Authorization: `Bearer ${session.value.access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    const result = await response.json() as Record<string, unknown>;
+    return response.ok ? result : { error: String(result.error || '회원 계정 요청을 처리하지 못했습니다.') };
+  } catch {
+    return { error: '회원 계정 서버에 연결하지 못했습니다.' };
+  }
+}
+
+async function loadSyncAccounts(): Promise<void> {
+  accountLoading.value = true;
+  accountError.value = '';
+  const result = await accountRequest({ action: 'admin-list' });
+  accountLoading.value = false;
+  if (result.error) {
+    accountError.value = String(result.error);
+    return;
+  }
+  syncAccounts.value = Array.isArray(result.accounts) ? result.accounts as SyncAccountRow[] : [];
+}
+
+async function issueTemporaryPassword(account: SyncAccountRow): Promise<void> {
+  accountLoading.value = true;
+  accountError.value = '';
+  issuedCredentials.value = null;
+  const result = await accountRequest({ action: 'admin-temp-password', username: account.username });
+  accountLoading.value = false;
+  if (result.error) {
+    accountError.value = String(result.error);
+    return;
+  }
+  issuedCredentials.value = result as unknown as IssuedCredentials;
+  await loadSyncAccounts();
+}
+
+async function copyCredentials(): Promise<void> {
+  if (!issuedCredentials.value) return;
+  const value = `아이디: ${issuedCredentials.value.username}\n임시 비밀번호: ${issuedCredentials.value.temporaryPassword}\n새 복구코드: ${issuedCredentials.value.recoveryCode}`;
+  try {
+    await navigator.clipboard.writeText(value);
+    accountError.value = '임시 로그인 정보를 복사했습니다.';
+  } catch {
+    accountError.value = '자동 복사가 되지 않았습니다. 화면의 값을 직접 복사해 주세요.';
+  }
 }
 
 function formatDate(value: string | null): string {
@@ -277,6 +348,8 @@ async function logout(): Promise<void> {
   visits.value = [];
   results.value = [];
   issueReports.value = [];
+  syncAccounts.value = [];
+  issuedCredentials.value = null;
   if (autoRefreshTimer !== null) {
     window.clearInterval(autoRefreshTimer);
     autoRefreshTimer = null;
@@ -437,6 +510,7 @@ onBeforeUnmount(() => {
         <button type="button" :class="{ active: activeSection === 'issues' }" @click="openSection('issues')"><i>!</i><span>문제 제보</span><small>{{ openIssueCount }}건 대기</small></button>
         <button type="button" :class="{ active: activeSection === 'visitors' }" @click="openSection('visitors')"><i>◎</i><span>접속 기록</span><small>{{ visitors.length }}개 브라우저</small></button>
         <button type="button" :class="{ active: activeSection === 'results' }" @click="openSection('results')"><i>✓</i><span>학습 결과</span><small>{{ results.length }}건 조회</small></button>
+        <button type="button" :class="{ active: activeSection === 'accounts' }" @click="openSection('accounts')"><i>♙</i><span>회원 계정</span><small>임시 비밀번호 발급</small></button>
       </nav>
 
       <section v-if="activeSection === 'overview'" class="admin-overview">
@@ -523,7 +597,7 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <section v-else class="admin-panel">
+      <section v-else-if="activeSection === 'results'" class="admin-panel">
         <div class="admin-panel-title"><span>SESSION RESULTS</span><h2>최근 학습·CBT 결과</h2><p>문제별 선택은 수집하지 않으며 선택 기간 {{ results.length }}건</p></div>
         <div class="admin-table-wrap">
           <table>
@@ -543,6 +617,29 @@ onBeforeUnmount(() => {
                 <td>{{ result.correct_count }}/{{ result.total_count }}</td>
               </tr>
               <tr v-if="!results.length"><td colspan="9" class="empty-cell">제출된 학습·CBT 결과가 없습니다.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section v-else class="admin-panel account-panel">
+        <div class="admin-panel-title account-panel-title">
+          <div><span>SYNC ACCOUNTS</span><h2>동기화 회원 계정</h2><p>복구코드를 잊은 회원에게 임시 비밀번호와 새 복구코드를 한 번 발급합니다.</p></div>
+          <button type="button" :disabled="accountLoading" @click="loadSyncAccounts">{{ accountLoading ? '불러오는 중…' : '회원 새로고침' }}</button>
+        </div>
+        <p v-if="accountError" class="admin-account-message">{{ accountError }}</p>
+        <article v-if="issuedCredentials" class="issued-credentials">
+          <div><span>방금 발급한 로그인 정보</span><strong>{{ issuedCredentials.username }}</strong><small>사용자가 임시 비밀번호로 로그인하면 설정 화면에서 새 비밀번호로 바꾸게 됩니다.</small></div>
+          <dl><div><dt>임시 비밀번호</dt><dd>{{ issuedCredentials.temporaryPassword }}</dd></div><div><dt>새 복구코드</dt><dd>{{ issuedCredentials.recoveryCode }}</dd></div></dl>
+          <button type="button" @click="copyCredentials">한 번에 복사</button>
+        </article>
+        <div class="admin-table-wrap account-table-wrap">
+          <table>
+            <thead><tr><th>아이디</th><th>가입 시각</th><th>복구 정보 갱신</th><th>복구코드 분실 처리</th></tr></thead>
+            <tbody>
+              <tr v-for="account in syncAccounts" :key="account.username"><td><strong>{{ account.username }}</strong></td><td>{{ formatDate(account.createdAt) }}</td><td>{{ formatDate(account.updatedAt) }}</td><td><button type="button" class="temp-password-button" :disabled="accountLoading" @click="issueTemporaryPassword(account)">임시 비밀번호 발급</button></td></tr>
+              <tr v-if="!accountLoading && !syncAccounts.length"><td colspan="4" class="empty-cell">아직 사이트 아이디로 가입한 회원이 없습니다.</td></tr>
+              <tr v-if="accountLoading"><td colspan="4" class="empty-cell">회원 계정을 불러오는 중입니다.</td></tr>
             </tbody>
           </table>
         </div>
