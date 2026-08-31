@@ -57,6 +57,7 @@ type ExamResult = {
 };
 
 type QuestionIssueStatus = 'open' | 'reviewing' | 'resolved' | 'deferred';
+type AdminSection = 'overview' | 'issues' | 'visitors' | 'results';
 type QuestionIssueReport = {
   id: number;
   space: 'industrial' | 'jewelry';
@@ -107,7 +108,7 @@ const issueSavingId = ref<number | null>(null);
 const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
-const showLiveVisitors = ref(false);
+const activeSection = ref<AdminSection>('overview');
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
@@ -126,11 +127,14 @@ const answeredTotal = computed(() => results.value.reduce(
   (sum, item) => sum + Math.max(0, Number(item.total_count || 0) - Number(item.unanswered_count || 0)),
   0
 ));
-const examTotal = computed(() => visitors.value.reduce((sum, item) => sum + Number(item.exam_count || 0), 0));
 const averageScore = computed(() => results.value.length
   ? Math.round(results.value.reduce((sum, item) => sum + Number(item.score || 0), 0) / results.value.length)
   : 0);
 const openIssueCount = computed(() => issueReports.value.filter((item) => item.status === 'open').length);
+const completedResultCount = computed(() => results.value.filter((item) => !item.unanswered_count).length);
+const interruptedResultCount = computed(() => results.value.filter((item) => item.unanswered_count > 0).length);
+const recentOpenIssues = computed(() => issueReports.value.filter((item) => item.status === 'open').slice(0, 5));
+const recentResults = computed(() => results.value.slice(0, 6));
 const displayedIssueReports = computed(() => issueStatusFilter.value === 'all'
   ? issueReports.value
   : issueReports.value.filter((item) => item.status === issueStatusFilter.value));
@@ -140,6 +144,11 @@ const realtimeLabel = computed(() => ({
   error: '실시간 연결 오류',
   closed: '실시간 연결 종료'
 }[realtimeStatus.value]));
+
+function openSection(section: AdminSection): void {
+  activeSection.value = section;
+  void nextTick(() => document.querySelector('.admin-section-nav')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
 
 function formatDate(value: string | null): string {
   if (!value) return '-';
@@ -398,52 +407,78 @@ onBeforeUnmount(() => {
 
     <template v-else>
       <header class="admin-header">
-        <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>방문·학습결과·시험점수</small></div></div>
+        <div class="admin-brand"><span>CBT</span><div><strong>관리자 센터</strong><small>운영 현황 한눈에 보기</small></div></div>
         <div class="admin-header-actions">
           <div class="live-status" :class="`is-${realtimeStatus}`"><i></i><div><strong>{{ realtimeLabel }}</strong><small>현재 {{ activeNow }}명</small></div></div>
-          <label>기간<select v-model.number="days" @change="loadData()"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
+          <label>조회 기간<select v-model.number="days" @change="loadData()"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
           <button @click="loadData()" :disabled="loading">{{ loading ? '불러오는 중' : '새로고침' }}</button>
           <button class="logout-button" @click="logout">로그아웃</button>
         </div>
       </header>
 
       <section class="admin-intro">
-        <div><span class="admin-kicker">PRIVATE ANALYTICS</span><h1>최근 접속과 학습 현황</h1><p>IP 위치는 통신사·VPN 출구 기준의 대략적인 국가·지역·도시이며 실제 현재 위치와 다를 수 있습니다.</p></div>
-        <div class="admin-account"><span>로그인 계정</span><strong>{{ session.user.email }}</strong></div>
+        <div class="admin-intro-copy"><span class="admin-kicker">PRIVATE OPERATIONS</span><h1>CBT 운영 대시보드</h1><p>중요한 수치와 처리할 항목을 먼저 보고, 아래 탭에서 필요한 기록만 펼쳐볼 수 있습니다.</p></div>
+        <div class="admin-account"><span>관리자 계정</span><strong>{{ session.user.email }}</strong><small>IP 위치는 통신사·VPN 기준의 추정값입니다.</small></div>
       </section>
 
       <p v-if="dataError" class="admin-error admin-data-error">{{ dataError }}</p>
 
-      <section class="admin-stats">
-        <button type="button" class="admin-stat-card live-card" :aria-expanded="showLiveVisitors" @click="showLiveVisitors = !showLiveVisitors"><span>현재 접속 추정</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>{{ showLiveVisitors ? '접속 목록 닫기' : '눌러서 IP 목록 보기' }}</small></button>
-        <article class="admin-stat-card"><span>최근 24시간 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저 기준</small></article>
-        <article class="admin-stat-card"><span>채점된 답안</span><strong>{{ answeredTotal.toLocaleString() }}</strong><small>선택 기간 결과 합계</small></article>
-        <article class="admin-stat-card"><span>제출 결과</span><strong>{{ examTotal.toLocaleString() }}</strong><small>학습·CBT·중도 종료 포함</small></article>
-        <article class="admin-stat-card"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>선택 기간 제출 결과</small></article>
-        <article class="admin-stat-card issue-stat-card"><span>확인 대기 문제</span><strong>{{ openIssueCount.toLocaleString() }}<b>건</b></strong><small>학습 화면 이상 신고</small></article>
+      <section class="admin-stats" aria-label="핵심 운영 지표">
+        <button type="button" class="admin-stat-card live-card" @click="openSection('overview')"><span>현재 접속</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>최근 3분 활동</small></button>
+        <button type="button" class="admin-stat-card" @click="openSection('visitors')"><span>오늘 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저</small></button>
+        <button type="button" class="admin-stat-card" @click="openSection('results')"><span>채점된 답안</span><strong>{{ answeredTotal.toLocaleString() }}</strong><small>선택 기간 합계</small></button>
+        <button type="button" class="admin-stat-card" @click="openSection('results')"><span>완료한 결과</span><strong>{{ completedResultCount.toLocaleString() }}</strong><small>중도 종료 {{ interruptedResultCount }}건</small></button>
+        <button type="button" class="admin-stat-card" @click="openSection('results')"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>{{ results.length }}건 기준</small></button>
+        <button type="button" class="admin-stat-card issue-stat-card" @click="openSection('issues')"><span>확인 대기</span><strong>{{ openIssueCount.toLocaleString() }}<b>건</b></strong><small>이상 문제 신고</small></button>
       </section>
 
-      <section v-if="showLiveVisitors" class="live-access-panel">
-        <div class="live-access-heading">
-          <div><span class="admin-kicker">LIVE ACCESS</span><h2>현재 접속 중</h2><p>최근 3분 안에 일반 CBT에서 활동 신호를 보낸 접속자입니다.</p></div>
-          <strong><i></i>{{ activeNow }}명 접속 중</strong>
-        </div>
-        <div v-if="activeVisitors.length" class="live-visitor-grid">
-          <article v-for="visitor in activeVisitors" :key="visitor.visitor_id" class="live-visitor-card">
-            <div class="live-visitor-top"><span><i></i>접속 중</span><code>{{ visitor.ip_address || 'IP 확인 중' }}</code></div>
-            <dl>
-              <div><dt>기기·브라우저</dt><dd>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</dd></div>
-              <div><dt>추정 위치</dt><dd>{{ locationLabel(visitor) }}</dd></div>
-              <div><dt>현재 화면</dt><dd>{{ viewLabel(visitor.last_path) }}</dd></div>
-              <div><dt>마지막 신호</dt><dd>{{ formatDate(visitor.last_seen) }}</dd></div>
-              <div><dt>제출 결과</dt><dd>{{ visitor.exam_count }}회</dd></div>
-            </dl>
+      <nav class="admin-section-nav" aria-label="관리자 화면 구역">
+        <button type="button" :class="{ active: activeSection === 'overview' }" @click="openSection('overview')"><i>⌂</i><span>요약</span><small>실시간·우선 처리</small></button>
+        <button type="button" :class="{ active: activeSection === 'issues' }" @click="openSection('issues')"><i>!</i><span>문제 제보</span><small>{{ openIssueCount }}건 대기</small></button>
+        <button type="button" :class="{ active: activeSection === 'visitors' }" @click="openSection('visitors')"><i>◎</i><span>접속 기록</span><small>{{ visitors.length }}개 브라우저</small></button>
+        <button type="button" :class="{ active: activeSection === 'results' }" @click="openSection('results')"><i>✓</i><span>학습 결과</span><small>{{ results.length }}건 조회</small></button>
+      </nav>
+
+      <section v-if="activeSection === 'overview'" class="admin-overview">
+        <section class="live-access-panel">
+          <div class="live-access-heading">
+            <div><span class="admin-kicker">LIVE ACCESS</span><h2>현재 접속 중</h2><p>최근 3분 안에 활동 신호를 보낸 접속자입니다.</p></div>
+            <strong><i></i>{{ activeNow }}명 접속 중</strong>
+          </div>
+          <div v-if="activeVisitors.length" class="live-visitor-grid">
+            <article v-for="visitor in activeVisitors" :key="visitor.visitor_id" class="live-visitor-card">
+              <div class="live-visitor-top"><span><i></i>접속 중</span><code>{{ visitor.ip_address || 'IP 확인 중' }}</code></div>
+              <dl>
+                <div><dt>기기</dt><dd>{{ visitor.device_type || '-' }} · {{ visitor.browser || '-' }}</dd></div>
+                <div><dt>위치</dt><dd>{{ locationLabel(visitor) }}</dd></div>
+                <div><dt>현재 화면</dt><dd>{{ viewLabel(visitor.last_path) }}</dd></div>
+                <div><dt>마지막 신호</dt><dd>{{ formatDate(visitor.last_seen) }}</dd></div>
+              </dl>
+            </article>
+          </div>
+          <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 3분 안에 표시됩니다.</span></div></div>
+        </section>
+
+        <div class="admin-overview-grid">
+          <article class="admin-panel admin-compact-panel">
+            <div class="admin-panel-title"><div><span>TO DO</span><h2>먼저 확인할 문제</h2></div><button type="button" @click="openSection('issues')">전체 보기</button></div>
+            <div v-if="recentOpenIssues.length" class="admin-compact-list">
+              <button v-for="report in recentOpenIssues" :key="report.id" type="button" @click="openSection('issues')"><b>#{{ report.id }}</b><span><strong>{{ report.qualification || report.qualification_key }} · {{ report.question_number }}번</strong><small>{{ report.issue_types.map(issueTypeLabel).join(' · ') }}</small></span><time>{{ formatDate(report.created_at) }}</time></button>
+            </div>
+            <p v-else class="admin-empty-note">대기 중인 문제 신고가 없습니다.</p>
+          </article>
+
+          <article class="admin-panel admin-compact-panel">
+            <div class="admin-panel-title"><div><span>LATEST</span><h2>최근 학습 결과</h2></div><button type="button" @click="openSection('results')">전체 보기</button></div>
+            <div v-if="recentResults.length" class="admin-result-list">
+              <button v-for="result in recentResults" :key="result.id" type="button" @click="openSection('results')"><span><strong>{{ result.qualification || '-' }}</strong><small>{{ result.title || '-' }} · {{ result.mode === 'exam' ? 'CBT' : '학습' }}</small></span><b>{{ result.score }}점</b><time>{{ formatDate(result.completed_at) }}</time></button>
+            </div>
+            <p v-else class="admin-empty-note">선택 기간의 학습 결과가 없습니다.</p>
           </article>
         </div>
-        <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 3분 안에 IP와 기기가 표시됩니다.</span></div></div>
       </section>
 
-      <section class="admin-panel issue-report-panel">
+      <section v-else-if="activeSection === 'issues'" class="admin-panel issue-report-panel">
         <div class="admin-panel-title issue-panel-title">
           <div><span>QUESTION REVIEW QUEUE</span><h2>이상 문제 관리</h2><p>문제 파일을 수정할 때 JSON으로 내보내 그대로 대조할 수 있습니다.</p></div>
           <div class="issue-panel-actions">
@@ -469,7 +504,7 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <section class="admin-panel">
+      <section v-else-if="activeSection === 'visitors'" class="admin-panel">
         <div class="admin-panel-title"><span>RECENT VISITORS</span><h2>최근 접속 IP</h2><p>{{ visitors.length }}개 브라우저 · 마지막 실시간 반영 {{ formatDate(realtimeUpdatedAt) }}</p></div>
         <div class="admin-table-wrap">
           <table>
@@ -488,7 +523,7 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <section class="admin-panel">
+      <section v-else class="admin-panel">
         <div class="admin-panel-title"><span>SESSION RESULTS</span><h2>최근 학습·CBT 결과</h2><p>문제별 선택은 수집하지 않으며 선택 기간 {{ results.length }}건</p></div>
         <div class="admin-table-wrap">
           <table>

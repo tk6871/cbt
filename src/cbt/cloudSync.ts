@@ -56,6 +56,7 @@ export const cloudSyncState = reactive({
 
 const space = window.CBT_APP_SPACE === 'jewelry' ? 'jewelry' : 'industrial';
 const config = window.CBT_CLOUD_CONFIG;
+const authRedirectUrl = 'https://tk6871.github.io/cbt/';
 let client: SupabaseClient | null = null;
 let session: Session | null = null;
 let syncTimer = 0;
@@ -302,7 +303,11 @@ export async function signInForSync(email: string, password: string): Promise<st
 
 export async function signUpForSync(email: string, password: string): Promise<string | null> {
   if (!client) return '클라우드 연결 설정을 확인해 주세요.';
-  const { data, error } = await client.auth.signUp({ email: email.trim(), password });
+  const { data, error } = await client.auth.signUp({
+    email: email.trim().toLowerCase(),
+    password,
+    options: { emailRedirectTo: authRedirectUrl },
+  });
   if (error) return error.message.includes('Password') ? '비밀번호는 8자 이상으로 입력해 주세요.' : '계정을 만들지 못했습니다. 이메일을 확인해 주세요.';
   return data.session ? null : '확인 메일을 보냈습니다. 메일 인증 후 같은 정보로 로그인해 주세요.';
 }
@@ -315,9 +320,22 @@ export async function requestSyncPasswordReset(email: string): Promise<string | 
   if (!client) return '클라우드 연결 설정을 확인해 주세요.';
   if (!email.trim()) return '먼저 이메일을 입력해 주세요.';
   const { error } = await client.auth.resetPasswordForEmail(email.trim(), {
-    redirectTo: 'https://tk6871.github.io/cbt/',
+    redirectTo: authRedirectUrl,
   });
   return error ? '재설정 메일을 보내지 못했습니다. 이메일을 확인해 주세요.' : null;
+}
+
+export async function requestSyncLoginLink(email: string): Promise<string | null> {
+  if (!client) return '클라우드 연결 설정을 확인해 주세요.';
+  if (!email.trim()) return '확인할 이메일을 입력해 주세요.';
+  const { error } = await client.auth.signInWithOtp({
+    email: email.trim().toLowerCase(),
+    options: {
+      shouldCreateUser: false,
+      emailRedirectTo: authRedirectUrl,
+    },
+  });
+  return error ? '확인 메일을 보내지 못했습니다. 잠시 후 다시 시도해 주세요.' : null;
 }
 
 export async function updateSyncPassword(password: string): Promise<string | null> {
