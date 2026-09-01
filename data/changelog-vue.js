@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '4.6.1',
+      scope: 'industrial',
+      date: '2026.09.02',
+      title: '공조 필답형 복원 그림 잘림 보수',
+      summary: '원본 강의 영상을 다시 대조해 잘리거나 강의자에게 가려졌던 최근 필답형 도면과 답안 그림을 더 온전한 장면으로 교체했습니다.',
+      tags: ['공조 필답형', '복원 그림', '도면 잘림 보수', '원본 영상 대조'],
+      changes: [
+        '2024년 1회부터 2026년 2회까지 필답형 복원 그림 46장을 원본 영상의 더 넓고 읽기 좋은 프레임으로 보수했습니다.',
+        '문제와 다른 영상 시점이 섞이지 않도록 회차·문제 번호·문제용·답안용 장면을 교체 전후 비교표로 다시 확인했습니다.',
+        '기존 원본 그림은 별도 작업 폴더에 보존하고, 같은 결과를 다시 만들 수 있는 영상 대조·적용 도구와 검수 목록을 추가했습니다.',
+        '서비스워커 캐시 v461, Android 앱 버전 v4.6.1로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.6',
       scope: 'industrial',
       date: '2026.08.31',
@@ -2009,8 +2023,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.6';
+  changelog.versions.industrial = '4.6.1';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.6';
+  changelog.currentVersion = '4.6.1';
   window.CBT_CHANGELOG = changelog;
 })();
