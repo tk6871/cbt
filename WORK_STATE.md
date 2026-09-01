@@ -4,6 +4,15 @@
 
 ## 현재 스냅샷
 
+### 2026-09-02 v4.6.1 완료 상태
+
+- 외장 SSD의 공조 필답형 원본 강의 영상을 회차·문제별로 다시 대조해 2024년 1회부터 2026년 2회까지 잘리거나 강의자에게 주요 도면이 가려진 문제·답안 이미지 46장을 더 온전한 프레임으로 보수했습니다.
+- 교체 전 원본은 Git에서 제외한 `work/hvac-practical-video-original-crops/`에 보존했습니다. `data/hvac-practical-video-frame-repairs.json`에 검수된 영상 시점과 자르기 범위를 기록하고, 읽기 전용 프레임 대조 도구와 반복 적용·전후 비교표 생성 도구를 추가했습니다.
+- 2026년 2회 11번은 처음 선택한 영상 시점이 다른 문제임을 최종 검수에서 찾아 적용 목록에서 제거하고 기존 원본으로 복구했습니다. 2025년 2회 1번과 2026년 2회 2·3번은 정확한 시간표를 다시 추출해 사람이 덜 가린 장면으로 교체했습니다.
+- 서비스워커·정적 자산·Android 버전을 v4.6.1(461)로 맞췄습니다.
+- `npm run typecheck`, `npm run build`, `npm run audit:hvac-practical`, `npm run audit:hvac-practical-images`, `npm run audit:questions`, `npm run test:pwa`, Python 도구 문법·목록 검사, `node --check data/changelog-vue.js`, `node --check sw.js`, `git diff --check`가 통과했습니다. 필답형은 407문항·이미지 참조 237개·구조/연결 오류 0건이며 전체 문제 데이터는 38,750문항·누락 이미지 0건입니다.
+- 서명 APK `dist/industrial-cbt-v4.6.1.apk`를 생성했고 APK Signature Scheme v2 검증을 통과했습니다. SHA-256은 `7d2b2220bf2a9ea6ea1f09cf624ed97243c640316af0ef7f43ecfbfd30587313`입니다. 첫 빌드에서 Git 제외 중복 파일 `android/app/src/main/res/xml/config 2.xml`이 Android 리소스 이름 오류를 일으켜, 추적된 `config.xml`과 바이트 단위로 같은 것을 확인한 뒤 중복본만 제거했습니다.
+
 ### 2026-08-31 v4.6 완료 상태
 
 - 관리자 화면을 `요약`, `문제 제보`, `접속 기록`, `학습 결과`, `회원 계정` 다섯 구역으로 분리하고 핵심 수치·현재 접속·최근 처리 항목을 요약 화면에서 먼저 볼 수 있게 정리했습니다. 관리자 권한 확인 방식과 일반 회원의 관리자 페이지 접근 차단은 그대로 유지했습니다.
@@ -33,9 +42,9 @@
 - v4.4 화면·데이터·서비스워커·Android 버전을 440으로 맞췄고 로컬·원격 `main`의 커밋 `29b1d9a6`에 반영했습니다.
 - 외장 SSD의 원본 영상과 `/private/tmp`의 자막·중간 추출물은 저장소에 복사하지 않았습니다. 저장소에는 서비스에 필요한 정리 데이터와 이미지 자산만 포함했습니다.
 
-- 마지막 갱신: 2026-08-31
+- 마지막 갱신: 2026-09-02
 - 기준 브랜치: `main`
-- v4.6 작업 시작 Git HEAD: `82aac7a9`
+- v4.6.1 작업 시작 Git HEAD: `b2aab3a0`
 - 이번 문서에는 전 종목 이미지 개선, 문제·이미지 정밀 검수, 선택형 테마·동적 화면 전환, 문제풀이·Android·동기화·한솔·해설·필답형·정보처리기사 개선과 v4.5 공조 필답형 S펜 답안지·암기 모드 상태가 포함됨
 - Windows 저장소: `C:\Users\tk687\OneDrive\문서\CBT\통합_산업기사_CBT_반응형공유본`
 - Mac 저장소: `/Users/sh/Documents/GitHub/cbt`
