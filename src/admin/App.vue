@@ -58,10 +58,27 @@ type ExamResult = {
 
 type QuestionIssueStatus = 'open' | 'reviewing' | 'resolved' | 'deferred';
 type AdminSection = 'overview' | 'issues' | 'visitors' | 'results' | 'accounts';
+type AdminPermissions = {
+  viewAnalytics: boolean;
+  manageIssues: boolean;
+  viewMembers: boolean;
+  manageMembers: boolean;
+};
+type AdminAccess = {
+  userId: string;
+  role: 'super_admin' | 'admin';
+  permissions: AdminPermissions;
+};
 type SyncAccountRow = {
+  userId: string;
   username: string;
+  email: string | null;
+  accountType: 'site_id' | 'email';
   createdAt: string;
   updatedAt: string;
+  lastSignInAt: string | null;
+  role: 'super_admin' | 'admin' | null;
+  permissions: AdminPermissions;
 };
 type IssuedCredentials = {
   username: string;
@@ -103,6 +120,7 @@ const client = ref<SupabaseClient | null>(configured ? createClient(config!.supa
   auth: { persistSession: true, autoRefreshToken: true }
 }) : null);
 const session = ref<Session | null>(null);
+const adminAccess = ref<AdminAccess | null>(null);
 const email = ref('');
 const password = ref('');
 const loginError = ref('');
@@ -119,6 +137,8 @@ const syncAccounts = ref<SyncAccountRow[]>([]);
 const accountLoading = ref(false);
 const accountError = ref('');
 const issuedCredentials = ref<IssuedCredentials | null>(null);
+const accountSearch = ref('');
+const roleSavingId = ref<string | null>(null);
 const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('connecting');
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
@@ -158,11 +178,30 @@ const realtimeLabel = computed(() => ({
   error: '실시간 연결 오류',
   closed: '실시간 연결 종료'
 }[realtimeStatus.value]));
+const isSuperAdmin = computed(() => adminAccess.value?.role === 'super_admin');
+const canViewAnalytics = computed(() => adminAccess.value?.permissions.viewAnalytics === true);
+const canManageIssues = computed(() => adminAccess.value?.permissions.manageIssues === true);
+const canViewMembers = computed(() => adminAccess.value?.permissions.viewMembers === true);
+const canManageMembers = computed(() => adminAccess.value?.permissions.manageMembers === true);
+const displayedSyncAccounts = computed(() => {
+  const keyword = accountSearch.value.trim().toLocaleLowerCase('ko-KR');
+  if (!keyword) return syncAccounts.value;
+  return syncAccounts.value.filter((account) => `${account.username} ${account.email || ''}`.toLocaleLowerCase('ko-KR').includes(keyword));
+});
 
 function openSection(section: AdminSection): void {
+  if ((section === 'overview' || section === 'visitors' || section === 'results') && !canViewAnalytics.value) return;
+  if (section === 'issues' && !canManageIssues.value) return;
+  if (section === 'accounts' && !canViewMembers.value) return;
   activeSection.value = section;
   if (section === 'accounts' && !syncAccounts.value.length) void loadSyncAccounts();
   void nextTick(() => document.querySelector('.admin-section-nav')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
+
+function firstAllowedSection(): AdminSection {
+  if (canViewAnalytics.value) return 'overview';
+  if (canManageIssues.value) return 'issues';
+  return 'accounts';
 }
 
 async function accountRequest(body: Record<string, unknown>): Promise<Record<string, unknown>> {
@@ -194,6 +233,35 @@ async function loadSyncAccounts(): Promise<void> {
     return;
   }
   syncAccounts.value = Array.isArray(result.accounts) ? result.accounts as SyncAccountRow[] : [];
+}
+
+async function loadAdminSession(): Promise<boolean> {
+  const result = await accountRequest({ action: 'admin-session' });
+  if (result.error || !result.access) return false;
+  adminAccess.value = result.access as unknown as AdminAccess;
+  activeSection.value = firstAllowedSection();
+  if (activeSection.value === 'accounts') await loadSyncAccounts();
+  return true;
+}
+
+async function saveAccountRole(account: SyncAccountRow): Promise<void> {
+  if (!isSuperAdmin.value) return;
+  roleSavingId.value = account.userId;
+  accountError.value = '';
+  const result = await accountRequest({
+    action: 'admin-set-role',
+    userId: account.userId,
+    role: account.role || 'none',
+    permissions: account.permissions,
+  });
+  roleSavingId.value = null;
+  if (result.error) {
+    accountError.value = String(result.error);
+    await loadSyncAccounts();
+    return;
+  }
+  accountError.value = `${account.username} 계정 권한을 저장했습니다.`;
+  await loadSyncAccounts();
 }
 
 async function issueTemporaryPassword(account: SyncAccountRow): Promise<void> {
@@ -231,6 +299,13 @@ function formatDate(value: string | null): string {
     hour: '2-digit',
     minute: '2-digit'
   }).format(new Date(value));
+}
+
+async function internalEmail(usernameKey: string): Promise<string> {
+  const source = new TextEncoder().encode(`cbt-sync:${usernameKey}`);
+  const digest = await crypto.subtle.digest('SHA-256', source);
+  const hash = [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+  return `${hash.slice(0, 40)}@accounts.cbt.invalid`;
 }
 
 function shortId(value: string): string {
@@ -316,8 +391,10 @@ async function login(): Promise<void> {
   if (!client.value) return;
   loginError.value = '';
   loading.value = true;
+  const loginId = email.value.normalize('NFKC').trim();
+  const loginEmail = loginId.includes('@') ? loginId : await internalEmail(loginId.toLocaleLowerCase('ko-KR'));
   const { data, error } = await client.value.auth.signInWithPassword({
-    email: email.value.trim(),
+    email: loginEmail,
     password: password.value
   });
   loading.value = false;
@@ -325,16 +402,13 @@ async function login(): Promise<void> {
     loginError.value = '로그인 정보를 확인해 주세요.';
     return;
   }
-  const { data: adminRegistration, error: adminError } = await client.value
-    .from('admin_users')
-    .select('email')
-    .maybeSingle();
-  if (adminError || !adminRegistration) {
+  session.value = data.session;
+  if (!await loadAdminSession()) {
     await client.value.auth.signOut();
+    session.value = null;
     loginError.value = '관리자 권한이 없는 계정입니다.';
     return;
   }
-  session.value = data.session;
   await loadData();
   startRealtime();
   startAutoRefresh();
@@ -344,6 +418,7 @@ async function logout(): Promise<void> {
   stopRealtime();
   await client.value?.auth.signOut();
   session.value = null;
+  adminAccess.value = null;
   visitors.value = [];
   visits.value = [];
   results.value = [];
@@ -362,23 +437,26 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   if (!silent) loading.value = true;
   dataError.value = '';
   const since = new Date(Date.now() - days.value * 24 * 60 * 60 * 1000).toISOString();
-  const [visitorResponse, visitResponse, resultResponse, issueResponse] = await Promise.all([
+  const analyticsRequests = canViewAnalytics.value ? await Promise.all([
     client.value.from('visitor_profiles').select('*').order('last_seen', { ascending: false }).limit(300),
     client.value.from('visit_events').select('id,visitor_id,visited_at,device_type,browser,path').gte('visited_at', since).order('visited_at', { ascending: false }).limit(3000),
     client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000),
-    client.value.from('question_issue_reports').select('*').order('created_at', { ascending: false }).limit(1000),
-  ]);
+  ]) : [];
+  const issueResponse = canManageIssues.value
+    ? await client.value.from('question_issue_reports').select('*').order('created_at', { ascending: false }).limit(1000)
+    : null;
   if (!silent) loading.value = false;
-  const error = visitorResponse.error || visitResponse.error || resultResponse.error || issueResponse.error;
+  const [visitorResponse, visitResponse, resultResponse] = analyticsRequests;
+  const error = visitorResponse?.error || visitResponse?.error || resultResponse?.error || issueResponse?.error;
   if (error) {
     dataError.value = '관리자 권한이 없거나 데이터베이스 설정이 완료되지 않았습니다.';
     visitors.value = [];
     return;
   }
-  visitors.value = (visitorResponse.data || []) as VisitorProfile[];
-  visits.value = (visitResponse.data || []) as Visit[];
-  results.value = (resultResponse.data || []) as ExamResult[];
-  issueReports.value = (issueResponse.data || []) as QuestionIssueReport[];
+  visitors.value = (visitorResponse?.data || []) as VisitorProfile[];
+  visits.value = (visitResponse?.data || []) as Visit[];
+  results.value = (resultResponse?.data || []) as ExamResult[];
+  issueReports.value = (issueResponse?.data || []) as QuestionIssueReport[];
   await nextTick();
   if (!silent) {
     animate('.admin-stat-card', {
@@ -435,9 +513,11 @@ onMounted(async () => {
   if (!client.value) return;
   const { data } = await client.value.auth.getSession();
   if (data.session) {
-    const { data: adminRegistration } = await client.value.from('admin_users').select('email').maybeSingle();
-    if (!adminRegistration) await client.value.auth.signOut();
-    else session.value = data.session;
+    session.value = data.session;
+    if (!await loadAdminSession()) {
+      await client.value.auth.signOut();
+      session.value = null;
+    }
   }
   if (session.value) {
     await loadData();
@@ -470,7 +550,7 @@ onBeforeUnmount(() => {
       <span class="admin-kicker">SECURE ADMIN ACCESS</span>
       <h1>관리자 로그인</h1>
       <form @submit.prevent="login">
-        <label>이메일<input v-model="email" type="email" autocomplete="username" required></label>
+        <label>이메일 또는 사이트 아이디<input v-model="email" type="text" autocomplete="username" required></label>
         <label>비밀번호<input v-model="password" type="password" autocomplete="current-password" required></label>
         <button :disabled="loading">{{ loading ? '확인 중…' : '로그인' }}</button>
       </form>
@@ -491,26 +571,26 @@ onBeforeUnmount(() => {
 
       <section class="admin-intro">
         <div class="admin-intro-copy"><span class="admin-kicker">PRIVATE OPERATIONS</span><h1>CBT 운영 대시보드</h1><p>중요한 수치와 처리할 항목을 먼저 보고, 아래 탭에서 필요한 기록만 펼쳐볼 수 있습니다.</p></div>
-        <div class="admin-account"><span>관리자 계정</span><strong>{{ session.user.email }}</strong><small>IP 위치는 통신사·VPN 기준의 추정값입니다.</small></div>
+        <div class="admin-account"><span>{{ isSuperAdmin ? '슈퍼 관리자' : '권한 관리자' }}</span><strong>{{ session.user.user_metadata?.sync_username || session.user.email }}</strong><small>{{ isSuperAdmin ? '모든 운영 권한과 관리자 지정 권한' : '허용된 업무만 표시됩니다.' }}</small></div>
       </section>
 
       <p v-if="dataError" class="admin-error admin-data-error">{{ dataError }}</p>
 
-      <section class="admin-stats" aria-label="핵심 운영 지표">
+      <section v-if="canViewAnalytics" class="admin-stats" aria-label="핵심 운영 지표">
         <button type="button" class="admin-stat-card live-card" @click="openSection('overview')"><span>현재 접속</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>최근 3분 활동</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('visitors')"><span>오늘 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('results')"><span>채점된 답안</span><strong>{{ answeredTotal.toLocaleString() }}</strong><small>선택 기간 합계</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('results')"><span>완료한 결과</span><strong>{{ completedResultCount.toLocaleString() }}</strong><small>중도 종료 {{ interruptedResultCount }}건</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('results')"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>{{ results.length }}건 기준</small></button>
-        <button type="button" class="admin-stat-card issue-stat-card" @click="openSection('issues')"><span>확인 대기</span><strong>{{ openIssueCount.toLocaleString() }}<b>건</b></strong><small>이상 문제 신고</small></button>
+        <button v-if="canManageIssues" type="button" class="admin-stat-card issue-stat-card" @click="openSection('issues')"><span>확인 대기</span><strong>{{ openIssueCount.toLocaleString() }}<b>건</b></strong><small>이상 문제 신고</small></button>
       </section>
 
       <nav class="admin-section-nav" aria-label="관리자 화면 구역">
-        <button type="button" :class="{ active: activeSection === 'overview' }" @click="openSection('overview')"><i>⌂</i><span>요약</span><small>실시간·우선 처리</small></button>
-        <button type="button" :class="{ active: activeSection === 'issues' }" @click="openSection('issues')"><i>!</i><span>문제 제보</span><small>{{ openIssueCount }}건 대기</small></button>
-        <button type="button" :class="{ active: activeSection === 'visitors' }" @click="openSection('visitors')"><i>◎</i><span>접속 기록</span><small>{{ visitors.length }}개 브라우저</small></button>
-        <button type="button" :class="{ active: activeSection === 'results' }" @click="openSection('results')"><i>✓</i><span>학습 결과</span><small>{{ results.length }}건 조회</small></button>
-        <button type="button" :class="{ active: activeSection === 'accounts' }" @click="openSection('accounts')"><i>♙</i><span>회원 계정</span><small>임시 비밀번호 발급</small></button>
+        <button v-if="canViewAnalytics" type="button" :class="{ active: activeSection === 'overview' }" @click="openSection('overview')"><i>⌂</i><span>요약</span><small>실시간·우선 처리</small></button>
+        <button v-if="canManageIssues" type="button" :class="{ active: activeSection === 'issues' }" @click="openSection('issues')"><i>!</i><span>문제 제보</span><small>{{ openIssueCount }}건 대기</small></button>
+        <button v-if="canViewAnalytics" type="button" :class="{ active: activeSection === 'visitors' }" @click="openSection('visitors')"><i>◎</i><span>접속 기록</span><small>{{ visitors.length }}개 브라우저</small></button>
+        <button v-if="canViewAnalytics" type="button" :class="{ active: activeSection === 'results' }" @click="openSection('results')"><i>✓</i><span>학습 결과</span><small>{{ results.length }}건 조회</small></button>
+        <button v-if="canViewMembers" type="button" :class="{ active: activeSection === 'accounts' }" @click="openSection('accounts')"><i>♙</i><span>회원·권한</span><small>{{ isSuperAdmin ? '관리자 권한 설정' : '회원 계정 관리' }}</small></button>
       </nav>
 
       <section v-if="activeSection === 'overview'" class="admin-overview">
@@ -534,7 +614,7 @@ onBeforeUnmount(() => {
         </section>
 
         <div class="admin-overview-grid">
-          <article class="admin-panel admin-compact-panel">
+          <article v-if="canManageIssues" class="admin-panel admin-compact-panel">
             <div class="admin-panel-title"><div><span>TO DO</span><h2>먼저 확인할 문제</h2></div><button type="button" @click="openSection('issues')">전체 보기</button></div>
             <div v-if="recentOpenIssues.length" class="admin-compact-list">
               <button v-for="report in recentOpenIssues" :key="report.id" type="button" @click="openSection('issues')"><b>#{{ report.id }}</b><span><strong>{{ report.qualification || report.qualification_key }} · {{ report.question_number }}번</strong><small>{{ report.issue_types.map(issueTypeLabel).join(' · ') }}</small></span><time>{{ formatDate(report.created_at) }}</time></button>
@@ -622,10 +702,10 @@ onBeforeUnmount(() => {
         </div>
       </section>
 
-      <section v-else class="admin-panel account-panel">
+      <section v-else-if="activeSection === 'accounts'" class="admin-panel account-panel">
         <div class="admin-panel-title account-panel-title">
-          <div><span>SYNC ACCOUNTS</span><h2>동기화 회원 계정</h2><p>복구코드를 잊은 회원에게 임시 비밀번호와 새 복구코드를 한 번 발급합니다.</p></div>
-          <button type="button" :disabled="accountLoading" @click="loadSyncAccounts">{{ accountLoading ? '불러오는 중…' : '회원 새로고침' }}</button>
+          <div><span>MEMBERS & ACCESS</span><h2>회원 가입 목록과 관리자 권한</h2><p>가입·최근 로그인 상태를 확인하고, 슈퍼 관리자는 업무별 권한을 나눠 줄 수 있습니다.</p></div>
+          <div class="account-panel-tools"><input v-model="accountSearch" type="search" placeholder="아이디·이메일 검색"><button type="button" :disabled="accountLoading" @click="loadSyncAccounts">{{ accountLoading ? '불러오는 중…' : '회원 새로고침' }}</button></div>
         </div>
         <p v-if="accountError" class="admin-account-message">{{ accountError }}</p>
         <article v-if="issuedCredentials" class="issued-credentials">
@@ -634,12 +714,18 @@ onBeforeUnmount(() => {
           <button type="button" @click="copyCredentials">한 번에 복사</button>
         </article>
         <div class="admin-table-wrap account-table-wrap">
-          <table>
-            <thead><tr><th>아이디</th><th>가입 시각</th><th>복구 정보 갱신</th><th>복구코드 분실 처리</th></tr></thead>
+          <table class="member-table">
+            <thead><tr><th>회원</th><th>가입</th><th>최근 로그인</th><th>역할</th><th v-if="isSuperAdmin">세부 권한</th><th>계정 처리</th></tr></thead>
             <tbody>
-              <tr v-for="account in syncAccounts" :key="account.username"><td><strong>{{ account.username }}</strong></td><td>{{ formatDate(account.createdAt) }}</td><td>{{ formatDate(account.updatedAt) }}</td><td><button type="button" class="temp-password-button" :disabled="accountLoading" @click="issueTemporaryPassword(account)">임시 비밀번호 발급</button></td></tr>
-              <tr v-if="!accountLoading && !syncAccounts.length"><td colspan="4" class="empty-cell">아직 사이트 아이디로 가입한 회원이 없습니다.</td></tr>
-              <tr v-if="accountLoading"><td colspan="4" class="empty-cell">회원 계정을 불러오는 중입니다.</td></tr>
+              <tr v-for="account in displayedSyncAccounts" :key="account.userId">
+                <td class="member-identity"><strong>{{ account.username }}</strong><small>{{ account.accountType === 'site_id' ? '사이트 아이디' : account.email }}</small></td>
+                <td>{{ formatDate(account.createdAt) }}</td><td>{{ formatDate(account.lastSignInAt) }}</td>
+                <td><select v-if="isSuperAdmin" v-model="account.role" class="role-select" :disabled="account.userId === adminAccess?.userId"><option :value="null">일반 회원</option><option value="admin">관리자</option><option value="super_admin">슈퍼 관리자</option></select><span v-else class="role-chip" :class="`is-${account.role || 'member'}`">{{ account.role === 'super_admin' ? '슈퍼 관리자' : account.role === 'admin' ? '관리자' : '일반 회원' }}</span></td>
+                <td v-if="isSuperAdmin" class="permission-cell"><template v-if="account.role"><label><input v-model="account.permissions.viewAnalytics" type="checkbox" :disabled="account.role === 'super_admin'">통계</label><label><input v-model="account.permissions.manageIssues" type="checkbox" :disabled="account.role === 'super_admin'">문제 제보</label><label><input v-model="account.permissions.viewMembers" type="checkbox" :disabled="account.role === 'super_admin'">회원 조회</label><label><input v-model="account.permissions.manageMembers" type="checkbox" :disabled="account.role === 'super_admin'">회원 복구</label><button type="button" :disabled="roleSavingId === account.userId" @click="saveAccountRole(account)">{{ roleSavingId === account.userId ? '저장 중' : '권한 저장' }}</button></template><span v-else>권한 없음</span></td>
+                <td><button v-if="account.accountType === 'site_id' && canManageMembers" type="button" class="temp-password-button" :disabled="accountLoading" @click="issueTemporaryPassword(account)">임시 비밀번호</button><span v-else>-</span></td>
+              </tr>
+              <tr v-if="!accountLoading && !displayedSyncAccounts.length"><td :colspan="isSuperAdmin ? 6 : 5" class="empty-cell">조건에 맞는 회원이 없습니다.</td></tr>
+              <tr v-if="accountLoading"><td :colspan="isSuperAdmin ? 6 : 5" class="empty-cell">회원 계정을 불러오는 중입니다.</td></tr>
             </tbody>
           </table>
         </div>

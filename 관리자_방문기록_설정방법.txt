@@ -12,6 +12,7 @@ GitHub Pages 자체에는 데이터베이스와 서버 기능이 없기 때문�
 4. SQL Editor에서 아래 문장을 실제 관리자 이메일로 바꿔 실행합니다.
    insert into public.admin_users(email) values ('내이메일@example.com')
    on conflict (email) do nothing;
+   schema.sql의 자동 연결 기능이 해당 Auth 사용자를 최초 슈퍼 관리자로 등록합니다.
 
 5. Supabase CLI로 Edge Function을 배포합니다.
    supabase functions deploy cbt-analytics
@@ -31,7 +32,9 @@ GitHub Pages 자체에는 데이터베이스와 서버 기능이 없기 때문�
 
 [보안 구조]
 - 일반 방문자는 기록을 전송만 하며 데이터 조회 권한이 없습니다.
-- 관리자 계정으로 로그인하고 admin_users에 등록된 이메일만 조회할 수 있습니다.
+- 최초 소유자는 admin_users 등록으로 슈퍼 관리자가 되며, 이후에는 관리자 화면의 회원·권한 탭에서 UUID 기준 권한을 나눠 줍니다.
+- 슈퍼 관리자는 통계, 문제 제보, 회원 조회, 회원 복구 권한을 일반 관리자에게 각각 부여하거나 회수할 수 있습니다.
+- 서비스 키는 브라우저에 노출하지 않고, 권한 변경은 로그인 토큰을 서버에서 다시 확인한 뒤 처리합니다.
 - IP 주소는 브라우저가 아니라 Edge Function에서 확인합니다.
 - 방문 IP, 최근 접속, 학습·CBT 총점과 과목별 점수는 관리자 화면에서만 표시됩니다.
 - 문제별 선택 답안과 정오답은 서버로 전송하지 않고 사용자의 기기에만 저장됩니다.

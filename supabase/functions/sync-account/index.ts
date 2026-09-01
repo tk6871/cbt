@@ -5,6 +5,31 @@ type RequestBody = {
   username?: string;
   password?: string;
   recoveryCode?: string;
+  userId?: string;
+  role?: string;
+  permissions?: Partial<AdminPermissions>;
+};
+
+type AdminPermissions = {
+  viewAnalytics: boolean;
+  manageIssues: boolean;
+  viewMembers: boolean;
+  manageMembers: boolean;
+};
+
+type AdminRoleRow = {
+  user_id: string;
+  role: 'super_admin' | 'admin';
+  can_view_analytics: boolean;
+  can_manage_issues: boolean;
+  can_view_members: boolean;
+  can_manage_members: boolean;
+};
+
+type AdminAccess = {
+  userId: string;
+  role: 'super_admin' | 'admin';
+  permissions: AdminPermissions;
 };
 
 type RecoveryRow = {
@@ -89,17 +114,31 @@ function serviceKey(): string {
   return Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || '';
 }
 
-async function requireAdmin(request: Request, adminClient: ReturnType<typeof createClient>): Promise<boolean> {
+function accessFromRole(row: AdminRoleRow): AdminAccess {
+  const superAdmin = row.role === 'super_admin';
+  return {
+    userId: row.user_id,
+    role: row.role,
+    permissions: {
+      viewAnalytics: superAdmin || row.can_view_analytics,
+      manageIssues: superAdmin || row.can_manage_issues,
+      viewMembers: superAdmin || row.can_view_members || row.can_manage_members,
+      manageMembers: superAdmin || row.can_manage_members,
+    },
+  };
+}
+
+async function requireAdmin(request: Request, adminClient: ReturnType<typeof createClient>): Promise<AdminAccess | null> {
   const token = (request.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
-  if (!token) return false;
+  if (!token) return null;
   const { data, error } = await adminClient.auth.getUser(token);
-  if (error || !data.user?.email) return false;
+  if (error || !data.user) return null;
   const { data: admin } = await adminClient
-    .from('admin_users')
-    .select('email')
-    .eq('email', data.user.email.toLowerCase())
-    .maybeSingle();
-  return Boolean(admin);
+    .from('admin_role_members')
+    .select('user_id,role,can_view_analytics,can_manage_issues,can_view_members,can_manage_members')
+    .eq('user_id', data.user.id)
+    .maybeSingle<AdminRoleRow>();
+  return admin ? accessFromRole(admin) : null;
 }
 
 Deno.serve(async (request) => {
@@ -208,23 +247,85 @@ Deno.serve(async (request) => {
     return json(request, { username: row.username_display, recoveryCode });
   }
 
-  if (action === 'admin-list' || action === 'admin-temp-password') {
-    if (!await requireAdmin(request, adminClient)) return json(request, { error: '관리자 권한이 필요합니다.' }, 403);
+  if (action.startsWith('admin-')) {
+    const access = await requireAdmin(request, adminClient);
+    if (!access) return json(request, { error: '관리자 권한이 필요합니다.' }, 403);
+
+    if (action === 'admin-session') {
+      return json(request, { access });
+    }
+
     if (action === 'admin-list') {
-      const { data, error } = await adminClient
+      if (!access.permissions.viewMembers) return json(request, { error: '회원 목록 조회 권한이 필요합니다.' }, 403);
+      const [{ data: recoveryRows, error: recoveryError }, { data: roleRows, error: roleError }, authResponse] = await Promise.all([
+        adminClient
         .from('sync_account_recovery')
-        .select('username_display, created_at, updated_at')
-        .order('created_at', { ascending: false })
-        .limit(500);
-      if (error) return json(request, { error: '회원 목록을 불러오지 못했습니다.' }, 500);
+        .select('user_id,username_display,created_at,updated_at')
+        .order('created_at', { ascending: false }),
+        adminClient
+          .from('admin_role_members')
+          .select('user_id,role,can_view_analytics,can_manage_issues,can_view_members,can_manage_members'),
+        adminClient.auth.admin.listUsers({ page: 1, perPage: 1000 }),
+      ]);
+      if (recoveryError || roleError || authResponse.error) return json(request, { error: '회원 목록을 불러오지 못했습니다.' }, 500);
+      const recoveryByUser = new Map((recoveryRows || []).map((row) => [row.user_id, row]));
+      const roleByUser = new Map((roleRows || []).map((row) => [row.user_id, row as AdminRoleRow]));
       return json(request, {
-        accounts: (data || []).map((row) => ({
-          username: row.username_display,
-          createdAt: row.created_at,
-          updatedAt: row.updated_at,
-        })),
+        accounts: authResponse.data.users.map((user) => {
+          const recovery = recoveryByUser.get(user.id);
+          const role = roleByUser.get(user.id);
+          return {
+            userId: user.id,
+            username: recovery?.username_display || String(user.user_metadata?.sync_username || user.email || '이름 없는 계정'),
+            email: recovery ? null : user.email || null,
+            accountType: recovery ? 'site_id' : 'email',
+            createdAt: user.created_at,
+            updatedAt: recovery?.updated_at || user.updated_at || user.created_at,
+            lastSignInAt: user.last_sign_in_at || null,
+            role: role?.role || null,
+            permissions: role ? accessFromRole(role).permissions : {
+              viewAnalytics: false,
+              manageIssues: false,
+              viewMembers: false,
+              manageMembers: false,
+            },
+          };
+        }).sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)),
       });
     }
+
+    if (action === 'admin-set-role') {
+      if (access.role !== 'super_admin') return json(request, { error: '슈퍼 관리자만 권한을 변경할 수 있습니다.' }, 403);
+      const userId = String(body.userId || '');
+      if (!/^[0-9a-f-]{36}$/i.test(userId)) return json(request, { error: '회원 정보를 확인해 주세요.' }, 400);
+      const nextRole = String(body.role || 'none');
+      if (!['none', 'admin', 'super_admin'].includes(nextRole)) return json(request, { error: '관리자 역할을 확인해 주세요.' }, 400);
+      if (userId === access.userId && nextRole !== 'super_admin') {
+        return json(request, { error: '현재 로그인한 슈퍼 관리자 권한은 직접 해제할 수 없습니다.' }, 400);
+      }
+      if (nextRole === 'none') {
+        const { error } = await adminClient.from('admin_role_members').delete().eq('user_id', userId);
+        if (error) return json(request, { error: '관리자 권한을 해제하지 못했습니다.' }, 500);
+        return json(request, { updated: true });
+      }
+      const permissions = body.permissions || {};
+      const superAdmin = nextRole === 'super_admin';
+      const { error } = await adminClient.from('admin_role_members').upsert({
+        user_id: userId,
+        role: nextRole,
+        can_view_analytics: superAdmin || permissions.viewAnalytics === true,
+        can_manage_issues: superAdmin || permissions.manageIssues === true,
+        can_view_members: superAdmin || permissions.viewMembers === true,
+        can_manage_members: superAdmin || permissions.manageMembers === true,
+        created_by: access.userId,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'user_id' });
+      if (error) return json(request, { error: '관리자 권한을 저장하지 못했습니다.' }, 500);
+      return json(request, { updated: true });
+    }
+
+    if (action !== 'admin-temp-password') return json(request, { error: '지원하지 않는 관리자 작업입니다.' }, 400);
+    if (!access.permissions.manageMembers) return json(request, { error: '회원 복구 권한이 필요합니다.' }, 403);
 
     const username = normalizeUsername(body.username);
     if (!username) return json(request, { error: '회원 아이디를 확인해 주세요.' }, 400);
