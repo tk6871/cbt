@@ -5,6 +5,30 @@
 
   const entries = [
     {
+      version: '4.7',
+      scope: 'industrial',
+      date: '2026.09.03',
+      title: '선택형 UI 실험실과 학습 도구 플러그인',
+      summary: '기존 화면은 그대로 두고 UI 비교, 학교 사진·PDF 준비, 복습 일정, 수식 검산을 선택형으로 추가하고 사용 플러그인의 역할을 신기술 학습관에 공개했습니다.',
+      tags: ['UI 실험실', '플러그인 안내', '학교 시험', 'PDF 자르기', '수식 검산', '복습 일정'],
+      changes: [
+        'VueUse로 UI 설정을 새로고침 뒤에도 보존하고 기기의 모션 줄이기·고대비 선호를 감지합니다.',
+        'Color.js로 선택한 글자색과 배경색의 대비를 계산하고 강조색을 바꾸면서 가독성 점수를 확인합니다.',
+        'Reka UI로 키보드·화면 읽기 도구를 고려한 실험실 스위치와 접기 UI를 구성하고, Lucide 벡터 아이콘으로 작은 화면에서도 아이콘을 또렷하게 표시합니다.',
+        'Open Props의 공통 시간·속도 곡선으로 화면 전환을 맞추고, Driver.js 안내는 버튼을 눌렀을 때만 내려받아 새 기능 위치를 순서대로 보여 줍니다.',
+        'Canvas Confetti는 UI 실험실이 켜진 합격 결과에서만 지연 실행되어 기본 문제풀이의 첫 로딩에는 영향을 주지 않습니다.',
+        'Compute Engine 수식 실험실을 공조 계산문제 메뉴에 선택형으로 추가해 대입식과 계산 결과를 검산할 수 있습니다.',
+        'Cropper.js와 PDF.js로 학교 시험 사진·PDF 페이지를 서버에 올리지 않고 기기 안에서 자른 뒤 PNG로 저장할 수 있습니다.',
+        'Zod가 학교 시험 JSON 구조를 적용 전에 검사해 잘못된 정리본이 기존 자료를 덮는 일을 줄입니다.',
+        'TS-FSRS가 암기 결과에 따라 다음 복습 날짜를 정하고 오늘 복습할 카드를 먼저 표시합니다.',
+        'Capacitor Network와 Keyboard가 Android의 연결·키보드 상태를 감지해 오프라인 안내와 하단 버튼 가림을 줄입니다.',
+        'Playwright와 axe 자동 검사로 PC·휴대폰·태블릿 화면의 가로 넘침과 기본 접근성 회귀를 반복 점검할 기반을 추가했습니다.',
+        '무거운 선택 도구는 해당 화면을 열 때만 내려받고, 기능별 오류 경계와 ?safe=1 안전모드로 기존 CBT를 계속 사용할 수 있습니다.',
+        '신기술 학습관에 각 플러그인의 역할·바뀐 점·로딩 방식을 펼쳐 보는 안내를 추가했습니다.',
+        '서비스워커 캐시 v470, Android 앱 버전 v4.7로 갱신했습니다.'
+      ]
+    },
+    {
       version: '4.6.1',
       scope: 'industrial',
       date: '2026.09.02',
@@ -2023,8 +2047,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.6.1';
+  changelog.versions.industrial = '4.7';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.6.1';
+  changelog.currentVersion = '4.7';
   window.CBT_CHANGELOG = changelog;
 })();

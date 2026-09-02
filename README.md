@@ -33,10 +33,18 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v4.6.1.apk`를 생성합니다.
-- Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 APK에 포함된 v4.6.1 화면으로 자동 전환되어 문제 풀이를 계속할 수 있습니다. Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때만 새 APK가 필요합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v4.7.apk`를 생성합니다.
+- Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 APK에 포함된 v4.7 화면으로 자동 전환되어 문제 풀이를 계속할 수 있습니다. Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때만 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
+
+### v4.7 선택형 UI·학습 도구
+
+- 설정의 `UI·테마 실험실`에서 강조색, 화면 밀도, 카드 표현, 배경사진 가림 정도와 모션 강도를 비교할 수 있습니다. 기본값은 OFF이며 `?safe=1` 주소로 열면 저장값을 지우지 않고 임시 비활성화합니다.
+- 학교 시험 준비관은 사진·PDF 페이지를 서버에 올리지 않고 이 기기에서 자른 뒤 PNG로 저장하며, JSON 구조 검사와 FSRS 복습 일정을 지원합니다.
+- 공조 계산문제 메뉴의 수식 실험실은 사용자가 직접 열 때만 내려받아 대입식과 계산 결과를 검산합니다.
+- 신기술 학습관에서 VueUse, Color.js, Reka UI, Lucide, Driver.js, Compute Engine, Cropper.js, PDF.js, Zod, TS-FSRS와 Android 보조 플러그인의 역할과 실제 바뀐 점을 펼쳐 볼 수 있습니다.
+- 선택 기능은 기능별 오류 경계로 분리하고, PC·iPhone 14 Pro·태블릿 크기의 Playwright·axe 회귀 검사를 제공합니다.
 
 ## 📚 수록 종목
 

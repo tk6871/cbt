@@ -1,8 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, defineAsyncComponent, ref } from 'vue';
+import { z } from 'zod';
+import type { CardInput } from 'ts-fsrs';
 import { mergeSchoolExamData, normalizeSchoolExamData, type SchoolExamData, type SchoolExamKind, type SchoolMemoryCard } from './schoolExam';
 import { generalChatPatchPrompt, schoolPhotoJsonPrompt } from './schoolExamPrompts';
 import type { Round, StudyMode } from './types';
+import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
+
+const SchoolSourcePrep = defineAsyncComponent(() => import('./SchoolSourcePrep.vue'));
+const schoolImportSchema = z.object({
+  rounds: z.array(z.unknown()).optional(),
+  scopes: z.array(z.unknown()).optional(),
+  memoryCards: z.array(z.unknown()).optional(),
+}).passthrough();
 
 const props = defineProps<{ data: SchoolExamData }>();
 const emit = defineEmits<{
@@ -13,6 +23,7 @@ const emit = defineEmits<{
 const importInput = ref<HTMLInputElement | null>(null);
 const mergeInput = ref<HTMLInputElement | null>(null);
 const copiedPrompt = ref<'photo' | 'patch' | ''>('');
+const sourcePrepOpen = ref(false);
 const selectedRoundId = ref(props.data.rounds[0]?.id || '');
 const memoryOpenId = ref('');
 const subject = ref('');
@@ -34,6 +45,14 @@ const memoryPage = ref('');
 const memoryHint = ref('');
 
 const selectedRound = computed(() => props.data.rounds.find((round) => round.id === selectedRoundId.value) || null);
+const sortedMemoryCards = computed(() => [...props.data.memoryCards].sort((a, b) => {
+  const left = a.nextReviewAt || 0;
+  const right = b.nextReviewAt || 0;
+  if (!left && !right) return 0;
+  if (!left) return -1;
+  if (!right) return 1;
+  return left - right;
+}));
 const kindLabel: Record<SchoolExamKind, string> = { midterm: '중간고사', final: '기말고사', quiz: '쪽지시험', other: '기타 시험' };
 function uid(prefix: string): string {
   return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
@@ -146,7 +165,24 @@ function addMemoryCard(): void {
   memoryHint.value = '';
 }
 
-function reviewCard(card: SchoolMemoryCard, known: boolean): void {
+async function reviewCard(card: SchoolMemoryCard, known: boolean): Promise<void> {
+  const { Rating, createEmptyCard, fsrs, generatorParameters } = await import('ts-fsrs');
+  const now = new Date();
+  const stored: CardInput = card.fsrs ? {
+    ...card.fsrs,
+    due: new Date(card.fsrs.due),
+    last_review: card.fsrs.last_review ? new Date(card.fsrs.last_review) : undefined,
+  } : createEmptyCard(now);
+  const scheduled = fsrs(generatorParameters({ maximum_interval: 365 })).next(
+    stored,
+    now,
+    known ? Rating.Good : Rating.Again,
+  ).card;
+  const serializedFsrs: NonNullable<SchoolMemoryCard['fsrs']> = {
+    ...scheduled,
+    due: scheduled.due.toISOString(),
+    last_review: scheduled.last_review?.toISOString(),
+  };
   commit({
     ...props.data,
     memoryCards: props.data.memoryCards.map((item) => item.id === card.id ? {
@@ -154,6 +190,8 @@ function reviewCard(card: SchoolMemoryCard, known: boolean): void {
       reviewCount: (item.reviewCount || 0) + 1,
       knownCount: (item.knownCount || 0) + (known ? 1 : 0),
       lastReviewedAt: Date.now(),
+      nextReviewAt: scheduled.due.getTime(),
+      fsrs: serializedFsrs,
     } : item),
   });
   memoryOpenId.value = '';
@@ -188,7 +226,7 @@ async function importData(event: Event): Promise<void> {
   const file = (event.target as HTMLInputElement).files?.[0];
   if (!file) return;
   try {
-    const normalized = normalizeSchoolExamData(JSON.parse(await file.text()));
+    const normalized = normalizeSchoolExamData(schoolImportSchema.parse(JSON.parse(await file.text())));
     commit(normalized);
     selectedRoundId.value = normalized.rounds[0]?.id || '';
   } catch {
@@ -201,7 +239,7 @@ async function mergeData(event: Event): Promise<void> {
   const file = (event.target as HTMLInputElement).files?.[0];
   if (!file) return;
   try {
-    const incoming = normalizeSchoolExamData(JSON.parse(await file.text()));
+    const incoming = normalizeSchoolExamData(schoolImportSchema.parse(JSON.parse(await file.text())));
     if (!incoming.rounds.length && !incoming.memoryCards.length && !incoming.scopes.length) {
       throw new Error('empty school data');
     }
@@ -218,8 +256,12 @@ async function mergeData(event: Event): Promise<void> {
 <template>
   <section class="school-hero">
     <div><span>SCHOOL EXAM LAB</span><h1>학교 중간·기말고사 준비</h1><p>찍은 사진은 이 채팅에 보내 주세요. 문제·정답을 대조한 정리본을 받아 앱에 추가하면 됩니다.</p></div>
-    <div><button class="school-import" type="button" @click="mergeInput?.click()">사진 정리본 추가</button><button type="button" @click="exportData">백업 저장</button><button type="button" @click="importInput?.click()">백업 복원</button><input ref="mergeInput" type="file" accept="application/json" hidden @change="mergeData"><input ref="importInput" type="file" accept="application/json" hidden @change="importData"></div>
+    <div><button class="school-import" type="button" @click="mergeInput?.click()">사진 정리본 추가</button><button type="button" @click="sourcePrepOpen = !sourcePrepOpen">사진·PDF 자르기</button><button type="button" @click="exportData">백업 저장</button><button type="button" @click="importInput?.click()">백업 복원</button><input ref="mergeInput" type="file" accept="application/json" hidden @change="mergeData"><input ref="importInput" type="file" accept="application/json" hidden @change="importData"></div>
   </section>
+
+  <OptionalFeatureBoundary v-if="sourcePrepOpen" label="사진·PDF 자르기">
+    <SchoolSourcePrep @close="sourcePrepOpen = false" />
+  </OptionalFeatureBoundary>
 
   <section class="school-photo-workflow" aria-label="사진 문제 등록 순서">
     <strong>사진으로 준비하는 순서</strong>
@@ -298,11 +340,11 @@ async function mergeData(event: Event): Promise<void> {
     </div>
     <button class="school-primary" type="button" :disabled="!memoryPrompt.trim() || !memoryAnswer.trim()" @click="addMemoryCard">암기카드 추가</button>
     <div class="memory-card-grid">
-      <article v-for="card in data.memoryCards" :key="card.id" :class="{ important: card.important }">
+      <article v-for="card in sortedMemoryCards" :key="card.id" :class="{ important: card.important }">
         <span>{{ card.subject }}<small v-if="card.sourcePage">{{ card.sourcePage }}</small></span><h3>{{ card.prompt }}</h3>
         <button v-if="memoryOpenId !== card.id" type="button" @click="memoryOpenId = card.id">정답 펼치기</button>
         <div v-else class="memory-answer"><strong>{{ card.answer }}</strong><small v-if="card.teacherHint">선생님 강조: {{ card.teacherHint }}</small><div><button type="button" @click="reviewCard(card, true)">외웠어요</button><button type="button" @click="reviewCard(card, false)">다시 보기</button></div></div>
-        <footer>확인 {{ card.reviewCount || 0 }}회 · 외움 {{ card.knownCount || 0 }}회 <button type="button" @click="removeMemoryCard(card)">삭제</button></footer>
+        <footer>확인 {{ card.reviewCount || 0 }}회 · 외움 {{ card.knownCount || 0 }}회<span v-if="card.nextReviewAt"> · 다음 {{ new Date(card.nextReviewAt).toLocaleDateString('ko-KR') }}</span> <button type="button" @click="removeMemoryCard(card)">삭제</button></footer>
       </article>
     </div>
   </section>

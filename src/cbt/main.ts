@@ -2,6 +2,9 @@ import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { createApp } from 'vue';
 import App from './App.vue';
+import 'open-props/easings.min.css';
+import 'open-props/durations.min.css';
+import 'driver.js/dist/driver.css';
 import './cbt.css';
 
 const nativeApp = Capacitor.isNativePlatform();
@@ -22,6 +25,16 @@ function preventAccidentalBrowserZoom(): void {
 
 preventAccidentalBrowserZoom();
 
+function showRuntimeRecovery(error: unknown): void {
+  if (document.getElementById('cbt-runtime-recovery')) return;
+  const panel = document.createElement('aside');
+  panel.id = 'cbt-runtime-recovery';
+  panel.setAttribute('role', 'alert');
+  panel.innerHTML = '<strong>선택 기능을 불러오는 중 문제가 생겼습니다.</strong><span>학습 기록은 그대로입니다. UI 안전모드로 다시 열어 주세요.</span><a href="?safe=1">안전모드로 열기</a>';
+  document.body.append(panel);
+  console.error('CBT 화면 오류를 안전하게 격리했습니다.', error);
+}
+
 function updateNativeFormFactor(): void {
   if (!nativeApp) return;
   const shortestSide = Math.min(window.innerWidth, window.innerHeight);
@@ -35,9 +48,13 @@ if (nativeApp) {
   window.addEventListener('resize', updateNativeFormFactor, { passive: true });
   void StatusBar.setOverlaysWebView({ overlay: true });
   void StatusBar.setStyle({ style: Style.Light });
+  void import('./nativeEnhancements').then(({ initializeNativeEnhancements }) => initializeNativeEnhancements());
 }
 
-createApp(App).mount('#next-app');
+const app = createApp(App);
+app.config.errorHandler = (error) => showRuntimeRecovery(error);
+window.addEventListener('unhandledrejection', (event) => showRuntimeRecovery(event.reason));
+app.mount('#next-app');
 
 if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:') {
   void import('./pwa').catch((error) => {

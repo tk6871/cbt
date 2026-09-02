@@ -15,6 +15,7 @@ const CORE = [
   `./modern/cbt.css?${versionQuery}`, `./modern/cbt.js?${versionQuery}`, `./modern/mobile.js?${versionQuery}`, './modern/visitor.js?v=255',
   `./modern/chunks/import-wrapper-prod-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/index-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
+  `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`, './modern/OptionalFeatureBoundary.css',
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
   './modern/assets/search.worker-BqvfbZXG.js',
 ];
