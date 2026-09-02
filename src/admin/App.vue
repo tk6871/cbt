@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 import { createClient, type RealtimeChannel, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import { animate, stagger } from 'motion';
+import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
+
+const AdminOverviewCharts = defineAsyncComponent(() => import('./AdminOverviewCharts.vue'));
+const AdminIssueWorkspace = defineAsyncComponent(() => import('./AdminIssueWorkspace.vue'));
 
 type VisitorProfile = {
   visitor_id: string;
@@ -143,6 +147,7 @@ const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('con
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
 const activeSection = ref<AdminSection>('overview');
+const issueWorkspaceOpen = ref(false);
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
 let clockTimer: number | null = null;
@@ -613,6 +618,10 @@ onBeforeUnmount(() => {
           <div v-else class="live-access-empty"><i></i><div><strong>현재 활동 중인 접속자가 없습니다</strong><span>일반 CBT를 열면 최대 3분 안에 표시됩니다.</span></div></div>
         </section>
 
+        <OptionalFeatureBoundary label="관리자 통계 그래프" compact>
+          <AdminOverviewCharts :results="results" :visits="visits" />
+        </OptionalFeatureBoundary>
+
         <div class="admin-overview-grid">
           <article v-if="canManageIssues" class="admin-panel admin-compact-panel">
             <div class="admin-panel-title"><div><span>TO DO</span><h2>먼저 확인할 문제</h2></div><button type="button" @click="openSection('issues')">전체 보기</button></div>
@@ -637,10 +646,21 @@ onBeforeUnmount(() => {
           <div><span>QUESTION REVIEW QUEUE</span><h2>이상 문제 관리</h2><p>문제 파일을 수정할 때 JSON으로 내보내 그대로 대조할 수 있습니다.</p></div>
           <div class="issue-panel-actions">
             <label>상태<select v-model="issueStatusFilter"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option><option value="all">전체</option></select></label>
+            <button type="button" :disabled="!displayedIssueReports.length" @click="issueWorkspaceOpen = !issueWorkspaceOpen">{{ issueWorkspaceOpen ? '기존 표 보기' : '집중 검토' }}</button>
             <button type="button" :disabled="!displayedIssueReports.length" @click="exportIssueReports">JSON 내보내기</button>
           </div>
         </div>
-        <div class="admin-table-wrap issue-table-wrap">
+        <OptionalFeatureBoundary v-if="issueWorkspaceOpen" label="문제 제보 집중 검토">
+          <AdminIssueWorkspace
+            :reports="displayedIssueReports"
+            :saving-id="issueSavingId"
+            @close="issueWorkspaceOpen = false"
+            @export="exportIssueReports"
+            @update-status="(report, status) => updateIssueReport(report, { status })"
+            @update-note="(report, adminNote) => updateIssueReport(report, { admin_note: adminNote })"
+          />
+        </OptionalFeatureBoundary>
+        <div v-else class="admin-table-wrap issue-table-wrap">
           <table class="issue-report-table">
             <thead><tr><th>접수</th><th>문제</th><th>신고 유형·내용</th><th>문제 원문</th><th>처리 상태</th><th>관리자 메모</th></tr></thead>
             <tbody>

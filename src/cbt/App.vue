@@ -21,6 +21,9 @@ import {
 import QuestionCard from './QuestionCard.vue';
 import CloudSyncPanel from './CloudSyncPanel.vue';
 import SchoolExamManager from './SchoolExamManager.vue';
+import ThemeStudio from './ThemeStudio.vue';
+import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
+import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
 import {
   SCHOOL_EXAM_CATALOG_KEY,
@@ -75,6 +78,7 @@ import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, Sess
 
 const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
 const PracticalAnswerPad = defineAsyncComponent(() => import('./PracticalAnswerPad.vue'));
+const FormulaWorkbench = defineAsyncComponent(() => import('./FormulaWorkbench.vue'));
 
 type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
@@ -95,6 +99,31 @@ type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; updatedAt: number };
 type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number };
+type PluginExperience = {
+  name: string;
+  area: string;
+  role: string;
+  change: string;
+  loading: '기본' | '필요할 때만' | 'Android' | '검증 전용';
+};
+
+const pluginExperiences: PluginExperience[] = [
+  { name: 'VueUse', area: '설정 저장', role: 'UI 실험 설정과 기기 접근성 선호를 읽습니다.', change: '새 설정이 새로고침 뒤에도 유지되고 모션 줄이기·고대비 선호를 확인합니다.', loading: '기본' },
+  { name: 'Color.js', area: '색상 대비', role: '선택한 글자색과 배경색의 대비를 계산합니다.', change: '강조색을 바꾸면서 현재 가독성 점수를 바로 확인할 수 있습니다.', loading: '기본' },
+  { name: 'Reka UI', area: '접근성 UI', role: '키보드와 화면 읽기 도구를 고려한 스위치·접기 UI를 제공합니다.', change: 'UI 실험실을 한 번에 켜고 끄며 세부 설정을 접어 둘 수 있습니다.', loading: '기본' },
+  { name: 'Lucide', area: '선명한 아이콘', role: '화면 크기가 달라도 깨지지 않는 벡터 아이콘을 표시합니다.', change: '설정·자료 자르기·계산 도구의 아이콘이 작은 모바일에서도 또렷합니다.', loading: '기본' },
+  { name: 'Open Props', area: '동작 통일', role: '버튼과 패널의 시간·속도 곡선을 공통 값으로 맞춥니다.', change: '화면마다 제각각이던 전환 속도를 한결 자연스럽게 맞춥니다.', loading: '기본' },
+  { name: 'Driver.js', area: '기능 안내', role: '처음 쓰는 기능을 화면 위에서 순서대로 안내합니다.', change: 'UI 실험실에서 새 기능 안내를 눌러 주요 위치를 차례로 볼 수 있습니다.', loading: '필요할 때만' },
+  { name: 'Canvas Confetti', area: '합격 연출', role: '합격 결과에만 가벼운 축하 효과를 표시합니다.', change: 'UI 실험실이 켜진 상태에서 합격했을 때만 내려받고 실행합니다.', loading: '필요할 때만' },
+  { name: 'Compute Engine', area: '수식 계산', role: '입력한 수식을 해석하고 계산 결과를 확인합니다.', change: '공조 계산문제 메뉴에서 별도 수식 실험실을 열어 대입식을 검산할 수 있습니다.', loading: '필요할 때만' },
+  { name: 'Cropper.js', area: '사진 자르기', role: '촬영한 시험 자료에서 필요한 문제 영역만 자릅니다.', change: '학교 시험 준비관에서 회전·확대 후 PNG로 저장할 수 있습니다.', loading: '필요할 때만' },
+  { name: 'PDF.js', area: 'PDF 준비', role: '서버 업로드 없이 이 기기에서 PDF 페이지를 미리 봅니다.', change: '원하는 페이지를 골라 이미지로 만든 뒤 같은 자르기 도구를 사용합니다.', loading: '필요할 때만' },
+  { name: 'Zod', area: '자료 검사', role: '학교 시험 JSON의 필수 구조와 값 형식을 적용 전에 검사합니다.', change: '잘못된 정리본이 기존 시험 자료를 망가뜨리는 일을 줄입니다.', loading: '필요할 때만' },
+  { name: 'TS-FSRS', area: '복습 일정', role: '암기카드 결과를 바탕으로 다음 복습 시점을 계산합니다.', change: '오늘 볼 카드가 먼저 나오고 기억 정도에 따라 복습 간격이 달라집니다.', loading: '필요할 때만' },
+  { name: 'Capacitor Network', area: '연결 상태', role: 'Android 앱의 온라인·오프라인 전환을 감지합니다.', change: '연결이 끊기면 안내하고 내장 오프라인 화면으로 이어갈 준비를 합니다.', loading: 'Android' },
+  { name: 'Capacitor Keyboard', area: '모바일 키보드', role: 'Android 키보드가 열린 높이와 상태를 감지합니다.', change: '입력할 때 하단 풀이 버튼이 키보드에 가려지는 현상을 줄입니다.', loading: 'Android' },
+  { name: 'Playwright + axe', area: '화면 자동 검사', role: 'PC·휴대폰·태블릿 화면과 접근성 오류를 반복 검사합니다.', change: '업데이트 뒤 가로 넘침·버튼 이름·대비 같은 회귀 문제를 자동 확인할 기반을 만들었습니다.', loading: '검증 전용' },
+];
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
 type BetaModeMeta = {
@@ -260,6 +289,7 @@ const visualStyle = ref<VisualStyle>(currentVisualStyle());
 const sunjaeImageIndex = ref(0);
 const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 180);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
+const { active: uiLabActive, motion: uiLabMotion } = useUiLab();
 const experimentalFeaturesEnabled = ref(localStorage.getItem('unified-cbt-experimental-features') !== 'false');
 document.documentElement.dataset.experimentalFeatures = experimentalFeaturesEnabled.value ? 'on' : 'off';
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
@@ -273,6 +303,7 @@ const includeHansolInRandom = ref(localStorage.getItem('unified-cbt-random-inclu
 const settingsOpen = ref(false);
 const nativeMoreOpen = ref(false);
 const nativeCalculatorOpen = ref(false);
+const formulaWorkbenchOpen = ref(false);
 const learningImportInput = ref<HTMLInputElement | null>(null);
 const updateAvailable = ref(Boolean(window.CBT_UPDATE_AVAILABLE));
 const pwaRegistrationError = ref(Boolean(window.CBT_PWA_REGISTRATION_ERROR));
@@ -645,7 +676,9 @@ const upscalePreview = computed(() => {
 const darkActive = computed(() =>
   theme.value === 'dark'
   || (theme.value === 'system' && matchMedia('(prefers-color-scheme: dark)').matches));
-const motionAllowed = computed(() => dynamicUiEnabled.value && !prefersReducedMotion.value);
+const motionAllowed = computed(() => dynamicUiEnabled.value
+  && !prefersReducedMotion.value
+  && (!uiLabActive.value || uiLabMotion.value !== 'off'));
 const viewTransitionName = computed(() => motionAllowed.value
   ? (navigationDirection.value > 0 ? 'view-forward' : 'view-backward')
   : '');
@@ -2960,6 +2993,26 @@ function setDynamicUiEnabled(enabled: boolean): void {
     : '기존 UI 모드로 돌아왔습니다. 화면 전환과 재배치를 끕니다.');
 }
 
+async function startUiTour(): Promise<void> {
+  const { driver } = await import('driver.js');
+  driver({
+    showProgress: true,
+    allowClose: true,
+    overlayOpacity: .62,
+    nextBtnText: '다음',
+    prevBtnText: '이전',
+    doneBtnText: '확인',
+    progressText: '{{current}} / {{total}}',
+    steps: [
+      { element: '.theme-studio', popover: { title: 'UI·테마 실험실', description: '새 화면은 여기서만 켜고 끕니다. OFF하면 기존 화면으로 즉시 돌아갑니다.' } },
+      { element: '.display-mode-setting', popover: { title: '기기별 화면', description: 'PC·태블릿·휴대폰 배치를 자동 또는 수동으로 고정할 수 있습니다.' } },
+      { element: '.solve-layout-setting', popover: { title: '문제풀이 배치', description: '기본 CBT, 고밀도 COMCBT, 컴뱃 CBT를 답안 손실 없이 전환합니다.' } },
+      { element: '.style-options', popover: { title: '캐릭터 테마', description: '기본·심슨·선재 테마는 그대로 유지하면서 세부 색상과 밀도만 덧붙입니다.' } },
+      { element: '.font-family-options', popover: { title: '가독성', description: '글꼴과 글자 크기는 새 UI를 꺼도 기존 설정이 유지됩니다.' } },
+    ],
+  }).drive();
+}
+
 function sunjaeImageAt(offset: number): string {
   return sunjaeImages[(sunjaeImageIndex.value + offset) % sunjaeImages.length] || sunjaeThemeBanner;
 }
@@ -3407,6 +3460,17 @@ watch(examResult, (result) => {
     sunjaeResultPhase.value = 'reveal';
     return;
   }
+  if (uiLabActive.value && result.passed && uiLabMotion.value !== 'off' && !prefersReducedMotion.value) {
+    void import('canvas-confetti').then(({ default: confetti }) => {
+      confetti({
+        particleCount: 72,
+        spread: 68,
+        origin: { y: .72 },
+        disableForReducedMotion: true,
+        colors: ['#1268d3', '#0b8f6a', '#ffd90f', '#e62f83'],
+      });
+    });
+  }
   const revealScore = () => {
     sunjaeResultPhase.value = 'reveal';
     if (!motionAllowed.value) {
@@ -3500,6 +3564,7 @@ function syncNativeStatusBar(): void {
 }
 
 watch(darkActive, syncNativeStatusBar);
+watch([theme, visualStyle], () => void nextTick(applyUiLabPreferences));
 
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
@@ -3660,7 +3725,7 @@ onBeforeUnmount(() => {
 
     <main class="main-area">
       <header class="topbar">
-        <button class="menu-button" type="button" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
+        <button class="menu-button" type="button" aria-label="메뉴 열기" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
           <label class="topbar-qualification">
@@ -3671,10 +3736,10 @@ onBeforeUnmount(() => {
           </label>
         </div>
         <div class="top-actions">
-          <button type="button" @click="openView('search')">⌕ <span>검색</span></button>
-          <button type="button" @click="openCalculator">▦ <span>계산기</span></button>
-          <button type="button" class="theme-quick-button" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
-          <button type="button" @click="settingsOpen = true">⚙ <span>설정</span></button>
+          <button type="button" aria-label="문제 검색 열기" @click="openView('search')">⌕ <span>검색</span></button>
+          <button type="button" aria-label="공학용 계산기 열기" @click="openCalculator">▦ <span>계산기</span></button>
+          <button type="button" class="theme-quick-button" :aria-label="darkActive ? '라이트 모드로 전환' : '다크 모드로 전환'" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
+          <button type="button" aria-label="설정 열기" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
 
@@ -4084,8 +4149,11 @@ onBeforeUnmount(() => {
         <template v-else-if="view === 'calculation'">
           <section class="tool-hero calculation-hero">
             <div><span>FORMULA PRACTICE</span><h1>계산이 필요한 문제만 골라 푸세요</h1><p>{{ selectedCatalog.name }} · 현재 범위에서 {{ calculationRows.length.toLocaleString() }}문제 감지</p></div>
-            <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning(20)">취약순 20문제 시작</button>
+            <div><button type="button" @click="formulaWorkbenchOpen = !formulaWorkbenchOpen">{{ formulaWorkbenchOpen ? '수식 실험실 닫기' : '수식 계산 실험' }}</button><button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning(20)">취약순 20문제 시작</button></div>
           </section>
+          <OptionalFeatureBoundary v-if="formulaWorkbenchOpen" label="수식 계산 실험실">
+            <FormulaWorkbench @close="formulaWorkbenchOpen = false" />
+          </OptionalFeatureBoundary>
           <section v-if="selectedCatalog.key === 'hvac' || selectedCatalog.key === 'hvac-hansol'" class="calculator-memory-sheet">
             <header>
               <div><span>FX-991EX MEMORY MAP</span><h2>전체 단위·공식 전에 보는 계산기 저장표</h2><p>AB 공기 · CD 물 · EF 온도와 습도 · XY 냉동톤 · M 힘과 수두</p></div>
@@ -4643,6 +4711,25 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
+          <section class="feature-plugin-guide">
+            <header>
+              <div><span>PLUGIN GUIDE · v{{ currentVersion }}</span><h2>이번 플러그인이 바꾼 기능</h2></div>
+              <p>이름만 나열하지 않고 실제로 어디에 쓰였는지 펼쳐서 확인할 수 있습니다. 무거운 도구는 해당 기능을 열 때만 내려받습니다.</p>
+            </header>
+            <div class="feature-plugin-grid">
+              <details v-for="plugin in pluginExperiences" :key="plugin.name">
+                <summary>
+                  <span>{{ plugin.area }}</span>
+                  <strong>{{ plugin.name }}</strong>
+                  <b>{{ plugin.loading }}</b>
+                </summary>
+                <p>{{ plugin.role }}</p>
+                <small><b>바뀐 점</b>{{ plugin.change }}</small>
+              </details>
+            </div>
+            <footer><strong>안전장치</strong><span>선택 기능에서 오류가 나면 해당 카드만 멈추고 기존 CBT는 유지합니다. 주소에 <code>?safe=1</code>을 붙이면 UI 실험 기능만 임시로 끌 수 있습니다.</span></footer>
+          </section>
+
           <section class="feature-latest">
             <header><div><span>LATEST CHANGES</span><h2>v{{ patchEntries[0]?.version }} 핵심 변경점</h2></div><button type="button" @click="openView('updates')">전체 패치노트 →</button></header>
             <ul><li v-for="change in patchEntries[0]?.changes || []" :key="change">{{ change }}</li></ul>
@@ -4841,6 +4928,9 @@ onBeforeUnmount(() => {
             <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
           </div>
         </div>
+        <OptionalFeatureBoundary label="UI·테마 실험실" compact>
+          <ThemeStudio @start-tour="startUiTour" />
+        </OptionalFeatureBoundary>
         <div class="setting-group solve-layout-setting">
           <span>문제풀이 화면</span>
           <p class="setting-description">세 화면을 언제든 바꿀 수 있습니다. 답안·진도·타이머는 그대로 유지됩니다.</p>
@@ -5238,6 +5328,9 @@ onBeforeUnmount(() => {
             <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
           </div>
         </div>
+        <OptionalFeatureBoundary label="UI·테마 실험실" compact>
+          <ThemeStudio @start-tour="startUiTour" />
+        </OptionalFeatureBoundary>
         <div class="setting-group solve-layout-setting">
           <span>문제풀이 화면</span>
           <p class="setting-description">현재 답안과 타이머를 유지한 채 즉시 전환합니다.</p>
