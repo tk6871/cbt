@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '480';
+const buildVersion = '481';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -49,7 +49,9 @@ export default defineConfig({
         admin: resolve(projectRoot, 'src/admin/main.ts'),
         visitor: resolve(projectRoot, 'src/visitor.ts'),
         cbt: resolve(projectRoot, 'src/cbt/main.ts'),
-        mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
+        mobile: resolve(projectRoot, 'src/cbt/mobile.ts'),
+        uiFrameworkLab: resolve(projectRoot, 'src/ui-framework-lab/main.ts'),
+        uiFrameworkSandbox: resolve(projectRoot, 'src/ui-framework-lab/sandbox.ts')
       },
       output: {
         entryFileNames: '[name].js',

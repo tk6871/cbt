@@ -6,6 +6,7 @@ import 'open-props/easings.min.css';
 import 'open-props/durations.min.css';
 import 'driver.js/dist/driver.css';
 import './cbt.css';
+import './uiFrameworkThemes.css';
 
 const nativeApp = Capacitor.isNativePlatform();
 
