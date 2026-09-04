@@ -102,6 +102,18 @@ function mergeProgress(
   };
   if (savedAt(remoteSession) > savedAt(localSession)) merged[key] = clone(remoteSession);
   else if (localSession !== undefined) merged[key] = clone(localSession);
+  const practicalKey = 'hvacPracticalV2';
+  const timestampedRows = (value: unknown): Record<string, { updatedAt?: number }> =>
+    value && typeof value === 'object' && !Array.isArray(value) ? value as Record<string, { updatedAt?: number }> : {};
+  const localPractical = timestampedRows(local[practicalKey]);
+  const remotePractical = timestampedRows(remote[practicalKey]);
+  const practicalMerged: Record<string, { updatedAt?: number }> = {};
+  new Set([...Object.keys(localPractical), ...Object.keys(remotePractical)]).forEach((id) => {
+    const left = localPractical[id];
+    const right = remotePractical[id];
+    practicalMerged[id] = !right || (left && Number(left.updatedAt || 0) >= Number(right.updatedAt || 0)) ? clone(left) : clone(right);
+  });
+  if (Object.keys(practicalMerged).length) merged[practicalKey] = practicalMerged;
   return merged;
 }
 

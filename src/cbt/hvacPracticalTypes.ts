@@ -1,6 +1,20 @@
 export type PracticalPromptGroup = 'public' | 'restored' | 'foundation' | 'drill';
 export type PracticalCategory = 'equipment' | 'cycle' | 'calculation' | 'operation' | 'piping' | 'air' | 'safety';
 export type PracticalDifficulty = 'basic' | 'standard' | 'advanced';
+export type PracticalMistakeReason = 'formula' | 'substitution' | 'calculation' | 'unit' | 'keyword' | 'count' | 'diagram' | 'time';
+export type PracticalConfidence = 'low' | 'medium' | 'high';
+
+export type PracticalAssessment = {
+  checkedPointIds?: string[];
+  mistakeReasons?: PracticalMistakeReason[];
+  hintLevel?: number;
+  confidence?: PracticalConfidence;
+  score?: number;
+  attempts?: number;
+  firstStartedAt?: number;
+  lastGradedAt?: number;
+  answerHistory?: Array<{ draft: string; score: number; gradedAt: number }>;
+};
 
 export type PracticalPrompt = {
   id: string;
