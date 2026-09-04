@@ -33,10 +33,19 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v4.7.apk`를 생성합니다.
-- Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 APK에 포함된 v4.7 화면으로 자동 전환되어 문제 풀이를 계속할 수 있습니다. Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때만 새 APK가 필요합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v4.8.apk`를 생성합니다.
+- Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 APK에 포함된 v4.8 화면으로 자동 전환되어 문제 풀이를 계속할 수 있습니다. Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때만 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.
+
+### v4.8 공조 필답형 실전 채점 훈련
+
+- 오답·부분점수·미학습 문제를 우선하는 오늘의 필답 5문제와 같은 유형 연속 훈련을 제공합니다.
+- 문제 요구 개수와 답안 골격, 단계별 힌트, 핵심어 자동 비교, 숫자·단위·자리수 점검, 항목별 예상 부분점수를 제공합니다.
+- 공식·대입·계산·단위·핵심어·도면·시간 부족을 기록하고 실전 종료 후 반복 실수와 취약 분야를 정리합니다.
+- S펜 답안지에 펜 버튼 지우개, 왼손 배치, 작성 과정 재생, 정답 도면 투명 겹치기와 촬영 답안 비교를 추가했습니다.
+- 필답 입력 답안과 채점표·실수·최근 답안 이력을 기존 로그인 동기화에 포함해 기기별 기록을 합칩니다.
+- 신기술 학습관에서 새 필답형 흐름을 확인하고 바로 훈련관으로 이동할 수 있습니다.
 
 ### v4.7 선택형 UI·학습 도구
 

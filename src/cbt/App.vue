@@ -52,7 +52,9 @@ import { practicalPrompts, practicalSources, studyGuidePages } from './qualifica
 import {
   practicalCategoryLabels,
   practicalDifficultyLabels,
+  type PracticalAssessment,
   type PracticalCategory,
+  type PracticalMistakeReason,
   type PracticalPrompt,
 } from './hvacPracticalTypes';
 import { qualificationRuleFor } from './qualificationRules';
@@ -78,6 +80,7 @@ import type { AttemptRecord, Catalog, CurriculumScope, QuestionItem, Round, Sess
 
 const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
 const PracticalAnswerPad = defineAsyncComponent(() => import('./PracticalAnswerPad.vue'));
+const PracticalTrainingTools = defineAsyncComponent(() => import('./PracticalTrainingTools.vue'));
 const FormulaWorkbench = defineAsyncComponent(() => import('./FormulaWorkbench.vue'));
 
 type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
@@ -96,7 +99,7 @@ type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
 type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'review';
 type PracticalGrade = 'correct' | 'partial' | 'review';
-type PracticalProgress = { draft?: string; grade?: PracticalGrade; updatedAt: number };
+type PracticalProgress = { draft?: string; grade?: PracticalGrade; assessment?: PracticalAssessment; deleted?: boolean; updatedAt: number };
 type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number };
 type PluginExperience = {
@@ -723,7 +726,10 @@ const practicalPromptById = new Map(practicalPrompts.map((prompt) => [prompt.id,
 
 function loadPracticalProgress(): Record<string, PracticalProgress> {
   try {
-    const parsed = JSON.parse(localStorage.getItem(practicalProgressStorageKey) || '{}') as Record<string, PracticalProgress>;
+    const synced = studyStore.progress?.hvacPracticalV2;
+    const parsed = synced && typeof synced === 'object' && !Array.isArray(synced)
+      ? synced as Record<string, PracticalProgress>
+      : JSON.parse(localStorage.getItem(practicalProgressStorageKey) || '{}') as Record<string, PracticalProgress>;
     return parsed && typeof parsed === 'object' ? parsed : {};
   } catch {
     return {};
@@ -749,7 +755,7 @@ const loadedPracticalProgress = loadPracticalProgress();
 const loadedPracticalSession = loadPracticalSession();
 const practicalProgress = reactive<Record<string, PracticalProgress>>(loadedPracticalProgress);
 const practicalDrafts = reactive<Record<string, string>>(Object.fromEntries(
-  Object.entries(loadedPracticalProgress).map(([id, progress]) => [id, progress.draft || '']),
+  Object.entries(loadedPracticalProgress).filter(([, progress]) => !progress.deleted).map(([id, progress]) => [id, progress.draft || '']),
 ));
 const practicalRevealedIds = ref<string[]>([]);
 const practicalSessionIds = ref<string[]>(loadedPracticalSession.ids);
@@ -817,12 +823,57 @@ const practicalSessionRemainingSeconds = computed(() => {
   return Math.max(0, Math.ceil((practicalSessionDeadline.value - practicalClock.value) / 1000));
 });
 const practicalSessionScore = computed(() => practicalSessionIds.value.reduce((total, id) => {
-  const grade = practicalProgress[id]?.grade;
-  return total + (grade === 'correct' ? 5 : grade === 'partial' ? 2.5 : 0);
+  const progress = practicalProgress[id];
+  const prompt = practicalPromptById.get(id);
+  if (!prompt) return total;
+  if (typeof progress?.assessment?.score === 'number') return total + progress.assessment.score;
+  return total + (progress?.grade === 'correct' ? prompt.points : progress?.grade === 'partial' ? prompt.points / 2 : 0);
 }, 0));
+const practicalSessionTotalPoints = computed(() => practicalSessionIds.value.reduce((total, id) => total + (practicalPromptById.get(id)?.points || 0), 0));
 const practicalSessionGradedCount = computed(() => practicalSessionIds.value.filter((id) => Boolean(practicalProgress[id]?.grade)).length);
+const practicalSessionReport = computed(() => {
+  const mistakes = new Map<PracticalMistakeReason, number>();
+  const categories = new Map<PracticalCategory, { score: number; total: number }>();
+  let hints = 0;
+  let lowConfidence = 0;
+  for (const id of practicalSessionIds.value) {
+    const prompt = practicalPromptById.get(id);
+    const progress = practicalProgress[id];
+    if (!prompt) continue;
+    const current = categories.get(prompt.category) || { score: 0, total: 0 };
+    current.total += prompt.points;
+    current.score += typeof progress?.assessment?.score === 'number'
+      ? progress.assessment.score
+      : progress?.grade === 'correct' ? prompt.points : progress?.grade === 'partial' ? prompt.points / 2 : 0;
+    categories.set(prompt.category, current);
+    hints += progress?.assessment?.hintLevel || 0;
+    if (progress?.assessment?.confidence === 'low') lowConfidence += 1;
+    for (const reason of progress?.assessment?.mistakeReasons || []) mistakes.set(reason, (mistakes.get(reason) || 0) + 1);
+  }
+  const weakest = [...categories.entries()].sort(([, a], [, b]) => (a.score / Math.max(1, a.total)) - (b.score / Math.max(1, b.total)))[0];
+  return {
+    hints,
+    lowConfidence,
+    weakestLabel: weakest ? practicalCategoryLabels[weakest[0]] : '없음',
+    topMistakes: [...mistakes.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3),
+  };
+});
 
 function persistPracticalProgress(): void {
+  localStorage.setItem(practicalProgressStorageKey, JSON.stringify(practicalProgress));
+  studyStore.progress ||= {};
+  studyStore.progress.hvacPracticalV2 = JSON.parse(JSON.stringify(practicalProgress));
+  persistStudyStoreNow();
+  scheduleLearningSync();
+}
+
+function refreshPracticalProgressFromCloud(): void {
+  const synced = studyStore.progress?.hvacPracticalV2;
+  if (!synced || typeof synced !== 'object' || Array.isArray(synced)) return;
+  Object.keys(practicalProgress).forEach((id) => delete practicalProgress[id]);
+  Object.assign(practicalProgress, synced as Record<string, PracticalProgress>);
+  Object.keys(practicalDrafts).forEach((id) => delete practicalDrafts[id]);
+  Object.entries(practicalProgress).filter(([, progress]) => !progress.deleted).forEach(([id, progress]) => { practicalDrafts[id] = progress.draft || ''; });
   localStorage.setItem(practicalProgressStorageKey, JSON.stringify(practicalProgress));
 }
 
@@ -842,8 +893,57 @@ function persistPracticalSession(): void {
 function updatePracticalDraft(id: string, event: Event): void {
   const draft = (event.target as HTMLTextAreaElement).value;
   practicalDrafts[id] = draft;
-  practicalProgress[id] = { ...practicalProgress[id], draft, updatedAt: Date.now() };
+  practicalProgress[id] = { ...practicalProgress[id], draft, deleted: false, updatedAt: Date.now() };
+  practicalProgress[id].assessment = {
+    ...practicalProgress[id].assessment,
+    firstStartedAt: practicalProgress[id].assessment?.firstStartedAt || Date.now(),
+  };
   persistPracticalProgress();
+}
+
+function replacePracticalDraft(id: string, draft: string): void {
+  practicalDrafts[id] = draft;
+  practicalProgress[id] = {
+    ...practicalProgress[id],
+    draft,
+    assessment: {
+      ...practicalProgress[id]?.assessment,
+      firstStartedAt: practicalProgress[id]?.assessment?.firstStartedAt || Date.now(),
+    },
+    deleted: false,
+    updatedAt: Date.now(),
+  };
+  persistPracticalProgress();
+}
+
+function updatePracticalAssessment(id: string, assessment: PracticalAssessment): void {
+  practicalProgress[id] = {
+    ...practicalProgress[id],
+    draft: practicalDrafts[id] || '',
+    assessment,
+    deleted: false,
+    updatedAt: Date.now(),
+  };
+  persistPracticalProgress();
+}
+
+function practicalSimilarCount(prompt: PracticalPrompt): number {
+  const keyPoints = new Set((prompt.keyPoints || []).flatMap((point) => point.normalize('NFKC').split(/[^0-9a-z가-힣]+/i)).filter((word) => word.length >= 2));
+  return practicalPrompts.filter((candidate) => candidate.id !== prompt.id && candidate.category === prompt.category
+    && (!keyPoints.size || (candidate.keyPoints || []).some((point) => [...keyPoints].some((word) => point.includes(word))))).length;
+}
+
+function hasPracticalProgress(id: string): boolean {
+  const progress = practicalProgress[id];
+  return Boolean(progress && !progress.deleted && (progress.grade || progress.draft || progress.assessment));
+}
+
+function practicalAdaptiveLabel(prompt: PracticalPrompt): string {
+  const assessment = practicalProgress[prompt.id]?.assessment;
+  if (!assessment?.attempts) return '첫 도전';
+  if ((assessment.hintLevel || 0) === 0 && assessment.confidence === 'high') return '실전 숙달';
+  if ((assessment.attempts || 0) >= 2 && (assessment.score || 0) < prompt.points) return '집중 복습';
+  return '단계 상승';
 }
 
 function practicalAnswerRevealed(id: string): boolean {
@@ -857,10 +957,28 @@ function togglePracticalAnswer(id: string): void {
 }
 
 function markPracticalPrompt(id: string, grade: PracticalGrade): void {
+  const previousAssessment = practicalProgress[id]?.assessment;
+  const prompt = practicalPromptById.get(id);
+  const appliedScore = typeof previousAssessment?.score === 'number'
+    ? previousAssessment.score
+    : grade === 'correct' ? prompt?.points || 5 : grade === 'partial' ? (prompt?.points || 5) / 2 : 0;
+  const currentDraft = practicalDrafts[id]?.trim() || '';
+  const history = previousAssessment?.answerHistory || [];
+  const nextHistory = currentDraft && history.at(-1)?.draft !== currentDraft
+    ? [...history, { draft: currentDraft, score: appliedScore, gradedAt: Date.now() }].slice(-3)
+    : history;
   practicalProgress[id] = {
     ...practicalProgress[id],
     draft: practicalDrafts[id] || '',
     grade,
+    assessment: {
+      ...previousAssessment,
+      score: appliedScore,
+      attempts: (previousAssessment?.attempts || 0) + 1,
+      lastGradedAt: Date.now(),
+      answerHistory: nextHistory,
+    },
+    deleted: false,
     updatedAt: Date.now(),
   };
   if (!practicalAnswerRevealed(id)) practicalRevealedIds.value = [...practicalRevealedIds.value, id];
@@ -868,7 +986,7 @@ function markPracticalPrompt(id: string, grade: PracticalGrade): void {
 }
 
 function resetPracticalPrompt(id: string): void {
-  delete practicalProgress[id];
+  practicalProgress[id] = { deleted: true, updatedAt: Date.now() };
   delete practicalDrafts[id];
   practicalRevealedIds.value = practicalRevealedIds.value.filter((value) => value !== id);
   persistPracticalProgress();
@@ -920,6 +1038,22 @@ function uniquePracticalCandidates(candidates: PracticalPrompt[]): PracticalProm
   });
 }
 
+function preparePracticalSessionPrompts(prompts: PracticalPrompt[]): void {
+  const now = Date.now();
+  for (const prompt of prompts) {
+    const previous = practicalProgress[prompt.id]?.assessment;
+    practicalProgress[prompt.id] = {
+      assessment: previous?.attempts || previous?.answerHistory?.length
+        ? { attempts: previous.attempts, answerHistory: previous.answerHistory }
+        : undefined,
+      deleted: false,
+      updatedAt: now,
+    };
+    practicalDrafts[prompt.id] = '';
+  }
+  persistPracticalProgress();
+}
+
 function startPracticalMock(): void {
   const candidates = uniquePracticalCandidates(practicalFilteredPrompts.value);
   const selected = shuffle(candidates).slice(0, Math.min(12, candidates.length));
@@ -927,11 +1061,7 @@ function startPracticalMock(): void {
     showToast('현재 조건에 맞는 필답형 문제가 없습니다.');
     return;
   }
-  for (const prompt of selected) {
-    delete practicalProgress[prompt.id];
-    delete practicalDrafts[prompt.id];
-  }
-  persistPracticalProgress();
+  preparePracticalSessionPrompts(selected);
   practicalSessionIds.value = selected.map((prompt) => prompt.id);
   practicalSessionFinished.value = false;
   practicalSessionStoppedSeconds.value = 0;
@@ -943,6 +1073,58 @@ function startPracticalMock(): void {
   persistPracticalSession();
   showToast(selected.length === 12 ? '필답형 12문제 실전을 시작합니다.' : `${selected.length}문제 맞춤 연습을 시작합니다.`);
   void nextTick(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+}
+
+function startPracticalDaily(): void {
+  const ranked = uniquePracticalCandidates(practicalFilteredPrompts.value).sort((a, b) => {
+    const aProgress = practicalProgress[a.id];
+    const bProgress = practicalProgress[b.id];
+    const rank = (progress?: PracticalProgress) => progress?.grade === 'review' ? 0 : progress?.grade === 'partial' ? 1 : !progress?.grade ? 2 : 3;
+    return rank(aProgress) - rank(bProgress) || (aProgress?.updatedAt || 0) - (bProgress?.updatedAt || 0);
+  }).slice(0, 5);
+  if (!ranked.length) {
+    showToast('현재 조건에 맞는 필답형 문제가 없습니다.');
+    return;
+  }
+  preparePracticalSessionPrompts(ranked);
+  practicalSessionIds.value = ranked.map((prompt) => prompt.id);
+  practicalSessionFinished.value = false;
+  practicalSessionStoppedSeconds.value = 0;
+  practicalSessionDeadline.value = Date.now() + 30 * 60 * 1000;
+  practicalClock.value = Date.now();
+  practicalPage.value = 1;
+  practicalRevealedIds.value = [];
+  if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'type';
+  persistPracticalSession();
+  showToast('오답과 미학습 문제를 우선한 오늘의 필답 5문제를 시작합니다.');
+}
+
+function startPracticalRelated(prompt: PracticalPrompt): void {
+  const sourceWords = new Set((prompt.keyPoints || []).flatMap((point) => point.normalize('NFKC').split(/[^0-9a-z가-힣]+/i)).filter((word) => word.length >= 2));
+  const related = uniquePracticalCandidates(practicalPrompts.filter((candidate) => candidate.category === prompt.category
+    && (candidate.id === prompt.id || !sourceWords.size || (candidate.keyPoints || []).some((point) => [...sourceWords].some((word) => point.includes(word))))));
+  const selected = [prompt, ...shuffle(related.filter((candidate) => candidate.id !== prompt.id))].slice(0, 10);
+  preparePracticalSessionPrompts(selected);
+  practicalSessionIds.value = selected.map((candidate) => candidate.id);
+  practicalSessionFinished.value = false;
+  practicalSessionStoppedSeconds.value = 0;
+  practicalSessionDeadline.value = Date.now() + 45 * 60 * 1000;
+  practicalClock.value = Date.now();
+  practicalPage.value = 1;
+  practicalRevealedIds.value = [];
+  if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'type';
+  persistPracticalSession();
+  showToast(`${practicalCategoryLabels[prompt.category]} 같은 유형 ${selected.length}문제를 시작합니다.`);
+}
+
+function printPracticalSheet(): void {
+  document.documentElement.classList.add('printing-practical');
+  window.print();
+  window.setTimeout(() => document.documentElement.classList.remove('printing-practical'), 500);
+}
+
+function practicalMistakeLabel(reason: PracticalMistakeReason): string {
+  return ({ formula: '공식', substitution: '대입', calculation: '계산', unit: '단위', keyword: '핵심어', count: '개수 누락', diagram: '도면', time: '시간 부족' })[reason];
 }
 
 function finishPracticalMock(timedOut = false): void {
@@ -1851,6 +2033,12 @@ function startHvacFieldReportPractice(): void {
     '2026년 8월 22일 비공식 실전 복원 훈련',
     roundToItems(hvacFieldReportRound),
   );
+}
+
+function openHvacPracticalGuide(): void {
+  configureQualification('hvac');
+  openView('guide');
+  window.setTimeout(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 180);
 }
 
 function saveActiveLearningSession(): void {
@@ -3402,6 +3590,9 @@ async function clearLearningData(): Promise<void> {
     await db.exams.clear();
   });
   persistStudyStoreNow();
+  Object.keys(practicalProgress).forEach((id) => delete practicalProgress[id]);
+  Object.keys(practicalDrafts).forEach((id) => delete practicalDrafts[id]);
+  localStorage.removeItem(practicalProgressStorageKey);
   recentExamRecords.value = [];
   scheduleLearningSync(100);
   settingsOpen.value = false;
@@ -3410,6 +3601,7 @@ async function clearLearningData(): Promise<void> {
 
 function handleCloudSynced(): void {
   refreshSavedLearningSessionFromStore();
+  refreshPracticalProgressFromCloud();
   void refreshExamHistory();
 }
 
@@ -4266,6 +4458,11 @@ onBeforeUnmount(() => {
               <div><span>다시 보기</span><strong>{{ practicalReviewCount }}</strong><small>문제</small></div>
               <button type="button" @click="showPracticalReview">복습 문제 모아보기</button>
             </div>
+            <div v-if="!practicalSessionActive" class="practical-quick-start">
+              <button type="button" @click="startPracticalDaily"><b>오늘의 필답 5문제</b><small>오답·부분점수·미학습 우선 · 30분</small></button>
+              <button type="button" @click="startPracticalMock"><b>실전 12문제</b><small>중복 유형 제외 · 90분</small></button>
+              <button type="button" class="subtle" @click="printPracticalSheet"><b>A4 시험지 출력</b><small>현재 선택 문제와 별도 답안 공간</small></button>
+            </div>
             <div class="practical-mode-switch" role="group" aria-label="필답형 공부 방식">
               <div>
                 <button type="button" :class="{ active: practicalStudyMode === 'type' }" @click="practicalStudyMode = 'type'"><b>직접 입력</b><small>키보드로 답안 작성</small></button>
@@ -4277,9 +4474,19 @@ onBeforeUnmount(() => {
               <p v-else><b>기본 연습</b> 짧은 문장보다 채점 핵심어를 빠뜨리지 않는 연습이 중요합니다.</p>
             </div>
             <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
-              <div><span>{{ practicalSessionFinished ? 'SELF GRADING COMPLETE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionIds.length * 5}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small></div>
+              <div><span>{{ practicalSessionFinished ? 'SELF GRADING COMPLETE' : practicalSessionIds.length <= 5 ? 'TODAY 5 WRITTEN PRACTICE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionTotalPoints}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small></div>
               <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">실전 종료·점수 보기</button><button type="button" @click="closePracticalMock">목록으로 돌아가기</button></div>
             </div>
+            <section v-if="practicalSessionActive && practicalSessionFinished" class="practical-session-report">
+              <header><div><span>WRITTEN SCORE REPORT</span><h3>필답형 실전 분석</h3></div><strong>{{ Math.round((practicalSessionScore / Math.max(1, practicalSessionTotalPoints)) * 100) }}%</strong></header>
+              <div>
+                <article><span>취약 분야</span><b>{{ practicalSessionReport.weakestLabel }}</b><small>다음 복습에서 우선 출제</small></article>
+                <article><span>힌트 사용</span><b>{{ practicalSessionReport.hints }}단계</b><small>적게 쓸수록 실전 회상에 유리</small></article>
+                <article><span>막힘 표시</span><b>{{ practicalSessionReport.lowConfidence }}문제</b><small>다시 작성 권장</small></article>
+              </div>
+              <p v-if="practicalSessionReport.topMistakes.length"><b>반복 실수</b><span v-for="([reason, count]) in practicalSessionReport.topMistakes" :key="reason">{{ practicalMistakeLabel(reason) }} {{ count }}회</span></p>
+              <p v-else><b>다음 단계</b><span>각 문제의 부분점수 채점표에서 빠진 요소와 실수 원인을 기록해 보세요.</span></p>
+            </section>
             <template v-else>
               <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
                 <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
@@ -4304,7 +4511,7 @@ onBeforeUnmount(() => {
               <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :class="[`grade-${practicalProgress[prompt.id]?.grade || 'none'}`, { 'memorize-mode': practicalStudyMode === 'memorize' }]">
                 <header>
                   <span>{{ practicalListNumber(index) }}</span>
-                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.number }}번</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }}</small><h3>{{ prompt.question }}</h3></div>
+                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.number }}번</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }} · {{ practicalAdaptiveLabel(prompt) }}</small><h3>{{ prompt.question }}</h3></div>
                   <b>{{ practicalGradeLabel(practicalProgress[prompt.id]?.grade) }}</b>
                 </header>
                 <img v-if="prompt.image" class="practical-prompt-image" :src="prompt.image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림`" loading="lazy">
@@ -4312,10 +4519,22 @@ onBeforeUnmount(() => {
                   <img v-for="(image, imageIndex) in prompt.images" :key="image" class="practical-prompt-image" :src="image" :alt="`공조냉동 필답형 ${index + 1}번 문제 그림 ${imageIndex + 1}`" loading="lazy">
                 </div>
                 <label v-if="practicalStudyMode === 'type'" class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
-                <PracticalAnswerPad v-else-if="practicalStudyMode === 'handwrite'" :prompt-id="prompt.id" :disabled="practicalSessionFinished" />
+                <PracticalAnswerPad v-else-if="practicalStudyMode === 'handwrite'" :prompt-id="prompt.id" :disabled="practicalSessionFinished" :answer-images="prompt.answerImages || []" :overlay-allowed="practicalAnswerRevealed(prompt.id)" />
+                <PracticalTrainingTools
+                  v-if="practicalStudyMode !== 'memorize'"
+                  :prompt="prompt"
+                  :draft="practicalDrafts[prompt.id] || ''"
+                  :revealed="practicalAnswerRevealed(prompt.id)"
+                  :assessment="practicalProgress[prompt.id]?.assessment"
+                  :similar-count="practicalSimilarCount(prompt)"
+                  @update="updatePracticalAssessment(prompt.id, $event)"
+                  @insert-template="replacePracticalDraft(prompt.id, $event)"
+                  @reveal="togglePracticalAnswer(prompt.id)"
+                />
                 <div v-if="practicalStudyMode !== 'memorize'" class="practical-answer-actions">
                   <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '정답 닫기' : '정답·채점 기준 보기' }}</button>
-                  <button v-if="practicalProgress[prompt.id]" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
+                  <button v-if="!practicalSessionActive" type="button" class="subtle" @click="startPracticalRelated(prompt)">같은 유형 연속 풀기</button>
+                  <button v-if="hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
                 </div>
                 <div v-if="practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id)" class="practical-solution">
                   <p><b>모범답안</b>{{ prompt.answer }}</p>
@@ -4550,6 +4769,17 @@ onBeforeUnmount(() => {
               <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>제출 버튼 체험</strong><span>학습 결과 · 시험 제출을 하단에서 바로</span></button>
             </div>
             <footer><strong>한솔·공조 해설 보강</strong><span>쉬운 핵심 해설을 먼저 읽고, 확인된 COMCBT 동일 문제 해설은 아래에서 함께 볼 수 있습니다.</span></footer>
+          </section>
+
+          <section v-if="!isJewelry" class="feature-practical-lab">
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>정답을 펼쳐 보는 학습에서 벗어나 직접 작성하고, 빠진 핵심어와 단위·숫자·도면을 부분점수 기준으로 확인합니다.</p></header>
+            <div>
+              <article><b>01</b><strong>오늘의 필답 5문제</strong><span>오답·부분점수·미학습 우선 자동 구성</span></article>
+              <article><b>02</b><strong>단계별 힌트와 답안 골격</strong><span>첫 글자부터 구조까지 필요한 만큼만 열기</span></article>
+              <article><b>03</b><strong>부분점수·실수 분석</strong><span>공식·대입·계산·단위·핵심어·도면 기록</span></article>
+              <article><b>04</b><strong>S펜 도면 비교</strong><span>왼손 배치·작성 재생·정답 도면 투명 겹치기</span></article>
+            </div>
+            <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
 
           <section class="feature-theme-preview">
