@@ -5,6 +5,25 @@
 
   const entries = [
     {
+      version: '4.8.1',
+      scope: 'industrial',
+      date: '2026.09.05',
+      title: '전체 UI 프레임워크 스타일 체험',
+      summary: '기본 화면을 보존하면서 여섯 가지 UI 계열을 즉시 적용하고, PC 독립 체험실에서 실제 대형·Vue·모바일 UI 패키지 21종을 전체 문제풀이 화면으로 비교할 수 있습니다.',
+      tags: ['UI 프레임워크 21종', 'Vuetify', 'PrimeVue', 'Quasar', 'Kendo UI', 'DevExtreme'],
+      changes: [
+        '설정과 신기술 학습관에 기본 CBT·Material·Prime Aura·Naive UI·Quasar·Bootstrap 계열 전체 UI 선택기를 추가했습니다.',
+        '선택한 UI의 색상·카드 모서리·그림자·버튼·메뉴·상단 바를 홈·회차·문제풀이·설정·결과 화면에 함께 적용합니다.',
+        '신기술 학습관에서 연습 문제의 답안을 선택하고 제출하며 각 UI를 바로 비교할 수 있습니다.',
+        '기본 CBT를 선택하거나 UI 실험실을 끄면 학습 데이터와 설정을 보존한 채 기존 화면으로 즉시 돌아갑니다.',
+        'PC 전용 독립 체험실에서 기본 CBT·Reka UI와 Vuetify·PrimeVue·Quasar·Element Plus·Ant Design Vue·BootstrapVueNext 등 실제 패키지 21종을 사이드 메뉴·문제풀이·OMR·설정·결과 화면 전체로 비교할 수 있습니다.',
+        'Naive UI·Vuestic UI·Arco Design·TDesign·View UI Plus·Oruga·Wave UI와 Ionic Vue·Framework7 Vue·Vant·Varlet 모바일 UI도 함께 제공합니다.',
+        'Kendo UI for Vue와 DevExtreme Vue는 상용 평가판임을 표시하고 비교용으로 격리했습니다.',
+        '대형 UI 패키지는 선택한 체험 화면에서만 내려받아 기본 CBT 초기 로딩과 CSS 충돌을 막았습니다.',
+        '서비스워커 캐시 v481, Android 앱 v4.8.1을 적용했습니다.'
+      ]
+    },
+    {
       version: '4.8',
       scope: 'industrial',
       date: '2026.09.05',
@@ -2067,8 +2086,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.8';
+  changelog.versions.industrial = '4.8.1';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.8';
+  changelog.currentVersion = '4.8.1';
   window.CBT_CHANGELOG = changelog;
 })();

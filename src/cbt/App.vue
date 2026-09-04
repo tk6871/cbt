@@ -22,6 +22,7 @@ import QuestionCard from './QuestionCard.vue';
 import CloudSyncPanel from './CloudSyncPanel.vue';
 import SchoolExamManager from './SchoolExamManager.vue';
 import ThemeStudio from './ThemeStudio.vue';
+import UiFrameworkPicker from './UiFrameworkPicker.vue';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -4781,6 +4782,8 @@ onBeforeUnmount(() => {
             </div>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
+
+          <UiFrameworkPicker showcase />
 
           <section class="feature-theme-preview">
             <div>

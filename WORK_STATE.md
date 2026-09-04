@@ -4,6 +4,16 @@
 
 ## 현재 스냅샷
 
+### 2026-09-05 v4.8.1 전체 UI 프레임워크 스타일 체험 완료 상태
+
+- 설정과 신기술 학습관에 `기본 CBT·Material·Prime Aura·Naive UI·Quasar·Bootstrap` 여섯 가지 UI 선택기를 추가했습니다. 선택값은 이 기기에 저장되며 기본 CBT를 누르면 UI 실험실을 꺼 기존 화면으로 즉시 돌아갑니다.
+- 미리보기 영역만 바꾸는 방식이 아니라 `data-ui-framework` 전역 디자인 토큰으로 홈·사이드 메뉴·모바일 메뉴·상단 바·설정·회차 카드·문제 카드·답안·결과 화면의 색상, 모서리, 그림자와 버튼 모양을 함께 바꿉니다. 문제·정답·학습 기록은 변경하지 않습니다.
+- Vuetify/Material, PrimeVue Aura, Naive UI, Quasar, Bootstrap의 대표적인 화면 특성을 현재 Vue 구조에 재현했습니다. 이 즉시 전환은 가벼운 디자인 토큰만 사용합니다.
+- 신기술 학습관에 실제 답안을 눌러 보고 제출할 수 있는 비교 카드를 넣었습니다. 밝기·글꼴·화면 밀도·모션 등 기존 UI 실험 설정과 함께 사용할 수 있습니다.
+- 별도 `ui-framework-lab.html`은 PC 전용으로 분리했습니다. 기본 CBT·Reka UI와 Vuetify·PrimeVue·Naive UI·Quasar·Element Plus·Ant Design Vue·BootstrapVueNext·Vuestic UI·Arco Design·TDesign·View UI Plus·Vant·Varlet·Oruga·Wave UI·Ionic Vue·Framework7 Vue·Kendo UI·DevExtreme의 실제 패키지 21종을 iframe마다 격리해 사이드 메뉴·진행 현황·2열 문제풀이·OMR·설정·결과까지 비교합니다.
+- Kendo UI와 DevExtreme은 비교용 상용 평가판으로 명시했고 라이선스 키는 저장소에 넣지 않았습니다. 모든 대형 패키지는 체험실에서 해당 항목을 선택할 때만 별도 청크와 CSS를 내려받아 기본 CBT 첫 로딩에 포함되지 않습니다.
+- 서비스워커·정적 자산·Android 버전을 v4.8.1(481)로 맞췄습니다. `npm run typecheck`, production build, PWA 감사와 Chrome 회귀 검사를 통과했습니다. PC·iPhone 14 Pro·태블릿 전체 검사는 11개 통과·PC 전용 검사 4개 정상 제외였고, PC 검사에서는 UI 21종이 기본 대체 화면 없이 실제 컴포넌트를 표시했습니다.
+
 ### 2026-09-05 v4.8 공조 필답형 실전 채점 훈련 완료 상태
 
 - 기존 공조 필답형 407문제를 유지하면서 `오늘의 필답 5문제`, 같은 유형 최대 10문제 연속 훈련, 기존 랜덤 12문제 90분 실전과 A4 시험지 출력을 추가했습니다. 오늘의 문제는 다시 보기·부분 정답·미학습 순으로 우선 배치합니다.

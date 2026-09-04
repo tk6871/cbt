@@ -3,6 +3,7 @@ import { onMounted, ref, watch } from 'vue';
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, SwitchRoot, SwitchThumb } from 'reka-ui';
 import { Gauge, Palette, RotateCcw, ShieldCheck, Sparkles, WandSparkles } from '@lucide/vue';
 import { useUiLab, type UiAccent, type UiDensity, type UiMotion, type UiSurface } from './uiLab';
+import UiFrameworkPicker from './UiFrameworkPicker.vue';
 
 const emit = defineEmits<{ startTour: [] }>();
 const {
@@ -73,6 +74,8 @@ onMounted(() => void refreshContrast());
 
     <p v-if="safeMode" class="theme-studio-safe"><ShieldCheck :size="16" /> 안전모드로 열려 새 UI가 임시로 꺼졌습니다. 주소의 <code>?safe=1</code>을 지우면 저장 설정이 돌아옵니다.</p>
     <p v-else class="theme-studio-status"><ShieldCheck :size="16" /> {{ active ? '새 UI를 비교 중입니다. 설정은 이 기기에 자동 저장됩니다.' : 'OFF에서는 기존 UI와 동작을 그대로 사용합니다.' }}</p>
+
+    <UiFrameworkPicker />
 
     <CollapsibleRoot v-model:open="detailsOpen" class="theme-studio-collapsible">
       <CollapsibleTrigger class="theme-studio-open" :disabled="!active">

@@ -2,6 +2,19 @@
 
 이 문서는 산업기사 통합 CBT의 주요 변경 사항을 기록합니다.
 
+## 산업기사 4.8.1 - 2026-09-05
+
+### 전체 UI 프레임워크 스타일 체험
+- 설정과 신기술 학습관에서 기본 CBT·Material·Prime Aura·Naive UI·Quasar·Bootstrap 계열 UI를 즉시 전환하는 선택기 추가
+- 선택한 스타일을 미리보기 한 칸에만 적용하지 않고 홈·메뉴·설정·회차·문제풀이·결과 화면 전체의 색상·모서리·그림자·버튼·내비게이션에 적용
+- 각 UI에서 연습 문제 답안을 직접 선택하고 제출하며 화면 감성을 비교하는 체험 카드 추가
+- 기본 CBT를 선택하거나 UI 실험실을 끄면 학습 데이터와 설정을 지우지 않고 기존 화면으로 즉시 복귀
+- PC 전용 독립 체험실에서 기본 CBT·Reka UI와 Vuetify·PrimeVue·Quasar·Element Plus·Ant Design Vue·BootstrapVueNext 등 실제 UI 패키지 21종을 전체 문제풀이 화면으로 비교
+- Naive UI·Vuestic UI·Arco Design·TDesign·View UI Plus·Oruga·Wave UI와 Ionic Vue·Framework7 Vue·Vant·Varlet 모바일 UI도 선택형으로 추가
+- Kendo UI for Vue와 DevExtreme Vue는 상용 평가판임을 표시하고 실제 패키지 비교 대상으로만 격리
+- 각 대형 패키지는 해당 체험 화면을 선택할 때만 내려받아 기본 CBT 초기 로딩과 CSS에 섞이지 않도록 분리
+- 서비스워커 캐시·Android 앱을 v4.8.1로 갱신
+
 ## 산업기사 4.8 - 2026-09-05
 
 ### 공조 필답형 실전 채점과 S펜 훈련 강화
