@@ -22,7 +22,11 @@ import QuestionCard from './QuestionCard.vue';
 import CloudSyncPanel from './CloudSyncPanel.vue';
 import SchoolExamManager from './SchoolExamManager.vue';
 import ThemeStudio from './ThemeStudio.vue';
-import UiFrameworkPicker from './UiFrameworkPicker.vue';
+import LayoutPreferences from './LayoutPreferences.vue';
+import { useWorkspaceLayout } from './workspaceLayout';
+const WorkspaceNavigation = defineAsyncComponent(() => import('./WorkspaceNavigation.vue'));
+const WorkspaceHome = defineAsyncComponent(() => import('./WorkspaceHome.vue'));
+const WorkspaceSessionBar = defineAsyncComponent(() => import('./WorkspaceSessionBar.vue'));
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -221,25 +225,21 @@ const simpsonsHeroScenes = [simpsonsFunnyImages[0], simpsonsFunnyImages[1], simp
 const sunjaeThemeBanner = 'assets/theme/sunjae/sunjae-cherry-capture.jpg';
 const sunjaePraiseImage = 'assets/theme/sunjae/sunjae-smile-capture.jpg';
 const sunjaeEncourageImage = 'assets/theme/sunjae/sunjae-encourage.jpg';
-const sunjaeGradingImage = 'assets/theme/sunjae/wooseok-coffee.png';
+const sunjaeGradingImage = 'assets/theme/sunjae/wooseok-restaurant-portrait.jpg';
 const sunjaeCherryImage = 'assets/theme/sunjae/sunjae-cherry-capture.jpg';
 const sunjaeImages = [
   sunjaeCherryImage,
   sunjaePraiseImage,
   sunjaeEncourageImage,
-  'assets/theme/sunjae/sunjae-track.png',
   'assets/theme/sunjae/sunjae-campus.png',
-  'assets/theme/sunjae/sunjae-school.jpg',
-  'assets/theme/sunjae/wooseok-casual.jpg',
-  'assets/theme/sunjae/wooseok-coffee.png',
-  'assets/theme/sunjae/wooseok-cafe.jpg',
-  'assets/theme/sunjae/wooseok-sunlight.jpg',
+  'assets/theme/sunjae/wooseok-restaurant-portrait.jpg',
+  'assets/theme/sunjae/wooseok-blue-backstage.jpg',
 ];
 const sunjaePortraitImages = [
   sunjaePraiseImage,
-  'assets/theme/sunjae/sunjae-school.jpg',
-  'assets/theme/sunjae/wooseok-cafe.jpg',
-  'assets/theme/sunjae/wooseok-sunlight.jpg',
+  'assets/theme/sunjae/sunjae-campus.png',
+  sunjaeCherryImage,
+  'assets/theme/sunjae/wooseok-restaurant-portrait.jpg',
 ];
 const savedSunjaeRotationValue = localStorage.getItem('unified-cbt-sunjae-rotation-seconds');
 const savedSunjaeRotationSeconds = savedSunjaeRotationValue === null ? Number.NaN : Number(savedSunjaeRotationValue);
@@ -294,6 +294,36 @@ const sunjaeImageIndex = ref(0);
 const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 180);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
 const { active: uiLabActive, motion: uiLabMotion } = useUiLab();
+const { active: workspaceActive } = useWorkspaceLayout();
+const workspaceSetupOpen = ref(false);
+const workspaceItems = computed(() => [
+  { id: 'home', label: '홈', symbol: '⌂' },
+  { id: 'rounds', label: '회차별 문제', symbol: '▤' },
+  { id: 'wrong', label: '오답노트', symbol: '↺' },
+  { id: 'history', label: '학습 내역', symbol: '◷' },
+  { id: 'search', label: '문제 검색', symbol: '⌕' },
+  { id: 'calculation', label: '계산문제', symbol: '∑' },
+  ...(studyGuideAvailable.value ? [{ id: 'guide', label: '시험 자료실', symbol: '▣' }] : []),
+  ...(!isJewelry ? [{ id: 'school', label: '학교 시험 준비', symbol: '✎' }] : []),
+  { id: 'coach', label: '합격 엔진', symbol: '✦' },
+  ...(experimentalFeaturesEnabled.value ? [{ id: 'beta', label: '베타 학습 도구', symbol: 'β' }] : []),
+  { id: 'stats', label: '학습 분석', symbol: '▥' },
+  { id: 'showcase', label: '신기술 학습관', symbol: '✧' },
+  { id: 'updates', label: '패치노트', symbol: '◷' },
+  { id: 'portal', label: isJewelry ? '산업기사 CBT로' : '보석관으로', symbol: '◇' },
+]);
+function workspaceNavigate(id: string) {
+  if (id === 'portal') { location.href = isJewelry ? 'index.html' : 'jewelry.html'; return; }
+  if (id === 'school') { selectQualification(SCHOOL_EXAM_CATALOG_KEY); return; }
+  openView(id as ViewName);
+}
+async function openWorkspaceSetup() {
+  workspaceSetupOpen.value = !workspaceSetupOpen.value;
+  if (workspaceSetupOpen.value) {
+    await nextTick();
+    document.querySelector('.study-builder')?.scrollIntoView({ block: 'start', behavior: 'auto' });
+  }
+}
 const experimentalFeaturesEnabled = ref(localStorage.getItem('unified-cbt-experimental-features') !== 'false');
 document.documentElement.dataset.experimentalFeatures = experimentalFeaturesEnabled.value ? 'on' : 'off';
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
@@ -3873,7 +3903,8 @@ onBeforeUnmount(() => {
       'experience-home-entering': experienceTransitionPhase === 'home-entering',
     }"
   >
-    <aside class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }">
+    <WorkspaceNavigation v-if="workspaceActive" :title="viewTitle" :space-name="spaceName" :active-view="view" :dark="darkActive" :comic="visualStyle === 'simpsons'" :sunjae="visualStyle === 'sunjae'" :photos="visualStyle === 'sunjae' ? [sunjaeImageAt(0), ...sunjaePortraitImages] : [simpsonsKingSizeImage, simpsonsFunnyImageAt(2), simpsonsFunnyImageAt(3), simpsonsFunnyImageAt(5), simpsonsFunnyImageAt(4), simpsonsBurnsImage]" :items="workspaceItems" @navigate="workspaceNavigate" @settings="settingsOpen = true" @calculator="openCalculator" @theme="toggleLightDark" />
+    <aside v-else class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }">
       <img v-if="visualStyle === 'simpsons'" class="sidebar-background-photo simpsons-sidebar-background-photo" :src="simpsonsKingSizeImage" alt="">
       <img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-sidebar-background-${currentSunjaeImage}`" class="sidebar-background-photo sunjae-sidebar-background-photo" :src="currentSunjaeImage" alt="">
       <button class="brand" type="button" @click="openView('home')">
@@ -3917,7 +3948,7 @@ onBeforeUnmount(() => {
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
 
     <main class="main-area">
-      <header class="topbar">
+      <header v-if="!workspaceActive" class="topbar">
         <button class="menu-button" type="button" aria-label="메뉴 열기" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
@@ -3943,7 +3974,8 @@ onBeforeUnmount(() => {
         <Transition v-else :name="viewTransitionName" mode="out-in">
           <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
         <template v-if="view === 'home'">
-          <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
+          <WorkspaceHome v-if="workspaceActive" :catalogs="catalogs" :selected-key="selectedKey" :comic="visualStyle === 'simpsons'" :sunjae="visualStyle === 'sunjae'" :photos="visualStyle === 'sunjae' ? [sunjaeImageAt(0), 'assets/theme/sunjae/wooseok-restaurant-portrait.jpg', 'assets/theme/sunjae/wooseok-blue-backstage.jpg', 'assets/theme/sunjae/sunjae-campus.png'] : [simpsonsKingSizeImage, simpsonsThemeImage, simpsonsBurnsImage, simpsonsFunnyImageAt(3)]" :stats="stats" :range="`${yearFrom}~${yearTo}년`" :resume-title="savedLearningSession?.title" :resume-answered="savedLearningSession ? Object.keys(savedLearningSession.answers).length : 0" :resume-total="savedLearningSession?.itemIds.length" :practical="hvacPracticalAvailable" @select="selectQualification" @learn="startRangeLearning" @random="startRandomLearning60" @exam="startBalancedExam" @rounds="openView('rounds')" @wrong="openView('wrong')" @history="openView('history')" @configure="openWorkspaceSetup" @resume="resumeSavedLearning" @practical="openHvacPracticalGuide" />
+          <section v-else-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
               <Transition name="sunjae-photo-fade" mode="out-in">
                 <img :key="`sunjae-stage-${currentSunjaeImage}`" class="sunjae-stage-photo" :src="currentSunjaeImage" alt="류선재·변우석 테마 메인 사진">
@@ -4038,7 +4070,7 @@ onBeforeUnmount(() => {
             <img :src="currentSunjaeImage" alt="선재 업고 튀어 류선재 단독 장면">
             <div class="sunjae-hero-copy"><span>LOVELY RUNNER STUDY MODE · ☂</span><h1>오늘도 나랑<br><em>같이 달릴래?</em></h1><p>동적 UI를 켜면 선재 전용 팬페이지 배치와 채점 연출을 볼 수 있어.</p><div class="sunjae-hero-actions"><button type="button" @click="openView('rounds')">나랑 회차 풀기 →</button><button type="button" @click="settingsOpen = true">동적 UI 설정</button></div></div>
           </section>
-          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="qualification-section">
+          <section v-if="!workspaceActive && (visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
             <div class="section-title">
               <div>
                 <span>QUALIFICATIONS</span>
@@ -4073,13 +4105,13 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section v-if="savedLearningSession" class="resume-learning-card">
+          <section v-if="savedLearningSession && !workspaceActive" class="resume-learning-card">
             <div><span>자동 저장된 {{ savedLearningSession.mode === 'exam' ? 'CBT 시험' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이 · 다른 기기에서도 이어집니다</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
             <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
           </section>
 
-          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
+          <section v-if="(workspaceActive ? workspaceSetupOpen : (visualStyle !== 'sunjae' || !dynamicUiEnabled)) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" :src="simpsonsFunnyImageAt(4)" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
               <div><span>STUDY SETUP</span><h2>연도와 출제 체계를 정하세요</h2></div>
@@ -4178,7 +4210,7 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="progress-panel">
+          <section v-if="!workspaceActive && (visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="progress-panel">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-progress-photo" :src="simpsonsFunnyImageAt(6)" alt="심슨 가족의 운동 장면">
             <div>
               <span>현재 종목 학습률</span>
@@ -4193,8 +4225,8 @@ onBeforeUnmount(() => {
             </dl>
           </section>
 
-          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
-            <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" :src="simpsonsBurnsImage" alt="손가락을 맞댄 번즈">
+          <section v-if="workspaceActive || visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
+            <img v-if="!workspaceActive && visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" :src="simpsonsBurnsImage" alt="손가락을 맞댄 번즈">
             <div class="home-release-icon">{{ updateAvailable ? '↻' : '✓' }}</div>
             <div>
               <span>{{ updateAvailable ? 'NEW VERSION READY' : 'LATEST VERSION' }}</span>
@@ -4759,6 +4791,12 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
+          <section class="feature-layout-lab workspace-feature-guide">
+            <header><div><span>NEW DESIGN · v4.9</span><h2>새 디자인과 모바일 배치</h2></div><p>설정의 화면 구성에서 기존 화면과 새 디자인을 비교하세요. 홈과 풀이 중 모두 같은 설정을 사용합니다.</p></header>
+            <div><button type="button" @click="settingsOpen = true"><b>UI</b><strong>화면 구성 선택</strong><span>기존 / 새 디자인 · 기본·심슨 테마</span></button><button type="button" @click="settingsOpen = true"><b>터치</b><strong>기기 배치 선택</strong><span>자동 / PC / 모바일·태블릿</span></button><button type="button" @click="openView('home')"><b>▶</b><strong>새 홈에서 시작</strong><span>이어하기 · 랜덤 학습 · 회차 · 오답</span></button></div>
+            <footer><strong>사용한 도구</strong><span>Vue는 화면을 나누고, Reka UI는 메뉴·사진 창의 키보드와 포커스를 처리하며, VueUse는 설정 저장과 화면 크기 감지를 담당합니다.</span></footer>
+          </section>
+
           <section class="feature-layout-lab">
             <header>
               <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>시험 직전 공조 도구</h2></div>
@@ -4782,8 +4820,6 @@ onBeforeUnmount(() => {
             </div>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
-
-          <UiFrameworkPicker showcase />
 
           <section class="feature-theme-preview">
             <div>
@@ -5090,7 +5126,7 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </Transition>
-    <nav class="mobile-tabbar">
+    <nav v-if="!workspaceActive" class="mobile-tabbar">
       <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
       <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
       <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답</button>
@@ -5098,7 +5134,7 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>✦</template></span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
-    <nav class="native-app-tabbar" aria-label="Android 앱 메뉴">
+    <nav v-if="!workspaceActive" class="native-app-tabbar" aria-label="Android 앱 메뉴">
       <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
       <button :class="{ active: view === 'rounds' }" @click="nativeMoreOpen = false; openView('rounds')"><span>▤</span><strong>회차</strong></button>
       <button :class="{ active: view === 'wrong' }" @click="nativeMoreOpen = false; openView('wrong')"><span>!</span><strong>오답</strong><b v-if="stats.wrong">{{ Math.min(99, stats.wrong) }}</b></button>
@@ -5127,6 +5163,7 @@ onBeforeUnmount(() => {
       <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
         <section class="settings-panel">
         <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <LayoutPreferences />
         <div class="setting-group display-mode-setting">
           <span>기기 화면 모드</span>
           <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 모드를 바꾸면 현재 기록을 저장한 뒤 화면만 다시 엽니다.</p>
@@ -5408,7 +5445,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </Transition>
-        <footer class="pager" :class="{ 'has-unanswered': unansweredCount }">
+        <footer v-if="!workspaceActive" class="pager" :class="{ 'has-unanswered': unansweredCount }">
           <button type="button" class="pager-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
           <span class="pager-position"><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
           <button v-if="unansweredCount" type="button" class="pager-unanswered-button" @click="goToNextUnanswered">다음 미응답</button>
@@ -5458,7 +5495,8 @@ onBeforeUnmount(() => {
       </aside>
     </main>
 
-    <nav class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
+    <WorkspaceSessionBar v-if="workspaceActive" :page="session.page" :pages="pageCount" :answered="answeredCount" :total="session.items.length" :unanswered="unansweredCount" :exam="session.mode === 'exam'" :omr="examSheetOpen" @previous="goToPage(session.page - 1)" @next="goToPage(session.page + 1)" @settings="settingsOpen = true" @calculator="openCalculator" @unanswered="goToNextUnanswered" @omr="examSheetOpen = !examSheetOpen" @submit="session.mode === 'exam' ? submitExam(false) : submitLearning()" />
+    <nav v-if="!workspaceActive" class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
       <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)"><span>‹</span><strong>이전</strong></button>
       <button v-if="unansweredCount" type="button" class="native-unanswered-button" @click="goToNextUnanswered"><span>?</span><strong>미응답</strong><b>{{ unansweredCount }}</b></button>
       <button v-if="session.mode === 'exam'" type="button" :class="{ active: examSheetOpen }" @click="examSheetOpen = !examSheetOpen"><span>OMR</span><strong>답안지</strong><b v-if="unansweredCount">{{ unansweredCount }}</b></button>
@@ -5469,7 +5507,7 @@ onBeforeUnmount(() => {
       <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>›</span><strong>다음</strong></button>
     </nav>
 
-    <nav v-if="solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
+    <nav v-if="!workspaceActive && solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
       <button type="button" class="compact-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
       <div>
         <span>COMCBT PAGE</span>
@@ -5528,6 +5566,7 @@ onBeforeUnmount(() => {
     <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
       <section class="settings-panel session-settings-panel">
         <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
+        <LayoutPreferences />
         <div class="setting-group display-mode-setting">
           <span>기기 화면 모드</span>
           <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 전환 전에 현재 풀이 위치를 저장합니다.</p>

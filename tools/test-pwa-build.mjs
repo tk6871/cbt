@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -47,6 +47,15 @@ if (!packageJson.includes('"vite-plugin-pwa": "1.3.0"') || !packageJson.includes
 }
 if (!questionCard.includes('beginnerCalculationOpen.value = false;')) {
   throw new Error('쉽게 풀어보기의 기본 닫힘 설정이 빠졌습니다.');
+}
+
+await access(resolve(root, 'modern/cbt.css'));
+await access(resolve(root, `modern/chunks/main-v${version}.js`));
+for (const file of await readdir(resolve(root, 'modern/chunks'))) {
+  if (!file.endsWith('.js')) continue;
+  if (/from["']\.\.\/(?:cbt|mobile)\.js["']/.test(await read(`modern/chunks/${file}`))) {
+    throw new Error(`앱 중복 실행 위험: ${file}이 버전 없는 앱 진입점을 다시 가져옵니다.`);
+  }
 }
 
 console.log(`PWA v${version} audit passed: version sync, recovery safety, offline registration chunks, manual calculation expansion.`);

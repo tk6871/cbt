@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '481';
+const buildVersion = '490';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -45,18 +45,19 @@ export default defineConfig({
     sourcemap: false,
     cssCodeSplit: true,
     rollupOptions: {
+      // HTML adds a version query to entries. Shared lazy modules must not import
+      // an unversioned app entry and mount a second Vue app into the same root.
+      preserveEntrySignatures: 'strict',
       input: {
         admin: resolve(projectRoot, 'src/admin/main.ts'),
         visitor: resolve(projectRoot, 'src/visitor.ts'),
         cbt: resolve(projectRoot, 'src/cbt/main.ts'),
-        mobile: resolve(projectRoot, 'src/cbt/mobile.ts'),
-        uiFrameworkLab: resolve(projectRoot, 'src/ui-framework-lab/main.ts'),
-        uiFrameworkSandbox: resolve(projectRoot, 'src/ui-framework-lab/sandbox.ts')
+        mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
       },
       output: {
         entryFileNames: '[name].js',
         chunkFileNames: `chunks/[name]-v${buildVersion}.js`,
-        assetFileNames: (assetInfo) => assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
+        assetFileNames: (assetInfo) => assetInfo.name === 'main.css' ? 'cbt.css' : assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
       }
     }
   }
