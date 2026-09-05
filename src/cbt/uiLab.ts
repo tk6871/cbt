@@ -6,7 +6,6 @@ export type UiDensity = 'comfortable' | 'compact';
 export type UiSurface = 'soft' | 'flat' | 'glass';
 export type UiMotion = 'full' | 'reduced' | 'off';
 export type UiAccent = 'auto' | 'blue' | 'emerald' | 'violet' | 'pink' | 'yellow';
-export type UiFrameworkPreset = 'classic' | 'material' | 'prime' | 'naive' | 'quasar' | 'bootstrap';
 
 const accentColors: Record<Exclude<UiAccent, 'auto'>, string> = {
   blue: '#1268d3',
@@ -22,7 +21,6 @@ const density = useStorage<UiDensity>('unified-cbt-ui-density', 'comfortable');
 const surface = useStorage<UiSurface>('unified-cbt-ui-surface', 'soft');
 const motion = useStorage<UiMotion>('unified-cbt-ui-motion', 'full');
 const accent = useStorage<UiAccent>('unified-cbt-ui-accent', 'auto');
-const framework = useStorage<UiFrameworkPreset>('unified-cbt-ui-framework', 'classic');
 const photoOverlay = useStorage('unified-cbt-theme-photo-overlay', 68);
 const preferredContrast = usePreferredContrast();
 const preferredReducedMotion = usePreferredReducedMotion();
@@ -55,12 +53,11 @@ export function applyUiLabPreferences(): void {
   root.dataset.uiDensity = active ? density.value : 'comfortable';
   root.dataset.uiSurface = active ? surface.value : 'soft';
   root.dataset.uiMotion = active ? motion.value : 'full';
-  root.dataset.uiFramework = active ? framework.value : 'classic';
   root.style.setProperty('--theme-photo-veil', `${Math.max(0, Math.min(92, photoOverlay.value)) / 100}`);
   applyAccent(root);
 }
 
-watch([enabled, density, surface, motion, accent, framework, photoOverlay], () => {
+watch([enabled, density, surface, motion, accent, photoOverlay], () => {
   applyUiLabPreferences();
 }, { immediate: true });
 
@@ -92,7 +89,6 @@ export function useUiLab() {
     surface.value = 'soft';
     motion.value = 'full';
     accent.value = 'auto';
-    framework.value = 'classic';
     photoOverlay.value = 68;
   }
 
@@ -104,7 +100,6 @@ export function useUiLab() {
     surface,
     motion,
     accent,
-    framework,
     photoOverlay,
     preferredContrast,
     preferredReducedMotion,

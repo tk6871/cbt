@@ -5,22 +5,21 @@
 
   const entries = [
     {
-      version: '4.8.1',
+      version: '4.9',
       scope: 'industrial',
-      date: '2026.09.05',
-      title: '전체 UI 프레임워크 스타일 체험',
-      summary: '기본 화면을 보존하면서 여섯 가지 UI 계열을 즉시 적용하고, PC 독립 체험실에서 실제 대형·Vue·모바일 UI 패키지 21종을 전체 문제풀이 화면으로 비교할 수 있습니다.',
-      tags: ['UI 프레임워크 21종', 'Vuetify', 'PrimeVue', 'Quasar', 'Kendo UI', 'DevExtreme'],
+      date: '2026.09.06',
+      title: '선택형 새 디자인과 터치 학습 화면',
+      summary: '기존 화면을 기본값으로 유지하고 빠른 학습 시작, 새 메뉴, 터치 풀이 도구와 사진 갤러리를 갖춘 새 디자인을 추가했습니다.',
+      tags: ['선택형 새 디자인', '심슨 테마', '모바일·태블릿', '사진 갤러리'],
       changes: [
-        '설정과 신기술 학습관에 기본 CBT·Material·Prime Aura·Naive UI·Quasar·Bootstrap 계열 전체 UI 선택기를 추가했습니다.',
-        '선택한 UI의 색상·카드 모서리·그림자·버튼·메뉴·상단 바를 홈·회차·문제풀이·설정·결과 화면에 함께 적용합니다.',
-        '신기술 학습관에서 연습 문제의 답안을 선택하고 제출하며 각 UI를 바로 비교할 수 있습니다.',
-        '기본 CBT를 선택하거나 UI 실험실을 끄면 학습 데이터와 설정을 보존한 채 기존 화면으로 즉시 돌아갑니다.',
-        'PC 전용 독립 체험실에서 기본 CBT·Reka UI와 Vuetify·PrimeVue·Quasar·Element Plus·Ant Design Vue·BootstrapVueNext 등 실제 패키지 21종을 사이드 메뉴·문제풀이·OMR·설정·결과 화면 전체로 비교할 수 있습니다.',
-        'Naive UI·Vuestic UI·Arco Design·TDesign·View UI Plus·Oruga·Wave UI와 Ionic Vue·Framework7 Vue·Vant·Varlet 모바일 UI도 함께 제공합니다.',
-        'Kendo UI for Vue와 DevExtreme Vue는 상용 평가판임을 표시하고 비교용으로 격리했습니다.',
-        '대형 UI 패키지는 선택한 체험 화면에서만 내려받아 기본 CBT 초기 로딩과 CSS 충돌을 막았습니다.',
-        '서비스워커 캐시 v481, Android 앱 v4.8.1을 적용했습니다.'
+        '별도 UI 프레임워크 전환과 21종 독립 체험실을 제거하고 기존 CBT 화면을 기준으로 유지합니다.',
+        '설정 맨 위의 화면 구성에서 기존 화면과 새 디자인을 선택합니다. 기본·심슨 테마와 별개이며 풀이 중에도 변경할 수 있습니다.',
+        '새 홈은 이어하기·바로 학습·랜덤·회차·오답을 먼저 표시하고 연도와 과목 설정은 필요할 때 펼칩니다.',
+        '새 디자인의 기기 배치를 자동·PC·모바일·태블릿 중 선택할 수 있습니다. 좁은 화면에서는 하단 메뉴와 전체 메뉴 창을 사용합니다.',
+        '새 풀이 화면에는 큰 이전·다음 버튼, 미응답 이동, 설정·계산기·OMR와 제출 도구가 하단에 표시됩니다.',
+        '심슨 사진은 글씨와 분리된 갤러리에서 고르고 크게 볼 수 있습니다. 메뉴에는 인물이 잘 보이는 장면을 사용합니다.',
+        'Vue·Reka UI·VueUse로 화면 분리, 키보드 포커스, 설정 저장과 기기 감지를 처리합니다. 새 화면 실행은 필요할 때 시작하고 오프라인 코드 캐시는 미리 준비합니다.',
+        '서비스워커 캐시 v490과 Android 버전 설정 v4.9를 반영했습니다.'
       ]
     },
     {
@@ -2086,8 +2085,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.8.1';
+  changelog.versions.industrial = '4.9';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.8.1';
+  changelog.currentVersion = '4.9';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -1,9 +1,5 @@
 /// <reference types="vite/client" />
 
-declare module 'vuetify/styles';
-declare module 'vuestic-ui/css';
-declare module 'wave-ui';
-
 type CloudConfig = {
   enabled: boolean;
   supabaseUrl: string;

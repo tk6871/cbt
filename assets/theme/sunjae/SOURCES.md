@@ -4,6 +4,13 @@
 
 ## 현재 화면에서 사용하는 이미지
 
+- v4.9 새 사진 `wooseok-restaurant-portrait.jpg`, `wooseok-blue-backstage.jpg`
+  - 배우를 명시한 출처: https://www.gmanetwork.com/entertainment/photos/the-hottest-photos-of-byeon-woo-seok-aka-sun-jae-of-lovely-runner/20656/
+  - 원본: https://aphrodite.gmanetwork.com/entertainment/photos/photo/the_hottest_photos_of_byeon_woo-seok_a_k_a_date_1719051114.jpg
+  - 원본: https://aphrodite.gmanetwork.com/entertainment/photos/photo/the_hottest_photos_of_byeon_woo-seok_a_k_a_blue_1719051157.jpg
+  - 직접 시각 확인한 1000×750 원본, 총 약 151KB. 새 갤러리에서 선택·크게 보기 가능.
+  - 작은 전신·콜라주 사진은 자동 회전과 메뉴 이미지 후보에서 제외했습니다. 기존 원본 파일은 보존합니다.
+
 - `sunjae-cherry-capture.jpg`: https://img.hankyung.com/photo/202405/01.36661534.1.jpg
 - `sunjae-smile-capture.jpg`: https://news.nateimg.co.kr/orgImg/kz/2024/04/29/news-p.v1.20240429.600059e955834b58a11f76625490142f_P1.jpg
 - `sunjae-encourage.jpg`: https://poc-cf-image.cjenm.com/public/pcms/character/B120230807/kr/B120230807character1710133390301.jpg

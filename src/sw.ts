@@ -6,17 +6,19 @@ const worker = self as unknown as ServiceWorkerGlobalScope;
 const CACHE = `unified-industrial-cbt-v${__CBT_BUILD_VERSION__}`;
 const versionQuery = `v=${__CBT_BUILD_VERSION__}`;
 const CORE = [
-  './', './index.html', './jewelry.html', './next.html', './recovery.html', './ui-framework-lab.html', './ui-framework-sandbox.html', './manifest.webmanifest', './jewelry.webmanifest',
+  './', './index.html', './jewelry.html', './next.html', './recovery.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
   `./data/catalog-index.js?${versionQuery}`, `./data/catalog-bootstrap.js?${versionQuery}`,
   './data/jewelry.js?v=255', './data/changelog.js?v=255', `./data/changelog-vue.js?${versionQuery}`,
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
-  `./modern/cbt.css?${versionQuery}`, `./modern/cbt.js?${versionQuery}`, `./modern/mobile.js?${versionQuery}`, `./modern/uiFrameworkLab.css?${versionQuery}`, `./modern/uiFrameworkLab.js?${versionQuery}`, `./modern/uiFrameworkSandbox.css?${versionQuery}`, `./modern/uiFrameworkSandbox.js?${versionQuery}`, './modern/visitor.js?v=255',
+  `./modern/cbt.css?${versionQuery}`, `./modern/cbt.js?${versionQuery}`, `./modern/mobile.js?${versionQuery}`, './modern/visitor.js?v=255',
   `./modern/chunks/import-wrapper-prod-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/index-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`, './modern/OptionalFeatureBoundary.css',
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
+  ...['main', 'createLucideIcon', 'DialogTitle', 'WorkspaceHome', 'WorkspaceNavigation', 'WorkspaceSessionBar', 'calculator', 'settings', 'x', 'chevron-left']
+    .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
   './modern/assets/search.worker-BqvfbZXG.js',
 ];
 
@@ -57,7 +59,7 @@ worker.addEventListener('fetch', (event) => {
     const sameOrigin = url.origin === worker.location.origin;
     const networkFirst = sameOrigin && (
       url.pathname.endsWith('/')
-      || /\/(?:index\.html|jewelry\.html|next\.html|recovery\.html|ui-framework-(?:lab|sandbox)\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile|uiFrameworkLab|uiFrameworkSandbox)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname)
+      || /\/(?:index\.html|jewelry\.html|next\.html|recovery\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname)
     );
 
     if (networkFirst) {
