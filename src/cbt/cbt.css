@@ -307,6 +307,11 @@ img { max-width: 100%; }
 :root[data-theme="dark"] .top-actions .theme-quick-button { color:#7b4b00; border-color:#f1d28b; background:#fff4d2; }
 .top-actions button span { display: inline; margin-left: 4px; }
 .page-content { width: min(1480px, calc(100% - 48px)); margin: 0 auto; padding: 30px 0 70px; }
+/* Large CSS viewports, including a 4K display at low OS scaling. Keep exam
+   columns readable instead of stretching a question across the entire monitor. */
+@media (min-width:1921px) {
+  :root .session-shell .session-main { width:100%; max-width:1920px; margin-inline:auto; }
+}
 .view-stage { min-width:0; }
 .view-forward-enter-active,.view-forward-leave-active,
 .view-backward-enter-active,.view-backward-leave-active {

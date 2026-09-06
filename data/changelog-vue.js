@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '4.9.1', scope: 'industrial', date: '2026.09.06',
+      title: '기존 화면 개선과 검색형 전체 설정',
+      summary: '익숙한 CBT 화면으로 정리하고 빠른 설정과 설명·검색을 갖춘 전체 설정을 분리했습니다.',
+      tags: ['빠른 설정', '전체 설정', '가독성', '경량화'],
+      changes: [
+        'v4.9의 선택형 새 디자인을 철회하고 기존 CBT 배치와 테마를 유지합니다. 학습 기록은 그대로 보존합니다.',
+        '작은 설정창에는 밝기·문자 크기·답안 선택을 표시하고, 전체 설정 열기로 나머지 기능을 찾습니다.',
+        '메뉴의 전체 설정은 분류별 탐색·검색·현재 적용값·기능 설명을 갖춘 넓은 화면입니다.',
+        '풀이 중 전체 설정은 문제를 나가지 않고 열립니다. 답안과 진도는 유지되며 시험 타이머는 계속 진행됩니다.',
+        '설정·계정 화면과 색상 대비 계산 코드를 필요할 때 실행하도록 분리하고 매우 넓은 화면의 문제 영역 최대 폭을 제한했습니다.',
+        '신기술 학습관에 설정 사용법을 추가하고 서비스워커 캐시 v491과 Android 버전 설정 v4.9.1을 반영했습니다.'
+      ]
+    },
+    {
       version: '4.9',
       scope: 'industrial',
       date: '2026.09.06',
@@ -2085,8 +2099,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.9';
+  changelog.versions.industrial = '4.9.1';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.9';
+  changelog.currentVersion = '4.9.1';
   window.CBT_CHANGELOG = changelog;
 })();

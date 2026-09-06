@@ -1,4 +1,3 @@
-import Color from 'colorjs.io';
 import { computed, nextTick, watch } from 'vue';
 import { usePreferredContrast, usePreferredReducedMotion, useStorage } from '@vueuse/core';
 
@@ -26,8 +25,7 @@ const preferredContrast = usePreferredContrast();
 const preferredReducedMotion = usePreferredReducedMotion();
 
 function mix(color: string, target: string, amount: number): string {
-  const source = new Color(color);
-  return source.mix(new Color(target), amount, { space: 'oklch', outputSpace: 'srgb' }).toString({ format: 'hex' });
+  return `color-mix(in oklch, ${color} ${(1 - amount) * 100}%, ${target})`;
 }
 
 function applyAccent(root: HTMLElement): void {
@@ -74,6 +72,7 @@ export function useUiLab() {
   async function contrastReport(): Promise<{ ratio: number; grade: '좋음' | '보통' | '부족' }> {
     await nextTick();
     if (typeof document === 'undefined') return { ratio: 7, grade: '좋음' };
+    const { default: Color } = await import('colorjs.io');
     const styles = getComputedStyle(document.documentElement);
     const foreground = new Color(styles.getPropertyValue('--text').trim() || '#10243f');
     const background = new Color(styles.getPropertyValue('--surface').trim() || '#ffffff');
