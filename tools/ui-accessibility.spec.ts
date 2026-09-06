@@ -14,6 +14,8 @@ test('홈과 설정의 심각한 접근성 오류가 없다', async ({ page }) =
   expect(home.violations.filter((item) => item.impact === 'critical')).toEqual([]);
 
   await page.getByRole('button', { name: '설정 열기', exact: true }).click();
+  await page.getByRole('button', { name: /전체 설정 열기/ }).click();
+  await page.getByRole('button', { name: '학습 도구', exact: true }).click();
   await expect(page.getByText('UI·테마 실험실')).toBeVisible();
   const settings = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(settings.violations.filter((item) => item.impact === 'critical')).toEqual([]);
@@ -22,6 +24,7 @@ test('홈과 설정의 심각한 접근성 오류가 없다', async ({ page }) =
 test('패치노트와 플러그인 안내가 작은 화면을 넘지 않는다', async ({ page }) => {
   await page.goto('./?safe=1');
   await waitForHome(page);
+  await page.getByRole('button', { name: '패치노트 보기' }).evaluate(button => button.scrollIntoView({ block: 'center', behavior: 'instant' }));
   await page.getByRole('button', { name: '패치노트 보기' }).click();
   await page.getByRole('button', { name: /신기술 학습관/ }).click();
   await expect(page.getByRole('heading', { name: '이번 플러그인이 바꾼 기능' })).toBeVisible();

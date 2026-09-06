@@ -1,5 +1,6 @@
 import { readFile, readdir, access } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { runInNewContext } from 'node:vm';
 
 const root = resolve(import.meta.dirname, '..');
 const read = (path) => readFile(resolve(root, path), 'utf8');
@@ -50,6 +51,21 @@ if (!questionCard.includes('beginnerCalculationOpen.value = false;')) {
 }
 
 await access(resolve(root, 'modern/cbt.css'));
+// Exercise only the install callback with filesystem-backed fetches. A removed
+// lazy component must not leave a stale URL that prevents SW installation.
+const workerEvents = new Map();
+let installation;
+runInNewContext(worker, {
+  self: { addEventListener: (type, callback) => workerEvents.set(type, callback) },
+  caches: { open: async () => ({ put: async () => {} }) },
+  fetch: async (url) => {
+    const path = url.split('?')[0];
+    await access(resolve(root, path === './' ? 'index.html' : path));
+    return { ok: true };
+  },
+});
+workerEvents.get('install')({ waitUntil: promise => { installation = promise; } });
+await installation;
 await access(resolve(root, `modern/chunks/main-v${version}.js`));
 for (const file of await readdir(resolve(root, 'modern/chunks'))) {
   if (!file.endsWith('.js')) continue;

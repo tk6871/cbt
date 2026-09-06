@@ -19,14 +19,10 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
-import CloudSyncPanel from './CloudSyncPanel.vue';
+const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
+const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
+import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 import SchoolExamManager from './SchoolExamManager.vue';
-import ThemeStudio from './ThemeStudio.vue';
-import LayoutPreferences from './LayoutPreferences.vue';
-import { useWorkspaceLayout } from './workspaceLayout';
-const WorkspaceNavigation = defineAsyncComponent(() => import('./WorkspaceNavigation.vue'));
-const WorkspaceHome = defineAsyncComponent(() => import('./WorkspaceHome.vue'));
-const WorkspaceSessionBar = defineAsyncComponent(() => import('./WorkspaceSessionBar.vue'));
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -88,7 +84,7 @@ const PracticalAnswerPad = defineAsyncComponent(() => import('./PracticalAnswerP
 const PracticalTrainingTools = defineAsyncComponent(() => import('./PracticalTrainingTools.vue'));
 const FormulaWorkbench = defineAsyncComponent(() => import('./FormulaWorkbench.vue'));
 
-type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates';
+type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates' | 'settings';
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
@@ -279,6 +275,7 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
+const settingsReturnView = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
 const yearTo = ref(0);
@@ -294,36 +291,6 @@ const sunjaeImageIndex = ref(0);
 const sunjaeRotationSeconds = ref(sunjaeRotationChoices.includes(savedSunjaeRotationSeconds) ? savedSunjaeRotationSeconds : 180);
 const dynamicUiEnabled = ref(currentDynamicUiEnabled());
 const { active: uiLabActive, motion: uiLabMotion } = useUiLab();
-const { active: workspaceActive } = useWorkspaceLayout();
-const workspaceSetupOpen = ref(false);
-const workspaceItems = computed(() => [
-  { id: 'home', label: '홈', symbol: '⌂' },
-  { id: 'rounds', label: '회차별 문제', symbol: '▤' },
-  { id: 'wrong', label: '오답노트', symbol: '↺' },
-  { id: 'history', label: '학습 내역', symbol: '◷' },
-  { id: 'search', label: '문제 검색', symbol: '⌕' },
-  { id: 'calculation', label: '계산문제', symbol: '∑' },
-  ...(studyGuideAvailable.value ? [{ id: 'guide', label: '시험 자료실', symbol: '▣' }] : []),
-  ...(!isJewelry ? [{ id: 'school', label: '학교 시험 준비', symbol: '✎' }] : []),
-  { id: 'coach', label: '합격 엔진', symbol: '✦' },
-  ...(experimentalFeaturesEnabled.value ? [{ id: 'beta', label: '베타 학습 도구', symbol: 'β' }] : []),
-  { id: 'stats', label: '학습 분석', symbol: '▥' },
-  { id: 'showcase', label: '신기술 학습관', symbol: '✧' },
-  { id: 'updates', label: '패치노트', symbol: '◷' },
-  { id: 'portal', label: isJewelry ? '산업기사 CBT로' : '보석관으로', symbol: '◇' },
-]);
-function workspaceNavigate(id: string) {
-  if (id === 'portal') { location.href = isJewelry ? 'index.html' : 'jewelry.html'; return; }
-  if (id === 'school') { selectQualification(SCHOOL_EXAM_CATALOG_KEY); return; }
-  openView(id as ViewName);
-}
-async function openWorkspaceSetup() {
-  workspaceSetupOpen.value = !workspaceSetupOpen.value;
-  if (workspaceSetupOpen.value) {
-    await nextTick();
-    document.querySelector('.study-builder')?.scrollIntoView({ block: 'start', behavior: 'auto' });
-  }
-}
 const experimentalFeaturesEnabled = ref(localStorage.getItem('unified-cbt-experimental-features') !== 'false');
 document.documentElement.dataset.experimentalFeatures = experimentalFeaturesEnabled.value ? 'on' : 'off';
 const visualTransitionPhase = ref<VisualTransitionPhase>(null);
@@ -335,6 +302,8 @@ const quickPreset = ref<5 | 10 | 0>(10);
 const predictionRange = ref<PredictionRange>('selected');
 const includeHansolInRandom = ref(localStorage.getItem('unified-cbt-random-include-hansol') !== 'false');
 const settingsOpen = ref(false);
+const settingsExpanded = ref(false);
+watch(settingsOpen, open => { if (!open) settingsExpanded.value = false; });
 const nativeMoreOpen = ref(false);
 const nativeCalculatorOpen = ref(false);
 const formulaWorkbenchOpen = ref(false);
@@ -424,7 +393,7 @@ let suspendedSession: SessionState | null = null;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
-const viewOrder: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'stats', 'updates', 'showcase'];
+const viewOrder: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'stats', 'updates', 'showcase', 'settings'];
 const viewScrollPositions = new Map<ViewName, number>();
 
 const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key === selectedKey.value) || catalogs[0]);
@@ -733,6 +702,7 @@ const viewTitle = computed(() => ({
   showcase: '신기술 학습관',
   stats: '학습 분석',
   updates: '패치노트',
+  settings: '전체 설정',
 })[view.value]);
 const activeStudyGuide = computed(() => studyGuidePages[selectedKey.value] || null);
 const studyGuideAvailable = computed(() => Boolean(activeStudyGuide.value));
@@ -1872,7 +1842,7 @@ function startBetaTrial(): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'showcase', 'stats', 'updates'];
+  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'showcase', 'stats', 'updates', 'settings'];
   if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
   return candidate as CbtHistoryState;
 }
@@ -1905,6 +1875,8 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
     return;
   }
   const previousView = view.value;
+  if (next === 'settings' && previousView !== 'settings') settingsReturnView.value = previousView;
+  settingsOpen.value = false;
   if (next !== view.value) {
     if (dynamicUiEnabled.value) viewScrollPositions.set(view.value, window.scrollY);
     const currentIndex = viewOrder.indexOf(view.value);
@@ -3223,11 +3195,9 @@ async function startUiTour(): Promise<void> {
     doneBtnText: '확인',
     progressText: '{{current}} / {{total}}',
     steps: [
-      { element: '.theme-studio', popover: { title: 'UI·테마 실험실', description: '새 화면은 여기서만 켜고 끕니다. OFF하면 기존 화면으로 즉시 돌아갑니다.' } },
-      { element: '.display-mode-setting', popover: { title: '기기별 화면', description: 'PC·태블릿·휴대폰 배치를 자동 또는 수동으로 고정할 수 있습니다.' } },
-      { element: '.solve-layout-setting', popover: { title: '문제풀이 배치', description: '기본 CBT, 고밀도 COMCBT, 컴뱃 CBT를 답안 손실 없이 전환합니다.' } },
-      { element: '.style-options', popover: { title: '캐릭터 테마', description: '기본·심슨·선재 테마는 그대로 유지하면서 세부 색상과 밀도만 덧붙입니다.' } },
-      { element: '.font-family-options', popover: { title: '가독성', description: '글꼴과 글자 크기는 새 UI를 꺼도 기존 설정이 유지됩니다.' } },
+      { element: '.settings-category-nav', popover: { title: '설정 분류', description: '화면·글씨, 문제풀이, 학습 도구, 기록을 나누어 찾을 수 있습니다.' } },
+      { element: '.settings-hub-search', popover: { title: '설정 검색', description: '다크, 글씨, 답안처럼 필요한 단어로 찾아보세요.' } },
+      { element: '.theme-studio', popover: { title: 'UI·테마 실험실', description: '기존 테마의 색상과 밀도만 조절합니다. 저장한 답안에는 영향을 주지 않습니다.' } },
     ],
   }).drive();
 }
@@ -3861,6 +3831,54 @@ onMounted(async () => {
   animateViewDetails(view.value);
 });
 
+const settingsValues = computed<SettingsValues>(() => ({
+  theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
+  visualStyle: visualStyle.value, display: displayPreference.value, dynamic: dynamicUiEnabled.value,
+  solveLayout: solveLayoutMode.value, answerLayout: answerLayout.value, indicator: hotspotIndicator.value,
+  imageTheme: restoredImageTheme.value, experimental: experimentalFeaturesEnabled.value,
+  judgment: questionJudgmentEnabled.value, rotation: sunjaeRotationSeconds.value,
+}));
+const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value),
+  exam: session.value?.mode === 'exam', omr: examSheetOpen.value, version: currentVersion.value,
+  displayLabel: resolvedDisplayMode === 'mobile' ? '모바일·태블릿' : 'PC',
+}));
+function changeSetting(change: SettingChange): void {
+  switch (change.key) {
+    case 'theme': theme.value = change.value; applyTheme(change.value); break;
+    case 'fontScale': setFontScale(change.value); break;
+    case 'fontFamily': setFontFamilyPreference(change.value); break;
+    case 'visualStyle': void setVisualStyle(change.value); break;
+    case 'display': setDisplayPreference(change.value); break;
+    case 'dynamic': setDynamicUiEnabled(change.value); break;
+    case 'solveLayout': setSolveLayoutMode(change.value); break;
+    case 'answerLayout': setAnswerLayout(change.value); break;
+    case 'indicator': setHotspotIndicator(change.value); break;
+    case 'imageTheme': setRestoredImageTheme(change.value); break;
+    case 'experimental': setExperimentalFeatures(change.value); break;
+    case 'judgment': setQuestionJudgmentEnabled(change.value); break;
+    case 'rotation': setSunjaeRotationSeconds(change.value); break;
+  }
+}
+function settingsAction(action: SettingsAction): void {
+  switch (action) {
+    case 'close':
+      if (settingsOpen.value) settingsOpen.value = false;
+      else if (view.value === 'settings') openView(settingsReturnView.value);
+      break;
+    case 'full':
+      if (session.value) settingsExpanded.value = true;
+      else { settingsOpen.value = false; openView('settings'); }
+      break;
+    case 'tour': void startUiTour(); break;
+    case 'beta': settingsOpen.value = false; openView('beta'); break;
+    case 'recovery': openPwaRecovery(); break;
+    case 'export': void exportLearningData(); break;
+    case 'import': chooseLearningDataFile(); break;
+    case 'reset': void clearLearningData(); break;
+    case 'omr': examSheetOpen.value = !examSheetOpen.value; break;
+  }
+}
+
 onBeforeUnmount(() => {
   window.removeEventListener('cbt:update-available', handleUpdateAvailable);
   window.removeEventListener('cbt:pwa-error', handlePwaRegistrationError);
@@ -3903,8 +3921,8 @@ onBeforeUnmount(() => {
       'experience-home-entering': experienceTransitionPhase === 'home-entering',
     }"
   >
-    <WorkspaceNavigation v-if="workspaceActive" :title="viewTitle" :space-name="spaceName" :active-view="view" :dark="darkActive" :comic="visualStyle === 'simpsons'" :sunjae="visualStyle === 'sunjae'" :photos="visualStyle === 'sunjae' ? [sunjaeImageAt(0), ...sunjaePortraitImages] : [simpsonsKingSizeImage, simpsonsFunnyImageAt(2), simpsonsFunnyImageAt(3), simpsonsFunnyImageAt(5), simpsonsFunnyImageAt(4), simpsonsBurnsImage]" :items="workspaceItems" @navigate="workspaceNavigate" @settings="settingsOpen = true" @calculator="openCalculator" @theme="toggleLightDark" />
-    <aside v-else class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }">
+
+    <aside class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }">
       <img v-if="visualStyle === 'simpsons'" class="sidebar-background-photo simpsons-sidebar-background-photo" :src="simpsonsKingSizeImage" alt="">
       <img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-sidebar-background-${currentSunjaeImage}`" class="sidebar-background-photo sunjae-sidebar-background-photo" :src="currentSunjaeImage" alt="">
       <button class="brand" type="button" @click="openView('home')">
@@ -3942,13 +3960,13 @@ onBeforeUnmount(() => {
       </a>
       <div class="sidebar-foot">
         <button type="button" @click="openCalculator"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(4)" alt=""><template v-else>▦</template></span>공학용 계산기</button>
-        <button type="button" @click="settingsOpen = true"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><template v-else>⚙</template></span>화면·데이터 설정</button>
+        <button type="button" :class="{ active: view === 'settings' }" @click="openView('settings')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><template v-else>⚙</template></span>전체 설정</button>
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
 
     <main class="main-area">
-      <header v-if="!workspaceActive" class="topbar">
+      <header class="topbar">
         <button class="menu-button" type="button" aria-label="메뉴 열기" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
@@ -3963,7 +3981,7 @@ onBeforeUnmount(() => {
           <button type="button" aria-label="문제 검색 열기" @click="openView('search')">⌕ <span>검색</span></button>
           <button type="button" aria-label="공학용 계산기 열기" @click="openCalculator">▦ <span>계산기</span></button>
           <button type="button" class="theme-quick-button" :aria-label="darkActive ? '라이트 모드로 전환' : '다크 모드로 전환'" @click="toggleLightDark">{{ darkActive ? '☀' : '☾' }} <span>{{ darkActive ? '라이트 모드' : '다크 모드' }}</span></button>
-          <button type="button" aria-label="설정 열기" @click="settingsOpen = true">⚙ <span>설정</span></button>
+          <button v-if="view !== 'settings'" type="button" aria-label="설정 열기" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
 
@@ -3973,9 +3991,12 @@ onBeforeUnmount(() => {
         </div>
         <Transition v-else :name="viewTransitionName" mode="out-in">
           <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
-        <template v-if="view === 'home'">
-          <WorkspaceHome v-if="workspaceActive" :catalogs="catalogs" :selected-key="selectedKey" :comic="visualStyle === 'simpsons'" :sunjae="visualStyle === 'sunjae'" :photos="visualStyle === 'sunjae' ? [sunjaeImageAt(0), 'assets/theme/sunjae/wooseok-restaurant-portrait.jpg', 'assets/theme/sunjae/wooseok-blue-backstage.jpg', 'assets/theme/sunjae/sunjae-campus.png'] : [simpsonsKingSizeImage, simpsonsThemeImage, simpsonsBurnsImage, simpsonsFunnyImageAt(3)]" :stats="stats" :range="`${yearFrom}~${yearTo}년`" :resume-title="savedLearningSession?.title" :resume-answered="savedLearningSession ? Object.keys(savedLearningSession.answers).length : 0" :resume-total="savedLearningSession?.itemIds.length" :practical="hvacPracticalAvailable" @select="selectQualification" @learn="startRangeLearning" @random="startRandomLearning60" @exam="startBalancedExam" @rounds="openView('rounds')" @wrong="openView('wrong')" @history="openView('history')" @configure="openWorkspaceSetup" @resume="resumeSavedLearning" @practical="openHvacPracticalGuide" />
-          <section v-else-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
+        <StudySettings v-if="view === 'settings'" mode="page" :values="settingsValues" :context="settingsContext" @change="changeSetting" @action="settingsAction">
+          <template #account><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요." /></template>
+        </StudySettings>
+        <template v-else-if="view === 'home'">
+
+          <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
               <Transition name="sunjae-photo-fade" mode="out-in">
                 <img :key="`sunjae-stage-${currentSunjaeImage}`" class="sunjae-stage-photo" :src="currentSunjaeImage" alt="류선재·변우석 테마 메인 사진">
@@ -4070,7 +4091,7 @@ onBeforeUnmount(() => {
             <img :src="currentSunjaeImage" alt="선재 업고 튀어 류선재 단독 장면">
             <div class="sunjae-hero-copy"><span>LOVELY RUNNER STUDY MODE · ☂</span><h1>오늘도 나랑<br><em>같이 달릴래?</em></h1><p>동적 UI를 켜면 선재 전용 팬페이지 배치와 채점 연출을 볼 수 있어.</p><div class="sunjae-hero-actions"><button type="button" @click="openView('rounds')">나랑 회차 풀기 →</button><button type="button" @click="settingsOpen = true">동적 UI 설정</button></div></div>
           </section>
-          <section v-if="!workspaceActive && (visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
+          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
             <div class="section-title">
               <div>
                 <span>QUALIFICATIONS</span>
@@ -4105,13 +4126,13 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section v-if="savedLearningSession && !workspaceActive" class="resume-learning-card">
+          <section v-if="savedLearningSession" class="resume-learning-card">
             <div><span>자동 저장된 {{ savedLearningSession.mode === 'exam' ? 'CBT 시험' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이 · 다른 기기에서도 이어집니다</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
             <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
           </section>
 
-          <section v-if="(workspaceActive ? workspaceSetupOpen : (visualStyle !== 'sunjae' || !dynamicUiEnabled)) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
+          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" :src="simpsonsFunnyImageAt(4)" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
               <div><span>STUDY SETUP</span><h2>연도와 출제 체계를 정하세요</h2></div>
@@ -4210,7 +4231,7 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section v-if="!workspaceActive && (visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="progress-panel">
+          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="progress-panel">
             <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-progress-photo" :src="simpsonsFunnyImageAt(6)" alt="심슨 가족의 운동 장면">
             <div>
               <span>현재 종목 학습률</span>
@@ -4225,8 +4246,8 @@ onBeforeUnmount(() => {
             </dl>
           </section>
 
-          <section v-if="workspaceActive || visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
-            <img v-if="!workspaceActive && visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" :src="simpsonsBurnsImage" alt="손가락을 맞댄 번즈">
+          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
+            <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" :src="simpsonsBurnsImage" alt="손가락을 맞댄 번즈">
             <div class="home-release-icon">{{ updateAvailable ? '↻' : '✓' }}</div>
             <div>
               <span>{{ updateAvailable ? 'NEW VERSION READY' : 'LATEST VERSION' }}</span>
@@ -4791,10 +4812,10 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section class="feature-layout-lab workspace-feature-guide">
-            <header><div><span>NEW DESIGN · v4.9</span><h2>새 디자인과 모바일 배치</h2></div><p>설정의 화면 구성에서 기존 화면과 새 디자인을 비교하세요. 홈과 풀이 중 모두 같은 설정을 사용합니다.</p></header>
-            <div><button type="button" @click="settingsOpen = true"><b>UI</b><strong>화면 구성 선택</strong><span>기존 / 새 디자인 · 기본·심슨 테마</span></button><button type="button" @click="settingsOpen = true"><b>터치</b><strong>기기 배치 선택</strong><span>자동 / PC / 모바일·태블릿</span></button><button type="button" @click="openView('home')"><b>▶</b><strong>새 홈에서 시작</strong><span>이어하기 · 랜덤 학습 · 회차 · 오답</span></button></div>
-            <footer><strong>사용한 도구</strong><span>Vue는 화면을 나누고, Reka UI는 메뉴·사진 창의 키보드와 포커스를 처리하며, VueUse는 설정 저장과 화면 크기 감지를 담당합니다.</span></footer>
+          <section class="feature-layout-lab settings-feature-guide">
+            <header><div><span>기존 UI 개선</span><h2>필요한 설정만 빠르게 찾기</h2></div><p>익숙한 화면을 유지하면서 빠른 설정과 크롬 설정처럼 넓은 전체 설정을 나눴습니다. 홈과 풀이 중에 동일한 항목을 조절합니다.</p></header>
+            <p>첫 화면에는 밝기·문자 크기·답안 선택만 표시합니다. 화면·글씨, 문제풀이, 학습 도구, 기록·동기화는 해당 분류에서 찾으세요.</p>
+            <button type="button" @click="openView('settings')">전체 설정 둘러보기 →</button>
           </section>
 
           <section class="feature-layout-lab">
@@ -5126,7 +5147,7 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </Transition>
-    <nav v-if="!workspaceActive" class="mobile-tabbar">
+    <nav class="mobile-tabbar">
       <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
       <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
       <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답</button>
@@ -5134,7 +5155,7 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>✦</template></span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
-    <nav v-if="!workspaceActive" class="native-app-tabbar" aria-label="Android 앱 메뉴">
+    <nav class="native-app-tabbar" aria-label="Android 앱 메뉴">
       <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
       <button :class="{ active: view === 'rounds' }" @click="nativeMoreOpen = false; openView('rounds')"><span>▤</span><strong>회차</strong></button>
       <button :class="{ active: view === 'wrong' }" @click="nativeMoreOpen = false; openView('wrong')"><span>!</span><strong>오답</strong><b v-if="stats.wrong">{{ Math.min(99, stats.wrong) }}</b></button>
@@ -5159,149 +5180,7 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </Transition>
-    <Transition name="modal-fade">
-      <div v-if="settingsOpen" class="settings-backdrop" @click.self="settingsOpen = false">
-        <section class="settings-panel">
-        <header><div><span>PERSONAL SETTINGS</span><h2>화면과 학습 데이터</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
-        <LayoutPreferences />
-        <div class="setting-group display-mode-setting">
-          <span>기기 화면 모드</span>
-          <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 모드를 바꾸면 현재 기록을 저장한 뒤 화면만 다시 엽니다.</p>
-          <div class="display-mode-options">
-            <button :class="{ active: displayPreference === 'auto' }" @click="setDisplayPreference('auto')"><strong>자동</strong><span>{{ resolvedDisplayMode === 'mobile' ? '현재 모바일·태블릿' : '현재 PC' }}</span><small>기기 자동 인식</small></button>
-            <button :class="{ active: displayPreference === 'mobile' }" @click="setDisplayPreference('mobile')"><strong>모바일</strong><span>모바일·태블릿</span><small>경량 화면 고정</small></button>
-            <button :class="{ active: displayPreference === 'desktop' }" @click="setDisplayPreference('desktop')"><strong>PC</strong><span>데스크톱 화면</span><small>PC 배치 고정</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>동적 UI</span>
-          <p class="setting-description">켜면 새 배치와 자연스러운 화면 전환을 사용합니다. 끄면 v2.4.2 방식의 기존 배치와 즉시 전환으로 돌아갑니다.</p>
-          <div class="dynamic-ui-options">
-            <button :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)"><strong>ON</strong><span>새 동적 UI</span><small>기본 설정</small></button>
-            <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
-          </div>
-        </div>
-        <div class="setting-group experimental-setting">
-          <span>실험 기능 전체</span>
-          <p class="setting-description">확신도·실수 원인·문제 메모·시험 속도 예측을 한 번에 켜고 끕니다. OFF하면 기존 v3.5.4 문제 화면과 바로 비교할 수 있고 저장한 기록은 지우지 않습니다.</p>
-          <div class="dynamic-ui-options experimental-options">
-            <button :class="{ active: experimentalFeaturesEnabled }" @click="setExperimentalFeatures(true)"><strong>β ON</strong><span>베타 기능 사용</span><small>현재 적용</small></button>
-            <button :class="{ active: !experimentalFeaturesEnabled }" @click="setExperimentalFeatures(false)"><strong>OFF</strong><span>기존 화면</span><small>v3.5.4 비교</small></button>
-          </div>
-          <button v-if="experimentalFeaturesEnabled" type="button" class="experimental-open-button" @click="settingsOpen = false; openView('beta')">베타 학습 도구 열기 →</button>
-        </div>
-        <div class="setting-group experimental-setting">
-          <span>내 판단·메모</span>
-          <p class="setting-description">문제 아래의 확신도·실수 원인·내 메모만 따로 표시합니다. OFF해도 기존 기록은 삭제하지 않습니다.</p>
-          <div class="dynamic-ui-options experimental-options">
-            <button :class="{ active: questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(true)"><strong>ON</strong><span>판단·메모 표시</span><small>문제 아래 열기</small></button>
-            <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
-          </div>
-        </div>
-        <OptionalFeatureBoundary label="UI·테마 실험실" compact>
-          <ThemeStudio @start-tour="startUiTour" />
-        </OptionalFeatureBoundary>
-        <div class="setting-group solve-layout-setting">
-          <span>문제풀이 화면</span>
-          <p class="setting-description">세 화면을 언제든 바꿀 수 있습니다. 답안·진도·타이머는 그대로 유지됩니다.</p>
-          <div class="solve-layout-options">
-            <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
-            <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT 모드</span><small>선택형 · 고밀도 시험지형</small></button>
-            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>4문제 · 진행 HUD</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>UI 스타일</span>
-          <p class="setting-description">{{ isJewelry ? '기본 CBT, 심슨, 선재 테마' : '기본 CBT와 심슨 테마' }}는 이 설정 화면에서만 바꿀 수 있습니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.</p>
-          <div class="style-options">
-            <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>지금까지 사용한 화면</small></button>
-            <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>스프링필드 코믹 UI</small></button>
-            <button v-if="isJewelry" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>보석관 전용 팬페이지 UI</small></button>
-          </div>
-        </div>
-        <div v-if="isJewelry" class="setting-group">
-          <span>선재 사진 자동 교체</span>
-          <p class="setting-description">선재 테마의 홈·로고·메뉴 사진이 바뀌는 시간을 고릅니다. 끔을 선택하면 현재 사진을 그대로 유지합니다.</p>
-          <div class="sunjae-rotation-options">
-            <button v-for="seconds in sunjaeRotationChoices" :key="seconds" :class="{ active: sunjaeRotationSeconds === seconds }" @click="setSunjaeRotationSeconds(seconds)">{{ sunjaeRotationLabel(seconds) }}</button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>화면 테마</span>
-          <div class="theme-options">
-            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)"><strong>◐ 자동</strong><small>기기 설정</small></button>
-            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)"><strong>☀ 라이트</strong><small>밝은 화면</small></button>
-            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)"><strong>☾ 다크</strong><small>어두운 화면</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>문자 크기</span>
-          <p class="setting-description">문제·보기·해설 글씨만 80%부터 160%까지 조절합니다.</p>
-          <div class="font-options">
-            <button :class="{ active: fontScale === .8 }" @click="setFontScale(.8)">아주 작게</button>
-            <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
-            <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
-            <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>글씨체</span>
-          <p class="setting-description">문제·보기·해설과 메뉴 글꼴을 함께 바꿉니다.</p>
-          <div class="font-family-options">
-            <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
-            <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
-            <button :class="{ active: fontFamilyPreference === 'd2coding' }" @click="setFontFamilyPreference('d2coding')"><strong>D2Coding</strong><small>Regular · 고정폭</small></button>
-            <button :class="{ active: fontFamilyPreference === 'd2coding-bold' }" @click="setFontFamilyPreference('d2coding-bold')"><strong>D2Coding Bold</strong><small>굵은 고정폭</small></button>
-          </div>
-        </div>
-        <div v-if="!isJewelry" class="setting-group">
-          <span>문제 이미지 다크 표시</span>
-          <p class="setting-description">복원·한솔·일반 문제 그림의 원본 픽셀은 그대로 두고, 다크 모드 표시만 바꿉니다.</p>
-          <div class="restored-image-options">
-            <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
-            <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
-          </div>
-        </div>
-        <div class="setting-group standard-solving-setting">
-          <span>답안 선택 방식</span>
-          <p class="setting-description">베타가 아닌 정식 설정입니다. 복원 이미지 문제의 답안 표시만 바뀌며 학습 기록에는 영향을 주지 않습니다.</p>
-          <div class="answer-layout-options">
-            <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
-            <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
-            <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
-          </div>
-          <div class="hotspot-indicator-setting">
-            <span>이미지 답안 선택 표시</span>
-            <div>
-              <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 보기 전체 한 박스</small></button>
-            </div>
-          </div>
-          <div class="standard-solving-list">
-            <span><b>✓</b><strong>이미지 잘림 방지</strong></span>
-            <span><b>✓</b><strong>OMR 자동 따라가기</strong></span>
-          </div>
-        </div>
-        <CloudSyncPanel description="로그인하지 않아도 모든 문제를 풀 수 있습니다. PC·태블릿·휴대폰에서 같은 기록을 쓰고 싶을 때만 로그인하세요." />
-        <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting">
-          <span>PWA 업데이트 복구</span>
-          <p>업데이트 뒤 화면이 꼬였을 때 학습 기록은 보존하고 이 사이트의 캐시와 서비스워커만 다시 설정합니다.</p>
-          <div><button type="button" @click="openPwaRecovery">복구 화면 열기</button></div>
-        </div>
-        <div class="setting-group data-setting">
-          <span>학습 기록</span>
-          <p>이 기기의 오답·진도·시험 기록을 파일로 옮기거나 다시 불러올 수 있습니다.</p>
-          <div>
-            <button @click="exportLearningData">기록 내보내기</button>
-            <button @click="chooseLearningDataFile">기록 불러오기</button>
-            <button class="danger" @click="clearLearningData">전체 초기화</button>
-          </div>
-          <input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData">
-        </div>
-        <footer><span>현재 버전</span><strong>v{{ currentVersion }}</strong></footer>
-        </section>
-      </div>
-    </Transition>
+
   </div>
 
   <div
@@ -5445,7 +5324,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
         </Transition>
-        <footer v-if="!workspaceActive" class="pager" :class="{ 'has-unanswered': unansweredCount }">
+        <footer class="pager" :class="{ 'has-unanswered': unansweredCount }">
           <button type="button" class="pager-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
           <span class="pager-position"><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
           <button v-if="unansweredCount" type="button" class="pager-unanswered-button" @click="goToNextUnanswered">다음 미응답</button>
@@ -5495,8 +5374,8 @@ onBeforeUnmount(() => {
       </aside>
     </main>
 
-    <WorkspaceSessionBar v-if="workspaceActive" :page="session.page" :pages="pageCount" :answered="answeredCount" :total="session.items.length" :unanswered="unansweredCount" :exam="session.mode === 'exam'" :omr="examSheetOpen" @previous="goToPage(session.page - 1)" @next="goToPage(session.page + 1)" @settings="settingsOpen = true" @calculator="openCalculator" @unanswered="goToNextUnanswered" @omr="examSheetOpen = !examSheetOpen" @submit="session.mode === 'exam' ? submitExam(false) : submitLearning()" />
-    <nav v-if="!workspaceActive" class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
+
+    <nav class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
       <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)"><span>‹</span><strong>이전</strong></button>
       <button v-if="unansweredCount" type="button" class="native-unanswered-button" @click="goToNextUnanswered"><span>?</span><strong>미응답</strong><b>{{ unansweredCount }}</b></button>
       <button v-if="session.mode === 'exam'" type="button" :class="{ active: examSheetOpen }" @click="examSheetOpen = !examSheetOpen"><span>OMR</span><strong>답안지</strong><b v-if="unansweredCount">{{ unansweredCount }}</b></button>
@@ -5507,7 +5386,7 @@ onBeforeUnmount(() => {
       <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>›</span><strong>다음</strong></button>
     </nav>
 
-    <nav v-if="!workspaceActive && solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
+    <nav v-if="solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
       <button type="button" class="compact-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
       <div>
         <span>COMCBT PAGE</span>
@@ -5562,135 +5441,11 @@ onBeforeUnmount(() => {
     </Transition>
   </div>
 
-  <Transition name="modal-fade">
-    <div v-if="settingsOpen && session" class="settings-backdrop" @click.self="settingsOpen = false">
-      <section class="settings-panel session-settings-panel">
-        <header><div><span>SESSION SETTINGS</span><h2>풀이 중 화면 설정</h2></div><button aria-label="설정 닫기" @click="settingsOpen = false">×</button></header>
-        <LayoutPreferences />
-        <div class="setting-group display-mode-setting">
-          <span>기기 화면 모드</span>
-          <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 전환 전에 현재 풀이 위치를 저장합니다.</p>
-          <div class="display-mode-options">
-            <button :class="{ active: displayPreference === 'auto' }" @click="setDisplayPreference('auto')"><strong>자동</strong><span>{{ resolvedDisplayMode === 'mobile' ? '현재 모바일·태블릿' : '현재 PC' }}</span><small>기기 자동 인식</small></button>
-            <button :class="{ active: displayPreference === 'mobile' }" @click="setDisplayPreference('mobile')"><strong>모바일</strong><span>모바일·태블릿</span><small>경량 화면 고정</small></button>
-            <button :class="{ active: displayPreference === 'desktop' }" @click="setDisplayPreference('desktop')"><strong>PC</strong><span>데스크톱 화면</span><small>PC 배치 고정</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>동적 UI</span>
-          <p class="setting-description">현재 답안은 유지하고 화면 전환 모션과 동적 배치만 바꿉니다.</p>
-          <div class="dynamic-ui-options">
-            <button :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)"><strong>ON</strong><span>새 동적 UI</span><small>기본 설정</small></button>
-            <button :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)"><strong>OFF</strong><span>기존 UI</span><small>v2.4.2 호환</small></button>
-          </div>
-        </div>
-        <div class="setting-group experimental-setting">
-          <span>실험 기능 전체</span>
-          <p class="setting-description">현재 답안과 타이머는 유지하고 베타 도구만 숨기거나 다시 표시합니다.</p>
-          <div class="dynamic-ui-options experimental-options">
-            <button :class="{ active: experimentalFeaturesEnabled }" @click="setExperimentalFeatures(true)"><strong>β ON</strong><span>베타 기능</span><small>확신도·메모·속도</small></button>
-            <button :class="{ active: !experimentalFeaturesEnabled }" @click="setExperimentalFeatures(false)"><strong>OFF</strong><span>기존 화면</span><small>즉시 비교</small></button>
-          </div>
-        </div>
-        <div class="setting-group experimental-setting">
-          <span>내 판단·메모</span>
-          <p class="setting-description">현재 답안은 유지하고 문제 아래의 판단·메모 도구만 따로 켜거나 끕니다.</p>
-          <div class="dynamic-ui-options experimental-options">
-            <button :class="{ active: questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(true)"><strong>ON</strong><span>판단·메모 표시</span><small>기존 기록 유지</small></button>
-            <button :class="{ active: !questionJudgmentEnabled }" @click="setQuestionJudgmentEnabled(false)"><strong>OFF</strong><span>숨기기</span><small>기본값</small></button>
-          </div>
-        </div>
-        <OptionalFeatureBoundary label="UI·테마 실험실" compact>
-          <ThemeStudio @start-tour="startUiTour" />
-        </OptionalFeatureBoundary>
-        <div class="setting-group solve-layout-setting">
-          <span>문제풀이 화면</span>
-          <p class="setting-description">현재 답안과 타이머를 유지한 채 즉시 전환합니다.</p>
-          <div class="solve-layout-options">
-            <button :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><strong>CBT</strong><span>기본 CBT</span><small>기존 v2.7 화면 · 기본값</small></button>
-            <button :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><strong>COM</strong><span>COMCBT</span><small>고밀도 2열</small></button>
-            <button :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><strong>⚡</strong><span>컴뱃 CBT</span><small>4문제 HUD</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>UI 스타일</span>
-          <p class="setting-description">답안과 진행 상태는 그대로 둔 채 풀이 화면의 테마를 바로 바꿉니다.</p>
-          <div class="style-options">
-            <button :class="{ active: visualStyle === 'default' }" @click="setVisualStyle('default')"><strong>CBT</strong><span>기본 UI</span><small>깔끔한 시험 화면</small></button>
-            <button :class="{ active: visualStyle === 'simpsons' }" @click="setVisualStyle('simpsons')"><strong>🍩</strong><span>심슨 테마</span><small>다크 모드 지원</small></button>
-            <button v-if="isJewelry" :class="{ active: visualStyle === 'sunjae' }" @click="setVisualStyle('sunjae')"><strong>☂</strong><span>선재 테마</span><small>보석관 전용 UI</small></button>
-          </div>
-        </div>
-        <div v-if="isJewelry" class="setting-group">
-          <span>선재 사진 자동 교체</span>
-          <p class="setting-description">선재 테마의 홈·로고·메뉴 사진이 바뀌는 시간을 고릅니다.</p>
-          <div class="sunjae-rotation-options">
-            <button v-for="seconds in sunjaeRotationChoices" :key="seconds" :class="{ active: sunjaeRotationSeconds === seconds }" @click="setSunjaeRotationSeconds(seconds)">{{ sunjaeRotationLabel(seconds) }}</button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>화면 테마</span>
-          <div class="theme-options">
-            <button :class="{ active: theme === 'system' }" @click="theme = 'system'; applyTheme(theme)"><strong>◐ 자동</strong><small>기기 설정</small></button>
-            <button :class="{ active: theme === 'light' }" @click="theme = 'light'; applyTheme(theme)"><strong>☀ 라이트</strong><small>밝은 화면</small></button>
-            <button :class="{ active: theme === 'dark' }" @click="theme = 'dark'; applyTheme(theme)"><strong>☾ 다크</strong><small>어두운 화면</small></button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>문자 크기</span>
-          <p class="setting-description">현재 문제를 유지한 채 80%부터 160%까지 바꿉니다.</p>
-          <div class="font-options">
-            <button :class="{ active: fontScale === .8 }" @click="setFontScale(.8)">아주 작게</button>
-            <button :class="{ active: fontScale === 1 }" @click="setFontScale(1)">기본</button>
-            <button :class="{ active: fontScale === 1.3 }" @click="setFontScale(1.3)">크게</button>
-            <button :class="{ active: fontScale === 1.6 }" @click="setFontScale(1.6)">아주 크게</button>
-          </div>
-        </div>
-        <div class="setting-group">
-          <span>글씨체</span>
-          <p class="setting-description">현재 문제와 답안을 유지한 채 바로 바꿉니다.</p>
-          <div class="font-family-options">
-            <button :class="{ active: fontFamilyPreference === 'regular' }" @click="setFontFamilyPreference('regular')"><strong>나눔고딕</strong><small>Regular · 기본</small></button>
-            <button :class="{ active: fontFamilyPreference === 'bold' }" @click="setFontFamilyPreference('bold')"><strong>나눔고딕 Bold</strong><small>굵고 또렷하게</small></button>
-            <button :class="{ active: fontFamilyPreference === 'd2coding' }" @click="setFontFamilyPreference('d2coding')"><strong>D2Coding</strong><small>Regular · 고정폭</small></button>
-            <button :class="{ active: fontFamilyPreference === 'd2coding-bold' }" @click="setFontFamilyPreference('d2coding-bold')"><strong>D2Coding Bold</strong><small>굵은 고정폭</small></button>
-          </div>
-        </div>
-        <div v-if="!isJewelry" class="setting-group">
-          <span>문제 이미지 다크 표시</span>
-          <p class="setting-description">현재 문제와 답안은 유지하고 복원·한솔·일반 문제 그림의 표시만 바꿉니다.</p>
-          <div class="restored-image-options">
-            <button :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
-            <button :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
-          </div>
-        </div>
-        <div class="setting-group standard-solving-setting">
-          <span>답안 선택 방식</span>
-          <div class="answer-layout-options">
-            <button :class="{ active: answerLayout === 'hotspot' }" @click="setAnswerLayout('hotspot')"><strong>☝ 이미지 직접 선택</strong><small>원문 속 보기를 바로 누르기</small></button>
-            <button :class="{ active: answerLayout === 'inline' }" @click="setAnswerLayout('inline')"><strong>① 답안 문구</strong><small>번호 옆에서 내용을 바로 선택</small></button>
-            <button :class="{ active: answerLayout === 'classic' }" @click="setAnswerLayout('classic')"><strong>① ② ③ ④</strong><small>기존 큰 번호 버튼</small></button>
-          </div>
-          <div class="hotspot-indicator-setting">
-            <span>이미지 답안 선택 표시</span>
-            <div>
-              <button :class="{ active: hotspotIndicator === 'marker' }" @click="setHotspotIndicator('marker')"><strong>✓ 체크 마커</strong><small>기본 · 글자를 가리지 않음</small></button>
-              <button :class="{ active: hotspotIndicator === 'area' }" @click="setHotspotIndicator('area')"><strong>▰ 영역 색상 박스</strong><small>PaddleOCR · 보기 전체 한 박스</small></button>
-            </div>
-          </div>
-          <div class="standard-solving-list">
-            <span><b>✓</b><strong>이미지 비율·잘림 자동 보호</strong></span>
-            <span><b>✓</b><strong>현재 문제 OMR 자동 이동</strong></span>
-          </div>
-          <button v-if="session.mode === 'exam'" type="button" class="session-setting-action" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
-        </div>
-        <CloudSyncPanel description="현재 풀이 위치도 함께 저장합니다. 다른 기기에서는 동기화가 끝난 뒤 이어 학습을 누르세요." />
-        <div v-if="!isNativeApp" class="setting-group data-setting pwa-recovery-setting"><span>PWA 업데이트 복구</span><p>학습 기록은 유지하고 홈페이지 캐시와 서비스워커만 다시 설정합니다.</p><div><button type="button" @click="openPwaRecovery">복구 화면 열기</button></div></div>
-        <div class="setting-group data-setting"><span>학습 기록</span><p>오답·진도·시험 기록을 파일로 옮기거나 다시 불러올 수 있습니다.</p><div><button @click="exportLearningData">기록 내보내기</button><button @click="chooseLearningDataFile">기록 불러오기</button><button class="danger" @click="clearLearningData">전체 초기화</button></div><input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData"></div>
-        <footer><span>현재 v{{ currentVersion }} · 답안과 타이머는 유지됩니다</span><button type="button" @click="settingsOpen = false">풀이로 돌아가기</button></footer>
-      </section>
-    </div>
-  </Transition>
+  <StudySettings v-if="settingsOpen && (view !== 'settings' || session)" :mode="settingsExpanded ? 'full' : 'quick'" :values="settingsValues" :context="settingsContext" @change="changeSetting" @action="settingsAction">
+    <template #account><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요." /></template>
+  </StudySettings>
+  <input ref="learningImportInput" type="file" accept="application/json,.json" hidden @change="importLearningData">
+
 
   <Transition name="modal-fade">
     <section v-if="nativeCalculatorOpen" class="native-calculator-shell">

@@ -17,8 +17,10 @@ const CORE = [
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`, './modern/OptionalFeatureBoundary.css',
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
-  ...['main', 'createLucideIcon', 'DialogTitle', 'WorkspaceHome', 'WorkspaceNavigation', 'WorkspaceSessionBar', 'calculator', 'settings', 'x', 'chevron-left']
+  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'rotate-ccw']
     .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
+  './modern/StudySettings.css', './modern/ThemeStudio.css',
+  `./modern/chunks/index-v${__CBT_BUILD_VERSION__}2.js`,
   './modern/assets/search.worker-BqvfbZXG.js',
 ];
 
