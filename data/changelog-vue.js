@@ -5,6 +5,19 @@
 
   const entries = [
     {
+      version: '4.9.2', scope: 'industrial', date: '2026.09.07',
+      title: '설명형 기존 설정 복원',
+      summary: '축약한 빠른 설정을 기존 항목과 설명형 버튼으로 되돌리고 전체 설정에도 동일한 구성을 적용했습니다.',
+      tags: ['기존 설정 복원', '설명형 선택지', '전체 설정'],
+      changes: [
+        '설정창에서 기기 화면·동적 UI·학습 도구·문제 배치·테마·글씨·답안·동기화·백업을 다시 순서대로 볼 수 있습니다.',
+        '기존 버튼의 아이콘·이름·보조 설명을 복원해 옵션별 차이를 비교할 수 있습니다.',
+        '전체 설정도 동일한 설명형 구성을 사용하며 목차는 해당 위치로 이동합니다. 처음부터 모든 항목이 표시됩니다.',
+        '설정 검색과 풀이 중 설정 열기는 유지하고 저장된 설정값·학습 기록은 변경하지 않습니다.',
+        '신기술 학습관과 사용 안내를 갱신하고 캐시 v492·Android 버전 설정 v4.9.2를 반영했습니다.'
+      ]
+    },
+    {
       version: '4.9.1', scope: 'industrial', date: '2026.09.06',
       title: '기존 화면 개선과 검색형 전체 설정',
       summary: '익숙한 CBT 화면으로 정리하고 빠른 설정과 설명·검색을 갖춘 전체 설정을 분리했습니다.',
@@ -2099,8 +2112,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.9.1';
+  changelog.versions.industrial = '4.9.2';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.9.1';
+  changelog.currentVersion = '4.9.2';
   window.CBT_CHANGELOG = changelog;
 })();

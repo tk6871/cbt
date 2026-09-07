@@ -3195,8 +3195,8 @@ async function startUiTour(): Promise<void> {
     doneBtnText: '확인',
     progressText: '{{current}} / {{total}}',
     steps: [
-      { element: '.settings-category-nav', popover: { title: '설정 분류', description: '화면·글씨, 문제풀이, 학습 도구, 기록을 나누어 찾을 수 있습니다.' } },
-      { element: '.settings-hub-search', popover: { title: '설정 검색', description: '다크, 글씨, 답안처럼 필요한 단어로 찾아보세요.' } },
+      { element: '.settings-hub', popover: { title: '화면과 학습 데이터', description: '기존처럼 모든 설정이 이어집니다. 버튼 안의 이름과 설명을 비교해 선택하세요.' } },
+      { element: '.settings-open-full,.settings-hub-search', popover: { title: '전체 설정', description: '같은 설정을 넓게 보고, 목차로 이동하거나 검색할 수 있습니다.' } },
       { element: '.theme-studio', popover: { title: 'UI·테마 실험실', description: '기존 테마의 색상과 밀도만 조절합니다. 저장한 답안에는 영향을 주지 않습니다.' } },
     ],
   }).drive();
@@ -4813,8 +4813,8 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>기존 UI 개선</span><h2>필요한 설정만 빠르게 찾기</h2></div><p>익숙한 화면을 유지하면서 빠른 설정과 크롬 설정처럼 넓은 전체 설정을 나눴습니다. 홈과 풀이 중에 동일한 항목을 조절합니다.</p></header>
-            <p>첫 화면에는 밝기·문자 크기·답안 선택만 표시합니다. 화면·글씨, 문제풀이, 학습 도구, 기록·동기화는 해당 분류에서 찾으세요.</p>
+            <header><div><span>기존 설정 복원</span><h2>설명과 선택지를 한눈에 비교하기</h2></div><p>기존 설정의 아이콘·이름·설명을 복원했습니다. 작은 설정창과 전체 설정에서 같은 항목을 순서대로 볼 수 있습니다.</p></header>
+            <p>전체 설정의 목차는 항목을 숨기지 않고 해당 위치로 이동합니다. 검색은 필요한 항목을 찾을 때만 사용하세요.</p>
             <button type="button" @click="openView('settings')">전체 설정 둘러보기 →</button>
           </section>
 

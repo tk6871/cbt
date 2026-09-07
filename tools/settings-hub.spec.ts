@@ -8,34 +8,40 @@ async function home(page: Page) {
 }
 async function quick(page: Page) {
   await page.getByRole('button', { name: '설정 열기', exact: true }).click();
-  await expect(page.getByRole('heading', { name: '빠른 설정', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '화면과 학습 데이터', exact: true })).toBeVisible();
 }
 
-test('빠른 설정과 검색형 전체 설정을 분리하고 선택값을 저장한다', async ({ page }) => {
+test('기존 설명형 설정을 복원하고 전체 설정에도 동일한 항목을 표시한다', async ({ page }) => {
   await home(page);
   await quick(page);
-  await expect(page.locator('.settings-control')).toHaveCount(3);
+  const popupKeys = await page.locator('[data-setting]').evaluateAll(nodes => nodes.map(node => node.getAttribute('data-setting')));
+  expect(popupKeys).toEqual(expect.arrayContaining(['display', 'dynamic', 'experimental', 'judgment', 'solveLayout', 'visualStyle', 'theme', 'fontScale', 'fontFamily', 'imageTheme', 'answerLayout', 'indicator', 'data', 'backup']));
   await expect(page.locator('.settings-category-nav')).toHaveCount(0);
-  await page.getByRole('button', { name: '120%', exact: true }).click();
-  await expect(page.getByRole('button', { name: '120%', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.display-mode-options button').first()).toContainText('기기 자동 인식');
+  await page.getByRole('button', { name: '크게', exact: true }).click();
+  await expect(page.getByRole('button', { name: '크게', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: /전체 설정 열기/ }).click();
   await expect(page.locator('.settings-page')).toBeVisible();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.locator('.patch-timeline')).toHaveCount(0);
+  expect(await page.locator('[data-setting]').evaluateAll(nodes => nodes.map(node => node.getAttribute('data-setting')))).toEqual(popupKeys);
+  await page.getByRole('button', { name: '답안 선택', exact: true }).click();
+  await expect(page.locator('[data-setting="answerLayout"]')).toBeInViewport();
+  await expect(page.locator('[data-setting="display"]')).toBeVisible();
   await page.getByLabel('설정 찾기', { exact: true }).fill('D2Coding');
   await expect(page.locator('[data-setting="fontFamily"]')).toBeVisible();
-  await page.getByRole('button', { name: 'D2Coding Bold', exact: true }).click();
-  await expect(page.locator('[data-setting="fontFamily"] .settings-current')).toHaveText('현재: D2Coding Bold');
+  await page.getByRole('button', { name: /D2Coding Bold/ }).click();
+  await expect(page.getByRole('button', { name: /D2Coding Bold/ })).toHaveAttribute('aria-pressed', 'true');
   await page.getByLabel('설정 찾기', { exact: true }).fill('선재');
-  await expect(page.getByText('일치하는 설정이 없어요.', { exact: false })).toBeVisible();
+  await expect(page.locator('[data-setting="visualStyle"]')).toBeHidden();
   await page.getByRole('button', { name: '기록·동기화', exact: true }).click();
   await expect(page.getByRole('button', { name: '기록 내보내기', exact: true })).toBeVisible();
-  await expect(page.getByRole('button', { name: '전체 초기화', exact: true })).not.toBeVisible();
+  await expect(page.getByRole('button', { name: '전체 초기화', exact: true })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   await page.reload();
   await expect(page.locator('.settings-page')).toBeVisible({ timeout: 90000 });
   await page.getByLabel('설정 찾기', { exact: true }).fill('D2Coding');
-  await expect(page.getByRole('button', { name: 'D2Coding Bold', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: /D2Coding Bold/ })).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('풀이 중 전체 설정은 답안을 유지하고 원래 풀이로 닫힌다', async ({ page }) => {
@@ -55,7 +61,7 @@ test('풀이 중 전체 설정은 답안을 유지하고 원래 풀이로 닫힌
   await page.getByRole('button', { name: /전체 설정 열기/ }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.getByLabel('설정 찾기', { exact: true }).fill('밝기');
-  await page.getByRole('button', { name: '라이트', exact: true }).click();
+  await page.getByRole('button', { name: /라이트.*밝은 화면/ }).click();
   await page.getByRole('button', { name: '풀이로 돌아가기', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(answer).toHaveText(answerText || '');
