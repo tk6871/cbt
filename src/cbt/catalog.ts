@@ -7,7 +7,7 @@ import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance',
   'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
-  'information-engineer',
+  'information-engineer', 'forklift-craftsman',
 ];
 
 export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
@@ -63,6 +63,7 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_GAS_CRAFTSMAN,
     window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
     window.CBT_DATA_INFORMATION_ENGINEER,
+    window.CBT_DATA_FORKLIFT_CRAFTSMAN,
   ].filter((item): item is Catalog => Boolean(item));
 
   const loaded = sources

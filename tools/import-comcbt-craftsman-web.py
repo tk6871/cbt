@@ -37,6 +37,8 @@ class Target:
     question_count: int = 60
     legacy_subject_ranges: tuple[tuple[int, int, str], ...] = ()
     legacy_before_year: int | None = None
+    preserve_original_assets: bool = False
+    index_pages_are_exam_pages: bool = False
 
 
 @dataclass(frozen=True)
@@ -177,7 +179,8 @@ def explanation_values(outer: etree._Element) -> tuple[str, str]:
 def local_asset(target: Target, exam: Exam, url: str) -> tuple[str, Path]:
     filename = Path(urlsplit(url).path).name
     filename = re.sub(r"[^A-Za-z0-9._-]", "_", filename) or "image.gif"
-    relative = Path("assets") / target.key / "comcbt" / exam.compact_date / "images" / filename
+    asset_root = Path("original") / "comcbt" if target.preserve_original_assets else Path("comcbt")
+    relative = Path("assets") / target.key / asset_root / exam.compact_date / "images" / filename
     return relative.as_posix(), ROOT / relative
 
 
@@ -319,22 +322,43 @@ def parse_exam_file(target: Target, exam: Exam, html_path: Path) -> tuple[dict, 
 
 
 def list_exams(target: Target) -> list[Exam]:
-    text = "\n".join(path.read_text(encoding="utf-8", errors="ignore") for path in target.index_paths)
     pattern = re.compile(
         rf"{re.escape(target.name)}(?:\(구\))?\s*필기\s*기출문제\s*"
-        r"(20\d{2})년(\d{2})월(\d{2})일\s*\(([^)]*회[^)]*)\).*?"
+        r"(20\d{2})년\s*(\d{2})월\s*(\d{2})일\s*\(([^)]*회[^)]*)\).*?"
         r"/cbt/exam/(\d+)/",
         re.S,
     )
     exams = []
-    for year, month, day, session_label, exam_id in pattern.findall(text):
-        session_match = re.search(r"\d+", session_label)
-        if not session_match:
+    for index_path in target.index_paths:
+        text = index_path.read_text(encoding="utf-8", errors="ignore")
+        if target.index_pages_are_exam_pages:
+            document = html.fromstring(index_path.read_bytes())
+            title = clean_text(document.xpath("string(//title)"))
+            canonical = document.xpath('//link[@rel="canonical"]/@href')
+            title_match = re.search(
+                rf"^{re.escape(target.name)}(?:\(구\))?\s*필기\s*기출문제\s*"
+                r"(20\d{2})년\s*(\d{2})월\s*(\d{2})일\s*\(([^)]*회[^)]*)\)",
+                title,
+            )
+            exam_id_match = re.search(r"/cbt/exam/(\d+)/", canonical[0] if canonical else "")
+            if title_match and exam_id_match:
+                year, month, day, session_label = title_match.groups()
+                session_match = re.search(r"\d+", session_label)
+                if session_match:
+                    exams.append(Exam(
+                        int(exam_id_match.group(1)), int(year), int(month), int(day),
+                        int(session_match.group(0)),
+                        re.sub(r"\s+", " ", session_label.replace(",", "·")).strip(),
+                    ))
             continue
-        exams.append(Exam(
-            int(exam_id), int(year), int(month), int(day), int(session_match.group(0)),
-            re.sub(r"\s+", " ", session_label.replace(",", "·")).strip(),
-        ))
+        for year, month, day, session_label, exam_id in pattern.findall(text):
+            session_match = re.search(r"\d+", session_label)
+            if not session_match:
+                continue
+            exams.append(Exam(
+                int(exam_id), int(year), int(month), int(day), int(session_match.group(0)),
+                re.sub(r"\s+", " ", session_label.replace(",", "·")).strip(),
+            ))
     unique = {exam.exam_id: exam for exam in exams}
     result = sorted(unique.values(), key=lambda exam: (exam.year, exam.month, exam.day), reverse=True)
     if not result:
@@ -361,8 +385,9 @@ def download_page(url: str, output: Path) -> None:
 def parse_target(target: Target, cache_root: Path, download_assets: bool = True) -> tuple[dict, dict[str, Path]]:
     exams = list_exams(target)
     output_root = ROOT / "assets" / target.key
-    if download_assets and output_root.exists():
-        shutil.rmtree(output_root)
+    clean_root = output_root / "original" if target.preserve_original_assets else output_root
+    if download_assets and clean_root.exists():
+        shutil.rmtree(clean_root)
 
     rounds = []
     all_assets: dict[str, Path] = {}
@@ -398,6 +423,7 @@ def main() -> None:
     parser.add_argument("--hazardous-index", type=Path)
     parser.add_argument("--information-current-index", type=Path)
     parser.add_argument("--information-old-index", type=Path)
+    parser.add_argument("--forklift-index", type=Path, nargs="+")
     parser.add_argument("--cache-root", type=Path, default=Path("/private/tmp/cbt-comcbt-craftsman"))
     parser.add_argument("--skip-assets", action="store_true")
     parser.add_argument("--asset-manifest", type=Path)
@@ -443,6 +469,15 @@ def main() -> None:
             ),
             legacy_before_year=2020,
         ))
+    if args.forklift_index:
+        targets.append(Target(
+            "forklift-craftsman", "지게차운전기능사", "지게차운전기능사",
+            tuple(args.forklift_index),
+            "CBT_DATA_FORKLIFT_CRAFTSMAN",
+            ((1, 60, "과목 구분 없음"),),
+            preserve_original_assets=True,
+            index_pages_are_exam_pages=True,
+        ))
     if not targets:
         parser.error("가져올 종목 목록 파일을 하나 이상 지정해야 합니다.")
     asset_manifest: dict[str, str] = {}
@@ -457,8 +492,12 @@ def main() -> None:
         )
         questions = [q for round_data in catalog["rounds"] for q in round_data["questions"]]
         image_count = sum(len(q["images"]) + sum(len(c["images"]) for c in q["choices"]) for q in questions)
-        explained = sum(1 for q in questions if q["explanationProvenance"] == "comcbt-public-exam-view")
-        print(f"{target.name}: {len(catalog['rounds'])}회차, {len(questions)}문제, 이미지 {image_count}개, 해설 {explained}문제")
+        answer_only = sum(1 for q in questions if "등록된 상세 해설은 없습니다." in q["explanation"])
+        detailed = len(questions) - answer_only
+        print(
+            f"{target.name}: {len(catalog['rounds'])}회차, {len(questions)}문제, "
+            f"이미지 {image_count}개, 상세 해설 {detailed}문제, 정답 확인만 {answer_only}문제"
+        )
         if reused:
             print(f"  동일 원문 검증 해설 재사용: {reused}문제")
     if args.asset_manifest:
