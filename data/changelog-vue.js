@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '5.0', scope: 'industrial', date: '2026.09.07',
+      title: '지게차운전기능사 CBT 추가',
+      summary: 'COMCBT 최신 시험 화면의 지게차운전기능사 32회차를 검색 가능한 문제·답안·해설로 추가하고 원문 그림을 고화질·다크모드로 제공합니다.',
+      tags: ['지게차운전기능사', '1,920문제', '고화질 이미지', '다크모드'],
+      changes: [
+        '지게차운전기능사 2004~2011년 32회차·1,920문제를 회차별 학습과 CBT 시험에서 선택할 수 있습니다.',
+        '게시글이나 오래된 출력물이 아닌 COMCBT의 현재 CBT 시험 화면에서 문제·정답·공개 해설을 가져왔습니다.',
+        'COMCBT에 등록된 상세 해설 1,018문제를 유지하고, 문제·보기·정답이 모두 같은 다른 회차 해설을 87문제에 추가 연결했습니다. 상세 해설이 없는 815문제는 현재 시험 화면의 정답 확인 안내를 표시합니다.',
+        '문제·답안 그림 원본 140개를 보존하고 Mac M4 Pro에서 Real-ESRGAN x4plus-anime, 타일 256, 4배 처리 후 2배 bicubic 축소 방식으로 고화질화했습니다.',
+        '지게차 그림도 다크모드의 눈부심 완화를 적용하며 원본 표시를 선택하면 흰 배경·원본 색상을 유지합니다.',
+        'Q-Net 기준 60문항·60분·60점 이상 합격 판정을 적용하고 캐시 v500·Android 버전 설정 v5.0을 반영했습니다.'
+      ]
+    },
+    {
       version: '4.9.2', scope: 'industrial', date: '2026.09.07',
       title: '설명형 기존 설정 복원',
       summary: '축약한 빠른 설정을 기존 항목과 설명형 버튼으로 되돌리고 전체 설정에도 동일한 구성을 적용했습니다.',
@@ -2112,8 +2126,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '4.9.2';
+  changelog.versions.industrial = '5.0';
   changelog.versions.jewelry = '4.0';
-  changelog.currentVersion = '4.9.2';
+  changelog.currentVersion = '5.0';
   window.CBT_CHANGELOG = changelog;
 })();

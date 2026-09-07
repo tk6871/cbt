@@ -50,6 +50,7 @@ class Target:
     expected_count: int
     source_revision: str | None = None
     data_relative: Path | None = None
+    destination_relative: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -102,6 +103,15 @@ TARGETS = {
         output_extension=".png",
         expected_count=56,
         data_relative=Path("data/jewelry.js"),
+    ),
+    "forklift-craftsman": Target(
+        key="forklift-craftsman",
+        source_relative=Path("assets/forklift-craftsman/original/comcbt"),
+        source_extensions=(".gif", ".jpg", ".jpeg", ".png", ".webp"),
+        output_extension=".png",
+        expected_count=140,
+        data_relative=Path("data/forklift-craftsman.js"),
+        destination_relative=Path("assets/forklift-craftsman/comcbt"),
     ),
 }
 
@@ -193,7 +203,9 @@ def collect_items(target: Target) -> list[Item]:
         output_extension = target.output_extension or source.suffix.lower()
         output_relative = relative.with_suffix(output_extension)
         stage = STAGE_ROOT / target.key / output_relative
-        if target.source_revision:
+        if target.destination_relative:
+            destination = PROJECT_ROOT / target.destination_relative / output_relative
+        elif target.source_revision:
             destination = PROJECT_ROOT / target.source_relative / output_relative
         else:
             destination = source.with_suffix(output_extension)
@@ -431,7 +443,11 @@ def replace_data_references(target: Target, items: list[Item]) -> int:
     replacements = 0
     for item in items:
         old_reference = item.source_relative.as_posix()
-        new_reference = old_reference.rsplit(".", 1)[0] + item.output_extension
+        if target.destination_relative:
+            relative = item.source.relative_to(PROJECT_ROOT / target.source_relative)
+            new_reference = (target.destination_relative / relative.with_suffix(item.output_extension)).as_posix()
+        else:
+            new_reference = old_reference.rsplit(".", 1)[0] + item.output_extension
         old_count = data_text.count(old_reference)
         new_count = data_text.count(new_reference)
         if old_count == 1 and new_count == 0:

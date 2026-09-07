@@ -254,6 +254,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   'gas-craftsman': { icon: '◉', className: 'green', description: '가스안전·장치·일반' },
   'hazardous-craftsman': { icon: '◆', className: 'orange', description: '화재예방·위험물 취급' },
   'information-engineer': { icon: 'IT', className: 'violet', description: '설계·개발·DB·프로그래밍·시스템' },
+  'forklift-craftsman': { icon: '▣', className: 'orange', description: '주행·적재·운반·하역·안전관리' },
   'gem-appraiser': { icon: '◇', className: 'jewel-red', description: '보석학·감별·다이아몬드' },
   'gem-appraiser-target': { icon: '✦', className: 'jewel-target', description: '큐넷 4과목 통합 모의시험' },
   'precious-industrial': { icon: '◆', className: 'jewel-gold', description: '장신구·귀금속 가공' },
@@ -328,6 +329,8 @@ const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
 const officialRule = computed(() => qualificationRuleFor(selectedKey.value));
+const officialExamQuestionCount = computed(() => officialRule.value?.totalQuestions
+  || (selectedSubjects.value.length * (officialRule.value?.questionsPerSubject || 20)));
 const officialExamRecords = computed(() => recentExamRecords.value.filter((record) => !record.mode || record.mode === 'exam'));
 const displayedPassChance = ref(0);
 const displayedResultScore = ref(0);
@@ -1450,8 +1453,10 @@ const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: s
     key: 'exam',
     eyebrow: 'PREDICTIVE MOCK',
     title: '합격 예측 모의고사',
-    description: '현재 범위에서 과목별 20문제를 균형 출제합니다.',
-    count: Math.min(selectedSubjects.value.length * 20, masteryRows.value.length),
+    description: officialRule.value?.scoring === 'total-only'
+      ? `현재 범위에서 공식 구성 ${officialExamQuestionCount.value}문제를 출제합니다.`
+      : '현재 범위에서 과목별 20문제를 균형 출제합니다.',
+    count: Math.min(officialExamQuestionCount.value, masteryRows.value.length),
     tone: 'blue',
   },
 ]);
@@ -4176,8 +4181,8 @@ onBeforeUnmount(() => {
 
             <div class="scope-summary">
               <div><span>선택 범위</span><strong>{{ yearFrom }}~{{ yearTo }}년</strong><small>{{ rangeRounds.length }}회차 사용</small></div>
-              <div><span>출제 가능</span><strong>{{ selectedItems.length.toLocaleString() }}문제</strong><small>과목별 균형 출제</small></div>
-              <div><span>실전 구성</span><strong>{{ selectedSubjects.length }}과목 × 20문제</strong><small>{{ officialRule?.note || '공식 기준 확인 필요' }}</small></div>
+              <div><span>출제 가능</span><strong>{{ selectedItems.length.toLocaleString() }}문제</strong><small>{{ officialRule?.scoring === 'total-only' ? `공식 ${officialExamQuestionCount}문제 구성` : '과목별 균형 출제' }}</small></div>
+              <div><span>실전 구성</span><strong>{{ officialRule?.scoring === 'total-only' ? `${officialExamQuestionCount}문제` : `${selectedSubjects.length}과목 × 20문제` }}</strong><small>{{ officialRule?.note || '공식 기준 확인 필요' }}</small></div>
             </div>
 
             <p v-if="selectedCatalog.isVirtual" class="target-exam-note">
@@ -4205,7 +4210,7 @@ onBeforeUnmount(() => {
               </button>
               <button class="random-learning-start" type="button" @click="startRandomLearning60">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(8)" alt="">
-                <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>{{ selectedKey === 'hvac' && includeHansolInRandom ? '일반 공조 + 한솔 후보' : '과목 균형' }} · 즉시 채점 · 자동 이어하기</small>
+                <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>{{ selectedKey === 'hvac' && includeHansolInRandom ? '일반 공조 + 한솔 후보' : (officialRule?.scoring === 'total-only' ? `공식 ${officialExamQuestionCount}문제 구성` : '과목 균형') }} · 즉시 채점 · 자동 이어하기</small>
               </button>
               <section v-if="selectedKey === 'hvac'" class="prediction-start-card">
                 <header><div><span>0822 제보 + {{ includeHansolInRandom ? '일반·한솔' : '일반 공조' }} 반복 기출</span><strong>시험 예상 60문제</strong><small>제보 13문제 고정 · 유사 기출 47문제 랜덤 · 3과목 × 20문제</small></div><b>예상</b></header>
@@ -4222,7 +4227,7 @@ onBeforeUnmount(() => {
               </section>
               <button class="exam-start" type="button" @click="startBalancedExam">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(5)" alt="">
-                <span>실제 시험처럼</span><strong>과목 균형 랜덤시험</strong><small>과목별 20문제{{ selectedKey === 'hvac' && includeHansolInRandom ? ' · 한솔 후보 포함' : '' }} · OMR · 타이머</small>
+                <span>실제 시험처럼</span><strong>{{ officialRule?.scoring === 'total-only' ? '공식 구성 랜덤시험' : '과목 균형 랜덤시험' }}</strong><small>{{ officialRule?.scoring === 'total-only' ? `${officialExamQuestionCount}문제` : '과목별 20문제' }}{{ selectedKey === 'hvac' && includeHansolInRandom ? ' · 한솔 후보 포함' : '' }} · OMR · 타이머</small>
               </button>
               <button class="round-start" type="button" @click="openView('rounds')">
                 <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" :src="simpsonsFunnyImageAt(7)" alt="">
