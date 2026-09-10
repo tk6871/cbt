@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { defineAsyncComponent, ref } from 'vue';
 import {
   cloudSyncState,
   findSyncId,
@@ -12,6 +12,8 @@ import {
 } from './cloudSync';
 
 type AuthMode = 'login' | 'signup' | 'id' | 'reset';
+const SyncRecoveryPanel = defineAsyncComponent(() => import('./SyncRecoveryPanel.vue'));
+const recoveryOpen = ref(false);
 defineProps<{ description: string }>();
 
 const space = window.CBT_APP_SPACE === 'jewelry' ? 'jewelry' : 'industrial';
@@ -179,6 +181,11 @@ function syncTimeLabel(): string {
         <div><strong>{{ cloudSyncState.email }}</strong><small>{{ cloudSyncState.message || '기기 간 기록 동기화가 연결되었습니다.' }}</small></div>
         <i :class="`is-${cloudSyncState.status}`">{{ cloudSyncState.status === 'syncing' ? '동기화 중' : cloudSyncState.status === 'error' ? '확인 필요' : '연결됨' }}</i>
       </div>
+      <p class="cloud-sync-help" role="status">{{ ({ idle: '연결 준비', waiting: '서버 저장 대기', reading: '① 서버 읽기', merging: '② 비교·사본 보관', uploading: '③ 서버 저장', applying: '④ 기기 반영', complete: '서버 저장 확인 완료', offline: '오프라인 · 이 기기 보관', error: '서버 저장 확인 필요' })[cloudSyncState.phase] }}</p>
+      <details class="cloud-sync-recovery" @toggle="recoveryOpen = ($event.target as HTMLDetailsElement).open">
+        <summary>다른 풀이 사본·복구 ({{ cloudSyncState.recoveryCount }})</summary>
+        <SyncRecoveryPanel v-if="recoveryOpen" />
+      </details>
       <p v-if="cloudSyncState.mustChangePassword" class="cloud-sync-help">관리자가 발급한 임시 비밀번호로 로그인했습니다. 지금 새 비밀번호로 바꿔 주세요.</p>
       <form v-if="changePasswordOpen || cloudSyncState.mustChangePassword" class="cloud-sync-form cloud-sync-recovery" @submit.prevent="saveNewPassword">
         <div class="cloud-sync-form-title"><b>새 비밀번호 설정</b><small>학습 기록은 그대로 유지됩니다.</small></div>

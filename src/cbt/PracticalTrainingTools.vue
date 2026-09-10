@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
+import { comparePracticalQuantities } from './practicalQuantities';
 import type {
   PracticalAssessment,
   PracticalConfidence,
@@ -65,10 +66,12 @@ const score = computed(() => criteria.value.length
   : (props.assessment?.score || 0));
 const unitCheck = computed(() => units.value.map((unit) => ({ unit, found: practicalContainsUnit(props.draft, unit) })));
 const numberCheck = computed(() => numbers.value.map((number) => ({ number, found: practicalContainsNumber(props.draft, number) })));
+const quantityCheck = computed(() => comparePracticalQuantities(props.prompt.answer, props.draft));
 const requiredAnswerCount = computed(() => Number(props.prompt.question.match(/(\d+)\s*(가지|개|항목|종류|방법|원인|대책)/)?.[1] || 0));
 const writtenAnswerCount = computed(() => props.draft.split(/\n|[.;。]/).map((line) => line.trim()).filter((line) => line.length >= 2).length);
 const countWarning = computed(() => requiredAnswerCount.value > 0 && writtenAnswerCount.value < requiredAnswerCount.value);
 const rangeWarning = computed(() => {
+  if (quantityCheck.value.some(row => row.match)) return '';
   const expected = numbers.value.map(Number).filter((value) => Number.isFinite(value) && value !== 0);
   const written = (props.draft.match(/(?<![a-z가-힣])\d+(?:\.\d+)?/gi) || []).map(Number).filter((value) => Number.isFinite(value) && value !== 0);
   if (!expected.length || !written.length) return '';
@@ -232,9 +235,14 @@ function startSpeechAnswer(): void {
         </button>
       </div>
       <div v-if="unitCheck.length || numberCheck.length" class="practical-value-check">
-        <strong>숫자·단위 확인</strong>
+        <strong>숫자·단위 원문 표기 확인</strong>
         <span v-for="item in numberCheck" :key="`number-${item.number}`" :class="{ found: item.found }">{{ item.found ? '✓' : '○' }} {{ item.number }}</span>
         <span v-for="item in unitCheck" :key="`unit-${item.unit}`" :class="{ found: item.found }">{{ item.found ? '✓' : '○' }} {{ item.unit }}</span>
+      </div>
+      <div v-if="quantityCheck.length" class="practical-value-check">
+        <strong>단위 환산 비교</strong>
+        <span v-for="(row, index) in quantityCheck" :key="index" :class="{ found: Boolean(row.match) }">{{ row.match ? '✓' : '○' }} {{ row.expected.text }}{{ row.match ? ` = ${row.match.text}` : ' · 아직 감지되지 않음' }}</span>
+        <small>같은 물리량의 SI 환산만 비교합니다. 값이 같아도 문제에서 요구한 단위·계산 과정은 직접 확인하세요. 온도 ℃↔K와 압력 기준 변환은 자동 판단하지 않습니다.</small>
       </div>
       <p v-if="countWarning || rangeWarning" class="practical-check-warning"><span v-if="countWarning">요구된 {{ requiredAnswerCount }}개 중 현재 답안은 약 {{ writtenAnswerCount }}개로 보입니다.</span><span v-if="rangeWarning">{{ rangeWarning }}</span></p>
       <div class="practical-mistake-picker">
