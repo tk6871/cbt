@@ -48,6 +48,7 @@ test('필답형 답안 도우미와 부분점수표를 사용할 수 있다', as
   await expect(page.getByRole('heading', { name: '필답형 실전 채점 훈련' })).toBeVisible();
   await page.getByRole('button', { name: /필답형 훈련관 열기/ }).click();
   await expect(page.getByRole('heading', { name: '공조냉동 실기 필답형 훈련관' })).toBeVisible();
+  await page.locator('.practical-extra-tools > summary').first().click();
   await page.getByRole('button', { name: '답안 골격 넣기' }).first().click();
   await expect(page.locator('.practical-answer-input textarea').first()).not.toHaveValue('');
   // Center the next control after the answer panel grows; tablet sticky bars
@@ -56,7 +57,7 @@ test('필답형 답안 도우미와 부분점수표를 사용할 수 있다', as
   await page.getByRole('button', { name: '단계별 힌트' }).first().click();
   await page.getByRole('button', { name: '힌트 한 단계 열기' }).first().click();
   await expect(page.getByText('1단계 힌트').first()).toBeVisible();
-  await page.getByRole('button', { name: '정답·채점 기준 보기' }).first().click();
+  await page.getByRole('button', { name: '답안 확인', exact: true }).click();
   await page.getByRole('button', { name: '부분점수 채점' }).first().click();
   await expect(page.getByText(/예상 부분점수/).first()).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

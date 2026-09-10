@@ -6,6 +6,8 @@ export type PracticalConfidence = 'low' | 'medium' | 'high';
 
 export type PracticalAssessment = {
   checkedPointIds?: string[];
+  rejectedPointIds?: string[];
+  calculationRetry?: Partial<Record<'formula' | 'substitution' | 'calculation' | 'unit', string>>;
   mistakeReasons?: PracticalMistakeReason[];
   hintLevel?: number;
   confidence?: PracticalConfidence;

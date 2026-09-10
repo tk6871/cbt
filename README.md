@@ -1,5 +1,13 @@
 # 산업기사 통합 CBT
 
+### v5.1 필답형 CBT
+
+시험 자료실 → **필답형 문제풀이**에서 한 문제씩 / 2문제씩 / 4문제씩 / 여러 문제 이어보기를 선택합니다.
+문제 번호·미작성 이동과 하단 이전·답안 확인·다음 버튼을 사용하고, 범위·회차·힌트는 필요한 때 펼칩니다.
+좁은 창은 세로, 넓은 창은 문제와 답안 2열이며 문제 너비를 조절할 수 있습니다.
+손글씨는 해당 기기에 저장되고 확대·이동 위치도 보존합니다. 손가락 이동 모드를 끄면 손가락으로도 필기할 수 있습니다.
+핵심 답안과 이해용 설명을 분리했으며 부분점수는 공식 채점표가 아닌 학습용 예상 배점입니다.
+
 > 공조냉동기계·산업안전·에너지관리·설비보전산업기사, 정보처리기사와 전기·가스·위험물·지게차운전기능사 기출문제를
 > PC, 휴대폰, 태블릿에서 학습하고 실제 CBT처럼 시험 볼 수 있는 반응형 웹 애플리케이션
 
@@ -33,7 +41,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.0.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.1.apk`를 생성합니다.
 - Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 설치된 APK에 포함된 화면으로 자동 전환됩니다(내장 화면 버전은 APK를 빌드한 시점 기준). Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때는 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.

@@ -14,6 +14,19 @@ export function normalizePracticalText(value: string): string {
   return value.normalize('NFKC').toLocaleLowerCase('ko').replace(/\s+/g, '').replace(/[·ㆍ,.;:()\[\]{}]/g, '');
 }
 
+/** Token checks are evidence hints, never semantic or official grading. */
+export function practicalContainsNumber(draft: string, expected: string): boolean {
+  const normalized = draft.normalize('NFKC').replace(/−/g, '-').replace(/(?<=\d),(?=\d{3}(?:\D|$))/g, '');
+  const tokens = normalized.match(/[+-]?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?/gi) || [];
+  return tokens.some(token => Number(token) === Number(expected));
+}
+
+export function practicalContainsUnit(draft: string, unit: string): boolean {
+  const normalize = (text: string) => text.normalize('NFKC').replace(/°\s*C/gi, '℃').replace(/\s+/g, '');
+  const escaped = normalize(unit).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![a-zA-Z])${escaped}(?![a-zA-Z0-9])`, 'i').test(normalize(draft));
+}
+
 function meaningfulTokens(value: string): string[] {
   return [...new Set(value.normalize('NFKC').toLocaleLowerCase('ko')
     .replace(/[^0-9a-z가-힣%℃°/²³.-]+/g, ' ')
@@ -53,12 +66,12 @@ export function criterionMatchesDraft(criterion: PracticalCriterion, draft: stri
 }
 
 export function practicalExpectedUnits(prompt: PracticalPrompt): string[] {
-  const matches = prompt.answer.match(/(?:kW|W|kJ\/kg|kJ|kcal\/h|MPa|kPa|Pa|kg\/s|kg\/h|kg|m³\/min|m³\/h|m³|m\/s|mm|cm|m|℃|°C|%|rpm|COP)/gi) || [];
+  const matches = prompt.answer.match(/(?<![a-zA-Z])(?:kW|W|kJ\/kg|kJ|kcal\/h|MPa|kPa|Pa|kg\/s|kg\/h|kg|m³\/min|m³\/h|m³|m\/s|mm|cm|m|℃|°C|%|rpm|COP)(?![a-zA-Z])/gi) || [];
   return [...new Set(matches.map((value) => value.replace('°C', '℃')))];
 }
 
 export function practicalExpectedNumbers(prompt: PracticalPrompt): string[] {
-  return [...new Set((prompt.answer.match(/(?<![a-z가-힣])\d+(?:\.\d+)?/gi) || []).filter((value) => value.length < 9))].slice(0, 8);
+  return [...new Set((prompt.answer.replace(/−/g, '-').match(/(?<![a-z가-힣0-9.])[+-]?\d+(?:\.\d+)?/gi) || []).filter((value) => value.length < 9))].slice(0, 8);
 }
 
 export function practicalRequirementLines(prompt: PracticalPrompt): string[] {

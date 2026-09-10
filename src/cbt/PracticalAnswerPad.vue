@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { getStroke } from 'perfect-freehand';
 
 type PadPoint = { x: number; y: number; pressure?: number };
@@ -14,8 +14,12 @@ const props = defineProps<{
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 const tool = ref<'pen' | 'eraser'>('pen');
-const strokes = ref<PadStroke[]>([]);
+const strokes = shallowRef<PadStroke[]>([]);
 const drawing = ref(false);
+const penOnly = ref(localStorage.getItem('cbt-practical-pen-only') !== '0');
+const zoom = ref(100);
+const saveError = ref(false);
+const scrollArea = ref<HTMLElement | null>(null);
 const leftHanded = ref(localStorage.getItem('unified-cbt-practical-left-handed') === '1');
 const overlayEnabled = ref(false);
 const overlayOpacity = ref(24);
@@ -28,6 +32,32 @@ let resizeObserver: ResizeObserver | null = null;
 let penActiveUntil = 0;
 let replayFrame = 0;
 let overlayImage: HTMLImageElement | null = null;
+let drawFrame = 0;
+let activePointer: number | null = null;
+let viewSaveTimer = 0;
+
+function queuePersistView(): void {
+  clearTimeout(viewSaveTimer);
+  viewSaveTimer = window.setTimeout(persistView, 180);
+}
+
+function scheduleRender(): void {
+  if (!drawFrame) drawFrame = requestAnimationFrame(() => { drawFrame = 0; render(); });
+}
+
+function persistView(): void {
+  const area = scrollArea.value;
+  if (area) localStorage.setItem(`${storageKey()}:view`, JSON.stringify({ zoom: zoom.value, x: area.scrollLeft, y: area.scrollTop }));
+}
+
+async function restoreView(): Promise<void> {
+  try {
+    const view = JSON.parse(localStorage.getItem(`${storageKey()}:view`) || '{}');
+    zoom.value = [100, 125, 150, 200].includes(view.zoom) ? view.zoom : 100;
+    await nextTick();
+    scrollArea.value?.scrollTo(Number(view.x) || 0, Number(view.y) || 0);
+  } catch { zoom.value = 100; }
+}
 
 function storageKey(): string {
   return `${storagePrefix}${props.promptId}`;
@@ -37,7 +67,7 @@ function load(): void {
   try {
     const parsed = JSON.parse(localStorage.getItem(storageKey()) || '[]') as PadStroke[];
     strokes.value = Array.isArray(parsed)
-      ? parsed.filter((stroke) => (stroke.tool === 'pen' || stroke.tool === 'eraser') && Array.isArray(stroke.points)).slice(-120)
+      ? parsed.filter((stroke) => (stroke.tool === 'pen' || stroke.tool === 'eraser') && Array.isArray(stroke.points))
       : [];
   } catch {
     strokes.value = [];
@@ -45,8 +75,11 @@ function load(): void {
 }
 
 function persist(): void {
-  if (strokes.value.length) localStorage.setItem(storageKey(), JSON.stringify(strokes.value));
-  else localStorage.removeItem(storageKey());
+  try {
+    if (strokes.value.length) localStorage.setItem(storageKey(), JSON.stringify(strokes.value));
+    else localStorage.removeItem(storageKey());
+    saveError.value = false;
+  } catch { saveError.value = true; }
 }
 
 function canvasPoint(event: PointerEvent): PadPoint | null {
@@ -136,7 +169,8 @@ function render(): void {
 }
 
 function startDrawing(event: PointerEvent): void {
-  if (props.disabled || replaying.value) return;
+  if (props.disabled || replaying.value || activePointer !== null) return;
+  if (event.pointerType === 'touch' && penOnly.value) return;
   const penEraser = event.pointerType === 'pen' && (event.button === 2 || event.button === 5 || (event.buttons & 32) === 32);
   if (event.button > 0 && !penEraser) return;
   if (event.pointerType === 'pen') penActiveUntil = Date.now() + 1200;
@@ -144,28 +178,31 @@ function startDrawing(event: PointerEvent): void {
   const point = canvasPoint(event);
   if (!point) return;
   canvas.value?.setPointerCapture(event.pointerId);
+  activePointer = event.pointerId;
   drawing.value = true;
   activeStroke = { tool: penEraser ? 'eraser' : tool.value, points: [point], pressureSensitive: event.pointerType === 'pen' };
-  render();
+  scheduleRender();
 }
 
 function continueDrawing(event: PointerEvent): void {
-  if (!drawing.value || !activeStroke) return;
+  if (!drawing.value || !activeStroke || event.pointerId !== activePointer) return;
   if (event.pointerType === 'pen') penActiveUntil = Date.now() + 1200;
   const point = canvasPoint(event);
   const previous = activeStroke.points.at(-1);
   if (!point || (previous && Math.hypot(point.x - previous.x, point.y - previous.y) < 0.0018)) return;
   activeStroke.points.push(point);
-  render();
+  scheduleRender();
 }
 
-function endDrawing(): void {
+function endDrawing(event?: PointerEvent): void {
+  if (event && event.pointerId !== activePointer) return;
   if (!drawing.value || !activeStroke) return;
   drawing.value = false;
-  if (activeStroke.points.length) strokes.value = [...strokes.value.slice(-119), activeStroke];
+  if (activeStroke.points.length) strokes.value = [...strokes.value, activeStroke];
   activeStroke = null;
+  activePointer = null;
   persist();
-  render();
+  scheduleRender();
 }
 
 function undo(): void {
@@ -243,22 +280,30 @@ watch(() => props.promptId, async () => {
   load();
   prepareOverlay();
   closePhoto();
+  await restoreView();
   await nextTick();
   render();
 });
+watch(penOnly, value => localStorage.setItem('cbt-practical-pen-only', value ? '1' : '0'));
+watch(zoom, () => { void nextTick(() => { persistView(); scheduleRender(); }); });
 watch([overlayEnabled, overlayOpacity, () => props.overlayAllowed], render);
 watch(() => props.answerImages, prepareOverlay, { deep: true });
 
 onMounted(() => {
   load();
   prepareOverlay();
-  resizeObserver = new ResizeObserver(render);
+  resizeObserver = new ResizeObserver(scheduleRender);
   if (canvas.value) resizeObserver.observe(canvas.value);
   render();
+  void restoreView();
 });
 
 onBeforeUnmount(() => {
+  endDrawing();
+  clearTimeout(viewSaveTimer);
+  persistView();
   resizeObserver?.disconnect();
+  cancelAnimationFrame(drawFrame);
   cancelAnimationFrame(replayFrame);
   if (photoAnswer.value) URL.revokeObjectURL(photoAnswer.value);
 });
@@ -267,7 +312,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="practical-answer-pad" :class="{ disabled, 'left-handed': leftHanded }">
     <header>
-      <div><strong>실전 손글씨 답안지</strong><small>S펜 압력과 팜 리젝션을 지원합니다. 펜·손가락·마우스로 실제 시험처럼 작성하세요.</small></div>
+      <div><strong>실전 손글씨 답안지</strong><small>{{ saveError ? '저장 공간 부족: PNG로 답안을 저장하세요.' : '필기는 이 기기에 저장됩니다. S펜·마우스로 작성하세요.' }}</small></div>
       <div class="practical-pad-tools">
         <button type="button" :class="{ active: tool === 'pen' }" :disabled="disabled" @click="tool = 'pen'">✎ 펜</button>
         <button type="button" :class="{ active: tool === 'eraser' }" :disabled="disabled" @click="tool = 'eraser'">지우개</button>
@@ -283,16 +328,23 @@ onBeforeUnmount(() => {
       <label v-if="overlayEnabled"><span>정답 투명도</span><input v-model.number="overlayOpacity" type="range" min="8" max="65" step="1"></label>
       <small v-if="!overlayAllowed">정답·채점 기준을 연 뒤 사용할 수 있습니다.</small>
     </div>
+    <div class="practical-pad-view-tools">
+      <label><input v-model="penOnly" type="checkbox"> 손가락은 이동만</label>
+      <label>답안지 확대 <select v-model.number="zoom"><option v-for="value in [100,125,150,200]" :key="value" :value="value">{{ value }}%</option></select></label>
+    </div>
+    <div ref="scrollArea" class="practical-pad-scroll" @scroll.passive="queuePersistView">
     <canvas
       ref="canvas"
+      :style="{ width: zoom + '%', touchAction: penOnly ? 'pan-x pan-y' : 'none' }"
       aria-label="공조냉동 필답형 손글씨 답안지"
-      @pointerdown.prevent="startDrawing"
-      @pointermove.prevent="continueDrawing"
-      @pointerup.prevent="endDrawing"
-      @pointercancel.prevent="endDrawing"
-      @pointerleave="endDrawing"
+      @pointerdown="startDrawing"
+      @pointermove="continueDrawing"
+      @pointerup="endDrawing"
+      @pointercancel="endDrawing"
+      @lostpointercapture="endDrawing"
       @contextmenu.prevent
     />
+    </div>
     <div class="practical-photo-answer">
       <label><span>📷 종이에 쓴 답안 가져오기</span><input type="file" accept="image/*" capture="environment" @change="importPhoto"></label>
       <button v-if="photoAnswer" type="button" @click="closePhoto">사진 닫기</button>
