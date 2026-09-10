@@ -16,6 +16,8 @@ import {
   practicalExpectedUnits,
   practicalInitialHint,
   practicalRequirementLines,
+  practicalContainsNumber,
+  practicalContainsUnit,
 } from './hvacPracticalTraining';
 
 const props = defineProps<{
@@ -36,6 +38,20 @@ const guideOpen = ref(false);
 const checklistOpen = ref(false);
 const blankOpen = ref(false);
 const speechListening = ref(false);
+const retryStage = ref<'formula' | 'substitution' | 'calculation' | 'unit'>('formula');
+const retryStages = [
+  { key: 'formula', label: '공식', placeholder: '숫자 대신 기호로 공식을 적어보세요.' },
+  { key: 'substitution', label: '대입', placeholder: '기호 자리에 문제의 숫자를 넣어보세요.' },
+  { key: 'calculation', label: '계산', placeholder: '괄호부터 계산하고 계산 결과를 적어보세요.' },
+  { key: 'unit', label: '단위', placeholder: '최종 숫자와 문제에서 요구한 단위를 적어보세요.' },
+] as const;
+const retryStageInfo = computed(() => retryStages.find(stage => stage.key === retryStage.value)!);
+function updateRetry(event: Event): void {
+  update({ calculationRetry: { ...props.assessment?.calculationRetry, [retryStage.value]: (event.target as HTMLTextAreaElement).value } });
+}
+function insertCalculationRetry(): void {
+  emit('insertTemplate', retryStages.map(stage => `${stage.label}: ${props.assessment?.calculationRetry?.[stage.key] || ''}`).join('\n'));
+}
 
 const criteria = computed(() => practicalCriteria(props.prompt));
 const requirements = computed(() => practicalRequirementLines(props.prompt));
@@ -43,12 +59,12 @@ const units = computed(() => practicalExpectedUnits(props.prompt));
 const numbers = computed(() => practicalExpectedNumbers(props.prompt));
 const checkedIds = computed(() => props.assessment?.checkedPointIds || []);
 const autoMatchedIds = computed(() => criteria.value.filter((criterion) => criterionMatchesDraft(criterion, props.draft)).map((criterion) => criterion.id));
-const effectiveIds = computed(() => [...new Set([...checkedIds.value, ...autoMatchedIds.value])]);
+const effectiveIds = computed(() => [...new Set([...checkedIds.value, ...autoMatchedIds.value])].filter(id => !props.assessment?.rejectedPointIds?.includes(id)));
 const score = computed(() => criteria.value.length
   ? Math.round((effectiveIds.value.length / criteria.value.length) * props.prompt.points * 2) / 2
   : (props.assessment?.score || 0));
-const unitCheck = computed(() => units.value.map((unit) => ({ unit, found: props.draft.toLocaleLowerCase('ko').includes(unit.toLocaleLowerCase('ko')) })));
-const numberCheck = computed(() => numbers.value.map((number) => ({ number, found: props.draft.includes(number) })));
+const unitCheck = computed(() => units.value.map((unit) => ({ unit, found: practicalContainsUnit(props.draft, unit) })));
+const numberCheck = computed(() => numbers.value.map((number) => ({ number, found: practicalContainsNumber(props.draft, number) })));
 const requiredAnswerCount = computed(() => Number(props.prompt.question.match(/(\d+)\s*(가지|개|항목|종류|방법|원인|대책)/)?.[1] || 0));
 const writtenAnswerCount = computed(() => props.draft.split(/\n|[.;。]/).map((line) => line.trim()).filter((line) => line.length >= 2).length);
 const countWarning = computed(() => requiredAnswerCount.value > 0 && writtenAnswerCount.value < requiredAnswerCount.value);
@@ -100,11 +116,12 @@ function hintText(): string {
 }
 
 function toggleCriterion(id: string): void {
-  const current = checkedIds.value;
-  const next = current.includes(id) ? current.filter((value) => value !== id) : [...current, id];
-  const nextEffective = new Set([...next, ...autoMatchedIds.value]);
+  const remove = effectiveIds.value.includes(id);
+  const next = remove ? checkedIds.value.filter(value => value !== id) : [...checkedIds.value, id];
+  const rejected = remove ? [...new Set([...(props.assessment?.rejectedPointIds || []), id])] : (props.assessment?.rejectedPointIds || []).filter(value => value !== id);
+  const nextEffective = new Set([...next, ...autoMatchedIds.value].filter(value => !rejected.includes(value)));
   const nextScore = criteria.value.length ? Math.round((nextEffective.size / criteria.value.length) * props.prompt.points * 2) / 2 : 0;
-  update({ checkedPointIds: next, score: nextScore, lastGradedAt: Date.now() });
+  update({ checkedPointIds: next, rejectedPointIds: rejected, score: nextScore, lastGradedAt: Date.now() });
 }
 
 function toggleMistake(reason: PracticalMistakeReason): void {
@@ -200,7 +217,7 @@ function startSpeechAnswer(): void {
     </div>
 
     <div v-if="revealed && checklistOpen" class="practical-rubric-panel">
-      <header><div><strong>예상 부분점수 {{ score }} / {{ prompt.points }}점</strong><small>자동 인식은 보조 기능입니다. 표현이 다르면 직접 체크하세요.</small></div></header>
+      <header><div><strong>예상 부분점수 {{ score }} / {{ prompt.points }}점</strong><small>학습용 균등 배점이며 공식 채점표가 아닙니다. 자동 감지는 참고만 하고, 같은 뜻의 표현·계산 과정은 직접 체크하거나 해제하세요.</small></div></header>
       <div class="practical-rubric-list">
         <button
           v-for="criterion in criteria"
@@ -211,7 +228,7 @@ function startSpeechAnswer(): void {
         >
           <span>{{ effectiveIds.includes(criterion.id) ? '✓' : '○' }}</span>
           <b>{{ criterion.label }}</b>
-          <small>{{ autoMatchedIds.includes(criterion.id) ? '내 답에서 감지' : '직접 확인' }}</small>
+          <small>{{ assessment?.rejectedPointIds?.includes(criterion.id) ? '직접 제외함' : autoMatchedIds.includes(criterion.id) ? '내 답에서 감지 · 확인 필요' : '직접 확인' }}</small>
         </button>
       </div>
       <div v-if="unitCheck.length || numberCheck.length" class="practical-value-check">
@@ -231,6 +248,13 @@ function startSpeechAnswer(): void {
         <button type="button" :class="{ active: assessment?.confidence === 'high' }" @click="setConfidence('high')">확실</button>
       </div>
       <button type="button" class="practical-retry-missing" @click="insertRetrySheet">빠진 부분만 다시 작성</button>
+      <details v-if="prompt.category === 'calculation' || criteria.some(item => item.kind === 'formula')" class="practical-calculation-retry">
+        <summary>막힌 계산 단계만 연습</summary>
+        <div class="practical-helper-actions"><button v-for="stage in retryStages" :key="stage.key" type="button" :aria-pressed="retryStage === stage.key" @click="retryStage = stage.key">{{ stage.label }}</button></div>
+        <label class="practical-answer-input"><span>{{ retryStageInfo.label }} 다시 쓰기</span><textarea :value="assessment?.calculationRetry?.[retryStage] || ''" :placeholder="retryStageInfo.placeholder" rows="3" @input="updateRetry" /></label>
+        <details><summary>기존 해설을 기준으로 비교</summary><p class="practical-retry-reference">{{ prompt.explanation }}</p><p class="practical-retry-reference">{{ prompt.answer }}</p></details>
+        <button type="button" @click="insertCalculationRetry">연습한 네 단계를 내 답안에 넣기</button>
+      </details>
       <details class="practical-reverse-drill">
         <summary>역문제 훈련</summary>
         <p><b>아래 답이 사용되는 문제 유형을 먼저 말해보세요.</b>{{ prompt.answer }}</p>
