@@ -40,6 +40,9 @@ export type Question = {
   answerHotspots?: AnswerHotspot[];
   source?: string;
   explanationProvenance?: string;
+  explanationType?: string;
+  explanationBasis?: string;
+  problemUrl?: string;
   explanationMatchScore?: number;
   additionalExplanations?: Array<{
     label: string;

@@ -83,3 +83,7 @@
   .practical-question-body { position:static; }
   .practical-response-body { display:none; }
 }
+.explanation-source-note { font-size:14px; line-height:1.6; margin:8px 0; }
+.explanation-source-note summary { cursor:pointer; padding:6px 0; }
+.explanation-source-note p { margin:6px 0; }
+.explanation-source-note a { color:inherit; text-decoration:underline; }

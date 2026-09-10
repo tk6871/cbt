@@ -4925,6 +4925,12 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
+            <header><div><span>기록 보호·해설 출처</span><h2>서버 저장 단계와 다른 풀이 복구</h2></div><p>설정 → 기기 간 학습 기록 동기화에서 읽기·비교·저장·반영 단계와 최근 동기화 시각을 확인합니다. 서로 다른 풀이 사본은 이 브라우저에 최근 100건까지 보관하며 필요한 풀이만 골라 복구할 수 있습니다.</p></header>
+            <p>해설 아래 출처 표시를 펼치면 COMCBT 이용자 해설, 기존 문항 연결, 학습용 작성·AI 보강 여부를 확인합니다. 출처 표시는 사실 검증 완료를 뜻하지 않습니다.</p>
+            <button type="button" @click="openView('settings')">동기화 설정 열기 →</button>
+          </section>
+
+          <section class="feature-layout-lab settings-feature-guide">
             <header><div><span>기존 설정 복원</span><h2>설명과 선택지를 한눈에 비교하기</h2></div><p>기존 설정의 아이콘·이름·설명을 복원했습니다. 작은 설정창과 전체 설정에서 같은 항목을 순서대로 볼 수 있습니다.</p></header>
             <p>전체 설정의 목차는 항목을 숨기지 않고 해당 위치로 이동합니다. 검색은 필요한 항목을 찾을 때만 사용하세요.</p>
             <button type="button" @click="openView('settings')">전체 설정 둘러보기 →</button>
@@ -4949,7 +4955,8 @@ onBeforeUnmount(() => {
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
               <article><b>02</b><strong>한·두·네·여러 문제 보기</strong><span>필답형 상단 화면 선택 · 넓은 창은 문제/답안 2열</span></article>
               <article><b>03</b><strong>핵심 답안과 접힌 설명</strong><span>힌트·부분점수표는 펼쳐서 사용 · 자동 감지도 직접 해제</span></article>
-              <article><b>04</b><strong>S펜 확대 답안지</strong><span>손가락 이동 · 확대 위치 보존 · 화면 근처에서만 실행</span></article>
+              <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
+              <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>

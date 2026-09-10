@@ -2,6 +2,7 @@ import { createClient, type Session, type SupabaseClient } from '@supabase/supab
 import { reactive, watch } from 'vue';
 import { db, persistStudyStoreNow, studyStore, type ExamRecord } from './storage';
 import type { AttemptRecord, LegacyStore } from './types';
+import { differingLearningCopies, listSyncRecoveries, preserveLearningCopies, restoreLearningCopy, type SyncRecovery } from './syncRecovery';
 
 type BookmarkState = { value: boolean; at: number };
 type SyncStore = Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookmarks' | 'history' | 'notes' | 'progress'>> & LegacyStore;
@@ -52,6 +53,8 @@ export const cloudSyncState = reactive({
   status: 'disabled' as 'disabled' | 'signed-out' | 'syncing' | 'synced' | 'error',
   message: '',
   lastSyncedAt: 0,
+  phase: 'idle' as 'idle' | 'waiting' | 'reading' | 'merging' | 'uploading' | 'applying' | 'complete' | 'offline' | 'error',
+  recoveryCount: 0,
 });
 
 const space = window.CBT_APP_SPACE === 'jewelry' ? 'jewelry' : 'industrial';
@@ -63,6 +66,37 @@ let syncing = false;
 let rerunRequested = false;
 let applyingRemote = false;
 let stopStoreWatch: (() => void) | null = null;
+let localRevision = 0;
+const recoveryOwner = () => session ? `${space}:${session.user.id}` : '';
+const lastSyncKey = () => `cbt-last-sync:${recoveryOwner()}`;
+
+export async function getLearningRecoveryCopies(): Promise<SyncRecovery[]> {
+  const owner = recoveryOwner();
+  if (!owner) return [];
+  const copies = await listSyncRecoveries(owner);
+  return owner === recoveryOwner() ? copies : [];
+}
+
+export async function recoverLearningCopy(id: string, side: 'local' | 'remote'): Promise<void> {
+  if (syncing) throw new Error('동기화가 끝난 뒤 복구해 주세요.');
+  const owner = recoveryOwner();
+  const part = (await getLearningRecoveryCopies()).find(row => row.id === id);
+  if (!part || owner !== recoveryOwner()) throw new Error('현재 계정의 복구 사본을 찾지 못했습니다.');
+  restoreLearningCopy(studyStore, part, side);
+  persistStudyStoreNow();
+  window.dispatchEvent(new CustomEvent('cbt:cloud-synced'));
+  scheduleLearningSync(100);
+}
+
+async function refreshRecoveryState(): Promise<void> {
+  try { cloudSyncState.recoveryCount = (await getLearningRecoveryCopies()).length; }
+  catch { cloudSyncState.recoveryCount = 0; }
+}
+
+function syncPhase(phase: typeof cloudSyncState.phase, message: string): void {
+  cloudSyncState.phase = phase;
+  cloudSyncState.message = message;
+}
 
 function clone<T>(value: T): T {
   return JSON.parse(JSON.stringify(value)) as T;
@@ -181,11 +215,12 @@ function mergeExams(local: ExamRecord[], remote: ExamRecord[]): ExamRecord[] {
 }
 
 async function localPayload(): Promise<SyncPayload> {
+  const exams = await db.exams.toArray();
   return {
     version: 1,
     capturedAt: Date.now(),
     store: normalizeStore(clone(studyStore)),
-    exams: await db.exams.toArray(),
+    exams,
   };
 }
 
@@ -223,43 +258,74 @@ export async function syncLearningData(): Promise<void> {
     return;
   }
   if (!navigator.onLine) {
-    cloudSyncState.message = '인터넷 연결 후 자동으로 동기화합니다.';
+    syncPhase('offline', '이 기기에 저장됨 · 인터넷 연결 후 서버에 동기화합니다.');
     return;
   }
   syncing = true;
   cloudSyncState.status = 'syncing';
-  cloudSyncState.message = '기록을 안전하게 합치는 중…';
+  const userId = session.user.id;
+  const owner = recoveryOwner();
+  const sameAccount = () => session?.user.id === userId;
   try {
-    const local = await localPayload();
-    const { data, error } = await client.from('user_learning_states')
-      .select('payload')
-      .eq('space', space)
-      .maybeSingle();
-    if (error) throw error;
-    const remote = data?.payload as SyncPayload | undefined;
-    const merged: SyncPayload = remote?.version === 1
-      ? {
+    for (let attempt = 0; attempt < 4; attempt += 1) {
+      syncPhase('reading', attempt ? '다른 기기의 저장을 확인했습니다. 최신 기록을 다시 읽는 중…' : '1/4 서버 기록 읽는 중…');
+      const { data, error } = await client.from('user_learning_states')
+        .select('payload,updated_at').eq('user_id', userId).eq('space', space).maybeSingle();
+      if (error) throw error;
+      if (!sameAccount()) return;
+      const remote = data?.payload as SyncPayload | undefined;
+      if (data && remote?.version !== 1) throw new Error('지원하지 않는 동기화 형식입니다. 기존 서버 기록을 보존합니다.');
+      // Read local state AFTER the network wait; edits made while reading must survive.
+      const local = await localPayload();
+      const revision = localRevision;
+      syncPhase('merging', '2/4 기록 비교·복구 사본 보관 중…');
+      if (remote) await preserveLearningCopies(owner, differingLearningCopies(local.store, remote.store));
+      if (!sameAccount()) return;
+      const merged: SyncPayload = remote ? {
           version: 1,
           capturedAt: Date.now(),
           store: mergeStores(local.store, remote.store),
           exams: mergeExams(local.exams, remote.exams || []),
-        }
-      : local;
-    const { error: saveError } = await client.from('user_learning_states').upsert({
-      user_id: session.user.id,
-      space,
-      payload: merged,
-      updated_at: new Date().toISOString(),
-    }, { onConflict: 'user_id,space' });
-    if (saveError) throw saveError;
-    await applyPayload(merged);
-    cloudSyncState.status = 'synced';
-    cloudSyncState.lastSyncedAt = Date.now();
-    cloudSyncState.message = '모든 기기의 기록이 최신입니다.';
+        } : local;
+      syncPhase('uploading', '3/4 서버에 저장 확인 중…');
+      const updatedAt = new Date(Math.max(Date.now(), (Date.parse(data?.updated_at || '') || 0) + 1)).toISOString();
+      const row = { user_id: userId, space, payload: merged, updated_at: updatedAt };
+      // Optimistic concurrency: only replace the revision we actually read.
+      const result = data
+        ? await client.from('user_learning_states').update(row).eq('user_id', userId).eq('space', space).eq('updated_at', data.updated_at).select('updated_at')
+        : await client.from('user_learning_states').insert(row).select('updated_at');
+      if (!sameAccount()) return;
+      if (result.error?.code === '23505' || (!result.error && !result.data?.length)) continue;
+      if (result.error) throw result.error;
+      syncPhase('applying', '4/4 이 기기 기록에 반영 중…');
+      const latest = await localPayload();
+      if (!sameAccount()) return;
+      if (localRevision !== revision) {
+        // Never apply an old snapshot over new typing/answers during upload.
+        await preserveLearningCopies(owner, differingLearningCopies(latest.store, merged.store));
+        const current = await localPayload();
+        merged.store = mergeStores(current.store, merged.store);
+        merged.exams = mergeExams(current.exams, merged.exams);
+        rerunRequested = true;
+      }
+      if (!sameAccount()) return;
+      await applyPayload(merged);
+      if (!sameAccount()) return;
+      cloudSyncState.status = 'synced';
+      cloudSyncState.lastSyncedAt = Date.now();
+      try { localStorage.setItem(lastSyncKey(), String(cloudSyncState.lastSyncedAt)); } catch { /* sync itself succeeded */ }
+      await refreshRecoveryState();
+      syncPhase(rerunRequested ? 'waiting' : 'complete', rerunRequested
+        ? '새로 작성한 기록을 이어서 동기화합니다.'
+        : '이 기기와 서버 동기화 완료 · 다른 기기는 연결 후 반영됩니다.');
+      return;
+    }
+    throw new Error('다른 기기에서 연속 저장 중입니다. 잠시 후 다시 시도하세요.');
   } catch (error) {
+    if (!sameAccount()) return;
     console.error('학습 기록 동기화 실패', error);
     cloudSyncState.status = 'error';
-    cloudSyncState.message = '동기화하지 못했습니다. 잠시 후 다시 시도합니다.';
+    syncPhase('error', '동기화하지 못했습니다. 이 기기 기록은 유지됩니다. 지금 동기화를 눌러 다시 시도하세요.');
   } finally {
     syncing = false;
     if (rerunRequested) {
@@ -271,6 +337,7 @@ export async function syncLearningData(): Promise<void> {
 
 export function scheduleLearningSync(delay = 1200): void {
   if (!session || applyingRemote) return;
+  if (!syncing) syncPhase(navigator.onLine ? 'waiting' : 'offline', navigator.onLine ? '이 기기에 저장됨 · 서버 동기화 대기 중…' : '이 기기에 저장됨 · 인터넷 연결 대기 중…');
   window.clearTimeout(syncTimer);
   syncTimer = window.setTimeout(() => { void syncLearningData(); }, delay);
 }
@@ -287,7 +354,14 @@ export async function initializeCloudSync(): Promise<void> {
     },
   });
   client.auth.onAuthStateChange((event, nextSession) => {
+    const previousUser = session?.user.id;
     session = nextSession;
+    if (previousUser !== nextSession?.user.id) {
+      cloudSyncState.lastSyncedAt = nextSession ? Number(localStorage.getItem(lastSyncKey())) || 0 : 0;
+      cloudSyncState.recoveryCount = 0;
+      cloudSyncState.phase = 'idle';
+      void refreshRecoveryState();
+    }
     cloudSyncState.email = String(nextSession?.user.user_metadata?.sync_username || nextSession?.user.email || '');
     cloudSyncState.mustChangePassword = Boolean(nextSession?.user.user_metadata?.must_change_password);
     cloudSyncState.status = nextSession ? 'syncing' : 'signed-out';
@@ -299,7 +373,9 @@ export async function initializeCloudSync(): Promise<void> {
   cloudSyncState.email = String(session?.user.user_metadata?.sync_username || session?.user.email || '');
   cloudSyncState.mustChangePassword = Boolean(session?.user.user_metadata?.must_change_password);
   cloudSyncState.status = session ? 'syncing' : 'signed-out';
-  stopStoreWatch ||= watch(studyStore, () => scheduleLearningSync(), { deep: true });
+  stopStoreWatch ||= watch(studyStore, () => {
+    if (!applyingRemote) { localRevision += 1; scheduleLearningSync(); }
+  }, { deep: true });
   window.addEventListener('online', () => scheduleLearningSync(100));
   if (session) await syncLearningData();
 }

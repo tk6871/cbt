@@ -32,6 +32,7 @@ work/energy-upscale-temp/
 work/energy-upscale-logs/
 work/image-upscale-macos/
 work/bundle-report-*.html
+work/sync-test-harness.js
 test-results/
 playwright-report/
 __pycache__/

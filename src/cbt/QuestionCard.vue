@@ -2,6 +2,7 @@
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
+import { explanationSource } from './explanationSource';
 import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
 import { submitQuestionIssue, type QuestionIssueType } from './cloudSync';
 import type { QuestionItem, StudyMode } from './types';
@@ -238,6 +239,7 @@ const showQuestionIdentity = computed(() => primaryImage.value
   && Boolean(props.displayNumber)
   && props.displayNumber !== props.item.question.number);
 
+const explanationOrigin = computed(() => explanationSource(props.item.question));
 const explanationRaw = computed(() => String(
   props.item.question.explanationHtml || props.item.question.explanation || '',
 ));
@@ -695,7 +697,8 @@ onBeforeUnmount(() => {
         <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="closeInlineExplanation">닫기 ×</button>
       </div>
       <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
-      <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
+      <p v-else class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+      <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">
         <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
           <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
@@ -736,7 +739,8 @@ onBeforeUnmount(() => {
               <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
             </div>
             <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
-            <p v-else class="explanation-copy">정답과 연결되는 핵심 개념을 문제의 조건과 함께 다시 확인해 보세요.</p>
+            <p v-else class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+            <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
             <div class="explanation-extra-actions">
               <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
                 <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>

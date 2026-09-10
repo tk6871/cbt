@@ -17,6 +17,11 @@ const tool = ref<'pen' | 'eraser'>('pen');
 const strokes = shallowRef<PadStroke[]>([]);
 const drawing = ref(false);
 const penOnly = ref(localStorage.getItem('cbt-practical-pen-only') !== '0');
+const emit = defineEmits<{ expanded: [value: boolean] }>();
+const expanded = ref(false);
+const padRoot = ref<HTMLElement | null>(null);
+// y stays in original 4:3 paper coordinates. Extending paper never stretches old ink.
+const paperLength = ref(1.75);
 const zoom = ref(100);
 const saveError = ref(false);
 const scrollArea = ref<HTMLElement | null>(null);
@@ -35,6 +40,14 @@ let overlayImage: HTMLImageElement | null = null;
 let drawFrame = 0;
 let activePointer: number | null = null;
 let viewSaveTimer = 0;
+let pan: { id: number; x: number; y: number } | null = null;
+let previousFocus: HTMLElement | null = null;
+let previousOverflow = '';
+let inkCanvas: HTMLCanvasElement | null = null;
+let frameCanvas: HTMLCanvasElement | null = null;
+let cachedStrokes: PadStroke[] | null = null;
+let cachedReplay: number | null | undefined;
+let cachedPaperLength = 0;
 
 function queuePersistView(): void {
   clearTimeout(viewSaveTimer);
@@ -47,13 +60,17 @@ function scheduleRender(): void {
 
 function persistView(): void {
   const area = scrollArea.value;
-  if (area) localStorage.setItem(`${storageKey()}:view`, JSON.stringify({ zoom: zoom.value, x: area.scrollLeft, y: area.scrollTop }));
+  try {
+    if (area) localStorage.setItem(`${storageKey()}:view`, JSON.stringify({ zoom: zoom.value, paperLength: paperLength.value, x: area.scrollLeft, y: area.scrollTop }));
+  } catch { saveError.value = true; }
 }
 
 async function restoreView(): Promise<void> {
   try {
     const view = JSON.parse(localStorage.getItem(`${storageKey()}:view`) || '{}');
     zoom.value = [100, 125, 150, 200].includes(view.zoom) ? view.zoom : 100;
+    const inkBottom = strokes.value.reduce((bottom, stroke) => stroke.points.reduce((max, point) => Math.max(max, point.y), bottom), 0);
+    paperLength.value = Math.max(1.75, Math.min(6, Number(view.paperLength) || 1.75), inkBottom + .1);
     await nextTick();
     scrollArea.value?.scrollTo(Number(view.x) || 0, Number(view.y) || 0);
   } catch { zoom.value = 100; }
@@ -89,7 +106,7 @@ function canvasPoint(event: PointerEvent): PadPoint | null {
   if (!rect.width || !rect.height) return null;
   return {
     x: Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width)),
-    y: Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height)),
+    y: Math.min(paperLength.value, Math.max(0, (event.clientY - rect.top) / rect.height * paperLength.value)),
     pressure: event.pressure > 0 ? event.pressure : 0.5,
   };
 }
@@ -100,7 +117,7 @@ function drawStroke(context: CanvasRenderingContext2D, stroke: PadStroke): void 
   const height = context.canvas.height;
   const outline = getStroke(stroke.points.map((point) => [
     point.x * width,
-    point.y * height,
+    point.y * height / paperLength.value,
     point.pressure ?? 0.5,
   ]), {
     size: stroke.tool === 'eraser' ? Math.max(24, width * 0.03) : Math.max(4.2, width * 0.006),
@@ -113,7 +130,8 @@ function drawStroke(context: CanvasRenderingContext2D, stroke: PadStroke): void 
   });
   if (!outline.length) return;
   context.save();
-  context.fillStyle = stroke.tool === 'eraser' ? '#ffffff' : '#17324d';
+  context.globalCompositeOperation = stroke.tool === 'eraser' ? 'destination-out' : 'source-over';
+  context.fillStyle = '#17324d';
   context.beginPath();
   outline.forEach(([x, y], index) => {
     if (index === 0) context.moveTo(x, y);
@@ -129,7 +147,7 @@ function render(): void {
   if (!element) return;
   const rect = element.getBoundingClientRect();
   if (!rect.width || !rect.height) return;
-  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+  const ratio = Math.min(window.devicePixelRatio || 1, 2, Math.sqrt(4_000_000 / (rect.width * rect.height)));
   const width = Math.max(1, Math.round(rect.width * ratio));
   const height = Math.max(1, Math.round(rect.height * ratio));
   if (element.width !== width || element.height !== height) {
@@ -157,20 +175,41 @@ function render(): void {
   if (overlayEnabled.value && props.overlayAllowed && overlayImage?.complete) {
     context.save();
     context.globalAlpha = overlayOpacity.value / 100;
-    const scale = Math.min(width / overlayImage.naturalWidth, height / overlayImage.naturalHeight);
+    const originalHeight = height / paperLength.value;
+    const scale = Math.min(width / overlayImage.naturalWidth, originalHeight / overlayImage.naturalHeight);
     const drawWidth = overlayImage.naturalWidth * scale;
     const drawHeight = overlayImage.naturalHeight * scale;
-    context.drawImage(overlayImage, (width - drawWidth) / 2, (height - drawHeight) / 2, drawWidth, drawHeight);
+    context.drawImage(overlayImage, (width - drawWidth) / 2, (originalHeight - drawHeight) / 2, drawWidth, drawHeight);
     context.restore();
   }
   const renderedStrokes = replayCount.value === null ? strokes.value : strokes.value.slice(0, replayCount.value);
-  renderedStrokes.forEach((stroke) => drawStroke(context, stroke));
-  if (activeStroke) drawStroke(context, activeStroke);
+  inkCanvas ||= document.createElement('canvas');
+  frameCanvas ||= document.createElement('canvas');
+  const resized = inkCanvas.width !== width || inkCanvas.height !== height;
+  if (resized) { inkCanvas.width = frameCanvas.width = width; inkCanvas.height = frameCanvas.height = height; }
+  const ink = inkCanvas.getContext('2d'), frame = frameCanvas.getContext('2d');
+  if (!ink || !frame) return;
+  if (resized || cachedStrokes !== strokes.value || cachedReplay !== replayCount.value || cachedPaperLength !== paperLength.value) {
+    ink.clearRect(0, 0, width, height);
+    renderedStrokes.forEach(stroke => drawStroke(ink, stroke));
+    cachedStrokes = strokes.value; cachedReplay = replayCount.value; cachedPaperLength = paperLength.value;
+  }
+  frame.clearRect(0, 0, width, height);
+  frame.drawImage(inkCanvas, 0, 0);
+  if (activeStroke) drawStroke(frame, activeStroke);
+  // Erasing only affects the transparent ink layer, never paper lines or answer overlays.
+  context.drawImage(frameCanvas, 0, 0);
 }
 
 function startDrawing(event: PointerEvent): void {
   if (props.disabled || replaying.value || activePointer !== null) return;
-  if (event.pointerType === 'touch' && penOnly.value) return;
+  if (event.pointerType === 'touch' && penOnly.value) {
+    if (Date.now() < penActiveUntil || pan) return;
+    pan = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    canvas.value?.setPointerCapture(event.pointerId);
+    event.preventDefault();
+    return;
+  }
   const penEraser = event.pointerType === 'pen' && (event.button === 2 || event.button === 5 || (event.buttons & 32) === 32);
   if (event.button > 0 && !penEraser) return;
   if (event.pointerType === 'pen') penActiveUntil = Date.now() + 1200;
@@ -179,30 +218,80 @@ function startDrawing(event: PointerEvent): void {
   if (!point) return;
   canvas.value?.setPointerCapture(event.pointerId);
   activePointer = event.pointerId;
+  pan = null;
+  event.preventDefault();
   drawing.value = true;
   activeStroke = { tool: penEraser ? 'eraser' : tool.value, points: [point], pressureSensitive: event.pointerType === 'pen' };
   scheduleRender();
 }
 
 function continueDrawing(event: PointerEvent): void {
+  if (pan?.id === event.pointerId && event.pointerType === 'touch' && activePointer === null) {
+    event.preventDefault();
+    const area = scrollArea.value;
+    if (area) {
+      const deltaY = pan.y - event.clientY;
+      const before = area.scrollTop;
+      area.scrollLeft += pan.x - event.clientX;
+      area.scrollTop += deltaY;
+      if (!expanded.value) window.scrollBy(0, deltaY - (area.scrollTop - before));
+    }
+    pan.x = event.clientX; pan.y = event.clientY;
+    return;
+  }
   if (!drawing.value || !activeStroke || event.pointerId !== activePointer) return;
+  event.preventDefault();
   if (event.pointerType === 'pen') penActiveUntil = Date.now() + 1200;
-  const point = canvasPoint(event);
-  const previous = activeStroke.points.at(-1);
-  if (!point || (previous && Math.hypot(point.x - previous.x, point.y - previous.y) < 0.0018)) return;
-  activeStroke.points.push(point);
+  const samples = event.getCoalescedEvents?.() || [];
+  for (const sample of samples.length ? samples : [event]) {
+    const point = canvasPoint(sample);
+    const previous = activeStroke.points.at(-1);
+    if (!point || (previous && Math.hypot(point.x - previous.x, point.y - previous.y) < 0.0006)) continue;
+    activeStroke.points.push(point);
+  }
   scheduleRender();
 }
 
 function endDrawing(event?: PointerEvent): void {
+  if (event && pan?.id === event.pointerId) { pan = null; queuePersistView(); return; }
   if (event && event.pointerId !== activePointer) return;
   if (!drawing.value || !activeStroke) return;
+  if (event?.type === 'pointerup') continueDrawing(event);
+  if (event?.pointerType === 'pen') penActiveUntil = Date.now() + 250;
   drawing.value = false;
   if (activeStroke.points.length) strokes.value = [...strokes.value, activeStroke];
   activeStroke = null;
   activePointer = null;
   persist();
+  persistView();
   scheduleRender();
+}
+
+async function toggleExpanded(): Promise<void> {
+  endDrawing();
+  pan = null;
+  if (!expanded.value) {
+    previousFocus = document.activeElement as HTMLElement | null;
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+  } else document.body.style.overflow = previousOverflow;
+  expanded.value = !expanded.value;
+  emit('expanded', expanded.value);
+  await nextTick();
+  if (expanded.value) padRoot.value?.querySelector<HTMLButtonElement>('[data-pad-expand]')?.focus();
+  else previousFocus?.focus();
+  scheduleRender();
+}
+
+function handlePadKey(event: KeyboardEvent): void {
+  if (!expanded.value) return;
+  if (event.key === 'Escape') { event.stopPropagation(); void toggleExpanded(); }
+  if (event.key === 'Tab') {
+    const elements = [...(padRoot.value?.querySelectorAll<HTMLElement>('button:not(:disabled),input:not(:disabled),select:not(:disabled)') || [])].filter(el => el.offsetParent !== null);
+    const first = elements[0], last = elements.at(-1);
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+  }
 }
 
 function undo(): void {
@@ -286,6 +375,7 @@ watch(() => props.promptId, async () => {
 });
 watch(penOnly, value => localStorage.setItem('cbt-practical-pen-only', value ? '1' : '0'));
 watch(zoom, () => { void nextTick(() => { persistView(); scheduleRender(); }); });
+watch(paperLength, () => { void nextTick(() => { persistView(); scheduleRender(); }); });
 watch([overlayEnabled, overlayOpacity, () => props.overlayAllowed], render);
 watch(() => props.answerImages, prepareOverlay, { deep: true });
 
@@ -300,6 +390,8 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   endDrawing();
+  if (expanded.value) document.body.style.overflow = previousOverflow;
+  emit('expanded', false);
   clearTimeout(viewSaveTimer);
   persistView();
   resizeObserver?.disconnect();
@@ -310,7 +402,8 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="practical-answer-pad" :class="{ disabled, 'left-handed': leftHanded }">
+  <Teleport to="body" :disabled="!expanded">
+  <section ref="padRoot" class="practical-answer-pad" :class="{ disabled, 'left-handed': leftHanded, 'pad-expanded': expanded }" :role="expanded ? 'dialog' : undefined" :aria-modal="expanded || undefined" aria-label="실전 손글씨 답안지" @keydown="handlePadKey">
     <header>
       <div><strong>실전 손글씨 답안지</strong><small>{{ saveError ? '저장 공간 부족: PNG로 답안을 저장하세요.' : '필기는 이 기기에 저장됩니다. S펜·마우스로 작성하세요.' }}</small></div>
       <div class="practical-pad-tools">
@@ -321,6 +414,7 @@ onBeforeUnmount(() => {
         <button type="button" :disabled="disabled || !strokes.length" @click="clearPad">전체 지우기</button>
         <button type="button" :disabled="!strokes.length" @click="saveImage">PNG 저장</button>
         <button type="button" @click="toggleLeftHanded">{{ leftHanded ? '오른손 배치' : '왼손 배치' }}</button>
+        <button type="button" data-pad-expand @click="toggleExpanded">{{ expanded ? '원래 화면으로' : '답안지 크게 쓰기' }}</button>
       </div>
     </header>
     <div v-if="answerImages?.length" class="practical-overlay-tools">
@@ -331,11 +425,12 @@ onBeforeUnmount(() => {
     <div class="practical-pad-view-tools">
       <label><input v-model="penOnly" type="checkbox"> 손가락은 이동만</label>
       <label>답안지 확대 <select v-model.number="zoom"><option v-for="value in [100,125,150,200]" :key="value" :value="value">{{ value }}%</option></select></label>
+      <button type="button" :disabled="paperLength >= 6 || disabled" @click="endDrawing(); paperLength = Math.min(6, paperLength + .75)">답안지 아래 늘리기</button>
     </div>
     <div ref="scrollArea" class="practical-pad-scroll" @scroll.passive="queuePersistView">
     <canvas
       ref="canvas"
-      :style="{ width: zoom + '%', touchAction: penOnly ? 'pan-x pan-y' : 'none' }"
+      :style="{ width: zoom + '%', aspectRatio: String(4 / (3 * paperLength)), touchAction: 'none' }"
       aria-label="공조냉동 필답형 손글씨 답안지"
       @pointerdown="startDrawing"
       @pointermove="continueDrawing"
@@ -352,4 +447,19 @@ onBeforeUnmount(() => {
       <small>사진은 서버로 전송하지 않으며 현재 화면에서 비교할 때만 사용합니다.</small>
     </div>
   </section>
+  </Teleport>
 </template>
+
+<style scoped>
+.practical-answer-pad > header strong { font-size:16px; }
+.practical-answer-pad > header small { font-size:13px; }
+.practical-pad-tools button,.practical-pad-view-tools button { min-height:42px; font-size:13px; }
+.practical-pad-view-tools button { padding:6px 12px; border:1px solid var(--line); border-radius:8px; color:var(--text); background:var(--surface); }
+.pad-expanded { position:fixed; inset:0; z-index:100000; margin:0; padding:max(12px,env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) max(12px,env(safe-area-inset-bottom)) max(12px,env(safe-area-inset-left)); border-radius:0; display:flex; flex-direction:column; background:var(--surface,#fff); color:var(--text,#17324d); }
+.pad-expanded .practical-pad-scroll { flex:1; min-height:140px; max-height:none; width:min(100%,1120px); align-self:center; }
+.pad-expanded .practical-photo-answer { display:none; }
+.pad-expanded > header { flex-wrap:wrap; }
+.pad-expanded .practical-pad-tools { gap:6px; }
+.pad-expanded .practical-pad-view-tools { margin:6px 0; }
+@media(max-width:600px) { .pad-expanded .practical-pad-tools button { flex:0 1 auto; } .pad-expanded .practical-pad-tools { max-height:110px; overflow:auto; } }
+</style>

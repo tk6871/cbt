@@ -92,6 +92,56 @@ test('다시 접속해도 필답형 위치와 입력 답안을 복원한다', as
   await expect(page.locator('.practical-page-center')).toContainText('2 / 407');
 });
 
+test('손가락 이동 ON에서 실제 pen 포인터가 이어지고 지우개는 배경 줄을 보존한다', async ({page, context}, info) => {
+  await openPractice(page);
+  await page.getByRole('button', {name:/실전 답안지/}).click();
+  await page.getByRole('button', {name:'답안지 크게 쓰기',exact:true}).click();
+  const pad = page.getByRole('dialog', {name:'실전 손글씨 답안지',exact:true});
+  await expect(pad).toBeVisible();
+  const canvas = pad.locator('canvas');
+  await expect(canvas).toHaveCSS('touch-action','none');
+  await expect(pad.getByLabel('손가락은 이동만')).toBeChecked();
+  const cdp = await context.newCDPSession(page);
+  let box = (await canvas.boundingBox())!;
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchStart', touchPoints:[{x:box.x+100,y:box.y+120}]});
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchMove', touchPoints:[{x:box.x+100,y:box.y+60}]});
+  await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd', touchPoints:[]});
+  await expect.poll(() => pad.locator('.practical-pad-scroll').evaluate(el=>el.scrollTop)).toBeGreaterThan(20);
+  await pad.locator('.practical-pad-scroll').evaluate(el=>{el.scrollTop=0;});
+  box = (await canvas.boundingBox())!;
+  const sample = await canvas.evaluate((el: HTMLCanvasElement) => {
+    const ratio=el.width/el.getBoundingClientRect().width;
+    const y=Math.max(42,Math.round(el.width*.052))*2;
+    const x=Math.round(el.width*.4);
+    return {x:x/ratio,y:y/ratio,pixels:Array.from(el.getContext('2d')!.getImageData(x-2,y-2,5,5).data)};
+  });
+  const draw = async () => {
+    const x=box.x+sample.x,y=box.y+sample.y;
+    await cdp.send('Input.dispatchMouseEvent',{type:'mousePressed',x:x-25,y,button:'left',buttons:1,clickCount:1,pointerType:'pen',force:.5});
+    for(let i=1;i<=10;i++) await cdp.send('Input.dispatchMouseEvent',{type:'mouseMoved',x:x-25+i*5,y,button:'left',buttons:1,pointerType:'pen',force:.6});
+    await cdp.send('Input.dispatchMouseEvent',{type:'mouseReleased',x:x+25,y,button:'left',buttons:0,clickCount:1,pointerType:'pen'});
+  };
+  const pixels = () => canvas.evaluate((el:HTMLCanvasElement, point) => {
+    const ratio=el.width/el.getBoundingClientRect().width;
+    return Array.from(el.getContext('2d')!.getImageData(Math.round(point.x*ratio)-2,Math.round(point.y*ratio)-2,5,5).data);
+  }, sample);
+  await draw();
+  await expect.poll(pixels).not.toEqual(sample.pixels);
+  const lengths = await page.evaluate(() => Object.keys(localStorage).filter(key=>key.startsWith('unified-cbt-hvac-practical-pad-v1:')&&!key.endsWith(':view')).flatMap(key=>JSON.parse(localStorage.getItem(key)!).map((stroke:any)=>stroke.points.length)));
+  expect(Math.max(...lengths)).toBeGreaterThanOrEqual(8);
+  await pad.getByRole('button',{name:'지우개',exact:true}).click();
+  await draw();
+  await expect.poll(pixels).toEqual(sample.pixels);
+  const height = box.height;
+  await pad.getByRole('button',{name:'답안지 아래 늘리기',exact:true}).click();
+  await expect.poll(async()=>(await canvas.boundingBox())!.height).toBeGreaterThan(height);
+  await page.screenshot({path:`/private/tmp/cbt-pad-fixed-${info.project.name}.png`});
+  await pad.getByRole('button',{name:'원래 화면으로',exact:true}).click();
+  await expect(pad).toHaveCount(0);
+  expect(await page.evaluate(()=>document.body.style.overflow)).not.toBe('hidden');
+  await cdp.detach();
+});
+
 test('계산 단계 연습은 기존 답안과 별도로 보존된다', async ({ page }) => {
   await openPractice(page);
   await page.locator('.practical-scope > summary').click();

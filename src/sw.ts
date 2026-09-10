@@ -17,9 +17,9 @@ const CORE = [
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`, './modern/OptionalFeatureBoundary.css',
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
-  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SchoolExamManager', 'VisiblePracticalPad', 'PracticalAnswerPad', 'PracticalTrainingTools', 'rotate-ccw']
+  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SyncRecoveryPanel', 'SchoolExamManager', 'VisiblePracticalPad', 'PracticalAnswerPad', 'PracticalTrainingTools', 'rotate-ccw']
     .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
-  './modern/StudySettings.css', './modern/ThemeStudio.css',
+  './modern/StudySettings.css', './modern/ThemeStudio.css', './modern/SyncRecoveryPanel.css', './modern/PracticalAnswerPad.css',
   `./modern/chunks/index-v${__CBT_BUILD_VERSION__}2.js`,
   './modern/assets/search.worker-BqvfbZXG.js',
 ];

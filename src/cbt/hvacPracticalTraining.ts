@@ -1,4 +1,5 @@
 import type { PracticalPrompt } from './hvacPracticalTypes';
+import { comparePracticalQuantities, practicalQuantities } from './practicalQuantities';
 
 export type PracticalCriterionKind = 'formula' | 'process' | 'unit' | 'keyword' | 'diagram';
 
@@ -46,7 +47,7 @@ function criterionKind(value: string): PracticalCriterionKind {
 export function practicalCriteria(prompt: PracticalPrompt): PracticalCriterion[] {
   const source = prompt.keyPoints?.filter(Boolean).length
     ? prompt.keyPoints!.filter(Boolean)
-    : prompt.answer.split(/\n|[.;。]|(?<=다)\s+/).map((row) => row.trim()).filter((row) => row.length >= 2).slice(0, 6);
+    : prompt.answer.split(/\n|[;。]|(?<!\d)\.|\.(?!\d)|(?<=다)\s+/).map((row) => row.trim()).filter((row) => row.length >= 2).slice(0, 6);
   return source.slice(0, 10).map((label, index) => ({
     id: `${prompt.id}-criterion-${index}`,
     label,
@@ -58,6 +59,10 @@ export function criterionMatchesDraft(criterion: PracticalCriterion, draft: stri
   const normalizedDraft = normalizePracticalText(draft);
   const normalizedLabel = normalizePracticalText(criterion.label);
   if (!normalizedDraft || !normalizedLabel) return false;
+  const quantities = comparePracticalQuantities(criterion.label, draft);
+  if (quantities.length && quantities.some(row => !row.match)) return false;
+  // A pure numeric answer can use an equivalent SI unit; prose still needs its words.
+  if (quantities.length && practicalQuantities(criterion.label).some(row => row.text.trim() === criterion.label.normalize('NFKC').trim())) return true;
   if (normalizedLabel.length <= 12 && normalizedDraft.includes(normalizedLabel)) return true;
   const tokens = meaningfulTokens(criterion.label);
   if (!tokens.length) return false;
