@@ -39,7 +39,7 @@
 .practical-question-body > header > b { grid-column: 2; color: var(--muted); font-size: .8rem; }
 .practical-question-body > header small { font-size: .8rem; color: var(--muted); }
 .practical-question-body h3 { font-size: max(clamp(1.05rem, 1.3cqi, 1.35rem),var(--question-text-size,1.05rem)); line-height: 1.65; margin: 8px 0; white-space: pre-line; }
-.practical-question-body .practical-prompt-image { width: 100%; height: auto; max-height: none; object-fit: contain; }
+.practical-question-body .practical-prompt-image { width: 100%; height: auto; min-height: 0; max-height: none; object-fit: contain; }
 .practical-question-body .practical-prompt-images { grid-template-columns: 1fr; }
 .practical-response-body .practical-answer-input textarea { min-height: 180px; font-size: max(1rem,var(--choice-text-size,1rem)); line-height: 1.75; }
 .practical-response-body .practical-answer-input span { font-size: .95rem; color: var(--text); }
@@ -62,6 +62,12 @@
 .practical-page-center { display: flex; align-items: center; gap: 12px; }
 .practical-page-center > button { color: white; background: #16836f; }
 .practical-study-room .practical-pagination span { grid-column: auto; font-size: .9rem; }
+/* Keep learning controls clear of the web app's fixed bottom navigation. */
+@media (max-width: 820px) {
+  :root:not([data-native-app="true"]) .practical-study-room .practical-pagination { bottom: calc(72px + env(safe-area-inset-bottom, 0px)); }
+}
+body:has(.practical-study-room) .ios-pwa-floating-trigger,
+body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
 .practical-study-room :focus-visible { outline: 3px solid var(--accent, #16836f); outline-offset: 3px; }
 .practical-cbt-layout .practical-mode-switch p { display: none; }
 @container practical (min-width: 760px) {

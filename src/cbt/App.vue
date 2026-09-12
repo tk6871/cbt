@@ -4958,6 +4958,7 @@ onBeforeUnmount(() => {
               <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
+            <p>v5.1.2 이미지 교정: 확인된 17문항의 정답 자막·판서는 답안 확인 뒤에만 표시하고, 2026년 2회 10번의 잘못된 그림 연결을 바로잡았습니다. 모바일 그림 여백과 하단 버튼 겹침도 보정했습니다. 원본은 보존하며 전체 연도 검수는 진행 중입니다.</p>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
 
