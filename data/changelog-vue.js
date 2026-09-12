@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '5.1.2', scope: 'industrial', date: '2026.09.12',
+      title: '필답형 문제 그림과 정답 이미지 분리',
+      summary: '검수한 17문항의 정답 자막·판서 노출을 수정하고, 잘못 연결된 도면 1문항을 교정했습니다.',
+      tags: ['필답형', '이미지 검수', '정답 분리'],
+      changes: [
+        '2024~2026년 필답 복원 중 확인된 17문항은 정답 자막 없는 문제용 이미지로 표시하고 기존 원본은 답안 확인 후 볼 수 있게 보존했습니다.',
+        '2026년 2회 4번의 가려진 공조 도면을 정답 작성 전 원본 영상 장면에서 복구했습니다.',
+        '2026년 2회 10번에 잘못 연결된 9번 풀이를 실제 지하실 바닥 도면으로 교정했습니다.',
+        '여러 취출구의 명칭을 묻는 사진은 정답 대신 1·2·3 번호만 표시합니다. 답안·진도 저장 방식은 바뀌지 않습니다.',
+        '모바일 필답 그림의 불필요한 여백과 하단 메뉴/풀이 버튼 겹침을 보정하고 풀이 중 앱 설치 배너를 숨겼습니다.',
+        '이번 교정은 확인된 18문항 대상이며 전체 연도 이미지 검수 완료를 뜻하지 않습니다.'
+      ]
+    },
+    {
       version: '5.1.1', scope: 'industrial', date: '2026.09.10',
       title: '손글씨 답안지 수정과 풀이 기록 보호',
       summary: '손가락 이동을 켠 상태의 S펜 끊김과 배경 지우기를 수정하고, 넓은 답안지·동기화 복구 사본·해설 출처를 제공합니다.',
@@ -2164,8 +2178,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.1';
+  changelog.versions.industrial = '5.1.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.1';
+  changelog.currentVersion = '5.1.2';
   window.CBT_CHANGELOG = changelog;
 })();

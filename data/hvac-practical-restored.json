@@ -3911,6 +3911,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-1.png"
     ]
   },
@@ -4163,6 +4166,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-1.png"
     ]
   },
@@ -4346,6 +4352,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-clean-1.png",
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-clean-2.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-1.png"
     ]
   },
@@ -4368,6 +4378,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-1.png"
     ]
   },
@@ -4561,6 +4574,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-1.png"
     ]
   },
@@ -4604,6 +4620,11 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-1.png",
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-2.png",
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-3.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-1.png"
     ]
   },
@@ -4789,6 +4810,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-clean-1.png",
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-clean-2.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-question-1.png"
     ]
   },
@@ -4858,6 +4883,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-question-1.png"
     ]
   },
@@ -5098,6 +5126,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-question-1.png"
     ]
   },
@@ -5120,6 +5151,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-question-1.png"
     ]
   },
@@ -5395,6 +5429,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-question-1.png"
     ]
   },
@@ -5416,6 +5453,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-question-1.png"
     ]
   },
@@ -5564,6 +5604,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-question-1.png"
     ]
   },
@@ -5607,6 +5650,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-1.png"
     ]
   },
@@ -5647,6 +5693,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-question-1.png"
     ]
   },
@@ -5762,10 +5811,11 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-clean-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-answer-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-answer-1.png",
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-question-1.png"
     ]
   },
   {
@@ -5882,7 +5932,7 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-10-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-10-clean-1.png"
     ]
   },
   {
@@ -5927,6 +5977,9 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-clean-1.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-1.png"
     ]
   }
