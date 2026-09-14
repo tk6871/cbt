@@ -1,0 +1,760 @@
+{
+  "description": "이미지가 연결되지 않은 시각자료 의존 문장과 완전 동일 파일을 선별합니다. 대체 그림 자동 생성/수정은 하지 않습니다.",
+  "counts": {
+    "questions": 312,
+    "questionImageReferences": 151,
+    "answerImageReferences": 60
+  },
+  "missingReferenceCount": 0,
+  "imageDependentCandidateCount": 149,
+  "duplicateCandidateCount": 0,
+  "missingReferences": [],
+  "imageDependentWithoutMedia": [
+    {
+      "id": "hvac-practical-restored-2018-3-01",
+      "question": "동영상의 작업자가 무슨 작업을 하는지 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-04",
+      "question": "다음 영상의 부품명칭과 화살표가 가리키는 부분의 이름과 그 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-05",
+      "question": "다음 영상에서 나오는 이음쇠의 명칭과 사용목적 두가지를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-06",
+      "question": "다음 영상에서 나오는 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-07",
+      "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-09",
+      "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-11",
+      "question": "다음 영상에 나오는 장치의 이름을 쓰시오. (터보냉동기)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2018-3-12",
+      "question": "다음 영상에서 화살표가 가리키는 장치의 이름을 쓰시오. (액분리기)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-04",
+      "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-05",
+      "question": "다음 영상을 보고 감온통의 역할르 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-06",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-07",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-08",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-09",
+      "question": "다음 영상에서 보여주는 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-10",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-1-12",
+      "question": "다음 영상에서 보여주는 취출구의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 작동원리를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-04",
+      "question": "다음 영상에서 보여주는 장치 중 (가)의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-05",
+      "question": "다음 영상에서 보여주는 취출구의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-07",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-08",
+      "question": "다음 영상에서 보여주는 밸브의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-09",
+      "question": "다음 영상에서 보여주는 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-10",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 설치위치를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-11",
+      "question": "다음 영상의 작업자가 사용한 측정기의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-2-12",
+      "question": "다음 영상에서 보여준 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-03",
+      "question": "다음 영상에서 보여주는 취출구의 명칭과 창문부근 천장에 설치하는 목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-05",
+      "question": "다음 영상에서 보여주는 공구 중 (나), (라) 공구의 이름을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-06",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-08",
+      "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-09",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 형식을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-11",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2019-3-12",
+      "question": "다음 영상을 보고 아래의 질문에 답하시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-03",
+      "question": "다음 영상에서 나오는 이음쇠의 명칭과 사용목적 두가지를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-04",
+      "question": "다음 영상을 보고 덕트의 이음방법과 설치 목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-05",
+      "question": "다음 영상에서 보여주는 장치의 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-06",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-07",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 형식을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-08",
+      "question": "다음 영상에서 보여주는 장치중 (마)장치의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-09",
+      "question": "다음 영상에서 보여주는 증발압력조정밸브의 설치목적과 (가)~(라)중 설치위치를 쓰시오. 가.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-11",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-1-12",
+      "question": "다음 영상에 나오는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-03",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-05",
+      "question": "다음 영상에서 보여주는 기류형식에 따른 취출구 명칭과 특징 2가지를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-06",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-07",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-08",
+      "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-09",
+      "question": "다음 영상을 보고 (가)장치의 명칭과 그 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-10",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-11",
+      "question": "다음 영상에서 보여주는 댐퍼의 명칭과 작동원리를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2A-12",
+      "question": "다음 영상에서 보여주는 공구의 (가),(나),(다),(라)중 (다)부분의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-04",
+      "question": "다음 영상을 보고 해당 장치의 명칭과 감온통의 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-05",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-07",
+      "question": "다음 영상에서 보여주는 공구 중 (나), (라) 공구의 이름을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-08",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 그 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-09",
+      "question": "다음 영상에서 보여주는 취출구의 명칭과 창문부근 천장에 설치하는 목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-11",
+      "question": "다음 영상에 나오는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-2B-12",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-05",
+      "question": "다음 영상의 배관이음 입체도를 보고 배관이음 부속(엘보,티)의 개수 각각 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-06",
+      "question": "다음 영상에서 나오는 부품의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-07",
+      "question": "다음 영상에서 보여주는 장치중 (마)장치의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-08",
+      "question": "다음 영상에 나오는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-09",
+      "question": "다음 영상의 작업자가 사용한 측정기의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-11",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용시 장점을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-3-12",
+      "question": "다음 영상에서 보여주는 장치의 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 작동원리를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-05",
+      "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-07",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-08",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 기능을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-09",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-10",
+      "question": "동영상의 작업자가 무슨 작업을 하는지 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-11",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2020-4-12",
+      "question": "다음 영상에서 보여주는 (가),(나),(다)장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-03",
+      "question": "다음 영상에서 보여준 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-05",
+      "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-06",
+      "question": "다음 영상의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-07",
+      "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-08",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-09",
+      "question": "다음 영상을 보고 아래의 질문에 답하시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-10",
+      "question": "다음 영상을 보고 (가),(나),(다) 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-11",
+      "question": "다음 영상에서 보여주는 공구의 명칭과 그 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-12",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 그 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-04",
+      "question": "다음 영상을 보고 A와 B장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-05",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-06",
+      "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-07",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-08",
+      "question": "다음 영상을 보고 여과식 필터 종류를 2가지 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-09",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-10",
+      "question": "다음 영상의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-12",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-03",
+      "question": "도달거리가 길고, 소음이 작은 취출구로 주로 음악실이나 영화관, 연극연습실, 방송국 등에 사용된다. 해당 취출구를 다음 영상의 보기에서 찾아 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-04",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-06",
+      "question": "다음 영상에서 보여주는 (가),(나)장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-07",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-08",
+      "question": "다음 영상에 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-09",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-11",
+      "question": "다음 영상의 부품명칭(가)과 화살표가 가리키는 부분(나)의 사용목적을 쓰시오. 가. 부품명칭 : 고저압스위치(고저압차단스위치) 나. 화살표가 가리키는 부분의 기능 : 고저압스위치의 설정압력을 초과한 경우 자동제어 회로에 의해 cut-out되고 압축기가 정지되어 냉동장치의 위험을 방지한다. 이때 아무런 조치없이 냉동장치의 압력이 정상상태로 돌아가 자동제어에 의해 다시 운전한다면 똑같은 현상이 반복될수 있으므로 cut-out 후에는 냉동장치의 이상현상을 점검해 조치하고 다시 수동복귀버튼을 눌러 고저압스위치를 리셋시켜 사용하게 된다.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-12",
+      "question": "다음 영상에 나오는 장치의 명칭과 특징을 2가지 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-03",
+      "question": "다음 영상에서 보여준 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-04",
+      "question": "다음 영상에 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-05",
+      "question": "다음 영상에서 보여주는 밸브의 명칭과 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-06",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-07",
+      "question": "다음 영상에서 나오는 부품의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-08",
+      "question": "다음 영상에서 보여주는 (가),(나),(다)장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-09",
+      "question": "다음 영상의 배관이음 입체도를 보고 배관이음 부속(엘보,티)의 개수를 각각 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-11",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-1-12",
+      "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-03",
+      "question": "다음 영상에서 보여주는 댐퍼의 명칭과 작동원리를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-04",
+      "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-05",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 역할를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-06",
+      "question": "다음 영상에서 보여주는 공구 중 (나), (라) 공구의 이름을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-07",
+      "question": "다음 영상에서 보여주는 기류형식에 따른 취출구 명칭과 특징 2가지를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-11",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-2-12",
+      "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-03",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 특징을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-04",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-05",
+      "question": "동영상의 작업자가 무슨 작업을 하는지 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-06",
+      "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-07",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 설치위치를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-08",
+      "question": "다음 영상에서 보여주는 취출구의 명칭과 창문부근 천장에 설치하는 목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-09",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-10",
+      "question": "다음 영상에서 보여준 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2022-3-12",
+      "question": "다음 영상에서 나오는 2위치 밸브의 작동원리를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-03",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 사용목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-04",
+      "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-05",
+      "question": "다음 영상을 보고 (가),(나),(다) 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-06",
+      "question": "다음 영상에서 보여주는 부품의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-07",
+      "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-08",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-09",
+      "question": "다음 영상을 보고 감온통의 역할을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-10",
+      "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-11",
+      "question": "다음 영상을 보고 배관이 멈춘 상태에서의 평면도를 그리시오.",
+      "hasAnswerImage": true
+    },
+    {
+      "id": "hvac-practical-restored-2023-1-12",
+      "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-2-04",
+      "question": "아래 그림을 보고 다음 질문에 답하시오. ① 증발기의 냉매공급 방식을 참고하여 해당 장치의 명칭을 쓰시오: ② 다음 ( )안에 알맞은 내용을 쓰시오. 냉매액은 증발기로, 냉매가스를 압축기로 보내어 ()을 방지한다.",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-3-07",
+      "question": "아래 그림은 온도자동식 팽창밸브(TEV) 이다. 팽창밸브의 차압에 대한 아래 물음에 대하여 보기 중 알맞은 번호를 골라 쓰시오. (P1 : 감온통에 봉입된 가스압력, P2 : 증발기 내부 냉매의 증발압력, P3 : 과열도 조절나사 스프링 압력) [보기] ① Pi=P2+P3 ⑧ PI<P2+P3 ② P1>P2+P3",
+      "hasAnswerImage": false
+    },
+    {
+      "id": "hvac-practical-restored-2023-3-08",
+      "question": "응축기와 팽창밸브 사이에 설치하는 장치로 아래 그림의 명칭과 설치목적을 쓰시오.",
+      "hasAnswerImage": false
+    }
+  ],
+  "duplicateQuestionImages": []
+}

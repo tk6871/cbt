@@ -57,8 +57,14 @@ def main():
     parser.add_argument('--output', type=Path)
     parser.add_argument('--apply-assets', action='store_true')
     parser.add_argument('--data-patch', action='store_true')
+    parser.add_argument('--ids', nargs='+', help='Only prepare selected reviewed entries')
     args = parser.parse_args()
     entries = json.loads(MANIFEST.read_text())
+    if args.ids:
+        selected = set(args.ids)
+        entries = [entry for entry in entries if entry['id'] in selected]
+        if {entry['id'] for entry in entries} != selected:
+            raise ValueError('Unknown manifest ID')
     if args.data_patch:
         data_patch(entries)
         return
