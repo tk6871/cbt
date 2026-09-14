@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '512';
+const buildVersion = '513';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({

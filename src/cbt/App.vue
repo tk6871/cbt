@@ -52,6 +52,7 @@ import {
 } from './hvacCalculatorSheet';
 import { buildHvacPredictionSet } from './hvacPrediction';
 import { practicalPrompts, practicalSources, studyGuidePages } from './qualificationStudyGuides';
+import { matchesPracticalMaterialPeriod, type PracticalMaterialPeriod } from './practicalMaterialPeriod';
 import {
   practicalCategoryLabels,
   practicalDifficultyLabels,
@@ -717,6 +718,12 @@ const hvacPracticalAvailable = computed(() =>
 const practicalPromptFilter = ref<PracticalPromptFilter>('all');
 const practicalCategoryFilter = ref<'all' | PracticalCategory>('all');
 const practicalRoundFilter = ref('all');
+const practicalMaterialPeriod = ref<PracticalMaterialPeriod>('all');
+const practicalPeriodAvailable = computed(() => ['all', 'restored', 'review'].includes(practicalPromptFilter.value));
+const practicalPeriodCounts = {
+  recent: practicalPrompts.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'since-2023-2')).length,
+  earlier: practicalPrompts.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'before-2023-2')).length,
+};
 const practicalSearch = ref('');
 const practicalGuideSection = ref<'practice' | 'theory'>('practice');
 const practicalPage = ref(1);
@@ -725,7 +732,8 @@ function persistPracticalCursor(): void {
   if (practicalCursorRestoring) return;
   localStorage.setItem('cbt-practical-cursor', JSON.stringify({
     page: practicalPage.value, filter: practicalPromptFilter.value, category: practicalCategoryFilter.value,
-    round: practicalRoundFilter.value, search: practicalSearch.value, limit: practicalContinuousLimit.value,
+    round: practicalRoundFilter.value, materialPeriod: practicalMaterialPeriod.value,
+    search: practicalSearch.value, limit: practicalContinuousLimit.value,
   }));
 }
 const practicalStudyModeStorageKey = 'unified-cbt-hvac-practical-study-mode-v1';
@@ -820,6 +828,7 @@ const practicalRoundOptions = computed(() => {
   const rounds = new Map<string, string>();
   for (const prompt of practicalPrompts) {
     if (!prompt.year || !prompt.session) continue;
+    if (!matchesPracticalMaterialPeriod(prompt, practicalMaterialPeriod.value)) continue;
     rounds.set(`${prompt.year}-${prompt.session}`, `${prompt.year}년 ${formatPracticalSession(prompt.session)}`);
   }
   return [...rounds.entries()].sort(([a], [b]) => b.localeCompare(a, 'ko', { numeric: true }));
@@ -836,7 +845,8 @@ const practicalFilteredPrompts = computed(() => {
     const roundMatches = practicalRoundFilter.value === 'all'
       || `${prompt.year || ''}-${prompt.session || ''}` === practicalRoundFilter.value;
     const queryMatches = !query || `${prompt.question} ${prompt.answer} ${prompt.explanation}`.toLocaleLowerCase('ko').includes(query);
-    return sourceMatches && categoryMatches && roundMatches && queryMatches;
+    return sourceMatches && categoryMatches && roundMatches && queryMatches
+      && matchesPracticalMaterialPeriod(prompt, practicalMaterialPeriod.value);
   });
 });
 const practicalPagedPrompts = computed(() => practicalSessionActive.value
@@ -848,17 +858,23 @@ const visiblePracticalPrompts = computed(() => {
   const start = (practicalPage.value - 1) * practicalPageSize.value;
   return practicalPagedPrompts.value.slice(start, start + practicalPageSize.value);
 });
-watch([practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalSearch], () => {
+watch([practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalMaterialPeriod, practicalSearch], () => {
   if (practicalCursorRestoring) return;
   practicalPage.value = 1;
   practicalContinuousLimit.value = 20;
 });
-watch([practicalPage, practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalSearch, practicalContinuousLimit], persistPracticalCursor);
+watch(practicalMaterialPeriod, () => {
+  if (practicalRoundFilter.value !== 'all' && !practicalRoundOptions.value.some(([key]) => key === practicalRoundFilter.value)) {
+    practicalRoundFilter.value = 'all';
+  }
+});
+watch([practicalPage, practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalMaterialPeriod, practicalSearch, practicalContinuousLimit], persistPracticalCursor);
 onMounted(async () => {
   try {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
     if (['all','public','restored','foundation','drill','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
     if (cursor.category === 'all' || cursor.category in practicalCategoryLabels) practicalCategoryFilter.value = cursor.category;
+    if (practicalPeriodAvailable.value && ['all', 'since-2023-2', 'before-2023-2'].includes(cursor.materialPeriod)) practicalMaterialPeriod.value = cursor.materialPeriod;
     if (cursor.round === 'all' || practicalRoundOptions.value.some(([key]) => key === cursor.round)) practicalRoundFilter.value = cursor.round;
     if (typeof cursor.search === 'string') practicalSearch.value = cursor.search.slice(0, 200);
     await nextTick();
@@ -869,7 +885,10 @@ onMounted(async () => {
   practicalCursorRestoring = false;
 });
 watch(practicalPromptFilter, (filter) => {
-  if (filter !== 'all' && filter !== 'restored' && filter !== 'review') practicalRoundFilter.value = 'all';
+  if (filter !== 'all' && filter !== 'restored' && filter !== 'review') {
+    practicalRoundFilter.value = 'all';
+    practicalMaterialPeriod.value = 'all';
+  }
 });
 watch(practicalStudyMode, (mode) => {
   localStorage.setItem(practicalStudyModeStorageKey, mode);
@@ -4638,7 +4657,16 @@ onBeforeUnmount(() => {
               <p v-if="practicalSessionReport.topMistakes.length"><b>반복 실수</b><span v-for="([reason, count]) in practicalSessionReport.topMistakes" :key="reason">{{ practicalMistakeLabel(reason) }} {{ count }}회</span></p>
               <p v-else><b>다음 단계</b><span>각 문제의 부분점수 채점표에서 빠진 요소와 실수 원인을 기록해 보세요.</span></p>
             </section>
-            <details v-else class="practical-scope" :open="practicalOptionsOpen" @toggle="practicalOptionsOpen = ($event.target as HTMLDetailsElement).open"><summary>문제 범위 · 회차 선택 · 검색</summary>
+            <div v-if="!practicalSessionActive && practicalPeriodAvailable" class="practical-material-period">
+              <label><b>복원 자료 구분</b><select v-model="practicalMaterialPeriod" aria-describedby="practical-material-note">
+                <option value="all">전체 기간 · 기존 범위 유지</option>
+                <option value="since-2023-2">2023년 2회 이후 · {{ practicalPeriodCounts.recent }}문제</option>
+                <option value="before-2023-2">2023년 1회 이전 · {{ practicalPeriodCounts.earlier }}문제</option>
+              </select></label>
+              <details class="practical-material-help"><summary id="practical-material-note">자료 구분 기준 · 이미지 검수 진행 중</summary><p>2023년 2회 이후는 대조할 원본 영상이 있는 복원 자료입니다. 이전 자료에는 문제 그림 보완이 필요한 항목이 있습니다. 시험 제도 변경이나 검수 완료를 뜻하지 않습니다.</p></details>
+              <small v-if="practicalMaterialPeriod !== 'all'">회차·검색·복습·랜덤 실전도 선택 기간만 적용</small>
+            </div>
+            <details v-if="!practicalSessionActive" class="practical-scope" :open="practicalOptionsOpen" @toggle="practicalOptionsOpen = ($event.target as HTMLDetailsElement).open"><summary>문제 범위 · 회차 선택 · 검색</summary>
               <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
                 <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 복원 {{ practicalGroupCounts.restored }}</button>
@@ -4958,7 +4986,8 @@ onBeforeUnmount(() => {
               <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
-            <p>v5.1.2 이미지 교정: 확인된 17문항의 정답 자막·판서는 답안 확인 뒤에만 표시하고, 2026년 2회 10번의 잘못된 그림 연결을 바로잡았습니다. 모바일 그림 여백과 하단 버튼 겹침도 보정했습니다. 원본은 보존하며 전체 연도 검수는 진행 중입니다.</p>
+            <p>v5.1.3 복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용하며 선택과 기존 답안을 보존합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 이미지 검수 완료 표시는 아닙니다.</p>
+            <p>2023년 2회1번의 주회로·제어회로 전체와 3회1번의 우측 PB2/X2 회로도 원본 영상으로 보완했습니다. 기존 잘린 이미지는 삭제하지 않았습니다.</p>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
 

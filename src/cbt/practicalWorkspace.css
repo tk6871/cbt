@@ -93,3 +93,9 @@ body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
 .explanation-source-note summary { cursor:pointer; padding:6px 0; }
 .explanation-source-note p { margin:6px 0; }
 .explanation-source-note a { color:inherit; text-decoration:underline; }
+.practical-material-period { margin: 12px 0; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--text); }
+.practical-material-period label { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.practical-material-period select { min-height: 44px; max-width: 100%; min-width: 0; flex: 1 1 240px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; }
+.practical-material-period p, .practical-material-period small { display: block; margin: 8px 0 0; font-size: .9rem; line-height: 1.6; overflow-wrap: anywhere; }
+.practical-material-help summary { cursor: pointer; padding: 10px 0 2px; font-size: .9rem; line-height: 1.6; }
+@media print { .practical-material-period { display: none; } }

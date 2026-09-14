@@ -17,7 +17,7 @@ test('검수된 이미지 연결과 원본 보존 회귀', () => {
   }
 });
 
-test('교정 18문항: 문제·확대는 clean 이미지, 정답 확인 후에만 원본 표시', async ({ page }, info) => {
+test('교정 문항: 문제·확대는 clean 이미지, 정답 확인 후에만 원본 표시', async ({ page }, info) => {
   test.setTimeout(180_000);
   page.setDefaultTimeout(15_000);
   const errors: string[] = [];
@@ -73,7 +73,7 @@ test('교정 18문항: 문제·확대는 clean 이미지, 정답 확인 후에�
     await expect(page.locator('.android-apk-floating-trigger')).not.toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - innerWidth);
     expect(overflow).toBeLessThanOrEqual(1);
-    if (entry.id === '2026-2-04' || entry.id === '2024-3-11') {
+    if (entry.id === '2026-2-04' || entry.id === '2024-3-11' || entry.id.startsWith('2023-')) {
       await article.scrollIntoViewIfNeeded();
       await page.screenshot({path:`/private/tmp/cbt-${entry.id}-${info.project.name}.png`});
     }
