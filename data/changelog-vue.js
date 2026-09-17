@@ -5,6 +5,19 @@
 
   const entries = [
     {
+      version: '5.1.5', scope: 'industrial', date: '2026.09.17',
+      title: '필답형 회차별 기출·추가 자료 보관함',
+      summary: '회차가 있는 기출과 사용자가 따로 준 PDF·사진 자료를 첫 화면에서 바로 구분해 선택합니다.',
+      tags: ['필답형', '회차별 기출', '추가 자료 분류'],
+      changes: [
+        '필답형 훈련관 첫 화면에 회차별 기출문제와 추가로 받은 자료 모음 보관함을 추가했습니다.',
+        '회차별 기출 312문제를 연도·회차별로 선택하거나 전체 회차로 모아 볼 수 있습니다.',
+        '별도 제공 자료 212문제는 공개 자료47, 필답문제2 PDF42, 사진·기기 PDF123으로 나누어 선택합니다.',
+        '기존 자체 기초·유형 연습문제는 별도 분류에 유지하며, 문제 ID·작성 답안·채점·학습 기록은 바꾸지 않았습니다.',
+        '넓은 화면은 두 보관함을 나란히, 휴대폰은 한 열로 배치하고 주요 선택 버튼은 44px 이상으로 유지했습니다.'
+      ]
+    },
+    {
       version: '5.1.4', scope: 'industrial', date: '2026.09.15',
       title: '필답형 그림 보완·2026년 PDF 교체',
       summary: '2026년 1·2회 PDF 교체와 2023년 3회~2024년 2회 스캔 대조로 필답 그림과 오류를 보완했습니다.',
@@ -2212,8 +2225,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.4';
+  changelog.versions.industrial = '5.1.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.4';
+  changelog.currentVersion = '5.1.5';
   window.CBT_CHANGELOG = changelog;
 })();

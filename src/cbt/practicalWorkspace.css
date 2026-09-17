@@ -98,4 +98,22 @@ body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
 .practical-material-period select { min-height: 44px; max-width: 100%; min-width: 0; flex: 1 1 240px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; }
 .practical-material-period p, .practical-material-period small { display: block; margin: 8px 0 0; font-size: .9rem; line-height: 1.6; overflow-wrap: anywhere; }
 .practical-material-help summary { cursor: pointer; padding: 10px 0 2px; font-size: .9rem; line-height: 1.6; }
+.practical-library-shelves { margin: 12px 0 16px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.practical-library-shelves > article { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--text); display: grid; gap: 13px; align-content: start; }
+.practical-library-shelves > article.active { border-color: #16836f; box-shadow: 0 0 0 2px color-mix(in srgb,#16836f 16%,transparent); }
+.practical-library-shelves h3,.practical-library-shelves p { margin: 0; }
+.practical-library-shelves h3 { margin-top: 4px; font-size: 1.05rem; }
+.practical-library-shelves p { margin-top: 7px; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.practical-library-shelves article > div > span { color: #16836f; font-size: .7rem; font-weight: 900; letter-spacing: .12em; }
+.practical-library-shelves article > strong { font-size: .86rem; }
+.practical-library-shelves label { display: grid; gap: 6px; color: var(--muted); font-size: .78rem; font-weight: 800; }
+.practical-library-shelves select,.practical-library-shelves button { min-height: 44px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); background: var(--surface-2); font: inherit; font-size: .82rem; font-weight: 800; }
+.practical-library-shelves article > button { color: #fff; border-color: #16836f; background: #16836f; }
+.practical-library-buttons { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
+.practical-library-buttons button.selected { color: #fff; border-color: #16836f; background: #16836f; }
+@media(max-width:720px) {
+  .practical-library-shelves { grid-template-columns: 1fr; }
+  .practical-library-shelves > article { padding: 15px; }
+  .practical-library-buttons { grid-template-columns: 1fr 1fr; }
+}
 @media print { .practical-material-period { display: none; } }

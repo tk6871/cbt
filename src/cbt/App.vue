@@ -101,7 +101,7 @@ type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
-type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'review';
+type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'provided' | 'review';
 type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; assessment?: PracticalAssessment; deleted?: boolean; updatedAt: number };
 type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
@@ -824,6 +824,11 @@ const practicalGroupCounts = computed(() => practicalPrompts.reduce<Record<Pract
   counts[prompt.group] += 1;
   return counts;
 }, { public: 0, restored: 0, foundation: 0, drill: 0, supplement: 0, photos: 0 }));
+const practicalProvidedGroups = new Set<PracticalPrompt['group']>(['public', 'supplement', 'photos']);
+const practicalProvidedCount = computed(() => [...practicalProvidedGroups]
+  .reduce((count, group) => count + practicalGroupCounts.value[group], 0));
+const practicalProvidedFilterActive = computed(() => practicalPromptFilter.value === 'provided'
+  || (practicalPromptFilter.value !== 'review' && practicalProvidedGroups.has(practicalPromptFilter.value as PracticalPrompt['group'])));
 const practicalRoundOptions = computed(() => {
   const rounds = new Map<string, string>();
   for (const prompt of practicalPrompts) {
@@ -840,7 +845,9 @@ const practicalFilteredPrompts = computed(() => {
     const sourceMatches = practicalPromptFilter.value === 'all'
       || (practicalPromptFilter.value === 'review'
         ? progress?.grade === 'partial' || progress?.grade === 'review'
-        : prompt.group === practicalPromptFilter.value);
+        : practicalPromptFilter.value === 'provided'
+          ? practicalProvidedGroups.has(prompt.group)
+          : prompt.group === practicalPromptFilter.value);
     const categoryMatches = practicalCategoryFilter.value === 'all' || prompt.category === practicalCategoryFilter.value;
     const roundMatches = practicalRoundFilter.value === 'all'
       || `${prompt.year || ''}-${prompt.session || ''}` === practicalRoundFilter.value;
@@ -872,7 +879,7 @@ watch([practicalPage, practicalPromptFilter, practicalCategoryFilter, practicalR
 onMounted(async () => {
   try {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
-    if (['all','public','restored','foundation','drill','supplement','photos','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
+    if (['all','public','restored','foundation','drill','supplement','photos','provided','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
     if (cursor.category === 'all' || cursor.category in practicalCategoryLabels) practicalCategoryFilter.value = cursor.category;
     if (practicalPeriodAvailable.value && ['all', 'since-2023-2', 'before-2023-2'].includes(cursor.materialPeriod)) practicalMaterialPeriod.value = cursor.materialPeriod;
     if (cursor.round === 'all' || practicalRoundOptions.value.some(([key]) => key === cursor.round)) practicalRoundFilter.value = cursor.round;
@@ -4668,10 +4675,29 @@ onBeforeUnmount(() => {
               <details class="practical-material-help"><summary id="practical-material-note">자료 구분 기준 · 이미지 검수 진행 중</summary><p>2023년 2회 이후는 대조할 원본 영상이 있는 복원 자료입니다. 이전 자료에는 문제 그림 보완이 필요한 항목이 있습니다. 시험 제도 변경이나 검수 완료를 뜻하지 않습니다.</p></details>
               <small v-if="practicalMaterialPeriod !== 'all'">회차·검색·복습·랜덤 실전도 선택 기간만 적용</small>
             </div>
+            <section v-if="!practicalSessionActive" class="practical-library-shelves" aria-label="필답형 자료 보관함">
+              <article :class="{ active: practicalPromptFilter === 'restored' }">
+                <div><span>PAST EXAMS</span><h3>회차별 기출문제</h3><p>연도와 회차를 골라 실제 복원 순서대로 봅니다. 스캔 순서가 달라도 기존 회차 번호로 정리됩니다.</p></div>
+                <strong>{{ practicalGroupCounts.restored }}문제 · {{ practicalRoundOptions.length }}회차</strong>
+                <label><span>연도·회차 선택</span><select v-model="practicalRoundFilter" @change="practicalPromptFilter = 'restored'"><option value="all">전체 회차 모아보기</option><option v-for="([value, label]) in practicalRoundOptions" :key="value" :value="value">{{ label }}</option></select></label>
+                <button type="button" @click="practicalPromptFilter = 'restored'; practicalRoundFilter = 'all'">회차별 기출 전체 보기</button>
+              </article>
+              <article :class="{ active: practicalProvidedFilterActive }">
+                <div><span>MY MATERIALS</span><h3>추가로 받은 자료 모음</h3><p>사용자가 따로 준 PDF·사진·공개 자료를 회차별 기출과 섞지 않고 자료 묶음별로 모았습니다.</p></div>
+                <strong>{{ practicalProvidedCount }}문제 · 3개 자료 묶음</strong>
+                <div class="practical-library-buttons">
+                  <button type="button" :class="{ selected: practicalPromptFilter === 'provided' }" @click="practicalPromptFilter = 'provided'">전체 {{ practicalProvidedCount }}</button>
+                  <button type="button" :class="{ selected: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 {{ practicalGroupCounts.public }}</button>
+                  <button type="button" :class="{ selected: practicalPromptFilter === 'supplement' }" @click="practicalPromptFilter = 'supplement'">필답문제2 PDF {{ practicalGroupCounts.supplement }}</button>
+                  <button type="button" :class="{ selected: practicalPromptFilter === 'photos' }" @click="practicalPromptFilter = 'photos'">사진·기기 PDF {{ practicalGroupCounts.photos }}</button>
+                </div>
+              </article>
+            </section>
             <details v-if="!practicalSessionActive" class="practical-scope" :open="practicalOptionsOpen" @toggle="practicalOptionsOpen = ($event.target as HTMLDetailsElement).open"><summary>문제 범위 · 회차 선택 · 검색</summary>
               <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
                 <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 복원 {{ practicalGroupCounts.restored }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 기출 {{ practicalGroupCounts.restored }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'provided' }" @click="practicalPromptFilter = 'provided'">추가 자료 전체 {{ practicalProvidedCount }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 {{ practicalGroupCounts.public }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'supplement' }" @click="practicalPromptFilter = 'supplement'">추가 자료 {{ practicalGroupCounts.supplement }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'photos' }" @click="practicalPromptFilter = 'photos'">사진·기기 자료 {{ practicalGroupCounts.photos }}</button>
@@ -4685,7 +4711,7 @@ onBeforeUnmount(() => {
               </div>
               <div class="practical-toolbar">
                 <label><span>문제 검색</span><input v-model="practicalSearch" type="search" placeholder="예: 과열도, 진공, 냉각수"></label>
-                <label v-if="practicalRoundOptions.length && (practicalPromptFilter === 'all' || practicalPromptFilter === 'restored' || practicalPromptFilter === 'review')" class="practical-round-select"><span>복원 회차</span><select v-model="practicalRoundFilter"><option value="all">전체 회차</option><option v-for="([value, label]) in practicalRoundOptions" :key="value" :value="value">{{ label }}</option></select></label>
+                <label v-if="practicalRoundOptions.length && (practicalPromptFilter === 'all' || practicalPromptFilter === 'restored' || practicalPromptFilter === 'review')" class="practical-round-select"><span>기출 회차</span><select v-model="practicalRoundFilter"><option value="all">전체 회차</option><option v-for="([value, label]) in practicalRoundOptions" :key="value" :value="value">{{ label }}</option></select></label>
                 <button type="button" @click="startPracticalMock"><strong>랜덤 12문제 실전</strong><small>중복 유형 제외 · 90분 타이머</small></button>
               </div>
             </details>
@@ -4990,6 +5016,7 @@ onBeforeUnmount(() => {
               <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
+            <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
             <p>9월17일 제공된 가지1 123문항은 사진·기기 자료123에서 따로 풀 수 있습니다. 원본 사진95개와 학습 답안·설명을 연결했으며 정답 표기가 있는 비교 사진2개는 문제용과 답안용을 분리했습니다.</p>
