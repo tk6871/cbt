@@ -1,0 +1,567 @@
+{
+  "version": 1,
+  "sources": {
+    "2026-1": {
+      "label": "2026년 1회 해설 PDF",
+      "pages": 10,
+      "sha256": "dedeb351152148de0b9bf857c8dc4410d14dde658cde16d64884e02f24f7a34a"
+    },
+    "2026-2": {
+      "label": "2026년 2회 해설 PDF",
+      "pages": 8,
+      "sha256": "04655510fe17e8b35370f23bf48dce3179458b8a27ae748c8b508c02b475085d"
+    }
+  },
+  "crops": [
+    {
+      "round": "2026-1",
+      "number": 1,
+      "role": "question",
+      "page": 1,
+      "crop": [
+        270,
+        430,
+        735,
+        885
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-01-question-pdf-v514.png",
+      "outputSize": [
+        465,
+        455
+      ],
+      "sha256": "9748c9f2edd088c28ce8c91dd57185d962ffb02a25f7dfb0ff7d66b34ec253b1"
+    },
+    {
+      "round": "2026-1",
+      "number": 1,
+      "role": "answer",
+      "page": 1,
+      "crop": [
+        230,
+        1110,
+        785,
+        1270
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-01-answer-pdf-v514.png",
+      "outputSize": [
+        555,
+        160
+      ],
+      "sha256": "6e617934aff51e7920862b33f30569b8e2edc0e534a749a3fd7a74b89dd577d3"
+    },
+    {
+      "round": "2026-1",
+      "number": 2,
+      "role": "question",
+      "page": 2,
+      "crop": [
+        390,
+        135,
+        650,
+        340
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-question-pdf-v514.png",
+      "outputSize": [
+        260,
+        205
+      ],
+      "sha256": "5a4f1560b86f1e1179663b9936e2bba6b12c4ab077aed5ca670786074d3a81e5"
+    },
+    {
+      "round": "2026-1",
+      "number": 2,
+      "role": "answer",
+      "page": 2,
+      "crop": [
+        75,
+        420,
+        945,
+        655
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-answer-pdf-v514.png",
+      "outputSize": [
+        870,
+        235
+      ],
+      "sha256": "de3f259a115930abe9cd81fbdde86447da74a5fa769f72ec507744f32993617a"
+    },
+    {
+      "round": "2026-1",
+      "number": 3,
+      "role": "question",
+      "page": 2,
+      "crop": [
+        105,
+        975,
+        440,
+        1235
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-03-question-pdf-v514.png",
+      "outputSize": [
+        335,
+        260
+      ],
+      "sha256": "7daab74fce2c080508f26504517be6178e7352bda7faf4fd0d9ff9cbcfee8f8b"
+    },
+    {
+      "round": "2026-1",
+      "number": 4,
+      "role": "question",
+      "page": 3,
+      "crop": [
+        245,
+        145,
+        860,
+        405
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-04-question-pdf-v514.png",
+      "outputSize": [
+        615,
+        260
+      ],
+      "sha256": "b1b64586d41b678418ead0c1d613656b07ed0d0d5c3793ad6ffc457b8c2e84eb"
+    },
+    {
+      "round": "2026-1",
+      "number": 6,
+      "role": "question",
+      "page": 5,
+      "crop": [
+        85,
+        185,
+        560,
+        635
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-06-question-pdf-v514.png",
+      "outputSize": [
+        475,
+        450
+      ],
+      "sha256": "7b8eabc385658d783f6c263035dd2b7254c21303a733efd5b27b7a8aa2b8a50d"
+    },
+    {
+      "round": "2026-1",
+      "number": 7,
+      "role": "question",
+      "page": 6,
+      "crop": [
+        65,
+        130,
+        430,
+        430
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-question-pdf-v514.png",
+      "outputSize": [
+        365,
+        300
+      ],
+      "sha256": "b5d8b4bb4e71874980b40e306c0fee7757523e66a8f22e193bec73930b74eac0"
+    },
+    {
+      "round": "2026-1",
+      "number": 8,
+      "role": "question",
+      "page": 6,
+      "crop": [
+        85,
+        835,
+        530,
+        1105
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-08-question-pdf-v514.png",
+      "outputSize": [
+        445,
+        270
+      ],
+      "sha256": "e55ec38a96daa747afcc5dc3697775c66a847c0fb2f71100e943c8227bed4e10"
+    },
+    {
+      "round": "2026-1",
+      "number": 9,
+      "role": "question",
+      "page": 7,
+      "crop": [
+        95,
+        520,
+        370,
+        690
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-pdf-v514.png",
+      "outputSize": [
+        275,
+        170
+      ],
+      "sha256": "061e069c40026d4b10ff2fd52ceebf189493a74e9b90f2ed104e25215bf267c2"
+    },
+    {
+      "round": "2026-1",
+      "number": 11,
+      "role": "question",
+      "page": 8,
+      "crop": [
+        70,
+        390,
+        450,
+        650
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-question-pdf-v514.png",
+      "outputSize": [
+        380,
+        260
+      ],
+      "sha256": "deac9bf001b8b5f3d15edddcedcf288cb537f2f96bf57e6f93c52ab6f63e6427"
+    },
+    {
+      "round": "2026-1",
+      "number": 11,
+      "role": "answer",
+      "page": 8,
+      "crop": [
+        80,
+        850,
+        930,
+        1265
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-answer-pdf-v514.png",
+      "outputSize": [
+        850,
+        415
+      ],
+      "sha256": "61be53925b1438d8e4afb2e7a924224c2b31c502df95385d7572c93063fb171c"
+    },
+    {
+      "round": "2026-1",
+      "number": 12,
+      "role": "question",
+      "page": 9,
+      "crop": [
+        300,
+        175,
+        710,
+        620
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-12-question-pdf-v514.png",
+      "outputSize": [
+        410,
+        445
+      ],
+      "sha256": "40a8fc54a3c1e20dce3e0877b620603e1f174eb5cc7a101f1e7d959c7323ec54"
+    },
+    {
+      "round": "2026-1",
+      "number": 12,
+      "role": "answer",
+      "page": 10,
+      "crop": [
+        80,
+        455,
+        930,
+        835
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-12-answer-pdf-v514.png",
+      "outputSize": [
+        850,
+        380
+      ],
+      "sha256": "ab87ea564b99bd6d08964240d3d64d02ff6c307f9a49d86bfd86ab4a7404ea6e"
+    },
+    {
+      "round": "2026-2",
+      "number": 1,
+      "role": "question",
+      "page": 1,
+      "crop": [
+        180,
+        470,
+        835,
+        855
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-01-question-pdf-v514.png",
+      "outputSize": [
+        655,
+        385
+      ],
+      "sha256": "8aacc9c350570d26aa12a70f9c680aeca73cfb68594c5f1def1eb72357f04f6f"
+    },
+    {
+      "round": "2026-2",
+      "number": 2,
+      "role": "question",
+      "page": 2,
+      "crop": [
+        300,
+        160,
+        790,
+        555
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-02-question-pdf-v514.png",
+      "outputSize": [
+        490,
+        395
+      ],
+      "sha256": "db821e339c7eef144f5609c1a5c98c827d866ee79210c776d9c40476e5f41f1c"
+    },
+    {
+      "round": "2026-2",
+      "number": 3,
+      "role": "question",
+      "page": 3,
+      "crop": [
+        75,
+        160,
+        940,
+        605
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-question-pdf-v514.png",
+      "outputSize": [
+        865,
+        445
+      ],
+      "sha256": "3e40ec2bdb6cb98120433537bca971c3effda9e9f7f7fc1ab8bac66b74c99877"
+    },
+    {
+      "round": "2026-2",
+      "number": 3,
+      "role": "answer",
+      "page": 3,
+      "crop": [
+        325,
+        680,
+        690,
+        770
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-answer-pdf-v514.png",
+      "outputSize": [
+        365,
+        90
+      ],
+      "sha256": "4e331e2550ea5fd699ef11ea20a4d5f6e1932da55e6ef3f2cb52eac3543cd43e"
+    },
+    {
+      "round": "2026-2",
+      "number": 4,
+      "role": "question",
+      "page": 4,
+      "crop": [
+        75,
+        210,
+        940,
+        1215
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-question-pdf-v514.png",
+      "outputSize": [
+        865,
+        1005
+      ],
+      "sha256": "bc07135069c070f560b253a70f980b418b0d9e3619a05ec7bbafa67313843a4e"
+    },
+    {
+      "round": "2026-2",
+      "number": 6,
+      "role": "question",
+      "page": 5,
+      "crop": [
+        65,
+        320,
+        425,
+        485
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-06-question-pdf-v514.png",
+      "outputSize": [
+        360,
+        165
+      ],
+      "sha256": "442435a9b893e3e8b3a0130ecd5d8158169e7837b87c692d84cebcdf61ae4a59"
+    },
+    {
+      "round": "2026-2",
+      "number": 6,
+      "role": "answer",
+      "page": 5,
+      "crop": [
+        75,
+        580,
+        935,
+        825
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-06-answer-pdf-v514.png",
+      "outputSize": [
+        860,
+        245
+      ],
+      "sha256": "9cd76a64552a7936eb56ad9c14e62198af74fe8c8373435995b47705b27d056f"
+    },
+    {
+      "round": "2026-2",
+      "number": 8,
+      "role": "answer",
+      "page": 6,
+      "crop": [
+        80,
+        195,
+        930,
+        745
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-08-answer-pdf-v514.png",
+      "outputSize": [
+        850,
+        550
+      ],
+      "sha256": "3ff39c7a4bca5cb2d842285ef34d1269a34219fbec1809e014247fdb8821e040"
+    },
+    {
+      "round": "2026-2",
+      "number": 10,
+      "role": "question",
+      "page": 7,
+      "crop": [
+        75,
+        155,
+        265,
+        335
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-10-question-pdf-v514.png",
+      "outputSize": [
+        190,
+        180
+      ],
+      "sha256": "c256f1441f8fb8f05d1140dcb143b511ed58a577c68af6cbccb115aa3ce8e6b0"
+    },
+    {
+      "round": "2026-2",
+      "number": 11,
+      "role": "question",
+      "page": 7,
+      "crop": [
+        225,
+        790,
+        795,
+        1090
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-11-question-pdf-v514.png",
+      "outputSize": [
+        570,
+        300
+      ],
+      "sha256": "8b112fad27873c8face2806aeb9cf163e657e983881ce01d3e927c9d81d42f4a"
+    },
+    {
+      "round": "2026-2",
+      "number": 12,
+      "role": "question",
+      "page": 8,
+      "crop": [
+        65,
+        140,
+        550,
+        340
+      ],
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-pdf-v514.png",
+      "outputSize": [
+        485,
+        200
+      ],
+      "sha256": "352147c87230550461a71d1be4171e992be4d9052108d360bec59fcf25548946"
+    }
+  ]
+}

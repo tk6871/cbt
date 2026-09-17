@@ -1,4 +1,4 @@
-export type PracticalPromptGroup = 'public' | 'restored' | 'foundation' | 'drill';
+export type PracticalPromptGroup = 'public' | 'restored' | 'foundation' | 'drill' | 'supplement' | 'photos';
 export type PracticalCategory = 'equipment' | 'cycle' | 'calculation' | 'operation' | 'piping' | 'air' | 'safety';
 export type PracticalDifficulty = 'basic' | 'standard' | 'advanced';
 export type PracticalMistakeReason = 'formula' | 'substitution' | 'calculation' | 'unit' | 'keyword' | 'count' | 'diagram' | 'time';

@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { chromium } from '@playwright/test';
+import { createLogViewer } from './practical-log-viewer.mjs';
+
+const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'cbt-log-viewer-test-'));
+const server = createLogViewer(directory);
+let browser;
+try {
+  await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+  const url = `http://127.0.0.1:${server.address().port}`;
+  assert.equal((await (await fetch(url + '/api/log')).json()).status, undefined);
+  assert.equal((await fetch(url + '/api/log?step=../../secret')).status, 400);
+  assert.equal((await fetch(url + '/status.json')).status, 404);
+  const run = path.join(directory, '2026-09-16-test');
+  await fs.mkdir(run);
+  const status = { pid: process.pid, state: 'running', steps: [{ name: 'browser-images', state: 'running' }] };
+  await fs.writeFile(path.join(run, 'status.json'), JSON.stringify(status));
+  await fs.writeFile(path.join(run, 'browser-images.log'), 'desktop: 20문항\n<img src=x onerror=alert(1)>\n');
+  browser = await chromium.launch({ channel: 'chrome' });
+  const page = await browser.newPage();
+  await page.goto(url);
+  await page.waitForFunction(() => document.querySelector('#log').textContent.includes('20문항'));
+  assert.equal(await page.locator('#log img').count(), 0);
+  await fs.appendFile(path.join(run, 'browser-images.log'), 'desktop: 40문항\n');
+  await page.waitForFunction(() => document.querySelector('#log').textContent.includes('40문항'), { timeout: 7000 });
+  status.state = 'passed'; status.steps[0].state = 'passed';
+  await fs.writeFile(path.join(run, 'status.json'), JSON.stringify(status));
+  await page.waitForFunction(() => document.querySelector('#state').textContent.includes('통과'), { timeout: 7000 });
+  const newer = path.join(directory, '2026-09-17-test');
+  await fs.mkdir(newer);
+  await fs.writeFile(path.join(newer, 'status.json'), JSON.stringify({ ...status, state: 'failed', error: 'test failure' }));
+  await fs.writeFile(path.join(newer, 'browser-images.log'), '새 실행 로그');
+  await page.waitForFunction(() => document.querySelector('#log').textContent === '새 실행 로그', { timeout: 7000 });
+  assert.match(await page.locator('#state').textContent(), /실패/);
+  await fs.writeFile(path.join(newer, 'run.log'), '전체 로그');
+  await page.locator('#step').selectOption('run');
+  await page.waitForFunction(() => document.querySelector('#log').textContent === '전체 로그');
+  await page.route('**/api/log?*', route => route.abort());
+  await page.locator('#refresh').click();
+  await page.waitForFunction(() => document.querySelector('#connection').textContent.includes('연결 끊김'));
+  assert.equal(await page.locator('#log').textContent(), '전체 로그');
+  await page.unroute('**/api/log?*');
+  await page.waitForFunction(() => document.querySelector('#connection').textContent.includes('연결됨'), { timeout: 7000 });
+  console.log('PASS: live append, final status, new run, log selection, safe text, disconnect/reconnect, endpoint restrictions');
+  console.log('Test fixtures retained:', directory);
+} finally {
+  await browser?.close();
+  await new Promise(resolve => server.close(resolve));
+}
