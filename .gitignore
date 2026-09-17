@@ -27,6 +27,7 @@ work/hvac-comcbt-upscaled/
 work/hvac-comcbt-upscale-temp/
 work/hvac-comcbt-upscale-logs/
 work/hvac-practical-video-original-crops/
+work/practical-verification/
 work/energy-upscaled/
 work/energy-upscale-temp/
 work/energy-upscale-logs/
@@ -35,4 +36,5 @@ work/bundle-report-*.html
 work/sync-test-harness.js
 test-results/
 playwright-report/
+tmp/pdfs/
 __pycache__/

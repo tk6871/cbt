@@ -1,0 +1,2618 @@
+[
+  {
+    "id": "hvac-practical-photo-20260917-001",
+    "number": 1,
+    "sourcePage": 2,
+    "sourceEndPage": 2,
+    "question": "압력계의 명칭 및 특징 서술",
+    "sourceAnswer": "명칭=부르동관 압력계\n특징= 압력을 측정할 수 있는 범위가 넓다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/001-1.png"
+    ],
+    "imageSources": [
+      {
+        "page": 2,
+        "object": "Im1",
+        "sha256": "910375acdbf7efe81ffa437c9f3c1f5c65b778f5f97b553f876450f1631908e0",
+        "size": [
+          941,
+          966
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-002",
+    "number": 2,
+    "sourcePage": 3,
+    "sourceEndPage": 3,
+    "question": "압축기 명칭과 특징을 서술",
+    "sourceAnswer": "명칭=개방형 왕복동식 압축기\n특징=압축기 회전수 조절이 용이",
+    "images": [
+      "assets/hvac-practical/photo-20260917/002-1.png"
+    ],
+    "imageSources": [
+      {
+        "page": 3,
+        "object": "Im2",
+        "sha256": "aa0a69a09a2d95315b67c5acf54c05d869127c2664d51256334e84f7854644d7",
+        "size": [
+          548,
+          465
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-003",
+    "number": 3,
+    "sourcePage": 4,
+    "sourceEndPage": 4,
+    "question": "압축기 명칭과 특징을 서술하시오",
+    "sourceAnswer": "명칭=회전식 압축기\n특징=로터가 실린더 내를 회전하면서 냉매가스를 압축하는 원리",
+    "images": [
+      "assets/hvac-practical/photo-20260917/003-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 4,
+        "object": "Im3",
+        "sha256": "fe1209a5c976bc532783843604c15488b0004c90a4af6fefd2018cd476a46365",
+        "size": [
+          385,
+          473
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-004",
+    "number": 4,
+    "sourcePage": 5,
+    "sourceEndPage": 5,
+    "question": "압축기 명칭 및 특징 서술하시오",
+    "sourceAnswer": "명칭=밀폐형 왕복동식 압축기\n특징=과부하 운전이 가능하다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/004-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 5,
+        "object": "Im4",
+        "sha256": "cfe6c54924974a9adbf206dc2ecbb0f396c4b6e2578298995188c0992a2a0b99",
+        "size": [
+          737,
+          664
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-005",
+    "number": 5,
+    "sourcePage": 5,
+    "sourceEndPage": 6,
+    "question": "압축기 명칭 및 특징,원리 서술",
+    "sourceAnswer": "명칭=스크롤 압축기\n특징=부품수가 적고 고속회전가능\n원리=고정스크롤과 선회스크롤 사이에 형성된 압축공간이 점차 감소되어 냉매가스를 압축시\n킨다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/005-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 6,
+        "object": "Im5",
+        "sha256": "b49128ff7bb338ccda5c1bf69d720ea49890dfc27f6b42c0e687eb4b1737ad3a",
+        "size": [
+          802,
+          795
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-006",
+    "number": 6,
+    "sourcePage": 7,
+    "sourceEndPage": 7,
+    "question": "EHP의 사이클이다 그림보고 어떤 사이클인지 서술하시오",
+    "sourceAnswer": "왼쪽)공기열원 히트펌프 냉동사이클\n오른쪽)공기열원 히트펌프 난방사이클",
+    "images": [
+      "assets/hvac-practical/photo-20260917/006-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 7,
+        "object": "Im6",
+        "sha256": "f9f1ae7ac415508bd69dbfcbdd6f6f9e683f6ba747fda6067086e17bff970abc",
+        "size": [
+          970,
+          502
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-007",
+    "number": 7,
+    "sourcePage": 7,
+    "sourceEndPage": 8,
+    "question": "보기를 보고 명칭,특징,원리를 서술하시오.",
+    "sourceAnswer": "명칭=빙축열식 냉동설비\n원리=냉동기에 얼음을 제조해 축열조에 저장해놓았다가 부하증가시 사용한다\n특징=값 싼 심야전력 사용",
+    "images": [
+      "assets/hvac-practical/photo-20260917/007-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 8,
+        "object": "Im7",
+        "sha256": "0024f6e12bb68445d888a72229aaff8658d64bd181317a1b66e2ddb0e879f9d5",
+        "size": [
+          1050,
+          1095
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-008",
+    "number": 8,
+    "sourcePage": 9,
+    "sourceEndPage": 9,
+    "question": "위 그림을 보고 명칭,원리,특징을 서술하시오",
+    "sourceAnswer": "명칭=공냉식 응축기\n특징=크기가 크고 응축온도가 높다원리=송풍기로 공기를 불어넣어 응축시킨다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/008-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 9,
+        "object": "Im8",
+        "sha256": "393d741e5c981c773af273cc727abd21f87544468df63e59846997ffd907dedf",
+        "size": [
+          932,
+          600
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-009",
+    "number": 9,
+    "sourcePage": 9,
+    "sourceEndPage": 10,
+    "question": "위 사진을 보고 어떤 응축기인지 명칭,특징,원리를 서술하시오",
+    "sourceAnswer": "명칭=수냉식 응축기\n특징=냉각관 청소가 어렵다\n원리=냉각탑에서 냉각수를 순환시켜 응축시킨다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/009-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 10,
+        "object": "Im9",
+        "sha256": "9e6ba46503e73fbe0d20197b86c13c6b7a31edc6cf386d04c105e90f6d1332a1",
+        "size": [
+          910,
+          878
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-010",
+    "number": 10,
+    "sourcePage": 11,
+    "sourceEndPage": 11,
+    "question": "위 사진의 압축기,특징,원리를 서술하시오",
+    "sourceAnswer": "명칭=터보압축기 또는 원심식압축기특징=저압냉매 취급이 용이\n원리=고속으로 회전하는 임펠러의 원심력을 이용하여 냉속도에너지를 압력에너지로 바꿔 냉\n매가스를 압축하는 형식",
+    "images": [
+      "assets/hvac-practical/photo-20260917/010-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 11,
+        "object": "Im10",
+        "sha256": "cf4c17870200c19b3f5d2c72ab2d91662e5aadccef5ae3d11a9a1ea56d4686a6",
+        "size": [
+          886,
+          683
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-011",
+    "number": 11,
+    "sourcePage": 12,
+    "sourceEndPage": 12,
+    "question": "원통내에 나선 모양의 코일이 감겨져있는 구조로 되어 있는 응축기이다. 사진을 보고 명칭,특 징을 서술하시오",
+    "sourceAnswer": "명칭=쉘앤 코일식 응축기\n특징=냉각관 청소가 어렵다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/011-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 12,
+        "object": "Im11",
+        "sha256": "9d532ecf6880e7b2cae3a5790fd89c69028ede8a096c336f63b7216f0dcef546",
+        "size": [
+          891,
+          383
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-012",
+    "number": 12,
+    "sourcePage": 12,
+    "sourceEndPage": 13,
+    "question": "위 사진을 보고 명칭 및 특징을 서술하시오",
+    "sourceAnswer": "명칭=매니폴더 게이지\n특징=냉매나 오일 충전 및 회수 압력확인 진공작업 누설작업시 사용한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/012-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 13,
+        "object": "Im12",
+        "sha256": "04a5adda531b543b3f08ff86b8d016e92b148ca9ae5142b64f2f503705cda041",
+        "size": [
+          930,
+          947
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-013",
+    "number": 13,
+    "sourcePage": 14,
+    "sourceEndPage": 14,
+    "question": "압축기의 명칭 및 특징을 서술.",
+    "sourceAnswer": "명칭=스크류 압축기\n특징=암나사와 수나사로된 두개의 로터가 맞물림에 의해 냉매가스를 흡입›압축›토출시킨\n다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/013-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 14,
+        "object": "Im13",
+        "sha256": "949739b49f0ea7a7f552d2abdbc82c285c77bbc50dfb47b3a57084521d545dcd",
+        "size": [
+          984,
+          516
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-014",
+    "number": 14,
+    "sourcePage": 14,
+    "sourceEndPage": 15,
+    "question": "위 사진을 보고 명칭 및 특징을 서술",
+    "sourceAnswer": "명칭= 2중관식 응축기\n특징=고압에 잘 버틴다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/014-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 15,
+        "object": "Im14",
+        "sha256": "89be7b742bbd0d18e6bac45fbeb8fc02d77426a309f4a10dfd0a0d7cef259e6a",
+        "size": [
+          889,
+          710
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-015",
+    "number": 15,
+    "sourcePage": 15,
+    "sourceEndPage": 16,
+    "question": "어떤 응축기인지 명칭 및 특징 서술",
+    "sourceAnswer": "명칭=증발식 응축기\n특징=외기 습구온도 영향을 많이 받는다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/015-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 16,
+        "object": "Im15",
+        "sha256": "9de96c3c4270cf603dbe475a7acab2929534844ad7aa9a14c88122a0bbe7d4c3",
+        "size": [
+          841,
+          716
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-016",
+    "number": 16,
+    "sourcePage": 17,
+    "sourceEndPage": 17,
+    "question": "사진을 보고 어떤 팽창밸브인지 사용목적,원리를 서술하시오",
+    "sourceAnswer": "명칭=정압식 팽창밸브\n사용목적=증발압력을 일정하게 유지시키기 위해 사용\n원리=증발압력 상승시 닫히고,\n증발압력 저하시 열린다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/016-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 17,
+        "object": "Im16",
+        "sha256": "11cf0830cb6a269df8fdc0df6048c864e22fea3a037e51711525a8cdac210c4e",
+        "size": [
+          918,
+          689
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-017",
+    "number": 17,
+    "sourcePage": 18,
+    "sourceEndPage": 18,
+    "question": "다음 사진을 보고 명칭, 사용목적을 서술하시오",
+    "sourceAnswer": "명칭=냉매 분배기\n사용목적=증발기 입구에 설치하여 냉매를 균일하게 분배하기 위해",
+    "images": [
+      "assets/hvac-practical/photo-20260917/017-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 18,
+        "object": "Im17",
+        "sha256": "6f12ec81a5cf8707b23423a4ae7a80558c34820fc6e0202ae629bdd5a5ac2d22",
+        "size": [
+          905,
+          860
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-018",
+    "number": 18,
+    "sourcePage": 19,
+    "sourceEndPage": 19,
+    "question": "다음 사진을 보고 명칭,특징,원리를 서술하시오",
+    "sourceAnswer": "명치=대향류형 냉각탑\n원리=냉각수를 공기와 접촉시켜 물의 증발잠열을 이용해 냉각수의 온도를 낮춘다\n특징=물과 공기가 서로 반대 방향으로 흘러 냉각효율이 높다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/018-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 19,
+        "object": "Im18",
+        "sha256": "fde42f7ba6a0e959b48d56016aca7b5d41d630d5d21a936f6ec6c6fdbe9d35e4",
+        "size": [
+          765,
+          593
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-019",
+    "number": 19,
+    "sourcePage": 20,
+    "sourceEndPage": 20,
+    "question": "다음 사진을 보고 명칭,특징,원리를 서술하시오",
+    "sourceAnswer": "명칭=직교류형 냉각탑\n특징=냉각수는 위에서 아래로 흐르고 공기는 측면에서 유입되어 냉각수와 직각으로 교차되\n어 흐른다\n원리=냉각수와 공기가 접촉하여 일부 물이 증발하고 그 증발잠열에\n의해 냉각수의 온도를 낮춘다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/019-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 20,
+        "object": "Im19",
+        "sha256": "f1200a5a471ea3a050e934e33fea991f2ac63a35ea376a98cbb10f570c59916f",
+        "size": [
+          887,
+          708
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-020",
+    "number": 20,
+    "sourcePage": 21,
+    "sourceEndPage": 21,
+    "question": "다음 사진은 증발기 중 하나이다 명칭과 특징을 서술하시오.",
+    "sourceAnswer": "명칭=플레이트형 증발기\n특징=스테인리스 판 두장을 압접하여 그 사이에 통로를 만들어 냉매를 통과하도록 만든 구조\n이다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/020-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 21,
+        "object": "Im20",
+        "sha256": "50b0fda80cb58d463f536cd45e2d4eda3f0173a53f0cf4c3813bbc824fc3d7bb",
+        "size": [
+          915,
+          414
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-021",
+    "number": 21,
+    "sourcePage": 21,
+    "sourceEndPage": 22,
+    "question": "다음 사진을 보고 어떤 기구인지 명칭, 사용목적을 서술하시오",
+    "sourceAnswer": "명칭=전자식 팽창밸브\n사용목적=온도센서에 의하여 증발기 출입구 과열도를 측정하여 냉매량을 정밀하게 제어한\n다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/021-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 22,
+        "object": "Im21",
+        "sha256": "b2d8f2a53119ed709d2aa5666fb9acf2ae5e8c7963abd34b3c76e6721aeaf7f2",
+        "size": [
+          993,
+          949
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-022",
+    "number": 22,
+    "sourcePage": 23,
+    "sourceEndPage": 23,
+    "question": "다음 사진은 증발기이다. 명칭, 특징을 서술하시오",
+    "sourceAnswer": "명칭=관 코일식 증발기\n특징=관을 코일 모양으로 구부려 구조가 간단하고, 관이 길어 압력강하가 크다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/022-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 23,
+        "object": "Im22",
+        "sha256": "e21d3aa92e0b1e67e1b7d94e439e8d499535b49844204dec94bd9d1951aa3e7e",
+        "size": [
+          936,
+          572
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-023",
+    "number": 23,
+    "sourcePage": 24,
+    "sourceEndPage": 24,
+    "question": "다음 사진이 어떤 장치인지, 사용목적을 서술하시오.",
+    "sourceAnswer": "명칭=사이트글라스\n사용목적=냉매 충전량의 적정여부를 확인하기 위해 응축기와 팽창밸브 사이 설치\n정상=녹색\n요주의=황록색\n수분 다량혼입=황색",
+    "images": [
+      "assets/hvac-practical/photo-20260917/023-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 24,
+        "object": "Im23",
+        "sha256": "34e5a3fc4d90c3355d633c06000a71bddf2bc577b9c6fec9d5aa0edc07514a70",
+        "size": [
+          869,
+          554
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-024",
+    "number": 24,
+    "sourcePage": 25,
+    "sourceEndPage": 25,
+    "question": "다음 장치도를 보고 명칭 및 설치목적을 서술하시오",
+    "sourceAnswer": "명칭= 액가스 열교환기\n설치목적=압축기 흡입가스를 과열시켜 압축기에서 액압축을 방지",
+    "images": [
+      "assets/hvac-practical/photo-20260917/024-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 25,
+        "object": "Im24",
+        "sha256": "4b7727341d66fc43bba168922257f77e0f8ef8ecfb2e0d0a412d7e0f429f67f0",
+        "size": [
+          919,
+          759
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-025",
+    "number": 25,
+    "sourcePage": 26,
+    "sourceEndPage": 26,
+    "question": "다음 장치를 보고 어떤 장치인지 명칭 및 설치목적을 서술하시오",
+    "sourceAnswer": "명칭= 액분리기\n설치목적=증발기에서 압축기에 설치하며, 압축기로 액이 넘어가는 것을 방지, 액압축을 방지\n한다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/025-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 26,
+        "object": "Im25",
+        "sha256": "79012c3ca29f73ee64fa7eb5be1def2445297ebcfeecfa3f7741b985e2f1d515",
+        "size": [
+          919,
+          403
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-026",
+    "number": 26,
+    "sourcePage": 27,
+    "sourceEndPage": 27,
+    "question": "다음 장치를 보고 명칭 사용목적을 서술하시오",
+    "sourceAnswer": "액체 및 가스흐름을 개방하거나 차단할 때 사용",
+    "images": [
+      "assets/hvac-practical/photo-20260917/026-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 27,
+        "object": "Im26",
+        "sha256": "094ca849e8e7a96efa057f8cc7eb4cfcd5f34826bd0e4bb81b508b97bcdb95fb",
+        "size": [
+          927,
+          522
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-027",
+    "number": 27,
+    "sourcePage": 28,
+    "sourceEndPage": 28,
+    "question": "다음 사진을 보고 어떤 장치의 명칭 사용목적을 서술하시오",
+    "sourceAnswer": "명칭=플렉시블관\n사용목적=압축기에서 나온 진동이 덕트로 전달되지 않도록 진동을 흡수하는 배관 부속품이\n다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/027-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 28,
+        "object": "Im27",
+        "sha256": "c0da11bfea5b18cceaa2337a5dc083bac079bf0d1c3d81123b301c48aece9747",
+        "size": [
+          866,
+          209
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-028",
+    "number": 28,
+    "sourcePage": 28,
+    "sourceEndPage": 29,
+    "question": "이 사진을 보고 장치의 명칭 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=로타록 밸브\n설치목적=고압가스를 고압차단 스위치로 보내주는 목적",
+    "images": [
+      "assets/hvac-practical/photo-20260917/028-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 29,
+        "object": "Im28",
+        "sha256": "86e4cb97a3875b5cc80781617ead2befec0e07c60cea7b843e65e6d5caed8da3",
+        "size": [
+          886,
+          674
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-029",
+    "number": 29,
+    "sourcePage": 29,
+    "sourceEndPage": 30,
+    "question": "안전 장치 중 하나이다, 어떤 안전장치인지, 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=파열판\n설치목적=압력용기나 냉매용기 상부에 설치하여 내부압력 상승시 스스로 파열되어 고압에\n의한 위해를 방지한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/029-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 30,
+        "object": "Im29",
+        "sha256": "560ccb906b6f9a96385869f431c7f20ac5fc7c77d5d5540b7e6dc0d8b44d6c07",
+        "size": [
+          806,
+          747
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-030",
+    "number": 30,
+    "sourcePage": 31,
+    "sourceEndPage": 31,
+    "question": "안전장치 중 명칭, 작동원리를 서술하시오.",
+    "sourceAnswer": "명칭=가용전\n특징=열에 의해 합금이 녹아 가스를 외부로 방출한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/030-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 31,
+        "object": "Im30",
+        "sha256": "7e2982c6cc6cfe57e9e16ac451e6276fd4a61c446937323744a13e7767cf5265",
+        "size": [
+          896,
+          297
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-031",
+    "number": 31,
+    "sourcePage": 31,
+    "sourceEndPage": 31,
+    "question": "다음 사진을 보고 어떤 장치의 명칭,작동원리를 서술하시오.",
+    "sourceAnswer": "명칭=유압차단스위치\n작동원리=유압이 일정 이하로 내려가면 압축기를 차단 시키기 위한 장치",
+    "images": [
+      "assets/hvac-practical/photo-20260917/031-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 31,
+        "object": "Im31",
+        "sha256": "62a4e61d9896a5096067e6a47e1d95486d032c83abcab879661862a39bf156f4",
+        "size": [
+          880,
+          320
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-032",
+    "number": 32,
+    "sourcePage": 32,
+    "sourceEndPage": 32,
+    "question": "증발기 출입구의 설치하는 장치이다. 명칭, 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=증발압력 조정밸브\n작동원리=증발압력이 일정 이하로 내려가는 것을 방지",
+    "images": [
+      "assets/hvac-practical/photo-20260917/032-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 32,
+        "object": "Im32",
+        "sha256": "f6d3f859dfaed0ef75f12ed283129a5bb478e5f97b54fbd95b4dd8eae4e252cd",
+        "size": [
+          919,
+          774
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-033",
+    "number": 33,
+    "sourcePage": 32,
+    "sourceEndPage": 33,
+    "question": "압축기 흡입관에 설치하는 장치이다 명칭,설치목적을 서술하시오",
+    "sourceAnswer": "명칭=흡입압력 조정밸브\n설치목적=흡입압력이 일정 이상으로 되었을 때 과부하로 인한 전동기\n소손을 방지한다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/033-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 33,
+        "object": "Im33",
+        "sha256": "42f41d4ab62c4d5fc0b84b9eb6b0aa6c45cae3620bec88b2742f6586652f0cc0",
+        "size": [
+          975,
+          950
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-034",
+    "number": 34,
+    "sourcePage": 34,
+    "sourceEndPage": 34,
+    "question": "응축기 냉각수 출구배관에 설치하는 장치이다. 명칭, 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=절수밸브\n설치목적=응축기 압력을 일정하게 유지하고, 냉각수를 절약하기 위해설치",
+    "images": [
+      "assets/hvac-practical/photo-20260917/034-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 34,
+        "object": "Im34",
+        "sha256": "541c789bf107009945d7d47d615f368ceb2cda02527e4be64faf320a2b95d777",
+        "size": [
+          927,
+          333
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-035",
+    "number": 35,
+    "sourcePage": 34,
+    "sourceEndPage": 34,
+    "question": "기구의 명칭이랑 측정방법 3가지지서술하시오",
+    "sourceAnswer": "명칭=버니어 갤리퍼스\n측정방법=외경,내경,높이",
+    "images": [
+      "assets/hvac-practical/photo-20260917/035-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 34,
+        "object": "Im35",
+        "sha256": "5f24b37265c2ca4aefff28c2579bc1a88ef8ce3dc7a1946c7617f338295b318f",
+        "size": [
+          893,
+          329
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-036",
+    "number": 36,
+    "sourcePage": 35,
+    "sourceEndPage": 35,
+    "question": "기구의 명칭이랑 측정방법 3가지지서술하시오",
+    "sourceAnswer": "명칭=마이크로미터\n측정방법;외경,내경,높이",
+    "images": [
+      "assets/hvac-practical/photo-20260917/036-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 35,
+        "object": "Im36",
+        "sha256": "6accb9afc63a2ea7b08df2a63d131f659f17824d085735e6a420d96ccc27be87",
+        "size": [
+          983,
+          560
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-037",
+    "number": 37,
+    "sourcePage": 35,
+    "sourceEndPage": 36,
+    "question": "다음 사진 중 명칭,사용목적을 서술하시오",
+    "sourceAnswer": "명칭;역화방지기\n사용목적=화염이 가스호스나 용기쪽으로 역류를 방지해 폭발사고를 방지",
+    "images": [
+      "assets/hvac-practical/photo-20260917/037-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 36,
+        "object": "Im37",
+        "sha256": "31dc9e7626db631c46f06454de6bbc779687e84a0b964d1033b0ab35bb855351",
+        "size": [
+          742,
+          661
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-038",
+    "number": 38,
+    "sourcePage": 36,
+    "sourceEndPage": 37,
+    "question": "다음 기구 명칭과 사용목적을 서술하시오.",
+    "sourceAnswer": "명칭=감압밸브\n사용목적=고압을 저압으로 낮추는\n밸브",
+    "images": [
+      "assets/hvac-practical/photo-20260917/038-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 37,
+        "object": "Im38",
+        "sha256": "8e814d3e6634a58746eeebf87dab9a83ad5a7aa0a4899e18c5b05ca19550d32f",
+        "size": [
+          671,
+          747
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-039",
+    "number": 39,
+    "sourcePage": 38,
+    "sourceEndPage": 38,
+    "question": "다음 사진 중 명칭과 사용목적을 서술하시오.",
+    "sourceAnswer": "명칭=유분리기\n사용목적=압축기에서 토출된 냉매가스 중에 혼합된 오일을 분리시키기 위해 설치한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/039-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 38,
+        "object": "Im39",
+        "sha256": "1d7d5250fb623a93387e3f82a9dc336381964ccb8bbb1c16d6dc84793d9b7087",
+        "size": [
+          991,
+          874
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-040",
+    "number": 40,
+    "sourcePage": 39,
+    "sourceEndPage": 39,
+    "question": "다음 사진 중 명칭과 설치목적을을서술하시오.",
+    "sourceAnswer": "명칭=코어쉘 필터 드라이어\n설치목적=냉동장치 내부 수분제거\n건조제=실리카겔,활성 알루미나겔",
+    "images": [
+      "assets/hvac-practical/photo-20260917/040-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 39,
+        "object": "Im40",
+        "sha256": "815d4cdd676088b3eea58be5736fc3bf4adc2da43c0d43a648e944f19c0dfdb2",
+        "size": [
+          852,
+          577
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-041",
+    "number": 41,
+    "sourcePage": 40,
+    "sourceEndPage": 40,
+    "question": "다음 사진 중 명칭과 설치목적을을서술하시오.",
+    "sourceAnswer": "명칭= 공기빼기 밸브\n설치목적=배관기기중 공기를 제거하여 유체 순환을 양호하기 위해",
+    "images": [
+      "assets/hvac-practical/photo-20260917/041-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 40,
+        "object": "Im41",
+        "sha256": "c2a93a0a494f72e2b3241dc2004a0478c54c770fffeafa29029f0efcac7bfb73",
+        "size": [
+          1075,
+          963
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-042",
+    "number": 42,
+    "sourcePage": 41,
+    "sourceEndPage": 41,
+    "question": "에어필터 종류 중 하나이다. 어떤 필터인지 명칭과 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=프리필터\n사용목적=실내에 청정한 공기를 공급하기 위한 필터",
+    "images": [
+      "assets/hvac-practical/photo-20260917/042-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 41,
+        "object": "Im42",
+        "sha256": "e22d2d9f9287feb7453d2a434d70be897aba1d86c7eb627721ac2cef9d5088af",
+        "size": [
+          902,
+          747
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-043",
+    "number": 43,
+    "sourcePage": 42,
+    "sourceEndPage": 42,
+    "question": "에어필터 종류 중 하나이다. 어떤 필터인지 명칭과 설치목적을 서술하시오",
+    "sourceAnswer": "명칭=미디엄 필터\n사용목적=실내에 청정도를 높이기 위한 중성필터",
+    "images": [
+      "assets/hvac-practical/photo-20260917/043-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 42,
+        "object": "Im43",
+        "sha256": "c59f97a387b60db6e47c5856157bebbe3d1605dd2658de62b37fe2700f9fa9ce",
+        "size": [
+          939,
+          938
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-044",
+    "number": 44,
+    "sourcePage": 43,
+    "sourceEndPage": 43,
+    "question": "다음 장치 중 명칭과 특징을 서술하시오.",
+    "sourceAnswer": "명칭=다익형 송풍기\n특징=날개가 많은 구조의 송풍기로 저압 대풍량의 특징을 가진다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/044-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 43,
+        "object": "Im44",
+        "sha256": "a9f4f35e2b454078675031f156f965c26a495de10ce2bb28d41f41ad8bfd7702",
+        "size": [
+          950,
+          427
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-045",
+    "number": 45,
+    "sourcePage": 43,
+    "sourceEndPage": 44,
+    "question": "다음 장치 중 명칭과 특징을 서술하시오.",
+    "sourceAnswer": "명칭=터보형 송풍기\n특징=고속운전에도 비교적 정숙한 운전이 가능하다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/045-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 44,
+        "object": "Im45",
+        "sha256": "25e2bc8385950db080388e3ab5e504b48fcb712c896545cbbe1ff6d181bda4e6",
+        "size": [
+          896,
+          699
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-046",
+    "number": 46,
+    "sourcePage": 44,
+    "sourceEndPage": 46,
+    "question": "다음 사진에 나와있는 밸브의 명칭과 사용목적을 서술하시오",
+    "sourceAnswer": "명칭= 스프링식 안전밸브\n사용목적=설비내의 압력이 설정압력 이상 상승하게 되면 내부의 유체를 신속하게 배출하여\n설정압력으로 되돌린다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/046-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 45,
+        "object": "Im46",
+        "sha256": "165854a19b99d1521d8f11020e3ea427bb8a475cd088df6878824f27610ef9ba",
+        "size": [
+          724,
+          1102
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-047",
+    "number": 47,
+    "sourcePage": 46,
+    "sourceEndPage": 46,
+    "question": "다음 사진을 보고 명칭을 쓰시오.",
+    "sourceAnswer": "90도 동관엘보",
+    "images": [
+      "assets/hvac-practical/photo-20260917/047-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 46,
+        "object": "Im47",
+        "sha256": "769ff1477918cfaee9721f3a533db2c421cb71fbfdf34f147a9d5823c8eea827",
+        "size": [
+          943,
+          820
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-048",
+    "number": 48,
+    "sourcePage": 47,
+    "sourceEndPage": 47,
+    "question": "증발기의 종류를 쓰시오",
+    "sourceAnswer": "만액식 증발기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/048-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 47,
+        "object": "Im48",
+        "sha256": "7def28eedd27c850cc70ce40fe3a435ebdcdf32c47bea3729aedaa5bf2b98f8f",
+        "size": [
+          3756,
+          2032
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-049",
+    "number": 49,
+    "sourcePage": 48,
+    "sourceEndPage": 48,
+    "question": "소형 냉동장치에 주로 사용하고, 증발기 입구에 팽창밸브 대신 사용하는 장치이다. 이 장치의 명칭과 사용목적을 쓰시오.",
+    "sourceAnswer": "명칭=모세관\n사용목적=응축기에서 나온 냉매를 교축,팽창시켜 저온,저압으로 낮춘다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/049-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 48,
+        "object": "Im49",
+        "sha256": "6f19419984a55c4abc201effde8b26ba67952b34588ed2a97587326c1c3f33fd",
+        "size": [
+          3103,
+          1112
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-050",
+    "number": 50,
+    "sourcePage": 48,
+    "sourceEndPage": 48,
+    "question": "압축기의 역할을 쓰시오.",
+    "sourceAnswer": "증발기에서 증발한 저온.저압의 냉매가스를 재사용하기 위하여 응축기에서 응축액화를 쉽게\n할 수 있도록 압력을 상승시켜 주며 냉매를 순환하여 주는 기기이다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-051",
+    "number": 51,
+    "sourcePage": 49,
+    "sourceEndPage": 49,
+    "question": "다음 그림의 명칭과 사용목적을 쓰시오.",
+    "sourceAnswer": "명칭=온도식팽창밸브\n사용목적=증발기 출구에 감온통을 설치하여 냉매가스의 과열도가 증가하면 열리고, 부하가\n감소하여 과열도가 작아지면 닫혀 냉매량을 제어한다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/051-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 49,
+        "object": "Im50",
+        "sha256": "9d205ce3c32d677ec1f961d1a95a89797a2e79c7125faf795024c4b6566822fd",
+        "size": [
+          512,
+          512
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-052",
+    "number": 52,
+    "sourcePage": 50,
+    "sourceEndPage": 50,
+    "question": "파이프 고정장치 중 배관을 밑에서 지지하는 서포트의 종류 3가지",
+    "sourceAnswer": "리지드서포트,파이프슈,스프링서포트",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-053",
+    "number": 53,
+    "sourcePage": 50,
+    "sourceEndPage": 50,
+    "question": "1.냉동장치에서 주로 사용하는 탄성식 압력계의 명칭을 쓰시오. 2.대기압 이상과 이하를 동시에 나타내는 압력계의 명칭을 쓰시오 3.대기압 이하를 측정하는 압력계",
+    "sourceAnswer": "1.부르동관 압력계\n2.컴파운드 압력계\n3.진공게이지",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-054",
+    "number": 54,
+    "sourcePage": 50,
+    "sourceEndPage": 50,
+    "question": "자연적인 냉동방법3가지",
+    "sourceAnswer": "1. 고체의 융해잠열 이용\n2. 드라이아이스의 승화잠열 이용\n3. 액체의 증발잠열 이용",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-055",
+    "number": 55,
+    "sourcePage": 51,
+    "sourceEndPage": 51,
+    "question": "자연 냉동법 단점 3가지",
+    "sourceAnswer": "1. 온도조절 어렵다\n2. 저온을 얻기 어렵다\n3. 비경제적이다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-056",
+    "number": 56,
+    "sourcePage": 52,
+    "sourceEndPage": 52,
+    "question": "다음 트랩의 명칭과 특징을 쓰시오",
+    "sourceAnswer": "명칭=버킷 트랩\n특징=버킷의 부력을 이용하여\n배수밸브를 자동으로 개폐\n응축수는 증기압력에 의해 배출",
+    "images": [
+      "assets/hvac-practical/photo-20260917/056-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 52,
+        "object": "Im51",
+        "sha256": "4671c56e2c7696d079ed95e49b19c5857f3e21b3c4097d41a420ee01dfee3a80",
+        "size": [
+          447,
+          447
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-057",
+    "number": 57,
+    "sourcePage": 53,
+    "sourceEndPage": 53,
+    "question": "다음 트랩의 명칭과 특징을 쓰시오",
+    "sourceAnswer": "명칭=디스크 트랩\n특징=증기Ü응축수의 압력 차, 속도차에 의한 디스크의 개폐",
+    "images": [
+      "assets/hvac-practical/photo-20260917/057-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 53,
+        "object": "Im52",
+        "sha256": "34dc8a26551bc1eb5620437418b459db842f2b0c506c68fefd58c035089af647",
+        "size": [
+          400,
+          400
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-058",
+    "number": 58,
+    "sourcePage": 54,
+    "sourceEndPage": 54,
+    "question": "다음 트랩의 명칭과 특징을 쓰시오",
+    "sourceAnswer": "명칭=플로트 트랩\n특징=응축수의 수위 변화에 따라 플로트가 상하로 움직이며 밸브를 자동 개폐한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/058-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 54,
+        "object": "Im53",
+        "sha256": "1f2874ed37ca2a29713f01a50ea10b93a8ecce382c62dddf231b712a5c9ed217",
+        "size": [
+          300,
+          300
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-059",
+    "number": 59,
+    "sourcePage": 55,
+    "sourceEndPage": 55,
+    "question": "냉동기의 기종이나 대소에 관계없이 성능을 비교하기 위하여 제안된 일정한 온도조건에 의 한 냉동사이클을기준 또는 표준 냉동사이클이다. 다음의 값을 쓰시오 1)증발온도=( )’c 2)응축온도=( )’c 3)팽창밸브 직전의 온도( )’c 4)압축기 흡입가스 상태( )’c의 건포화증기",
+    "sourceAnswer": "1)í15’c\n2)30’c\n3)25’c\n4)í15’c",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-060",
+    "number": 60,
+    "sourcePage": 55,
+    "sourceEndPage": 55,
+    "question": "몰리에르 선도의 사용목적 3가지를 쓰시오",
+    "sourceAnswer": "1)냉매의 상태변화\n2냉동장치의 압축일량,냉동효과,성적계수 계산\n3)압축기,응축기,증발기 용량 결정",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-061",
+    "number": 61,
+    "sourcePage": 56,
+    "sourceEndPage": 56,
+    "question": "냉동장치 중 팽창밸브 입구의 과냉각도가 증가하면 장치에 미치는 현상 3가지 쓰시오",
+    "sourceAnswer": "1)플래시 가스 발생량 감소\n2)냉동효과 증가\n3)성적계수 증가",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-062",
+    "number": 62,
+    "sourcePage": 56,
+    "sourceEndPage": 56,
+    "question": "암모니아 냉동장치에 수분 침입 시 장치에 미치는 영향 3가지",
+    "sourceAnswer": "1)장치를 부식시킨다.\n2)증발온도가 상승한다.\n3)에멀전 현상이 발생한다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-063",
+    "number": 63,
+    "sourcePage": 57,
+    "sourceEndPage": 57,
+    "question": "이음쇠의 명칭과 사용목적을 쓰시오",
+    "sourceAnswer": "명칭=플레어이음\n사용목적=동관이음,분해점검 및 수리",
+    "images": [
+      "assets/hvac-practical/photo-20260917/063-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 57,
+        "object": "Im54",
+        "sha256": "5274c37d5f01b7e671fcfca59e51da96bf466019723d46aef6365c5dffc671b5",
+        "size": [
+          450,
+          272
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-064",
+    "number": 64,
+    "sourcePage": 58,
+    "sourceEndPage": 58,
+    "question": "사진의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "명칭=붕사\n용도=가열면의 산화피막을 제거하고, 용가재의 유동성을 용이하게 한다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/064-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 58,
+        "object": "Im55",
+        "sha256": "e5199e19f2c5a9b7e456031abaa2207cbb31cd01204b11307a2dd644584dd007",
+        "size": [
+          340,
+          340
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-065",
+    "number": 65,
+    "sourcePage": 59,
+    "sourceEndPage": 59,
+    "question": "번호에 맞게 취출구를 쓰시오",
+    "sourceAnswer": "1.노즐\n2펑커루버\n3.슬롯\n4.유니버셜\n5.아네모스탯\n6.팬형\n7.그릴형\n8.도어그릴형",
+    "images": [
+      "assets/hvac-practical/photo-20260917/065-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 59,
+        "object": "Im56",
+        "sha256": "b20a3d0cf1a50d39ea58e4f1eb72a38639389c2faa4238f20ca64000be1e55a3",
+        "size": [
+          330,
+          231
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-066",
+    "number": 66,
+    "sourcePage": 60,
+    "sourceEndPage": 60,
+    "question": "다음 압축기의 명칭을 쓰시오",
+    "sourceAnswer": "원심식 압축기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/066-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 60,
+        "object": "Im57",
+        "sha256": "7c733db9917374a8fcb0eb94fb4356845cd8802f0c18a703afdb29168ea55eae",
+        "size": [
+          4028,
+          1239
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-067",
+    "number": 67,
+    "sourcePage": 60,
+    "sourceEndPage": 60,
+    "question": "다음 명칭과 용도를 쓰시오",
+    "sourceAnswer": "명칭=전자밸브\n용도=전자기력의 원리를 이용하여여제상,온도,액압축,냉매흐름을 조절한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/067-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 60,
+        "object": "Im58",
+        "sha256": "550a83f531a9c5d93fe697114b84ec4529a6aa20029d34acd02abede58d23d01",
+        "size": [
+          4028,
+          1563
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-068",
+    "number": 68,
+    "sourcePage": 61,
+    "sourceEndPage": 61,
+    "question": "다음 장치의 명칭 및 용도를 쓰시오",
+    "sourceAnswer": "명칭=버터플라이 밸브\n용도=유로개폐 및 유량 조절",
+    "images": [
+      "assets/hvac-practical/photo-20260917/068-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 61,
+        "object": "Im59",
+        "sha256": "ac2485ca49ac82e1d6116c0f8e8c54511c958cae96e9e586cda0ad9d911e1d07",
+        "size": [
+          3841,
+          1113
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-069",
+    "number": 69,
+    "sourcePage": 61,
+    "sourceEndPage": 61,
+    "question": "공구의 명칭과 사용용도를 쓰시오",
+    "sourceAnswer": "명칭=리머\n사용용도=관 내 거스러미 제거",
+    "images": [
+      "assets/hvac-practical/photo-20260917/069-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 61,
+        "object": "Im60",
+        "sha256": "d5c6a51d3d2582c1fc6f715e3d61b8308dee63684cc1eb4bc9eee465ec0464be",
+        "size": [
+          3798,
+          1127
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-070",
+    "number": 70,
+    "sourcePage": 62,
+    "sourceEndPage": 62,
+    "question": "다음 사진의 명칭을 쓰시오",
+    "sourceAnswer": "명칭=전자개폐기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/070-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 62,
+        "object": "Im61",
+        "sha256": "f251d8c4bc4b9e5d106b77e9ef5369f3fe633ed309acd1af16fcc001bbf2f226",
+        "size": [
+          315,
+          379
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-071",
+    "number": 71,
+    "sourcePage": 62,
+    "sourceEndPage": 63,
+    "question": "다음 사진의 명칭을 쓰시오",
+    "sourceAnswer": "명칭=전자접촉기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/071-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 63,
+        "object": "Im62",
+        "sha256": "c785a6a0167709e1074dd685fb33bda224583ec981ae89540b9a9eeada192ba6",
+        "size": [
+          1829,
+          2186
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-072",
+    "number": 72,
+    "sourcePage": 64,
+    "sourceEndPage": 64,
+    "question": "다음 사진의 가,나의 명칭을 쓰시오",
+    "sourceAnswer": "가)8핀 릴레이\n나)열동형과부하계전기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/072-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 64,
+        "object": "Im63",
+        "sha256": "a5ccca5e53cf4cd546ef99e04617df9149ccca510f8825dc378b8d84881a0417",
+        "size": [
+          3124,
+          1798
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-073",
+    "number": 73,
+    "sourcePage": 64,
+    "sourceEndPage": 64,
+    "question": "다음 사진의 명칭을 쓰시오",
+    "sourceAnswer": "명칭=스크류 압축기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/073-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 64,
+        "object": "Im64",
+        "sha256": "6b097f1929b4e8c10139e7e5be158396e29920085aaae9b2a00a4d0b9f720b7f",
+        "size": [
+          3902,
+          976
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-074",
+    "number": 74,
+    "sourcePage": 65,
+    "sourceEndPage": 65,
+    "question": "덕트의 이음 방법과 설치 목적",
+    "sourceAnswer": "캔버스이음\n설치목적=송풍기의 진동이 덕트에\n전달이 되지 않도록 그 사이에 천소재를 만들어 설치함",
+    "images": [
+      "assets/hvac-practical/photo-20260917/074-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 65,
+        "object": "Im65",
+        "sha256": "a1c53f5cda769b61c2e7c4a7500f8d10dd8df88bda63d9086a64ce32ffe1a4c3",
+        "size": [
+          3540,
+          1272
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-075",
+    "number": 75,
+    "sourcePage": 66,
+    "sourceEndPage": 66,
+    "question": "다음 장치는 냉각수를 사용처에 알맞게 분배하여 공급하기 위해 설치하는 헤더이다. (가)에 표시된 장치의 역할을 쓰시오",
+    "sourceAnswer": "헤드 내부의 이물질 및 드레인을\n배출시키기 위해",
+    "images": [
+      "assets/hvac-practical/photo-20260917/075-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 66,
+        "object": "Im66",
+        "sha256": "75f1606919e46f7307e09a02b9c00a5e929095c949fc0ae083eacbdde4edb969",
+        "size": [
+          3282,
+          1299
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-076",
+    "number": 76,
+    "sourcePage": 67,
+    "sourceEndPage": 67,
+    "question": "다음 온도자동식 팽창밸브의 감온통 설치위치와 용도를 쓰시오.",
+    "sourceAnswer": "설치위치=증발기 출구\n용도=증발기 출구 과열도를 감지하여 냉매유량을 조절한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/076-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 67,
+        "object": "Im67",
+        "sha256": "32b8fa96547487d38c2574c1e2ca7daf36db8a10097c88901c8892b2dda3875c",
+        "size": [
+          277,
+          235
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-077",
+    "number": 77,
+    "sourcePage": 67,
+    "sourceEndPage": 68,
+    "question": "다음 사진에 명칭과 용도를 쓰시오",
+    "sourceAnswer": "명칭=계기용 변류기\n용도=1차측 대전류를 소전류로 변환하는 장치",
+    "images": [
+      "assets/hvac-practical/photo-20260917/077-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 68,
+        "object": "Im68",
+        "sha256": "55fa5a1842e05d1f2995914b83f03ad6ba2deba2b162d4619c663a0122c22b9a",
+        "size": [
+          2390,
+          1765
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-078",
+    "number": 78,
+    "sourcePage": 69,
+    "sourceEndPage": 69,
+    "question": "부품의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "체크밸브\n용도=유체의 방향을 한쪽으로만 흘러가게한다. 역류방지",
+    "images": [
+      "assets/hvac-practical/photo-20260917/078-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 69,
+        "object": "Im69",
+        "sha256": "c32ea4b133281a3031adae46d5b68bdbb109c0d2ea6b3d58feb26a2b3d455fb3",
+        "size": [
+          3881,
+          1369
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-079",
+    "number": 79,
+    "sourcePage": 70,
+    "sourceEndPage": 70,
+    "question": "다음 사진의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "수액기\n용도=응축기와 팽창밸브 사이에 설치하고 냉매를 일시저장 하거나 불응축가스를 제거하여\n냉매만\n팽창밸브로 보내주는 역할",
+    "images": [
+      "assets/hvac-practical/photo-20260917/079-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 70,
+        "object": "Im70",
+        "sha256": "ee18c56dbd844f09b93ee6d81cfe82d102697e7aef0548c118aa9a7d34850de0",
+        "size": [
+          3838,
+          1689
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-080",
+    "number": 80,
+    "sourcePage": 70,
+    "sourceEndPage": 71,
+    "question": "부품의 명칭을 쓰시오",
+    "sourceAnswer": "공기빼기밸브",
+    "images": [
+      "assets/hvac-practical/photo-20260917/080-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 71,
+        "object": "Im71",
+        "sha256": "86a88a7fcf69946c492655e7b1ce86ef2b31337557c36efaa5a04af140b54f22",
+        "size": [
+          1303,
+          1434
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-081",
+    "number": 81,
+    "sourcePage": 72,
+    "sourceEndPage": 72,
+    "question": "다음 부품의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "릴레이(11핀),계전기\n용도=전자기력을 이용하여 입력신호에 따라 전기회로를 on-off시킨다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/081-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 72,
+        "object": "Im72",
+        "sha256": "0c78048c0d38025de20e1898e4f4559050d94b90107769bdc541e631afeb216e",
+        "size": [
+          3611,
+          1319
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-082",
+    "number": 82,
+    "sourcePage": 73,
+    "sourceEndPage": 73,
+    "question": "내부에 설치된 장치를 보기에서 모두 골라쓰시오",
+    "sourceAnswer": "명칭=수냉식콘덴싱유닛\n압축기,응축기",
+    "images": [
+      "assets/hvac-practical/photo-20260917/082-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 73,
+        "object": "Im73",
+        "sha256": "c88c2c4c159470bbecccac2ba437e21a3c70e2dbdb4efe706254f30381f0c7b8",
+        "size": [
+          3863,
+          1819
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-083",
+    "number": 83,
+    "sourcePage": 74,
+    "sourceEndPage": 74,
+    "question": "부품의 명칭과 작동원리를 쓰시오",
+    "sourceAnswer": "버킷트랩\n원리=버킷의 부력을 이용하여 응축수는 배출하고 증기는 누설되지 않도록 하는 증기트랩이\n다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/083-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 74,
+        "object": "Im74",
+        "sha256": "dc0c10640ef51851773ebe347f0044c933689855bb42f4bcc7eadd42e0012e11",
+        "size": [
+          3445,
+          1160
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-084",
+    "number": 84,
+    "sourcePage": 74,
+    "sourceEndPage": 74,
+    "question": "다음 취출구의 명칭을 쓰시오",
+    "sourceAnswer": "라인형",
+    "images": [
+      "assets/hvac-practical/photo-20260917/084-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 74,
+        "object": "Im75",
+        "sha256": "a2f6f2b0c8038b88de1f1df337c2aa7e0fd73841d4b70f5c55aec8b32445e37c",
+        "size": [
+          4000,
+          691
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-085",
+    "number": 85,
+    "sourcePage": 75,
+    "sourceEndPage": 75,
+    "question": "장치의 명칭을 쓰시오",
+    "sourceAnswer": "유니트쿨러(강제대류형 핀코일식 증발기)",
+    "images": [
+      "assets/hvac-practical/photo-20260917/085-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 75,
+        "object": "Im76",
+        "sha256": "aca4c49b72292edbc4a21179b480a12f1bc166417beeb06852f8b9fe7749e596",
+        "size": [
+          3579,
+          870
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-086",
+    "number": 86,
+    "sourcePage": 75,
+    "sourceEndPage": 75,
+    "question": "다음 장치의 명칭과 역할을 쓰시오",
+    "sourceAnswer": "냉매회수장치\n역할=냉매회수작업",
+    "images": [
+      "assets/hvac-practical/photo-20260917/086-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 75,
+        "object": "Im77",
+        "sha256": "834f113c12470110b5a73e8ba50e8229f192ba27c9d7695e7b1373800c1bf698",
+        "size": [
+          3103,
+          1520
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-087",
+    "number": 87,
+    "sourcePage": 76,
+    "sourceEndPage": 76,
+    "question": "다음 사진의 명칭과 작동원리를 쓰시오.",
+    "sourceAnswer": "방화댐퍼(루버형)\n원리=화재발생 시 퓨즈가 녹아\n덕트를 차단 시키고 화염이 확산하는 것을 방지",
+    "images": [
+      "assets/hvac-practical/photo-20260917/087-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 76,
+        "object": "Im78",
+        "sha256": "9ba91d64a0716458fe0ffa105db8227ed22d0dc67a7e1b2d53f18e6894d9970b",
+        "size": [
+          1553,
+          1241
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-088",
+    "number": 88,
+    "sourcePage": 77,
+    "sourceEndPage": 77,
+    "question": "다음 사진에 나오는 (가)명칭과 용도를 쓰시오",
+    "sourceAnswer": "응축기\n용도=압축기에서 토출된 고온Ü고압의 기체냉매를 외부의 공기나 냉각수를 이용해 응축액화\n시킨다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/088-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 77,
+        "object": "Im79",
+        "sha256": "a052457dead37c686a92b87d8ec7e16dae184d1c1b57e0cbca3cfa136287bcbd",
+        "size": [
+          3640,
+          1074
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-089",
+    "number": 89,
+    "sourcePage": 77,
+    "sourceEndPage": 77,
+    "question": "사진의 명칭과 역할을 쓰시오",
+    "sourceAnswer": "추기회수장치\n역할=(증발기)장치 내부를 진공시킨다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/089-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 77,
+        "object": "Im80",
+        "sha256": "ac9207ab900e526d9cbba0bf578f0c9851a8f5d9531b8f30ece1a8bbdddefa29",
+        "size": [
+          3853,
+          1030
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-090",
+    "number": 90,
+    "sourcePage": 78,
+    "sourceEndPage": 78,
+    "question": "다음 사진의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "브라켓밸브\n용도=냉매 충전 및 회수 작업 시 사용함",
+    "images": [
+      "assets/hvac-practical/photo-20260917/090-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 78,
+        "object": "Im81",
+        "sha256": "6a9d00afdce67041608b6783581dd465d82d0febdb14beb5df6a85848bb5eea0",
+        "size": [
+          1914,
+          1876
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-091",
+    "number": 91,
+    "sourcePage": 79,
+    "sourceEndPage": 79,
+    "question": "다음 사진의 명칭과 설치위치를 쓰시오",
+    "sourceAnswer": "코어쉘 필터 드라이어\n위치=응축기와 팽창밸브 사이",
+    "images": [
+      "assets/hvac-practical/photo-20260917/091-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 79,
+        "object": "Im82",
+        "sha256": "aff9961a4d704bd6cab8b321a79a24ec0836ee9d33bef0f4895c6429a8c32b22",
+        "size": [
+          3740,
+          1293
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-092",
+    "number": 92,
+    "sourcePage": 79,
+    "sourceEndPage": 79,
+    "question": "다음 장치의 명칭과 용도를 쓰시오",
+    "sourceAnswer": "모세관\n용도=냉매순환량이 일정한 소형장치에 적합하고 교축작용을 한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/092-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 79,
+        "object": "Im49",
+        "sha256": "6f19419984a55c4abc201effde8b26ba67952b34588ed2a97587326c1c3f33fd",
+        "size": [
+          3103,
+          1112
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-093",
+    "number": 93,
+    "sourcePage": 80,
+    "sourceEndPage": 80,
+    "question": "열동형과부하계전기의 용도를 쓰시오",
+    "sourceAnswer": "전동기 등의 전기기기가 과부하로인해 과열됐을 경우 이를 감지해 전원을 차단하여 기기를\n보호한다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-094",
+    "number": 94,
+    "sourcePage": 80,
+    "sourceEndPage": 80,
+    "question": "전자접촉기의 용도를 쓰시오",
+    "sourceAnswer": "전기적 신호로 고전류 회로를 안전하게 켜고 끌 수 있는 스위치이다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-095",
+    "number": 95,
+    "sourcePage": 80,
+    "sourceEndPage": 80,
+    "question": "열동형과부하계전기 용도를 쓰시오",
+    "sourceAnswer": "전류가 위험수준 이상일 때 자동으로 회로를 차단해 전기기를 보호하는 장치이다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-096",
+    "number": 96,
+    "sourcePage": 81,
+    "sourceEndPage": 81,
+    "question": "다음 사진의 명칭과 특징을 쓰시오",
+    "sourceAnswer": "명칭=터보형송풍기\n특징=회전 방향의 굽은 후향날개로 효율이 높고, 고속에서도 비교적\n정속한 운전이 가능",
+    "images": [
+      "assets/hvac-practical/photo-20260917/096-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 81,
+        "object": "Im83",
+        "sha256": "8bf232d8eb03e6ac92e6c9c71e8caff398cc3b8998c8039ba2b8608e70b3a25f",
+        "size": [
+          340,
+          340
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-097",
+    "number": 97,
+    "sourcePage": 82,
+    "sourceEndPage": 82,
+    "question": "다음 사진의 명칭과 특징을 쓰시오",
+    "sourceAnswer": "축류형 송풍기\n프로펠러형으로 기체가 축방향으로 송풍되며 낮은 풍압으로 많은 풍량을 송풍하는 데 적합\n하다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/097-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 82,
+        "object": "Im84",
+        "sha256": "cfa91c720011e6879eb2b031d7f79c4fb60da26c8e19f164ceb55fdd165d11b5",
+        "size": [
+          340,
+          340
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-098",
+    "number": 98,
+    "sourcePage": 82,
+    "sourceEndPage": 82,
+    "question": "프레온 냉동장치에서 압축기 크랭크 케이스 내 오일 중에 프레온 냉매가 혼입되면서 발생하 는 현상을 쓰고, 이를 방지하기 위하여 설치하는 것은? 1)이 현상을 무엇이라 하는가? 2)이 현상을 방지하기 위하여 설치하는 것은?",
+    "sourceAnswer": "1. 오일포밍\n2.크랭크 케이스에 오일히터를 설치한다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-099",
+    "number": 99,
+    "sourcePage": 83,
+    "sourceEndPage": 83,
+    "question": "이 냉매는 2개 이상의 프레온 냉매를 혼합한 것으로 각각 개별적인 성격을 띠며, 등압의 증발 및 응축과정을 겪을 때 조성비가 변하고 온도가 증가, 감소되는 온도구배가 있다 1)이 냉매를 무슨 냉매라 하는가? 2)냉매 충전 시 거꾸로 하여 액체상태로 충전하는 이유는?",
+    "sourceAnswer": "1. 비공비 혼합냉매\n2. 기체로 충전 시 냉매의 조성비가 변하게 되므로",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-100",
+    "number": 100,
+    "sourcePage": 83,
+    "sourceEndPage": 83,
+    "question": "브라인의 구비조건 5가지 쓰시오",
+    "sourceAnswer": "1. 점도가 낮을 것\n2. 부식성이 없을 것\n3. 비열이 크고 전열이 양호할 것\n4. 응고점이 낮을 것\n5. 화학적으로 안정할 것",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-101",
+    "number": 101,
+    "sourcePage": 83,
+    "sourceEndPage": 83,
+    "question": "브라인의 금속 부식 방지방법",
+    "sourceAnswer": "1.공기와 접촉하지 않는다.\n2.방식 아연판을 사용한다.\n3.방청약품 사용한다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-102",
+    "number": 102,
+    "sourcePage": 84,
+    "sourceEndPage": 84,
+    "question": "프레온 냉매의 누설검사법 3가지를 쓰시오.",
+    "sourceAnswer": "1. 비눗물로 검사한다\n2.헬라이드 토치의 불꽃색의 변화로 검사한다.\n3.할로겐 전자 누설 탐지기를 사용한다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-103",
+    "number": 103,
+    "sourcePage": 84,
+    "sourceEndPage": 84,
+    "question": "팽창탱크의 설치 목적을 쓰시오",
+    "sourceAnswer": "1. 온수의 팽창에 따른 배관의 파손을 방지한다.\n2.보일러나 배관에 물을 보충한다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-104",
+    "number": 104,
+    "sourcePage": 84,
+    "sourceEndPage": 84,
+    "question": "바이팩스 팩터란? 이 값이 작아지는 경우를 3가지쓰시오",
+    "sourceAnswer": "1. 냉수코일에서 공기가 통과할 때 코일에 접촉하지 않고 그대로 통과하는 공기의 비율\n2)코일이 열수가 많을 때\n2)전열면적이 클 때\n2)코일 간격이 작을 때",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-105",
+    "number": 105,
+    "sourcePage": 85,
+    "sourceEndPage": 85,
+    "question": "기존의 염소ci를 포함한 프레온 냉매는 odp와 gwp가 높아 규제대상이다. 1)ODP는 무엇인가? 2)GWP는 무엇인가? 3)비공비 혼합냉매 2가지를 쓰시오.",
+    "sourceAnswer": "1.오존층 파괴지수\n2.지구 온난화지수\n3.R404A, R407C, R410A",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-106",
+    "number": 106,
+    "sourcePage": 85,
+    "sourceEndPage": 85,
+    "question": "프레온 냉동장치에 수분이 혼입되면 발생할 수 있는 영향 3가지를 쓰시오",
+    "sourceAnswer": "1. 산을 생성하여 장치에서 부식이 발생한다.\n2. 팽창밸브가 동결 폐쇄된다.\n3. 동부착 현상이 발생된다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-107",
+    "number": 107,
+    "sourcePage": 86,
+    "sourceEndPage": 86,
+    "question": "그림의 명칭과 기능을 쓰시오",
+    "sourceAnswer": "4방밸브\n히트펌프 냉동장치의 사이클 흐름을 바꾸어 냉난방 전환에 사용된다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/107-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 86,
+        "object": "Im85",
+        "sha256": "6233806f6bc881755d48591fd771fe9f388995ea15396bf7d7ba2a3f12a68eb9",
+        "size": [
+          340,
+          340
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-108",
+    "number": 108,
+    "sourcePage": 86,
+    "sourceEndPage": 86,
+    "question": "고저압차단스위치의 기능을 쓰시오",
+    "sourceAnswer": "냉동기의 고압이 설정값\n이상이 되거나 저압이\n소정압력 이하로 내려간 경우 두\n압력의 차압에 의해 전기회로가 차단되어 압축기를 정지시킨다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-109",
+    "number": 109,
+    "sourcePage": 87,
+    "sourceEndPage": 87,
+    "question": "부품의 명칭과 역할을 쓰시오.",
+    "sourceAnswer": "조광형 누름버튼 스위치\n회로에 연결된 전기접점을 수동으로연결 또는 해제하는 역할을 하며며조건에 따라 램프를\n점등 및 소등시킨다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/109-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 87,
+        "object": "Im86",
+        "sha256": "17813a7ff03771096b935867e87db0de8b2fc50efda47cbddbd663f5b5dd9e05",
+        "size": [
+          1919,
+          1816
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-110",
+    "number": 110,
+    "sourcePage": 88,
+    "sourceEndPage": 88,
+    "question": "댐퍼의 명칭과 작동원리를 쓰시오",
+    "sourceAnswer": "릴리프댐퍼\n실내의 정압을 유지하고 인접실과의 차압을 유지함으로써 외부의 오염된 공기가 청정실로\n역류되는 것을 방지한다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/110-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 88,
+        "object": "Im87",
+        "sha256": "a4a693cfb2d738b65c9f9da1128ff411ff59ec5ed14f3a3689a9ab0612e28be8",
+        "size": [
+          3722,
+          972
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-111",
+    "number": 111,
+    "sourcePage": 89,
+    "sourceEndPage": 89,
+    "question": "장치의 명칭과 기능을 쓰시오",
+    "sourceAnswer": "냉매용 볼밸브\n공기조화기 및 냉동장치에 설치하여 밸브 스핀들을 조작해 유로를 개폐할 수 있으며 가스퍼\n지,진공작업,냉매충전과 같은 서비스밸브 역할로도 사용할 수 있다.",
+    "images": [
+      "assets/hvac-practical/photo-20260917/111-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 89,
+        "object": "Im88",
+        "sha256": "35e69759fef28d2f0bd715b6ac0fd07dac9517b7eb7c3ac03ec658ecd1152b07",
+        "size": [
+          4007,
+          1591
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-112",
+    "number": 112,
+    "sourcePage": 89,
+    "sourceEndPage": 90,
+    "question": "명칭과 용도를 쓰시오",
+    "sourceAnswer": "배선용 차단기\n과전류를 차단하고 기기를 보호한다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/112-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 90,
+        "object": "Im89",
+        "sha256": "dcaae5f0ecbcf8e4b9b0a269c17107ad2d6ad22bd7be137a3a0eb485df7066a3",
+        "size": [
+          1179,
+          945
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-113",
+    "number": 113,
+    "sourcePage": 90,
+    "sourceEndPage": 90,
+    "question": "2위치 밸브의 작동원리를 쓰시오",
+    "sourceAnswer": "전자기유도작용에 의해 밸브를 상하로 온í오프 시킨다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-114",
+    "number": 114,
+    "sourcePage": 91,
+    "sourceEndPage": 91,
+    "question": "반 밀폐형 왕복동식 압축기 특징",
+    "sourceAnswer": "전동기와 압축기가 한 하우징 내에 있으며 외부와 밀폐되어 있고\n밀폐형 왕복동식 압축기와 달리 분해 점검 수리가 가능하다",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-115",
+    "number": 115,
+    "sourcePage": 91,
+    "sourceEndPage": 91,
+    "question": "공조방식 명칭과 특징을 쓰시오",
+    "sourceAnswer": "팬코일 유닛 방식\n중앙에서 냉온수를 생산하여 각 실에 설치된 팬코일유닛으로 보내어 공기를 냉난방하는 방\n식",
+    "images": [
+      "assets/hvac-practical/photo-20260917/115-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 91,
+        "object": "Im90",
+        "sha256": "c5dbf0b6ee8329396500738705c22bad882daa3d163d00925eeb904714d508f9",
+        "size": [
+          3685,
+          1717
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-116",
+    "number": 116,
+    "sourcePage": 92,
+    "sourceEndPage": 92,
+    "question": "공조방식 명칭과 특징을 쓰시오",
+    "sourceAnswer": "유인 유닛방식\n중앙 공조기로부터 공조된\n1차 공기의 유인작용으로 실내 공기를 흡입하여 냉난방하는 방식",
+    "images": [
+      "assets/hvac-practical/photo-20260917/116-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 92,
+        "object": "Im91",
+        "sha256": "c4d52529623cbfae606f960b96334bf14822384762f446ecedcf401bf2916bf2",
+        "size": [
+          3553,
+          1461
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-117",
+    "number": 117,
+    "sourcePage": 92,
+    "sourceEndPage": 92,
+    "question": "복사 냉난방 방식의 개념을 쓰시오",
+    "sourceAnswer": "천장, 바닥, 벽 등에 설치된 패널을 통해 복사열로 냉난방하는 방식",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-118",
+    "number": 118,
+    "sourcePage": 93,
+    "sourceEndPage": 93,
+    "question": "덕트에서 발생하는 소음을 방지하기 위한 대책 3가지를 쓰시오.",
+    "sourceAnswer": "1.덕트의 도중에 흡음재 내장\n2.송풍기 출구에 플리넘 챔버 부착\n3.댐퍼나 취출구에 흡음재 부착",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-119",
+    "number": 119,
+    "sourcePage": 93,
+    "sourceEndPage": 93,
+    "question": "캐비테이션 현상과 방지대책 3가지쓰시오",
+    "sourceAnswer": "흡입양정이 크거나 회전수가 고속일 경우에 흡입관의 마찰저항 증가에 따른 압력강하로 수\n중에 함유되고 있던 기체가 분리되어 작은 기포가다수 발생하는 현상\n방지대책\n1.흡입관경을 크게 하고 길이를 짧게한다.\n2.양흡입 펌프를 사용한다.\n3.펌프의 회전수를 낮추어 속도를 작게한다.",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-120",
+    "number": 120,
+    "sourcePage": 94,
+    "sourceEndPage": 94,
+    "question": "공구의 특징을 쓰시오. 1.리머 2.플레어링 툴 3.사이징툴 4.익스팬더(확관기) 5.벤더 6.티뽑기",
+    "sourceAnswer": "1.관 내 거스러미를 제거한다.\n2.동관의 끝을 나팔 모양으로 만들어 압축 접합하기 위한 공구\n3.동관을 끝을 원형으로 정형하기 위한 공구\n4.동관 끝을 확관하고자 할 때 사용\n5.동관을 구부릴 때 사용\n6.동관 직관에서 분기관을 성형할 때 사용",
+    "images": [],
+    "imageSources": [],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-121",
+    "number": 121,
+    "sourcePage": 94,
+    "sourceEndPage": 95,
+    "question": "배관이음재료의 명칭과 사용목적을 쓰시오",
+    "sourceAnswer": "플랜지이음\n분해조립 및 수리가 용이하며\n65A이상의 대구경 배관을 직선이음할 때 사용된다",
+    "images": [
+      "assets/hvac-practical/photo-20260917/121-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 95,
+        "object": "Im92",
+        "sha256": "ea2dc680d446152a5d8cc0360f6f3223fbd871d8c3d20427c5cece0999c1f655",
+        "size": [
+          2712,
+          1769
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-122",
+    "number": 122,
+    "sourcePage": 96,
+    "sourceEndPage": 96,
+    "question": "장치의 명칭 및 특징을 쓰시오",
+    "sourceAnswer": "오일레귤레이터\n압축기로 적절한 양의 오일을 자동으로 공급하는 장치",
+    "images": [
+      "assets/hvac-practical/photo-20260917/122-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 96,
+        "object": "Im93",
+        "sha256": "095a99dbc40fdf483c6c8cd9c857465c6029b6abd0182707532a43e19caca97e",
+        "size": [
+          2528,
+          1241
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  },
+  {
+    "id": "hvac-practical-photo-20260917-123",
+    "number": 123,
+    "sourcePage": 97,
+    "sourceEndPage": 97,
+    "question": "단수릴레이의 대한 설치목적과 종류3가지를 쓰시오",
+    "sourceAnswer": "설치목적=브라인이나 냉수의 흐름을 감지하여 단단수를 방지\n종류=단압식,차압식,수류식",
+    "images": [
+      "assets/hvac-practical/photo-20260917/123-1.jpg"
+    ],
+    "imageSources": [
+      {
+        "page": 97,
+        "object": "Im94",
+        "sha256": "9f0396a4fe5503863a3cdc23142df0f897122356893a192edfcb746a8f3ea6cf",
+        "size": [
+          3214,
+          1574
+        ]
+      }
+    ],
+    "sourceFile": "모두CBT_시험지_20260917_0706.pdf",
+    "sourceSha256": "4f333452187727b372dd48a6e128a0045a425fffc4135e52fb0e9fe2cd5419d2"
+  }
+]

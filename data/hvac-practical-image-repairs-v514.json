@@ -1,0 +1,531 @@
+[
+  {
+    "index": 108,
+    "id": "hvac-practical-restored-2024-2-01",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 623,
+    "crop": [
+      170,
+      90,
+      1905,
+      1030
+    ],
+    "note": "원본623초에서 주회로·제어회로와 우측 세 동작 설명의 마지막 문장까지 복구. 손/강사 가림 없음."
+  },
+  {
+    "index": 133,
+    "id": "hvac-practical-restored-2024-3-03",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-1-reviewed-v514.png",
+    "round": "2024-3",
+    "timestamp": 1173,
+    "crop": [
+      245,
+      85,
+      1720,
+      525
+    ],
+    "note": "원본1173초에서 환기 도면 두 개의 급기/배기 장치와 자연급기·자연배기 라벨 전체 복구. 정답 명칭 기입 전 장면. 오른쪽 빈 여백에 얼굴 일부가 남음."
+  },
+  {
+    "index": 163,
+    "id": "hvac-practical-restored-2025-2-02",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-1-reviewed-v514.png",
+    "round": "2025-2",
+    "timestamp": 819,
+    "crop": [
+      230,
+      100,
+      1790,
+      1060
+    ],
+    "note": "원본819초에서 우측 T 접점·Ry2/GL·하단 공통선 전체 복구. on/off 해설이 없는 문제용 장면. 오른쪽 빈 여백에 어깨 일부가 남음."
+  },
+  {
+    "index": 182,
+    "id": "hvac-practical-restored-2025-3-05",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-1-reviewed-v514.png",
+    "round": "2025-3",
+    "timestamp": 1800,
+    "crop": [
+      190,
+      105,
+      1710,
+      785
+    ],
+    "note": "원본1800초에서 공조 계통도와 완성 습공기선도의 OA/RA/MA/SA 및 t/x축 전체 복구."
+  },
+  {
+    "index": 96,
+    "id": "hvac-practical-restored-2024-1-02",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1-reviewed-v514.png",
+    "round": "2024-1",
+    "timestamp": 860,
+    "crop": [
+      120,
+      80,
+      940,
+      1020
+    ],
+    "note": "원본860초에서 공조기1~5 위치와 해설 기입 전 습공기선도 축 전체 복구."
+  },
+  {
+    "index": 97,
+    "id": "hvac-practical-restored-2024-1-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-1-reviewed-v514.png",
+    "round": "2024-1",
+    "timestamp": 1300,
+    "crop": [
+      120,
+      80,
+      1790,
+      1020
+    ],
+    "note": "원본1300초에서 공조기와 좌우 완성 습공기선도 축·라벨 전체 복구. 오른쪽 여백에 안경 일부가 남지만 도면과 겹치지 않음."
+  },
+  {
+    "index": 148,
+    "id": "hvac-practical-restored-2025-1-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-answer-1-reviewed-v514.png",
+    "round": "2025-1",
+    "timestamp": 895,
+    "crop": [
+      50,
+      110,
+      1690,
+      1020
+    ],
+    "note": "원본895초에서 EOCR·BZ·MC·T·GL·RL·WL 및 하단 공통선 전체 복구. WL 오른쪽 여백에 펜/손 일부가 남지만 코일·접점은 가리지 않음."
+  },
+  {
+    "index": 158,
+    "id": "hvac-practical-restored-2025-1-09",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-answer-1-reviewed-v514.png",
+    "round": "2025-1",
+    "timestamp": 3525,
+    "crop": [
+      215,
+      100,
+      1610,
+      925
+    ],
+    "note": "원본3525초에서 증발기·액분리기·압축기와 전체 배관 복구. 유체 흐름 풀이가 있으므로 답안용만 교체. 문제용은 별도 남음."
+  },
+  {
+    "index": 176,
+    "id": "hvac-practical-restored-2025-3-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-1-reviewed-v514.png",
+    "round": "2025-3",
+    "timestamp": 50,
+    "crop": [
+      200,
+      85,
+      1260,
+      1000
+    ],
+    "note": "원본50초에서 답안 기입 전 R/T 전원·PB1/PB2·X1/X2·하단 귀로 전체 복구."
+  },
+  {
+    "index": 177,
+    "id": "hvac-practical-restored-2025-3-01",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-answer-1-reviewed-v514.png",
+    "round": "2025-3",
+    "timestamp": 420,
+    "crop": [
+      200,
+      85,
+      1260,
+      1000
+    ],
+    "note": "원본420초에서 R/T 전원·PB1/PB2·X1/X2·하단 귀로와 답안 판서 전체 복구. 오른쪽 아래 여백의 어깨는 회로와 겹치지 않음."
+  },
+  {
+    "index": 178,
+    "id": "hvac-practical-restored-2025-3-02",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-1-reviewed-v514.png",
+    "round": "2025-3",
+    "timestamp": 600,
+    "crop": [
+      240,
+      190,
+      1600,
+      745
+    ],
+    "note": "원본600초에서 단자1~8·AC220V·동작표 마지막 열까지 복구. 정답 명칭 기입 전이며 표 아래 보조 설명 여백에 손 일부가 남음."
+  },
+  {
+    "index": 179,
+    "id": "hvac-practical-restored-2025-3-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-answer-1-reviewed-v514.png",
+    "round": "2025-3",
+    "timestamp": 740,
+    "crop": [
+      240,
+      180,
+      1650,
+      775
+    ],
+    "note": "원본740초에서 단자·전압·동작표와 FRy 명칭·보조 기호 전체 복구."
+  },
+  {
+    "index": 94,
+    "id": "hvac-practical-restored-2024-1-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-1-reviewed-v514.png",
+    "round": "2024-1",
+    "timestamp": 75,
+    "crop": [
+      215,
+      75,
+      1880,
+      1035
+    ],
+    "note": "원본75초에서 우측 MC-b/GL 가지·하단 공통선 및 다섯 동작 조건 전체 복구. 사람/손 가림 없는 해설 기입 전 회로이며 답안용 이미지는 별도 검토가 남음."
+  },
+  {
+    "index": 145,
+    "id": "hvac-practical-restored-2025-1-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-1-reviewed-v514.png",
+    "round": "2025-1",
+    "timestamp": 70,
+    "crop": [
+      80,
+      100,
+      1760,
+      895
+    ],
+    "note": "원본70초에서 두 빈칸 유지·회로 전체·PBS2와 BZ 타임차트 마지막 열까지 복구. 손/강사 가림 없음."
+  },
+  {
+    "index": 146,
+    "id": "hvac-practical-restored-2025-1-01",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-answer-1-reviewed-v514.png",
+    "round": "2025-1",
+    "timestamp": 500,
+    "crop": [
+      70,
+      65,
+      1810,
+      1000
+    ],
+    "note": "원본500초에서 두 기구 명칭·회로 하단 귀로·타임차트 마지막 열과 시간축 복구. 아래 여백의 손 일부는 남지만 회로/문자/차트를 가리지 않음."
+  },
+  {
+    "index": 103,
+    "id": "hvac-practical-restored-2024-1-06",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1-reviewed-v514.png",
+    "round": "2024-1",
+    "timestamp": 2406,
+    "crop": [
+      40,
+      90,
+      1880,
+      1020
+    ]
+  },
+  {
+    "index": 107,
+    "id": "hvac-practical-restored-2024-2-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 35,
+    "crop": [
+      180,
+      115,
+      1535,
+      995
+    ]
+  },
+  {
+    "index": 115,
+    "id": "hvac-practical-restored-2024-2-05",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 2310,
+    "crop": [
+      160,
+      100,
+      1860,
+      990
+    ]
+  },
+  {
+    "index": 117,
+    "id": "hvac-practical-restored-2024-2-07",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 2715,
+    "crop": [
+      280,
+      215,
+      1650,
+      875
+    ]
+  },
+  {
+    "index": 118,
+    "id": "hvac-practical-restored-2024-2-07",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 2715,
+    "crop": [
+      280,
+      215,
+      1650,
+      875
+    ]
+  },
+  {
+    "index": 119,
+    "id": "hvac-practical-restored-2024-2-08",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 3124,
+    "crop": [
+      250,
+      80,
+      1340,
+      625
+    ]
+  },
+  {
+    "index": 129,
+    "id": "hvac-practical-restored-2024-3-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-1-reviewed-v514.png",
+    "round": "2024-3",
+    "timestamp": 60,
+    "crop": [
+      245,
+      95,
+      1700,
+      930
+    ]
+  },
+  {
+    "index": 130,
+    "id": "hvac-practical-restored-2024-3-01",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1-reviewed-v514.png",
+    "round": "2024-3",
+    "timestamp": 310,
+    "crop": [
+      230,
+      100,
+      1710,
+      1000
+    ]
+  },
+  {
+    "index": 131,
+    "id": "hvac-practical-restored-2024-3-02",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-1-reviewed-v514.png",
+    "round": "2024-3",
+    "timestamp": 680,
+    "crop": [
+      60,
+      75,
+      1890,
+      995
+    ]
+  },
+  {
+    "index": 132,
+    "id": "hvac-practical-restored-2024-3-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1-reviewed-v514.png",
+    "round": "2024-3",
+    "timestamp": 1130,
+    "crop": [
+      60,
+      75,
+      1890,
+      995
+    ]
+  },
+  {
+    "index": 161,
+    "id": "hvac-practical-restored-2025-2-01",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-1-reviewed-v514.png",
+    "round": "2025-2",
+    "timestamp": 25,
+    "crop": [
+      180,
+      65,
+      1860,
+      1010
+    ]
+  },
+  {
+    "index": 162,
+    "id": "hvac-practical-restored-2025-2-01",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-answer-1-reviewed-v514.png",
+    "round": "2025-2",
+    "timestamp": 630,
+    "crop": [
+      20,
+      70,
+      1920,
+      1065
+    ]
+  },
+  {
+    "index": 164,
+    "id": "hvac-practical-restored-2025-2-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-answer-1-reviewed-v514.png",
+    "round": "2025-2",
+    "timestamp": 1245,
+    "crop": [
+      210,
+      80,
+      1820,
+      1070
+    ]
+  },
+  {
+    "index": 169,
+    "id": "hvac-practical-restored-2025-2-05",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-answer-1.png",
+    "target": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-answer-1-reviewed-v514.png",
+    "round": "2025-2",
+    "timestamp": 2360,
+    "crop": [
+      130,
+      80,
+      1910,
+      850
+    ]
+  },
+  {
+    "index": 180,
+    "id": "hvac-practical-restored-2025-3-03",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-1.png",
+    "target": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-1-reviewed-v514.png",
+    "round": null,
+    "timestamp": null,
+    "crop": [
+      105,
+      108,
+      625,
+      833
+    ]
+  },
+  {
+    "index": 109,
+    "id": "hvac-practical-restored-2024-2-02",
+    "role": "question",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 685,
+    "crop": [
+      305,
+      60,
+      1690,
+      720
+    ],
+    "note": "원본685초의 a·b 전체 열과 네 종류 계전기 명칭/빈 단자를 확보. 정답 기입 전 장면."
+  },
+  {
+    "index": 110,
+    "id": "hvac-practical-restored-2024-2-02",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 1120,
+    "crop": [
+      280,
+      60,
+      1700,
+      860
+    ],
+    "note": "원본1120초에서 a·b 두 열의 완성 접점8개와 계전기 명칭을 모두 복구."
+  },
+  {
+    "index": 120,
+    "id": "hvac-practical-restored-2024-2-08",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 3364,
+    "crop": [
+      250,
+      75,
+      1900,
+      995
+    ],
+    "note": "원본3364초에서 전체 냉난방 표,22.1 kW 합계,1 RT=3.86 kW와5.73 RT 결과를 복구. 오른쪽 아래 강사 어깨는 빈 여백에만 남음."
+  },
+  {
+    "index": 123,
+    "id": "hvac-practical-restored-2024-2-10",
+    "role": "answer",
+    "source": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1.png",
+    "target": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1-reviewed-v514.png",
+    "round": "2024-2",
+    "timestamp": 4176,
+    "crop": [
+      180,
+      70,
+      1420,
+      850
+    ],
+    "note": "원본4176초에서 선도와 완성된 BF·CF 분자/분모 전체 복구. 작성 중 잘린 CF 식을 교체."
+  }
+]

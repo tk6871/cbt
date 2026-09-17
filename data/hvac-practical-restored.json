@@ -3628,9 +3628,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-01-clean-1.png"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-01-question-book-scan-v514.png"
     ]
   },
   {
@@ -3649,7 +3649,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
   },
   {
     "id": "hvac-practical-restored-2023-3-03",
@@ -3668,9 +3668,9 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-03-question-1.svg"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-03-question-book-scan-v514.png"
     ]
   },
   {
@@ -3687,7 +3687,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
   },
   {
     "id": "hvac-practical-restored-2023-3-05",
@@ -3703,7 +3703,10 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "images": [
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-05-question-book-scan-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-3-06",
@@ -3723,9 +3726,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-06-question-1.png"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-06-question-book-scan-v514.png"
     ]
   },
   {
@@ -3744,23 +3747,32 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "images": [
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-07-question-book-scan-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-3-08",
     "year": 2023,
     "session": "3",
     "number": 8,
-    "question": "응축기와 팽창밸브 사이에 설치하는 장치로 아래 그림의 명칭과 설치목적을 쓰시오.",
-    "answer": "수액기(리시버). 액냉매를 임시 저장하고 팽창밸브에 액냉매만 안정적으로 공급한다.",
-    "explanation": "응축기 뒤에서 응축된 액냉매를 모아 두었다가 부하에 맞춰 팽창밸브로 보낸다.",
+    "question": "응축기와 팽창밸브 사이에 설치하는 다음 장치의 명칭과 설치 목적을 쓰시오.",
+    "answer": "전자밸브(솔레노이드 밸브). 전자석으로 밸브를 개폐하여 냉매의 흐름을 자동으로 제어한다.",
+    "explanation": "코일에 전기가 들어오면 전자력이 플런저를 움직여 밸브를 열고, 전기가 끊기면 밸브가 닫힌다. 냉동장치의 운전 신호에 맞춰 액관의 냉매 공급을 자동으로 켜고 끄는 장치다.",
     "keyPoints": [
-      "수액기"
+      "전자밸브",
+      "솔레노이드 밸브",
+      "전자력으로 개폐",
+      "냉매 흐름 자동 제어"
     ],
-    "category": "piping",
+    "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "images": [
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-08-question-book-scan-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-3-09",
@@ -3778,9 +3790,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-09-question-1.png"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-09-question-book-scan-v514.png"
     ]
   },
   {
@@ -3800,9 +3812,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-10-question-1.png"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-10-question-book-scan-v514.png"
     ]
   },
   {
@@ -3820,7 +3832,10 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "images": [
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-11-question-book-scan-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-3-12",
@@ -3838,9 +3853,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-12-question-1.png"
+      "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-12-question-book-scan-v514.png"
     ]
   },
   {
@@ -3861,9 +3876,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-answer-1.png"
@@ -3886,12 +3901,12 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -3909,12 +3924,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-book-scan-v514.png"
     ]
   },
   {
@@ -3933,9 +3945,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-04-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-04-question-book-scan-v514.png"
     ]
   },
   {
@@ -3955,9 +3967,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-book-scan-v514.png"
     ]
   },
   {
@@ -3976,12 +3988,12 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-question-book-scan-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4001,9 +4013,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-1.svg"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-book-scan-v514.png"
     ]
   },
   {
@@ -4021,24 +4033,28 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
   },
   {
     "id": "hvac-practical-restored-2024-1-09",
     "year": 2024,
     "session": "1",
     "number": 9,
-    "question": "외부공기와 실내공기의 비율이 1:4일 때, 실내공기 28℃·0.005 kg/kg(DA), 외부공기 -5℃·0.001 kg/kg(DA)라면 혼합공기의 건구온도와 절대습도를 구하시오.",
-    "answer": "혼합 건구온도 21.4℃, 혼합 절대습도 0.0042 kg/kg(DA)",
-    "explanation": "외기:실내=1:4이므로 각 값을 1:4로 가중평균한다. 온도는 (-5×1+28×4)/5, 절대습도는 (0.001×1+0.005×4)/5이다.",
+    "question": "외부공기와 실내공기의 비율이 1:4일 때, 외부공기 -5℃·0.001 kg/kg(DA), 실내공기 20℃·0.005 kg/kg(DA)라면 혼합공기의 건구온도와 절대습도를 구하시오.",
+    "answer": "혼합 건구온도 15℃, 혼합 절대습도 0.004 kg/kg(DA)",
+    "explanation": "외기:실내=1:4이므로 총 5부분으로 가중평균한다. 건구온도는 {(-5×1)+(20×4)}÷5=15℃이고, 절대습도는 {(0.001×1)+(0.005×4)}÷5=0.0042이므로 소수점 셋째 자리까지 쓰면 0.004 kg/kg(DA)이다.",
     "keyPoints": [
       "혼합공기",
-      "가중평균"
+      "가중평균",
+      "외기:실내=1:4"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "images": [
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-09-question-book-scan-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2024-1-10",
@@ -4055,7 +4071,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
   },
   {
     "id": "hvac-practical-restored-2024-1-11",
@@ -4073,9 +4089,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-11-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-11-question-book-scan-v514.png"
     ]
   },
   {
@@ -4093,9 +4109,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-12-question-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-12-question-book-scan-v514.png"
     ]
   },
   {
@@ -4114,12 +4130,12 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4140,12 +4156,12 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4164,12 +4180,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-book-scan-v514.png"
     ]
   },
   {
@@ -4189,9 +4202,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-04-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-04-question-book-scan-v514.png"
     ]
   },
   {
@@ -4211,12 +4224,12 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-question-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4235,9 +4248,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-1.svg"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-book-scan-v514.png"
     ]
   },
   {
@@ -4256,12 +4269,12 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4281,12 +4294,12 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4305,9 +4318,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-1.svg"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-book-scan-v514.png"
     ]
   },
   {
@@ -4326,12 +4339,12 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-question-book-scan-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4350,13 +4363,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-clean-1.png",
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-clean-2.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-book-scan-v514.png"
     ]
   },
   {
@@ -4376,12 +4385,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-1.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-book-scan-v514.png"
     ]
   },
   {
@@ -4402,10 +4408,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4428,10 +4434,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4453,7 +4459,7 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-1-reviewed-v514.png"
     ]
   },
   {
@@ -4672,10 +4678,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-answer-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4700,7 +4706,7 @@
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-question-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-answer-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4861,7 +4867,7 @@
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-question-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-answer-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4947,10 +4953,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-answer-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -4972,10 +4978,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-answer-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -5047,7 +5053,7 @@
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-question-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-answer-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -5220,10 +5226,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-answer-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -5244,10 +5250,10 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-answer-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -5269,7 +5275,7 @@
     "points": 5,
     "sourceNote": "사용자 제공 복원 PDF·영상 대조",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-1-reviewed-v514.png"
     ]
   },
   {
@@ -5312,7 +5318,7 @@
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-question-1.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-1-reviewed-v514.png"
     ]
   },
   {
@@ -5475,7 +5481,13 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
+    "images": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-01-question-pdf-v514.png"
+    ],
+    "answerImages": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-01-answer-pdf-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2026-1-02",
@@ -5493,12 +5505,12 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-question-pdf-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-answer-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-answer-pdf-v514.png"
     ]
   },
   {
@@ -5517,9 +5529,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-03-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-03-question-pdf-v514.png"
     ]
   },
   {
@@ -5540,9 +5552,9 @@
     "category": "cycle",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-04-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-04-question-pdf-v514.png"
     ]
   },
   {
@@ -5561,7 +5573,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조"
   },
   {
     "id": "hvac-practical-restored-2026-1-06",
@@ -5580,9 +5592,9 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-06-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-06-question-pdf-v514.png"
     ]
   },
   {
@@ -5602,12 +5614,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-07-question-pdf-v514.png"
     ]
   },
   {
@@ -5627,9 +5636,9 @@
     "category": "cycle",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-08-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-08-question-pdf-v514.png"
     ]
   },
   {
@@ -5648,12 +5657,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-pdf-v514.png"
     ]
   },
   {
@@ -5672,7 +5678,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조"
   },
   {
     "id": "hvac-practical-restored-2026-1-11",
@@ -5691,12 +5697,12 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-clean-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-question-pdf-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-11-answer-pdf-v514.png"
     ]
   },
   {
@@ -5717,9 +5723,12 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-12-question-1.png"
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-12-question-pdf-v514.png"
+    ],
+    "answerImages": [
+      "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-12-answer-pdf-v514.png"
     ]
   },
   {
@@ -5728,8 +5737,8 @@
     "session": "2",
     "number": 1,
     "question": "다음은 인터록 회로를 이용한 전동기 정회전•역회전 제어회로이다. 아래 동작설명의 물음에 답하시오. [동작설명] 전원 투입 시 GL이 점등한다. ① PBS1(정회전 버튼)을 눌렀을 때 : ② PBS3를 눌렀을 때 : ③ PBS2(역회전 버튼)를 눌렀을 때 :",
-    "answer": "① PBS1: MCF 여자·자기유지, 전동기 정회전, YL 점등, MCF b접점으로 역회전 회로 인터록. ② PBS3: MCF 소자, YL 소등, 초기상태(GL 점등) 복귀. ③ PBS2: MCR 여자·자기유지, 전동기 역회전, RL 점등, MCR b접점으로 정회전 회로 인터록.",
-    "explanation": "정회전과 역회전 접촉기가 동시에 붙으면 상간 단락 위험이 있다. 한쪽 코일이 여자되면 그 b접점으로 반대쪽 코일 회로를 끊는 것이 인터록이다.",
+    "answer": "① PBS1: MCF 여자·자기유지, 전동기 정회전, YL·GL 점등, MCF b접점으로 역회전 회로 인터록. ② PBS3: MCF 소자, YL 소등, 초기상태(GL 점등) 복귀. ③ PBS2: MCR 여자·자기유지, 전동기 역회전, RL·GL 점등, MCR b접점으로 정회전 회로 인터록.",
+    "explanation": "정회전과 역회전 접촉기가 동시에 붙으면 상간 단락 위험이 있다. 한쪽 코일이 여자되면 그 b접점으로 반대쪽 코일 회로를 끊는다. 이때 운전 방향 표시등과 함께 전원 표시등 GL은 계속 켜져 있다.",
     "keyPoints": [
       "MCF 정회전",
       "MCR 역회전",
@@ -5740,7 +5749,10 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
+    "images": [
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-01-question-pdf-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2026-2-02",
@@ -5760,12 +5772,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-02-question-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-02-answer-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-02-question-pdf-v514.png"
     ]
   },
   {
@@ -5784,12 +5793,12 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-question-pdf-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-answer-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-03-answer-pdf-v514.png"
     ]
   },
   {
@@ -5809,13 +5818,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-answer-1.png",
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-04-question-pdf-v514.png"
     ]
   },
   {
@@ -5835,7 +5840,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조"
   },
   {
     "id": "hvac-practical-restored-2026-2-06",
@@ -5854,7 +5859,13 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
+    "images": [
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-06-question-pdf-v514.png"
+    ],
+    "answerImages": [
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-06-answer-pdf-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2026-2-07",
@@ -5873,7 +5884,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조"
   },
   {
     "id": "hvac-practical-restored-2026-2-08",
@@ -5892,7 +5903,10 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
+    "answerImages": [
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-08-answer-pdf-v514.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2026-2-09",
@@ -5911,7 +5925,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조"
   },
   {
     "id": "hvac-practical-restored-2026-2-10",
@@ -5930,9 +5944,9 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-10-clean-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-10-question-pdf-v514.png"
     ]
   },
   {
@@ -5940,22 +5954,22 @@
     "year": 2026,
     "session": "2",
     "number": 11,
-    "question": "아래 그림을 보고 다음 질문에 답하시오.",
-    "answer": "저압수액기와 냉매펌프를 사용하는 만액식 증발기 강제순환 방식이다. 액냉매를 증발기에 순환시키고, 돌아온 기액 혼합물은 저압수액기에서 분리하여 기체만 압축기로 보낸다.",
-    "explanation": "펌프가 액냉매를 증발기 코일에 충분히 공급한다. 증발하지 못한 액은 저압수액기로 돌아가 다시 순환하고, 분리된 증기만 압축기로 가므로 액압축을 막는다.",
+    "question": "아래 그림을 보고 다음 질문에 답하시오. ① 증발기의 냉매공급 방식을 참고하여 해당 장치의 명칭을 쓰시오. ② 냉매액은 증발기로, 냉매가스는 압축기로 보내어 무엇을 방지하는지 쓰시오.",
+    "answer": "① 액순환식 증발기 ② 리키드백(액압축) 방지",
+    "explanation": "저압 수액기에서 액체와 기체를 나눈다. 액냉매는 냉매펌프로 증발기에 다시 보내고, 냉매가스만 압축기로 보낸다. 따라서 액냉매가 압축기로 넘어가는 리키드백과 그로 인한 액압축을 막는다.",
     "keyPoints": [
-      "만액식 증발기",
-      "저압수액기",
+      "액순환식 증발기",
+      "저압 수액기",
       "냉매펌프",
-      "기액분리",
+      "리키드백",
       "액압축 방지"
     ],
     "category": "cycle",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-11-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-11-question-pdf-v514.png"
     ]
   },
   {
@@ -5965,7 +5979,7 @@
     "number": 12,
     "question": "다음 그림의 압축기 명칭을 쓰시오.",
     "answer": "스크롤 압축기",
-    "explanation": "고정 스크롤과 선회 스크롤 사이의 초승달 모양 공간이 바깥에서 안쪽으로 이동하면서 점점 작아져 냉매를 연속 압축한다.",
+    "explanation": "고정 스크롤과 선회 스크롤 사이의 초승달 모양 압축공간이 바깥쪽 흡입부에서 중심 토출구로 이동하면서 점점 작아져 냉매가스를 연속 압축한다. 흡입·압축·토출이 동시에 이어져 진동과 소음이 작다.",
     "keyPoints": [
       "스크롤 압축기",
       "고정 스크롤",
@@ -5975,12 +5989,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 2026년 회차별 해설 PDF 원문 대조",
     "images": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-1.png"
+      "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-pdf-v514.png"
     ]
   }
 ]

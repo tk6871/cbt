@@ -1,0 +1,2 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./web-v5142.js","./main-v514.js","./preload-helper-v514.js","./OptionalFeatureBoundary-v514.js","../OptionalFeatureBoundary.css","./import-wrapper-prod-v514.js","../cbt.css"])))=>i.map(i=>d[i]);
+import{_ as t}from"./preload-helper-v514.js";import{q as o}from"./main-v514.js";import"./OptionalFeatureBoundary-v514.js";import"./import-wrapper-prod-v514.js";const p=o("Network",{web:()=>t(()=>import("./web-v5142.js"),__vite__mapDeps([0,1,2,3,4,5,6]),import.meta.url).then(r=>new r.NetworkWeb)});export{p as Network};

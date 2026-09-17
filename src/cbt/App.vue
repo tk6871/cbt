@@ -823,7 +823,7 @@ const practicalPartialCount = computed(() => practicalPrompts.filter((prompt) =>
 const practicalGroupCounts = computed(() => practicalPrompts.reduce<Record<PracticalPrompt['group'], number>>((counts, prompt) => {
   counts[prompt.group] += 1;
   return counts;
-}, { public: 0, restored: 0, foundation: 0, drill: 0 }));
+}, { public: 0, restored: 0, foundation: 0, drill: 0, supplement: 0, photos: 0 }));
 const practicalRoundOptions = computed(() => {
   const rounds = new Map<string, string>();
   for (const prompt of practicalPrompts) {
@@ -872,7 +872,7 @@ watch([practicalPage, practicalPromptFilter, practicalCategoryFilter, practicalR
 onMounted(async () => {
   try {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
-    if (['all','public','restored','foundation','drill','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
+    if (['all','public','restored','foundation','drill','supplement','photos','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
     if (cursor.category === 'all' || cursor.category in practicalCategoryLabels) practicalCategoryFilter.value = cursor.category;
     if (practicalPeriodAvailable.value && ['all', 'since-2023-2', 'before-2023-2'].includes(cursor.materialPeriod)) practicalMaterialPeriod.value = cursor.materialPeriod;
     if (cursor.round === 'all' || practicalRoundOptions.value.some(([key]) => key === cursor.round)) practicalRoundFilter.value = cursor.round;
@@ -1082,6 +1082,8 @@ function practicalGroupLabel(group: PracticalPrompt['group']): string {
   if (group === 'public') return '공개 자료';
   if (group === 'restored') return '회차별 복원';
   if (group === 'foundation') return '기초 연습';
+  if (group === 'supplement') return '추가 자료 · 필답문제2';
+  if (group === 'photos') return '사진·기기 자료 · 가지1';
   return '심화 연습';
 }
 
@@ -4671,6 +4673,8 @@ onBeforeUnmount(() => {
                 <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 복원 {{ practicalGroupCounts.restored }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 {{ practicalGroupCounts.public }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'supplement' }" @click="practicalPromptFilter = 'supplement'">추가 자료 {{ practicalGroupCounts.supplement }}</button>
+                <button type="button" :class="{ active: practicalPromptFilter === 'photos' }" @click="practicalPromptFilter = 'photos'">사진·기기 자료 {{ practicalGroupCounts.photos }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'foundation' }" @click="practicalPromptFilter = 'foundation'">기초 연습 {{ practicalGroupCounts.foundation }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'drill' }" @click="practicalPromptFilter = 'drill'">심화 연습 {{ practicalGroupCounts.drill }}</button>
                 <button type="button" :class="{ active: practicalPromptFilter === 'review' }" @click="practicalPromptFilter = 'review'">복습 {{ practicalReviewCount }}</button>
@@ -4739,7 +4743,7 @@ onBeforeUnmount(() => {
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'review' }" @click="markPracticalPrompt(prompt.id, 'review')">↻ 다시 보기</button>
                   </div>
-                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">원문 보기 ↗</a></small>
+                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
                 </div>
                 </div>
               </article>
@@ -4986,7 +4990,10 @@ onBeforeUnmount(() => {
               <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
-            <p>v5.1.3 복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용하며 선택과 기존 답안을 보존합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 이미지 검수 완료 표시는 아닙니다.</p>
+            <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
+            <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
+            <p>9월17일 제공된 가지1 123문항은 사진·기기 자료123에서 따로 풀 수 있습니다. 원본 사진95개와 학습 답안·설명을 연결했으며 정답 표기가 있는 비교 사진2개는 문제용과 답안용을 분리했습니다.</p>
+            <p>복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 수정 완료 표시는 아닙니다.</p>
             <p>2023년 2회1번의 주회로·제어회로 전체와 3회1번의 우측 PB2/X2 회로도 원본 영상으로 보완했습니다. 기존 잘린 이미지는 삭제하지 않았습니다.</p>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
