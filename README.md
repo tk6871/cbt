@@ -1,5 +1,9 @@
 # 산업기사 통합 CBT
 
+### v5.2 필답형 회차 목록·전용 풀이 화면
+
+필답형 첫 화면을 **회차별 기출 / 추가 자료 / 복습**으로 나누고, 기출은 연도별 회차 카드에서 작성 진도와 복습 문제 수를 확인한 뒤 시작하거나 이어 풉니다. 풀이에 들어가면 자료 안내를 숨기고 문제·답안·문제 번호에 집중하며, `회차·자료 목록`으로 원래 목록에 바로 돌아갑니다.
+
 ### v5.1.5 필답형 회차별 기출·추가 자료 보관함
 
 공조 **필답형 훈련관** 첫 화면에서 **회차별 기출문제**와 **추가로 받은 자료 모음**을 바로 구분합니다. 회차별 기출은 312문제를 연도·회차로 고르고, 추가 자료는 공개 자료47·필답문제2 PDF42·사진·기기 PDF123을 서로 섞지 않고 선택할 수 있습니다. 기존 문제 ID와 작성 답안·학습 기록은 유지됩니다.
@@ -68,7 +72,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.1.5.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.2.apk`를 생성합니다.
 - Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 설치된 APK에 포함된 화면으로 자동 전환됩니다(내장 화면 버전은 APK를 빌드한 시점 기준). Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때는 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.

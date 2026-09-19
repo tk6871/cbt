@@ -98,22 +98,63 @@ body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
 .practical-material-period select { min-height: 44px; max-width: 100%; min-width: 0; flex: 1 1 240px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--text); font: inherit; }
 .practical-material-period p, .practical-material-period small { display: block; margin: 8px 0 0; font-size: .9rem; line-height: 1.6; overflow-wrap: anywhere; }
 .practical-material-help summary { cursor: pointer; padding: 10px 0 2px; font-size: .9rem; line-height: 1.6; }
-.practical-library-shelves { margin: 12px 0 16px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
-.practical-library-shelves > article { min-width: 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); color: var(--text); display: grid; gap: 13px; align-content: start; }
-.practical-library-shelves > article.active { border-color: #16836f; box-shadow: 0 0 0 2px color-mix(in srgb,#16836f 16%,transparent); }
-.practical-library-shelves h3,.practical-library-shelves p { margin: 0; }
-.practical-library-shelves h3 { margin-top: 4px; font-size: 1.05rem; }
-.practical-library-shelves p { margin-top: 7px; color: var(--muted); font-size: .86rem; line-height: 1.6; }
-.practical-library-shelves article > div > span { color: #16836f; font-size: .7rem; font-weight: 900; letter-spacing: .12em; }
-.practical-library-shelves article > strong { font-size: .86rem; }
-.practical-library-shelves label { display: grid; gap: 6px; color: var(--muted); font-size: .78rem; font-weight: 800; }
-.practical-library-shelves select,.practical-library-shelves button { min-height: 44px; padding: 7px 11px; border: 1px solid var(--line); border-radius: 9px; color: var(--text); background: var(--surface-2); font: inherit; font-size: .82rem; font-weight: 800; }
-.practical-library-shelves article > button { color: #fff; border-color: #16836f; background: #16836f; }
-.practical-library-buttons { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 7px; }
-.practical-library-buttons button.selected { color: #fff; border-color: #16836f; background: #16836f; }
-@media(max-width:720px) {
-  .practical-library-shelves { grid-template-columns: 1fr; }
-  .practical-library-shelves > article { padding: 15px; }
-  .practical-library-buttons { grid-template-columns: 1fr 1fr; }
+.practical-room-header { display:grid; grid-template-columns:auto minmax(0,1fr) auto; gap:12px; align-items:center; }
+.practical-room-header > div { min-width:0; }
+.practical-room-header > div p { max-width:850px; }
+.practical-library-back { min-height:44px; padding:8px 13px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--text); font:inherit; font-weight:800; }
+.practical-library-tabs { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:16px 0; }
+.practical-library-tabs button { min-height:68px; display:grid; gap:4px; padding:10px 14px; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); text-align:left; font:inherit; }
+.practical-library-tabs button b { font-size:.98rem; }
+.practical-library-tabs button small { color:var(--muted); line-height:1.4; }
+.practical-library-tabs button.active { color:#fff; border-color:#16836f; background:#16836f; }
+.practical-library-tabs button.active small { color:#e6fff9; }
+.practical-round-library { display:grid; gap:14px; }
+.practical-resume-round { min-height:72px; display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; padding:13px 16px; border:1px solid #16836f; border-radius:13px; background:color-mix(in srgb,#16836f 10%,var(--surface)); color:var(--text); font:inherit; text-align:left; }
+.practical-resume-round > span { padding:5px 8px; border-radius:7px; background:#16836f; color:#fff; font-size:.74rem; font-weight:900; }
+.practical-resume-round small { color:var(--muted); text-align:right; }
+.practical-year-group { border:1px solid var(--line); border-radius:14px; background:var(--surface); overflow:hidden; }
+.practical-year-group > header { display:flex; justify-content:space-between; align-items:center; padding:11px 14px; border-bottom:1px solid var(--line); background:var(--surface-2); }
+.practical-year-group > header h3 { margin:0; font-size:1rem; }
+.practical-year-group > header span { color:var(--muted); font-size:.8rem; }
+.practical-year-group > div { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; padding:10px; }
+.practical-year-group button { position:relative; min-height:82px; display:grid; grid-template-columns:1fr auto; gap:5px 10px; padding:11px 12px 14px; overflow:hidden; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--text); text-align:left; font:inherit; }
+.practical-year-group button > span { font-weight:900; }
+.practical-year-group button > strong { text-align:right; font-size:.82rem; }
+.practical-year-group button > small { grid-column:1/-1; color:var(--muted); }
+.practical-year-group button > i { position:absolute; left:0; bottom:0; height:4px; background:#16836f; }
+.practical-year-group button:hover { border-color:#16836f; }
+.practical-material-library { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+.practical-material-library button { min-height:82px; display:grid; grid-template-columns:48px minmax(0,1fr) auto; align-items:center; gap:12px; padding:13px; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); text-align:left; font:inherit; }
+.practical-material-library button > span { width:44px; height:44px; display:grid; place-items:center; border-radius:11px; background:color-mix(in srgb,#16836f 14%,var(--surface-2)); color:#16836f; font-size:.72rem; font-weight:950; }
+.practical-material-library button > div { min-width:0; display:grid; gap:5px; }
+.practical-material-library button small { color:var(--muted); overflow-wrap:anywhere; }
+.practical-material-library button > b { font-size:.8rem; white-space:nowrap; }
+.practical-material-library button.all { grid-column:1/-1; border-color:#16836f; }
+.practical-review-library { min-height:220px; display:grid; place-content:center; justify-items:center; gap:14px; padding:28px; border:1px solid var(--line); border-radius:14px; background:var(--surface); text-align:center; }
+.practical-review-library > div { display:grid; gap:5px; }
+.practical-review-library > div strong { color:#16836f; font-size:3rem; line-height:1; }
+.practical-review-library small,.practical-review-library p { color:var(--muted); }
+.practical-review-library button { min-height:46px; padding:9px 18px; border:0; border-radius:10px; background:#16836f; color:#fff; font:inherit; font-weight:900; }
+.practical-review-library button:disabled { opacity:.45; }
+.practical-solve-controls { display:flex; align-items:end; gap:9px; flex-wrap:wrap; margin:12px 0; padding:10px; border:1px solid var(--line); border-radius:12px; background:var(--surface-2); }
+.practical-solve-controls label { display:grid; gap:4px; color:var(--muted); font-size:.76rem; font-weight:800; }
+.practical-solve-controls select,.practical-solve-controls button { min-height:42px; padding:7px 10px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
+.practical-solve-controls button { margin-left:auto; font-weight:800; }
+@media(max-width:800px) {
+  .practical-room-header { grid-template-columns:1fr auto; }
+  .practical-library-back { grid-column:1/-1; justify-self:start; }
+  .practical-library-tabs { grid-template-columns:1fr; }
+  .practical-library-tabs button { min-height:58px; }
+  .practical-year-group > div { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .practical-material-library { grid-template-columns:1fr; }
+  .practical-material-library button.all { grid-column:auto; }
+  .practical-resume-round { grid-template-columns:auto 1fr; }
+  .practical-resume-round small { grid-column:1/-1; text-align:left; }
+}
+@media(max-width:460px) {
+  .practical-year-group > div { grid-template-columns:1fr; }
+  .practical-solve-controls label { flex:1 1 130px; }
+  .practical-solve-controls select { width:100%; }
+  .practical-solve-controls button { width:100%; margin-left:0; }
 }
 @media print { .practical-material-period { display: none; } }
