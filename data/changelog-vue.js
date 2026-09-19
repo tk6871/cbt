@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version: '5.2', scope: 'industrial', date: '2026.09.19',
+      title: '필답형 회차 목록·전용 풀이 화면',
+      summary: '회차와 자료를 고르는 화면을 실제 문제 풀이와 분리하고, 회차별 진도와 이어풀기를 한눈에 표시합니다.',
+      tags: ['필답형 UI', '회차별 진도', '이어풀기', '모바일'],
+      changes: [
+        '필답형 첫 화면을 회차별 기출, 추가 자료, 복습 탭으로 나눴습니다.',
+        '기출 26회차를 연도별 카드로 표시하고 각 회차의 작성 수, 복습 수, 진행률을 바로 확인합니다.',
+        '최근 학습 회차는 첫 화면에서 이어 풀고, 문제 화면의 회차·자료 목록 버튼으로 같은 목록에 돌아갑니다.',
+        '사용자 제공 PDF·사진 자료, 공개 자료, 기초·유형 연습을 별도 목록에서 선택합니다.',
+        '풀이 화면에서는 긴 자료 안내를 숨기고 답안 방식, 한·두·네·연속 보기, 검색·범위를 작은 조작 막대에 모았습니다.',
+        '회차 카드는 넓은 화면 3열, 태블릿 2열, 휴대폰 1열로 바뀌며 기존 답안·채점·학습 기록을 유지합니다.'
+      ]
+    },
+    {
       version: '5.1.5', scope: 'industrial', date: '2026.09.17',
       title: '필답형 회차별 기출·추가 자료 보관함',
       summary: '회차가 있는 기출과 사용자가 따로 준 PDF·사진 자료를 첫 화면에서 바로 구분해 선택합니다.',
@@ -2225,8 +2239,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.5';
+  changelog.versions.industrial = '5.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.5';
+  changelog.currentVersion = '5.2';
   window.CBT_CHANGELOG = changelog;
 })();

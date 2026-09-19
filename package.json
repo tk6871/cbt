@@ -23,7 +23,7 @@
     "android:debug": "npm run android:sync && node tools/build-android-debug.mjs",
     "android:release": "npm run android:sync && node tools/build-android-release.mjs",
     "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
-    "android:install:release": "adb install -r dist/industrial-cbt-v5.1.5.apk",
+    "android:install:release": "adb install -r dist/industrial-cbt-v5.2.apk",
     "test:learning-safety": "esbuild tools/sync-test-harness.ts --bundle --platform=browser --format=iife --outfile=work/sync-test-harness.js && playwright test tools/learning-safety.spec.ts",
     "dev": "vite --host 127.0.0.1",
     "test:a11y": "playwright test tools/ui-accessibility.spec.ts",
