@@ -27,7 +27,7 @@ const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
-import { coolingMidtermItems, coolingMidtermTitle, normalizedSchoolSubject } from './schoolQuestionBank';
+import { coolingMidtermItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, type CoolingDrawState } from './schoolQuestionBank';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -172,6 +172,7 @@ type MasteryRow = QuestionItem & {
   attempted: boolean;
 };
 type SavedLearningSession = {
+  id?: string;
   version: 1;
   qualificationKey: string;
   mode?: StudyMode;
@@ -483,7 +484,37 @@ const allItems = computed(() => [
   subject: subjectFor(round, question),
   id: questionId(round, question),
 }))));
-const itemMap = computed(() => new Map(allItems.value.map((item) => [item.id, item])));
+const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
+const itemMap = computed(() => new Map([...allItems.value, ...coolingItems.value].map((item) => [item.id, item])));
+const coolingDrawKey = 'school-cooling-midterm-draws';
+const coolingArchiveKey = 'school-cooling-midterm-sessions';
+const coolingDrawState = computed<CoolingDrawState>(() => {
+  const value = studyStore.progress?.[coolingDrawKey] as CoolingDrawState | undefined;
+  return { ids: Array.isArray(value?.ids) ? value.ids.filter(id => typeof id === 'string') : [], resetAt: Number(value?.resetAt) || 0, savedAt: Number(value?.savedAt) || 0 };
+});
+const coolingUnusedIds = computed(() => coolingUnusedItems(coolingItems.value, coolingItems.value, coolingDrawState.value, studyStore.attempts).map(item => item.id));
+const coolingArchive = computed(() => {
+  const value = studyStore.progress?.[coolingArchiveKey] as { sessions?: SavedLearningSession[] } | undefined;
+  return (Array.isArray(value?.sessions) ? value.sessions : []).filter(saved => saved.id && Array.isArray(saved.itemIds)
+    && saved.itemIds.length && saved.itemIds.every(isCoolingRecord)).sort((a, b) => b.savedAt - a.savedAt);
+});
+const coolingCompleted = computed(() => recentExamRecords.value.filter(record => record.itemIds?.length && record.itemIds.every(isCoolingRecord)));
+function saveCoolingArchive(saved: SavedLearningSession): void {
+  if (!saved.id || !saved.itemIds.every(isCoolingRecord)) return;
+  studyStore.progress ||= {};
+  studyStore.progress[coolingArchiveKey] = { sessions: [saved, ...coolingArchive.value.filter(item => item.id !== saved.id)], savedAt: Date.now() };
+}
+function resetCoolingDraws(): void {
+  if (!confirm('랜덤 출제 순환을 다시 시작할까요? 중간고사 오답·점수·이어풀기 기록은 그대로 유지됩니다.')) return;
+  studyStore.progress ||= {};
+  studyStore.progress[coolingDrawKey] = { ids: [], resetAt: Date.now(), savedAt: Date.now() };
+}
+function resumeCoolingArchived(id: string): void {
+  const saved = coolingArchive.value.find(item => item.id === id);
+  if (!saved) return;
+  savedLearningSession.value = saved;
+  void resumeSavedLearning();
+}
 function learningProgressValue(): SavedLearningSession | ClearedLearningSession | null {
   const value = studyStore.progress?.[learningSessionProgressKey];
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
@@ -522,10 +553,12 @@ if (savedLearningSession.value && !learningProgressValue()) {
   studyStore.progress ||= {};
   studyStore.progress[learningSessionProgressKey] = savedLearningSession.value;
 }
-const legacyWrongItems = computed(() => allItems.value.filter((item) => {
+const legacyWrongItems = computed(() => (selectedKey.value === SCHOOL_EXAM_CATALOG_KEY
+  ? [...allItems.value.filter(item => item.round.qualificationKey === SCHOOL_EXAM_CATALOG_KEY), ...coolingItems.value]
+  : allItems.value).filter((item) => {
   const targetItem = selectedCatalog.value.isVirtual
     ? item.question.targetRelevance !== 'peripheral'
-    : item.round.qualificationKey === selectedKey.value;
+    : selectedKey.value === SCHOOL_EXAM_CATALOG_KEY || item.round.qualificationKey === selectedKey.value;
   return targetItem && studyStore.wrong[item.id];
 }));
 const wrongRoundGroups = computed(() => {
@@ -626,7 +659,6 @@ const searchScopeLabel = computed(() => searchScope.value === 'hvac' ? '공조 +
   : searchScope.value === 'all' ? '전체 종목' : searchScope.value === 'selected' ? `${searchKeys.value.length}개 종목` : selectedCatalog.value.name);
 const searchSubjects = computed(() => [...new Set(allItems.value.filter(item => searchKeys.value.includes(item.round.qualificationKey || ''))
   .map(normalizedSchoolSubject))].sort((a, b) => a.localeCompare(b, 'ko')));
-const coolingItems = computed(() => coolingMidtermItems(allItems.value));
 const coolingWrongIds = computed(() => coolingItems.value.filter(item => studyStore.attempts[item.id]
   && !studyStore.attempts[item.id].lastCorrect).map(item => item.id));
 const searchableCatalogItems = computed(() => {
@@ -1930,14 +1962,19 @@ function openSchoolSetSearch(id: string): void {
   openView('search');
 }
 
-function startCoolingMidterm(payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number }): void {
+async function startCoolingMidterm(payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; label?: string }): Promise<void> {
+  if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
   const items = payload.randomCount ? shuffle(payload.items).slice(0, payload.randomCount) : payload.items;
-  void beginSession(payload.mode, `${coolingMidtermTitle} · ${payload.randomCount ? '랜덤' : '전체'} ${items.length}문제`, items);
+  await beginSession(payload.mode, `${coolingMidtermTitle} · ${payload.randomCount ? '랜덤' : '전체'} ${items.length}문제${payload.label ? ` · ${payload.label}` : ''}`, items);
+  if (payload.randomCount && session.value?.items[0]?.id === items[0]?.id) {
+    studyStore.progress ||= {};
+    studyStore.progress[coolingDrawKey] = { ...coolingDrawState.value, ids: [...new Set([...coolingDrawState.value.ids, ...items.map(item => item.id)])], savedAt: Date.now() };
+  }
 }
 
 async function ensureItemSources(ids: string[]): Promise<void> {
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
-    && ids.some(id => id.startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
+    && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   await loadQuestionSources(keys);
 }
 
@@ -2410,6 +2447,7 @@ function saveActiveLearningSession(): void {
   const active = session.value;
   if (!active || active.finished) return;
   const saved: SavedLearningSession = {
+    id: active.id,
     version: 1,
     qualificationKey: selectedKey.value,
     mode: active.mode,
@@ -2431,6 +2469,7 @@ function saveActiveLearningSession(): void {
   studyStore.progress ||= {};
   studyStore.progress[learningSessionProgressKey] = saved;
   savedLearningSession.value = saved;
+  saveCoolingArchive(saved);
 }
 
 function scheduleLearningSessionSave(): void {
@@ -2461,7 +2500,7 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
+  options: { sessionId?: string; calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -2484,7 +2523,7 @@ async function beginSession(
   sessionMenuOpen.value = false;
   learningJumpNumber.value = '';
   session.value = {
-    id: `${mode}-${Date.now()}`,
+    id: options.sessionId || `${mode}-${Date.now()}`,
     mode,
     title,
     items,
@@ -2533,8 +2572,13 @@ async function beginSession(
 }
 
 async function resumeSavedLearning(): Promise<void> {
-  const saved = savedLearningSession.value;
+  let saved = savedLearningSession.value;
   if (!saved) return;
+  // Preserve unfinished v5.3 midterm answers when switching to isolated records.
+  if (saved.title.startsWith(`${coolingMidtermTitle} ·`) && !saved.itemIds.some(isCoolingRecord)) {
+    const scoped = coolingRecordId;
+    saved = { ...saved, itemIds: saved.itemIds.map(scoped), kept: saved.kept.map(scoped), answers: Object.fromEntries(Object.entries(saved.answers).map(([id, answer]) => [scoped(id), answer])) };
+  }
   try { await ensureItemSources(saved.itemIds); }
   catch { showToast('이어풀기 문제를 불러오지 못했습니다. 저장 기록은 유지됩니다.'); return; }
   const items = saved.itemIds.flatMap((id) => {
@@ -2558,6 +2602,7 @@ async function resumeSavedLearning(): Promise<void> {
     remainingSeconds: saved.remainingSeconds,
     kept: saved.kept,
     resume: true,
+    sessionId: saved.id,
   });
 }
 
@@ -3105,6 +3150,10 @@ function submitSession(mode: StudyMode, force = false): void {
     if (!confirm(`${messages}가 있습니다. 그래도 채점할까요?`)) return;
   }
   session.value.finished = true;
+  if (session.value.items.every(item => isCoolingRecord(item.id))) {
+    studyStore.progress ||= {};
+    studyStore.progress[coolingArchiveKey] = { sessions: coolingArchive.value.filter(saved => saved.id !== session.value?.id), savedAt: Date.now() };
+  }
   clearSavedLearningSession();
   stopTimer();
   if (mode === 'exam') {
@@ -4633,7 +4682,7 @@ onBeforeUnmount(() => {
             <div><span>자동 저장된 학교 시험 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
           </section>
-          <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" />
+          <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :attempted-ids="coolingItems.filter(item => studyStore.attempts[item.id]).map(item => item.id)" :unused-ids="coolingUnusedIds" :sessions="coolingArchive" :history="coolingCompleted" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" @reset-draws="resetCoolingDraws" @resume="resumeCoolingArchived" @replay="id => { const record = coolingCompleted.find(item => item.id === id); if (record) replayHistoryRecord(record); }" />
           <SchoolExamManager :data="schoolExamData" @update="updateSchoolExamData" @start="startSchoolExamRound" @start-set="startSchoolQuestionSet" @search="openSchoolSetSearch" />
         </template>
 
@@ -5296,6 +5345,7 @@ onBeforeUnmount(() => {
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
+            <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
