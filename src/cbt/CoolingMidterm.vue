@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import type { ExamRecord } from './storage';
-import { uniqueSchoolItems, coolingTopics, coolingTopicGroups } from './schoolQuestionBank';
+import { uniqueSchoolItems, coolingTopics, coolingTopicGroups, coolingBookChapters, coolingSectionGroups } from './schoolQuestionBank';
 
 type SavedSet = { id?: string; title: string; mode?: StudyMode; savedAt: number; itemIds: string[]; answers: Record<string, number> };
 const props = defineProps<{ items: QuestionItem[]; wrongIds: string[]; attemptedIds: string[]; unusedIds: string[]; sessions: SavedSet[]; history: ExamRecord[]; loading: boolean; error: string }>();
@@ -15,31 +15,42 @@ let savedPreferences: Record<string, unknown> = {};
 try { savedPreferences = JSON.parse(localStorage.getItem(preferenceKey) || '{}') || {}; } catch { /* defaults */ }
 const source = ref(['all', 'hvac', 'hvac-hansol'].includes(String(savedPreferences.source)) ? String(savedPreferences.source) : 'all');
 const topic = ref(savedPreferences.layoutVersion === 3 && [...coolingTopics, '분류 미확인'].includes(savedPreferences.topic as string) ? String(savedPreferences.topic) : 'all');
-const tab = ref(savedPreferences.layoutVersion === 3 && ['all', 'topics', 'wrong', 'history'].includes(String(savedPreferences.tab)) ? String(savedPreferences.tab) : 'topics');
+const tab = ref(savedPreferences.layoutVersion === 3 && ['all', 'topics', 'sections', 'wrong', 'history'].includes(String(savedPreferences.tab)) ? String(savedPreferences.tab) : 'topics');
+const section = ref(typeof savedPreferences.section === 'string' ? savedPreferences.section : 'all');
 const count = ref([10, 20, 40, 60].includes(Number(savedPreferences.count)) ? Number(savedPreferences.count) : 20);
 const excludeSeen = ref(savedPreferences.excludeSeen !== false);
 const sourceItems = computed(() => props.items.filter(item => source.value === 'all' || item.round.qualificationKey === source.value));
 const groups = computed(() => coolingTopicGroups(sourceItems.value));
 type TopicGroup = ReturnType<typeof coolingTopicGroups>[number];
 const selectedGroup = computed(() => groups.value.find(group => group.label === topic.value));
+const sections = computed(() => selectedGroup.value ? coolingSectionGroups(selectedGroup.value) : []);
+const selectedSection = computed(() => sections.value.find(group => group.label === section.value));
+const scopeGroup = computed(() => selectedSection.value || selectedGroup.value);
+const displayedGroups = computed(() => tab.value === 'sections' ? sections.value : groups.value);
+const chapterInfo = (label: string) => coolingBookChapters.find(chapter => chapter.title === label);
 const topicCount = (value: string) => groups.value.find(group => group.label === value)?.items.length || 0;
-const filtered = computed(() => selectedGroup.value?.aliases || sourceItems.value);
-const pool = computed(() => selectedGroup.value?.items || uniqueSchoolItems(sourceItems.value));
+const filtered = computed(() => scopeGroup.value?.aliases || sourceItems.value);
+const pool = computed(() => scopeGroup.value?.items || uniqueSchoolItems(sourceItems.value));
 const totalCount = computed(() => groups.value.reduce((total, group) => total + group.items.length, 0));
 const unused = computed(() => new Set(props.unusedIds));
 const randomPool = computed(() => excludeSeen.value ? pool.value.filter(item => unused.value.has(item.id)) : pool.value);
 const wrongItems = (items: QuestionItem[]) => uniqueSchoolItems(items.filter(item => props.wrongIds.includes(item.id)));
 const wrongPool = computed(() => wrongItems(filtered.value));
+const wrongGroups = computed(() => (selectedSection.value ? [selectedSection.value] : groups.value.filter(group => topic.value === 'all' || group.label === topic.value)).filter(group => wrongItems(group.aliases).length));
 const sourceCount = (key: string) => props.items.filter(item => item.round.qualificationKey === key).length;
 const answered = (group: TopicGroup) => uniqueSchoolItems(group.aliases.filter(item => props.attemptedIds.includes(item.id))).length;
 const wrongCount = (group: TopicGroup) => wrongItems(group.aliases).length;
-watch([source, topic, tab, count, excludeSeen], () => {
-  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value }));
+watch(topic, () => { section.value = 'all'; });
+watch([source, topic, section, tab, count, excludeSeen], () => {
+  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value }));
 });
 const sourceLabel = computed(() => source.value === 'all' ? '공조 + 한솔' : source.value === 'hvac' ? '공조 기출' : '한솔 공조');
-const scopeLabel = computed(() => `${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value} · ${sourceLabel.value}`);
+const scopeLabel = computed(() => `${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value}${selectedSection.value ? ` · ${selectedSection.value.label}` : ''} · ${sourceLabel.value}`);
+function openChapter(group: TopicGroup): void {
+  topic.value = group.label; section.value = 'all'; tab.value = 'sections';
+}
 function startGroup(group: TopicGroup, mode: StudyMode, wrong = false): void {
-  emit('start', { items: wrong ? wrongItems(group.aliases) : group.items, mode, randomCount: 0, label: `${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}` });
+  emit('start', { items: wrong ? wrongItems(group.aliases) : group.items, mode, randomCount: 0, label: `${tab.value === 'sections' ? `${topic.value} · ` : ''}${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}` });
 }
 function resumeForGroup(group: TopicGroup): SavedSet | undefined {
   const ids = new Set(group.aliases.map(item => item.id));
@@ -54,27 +65,34 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
 <template>
   <section class="cooling-midterm" aria-label="냉동공학 중간고사">
     <header class="rounds-heading midterm-heading">
-      <div><h1>냉동공학 중간고사</h1><p>소과목별 학습 · {{ totalCount.toLocaleString() }}문제 · 기존 공조와 기록 분리</p></div>
+      <div><h1>냉동공학 중간고사</h1><p>교재 목차별 학습 · {{ totalCount.toLocaleString() }}문제 · 기존 공조와 기록 분리</p></div>
       <button type="button" aria-label="통합 검색으로 문제 찾기" @click="emit('search')"><span class="wide-label">통합 검색으로 문제 찾기</span><span class="compact-label">문제 찾기</span></button>
     </header>
     <nav class="midterm-tabs" aria-label="중간고사 문제 선택 방식">
-      <button v-for="[key, label, shortLabel] in [['topics', '소과목별', '소과목별'], ['all', '전체·랜덤', '전체·랜덤'], ['wrong', '중간고사 오답', '오답'], ['history', '풀이 기록', '풀이 기록']]" :key="key" :class="{ active: tab === key }" :aria-label="label" :aria-pressed="tab === key" @click="tab = key"><span class="wide-label">{{ label }}</span><span class="compact-label">{{ shortLabel }}</span></button>
+      <button v-for="[key, label, shortLabel] in [['topics', '교재 목차', '교재 목차'], ['all', '전체·랜덤', '전체·랜덤'], ['wrong', '중간고사 오답', '오답'], ['history', '풀이 기록', '풀이 기록']]" :key="key" :class="{ active: tab === key || (key === 'topics' && tab === 'sections') }" :aria-label="label" :aria-pressed="tab === key || (key === 'topics' && tab === 'sections')" @click="tab = key"><span class="wide-label">{{ label }}</span><span class="compact-label">{{ shortLabel }}</span></button>
     </nav>
     <div v-if="tab !== 'history'" class="midterm-controls">
       <label>문제 출처<select v-model="source"><option value="all">공조 + 한솔 전체</option><option value="hvac">공조 기출 · {{ sourceCount('hvac') }}문제</option><option value="hvac-hansol">한솔 공조 · {{ sourceCount('hvac-hansol') }}문제</option></select></label>
-      <label v-if="tab !== 'topics'">소과목<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
-      <button v-if="source !== 'all' || (tab !== 'topics' && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'">전체 범위 보기</button>
+      <label v-if="tab === 'all' || tab === 'wrong'">교재 장<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
+      <label v-if="(tab === 'all' || tab === 'wrong') && sections.length">세부 목차<select v-model="section"><option value="all">이 장 전체</option><option v-for="group in sections" :key="group.label" :value="group.label">{{ group.label }} · {{ group.items.length }}문제</option></select></label>
+      <button v-if="source !== 'all' || ((tab === 'all' || tab === 'wrong') && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'; section = 'all'; if (tab === 'sections') tab = 'topics'">전체 범위 보기</button>
     </div>
-    <p v-if="tab !== 'history'" class="topic-warning">소과목은 임시 자동 분류입니다. 범위 누락을 막으려면 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제도 확인하세요.</p>
+    <p v-if="tab !== 'history'" class="topic-warning">목차 기준 자동 분류입니다. 미확인 문항도 함께 확인하세요. 교재 문제별 대조는 미완료입니다.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
     <p v-else-if="loading" role="status">공조·한솔 문제를 불러오는 중입니다…</p>
-    <template v-if="tab === 'topics'">
+    <template v-if="tab === 'topics' || tab === 'sections'">
+      <div v-if="tab === 'sections'" class="chapter-heading">
+        <button @click="tab = 'topics'">← 전체 목차</button><h2>{{ topic }}</h2>
+        <button @click="section = 'all'; tab = 'all'">이 장 전체·랜덤 풀기</button>
+      </div>
       <div class="round-grid midterm-rounds">
-        <article v-for="group in groups" :key="group.label" :data-topic="group.label" class="round-card">
-          <header><span>{{ group.label === '분류 미확인' ? '범위 확인' : '소과목' }}</span><b>{{ sourceLabel }}</b></header>
+        <article v-for="group in displayedGroups" :key="group.label" :data-topic="group.label" :data-section="tab === 'sections' ? group.label : undefined" class="round-card">
+          <header><b>{{ sourceLabel }}</b></header>
           <div v-if="latestResult(group)" class="round-record-badge"><span>최근 중간고사 CBT</span><strong>{{ latestResult(group)!.score }}점</strong><small>{{ new Date(latestResult(group)!.finishedAt).toLocaleDateString('ko-KR') }}</small></div>
           <h2>{{ group.label }}</h2>
           <p>{{ group.items.length.toLocaleString() }}문제 · 중복 문항 제외</p>
+          <p v-if="tab === 'topics' && chapterInfo(group.label)" class="chapter-summary">{{ chapterInfo(group.label)!.summary }}</p>
+          <button v-if="tab === 'topics' && chapterInfo(group.label)" class="chapter-open" :aria-label="`세부 목차 보기 · ${group.label}`" @click="openChapter(group)">세부 목차 {{ chapterInfo(group.label)!.sections.length }}개 보기 →</button>
           <div class="round-progress"><span><i :style="{ width: `${group.items.length ? Math.round(answered(group) / group.items.length * 100) : 0}%` }" /></span></div>
           <small class="round-progress-copy">풀이 {{ answered(group) }}/{{ group.items.length }} · 오답 {{ wrongCount(group) }}</small>
           <footer>
@@ -110,8 +128,8 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
     <section v-else-if="tab === 'wrong'" class="selection-panel">
       <h2>중간고사 전용 오답 {{ wrongPool.length }}문제</h2><p class="muted">기존 공조·한솔 오답과 섞이지 않습니다.</p>
       <div class="midterm-actions"><button :disabled="!wrongPool.length" @click="emit('start', { items: wrongPool, mode: 'learn', randomCount: 0, label: '오답 복습' })">오답 {{ wrongPool.length }}문제 복습</button></div>
-      <div class="record-grid"><article v-for="group in groups.filter(group => wrongCount(group) && (topic === 'all' || group.label === topic))" :key="group.label">
-        <h3>{{ group.label }}</h3><p>오답 {{ wrongCount(group) }}문제</p><button @click="startGroup(group, 'learn', true)">이 소과목 오답 풀기</button>
+      <div class="record-grid"><article v-for="group in wrongGroups" :key="group.label">
+        <h3>{{ group.label }}</h3><p>오답 {{ wrongCount(group) }}문제</p><button @click="emit('start', { items: wrongItems(group.aliases), mode: 'learn', randomCount: 0, label: `${group.label} · ${sourceLabel} 오답` })">이 범위 오답 풀기</button>
       </article></div>
     </section>
     <section v-else class="selection-panel">
@@ -120,9 +138,9 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <h2>완료한 중간고사 {{ history.length }}개</h2>
       <div class="record-grid"><article v-for="record in history" :key="record.id"><h3>{{ record.title }}</h3><p>{{ record.mode === 'exam' ? 'CBT' : '학습' }} · {{ record.score }}점 · {{ new Date(record.finishedAt).toLocaleString('ko-KR') }}</p><button @click="emit('replay', record.id)">같은 문제 다시 풀기</button></article></div>
     </section>
-    <details class="classification-help"><summary>시험 범위·소과목 분류 안내</summary>
+    <details class="classification-help"><summary>시험 범위·목차 분류 안내</summary>
       <p>공조·한솔의 냉동냉장설비와 구 냉동공학 기출입니다. 교재 핵심예상문제의 페이지별 대조는 아직 하지 않았습니다.</p>
-      <p>소과목은 문제·보기·해설의 키워드로 임시 분류했습니다. 현재 출처에 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제가 있으니 ‘냉동냉장설비 전체’ 또는 ‘분류 미확인’도 확인하세요.</p>
+      <p>보내주신 교재의6개 장과 세부 목차를 반영했습니다. 각 문항의 장·세부 목차 배치는 키워드 기반 자동 후보이며 교재 수록 문제와 동일하다고 확정한 것은 아닙니다. 현재 출처의 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제와 각 장의 ‘세부 분류 미확인’도 확인하세요.</p>
       <p>원래 문제 그림·정답·해설과 기존 기록은 유지됩니다. 완전히 같은 문항은 한 번만 출제하지만 다른 그림의 유사문제까지 모두 같은 문제로 판정한 것은 아닙니다.</p>
     </details>
   </section>
@@ -149,6 +167,10 @@ select { min-width:0; width:100%; }
 .midterm-rounds .round-card h2 { min-height:0; font-size:1.1rem; margin:18px 0 9px; }
 .midterm-rounds .round-card footer button { min-height:44px; }
 .midterm-rounds .round-progress { margin-top:16px; }
+.chapter-heading { display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin:0 0 18px; }
+.chapter-heading h2 { flex:1; margin:0; font-size:1.15rem; }
+.chapter-summary { line-height:1.7; overflow-wrap:anywhere; }
+.chapter-open { width:100%; margin-top:12px; font-size:.85rem; color:var(--primary); }
 .selection-panel { padding:22px; background:var(--surface); border:1px solid var(--line); border-radius:16px; }
 .selection-panel h2 { font-size:1.1rem; margin:0 0 10px; }
 .selection-panel h2:not(:first-child) { margin-top:24px; }
@@ -168,6 +190,9 @@ hr { border:0; border-top:1px solid var(--line); margin:24px 0; }
 .classification-help summary { font-weight:800; cursor:pointer; }
 .empty-state { padding:24px; color:var(--muted); text-align:center; }
 @media(max-width:600px) {
+  .chapter-heading { display:grid; grid-template-columns:1fr 1.4fr; gap:10px; }
+  .chapter-heading h2 { grid-column:1/-1; grid-row:1; }
+  .chapter-heading button { padding:9px 6px; font-size:.8rem; }
   .midterm-heading { flex-direction:row; align-items:center; gap:10px; margin-bottom:14px; }
   .midterm-heading h1 { font-size:1.25rem; margin-bottom:6px; }
   .midterm-heading p { font-size:.75rem; }

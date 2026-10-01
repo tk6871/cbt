@@ -5,6 +5,18 @@
 
   const entries = [
     {
+      version: '5.4.5', scope: 'industrial', date: '2026.10.01',
+      title: '교재의 세부 목차별로 문제 선택',
+      summary: '장 안의 냉매와 브라인·압축기 등 세부 목차를 선택해 학습·CBT로 풉니다.',
+      tags: ['교재 목차', '중간고사', '세부 범위'],
+      changes: [
+        '교재 목차에서 세부 목차 보기로 들어가 각 범위의 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤에도 세부 목차 선택을 추가했습니다.',
+        '보내주신 교재 목차와 출제기준을 함께 반영하고 6번 냉방설비운영 이름은 유지했습니다. 반복 소과목 표기는 제거했습니다.',
+        '브라인·열펌프·축열의 장 배치와 띄어쓰기·열역학·부품 표현을 보완했습니다. 문항 배치는 자동 후보이며 애매한 문항은 분류 미확인/세부 분류 미확인에 남깁니다. 교재 문제 페이지별 대조는 아직 하지 않았습니다.',
+        '기존 저장 답안·오답·점수와 문제·정답·해설·원본 이미지는 유지합니다.'
+      ]
+    },
+    {
       version: '5.4.4', scope: 'industrial', date: '2026.10.01',
       title: '냉동공학 중간고사를 소과목별로 선택',
       summary: '연도·회차 선택을 없애고 냉동이론 등6개 소과목 카드에서 바로 학습·CBT를 시작합니다.',
@@ -2315,8 +2327,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4.4';
+  changelog.versions.industrial = '5.4.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4.4';
+  changelog.currentVersion = '5.4.5';
   window.CBT_CHANGELOG = changelog;
 })();

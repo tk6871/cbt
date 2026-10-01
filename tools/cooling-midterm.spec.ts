@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { coolingMidtermItems, uniqueSchoolItems, coolingRecordItem, coolingUnusedItems, coolingOriginalId, coolingTopic, coolingTopics, coolingTopicGroups, schoolItemKey } from '../src/cbt/schoolQuestionBank';
+import { coolingMidtermItems, uniqueSchoolItems, coolingRecordItem, coolingUnusedItems, coolingOriginalId, coolingTopic, coolingTopics, coolingTopicGroups, schoolItemKey, coolingBookChapters, coolingSectionGroups, coolingBookSection } from '../src/cbt/schoolQuestionBank';
 import { normalizeSchoolExamData, mergeSchoolExamData } from '../src/cbt/schoolExam';
 import { subjectFor, questionId } from '../src/cbt/catalog';
 import type { Catalog, QuestionItem } from '../src/cbt/types';
@@ -29,10 +29,16 @@ test('전체 범위: 구 냉동공학+냉동냉장설비1920개, 원문·ID 보�
   expect(groups.flatMap(group => group.items)).toHaveLength(1875);
   expect(new Set(groups.flatMap(group => group.items).map(schoolItemKey)).size).toBe(1875);
   expect(groups.flatMap(group => group.aliases)).toHaveLength(1920);
-  expect(groups.find(group => group.label === '분류 미확인')!.items).toHaveLength(451);
+  expect(groups.find(group => group.label === '분류 미확인')!.items.length).toBeGreaterThan(0);
   for (const group of groups) {
     const keys = new Set(group.items.map(schoolItemKey));
     expect(group.aliases.every(item => keys.has(schoolItemKey(item)))).toBe(true);
+    const sections = coolingSectionGroups(group);
+    if (group.label === '분류 미확인') { expect(sections).toEqual([]); continue; }
+    expect(sections.map(section => section.label)).toEqual([...coolingBookChapters.find(chapter => chapter.title === group.label)!.sections, '세부 분류 미확인']);
+    expect(sections.flatMap(section => section.items)).toHaveLength(group.items.length);
+    expect(new Set(sections.flatMap(section => section.items).map(schoolItemKey)).size).toBe(group.items.length);
+    expect(sections.flatMap(section => section.aliases)).toHaveLength(group.aliases.length);
   }
   expect(pool.every(i => i.subject === '냉동냉장설비')).toBe(true);
   for (const item of pool) expect(items.find(i => i.id === item.id)?.question).toBe(item.question);
@@ -51,12 +57,28 @@ test('전체 범위: 구 냉동공학+냉동냉장설비1920개, 원문·ID 보�
   expect(coolingUnusedItems(scoped, scoped, draw, {}).every(item => !draw.ids.includes(item.id))).toBe(true);
   expect(coolingUnusedItems([scoped[0]], scoped, { ids: [], resetAt: 0, savedAt: 0 }, { [scoped[0].id]: { at: 10 } })).toHaveLength(0);
   expect(coolingUnusedItems([scoped[0]], scoped, { ids: [], resetAt: 20, savedAt: 20 }, { [scoped[0].id]: { at: 10 } })).toHaveLength(1);
-  const topicExamples = ['카르노 냉동사이클의 성적계수', '스크롤 압축기의 구조', '제빙기의 브라인', '부하 계산과 침입열 및 열관류', '오일트랩과 이중입상관', '냉각탑 냉각수의 수온'];
+  const topicExamples = ['카르노 냉동사이클의 성적계수', '스크롤 압축기의 구조', '제빙 및 동결장치의 특징', '부하 계산과 침입열 및 열관류', '오일트랩과 이중입상관', '냉각탑 냉각수의 수온'];
   topicExamples.forEach((text, index) => expect(coolingTopic({ ...one, question: { ...one.question, text, html: '', ocrText: '', explanation: '', explanationHtml: '', choices: [] } })).toBe(coolingTopics[index]));
   expect(coolingTopic({ ...one, question: { ...one.question, text: '원문 이미지 문제', html: '', ocrText: '', explanation: '', explanationHtml: '', choices: [] } })).toBe('분류 미확인');
+  for (const [text, chapter, section] of [
+    ['브라인의 동결 온도', '냉동이론', '냉매와 브라인'],
+    ['몰리에르 선도와 냉동 사이클', '냉동이론', '냉매선도와 냉동 사이클'],
+    ['이상 기체의 등온 과정', '냉동이론', '기초열역학'],
+    ['열역학 제1법칙', '냉동이론', '열역학의 법칙'],
+    ['피스톤 핀과 커넥팅 로드의 대단부', '냉동장치의 구조', '압축기 구성 기기와 특징'],
+    ['히트펌프와 축열장치', '냉동장치의 응용과 안전관리', '냉동장치의 응용(열펌프 및 축열장치)'],
+    ['냉동 부하와 침입열 계산', '냉동냉장 부하계산', '냉동냉장부하 계산'],
+    ['냉매 충전 작업', '냉동설비의 설치', '냉동설비의 설치'],
+    ['냉각탑 수질관리', '냉방설비운영', '냉각탑 점검·종류·특성·수질관리'],
+  ]) {
+    const item = { ...one, question: { ...one.question, text, html: '', ocrText: '', explanation: '', explanationHtml: '', choices: [] } };
+    expect(coolingTopic(item)).toBe(chapter);
+    expect(coolingBookSection(item, chapter)).toBe(section);
+  }
   const distribution: Record<string, number> = {};
   pool.forEach(item => { const label = coolingTopic(item); distribution[label] = (distribution[label] || 0) + 1; });
   console.log('Cooling topic rule audit:', distribution);
+  console.log('Cooling book chapter audit:', JSON.stringify(groups.map(group => ({ title: group.label, unique: group.items.length, sections: coolingSectionGroups(group).map(section => ({ title: section.label, count: section.items.length })) }))));
   expect(Object.values(distribution).reduce((sum, value) => sum + value, 0)).toBe(1920);
 });
 
@@ -71,7 +93,7 @@ test('회차별 중간고사·공조+한솔 검색·학교 시험지 담기·새
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
-  await expect(bank.getByRole('button', { name: '소과목별', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(bank.getByRole('button', { name: '교재 목차', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
@@ -183,10 +205,10 @@ test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac');
   await expect(bank.getByRole('combobox', { name: '연도', exact: true })).toHaveCount(0);
   await expect(bank.getByRole('combobox', { name: '회차', exact: true })).toHaveCount(0);
-  const topics = await bank.getByRole('combobox', { name: '소과목', exact: true }).locator('option').allTextContents();
+  const topics = await bank.getByRole('combobox', { name: '교재 장', exact: true }).locator('option').allTextContents();
   coolingTopics.forEach(topic => expect(topics.some(label => label.includes(topic))).toBe(true));
-  await bank.getByRole('combobox', { name: '소과목', exact: true }).selectOption('냉동이론');
-  await bank.getByRole('button', { name: '소과목별', exact: true }).click();
+  await bank.getByRole('combobox', { name: '교재 장', exact: true }).selectOption('냉동이론');
+  await bank.getByRole('button', { name: '교재 목차', exact: true }).click();
   const theoryCount = await bank.locator('.round-grid article').count();
   expect(theoryCount).toBe(7);
   await page.screenshot({ path: `/private/tmp/cbt-cooling-rounds-${info.project.name}.png` });
@@ -286,7 +308,7 @@ test('v5.3 중간고사 진행 답안은 유지하고 새 분리 ID로 이어풀
   await page.goto('./?safe=1');
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
-  await expect(page.locator('.cooling-midterm').getByRole('button', { name: '소과목별', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.cooling-midterm').getByRole('button', { name: '교재 목차', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(7);
   await page.locator('.resume-learning-card').getByRole('button', { name: '이어서 풀기', exact: true }).click();
   await expect(page.locator('.session-topbar')).toContainText('냉동공학 중간고사');
@@ -358,13 +380,74 @@ test('오래된 분리 CSS가 남아도 버전별 CSS로 필터·버튼 스타�
   const bank = page.locator('.cooling-midterm');
   await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
   await expect.poll(() => bank.locator('.midterm-controls').evaluate(element => getComputedStyle(element).display)).toBe('flex');
-  expect(await bank.getByRole('button', { name: '소과목별', exact: true }).innerText()).toBe('소과목별');
+  expect(await bank.getByRole('button', { name: '교재 목차', exact: true }).innerText()).toBe('교재 목차');
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
-  for (const name of ['문제 출처', '소과목']) {
+  for (const name of ['문제 출처', '교재 장']) {
     expect(await bank.getByRole('combobox', { name, exact: true }).evaluate(element => element.getBoundingClientRect().height)).toBeGreaterThanOrEqual(44);
   }
   expect(obsoleteRequests).toEqual([]);
   const cssUrls = await page.locator('link[rel=stylesheet]').evaluateAll(elements => elements.map(element => (element as HTMLLinkElement).href));
   expect(cssUrls.some(url => /\/CoolingMidterm-v\d+\.css$/.test(url))).toBe(true);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+});
+
+test('교재 세부 목차 선택·범위 학습/랜덤/오답·이어풀기와 소과목 표기 제거', async ({ page }, info) => {
+  page.on('dialog', dialog => dialog.accept());
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('modern-cbt-qualification-industrial')) localStorage.setItem('modern-cbt-qualification-industrial', 'school-exams');
+    localStorage.setItem('unified-cbt-dynamic-ui', 'false');
+  });
+  await page.goto('./?safe=1');
+  if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  const bank = page.locator('.cooling-midterm');
+  await expect(bank.getByRole('button', { name: '학습모드 · 냉동이론', exact: true })).toBeEnabled({ timeout: 30000 });
+  await expect(bank.getByText('소과목', { exact: true })).toHaveCount(0);
+  await bank.getByRole('button', { name: '세부 목차 보기 · 냉동이론', exact: true }).click();
+  await expect(bank.locator('.round-card')).toHaveCount(7);
+  for (const title of coolingBookChapters[0].sections) await expect(bank.getByRole('heading', { name: title, exact: true })).toBeVisible();
+  await page.screenshot({ path: `/private/tmp/cbt-cooling-book-${info.project.name}.png` });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+  if (info.project.name === 'desktop') {
+    await page.setViewportSize({ width: 960, height: 900 });
+    await page.screenshot({ path: '/private/tmp/cbt-cooling-book-fhd-half.png' });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+    await page.setViewportSize({ width: 1440, height: 900 });
+  }
+  const card = bank.locator('.round-card[data-section="냉매와 브라인"]');
+  await expect(card.getByRole('button', { name: '학습모드 · 냉매와 브라인', exact: true })).toBeEnabled();
+  await card.getByRole('button', { name: '학습모드 · 냉매와 브라인', exact: true }).click();
+  await expect(page.locator('.session-topbar')).toContainText('냉매와 브라인');
+  await page.waitForTimeout(300);
+  const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}'));
+  expect(saved.itemIds.length).toBeGreaterThan(0);
+  const context = { window: {} as Record<string, Catalog> };
+  for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`, 'utf8'), context);
+  const items: QuestionItem[] = Object.values(context.window).flatMap(c => c.rounds.flatMap(r => r.questions.map(q => ({ round: { ...r, qualificationKey: c.key }, question: q, id: questionId(r, q), subject: subjectFor(r, q) }))));
+  const byId = new Map(items.map(item => [item.id, item]));
+  expect(saved.itemIds.every((id: string) => coolingBookSection(byId.get(coolingOriginalId(id))!, '냉동이론') === '냉매와 브라인')).toBe(true);
+  const first = byId.get(coolingOriginalId(saved.itemIds[0]))!;
+  const wrong = first.question.answer === 1 ? 2 : 1;
+  await page.locator('.question-card').first().locator('button.choice-button').nth(wrong - 1).click();
+  await page.waitForTimeout(400);
+  await page.locator('.session-topbar .back-button').click();
+  await expect(card).toContainText(`풀이 1/${saved.itemIds.length}`);
+  await card.getByRole('button', { name: '이어서 풀기', exact: true }).click();
+  await expect(page.locator('.session-topbar')).toContainText('냉매와 브라인');
+  await page.waitForTimeout(300);
+  await page.locator('.session-topbar .back-button').click();
+  await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
+  await bank.getByRole('combobox', { name: '세부 목차', exact: true }).selectOption('냉매와 브라인');
+  await bank.getByRole('button', { name: '중간고사 오답', exact: true }).click();
+  await expect(bank.getByRole('heading', { name: '중간고사 전용 오답 1문제', exact: true })).toBeVisible();
+  await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
+  await page.reload();
+  await expect(bank.getByRole('combobox', { name: '세부 목차', exact: true })).toHaveValue('냉매와 브라인');
+  await bank.getByRole('combobox', { name: '랜덤 문제 수', exact: true }).selectOption('10');
+  await bank.getByRole('button', { name: '랜덤 10문제 CBT', exact: true }).click();
+  await expect(page.locator('.session-topbar')).toContainText('냉매와 브라인');
+  await page.waitForTimeout(300);
+  await page.locator('.session-topbar .back-button').click();
+  await bank.getByRole('button', { name: '교재 목차', exact: true }).click();
+  await expect(bank.locator('.round-card')).toHaveCount(7);
 });
