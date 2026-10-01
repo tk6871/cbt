@@ -283,7 +283,7 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
-const roundsCollection = ref(localStorage.getItem('cbt-rounds-collection') === 'cooling' && !isJewelry ? 'cooling' : 'regular');
+const roundsCollection = computed(() => !isJewelry && selectedKey.value === SCHOOL_EXAM_CATALOG_KEY ? 'cooling' : 'regular');
 const settingsReturnView = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
@@ -1888,7 +1888,6 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 function configureQualification(key: string): void {
-  roundsCollection.value = 'regular';
   const target = catalogs.find((catalog) => catalog.key === key);
   if (target?.isPlaceholder) {
     localStorage.setItem(qualificationStorageKey, key);
@@ -2604,7 +2603,8 @@ async function resumeSavedLearning(): Promise<void> {
     return;
   }
   if (saved.itemIds.every(isCoolingRecord)) {
-    roundsCollection.value = 'cooling';
+    selectedKey.value = SCHOOL_EXAM_CATALOG_KEY;
+    localStorage.setItem(qualificationStorageKey, SCHOOL_EXAM_CATALOG_KEY);
     if (view.value !== 'rounds') openView('rounds');
   } else if (catalogs.some((catalog) => catalog.key === saved.qualificationKey)) {
     selectedKey.value = saved.qualificationKey;
@@ -4190,7 +4190,6 @@ watch(view, next => {
 watch([view, roundsCollection], ([next, collection]) => {
   if (next === 'rounds' && collection === 'cooling' && !isJewelry) void loadCoolingMidterm();
 });
-watch(roundsCollection, value => localStorage.setItem('cbt-rounds-collection', value), { flush: 'sync' });
 watch([theme, visualStyle], () => void nextTick(applyUiLabPreferences));
 
 onMounted(async () => {
@@ -4705,9 +4704,8 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'rounds'">
-          <nav v-if="!isJewelry" class="rounds-collection" aria-label="문제 모음 선택">
-            <button :aria-pressed="roundsCollection === 'regular'" :class="{ active: roundsCollection === 'regular' }" @click="roundsCollection = 'regular'">일반 기출</button>
-            <button :aria-pressed="roundsCollection === 'cooling'" :class="{ active: roundsCollection === 'cooling' }" @click="roundsCollection = 'cooling'">냉동공학 중간고사</button>
+          <nav v-if="!isJewelry && roundsCollection !== 'cooling'" class="rounds-collection" aria-label="학교 시험 문제 모음">
+            <button @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
           </nav>
           <template v-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
@@ -5377,7 +5375,7 @@ onBeforeUnmount(() => {
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
-            <p>v5.4.2: 회차별 문제 상단의 ‘냉동공학 중간고사’에서 회차를 골라 바로 풉니다. 학교 자료 관리 화면과 분리했으며 전용 오답·이어풀기·점수 기록은 유지됩니다.</p>
+            <p>v5.4.3: 학교 시험 종목의 회차별 문제는 냉동공학 중간고사부터 바로 표시합니다. 일반 기출 전환 버튼을 없애고 연도·소과목 선택칸의 이전 스타일 캐시 혼합을 방지했습니다. 오답·이어풀기·점수는 유지됩니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>

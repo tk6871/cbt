@@ -52,6 +52,20 @@ if (!questionCard.includes('beginnerCalculationOpen.value = false;')) {
 }
 
 await access(resolve(root, 'modern/cbt.css'));
+for (const file of await readdir(resolve(root, 'modern'))) {
+  if (file.endsWith('.css') && !['cbt.css', 'admin.css'].includes(file) && !file.endsWith(`-v${version}.css`)) {
+    throw new Error(`분리 CSS가 버전 없는 주소를 사용합니다: ${file}`);
+  }
+}
+for (const document of ['index.html', 'jewelry.html', 'admin.html']) {
+  const html = await read(document);
+  if (document === 'admin.html' && (!html.includes(`admin.js?v=${version}`) || !html.includes(`admin.css?v=${version}`))) {
+    throw new Error('관리 진입점의 코드·CSS 버전이 배포 버전과 다릅니다.');
+  }
+  for (const match of html.matchAll(/href="(modern\/[^"?]+\.css)(?:\?[^" ]*)?"/g)) {
+    await access(resolve(root, match[1]));
+  }
+}
 // Exercise only the install callback with filesystem-backed fetches. A removed
 // lazy component must not leave a stale URL that prevents SW installation.
 const workerEvents = new Map();
@@ -70,7 +84,12 @@ await installation;
 await access(resolve(root, `modern/chunks/main-v${version}.js`));
 for (const file of await readdir(resolve(root, 'modern/chunks'))) {
   if (!file.endsWith('.js')) continue;
-  if (/from["']\.\.\/(?:cbt|mobile)\.js["']/.test(await read(`modern/chunks/${file}`))) {
+  const source = await read(`modern/chunks/${file}`);
+  for (const match of source.matchAll(/\.\.\/([^"']+\.css)/g)) {
+    // Entry CSS is linked with the build query and explicitly network-first.
+    if (!['cbt.css', 'admin.css'].includes(match[1]) && !match[1].endsWith(`-v${version}.css`)) throw new Error(`이전 CSS 캐시 혼합 위험: ${file} → ${match[1]}`);
+  }
+  if (/from["']\.\.\/(?:cbt|mobile)\.js["']/.test(source)) {
     throw new Error(`앱 중복 실행 위험: ${file}이 버전 없는 앱 진입점을 다시 가져옵니다.`);
   }
 }

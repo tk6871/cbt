@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version: '5.4.3', scope: 'industrial', date: '2026.10.01',
+      title: '중간고사 선택칸 표시·첫 화면 수정',
+      summary: '업데이트 후 연도·소과목 선택칸 스타일이 빠지는 캐시 혼합을 방지하고 중간고사를 첫 화면에 표시합니다.',
+      tags: ['표시 오류 수정', '중간고사', '캐시'],
+      changes: [
+        '분리된 화면 스타일 파일에 버전별 주소를 적용해 이전 CSS와 새 Vue 화면이 섞이지 않도록 했습니다. 중간고사 코드·스타일은 핵심 캐시에 함께 등록합니다.',
+        '학교 중간·기말고사 종목의 회차별 문제를 열면 냉동공학 중간고사를 바로 표시합니다. 불필요한 일반 기출 전환 버튼은 없앴습니다.',
+        '자격증별 기존 회차 문제는 상단 종목 선택으로 이용하며 중간고사 오답·저장 답안·점수는 그대로 유지합니다.'
+      ]
+    },
+    {
       version: '5.4.2', scope: 'industrial', date: '2026.10.01',
       title: '중간고사를 회차별 문제로 이동',
       summary: '학교 자료 관리 화면과 분리하고 회차별 문제에서 일반 기출·냉동공학 중간고사를 선택합니다.',
@@ -2293,8 +2304,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4.2';
+  changelog.versions.industrial = '5.4.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4.2';
+  changelog.currentVersion = '5.4.3';
   window.CBT_CHANGELOG = changelog;
 })();
