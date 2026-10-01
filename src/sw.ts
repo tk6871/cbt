@@ -21,7 +21,8 @@ const CORE = [
     .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
   './modern/StudySettings.css', './modern/ThemeStudio.css', './modern/SyncRecoveryPanel.css', './modern/PracticalAnswerPad.css',
   `./modern/chunks/index-v${__CBT_BUILD_VERSION__}2.js`,
-  './modern/assets/search.worker-BqvfbZXG.js',
+  // sync-pwa-service-worker.mjs resolves the actual content-hashed worker.
+  './modern/assets/__CBT_SEARCH_WORKER__',
 ];
 
 async function refreshCoreCache(): Promise<void> {

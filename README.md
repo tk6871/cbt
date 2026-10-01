@@ -1,5 +1,9 @@
 # 산업기사 통합 CBT
 
+### v5.3 냉동공학 중간고사·통합 검색
+
+`학교 시험 준비 → 냉동공학 중간고사`에서 냉동냉장설비 전체(공조1,380·한솔540, 구 냉동공학 포함)를 출처별로 골라 전체 학습·랜덤 학습·CBT로 풉니다. 문장·보기·숫자·정답·그림까지 완전히 같은45개를 정리한 전체 모음은1,875문제입니다. 서로 다른 이미지에 담긴 유사문제를 전부 같은 문제로 판정한 것은 아닙니다. 교재 핵심예상문제의 페이지별 대조는 아직 하지 않았습니다. 문제 검색은 여러 종목·과목을 함께 검색하고 결과를 학교 시험지에 담을 수 있습니다. 학교 시험지 백업에는 담은 원문 문제 ID도 포함됩니다.
+
 ### v5.2 필답형 회차 목록·전용 풀이 화면
 
 필답형 첫 화면을 **회차별 기출 / 추가 자료 / 복습**으로 나누고, 기출은 연도별 회차 카드에서 작성 진도와 복습 문제 수를 확인한 뒤 시작하거나 이어 풉니다. 풀이에 들어가면 자료 안내를 숨기고 문제·답안·문제 번호에 집중하며, `회차·자료 목록`으로 원래 목록에 바로 돌아갑니다.
@@ -72,7 +76,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.2.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.3.apk`를 생성합니다.
 - Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 설치된 APK에 포함된 화면으로 자동 전환됩니다(내장 화면 버전은 APK를 빌드한 시점 기준). Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때는 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.

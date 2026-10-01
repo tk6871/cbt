@@ -48,6 +48,29 @@ function prepareCatalog(source: Catalog): Catalog {
   return { ...source, rounds };
 }
 
+const catalogLoads = new Map<string, Promise<Catalog>>();
+
+export function ensureCatalogLoaded(key: string): Promise<Catalog> {
+  const existing = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
+  if (existing) return Promise.resolve(existing);
+  if (!primaryKeys.includes(key)) return Promise.reject(new Error('지원하지 않는 문제 출처입니다.'));
+  const pending = catalogLoads.get(key);
+  if (pending) return pending;
+  const promise = new Promise<Catalog>((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = new URL(`data/${key}.js?v=530`, document.baseURI).href;
+    script.onload = () => {
+      const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
+      if (loaded) resolve(loaded);
+      else { catalogLoads.delete(key); reject(new Error('문제 자료를 읽지 못했습니다.')); }
+    };
+    script.onerror = () => { catalogLoads.delete(key); script.remove(); reject(new Error('문제 자료에 연결하지 못했습니다.')); };
+    document.head.appendChild(script);
+  });
+  catalogLoads.set(key, promise);
+  return promise;
+}
+
 export function loadCatalogs(): Catalog[] {
   if (window.CBT_APP_SPACE === 'jewelry') {
     const sourceCatalogs = (window.CBT_DATA_JEWELRY || []).map(prepareCatalog);
