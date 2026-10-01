@@ -2,7 +2,7 @@
 import { computed, ref, watch } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import type { ExamRecord } from './storage';
-import { uniqueSchoolItems, coolingTopics, coolingTopic } from './schoolQuestionBank';
+import { uniqueSchoolItems, coolingTopics, coolingTopicGroups } from './schoolQuestionBank';
 
 type SavedSet = { id?: string; title: string; mode?: StudyMode; savedAt: number; itemIds: string[]; answers: Record<string, number> };
 const props = defineProps<{ items: QuestionItem[]; wrongIds: string[]; attemptedIds: string[]; unusedIds: string[]; sessions: SavedSet[]; history: ExamRecord[]; loading: boolean; error: string }>();
@@ -14,103 +14,81 @@ const preferenceKey = 'school-cooling-selection-v1';
 let savedPreferences: Record<string, unknown> = {};
 try { savedPreferences = JSON.parse(localStorage.getItem(preferenceKey) || '{}') || {}; } catch { /* defaults */ }
 const source = ref(['all', 'hvac', 'hvac-hansol'].includes(String(savedPreferences.source)) ? String(savedPreferences.source) : 'all');
-const year = ref(/^\d{4}$/.test(String(savedPreferences.year)) ? String(savedPreferences.year) : 'all');
-const topic = ref([...coolingTopics, '분류 미확인'].includes(savedPreferences.topic as string) ? String(savedPreferences.topic) : 'all');
-const roundId = ref(savedPreferences.layoutVersion === 2 && savedPreferences.tab === 'all' && typeof savedPreferences.roundId === 'string' ? savedPreferences.roundId : 'all');
-const tab = ref(savedPreferences.layoutVersion === 2 && ['all', 'rounds', 'wrong', 'history'].includes(String(savedPreferences.tab)) ? String(savedPreferences.tab) : 'rounds');
+const topic = ref(savedPreferences.layoutVersion === 3 && [...coolingTopics, '분류 미확인'].includes(savedPreferences.topic as string) ? String(savedPreferences.topic) : 'all');
+const tab = ref(savedPreferences.layoutVersion === 3 && ['all', 'topics', 'wrong', 'history'].includes(String(savedPreferences.tab)) ? String(savedPreferences.tab) : 'topics');
 const count = ref([10, 20, 40, 60].includes(Number(savedPreferences.count)) ? Number(savedPreferences.count) : 20);
 const excludeSeen = ref(savedPreferences.excludeSeen !== false);
-const topicMap = computed(() => new Map(props.items.map(item => [item.id, coolingTopic(item)])));
 const sourceItems = computed(() => props.items.filter(item => source.value === 'all' || item.round.qualificationKey === source.value));
-const years = computed(() => [...new Set(sourceItems.value.map(item => item.round.year))].sort((a, b) => b - a));
-const yearItems = computed(() => sourceItems.value.filter(item => year.value === 'all' || item.round.year === Number(year.value)));
-const topicCount = (value: string) => yearItems.value.filter(item => topicMap.value.get(item.id) === value).length;
-const topicItems = computed(() => yearItems.value.filter(item => topic.value === 'all' || topicMap.value.get(item.id) === topic.value));
-const rounds = computed(() => {
-  const groups = new Map<string, { id: string; label: string; year: number; items: QuestionItem[] }>();
-  for (const item of topicItems.value) {
-    let group = groups.get(item.round.id);
-    if (!group) {
-      group = { id: item.round.id, label: `${item.round.session || item.round.date || '기출'} · ${item.round.qualificationKey === 'hvac-hansol' ? '한솔 공조' : '공조 기출'}`, year: item.round.year, items: [] };
-      groups.set(group.id, group);
-    }
-    group.items.push(item);
-  }
-  return [...groups.values()].sort((a, b) => b.year - a.year || a.label.localeCompare(b.label, 'ko', { numeric: true }));
-});
-const filtered = computed(() => topicItems.value.filter(item => roundId.value === 'all' || item.round.id === roundId.value));
-const pool = computed(() => uniqueSchoolItems(filtered.value));
+const groups = computed(() => coolingTopicGroups(sourceItems.value));
+type TopicGroup = ReturnType<typeof coolingTopicGroups>[number];
+const selectedGroup = computed(() => groups.value.find(group => group.label === topic.value));
+const topicCount = (value: string) => groups.value.find(group => group.label === value)?.items.length || 0;
+const filtered = computed(() => selectedGroup.value?.aliases || sourceItems.value);
+const pool = computed(() => selectedGroup.value?.items || uniqueSchoolItems(sourceItems.value));
+const totalCount = computed(() => groups.value.reduce((total, group) => total + group.items.length, 0));
 const unused = computed(() => new Set(props.unusedIds));
 const randomPool = computed(() => excludeSeen.value ? pool.value.filter(item => unused.value.has(item.id)) : pool.value);
-const wrongPool = computed(() => uniqueSchoolItems(filtered.value.filter(item => props.wrongIds.includes(item.id))));
+const wrongItems = (items: QuestionItem[]) => uniqueSchoolItems(items.filter(item => props.wrongIds.includes(item.id)));
+const wrongPool = computed(() => wrongItems(filtered.value));
 const sourceCount = (key: string) => props.items.filter(item => item.round.qualificationKey === key).length;
-const answered = (items: QuestionItem[]) => items.filter(item => props.attemptedIds.includes(item.id)).length;
-const wrongCount = (items: QuestionItem[]) => items.filter(item => props.wrongIds.includes(item.id)).length;
-watch(source, () => { if (!years.value.includes(Number(year.value))) year.value = 'all'; roundId.value = 'all'; });
-watch([year, topic], () => { roundId.value = 'all'; });
-watch([source, year, topic, roundId, tab, count, excludeSeen], () => {
-  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 2, source: source.value, year: year.value, topic: topic.value, roundId: roundId.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value }));
+const answered = (group: TopicGroup) => uniqueSchoolItems(group.aliases.filter(item => props.attemptedIds.includes(item.id))).length;
+const wrongCount = (group: TopicGroup) => wrongItems(group.aliases).length;
+watch([source, topic, tab, count, excludeSeen], () => {
+  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value }));
 });
-const scopeLabel = computed(() => [source.value === 'all' ? '' : source.value === 'hvac' ? '공조 기출' : '한솔 공조', year.value === 'all' ? '' : `${year.value}년`, topic.value === 'all' ? '' : topic.value, roundId.value === 'all' ? '' : rounds.value.find(round => round.id === roundId.value)?.label].filter(Boolean).join(' · ') || undefined);
-function startRound(round: (typeof rounds.value)[number], mode: StudyMode): void {
-  emit('start', { items: round.items, mode, randomCount: 0, label: `${round.year}년 ${round.label}${topic.value === 'all' ? '' : ` · ${topic.value}`}` });
+const sourceLabel = computed(() => source.value === 'all' ? '공조 + 한솔' : source.value === 'hvac' ? '공조 기출' : '한솔 공조');
+const scopeLabel = computed(() => `${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value} · ${sourceLabel.value}`);
+function startGroup(group: TopicGroup, mode: StudyMode, wrong = false): void {
+  emit('start', { items: wrong ? wrongItems(group.aliases) : group.items, mode, randomCount: 0, label: `${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}` });
 }
-function resumeForRound(round: (typeof rounds.value)[number]): SavedSet | undefined {
-  const ids = new Set(round.items.map(item => item.id));
+function resumeForGroup(group: TopicGroup): SavedSet | undefined {
+  const ids = new Set(group.aliases.map(item => item.id));
   return props.sessions.find(saved => saved.itemIds.length && saved.itemIds.every(id => ids.has(id)));
 }
-const latestRoundResult = (id: string) => props.history.find(record => record.roundId === id && record.mode === 'exam');
-function startWrongRound(round: (typeof rounds.value)[number]): void {
-  emit('start', { items: round.items.filter(item => props.wrongIds.includes(item.id)), mode: 'learn', randomCount: 0, label: `${round.year}년 ${round.label} 오답` });
-}
-function roundHeading(round: (typeof rounds.value)[number]): string {
-  const label = round.label.split(' · ')[0];
-  const date = label.match(/^(\d{4})[.\/-](\d{2})[.\/-](\d{2})$/);
-  return date ? `${date[1]}년 ${Number(date[2])}월 ${Number(date[3])}일` : `${round.year}년 ${label}`;
+function latestResult(group: TopicGroup): ExamRecord | undefined {
+  const ids = new Set(group.aliases.map(item => item.id));
+  return props.history.find(record => record.mode === 'exam' && record.itemIds?.length && record.itemIds.every(id => ids.has(id)));
 }
 </script>
 
 <template>
   <section class="cooling-midterm" aria-label="냉동공학 중간고사">
     <header class="rounds-heading midterm-heading">
-      <div><h1>냉동공학 중간고사</h1><p>{{ rounds.length }}회차 · {{ pool.length.toLocaleString() }}문제 · 기존 공조와 기록 분리</p></div>
+      <div><h1>냉동공학 중간고사</h1><p>소과목별 학습 · {{ totalCount.toLocaleString() }}문제 · 기존 공조와 기록 분리</p></div>
       <button type="button" aria-label="통합 검색으로 문제 찾기" @click="emit('search')"><span class="wide-label">통합 검색으로 문제 찾기</span><span class="compact-label">문제 찾기</span></button>
     </header>
     <nav class="midterm-tabs" aria-label="중간고사 문제 선택 방식">
-      <button v-for="[key, label, shortLabel] in [['rounds', '연도·회차별', '회차별'], ['all', '전체·랜덤', '전체·랜덤'], ['wrong', '중간고사 오답', '오답'], ['history', '풀이 기록', '풀이 기록']]" :key="key" :class="{ active: tab === key }" :aria-label="label" :aria-pressed="tab === key" @click="tab = key; if (key !== 'all') roundId = 'all'"><span class="wide-label">{{ label }}</span><span class="compact-label">{{ shortLabel }}</span></button>
+      <button v-for="[key, label, shortLabel] in [['topics', '소과목별', '소과목별'], ['all', '전체·랜덤', '전체·랜덤'], ['wrong', '중간고사 오답', '오답'], ['history', '풀이 기록', '풀이 기록']]" :key="key" :class="{ active: tab === key }" :aria-label="label" :aria-pressed="tab === key" @click="tab = key"><span class="wide-label">{{ label }}</span><span class="compact-label">{{ shortLabel }}</span></button>
     </nav>
     <div v-if="tab !== 'history'" class="midterm-controls">
       <label>문제 출처<select v-model="source"><option value="all">공조 + 한솔 전체</option><option value="hvac">공조 기출 · {{ sourceCount('hvac') }}문제</option><option value="hvac-hansol">한솔 공조 · {{ sourceCount('hvac-hansol') }}문제</option></select></label>
-      <label>연도<select v-model="year"><option value="all">모든 연도</option><option v-for="value in years" :key="value" :value="String(value)">{{ value }}년</option></select></label>
-      <label>소과목<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
-      <button v-if="source !== 'all' || year !== 'all' || topic !== 'all' || roundId !== 'all'" class="filter-reset" @click="source = 'all'; year = 'all'; topic = 'all'; roundId = 'all'">전체 회차 보기</button>
+      <label v-if="tab !== 'topics'">소과목<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
+      <button v-if="source !== 'all' || (tab !== 'topics' && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'">전체 범위 보기</button>
     </div>
-    <p v-if="tab !== 'history' && topic !== 'all'" class="topic-warning">소과목은 임시 자동 분류입니다. 범위 누락을 막으려면 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제도 확인하세요.</p>
+    <p v-if="tab !== 'history'" class="topic-warning">소과목은 임시 자동 분류입니다. 범위 누락을 막으려면 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제도 확인하세요.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
     <p v-else-if="loading" role="status">공조·한솔 문제를 불러오는 중입니다…</p>
-    <template v-if="tab === 'rounds'">
+    <template v-if="tab === 'topics'">
       <div class="round-grid midterm-rounds">
-        <article v-for="round in rounds.filter(round => roundId === 'all' || round.id === roundId)" :key="round.id" :id="`cooling-round-${round.id}`" class="round-card">
-          <header><span>{{ round.label.includes('한솔 공조') ? '한솔 공조' : '공조 기출' }}</span><b>{{ round.year }}년</b></header>
-          <div v-if="latestRoundResult(round.id)" class="round-record-badge"><span>최근 중간고사 CBT</span><strong>{{ latestRoundResult(round.id)!.score }}점</strong><small>{{ new Date(latestRoundResult(round.id)!.finishedAt).toLocaleDateString('ko-KR') }}</small></div>
-          <h2>{{ roundHeading(round) }}</h2>
-          <p>{{ round.items.length }}문제 · {{ topic === 'all' ? '냉동냉장설비' : topic }}</p>
-          <div class="round-progress"><span><i :style="{ width: `${Math.round(answered(round.items) / round.items.length * 100)}%` }" /></span></div>
-          <small class="round-progress-copy">풀이 {{ answered(round.items) }}/{{ round.items.length }} · 오답 {{ wrongCount(round.items) }}</small>
+        <article v-for="group in groups" :key="group.label" :data-topic="group.label" class="round-card">
+          <header><span>{{ group.label === '분류 미확인' ? '범위 확인' : '소과목' }}</span><b>{{ sourceLabel }}</b></header>
+          <div v-if="latestResult(group)" class="round-record-badge"><span>최근 중간고사 CBT</span><strong>{{ latestResult(group)!.score }}점</strong><small>{{ new Date(latestResult(group)!.finishedAt).toLocaleDateString('ko-KR') }}</small></div>
+          <h2>{{ group.label }}</h2>
+          <p>{{ group.items.length.toLocaleString() }}문제 · 중복 문항 제외</p>
+          <div class="round-progress"><span><i :style="{ width: `${group.items.length ? Math.round(answered(group) / group.items.length * 100) : 0}%` }" /></span></div>
+          <small class="round-progress-copy">풀이 {{ answered(group) }}/{{ group.items.length }} · 오답 {{ wrongCount(group) }}</small>
           <footer>
-            <button v-if="resumeForRound(round)" @click="emit('resume', resumeForRound(round)!.id!)">이어서 풀기</button>
-            <button :aria-label="`학습모드 · ${roundHeading(round)} ${round.label.includes('한솔 공조') ? '한솔 공조' : '공조 기출'}`" @click="startRound(round, 'learn')">학습모드</button>
-            <button v-if="wrongCount(round.items)" class="round-wrong-button" @click="startWrongRound(round)">오답 {{ wrongCount(round.items) }}개</button>
-            <button :aria-label="`CBT 시험모드 · ${roundHeading(round)} ${round.label.includes('한솔 공조') ? '한솔 공조' : '공조 기출'}`" @click="startRound(round, 'exam')">CBT 시험모드</button>
+            <button v-if="resumeForGroup(group)" @click="emit('resume', resumeForGroup(group)!.id!)">이어서 풀기</button>
+            <button :disabled="loading || !group.items.length" :aria-label="`학습모드 · ${group.label}`" @click="startGroup(group, 'learn')">학습모드</button>
+            <button v-if="wrongCount(group)" class="round-wrong-button" @click="startGroup(group, 'learn', true)">오답 {{ wrongCount(group) }}개</button>
+            <button :disabled="loading || !group.items.length" :aria-label="`CBT 시험모드 · ${group.label}`" @click="startGroup(group, 'exam')">CBT 시험모드</button>
           </footer>
         </article>
       </div>
-      <p v-if="!loading && !rounds.length" class="empty-state">선택 범위에 회차가 없습니다. 다른 소과목이나 전체 회차를 선택하세요.</p>
     </template>
     <section v-else-if="tab === 'all'" class="selection-panel">
       <h2>선택 범위를 한 번에 풀기</h2>
-      <p class="muted">{{ scopeLabel || '공조 + 한솔 · 모든 연도 · 냉동냉장설비 전체' }} · {{ pool.length.toLocaleString() }}문제</p>
-      <label class="whole-round-filter">회차<select v-model="roundId"><option value="all">모든 회차</option><option v-for="round in rounds" :key="round.id" :value="round.id">{{ round.year }}년 {{ round.label }}</option></select></label>
+      <p class="muted">{{ scopeLabel }} · {{ pool.length.toLocaleString() }}문제</p>
       <div class="midterm-actions">
         <button :disabled="loading || !pool.length" @click="emit('start', { items: pool, mode: 'learn', randomCount: 0, label: scopeLabel })">전체 문제 학습</button>
         <button :disabled="loading || !pool.length" @click="emit('start', { items: pool, mode: 'exam', randomCount: 0, label: scopeLabel })">전체 문제 CBT</button>
@@ -132,8 +110,8 @@ function roundHeading(round: (typeof rounds.value)[number]): string {
     <section v-else-if="tab === 'wrong'" class="selection-panel">
       <h2>중간고사 전용 오답 {{ wrongPool.length }}문제</h2><p class="muted">기존 공조·한솔 오답과 섞이지 않습니다.</p>
       <div class="midterm-actions"><button :disabled="!wrongPool.length" @click="emit('start', { items: wrongPool, mode: 'learn', randomCount: 0, label: '오답 복습' })">오답 {{ wrongPool.length }}문제 복습</button></div>
-      <div class="record-grid"><article v-for="round in rounds.filter(round => wrongCount(round.items) && (roundId === 'all' || round.id === roundId))" :key="round.id">
-        <h3>{{ round.year }}년 {{ round.label }}</h3><p>오답 {{ wrongCount(round.items) }}문제</p><button @click="startWrongRound(round)">이 회차 오답 풀기</button>
+      <div class="record-grid"><article v-for="group in groups.filter(group => wrongCount(group) && (topic === 'all' || group.label === topic))" :key="group.label">
+        <h3>{{ group.label }}</h3><p>오답 {{ wrongCount(group) }}문제</p><button @click="startGroup(group, 'learn', true)">이 소과목 오답 풀기</button>
       </article></div>
     </section>
     <section v-else class="selection-panel">
@@ -144,7 +122,7 @@ function roundHeading(round: (typeof rounds.value)[number]): string {
     </section>
     <details class="classification-help"><summary>시험 범위·소과목 분류 안내</summary>
       <p>공조·한솔의 냉동냉장설비와 구 냉동공학 기출입니다. 교재 핵심예상문제의 페이지별 대조는 아직 하지 않았습니다.</p>
-      <p>소과목은 문제·보기·해설의 키워드로 임시 분류했습니다. 현재 출처·연도에 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제가 있으니 ‘냉동냉장설비 전체’ 또는 ‘분류 미확인’도 확인하세요.</p>
+      <p>소과목은 문제·보기·해설의 키워드로 임시 분류했습니다. 현재 출처에 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제가 있으니 ‘냉동냉장설비 전체’ 또는 ‘분류 미확인’도 확인하세요.</p>
       <p>원래 문제 그림·정답·해설과 기존 기록은 유지됩니다. 완전히 같은 문항은 한 번만 출제하지만 다른 그림의 유사문제까지 모두 같은 문제로 판정한 것은 아닙니다.</p>
     </details>
   </section>
@@ -161,7 +139,8 @@ button,select { min-height:44px; border:1px solid var(--line); border-radius:9px
 button { font-weight:800; cursor:pointer; }
 button:disabled { opacity:.45; cursor:default; }
 .midterm-tabs .active { background:var(--primary); border-color:var(--primary); color:#fff; }
-.midterm-controls { display:grid; grid-template-columns:minmax(160px,1fr) minmax(120px,.65fr) minmax(220px,1.4fr) auto; gap:12px; align-items:end; margin-bottom:20px; }
+.midterm-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:end; margin-bottom:20px; }
+.midterm-controls label { flex:1 1 240px; max-width:440px; }
 label { display:grid; gap:6px; font-size:.9rem; font-weight:800; min-width:0; }
 select { min-width:0; width:100%; }
 .filter-reset { font-size:.85rem; }
@@ -174,7 +153,6 @@ select { min-width:0; width:100%; }
 .selection-panel h2 { font-size:1.1rem; margin:0 0 10px; }
 .selection-panel h2:not(:first-child) { margin-top:24px; }
 .muted,.record-grid p { color:var(--muted); font-size:.85rem; line-height:1.7; }
-.whole-round-filter { max-width:420px; margin:14px 0; }
 .midterm-actions { display:flex; gap:12px; margin:18px 0; }
 .midterm-actions button { flex:1; color:#fff; background:var(--primary); border-color:var(--primary); }
 .random-options { display:flex; gap:16px; flex-wrap:wrap; align-items:center; margin:16px 0; }
@@ -189,7 +167,6 @@ hr { border:0; border-top:1px solid var(--line); margin:24px 0; }
 .classification-help { margin-top:22px; border-top:1px solid var(--line); padding-top:14px; color:var(--muted); font-size:.85rem; line-height:1.7; }
 .classification-help summary { font-weight:800; cursor:pointer; }
 .empty-state { padding:24px; color:var(--muted); text-align:center; }
-@media(max-width:1100px) { .midterm-controls { grid-template-columns:minmax(0,1fr) minmax(0,.7fr); } .midterm-controls label:nth-child(3) { grid-column:1/-1; } }
 @media(max-width:600px) {
   .midterm-heading { flex-direction:row; align-items:center; gap:10px; margin-bottom:14px; }
   .midterm-heading h1 { font-size:1.25rem; margin-bottom:6px; }
