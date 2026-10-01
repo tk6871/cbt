@@ -73,11 +73,11 @@ function roundHeading(round: (typeof rounds.value)[number]): string {
 <template>
   <section class="cooling-midterm" aria-label="냉동공학 중간고사">
     <header class="rounds-heading midterm-heading">
-      <div><span>SCHOOL PAST EXAMS</span><h1>냉동공학 중간고사</h1><p>냉동냉장설비 · {{ rounds.length }}회차 · {{ pool.length.toLocaleString() }}문제 · 중간고사 기록은 별도 저장</p></div>
-      <button type="button" @click="emit('search')">통합 검색으로 문제 찾기</button>
+      <div><h1>냉동공학 중간고사</h1><p>{{ rounds.length }}회차 · {{ pool.length.toLocaleString() }}문제 · 기존 공조와 기록 분리</p></div>
+      <button type="button" aria-label="통합 검색으로 문제 찾기" @click="emit('search')"><span class="wide-label">통합 검색으로 문제 찾기</span><span class="compact-label">문제 찾기</span></button>
     </header>
     <nav class="midterm-tabs" aria-label="중간고사 문제 선택 방식">
-      <button v-for="[key, label] in [['rounds', '연도·회차별'], ['all', '전체·랜덤'], ['wrong', '중간고사 오답'], ['history', '풀이 기록']]" :key="key" :class="{ active: tab === key }" :aria-pressed="tab === key" @click="tab = key; if (key !== 'all') roundId = 'all'">{{ label }}</button>
+      <button v-for="[key, label, shortLabel] in [['rounds', '연도·회차별', '회차별'], ['all', '전체·랜덤', '전체·랜덤'], ['wrong', '중간고사 오답', '오답'], ['history', '풀이 기록', '풀이 기록']]" :key="key" :class="{ active: tab === key }" :aria-label="label" :aria-pressed="tab === key" @click="tab = key; if (key !== 'all') roundId = 'all'"><span class="wide-label">{{ label }}</span><span class="compact-label">{{ shortLabel }}</span></button>
     </nav>
     <div v-if="tab !== 'history'" class="midterm-controls">
       <label>문제 출처<select v-model="source"><option value="all">공조 + 한솔 전체</option><option value="hvac">공조 기출 · {{ sourceCount('hvac') }}문제</option><option value="hvac-hansol">한솔 공조 · {{ sourceCount('hvac-hansol') }}문제</option></select></label>
@@ -95,7 +95,6 @@ function roundHeading(round: (typeof rounds.value)[number]): string {
           <div v-if="latestRoundResult(round.id)" class="round-record-badge"><span>최근 중간고사 CBT</span><strong>{{ latestRoundResult(round.id)!.score }}점</strong><small>{{ new Date(latestRoundResult(round.id)!.finishedAt).toLocaleDateString('ko-KR') }}</small></div>
           <h2>{{ roundHeading(round) }}</h2>
           <p>{{ round.items.length }}문제 · {{ topic === 'all' ? '냉동냉장설비' : topic }}</p>
-          <div class="round-subjects"><span>중간고사 전용 기록</span></div>
           <div class="round-progress"><span><i :style="{ width: `${Math.round(answered(round.items) / round.items.length * 100)}%` }" /></span></div>
           <small class="round-progress-copy">풀이 {{ answered(round.items) }}/{{ round.items.length }} · 오답 {{ wrongCount(round.items) }}</small>
           <footer>
@@ -156,6 +155,7 @@ function roundHeading(round: (typeof rounds.value)[number]): string {
 .midterm-heading { margin-bottom:20px; gap:16px; }
 .midterm-heading h1 { font-size:1.75rem; }
 .midterm-heading p { line-height:1.6; }
+.compact-label { display:none; }
 .midterm-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; border-bottom:1px solid var(--line); padding-bottom:12px; }
 button,select { min-height:44px; border:1px solid var(--line); border-radius:9px; padding:9px 14px; background:var(--surface); color:var(--text); font:inherit; max-width:100%; }
 button { font-weight:800; cursor:pointer; }
@@ -190,5 +190,14 @@ hr { border:0; border-top:1px solid var(--line); margin:24px 0; }
 .classification-help summary { font-weight:800; cursor:pointer; }
 .empty-state { padding:24px; color:var(--muted); text-align:center; }
 @media(max-width:1100px) { .midterm-controls { grid-template-columns:minmax(0,1fr) minmax(0,.7fr); } .midterm-controls label:nth-child(3) { grid-column:1/-1; } }
-@media(max-width:600px) { .midterm-heading { display:block; } .midterm-heading h1 { font-size:1.45rem; } .midterm-heading>button { margin-top:10px; } .midterm-tabs { display:grid; grid-template-columns:1fr 1fr; } .selection-panel { padding:18px; } .midterm-actions { display:grid; grid-template-columns:1fr; } .midterm-rounds .round-card { min-height:240px; } }
+@media(max-width:600px) {
+  .midterm-heading { flex-direction:row; align-items:center; gap:10px; margin-bottom:14px; }
+  .midterm-heading h1 { font-size:1.25rem; margin-bottom:6px; }
+  .midterm-heading p { font-size:.75rem; }
+  .midterm-heading>button { flex-shrink:0; padding:9px; font-size:.8rem; }
+  .wide-label { display:none; } .compact-label { display:inline; }
+  .midterm-tabs { flex-wrap:nowrap; gap:6px; margin-bottom:14px; }
+  .midterm-tabs button { flex:1; min-width:0; padding:9px 4px; font-size:.82rem; white-space:nowrap; }
+  .selection-panel { padding:18px; } .midterm-actions { display:grid; grid-template-columns:1fr; } .midterm-rounds .round-card { min-height:240px; }
+}
 </style>
