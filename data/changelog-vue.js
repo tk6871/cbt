@@ -5,6 +5,18 @@
 
   const entries = [
     {
+      version: '5.4.2', scope: 'industrial', date: '2026.10.01',
+      title: '중간고사를 회차별 문제로 이동',
+      summary: '학교 자료 관리 화면과 분리하고 회차별 문제에서 일반 기출·냉동공학 중간고사를 선택합니다.',
+      tags: ['회차별 문제', '중간고사', '화면 정리'],
+      changes: [
+        '회차별 문제 상단에 일반 기출/냉동공학 중간고사 선택을 추가했습니다. 학교 시험 준비에서는 직접 만든 시험지와 자료를 관리합니다.',
+        '중간고사 회차 카드의 중복 안내를 줄이고 휴대폰 검색 버튼·보조 탭을 짧게 정리했습니다. 출처·연도·소과목과 전체·랜덤·오답·풀이 기록은 유지합니다.',
+        '기존 중간고사 저장 답안·오답·점수와 일반 공조/한솔 기록을 보존합니다. 선택한 일반 종목은 바꾸지 않고 중간고사 기록은 계속 분리해서 저장합니다.',
+        '문제를 풀다 나왔을 때 선택한 중간고사 회차 카드로 돌아갑니다. 새로고침·창 종료 때 기록을 즉시 저장하도록 보완했습니다. 문제·정답·해설·이미지와 임시 소과목 분류는 변경하지 않았습니다.'
+      ]
+    },
+    {
       version: '5.4.1', scope: 'industrial', date: '2026.10.01',
       title: '중간고사 회차 선택 화면 정리',
       summary: '기존 회차별 문제처럼 회차 카드를 바로 보고 학습·CBT·오답·이어풀기를 선택합니다.',
@@ -2281,8 +2293,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4.1';
+  changelog.versions.industrial = '5.4.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4.1';
+  changelog.currentVersion = '5.4.2';
   window.CBT_CHANGELOG = changelog;
 })();

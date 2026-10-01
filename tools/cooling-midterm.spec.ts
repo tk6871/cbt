@@ -50,15 +50,16 @@ test('전체 범위: 구 냉동공학+냉동냉장설비1920개, 원문·ID 보�
   expect(Object.values(distribution).reduce((sum, value) => sum + value, 0)).toBe(1920);
 });
 
-test('학교 시작·공조+한솔 검색·범위 담기·원문 풀이·새로고침 이어하기', async ({ page }, info) => {
+test('회차별 중간고사·공조+한솔 검색·학교 시험지 담기·새로고침 이어하기', async ({ page }, info) => {
   await page.addInitScript(() => {
-    localStorage.setItem('modern-cbt-qualification-industrial', 'school-exams');
+    localStorage.setItem('modern-cbt-qualification-industrial', 'hvac');
     localStorage.setItem('unified-cbt-dynamic-ui', 'false');
   });
   await page.goto('./?safe=1');
   const menu = page.getByRole('button', { name: '메뉴 열기', exact: true });
   if ((page.viewportSize()?.width || 1440) <= 900) await menu.click();
-  await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
   await expect(bank.getByRole('button', { name: '연도·회차별', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
@@ -119,15 +120,16 @@ test('다른 종목 선택 검색: 에너지 자료를 필요할 때 읽고 과�
   expect(errors).toEqual([]);
 });
 
-test('전체 범위 학습과 한솔 출처 랜덤 CBT가 원문 ID로 저장됨', async ({ page }) => {
+test('전체 범위 학습과 한솔 랜덤 CBT를 별도 학교 기록으로 저장', async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.setItem('modern-cbt-qualification-industrial', 'school-exams');
+    localStorage.setItem('modern-cbt-qualification-industrial', 'hvac');
     localStorage.setItem('unified-cbt-dynamic-ui', 'false');
   });
   await page.goto('./?safe=1');
   const menu = page.getByRole('button', { name: '메뉴 열기', exact: true });
   if ((page.viewportSize()?.width || 1440) <= 900) await menu.click();
-  await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
@@ -138,6 +140,8 @@ test('전체 범위 학습과 한솔 출처 랜덤 CBT가 원문 ID로 저장됨
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
   }).find(value => value?.itemIds?.length === 1875));
   expect(whole?.mode).toBe('learn');
+  expect(whole?.qualificationKey).toBe('school-exams');
+  expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('hvac');
   expect(new Set(whole?.itemIds).size).toBe(1875);
   await page.reload();
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac-hansol');
@@ -154,14 +158,15 @@ test('전체 범위 학습과 한솔 출처 랜덤 CBT가 원문 ID로 저장됨
 
 test('연도·회차·소과목 선택, 오답 분리, 두 랜덤 묶음 중복 제외와 이전 답안 복원', async ({ page }, info) => {
   await page.addInitScript(() => {
-    localStorage.setItem('modern-cbt-qualification-industrial', 'school-exams');
+    localStorage.setItem('modern-cbt-qualification-industrial', 'hvac');
     localStorage.setItem('unified-cbt-dynamic-ui', 'false');
     if (!localStorage.getItem('unified-industrial-cbt-v1')) localStorage.setItem('unified-industrial-cbt-v1', JSON.stringify({ attempts: { 'existing-hvac:1': { count: 3, lastCorrect: false, at: 1 } }, wrong: { 'existing-hvac:1': { count: 3, at: 1 } }, bookmarks: [], progress: {}, notes: {} }));
   });
   page.on('dialog', dialog => dialog.accept());
   await page.goto('./?safe=1');
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
-  await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
@@ -243,6 +248,9 @@ test('연도·회차·소과목 선택, 오답 분리, 두 랜덤 묶음 중복 
   await page.getByRole('button', { name: '시작 화면으로', exact: true }).click();
   await bank.getByRole('button', { name: '풀이 기록', exact: true }).click();
   await expect(bank.getByRole('heading', { name: '완료한 중간고사 1개', exact: true })).toBeVisible();
+  await page.reload();
+  await expect(bank.getByRole('heading', { name: '완료한 중간고사 1개', exact: true })).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('hvac');
   const completedStore = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-industrial-cbt-v1') || '{}'));
   expect(completedStore.progress['school-cooling-midterm-sessions'].sessions).toHaveLength(3);
   expect(completedStore.attempts[exam.itemIds[0]]).toBeTruthy();
@@ -262,8 +270,9 @@ test('v5.3 중간고사 진행 답안은 유지하고 새 분리 ID로 이어풀
   });
   await page.goto('./?safe=1');
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
-  await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
-  await page.getByRole('button', { name: '이어서 풀기', exact: true }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
+  await page.locator('.resume-learning-card').getByRole('button', { name: '이어서 풀기', exact: true }).click();
   await expect(page.locator('.session-topbar')).toContainText('냉동공학 중간고사');
   await page.waitForTimeout(400);
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}'));
@@ -271,4 +280,47 @@ test('v5.3 중간고사 진행 답안은 유지하고 새 분리 ID로 이어풀
   expect(saved.answers).toEqual({ 'school-cooling::hvac-20211:21': 2 });
   expect(saved.kept).toEqual(['school-cooling::hvac-20211:22']);
   expect(saved.page).toBe(1);
+});
+
+test('일반 기출과 중간고사 전환·학교 화면 분리·모바일 넘침 없음', async ({ page }, info) => {
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('modern-cbt-qualification-industrial')) localStorage.setItem('modern-cbt-qualification-industrial', 'hvac');
+    localStorage.setItem('unified-cbt-dynamic-ui', 'false');
+  });
+  await page.goto('./?safe=1');
+  const openMenu = async () => {
+    if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
+  };
+  await openMenu();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  const choices = page.locator('.rounds-collection');
+  await expect(choices.getByRole('button', { name: '일반 기출', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  const regularCount = await page.locator('.round-grid .round-card').count();
+  expect(regularCount).toBeGreaterThan(0);
+  await choices.getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
+  await expect(page.locator('.cooling-midterm .round-card').first()).toBeVisible({ timeout: 30000 });
+  await expect(page.locator('.school-hero')).toHaveCount(0);
+  await page.screenshot({ path: `/private/tmp/cbt-cooling-relocated-${info.project.name}.png` });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+  if (info.project.name === 'desktop') {
+    await page.setViewportSize({ width: 960, height: 900 });
+    await page.screenshot({ path: '/private/tmp/cbt-cooling-relocated-fhd-half.png' });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+    await page.setViewportSize({ width: 1440, height: 900 });
+  }
+  await choices.getByRole('button', { name: '일반 기출', exact: true }).click();
+  await expect(page.locator('.cooling-midterm')).toHaveCount(0);
+  await expect(page.locator('.round-grid .round-card')).toHaveCount(regularCount);
+  await openMenu();
+  await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
+  await expect(page.locator('.cooling-midterm')).toHaveCount(0);
+  await expect(page.locator('.school-rounds')).toBeVisible();
+  await openMenu();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  await choices.getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
+  await page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true }).selectOption('energy');
+  await expect(page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true })).toHaveValue('energy');
+  await expect(choices.getByRole('button', { name: '일반 기출', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('.cooling-midterm')).toHaveCount(0);
+  expect(await page.evaluate(() => localStorage.getItem('cbt-rounds-collection'))).toBe('regular');
 });

@@ -283,6 +283,7 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
+const roundsCollection = ref(localStorage.getItem('cbt-rounds-collection') === 'cooling' && !isJewelry ? 'cooling' : 'regular');
 const settingsReturnView = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
@@ -347,7 +348,10 @@ const betaModeFilter = ref<StudyMode>('learn');
 const learningJumpNumber = ref('');
 const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) || 1)));
 const recentExamRecords = ref<ExamRecord[]>([]);
-const officialRule = computed(() => qualificationRuleFor(selectedKey.value));
+const coolingExamRecords = ref<ExamRecord[]>([]);
+const coolingSessionActive = computed(() => Boolean(session.value?.items.length && session.value.items.every(item => isCoolingRecord(item.id))));
+const sessionQualificationKey = computed(() => coolingSessionActive.value ? SCHOOL_EXAM_CATALOG_KEY : selectedKey.value);
+const officialRule = computed(() => coolingSessionActive.value ? undefined : qualificationRuleFor(selectedKey.value));
 const officialExamQuestionCount = computed(() => officialRule.value?.totalQuestions
   || (selectedSubjects.value.length * (officialRule.value?.questionsPerSubject || 20)));
 const officialExamRecords = computed(() => recentExamRecords.value.filter((record) => !record.mode || record.mode === 'exam'));
@@ -498,7 +502,7 @@ const coolingArchive = computed(() => {
   return (Array.isArray(value?.sessions) ? value.sessions : []).filter(saved => saved.id && Array.isArray(saved.itemIds)
     && saved.itemIds.length && saved.itemIds.every(isCoolingRecord)).sort((a, b) => b.savedAt - a.savedAt);
 });
-const coolingCompleted = computed(() => recentExamRecords.value.filter(record => record.itemIds?.length && record.itemIds.every(isCoolingRecord)));
+const coolingCompleted = computed(() => coolingExamRecords.value.filter(record => record.itemIds?.length && record.itemIds.every(isCoolingRecord)));
 function saveCoolingArchive(saved: SavedLearningSession): void {
   if (!saved.id || !saved.itemIds.every(isCoolingRecord)) return;
   studyStore.progress ||= {};
@@ -549,6 +553,8 @@ function readSavedLearningSession(): SavedLearningSession | null {
   return local;
 }
 const savedLearningSession = ref<SavedLearningSession | null>(readSavedLearningSession());
+const coolingSavedSession = computed(() => Boolean(savedLearningSession.value?.itemIds.length && (savedLearningSession.value.itemIds.every(isCoolingRecord)
+  || savedLearningSession.value.title.startsWith(`${coolingMidtermTitle} ·`))));
 if (savedLearningSession.value && !learningProgressValue()) {
   studyStore.progress ||= {};
   studyStore.progress[learningSessionProgressKey] = savedLearningSession.value;
@@ -1795,7 +1801,11 @@ function stripMarkup(value?: string): string {
 }
 
 async function refreshExamHistory(): Promise<void> {
-  recentExamRecords.value = await loadExamRecords(selectedKey.value);
+  const key = selectedKey.value;
+  const [records, coolingRecords] = await Promise.all([loadExamRecords(key), loadExamRecords(SCHOOL_EXAM_CATALOG_KEY)]);
+  coolingExamRecords.value = coolingRecords;
+  if (key !== selectedKey.value) return;
+  recentExamRecords.value = records;
   const availableRoundIds = new Set(recentExamRecords.value.flatMap((record) => record.roundId ? [record.roundId] : []));
   if (!wrongRoundFilter.value || !availableRoundIds.has(wrongRoundFilter.value)) {
     wrongRoundFilter.value = recentExamRecords.value.find((record) => record.roundId && record.wrongAnswers?.length)?.roundId || '';
@@ -1878,6 +1888,7 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 function configureQualification(key: string): void {
+  roundsCollection.value = 'regular';
   const target = catalogs.find((catalog) => catalog.key === key);
   if (target?.isPlaceholder) {
     localStorage.setItem(qualificationStorageKey, key);
@@ -1938,7 +1949,7 @@ async function loadQuestionSources(keys: string[]): Promise<void> {
 async function loadCoolingMidterm(): Promise<void> {
   coolingLoading.value = true;
   coolingError.value = '';
-  try { await loadQuestionSources(['hvac', 'hvac-hansol']); }
+  try { await Promise.all([loadQuestionSources(['hvac', 'hvac-hansol']), refreshExamHistory()]); }
   catch { coolingError.value = '냉동공학 문제를 불러오지 못했습니다. 연결을 확인해 주세요.'; }
   finally { coolingLoading.value = false; }
 }
@@ -2290,7 +2301,7 @@ function restoreSessionReturnPosition(state: SessionReturnState | null): void {
   if (!state) return;
   void nextTick(() => window.requestAnimationFrame(() => {
     const roundCard = state.view === 'rounds' && state.roundId
-      ? document.getElementById(`round-card-${state.roundId}`)
+      ? document.getElementById(`${roundsCollection.value === 'cooling' ? 'cooling-round' : 'round-card'}-${state.roundId}`)
       : null;
     if (roundCard) roundCard.scrollIntoView({ block: 'center', behavior: motionAllowed.value ? 'smooth' : 'auto' });
     else window.scrollTo({ top: state.scrollY, behavior: 'auto' });
@@ -2347,6 +2358,8 @@ function handlePageHide(): void {
   persistPracticalCursor();
   saveActiveLearningSession();
   sendCurrentSessionOnExit();
+  // The 120ms store debounce may not run once the page is unloading.
+  persistStudyStoreNow();
 }
 
 function setupSearchWorker(): void {
@@ -2449,7 +2462,7 @@ function saveActiveLearningSession(): void {
   const saved: SavedLearningSession = {
     id: active.id,
     version: 1,
-    qualificationKey: selectedKey.value,
+    qualificationKey: sessionQualificationKey.value,
     mode: active.mode,
     roundId: active.items.every((item) => item.round.id === active.items[0]?.round.id)
       ? active.items[0]?.round.id
@@ -2535,7 +2548,7 @@ async function beginSession(
     pageSize,
     startedAt: options.startedAt || Date.now(),
     remainingSeconds: mode === 'exam'
-      ? Math.max(1, Number(options.remainingSeconds) || examDurationSeconds(items.length))
+      ? Math.max(1, Number(options.remainingSeconds) || (items.every(item => isCoolingRecord(item.id)) ? Math.max(90 * 60, items.length * 90) : examDurationSeconds(items.length)))
       : 0,
     finished: false,
     resultSent: false,
@@ -2590,7 +2603,10 @@ async function resumeSavedLearning(): Promise<void> {
     showToast('저장된 문제 구성이 바뀌어 이어하기 기록을 정리했습니다.');
     return;
   }
-  if (catalogs.some((catalog) => catalog.key === saved.qualificationKey)) {
+  if (saved.itemIds.every(isCoolingRecord)) {
+    roundsCollection.value = 'cooling';
+    if (view.value !== 'rounds') openView('rounds');
+  } else if (catalogs.some((catalog) => catalog.key === saved.qualificationKey)) {
     selectedKey.value = saved.qualificationKey;
     localStorage.setItem(qualificationStorageKey, saved.qualificationKey);
   }
@@ -3108,7 +3124,7 @@ function calculateSessionResult(): (ExamResult & { unanswered: number }) | null 
     official,
     criteria: rule
       ? `${official ? '' : '전체 시험 분량을 푼 경우 적용 · '}${rule.note}`
-      : '공식 합격 기준 확인이 필요합니다.',
+      : coolingSessionActive.value ? '중간고사 연습 점수입니다. 학교의 실제 채점 기준과는 다를 수 있습니다.' : '공식 합격 기준 확인이 필요합니다.',
     source: rule?.officialSource,
     subjectRows,
     unanswered: session.value.items.length - answeredCount.value,
@@ -3120,8 +3136,8 @@ function sendSessionResult(result: ExamResult & { unanswered: number }): void {
   const roundIds = [...new Set(session.value.items.map((item) => item.round.id))];
   session.value.resultSent = true;
   window.CBTAnalytics?.trackResult?.({
-    qualificationKey: selectedKey.value,
-    qualification: selectedCatalog.value.name,
+    qualificationKey: sessionQualificationKey.value,
+    qualification: coolingSessionActive.value ? coolingMidtermTitle : selectedCatalog.value.name,
     roundId: roundIds.length === 1 ? roundIds[0] : undefined,
     title: session.value.title,
     mode: session.value.mode,
@@ -3180,7 +3196,7 @@ function submitSession(mode: StudyMode, force = false): void {
   });
   void recordExam({
     id: session.value.id,
-    qualificationKey: selectedKey.value,
+    qualificationKey: sessionQualificationKey.value,
     roundId: singleRound?.id,
     year: singleRound?.year,
     session: singleRound?.session || singleRound?.date,
@@ -4169,9 +4185,12 @@ function syncNativeStatusBar(): void {
 
 watch(darkActive, syncNativeStatusBar);
 watch(view, next => {
-  if (next === 'school') void loadCoolingMidterm();
   if (next === 'search') void prepareSearchScope();
 });
+watch([view, roundsCollection], ([next, collection]) => {
+  if (next === 'rounds' && collection === 'cooling' && !isJewelry) void loadCoolingMidterm();
+});
+watch(roundsCollection, value => localStorage.setItem('cbt-rounds-collection', value), { flush: 'sync' });
 watch([theme, visualStyle], () => void nextTick(applyUiLabPreferences));
 
 onMounted(async () => {
@@ -4678,15 +4697,26 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'school'">
-          <section v-if="savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY" class="resume-learning-card">
+          <section v-if="savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY && !coolingSavedSession" class="resume-learning-card">
             <div><span>자동 저장된 학교 시험 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
           </section>
-          <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :attempted-ids="coolingItems.filter(item => studyStore.attempts[item.id]).map(item => item.id)" :unused-ids="coolingUnusedIds" :sessions="coolingArchive" :history="coolingCompleted" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" @reset-draws="resetCoolingDraws" @resume="resumeCoolingArchived" @replay="id => { const record = coolingCompleted.find(item => item.id === id); if (record) replayHistoryRecord(record); }" />
           <SchoolExamManager :data="schoolExamData" @update="updateSchoolExamData" @start="startSchoolExamRound" @start-set="startSchoolQuestionSet" @search="openSchoolSetSearch" />
         </template>
 
         <template v-else-if="view === 'rounds'">
+          <nav v-if="!isJewelry" class="rounds-collection" aria-label="문제 모음 선택">
+            <button :aria-pressed="roundsCollection === 'regular'" :class="{ active: roundsCollection === 'regular' }" @click="roundsCollection = 'regular'">일반 기출</button>
+            <button :aria-pressed="roundsCollection === 'cooling'" :class="{ active: roundsCollection === 'cooling' }" @click="roundsCollection = 'cooling'">냉동공학 중간고사</button>
+          </nav>
+          <template v-if="roundsCollection === 'cooling' && !isJewelry">
+            <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
+              <div><span>자동 저장된 중간고사 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
+              <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
+            </section>
+            <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :attempted-ids="coolingItems.filter(item => studyStore.attempts[item.id]).map(item => item.id)" :unused-ids="coolingUnusedIds" :sessions="coolingArchive" :history="coolingCompleted" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" @reset-draws="resetCoolingDraws" @resume="resumeCoolingArchived" @replay="id => { const record = coolingCompleted.find(item => item.id === id); if (record) replayHistoryRecord(record); }" />
+          </template>
+          <template v-else>
           <section class="rounds-heading">
             <div><span>PAST EXAMS</span><h1>{{ selectedCatalog.name }} 기출문제</h1><p>수록된 전체 {{ visibleRounds.length }}회차</p></div>
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
@@ -4713,6 +4743,7 @@ onBeforeUnmount(() => {
               </footer>
             </article>
           </TransitionGroup>
+          </template>
         </template>
 
         <template v-else-if="view === 'history'">
@@ -5346,7 +5377,7 @@ onBeforeUnmount(() => {
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
-            <p>v5.4.1 선택 화면: 기존 회차별 문제처럼 회차 카드를 바로 보고 학습모드·CBT 시험모드·오답·이어풀기를 선택합니다. 출처·연도·소과목을 고르고 긴 분류 안내는 펼쳐 확인합니다.</p>
+            <p>v5.4.2: 회차별 문제 상단의 ‘냉동공학 중간고사’에서 회차를 골라 바로 풉니다. 학교 자료 관리 화면과 분리했으며 전용 오답·이어풀기·점수 기록은 유지됩니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
