@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '542';
+const buildVersion = '543';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -57,7 +57,10 @@ export default defineConfig({
       output: {
         entryFileNames: '[name].js',
         chunkFileNames: `chunks/[name]-v${buildVersion}.js`,
-        assetFileNames: (assetInfo) => assetInfo.name === 'main.css' ? 'cbt.css' : assetInfo.name?.endsWith('.css') ? '[name][extname]' : 'assets/[name]-[hash][extname]'
+        // Lazy Vue styles change their scoped selectors when the component changes.
+        // Version their URLs too, so an older service worker cannot mix old CSS
+        // with a new component chunk. The entry CSS uses a versioned HTML query.
+        assetFileNames: (assetInfo) => assetInfo.name === 'main.css' ? 'cbt.css' : assetInfo.name === 'admin.css' ? 'admin.css' : assetInfo.name?.endsWith('.css') ? `[name]-v${buildVersion}[extname]` : 'assets/[name]-[hash][extname]'
       }
     }
   }

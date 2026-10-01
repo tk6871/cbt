@@ -1,5 +1,9 @@
 # 산업기사 통합 CBT
 
+### v5.4.3 중간고사 첫 화면·선택칸 표시 수정
+
+종목이 **학교 중간·기말고사**일 때 `회차별 문제`를 열면 냉동공학 중간고사가 첫 화면에 바로 나옵니다. 불필요한 일반 기출 전환 버튼은 제거했습니다. 자격증별 기존 기출은 상단 종목 선택으로 그대로 이용합니다. 이전 스타일 캐시와 새 화면이 섞이지 않도록 분리 CSS도 버전별 주소로 만들었으며 오답·저장 답안·점수는 지우지 않습니다.
+
 ### v5.4.2 중간고사는 회차별 문제에서
 
 **회차별 문제 → 냉동공학 중간고사**를 선택하세요. 일반 기출과 중간고사를 상단에서 바꾸고, 출처·연도·소과목을 고른 뒤 회차 카드에서 바로 학습/CBT를 시작합니다. 학교 시험 준비의 자료 관리·시험지 입력과 분리했으며 전용 오답·저장 답안·점수 기록은 그대로 유지합니다. 학교 시험 준비에는 직접 만든 시험지와 암기 자료가 남습니다. 원문과 임시 소과목 분류는 변경하지 않았습니다.
@@ -90,7 +94,7 @@
 - 설치용 서명 APK는 [Android APK 최신판](https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk)에서 받을 수 있습니다.
 - 공개 CBT 홈페이지의 Android 전용 다운로드 팝업과 패치노트에서도 같은 최신 APK를 받을 수 있습니다. iPhone과 iPad에는 APK 안내가 표시되지 않습니다.
 - Galaxy 실기기는 USB 디버깅을 허용한 뒤 `npm run android:debug`, `npm run android:install` 순서로 개발용 앱을 빌드·설치할 수 있습니다.
-- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.4.2.apk`를 생성합니다.
+- 배포용 서명키는 `npm run android:key`로 최초 한 번 만들고 `npm run android:release`로 `dist/industrial-cbt-v5.4.3.apk`를 생성합니다.
 - Android 앱은 GitHub Pages의 최신 웹 화면을 불러오므로 일반 문제·화면 업데이트는 APK를 다시 설치하지 않아도 다음 실행부터 반영됩니다. 시작할 때 인터넷이나 GitHub Pages 연결에 실패하면 설치된 APK에 포함된 화면으로 자동 전환됩니다(내장 화면 버전은 APK를 빌드한 시점 기준). Android 네이티브 플러그인·권한·앱 아이콘이 바뀔 때는 새 APK가 필요합니다.
 - 서명키와 비밀번호는 `android/signing/`에만 보관되고 Git에서 제외됩니다. 이 폴더를 잃으면 기존 설치 앱 위에 새 버전을 업데이트할 수 없습니다.
 - GitHub Actions 비밀값을 최초 한 번 등록한 뒤에는 GitHub Desktop에서 `main`을 Push origin 할 때마다 고정 다운로드 링크의 서명 APK가 자동으로 갱신됩니다.

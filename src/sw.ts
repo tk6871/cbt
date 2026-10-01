@@ -15,11 +15,12 @@ const CORE = [
   `./modern/cbt.css?${versionQuery}`, `./modern/cbt.js?${versionQuery}`, `./modern/mobile.js?${versionQuery}`, './modern/visitor.js?v=255',
   `./modern/chunks/import-wrapper-prod-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/index-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
-  `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`, './modern/OptionalFeatureBoundary.css',
+  `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
-  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SyncRecoveryPanel', 'SchoolExamManager', 'VisiblePracticalPad', 'PracticalAnswerPad', 'PracticalTrainingTools', 'rotate-ccw']
+  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SyncRecoveryPanel', 'SchoolExamManager', 'CoolingMidterm', 'VisiblePracticalPad', 'PracticalAnswerPad', 'PracticalTrainingTools', 'rotate-ccw']
     .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
-  './modern/StudySettings.css', './modern/ThemeStudio.css', './modern/SyncRecoveryPanel.css', './modern/PracticalAnswerPad.css',
+  ...['OptionalFeatureBoundary', 'StudySettings', 'ThemeStudio', 'SyncRecoveryPanel', 'PracticalAnswerPad', 'CoolingMidterm']
+    .map((name) => `./modern/${name}-v${__CBT_BUILD_VERSION__}.css`),
   `./modern/chunks/index-v${__CBT_BUILD_VERSION__}2.js`,
   // sync-pwa-service-worker.mjs resolves the actual content-hashed worker.
   './modern/assets/__CBT_SEARCH_WORKER__',
@@ -62,7 +63,7 @@ worker.addEventListener('fetch', (event) => {
     const sameOrigin = url.origin === worker.location.origin;
     const networkFirst = sameOrigin && (
       url.pathname.endsWith('/')
-      || /\/(?:index\.html|jewelry\.html|next\.html|recovery\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile)\.js|modern\/cbt\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname)
+      || /\/(?:index\.html|jewelry\.html|next\.html|recovery\.html|admin\.html|cloud-config\.js|modern\/(?:cbt|mobile|admin)\.js|modern\/(?:cbt|admin)\.css|data\/(?:catalog-index|catalog-bootstrap|changelog(?:-vue)?)\.js)$/.test(url.pathname)
     );
 
     if (networkFirst) {
