@@ -20,6 +20,7 @@ export type Question = {
   number: number;
   text?: string;
   html?: string;
+  ocrText?: string;
   images?: string[];
   sourceImage?: string | null;
   choices: Choice[];
