@@ -62,6 +62,17 @@ export function uniqueSchoolItems(items: QuestionItem[]): QuestionItem[] {
 }
 
 export type CoolingDrawState = { ids: string[]; resetAt: number; savedAt: number };
+export function coolingTopicGroups(items: QuestionItem[]): Array<{ label: string; items: QuestionItem[]; aliases: QuestionItem[] }> {
+  const unique = uniqueSchoolItems(items);
+  const labelsByKey = new Map(unique.map(item => [schoolItemKey(item), coolingTopic(item)]));
+  // Assign duplicate aliases to the same topic while retaining their saved record IDs.
+  return [...coolingTopics, '분류 미확인'].map(label => ({
+    label,
+    items: unique.filter(item => labelsByKey.get(schoolItemKey(item)) === label),
+    aliases: items.filter(item => labelsByKey.get(schoolItemKey(item)) === label),
+  }));
+}
+
 export function coolingUnusedItems(items: QuestionItem[], all: QuestionItem[], drawn: CoolingDrawState,
   attempts: Record<string, { at: number }>): QuestionItem[] {
   const usedIds = new Set(drawn.ids);

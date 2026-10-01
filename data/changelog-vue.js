@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version: '5.4.4', scope: 'industrial', date: '2026.10.01',
+      title: '냉동공학 중간고사를 소과목별로 선택',
+      summary: '연도·회차 선택을 없애고 냉동이론 등6개 소과목 카드에서 바로 학습·CBT를 시작합니다.',
+      tags: ['중간고사', '소과목', '화면 정리'],
+      changes: [
+        '냉동이론·냉동장치의 구조·냉동장치의 응용과 안전관리·냉동냉장 부하계산·냉동설비의 설치·냉방설비운영 카드로 나눴습니다. 임시 분류가 애매한 문제는 분류 미확인 카드에 남깁니다.',
+        '소과목별 진도·오답·이어서 풀기를 확인하고 전체·랜덤 풀이도 소과목으로 고릅니다. 완전히 같은 문제는 한 카드에만 배치합니다.',
+        '기존 연도별 저장 답안·오답·완료 점수는 유지하고 풀이 기록에서 이어 보거나 다시 풉니다. 일반 자격증 회차 목록과 원문 문제는 변경하지 않았습니다.'
+      ]
+    },
+    {
       version: '5.4.3', scope: 'industrial', date: '2026.10.01',
       title: '중간고사 선택칸 표시·첫 화면 수정',
       summary: '업데이트 후 연도·소과목 선택칸 스타일이 빠지는 캐시 혼합을 방지하고 중간고사를 첫 화면에 표시합니다.',
@@ -2304,8 +2315,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4.3';
+  changelog.versions.industrial = '5.4.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4.3';
+  changelog.currentVersion = '5.4.4';
   window.CBT_CHANGELOG = changelog;
 })();
