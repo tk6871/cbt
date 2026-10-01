@@ -12,12 +12,15 @@ const schoolImportSchema = z.object({
   rounds: z.array(z.unknown()).optional(),
   scopes: z.array(z.unknown()).optional(),
   memoryCards: z.array(z.unknown()).optional(),
+  questionSets: z.array(z.unknown()).optional(),
 }).passthrough();
 
 const props = defineProps<{ data: SchoolExamData }>();
 const emit = defineEmits<{
   update: [data: SchoolExamData];
   start: [payload: { round: Round; mode: StudyMode }];
+  startSet: [payload: { id: string; mode: StudyMode }];
+  search: [setId: string];
 }>();
 
 const importInput = ref<HTMLInputElement | null>(null);
@@ -64,6 +67,11 @@ function commit(next: SchoolExamData): void {
 
 function scopeFor(round: Round) {
   return props.data.scopes.find((scope) => scope.id === round.id);
+}
+
+function removeQuestionSet(id: string): void {
+  if (!confirm('이 학교 시험지의 문제 목록을 삭제할까요? 원래 기출문제와 학습 기록은 유지됩니다.')) return;
+  commit({ ...props.data, questionSets: props.data.questionSets?.filter(set => set.id !== id) });
 }
 
 async function copyPrompt(prompt: string, kind: 'photo' | 'patch'): Promise<void> {
@@ -240,7 +248,7 @@ async function mergeData(event: Event): Promise<void> {
   if (!file) return;
   try {
     const incoming = normalizeSchoolExamData(schoolImportSchema.parse(JSON.parse(await file.text())));
-    if (!incoming.rounds.length && !incoming.memoryCards.length && !incoming.scopes.length) {
+    if (!incoming.rounds.length && !incoming.memoryCards.length && !incoming.scopes.length && !incoming.questionSets?.length) {
       throw new Error('empty school data');
     }
     const merged = mergeSchoolExamData(props.data, incoming);
@@ -327,7 +335,10 @@ async function mergeData(event: Event): Promise<void> {
         <div><button type="button" :disabled="!round.questions.length" @click="emit('start', { round, mode: 'learn' })">학습모드</button><button type="button" :disabled="!round.questions.length" @click="emit('start', { round, mode: 'exam' })">CBT모드</button><button class="danger" type="button" @click="removeRound(round)">삭제</button></div>
       </article>
     </div>
-    <p v-else class="school-empty">아직 만든 시험지가 없습니다.</p>
+    <p v-else-if="!data.questionSets?.length" class="school-empty">아직 만든 시험지가 없습니다.</p>
+    <div v-if="data.questionSets?.length" class="school-round-grid">
+      <article v-for="set in data.questionSets" :key="set.id"><span>{{ set.subject }}</span><h3>{{ set.title }}</h3><p>통합 검색에서 담은 {{ set.itemIds.length }}문제 · 원래 그림과 해설 유지</p><div><button type="button" :disabled="!set.itemIds.length" @click="emit('startSet', { id: set.id, mode: 'learn' })">학습모드</button><button type="button" :disabled="!set.itemIds.length" @click="emit('startSet', { id: set.id, mode: 'exam' })">CBT모드</button><button type="button" @click="emit('search', set.id)">문제 더 담기</button><button type="button" class="danger" @click="removeQuestionSet(set.id)">삭제</button></div></article>
+    </div>
   </section>
 
   <section class="school-panel school-memory">

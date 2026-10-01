@@ -30,6 +30,7 @@ requiredWorkerValues.forEach((value) => {
 });
 
 if (worker.includes('__CBT_BUILD_VERSION__')) throw new Error('서비스워커 빌드 버전 치환이 끝나지 않았습니다.');
+if (worker.includes('__CBT_SEARCH_WORKER__')) throw new Error('검색 워커의 빌드 경로 치환이 끝나지 않았습니다.');
 if (!worker.includes(`"v=${version}"`)) throw new Error('서비스워커의 쿼리 버전이 배포 버전과 다릅니다.');
 if (/event\.waitUntil\(refreshCoreCache\(\)\.then\([^\n]*skipWaiting/.test(workerSource)) {
   throw new Error('서비스워커가 사용자 확인 전에 새 버전을 강제로 활성화합니다.');

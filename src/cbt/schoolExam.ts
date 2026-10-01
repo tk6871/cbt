@@ -49,10 +49,13 @@ export type SchoolExamData = {
   rounds: Round[];
   scopes: SchoolStudyScope[];
   memoryCards: SchoolMemoryCard[];
+  questionSets?: SchoolQuestionSet[];
 };
 
+export type SchoolQuestionSet = { id: string; title: string; subject: string; itemIds: string[] };
+
 export function emptySchoolExamData(): SchoolExamData {
-  return { version: 1, rounds: [], scopes: [], memoryCards: [] };
+  return { version: 1, rounds: [], scopes: [], memoryCards: [], questionSets: [] };
 }
 
 function validRound(round: unknown): round is Round {
@@ -99,7 +102,12 @@ export function normalizeSchoolExamData(value: unknown): SchoolExamData {
     && typeof card.subject === 'string'
     && typeof card.prompt === 'string'
     && typeof card.answer === 'string') as SchoolMemoryCard[] : [];
-  return { version: 1, rounds, scopes, memoryCards };
+  const questionSets = Array.isArray(source.questionSets) ? source.questionSets.filter(set => set
+    && typeof set.id === 'string' && typeof set.title === 'string' && typeof set.subject === 'string'
+    && Array.isArray(set.itemIds) && set.itemIds.every(id => typeof id === 'string')).map(set => ({
+      ...set, itemIds: [...new Set(set.itemIds)],
+    })) : [];
+  return { version: 1, rounds, scopes, memoryCards, questionSets };
 }
 
 function mergeById<T extends { id: string }>(current: T[], incoming: T[]): T[] {
@@ -115,6 +123,7 @@ export function mergeSchoolExamData(current: SchoolExamData, incoming: unknown):
     rounds: mergeById(normalizedCurrent.rounds, normalizedIncoming.rounds),
     scopes: mergeById(normalizedCurrent.scopes, normalizedIncoming.scopes),
     memoryCards: mergeById(normalizedCurrent.memoryCards, normalizedIncoming.memoryCards),
+    questionSets: mergeById(normalizedCurrent.questionSets || [], normalizedIncoming.questionSets || []),
   });
 }
 

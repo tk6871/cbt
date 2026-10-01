@@ -6,6 +6,7 @@ import { animate, stagger } from 'motion';
 import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
   GEM_APPRAISER_TARGET_KEY,
+  ensureCatalogLoaded,
   latestSubjects,
   loadCatalogs,
   loadReferenceRounds,
@@ -25,6 +26,8 @@ const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue')
 const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
+const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
+import { coolingMidtermItems, coolingMidtermTitle, normalizedSchoolSubject } from './schoolQuestionBank';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -245,7 +248,7 @@ const savedSunjaeRotationSeconds = savedSunjaeRotationValue === null ? Number.Na
 const sunjaeRotationChoices = [0, 5, 10, 30, 60, 180, 300];
 const schoolExamData = ref(loadSchoolExamData());
 const schoolCatalog = reactive(schoolExamCatalog(schoolExamData.value));
-const catalogs = [...loadCatalogs(), ...(!isJewelry ? [schoolCatalog] : [])];
+const catalogs = reactive([...loadCatalogs(), ...(!isJewelry ? [schoolCatalog] : [])]);
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
   hvac: { icon: '❄', className: 'blue', description: '공조·냉동·설치운영' },
@@ -319,6 +322,18 @@ const openUpdatesAfterRefreshKey = `cbt-open-updates-after-refresh-${spaceScope}
 const searchQuery = ref('');
 const searchResultIds = ref<string[]>([]);
 const searchReady = ref(false);
+const searchScope = ref<'current' | 'hvac' | 'selected' | 'all'>(['hvac', 'hvac-hansol'].includes(selectedKey.value) ? 'hvac' : 'current');
+const searchCatalogKeys = ref<string[]>(['hvac', 'hvac-hansol']);
+const searchSubject = ref('all');
+const searchLoading = ref(false);
+const searchError = ref('');
+const searchTotal = ref(0);
+let searchRequestId = 0;
+let searchLoadSequence = 0;
+const coolingLoading = ref(false);
+const coolingError = ref('');
+const searchSetId = ref('');
+const newSearchSetTitle = ref('냉동공학 중간고사 · 선택 문제');
 const searchBookmarksOnly = ref(false);
 const wrongRoundFilter = ref('');
 const wrongTypeFilter = ref<'all' | 'calculation'>('all');
@@ -600,12 +615,26 @@ const roundRecordMap = computed(() => {
 });
 const lastRoundRecord = computed(() => recentExamRecords.value.find((record) => record.roundId && (!record.mode || record.mode === 'exam')) || null);
 const searchResults = computed(() => {
-  const lookup = selectedCatalog.value.isVirtual ? targetItemMap : itemMap.value;
+  const lookup = selectedCatalog.value.isVirtual && searchScope.value === 'current' ? targetItemMap : itemMap.value;
   return searchResultIds.value.map((id) => lookup.get(id)).filter((item): item is QuestionItem => Boolean(item));
 });
+const searchKeys = computed(() => searchScope.value === 'hvac' ? ['hvac', 'hvac-hansol']
+  : searchScope.value === 'selected' ? searchCatalogKeys.value
+    : searchScope.value === 'all' ? catalogs.filter(catalog => !catalog.isVirtual).map(catalog => catalog.key)
+      : selectedCatalog.value.isVirtual ? sourceCatalogs.map(catalog => catalog.key) : [selectedKey.value]);
+const searchScopeLabel = computed(() => searchScope.value === 'hvac' ? '공조 + 한솔 공조'
+  : searchScope.value === 'all' ? '전체 종목' : searchScope.value === 'selected' ? `${searchKeys.value.length}개 종목` : selectedCatalog.value.name);
+const searchSubjects = computed(() => [...new Set(allItems.value.filter(item => searchKeys.value.includes(item.round.qualificationKey || ''))
+  .map(normalizedSchoolSubject))].sort((a, b) => a.localeCompare(b, 'ko')));
+const coolingItems = computed(() => coolingMidtermItems(allItems.value));
+const coolingWrongIds = computed(() => coolingItems.value.filter(item => studyStore.attempts[item.id]
+  && !studyStore.attempts[item.id].lastCorrect).map(item => item.id));
 const searchableCatalogItems = computed(() => {
-  if (selectedCatalog.value.isVirtual) return [...targetItemMap.values()];
-  return allItems.value.filter((item) => item.round.qualificationKey === selectedKey.value);
+  if (selectedCatalog.value.isVirtual && searchScope.value === 'current') return [...targetItemMap.values()]
+    .filter(item => searchSubject.value === 'all' || normalizedSchoolSubject(item) === searchSubject.value);
+  const items = allItems.value;
+  return items.filter(item => searchKeys.value.includes(item.round.qualificationKey || '')
+    && (searchSubject.value === 'all' || normalizedSchoolSubject(item) === searchSubject.value));
 });
 const bookmarkedCatalogItems = computed(() => searchableCatalogItems.value
   .filter((item) => studyStore.bookmarks.includes(item.id)));
@@ -1864,6 +1893,81 @@ function startSchoolExamRound(payload: { round: Round; mode: StudyMode }): void 
   startRound(payload.round, payload.mode);
 }
 
+async function loadQuestionSources(keys: string[]): Promise<void> {
+  await Promise.all(keys.map(async key => {
+    const target = catalogs.find(catalog => catalog.key === key);
+    if (!target?.isPlaceholder) return;
+    const loaded = await ensureCatalogLoaded(key);
+    Object.assign(target, loaded, { isPlaceholder: false });
+  }));
+  indexSearchItems();
+}
+
+async function loadCoolingMidterm(): Promise<void> {
+  coolingLoading.value = true;
+  coolingError.value = '';
+  try { await loadQuestionSources(['hvac', 'hvac-hansol']); }
+  catch { coolingError.value = '냉동공학 문제를 불러오지 못했습니다. 연결을 확인해 주세요.'; }
+  finally { coolingLoading.value = false; }
+}
+
+function openCoolingSearch(): void {
+  searchScope.value = 'hvac';
+  searchSubject.value = '냉동냉장설비';
+  openView('search');
+}
+
+function openSchoolSetSearch(id: string): void {
+  const set = schoolExamData.value.questionSets?.find(item => item.id === id);
+  if (!set) return;
+  searchSetId.value = id;
+  searchCatalogKeys.value = [...new Set(set.itemIds.flatMap(itemId => {
+    const item = itemMap.value.get(itemId);
+    return item?.round.qualificationKey ? [item.round.qualificationKey] : [];
+  }))];
+  searchScope.value = searchCatalogKeys.value.length ? 'selected' : 'all';
+  searchSubject.value = set.subject;
+  openView('search');
+}
+
+function startCoolingMidterm(payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number }): void {
+  const items = payload.randomCount ? shuffle(payload.items).slice(0, payload.randomCount) : payload.items;
+  void beginSession(payload.mode, `${coolingMidtermTitle} · ${payload.randomCount ? '랜덤' : '전체'} ${items.length}문제`, items);
+}
+
+async function ensureItemSources(ids: string[]): Promise<void> {
+  const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
+    && ids.some(id => id.startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
+  await loadQuestionSources(keys);
+}
+
+async function startSchoolQuestionSet(payload: { id: string; mode: StudyMode }): Promise<void> {
+  const set = schoolExamData.value.questionSets?.find(item => item.id === payload.id);
+  if (!set) return;
+  try {
+    await ensureItemSources(set.itemIds);
+    const items = set.itemIds.flatMap(id => itemMap.value.get(id) ? [itemMap.value.get(id)!] : []);
+    if (items.length !== set.itemIds.length) { showToast('일부 문제 자료를 찾지 못했습니다. 다시 확인해 주세요.'); return; }
+    void beginSession(payload.mode, set.title, items);
+  } catch { showToast('문제 자료를 불러오지 못했습니다. 다시 시도해 주세요.'); }
+}
+
+function addSearchItemToSchool(item: QuestionItem): void {
+  const sets = [...(schoolExamData.value.questionSets || [])];
+  let target = sets.find(set => set.id === searchSetId.value);
+  if (!target) {
+    const title = newSearchSetTitle.value.trim();
+    if (!title) { showToast('시험지 이름을 입력해 주세요.'); return; }
+    target = { id: `school-set-${Date.now()}`, title, subject: searchSubject.value === 'all' ? item.subject : searchSubject.value, itemIds: [] };
+    sets.unshift(target);
+    searchSetId.value = target.id;
+  }
+  if (target.itemIds.includes(item.id)) { showToast('이미 이 시험지에 담은 문제입니다.'); return; }
+  const updated = sets.map(set => set.id === target!.id ? { ...set, itemIds: [...set.itemIds, item.id] } : set);
+  updateSchoolExamData({ ...schoolExamData.value, questionSets: updated });
+  showToast(`${target.title}에 담았습니다.`);
+}
+
 function setDisplayPreference(mode: DisplayPreference): void {
   localStorage.setItem('unified-cbt-display-mode', mode);
   displayPreference.value = mode;
@@ -2211,9 +2315,12 @@ function handlePageHide(): void {
 function setupSearchWorker(): void {
   searchWorker = new Worker(new URL('./search.worker.ts', import.meta.url), { type: 'module' });
   searchWorker.addEventListener('message', (event: MessageEvent) => {
-    const message = event.data as { type: 'ready' | 'results'; ids?: string[] };
+    const message = event.data as { type: 'ready' | 'results'; ids?: string[]; total?: number; requestId?: number };
     if (message.type === 'ready') searchReady.value = true;
-    if (message.type === 'results') searchResultIds.value = message.ids || [];
+    if (message.type === 'results' && message.requestId === searchRequestId) {
+      searchResultIds.value = message.ids || [];
+      searchTotal.value = message.total || 0;
+    }
   });
   indexSearchItems();
 }
@@ -2224,10 +2331,11 @@ function indexSearchItems(): void {
     entries: allItems.value.map((item) => ({
       id: item.id,
       qualificationKey: item.round.qualificationKey,
+      subject: normalizedSchoolSubject(item),
       haystack: [
         item.question.text,
         item.question.html,
-        item.subject,
+        item.subject, normalizedSchoolSubject(item),
         item.round.title,
         ...item.question.choices.map((choice) => choice.text || choice.html || ''),
       ].join(' ').replace(/<[^>]+>/g, ' ').toLocaleLowerCase('ko'),
@@ -2237,13 +2345,36 @@ function indexSearchItems(): void {
 
 function requestSearch(): void {
   window.clearTimeout(searchHandle);
+  searchRequestId += 1;
+  searchResultIds.value = [];
+  searchTotal.value = 0;
+  const requestId = searchRequestId;
   searchHandle = window.setTimeout(() => {
     searchWorker?.postMessage({
       type: 'search',
       query: searchQuery.value,
-      qualificationKey: selectedCatalog.value.isVirtual ? undefined : selectedKey.value,
+      qualificationKeys: [...searchKeys.value],
+      subject: searchSubject.value,
+      requestId,
     });
   }, 120);
+}
+
+async function prepareSearchScope(): Promise<void> {
+  const sequence = ++searchLoadSequence;
+  const requestKeys = [...searchKeys.value];
+  searchLoading.value = true;
+  searchError.value = '';
+  searchRequestId += 1;
+  searchResultIds.value = [];
+  try {
+    await loadQuestionSources(requestKeys);
+    if (sequence !== searchLoadSequence) return;
+    if (searchSubject.value !== 'all' && !searchSubjects.value.includes(searchSubject.value)) searchSubject.value = 'all';
+    bookmarkRoundFilter.value = 'all';
+    requestSearch();
+  } catch { if (sequence === searchLoadSequence) searchError.value = '선택한 문제 자료를 불러오지 못했습니다. 다시 시도해 주세요.'; }
+  finally { if (sequence === searchLoadSequence) searchLoading.value = false; }
 }
 
 function roundToItems(round: Round): QuestionItem[] {
@@ -2401,9 +2532,11 @@ async function beginSession(
   experienceTransitionPhase.value = null;
 }
 
-function resumeSavedLearning(): void {
+async function resumeSavedLearning(): Promise<void> {
   const saved = savedLearningSession.value;
   if (!saved) return;
+  try { await ensureItemSources(saved.itemIds); }
+  catch { showToast('이어풀기 문제를 불러오지 못했습니다. 저장 기록은 유지됩니다.'); return; }
   const items = saved.itemIds.flatMap((id) => {
     const item = itemMap.value.get(id) || targetItemMap.get(id);
     return item ? [item] : [];
@@ -3986,6 +4119,10 @@ function syncNativeStatusBar(): void {
 }
 
 watch(darkActive, syncNativeStatusBar);
+watch(view, next => {
+  if (next === 'school') void loadCoolingMidterm();
+  if (next === 'search') void prepareSearchScope();
+});
 watch([theme, visualStyle], () => void nextTick(applyUiLabPreferences));
 
 onMounted(async () => {
@@ -4492,7 +4629,12 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'school'">
-          <SchoolExamManager :data="schoolExamData" @update="updateSchoolExamData" @start="startSchoolExamRound" />
+          <section v-if="savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY" class="resume-learning-card">
+            <div><span>자동 저장된 학교 시험 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
+            <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
+          </section>
+          <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" />
+          <SchoolExamManager :data="schoolExamData" @update="updateSchoolExamData" @start="startSchoolExamRound" @start-set="startSchoolQuestionSet" @search="openSchoolSetSearch" />
         </template>
 
         <template v-else-if="view === 'rounds'">
@@ -4586,8 +4728,20 @@ onBeforeUnmount(() => {
             <div>
               <b>⌕</b>
               <input v-model="searchQuery" type="search" placeholder="예: 냉동사이클, 레이놀즈수, 안전밸브" autofocus @input="requestSearch">
-              <small>{{ searchReady ? `${selectedCatalog.name} 검색 준비 완료` : '문제 색인을 준비하는 중' }}</small>
+              <small>{{ searchLoading ? '출처를 불러오는 중' : searchReady ? `${searchScopeLabel} 검색 준비 완료` : '문제 색인을 준비하는 중' }}</small>
             </div>
+            <section class="search-scope-controls" aria-label="통합 검색 범위">
+              <label>검색 출처<select v-model="searchScope" @change="prepareSearchScope"><option value="current">현재 종목</option><option v-if="!isJewelry" value="hvac">공조 + 한솔 공조</option><option value="selected">여러 종목 선택</option><option value="all">전체 종목</option></select></label>
+              <label>과목<select v-model="searchSubject" @change="requestSearch"><option value="all">모든 과목</option><option v-for="subject in searchSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
+              <fieldset v-if="searchScope === 'selected'"><legend>함께 검색할 종목</legend><label v-for="catalog in catalogs.filter(c => !c.isVirtual)" :key="catalog.key"><input v-model="searchCatalogKeys" type="checkbox" :value="catalog.key" @change="prepareSearchScope">{{ catalog.shortName || catalog.name }}</label></fieldset>
+              <p v-if="searchScope === 'all'">전체 종목 자료를 처음 불러올 때는 시간이 걸릴 수 있습니다.</p>
+              <p v-if="searchError" role="alert">{{ searchError }} <button type="button" @click="prepareSearchScope">다시 불러오기</button></p>
+            </section>
+            <section v-if="!isJewelry" class="search-school-target" aria-label="검색 문제를 담을 시험지">
+              <label>문제를 담을 학교 시험지<select v-model="searchSetId"><option value="">새 시험지</option><option v-for="set in schoolExamData.questionSets || []" :key="set.id" :value="set.id">{{ set.title }} · {{ set.itemIds.length }}문제</option></select></label>
+              <label v-if="!searchSetId">시험지 이름<input v-model="newSearchSetTitle" aria-label="새 학교 시험지 이름"></label>
+              <button type="button" @click="selectQualification(SCHOOL_EXAM_CATALOG_KEY)">학교 시험 준비로</button>
+            </section>
             <button
               type="button"
               class="bookmark-search-toggle"
@@ -4605,15 +4759,16 @@ onBeforeUnmount(() => {
           </section>
           <div class="search-summary">
             <span v-if="searchQuery.length < 2 && !searchBookmarksOnly">두 글자 이상 입력하면 바로 검색됩니다.</span>
-            <span v-else><strong>{{ displayedSearchResults.length }}</strong>개의 {{ searchBookmarksOnly ? '즐겨찾기' : '검색' }} 결과</span>
+            <span v-else><strong>{{ displayedSearchResults.length }}</strong>개의 {{ searchBookmarksOnly ? '즐겨찾기' : '검색' }} 결과<template v-if="!searchBookmarksOnly && searchTotal > displayedSearchResults.length"> · 전체 {{ searchTotal.toLocaleString() }}개 중 먼저 120개 표시</template></span>
           </div>
           <TransitionGroup v-if="displayedSearchResults.length" name="list-shift" tag="div" class="question-library search-library">
             <article v-for="item in displayedSearchResults" :key="item.id">
-              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
+              <header><span>{{ item.round.shortQualification || item.round.qualification }} · {{ item.round.year }}년 · {{ normalizedSchoolSubject(item) }}</span><b>{{ item.question.number }}번</b></header>
               <p>{{ item.question.text || '원문 이미지 문제' }}</p>
               <footer>
                 <span>{{ item.round.session || item.round.title }}</span>
                 <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번`, [item])">문제 열기 →</button>
+                <button v-if="!isJewelry" type="button" @click="addSearchItemToSchool(item)">{{ schoolExamData.questionSets?.find(set => set.id === searchSetId)?.itemIds.includes(item.id) ? '✓ 시험지에 담음' : '+ 시험지에 담기' }}</button>
               </footer>
             </article>
           </TransitionGroup>
@@ -5140,6 +5295,7 @@ onBeforeUnmount(() => {
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
+            <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
