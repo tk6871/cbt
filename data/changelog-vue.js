@@ -5,6 +5,18 @@
 
   const entries = [
     {
+      version: '5.4.1', scope: 'industrial', date: '2026.10.01',
+      title: '중간고사 회차 선택 화면 정리',
+      summary: '기존 회차별 문제처럼 회차 카드를 바로 보고 학습·CBT·오답·이어풀기를 선택합니다.',
+      tags: ['중간고사', '회차 카드', '선택 화면'],
+      changes: [
+        '냉동공학 중간고사의 첫 화면을 연도·회차 카드 목록으로 바꿨습니다. 연도를 펼치는 추가 단계 없이 학습모드·CBT 시험모드를 바로 시작합니다.',
+        '회차 카드에 풀이 진도·오답 수·최근 중간고사 CBT 점수와 저장된 묶음 이어풀기를 표시합니다.',
+        '출처·연도·소과목 필터는 유지하고 긴 분류 안내는 접어서 확인합니다. 소과목 자동 분류의 한계나 미확인 문제는 변경하지 않았습니다.',
+        '전체·랜덤, 중간고사 오답과 풀이 기록 탭을 유지하며 기존 저장 답안·진도는 그대로 보존합니다.'
+      ]
+    },
+    {
       version: '5.4', scope: 'industrial', date: '2026.10.01',
       title: '중간고사 전용 오답·회차별 학습·소과목',
       summary: '중간고사 기록을 기존 공조와 분리하고 연도·회차·6개 소과목으로 골라 풉니다. 랜덤 묶음은 중복 출제를 피하고 이전 답안에서 이어갑니다.',
@@ -2269,8 +2281,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4';
+  changelog.versions.industrial = '5.4.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4';
+  changelog.currentVersion = '5.4.1';
   window.CBT_CHANGELOG = changelog;
 })();

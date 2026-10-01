@@ -60,6 +60,9 @@ test('학교 시작·공조+한솔 검색·범위 담기·원문 풀이·새로�
   if ((page.viewportSize()?.width || 1440) <= 900) await menu.click();
   await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await expect(bank.getByRole('button', { name: '연도·회차별', exact: true })).toHaveAttribute('aria-pressed', 'true');
+  await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
+  await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByText('공조 기출 · 1380문제', { exact: true })).toHaveCount(1);
   await expect(bank.getByText('한솔 공조 · 540문제', { exact: true })).toHaveCount(1);
@@ -126,6 +129,7 @@ test('전체 범위 학습과 한솔 출처 랜덤 CBT가 원문 ID로 저장됨
   if ((page.viewportSize()?.width || 1440) <= 900) await menu.click();
   await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체 문제 학습', exact: true }).click();
   await expect(page.locator('.session-topbar')).toContainText('전체 1875문제');
@@ -159,6 +163,7 @@ test('연도·회차·소과목 선택, 오답 분리, 두 랜덤 묶음 중복 
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac');
   await bank.getByRole('combobox', { name: '연도', exact: true }).selectOption('2023');
@@ -171,7 +176,7 @@ test('연도·회차·소과목 선택, 오답 분리, 두 랜덤 묶음 중복 
   await bank.getByRole('combobox', { name: '소과목', exact: true }).selectOption('all');
   await page.screenshot({ path: `/private/tmp/cbt-cooling-rounds-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
-  await bank.locator('.round-grid article').first().getByRole('button', { name: '회차 학습', exact: true }).click();
+  await bank.locator('.round-grid article').first().getByRole('button', { name: /^학습모드 ·/ }).click();
   await expect(page.locator('.session-topbar')).toContainText('2023년');
   await page.waitForTimeout(300);
   const readSession = () => page.evaluate(() => Object.keys(localStorage).map(key => {
@@ -190,6 +195,14 @@ test('연도·회차·소과목 선택, 오답 분리, 두 랜덤 묶음 중복 
   expect(wrongStore.wrong[roundSaved.itemIds[0]]).toBeTruthy();
   expect(wrongStore.attempts[originalId]).toBeUndefined();
   expect(wrongStore.wrong['existing-hvac:1'].count).toBe(3);
+  await page.locator('.session-topbar .back-button').click();
+  const roundCard = bank.locator('.round-card').first();
+  await expect(roundCard).toContainText('풀이 1/20');
+  await expect(roundCard.getByRole('button', { name: '오답 1개', exact: true })).toBeVisible();
+  await roundCard.getByRole('button', { name: '이어서 풀기', exact: true }).click();
+  await expect(page.locator('.session-topbar')).toContainText('2023년');
+  await page.waitForTimeout(300);
+  expect((await readSession()).answers[roundSaved.itemIds[0]]).toBe(wrongChoice);
   await page.locator('.session-topbar .back-button').click();
   await bank.getByRole('button', { name: '중간고사 오답', exact: true }).click();
   await expect(bank.getByRole('heading', { name: '중간고사 전용 오답 1문제', exact: true })).toBeVisible();
