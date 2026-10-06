@@ -1,0 +1,194 @@
+{
+  "source": {
+    "title": "에듀강닷컴 2021년 제3회 공조냉동기계산업기사 실기 동영상 복원문제",
+    "url": "https://www.youtube.com/watch?v=nQtCK_Dud0s"
+  },
+  "method": "공개 영상의 해당 문항 구간을 직접 확인한 뒤 그림만 분리. 정답이 아닌 사진을 근거 없이 연결하지 않음.",
+  "crops": [
+    {
+      "id": "hvac-practical-restored-2021-3-03",
+      "role": "question",
+      "timestamp": "00:14:59",
+      "crop": [
+        80,
+        236,
+        1040,
+        792
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-03-question-video-v550.png",
+      "outputSize": [
+        960,
+        556
+      ],
+      "sha256": "24143497c88db10536423d9484d823bc769e8650ed53bb8400118a4caeee0d75"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-04",
+      "role": "question",
+      "timestamp": "00:21:23",
+      "crop": [
+        590,
+        230,
+        1060,
+        1070
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-04-question-video-v550.png",
+      "outputSize": [
+        470,
+        840
+      ],
+      "sha256": "5986951e7ad110e601d215851213f529d0fe2be6f6db8bdf1a5d190b20a94132"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-05",
+      "role": "question",
+      "timestamp": "00:25:04",
+      "crop": [
+        285,
+        70,
+        1450,
+        775
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-05-question-video-v550.png",
+      "outputSize": [
+        1165,
+        705
+      ],
+      "sha256": "69db53401f5efab3e05900b8a075cf518e1fe9cdbced43c5b486a7f05b95b9fb"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-06",
+      "role": "question",
+      "timestamp": "00:29:19",
+      "crop": [
+        100,
+        264,
+        985,
+        775
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-06-question-video-v550.png",
+      "outputSize": [
+        885,
+        511
+      ],
+      "sha256": "7e2441251cf42b6079f1f994c5aaca34e24928f316b6f4a127835883201cfe13"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-07",
+      "role": "question",
+      "timestamp": "00:37:17",
+      "crop": [
+        193,
+        244,
+        909,
+        636
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-07-question-video-v550.png",
+      "outputSize": [
+        716,
+        392
+      ],
+      "sha256": "cbbd05b8ba7175c53d41103a63c520db83d93f74a3b8afe8b015530815c472c2"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-08",
+      "role": "question",
+      "timestamp": "00:37:40",
+      "crop": [
+        105,
+        410,
+        1012,
+        647
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-08-question-video-v550.png",
+      "outputSize": [
+        907,
+        237
+      ],
+      "sha256": "9fdc5fcea6c5f14769e2fc35260fcc21b127733c3991e78eb1de743f13569664"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-09",
+      "role": "question",
+      "timestamp": "00:39:30",
+      "crop": [
+        122,
+        306,
+        990,
+        841
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-09-question-video-v550.png",
+      "outputSize": [
+        868,
+        535
+      ],
+      "sha256": "f8ad075dcff68d7c199863f6e974a338a8cdf985bfbeb83edc21e01900ab682d"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-10",
+      "role": "question",
+      "timestamp": "00:42:47",
+      "crop": [
+        135,
+        217,
+        729,
+        584
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-10-question-video-v550.png",
+      "outputSize": [
+        594,
+        367
+      ],
+      "sha256": "71b6a93b1c381b65d586734a6b1347180a344825f9913f4e5c02001d0744ff15"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-11",
+      "role": "question",
+      "timestamp": "00:43:40",
+      "crop": [
+        313,
+        0,
+        1607,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-11-question-video-v550.png",
+      "outputSize": [
+        1294,
+        1080
+      ],
+      "sha256": "0cdc2840b1adafea52f18e4b9c353493c676ac3fb097c71d72a1f0c0e9e03ff0"
+    },
+    {
+      "id": "hvac-practical-restored-2021-3-12",
+      "role": "question",
+      "timestamp": "00:51:30",
+      "crop": [
+        243,
+        248,
+        810,
+        966
+      ],
+      "output": "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-12-question-video-v550.png",
+      "outputSize": [
+        567,
+        718
+      ],
+      "sha256": "58dc1aac29a1ea82b56740588b1b2eda20b057aeb5d06917900d2590786fbae1"
+    }
+  ],
+  "followupEvidence": [
+    {
+      "number": 7,
+      "method": "00:37:17 장치 사진과 추기회수장치 자막을 함께 확인. 정답 자막은 크롭 밖으로 제외."
+    },
+    {
+      "number": 9,
+      "method": "00:39:30 체크밸브 판서와 실제 부품 사진을 함께 확인. 필터드라이어로 추정하지 않음."
+    },
+    {
+      "number": 12,
+      "method": "00:51:30 장치 사진과 한국어 자동자막 00:51:20~00:51:44의 터보/원심식 냉동기 설명을 대조. 장치 사진 외 자막·판서 제외."
+    }
+  ],
+  "unresolved": []
+}

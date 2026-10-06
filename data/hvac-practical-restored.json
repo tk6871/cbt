@@ -1919,23 +1919,26 @@
     "year": 2021,
     "session": "1",
     "number": 3,
-    "question": "다음 영상에서 보여준 장치의 명칭을 쓰시오.",
+    "question": "다음 사진의 장치의 명칭을 쓰시오.",
     "answer": "공냉식 왕복동 압축기",
-    "explanation": "피스톤이 실린더 안에서 왕복하면서 체적을 줄여 냉매를 압축한다. 밀폐형은 압축기와 전동기가 한 용기 안에 들어 있다.",
+    "explanation": "피스톤이 왕복하며 기체를 압축한다. 사진의 냉각핀과 팬이 열을 식히는 공냉식 왕복동 장치다.",
     "keyPoints": [
       "공냉식 왕복동 압축기"
     ],
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:16:36 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-04",
     "year": 2021,
     "session": "1",
     "number": 4,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 그 용도를 쓰시오.",
+    "question": "다음 사진의 장치의 명칭과 그 용도를 쓰시오.",
     "answer": "① 명칭 : 오일레귤레이터(오일레벨조정기) ② 용도 : 압축기 흡입측에 설치하여 압축기 내부 오일의 압력을 정상유압상태로 유지시킨다.",
     "explanation": "여러 압축기 사이에서 오일 높이를 일정하게 맞춘다. 윤활유가 부족하거나 넘쳐 압축기가 손상되는 것을 막는다.",
     "keyPoints": [
@@ -1944,14 +1947,17 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:26:15 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-05",
     "year": 2021,
     "session": "1",
     "number": 5,
-    "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+    "question": "그림 오른쪽 끝에서 헤더 아래로 연결된 밸브 (가)의 역할을 쓰시오.",
     "answer": "헤더내부의 이물질 및 드레인을 배출시키기 위해 사용된다.",
     "explanation": "헤더 아래쪽에 모이는 물과 이물질은 그대로 두면 부식·막힘을 만든다. 배출구를 통해 정기적으로 빼내야 한다.",
     "keyPoints": [
@@ -1961,14 +1967,17 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:32:07 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-06",
     "year": 2021,
     "session": "1",
     "number": 6,
-    "question": "다음 영상의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
+    "question": "다음 사진의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
     "answer": "(가) 엘보 4·티 4, (나) 엘보 4·티 4, (다) 엘보 4, (라) 엘보 4",
     "explanation": "입체 배관의 방향이 바뀌는 곳은 엘보, 분기되는 곳은 티로 세어야 한다.",
     "keyPoints": [
@@ -1980,63 +1989,84 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:35:53 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-07",
     "year": 2021,
     "session": "1",
     "number": 7,
-    "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+    "question": "사진의 ① 장치 명칭을 쓰시오. ② 냉매 충전 시 각 호스의 연결 위치를 쓰시오. (가) 청색 (나) 적색 (다) 황색",
     "answer": "① 영상에서 보여주는 장치의 명칭 : 매니폴드게이지 ② 냉매 충전시 각 호스의 연결 위치를 쓰시오. 가. 청색 : 냉동장치 저압측 연결 나. 적색 : 냉동장치 고압측 연결 다. 노란색 : 냉매용기 연결",
     "explanation": "청색 게이지·호스는 저압측, 적색은 고압측, 황색 공용호스는 냉매용기나 진공펌프에 연결한다. 두 압력을 동시에 확인하면서 충전·회수·진공 작업을 한다.",
     "keyPoints": [
-      "영상에서 보여주는 장치의 매니폴드게이지 ② 냉매 충전시 각 호스의 연결 위치를 쓰시오. 가. 청색 : 냉동장치 저압측 연결 나. 적색 : 냉동장치 고압측 연결 다. 노란색 : 냉매용기 연결"
+      "매니폴드 게이지",
+      "청색: 저압측",
+      "적색: 고압측",
+      "황색: 냉매용기"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:37:08 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-08",
     "year": 2021,
     "session": "1",
     "number": 8,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+    "question": "다음 사진의 부품의 명칭과 그 용도를 쓰시오.",
     "answer": "① 명칭 : 릴레이(11핀), 계전기 ② 용도 : 전자기력을 이용하여 입력신호에 따라 전기회로를 ON-OFF 시킨다.",
     "explanation": "코일에 전류가 흐르면 전자력이 접점을 바꾼다. 작은 입력신호로 다른 회로를 켜거나 끄고, 여러 접점으로 신호를 나눌 수 있다.",
     "keyPoints": [
-      "릴레이(11핀",
-      "계전기 전자기력을 이용하여 입력신호에 따라 전기회로를 ON-OFF 시킨다"
+      "릴레이",
+      "11핀",
+      "계전기",
+      "전자기력",
+      "ON/OFF"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:41:21 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-09",
     "year": 2021,
     "session": "1",
     "number": 9,
-    "question": "다음 영상을 보고 아래의 질문에 답하시오.",
+    "question": "사진에서 보일러 앞에 나란히 설치된 두 장치의 ① 명칭 ② 설치목적 ③ 두 개를 동시에 설치하는 이유를 쓰시오.",
     "answer": "① 해당 장치의 명칭 : 수면계 ② 설치목적 : 보일러 내부 수위를 측정하기 위해 설치한다. ③ 두 개를 동시에 설치하는 이유 : 수면계의 수위 오판을 방지하고 수면계의 점검시기를 알 수 있다.",
-    "explanation": "장치의 연결 위치에서 냉매가 기체인지 액체인지 먼저 판단한다. 그다음 압력·온도·유량을 어떻게 바꾸거나 보호하는지 보면 명칭과 기능을 함께 이해할 수 있다.",
+    "explanation": "유리창으로 보일러 안의 물 높이를 확인한다. 두 수면계의 표시를 비교하면 한쪽이 막히거나 고장 나 잘못 표시되는 것을 알아낼 수 있다.",
     "keyPoints": [
-      "해당 장치의 수면계 ② 설치목적 : 보일러 내부 수위를 측정하기 위해 설치한다. ③ 두 개를 동시에 설치하는 이유 : 수면계의 수위 오판을 방지"
+      "수면계",
+      "보일러 내부 수위 측정",
+      "수위 오판 방지",
+      "점검 시기 확인"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:42:03 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-09-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-10",
     "year": 2021,
     "session": "1",
     "number": 10,
-    "question": "다음 영상을 보고 (가),(나),(다) 장치의 명칭을 쓰시오.",
+    "question": "사진 (가)·(나)·(다)의 장치 명칭을 각각 쓰시오.",
     "answer": "(가) 플로트 트랩, (나) 버킷 트랩, (다) 디스크 트랩",
     "explanation": "응축수 수위로 작동하는 플로트·버킷식과 압력차로 작동하는 디스크식을 외형으로 구분한다.",
     "keyPoints": [
@@ -2047,30 +2077,40 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:47:04/00:47:11/00:47:19 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-1-v550.png",
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-2-v550.png",
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-3-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-11",
     "year": 2021,
     "session": "1",
     "number": 11,
-    "question": "다음 영상에서 보여주는 공구의 명칭과 그 사용목적을 쓰시오.",
+    "question": "다음 사진의 공구의 명칭과 그 사용목적을 쓰시오.",
     "answer": "① 명칭 : 리머 ② 목적 : 관내 거스러미 제거",
     "explanation": "절단한 관 안쪽의 날카로운 거스러미를 깎아낸다. 거스러미를 남기면 유로가 좁아지고 이물질이 떨어져 밸브를 막을 수 있다.",
     "keyPoints": [
-      "리머 ② 목적 : 관내 거스러미 제거"
+      "리머",
+      "관내 거스러미 제거",
+      "버 제거"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:48:38 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-11-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-1-12",
     "year": 2021,
     "session": "1",
     "number": 12,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+    "question": "다음 사진의 장치의 명칭과 용도를 쓰시오.",
     "answer": "① 명칭 : 배선용 차단기 ② 용도 : 과전류를 차단하고 기기를 보호한다.",
     "explanation": "배선용 차단기는 회로에 정격보다 큰 전류나 단락전류가 흐르면 전원 자체를 차단한다. 배선과 기기가 과열·소손되는 것을 막는 보호장치다.",
     "keyPoints": [
@@ -2079,7 +2119,10 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년1회 공개 복원 영상 00:50:05 실제 그림·질문 대조: https://www.youtube.com/watch?v=YyckJAoNH-4",
+    "images": [
+      "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-01",
@@ -2133,39 +2176,49 @@
     "year": 2021,
     "session": "2",
     "number": 3,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 그 사용목적을 쓰시오.",
+    "question": "사진의 빨간 사각형으로 표시된 부품의 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 파열판 ② 사용목적 : 압력용기나 배관에 사용하는 안전장치로 내부압력이 높아 위험한 상태에서 파열되어 이상 고압에 의한 위해를 방지하는 장치",
-    "explanation": "장치의 연결 위치에서 냉매가 기체인지 액체인지 먼저 판단한다. 그다음 압력·온도·유량을 어떻게 바꾸거나 보호하는지 보면 명칭과 기능을 함께 이해할 수 있다.",
+    "explanation": "용기 안의 압력이 너무 높아지면 판이 먼저 파열되어 압력을 배출한다. 용기 자체가 터지는 위험을 줄이는 안전장치다.",
     "keyPoints": [
-      "파열판 압력용기나 배관에 사용하는 안전장치로 내부압력이 높아 위험한 상태에서 파열되어 이상 고압에 의한 위해를 방지하는 장치"
+      "파열판",
+      "이상 고압",
+      "파열하여 압력 배출",
+      "위해 방지"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:14:01 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-04",
     "year": 2021,
     "session": "2",
     "number": 4,
-    "question": "다음 영상을 보고 A와 B장치의 명칭을 쓰시오.",
+    "question": "다음 사진을 보고 A와 B장치의 명칭을 쓰시오.",
     "answer": "① A장치 : 감압밸브 ② B장치 : 스프링식안전밸브",
-    "explanation": "장치의 연결 위치에서 냉매가 기체인지 액체인지 먼저 판단한다. 그다음 압력·온도·유량을 어떻게 바꾸거나 보호하는지 보면 명칭과 기능을 함께 이해할 수 있다.",
+    "explanation": "A는 뒤쪽 압력을 낮춰 유지하는 감압밸브다. B는 압력이 설정값보다 높아지면 스프링 힘을 이기고 열려 압력을 배출하는 안전밸브다.",
     "keyPoints": [
-      "A장치 : 감압밸브 ② B장치 : 스프링식안전밸브"
+      "A: 감압밸브",
+      "B: 스프링식 안전밸브"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:18:50 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-05",
     "year": 2021,
     "session": "2",
     "number": 5,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+    "question": "다음 사진의 부품의 명칭과 그 용도를 쓰시오.",
     "answer": "가. 명칭 : 체크밸브(역류방지밸브) 나. 용도 : 유체를 한쪽 방향으로만 흐르게하여 역류를 방지한다.",
     "explanation": "내부 디스크나 스윙판이 정방향 압력에는 열리고 역방향 압력에는 닫힌다. 그래서 펌프 정지나 압력 역전 때 역류를 막는다.",
     "keyPoints": [
@@ -2174,14 +2227,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:24:12 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-06",
     "year": 2021,
     "session": "2",
     "number": 6,
-    "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+    "question": "그림의 화살표 (가)가 가리키는 헤더 하부 밸브의 역할을 쓰시오.",
     "answer": "헤더내부의 이물질 및 드레인을 배출시키기 위해 사용된다.",
     "explanation": "헤더 아래쪽에 모이는 물과 이물질은 그대로 두면 부식·막힘을 만든다. 배출구를 통해 정기적으로 빼내야 한다.",
     "keyPoints": [
@@ -2191,33 +2247,42 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:25:10 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-07",
     "year": 2021,
     "session": "2",
     "number": 7,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+    "question": "다음 사진의 부품의 명칭과 그 용도를 쓰시오.",
     "answer": "가. 명칭 : 릴레이(11핀), 계전기 나. 용도 : 전자기력을 이용하여 입력신호에 따라 전기회로를 ON-OFF 시킨다.",
     "explanation": "코일에 전류가 흐르면 전자력이 접점을 바꾼다. 작은 입력신호로 다른 회로를 켜거나 끄고, 여러 접점으로 신호를 나눌 수 있다.",
     "keyPoints": [
-      "릴레이(11핀",
-      "계전기 전자기력을 이용하여 입력신호에 따라 전기회로를 ON-OFF 시킨다"
+      "릴레이",
+      "11핀",
+      "계전기",
+      "전자기력",
+      "ON/OFF"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:27:09 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-08",
     "year": 2021,
     "session": "2",
     "number": 8,
-    "question": "다음 영상을 보고 여과식 필터 종류를 2가지 쓰시오.",
+    "question": "다음 사진을 보고 여과식 필터 종류를 2가지 쓰시오.",
     "answer": "헤파필터, 울파필터",
-    "explanation": "공기조화 장치는 공기가 어느 방향으로 흐르고 열·수분이 어떻게 바뀌는지로 구분한다. 취출구·댐퍼의 설치 위치와 기류 역할을 함께 연결해 기억한다.",
+    "explanation": "필터 섬유가 공기 중의 작은 입자를 걸러낸다. 고성능 여과 필터에는 HEPA(헤파)와 ULPA(울파)가 있다. ULPA는 HEPA보다 더 미세한 입자를 걸러내는 데 사용한다.",
     "keyPoints": [
       "헤파필터",
       "울파필터"
@@ -2225,14 +2290,17 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:27:43 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-09",
     "year": 2021,
     "session": "2",
     "number": 9,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 역할을 쓰시오.",
+    "question": "다음 사진의 부품의 명칭과 역할을 쓰시오.",
     "answer": "가. 명칭 : 버터플라이밸브 나. 역할 : 유로개폐 및 유량조절용",
     "explanation": "원판을 90° 회전시켜 큰 관의 유로를 간단히 열고 닫는다. 구조가 짧고 가벼워 대구경 배관에 유리하다.",
     "keyPoints": [
@@ -2242,14 +2310,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:32:39 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-09-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-10",
     "year": 2021,
     "session": "2",
     "number": 10,
-    "question": "다음 영상의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
+    "question": "다음 사진의 배관이음을 보고 (가),(나)의 엘보와 티의 수량과 (다),(라)의 엘보 수량을 쓰시오.",
     "answer": "(가) 엘보 4·티 4, (나) 엘보 3·티 1, (다) 엘보 4, (라) 엘보 4",
     "explanation": "입체 배관의 방향이 바뀌는 곳은 엘보, 분기되는 곳은 티로 세어야 한다.",
     "keyPoints": [
@@ -2261,31 +2332,39 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:33:36 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-10-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-11",
     "year": 2021,
     "session": "2",
     "number": 11,
-    "question": "다음 냉동장치의 명칭을 쓰고, 내부에 설치된 장치를 보기에서 모두 골라쓰시오.",
+    "question": "사진의 냉동장치 명칭을 쓰고, 내부에 설치된 장치를 보기에서 모두 고르시오. [보기] 압축기·응축기·팽창밸브·증발기",
     "answer": "가. 명칭 : 수냉식콘덴싱유닛(스크류식) 나. 내부에 설치된 장치 : 압축기, 응축기",
     "explanation": "콘덴싱유닛은 압축기와 응축기 등을 한 세트로 묶은 장치다. 압축기가 냉매압력을 높이고 수냉식 응축기가 냉각수로 열을 버려 냉매를 액화한다.",
     "keyPoints": [
-      "수냉식콘덴싱유닛(스크류식) 나. 내부에 설치된 장치 : 압축기",
+      "수냉식 콘덴싱유닛",
+      "스크류식",
+      "압축기",
       "응축기"
     ],
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:34:23 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-11-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-2-12",
     "year": 2021,
     "session": "2",
     "number": 12,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+    "question": "다음 사진의 장치의 명칭과 용도를 쓰시오.",
     "answer": "① 명칭 : 배선용 차단기 ② 용도 : 과전류를 차단하고 기기를 보호한다.",
     "explanation": "배선용 차단기는 회로에 정격보다 큰 전류나 단락전류가 흐르면 전원 자체를 차단한다. 배선과 기기가 과열·소손되는 것을 막는 보호장치다.",
     "keyPoints": [
@@ -2294,7 +2373,10 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년2회 공개 복원 영상 00:39:26 실제 그림·질문 대조: https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+    "images": [
+      "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-01",
@@ -2321,11 +2403,14 @@
     "year": 2021,
     "session": "3",
     "number": 2,
-    "question": "다음 보기의 회로도와 알맞은 영상을 찾으시오. (동영상의 회로) 가. 차단기올리면 RL이 점등되어 있는 상태에서 녹색버튼을 누르면 RL(점등유지), GL(점등) 나. 차단기올리면 RL이 점등되어 있는 상태에서 녹색버튼을 누르면 RL(소등), GL(점등)",
-    "answer": "나",
-    "explanation": "코일이 여자되면 a접점은 닫히고 b접점은 열린다. 전원에서 부하까지 닫힌 길을 순서대로 따라가면 표시등과 전동기의 동작을 판단할 수 있다.",
+    "question": "다음 회로에서 차단기를 올리면 RL이 점등된다. 녹색 운전 버튼을 눌렀을 때 알맞은 동작을 고르시오. [보기] 가: RL 점등 유지·GL 점등 / 나: RL 소등·GL 점등",
+    "answer": "나 — 녹색 운전 버튼을 누르면 RL은 소등, GL은 점등한다.",
+    "explanation": "녹색 버튼을 누르면 MC 코일이 여자되어 자기유지한다. GL 쪽 MC a접점은 닫히므로 GL이 켜지고, RL 쪽 MC b접점은 열리므로 RL이 꺼진다.",
     "keyPoints": [
-      "나"
+      "나",
+      "RL 소등",
+      "GL 점등",
+      "MC 여자"
     ],
     "category": "safety",
     "difficulty": "standard",
@@ -2341,15 +2426,19 @@
     "session": "3",
     "number": 3,
     "question": "도달거리가 길고, 소음이 작은 취출구로 주로 음악실이나 영화관, 연극연습실, 방송국 등에 사용된다. 해당 취출구를 다음 영상의 보기에서 찾아 쓰시오.",
-    "answer": "나(노즐형 취출구)",
-    "explanation": "공기조화 장치는 공기가 어느 방향으로 흐르고 열·수분이 어떻게 바뀌는지로 구분한다. 취출구·댐퍼의 설치 위치와 기류 역할을 함께 연결해 기억한다.",
+    "answer": "나 — 노즐형 취출구",
+    "explanation": "노즐형은 좁은 출구에서 공기를 한 방향으로 멀리 보내는 취출구다. 도달거리가 길고 소음이 작아 음악실·극장 등에 사용한다.",
     "keyPoints": [
-      "나(노즐형 취출구"
+      "나",
+      "노즐형 취출구"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:14:59 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-03-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-04",
@@ -2365,7 +2454,10 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:21:23 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-04-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-05",
@@ -2382,8 +2474,11 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안",
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:25:04 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
     "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-05-question-video-v550.png"
+    ],
+    "answerImages": [
       "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-05-question-1.jpg"
     ]
   },
@@ -2402,14 +2497,17 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:29:19 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-06-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-07",
     "year": 2021,
     "session": "3",
     "number": 7,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 역할을 쓰시오.",
+    "question": "사진에서 빨간 화살표가 가리키는 장치의 명칭과 역할을 쓰시오.",
     "answer": "가. 명칭 : 추기회수장치(진공펌프) 나. 역할 : 장치내부를 진공시킨다.",
     "explanation": "장치 안의 공기와 불응축가스를 빼내 낮은 압력을 유지한다. 공기가 남으면 열전달이 나빠지고 운전압력이 올라간다.",
     "keyPoints": [
@@ -2418,25 +2516,32 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:37:17 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-07-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-08",
     "year": 2021,
     "session": "3",
     "number": 8,
-    "question": "다음 영상에 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+    "question": "다음 사진의 배관 부품 명칭을 왼쪽부터 차례대로 쓰시오. (부품 규격은 무시한다.)",
     "answer": "90도엘보, 부싱, 캡, 45도엘보",
     "explanation": "배관 부품은 외형만 외우기보다 유체가 들어오고 나가는 방향과 연결 방법을 함께 본다. 도시문제는 보는 방향을 고정한 뒤 깊이를 없애고 중심선·엘보·분기 위치를 남긴다.",
     "keyPoints": [
-      "도엘보",
+      "90도 엘보",
       "부싱",
-      "캡"
+      "캡",
+      "45도 엘보"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:37:40 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-08-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-09",
@@ -2452,7 +2557,10 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:39:30 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-09-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-10",
@@ -2468,23 +2576,31 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:42:47 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-10-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-11",
     "year": 2021,
     "session": "3",
     "number": 11,
-    "question": "다음 영상의 부품명칭(가)과 화살표가 가리키는 부분(나)의 사용목적을 쓰시오. 가. 부품명칭 : 고저압스위치(고저압차단스위치) 나. 화살표가 가리키는 부분의 기능 : 고저압스위치의 설정압력을 초과한 경우 자동제어 회로에 의해 cut-out되고 압축기가 정지되어 냉동장치의 위험을 방지한다. 이때 아무런 조치없이 냉동장치의 압력이 정상상태로 돌아가 자동제어에 의해 다시 운전한다면 똑같은 현상이 반복될수 있으므로 cut-out 후에는 냉동장치의 이상현상을 점검해 조치하고 다시 수동복귀버튼을 눌러 고저압스위치를 리셋시켜 사용하게 된다.",
+    "question": "사진의 부품 명칭(가)과 화살표가 가리키는 부분(나)의 사용목적을 쓰시오.",
     "answer": "① 고저압 스위치 ② 화살표 부분은 수동복귀(리셋) 버튼",
     "explanation": "고저압 스위치는 토출압력이 지나치게 높거나 흡입압력이 지나치게 낮아지면 압축기 제어회로를 끊는다. 수동복귀 버튼은 원인을 제거한 뒤 사람이 눌러 다시 운전 가능 상태로 되돌릴 때 사용한다.",
     "keyPoints": [
-      "고저압 스위치 ② 화살표 부분은 수동복귀(리셋) 버튼"
+      "고저압 스위치",
+      "수동복귀 버튼",
+      "원인 제거 후 리셋"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:43:40 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-11-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2021-3-12",
@@ -2502,7 +2618,10 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2021년 3회 공개 복원 영상 00:51:30 그림 대조: https://www.youtube.com/watch?v=nQtCK_Dud0s",
+    "images": [
+      "assets/hvac-practical/restored/2021-3/hvac-practical-restored-2021-3-12-question-video-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-01",
@@ -2551,41 +2670,48 @@
     "year": 2022,
     "session": "1",
     "number": 3,
-    "question": "다음 영상에서 보여준 장치의 명칭을 쓰시오.",
+    "question": "다음 사진에서 보여준 장치의 명칭을 쓰시오.",
     "answer": "공냉식 왕복동 압축기",
-    "explanation": "피스톤이 실린더 안에서 왕복하면서 체적을 줄여 냉매를 압축한다. 밀폐형은 압축기와 전동기가 한 용기 안에 들어 있다.",
+    "explanation": "피스톤이 왕복하면서 공기를 빨아들이고 압축한다. 사진은 냉각핀과 팬으로 열을 식히는 공냉식 왕복동 장치다.",
     "keyPoints": [
       "공냉식 왕복동 압축기"
     ],
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:16:28 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-04",
     "year": 2022,
     "session": "1",
     "number": 4,
-    "question": "다음 영상에 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+    "question": "다음 사진에 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
     "answer": "90도엘보, 부싱, 캡, 45도엘보",
     "explanation": "배관 부품은 외형만 외우기보다 유체가 들어오고 나가는 방향과 연결 방법을 함께 본다. 도시문제는 보는 방향을 고정한 뒤 깊이를 없애고 중심선·엘보·분기 위치를 남긴다.",
     "keyPoints": [
-      "도엘보",
+      "90도 엘보",
       "부싱",
-      "캡"
+      "캡",
+      "45도 엘보"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:22:01 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-05",
     "year": 2022,
     "session": "1",
     "number": 5,
-    "question": "다음 영상에서 보여주는 밸브의 명칭과 역할을 쓰시오.",
+    "question": "다음 사진에서 보여주는 밸브의 명칭과 역할을 쓰시오.",
     "answer": "가. 명칭 : 브라켓 밸브 나. 역할 : 냉매충전 및 회수작업시 사용되는 밸브",
     "explanation": "냉매 계통에 게이지나 충전 호스를 연결할 서비스 포트를 제공한다. 충전·회수·압력 측정 때 유로를 열고 평소에는 닫아 둔다.",
     "keyPoints": [
@@ -2595,14 +2721,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:22:20 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-06",
     "year": 2022,
     "session": "1",
     "number": 6,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+    "question": "사진의 빨간 화살표가 가리키는 장치의 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 액분리기 ② 사용목적 : 증발기와 압축기사이에 설치하여 압축기로 액이 넘어가는것을 막아 액압축(리퀴드백)을 방지한다.",
     "explanation": "증발기에서 미처 증발하지 않은 액냉매를 기체와 분리한다. 기체만 압축기로 보내 액압축과 밸브 손상을 막는다.",
     "keyPoints": [
@@ -2611,30 +2740,38 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:25:37 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-07",
     "year": 2022,
     "session": "1",
     "number": 7,
-    "question": "다음 영상에서 나오는 부품의 명칭과 특징을 쓰시오.",
+    "question": "다음 사진의 부품의 명칭과 특징을 쓰시오.",
     "answer": "① 명칭 : 디스크식 증기트랩(디스크트랩) ② 특징 : 드레인이 스팀트랩 내에 고이면 트랩내의 온도가 낮아져서 변압실 내의 압력이 저하되고 이때 디스크를 들어올려 드레인을 배출시킨다.",
     "explanation": "응축수가 들어오면 트랩 내부의 압력차가 디스크를 들어 배수한다. 증기가 닿으면 디스크 위 압력이 커져 닫히므로 증기 손실을 줄인다.",
     "keyPoints": [
-      "디스크식 증기트랩(디스크트랩) 드레인이 스팀트랩 내에 고이면 트랩내의 온도가 낮아져서 변압실 내의 압력이 저하되고 이"
+      "디스크식 증기트랩",
+      "응축수 배출",
+      "증기 손실 방지"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:28:10 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-08",
     "year": 2022,
     "session": "1",
     "number": 8,
-    "question": "다음 영상에서 보여주는 (가),(나),(다)장치의 명칭을 쓰시오.",
+    "question": "다음 사진에서 보여주는 (가),(나),(다)장치의 명칭을 쓰시오.",
     "answer": "(가) 냉매용 볼밸브, (나) 다이어프램식 스톱밸브, (다) 글로브밸브",
     "explanation": "외형과 유로 차이를 보고 세 밸브를 구분한다.",
     "keyPoints": [
@@ -2645,30 +2782,38 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:35:04 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-09",
     "year": 2022,
     "session": "1",
     "number": 9,
-    "question": "다음 영상의 배관이음 입체도를 보고 배관이음 부속(엘보,티)의 개수를 각각 쓰시오.",
+    "question": "배관 입체도 (가)와 (나)를 보고 각 그림의 엘보와 티 개수를 각각 쓰시오.",
     "answer": "① 가 : 엘보5개 티2개 ② 나 : 엘보4개 티3개",
     "explanation": "배관 부품은 외형만 외우기보다 유체가 들어오고 나가는 방향과 연결 방법을 함께 본다. 도시문제는 보는 방향을 고정한 뒤 깊이를 없애고 중심선·엘보·분기 위치를 남긴다.",
     "keyPoints": [
-      "가 : 엘보5개 티2개 ② 나 : 엘보4개 티3개"
+      "가: 엘보5개·티2개",
+      "나: 엘보4개·티3개"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:38:35/00:38:49 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-09-question-video-1-v550.png",
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-09-question-video-2-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-10",
     "year": 2022,
     "session": "1",
     "number": 10,
-    "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭을 쓰시오.",
     "answer": "교류전압계",
     "explanation": "전압은 두 지점 사이의 전위차이므로 계기를 측정 대상과 병렬로 연결한다. 교류 측정에서는 AC 범위와 정격을 먼저 맞춘다.",
     "keyPoints": [
@@ -2677,14 +2822,17 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:39:43 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-10-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-11",
     "year": 2022,
     "session": "1",
     "number": 11,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 역할을 쓰시오.",
+    "question": "다음 사진에서 보여주는 부품의 명칭과 그 역할을 쓰시오.",
     "answer": "① 명칭 : 조광형 누름버튼스위치 ② 역할 : 회로에 연결된 전기접점을 수동으로 연결 또는 해제하는 역할을 하며 조건에 따라 램프를 점등 및 소등시킨다.",
     "explanation": "버튼을 누르면 접점이 바뀌어 회로를 수동으로 켜거나 끈다. 내부 표시램프는 운전·정지 같은 현재 상태를 눈으로 확인하게 한다.",
     "keyPoints": [
@@ -2695,23 +2843,32 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:41:44 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-11-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-1-12",
     "year": 2022,
     "session": "1",
     "number": 12,
-    "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+    "question": "사진의 장치 명칭을 쓰고, 냉매 충전 시 각 호스의 연결 위치를 쓰시오. (가) 청색 (나) 적색 (다) 황색",
     "answer": "① 영상에서 보여주는 장치의 명칭 : 매니폴드게이지 ② 냉매 충전시 각 호스의 연결 위치를 쓰시오. 가. 청색 : 냉동장치 저압측 연결 나. 적색 : 냉동장치 고압측 연결 다. 노란색 : 냉매용기 연결",
     "explanation": "청색 게이지·호스는 저압측, 적색은 고압측, 황색 공용호스는 냉매용기나 진공펌프에 연결한다. 두 압력을 동시에 확인하면서 충전·회수·진공 작업을 한다.",
     "keyPoints": [
-      "영상에서 보여주는 장치의 매니폴드게이지 ② 냉매 충전시 각 호스의 연결 위치를 쓰시오. 가. 청색 : 냉동장치 저압측 연결 나. 적색 : 냉동장치 고압측 연결 다. 노란색 : 냉매용기 연결"
+      "매니폴드 게이지",
+      "청색: 저압측",
+      "적색: 고압측",
+      "황색: 냉매용기"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년1회 공개 복원 영상 00:44:07 실제 그림·질문 대조: https://www.youtube.com/watch?v=csnNvJWbknc",
+    "images": [
+      "assets/hvac-practical/restored/2022-1/hvac-practical-restored-2022-1-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-01",
@@ -2764,7 +2921,7 @@
     "year": 2022,
     "session": "2",
     "number": 3,
-    "question": "다음 영상에서 보여주는 댐퍼의 명칭과 작동원리를 쓰시오.",
+    "question": "다음 사진에서 보여주는 댐퍼의 명칭과 작동원리를 쓰시오.",
     "answer": "명칭 : 릴리프 댐퍼 작동원리 : 실내의 정압을 유지하고 인접실과의 차압을 유지함으로써 외부의 오염된 공기가 청정실(클린룸)안으로 역류되는 것을 방지한다",
     "explanation": "실내 압력이 설정값보다 높아지면 열려 과잉 공기를 배출한다. 청정실을 주변보다 약간 높은 압력으로 유지해 오염공기 역류를 막는다.",
     "keyPoints": [
@@ -2773,33 +2930,39 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:10:25 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-04",
     "year": 2022,
     "session": "2",
     "number": 4,
-    "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.(부품의 규격은 무시한다.)",
+    "question": "사진의 배관 부품 명칭을 왼쪽부터 차례대로 쓰시오. (부품 규격은 무시한다.)",
     "answer": "부싱, 45도엘보, 레듀샤, 캡",
     "explanation": "배관 부품은 외형만 외우기보다 유체가 들어오고 나가는 방향과 연결 방법을 함께 본다. 도시문제는 보는 방향을 고정한 뒤 깊이를 없애고 중심선·엘보·분기 위치를 남긴다.",
     "keyPoints": [
       "부싱",
-      "도엘보",
+      "45도 엘보",
       "레듀샤",
       "캡"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:15:04 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-05",
     "year": 2022,
     "session": "2",
     "number": 5,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 역할를 쓰시오.",
+    "question": "사진의 빨간 화살표가 가리키는 부품의 명칭과 역할을 쓰시오.",
     "answer": "가. 명칭 : 코어쉘 필터드라이어 나. 역할 : 냉매액관에 설치하여 냉매 중 혼입된 수분을 제거한다.",
     "explanation": "필터드라이어는 응축기 뒤 액관에서 수분과 이물질을 제거한다. 수분이 팽창밸브에서 얼어 막히거나 냉매·오일과 반응해 산이 생기는 것을 예방한다.",
     "keyPoints": [
@@ -2808,14 +2971,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:15:42 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-06",
     "year": 2022,
     "session": "2",
     "number": 6,
-    "question": "다음 영상에서 보여주는 공구 중 (나), (라) 공구의 이름을 쓰시오.",
+    "question": "다음 사진에서 보여주는 공구 중 (나), (라) 공구의 이름을 쓰시오.",
     "answer": "(나) 롱노즈 플라이어, (라) 파이프 렌치",
     "explanation": "롱노즈 플라이어는 좁은 곳의 선재를 잡고, 파이프 렌치는 원형 관을 물려 돌린다.",
     "keyPoints": [
@@ -2825,14 +2991,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:20:40 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-07",
     "year": 2022,
     "session": "2",
     "number": 7,
-    "question": "다음 영상에서 보여주는 기류형식에 따른 취출구 명칭과 특징 2가지를 쓰시오.",
+    "question": "다음 사진에서 보여주는 기류형식에 따른 취출구 명칭과 특징 2가지를 쓰시오.",
     "answer": "① 명칭 : 확산형 취출구(아네모스탯형) ② 특징 ㉮ 확산반경이 크고 도달거리가 짧기 때문에 천장 취출구로 많이 사용된다. ㉯ 가운데 원추를 상하로 움직여 기류상태를 조절할 수 있다.",
     "explanation": "천장에서 공기를 여러 방향으로 넓게 퍼뜨리므로 확산반경은 크고 아래쪽 도달거리는 짧다. 가운데 원추 위치를 바꾸어 기류 방향과 양을 조절한다.",
     "keyPoints": [
@@ -2841,14 +3010,17 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:21:19 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-08",
     "year": 2022,
     "session": "2",
     "number": 8,
-    "question": "다음 냉동장치의 명칭을 쓰고, 내부에 설치된 장치를 보기에서 모두 골라쓰시오.",
+    "question": "사진의 냉동장치 명칭을 쓰고, 내부에 설치된 장치를 보기에서 모두 고르시오. [보기] 압축기·응축기·팽창밸브·증발기",
     "answer": "가. 명칭 : 수냉식콘덴싱유닛(스크류식) 나. 내부에 설치된 장치 : 압축기, 응축기",
     "explanation": "콘덴싱유닛은 압축기와 응축기 등을 한 세트로 묶은 장치다. 압축기가 냉매압력을 높이고 수냉식 응축기가 냉각수로 열을 버려 냉매를 액화한다.",
     "keyPoints": [
@@ -2858,7 +3030,10 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:24:36 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-09",
@@ -2885,7 +3060,7 @@
     "year": 2022,
     "session": "2",
     "number": 10,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 배선용 차단기 ② 사용목적 : 과전류를 차단하고 기기를 보호한다.",
     "explanation": "배선용 차단기는 회로에 정격보다 큰 전류나 단락전류가 흐르면 전원 자체를 차단한다. 배선과 기기가 과열·소손되는 것을 막는 보호장치다.",
     "keyPoints": [
@@ -2894,14 +3069,17 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:30:32 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-10-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-11",
     "year": 2022,
     "session": "2",
     "number": 11,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+    "question": "사진의 빨간 화살표가 가리키는 장치의 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 액분리기 ② 사용목적 : 증발기와 압축기사이에 설치하여 압축기로 액이 넘어가는것을 막아 액압축(리퀴드백)을 방지한다.",
     "explanation": "증발기에서 미처 증발하지 않은 액냉매를 기체와 분리한다. 기체만 압축기로 보내 액압축과 밸브 손상을 막는다.",
     "keyPoints": [
@@ -2910,23 +3088,30 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:33:21 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-11-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-2-12",
     "year": 2022,
     "session": "2",
     "number": 12,
-    "question": "다음 영상을 보고 아래 지문에 알맞은 답을 쓰시오.",
+    "question": "사진의 ① 장치 명칭을 쓰시오. ② 오른쪽 압력게이지가 고압용인지 저압용인지 쓰시오.",
     "answer": "① 영상에서 보여주는 장치의 명칭을 쓰시오 : 매니폴드게이지 ② 오른쪽 압력게이지가 고압용인지 저압용인지 쓰시오 : 고압용",
     "explanation": "청색 게이지·호스는 저압측, 적색은 고압측, 황색 공용호스는 냉매용기나 진공펌프에 연결한다. 두 압력을 동시에 확인하면서 충전·회수·진공 작업을 한다.",
     "keyPoints": [
-      "영상에서 보여주는 장치의 명칭을 쓰시오 : 매니폴드게이지 ② 오른쪽 압력게이지가 고압용인지 저압용인지 쓰시오 : 고압용"
+      "매니폴드 게이지",
+      "오른쪽: 고압용"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년2회 공개 복원 영상 00:36:52 실제 그림·질문 대조: https://www.youtube.com/watch?v=waC9TWlB0VY",
+    "images": [
+      "assets/hvac-practical/restored/2022-2/hvac-practical-restored-2022-2-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-01",
@@ -2974,7 +3159,7 @@
     "year": 2022,
     "session": "3",
     "number": 3,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 특징을 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭과 특징을 쓰시오.",
     "answer": "① 명칭 : 스크류압축기 ② 특징 : 암·수 2개의 나선형 로터의 맞물림에 의해 냉매가스를 압축하는 방식으로 액격 및 유격이 작고, 흡입·토출 밸브가 없다.",
     "explanation": "암·수 로터 사이의 밀폐 공간이 회전하며 점점 작아져 냉매를 압축한다. 왕복동식처럼 흡입·토출 밸브가 필요하지 않다.",
     "keyPoints": [
@@ -2985,14 +3170,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:13:00 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-04",
     "year": 2022,
     "session": "3",
     "number": 4,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
     "answer": "가. 명칭 : 4방밸브(4Way valve) 나. 설치목적 : 히트펌프 냉동장치의 사이클 흐름을 바꾸어 냉난방 전환에 사용된다.",
     "explanation": "압축기 토출·흡입 배관의 연결 방향을 바꿔 실내외 열교환기의 역할을 서로 바꾼다. 이 때문에 같은 히트펌프로 냉방과 난방을 전환한다.",
     "keyPoints": [
@@ -3001,14 +3189,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:17:37 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-05",
     "year": 2022,
     "session": "3",
     "number": 5,
-    "question": "동영상의 작업자가 무슨 작업을 하는지 쓰시오.",
+    "question": "사진처럼 계기의 두 리드선을 제어반의 두 지점에 대고 있다. 작업자가 어떤 측정 작업을 하는지 쓰시오.",
     "answer": "교류전압측정",
     "explanation": "전압은 두 지점 사이의 전위차이므로 계기를 측정 대상과 병렬로 연결한다. 교류 측정에서는 AC 범위와 정격을 먼저 맞춘다.",
     "keyPoints": [
@@ -3017,33 +3208,39 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:24:31 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-06",
     "year": 2022,
     "session": "3",
     "number": 6,
-    "question": "다음 영상에서 나오는 부품의 명칭을 차례대로 쓰시오.",
+    "question": "사진의 배관 부품 명칭을 왼쪽부터 차례대로 쓰시오.",
     "answer": "부싱, 캡, 45도엘보, 레듀샤",
     "explanation": "배관 부품은 외형만 외우기보다 유체가 들어오고 나가는 방향과 연결 방법을 함께 본다. 도시문제는 보는 방향을 고정한 뒤 깊이를 없애고 중심선·엘보·분기 위치를 남긴다.",
     "keyPoints": [
       "부싱",
       "캡",
-      "도엘보",
+      "45도 엘보",
       "레듀샤"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:29:39 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-07",
     "year": 2022,
     "session": "3",
     "number": 7,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 설치위치를 쓰시오.",
+    "question": "사진의 빨간 화살표가 가리키는 부품의 명칭과 설치위치를 쓰시오.",
     "answer": "가. 명칭 : 코어쉘 필터드라이어 나. 설치위치 : 응축기와 팽창밸브 사이",
     "explanation": "필터드라이어는 응축기 뒤 액관에서 수분과 이물질을 제거한다. 수분이 팽창밸브에서 얼어 막히거나 냉매·오일과 반응해 산이 생기는 것을 예방한다.",
     "keyPoints": [
@@ -3052,14 +3249,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:30:17 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-08",
     "year": 2022,
     "session": "3",
     "number": 8,
-    "question": "다음 영상에서 보여주는 취출구의 명칭과 창문부근 천장에 설치하는 목적을 쓰시오.",
+    "question": "다음 사진에서 보여주는 취출구의 명칭과 창문부근 천장에 설치하는 목적을 쓰시오.",
     "answer": "① 명칭 : 캄라인형 취출구 ② 설치목적 : 창문부근 천장에 설치하고 외부공기와 내부공기를 차단하여 실내외 온도를 차단하고 공기 중 이물질 및 곤충, 벌레 등의 출입을 막기 위해 설치한다.(에어커튼 역할)",
     "explanation": "창가에 길고 연속적인 공기막을 만들어 외벽·창에서 들어오는 냉기나 열을 막는다. 실내의 온도 불균형을 줄이는 데 쓰인다.",
     "keyPoints": [
@@ -3070,14 +3270,17 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:33:52 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-09",
     "year": 2022,
     "session": "3",
     "number": 9,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 사용목적을 쓰시오.",
+    "question": "사진의 빨간 화살표가 가리키는 장치의 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 액분리기 ② 사용목적 : 증발기와 압축기사이에 설치하여 압축기로 액이 넘어가는것을 막아 액압축(리퀴드백)을 방지한다.",
     "explanation": "증발기에서 미처 증발하지 않은 액냉매를 기체와 분리한다. 기체만 압축기로 보내 액압축과 밸브 손상을 막는다.",
     "keyPoints": [
@@ -3086,14 +3289,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:34:52 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-09-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-10",
     "year": 2022,
     "session": "3",
     "number": 10,
-    "question": "다음 영상에서 보여준 부품의 명칭을 쓰시오.",
+    "question": "다음 사진에서 보여준 부품의 명칭을 쓰시오.",
     "answer": "전자접촉기 / 마그네틱 컨텍터(MC)",
     "explanation": "코일에 전류가 흐르면 전자석이 주접점을 붙여 큰 전동기 전류를 켠다. 작은 제어신호로 큰 부하를 반복 개폐할 수 있다.",
     "keyPoints": [
@@ -3103,7 +3309,10 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:38:16 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-10-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2022-3-11",
@@ -3131,16 +3340,22 @@
     "year": 2022,
     "session": "3",
     "number": 12,
-    "question": "다음 영상에서 나오는 2위치 밸브의 작동원리를 쓰시오.",
+    "question": "사진의 전동식 2위치 밸브의 작동원리를 쓰시오.",
     "answer": "전자기유도작용에 의해 밸브를 상하로 온오프(on-off) 시킨다.",
-    "explanation": "코일에 전류를 흘리면 전자력이 플런저를 움직여 밸브를 열거나 닫는다. 전원이 켜짐·꺼짐 두 상태로 유체 흐름을 자동 제어한다.",
+    "explanation": "사진의 구동부 안에 있는 전동기가 밸브 축을 위아래로 움직여 완전 열림·완전 닫힘 두 상태를 만든다. 코일이 플런저를 직접 당기는 전자밸브와 구별한다.",
     "keyPoints": [
-      "전자기유도작용에 의해 밸브를 상하로 온오프(on-off) 시킨다"
+      "전자기 유도작용",
+      "전동기 구동",
+      "밸브 상하 이동",
+      "ON/OFF"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2022년3회 공개 복원 영상 00:41:45 실제 그림·질문 대조: https://www.youtube.com/watch?v=JYVao7NtpFc",
+    "images": [
+      "assets/hvac-practical/restored/2022-3/hvac-practical-restored-2022-3-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-01",
@@ -3193,7 +3408,7 @@
     "year": 2023,
     "session": "1",
     "number": 3,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 사용목적을 쓰시오.",
+    "question": "사진의 부품 명칭과 사용목적을 쓰시오.",
     "answer": "① 명칭 : 수액기 ② 사용목적 : 응축기와 팽창밸브 사이에 설치하여 냉매를 일시 저장하고 부하 변동에 맞춰 액냉매를 팽창밸브로 안정적으로 공급한다.",
     "explanation": "수액기는 응축기에서 액화된 냉매를 잠시 저장해 부하가 변해도 팽창밸브에 액냉매를 안정적으로 보낸다. 불응축가스를 제거하는 장치는 아니며, 기체와 액체를 분리하는 주목적의 액분리기와도 구분한다.",
     "keyPoints": [
@@ -3202,14 +3417,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:12:03 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-03-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-04",
     "year": 2023,
     "session": "1",
     "number": 4,
-    "question": "다음 영상에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
+    "question": "다음 사진에서 보여주는 부품의 명칭과 그 용도를 쓰시오.",
     "answer": "가. 명칭 : 계기용변류기 나. 용도 : 1차측 대전류를 소전류로 변환하는 장치",
     "explanation": "큰 1차 전류를 계기가 안전하게 읽을 수 있는 작은 2차 전류로 비례 변환한다. 측정기와 주회로를 전기적으로 분리하는 효과도 있다.",
     "keyPoints": [
@@ -3218,14 +3436,17 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:17:42 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-04-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-05",
     "year": 2023,
     "session": "1",
     "number": 5,
-    "question": "다음 영상을 보고 (가),(나),(다) 장치의 명칭을 쓰시오.",
+    "question": "그림 (가)·(나)·(다)의 장치 명칭을 각각 쓰시오.",
     "answer": "(가) 플로트 트랩, (나) 버킷 트랩, (다) 디스크 트랩",
     "explanation": "응축수 수위로 작동하는 플로트·버킷식과 압력차로 작동하는 디스크식을 외형으로 구분한다.",
     "keyPoints": [
@@ -3236,14 +3457,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:20:19 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-05-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-06",
     "year": 2023,
     "session": "1",
     "number": 6,
-    "question": "다음 영상에서 보여주는 부품의 명칭을 쓰시오.",
+    "question": "사진의 배관 상부에 연결된 백색 캡 부품 명칭을 쓰시오.",
     "answer": "공기빼기밸브(에어벤트)",
     "explanation": "배관 높은 곳에 모인 공기를 자동 또는 수동으로 빼낸다. 공기막힘·소음·순환불량을 줄인다.",
     "keyPoints": [
@@ -3252,14 +3476,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:21:21 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-06-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-07",
     "year": 2023,
     "session": "1",
     "number": 7,
-    "question": "다음 영상에서 보여주는 (가)의 역할을 쓰시오.",
+    "question": "그림 오른쪽 끝에서 헤더 아래로 연결된 밸브 (가)의 역할을 쓰시오.",
     "answer": "헤더내부의 이물질 및 드레인을 배출시키기 위해 사용된다.",
     "explanation": "헤더 아래쪽에 모이는 물과 이물질은 그대로 두면 부식·막힘을 만든다. 배출구를 통해 정기적으로 빼내야 한다.",
     "keyPoints": [
@@ -3269,14 +3496,17 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:23:47 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-07-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-08",
     "year": 2023,
     "session": "1",
     "number": 8,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 설치목적을 쓰시오.",
+    "question": "사진의 펌프 상부 배관에 설치된 주름관 이음쇠의 명칭과 설치목적을 쓰시오.",
     "answer": "명칭 : 플렉시블조인트 설치목적 : 배관의 진동부 및 열팽창 등에 의한 변형을 흡수하여 방진, 방음을 위해 설치하는 이음쇠",
     "explanation": "플렉시블 조인트는 휘어질 수 있는 부분이 펌프·압축기 진동과 배관 열팽창 변위를 흡수한다. 진동과 소음이 건물 배관으로 전달되는 것을 줄인다.",
     "keyPoints": [
@@ -3287,14 +3517,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:26:28 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-08-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-09",
     "year": 2023,
     "session": "1",
     "number": 9,
-    "question": "다음 영상을 보고 감온통의 역할을 쓰시오.",
+    "question": "사진에서 팽창밸브와 가는 관으로 연결된 감온통(오른쪽 세로 원통)의 역할을 쓰시오.",
     "answer": "증발기 출구 과열도를 감지하여 냉매유량을 조절한다.",
     "explanation": "감온통은 증발기 출구 냉매온도를 압력으로 바꾸어 팽창밸브에 전달한다. 출구 과열도가 커지면 밸브를 더 열고 작아지면 닫아 냉매량을 조절한다.",
     "keyPoints": [
@@ -3303,14 +3536,17 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:29:28 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-09-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-10",
     "year": 2023,
     "session": "1",
     "number": 10,
-    "question": "다음 영상에서 보여주는 장치의 명칭을 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭을 쓰시오.",
     "answer": "밀폐형 왕복동식 압축기",
     "explanation": "피스톤이 실린더 안에서 왕복하면서 체적을 줄여 냉매를 압축한다. 밀폐형은 압축기와 전동기가 한 용기 안에 들어 있다.",
     "keyPoints": [
@@ -3319,14 +3555,17 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:33:35 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-10-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-1-11",
     "year": 2023,
     "session": "1",
     "number": 11,
-    "question": "다음 영상을 보고 배관이 멈춘 상태에서의 평면도를 그리시오.",
+    "question": "사진의 입체 배관을 위에서 본 평면도를 그리시오. 완성 도식은 정답·채점 기준에서 확인한다.",
     "answer": "평면도는 왼쪽 세로 주관의 원형 접속점에서 오른쪽으로 나가 한 단계 아래로 꺾인 뒤, 오른쪽 원형 끝단으로 이어지는 계단형 배관이다. 첨부 정답 도식을 기준으로 그린다.",
     "explanation": "입체 배관을 보는 방향과 같은 쪽에서 투영한다. 앞뒤 깊이는 없애고 수평·수직 중심선, 엘보의 꺾임, 원형 끝단과 이음 위치를 남겨 도시한다.",
     "keyPoints": [
@@ -3336,9 +3575,12 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안",
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:36:01 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
     "answerImages": [
       "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-11-answer-1.png"
+    ],
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-11-question-video-1-v550.png"
     ]
   },
   {
@@ -3346,7 +3588,7 @@
     "year": 2023,
     "session": "1",
     "number": 12,
-    "question": "다음 영상에서 보여주는 장치의 명칭과 용도를 쓰시오.",
+    "question": "다음 사진에서 보여주는 장치의 명칭과 용도를 쓰시오.",
     "answer": "① 명칭 : 배선용 차단기 ② 용도 : 과전류를 차단하고 기기를 보호한다.",
     "explanation": "배선용 차단기는 회로에 정격보다 큰 전류나 단락전류가 흐르면 전원 자체를 차단한다. 배선과 기기가 과열·소손되는 것을 막는 보호장치다.",
     "keyPoints": [
@@ -3355,30 +3597,31 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안"
+    "sourceNote": "사용자 제공 HWP 필답형 복원 원문·답안 | 에듀강닷컴 2023년1회 공개 복원 영상 00:37:56 실제 그림·질문 대조: https://www.youtube.com/watch?v=PH-CKt6m7oA",
+    "images": [
+      "assets/hvac-practical/restored/2023-1/hvac-practical-restored-2023-1-12-question-video-1-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-2-01",
     "year": 2023,
     "session": "2",
     "number": 1,
-    "question": "아래 회로도를 보고 PB1과 PB2를 눌렀을 때 어떻게 작동하는지 아래 물음에 답하시오. (MC1, MC2, MC3, Ll, L2 위주로 설명할 것)",
-    "answer": "① PB1: MC1·MC2 코일이 여자되고 L1이 점등하여 Y기동한다. MC1 a접점으로 MC1·MC2와 L1이 자기유지된다. ② PB2: PB2 b접점이 열려 MC2와 L1이 소자되고 Y기동이 끝난다. 동시에 PB2 a접점이 닫혀 MC3가 여자되고 L2가 점등하여 Δ운전으로 전환된다. MC3 a접점으로 자기유지하고 MC3 b접점으로 MC2 재동작을 막는다.",
-    "explanation": "처음에는 MC2로 전동기를 Y결선해 작은 기동전류로 출발시킨다. PB2를 누르면 Y회로를 끊고 MC3의 Δ결선으로 바꿔 정상 운전한다. MC2와 MC3의 b접점은 두 결선이 동시에 켜지는 것을 막는다.",
+    "question": "아래 회로에서 PB1과 PB2를 눌렀을 때 MC1·MC2·MC3와 L1·L2의 동작을 설명하시오.",
+    "answer": "① PB1: MC1·MC2 여자, L1 점등으로 Y기동하며 MC1 a접점으로 자기유지한다. ② PB2: MC3가 여자되고 L2가 점등한다. MC3 b접점이 열려 MC2가 소자되고 L1은 소등하며 Δ운전으로 전환한다. MC3 a접점으로 자기유지한다.",
+    "explanation": "PB2는 MC3를 켜는 a접점이다. Y기동 회로를 끊는 것은 PB2의 b접점이 아니라 MC3의 b접점이다. MC2(Y)와 MC3(Δ)가 동시에 켜지지 않도록 인터록을 건다.",
     "keyPoints": [
       "PB1 MC1·MC2 여자",
-      "L1 점등·Y기동",
-      "MC1 a접점 자기유지",
-      "PB2 MC2·L1 소자",
-      "MC3·L2 여자·Δ운전",
-      "MC3 b접점 상호 인터록"
+      "PB2 MC3 여자",
+      "MC3 b접점으로 MC2 소자",
+      "Y-Δ 전환"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-01-clean-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-01-question-scan-v550.png"
     ]
   },
   {
@@ -3398,7 +3641,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-02-question-1.svg"
     ]
@@ -3420,9 +3663,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-03-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-03-question-scan-v550.png"
     ]
   },
   {
@@ -3430,17 +3673,21 @@
     "year": 2023,
     "session": "2",
     "number": 4,
-    "question": "아래 그림을 보고 다음 질문에 답하시오. ① 증발기의 냉매공급 방식을 참고하여 해당 장치의 명칭을 쓰시오: ② 다음 ( )안에 알맞은 내용을 쓰시오. 냉매액은 증발기로, 냉매가스를 압축기로 보내어 ()을 방지한다.",
-    "answer": "액분리기(어큐뮬레이터). 냉매액은 증발기로 보내고 가스만 압축기로 보내 액압축(리퀴드백)을 방지한다.",
-    "explanation": "액분리기는 증발기와 압축기 사이에서 액냉매를 걸러낸다. 압축기는 기체를 압축하도록 만든 기계이므로 액이 들어가면 손상될 수 있다.",
+    "question": "아래 그림에서 ① 냉매 공급 방식에 따른 증발기의 명칭을 쓰시오. ② 저압수액기에서 액냉매는 증발기로, 냉매가스는 압축기로 보내어 무엇을 방지하는지 쓰시오.",
+    "answer": "① 액펌프식 증발기(액순환식 증발기) ② 액압축(리퀴드백) 방지",
+    "explanation": "그림의 냉매액 펌프가 저압수액기의 액냉매를 증발기로 순환시킨다. 저압수액기에서 액과 가스를 분리하고 가스만 압축기로 보내므로 액압축을 막는다. 장치 하나의 명칭인 액분리기와 냉매 공급 방식의 명칭을 구별한다.",
     "keyPoints": [
-      "액분리기",
+      "액펌프식 증발기",
+      "액순환식 증발기",
       "액압축 방지"
     ],
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
+    "images": [
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-04-question-scan-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2023-2-05",
@@ -3459,9 +3706,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-05-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-05-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-05-answer-1.svg"
@@ -3483,9 +3730,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-06-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-06-question-scan-v550.png"
     ]
   },
   {
@@ -3504,9 +3751,9 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-07-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-07-question-scan-v550.png"
     ]
   },
   {
@@ -3525,9 +3772,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-08-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-08-question-scan-v550.png"
     ]
   },
   {
@@ -3535,21 +3782,21 @@
     "year": 2023,
     "session": "2",
     "number": 9,
-    "question": "공기조화방식은 열운반 매체에 따라 전공기방식, 전수방식, 수공기방식, 냉매방식으로 분류 할 수 있다. 아래의 그림을 참고하여 각각 알맞은 열운반 방식을 보기에서 골라 쓰시오. 보기 : 전공기방식, 전수방식, 수공기방식, 냉매방식",
-    "answer": "① 전공기방식, ② 전수방식, ③ 수공기방식, ④ 냉매방식",
+    "question": "그림 (1)~(4)의 열운반 매체에 따른 공기조화 방식을 보기에서 골라 쓰시오. [보기] ① 수공기방식 ② 전수방식 ③ 냉매방식 ④ 전공기방식",
+    "answer": "(1) ④ 전공기방식 / (2) ② 전수방식 / (3) ① 수공기방식 / (4) ③ 냉매방식",
     "explanation": "덕트로 공기만 보내면 전공기방식, 팬코일유닛에 물 배관만 연결하면 전수방식이다. 덕트와 물 배관을 함께 쓰면 수공기방식이고, 룸쿨러·에어컨처럼 냉매가 실내 열교환기까지 오면 냉매방식이다.",
     "keyPoints": [
-      "① 전공기방식",
-      "② 전수방식",
-      "③ 수공기방식",
-      "④ 냉매방식"
+      "(1) 전공기",
+      "(2) 전수",
+      "(3) 수공기",
+      "(4) 냉매"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-09-question-1.svg"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-09-question-scan-v550.png"
     ]
   },
   {
@@ -3569,9 +3816,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-10-question-1.png"
+      "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-10-question-scan-v550.png"
     ]
   },
   {
@@ -3588,7 +3835,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2023-2-12",
@@ -3863,25 +4110,22 @@
     "year": 2024,
     "session": "1",
     "number": 1,
-    "question": "아래 회로도를 보고 ①~⑤번 질문에 알맞은 답을 쓰시오. 가) 전원을 켜면 GL이 점등 된다. 나) S/S를 MAN으로 하고 동작시킬 때 아래의 질문에 답하시오. 1 PB1을 누들 때 : ② PB2를 누를 때 : 다) S/S를 AUTO로 전환하였을 때 아래의 질문에 답하시오. ③ LS를 누를 때 : ④ 타이머 T초 후 : ⑤ THR 동작 시 :",
-    "answer": "① PB1: MC가 여자되고 MC a접점으로 자기유지하며 RL은 점등, GL은 소등한다. ② PB2: MC가 소자되어 RL은 소등, GL은 점등한다. ③ LS: 타이머 T와 릴레이 RY가 여자되고 RY a접점으로 MC가 여자되어 RL은 점등, GL은 소등한다. ④ 설정시간 후: 타이머 한시 b접점이 열려 RY와 MC가 소자되고 RL은 소등, GL은 점등한다. ⑤ THR 동작: THR b접점이 열려 주회로를 차단하고 THR a접점이 닫혀 OL이 점등한다.",
-    "explanation": "PB1은 수동 운전 시작, PB2는 정지다. 자동에서는 LS가 타이머와 릴레이를 켜 운전을 시작하고 시간이 지나면 한시 b접점이 열려 처음 상태로 돌아간다. 과부하가 생기면 THR이 운전을 끊고 경고등을 켠다.",
+    "question": "아래 회로는 전원 투입 시 GL이 점등한다. 수동(MAN)에서 ① PBS1을 누를 때 ② PBS2를 누를 때, 자동(AUTO)에서 ③ LS를 누를 때 ④ 타이머 설정시간 경과 후 ⑤ THR 동작 시 상태를 설명하시오.",
+    "answer": "① MC 여자·자기유지, RL 점등·GL 소등. ② MC 소자, RL 소등·GL 점등. ③ RY와 T 여자, RY a접점으로 MC 여자, RL 점등·GL 소등. ④ T 한시 b접점이 열려 RY와 MC 소자, RL 소등·GL 점등. ⑤ THR b접점이 운전회로를 차단해 MC·RY·T 소자, RL·GL 소등. THR a접점으로 OL 점등.",
+    "explanation": "수동은 PBS1과 MC a접점으로 운전·자기유지한다. 자동은 LS와 RY를 통해 MC를 켜고 타이머가 RY 회로를 끊는다. LS를 계속 누르는 동안 T는 통전될 수 있으므로 시간 경과만으로 T도 소자한다고 단정하지 않는다. THR 동작 시에는 GL 전원도 끊겨 OL만 켜진다.",
     "keyPoints": [
-      "PB1 MC 자기유지·RL 점등·GL 소등",
-      "PB2 MC 소자·RL 소등·GL 점등",
-      "LS T·RY·MC 여자",
-      "타이머 b접점 운전 정지",
-      "THR 주회로 차단·OL 점등"
+      "수동 MC 자기유지",
+      "자동 RY·T 여자",
+      "타이머 RY·MC 소자",
+      "THR OL 점등",
+      "THR GL 소등"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-1-reviewed-v514.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-answer-1.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-scan-v550.png"
     ]
   },
   {
@@ -3901,12 +4145,12 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-scan-v550.png"
     ]
   },
   {
@@ -3924,7 +4168,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-book-scan-v514.png"
     ]
@@ -3945,7 +4189,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-04-question-book-scan-v514.png"
     ]
@@ -3955,19 +4199,19 @@
     "year": 2024,
     "session": "1",
     "number": 5,
-    "question": "다음 그림의 장치로 측정할 수 있는 항목 3가지를 쓰시오.",
-    "answer": "클램프미터로 전압, 전류, 저항을 측정할 수 있다.",
+    "question": "그림의 계기 명칭과 측정할 수 있는 항목 3가지를 쓰시오.",
+    "answer": "명칭: 클램프미터(후크미터). 측정 항목: 전류·전압·저항.",
     "explanation": "전류는 전선을 끊지 않고 집게 부분으로 한 가닥만 감싸 측정한다. 측정 단자와 선택 스위치를 사용하면 전압과 저항도 잴 수 있다.",
     "keyPoints": [
       "클램프미터",
-      "전압",
       "전류",
+      "전압",
       "저항"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-book-scan-v514.png"
     ]
@@ -3988,7 +4232,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-question-book-scan-v514.png"
     ],
@@ -4001,21 +4245,21 @@
     "year": 2024,
     "session": "1",
     "number": 7,
-    "question": "아래 습공기선도의 A, B, C, D 각 상태점에 알맞은 단어를 보기에서 골라 쓰시오. [보기] 냉각, 가열, 가습, 감습",
-    "answer": "A: 냉각, B: 감습, C: 가열, D: 가습",
-    "explanation": "t-x선도에서 왼쪽은 온도 감소라 냉각, 오른쪽은 온도 증가라 가열이다. 위쪽은 절대습도 증가라 가습, 아래쪽은 절대습도 감소라 감습이다.",
+    "question": "습공기선도에서 가·나·다·라의 상태변화를 보기에서 골라 쓰시오. [보기] 가열·감습·가습·냉각",
+    "answer": "가: 가습 / 나: 가열 / 다: 감습 / 라: 냉각",
+    "explanation": "위로 이동하면 절대습도가 늘어 가습, 아래로 이동하면 감습이다. 오른쪽은 건구온도가 올라 가열, 왼쪽은 내려가 냉각이다.",
     "keyPoints": [
-      "A 냉각",
-      "B 감습",
-      "C 가열",
-      "D 가습"
+      "가 가습",
+      "나 가열",
+      "다 감습",
+      "라 냉각"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-book-scan-v514.png"
+      "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-scan-v550.png"
     ]
   },
   {
@@ -4033,7 +4277,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2024-1-09",
@@ -4051,7 +4295,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-09-question-book-scan-v514.png"
     ]
@@ -4071,7 +4315,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2024-1-11",
@@ -4089,7 +4333,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-11-question-book-scan-v514.png"
     ]
@@ -4109,7 +4353,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-12-question-book-scan-v514.png"
     ]
@@ -4130,7 +4374,7 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1-reviewed-v514.png"
     ],
@@ -4156,12 +4400,12 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1-reviewed-v514.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-scan-v550.png"
     ]
   },
   {
@@ -4180,7 +4424,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-book-scan-v514.png"
     ]
@@ -4202,7 +4446,7 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-04-question-book-scan-v514.png"
     ]
@@ -4212,7 +4456,7 @@
     "year": 2024,
     "session": "2",
     "number": 5,
-    "question": "그림의 지하실 바닥 조건에서 열관류율 0.5 W/(m²·℃), 실내온도 20℃, 지중온도 8.2℃일 때 바닥 손실열량(W)을 구하시오. (바닥 치수는 제시 그림 참조.)",
+    "question": "가로 10 m, 세로 10 m인 지하실 바닥의 열관류율이 0.5 W/(m²·℃), 실내온도 20℃, 지중온도 8.2℃이다. 바닥 손실열량(W)을 구하시오.",
     "answer": "바닥면적 F=10×10=100 m², Q=KFΔt=0.5×100×(20-8.2)=590 W",
     "explanation": "열관류율은 바닥 1m²에서 온도차 1℃당 빠져나가는 열이다. 바닥 전체 면적 100m²와 실내·지중 온도차 11.8℃를 곱하면 손실열량이 나온다.",
     "keyPoints": [
@@ -4224,7 +4468,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-question-1.png"
     ],
@@ -4248,7 +4492,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-book-scan-v514.png"
     ]
@@ -4269,7 +4513,7 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1-reviewed-v514.png"
     ],
@@ -4294,9 +4538,9 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1-reviewed-v514.png"
@@ -4318,7 +4562,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-book-scan-v514.png"
     ]
@@ -4339,7 +4583,7 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-question-book-scan-v514.png"
     ],
@@ -4363,7 +4607,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-book-scan-v514.png"
     ]
@@ -4385,7 +4629,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상과 2023년 3회~2024년 2회 해설 스캔을 문제 내용 기준으로 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-book-scan-v514.png"
     ]
@@ -4395,7 +4639,7 @@
     "year": 2024,
     "session": "3",
     "number": 1,
-    "question": "다음 회로도의 동작설명을 보고 아래 빈칸에 알맞은 접점명칭을 써넣으시오. 동작설명 1. PBS1을 누르면 X10 여자 되며 자기유지 된다. 2. PBS2를 누르면 T가 여자 되고 GL이 점등 된다. 3. 타이머의 한시 접점으로 인해 t초 경과 후 GL이 소등 된다. 4. PBS3를 누르면 초기상태로 되돌아 간다.",
+    "question": "회로의 빈칸 ①~③에 접점 명칭을 쓰시오. PBS1을 누르면 X1이 자기유지되고, PBS2를 누르면 T가 작동하며 GL이 점등한다. 설정시간이 지나면 GL은 소등하며, PBS3를 누르면 초기 상태로 돌아간다.",
     "answer": "① X1 a접점 ② T 한시 b접점 ③ X2 a접점",
     "explanation": "①은 X1을 자기유지하고, ②는 설정시간 뒤 열려 GL을 끈다. ③은 초기화 릴레이 X2의 동작을 회로에 전달한다.",
     "keyPoints": [
@@ -4406,9 +4650,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1-reviewed-v514.png"
@@ -4432,9 +4676,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1-reviewed-v514.png"
@@ -4457,9 +4701,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-scan-v550.png"
     ]
   },
   {
@@ -4479,7 +4723,7 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2024-3-05",
@@ -4498,9 +4742,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-05-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-05-question-scan-v550.png"
     ]
   },
   {
@@ -4520,7 +4764,7 @@
     "category": "cycle",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2024-3-07",
@@ -4538,7 +4782,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2024-3-08",
@@ -4557,9 +4801,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-08-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-08-question-scan-v550.png"
     ]
   },
   {
@@ -4578,9 +4822,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-clean-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-1.png"
@@ -4603,9 +4847,9 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-10-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-10-question-scan-v550.png"
     ]
   },
   {
@@ -4614,24 +4858,19 @@
     "session": "3",
     "number": 11,
     "question": "다음 그림을 보고 각각의 취출구 명칭을 쓰시오.",
-    "answer": "① 팬형 취출구 ② 아네모스탯형 취출구 ③ 루버형 취출구",
+    "answer": "가: 팬형 취출구 / 나: 아네모스탯형 취출구 / 다: 루버형 취출구",
     "explanation": "팬형은 내부 팬으로 풍량을 조절하고, 아네모스탯형은 여러 원추로 공기를 넓게 확산한다. 루버형은 날개 방향으로 취출 방향을 조절한다.",
     "keyPoints": [
-      "팬형",
-      "아네모스탯형",
-      "루버형"
+      "가 팬형",
+      "나 아네모스탯형",
+      "다 루버형"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-1.png",
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-2.png",
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-clean-3.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-scan-v550.png"
     ]
   },
   {
@@ -4639,7 +4878,7 @@
     "year": 2024,
     "session": "3",
     "number": 12,
-    "question": "다음 그림을 보고 (A)부분의 명칭과 역할을 쓰시오.",
+    "question": "냉매 흐름이 팽창밸브 → 증발기 → (A) → 압축기인 장치에서, 사진에 해당하는 (A)의 명칭과 역할을 쓰시오.",
     "answer": "명칭: 액분리기(어큐뮬레이터). 역할: 증발기와 압축기 사이에서 액냉매를 분리해 액압축(리퀴드백)을 방지한다.",
     "explanation": "기체는 위쪽 출구로 압축기에 가고 무거운 액은 용기 아래에 남는다. 압축기에 액이 들어가 밸브·피스톤을 손상시키는 일을 막는다.",
     "keyPoints": [
@@ -4651,9 +4890,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-1.png"
+      "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-answer-1.png"
@@ -4676,9 +4915,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-answer-1-reviewed-v514.png"
@@ -4689,24 +4928,21 @@
     "year": 2025,
     "session": "1",
     "number": 2,
-    "question": "다음 회로도를 보고 아래 동작설명의 물음에 답하시오. 동작설명 전원 투입 시 EOCR 전원이 on하고, GL, WL이 점등된다. ① ST버튼을 눌렀을 때 : ② 타이머 설정시간 경과 후 : ③ EOCR 동작 시 :",
-    "answer": "① ST: MC와 T 여자·자기유지, GL 소등, RL 점등, WL 점등 유지. ② 설정시간 후: T 한시 b접점이 열려 MC와 T 소자, GL 점등, RL 소등, WL 점등 유지. ③ EOCR: b접점이 운전회로를 차단하고 a접점이 닫혀 부저가 울린다.",
-    "explanation": "운전 버튼은 타이머 순시 a접점으로 회로를 유지한다. 시간이 지나면 한시 b접점이 회로를 끊고, 과전류가 생기면 EOCR이 운전을 정지시키며 경보를 낸다.",
+    "question": "다음 회로는 전원 투입 시 EOCR 전원이 켜지고 GL·WL이 점등한다. ① PBS1을 누를 때 ② 타이머 설정시간 경과 후 ③ EOCR 동작 시 X·T·GL·RL·WL·BZ의 상태를 설명하시오.",
+    "answer": "① X·T 여자, T a접점으로 자기유지. GL 소등·RL 점등·WL 점등 유지. ② T 한시 b접점이 열려 X·T 소자. GL 점등·RL 소등·WL 점등 유지. ③ EOCR b접점이 열려 X·T 소자, GL·RL·WL 소등. EOCR a접점이 닫혀 BZ 작동.",
+    "explanation": "그림의 운전 코일 이름은 MC가 아니라 X다. 자기유지 접점은 T-a이며, 설정시간 후 T-b가 열려 X와 T의 전원을 끊는다. EOCR가 동작하면 운전·표시등 회로를 차단하고 별도 경보 회로를 켠다.",
     "keyPoints": [
-      "MC·T 여자",
-      "타이머 한시 b접점",
-      "EOCR 과전류",
-      "부저 경보"
+      "X·T 여자",
+      "T a접점 자기유지",
+      "T 한시 b접점",
+      "EOCR BZ 작동"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-question-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-question-scan-v550.png"
     ]
   },
   {
@@ -4714,24 +4950,23 @@
     "year": 2025,
     "session": "1",
     "number": 3,
-    "question": "다음 그림 중 ②번 그림을 기준으로 배관의 평면도를 도시기호로 그리시오.",
-    "answer": "②번 입체 배관을 위에서 본 평면도로 투영하여, 엘보의 꺾임과 분기 중심선을 도시기호로 그린다.",
+    "question": "입체 배관 그림 (가)를 위에서 본 평면도를 도시기호로 그리시오.",
+    "answer": "위에서 보면 양끝에 원형 입상관 표시가 있는 U자형 평면도다. 첨부 정답 그림의 두 표기 방식 중 하나로 그린다.",
     "explanation": "평면도는 위에서 내려다본 모습이다. 앞뒤 깊이를 없애고 각 관의 중심선, 엘보 방향, 분기 위치가 원 입체도와 맞도록 옮긴다.",
     "keyPoints": [
-      "평면 투영",
-      "배관 중심선",
-      "엘보 방향",
-      "분기 위치"
+      "가 그림",
+      "U자형 평면도",
+      "원형 입상관"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-question-scan-v550.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-answer-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-answer-scan-v550.png"
     ]
   },
   {
@@ -4751,28 +4986,27 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-1-05",
     "year": 2025,
     "session": "1",
     "number": 5,
-    "question": "아래 사진을 참고하여 팬코일유닛(FCU : Fan Coil Unit)의 작동원리를 쓰시오.",
-    "answer": "팬이 실내공기를 흡입해 냉수 또는 온수가 흐르는 코일을 통과시키고, 냉각·가열된 공기를 다시 실내로 보낸다.",
+    "question": "사진의 장치 명칭과 작동원리를 쓰시오.",
+    "answer": "명칭: 팬코일유닛(FCU). 팬으로 실내공기를 흡입하여 냉수·온수가 흐르는 코일을 통과시키고, 냉각·가열한 공기를 다시 실내로 보낸다.",
     "explanation": "코일 안의 물과 공기가 열을 교환한다. 여름에는 냉수가 공기의 열을 빼앗고 겨울에는 온수가 공기를 데우며, 팬이 이 공기를 실내에 순환시킨다.",
     "keyPoints": [
-      "FCU",
-      "팬",
-      "냉·온수 코일",
+      "팬코일유닛",
+      "냉수·온수 코일",
       "실내공기 순환"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-05-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-05-question-scan-v550.png"
     ]
   },
   {
@@ -4792,9 +5026,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-06-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-06-question-scan-v550.png"
     ]
   },
   {
@@ -4814,10 +5048,9 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-clean-1.png",
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-clean-2.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-question-1.png"
@@ -4840,9 +5073,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-08-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-08-question-scan-v550.png"
     ]
   },
   {
@@ -4862,9 +5095,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-answer-1-reviewed-v514.png"
@@ -4876,23 +5109,18 @@
     "session": "1",
     "number": 10,
     "question": "아래 사진에서 보여주는 장치의 명칭을 쓰시오.",
-    "answer": "적외선식 냉매 누설탐지기",
-    "explanation": "냉매가 특정 적외선 파장을 흡수하는 성질을 이용한다. 센서가 흡수량 변화를 감지해 누설 위치를 알린다.",
+    "answer": "냉매 누설탐지기(가스 누설검지기)",
+    "explanation": "탐침을 배관 이음부나 밸브 주변에 대어 누설된 냉매를 감지하는 계기다. 이 사진만으로 감지 방식이 적외선식이라고 특정할 수는 없다.",
     "keyPoints": [
-      "적외선식",
-      "냉매 누설",
-      "흡수 파장",
-      "누설탐지기"
+      "냉매 누설탐지기",
+      "가스 누설검지기"
     ],
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-clean-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-question-1.png"
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-question-scan-v550.png"
     ]
   },
   {
@@ -4912,51 +5140,51 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-1-12",
     "year": 2025,
     "session": "1",
     "number": 12,
-    "question": "다음은 흡수식 냉동기의 특징에 관한 표이다. ( )안에 들어갈 알맞은 용어를 쓰시오. 구분 H:O + LiBr NH3 + H20 (④ ) 냉매 (⑤ ) (② ) 흡수제 철 ( ⑥ ) 전열관 재질 없음 유독성, 가연성",
-    "answer": "H₂O-LiBr식: 냉매 H₂O, 흡수제 LiBr, 전열관 동(구리), 유독성·가연성 없음. NH₃-H₂O식: 냉매 NH₃, 흡수제 H₂O, 전열관 철(강), 유독성·가연성 있음.",
-    "explanation": "흡수식에서는 잘 증발하는 물질이 냉매이고 이를 잘 녹여 잡아두는 물질이 흡수제다. 암모니아는 동을 부식시키므로 강관을 쓰고, 물-LiBr식은 동관을 사용할 수 있다.",
+    "question": "표에서 NH₃-H₂O식과 H₂O-LiBr식 흡수식 냉동기를 비교하여 빈칸 ①~⑥을 채우시오.",
+    "answer": "① NH₃(암모니아) ② H₂O(물) ③ 있음 ④ H₂O(물) ⑤ LiBr(브롬화리튬) ⑥ 동(구리)",
+    "explanation": "암모니아-물식은 암모니아가 냉매, 물이 흡수제이며 동 대신 철계 전열관을 쓴다. 물-브롬화리튬식은 물이 냉매, LiBr이 흡수제이며 동 전열관을 사용할 수 있다. ③은 표의 냉매 독성 유무를 묻는다.",
     "keyPoints": [
-      "H₂O-LiBr",
-      "NH₃-H₂O",
-      "냉매·흡수제",
-      "동관·강관",
-      "독성·가연성"
+      "NH3 냉매",
+      "H2O 흡수제",
+      "독성 있음",
+      "H2O 냉매",
+      "LiBr 흡수제",
+      "동 전열관"
     ],
     "category": "cycle",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
+    "images": [
+      "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-12-question-scan-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2025-2-01",
     "year": 2025,
     "session": "2",
     "number": 1,
-    "question": "다음 회로도를 보고 (1) ~ ( 3 )항의 빈칸에 알맞은 답을 써넣으시오. 해답 (1) (2) (3)",
-    "answer": "① EOCR ② MC1 ③ MC2",
-    "explanation": "①은 전자식 과전류계전기의 전원·접점 계통이다. ②와 ③은 각각 MC1·MC2 코일이 여자될 때 붙어 자기유지를 만드는 a접점이다.",
+    "question": "Y-Δ 기동 회로의 빈칸 ①~③에 들어갈 기구 명칭을 쓰시오.",
+    "answer": "① MC1 ② MC2 ③ MC3",
+    "explanation": "①은 주회로 접촉기 MC1, ②는 Y 결선을 만드는 MC2, ③은 Δ 결선을 만드는 MC3 코일이다. EOCR는 이 회로 빈칸의 답이 아니다.",
     "keyPoints": [
-      "EOCR",
       "MC1",
       "MC2",
-      "자기유지"
+      "MC3"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-1-reviewed-v514.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-scan-v550.png"
     ]
   },
   {
@@ -4964,24 +5192,22 @@
     "year": 2025,
     "session": "2",
     "number": 2,
-    "question": "다음 회로도를 보고 아래 동작설명의 물음에 답하시오. (단, MC, Ry, Rl, GL 위주로 설명할 것) [동작설명] 전원 투입 시 셀렉터 스위치(SS)는 M(수동)인 상태로 운전된다. l PB1을 눌렀을 때 : ② PB2를 눌렀을 때 :",
-    "answer": "① PB1: MC와 Ry가 여자되고 MC a접점으로 자기유지하며 RL 점등. ② PB2: MC와 Ry가 소자되어 RL 소등, GL 점등의 초기상태로 복귀.",
-    "explanation": "셀렉터스위치가 수동(M)일 때 PB1이 운전, PB2가 정지 역할을 한다. MC가 여자되면 운전등 RL이 켜지고, 소자되면 b접점 쪽 정지등 GL이 켜진다.",
+    "question": "셀렉터 스위치를 MAN(수동)에 놓은 회로에서 ① PBS1을 누를 때 ② PBS2를 누를 때 MC·RY·RL·GL의 상태를 설명하시오.",
+    "answer": "① MC 여자·자기유지, RY 소자 유지, RL 점등·GL 소등. ② MC 소자, RY 소자 유지, RL 소등·GL 점등.",
+    "explanation": "수동에서는 PBS1과 MC a접점으로 MC 코일에 전원을 보낸다. RY 코일은 AUTO 쪽 회로에 있으므로 수동 운전에서 함께 여자되지 않는다.",
     "keyPoints": [
-      "PB1 운전",
-      "MC·Ry 여자",
-      "자기유지",
-      "PB2 정지"
+      "MC 여자",
+      "RY 소자",
+      "RL 점등",
+      "GL 소등",
+      "정지 시 RL 소등·GL 점등"
     ],
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-1-reviewed-v514.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-scan-v550.png"
     ]
   },
   {
@@ -4989,7 +5215,7 @@
     "year": 2025,
     "session": "2",
     "number": 3,
-    "question": "다음의 습공기선도(t-x선도)를 보고 a에서 b로 상태변화 할 때 다음 표의 ( )안에 들어 갈 알맞은 말을 증가 또는 감소로 써넣으시오. 엔탈피 건구몬도 절대습도 상대습도 습구온도 [ ) ( )",
+    "question": "습공기선도에서 A → B로 상태가 변할 때 엔탈피·건구온도·절대습도·상대습도·습구온도가 각각 증가하는지 감소하는지 쓰시오.",
     "answer": "엔탈피 감소, 건구온도 감소, 절대습도 감소, 상대습도 증가, 습구온도 감소",
     "explanation": "a에서 b로 왼쪽 아래로 이동하므로 냉각·감습 과정이다. 온도·수분·열에너지는 줄지만 포화선에 가까워져 상대습도는 커진다.",
     "keyPoints": [
@@ -5001,9 +5227,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-03-question-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-03-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-03-answer-1.png"
@@ -5025,9 +5251,9 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-04-question-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-04-question-scan-v550.png"
     ]
   },
   {
@@ -5036,24 +5262,20 @@
     "session": "2",
     "number": 5,
     "question": "다음의 그림을 보고 공기조화의 방식과 그 특징을 3가지 쓰시오. 가. 공기조화 방식 : 나. 특징",
-    "answer": "유인유닛 방식(공기-수 방식). 특징: ① 실별 개별제어 가능 ② 유닛에 팬이 없어 전기배선이 필요 없다 ③ 부하변동 대응성이 좋다.",
+    "answer": "유인유닛 방식(수공기방식). 특징: ① 실별 개별제어 가능 ② 고속 덕트를 사용하므로 덕트가 작다 ③ 유닛에 팬이 없어 별도의 전기동력이 필요 없다.",
     "explanation": "1차 공기가 노즐에서 빠르게 분사되며 실내공기를 유인해 코일을 통과시킨다. 공기와 냉·온수를 함께 쓰고 각 실 유닛에서 제어하므로 실별 부하에 대응하기 쉽다.",
     "keyPoints": [
-      "유인유닛",
-      "공기-수 방식",
+      "유인유닛 방식",
       "개별제어",
-      "팬 없음",
-      "부하대응"
+      "작은 덕트",
+      "유닛에 팬 없음"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-question-1.png"
-    ],
-    "answerImages": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-question-scan-v550.png"
     ]
   },
   {
@@ -5073,7 +5295,7 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-2-07",
@@ -5092,7 +5314,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-2-08",
@@ -5111,7 +5333,7 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-2-09",
@@ -5130,9 +5352,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-clean-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-question-1.png"
@@ -5155,9 +5377,9 @@
     "category": "safety",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-clean-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-question-1.png"
@@ -5180,9 +5402,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-11-question-1.png"
+      "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-11-question-scan-v550.png"
     ]
   },
   {
@@ -5202,7 +5424,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
       "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-12-question-1.png"
     ]
@@ -5224,9 +5446,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 12번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-answer-1-reviewed-v514.png"
@@ -5248,9 +5470,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 11번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-answer-1-reviewed-v514.png"
@@ -5261,7 +5483,7 @@
     "year": 2025,
     "session": "3",
     "number": 3,
-    "question": "다음 멀티 테스터의 측정용도에 알맞은 번호를 아래 사진에서 골라 쓰시오. 해답 (즉정용도) 가. AAA 소형 건전지의 전압 확인 : 나. 가정용 콘센트의 전압 확인 : 다. 도통시험 : 라. 모터의 구동전류 확인 :",
+    "question": "사진의 멀티테스터에서 다음 용도에 맞는 번호를 골라 쓰시오. 가: AAA 건전지 전압 / 나: 가정용 콘센트 전압 / 다: 도통시험 / 라: 모터 구동전류",
     "answer": "가 1번, 나 2번, 다 3번, 라 4번",
     "explanation": "건전지는 직류전압, 가정용 콘센트는 교류전압으로 잰다. 도통시험은 부저 기호, 모터 전류는 A 기호가 있는 모드를 고른다.",
     "keyPoints": [
@@ -5273,9 +5495,9 @@
     "category": "operation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 10번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-scan-v550.png"
     ]
   },
   {
@@ -5294,7 +5516,7 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 7번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-3-05",
@@ -5302,23 +5524,24 @@
     "session": "3",
     "number": 5,
     "question": "다음 공기조화장치는 혼합, 냉각, 감습 사이클이다. 아래 구성도를 참고하여 습공기선도(tx 선도)를 그리시오.",
-    "answer": "tx선도에서 ① 외기점과 ② 환기점을 직선으로 잇고 그 사이에 ③ 혼합점을 잡는다. ③에서 좌하향으로 냉각·감습하여 ④ 취출점에 이르는 선을 그린다.",
-    "explanation": "여름 외기는 실내 환기보다 고온·다습하므로 ①이 ②의 오른쪽 위에 놓인다. 두 공기가 섞인 ③은 연결선 사이에 있고, 냉각코일을 지나면 온도와 절대습도가 함께 내려가 ④가 왼쪽 아래에 놓인다.",
+    "answer": "① 환기(RA), ② 외기(OA), ③ 혼합공기, ④ 급기(SA). ①과 ②를 직선으로 연결해 그 사이에 ③을 잡고, ③에서 왼쪽 아래로 냉각·감습하여 ④로 이동한다. 실내에서 ④ → ①로 돌아온다.",
+    "explanation": "구성도의 ①은 실내에서 돌아오는 환기, ②는 외부에서 들어오는 외기다. 기존 답의 ①·② 표기가 뒤바뀌어 이를 고쳤다. 혼합점 ③은 두 공기 상태 사이에 있고, 냉각코일을 지나면 온도와 절대습도가 모두 내려간다.",
     "keyPoints": [
-      "① 외기",
-      "② 환기",
+      "① 환기",
+      "② 외기",
       "③ 혼합",
-      "④ 냉각감습 취출"
+      "④ 급기",
+      "냉각·감습"
     ],
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 3번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-question-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-question-scan-v550.png"
     ],
     "answerImages": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-1-reviewed-v514.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-scan-v550.png"
     ]
   },
   {
@@ -5338,43 +5561,49 @@
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 1번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-3-07",
     "year": 2025,
     "session": "3",
     "number": 7,
-    "question": "난방부하가 벽체 현열 9,000 W, 유리창 현열 10,000 W, 틈새 현열 2,000 W·잠열 1,000 W, 외기 현열 4,000 W·잠열 2,500 W일 때 보일러 정격출력을 구하시오. (인체·조명부하는 0, 예열부하 및 배관부하 계수는 합쳐서 1.5)",
-    "answer": "정격출력=(9,000+10,000+2,000+4,000+1,000+2,500)×1.5=42,750 W=42.75 kW",
-    "explanation": "난방 때 벽·유리·틈새·외기로 빠져나가는 열만 합한다. 인체와 조명에서 나오는 열은 실내를 덥히므로 난방부하에서 빼고, 예열·배관 여유계수 1.5를 마지막에 곱한다.",
+    "question": "표의 난방부하를 합산하여 보일러 정격출력을 구하시오. 예열부하계수와 배관부하계수는 각각 1.5이며, 인체·조명 난방부하는 0이다.",
+    "answer": "난방부하=9,000+10,000+2,000+1,000+4,000+2,500=28,500 W. 정격출력=28,500×1.5×1.5=64,125 W=64.125 kW.",
+    "explanation": "난방 열의 합 28,500 W에 예열 여유 1.5를 곱하고, 배관 여유 1.5를 한 번 더 곱한다. 조건은 두 계수를 합쳐서 1.5가 아니라 각각 1.5다. W를 kW로 바꿀 때는 1,000으로 나눈다.",
     "keyPoints": [
-      "난방부하 28,500 W",
-      "인체·조명 제외",
-      "여유계수 1.5",
-      "42.75 kW"
+      "28,500 W",
+      "각각 1.5",
+      "64,125 W",
+      "64.125 kW"
     ],
     "category": "calculation",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 4번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
+    "images": [
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-07-question-scan-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2025-3-08",
     "year": 2025,
     "session": "3",
     "number": 8,
-    "question": "다음은 산소와 아세틸렌을 사용하는 가스용접기이다. 해당 가스용접기에 연결 된 적색호스 와 녹색호스 내부에 공급되는 가스의 종류를 쓰시오. l 적색호스 : ② 녹색호스 :",
-    "answer": "적색 호스: 아세틸렌, 녹색 호스: 산소",
+    "question": "산소·아세틸렌 가스용접기 사진에서 ① 녹색 호스 ② 적색 호스에 공급되는 가스를 쓰시오.",
+    "answer": "① 녹색 호스: 산소 / ② 적색 호스: 아세틸렌",
     "explanation": "가스용접에서 연료가스인 아세틸렌은 적색, 연소를 돕는 산소는 녹색 호스로 구분해 잘못 연결하는 사고를 막는다.",
     "keyPoints": [
-      "적색-아세틸렌",
-      "녹색-산소"
+      "① 산소",
+      "② 아세틸렌"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 9번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
+    "images": [
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-08-question-scan-v550.png"
+    ]
   },
   {
     "id": "hvac-practical-restored-2025-3-09",
@@ -5393,7 +5622,7 @@
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조"
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 6번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지."
   },
   {
     "id": "hvac-practical-restored-2025-3-10",
@@ -5412,9 +5641,9 @@
     "category": "equipment",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 2번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-10-question-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-10-question-scan-v550.png"
     ]
   },
   {
@@ -5422,20 +5651,20 @@
     "year": 2025,
     "session": "3",
     "number": 11,
-    "question": "다음 신축이음쇠의 사진과 그 특징을 보고 해당 신축이음쇠의 종류가 무엇인지 쓰시오.",
-    "answer": "슬리브 이음",
+    "question": "사진의 신축이음쇠 명칭을 쓰시오. 큰 지름은 플랜지, 작은 지름은 나사이음으로 연결한다. 패킹을 사용하며 중·저압 온수·기름 배관에 쓰는 미끄럼형 이음쇠이다.",
+    "answer": "슬리브형 신축이음쇠(미끄럼형 신축이음쇠)",
     "explanation": "안쪽 미끄럼관이 슬리브 본체 속에서 앞뒤로 움직여 온도 변화로 생기는 배관의 늘어남과 줄어듦을 흡수한다.",
     "keyPoints": [
-      "슬리브 이음",
-      "미끄럼관",
-      "신축 흡수"
+      "슬리브형",
+      "미끄럼형",
+      "신축이음쇠"
     ],
     "category": "piping",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 8번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-clean-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-question-1.png"
@@ -5457,9 +5686,9 @@
     "category": "air",
     "difficulty": "standard",
     "points": 5,
-    "sourceNote": "사용자 제공 복원 PDF·영상 대조",
+    "sourceNote": "사용자 제공 복원 PDF·영상 대조 | 사용자 제공 해설 스캔의 인쇄 5번과 내용 대조(2026-10-06). 문항 ID는 기존 번호 유지.",
     "images": [
-      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-clean-1.png"
+      "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-question-scan-v550.png"
     ],
     "answerImages": [
       "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-question-1.png"

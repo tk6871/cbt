@@ -33,12 +33,17 @@ for (const row of rows) {
     }
   }
 }
-console.log(JSON.stringify({
+const report = {
   description: '이미지가 연결되지 않은 시각자료 의존 문장과 완전 동일 파일을 선별합니다. 대체 그림 자동 생성/수정은 하지 않습니다.',
   counts,
   missingReferenceCount: missingReferences.length,
   imageDependentCandidateCount: imageDependentWithoutMedia.length,
   duplicateCandidateCount: duplicateQuestionImages.length,
   missingReferences, imageDependentWithoutMedia, duplicateQuestionImages,
-}, null, 2));
+  choiceOnlyAnswers: rows.filter(row => /^(가|나|다|라|A|B|C|D|[1-4]번)$/.test(row.answer)).map(row=>({id:row.id,answer:row.answer,question:row.question,status:'source-review-needed'})),
+  limitation: '312문항의 연결·문구 선별이다. 원문 영상을 전 회차 대조한 것은 아니며 후보를 자동으로 정답/오류 판정하지 않는다.',
+};
+const output = process.argv.find(arg=>arg.startsWith('--output='))?.slice('--output='.length);
+if (output) fs.writeFileSync(path.resolve(root,output), JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(output ? {...counts,missingReferences:missingReferences.length,visualCandidates:imageDependentWithoutMedia.length,choiceOnlyAnswers:report.choiceOnlyAnswers.length,output} : report,null,2));
 if (missingReferences.length) process.exitCode = 1;

@@ -1,0 +1,1867 @@
+{
+  "version": 1,
+  "source": {
+    "label": "2026-10-06 사용자 제공 필답형 해설 스캔",
+    "archiveSha256": "5eda9b0af075cd9b647db4a9ed5817d49c165a818172ca93a3e48169348a40d0",
+    "scanCount": 61,
+    "scanSha256": {
+      "Scan0001.jpg": "a4d7352205f951a304255a00af76fdb6e4295ebf7a4a05c97c32fbe496e75657",
+      "Scan0002.jpg": "dce2f06cecb03bff9d46a8d8f458336522c0c23e62f5bc201a6a056ad59780b2",
+      "Scan0003.jpg": "93bc9b84a774d09f5330cd7ef81520d25f24d3f40e20a602f50e19769062275f",
+      "Scan0004.jpg": "475ad92f1b86fbabf567b14da6d074b1284850add2db4e9025c47da99dc416ad",
+      "Scan0005.jpg": "af68e928ac768d66dc9551265e8e770cddd8aec3f67fcce0ba4662c87a421bbe",
+      "Scan0006.jpg": "6070027bba2a899374b63b973c408afaf2e1a90e368d0c7b85403cecfe93b713",
+      "Scan0007.jpg": "e3de31b91138426e452dc0da9b8379c2c41638ef7281c1f53eca207535a35b54",
+      "Scan0008.jpg": "d8903f65a35f418e790ed950e311904dd5924039a3d9aeee146e6b0e847303ff",
+      "Scan0009.jpg": "791a6da20b05531f0d7e3d16dbc4f30d8d6f48f1e4db0e93410aa6da95f0c642",
+      "Scan0010.jpg": "51669a3cbc48c088f625eddfe5065891654849aa9cf443ac2f48a83b835317a0",
+      "Scan0011.jpg": "0f784ac78b412659f17915faeed36af1e5babf7319d5e6c68f21d505a8f5b77e",
+      "Scan0012.jpg": "a13b60de8e7ba04c0506611d7913b657a6eff4be029cc09c7878bab3a8771567",
+      "Scan0013.jpg": "40a9165a5bc8683dadc6300d64e2d1b32302a8a8d3259f3abd953e53fc1be173",
+      "Scan0014.jpg": "fe9064c99b30d8b638c8306935ed76641fa49146df90a7d7dc413177f812584b",
+      "Scan0015.jpg": "bce4200f79e456b1f4c87861ecbff8a216b979ed32e667cba1bd67a98876a4a4",
+      "Scan0016.jpg": "e6b4725766ab202d0bfc3f3abe2dd21fb3f035bbb24ac82fc10a991b08fb820e",
+      "Scan0017.jpg": "f3c6101c3807713d0ba62dfd51c4e9254ca1cba8c55bddd97c3d3aabbf0f404a",
+      "Scan0018.jpg": "acfc3d34a1b0b6eab874517854232bd2e0eb2afddb77015bd78e5b55c666cb4a",
+      "Scan0019.jpg": "8fa68cb4d8350fb1b0f71e81311450b5d5dad2634af0119fd5ea3574756d427e",
+      "Scan0020.jpg": "ceb6b555670ae32fa1214df482c76a4be6cff162f9cfc3587a907cf78f1c6ece",
+      "Scan0021.jpg": "de9651a8d2cd99a0a8d7df952a4d539f0b72fb6bba180433c5184a3931d034fe",
+      "Scan0022.jpg": "484a62277dece580adfc167321f6d2bf49b7f86a2117c9ffeaa7c6846633ff9f",
+      "Scan0023.jpg": "037f89f931165bb90503e71ba00a377f858504de6cfe76e9527c603cd95c719c",
+      "Scan0024.jpg": "44fc8deefd95a91bdc9125c268e6d4372193308b3af0e293b154f975358b0be3",
+      "Scan0025.jpg": "d920d86e482c60c5cece5e4a3c2ec0e272d84f14a8fdbf53d92aefe83b338d62",
+      "Scan0026.jpg": "9463f58aa60f14c710852737cfeb6013f127141513e69137482189c42994cc85",
+      "Scan0027.jpg": "2efd5151c17d9c7d70fb5aada084d6e3869b11ccef18702a564fe19616b6ec9d",
+      "Scan0028.jpg": "568385e7119e43dd9c5d5af31c579355a3b6b989363faab5a34e69a0284bbdbe",
+      "Scan0029.jpg": "a3668b8ebf4334632e1027aa045d86ee98cf2849f7a60a981fb13537bfa42fe5",
+      "Scan0030.jpg": "8e7743eb577555b6a3bd2777ff3b7575c738723f37aed6c2c6eae001038eabf6",
+      "Scan0031.jpg": "8d9b7037ae650f08780514288610f4f259cae6193ebf45d09f9f99315dea3d7d",
+      "Scan0032.jpg": "791108e5d23aaa6bb318218c192abe8bb4042351ef06474420189a2c87e6d97e",
+      "Scan0033.jpg": "3033c47a11c82de20faf5201f8643d4c7f63a779434a8dbef41e9ba1d34f5ed6",
+      "Scan0034.jpg": "a6b83b8aed6a1b622417bd55a54c3fe404bd65ccc336d2b3f08c7f9ccfa1c85d",
+      "Scan0035.jpg": "801f7c38da98cc15d800513e9b3f210885bc43c84d52408744bc6ddd706d1f00",
+      "Scan0036.jpg": "ee1b92bcc20c2b7dbfc2d6ebdedf827d413babac2fd40637a6b42acb38282317",
+      "Scan0037.jpg": "c9ab503d6343fc6d9381df5e8d5fe39781e51a4ccd7fe3c636c6482845efbe37",
+      "Scan0038.jpg": "eea0a13008619e6dae63db72d6c6f68e2fde42d8ce442fdea3a44fcdae142950",
+      "Scan0039.jpg": "45d1c54d2999cf87c3385beccf9a609524165da770644147ff07a4e76a87cd46",
+      "Scan0040.jpg": "910709fef5a0e058ef02a32d8b3a49d40be054d10edee9815c3819a96f51aa46",
+      "Scan0041.jpg": "4fde0e4c9bfd9e9f74143c39cf24d77e4cc017234fc28fb3c7f3688577538d82",
+      "Scan0042.jpg": "a039612abb8e8695e58af321426fcb3ee8fb523aaf28335d1cc9a784ffe68220",
+      "Scan0043.jpg": "6dfba5467ff9ae32b73b96c1aae1349be2c07503b3b8e52729634701d17bc594",
+      "Scan0044.jpg": "7f125c5543937d48085c07b14d8b5a97ade9582a5bc4bc7dca957cf1886742be",
+      "Scan0045.jpg": "2f2c922bf4995cc0e96bdf021f5d52e597162404abef597faf898280b3640a36",
+      "Scan0046.jpg": "ccbe03802c022947c8540dd293d670a8663575dc4b4d2eafaa3a7a2fb6a1f760",
+      "Scan0047.jpg": "54a6cd79233451f46531d34c62711700098169bfe40ae99bfad38d5012677ed1",
+      "Scan0048.jpg": "13ac191348d488d775fac4ad6821e4a5e8a0b450abd1d9e7df783cc324ff5aa2",
+      "Scan0049.jpg": "62e708cb050f835f50fa979dec00bc80d8af2a1b374266b185f865c4bce47c42",
+      "Scan0050.jpg": "7578f80b5115b24344c60a639d6018538575802fe39a3ce0beedfbf9b2a78c2d",
+      "Scan0051.jpg": "23e43533c014e4188eb4cb7551349b41d5701d0bd3f5ec0151f958690a258d53",
+      "Scan0052.jpg": "4e82c94e1f2dd8456ad1208630e5f42e638b58c9ef4e608adebf6ee6c1f38115",
+      "Scan0053.jpg": "5acd7a13808993f4e3f06bd0b11c45006339d108abe485c49bbf48c029bb2409",
+      "Scan0054.jpg": "3a5d338db1555903c377d9de68b9546eaf8df2bee35baa0fe0d685f8f0539572",
+      "Scan0055.jpg": "2c1bfc097605121b142d4166723a294bd874f774f7ce154e57180090bed5b3a4",
+      "Scan0056.jpg": "938082a09446f93844b2b319046973ceb05cd824c3c416e54c270a881773477d",
+      "Scan0058.jpg": "1a076bbdfa0c0bc300c75772af76af6a54efda7f603c58ce9e2385b11becbdc2",
+      "Scan0059.jpg": "c688ee3bc4b6236227737bcf11a34cf486c446ba52ac5bcc5a6df6ba29f0af03",
+      "Scan0060.jpg": "f4eb059d6b3f46ce122306ecee3210054f32997c54fed64200e7709b2611fcf6",
+      "Scan0061.jpg": "3620044a04d2cb0ec45a658a40000418266ee5fb4d9c10fb4fef201f6fbba1e0",
+      "Scan0062.jpg": "3f99d99777808a69661f5a1764b263a14cbcd11f5ec836f687d69074009aa03e"
+    }
+  },
+  "mappingRule": "회차와 문장·수치·회로/그림 내용으로 대응; 인쇄 번호로 덮어쓰지 않음",
+  "sourceMapping": [
+    {
+      "round": "2023-2",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2023-2-04",
+      "scan": "Scan0001.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2023-2-06",
+      "scan": "Scan0001.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2023-2-10",
+      "scan": "Scan0002.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2023-2-02",
+      "scan": "Scan0003.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 5,
+      "targetId": null,
+      "scan": "Scan0003.jpg",
+      "status": "different-variant"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2023-2-08",
+      "scan": "Scan0004.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2023-2-09",
+      "scan": "Scan0004.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2023-2-03",
+      "scan": "Scan0005.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2023-2-05",
+      "scan": "Scan0005.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2023-2-07",
+      "scan": "Scan0006.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2023-2-11",
+      "scan": "Scan0006.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2023-2",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2023-2-01",
+      "scan": "Scan0007.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2024-1-04",
+      "scan": "Scan0026.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2024-1-06",
+      "scan": "Scan0027.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2024-1-08",
+      "scan": "Scan0027.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2024-1-11",
+      "scan": "Scan0027.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2024-1-12",
+      "scan": "Scan0028.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2024-1-07",
+      "scan": "Scan0028.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2024-1-02",
+      "scan": "Scan0029.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2024-1-09",
+      "scan": "Scan0029.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2024-1-10",
+      "scan": "Scan0030.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2024-1-03",
+      "scan": "Scan0030.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2024-1-05",
+      "scan": "Scan0030.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-1",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2024-1-01",
+      "scan": "Scan0031.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2024-2-04",
+      "scan": "Scan0033.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2024-2-06",
+      "scan": "Scan0033.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2024-2-12",
+      "scan": "Scan0034.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2024-2-09",
+      "scan": "Scan0034.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2024-2-05",
+      "scan": "Scan0034.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2024-2-08",
+      "scan": "Scan0035.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2024-2-10",
+      "scan": "Scan0035.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2024-2-11",
+      "scan": "Scan0036.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2024-2-03",
+      "scan": "Scan0036.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2024-2-07",
+      "scan": "Scan0036.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2024-2-01",
+      "scan": "Scan0037.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-2",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2024-2-02",
+      "scan": "Scan0038.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2024-3-06",
+      "scan": "Scan0008.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2024-3-09",
+      "scan": "Scan0008.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2024-3-04",
+      "scan": "Scan0009.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2024-3-12",
+      "scan": "Scan0009.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2024-3-05",
+      "scan": "Scan0009.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2024-3-03",
+      "scan": "Scan0010.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2024-3-07",
+      "scan": "Scan0010.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2024-3-11",
+      "scan": "Scan0011.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2024-3-08",
+      "scan": "Scan0011.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2024-3-10",
+      "scan": "Scan0011.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2024-3-01",
+      "scan": "Scan0012.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2024-3",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2024-3-02",
+      "scan": "Scan0013.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2025-1-12",
+      "scan": "Scan0014.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2025-1-11",
+      "scan": "Scan0014.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2025-1-09",
+      "scan": "Scan0014.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2025-1-10",
+      "scan": "Scan0015.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2025-1-05",
+      "scan": "Scan0015.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2025-1-08",
+      "scan": "Scan0015.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2025-1-04",
+      "scan": "Scan0016.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2025-1-06",
+      "scan": "Scan0016.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2025-1-03",
+      "scan": "Scan0016.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2025-1-07",
+      "scan": "Scan0017.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2025-1-01",
+      "scan": "Scan0017.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-1",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2025-1-02",
+      "scan": "Scan0018.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2025-2-06",
+      "scan": "Scan0019.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2025-2-11",
+      "scan": "Scan0019.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2025-2-07",
+      "scan": "Scan0019.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2025-2-08",
+      "scan": "Scan0020.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2025-2-03",
+      "scan": "Scan0020.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2025-2-05",
+      "scan": "Scan0021.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2025-2-04",
+      "scan": "Scan0022.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2025-2-12",
+      "scan": "Scan0022.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2025-2-09",
+      "scan": "Scan0022.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2025-2-01",
+      "scan": "Scan0023.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2025-2-10",
+      "scan": "Scan0023.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-2",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2025-2-02",
+      "scan": "Scan0024.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 1,
+      "targetId": "hvac-practical-restored-2025-3-06",
+      "scan": "Scan0056.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 2,
+      "targetId": "hvac-practical-restored-2025-3-10",
+      "scan": "Scan0056.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 3,
+      "targetId": "hvac-practical-restored-2025-3-05",
+      "scan": "Scan0058.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 4,
+      "targetId": "hvac-practical-restored-2025-3-07",
+      "scan": "Scan0058.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 5,
+      "targetId": "hvac-practical-restored-2025-3-12",
+      "scan": "Scan0059.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 6,
+      "targetId": "hvac-practical-restored-2025-3-09",
+      "scan": "Scan0059.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 7,
+      "targetId": "hvac-practical-restored-2025-3-04",
+      "scan": "Scan0059.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 8,
+      "targetId": "hvac-practical-restored-2025-3-11",
+      "scan": "Scan0060.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 9,
+      "targetId": "hvac-practical-restored-2025-3-08",
+      "scan": "Scan0060.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 10,
+      "targetId": "hvac-practical-restored-2025-3-03",
+      "scan": "Scan0061.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 11,
+      "targetId": "hvac-practical-restored-2025-3-02",
+      "scan": "Scan0061.jpg",
+      "status": "matched"
+    },
+    {
+      "round": "2025-3",
+      "sourceQuestion": 12,
+      "targetId": "hvac-practical-restored-2025-3-01",
+      "scan": "Scan0062.jpg",
+      "status": "matched"
+    }
+  ],
+  "variantDifferences": [
+    {
+      "round": "2023-2",
+      "sourceQuestion": 5,
+      "note": "스캔의 보일러 열량 문제는 기존 12번 보일러 효율 문제와 조건·구할 값이 다름. 기존 문항을 유지하며 미대응 처리함."
+    }
+  ],
+  "crops": [
+    {
+      "round": "2023-2",
+      "number": 4,
+      "sourceQuestion": 1,
+      "scan": "Scan0001.jpg",
+      "crop": [
+        493,
+        873,
+        974,
+        1259
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-04-question-scan-v550.png",
+      "outputSize": [
+        481,
+        386
+      ],
+      "sha256": "d9ef987a1bfcf2e6e1ae22944ba9798cdc27ace2461f11dc7a66a49015ca30b8"
+    },
+    {
+      "round": "2023-2",
+      "number": 6,
+      "sourceQuestion": 2,
+      "scan": "Scan0001.jpg",
+      "crop": [
+        803,
+        1688,
+        1204,
+        2138
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-06-question-scan-v550.png",
+      "outputSize": [
+        401,
+        450
+      ],
+      "sha256": "942ca39c6fb48354259d425dbe7139d783a3844ca42dabb515584c9a01fc4593"
+    },
+    {
+      "round": "2023-2",
+      "number": 10,
+      "sourceQuestion": 3,
+      "scan": "Scan0002.jpg",
+      "crop": [
+        588,
+        1070,
+        1474,
+        1562
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-10-question-scan-v550.png",
+      "outputSize": [
+        886,
+        492
+      ],
+      "sha256": "3e856dfb531eb05777218f0a4cca0de7507fd8d11e68bba14c4f051c9e8d4798"
+    },
+    {
+      "round": "2023-2",
+      "number": 8,
+      "sourceQuestion": 6,
+      "scan": "Scan0004.jpg",
+      "crop": [
+        683,
+        268,
+        1297,
+        587
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-08-question-scan-v550.png",
+      "outputSize": [
+        614,
+        319
+      ],
+      "sha256": "4812d3efe56ea7f746bfd9aa19c39d8a034f49dd4cd3dcc934fc401060489b99"
+    },
+    {
+      "round": "2023-2",
+      "number": 9,
+      "sourceQuestion": 7,
+      "scan": "Scan0004.jpg",
+      "crop": [
+        373,
+        1025,
+        1531,
+        1733
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-09-question-scan-v550.png",
+      "outputSize": [
+        1158,
+        708
+      ],
+      "sha256": "12f15204275a615f4f2787f062f1876d0f5df384f1bb68a8921c2be9d1262218"
+    },
+    {
+      "round": "2023-2",
+      "number": 3,
+      "sourceQuestion": 8,
+      "scan": "Scan0005.jpg",
+      "crop": [
+        443,
+        601,
+        1025,
+        873
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-03-question-scan-v550.png",
+      "outputSize": [
+        582,
+        272
+      ],
+      "sha256": "d209b099acc05b523bb4c5f787bbcfdddfeb446db46bf25f28a7b99ed50a2e53"
+    },
+    {
+      "round": "2023-2",
+      "number": 5,
+      "sourceQuestion": 9,
+      "scan": "Scan0005.jpg",
+      "crop": [
+        601,
+        1237,
+        911,
+        1493
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-05-question-scan-v550.png",
+      "outputSize": [
+        310,
+        256
+      ],
+      "sha256": "4b75ad43894e8e774a04f37364dc1e2115561391c0c2c9d3241ce8798a2e320a"
+    },
+    {
+      "round": "2023-2",
+      "number": 7,
+      "sourceQuestion": 10,
+      "scan": "Scan0006.jpg",
+      "crop": [
+        487,
+        228,
+        1531,
+        631
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-07-question-scan-v550.png",
+      "outputSize": [
+        1044,
+        403
+      ],
+      "sha256": "eaeac9d3975b5307f9e4b298f5973eb90fe6962a6eef51880a29a634f6032d84"
+    },
+    {
+      "round": "2023-2",
+      "number": 1,
+      "sourceQuestion": 12,
+      "scan": "Scan0007.jpg",
+      "crop": [
+        310,
+        633,
+        1303,
+        1461
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-01-question-scan-v550.png",
+      "outputSize": [
+        993,
+        828
+      ],
+      "sha256": "b23f714467852f19afc384ecb44be70c3c9aaa8ca2613cbf67c96c596e8b07d1"
+    },
+    {
+      "round": "2024-1",
+      "number": 7,
+      "sourceQuestion": 6,
+      "scan": "Scan0028.jpg",
+      "crop": [
+        541,
+        1506,
+        860,
+        1778
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-scan-v550.png",
+      "outputSize": [
+        319,
+        272
+      ],
+      "sha256": "d3c52b866302ee514ad372209664b7d9003b4ce47e8cb103340d2bbeff1127f3"
+    },
+    {
+      "round": "2024-1",
+      "number": 2,
+      "sourceQuestion": 7,
+      "scan": "Scan0029.jpg",
+      "crop": [
+        424,
+        1135,
+        797,
+        1436
+      ],
+      "role": "answer",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-scan-v550.png",
+      "outputSize": [
+        373,
+        301
+      ],
+      "sha256": "756a7547c2b8c2bffc447c2110eb1622330e9881a7ac574868ed4f1969bf3911"
+    },
+    {
+      "round": "2024-1",
+      "number": 1,
+      "sourceQuestion": 12,
+      "scan": "Scan0031.jpg",
+      "crop": [
+        379,
+        1328,
+        1221,
+        2132
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-scan-v550.png",
+      "outputSize": [
+        842,
+        804
+      ],
+      "sha256": "13f6f885ff74f4e342816debe37ff560197bc0a74f595a93f6c8af299df1e840"
+    },
+    {
+      "round": "2024-2",
+      "number": 2,
+      "sourceQuestion": 12,
+      "scan": "Scan0038.jpg",
+      "crop": [
+        613,
+        683,
+        1461,
+        1154
+      ],
+      "role": "answer",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-scan-v550.png",
+      "outputSize": [
+        848,
+        471
+      ],
+      "sha256": "ea6d111b5486e7bed5193c5fc237233ba976f5d4f023d74e3c1f8fc2b27e0f4e"
+    },
+    {
+      "round": "2024-2",
+      "number": 8,
+      "sourceQuestion": 6,
+      "scan": "Scan0035.jpg",
+      "crop": [
+        316,
+        569,
+        1315,
+        1031
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-scan-v550.png",
+      "outputSize": [
+        999,
+        462
+      ],
+      "sha256": "7dbec0a5819bac7f3ada04fbcc9d904da99e59285d7ddc5add9d22419c37c168"
+    },
+    {
+      "round": "2024-3",
+      "number": 9,
+      "sourceQuestion": 2,
+      "scan": "Scan0008.jpg",
+      "crop": [
+        285,
+        1344,
+        1235,
+        1723
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-scan-v550.png",
+      "outputSize": [
+        950,
+        379
+      ],
+      "sha256": "ab8b01867b3ce41f4ce5623d91828aa27dea6807c5d060db70587288b699c8cf"
+    },
+    {
+      "round": "2024-3",
+      "number": 12,
+      "sourceQuestion": 4,
+      "scan": "Scan0009.jpg",
+      "crop": [
+        1212,
+        485,
+        1328,
+        755
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-scan-v550.png",
+      "outputSize": [
+        116,
+        270
+      ],
+      "sha256": "9a7a2177f2d94c604beed03487e8e9b5a11f98f15e01ae3ba3524b5e88b2dfcd"
+    },
+    {
+      "round": "2024-3",
+      "number": 5,
+      "sourceQuestion": 5,
+      "scan": "Scan0009.jpg",
+      "crop": [
+        510,
+        1116,
+        1391,
+        1327
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-05-question-scan-v550.png",
+      "outputSize": [
+        881,
+        211
+      ],
+      "sha256": "93374d1cc120e879f6983f746a5a7b1940073d3db008fac79fe8b2354b3db93b"
+    },
+    {
+      "round": "2024-3",
+      "number": 3,
+      "sourceQuestion": 6,
+      "scan": "Scan0010.jpg",
+      "crop": [
+        333,
+        601,
+        1265,
+        860
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-scan-v550.png",
+      "outputSize": [
+        932,
+        259
+      ],
+      "sha256": "18db2b604069bc4f92eaf668bdc9a7c94772ff2c8aac4db68adcdb05212d19c7"
+    },
+    {
+      "round": "2024-3",
+      "number": 11,
+      "sourceQuestion": 8,
+      "scan": "Scan0011.jpg",
+      "crop": [
+        430,
+        278,
+        1480,
+        610
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-scan-v550.png",
+      "outputSize": [
+        1050,
+        332
+      ],
+      "sha256": "67baddef5ba17c4f8b5b0c8696306d69b86ecd75ad747bce66a25310bd19f3fc"
+    },
+    {
+      "round": "2024-3",
+      "number": 8,
+      "sourceQuestion": 9,
+      "scan": "Scan0011.jpg",
+      "crop": [
+        689,
+        819,
+        1379,
+        1021
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-08-question-scan-v550.png",
+      "outputSize": [
+        690,
+        202
+      ],
+      "sha256": "a72076431cee07dbdf3628248ec99d696450a2a8568152d82eaaf4e0d3435e86"
+    },
+    {
+      "round": "2024-3",
+      "number": 10,
+      "sourceQuestion": 10,
+      "scan": "Scan0011.jpg",
+      "crop": [
+        658,
+        1392,
+        1385,
+        1745
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-10-question-scan-v550.png",
+      "outputSize": [
+        727,
+        353
+      ],
+      "sha256": "8d73d7a5f4d1d980ab8d7d50d87d2f71d7e0f08fd8564fc4793d5d110fa45170"
+    },
+    {
+      "round": "2024-3",
+      "number": 1,
+      "sourceQuestion": 11,
+      "scan": "Scan0012.jpg",
+      "crop": [
+        417,
+        591,
+        1151,
+        1044
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-scan-v550.png",
+      "outputSize": [
+        734,
+        453
+      ],
+      "sha256": "734eac416dc428ac917511e8b5889ce75be1f8fa58b1a9b6cd701defe1d9e084"
+    },
+    {
+      "round": "2024-3",
+      "number": 2,
+      "sourceQuestion": 12,
+      "scan": "Scan0013.jpg",
+      "crop": [
+        563,
+        305,
+        1423,
+        930
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-scan-v550.png",
+      "outputSize": [
+        860,
+        625
+      ],
+      "sha256": "24f69f5f9b08ac989d54311e38d9f485ac03f5fa4109b79ff91a00b962eb7a9a"
+    },
+    {
+      "round": "2025-1",
+      "number": 12,
+      "sourceQuestion": 1,
+      "scan": "Scan0014.jpg",
+      "crop": [
+        310,
+        873,
+        1297,
+        1107
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-12-question-scan-v550.png",
+      "outputSize": [
+        987,
+        234
+      ],
+      "sha256": "11a445b7abf2913c7d6947f9b7f0bcd060bac534c89853413dcaf1c4ce72d849"
+    },
+    {
+      "round": "2025-1",
+      "number": 9,
+      "sourceQuestion": 3,
+      "scan": "Scan0014.jpg",
+      "crop": [
+        607,
+        1723,
+        885,
+        2037
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-09-question-scan-v550.png",
+      "outputSize": [
+        278,
+        314
+      ],
+      "sha256": "be0826c696237144708cd1bb1a0824a859872a89aaedcc2b131c97008971fb9d"
+    },
+    {
+      "round": "2025-1",
+      "number": 10,
+      "sourceQuestion": 4,
+      "scan": "Scan0015.jpg",
+      "crop": [
+        670,
+        245,
+        1322,
+        572
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-10-question-scan-v550.png",
+      "outputSize": [
+        652,
+        327
+      ],
+      "sha256": "16665a67bc6fa6b2d8dc49a803b957d10bf919519c366756ee557ff1715aeffb"
+    },
+    {
+      "round": "2025-1",
+      "number": 5,
+      "sourceQuestion": 5,
+      "scan": "Scan0015.jpg",
+      "crop": [
+        525,
+        767,
+        1436,
+        999
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-05-question-scan-v550.png",
+      "outputSize": [
+        911,
+        232
+      ],
+      "sha256": "740a3ef389ff064c3fe47731be7de09bec3e1f1f94c7788ffe9f1ad0a0a0c62b"
+    },
+    {
+      "round": "2025-1",
+      "number": 8,
+      "sourceQuestion": 6,
+      "scan": "Scan0015.jpg",
+      "crop": [
+        519,
+        1322,
+        1524,
+        1635
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-08-question-scan-v550.png",
+      "outputSize": [
+        1005,
+        313
+      ],
+      "sha256": "24446292bae40403a8579c500e00603b9d8eeed63fd867a2173557941afdc308"
+    },
+    {
+      "round": "2025-1",
+      "number": 6,
+      "sourceQuestion": 8,
+      "scan": "Scan0016.jpg",
+      "crop": [
+        481,
+        986,
+        1037,
+        1227
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-06-question-scan-v550.png",
+      "outputSize": [
+        556,
+        241
+      ],
+      "sha256": "8f0d2c5b2ea80e60d8afa096c43606843bd343d20e3f49bd19dd4ec6ce321ce7"
+    },
+    {
+      "round": "2025-1",
+      "number": 3,
+      "sourceQuestion": 9,
+      "scan": "Scan0016.jpg",
+      "crop": [
+        209,
+        1417,
+        1303,
+        1736
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-question-scan-v550.png",
+      "outputSize": [
+        1094,
+        319
+      ],
+      "sha256": "ecd44072424aca14dad5ff3c26c711cb71240f56d11367a4d40a92e23958f25d"
+    },
+    {
+      "round": "2025-1",
+      "number": 3,
+      "sourceQuestion": 9,
+      "scan": "Scan0016.jpg",
+      "crop": [
+        428,
+        1781,
+        780,
+        1910
+      ],
+      "role": "answer",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-03-answer-scan-v550.png",
+      "outputSize": [
+        352,
+        129
+      ],
+      "sha256": "1c7f4ccc69c521630b005c82155b445e5476d0c81061724c127a233afd942689"
+    },
+    {
+      "round": "2025-1",
+      "number": 7,
+      "sourceQuestion": 10,
+      "scan": "Scan0017.jpg",
+      "crop": [
+        493,
+        295,
+        1385,
+        601
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-07-question-scan-v550.png",
+      "outputSize": [
+        892,
+        306
+      ],
+      "sha256": "8702cf988e9e8f6171339f3a73ceaebffb1506eb49fa93ec8af4827ad62afde7"
+    },
+    {
+      "round": "2025-1",
+      "number": 1,
+      "sourceQuestion": 11,
+      "scan": "Scan0017.jpg",
+      "crop": [
+        443,
+        1021,
+        1512,
+        1436
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-01-question-scan-v550.png",
+      "outputSize": [
+        1069,
+        415
+      ],
+      "sha256": "1267c67f0835881dbb6ce5650dc1ff3b95a65ab338de67b7304694d9b4184529"
+    },
+    {
+      "round": "2025-1",
+      "number": 2,
+      "sourceQuestion": 12,
+      "scan": "Scan0018.jpg",
+      "crop": [
+        379,
+        576,
+        1202,
+        1031
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-1/hvac-practical-restored-2025-1-02-question-scan-v550.png",
+      "outputSize": [
+        823,
+        455
+      ],
+      "sha256": "3909eb15c9da88764abac442f1f99bd1b8099790fb3e045fa892751044054779"
+    },
+    {
+      "round": "2025-2",
+      "number": 11,
+      "sourceQuestion": 2,
+      "scan": "Scan0019.jpg",
+      "crop": [
+        721,
+        797,
+        1209,
+        1166
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-11-question-scan-v550.png",
+      "outputSize": [
+        488,
+        369
+      ],
+      "sha256": "4da1bb0cbbaba716decd9a02c565f50a49cb2cf7be5caceb10f4f1bb211cef20"
+    },
+    {
+      "round": "2025-2",
+      "number": 3,
+      "sourceQuestion": 5,
+      "scan": "Scan0020.jpg",
+      "crop": [
+        500,
+        1215,
+        949,
+        1537
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-03-question-scan-v550.png",
+      "outputSize": [
+        449,
+        322
+      ],
+      "sha256": "05a0e343b487f92f044e08829fd920e73a1b13afcb938f534bfac64651d80d19"
+    },
+    {
+      "round": "2025-2",
+      "number": 5,
+      "sourceQuestion": 6,
+      "scan": "Scan0021.jpg",
+      "crop": [
+        519,
+        259,
+        1398,
+        759
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-05-question-scan-v550.png",
+      "outputSize": [
+        879,
+        500
+      ],
+      "sha256": "2deae4e71eac32e38cd13efc1fc6c10860796eef7df6b93458aeb07ae5255dcd"
+    },
+    {
+      "round": "2025-2",
+      "number": 4,
+      "sourceQuestion": 7,
+      "scan": "Scan0022.jpg",
+      "crop": [
+        329,
+        590,
+        1245,
+        918
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-04-question-scan-v550.png",
+      "outputSize": [
+        916,
+        328
+      ],
+      "sha256": "483c3dcea1dc20bd6757ea83f6280044811a80309da10f8457a87a1f0aebd9b8"
+    },
+    {
+      "round": "2025-2",
+      "number": 9,
+      "sourceQuestion": 9,
+      "scan": "Scan0022.jpg",
+      "crop": [
+        288,
+        1613,
+        1315,
+        1910
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-09-question-scan-v550.png",
+      "outputSize": [
+        1027,
+        297
+      ],
+      "sha256": "ec30a0cc2e2b1e1bc5be11ec53682a5862b00ecfb43940f1108a5c9beac26b43"
+    },
+    {
+      "round": "2025-2",
+      "number": 1,
+      "sourceQuestion": 10,
+      "scan": "Scan0023.jpg",
+      "crop": [
+        576,
+        276,
+        1417,
+        943
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-01-question-scan-v550.png",
+      "outputSize": [
+        841,
+        667
+      ],
+      "sha256": "66f2d819eaecfb389cfbdb6ee4312e360183332bd0946ff9f286c1682a6a89cb"
+    },
+    {
+      "round": "2025-2",
+      "number": 10,
+      "sourceQuestion": 11,
+      "scan": "Scan0023.jpg",
+      "crop": [
+        811,
+        1573,
+        1103,
+        1831
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-10-question-scan-v550.png",
+      "outputSize": [
+        292,
+        258
+      ],
+      "sha256": "abb0ab62f7e291ca09e8075c1c9322197d17dc6503fb47c79a291c12f960f76e"
+    },
+    {
+      "round": "2025-2",
+      "number": 2,
+      "sourceQuestion": 12,
+      "scan": "Scan0024.jpg",
+      "crop": [
+        411,
+        920,
+        1189,
+        1670
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-2/hvac-practical-restored-2025-2-02-question-scan-v550.png",
+      "outputSize": [
+        778,
+        750
+      ],
+      "sha256": "747fe7182e9b03d83ddca446afbff9968635e902e7c1c1e7614a4659c147589c"
+    },
+    {
+      "round": "2025-3",
+      "number": 10,
+      "sourceQuestion": 2,
+      "scan": "Scan0056.jpg",
+      "crop": [
+        500,
+        1001,
+        1395,
+        1480
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-10-question-scan-v550.png",
+      "outputSize": [
+        895,
+        479
+      ],
+      "sha256": "8d4edd026e924cbb57ae259bb1dab2c89ed406cfba56c1f1085eca5415a13588"
+    },
+    {
+      "round": "2025-3",
+      "number": 7,
+      "sourceQuestion": 4,
+      "scan": "Scan0058.jpg",
+      "crop": [
+        209,
+        1525,
+        1328,
+        1834
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-07-question-scan-v550.png",
+      "outputSize": [
+        1119,
+        309
+      ],
+      "sha256": "e14ba4c8e2df0cfb2942e752b79cd2c67c48a4e5108fe1f90ab312ad966b8e70"
+    },
+    {
+      "round": "2025-3",
+      "number": 5,
+      "sourceQuestion": 3,
+      "scan": "Scan0058.jpg",
+      "crop": [
+        228,
+        664,
+        794,
+        908
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-question-scan-v550.png",
+      "outputSize": [
+        566,
+        244
+      ],
+      "sha256": "8ac77faff8dedcaf86ea3b766dcb8d382cc7dacc77c9b90045bd0b60034d096e"
+    },
+    {
+      "round": "2025-3",
+      "number": 5,
+      "sourceQuestion": 3,
+      "scan": "Scan0058.jpg",
+      "crop": [
+        417,
+        1007,
+        898,
+        1354
+      ],
+      "role": "answer",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-05-answer-scan-v550.png",
+      "outputSize": [
+        481,
+        347
+      ],
+      "sha256": "364c33f6416856c9d3ff7619691fe696121b75e9788ec8e088813b8dd46d2716"
+    },
+    {
+      "round": "2025-3",
+      "number": 12,
+      "sourceQuestion": 5,
+      "scan": "Scan0059.jpg",
+      "crop": [
+        517,
+        271,
+        1436,
+        922
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-12-question-scan-v550.png",
+      "outputSize": [
+        919,
+        651
+      ],
+      "sha256": "463904d42a29bba5a8d9ec90412d75df1cfc9d70b4f206c6d3dc72a81dbd67dd"
+    },
+    {
+      "round": "2025-3",
+      "number": 11,
+      "sourceQuestion": 8,
+      "scan": "Scan0060.jpg",
+      "crop": [
+        411,
+        596,
+        1081,
+        832
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-11-question-scan-v550.png",
+      "outputSize": [
+        670,
+        236
+      ],
+      "sha256": "5589ab22cf77d6d2073edaabad66a626c43134e11303706c93b40d7b4e3fdfaf"
+    },
+    {
+      "round": "2025-3",
+      "number": 8,
+      "sourceQuestion": 9,
+      "scan": "Scan0060.jpg",
+      "crop": [
+        415,
+        1316,
+        1062,
+        1689
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-08-question-scan-v550.png",
+      "outputSize": [
+        647,
+        373
+      ],
+      "sha256": "2d2683b1e909591c89e8da0bff123277473a530abee2b035283e738af10a03ff"
+    },
+    {
+      "round": "2025-3",
+      "number": 3,
+      "sourceQuestion": 10,
+      "scan": "Scan0061.jpg",
+      "crop": [
+        531,
+        266,
+        835,
+        588
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-03-question-scan-v550.png",
+      "outputSize": [
+        304,
+        322
+      ],
+      "sha256": "3e2265b5e92cb0006617bf1b240db2a971adf70a939b133c42ef7a6d3c0531ca"
+    },
+    {
+      "round": "2025-3",
+      "number": 2,
+      "sourceQuestion": 11,
+      "scan": "Scan0061.jpg",
+      "crop": [
+        540,
+        1132,
+        1448,
+        1474
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-02-question-scan-v550.png",
+      "outputSize": [
+        908,
+        342
+      ],
+      "sha256": "188c3a3747bee4f5d5756ca82e4f4f62e9067efbe8afa09f17d6487f3d4baaaa"
+    },
+    {
+      "round": "2025-3",
+      "number": 1,
+      "sourceQuestion": 12,
+      "scan": "Scan0062.jpg",
+      "crop": [
+        520,
+        592,
+        987,
+        1027
+      ],
+      "role": "question",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-01-question-scan-v550.png",
+      "outputSize": [
+        467,
+        435
+      ],
+      "sha256": "69a4b061bb2a0a7c0ee6ce74e46793ba33086d459b0e031f27e0d8ecfed1a4b1"
+    }
+  ]
+}
