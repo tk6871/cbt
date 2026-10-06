@@ -1,0 +1,628 @@
+{
+  "method": "공개 원문의 질문·개별 프레임 대조 후 원본 픽셀 크롭. 전체 정답 검증 완료 아님.",
+  "crops": [
+    {
+      "id": "hvac-practical-restored-2021-1-03",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q03-983-13s.png",
+      "frameSha256": "4a4f3886c56557f46dc66d08108ba4acf0ca8ff03db1067f5b956d40799fe14b",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:16:36",
+      "crop": [
+        152,
+        0,
+        1768,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-03-question-video-1-v550.png",
+      "outputSize": [
+        1616,
+        1080
+      ],
+      "sha256": "c5f922248f4c1d4be3ba2a957f5fb200ed05be503d4579a2ad1088a2a1c1e8e8",
+      "reviewNote": "공냉 왕복동 압축기 외관 전체. 검은 테두리·강사 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-04",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q04-1567-8s.png",
+      "frameSha256": "808c1cc4b6d07a6f5d3015051a80cc15d8e2aedf3f3c589d9c007db290312fef",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:26:15",
+      "crop": [
+        382,
+        4,
+        1538,
+        1076
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-04-question-video-1-v550.png",
+      "outputSize": [
+        1156,
+        1072
+      ],
+      "sha256": "6159b8229e0bd6605c261652024f49cef68e6d44e5cb169b7524de0231343964",
+      "reviewNote": "오일 조정기 전면과 연결부 전체. 원문 전면 표시 유지"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-05",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q05-1914-13s.png",
+      "frameSha256": "adc4176439f44aa2ffc84dfd0117226ce33cc1e05a773eac8354dcd5b273c95a",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:32:07",
+      "crop": [
+        352,
+        70,
+        1495,
+        986
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-05-question-video-1-v550.png",
+      "outputSize": [
+        1143,
+        916
+      ],
+      "sha256": "daeca3c0f7ee3f08566a9f9d99fad845dbff4033b4a7c5a43183c22b0326c7a4",
+      "reviewNote": "헤더와 우측 하단 밸브 연결부. 문항에 위치 설명 추가"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-06",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q06-2140-13s.png",
+      "frameSha256": "cc68cfbc93ecbd5210b4c671f25113f24874d98e520a7c409c770a5cbeea1c2a",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:35:53",
+      "crop": [
+        52,
+        208,
+        1040,
+        948
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-06-question-video-1-v550.png",
+      "outputSize": [
+        988,
+        740
+      ],
+      "sha256": "9fc3aba2a2bb8c81616c9f75755ffacf5482b7ceeef4c945ae090c6a906fddb3",
+      "reviewNote": "가·나·다·라 네 배관과 끝단 전체. 강사·수량 판서 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-07",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-gauge-review/2021-1-q07-2215-13s.png",
+      "frameSha256": "6d0ebd7d8552fb6b9cef02e57dd0dc07b827dcdc73212870bbf71bdd16203347",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:37:08",
+      "crop": [
+        620,
+        460,
+        1280,
+        1076
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-07-question-video-1-v550.png",
+      "outputSize": [
+        660,
+        616
+      ],
+      "sha256": "d4fd27243c2e7af8617e6df3374111350a085bc86d8e297c12cb566f55fca345",
+      "reviewNote": "두 압력게이지·밸브·호스 연결부. 실제 작업 장갑은 원문 일부"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-08",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q08-2468-13s.png",
+      "frameSha256": "23a4234131ea96d8d2c7a124d975d2dbac0e69869bfb7d5b50487f5d39d5a893",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:41:21",
+      "crop": [
+        268,
+        144,
+        1628,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-08-question-video-1-v550.png",
+      "outputSize": [
+        1360,
+        936
+      ],
+      "sha256": "84740d4ad31777a608aebf81eebc25ec369bbc0cc57aafe16992e257be0b7551",
+      "reviewNote": "릴레이·소켓·핀 전체. 명칭 해설 전 프레임"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-09",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q09-2510-13s.png",
+      "frameSha256": "bbbf9ae27b1cc893179d47952652920033c15fdeba77c5a9e24baec2ef81ea3d",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:42:03",
+      "crop": [
+        535,
+        0,
+        1090,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-09-question-video-1-v550.png",
+      "outputSize": [
+        555,
+        1080
+      ],
+      "sha256": "5168513d07f91180954fbdce0d7933a1810416a64b748e6a88b93c1a5cc5100d",
+      "reviewNote": "두 수면계와 연결부. 원문 카메라 프레임의 하단 연결관은 이어짐"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-10",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q10-2811-13s.png",
+      "frameSha256": "6a28f250c9a7b74adee684e060a07cb607aee838c98047e5aeeb13447e849f94",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:47:04",
+      "crop": [
+        432,
+        0,
+        1488,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-1-v550.png",
+      "outputSize": [
+        1056,
+        1080
+      ],
+      "sha256": "081cd8bb1a88386b725af558f3b42cd586a3dbb5b988ca3ebeeab2f644cba3d9",
+      "reviewNote": "가 트랩의 단면과 원문 표기"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-10",
+      "role": "question",
+      "index": 2,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-bucket-review/2021-1-q10-2828-3s.png",
+      "frameSha256": "69c644a15d5b48eef643368cbd795a80557b1c4c8f9d1d50166cdc1d2ee7a329",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:47:11",
+      "crop": [
+        442,
+        0,
+        1480,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-2-v550.png",
+      "outputSize": [
+        1038,
+        1080
+      ],
+      "sha256": "24c5a23c947015e864badda2a7e9f3692659c14bbe29605bc4c818baedd6ca3c",
+      "reviewNote": "나 트랩의 외관과 원문 표기"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-10",
+      "role": "question",
+      "index": 3,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-trap-review/2021-1-q10-2836-3s.png",
+      "frameSha256": "9a2bbd49aefdd08f30b9fc5c379973338c0f81d4b1a322064e3cabb32c04afcf",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:47:19",
+      "crop": [
+        459,
+        0,
+        1461,
+        1080
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-10-question-video-3-v550.png",
+      "outputSize": [
+        1002,
+        1080
+      ],
+      "sha256": "25bc7bc24edcfc621fd9738faf4565588743483ef0e2cc4ff72c4c8c70a18878",
+      "reviewNote": "다 트랩의 외관과 원문 표기. 단면의 정답 힌트 영문은 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-11",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q11-2915-3s.png",
+      "frameSha256": "cf3a7d65156dbd2c939d155839af992b98e4f1100f2cb1395d5ee690cf20bbfb",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:48:38",
+      "crop": [
+        266,
+        162,
+        781,
+        660
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-11-question-video-1-v550.png",
+      "outputSize": [
+        515,
+        498
+      ],
+      "sha256": "4fd8f6590c72329bfa7449b5586bcd2af78041e7730f69c5b6accd74eebc091a",
+      "reviewNote": "리머 손잡이·끝부분 전체. 강사·질문 자막 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-1-12",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "1",
+      "sourceUrl": "https://www.youtube.com/watch?v=YyckJAoNH-4",
+      "frame": "cbt-2021-1-public-review/2021-1-q12-3002-3s.png",
+      "frameSha256": "b5f5cae9ea5795c6df3175b614de1df062e697003660f4b6055ecc3285c27632",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:50:05",
+      "crop": [
+        84,
+        234,
+        913,
+        713
+      ],
+      "output": "assets/hvac-practical/restored/2021-1/hvac-practical-restored-2021-1-12-question-video-1-v550.png",
+      "outputSize": [
+        829,
+        479
+      ],
+      "sha256": "1d00b9809e15119ea1f7d729742e07c3153b747b6a1d4e0e4c6ee799423735b8",
+      "reviewNote": "두 차단기 단자·외관 전체. 명칭 판서 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-03",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-plate-review/2021-2-q03-828-13s.png",
+      "frameSha256": "9a94da5106c733c4b9499dfa6b296df762087a9dbd6136e5a65928cb76e62202",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:14:01",
+      "crop": [
+        171,
+        306,
+        818,
+        672
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-03-question-video-1-v550.png",
+      "outputSize": [
+        647,
+        366
+      ],
+      "sha256": "b8e48104e67fbc0ba5c2ef6c02d1cd17fc810062acb3b1e489cc39b9a92536f0",
+      "reviewNote": "원문 빨간 사각형으로 지목한 부품과 냉매용기. 정답 이름 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-04",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-public-review/2021-2-q04-1117-13s.png",
+      "frameSha256": "a0d6c94df8d005444bb747ecdb27141b5d3d8abd7edd2e8f7fa82f3f007fbc8d",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:18:50",
+      "crop": [
+        0,
+        82,
+        1920,
+        1000
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-04-question-video-1-v550.png",
+      "outputSize": [
+        1920,
+        918
+      ],
+      "sha256": "58deebcc587bf4ce18c6e90bfd39b63043d8469962db0e2f835e52bb869c64b8",
+      "reviewNote": "A·B와 배관·바이패스 전체. 검은 테두리만 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-05",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-valve-review/2021-2-q05-1439-13s.png",
+      "frameSha256": "9ac3645f83bc9d13604fc8d019563cade6dcd047dbe3ce753d34821f482a8847",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:24:12",
+      "crop": [
+        168,
+        134,
+        752,
+        880
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-05-question-video-1-v550.png",
+      "outputSize": [
+        584,
+        746
+      ],
+      "sha256": "183dd30f781e5de834f6930356e070b24ba67c6619423e6f07d78aeda42fe3d3",
+      "reviewNote": "밸브 외관·단면·양 끝 내부 사진. 강사 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-06",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-detail-review/2021-2-q06-1507-3s.png",
+      "frameSha256": "8415986aa81b54b75aaaf9e111237fa4efb401fab2134065419576e357bef4d5",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:25:10",
+      "crop": [
+        774,
+        0,
+        1296,
+        1074
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-06-question-video-1-v550.png",
+      "outputSize": [
+        522,
+        1074
+      ],
+      "sha256": "6a96232049e77457b92b225811023165b1ec53fbd7057d30fe2e56fdc188092f",
+      "reviewNote": "헤더 우측 끝과 원문 가 화살표·밸브 전체. 왼쪽 배관은 원문에서도 프레임 밖"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-07",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-detail-review/2021-2-q07-1626-3s.png",
+      "frameSha256": "7f313c569d84196cd2d82b89245c6fbf117260052e17711dde26e51d42a32c9b",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:27:09",
+      "crop": [
+        256,
+        156,
+        810,
+        1008
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-07-question-video-1-v550.png",
+      "outputSize": [
+        554,
+        852
+      ],
+      "sha256": "e0bc120465282dbdc55cd819b18b30a32ceb1d10385af07ad41d358836abc3f7",
+      "reviewNote": "릴레이와 소켓·핀 사진 두 장 전체"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-08",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-public-review/2021-2-q08-1660-3s.png",
+      "frameSha256": "949cac89d68af4bd9bfaaa3f86f356f6efdbf10e6d78c013c35afc05cd1cfec7",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:27:43",
+      "crop": [
+        170,
+        156,
+        843,
+        777
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-08-question-video-1-v550.png",
+      "outputSize": [
+        673,
+        621
+      ],
+      "sha256": "c43eb6ce01a32a1aef0e9c7fe468f03e8f58b2267b6e3585da6b81777c44d403",
+      "reviewNote": "여과 필터 원문 사진. 강사·질문 자막 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-09",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-public-review/2021-2-q09-1956-3s.png",
+      "frameSha256": "7af8c29b0c971d6f441e7d568bd7769b7137042290e523cf70e220f2fcb028ab",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:32:39",
+      "crop": [
+        170,
+        190,
+        860,
+        570
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-09-question-video-1-v550.png",
+      "outputSize": [
+        690,
+        380
+      ],
+      "sha256": "1d43aebc9abcd91d67bfb8c2fea1d118347f019fb47e955175939508614e1f20",
+      "reviewNote": "같은 문항 상단의 두 밸브 대표 외관. 하단 다른 모델과 명칭 자막 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-10",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-pipe-review/2021-2-q10-2008-8s.png",
+      "frameSha256": "5d97ac716d799267e27ab3b313b652fb5bb79eae6b5f02537462041361c12b8b",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:33:36",
+      "crop": [
+        54,
+        100,
+        1045,
+        942
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-10-question-video-1-v550.png",
+      "outputSize": [
+        991,
+        842
+      ],
+      "sha256": "67ba40fc54742b9e916f6d11abb80fadcd0ae83e53ff87fbd31b692c1baf5ffd",
+      "reviewNote": "네 배관 가·나·다·라 전체. 1회와 다른 나 배관을 보존. 원문 번호 표기 유지"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-11",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-public-review/2021-2-q11-2060-3s.png",
+      "frameSha256": "f1432b8df44a0f7a0ff8aaa848076eec38ab1d126b3b0c818fead1fb1e6a21cf",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:34:23",
+      "crop": [
+        195,
+        198,
+        849,
+        616
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-11-question-video-1-v550.png",
+      "outputSize": [
+        654,
+        418
+      ],
+      "sha256": "f37d41219119d9ceb179886a3ccf8aa6339dc9ea2f83c95664827d91bab5b874",
+      "reviewNote": "냉동장치 전체와 연결부. 질문·보기 판서 제외"
+    },
+    {
+      "id": "hvac-practical-restored-2021-2-12",
+      "role": "question",
+      "index": 1,
+      "year": 2021,
+      "session": "2",
+      "sourceUrl": "https://www.youtube.com/watch?v=EsdPHmU1Ie8",
+      "frame": "cbt-2021-2-public-review/2021-2-q12-2363-3s.png",
+      "frameSha256": "0751ca9cb5a4cd37237e9b1bc453d15d09139a7773785a73e17ed478f1ed3f9c",
+      "nativeSize": [
+        1920,
+        1080
+      ],
+      "timestamp": "00:39:26",
+      "crop": [
+        100,
+        249,
+        908,
+        772
+      ],
+      "output": "assets/hvac-practical/restored/2021-2/hvac-practical-restored-2021-2-12-question-video-1-v550.png",
+      "outputSize": [
+        808,
+        523
+      ],
+      "sha256": "b2f5a0db51401da2e3596a2654856516ca8cb3122e83c8538a715d48268d9781",
+      "reviewNote": "두 차단기의 외관과 단자. 정답 판서 전 프레임"
+    }
+  ],
+  "evidence": {
+    "2021-1-07": "00:37:15~00:40:51 명칭과 청·적·황 호스 연결 질문",
+    "2021-1-09": "00:45:41~00:46:43 명칭·설치목적·2개 설치 이유",
+    "2021-1-10": "00:47:28~00:48:29 세 트랩 사진·설명 대조",
+    "2021-1-04": "00:26:24~00:26:44 원문 오일 조정기 답안과 대조, 기존 정답 유지"
+  },
+  "unresolved": []
+}
