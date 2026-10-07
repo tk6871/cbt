@@ -20,6 +20,7 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import { energyMidtermPractice } from './energyMidtermPractice';
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
@@ -256,6 +257,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   'hvac-hansol': { icon: 'H', className: 'hansol-blue', description: '한솔 원문 · 별도 회차 학습' },
   safety: { icon: '⛑', className: 'orange', description: '안전관리·위험방지' },
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
+  'energy-midterm': { icon: '♨', className: 'green', description: '중간고사20주제 · 전용 오답·점수' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
   'electric-craftsman': { icon: '⚡', className: 'blue', description: '전기이론·기기·설비' },
   'gas-craftsman': { icon: '◉', className: 'green', description: '가스안전·장치·일반' },
@@ -468,6 +470,10 @@ const visibleRounds = computed(() => {
   return [...referenceRounds, ...rounds].sort((a, b) =>
     b.year - a.year || String(b.date || b.session || '').localeCompare(String(a.date || a.session || ''), 'ko', { numeric: true }));
 });
+const energyMidtermQuestionCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.length, 0));
+const energyMidtermBookCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.filter(q => q.bookVerified).length, 0));
+const energyMidtermDirectCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.filter(q => q.midtermMatch === 'direct').length, 0));
+const energyMidtermRelatedCount = computed(() => energyMidtermQuestionCount.value - energyMidtermDirectCount.value);
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
 const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_APPRAISER_TARGET_KEY)?.rounds || [])
@@ -1508,6 +1514,7 @@ const formattedTime = computed(() => {
     : `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 });
 function examDurationSeconds(questionCount: number): number {
+  if (selectedKey.value === 'energy-midterm') return Math.max(60, questionCount * 90);
   const rule = officialRule.value;
   if (!rule) return Math.max(90 * 60, Math.ceil(questionCount * 90));
   const officialQuestionCount = rule.totalQuestions
@@ -2640,7 +2647,7 @@ function startRound(round: Round, mode: StudyMode): void {
     }));
     beginSession(
       mode,
-      `${round.year}년 ${round.session || ''} 학습`,
+      round.kind === 'school-midterm' ? `${round.title} 학습` : `${round.year}년 ${round.session || ''} 학습`,
       items,
       previousAnswers,
       { resume: true },
@@ -2649,10 +2656,19 @@ function startRound(round: Round, mode: StudyMode): void {
   }
   beginSession(
     mode,
-    `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
+    round.kind === 'school-midterm' ? `${round.title} CBT` : `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
     items,
     {},
   );
+}
+
+function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, match?: 'direct' | 'related'): void {
+  const rounds = visibleRounds.value;
+  if (selectedKey.value !== 'energy-midterm' || !rounds.length) return;
+  const pools = rounds.map(round => roundToItems(round));
+  const items = match ? pools.flat().filter(item => item.question.midtermMatch === match) : bookOnly ? pools.flat().filter(item => item.question.bookVerified) : full ? pools.flat() : energyMidtermPractice(pools);
+  if (!items.length) return;
+  void beginSession(mode, `에너지설비 중간고사 · ${match === 'direct' ? '출제 메모 직접 대응' : match === 'related' ? '추가 예상·대응 미확정' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습'}`, items);
 }
 
 function restartRoundLearning(round: Round): void {
@@ -3126,7 +3142,7 @@ function calculateSessionResult(): (ExamResult & { unanswered: number }) | null 
     official,
     criteria: rule
       ? `${official ? '' : '전체 시험 분량을 푼 경우 적용 · '}${rule.note}`
-      : coolingSessionActive.value ? '중간고사 연습 점수입니다. 학교의 실제 채점 기준과는 다를 수 있습니다.' : '공식 합격 기준 확인이 필요합니다.',
+      : coolingSessionActive.value || selectedKey.value === 'energy-midterm' ? '중간고사 연습 점수입니다. 학교의 실제 채점 기준과는 다를 수 있습니다.' : '공식 합격 기준 확인이 필요합니다.',
     source: rule?.officialSource,
     subjectRows,
     unanswered: session.value.items.length - answeredCount.value,
@@ -4553,7 +4569,7 @@ onBeforeUnmount(() => {
                 <span class="qualification-icon">{{ qualificationMeta[catalog.key]?.icon }}</span>
                 <span class="qualification-copy">
                   <strong>{{ catalog.name }}</strong>
-                  <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
+                  <small>{{ catalog.roundCount ?? catalog.rounds.length }}{{ catalog.key === 'energy-midterm' ? '주제' : '회차' }} · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
                   <em>{{ qualificationMeta[catalog.key]?.description }}</em>
                 </span>
                 <b>›</b>
@@ -4706,8 +4722,9 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'rounds'">
-          <nav v-if="!isJewelry && roundsCollection !== 'cooling'" class="rounds-collection" aria-label="학교 시험 문제 모음">
-            <button @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
+          <nav v-if="!isJewelry" class="rounds-collection" aria-label="학교 시험 문제 모음">
+            <button :class="{ active: roundsCollection === 'cooling' }" @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
+            <button :class="{ active: selectedKey === 'energy-midterm' }" @click="configureQualification('energy-midterm'); openView('rounds')">에너지설비 중간고사</button>
           </nav>
           <template v-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
@@ -4717,13 +4734,34 @@ onBeforeUnmount(() => {
             <CoolingMidterm :items="coolingItems" :wrong-ids="coolingWrongIds" :attempted-ids="coolingItems.filter(item => studyStore.attempts[item.id]).map(item => item.id)" :unused-ids="coolingUnusedIds" :sessions="coolingArchive" :history="coolingCompleted" :loading="coolingLoading" :error="coolingError" @retry="loadCoolingMidterm" @search="openCoolingSearch" @start="startCoolingMidterm" @reset-draws="resetCoolingDraws" @resume="resumeCoolingArchived" @replay="id => { const record = coolingCompleted.find(item => item.id === id); if (record) replayHistoryRecord(record); }" />
           </template>
           <template v-else>
+          <section v-if="selectedKey === 'energy-midterm' && savedLearningSession?.qualificationKey === 'energy-midterm'" class="resume-learning-card">
+            <div><span>자동 저장된 에너지 중간고사 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
+            <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
+          </section>
           <section class="rounds-heading">
-            <div><span>PAST EXAMS</span><h1>{{ selectedCatalog.name }} 기출문제</h1><p>수록된 전체 {{ visibleRounds.length }}회차</p></div>
+            <div><span>{{ selectedKey === 'energy-midterm' ? 'MIDTERM PRACTICE' : 'PAST EXAMS' }}</span><h1>{{ selectedCatalog.name }}{{ selectedKey === 'energy-midterm' ? '' : ' 기출문제' }}</h1><p>{{ selectedKey === 'energy-midterm' ? `출제 메모의 ${visibleRounds.length}개 주제 · 관련 기출 ${energyMidtermQuestionCount}문제` : `수록된 전체 ${visibleRounds.length}회차` }}</p></div>
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
+          <section v-if="selectedKey === 'energy-midterm'" class="energy-midterm-intro">
+            <p>출제가 안내된 메모 범위에 직접 대응하는 문제와, 불명확한 내용까지 넓혀 고른 추가 예상을 나눴습니다. ‘직접 대응’도 이 기출이 그대로 나온다는 뜻은 아닙니다. 오답·점수는 일반 기출과 따로 저장됩니다.</p>
+            <p>20문제는 실제 시험 문항 수이며 예상문제 수 제한이 아닙니다. 랜덤 연습은 주제별1개씩 뽑습니다. 확정 출제 예측은 아닙니다.</p>
+            <div class="energy-midterm-actions energy-midterm-confidence">
+              <button type="button" @click="startEnergyMidterm('learn', true, false, 'direct')">직접 대응{{ energyMidtermDirectCount }}문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('learn', true, false, 'related')">추가 예상{{ energyMidtermRelatedCount }}문제 학습</button>
+            </div>
+            <details class="energy-midterm-other-actions"><summary>전체·교재·랜덤 시험 연습</summary><p>교재 원문의 대응을 확인한{{ energyMidtermBookCount }}문제는 별도 기준입니다. 랜덤20문제는 대응이 미확정인 주제도 포함하여 전체20주제에서 뽑습니다.</p>
+            <div class="energy-midterm-actions">
+              <button type="button" @click="startEnergyMidterm('learn', true, true)">교재 대응{{ energyMidtermBookCount }}문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('learn', true)">전체{{ energyMidtermQuestionCount }}문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('learn')">랜덤20문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('exam')">랜덤20문제 CBT</button>
+            </div>
+            </details>
+            <details><summary>자료가 애매하거나 기출과 다른 부분</summary><p>수업PPT는 급수pH6~9(적정8.5)·관수11~11.8, 교재260쪽은 급수6.5~9·관수10.5~11.5로 다릅니다. 수업 기준을 우선 확인하세요. 보염장치/윈드박스와 CO₂/수트블로워는 구분합니다. 메모의 약품명·배관33 경계는 미확정이며 관련 기출이 없는 부분의 정답을 임의로 만들지 않았습니다. 이번 모음에는2020년 이후 새 기출은 아직 추가하지 않았습니다.</p></details>
+          </section>
           <TransitionGroup name="list-shift" tag="div" class="round-grid">
-            <article v-for="round in visibleRounds" :id="`round-card-${round.id}`" :key="round.id" class="round-card">
-              <header><span>{{ round.shortQualification || round.qualification }}</span><b>{{ round.year }}년</b></header>
+            <article v-for="round in visibleRounds" :id="`round-card-${round.id}`" :key="round.id" class="round-card" :class="{ 'energy-topic-card': round.kind === 'school-midterm' }">
+              <header><span>{{ round.shortQualification || round.qualification }}</span><b v-if="round.kind !== 'school-midterm'">{{ round.year }}년</b></header>
               <div v-if="roundRecordMap.get(round.id)" class="round-record-badge" :class="{ latest: lastRoundRecord?.roundId === round.id }">
                 <span>{{ lastRoundRecord?.roundId === round.id ? '마지막으로 푼 회차' : '최근 CBT 기록' }}</span>
                 <strong>{{ roundRecordMap.get(round.id)?.score }}점</strong>
@@ -4732,7 +4770,9 @@ onBeforeUnmount(() => {
               <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
               <h2>{{ round.title }}</h2>
               <p>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
+              <small v-if="round.kind === 'school-midterm'">직접 대응{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 추가 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}</small>
               <div class="round-subjects"><span v-for="subject in round.subjects" :key="subject">{{ subject }}</span></div>
+              <details v-if="round.kind === 'school-midterm' && round.questions[0]?.teacherHint" class="energy-topic-note"><summary>자료 대조 안내</summary><p>{{ round.questions[0].teacherHint }}</p></details>
               <div v-if="roundAnswered(round)" class="round-progress"><span><i :style="{ width: `${roundProgress(round)}%` }" /></span></div>
               <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
               <footer>
@@ -5376,6 +5416,7 @@ onBeforeUnmount(() => {
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
+            <p>v5.7 에너지설비 중간고사: 수업PPT·교재·두 메모에 맞춘 기출136문제를 직접 대응83문제·추가 예상53문제로 나누었습니다. 교재 대응을 직접 확인한27문제 또는 전체·주제별로 학습하고, 시험 연습은 주제마다1문제씩 랜덤20문제를 뽑습니다. 일반 기출과 기록은 분리하며 pH 등 자료 차이와 슬라이드 번호는 대조 안내로 표시합니다. PDF 원문 이미지 적용은 다음 작업입니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>

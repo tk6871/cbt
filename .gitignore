@@ -33,6 +33,7 @@ work/energy-upscale-temp/
 work/energy-upscale-logs/
 work/image-upscale-macos/
 work/bundle-report-*.html
+work/energy-midterm-*.png
 work/sync-test-harness.js
 test-results/
 playwright-report/

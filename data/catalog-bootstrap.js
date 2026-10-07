@@ -1,7 +1,7 @@
 (function () {
   var DISPLAY_KEY = "unified-cbt-display-mode";
   var QUALIFICATION_KEY = "modern-cbt-qualification-industrial";
-  var allowed = ["hvac", "hvac-hansol", "safety", "energy", "maintenance", "electric-craftsman", "gas-craftsman", "hazardous-craftsman", "information-engineer", "forklift-craftsman", "school-exams"];
+  var allowed = ["hvac", "hvac-hansol", "safety", "energy", "energy-midterm", "maintenance", "electric-craftsman", "gas-craftsman", "hazardous-craftsman", "information-engineer", "forklift-craftsman", "school-exams"];
   var displayPreference = "auto";
   var qualification = "hvac";
   try {
@@ -22,8 +22,8 @@
   window.CBT_DISPLAY_PREFERENCE = displayPreference;
   window.CBT_LOADED_QUALIFICATION = qualification;
 
-  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=511"];
-  if (qualification === "energy") scripts.push("data/energy-engineer.js?v=511");
+  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=570"];
+  if (qualification === "energy") scripts.push("data/energy-engineer.js?v=570");
   document.write(scripts.map(function (src) {
     return '<script src="' + src + '"><\\/script>';
   }).join(""));
