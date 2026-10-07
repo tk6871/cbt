@@ -1,7 +1,16 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { basename, relative, resolve } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const root = resolve(import.meta.dirname, '..');
+const trackedFiles = new Set(execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' }).split('\0'));
+// Ignore untracked macOS/cloud conflict copies, not legitimate tracked assets.
+// A placeholder conflict copy can block Gradle's input hashing indefinitely.
+const bundleFilter = (source) => {
+  const name = basename(source);
+  if (name === '.DS_Store') return false;
+  return !/ \d+\.[^/]+$/.test(name) || trackedFiles.has(relative(root, source));
+};
 const output = resolve(root, '.android-web');
 const directories = ['data', 'modern', 'vendor'];
 const remoteAssetRoot = 'https://tk6871.github.io/cbt/assets/';
@@ -21,10 +30,10 @@ await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
 
 await Promise.all(directories.map((directory) =>
-  cp(resolve(root, directory), resolve(output, directory), { recursive: true })));
+  cp(resolve(root, directory), resolve(output, directory), { recursive: true, filter: bundleFilter })));
 await mkdir(resolve(output, 'assets'), { recursive: true });
-await cp(resolve(root, 'assets/icons'), resolve(output, 'assets/icons'), { recursive: true });
-await cp(resolve(root, 'assets/hvac/formula-samples'), resolve(output, 'assets/hvac/formula-samples'), { recursive: true });
+await cp(resolve(root, 'assets/icons'), resolve(output, 'assets/icons'), { recursive: true, filter: bundleFilter });
+await cp(resolve(root, 'assets/hvac/formula-samples'), resolve(output, 'assets/hvac/formula-samples'), { recursive: true, filter: bundleFilter });
 
 async function pointAssetsToPublishedSite(file) {
   const target = resolve(output, file);
