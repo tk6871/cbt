@@ -636,6 +636,12 @@ img { max-width: 100%; }
 .energy-midterm-priority-grid p { font-size:.95rem; margin:10px 0; }
 .energy-midterm-priority-grid .energy-midterm-actions { margin:12px 0 0; }
 .energy-midterm-evidence-note { color:var(--muted); font-size:.95rem; }
+.midterm-question-map { margin:0 0 12px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
+.midterm-question-map summary { cursor:pointer; color:var(--text); font-size:.86rem; font-weight:700; }
+.midterm-question-map nav { display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:6px; margin-top:10px; max-height:240px; overflow:auto; }
+.midterm-question-map nav button { min-height:44px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; border:1px solid var(--line); border-radius:7px; color:var(--text); background:var(--surface-2); }
+.midterm-question-map nav button.active { border-color:var(--primary); }
+.midterm-calculation-badge { display:block; width:max-content; padding:2px 4px; border-radius:4px; background:var(--primary-soft); color:var(--primary); font-size:.65rem; font-weight:800; line-height:1.2; }
 @media(max-width:700px) { .energy-midterm-priority-grid { grid-template-columns:minmax(0,1fr); } }
 .energy-topic-note { font-size:.95rem; }
 .round-card.energy-topic-card { min-height:240px; }

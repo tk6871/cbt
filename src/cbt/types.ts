@@ -56,6 +56,7 @@ export type Question = {
   bookVerified?: boolean;
   midtermMatch?: 'direct' | 'related';
   midtermPriority?: 'repeat' | 'recent' | 'note' | 'related';
+  midtermCalculation?: boolean;
   midtermPriorSource?: string;
   midtermPdfSources?: Array<{ year: number; session: number; number: number; pdfPage: number; printedPage: number }>;
 };

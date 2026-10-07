@@ -38,7 +38,7 @@ test('20주제179문항과 기존136문항 원문 정답·보기 보존 및 전�
   expect(bank.rounds[16].questions[0].midtermMatch).toBe('related');
   for (const q of questions) {
     if (q.bookVerified) expect(q.sourcePage).toContain('대응 확인');
-    expect(q.sourcePage).toContain(q.midtermMatch === 'direct' ? '출제 메모 직접 대응' : '추가 예상');
+    expect(q.sourcePage).toContain(q.midtermMatch === 'direct' ? '시험범위' : '추가 예상');
   }
 });
 
@@ -52,6 +52,19 @@ test('시험 연습은 전체 주제를 포함하고 첫 문항 고정 없이 �
   expect(second.every(q => q.question === 4)).toBe(true);
   expect(first.map(q => q.topic)).not.toEqual(second.map(q => q.topic));
   expect(pools[0][0]).toEqual({ topic: 0, question: 0 });
+});
+
+test('랜덤20은6번·11번 계산 각1개와 다른18주제 이론으로 구성',()=>{
+  const c={window:{} as Record<string,Catalog>};
+  vm.runInNewContext(fs.readFileSync('data/energy-midterm.js','utf8'),c);
+  const pools=c.window.CBT_DATA_ENERGY_MIDTERM.rounds.map((r,i)=>r.questions.map(q=>({q,topic:i+1})));
+  for(let n=0;n<100;n++){
+    const drawn=energyMidtermPractice(pools,Math.random,{isCalculation:item=>!!item.q.midtermCalculation,calculationTopics:[6,11]});
+    expect(drawn).toHaveLength(20);
+    expect(new Set(drawn.map(item=>item.topic)).size).toBe(20);
+    expect(drawn.filter(item=>item.q.midtermCalculation).map(item=>item.topic).sort((a,b)=>a-b)).toEqual([6,11]);
+  }
+  expect(()=>energyMidtermPractice([[]])).toThrow('후보가 없습니다');
 });
 
 test.beforeEach(async ({ page }) => {
@@ -72,12 +85,21 @@ async function openRounds(page: import('@playwright/test').Page) {
   await page.locator('.energy-midterm-other-actions > summary').click();
 }
 
+test('학교 시험 준비 메뉴 이동은 상단 종목·저장 종목을 유지',async({page})=>{
+  await page.goto('./?safe=1');
+  if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
+  await page.locator('.sidebar').getByRole('button',{name:/학교 시험 준비/}).click();
+  await expect(page.locator('.school-hero')).toBeVisible();
+  expect(await page.evaluate(()=>localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('energy-midterm');
+  await expect(page.locator('.topbar')).toContainText('에너지설비 중간고사');
+});
+
 test('직접 대응과 추가 예상은 별도 모음으로 학습한다', async ({ page }) => {
   await page.goto('./?safe=1');
   await openRounds(page);
   await page.getByRole('button', { name: '직접 대응114문제 학습', exact: true }).click();
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(114);
-  await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('출제 메모 직접 대응');
+  await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('시험범위');
   await page.locator('.session-topbar .back-button').click();
   // Returning recreates the rounds panel; secondary controls start collapsed.
   if (await page.locator('.energy-midterm-other-actions').getAttribute('open') === null)
@@ -116,13 +138,18 @@ test('주제 목록·학습·오답 ID·재시작·라이트/다크 가로넘침
   await expect(first).toContainText('자료 기반 학습 해설');
 });
 
-test('랜덤20문제 CBT 30분·제출과 학교 연습 점수', async ({ page }) => {
+test('랜덤20문제 CBT 30분·제출과 학교 연습 점수', async ({ page }, testInfo) => {
   await page.goto('./?safe=1');
   await openRounds(page);
   await page.getByRole('button', { name: '랜덤20문제 CBT', exact: true }).click();
   await expect(page.locator('.question-card').first()).toBeVisible();
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(20);
   const remaining = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').remainingSeconds);
+  await page.locator('.midterm-question-map > summary').click();
+  await expect(page.locator('.midterm-question-map nav button')).toHaveCount(20);
+  await expect(page.locator('.midterm-question-map .midterm-calculation-badge')).toHaveCount(2);
+  await expect(page.locator('.omr-list .midterm-calculation-badge')).toHaveCount(2);
+  await page.screenshot({ path: `work/energy-midterm-calculation-map-${testInfo.project.name}.png`, fullPage: false });
   expect(remaining).toBeGreaterThan(1760);
   expect(remaining).toBeLessThanOrEqual(1800);
   await page.locator('.question-card').first().locator('.choice-button').nth(3).click();
