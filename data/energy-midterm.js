@@ -59,7 +59,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재336쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재336쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -105,7 +106,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "교재336쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재336쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -143,14 +145,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 9,
           "_subject": "에너지설비",
           "sourceQualification": "2019년 2회 에너지관리산업기사 9번",
-          "sourcePage": "2019년 2회 · 원문 9번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2023년1회 26번 · 교재526쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2019년 CBT 9번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 1,
+              "number": 26,
+              "pdfPage": 515,
+              "printedPage": 526
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-1-26.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2019년 CBT 9번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20190427:9",
+          "midtermPriority": "repeat"
         },
         {
           "number": 4,
@@ -196,7 +213,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 5,
@@ -242,7 +260,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 6,
@@ -288,7 +307,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 7,
@@ -334,7 +354,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -380,7 +401,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 9,
@@ -425,7 +447,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 10,
@@ -471,7 +494,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 11,
@@ -517,7 +541,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 12,
@@ -555,14 +580,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 11,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 2회 에너지관리산업기사 11번",
-          "sourcePage": "2017년 2회 · 원문 11번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년3회 15번 · 교재632쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 11번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 15,
+              "pdfPage": 621,
+              "printedPage": 632
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-15.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 11번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170507:11",
+          "midtermPriority": "repeat"
         },
         {
           "number": 13,
@@ -600,14 +640,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 17,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 4회 에너지관리산업기사 17번",
-          "sourcePage": "2017년 4회 · 원문 17번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년3회 33번 · 교재636쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 17번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 33,
+              "pdfPage": 625,
+              "printedPage": 636
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-33.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 17번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170923:17",
+          "midtermPriority": "repeat"
         },
         {
           "number": 14,
@@ -652,7 +707,228 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 15,
+          "text": "먼지농도95→10→0.5의 종합 집진율",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 2,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 2번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
+          "explanation": "처음95 중 마지막에0.5만 남았습니다. 제거한 양95 − 0.5 = 94.5. 종합 집진율 = 94.5 ÷ 95 × 100 ≈ 99.5%입니다. 중간농도10은 전체 입구·출구로 구할 때 쓰지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재474쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 2,
+              "pdfPage": 463,
+              "printedPage": 474
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-2.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년1회 2번 · 교재474쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 16,
+          "text": "집진장치 선정 시 거리가 먼 고려사항",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 72,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 72번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
+          "explanation": "연료와 연소방법·먼지 입자 크기는 먼지의 양과 성질을 좌우하므로 집진장치 선정에 중요합니다. 이 보기에서는 배기가스 중 산소농도가 가장 거리가 먼 항목입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재502쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 72,
+              "pdfPage": 491,
+              "printedPage": 502
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-72.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년2회 72번 · 교재502쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 17,
+          "text": "보기 중 집진효율이 가장 좋은 집진장치",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2023-4",
+          "_originalNumber": 29,
+          "_subject": "에너지설비",
+          "sourceQualification": "2023년 4회 에너지 교재 복원 29번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
+          "explanation": "이 보기에서는 전기식 집진장치가 미세먼지를 전기력으로 모아 가장 높은 집진효율을 보입니다. 여과식이 정답인 다른 문제는 전기식이 보기에 있는지부터 구분해야 합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재559쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 29,
+              "pdfPage": 548,
+              "printedPage": 559
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-4-29.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2023년4회 29번 · 교재559쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 18,
+          "text": "집진율이 가장 우수한 집진기",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2024-2",
+          "_originalNumber": 34,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 2회 에너지 교재 복원 34번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류.",
+          "explanation": "이 보기에서는 전기식 집진기의 집진율이 가장 우수합니다. 교재의 비교표는 전기식90~99.9%, 여과식90~99% 등으로 제시합니다. 조건이 다른 설비의 실제 효율을 무조건 이 숫자로 확정하지는 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재591쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 2,
+              "number": 34,
+              "pdfPage": 580,
+              "printedPage": 591
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-2-34.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2024년2회 34번 · 교재591쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -711,7 +987,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -757,7 +1034,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -795,14 +1073,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 17,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 2회 에너지관리산업기사 17번",
-          "sourcePage": "2017년 2회 · 원문 17번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년3회 17번 · 교재633쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 17번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 17,
+              "pdfPage": 622,
+              "printedPage": 633
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-17.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 17번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170507:17",
+          "midtermPriority": "repeat"
         },
         {
           "number": 4,
@@ -848,7 +1141,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 5,
@@ -894,7 +1188,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 6,
@@ -940,7 +1235,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 7,
@@ -986,7 +1282,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -1032,7 +1329,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 9,
@@ -1078,7 +1376,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 10,
@@ -1124,7 +1423,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 11,
@@ -1170,7 +1470,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 12,
@@ -1216,7 +1517,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 13,
@@ -1262,7 +1564,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 14,
@@ -1308,7 +1611,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 15,
@@ -1354,7 +1658,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 16,
@@ -1400,7 +1705,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 17,
@@ -1445,7 +1751,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 18,
@@ -1490,7 +1797,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 19,
@@ -1535,7 +1843,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 20,
@@ -1581,7 +1890,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 21,
@@ -1626,7 +1936,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 22,
@@ -1671,7 +1982,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 23,
@@ -1716,7 +2028,353 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 24,
+          "text": "열역학 제1법칙을 설명한 것 중 옳은 것은?",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 1,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 1번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "열역학 제1법칙은 에너지 보존 법칙입니다. 받은 열은 내부에너지 증가와 밖으로 한 일로 나뉩니다. 나머지 보기는 제2·제3법칙의 내용입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재442쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 1,
+              "pdfPage": 431,
+              "printedPage": 442
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-1.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2002년 CBT 21번",
+          "midtermRepetitionKind": "reordered",
+          "midtermPriorKey": "20020310:21",
+          "midtermPriority": "repeat",
+          "sourcePage": "2021년1회 1번 · 교재442쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2002년 CBT 21번(보기 순서 다름)"
+        },
+        {
+          "number": 25,
+          "text": "일정 압력200 kPa에서0.5→0.7 m³ 팽창, 내부에너지25 kJ 증가에 필요한 열량",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 10,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 10번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "밖으로 한 일 = 200 × (0.7 − 0.5) = 40 kJ. 받은 열 = 안에 남은25 + 밖으로 쓴40 = 65 kJ입니다. kPa × m³는 kJ이므로 이 단위 조합에서는 환산 숫자가 필요 없습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재443쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 10,
+              "pdfPage": 432,
+              "printedPage": 443
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-10.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년1회 10번 · 교재443쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 26,
+          "text": "열역학 제1법칙과 관련이 있는 것은?",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 14,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 14번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "제1법칙은 에너지 보존과 연결합니다. 에너지는 열·일·내부에너지 사이에서 형태가 바뀌며, 합계는 보존됩니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재444쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 14,
+              "pdfPage": 433,
+              "printedPage": 444
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-14.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2002년 CBT 25번",
+          "midtermRepetitionKind": "reordered",
+          "midtermPriorKey": "20020310:25",
+          "midtermPriority": "repeat",
+          "sourcePage": "2021년1회 14번 · 교재444쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2002년 CBT 25번(보기 순서 다름)"
+        },
+        {
+          "number": 27,
+          "text": "열과 일에 대한 틀린 설명",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 1,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 1번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "열과 일은 물체의 경계를 통해 이동하는 에너지입니다. 들어오거나 나가는 방향에 따라 부호가 달라지므로 항상 양수인 것은 아닙니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재474쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 1,
+              "pdfPage": 463,
+              "printedPage": 474
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-1.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2018년 CBT 14번",
+          "midtermRepetitionKind": "reordered",
+          "midtermPriorKey": "20180428:14",
+          "midtermPriority": "repeat",
+          "sourcePage": "2022년1회 1번 · 교재474쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 14번(보기 순서 다름)"
+        },
+        {
+          "number": 28,
+          "text": "가역 단열팽창과 등온팽창의 내부에너지 감소",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 13,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 13번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "이상기체의 등온팽창은 온도가 같아 내부에너지 변화가0입니다. 단열팽창은 열을 받지 않고 밖으로 일을 하므로 내부에너지가 줄어듭니다. 따라서 감소량은 단열팽창 때가 큽니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재476쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 13,
+              "pdfPage": 465,
+              "printedPage": 476
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-13.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2014년 CBT 4번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20140525:4",
+          "midtermPriority": "repeat",
+          "sourcePage": "2022년1회 13번 · 교재476쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2014년 CBT 4번"
+        },
+        {
+          "number": 29,
+          "text": "열과 일의 전환은 열역학 몇 법칙인가?",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2024-1",
+          "_originalNumber": 14,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 1회 에너지 교재 복원 14번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결.",
+          "explanation": "열과 일이 서로 전환될 때 에너지가 보존된다는 내용은 열역학 제1법칙입니다. 열이 흐르는 방향과 열기관 효율의 한계는 제2법칙과 구분합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재572쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 14,
+              "pdfPage": 561,
+              "printedPage": 572
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-14.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2015년 CBT 1번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20150919:1",
+          "midtermPriority": "repeat",
+          "sourcePage": "2024년1회 14번 · 교재572쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2015년 CBT 1번"
         }
       ]
     },
@@ -1776,7 +2434,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거.",
           "additionalExplanations": [],
-          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -1821,7 +2480,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -1866,7 +2526,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -1907,12 +2568,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 74,
           "_subject": "에너지설비",
           "sourceQualification": "2002년 1회 에너지관리산업기사 74번",
-          "sourcePage": "2002년 1회 · 원문 74번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2022년2회 75번 · 교재503쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2002년 CBT 74번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 75,
+              "pdfPage": 492,
+              "printedPage": 503
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-75.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2002년 CBT 74번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20020310:74",
+          "midtermPriority": "repeat"
         },
         {
           "number": 5,
@@ -1958,7 +2634,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 6,
@@ -2003,7 +2680,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 7,
@@ -2049,7 +2727,63 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 8,
+          "text": "기폭법의 주 제거 대상이 아닌 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 65,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 65번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거.",
+          "explanation": "기폭(폭기)은 물을 공기와 접촉시켜 철·망간을 산화시키고 이산화탄소를 제거하는 데 이용합니다. 산소를 제거하려면 탈기·탈산소 처리를 구분해야 합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재470쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 65,
+              "pdfPage": 459,
+              "printedPage": 470
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-65.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년2회 65번 · 교재470쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -2108,7 +2842,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재338쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재338쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -2146,14 +2881,36 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 4,
           "_subject": "에너지설비",
           "sourceQualification": "2020년 3회 에너지관리산업기사 4번",
-          "sourcePage": "2020년 3회 · 원문 4번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년3회 2번 · 교재630쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2020년 CBT 4번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 1,
+              "number": 2,
+              "pdfPage": 510,
+              "printedPage": 521
+            },
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 2,
+              "pdfPage": 619,
+              "printedPage": 630
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-2.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2020년 CBT 4번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20200822:4",
+          "midtermPriority": "repeat"
         },
         {
           "number": 3,
@@ -2199,7 +2956,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 4,
@@ -2245,7 +3003,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 5,
@@ -2291,7 +3050,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 6,
@@ -2332,12 +3092,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 5,
           "_subject": "에너지설비",
           "sourceQualification": "2013년 1회 에너지관리산업기사 5번",
-          "sourcePage": "2013년 1회 · 원문 5번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2024년2회 8번 · 교재586쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2013년 CBT 5번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 2,
+              "number": 8,
+              "pdfPage": 575,
+              "printedPage": 586
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-2-8.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2013년 CBT 5번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20130310:5",
+          "midtermPriority": "repeat"
         },
         {
           "number": 7,
@@ -2383,7 +3158,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -2428,7 +3204,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 9,
@@ -2473,7 +3250,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 10,
@@ -2518,7 +3296,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 11,
@@ -2563,7 +3342,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 12,
@@ -2608,7 +3388,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 13,
@@ -2653,7 +3434,131 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 14,
+          "text": "기체연료 관리 문제점 중 잘못 설명된 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 15,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 15번",
+          "midtermMatch": "direct",
+          "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
+          "explanation": "기체연료는 공급량·공기 혼합을 조절하기 쉬워 연소제어가 쉽습니다. 연소효율이 낮고 제어가 어렵다는 설명이 틀립니다. 저장·누출·설비비 문제는 별도 단점입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재461쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 15,
+              "pdfPage": 450,
+              "printedPage": 461
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-15.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2002년 CBT 6번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20020310:6",
+          "midtermPriority": "repeat",
+          "sourcePage": "2021년2회 15번 · 교재461쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2002년 CBT 6번"
+        },
+        {
+          "number": 15,
+          "text": "고체연료의 일반적인 주성분",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-4",
+          "_originalNumber": 9,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 4회 에너지 교재 복원 9번",
+          "midtermMatch": "direct",
+          "teacherHint": "고체·액체·기체의 비교를 함께 확인하세요. 대표 기출은 기체연료의 저장 단점을 묻습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강.",
+          "explanation": "고체연료의 주된 가연성 성분은 탄소입니다. 질소는 주된 발열 성분이 아니며, 유황은 연소하지만 주성분으로 고르지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재506쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 9,
+              "pdfPage": 495,
+              "printedPage": 506
+            },
+            {
+              "year": 2025,
+              "session": 2,
+              "number": 15,
+              "pdfPage": 607,
+              "printedPage": 618
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-2-15.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2019년 CBT 3번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20190427:3",
+          "midtermPriority": "repeat",
+          "sourcePage": "2025년2회 15번 · 교재618쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2019년 CBT 3번"
         }
       ]
     },
@@ -2712,7 +3617,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재339쪽의 질문·보기·정답을 대조했습니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재339쪽의 질문·보기·정답을 대조했습니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -2757,7 +3663,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -2802,7 +3709,66 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 4,
+          "text": "이론연소온도 화염온도 공식",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 12,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 12번",
+          "midtermMatch": "related",
+          "teacherHint": "교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다.",
+          "explanation": "연료의 저위발열량 Hₗ을 연소가스량 Gᵣ × 비열 Cₚ로 나눈 것이 이 문제의 이론 화염온도 식입니다. 물질을 데우는 데 필요한 열 = 양 × 비열 × 온도변화라는 관계를 거꾸로 사용합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재476쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 12,
+              "pdfPage": 465,
+              "printedPage": 476
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-12.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2002년 CBT 5번",
+          "midtermRepetitionKind": "variant",
+          "midtermPriorKey": "20020526:5",
+          "midtermPriority": "related",
+          "sourcePage": "2022년1회 12번 · 교재476쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2002년 CBT 5번(보기·조건 변형)"
         }
       ]
     },
@@ -2857,12 +3823,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 22,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 22번",
-          "sourcePage": "2018년 2회 · 원문 22번 · 출제 메모 직접 대응 · 교재339쪽 대응 확인",
+          "sourcePage": "2022년1회 24번 · 교재478쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 22번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
           "additionalExplanations": [],
-          "explanationBasis": "교재339쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재339쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 24,
+              "pdfPage": 467,
+              "printedPage": 478
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-24.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 22번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:22",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -2907,7 +3888,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재345쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재345쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -2952,7 +3934,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재384쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재384쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -2997,7 +3980,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 5,
@@ -3042,7 +4026,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 6,
@@ -3088,7 +4073,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 7,
@@ -3133,7 +4119,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -3178,7 +4165,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 9,
@@ -3224,7 +4212,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 10,
@@ -3269,7 +4258,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 11,
@@ -3315,7 +4305,182 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 12,
+          "text": "상당증발량 공식 kJ 기준",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2024-1",
+          "_originalNumber": 59,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 1회 에너지 교재 복원 59번",
+          "midtermMatch": "direct",
+          "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
+          "explanation": "상당증발량 = 실제증발량 G × (증기 엔탈피 h₂ − 급수 엔탈피 h₁) ÷ 2256. 물에 더해 준 열만 구하므로 증기에서 급수를 뺍니다. 2256 kJ/kg은100℃ 물1 kg을 증기로 만드는 기준 열량입니다. kcal/kg 단위면539를 사용합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재580쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 59,
+              "pdfPage": 569,
+              "printedPage": 580
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-59.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2018년 CBT 22번",
+          "midtermRepetitionKind": "variant",
+          "midtermPriorKey": "20180428:22",
+          "midtermPriority": "repeat",
+          "sourcePage": "2024년1회 59번 · 교재580쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 22번(보기·조건 변형)"
+        },
+        {
+          "number": 13,
+          "text": "실제증발량10000 kg/h의 상당증발량 계산",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 62,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 62번",
+          "midtermMatch": "direct",
+          "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
+          "explanation": "상당증발량 = 10000 × (725 − 25) ÷ 539 = 약12987 kg/h로②입니다. 725에서 급수의 열량25를 빼면 물에 더해 준 열량이 됩니다. 539 kcal/kg은100℃ 물1 kg을 증기로 바꾸는 기준 열량입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재469쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 62,
+              "pdfPage": 458,
+              "printedPage": 469
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-62.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2018년 CBT 57번",
+          "midtermRepetitionKind": "variant",
+          "midtermPriorKey": "20180428:57",
+          "midtermPriority": "repeat",
+          "sourcePage": "2021년2회 62번 · 교재469쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 57번(보기·조건 변형)"
+        },
+        {
+          "number": 14,
+          "text": "실제증발량에 증발계수를 곱한 값",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2025-3",
+          "_originalNumber": 53,
+          "_subject": "에너지설비",
+          "sourceQualification": "2025년 3회 에너지 교재 복원 53번",
+          "midtermMatch": "direct",
+          "teacherHint": "kJ/kg이면 약2257, kcal/kg이면539를 사용합니다. 2256/2257의 반올림 차이는 문제의 기준을 따르세요.\n\n수업 PPT 1-4 「열효율·연소·자동제어」7장: 상당증발량. 분모2257 kJ/kg과 교재/기출의2256은 기준값 차이이며 kcal/kg이면539.",
+          "explanation": "실제증발량 × 증발계수 = 상당증발량이므로①입니다. 증발계수는 (증기 엔탈피 − 급수 엔탈피)를 기준 증발열량539 kcal/kg 또는2256 kJ/kg으로 나눈 값입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재639쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 53,
+              "pdfPage": 628,
+              "printedPage": 639
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-53.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2017년 CBT 26번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170305:26",
+          "midtermPriority": "repeat",
+          "sourcePage": "2025년3회 53번 · 교재639쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 26번"
         }
       ]
     },
@@ -3374,7 +4539,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재354쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재354쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -3412,14 +4578,91 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 23,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 4회 에너지관리산업기사 23번",
-          "sourcePage": "2017년 4회 · 원문 23번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년1회 56번 · 교재610쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 23번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 56,
+              "pdfPage": 504,
+              "printedPage": 515
+            },
+            {
+              "year": 2025,
+              "session": 1,
+              "number": 56,
+              "pdfPage": 599,
+              "printedPage": 610
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-1-56.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 23번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170923:23",
+          "midtermPriority": "repeat"
+        },
+        {
+          "number": 3,
+          "text": "ABC 제어량과 조작량에 속하지 않는 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2023-4",
+          "_originalNumber": 49,
+          "_subject": "에너지설비",
+          "sourceQualification": "2023년 4회 에너지 교재 복원 49번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」56장: ABC·ACC·FWC·STC·LC. STC는 증기온도제어.",
+          "explanation": "보일러 자동제어에서 연료량·공기량을 조절하고 증기 상태를 제어합니다. 이 문제의 제어량·조작량 목록에서는 급수온도를 제외하므로④입니다. 급수량 제어와 급수온도를 혼동하지 마세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재562쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 49,
+              "pdfPage": 551,
+              "printedPage": 562
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-4-49.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2023년4회 49번 · 교재562쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -3474,12 +4717,34 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 45,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 45번",
-          "sourcePage": "2018년 2회 · 원문 45번 · 출제 메모 직접 대응 · 교재343쪽 대응 확인",
+          "sourcePage": "2023년4회 10번 · 교재555쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 45번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
           "additionalExplanations": [],
-          "explanationBasis": "교재343쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재343쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 12,
+              "pdfPage": 496,
+              "printedPage": 507
+            },
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 10,
+              "pdfPage": 544,
+              "printedPage": 555
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-4-10.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 45번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:45",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -3525,7 +4790,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 3,
@@ -3571,7 +4837,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -3616,7 +4883,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 5,
@@ -3654,14 +4922,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 59,
           "_subject": "에너지설비",
           "sourceQualification": "2014년 1회 에너지관리산업기사 59번",
-          "sourcePage": "2014년 1회 · 원문 59번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년2회 28번 · 교재620쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2014년 CBT 59번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 2,
+              "number": 28,
+              "pdfPage": 609,
+              "printedPage": 620
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-2-28.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2014년 CBT 59번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20140302:59",
+          "midtermPriority": "repeat"
         },
         {
           "number": 6,
@@ -3699,14 +4982,84 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 9,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 2회 에너지관리산업기사 9번",
-          "sourcePage": "2017년 2회 · 원문 9번 · 추가 예상·대응 미확정",
-          "bookVerified": false,
+          "sourcePage": "2025년3회 13번 · 교재632쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2017년 CBT 9번",
+          "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 13,
+              "pdfPage": 621,
+              "printedPage": 632
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-13.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 9번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170507:9",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 7,
+          "text": "보염장치에 해당하지 않는 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 41,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 41번",
+          "midtermMatch": "direct",
+          "teacherHint": "메모의 장치명이 불명확합니다. 보염장치의 목적을 우선 연습하고 윈드박스와 같은 장치라고 단정하지 않습니다.\n\n수업 PPT 1-4 「열효율·연소·자동제어」24장: 에어레지스터·스테빌라이저·버너타일·윈드박스의 역할 구분.",
+          "explanation": "플레임 아이는 불꽃이 있는지 감지하는 화염검출기입니다. 불꽃을 직접 안정시키는 스테빌라이저·버너 타일 등과 구분합니다. 이 문제의 보염장치 목록에서 제외되는 것은 플레임 아이입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재497쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 41,
+              "pdfPage": 486,
+              "printedPage": 497
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-41.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년2회 41번 · 교재497쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -3766,7 +5119,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-3 「부속장치」56장: 가용마개의 납·주석 합금과 저수위 안전 기능. 슬라이드의 p290은 책 페이지이며 온도290℃가 아닙니다.",
           "additionalExplanations": [],
-          "explanationBasis": "교재344쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」56장: 가용마개의 납·주석 합금과 저수위 안전 기능. 슬라이드의 p290은 책 페이지이며 온도290℃가 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재344쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」56장: 가용마개의 납·주석 합금과 저수위 안전 기능. 슬라이드의 p290은 책 페이지이며 온도290℃가 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         }
       ]
     },
@@ -3818,14 +5172,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 52,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 52번",
-          "sourcePage": "2018년 2회 · 원문 52번 · 출제 메모 직접 대응 · 교재344쪽 대응 확인",
+          "sourcePage": "2024년1회 50번 · 교재579쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 52번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "루프(신축곡관)·벨로즈·슬리브·스위블을 구분하세요.\n\n수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재344쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재344쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 50,
+              "pdfPage": 568,
+              "printedPage": 579
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-50.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 52번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:52",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -3870,7 +5239,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -3916,7 +5286,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "루프(신축곡관)·벨로즈·슬리브·스위블을 구분하세요.\n\n수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -3962,7 +5333,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "루프(신축곡관)·벨로즈·슬리브·스위블을 구분하세요.\n\n수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 5,
@@ -4007,7 +5379,118 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 6,
+          "text": "슬리브형 신축이음의 틀린 특징",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 42,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 42번",
+          "midtermMatch": "direct",
+          "teacherHint": "루프(신축곡관)·벨로즈·슬리브·스위블을 구분하세요.\n\n수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다.",
+          "explanation": "슬리브형은 관이 미끄러지는 구조로 열팽창을 흡수합니다. 온수·저압 증기 배관에 쓰며, 이 교재에서는15 kgf/cm² 이상의 고압 증기용으로 적합하다는 설명을 틀린 것으로 봅니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재449쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 42,
+              "pdfPage": 438,
+              "printedPage": 449
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-42.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년1회 42번 · 교재449쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 7,
+          "text": "방진 방음도 가능한 신축이음",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-4",
+          "_originalNumber": 39,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 4회 에너지 교재 복원 39번",
+          "midtermMatch": "direct",
+          "teacherHint": "루프(신축곡관)·벨로즈·슬리브·스위블을 구분하세요.\n\n수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다.",
+          "explanation": "플렉시블 이음은 유연한 부분으로 열팽창을 흡수하면서 진동·소음 전달도 줄입니다. 나사부 회전을 이용하는 스위블과 구분하세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재512쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 39,
+              "pdfPage": 501,
+              "printedPage": 512
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-4-39.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년4회 39번 · 교재512쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -4066,7 +5549,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재345쪽의 질문·보기·정답을 대조했습니다. 교재345쪽53번의 식·단위·풀이를 직접 확인했습니다. PPT 텍스트에서는 스케줄번호 공식을 직접 확인하지 못해 PPT 근거를 임의로 붙이지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재345쪽의 질문·보기·정답을 대조했습니다. 교재345쪽53번의 식·단위·풀이를 직접 확인했습니다. PPT 텍스트에서는 스케줄번호 공식을 직접 확인하지 못해 PPT 근거를 임의로 붙이지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -4107,12 +5591,34 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 49,
           "_subject": "에너지설비",
           "sourceQualification": "2016년 2회 에너지관리산업기사 49번",
-          "sourcePage": "2016년 2회 · 원문 49번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년1회 25번 · 교재604쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2016년 CBT 49번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "공식의 계수는 압력·응력의 단위 조합에 따라 달라지므로 이 기출의 단위를 함께 확인하세요.\n\n교재345쪽53번의 식·단위·풀이를 직접 확인했습니다. PPT 텍스트에서는 스케줄번호 공식을 직접 확인하지 못해 PPT 근거를 임의로 붙이지 않습니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재345쪽53번의 식·단위·풀이를 직접 확인했습니다. PPT 텍스트에서는 스케줄번호 공식을 직접 확인하지 못해 PPT 근거를 임의로 붙이지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재345쪽53번의 식·단위·풀이를 직접 확인했습니다. PPT 텍스트에서는 스케줄번호 공식을 직접 확인하지 못해 PPT 근거를 임의로 붙이지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 26,
+              "pdfPage": 563,
+              "printedPage": 574
+            },
+            {
+              "year": 2025,
+              "session": 1,
+              "number": 25,
+              "pdfPage": 593,
+              "printedPage": 604
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-1-25.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2016년 CBT 49번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20160508:49",
+          "midtermPriority": "repeat"
         }
       ]
     },
@@ -4172,7 +5678,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다.",
           "additionalExplanations": [],
-          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -4218,7 +5725,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -4263,7 +5771,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -4301,14 +5810,153 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 34,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 4회 에너지관리산업기사 34번",
-          "sourcePage": "2018년 4회 · 원문 34번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2023년2회 52번 · 교재546쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 34번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 1,
+              "number": 58,
+              "pdfPage": 521,
+              "printedPage": 532
+            },
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 43,
+              "pdfPage": 626,
+              "printedPage": 637
+            },
+            {
+              "year": 2023,
+              "session": 2,
+              "number": 52,
+              "pdfPage": 535,
+              "printedPage": 546
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-2-52.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 34번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180915:34",
+          "midtermPriority": "repeat"
+        },
+        {
+          "number": 5,
+          "text": "송풍기 미작동 시 점화를 허용하지 않는 인터록",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 21,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 21번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다.",
+          "explanation": "프리퍼지는 점화 전에 송풍기로 노 안의 미연소 가스를 내보내는 과정입니다. 필요한 송풍이 이루어지지 않으면 연료밸브를 열지 않고 점화를 막는 것이 프리퍼지 인터록입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재462쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 21,
+              "pdfPage": 451,
+              "printedPage": 462
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-21.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년2회 21번 · 교재462쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 6,
+          "text": "기출의 보일러 인터록 종류가 아닌 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2024-2",
+          "_originalNumber": 57,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 2회 에너지 교재 복원 57번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 1-4 「열효율·연소·자동제어」53·55장: 제어동작과 안전 인터록의 구분. 교재229쪽의 확장 목록에는 과온도도 있어 과거 기출의 종류 목록을 모든 설비에 일반화하지 않습니다.",
+          "explanation": "이 기출은 저연소·불착화·압력초과를 기본 인터록으로 분류하고 고온도를 제외합니다. 수업PPT나 실제 설비의 확장된 온도 안전조건과는 범위가 다를 수 있으므로 기출의 목록으로 구분하세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재594쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 2,
+              "number": 57,
+              "pdfPage": 583,
+              "printedPage": 594
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-2-57.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2024년2회 57번 · 교재594쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -4360,14 +6008,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 59,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 59번",
-          "sourcePage": "2018년 2회 · 원문 59번 · 추가 예상·대응 미확정 · 교재346쪽 대응 확인",
+          "sourcePage": "2022년1회 49번 · 교재482쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2018년 CBT 59번",
           "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 49,
+              "pdfPage": 471,
+              "printedPage": 482
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-49.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 59번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:59",
+          "midtermPriority": "related"
         },
         {
           "number": 2,
@@ -4412,7 +6075,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 3,
@@ -4458,7 +6122,344 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 4,
+          "text": "자동화학식 CO₂ 분석계의 특징 중 잘못된 설명",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 28,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 28번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "자동화학식 CO₂계는 특정 가스를 선택적으로 흡수하여 체적 변화를 읽습니다. 선택성이 좋지 않다는 설명이 틀립니다. CO₂ 분석계와 그을음을 제거하는 수트블로워는 서로 다른 장치입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재446쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 28,
+              "pdfPage": 435,
+              "printedPage": 446
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-28.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2021년1회 28번 · 교재446쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 5,
+          "text": "연소 중 매연이 가장 잘 생기는 연료",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 6,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 6번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "이 보기에서는 타르가 매연을 가장 잘 만듭니다. 타르는 연소가 불완전해지기 쉬워 탄소 입자와 그을음이 많이 생깁니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재491쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 6,
+              "pdfPage": 480,
+              "printedPage": 491
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-6.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2002년 CBT 12번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20020526:12",
+          "midtermPriority": "related",
+          "sourcePage": "2022년2회 6번 · 교재491쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2002년 CBT 12번"
+        },
+        {
+          "number": 6,
+          "text": "롱 레트랙터블형 수트블로워 사용 장소",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 47,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 47번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "장발형(롱 레트랙터블형)은 과열기 등 고온의 열가스가 흐르는 부분에 사용합니다. 사용할 때 긴 분사관을 넣고, 사용하지 않을 때는 밖으로 빼내어 고온 손상을 줄입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재498쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 47,
+              "pdfPage": 487,
+              "printedPage": 498
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-47.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2022년2회 47번 · 교재498쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 7,
+          "text": "CO 그을음 회분 분진 등 매연의 발생 원인과 거리가 먼 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2024-1",
+          "_originalNumber": 57,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 1회 에너지 교재 복원 57번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "연소실이 충분히 크면 연료와 공기가 섞여 연소할 시간이 확보됩니다. 따라서 연소실 용적이 크다는②는 이 보기의 매연 발생 원인으로 고르지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재580쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 57,
+              "pdfPage": 569,
+              "printedPage": 580
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-57.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2024년1회 57번 · 교재580쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 8,
+          "text": "사용 후 벽 밖으로 빼내는 슈트 블로워 형식",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 60,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 60번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "장발형은 긴 분사관을 넣어 그을음을 제거하고, 사용하지 않을 때는 벽 밖으로 빼냅니다. 고온 가스에 계속 노출되어 분사관이 손상되는 것을 막습니다. 이 보기에서는③입니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재469쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 60,
+              "pdfPage": 458,
+              "printedPage": 469
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-60.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2021년2회 60번 · 교재469쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 9,
+          "text": "매연 방지 조치로 부적당한 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 6,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 6번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 CO₂는 별도 가스분석 내용일 수 있습니다. CO₂와 수트블로워를 하나의 장치명으로 합치지 않았습니다.\n\n수업 PPT 1-3 「부속장치」67~68장: 슈트블로워와 댐퍼·드레인 주의사항. PPT 2-1/2-2의35장 CO₂ 가스분석과는 별개입니다.",
+          "explanation": "공기를 무조건 많이 보내면 연소실이 식어 불완전연소가 생길 수 있습니다. 필요한 만큼 적정하게 공급해야 하므로 통풍을 많이 하라는③이 부적당합니다. 보기 순서가 다른 이전 기출과 정답 번호를 혼동하지 마세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재474쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 6,
+              "pdfPage": 463,
+              "printedPage": 474
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-6.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2004년 CBT 4번",
+          "midtermRepetitionKind": "reordered",
+          "midtermPriorKey": "20040905:4",
+          "midtermPriority": "related",
+          "sourcePage": "2022년1회 6번 · 교재474쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2004년 CBT 4번(보기 순서 다름)"
         }
       ]
     },
@@ -4513,12 +6514,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 62,
           "_subject": "에너지설비",
           "sourceQualification": "2019년 1회 에너지관리산업기사 62번",
-          "sourcePage": "2019년 1회 · 원문 62번 · 출제 메모 직접 대응 · 교재375쪽 대응 확인",
+          "sourcePage": "2022년4회 29번 · 교재510쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2019년 CBT 62번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "교재375쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재375쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 29,
+              "pdfPage": 499,
+              "printedPage": 510
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-4-29.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2019년 CBT 62번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20190303:62",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -4556,14 +6572,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 65,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 65번",
-          "sourcePage": "2018년 2회 · 원문 65번 · 추가 예상·대응 미확정 · 교재346쪽 대응 확인",
+          "sourcePage": "2023년2회 22번 · 교재541쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2018년 CBT 65번",
           "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재346쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 2,
+              "number": 22,
+              "pdfPage": 530,
+              "printedPage": 541
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-2-22.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 65번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:65",
+          "midtermPriority": "related"
         },
         {
           "number": 3,
@@ -4609,7 +6640,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 4,
@@ -4655,7 +6687,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 5,
@@ -4701,7 +6734,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 6,
@@ -4739,14 +6773,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 51,
           "_subject": "에너지설비",
           "sourceQualification": "2014년 1회 에너지관리산업기사 51번",
-          "sourcePage": "2014년 1회 · 원문 51번 · 추가 예상·대응 미확정",
-          "bookVerified": false,
+          "sourcePage": "2024년1회 27번 · 교재574쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2014년 CBT 51번",
+          "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 27,
+              "pdfPage": 563,
+              "printedPage": 574
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-27.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2014년 CBT 51번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20140302:51",
+          "midtermPriority": "related"
         },
         {
           "number": 7,
@@ -4791,7 +6840,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -4837,7 +6887,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 9,
@@ -4882,7 +6933,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 10,
@@ -4920,14 +6972,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 51,
           "_subject": "에너지설비",
           "sourceQualification": "2016년 4회 에너지관리산업기사 51번",
-          "sourcePage": "2016년 4회 · 원문 51번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2025년1회 23번 · 교재604쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2016년 CBT 51번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 1,
+              "number": 23,
+              "pdfPage": 593,
+              "printedPage": 604
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-1-23.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2016년 CBT 51번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20161001:51",
+          "midtermPriority": "repeat"
         },
         {
           "number": 11,
@@ -4968,12 +7035,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 53,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 1회 에너지관리산업기사 53번",
-          "sourcePage": "2017년 1회 · 원문 53번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2021년1회 41번 · 교재449쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 53번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 41,
+              "pdfPage": 438,
+              "printedPage": 449
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-41.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 53번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170305:53",
+          "midtermPriority": "repeat"
         },
         {
           "number": 12,
@@ -5011,14 +7093,36 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 73,
           "_subject": "에너지설비",
           "sourceQualification": "2017년 1회 에너지관리산업기사 73번",
-          "sourcePage": "2017년 1회 · 원문 73번 · 추가 예상·대응 미확정",
-          "bookVerified": false,
+          "sourcePage": "2024년1회 25번 · 교재574쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2017년 CBT 73번",
+          "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 17,
+              "pdfPage": 496,
+              "printedPage": 507
+            },
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 25,
+              "pdfPage": 563,
+              "printedPage": 574
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-25.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2017년 CBT 73번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170305:73",
+          "midtermPriority": "related"
         },
         {
           "number": 13,
@@ -5064,7 +7168,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 14,
@@ -5109,7 +7214,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 15,
@@ -5154,7 +7260,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 16,
@@ -5200,7 +7307,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」27·37~39장: 응축수 배출·수격 방지와 기계식/온도식/열역학식 트랩. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         }
       ]
     },
@@ -5260,7 +7368,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
           "additionalExplanations": [],
-          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -5305,7 +7414,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 3,
@@ -5350,7 +7460,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -5395,7 +7506,289 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 5,
+          "text": "강제압력용기0.5 MPa의 수압시험 압력",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 55,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 55번",
+          "midtermMatch": "related",
+          "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
+          "explanation": "이 문제는 강철제 증기보일러가 아니라 강제압력용기입니다. 교재의 압력용기 시험압력은 최고사용압력의1.5배이므로0.5 × 1.5 = 0.75 MPa입니다. 보일러의 구간별 공식을 섞지 마세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재452쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 55,
+              "pdfPage": 441,
+              "printedPage": 452
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-55.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2021년1회 55번 · 교재452쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 6,
+          "text": "강철제 증기보일러0.5 MPa의 수압시험 압력",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2022-1",
+          "_originalNumber": 43,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 1회 에너지 교재 복원 43번",
+          "midtermMatch": "direct",
+          "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
+          "explanation": "이 교재의 강철제 증기보일러 기준에서0.43 MPa 초과~1.5 MPa 이하는 최고사용압력 × 1.3 + 0.3 MPa입니다. 0.5 × 1.3 + 0.3 = 0.95 MPa. 압력용기의1.5배 기준과 다릅니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재481쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 1,
+              "number": 43,
+              "pdfPage": 470,
+              "printedPage": 481
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-1-43.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년1회 43번 · 교재481쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 7,
+          "text": "강철제 증기보일러2.0 MPa의 수압시험 압력",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 69,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 69번",
+          "midtermMatch": "direct",
+          "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
+          "explanation": "이 교재에서 최고사용압력1.5 MPa를 초과하는 강철제 증기보일러는1.5배로 시험합니다. 2.0 × 1.5 = 3.0 MPa입니다. 과거 기출 기준 연습이며 실제 검사에는 적용 기준을 따로 확인합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재502쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 69,
+              "pdfPage": 491,
+              "printedPage": 502
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-69.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2022년2회 69번 · 교재502쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 8,
+          "text": "강철제 증기보일러 수압시험 방법의 틀린 설명",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2022-2",
+          "_originalNumber": 74,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 2회 에너지 교재 복원 74번",
+          "midtermMatch": "direct",
+          "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
+          "explanation": "교재의 검사 대기시간은 규정 수압에 도달한 뒤30분입니다. 따라서10분이라고 한③이 틀립니다. 규정 압력의6% 이상 초과하지 않도록 하는④와 구분하세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재503쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 74,
+              "pdfPage": 492,
+              "printedPage": 503
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-2-74.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2018년 CBT 67번",
+          "midtermRepetitionKind": "variant",
+          "midtermPriorKey": "20180428:67",
+          "midtermPriority": "repeat",
+          "sourcePage": "2022년2회 74번 · 교재503쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 67번(보기·조건 변형)"
+        },
+        {
+          "number": 9,
+          "text": "저압 강철제 보일러의 수압시험 압력",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2022-4",
+          "_originalNumber": 74,
+          "_subject": "에너지설비",
+          "sourceQualification": "2022년 4회 에너지 교재 복원 74번",
+          "midtermMatch": "direct",
+          "teacherHint": "기출·교재의 시험 기준을 연습합니다. 현행 법규를 전수 확인한 자료는 아닙니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」37장: 수압시험 압력 기준. 유지 시간·압력 초과 제한은 교재347쪽 기출 풀이로 대조하며 현행 법규 확인 자료는 아닙니다.",
+          "explanation": "이 기출의 강철제 보일러는 최고사용압력0.43 MPa 이하일 때2배로 수압시험합니다. 계산한 시험압력이0.2 MPa보다 작으면0.2 MPa를 적용하므로③입니다. 압력이 높은 보일러의 기준과 섞지 마세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재518쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 74,
+              "pdfPage": 507,
+              "printedPage": 518
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-4-74.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2017년 CBT 75번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20170923:75",
+          "midtermPriority": "repeat",
+          "sourcePage": "2022년4회 74번 · 교재518쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2017년 CBT 75번"
         }
       ]
     },
@@ -5455,7 +7848,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -5496,12 +7890,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 64,
           "_subject": "에너지설비",
           "sourceQualification": "2019년 2회 에너지관리산업기사 64번",
-          "sourcePage": "2019년 2회 · 원문 64번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2024년1회 62번 · 교재581쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2019년 CBT 64번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 62,
+              "pdfPage": 570,
+              "printedPage": 581
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-62.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2019년 CBT 64번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20190427:64",
+          "midtermPriority": "repeat"
         },
         {
           "number": 3,
@@ -5542,12 +7951,41 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 77,
           "_subject": "에너지설비",
           "sourceQualification": "2014년 2회 에너지관리산업기사 77번",
-          "sourcePage": "2014년 2회 · 원문 77번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2023년4회 40번 · 교재561쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2014년 CBT 77번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 2,
+              "number": 70,
+              "pdfPage": 491,
+              "printedPage": 502
+            },
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 40,
+              "pdfPage": 501,
+              "printedPage": 512
+            },
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 40,
+              "pdfPage": 550,
+              "printedPage": 561
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-4-40.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2014년 CBT 77번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20140525:77",
+          "midtermPriority": "repeat"
         },
         {
           "number": 4,
@@ -5593,7 +8031,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 5,
@@ -5638,7 +8077,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 6,
@@ -5683,7 +8123,118 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 7,
+          "text": "진공환수식 리프트 피팅1단의 최고 흡상높이",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 75,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 75번",
+          "midtermMatch": "direct",
+          "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
+          "explanation": "교재 기준에서 리프트 피팅1단의 최고 흡상높이는1.5 m 이내입니다. 더 높이 올려야 하면 여러 단을 직렬로 설치합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재456쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 75,
+              "pdfPage": 445,
+              "printedPage": 456
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-75.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년1회 75번 · 교재456쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 8,
+          "text": "진공환수식 환수관의 진공도",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 72,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 72번",
+          "midtermMatch": "direct",
+          "teacherHint": "보일러 자체의 형식 분류가 아니라 증기난방에서 응축수를 되돌리는 방법입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류.",
+          "explanation": "교재에서 진공환수관의 진공도는100~250 mmHg로 제시합니다. 이것은 진공의 정도를 나타낸 값이며 절대압력과 같은 뜻으로 읽지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재471쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 72,
+              "pdfPage": 460,
+              "printedPage": 471
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-72.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2021년2회 72번 · 교재471쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -5735,14 +8286,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 69,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 69번",
-          "sourcePage": "2018년 2회 · 원문 69번 · 추가 예상·대응 미확정 · 교재347쪽 대응 확인",
+          "sourcePage": "2025년3회 48번 · 교재638쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2018년 CBT 69번",
           "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 48,
+              "pdfPage": 627,
+              "printedPage": 638
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-48.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 69번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:69",
+          "midtermPriority": "related"
         },
         {
           "number": 2,
@@ -5780,14 +8346,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 61,
           "_subject": "에너지설비",
           "sourceQualification": "2020년 3회 에너지관리산업기사 61번",
-          "sourcePage": "2020년 3회 · 원문 61번 · 추가 예상·대응 미확정",
-          "bookVerified": false,
+          "sourcePage": "2025년2회 74번 · 교재628쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2020년 CBT 61번",
+          "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 2,
+              "number": 74,
+              "pdfPage": 617,
+              "printedPage": 628
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-2-74.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2020년 CBT 61번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20200822:61",
+          "midtermPriority": "related"
         },
         {
           "number": 3,
@@ -5832,7 +8413,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 4,
@@ -5878,7 +8460,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 5,
@@ -5924,7 +8507,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 6,
@@ -5970,7 +8554,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
         },
         {
           "number": 7,
@@ -6008,14 +8593,29 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 65,
           "_subject": "에너지설비",
           "sourceQualification": "2015년 2회 에너지관리산업기사 65번",
-          "sourcePage": "2015년 2회 · 원문 65번 · 추가 예상·대응 미확정",
-          "bookVerified": false,
+          "sourcePage": "2022년4회 48번 · 교재514쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2015년 CBT 65번",
+          "bookVerified": true,
           "midtermMatch": "related",
           "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 48,
+              "pdfPage": 503,
+              "printedPage": 514
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-4-48.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2015년 CBT 65번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20150531:65",
+          "midtermPriority": "related"
         },
         {
           "number": 8,
@@ -6060,7 +8660,228 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 9,
+          "text": "일반 원통보일러 급수의 pH 기준",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 78,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 78번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
+          "explanation": "이 문제의 조건(25℃·최고사용압력1 MPa 이하·연화수 급수)에서는 급수pH7~9를 고릅니다. 관수pH11~11.8과 구분하세요. 교수PPT의 급수 범위와 표기가 달라 수업 기준은 따로 확인해야 합니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재456쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 78,
+              "pdfPage": 445,
+              "printedPage": 456
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-78.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2021년1회 78번 · 교재456쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 10,
+          "text": "슬러지 조정용 청관제가 아닌 약품",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2021-2",
+          "_originalNumber": 66,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 2회 에너지 교재 복원 66번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
+          "explanation": "전분·탄닌·리그닌은 교재의 슬러지 조정제입니다. 보기의 탄산칼슘은 여기에 포함되지 않습니다. 탄산칼슘과 pH 조정에 쓰는 탄산나트륨을 혼동하지 마세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재470쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 2,
+              "number": 66,
+              "pdfPage": 459,
+              "printedPage": 470
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-2-66.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2021년2회 66번 · 교재470쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 11,
+          "text": "내처리 청관제를 사용하는 목적이 아닌 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 4,
+          "_originRoundId": "school-energy-pdf-2023-4",
+          "_originalNumber": 50,
+          "_subject": "에너지설비",
+          "sourceQualification": "2023년 4회 에너지 교재 복원 50번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
+          "explanation": "청관제는 보일러 안에서 스케일·부식·pH 등을 관리합니다. 교재는 용존 고형물·유지분을 제거하는④를 외처리로 구분하므로 내처리 약품의 목적으로 고르지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재563쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 50,
+              "pdfPage": 552,
+              "printedPage": 563
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-4-50.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2023년4회 50번 · 교재563쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
+        },
+        {
+          "number": 12,
+          "text": "청관제 중 슬러지 조정제로 쓰는 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 1,
+          "_originRoundId": "school-energy-pdf-2024-2",
+          "_originalNumber": 58,
+          "_subject": "에너지설비",
+          "sourceQualification": "2024년 2회 에너지 교재 복원 58번",
+          "midtermMatch": "related",
+          "teacherHint": "메모의 pH6.92와 첨가제 이름은 확정하지 않았습니다. 수업PPT는 급수6~9(적정8.5), 관수11~11.8입니다. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 함께 암기하지 말고 수업 기준을 우선 확인하세요. 아래는 관수 약품 분류의 관련 연습입니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다.",
+          "explanation": "전분은 슬러지가 전열면에 달라붙는 것을 줄이는 조정제로 사용합니다. 히드라진은 탈산소제이므로 용도가 다릅니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재595쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 2,
+              "number": 58,
+              "pdfPage": 584,
+              "printedPage": 595
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-2-58.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "related",
+          "sourcePage": "2024년2회 58번 · 교재595쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정"
         }
       ]
     },
@@ -6120,7 +8941,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결.",
           "additionalExplanations": [],
-          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 2,
@@ -6165,7 +8987,66 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationType": "teacher-material-reference",
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "related"
+        },
+        {
+          "number": 3,
+          "text": "가성취화 현상의 특징 설명으로 틀린 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 3,
+          "_originRoundId": "school-energy-pdf-2021-1",
+          "_originalNumber": 77,
+          "_subject": "에너지설비",
+          "sourceQualification": "2021년 1회 에너지 교재 복원 77번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 2-1/2-2 「시공·안전관리」64장: 가성취화 방지제. 교재348쪽의 알칼리·응력·균열 설명과 연결.",
+          "explanation": "가성취화는 진한 알칼리와 응력이 집중되는 부분에서 생기는 균열입니다. 응력이 분산된 곳에서 반드시 생긴다는③이 틀립니다. 수면 아래의 리벳·관 구멍 등 응력 집중 부위를 생각하세요.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재456쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2021,
+              "session": 1,
+              "number": 77,
+              "pdfPage": 445,
+              "printedPage": 456
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2021-1-77.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriorSource": "2018년 CBT 71번",
+          "midtermRepetitionKind": "variant",
+          "midtermPriorKey": "20180428:71",
+          "midtermPriority": "repeat",
+          "sourcePage": "2021년1회 77번 · 교재456쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 71번(보기·조건 변형)"
         }
       ]
     },
@@ -6220,12 +9101,34 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 74,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 74번",
-          "sourcePage": "2018년 2회 · 원문 74번 · 출제 메모 직접 대응 · 교재348쪽 대응 확인",
+          "sourcePage": "2022년4회 49번 · 교재514쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 74번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
           "additionalExplanations": [],
-          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재348쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 4,
+              "number": 57,
+              "pdfPage": 553,
+              "printedPage": 564
+            },
+            {
+              "year": 2022,
+              "session": 4,
+              "number": 49,
+              "pdfPage": 503,
+              "printedPage": 514
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2022-4-49.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 74번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:74",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -6266,12 +9169,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 71,
           "_subject": "에너지설비",
           "sourceQualification": "2015년 4회 에너지관리산업기사 71번",
-          "sourcePage": "2015년 4회 · 원문 71번 · 출제 메모 직접 대응",
-          "bookVerified": false,
+          "sourcePage": "2023년2회 63번 · 교재548쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2015년 CBT 71번",
+          "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2023,
+              "session": 2,
+              "number": 63,
+              "pdfPage": 537,
+              "printedPage": 548
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2023-2-63.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2015년 CBT 71번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20150919:71",
+          "midtermPriority": "repeat"
         },
         {
           "number": 3,
@@ -6317,7 +9235,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         },
         {
           "number": 4,
@@ -6363,7 +9282,118 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
+        },
+        {
+          "number": 5,
+          "text": "오일 연소장치 역화 원인으로 적절하지 않은 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2025-2",
+          "_originalNumber": 52,
+          "_subject": "에너지설비",
+          "sourceQualification": "2025년 2회 에너지 교재 복원 52번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
+          "explanation": "이 교재는1차공기 압력 부족·물이나 협잡물 혼입·프리퍼지 부족을 역화 원인으로 분류합니다. 보기의2차공기 과대한 예열은 이 목록에 해당하지 않습니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재624쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 2,
+              "number": 52,
+              "pdfPage": 613,
+              "printedPage": 624
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-2-52.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2025년2회 52번 · 교재624쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
+        },
+        {
+          "number": 6,
+          "text": "유류 연소장치의 역화 원인과 거리가 먼 것",
+          "html": "",
+          "images": [],
+          "choices": [
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            },
+            {
+              "text": "",
+              "html": "",
+              "images": []
+            }
+          ],
+          "answer": 2,
+          "_originRoundId": "school-energy-pdf-2025-3",
+          "_originalNumber": 60,
+          "_subject": "에너지설비",
+          "sourceQualification": "2025년 3회 에너지 교재 복원 60번",
+          "midtermMatch": "direct",
+          "teacherHint": "수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인.",
+          "explanation": "흡입통풍 부족·착화지연·협잡물 혼입은 이 교재의 역화 원인입니다. 보기의2차공기 예열부족은 이 문제에서 가장 거리가 먼 항목으로 고릅니다.",
+          "explanationHtml": "",
+          "additionalExplanations": [],
+          "explanationType": "teacher-material-reference",
+          "explanationProvenance": "visually-reviewed-textbook-pdf",
+          "explanationBasis": "교재640쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2025,
+              "session": 3,
+              "number": 60,
+              "pdfPage": 629,
+              "printedPage": 640
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2025-3-60.webp",
+          "imageOnly": true,
+          "bookVerified": true,
+          "midtermPriority": "recent",
+          "sourcePage": "2025년3회 60번 · 교재640쪽 대응 확인 · 출제 메모 직접 대응 · 정리본 대응·후기 PDF 확인"
         }
       ]
     },
@@ -6418,12 +9448,27 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "_originalNumber": 70,
           "_subject": "에너지설비",
           "sourceQualification": "2018년 2회 에너지관리산업기사 70번",
-          "sourcePage": "2018년 2회 · 원문 70번 · 출제 메모 직접 대응 · 교재347쪽 대응 확인",
+          "sourcePage": "2024년1회 63번 · 교재581쪽 대응 확인 · 출제 메모 직접 대응 · 구·후기 기출 반복 확인 · 2018년 CBT 70번",
           "bookVerified": true,
           "midtermMatch": "direct",
           "teacherHint": "표시는 가스명·최고사용압력·흐름방향입니다. 고정 간격은 교재309쪽/PPT에13 미만1 m,13~33은2 m,33 이상3 m로 적혀 있습니다. 33의 경계 중복과 mm/A 표기 차이는 교수님 확인 전 정답 문항으로 만들지 않았습니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다.",
           "additionalExplanations": [],
-          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPdfSources": [
+            {
+              "year": 2024,
+              "session": 1,
+              "number": 63,
+              "pdfPage": 570,
+              "printedPage": 581
+            }
+          ],
+          "sourceImage": "assets/energy-midterm/questions/2024-1-63.webp",
+          "imageOnly": true,
+          "midtermPriorSource": "2018년 CBT 70번",
+          "midtermRepetitionKind": "exact",
+          "midtermPriorKey": "20180428:70",
+          "midtermPriority": "repeat"
         },
         {
           "number": 2,
@@ -6469,7 +9514,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermMatch": "direct",
           "teacherHint": "표시는 가스명·최고사용압력·흐름방향입니다. 고정 간격은 교재309쪽/PPT에13 미만1 m,13~33은2 m,33 이상3 m로 적혀 있습니다. 33의 경계 중복과 mm/A 표기 차이는 교수님 확인 전 정답 문항으로 만들지 않았습니다.\n\n수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다.",
           "additionalExplanations": [],
-          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다. 확정 시험문제 예측은 아닙니다."
+          "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」17·36장: 배관 표시와 고정 간격. 33A 경계가 중복되며 교재309쪽은mm로 표기되어 확인이 필요합니다. 확정 시험문제 예측은 아닙니다.",
+          "midtermPriority": "note"
         }
       ]
     }

@@ -55,6 +55,9 @@ export type Question = {
   teacherHint?: string;
   bookVerified?: boolean;
   midtermMatch?: 'direct' | 'related';
+  midtermPriority?: 'repeat' | 'recent' | 'note' | 'related';
+  midtermPriorSource?: string;
+  midtermPdfSources?: Array<{ year: number; session: number; number: number; pdfPage: number; printedPage: number }>;
 };
 
 export type Round = {

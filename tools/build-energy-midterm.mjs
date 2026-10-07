@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { energyMidtermAdditions } from './energy-midterm-additions.mjs';
 import { energyMidtermBookChecks, energyMidtermDirectChecks, energyMidtermLectureReferences } from './energy-midterm-references.mjs';
+import { reviewedPdfQuestions } from './energy-midterm-pdf-reviewed.mjs';
+import { selections as pdfSelections } from './energy-midterm-pdf-selection.mjs';
 
 // Manual selections from the two lecture-note lists, checked against the
 // supplied professor slides/textbook. This is not an official exam paper.
@@ -166,6 +168,65 @@ const rounds = topics.map(([title, note, selections], index) => ({
 }));
 const catalog = { key: 'energy-midterm', name: '에너지설비 중간고사', shortName: '에너지 중간고사', rounds };
 if (consumedDirectChecks.size !== directChecks.size) throw new Error('직접 대응 목록에 선별되지 않은 문항이 있습니다.');
+// Only the human-reviewed subset is published; never copy OCR review rows.
+const pdfSelectionMap = new Map(pdfSelections.map(s => [s.key, s]));
+const existingQuestions = new Map(rounds.flatMap(r => r.questions).map(q => [q._originRoundId.replace('school-energy-energy-industrial-', '') + ':' + q._originalNumber, q]));
+const pdfDuplicateRepresentatives = new Map();
+const pdfLedger = [];
+for (const [key, text, answer, explanation, prior, matchKind] of reviewedPdfQuestions) {
+  const sel = pdfSelectionMap.get(key);
+  if (!sel || ![1,2,3,4].includes(answer) || explanation.length < 35) throw new Error(`PDF 검토 항목 오류: ${key}`);
+  const asset = `assets/energy-midterm/questions/${key}.webp`;
+  if (!fs.existsSync(asset)) throw new Error(`PDF 업스케일 이미지 없음: ${key}`);
+  let priorQuestion;
+  if (prior) {
+    const [date, number] = prior.split(':');
+    priorQuestion = original.rounds.find(r => r.date === date)?.questions.find(q => q.number === Number(number));
+    if (!priorQuestion) throw new Error(`반복 근거 원문 없음: ${key}/${prior}`);
+  }
+  const exactKey = matchKind === 'exact' ? prior : undefined;
+  let q = exactKey && (existingQuestions.get(exactKey) || pdfDuplicateRepresentatives.get(exactKey));
+  let disposition = q ? 'merged-existing-or-repeat' : 'new-variant';
+  if (q && q.answer !== answer) throw new Error(`동일보기 정답 불일치: ${key}`);
+  if (!q) {
+    const r = rounds[sel.topic - 1];
+    const midtermMatch = [5,13,17].includes(sel.topic) || key === '2021-1-55' ? 'related' : 'direct';
+    q = {
+      number: r.questions.length + 1, text, html: '', images: [],
+      // Answers are selected by the four buttons below the original image.
+      // No unverified OCR choice strings or guessed image hitboxes.
+      choices: Array.from({length:4}, () => ({text:'',html:'',images:[]})), answer,
+      _originRoundId: `school-energy-pdf-${sel.year}-${sel.session}`,
+      _originalNumber: sel.number, _subject:'에너지설비',
+      sourceQualification:`${sel.year}년 ${sel.session}회 에너지 교재 복원 ${sel.number}번`,
+      midtermMatch, teacherHint:[topics[sel.topic-1][1], energyMidtermLectureReferences[sel.topic-1]].filter(Boolean).join('\n\n'),
+      explanation, explanationHtml:'', additionalExplanations:[],
+      explanationType:'teacher-material-reference', explanationProvenance:'visually-reviewed-textbook-pdf',
+      explanationBasis:`교재${sel.page + 11}쪽의 원문·보기와 교재 정답표를 대조한 연습 해설입니다. 현행 법규 전수 검증이나 확정 시험문제 예측은 아닙니다.`,
+    };
+    r.questions.push(q);
+    used.add(`${q._originRoundId}:${q._originalNumber}`);
+    if (exactKey) pdfDuplicateRepresentatives.set(exactKey, q);
+  }
+  q.midtermPdfSources ||= [];
+  q.midtermPdfSources.push({year:sel.year,session:sel.session,number:sel.number,pdfPage:sel.page,printedPage:sel.page+11});
+  q.sourceImage = asset; q.imageOnly = true; q.bookVerified = true;
+  if (prior) {
+    q.midtermPriorSource = `${prior.slice(0,4)}년 CBT ${prior.split(':')[1]}번`;
+    q.midtermRepetitionKind = matchKind;
+    q.midtermPriorKey = prior;
+  }
+  q.midtermPriority = q.midtermMatch === 'related' ? 'related' : prior ? 'repeat' : 'recent';
+  const label=q.midtermPriority === 'repeat' ? '구·후기 기출 반복 확인' : q.midtermPriority === 'recent' ? '정리본 대응·후기 PDF 확인' : '추가 예상·질문 취지 미확정';
+  q.sourcePage=`${sel.year}년${sel.session}회 ${sel.number}번 · 교재${sel.page+11}쪽 대응 확인 · ${q.midtermMatch==='direct'?'출제 메모 직접 대응':'추가 예상'} · ${label}`;
+  if (q.midtermPriorSource) q.sourcePage += ` · ${q.midtermPriorSource}${matchKind==='reordered'?'(보기 순서 다름)':matchKind==='variant'?'(보기·조건 변형)':''}`;
+  pdfLedger.push({key,topic:sel.topic,pdfPage:sel.page,printedPage:sel.page+11,answer,prior,matchKind,disposition,questionId:`${q._originRoundId}:${q._originalNumber}`,asset});
+}
+// Keep the selection ledger in sync with the actual unique question bank.
+const finalQuestions = rounds.flatMap(r=>r.questions);
+for (const q of finalQuestions) q.midtermPriority ||= q.midtermMatch === 'direct' ? 'note' : 'related';
+const priorityCounts = Object.fromEntries(['repeat','recent','note','related'].map(k=>[k,finalQuestions.filter(q=>q.midtermPriority===k).length]));
+const pendingPdf = pdfSelections.filter(s => !reviewedPdfQuestions.some(r=>r[0]===s.key));
 fs.writeFileSync('data/energy-midterm.js', `// Generated by tools/build-energy-midterm.mjs. Source bank is unchanged.\nwindow.CBT_DATA_ENERGY_MIDTERM = ${JSON.stringify(catalog, null, 2)};\n`);
-fs.writeFileSync('data/energy-midterm-selection.json', JSON.stringify({ date: '2026-10-07', scope: 'practice-not-official-exam', actualExamSize: 20, topics: topics.length, questions: used.size, directQuestions: rows.filter(row => row.midtermMatch === 'direct').length, relatedQuestions: rows.filter(row => row.midtermMatch === 'related').length, bookVerifiedQuestions: rows.filter(row => row.bookCheck).length, skippedDuplicates, selections: rows }, null, 2) + '\n');
-console.log(`에너지설비 중간고사: ${topics.length}주제 / ${used.size}고유 기출`);
+fs.writeFileSync('data/energy-midterm-selection.json', JSON.stringify({ date: '2026-10-07', scope: 'practice-not-official-exam', actualExamSize: 20, topics: topics.length, questions: finalQuestions.length, directQuestions: finalQuestions.filter(q=>q.midtermMatch==='direct').length, relatedQuestions: finalQuestions.filter(q=>q.midtermMatch==='related').length, bookVerifiedQuestions: finalQuestions.filter(q=>q.bookVerified).length, pdfImageQuestions:finalQuestions.filter(q=>q.sourceImage).length, pdfOccurrences:pdfLedger.length, priorityCounts, pendingPdf, skippedDuplicates, selections: rows, pdfSelections:pdfLedger }, null, 2) + '\n');
+console.log(`에너지설비 중간고사: ${topics.length}주제 / ${finalQuestions.length}고유 기출 / PDF원문${finalQuestions.filter(q=>q.sourceImage).length} / 후기출처${pdfLedger.length} / 우선분류${JSON.stringify(priorityCounts)}`);

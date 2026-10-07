@@ -4,16 +4,18 @@ import vm from 'node:vm';
 import type { Catalog } from '../src/cbt/types';
 import { energyMidtermPractice } from '../src/cbt/energyMidtermPractice';
 
-test('20주제136문항 원문 정답·보기 보존과 전용 ID', () => {
+test('20주제179문항과 기존136문항 원문 정답·보기 보존 및 전용 ID', () => {
   const context = { window: {} as Record<string, Catalog> };
   for (const key of ['energy', 'energy-midterm']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`, 'utf8'), context);
   const bank = context.window.CBT_DATA_ENERGY_MIDTERM;
   const source = context.window.CBT_DATA_ENERGY;
   expect(bank.rounds).toHaveLength(20);
   const questions = bank.rounds.flatMap(r => r.questions);
-  expect(questions).toHaveLength(136);
-  expect(new Set(questions.map(q => `${q._originRoundId}:${q._originalNumber}`)).size).toBe(136);
-  for (const q of questions) {
+  expect(questions).toHaveLength(179);
+  expect(new Set(questions.map(q => `${q._originRoundId}:${q._originalNumber}`)).size).toBe(179);
+  const legacy = questions.filter(q => q._originRoundId?.startsWith('school-energy-energy-industrial-'));
+  expect(legacy).toHaveLength(136);
+  for (const q of legacy) {
     const sourceRound = source.rounds.find(r => `school-energy-${r.id}` === q._originRoundId)!;
     const original = sourceRound.questions.find(row => row.number === q._originalNumber)!;
     expect(q.answer).toBe(original.answer);
@@ -27,12 +29,12 @@ test('20주제136문항 원문 정답·보기 보존과 전용 ID', () => {
     expect(q.choices.length).toBe(4);
   }
   expect(bank.rounds[16].questions[0].teacherHint).toContain('확정하지 않았습니다');
-  expect(questions.filter(q => q.bookVerified)).toHaveLength(27);
+  expect(questions.filter(q => q.bookVerified)).toHaveLength(91);
   expect(bank.rounds.every(r => r.questions.some(q => q.bookVerified))).toBe(true);
   expect(bank.rounds[16].questions[0].teacherHint).toContain('교재260쪽');
   expect(bank.rounds[14].questions[0].explanation).toContain('6%');
-  expect(questions.filter(q => q.midtermMatch === 'direct')).toHaveLength(83);
-  expect(questions.filter(q => q.midtermMatch === 'related')).toHaveLength(53);
+  expect(questions.filter(q => q.midtermMatch === 'direct')).toHaveLength(114);
+  expect(questions.filter(q => q.midtermMatch === 'related')).toHaveLength(65);
   expect(bank.rounds[16].questions[0].midtermMatch).toBe('related');
   for (const q of questions) {
     if (q.bookVerified) expect(q.sourcePage).toContain('대응 확인');
@@ -73,12 +75,15 @@ async function openRounds(page: import('@playwright/test').Page) {
 test('직접 대응과 추가 예상은 별도 모음으로 학습한다', async ({ page }) => {
   await page.goto('./?safe=1');
   await openRounds(page);
-  await page.getByRole('button', { name: '직접 대응83문제 학습', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(83);
+  await page.getByRole('button', { name: '직접 대응114문제 학습', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(114);
   await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('출제 메모 직접 대응');
   await page.locator('.session-topbar .back-button').click();
-  await page.getByRole('button', { name: '추가 예상53문제 학습', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(53);
+  // Returning recreates the rounds panel; secondary controls start collapsed.
+  if (await page.locator('.energy-midterm-other-actions').getAttribute('open') === null)
+    await page.locator('.energy-midterm-other-actions > summary').click();
+  await page.getByRole('button', { name: '추가 예상65문제 학습', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(65);
   await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('추가 예상');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
@@ -88,7 +93,7 @@ test('주제 목록·학습·오답 ID·재시작·라이트/다크 가로넘침
   await openRounds(page);
   await expect(page.locator('.round-grid > article')).toHaveCount(20);
   await expect(page.locator('.round-card h2').first()).toHaveText('01. 집진장치');
-  await page.getByRole('button', { name: '전체136문제 학습', exact: true }).click();
+  await page.getByRole('button', { name: '전체179문제 학습', exact: true }).click();
   const first = page.locator('.question-card').first();
   await expect(first).toBeVisible();
   await first.locator('.choice-button').nth(0).click();
@@ -128,12 +133,12 @@ test('랜덤20문제 CBT 30분·제출과 학교 연습 점수', async ({ page }
   await expect(page.locator('.result-backdrop')).toContainText('중간고사 연습 점수');
 });
 
-test('교재 대응27문제만 따로 학습하며 출처를 표시한다', async ({ page }) => {
+test('교재 대응91문제만 따로 학습하며 출처를 표시한다', async ({ page }) => {
   await page.goto('./?safe=1');
   await openRounds(page);
-  await expect(page.locator('.energy-midterm-intro')).toContainText('27문제');
-  await page.getByRole('button', { name: '교재 대응27문제 학습', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(27);
+  await expect(page.locator('.energy-midterm-intro')).toContainText('91문제');
+  await page.getByRole('button', { name: '교재 대응91문제 학습', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(91);
   const first = page.locator('.question-card').first();
   await expect(first.locator('.source-chip')).toContainText('교재336쪽 대응 확인');
   await first.locator('.choice-button').nth(3).click();
@@ -141,7 +146,7 @@ test('교재 대응27문제만 따로 학습하며 출처를 표시한다', asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
-test('전체136문제·주제 안내·학교 모음 전환', async ({ page }, info) => {
+test('전체179문제·주제 안내·학교 모음 전환', async ({ page }, info) => {
   if (info.project.name === 'desktop') await page.setViewportSize({ width: 960, height: 900 });
   await page.goto('./?safe=1');
   await openRounds(page);
@@ -151,8 +156,8 @@ test('전체136문제·주제 안내·학교 모음 전환', async ({ page }, in
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: `work/energy-midterm-${info.project.name}-topics.png`, fullPage: false });
   await expect(page.locator('.energy-midterm-intro')).toContainText('20문제는 실제 시험 문항 수');
-  await page.getByRole('button', { name: '전체136문제 학습', exact: true }).click();
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(136);
+  await page.getByRole('button', { name: '전체179문제 학습', exact: true }).click();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(179);
   await page.locator('.session-topbar .back-button').click();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   await expect(page.locator('.cooling-midterm')).toBeVisible({ timeout: 30000 });
