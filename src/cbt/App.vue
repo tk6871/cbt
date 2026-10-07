@@ -477,10 +477,10 @@ const energyMidtermRelatedCount = computed(() => energyMidtermQuestionCount.valu
 const energyMidtermMix = ref(false); // Separate is the default; combining requires an explicit choice.
 const energyMidtermPdfCount = computed(() => visibleRounds.value.reduce((sum, r) => sum + r.questions.filter(q => q.midtermPdfSources?.length).length, 0));
 const energyMidtermPriorityGroups = computed(() => [
-  {key:'repeat' as const,title:'구·후기 반복 확인',note:'정리본 대응 + 2020년 이전·이후 반복 근거가 있는 우선 예상'},
-  {key:'recent' as const,title:'정리본 대응 후기 문제',note:'정리본 대응 + 2021~2025년 PDF에서 확인한 우선 예상'},
-  {key:'note' as const,title:'그 외 메모 대응 기출',note:'메모 질문 취지에 맞지만 후기 PDF 대응은 아직 확인하지 않은 기출'},
-  {key:'related' as const,title:'추가 예상',note:'주제는 관련되지만 세부 질문 취지가 달라질 수 있는 넓힌 연습'},
+  {key:'repeat' as const,title:'교재·CBT 반복 예상',note:'시험범위 · 2020년까지 기출 ↔ 교재2021~2025년 반복·변형'},
+  {key:'recent' as const,title:'교재2021~2025년 예상',note:'시험범위 · 교재의 후기 문제 중 직접 맞는 질문'},
+  {key:'note' as const,title:'시험범위에 맞는 기출',note:'시험범위 · 앞의 두 묶음에 포함되지 않은 기출'},
+  {key:'related' as const,title:'주제 관련 추가 예상',note:'범위 보강 · 같은 주제의 다른 질문과 불명확한 내용'},
 ].map(g=>({...g,count:visibleRounds.value.reduce((sum,r)=>sum+r.questions.filter(q=>q.midtermPriority===g.key).length,0)})));
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
@@ -2674,7 +2674,10 @@ function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, mat
   const rounds = visibleRounds.value;
   if (selectedKey.value !== 'energy-midterm' || !rounds.length) return;
   const pools = rounds.map(round => roundToItems(round));
-  const items = priority ? pools.flat().filter(item => priority === 'pdf' ? item.question.midtermPdfSources?.length : item.question.midtermPriority === priority) : match ? pools.flat().filter(item => item.question.midtermMatch === match) : bookOnly ? pools.flat().filter(item => item.question.bookVerified) : full ? pools.flat() : energyMidtermPractice(pools);
+  let items: QuestionItem[];
+  try {
+    items = priority ? pools.flat().filter(item => priority === 'pdf' ? item.question.midtermPdfSources?.length : item.question.midtermPriority === priority) : match ? pools.flat().filter(item => item.question.midtermMatch === match) : bookOnly ? pools.flat().filter(item => item.question.bookVerified) : full ? pools.flat() : energyMidtermPractice(pools, Math.random, { isCalculation: item => !!item.question.midtermCalculation, calculationTopics: [6, 11] });
+  } catch { showToast('시험 구성에 필요한 문제를 찾지 못했습니다. 자료를 다시 불러와 주세요.'); return; }
   if (!items.length) return;
   const priorityLabel = priority === 'pdf' ? '후기 PDF 원문' : energyMidtermPriorityGroups.value.find(g=>g.key===priority)?.title;
   void beginSession(mode, `에너지설비 중간고사 · ${priorityLabel || (match === 'direct' ? '출제 메모 직접 대응' : match === 'related' ? '추가 예상·대응 미확정' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습')}`, items);
@@ -4402,7 +4405,7 @@ onBeforeUnmount(() => {
       <nav>
         <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
         <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차별 문제</button>
-        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="selectQualification(SCHOOL_EXAM_CATALOG_KEY)"><span data-theme-symbol="✎"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(6)" alt=""><template v-else>✎</template></span>학교 시험 준비</button>
+        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="openView('school')"><span data-theme-symbol="✎"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" :src="simpsonsFunnyImageAt(6)" alt=""><template v-else>✎</template></span>학교 시험 준비</button>
         <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exercise" :src="simpsonsFunnyImageAt(8)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-history-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>◴</template></span>학습 내역</button>
         <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
         <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
@@ -4769,7 +4772,7 @@ onBeforeUnmount(() => {
               <button type="button" @click="startEnergyMidterm('learn')">섞어서 랜덤20문제 학습</button>
               <button type="button" @click="startEnergyMidterm('exam')">섞어서 랜덤20문제 CBT</button>
             </div>
-            <p class="energy-midterm-evidence-note">반복 확인은 원문 질문·보기·정답을 비교한 근거입니다. 보기 순서나 조건이 달라진 변형은 별도 문제로 남기며, 출제 확률이 확정되었다는 뜻은 아닙니다. 후기 PDF는{{ energyMidtermPdfCount }}개의 중복 제외 원문 문제로 연결했습니다.</p>
+            <p class="energy-midterm-evidence-note">랜덤20문제는 이론18 + 계산2문제로 연습합니다. 계산은6번 상당증발량·11번 스케줄번호에서 각1개를 고릅니다. 전체·주제별 학습에는 다른 계산 유형도 남겨 둡니다. 반복·예상 분류는 출제 보장이 아니며 PDF 원문은{{ energyMidtermPdfCount }}문제입니다.</p>
             <details class="energy-midterm-other-actions"><summary>직접 대응 전체·교재·PDF·랜덤 연습</summary>
             <div class="energy-midterm-actions energy-midterm-confidence">
               <button type="button" @click="startEnergyMidterm('learn', true, false, 'direct')">직접 대응{{ energyMidtermDirectCount }}문제 학습</button>
@@ -4798,7 +4801,7 @@ onBeforeUnmount(() => {
               <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
               <h2>{{ round.title }}</h2>
               <p>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
-              <small v-if="round.kind === 'school-midterm'">직접 대응{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 추가 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}</small>
+              <small v-if="round.kind === 'school-midterm'">시험범위{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 관련 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}<template v-if="['school-energy-topic-6','school-energy-topic-11'].includes(round.id)"> · 계산 출제 예상</template></small>
               <div class="round-subjects"><span v-for="subject in round.subjects" :key="subject">{{ subject }}</span></div>
               <details v-if="round.kind === 'school-midterm' && round.questions[0]?.teacherHint" class="energy-topic-note"><summary>자료 대조 안내</summary><p>{{ round.questions[0].teacherHint }}</p></details>
               <div v-if="roundAnswered(round)" class="round-progress"><span><i :style="{ width: `${roundProgress(round)}%` }" /></span></div>
@@ -4888,7 +4891,7 @@ onBeforeUnmount(() => {
             <section v-if="!isJewelry" class="search-school-target" aria-label="검색 문제를 담을 시험지">
               <label>문제를 담을 학교 시험지<select v-model="searchSetId"><option value="">새 시험지</option><option v-for="set in schoolExamData.questionSets || []" :key="set.id" :value="set.id">{{ set.title }} · {{ set.itemIds.length }}문제</option></select></label>
               <label v-if="!searchSetId">시험지 이름<input v-model="newSearchSetTitle" aria-label="새 학교 시험지 이름"></label>
-              <button type="button" @click="selectQualification(SCHOOL_EXAM_CATALOG_KEY)">학교 시험 준비로</button>
+              <button type="button" @click="openView('school')">학교 시험 준비로</button>
             </section>
             <button
               type="button"
@@ -5444,7 +5447,7 @@ onBeforeUnmount(() => {
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
-            <p>v5.8 에너지설비 중간고사: 전체179문제 중2021~2025년 PDF 원문73문제를 연결했습니다. 보류했던14개 출처도 경계를 확인해 추가했습니다. Real-ESRGAN 타일256의4배 결과를2배로 줄이고 다크·라이트/원본 보기 설정을 사용합니다. 구·후기 반복·정리본 대응 후기·그 외 메모·추가 예상으로 따로 풀기가 기본이며 함께 풀기로 전체 또는 랜덤20문제 연습도 가능합니다. OCR전사문을 문제 대신 보여주지 않고 기존 학교 문항ID와 일반 기출 기록은 유지합니다.</p>
+            <p>v5.8.1 에너지설비 중간고사: 교재·CBT 반복 예상/교재2021~2025년 예상/시험범위 기출/관련 예상으로 고릅니다. 랜덤20은 상당증발량·스케줄번호 계산 각1개와 다른18주제 이론으로 연습합니다. 학교 시험 준비 메뉴 이동 시 종목을 유지하며, 전체179문제와 원문73문제·기존 기록은 그대로입니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
@@ -5902,6 +5905,12 @@ onBeforeUnmount(() => {
 
     <main class="session-main">
       <section class="question-area">
+        <details v-if="selectedKey === 'energy-midterm'" class="midterm-question-map">
+          <summary>문제 번호 목록 · 계산{{ session.items.filter(item => item.question.midtermCalculation).length }}문제</summary>
+          <nav aria-label="중간고사 문제 번호">
+            <button v-for="(item,index) in session.items" :key="item.id" type="button" :class="{ active:Math.floor(index/session.pageSize)===session.page }" :aria-label="`${index+1}번${item.question.midtermCalculation?' 계산 문제':''}`" @click="goToQuestion(index)"><strong>{{ index+1 }}</strong><small v-if="item.question.midtermCalculation" class="midterm-calculation-badge">계산</small></button>
+          </nav>
+        </details>
         <Transition :name="questionTransitionName" mode="out-in">
           <div :key="`${session.page}-${session.pageSize}`" class="question-columns">
             <div v-for="(column, columnIndex) in currentItemColumns" :key="columnIndex" class="question-column">
@@ -5973,7 +5982,7 @@ onBeforeUnmount(() => {
             :class="{ current: Math.floor(index / session.pageSize) === session.page, kept: session.kept.includes(item.id) }"
             @click="goToQuestion(index)"
           >
-            <strong>{{ index + 1 }}.<i v-if="session.kept.includes(item.id)">K</i></strong>
+            <strong>{{ index + 1 }}.<i v-if="session.kept.includes(item.id)">K</i><small v-if="item.question.midtermCalculation" class="midterm-calculation-badge">계산</small></strong>
             <span
               v-for="choice in 4"
               :key="choice"

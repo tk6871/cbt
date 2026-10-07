@@ -155,7 +155,7 @@ const rounds = topics.map(([title, note, selections], index) => ({
       // Stable, school-only identity shared by topic drills and 20-question tests.
       _originRoundId: `school-energy-${round.id}`, _originalNumber: number,
       _subject: '에너지설비', sourceQualification: `${round.year}년 ${round.session} 에너지관리산업기사 ${number}번`,
-      sourcePage: `${round.year}년 ${round.session} · 원문 ${number}번 · ${directTopic ? '출제 메모 직접 대응' : '추가 예상·대응 미확정'}${bookCheck ? ` · 교재${bookCheck.printedPage}쪽 대응 확인` : ''}`,
+      sourcePage: `${round.year}년 ${round.session} · 원문 ${number}번 · ${directTopic ? '시험범위' : '주제 관련 추가 예상'}${bookCheck ? ` · 교재${bookCheck.printedPage}쪽 대응 확인` : ''}`,
       bookVerified: Boolean(bookCheck),
       midtermMatch,
       teacherHint: [note, lectureReference].filter(Boolean).join('\n\n'),
@@ -217,13 +217,27 @@ for (const [key, text, answer, explanation, prior, matchKind] of reviewedPdfQues
     q.midtermPriorKey = prior;
   }
   q.midtermPriority = q.midtermMatch === 'related' ? 'related' : prior ? 'repeat' : 'recent';
-  const label=q.midtermPriority === 'repeat' ? '구·후기 기출 반복 확인' : q.midtermPriority === 'recent' ? '정리본 대응·후기 PDF 확인' : '추가 예상·질문 취지 미확정';
-  q.sourcePage=`${sel.year}년${sel.session}회 ${sel.number}번 · 교재${sel.page+11}쪽 대응 확인 · ${q.midtermMatch==='direct'?'출제 메모 직접 대응':'추가 예상'} · ${label}`;
+  const label=q.midtermPriority === 'repeat' ? '교재·CBT 반복 예상' : q.midtermPriority === 'recent' ? '교재2021~2025년 예상' : '추가 예상·질문 취지 미확정';
+  q.sourcePage=`${sel.year}년${sel.session}회 ${sel.number}번 · 교재${sel.page+11}쪽 대응 확인 · ${q.midtermMatch==='direct'?'시험범위':'추가 예상'} · ${label}`;
   if (q.midtermPriorSource) q.sourcePage += ` · ${q.midtermPriorSource}${matchKind==='reordered'?'(보기 순서 다름)':matchKind==='variant'?'(보기·조건 변형)':''}`;
   pdfLedger.push({key,topic:sel.topic,pdfPage:sel.page,printedPage:sel.page+11,answer,prior,matchKind,disposition,questionId:`${q._originRoundId}:${q._originalNumber}`,asset});
 }
 // Keep the selection ledger in sync with the actual unique question bank.
 const finalQuestions = rounds.flatMap(r=>r.questions);
+// Read and classified numerical questions; never guess from digits/OCR alone.
+// Other numerical types remain available in full/topic practice, but the mock
+// takes calculations only from the two topics specified by the user (6 and 11).
+const calculationIds = new Set([
+  '20180428:5','20170507:17','20020310:39','20020908:30','20020908:39',
+  '20030316:38','20040905:32','20120304:27','20130310:34','20170305:6',
+  '20180428:57','20190427:25','20160306:23','20160508:26','20160508:51','20180428:53',
+]);
+const calculationPdfIds = new Set(['2022-1:2','2021-1:10','2021-2:62','2021-1:55','2022-1:43','2022-2:69']);
+for (const q of finalQuestions) {
+  const legacyId=q._originRoundId.replace('school-energy-energy-industrial-','')+':'+q._originalNumber;
+  const pdfId=q._originRoundId.replace('school-energy-pdf-','')+':'+q._originalNumber;
+  q.midtermCalculation=calculationIds.has(legacyId)||calculationPdfIds.has(pdfId);
+}
 for (const q of finalQuestions) q.midtermPriority ||= q.midtermMatch === 'direct' ? 'note' : 'related';
 const priorityCounts = Object.fromEntries(['repeat','recent','note','related'].map(k=>[k,finalQuestions.filter(q=>q.midtermPriority===k).length]));
 const pendingPdf = pdfSelections.filter(s => !reviewedPdfQuestions.some(r=>r[0]===s.key));

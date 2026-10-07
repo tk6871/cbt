@@ -85,7 +85,7 @@ test('분리 기본·통합 전환과 PDF 원문 다크/라이트·답안 복원
   await intro.getByRole('button',{name:'함께 풀기',exact:true}).click();
   await expect(intro.getByRole('button',{name:'전체179문제 함께 학습',exact:true})).toBeVisible();
   await intro.getByRole('button',{name:'따로 풀기 · 기본',exact:true}).click();
-  await intro.getByRole('button',{name:'구·후기 반복 확인 학습',exact:true}).click();
+  await intro.getByRole('button',{name:'교재·CBT 반복 예상 학습',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(35);
   const card=page.locator('.question-card').first();const img=card.locator('.source-question-image');
   await expect(img).toBeVisible();
