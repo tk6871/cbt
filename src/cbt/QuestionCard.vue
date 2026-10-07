@@ -476,7 +476,7 @@ onBeforeUnmount(() => {
         <strong>{{ displayNumber }}번</strong>
       </div>
       <span v-else class="question-head-spacer" aria-hidden="true"></span>
-      <span v-if="displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
+      <span v-if="item.round.kind !== 'school-midterm' && displayNumber && displayNumber !== item.question.number" class="source-chip">원문 {{ item.question.number }}번</span>
       <span v-if="!subjectStart" class="source-chip subject-source-chip">{{ item.subject }}</span>
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="fieldReportQuestion" class="source-chip field-report-source-chip">비공식 제보 재구성</span>
@@ -485,6 +485,7 @@ onBeforeUnmount(() => {
       <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
       </span>
+      <span v-if="item.round.kind === 'school-midterm'" class="source-chip">{{ item.question.sourcePage }}</span>
       <button v-if="mode === 'learn'" type="button" class="ai-question-button" @click="$emit('askAi')">✦ AI 질문</button>
       <button
         type="button"

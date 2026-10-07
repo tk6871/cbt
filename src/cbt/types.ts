@@ -53,6 +53,8 @@ export type Question = {
   sourcePage?: string;
   visualSource?: string;
   teacherHint?: string;
+  bookVerified?: boolean;
+  midtermMatch?: 'direct' | 'related';
 };
 
 export type Round = {
@@ -140,6 +142,7 @@ declare global {
     CBT_DATA_HANSOL_HVAC?: Catalog;
     CBT_DATA_SAFETY?: Catalog;
     CBT_DATA_ENERGY?: Catalog;
+    CBT_DATA_ENERGY_MIDTERM?: Catalog;
     CBT_DATA_ENERGY_ENGINEER?: Catalog;
     CBT_DATA_MAINTENANCE?: Catalog;
     CBT_DATA_ELECTRIC_CRAFTSMAN?: Catalog;

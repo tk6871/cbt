@@ -5,7 +5,7 @@ import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 
 const primaryKeys = [
-  'hvac', 'hvac-hansol', 'safety', 'energy', 'maintenance',
+  'hvac', 'hvac-hansol', 'safety', 'energy', 'energy-midterm', 'maintenance',
   'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
   'information-engineer', 'forklift-craftsman',
 ];
@@ -58,7 +58,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   if (pending) return pending;
   const promise = new Promise<Catalog>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${key}.js?v=550`, document.baseURI).href;
+    script.src = new URL(`data/${key}.js?v=570`, document.baseURI).href;
     script.onload = () => {
       const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
       if (loaded) resolve(loaded);
@@ -81,6 +81,7 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_HANSOL_HVAC,
     window.CBT_DATA_SAFETY,
     window.CBT_DATA_ENERGY,
+    window.CBT_DATA_ENERGY_MIDTERM,
     window.CBT_DATA_MAINTENANCE,
     window.CBT_DATA_ELECTRIC_CRAFTSMAN,
     window.CBT_DATA_GAS_CRAFTSMAN,

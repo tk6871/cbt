@@ -6,6 +6,7 @@ export function explanationSource(question: Question): { label: string; detail: 
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';
   if (!explanation.trim()) return { label: '해설 미등록', detail: '이 문제에는 상세 해설이 등록되어 있지 않습니다.' };
+  if (question.explanationType === 'teacher-material-reference') return { label: '자료 기반 학습 해설', detail: question.explanationBasis || '제공된 수업 자료와 기출을 대조한 학습용 설명이며 공식 해설은 아닙니다.' };
   if (question.explanationType === 'ai-reference') return { label: 'AI 보강 해설', detail: '학습용으로 작성한 설명입니다. 공식 해설·공식 채점 기준이 아닙니다.' };
   if (/authored|^manual|concise-answer-guide/.test(provenance)) return { label: '학습용 작성 해설', detail: '기존 문제를 바탕으로 작성·보강한 설명입니다. 공식 해설이 아닙니다.' };
   if (/cross-catalog:|^hvac-\d+:|^matched$/.test(provenance)) return { label: '기존 문항 연결 해설', detail: `연결 기록: ${provenance}${question.explanationMatchScore != null ? ` · 매칭값 ${question.explanationMatchScore}` : ''}. 문제 조건·보기 변경 여부를 함께 확인하세요.` };
