@@ -41,15 +41,20 @@ def main():
             with log.open('w') as handle:
                 formats = [args.format, '136'] if args.format == '137' else [args.format]
                 for fmt in formats:
-                    proc = subprocess.run([sys.executable, '-m', 'yt_dlp', '--quiet', '--no-warnings',
-                        '--js-runtimes', f'node:{args.node}', '-f', fmt,
-                        '--download-sections', f'*{start}-{end}', '-o', str(clip), source['url']],
-                        stdout=handle, stderr=handle, timeout=180)
+                    try:
+                        proc = subprocess.run([sys.executable, '-m', 'yt_dlp', '--quiet', '--no-warnings',
+                            '--js-runtimes', f'node:{args.node}', '-f', fmt,
+                            '--download-sections', f'*{start}-{end}', '-o', str(clip), source['url']],
+                            stdout=handle, stderr=handle, timeout=180)
+                    except subprocess.TimeoutExpired:
+                        record['status'] = 'extract-timeout'
+                        proc = subprocess.CompletedProcess([], 1)
                     if proc.returncode == 0 and clip.exists():
                         record['format'] = fmt
                         break
             if proc.returncode or not clip.exists():
-                record['status']='extract-failed'; results.append(record)
+                record.setdefault('status', 'extract-failed'); results.append(record)
+                (args.work_dir/'status.json').write_text(json.dumps(dict(source=source['url'],results=results),ensure_ascii=False,indent=2)+'\n')
                 print(f'{stem}: extract-failed (not applied)', flush=True)
                 continue
         try:

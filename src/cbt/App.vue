@@ -1266,7 +1266,9 @@ function openPracticalMaterial(filter: Extract<PracticalPromptFilter, 'provided'
   scrollPracticalRoomStart();
 }
 
-function practicalListNumber(index: number): string {
+function practicalListNumber(index: number, prompt?: PracticalPrompt): string {
+  if (prompt?.numberLabel) return '+';
+  if (prompt?.group === 'restored' && prompt.number) return String(prompt.number).padStart(2, '0');
   const number = ((practicalPage.value - 1) * practicalPageSize.value) + index + 1;
   return String(number).padStart(2, '0');
 }
@@ -1279,10 +1281,10 @@ function changePracticalPage(nextPage: number): void {
 }
 
 function jumpPracticalIndex(index: number): void {
-  if (!practicalContinuous.value) { changePracticalPage(Math.floor(index / practicalPageSize.value) + 1); return; }
-  practicalContinuousLimit.value = Math.max(practicalContinuousLimit.value, index + 1);
+  if (!practicalContinuous.value) changePracticalPage(Math.floor(index / practicalPageSize.value) + 1);
+  else practicalContinuousLimit.value = Math.max(practicalContinuousLimit.value, index + 1);
   practicalNavigatorOpen.value = false;
-  void nextTick(() => document.querySelector(`[data-practical-index="${index}"]`)?.scrollIntoView({ block: 'start' }));
+  void nextTick(() => document.querySelector(`[data-practical-index="${index}"]`)?.scrollIntoView({ block: 'start', behavior: 'instant' }));
 }
 
 function practicalHasAnswer(id: string): boolean {
@@ -5078,20 +5080,21 @@ onBeforeUnmount(() => {
               <button type="button" @click="jumpPracticalUnanswered">미작성 이동</button>
             </div>
             <nav v-if="practicalNavigatorOpen" class="practical-number-grid" aria-label="필답형 문제 번호">
-              <button v-for="(item, i) in practicalPagedPrompts" :key="item.id" type="button" :class="{ active: visiblePracticalPrompts.some(p => p.id === item.id), answered: practicalHasAnswer(item.id), graded: !!practicalProgress[item.id]?.grade }" :aria-label="`${i + 1}번 ${practicalGradeLabel(practicalProgress[item.id]?.grade)}`" @click="jumpPracticalIndex(i)">{{ i + 1 }}</button>
+              <button v-for="(item, i) in practicalPagedPrompts" :key="item.id" type="button" :class="{ active: visiblePracticalPrompts.some(p => p.id === item.id), answered: practicalHasAnswer(item.id), graded: !!practicalProgress[item.id]?.grade }" :aria-label="`${item.numberLabel || practicalListNumber(i, item) + '번'} ${practicalGradeLabel(practicalProgress[item.id]?.grade)}`" @click="jumpPracticalIndex(i)">{{ item.group === 'restored' ? practicalListNumber(i, item) : i + 1 }}</button>
             </nav>
             <p v-if="!visiblePracticalPrompts.length" class="practical-empty">현재 조건에 맞는 문제가 없습니다. 분야나 문제 묶음을 바꿔 보세요.</p>
             <div v-else class="practical-question-grid">
-              <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :data-practical-index="(practicalPage - 1) * practicalPageSize + index" :class="[`grade-${practicalProgress[prompt.id]?.grade || 'none'}`, { 'memorize-mode': practicalStudyMode === 'memorize' }]">
+              <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :data-practical-id="prompt.id" :data-practical-index="(practicalPage - 1) * practicalPageSize + index" :class="[`grade-${practicalProgress[prompt.id]?.grade || 'none'}`, { 'memorize-mode': practicalStudyMode === 'memorize' }]">
                 <div class="practical-question-body"><header>
-                  <span>{{ practicalListNumber(index) }}</span>
-                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.number }}번</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }} · {{ practicalAdaptiveLabel(prompt) }}</small><h3>{{ prompt.question }}</h3></div>
+                  <span>{{ practicalListNumber(index, prompt) }}</span>
+                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.numberLabel || `${prompt.number}번` }}</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }} · {{ practicalAdaptiveLabel(prompt) }}</small><h3>{{ prompt.question }}</h3></div>
                   <b>{{ practicalGradeLabel(practicalProgress[prompt.id]?.grade) }}</b>
                 </header>
-                <PracticalProblemImage v-if="prompt.image" :src="prompt.image" :alt="`공조냉동 필답형 ${practicalListNumber(index)}번 문제 그림`" />
+                <PracticalProblemImage v-if="prompt.image" :src="prompt.image" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림`" />
                 <div v-if="prompt.images?.length" class="practical-prompt-images">
-                  <PracticalProblemImage v-for="(image, imageIndex) in prompt.images" :key="image" :src="image" :alt="`공조냉동 필답형 ${practicalListNumber(index)}번 문제 그림 ${imageIndex + 1}`" />
+                  <PracticalProblemImage v-for="(image, imageIndex) in prompt.images" :key="image" :src="image" :max-height="prompt.imageMaxHeight" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림 ${imageIndex + 1}`" />
                 </div>
+                <a v-if="prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="prompt.sourceUrl" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
                 </div><div class="practical-response-body">
                 <label v-if="practicalStudyMode === 'type'" class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
                 <PracticalAnswerPad v-else-if="practicalStudyMode === 'handwrite'" :prompt-id="prompt.id" :disabled="practicalSessionFinished" :answer-images="prompt.answerImages || []" :overlay-allowed="practicalAnswerRevealed(prompt.id)" />
@@ -5376,7 +5379,7 @@ onBeforeUnmount(() => {
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
-            <p>v5.5 원문 대조: 해설 스캔 그림52개와 공개 복원 영상 그림71개(2021년1~3회·2022년1~3회·2023년1회)를 보완했습니다. 추가5회차48문항의50그림과 회차별 배관 보기·수면계·게이지 호스 질문을 복원했고 수면계·전동밸브의 엉뚱한 해설을 교정했습니다. 스캔의 회로 번호·보일러 계수·외기/환기 표기도 교정했으며 기존 기록·원본은 유지합니다. 2018~2020년 무그림 후보 등은 추가 대조가 필요하며 전회차 내용 검증 완료는 아닙니다.</p>
+            <p>v5.6: 2018~2020년 공개 원문의 사진90개와15개 회로·평면도 선택 답안 설명을 보강했습니다. 정답이 인쇄된2개 사진은 답안에만 표시하며, 공개 원문192문항은 문제 아래 ‘원문 동작 영상 보기’로 해당 장면을 열 수 있습니다. 2023년1회2번의 다른 보기 그림은 원문 동작에 맞춰 제어부를 재작성했습니다. 책95개 대응·기존 기록·원본은 유지하며, 전체312문항의 정답 검증 완료를 뜻하지 않습니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
             <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>

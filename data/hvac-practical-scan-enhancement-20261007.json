@@ -1,0 +1,19 @@
+{
+  "source": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-scan-v550.png",
+  "output": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-upscaled-v551.png",
+  "sourceSize": [
+    116,
+    270
+  ],
+  "outputSize": [
+    232,
+    540
+  ],
+  "sourceSha256": "9a7a2177f2d94c604beed03487e8e9b5a11f98f15e01ae3ba3524b5e88b2dfcd",
+  "outputSha256": "ebfc4f802afa33103ade814c0ebe21883fa879b4f541525070be530161dcf2aa",
+  "model": "realesrgan-x4plus-anime",
+  "tile": 256,
+  "pipeline": "4x-model-to-2x-bicubic",
+  "architecture": "arm64",
+  "note": "Original preserved. Enhancement does not establish unreadable label text."
+}
