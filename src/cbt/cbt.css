@@ -626,6 +626,17 @@ img { max-width: 100%; }
 .energy-midterm-actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
 .energy-midterm-actions button { min-height:48px; padding:12px 18px; border:1px solid var(--line); border-radius:10px; background:var(--primary); color:var(--on-primary,#fff); font:inherit; font-weight:800; }
 .energy-midterm-intro summary,.energy-topic-note summary { cursor:pointer; padding:8px 0; font-weight:700; }
+.energy-midterm-mode { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
+.energy-midterm-mode button { min-height:46px; padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--text); font:inherit; font-weight:800; }
+.energy-midterm-mode button[aria-pressed="true"] { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
+.energy-midterm-priority-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.energy-midterm-priority-grid article { padding:16px; border:1px solid var(--line); border-radius:12px; min-width:0; }
+.energy-midterm-priority-grid h2 { font-size:1.05rem; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
+.energy-midterm-priority-grid h2 span { color:var(--primary); }
+.energy-midterm-priority-grid p { font-size:.95rem; margin:10px 0; }
+.energy-midterm-priority-grid .energy-midterm-actions { margin:12px 0 0; }
+.energy-midterm-evidence-note { color:var(--muted); font-size:.95rem; }
+@media(max-width:700px) { .energy-midterm-priority-grid { grid-template-columns:minmax(0,1fr); } }
 .energy-topic-note { font-size:.95rem; }
 .round-card.energy-topic-card { min-height:240px; }
 .energy-topic-card h2 { min-height:36px; }
@@ -1414,6 +1425,11 @@ img { max-width: 100%; }
 .question-head > div strong { margin-top: 4px; color: var(--primary); font-size: .81rem; }
 .answer-rate, .source-chip { padding: 4px 7px; border-radius: 6px; color: var(--muted); background: var(--surface-2); font-size: .51rem; font-weight: 700; }
 .source-chip { color: var(--primary); background: var(--primary-soft); }
+.energy-midterm-pdf-card .question-head { flex-wrap:wrap; align-items:center; }
+.energy-midterm-pdf-card .question-current-identity { flex:1 0 64px; white-space:nowrap; }
+.energy-midterm-pdf-card .question-head > .subject-source-chip,
+.energy-midterm-pdf-card .question-head > .answer-rate { flex-shrink:0; white-space:nowrap; }
+.energy-midterm-pdf-card .question-head > .school-source-chip { order:10; flex:0 0 100%; min-width:0; line-height:1.6; overflow-wrap:anywhere; }
 .hansol-source-chip { color:#145ea8; background:#e5f2ff; }
 :root[data-theme="dark"] .hansol-source-chip { color:#9bcaff; background:#1d3853; }
 .field-report-source-chip { color:#a95e08; background:#fff0d9; }

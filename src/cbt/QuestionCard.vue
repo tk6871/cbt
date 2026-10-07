@@ -458,6 +458,7 @@ onBeforeUnmount(() => {
     class="question-card"
     :class="{
       'image-primary': primaryImage,
+      'energy-midterm-pdf-card': !!item.question.midtermPdfSources?.length,
       'compact-solve-card': compactSolveLayout,
       'combat-solve-card': solveLayout === 'combat',
       'keyboard-active': active,
@@ -485,7 +486,7 @@ onBeforeUnmount(() => {
       <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
       </span>
-      <span v-if="item.round.kind === 'school-midterm'" class="source-chip">{{ item.question.sourcePage }}</span>
+      <span v-if="item.round.kind === 'school-midterm'" class="source-chip school-source-chip">{{ item.question.sourcePage }}</span>
       <button v-if="mode === 'learn'" type="button" class="ai-question-button" @click="$emit('askAi')">✦ AI 질문</button>
       <button
         type="button"

@@ -474,6 +474,14 @@ const energyMidtermQuestionCount = computed(() => visibleRounds.value.reduce((su
 const energyMidtermBookCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.filter(q => q.bookVerified).length, 0));
 const energyMidtermDirectCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.filter(q => q.midtermMatch === 'direct').length, 0));
 const energyMidtermRelatedCount = computed(() => energyMidtermQuestionCount.value - energyMidtermDirectCount.value);
+const energyMidtermMix = ref(false); // Separate is the default; combining requires an explicit choice.
+const energyMidtermPdfCount = computed(() => visibleRounds.value.reduce((sum, r) => sum + r.questions.filter(q => q.midtermPdfSources?.length).length, 0));
+const energyMidtermPriorityGroups = computed(() => [
+  {key:'repeat' as const,title:'구·후기 반복 확인',note:'정리본 대응 + 2020년 이전·이후 반복 근거가 있는 우선 예상'},
+  {key:'recent' as const,title:'정리본 대응 후기 문제',note:'정리본 대응 + 2021~2025년 PDF에서 확인한 우선 예상'},
+  {key:'note' as const,title:'그 외 메모 대응 기출',note:'메모 질문 취지에 맞지만 후기 PDF 대응은 아직 확인하지 않은 기출'},
+  {key:'related' as const,title:'추가 예상',note:'주제는 관련되지만 세부 질문 취지가 달라질 수 있는 넓힌 연습'},
+].map(g=>({...g,count:visibleRounds.value.reduce((sum,r)=>sum+r.questions.filter(q=>q.midtermPriority===g.key).length,0)})));
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
 const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
 const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_APPRAISER_TARGET_KEY)?.rounds || [])
@@ -2662,13 +2670,14 @@ function startRound(round: Round, mode: StudyMode): void {
   );
 }
 
-function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, match?: 'direct' | 'related'): void {
+function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, match?: 'direct' | 'related', priority?: 'repeat' | 'recent' | 'note' | 'related' | 'pdf'): void {
   const rounds = visibleRounds.value;
   if (selectedKey.value !== 'energy-midterm' || !rounds.length) return;
   const pools = rounds.map(round => roundToItems(round));
-  const items = match ? pools.flat().filter(item => item.question.midtermMatch === match) : bookOnly ? pools.flat().filter(item => item.question.bookVerified) : full ? pools.flat() : energyMidtermPractice(pools);
+  const items = priority ? pools.flat().filter(item => priority === 'pdf' ? item.question.midtermPdfSources?.length : item.question.midtermPriority === priority) : match ? pools.flat().filter(item => item.question.midtermMatch === match) : bookOnly ? pools.flat().filter(item => item.question.bookVerified) : full ? pools.flat() : energyMidtermPractice(pools);
   if (!items.length) return;
-  void beginSession(mode, `에너지설비 중간고사 · ${match === 'direct' ? '출제 메모 직접 대응' : match === 'related' ? '추가 예상·대응 미확정' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습'}`, items);
+  const priorityLabel = priority === 'pdf' ? '후기 PDF 원문' : energyMidtermPriorityGroups.value.find(g=>g.key===priority)?.title;
+  void beginSession(mode, `에너지설비 중간고사 · ${priorityLabel || (match === 'direct' ? '출제 메모 직접 대응' : match === 'related' ? '추가 예상·대응 미확정' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습')}`, items);
 }
 
 function restartRoundLearning(round: Round): void {
@@ -4743,21 +4752,40 @@ onBeforeUnmount(() => {
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
           <section v-if="selectedKey === 'energy-midterm'" class="energy-midterm-intro">
-            <p>출제가 안내된 메모 범위에 직접 대응하는 문제와, 불명확한 내용까지 넓혀 고른 추가 예상을 나눴습니다. ‘직접 대응’도 이 기출이 그대로 나온다는 뜻은 아닙니다. 오답·점수는 일반 기출과 따로 저장됩니다.</p>
-            <p>20문제는 실제 시험 문항 수이며 예상문제 수 제한이 아닙니다. 랜덤 연습은 주제별1개씩 뽑습니다. 확정 출제 예측은 아닙니다.</p>
+            <p>중간고사20주제 관련 기출입니다. 기본은 묶음별로 따로 풀기이며, 함께 풀기도 선택할 수 있습니다. 오답·점수는 일반 기출과 따로 저장됩니다.</p>
+            <div class="energy-midterm-mode" role="group" aria-label="예상문제 풀이 방식">
+              <button type="button" :aria-pressed="!energyMidtermMix" @click="energyMidtermMix = false">따로 풀기 · 기본</button>
+              <button type="button" :aria-pressed="energyMidtermMix" @click="energyMidtermMix = true">함께 풀기</button>
+            </div>
+            <div v-if="!energyMidtermMix" class="energy-midterm-priority-grid">
+              <article v-for="group in energyMidtermPriorityGroups" :key="group.key">
+                <h2>{{ group.title }} <span>{{ group.count }}문제</span></h2><p>{{ group.note }}</p>
+                <div class="energy-midterm-actions"><button type="button" @click="startEnergyMidterm('learn', true, false, undefined, group.key)">{{ group.title }} 학습</button><button type="button" @click="startEnergyMidterm('exam', true, false, undefined, group.key)">{{ group.title }} CBT</button></div>
+              </article>
+            </div>
+            <div v-else class="energy-midterm-actions energy-midterm-combined">
+              <button type="button" @click="startEnergyMidterm('learn', true)">전체{{ energyMidtermQuestionCount }}문제 함께 학습</button>
+              <button type="button" @click="startEnergyMidterm('exam', true)">전체{{ energyMidtermQuestionCount }}문제 함께 CBT</button>
+              <button type="button" @click="startEnergyMidterm('learn')">섞어서 랜덤20문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('exam')">섞어서 랜덤20문제 CBT</button>
+            </div>
+            <p class="energy-midterm-evidence-note">반복 확인은 원문 질문·보기·정답을 비교한 근거입니다. 보기 순서나 조건이 달라진 변형은 별도 문제로 남기며, 출제 확률이 확정되었다는 뜻은 아닙니다. 후기 PDF는{{ energyMidtermPdfCount }}개의 중복 제외 원문 문제로 연결했습니다.</p>
+            <details class="energy-midterm-other-actions"><summary>직접 대응 전체·교재·PDF·랜덤 연습</summary>
             <div class="energy-midterm-actions energy-midterm-confidence">
               <button type="button" @click="startEnergyMidterm('learn', true, false, 'direct')">직접 대응{{ energyMidtermDirectCount }}문제 학습</button>
               <button type="button" @click="startEnergyMidterm('learn', true, false, 'related')">추가 예상{{ energyMidtermRelatedCount }}문제 학습</button>
             </div>
-            <details class="energy-midterm-other-actions"><summary>전체·교재·랜덤 시험 연습</summary><p>교재 원문의 대응을 확인한{{ energyMidtermBookCount }}문제는 별도 기준입니다. 랜덤20문제는 대응이 미확정인 주제도 포함하여 전체20주제에서 뽑습니다.</p>
+            <p>교재 원문의 대응을 확인한{{ energyMidtermBookCount }}문제는 별도 기준입니다. 20문제는 실제 시험 문항 수이며 예상문제 수 제한이 아닙니다. 랜덤20문제는 대응이 미확정인 주제도 포함하여 전체20주제에서 각각1문제씩 뽑습니다. 확정 출제 예측은 아닙니다.</p>
             <div class="energy-midterm-actions">
+              <button type="button" @click="startEnergyMidterm('learn', true, false, undefined, 'pdf')">후기 PDF{{ energyMidtermPdfCount }}문제 학습</button>
+              <button type="button" @click="startEnergyMidterm('exam', true, false, undefined, 'pdf')">후기 PDF{{ energyMidtermPdfCount }}문제 CBT</button>
               <button type="button" @click="startEnergyMidterm('learn', true, true)">교재 대응{{ energyMidtermBookCount }}문제 학습</button>
               <button type="button" @click="startEnergyMidterm('learn', true)">전체{{ energyMidtermQuestionCount }}문제 학습</button>
               <button type="button" @click="startEnergyMidterm('learn')">랜덤20문제 학습</button>
               <button type="button" @click="startEnergyMidterm('exam')">랜덤20문제 CBT</button>
             </div>
             </details>
-            <details><summary>자료가 애매하거나 기출과 다른 부분</summary><p>수업PPT는 급수pH6~9(적정8.5)·관수11~11.8, 교재260쪽은 급수6.5~9·관수10.5~11.5로 다릅니다. 수업 기준을 우선 확인하세요. 보염장치/윈드박스와 CO₂/수트블로워는 구분합니다. 메모의 약품명·배관33 경계는 미확정이며 관련 기출이 없는 부분의 정답을 임의로 만들지 않았습니다. 이번 모음에는2020년 이후 새 기출은 아직 추가하지 않았습니다.</p></details>
+            <details><summary>자료가 애매하거나 기출과 다른 부분</summary><p>수업PPT는 급수pH6~9(적정8.5)·관수11~11.8, 교재260쪽은 급수6.5~9·관수10.5~11.5로 다릅니다. 후기 PDF의 특정 원통보일러 급수7~9도 해당 조건으로만 읽으세요. 보염장치/윈드박스와 CO₂/수트블로워는 구분합니다. 메모의 약품명·배관33 경계는 미확정입니다. 후기 PDF13회차 전체1,040개를 넣은 것은 아니며 중간고사20주제의 검토 문항만 연결했습니다. 보류했던14개도 원문 경계를 직접 확인해 반영했습니다.</p></details>
           </section>
           <TransitionGroup name="list-shift" tag="div" class="round-grid">
             <article v-for="round in visibleRounds" :id="`round-card-${round.id}`" :key="round.id" class="round-card" :class="{ 'energy-topic-card': round.kind === 'school-midterm' }">
@@ -5416,7 +5444,7 @@ onBeforeUnmount(() => {
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
-            <p>v5.7 에너지설비 중간고사: 수업PPT·교재·두 메모에 맞춘 기출136문제를 직접 대응83문제·추가 예상53문제로 나누었습니다. 교재 대응을 직접 확인한27문제 또는 전체·주제별로 학습하고, 시험 연습은 주제마다1문제씩 랜덤20문제를 뽑습니다. 일반 기출과 기록은 분리하며 pH 등 자료 차이와 슬라이드 번호는 대조 안내로 표시합니다. PDF 원문 이미지 적용은 다음 작업입니다.</p>
+            <p>v5.8 에너지설비 중간고사: 전체179문제 중2021~2025년 PDF 원문73문제를 연결했습니다. 보류했던14개 출처도 경계를 확인해 추가했습니다. Real-ESRGAN 타일256의4배 결과를2배로 줄이고 다크·라이트/원본 보기 설정을 사용합니다. 구·후기 반복·정리본 대응 후기·그 외 메모·추가 예상으로 따로 풀기가 기본이며 함께 풀기로 전체 또는 랜덤20문제 연습도 가능합니다. OCR전사문을 문제 대신 보여주지 않고 기존 학교 문항ID와 일반 기출 기록은 유지합니다.</p>
             <p>v5.3 학교 시험: 냉동공학 중간고사에서 공조·한솔의 냉동냉장설비 전체를 학습하거나 랜덤 CBT로 풉니다. 통합 검색은 출처와 과목을 함께 고르고 찾은 문제를 내 학교 시험지에 담을 수 있습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
