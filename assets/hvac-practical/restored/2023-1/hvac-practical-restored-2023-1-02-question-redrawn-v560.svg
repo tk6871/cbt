@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="570" viewBox="0 0 1000 570" role="img" aria-labelledby="title desc">
+  <title id="title">2023년 1회 2번 공개 원문 동작에 따른 회로 보기 제어부 재작성</title>
+  <desc id="desc">가 회로의 RL은 MC b접점을 거치고, 나 회로의 RL은 전원에 직접 연결된다. 두 회로의 GL은 MC a접점을 거친다. 원본 파일은 별도로 보존한다.</desc>
+  <rect width="1000" height="570" fill="white"/>
+  <g fill="#111" font-family="sans-serif" font-size="22">
+    <text x="30" y="36">공개 원문 동작 기준 제어부 보기 (재작성 · 주회로 생략)</text>
+    <text x="42" y="85">(가)</text><text x="542" y="85">(나)</text>
+  </g>
+  <defs>
+    <g id="no" stroke="#111" stroke-width="3" fill="none"><path d="M0 -25V-9M-12 -9H12M-12 9H12M0 9V25"/></g>
+    <g id="nc" stroke="#111" stroke-width="3" fill="none"><path d="M0 -25V-9M-12 -9H12M-12 9H12M0 9V25M-14 16L14 -16"/></g>
+    <g id="base" stroke="#111" stroke-width="3" fill="none">
+      <path d="M35 110H420M35 490H420M100 110V165M100 215V285M100 335V410M100 470V490M220 110V165M220 215V260H100M310 110V285M310 335V410M310 470V490M420 470V490"/>
+      <use href="#no" x="100" y="190"/><use href="#no" x="220" y="190"/><use href="#nc" x="100" y="310"/><use href="#no" x="310" y="310"/>
+      <circle cx="100" cy="440" r="30"/><circle cx="310" cy="440" r="30"/><circle cx="420" cy="440" r="30"/>
+    </g>
+    <g id="labels" fill="#111" font-family="sans-serif" font-size="20">
+      <text x="34" y="155">PB(녹)</text><text x="230" y="185">MC-a</text><text x="32" y="277">PB(적)</text><text x="323" y="305">MC-a</text>
+      <text x="80" y="447">MC</text><text x="295" y="447">GL</text><text x="405" y="447">RL</text>
+    </g>
+  </defs>
+  <use href="#base"/><use href="#labels"/>
+  <path d="M420 110V285M420 335V410" stroke="#111" stroke-width="3" fill="none"/><use href="#nc" x="420" y="310"/>
+  <text x="365" y="355" fill="#111" font-family="sans-serif" font-size="20">MC-b</text>
+  <g transform="translate(500 0)"><use href="#base"/><use href="#labels"/><path d="M420 110V410" stroke="#111" stroke-width="3"/></g>
+  <text x="30" y="548" fill="#444" font-family="sans-serif" font-size="19">a: 여자하면 닫힘 / b: 여자하면 열림. 비교 전 원문 동작 영상도 확인하세요.</text>
+</svg>

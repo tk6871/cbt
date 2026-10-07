@@ -31,11 +31,13 @@ export type PracticalPrompt = {
   keyPoints?: string[];
   image?: string;
   images?: string[];
+  imageMaxHeight?: number;
   answerImages?: string[];
   sourceUrl?: string;
   year?: number;
   session?: string;
   number?: number;
+  numberLabel?: string;
 };
 
 export const practicalCategoryLabels: Record<PracticalCategory, string> = {

@@ -11,7 +11,8 @@ test('문항 ID·2026 원문 보존, 스캔 내용 대응과 실제 파일 해�
   const old=JSON.parse(execFileSync('git',['show',`${history.baselineCommit}:data/hvac-practical-restored.json`],{encoding:'utf8'}));
   expect(rows.map((r:any)=>r.id)).toEqual(old.map((r:any)=>r.id));
   expect(rows.filter((r:any)=>r.year===2026)).toEqual(old.filter((r:any)=>r.year===2026));
-  expect(get('2023-2-12')).toEqual(old.find((r:any)=>r.id===get('2023-2-12').id));
+  const {bookNumber: _bookNumber, ...unmatchedVariant} = get('2023-2-12');
+  expect(unmatchedVariant).toEqual(old.find((r:any)=>r.id===get('2023-2-12').id));
   const manifest=JSON.parse(fs.readFileSync('data/hvac-practical-october-scans.json','utf8'));
   expect(manifest.sourceMapping.filter((r:any)=>r.targetId)).toHaveLength(83);
   expect(manifest.sourceMapping.filter((r:any)=>!r.targetId)).toHaveLength(1);
@@ -185,7 +186,7 @@ test('2021-3 보기 이미지 표시·학습 답안 보존·스캔 표와 새 �
   await page.getByRole('button',{name:'← 회차·자료 목록',exact:true}).click();
   const y2025=page.locator('.practical-year-group').filter({has:page.getByRole('heading',{name:'2025년',exact:true})});
   await y2025.getByRole('button',{name:/3회/}).click();
-  const boiler=page.locator('.practical-question-grid > article').nth(6);
+  const boiler=page.locator('[data-practical-id="hvac-practical-restored-2025-3-07"]');
   await expect(boiler).toContainText('각각 1.5');
   const table=boiler.locator('.practical-prompt-images img');
   await table.scrollIntoViewIfNeeded();
