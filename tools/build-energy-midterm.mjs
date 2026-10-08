@@ -225,8 +225,8 @@ for (const [key, text, answer, explanation, prior, matchKind] of reviewedPdfQues
 // Keep the selection ledger in sync with the actual unique question bank.
 const finalQuestions = rounds.flatMap(r=>r.questions);
 // Read and classified numerical questions; never guess from digits/OCR alone.
-// Other numerical types remain available in full/topic practice, but the mock
-// takes calculations only from the two topics specified by the user (6 and 11).
+// All numerical types can be selected with the topic calculation switches.
+// Memorized constants/formula-recognition questions are not numerical calculations.
 const calculationIds = new Set([
   '20180428:5','20170507:17','20020310:39','20020908:30','20020908:39',
   '20030316:38','20040905:32','20120304:27','20130310:34','20170305:6',
