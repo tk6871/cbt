@@ -1,6 +1,7 @@
 import { mappedSubject, subjectFor } from './catalog';
 import type { QuestionItem } from './types';
 import { coolingSafety, coolingScopeCandidate, coolingSupplementChapter } from './coolingScope';
+import { coolingContextPlacement, coolingReviewedPlacement, coolingSectionContext } from './coolingBookPlacement';
 
 export const coolingMidtermTitle = '냉동공학 중간고사';
 export const coolingRecordPrefix = 'school-cooling::';
@@ -30,6 +31,8 @@ const topicTerms: Array<RegExp> = [
   /냉방설비|냉방방식|냉각탑|냉각수|냉수|공조기|팬코일|냉수펌프|수온|수질관리|유지보수|정기점검|냉동기.*(?:운전|정지|관리)|펌프다운|제상|운전순서|고압차단|저압차단/g,
 ];
 export function coolingTopic(item: QuestionItem): string {
+  const manual = coolingReviewedPlacement(item);
+  if (manual) return coolingTopics[manual.placement[0]];
   const originalSubject = mappedSubject(item.round.qualificationKey || '', subjectFor(item.round, item.question));
   if (originalSubject.replace(/\s/g, '') !== '냉동냉장설비') {
     const chapter = coolingSupplementChapter(item);
@@ -49,7 +52,9 @@ export function coolingTopic(item: QuestionItem): string {
     + Math.min(2, choices.match(pattern)?.length || 0) + Math.min(1, explanation.match(pattern)?.length || 0));
   const best = Math.max(...scores);
   const ranked = scores.map((score, index) => ({ score, index })).sort((a, b) => b.score - a.score);
-  return best >= 4 && ranked[0].score > ranked[1].score ? coolingTopics[ranked[0].index] : '분류 미확인';
+  if (best >= 4 && ranked[0].score > ranked[1].score) return coolingTopics[ranked[0].index];
+  const context = coolingContextPlacement(item);
+  return context ? coolingTopics[context.placement[0]] : '분류 미확인';
 }
 
 const sectionTerms: RegExp[][] = [
@@ -64,12 +69,16 @@ const sectionTerms: RegExp[][] = [
 export function coolingBookSection(item: QuestionItem, chapter: string): string {
   const index = coolingTopics.indexOf(chapter as typeof coolingTopics[number]);
   if (index < 0) return '세부 분류 미확인';
+  const manual = coolingReviewedPlacement(item);
+  if (manual?.placement[0] === index) return coolingBookChapters[index].sections[manual.placement[1]];
   const text = (item.question.text || item.question.html || item.question.ocrText || '').replace(/<[^>]*>/g, '').replace(/\s+/g, '');
   if (index === 0 && /몰리에르|냉매선도|압력엔탈피|p-h|ph선도/i.test(text)) return coolingBookChapters[0].sections[2];
   if (index === 0 && /열역학.*법칙|제[0123]법칙/.test(text)) return coolingBookChapters[0].sections[5];
   if (index === 5 && /냉각탑|수질관리/.test(text)) return coolingBookChapters[5].sections[3];
   const matches = sectionTerms[index].map((pattern, section) => ({ section, matched: pattern.test(text) })).filter(row => row.matched);
-  return matches.length === 1 ? coolingBookChapters[index].sections[matches[0].section] : '세부 분류 미확인';
+  if (matches.length === 1) return coolingBookChapters[index].sections[matches[0].section];
+  const section = coolingSectionContext(item, index);
+  return section !== undefined ? coolingBookChapters[index].sections[section] : '세부 분류 미확인';
 }
 
 export function coolingSectionGroups(group: { label: string; items: QuestionItem[]; aliases: QuestionItem[] }): Array<{ label: string; items: QuestionItem[]; aliases: QuestionItem[] }> {

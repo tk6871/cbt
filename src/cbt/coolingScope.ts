@@ -14,14 +14,23 @@ export function coolingSourceAllowed(item: QuestionItem): boolean {
   const date = String(item.round.date || item.round.session).replace(/\D/g, '');
   const withinLowerBound = year > 2006 || (year === 2006 && date >= '20060816');
   return withinLowerBound && item.round.kind !== 'field-report-practice' && ((item.round.qualificationKey === 'hvac-hansol'
+    && year >= 2017
     && (Number(item.round.year) < 2023 || (Number(item.round.year) === 2023 && parseInt(String(item.round.session), 10) <= 3)))
     || (item.round.qualificationKey === 'hvac' && Number(item.round.year) < 2017));
 }
 
+export function coolingSafetyKind(item: QuestionItem): 'management' | 'protection' | 'leak' | undefined {
+  const text = coolingStem(item);
+  if (/법규|법령|법률|법상|기계설비법|안전관리법|안전.*관리|안전을고려|액봉|산업안전|안전보건|유해위험|유해[·ㆍ・]?위험|방호조치|안전기준|검사주기|안전관리자|제조허가|제조신고|제조등록/.test(text)) return 'management';
+  if (/안전장치|안전밸브|압축기의보호|가용전|장치보호.*스위치/.test(text)) return 'protection';
+  // Detection of an external refrigerant leak is safety/inspection. Internal
+  // compressor-valve leakage and its efficiency effect remain structure topics.
+  if (/(?:할|헬)라이드|전자누설|누설(?:을)?(?:탐지|검사|감지|검지)|누설.*(?:리트머스|시험지|페놀프탈렌)|암모니아.*(?:누설|새고)|냉매.*누설.*장소/.test(text)) return 'leak';
+  return undefined;
+}
+
 export function coolingSafety(item: QuestionItem): boolean {
-  // Safety valves/components remain structure questions. Electrical "동상"
-  // means in phase, not frostbite; do not classify either by a loose word match.
-  return /법규|법령|법률|법상|기계설비법|안전관리법|안전.*관리|안전을고려|액봉사고|산업안전|안전보건|유해위험|유해[·ㆍ・]?위험|방호조치|안전기준|검사주기|안전관리자|제조허가|제조신고|제조등록/.test(coolingStem(item));
+  return coolingSafetyKind(item) !== undefined;
 }
 
 export function coolingSupplementChapter(item: QuestionItem): number | undefined {
@@ -45,5 +54,5 @@ export function coolingSupplementChapter(item: QuestionItem): number | undefined
 export function coolingScopeCandidate(item: QuestionItem, normalizedSubject: string): boolean {
   return coolingSourceAllowed(item) && (normalizedSubject.replace(/\s/g, '') === '냉동냉장설비'
     || coolingSupplementChapter(item) !== undefined
-    || (coolingSafety(item) && /냉동|냉장|냉매|기계설비/.test(coolingStem(item))));
+    || (coolingSafety(item) && /냉동|냉장|냉매|기계설비|산업안전보건법/.test(coolingStem(item))));
 }
