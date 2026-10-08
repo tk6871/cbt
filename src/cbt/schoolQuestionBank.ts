@@ -1,5 +1,6 @@
-import { mappedSubject } from './catalog';
+import { mappedSubject, subjectFor } from './catalog';
 import type { QuestionItem } from './types';
+import { coolingSafety, coolingScopeCandidate, coolingSupplementChapter } from './coolingScope';
 
 export const coolingMidtermTitle = '냉동공학 중간고사';
 export const coolingRecordPrefix = 'school-cooling::';
@@ -14,7 +15,7 @@ export function coolingRecordItem(item: QuestionItem): QuestionItem {
 export const coolingBookChapters = [
   { title: '냉동이론', summary: '냉매·브라인 / 냉동사이클 / 열역학', sections: ['냉동의 기초와 원리', '냉매와 브라인', '냉매선도와 냉동 사이클', '각종 냉동 사이클', '기초열역학', '열역학의 법칙'] },
   { title: '냉동장치의 구조', summary: '압축기·응축기·증발기 / 밸브·부속·제어기기', sections: ['압축기 구성 기기와 특징', '응축기 구성 기기와 특징', '증발기 구성 기기와 특징', '냉동장치 구성 기기(팽창밸브)', '냉동장치 구성 기기(부속기기)', '냉동장치 구성 기기(제어기기)'] },
-  { title: '냉동장치의 응용과 안전관리', summary: '제빙·동결 / 열펌프·축열 / 흡수식 / 안전관리', sections: ['냉동장치의 응용(제빙 및 동결장치)', '냉동장치의 응용(열펌프 및 축열장치)', '냉동장치의 응용(흡수식 냉동장치)', '운영 안전관리(관련법규 발췌)'] },
+  { title: '냉동장치의 응용', summary: '제빙·동결 / 열펌프·축열 / 흡수식 · 안전관리는 별도', sections: ['냉동장치의 응용(제빙 및 동결장치)', '냉동장치의 응용(열펌프 및 축열장치)', '냉동장치의 응용(흡수식 냉동장치)'] },
   { title: '냉동냉장 부하계산', summary: '냉동·냉장 부하 / 침입열·저장품 열량', sections: ['냉동냉장부하 계산'] },
   { title: '냉동설비의 설치', summary: '냉동·냉각설비 / 배관·시험·냉매 충전', sections: ['냉동설비의 설치'] },
   { title: '냉방설비운영', summary: '냉방설비 설치 / 냉동기 유지보수 / 냉각탑', sections: ['냉방설비의 설치', '냉동기 관리·유지보수', '냉동기부속장치 점검·유지보수', '냉각탑 점검·종류·특성·수질관리'] },
@@ -29,6 +30,11 @@ const topicTerms: Array<RegExp> = [
   /냉방설비|냉방방식|냉각탑|냉각수|냉수|공조기|팬코일|냉수펌프|수온|수질관리|유지보수|정기점검|냉동기.*(?:운전|정지|관리)|펌프다운|제상|운전순서|고압차단|저압차단/g,
 ];
 export function coolingTopic(item: QuestionItem): string {
+  const originalSubject = mappedSubject(item.round.qualificationKey || '', subjectFor(item.round, item.question));
+  if (originalSubject.replace(/\s/g, '') !== '냉동냉장설비') {
+    const chapter = coolingSupplementChapter(item);
+    if (chapter !== undefined) return coolingTopics[chapter];
+  }
   const q = item.question;
   const plain = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/\s+/g, '');
   const text = plain([...new Set([q.text || q.html, q.ocrText].filter(Boolean))].join(' '));
@@ -49,7 +55,7 @@ export function coolingTopic(item: QuestionItem): string {
 const sectionTerms: RegExp[][] = [
   [/단위|열당량|냉동톤|절대압|진공압|열전달|잠열|현열|비열/, /냉매|브라인|냉동유|냉동기유/, /몰리에르|냉매선도|상변화|압력엔탈피|p-h|ph선도/i, /냉동사이클|카르노|다단압축|다원|성적계수|과열도|과냉각/, /이상기체|기체상태|등온|단열과정|등압|등적/, /열역학.*법칙|제[0123]법칙|내부에너지|엔트로피|에너지보존/],
   [/압축기|피스톤|커넥팅로드|크랭크|스크롤|스크루|축봉|디퓨(?:저|져)|임펠러/, /응축기/, /증발기/, /팽창밸브|모세관|감온통/, /수액기|유분리기|액분리기|역지밸브|전자밸브|솔레노이드|건조기|드라이어/, /제어기기|자동제어|압력스위치|온도조절기/],
-  [/제빙|동결|식품|냉동창고|냉장창고|콜드체인/, /열펌프|히트펌프|축열/, /흡수식/, /안전|법규|고압가스|보호구|방폭|중독|동상/],
+  [/제빙|동결|식품|냉동창고|냉장창고|콜드체인/, /열펌프|히트펌프|축열/, /흡수식/],
   [/부하|침입열|침입공기|저장품|열관류|전열면적|환기량|단열두께/],
   [/배관|관경|관지름|냉매충전|기밀시험|내압시험|진공건조|오일트랩|이중입상관|설치|방진|지지대|용접|납땜/],
   [/냉방설비|냉방방식|공조기|팬코일/, /냉동기.*(?:관리|운전|정지)|펌프다운|제상|운전순서|유지보수/, /부속장치|정기점검|고압차단|저압차단|냉수펌프/, /냉각탑|냉각수|수질|수온/],
@@ -80,10 +86,20 @@ export function normalizedSchoolSubject(item: QuestionItem): string {
   return mappedSubject(item.round.qualificationKey || '', item.subject);
 }
 
-export function coolingMidtermItems(items: QuestionItem[]): QuestionItem[] {
+// Historical mixed-source sessions still resolve their original school record IDs.
+// This pool is only for record lookup, not for new midterm question selection.
+export function coolingRecordSourceItems(items: QuestionItem[]): QuestionItem[] {
   return items.filter(item => ['hvac', 'hvac-hansol'].includes(item.round.qualificationKey || '')
     && normalizedSchoolSubject(item).replace(/\s/g, '') === '냉동냉장설비'
     && item.round.kind !== 'field-report-practice').map(item => ({ ...item, subject: '냉동냉장설비' }));
+}
+
+export function coolingMidtermItems(items: QuestionItem[]): QuestionItem[] {
+  return items.filter(item => coolingScopeCandidate(item, normalizedSchoolSubject(item)) && !coolingSafety(item));
+}
+
+export function coolingSafetyItems(items: QuestionItem[]): QuestionItem[] {
+  return items.filter(item => coolingScopeCandidate(item, normalizedSchoolSubject(item)) && coolingSafety(item));
 }
 
 // Keep numerical conditions, choice order, images and answers in the key.

@@ -626,16 +626,21 @@ img { max-width: 100%; }
 .energy-midterm-actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
 .energy-midterm-actions button { min-height:48px; padding:12px 18px; border:1px solid var(--line); border-radius:10px; background:var(--primary); color:var(--on-primary,#fff); font:inherit; font-weight:800; }
 .energy-midterm-intro summary,.energy-topic-note summary { cursor:pointer; padding:8px 0; font-weight:700; }
-.energy-midterm-mode { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0; }
-.energy-midterm-mode button { min-height:46px; padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--text); font:inherit; font-weight:800; }
-.energy-midterm-mode button[aria-pressed="true"] { border-color:var(--primary); background:var(--primary-soft); color:var(--primary); }
 .energy-midterm-priority-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
 .energy-midterm-priority-grid article { padding:16px; border:1px solid var(--line); border-radius:12px; min-width:0; }
 .energy-midterm-priority-grid h2 { font-size:1.05rem; margin:0; display:flex; flex-wrap:wrap; gap:8px; }
 .energy-midterm-priority-grid h2 span { color:var(--primary); }
 .energy-midterm-priority-grid p { font-size:.95rem; margin:10px 0; }
 .energy-midterm-priority-grid .energy-midterm-actions { margin:12px 0 0; }
+.energy-midterm-main-groups .energy-midterm-actions { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.energy-midterm-main-groups .energy-midterm-actions button { padding:10px 6px; }
 .energy-midterm-evidence-note { color:var(--muted); font-size:.95rem; }
+.energy-calculation-controls { padding:12px; margin-bottom:12px; border:1px solid var(--line); border-radius:10px; }
+.energy-calculation-controls > div { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.energy-calculation-controls button { min-height:44px; padding:8px 12px; color:var(--primary); border:1px solid var(--line); border-radius:8px; background:var(--surface-2); font:inherit; font-weight:700; }
+.energy-calculation-controls p { margin:8px 0 0; font-size:.9rem; color:var(--muted); }
+.energy-topic-calculation { display:flex; align-items:center; gap:8px; min-height:44px; margin:8px 0; padding:8px 10px; border:1px solid var(--line); border-radius:8px; cursor:pointer; color:var(--text); background:var(--surface-2); font-size:.95rem; }
+.energy-topic-calculation input { width:20px; height:20px; accent-color:var(--primary); flex-shrink:0; }
 .midterm-question-map { margin:0 0 12px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
 .midterm-question-map summary { cursor:pointer; color:var(--text); font-size:.86rem; font-weight:700; }
 .midterm-question-map nav { display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:6px; margin-top:10px; max-height:240px; overflow:auto; }
@@ -644,8 +649,10 @@ img { max-width: 100%; }
 .midterm-calculation-badge { display:block; width:max-content; padding:2px 4px; border-radius:4px; background:var(--primary-soft); color:var(--primary); font-size:.65rem; font-weight:800; line-height:1.2; }
 @media(max-width:700px) { .energy-midterm-priority-grid { grid-template-columns:minmax(0,1fr); } }
 .energy-topic-note { font-size:.95rem; }
-.round-card.energy-topic-card { min-height:240px; }
-.energy-topic-card h2 { min-height:36px; }
+.round-card.energy-topic-card { min-height:0; align-self:start; }
+.round-card.energy-topic-card h2 { min-height:0; }
+.round-card.energy-topic-card footer { margin-top:12px; }
+.round-card.energy-topic-card footer button { min-height:44px; }
 .energy-topic-card .energy-topic-note { margin-bottom:12px; }
 @media(max-width:600px) { .energy-midterm-actions button { flex:1 1 100%; } }
 @media(max-width:600px) { .rounds-collection button { flex:1; padding:10px 8px; font-size:.9rem; } }

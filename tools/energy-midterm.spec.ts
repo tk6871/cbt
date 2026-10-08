@@ -67,6 +67,22 @@ test('랜덤20은6번·11번 계산 각1개와 다른18주제 이론으로 구�
   expect(()=>energyMidtermPractice([[]])).toThrow('후보가 없습니다');
 });
 
+test('계산 포함은 다른 주제까지 허용하고 제외는20주제 이론을 유지',()=>{
+  const c={window:{} as Record<string,Catalog>};
+  vm.runInNewContext(fs.readFileSync('data/energy-midterm.js','utf8'),c);
+  const pools=c.window.CBT_DATA_ENERGY_MIDTERM.rounds.map((r,i)=>r.questions.map(q=>({q,topic:i+1})));
+  expect(pools.flat().filter(item=>item.q.midtermCalculation)).toHaveLength(22);
+  expect(pools.flat().filter(item=>item.q.midtermCalculation).map(item=>item.topic).filter((v,i,a)=>a.indexOf(v)===i)).toEqual([1,2,6,11,15]);
+  for(let n=0;n<100;n++){
+    const drawn=energyMidtermPractice(pools.filter(Boolean).map(pool=>pool.filter(item=>!item.q.midtermCalculation)),Math.random,{isCalculation:item=>!!item.q.midtermCalculation,calculationTopics:[],includeOtherCalculations:true});
+    expect(drawn).toHaveLength(20);
+    expect(drawn.filter(item=>item.q.midtermCalculation)).toHaveLength(0);
+  }
+  const reordered=pools.map(pool=>[...pool.filter(item=>!item.q.midtermCalculation),...pool.filter(item=>item.q.midtermCalculation)]);
+  const selected=energyMidtermPractice(reordered,()=>.999,{isCalculation:item=>!!item.q.midtermCalculation,calculationTopics:[6,11],includeOtherCalculations:true});
+  expect(selected.filter(item=>item.q.midtermCalculation).some(item=>![6,11].includes(item.topic))).toBe(true);
+});
+
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
     localStorage.setItem('modern-cbt-qualification-industrial', 'energy-midterm');
@@ -97,17 +113,71 @@ test('학교 시험 준비 메뉴 이동은 상단 종목·저장 종목을 유�
 test('직접 대응과 추가 예상은 별도 모음으로 학습한다', async ({ page }) => {
   await page.goto('./?safe=1');
   await openRounds(page);
-  await page.getByRole('button', { name: '직접 대응114문제 학습', exact: true }).click();
+  await page.getByRole('button', { name: '시험범위만 학습', exact: true }).click();
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(114);
+  expect(await page.evaluate(()=>{
+    const bank=(window as any).CBT_DATA_ENERGY_MIDTERM.rounds.flatMap((r:any)=>r.questions);
+    const ids=JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds;
+    return bank.filter((q:any)=>ids.includes(`${q._originRoundId}:${q._originalNumber}`)).every((q:any)=>q.midtermPriority!=='related');
+  })).toBe(true);
   await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('시험범위');
   await page.locator('.session-topbar .back-button').click();
   // Returning recreates the rounds panel; secondary controls start collapsed.
   if (await page.locator('.energy-midterm-other-actions').getAttribute('open') === null)
     await page.locator('.energy-midterm-other-actions > summary').click();
-  await page.getByRole('button', { name: '추가 예상65문제 학습', exact: true }).click();
+  await page.getByRole('button', { name: '추가 예상만 학습', exact: true }).click();
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(65);
+  expect(await page.evaluate(()=>{
+    const bank=(window as any).CBT_DATA_ENERGY_MIDTERM.rounds.flatMap((r:any)=>r.questions);
+    const ids=JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds;
+    return bank.filter((q:any)=>ids.includes(`${q._originRoundId}:${q._originalNumber}`)).every((q:any)=>q.midtermPriority==='related');
+  })).toBe(true);
   await expect(page.locator('.question-card').first().locator('.source-chip')).toContainText('추가 예상');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.locator('.session-topbar .back-button').click();
+  await page.getByRole('button',{name:'시험범위만 CBT',exact:true}).click();
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(114);
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').mode)).toBe('exam');
+  await page.locator('.session-topbar .back-button').click();
+  await page.getByRole('button',{name:'추가 예상만 CBT',exact:true}).click();
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(65);
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').mode)).toBe('exam');
+});
+
+test('주제별 계산On/Off·전체 제외·새로고침·기존 풀이 보존',async({page},info)=>{
+  page.on('dialog', dialog=>dialog.accept());
+  await page.goto('./?safe=1');
+  await openRounds(page);
+  const sixth=page.locator('#round-card-school-energy-topic-6');
+  const checkbox=sixth.getByRole('checkbox',{name:'06. 상당증발량 공식과 계산 계산 문제 포함',exact:true});
+  await checkbox.uncheck();
+  await sixth.getByRole('button',{name:'학습모드',exact:true}).click();
+  const saved=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}'));
+  await expect.poll(async()=> (await saved()).itemIds?.length).toBe(8);
+  await expect(page.locator('.midterm-question-map')).toContainText('계산0문제');
+  await page.locator('.question-card').first().locator('.choice-button').first().click();
+  await expect.poll(async()=>Object.keys((await saved()).answers||{}).length).toBe(1);
+  const previous=await saved();
+  await page.locator('.session-topbar .back-button').click();
+  await page.getByRole('button',{name:'계산 전체 Off',exact:true}).click();
+  await expect(page.locator('.energy-calculation-controls')).toContainText('0개 포함');
+  await page.reload();
+  await expect(page.locator('.energy-midterm-intro')).toBeVisible();
+  await expect(checkbox).not.toBeChecked();
+  await page.locator('.resume-learning-card').getByRole('button',{name:'이어서 풀기',exact:true}).click();
+  expect((await saved()).answers).toEqual(previous.answers);
+  expect((await saved()).itemIds).toEqual(previous.itemIds);
+  await page.locator('.session-topbar .back-button').click();
+  await page.getByRole('button',{name:'랜덤20문제 CBT',exact:true}).click();
+  await expect.poll(async()=> (await saved()).itemIds?.length).toBe(20);
+  await expect(page.locator('.midterm-question-map')).toContainText('계산0문제');
+  await page.locator('.session-topbar .back-button').click();
+  await page.getByRole('button',{name:'계산 전체 On',exact:true}).click();
+  await expect(page.locator('.energy-calculation-controls')).toContainText('22개 포함');
+  await checkbox.uncheck();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await sixth.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+  await page.screenshot({path:`work/energy-midterm-calculation-settings-${info.project.name}.png`});
 });
 
 test('주제 목록·학습·오답 ID·재시작·라이트/다크 가로넘침', async ({ page }, info) => {
@@ -147,8 +217,10 @@ test('랜덤20문제 CBT 30분·제출과 학교 연습 점수', async ({ page }
   const remaining = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').remainingSeconds);
   await page.locator('.midterm-question-map > summary').click();
   await expect(page.locator('.midterm-question-map nav button')).toHaveCount(20);
-  await expect(page.locator('.midterm-question-map .midterm-calculation-badge')).toHaveCount(2);
-  await expect(page.locator('.omr-list .midterm-calculation-badge')).toHaveCount(2);
+  const calculations=await page.locator('.midterm-question-map .midterm-calculation-badge').count();
+  expect(calculations).toBeGreaterThanOrEqual(2);
+  expect(calculations).toBeLessThanOrEqual(5);
+  await expect(page.locator('.omr-list .midterm-calculation-badge')).toHaveCount(calculations);
   await page.screenshot({ path: `work/energy-midterm-calculation-map-${testInfo.project.name}.png`, fullPage: false });
   expect(remaining).toBeGreaterThan(1760);
   expect(remaining).toBeLessThanOrEqual(1800);

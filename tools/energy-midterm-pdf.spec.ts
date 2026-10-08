@@ -76,15 +76,14 @@ test('분리 기본·통합 전환과 PDF 원문 다크/라이트·답안 복원
   if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
   await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
   const intro=page.locator('.energy-midterm-intro');
-  await expect(intro.getByRole('button',{name:'따로 풀기 · 기본',exact:true})).toHaveAttribute('aria-pressed','true');
-  await expect(page.locator('.energy-midterm-priority-grid article')).toHaveCount(4);
+  await expect(page.locator('.energy-midterm-main-groups article')).toHaveCount(2);
+  await expect(intro.getByRole('button',{name:'시험범위만 학습',exact:true})).toBeVisible();
+  await expect(page.locator('.energy-midterm-subgroups')).not.toHaveAttribute('open');
   if((page.viewportSize()?.width||1440)<=900)
     await expect.poll(()=>page.locator('.sidebar').evaluate(el=>el.getBoundingClientRect().right)).toBeLessThanOrEqual(0);
-  await page.locator('.energy-midterm-mode').evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+  await page.locator('.energy-midterm-main-groups').evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
   await page.screenshot({path:`work/energy-midterm-priority-${info.project.name}.png`});
-  await intro.getByRole('button',{name:'함께 풀기',exact:true}).click();
-  await expect(intro.getByRole('button',{name:'전체179문제 함께 학습',exact:true})).toBeVisible();
-  await intro.getByRole('button',{name:'따로 풀기 · 기본',exact:true}).click();
+  await page.locator('.energy-midterm-subgroups > summary').click();
   await intro.getByRole('button',{name:'교재·CBT 반복 예상 학습',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(35);
   const card=page.locator('.question-card').first();const img=card.locator('.source-question-image');
