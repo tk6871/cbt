@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, uniqueSchoolItems, coolingRecordItem, coolingUnusedItems, coolingOriginalId, coolingTopic, coolingTopics, coolingTopicGroups, schoolItemKey, coolingBookChapters, coolingSectionGroups, coolingBookSection } from '../src/cbt/schoolQuestionBank';
 import { coolingSourceAllowed, coolingSafety, coolingScopeCandidate } from '../src/cbt/coolingScope';
+import { coolingCalculation, coolingPracticeSelection } from '../src/cbt/coolingPractice';
 import { normalizeSchoolExamData, mergeSchoolExamData } from '../src/cbt/schoolExam';
 import { subjectFor, questionId } from '../src/cbt/catalog';
 import type { Catalog, QuestionItem } from '../src/cbt/types';
@@ -21,9 +22,9 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
     round: { ...r, qualificationKey: c.key }, question: q, id: questionId(r, q), subject: subjectFor(r, q),
   }))));
   const pool = coolingMidtermItems(items);
-  expect(pool).toHaveLength(1159);
-  expect(pool.filter(i => i.round.qualificationKey === 'hvac')).toHaveLength(675);
-  expect(pool.filter(i => i.round.qualificationKey === 'hvac-hansol')).toHaveLength(484);
+  expect(pool).toHaveLength(1123);
+  expect(pool.filter(i => i.round.qualificationKey === 'hvac')).toHaveLength(651);
+  expect(pool.filter(i => i.round.qualificationKey === 'hvac-hansol')).toHaveLength(472);
   expect(pool.every(coolingSourceAllowed)).toBe(true);
   expect(pool.every(item => item.round.year >= 2006)).toBe(true);
   expect(pool.some(item => item.round.id === 'hvac-20060305')).toBe(false);
@@ -31,7 +32,7 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   expect(pool.some(item => item.round.year > 2023)).toBe(false);
   expect([...new Set(pool.filter(item => item.round.qualificationKey === 'hvac-hansol').map(item => item.round.year))].sort()).toEqual([2017, 2018, 2019, 2020, 2021, 2022, 2023]);
   const safety = coolingSafetyItems(items);
-  expect(safety).toHaveLength(18);
+  expect(safety).toHaveLength(57);
   expect(safety.every(coolingSafety)).toBe(true);
   expect(pool.some(coolingSafety)).toBe(false);
   const mainIds = new Set(pool.map(item => item.id));
@@ -41,7 +42,7 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   const historical = coolingRecordSourceItems(items);
   expect(historical).toHaveLength(1920);
   expect(historical.filter(item => item.round.qualificationKey === 'hvac')).toHaveLength(1380);
-  expect(uniqueSchoolItems(pool)).toHaveLength(1143);
+  expect(uniqueSchoolItems(pool)).toHaveLength(1108);
   // Audit every source question and all subject boundaries, not only selected items.
   let audited = 0;
   for (const catalog of Object.values(context.window)) for (const round of catalog.rounds) {
@@ -65,10 +66,26 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   }
   const groups = coolingTopicGroups(pool);
   expect(groups.map(group => group.label)).toEqual([...coolingTopics, '분류 미확인']);
-  expect(groups.flatMap(group => group.items)).toHaveLength(1143);
-  expect(new Set(groups.flatMap(group => group.items).map(schoolItemKey)).size).toBe(1143);
-  expect(groups.flatMap(group => group.aliases)).toHaveLength(1159);
-  expect(groups.find(group => group.label === '분류 미확인')!.items.length).toBeGreaterThan(0);
+  expect(groups.flatMap(group => group.items)).toHaveLength(1108);
+  expect(new Set(groups.flatMap(group => group.items).map(schoolItemKey)).size).toBe(1108);
+  expect(groups.flatMap(group => group.aliases)).toHaveLength(1123);
+  expect(groups.find(group => group.label === '분류 미확인')!.items).toHaveLength(0);
+  expect(pool.every(item => coolingBookSection(item, coolingTopic(item)) !== '세부 분류 미확인')).toBe(true);
+  expect(uniqueSchoolItems(pool).filter(coolingCalculation)).toHaveLength(238);
+  expect(coolingCalculation(items.find(item => item.id === 'hvac-20080511:40')!)).toBe(true);
+  for (const id of ['hvac-20080511:26', 'hvac-20100725:31', 'hvac-20120304:21']) expect(coolingCalculation(items.find(item => item.id === id)!)).toBe(false);
+  for (let run = 0; run < 100; run++) for (const count of [10, 20, 40, 60]) {
+    const sample = coolingPracticeSelection(pool, count, 5);
+    expect(sample).toHaveLength(count);
+    expect(sample.filter(coolingCalculation)).toHaveLength(5);
+    expect(new Set(sample.map(schoolItemKey)).size).toBe(count);
+    expect(sample.every(coolingSourceAllowed)).toBe(true);
+    expect(sample.some(coolingSafety)).toBe(false);
+  }
+  expect(coolingPracticeSelection(pool, 20)).toHaveLength(20);
+  expect(() => coolingPracticeSelection(pool.filter(item => !coolingCalculation(item)), 20, 5)).toThrow(/부족/);
+  expect(() => coolingPracticeSelection(pool.filter(coolingCalculation), 20, 5)).toThrow(/부족/);
+  expect(() => coolingPracticeSelection(pool, 2, 5)).toThrow(/문제 수/);
   for (const group of groups) {
     const keys = new Set(group.items.map(schoolItemKey));
     expect(group.aliases.every(item => keys.has(schoolItemKey(item)))).toBe(true);
@@ -99,6 +116,12 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   const topicExamples = ['카르노 냉동사이클의 성적계수', '스크롤 압축기의 구조', '제빙 및 동결장치의 특징', '부하 계산과 침입열 및 열관류', '오일트랩과 이중입상관', '냉각탑 냉각수의 수온'];
   topicExamples.forEach((text, index) => expect(coolingTopic({ ...one, question: { ...one.question, text, html: '', ocrText: '', explanation: '', explanationHtml: '', choices: [] } })).toBe(coolingTopics[index]));
   expect(coolingTopic({ ...one, question: { ...one.question, text: '원문 이미지 문제', html: '', ocrText: '', explanation: '', explanationHtml: '', choices: [] } })).toBe('분류 미확인');
+  for (const [id, chapter, section] of [
+    ['hvac-20100307:23', '냉동이론', '냉매와 브라인'],
+    ['hvac-20120304:34', '냉동이론', '냉매와 브라인'],
+    ['hvac-20130602:26', '냉동이론', '각종 냉동 사이클'],
+    ['hvac-hansol-2023-2:29', '냉방설비운영', '냉동기 관리·유지보수'],
+  ]) { const item = items.find(item => item.id === id)!; expect(coolingTopic(item)).toBe(chapter); expect(coolingBookSection(item, chapter)).toBe(section); }
   for (const [text, chapter, section] of [
     ['브라인의 동결 온도', '냉동이론', '냉매와 브라인'],
     ['몰리에르 선도와 냉동 사이클', '냉동이론', '냉매선도와 냉동 사이클'],
@@ -118,7 +141,7 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   pool.forEach(item => { const label = coolingTopic(item); distribution[label] = (distribution[label] || 0) + 1; });
   console.log('Cooling topic rule audit:', distribution);
   console.log('Cooling book chapter audit:', JSON.stringify(groups.map(group => ({ title: group.label, unique: group.items.length, sections: coolingSectionGroups(group).map(section => ({ title: section.label, count: section.items.length })) }))));
-  expect(Object.values(distribution).reduce((sum, value) => sum + value, 0)).toBe(1159);
+  expect(Object.values(distribution).reduce((sum, value) => sum + value, 0)).toBe(1123);
 });
 
 test('회차별 중간고사·구 기출+한솔 검색·학교 시험지 담기·새로고침 이어하기', async ({ page }, info) => {
@@ -137,8 +160,8 @@ test('회차별 중간고사·구 기출+한솔 검색·학교 시험지 담기�
   await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
-  await expect(bank.getByText('2006년3회~2016년 공조 · 675문제', { exact: true })).toHaveCount(1);
-  await expect(bank.getByText('한솔 공조 · 484문제', { exact: true })).toHaveCount(1);
+  await expect(bank.getByText('2006년3회~2016년 공조 · 651문제', { exact: true })).toHaveCount(1);
+  await expect(bank.getByText('한솔 공조 · 472문제', { exact: true })).toHaveCount(1);
   await page.screenshot({ path: `/private/tmp/cbt-cooling-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   await bank.getByRole('button', { name: '통합 검색으로 문제 찾기' }).click();
@@ -206,15 +229,15 @@ test('전체 범위 학습과 한솔 랜덤 CBT를 별도 학교 기록으로 �
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체 문제 학습', exact: true }).click();
-  await expect(page.locator('.session-topbar')).toContainText('전체 1143문제');
+  await expect(page.locator('.session-topbar')).toContainText('전체 1108문제');
   await page.waitForTimeout(400);
   const whole = await page.evaluate(() => Object.keys(localStorage).map(key => {
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
-  }).find(value => value?.itemIds?.length === 1143));
+  }).find(value => value?.itemIds?.length === 1108));
   expect(whole?.mode).toBe('learn');
   expect(whole?.qualificationKey).toBe('school-exams');
   expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('school-exams');
-  expect(new Set(whole?.itemIds).size).toBe(1143);
+  expect(new Set(whole?.itemIds).size).toBe(1108);
   await page.reload();
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac-hansol');
   await bank.getByRole('button', { name: '랜덤 20문제 CBT', exact: true }).click();
@@ -241,21 +264,25 @@ test('교재 목차 보강·2023년3회 제한·안전관리는 별도 학습과
   await expect(bank.getByRole('button', { name: '학습모드 · 냉방설비운영', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용', exact: true })).toBeVisible();
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용과 안전관리', exact: true })).toHaveCount(0);
-  await expect(bank.locator('.safety-separate summary')).toContainText('18문제');
+  await expect(bank.locator('.safety-separate summary')).toContainText('56문제');
   await bank.locator('.safety-separate summary').click();
   await page.screenshot({ path: `/private/tmp/cbt-cooling-scope-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   for (const label of ['안전관리 별도 학습', '안전관리 별도 CBT']) {
     if (!(await bank.locator('.safety-separate').evaluate(element => (element as HTMLDetailsElement).open))) await bank.locator('.safety-separate summary').click();
     await bank.getByRole('button', { name: label, exact: true }).click();
-    await expect(page.locator('.session-topbar')).toContainText('18문제');
+    await expect(page.locator('.session-topbar')).toContainText('56문제');
     await expect(page.locator('.session-topbar')).toContainText('안전관리·법규 별도');
-    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(18);
+    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(56);
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}'));
     const context = { window: {} as Record<string, Catalog> };
     for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`, 'utf8'), context);
     const items: QuestionItem[] = Object.values(context.window).flatMap(c => c.rounds.flatMap(r => r.questions.map(q => ({ round: { ...r, qualificationKey: c.key }, question: q, id: questionId(r, q), subject: subjectFor(r, q) }))));
-    expect(saved.itemIds.map(coolingOriginalId).sort()).toEqual(coolingSafetyItems(items).map(item => item.id).sort());
+    // Identical questions from different years may use a different representative
+    // after the browser sorts its catalog. Compare question content, not aliases.
+    const byId = new Map(items.map(item => [item.id, item]));
+    expect(saved.itemIds.map((id: string) => schoolItemKey(byId.get(coolingOriginalId(id))!)).sort())
+      .toEqual(uniqueSchoolItems(coolingSafetyItems(items)).map(schoolItemKey).sort());
     await page.locator('.session-topbar .back-button').click();
   }
 });
@@ -282,7 +309,7 @@ test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와
   await bank.getByRole('combobox', { name: '교재 장', exact: true }).selectOption('냉동이론');
   await bank.getByRole('button', { name: '교재 목차', exact: true }).click();
   const theoryCount = await bank.locator('.round-grid article').count();
-  expect(theoryCount).toBe(7);
+  expect(theoryCount).toBe(6);
   await page.screenshot({ path: `/private/tmp/cbt-cooling-rounds-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   await bank.locator('.round-card[data-topic="냉동이론"]').getByRole('button', { name: /^학습모드 ·/ }).click();
@@ -381,7 +408,7 @@ test('v5.3 중간고사 진행 답안은 유지하고 새 분리 ID로 이어풀
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await expect(page.locator('.cooling-midterm').getByRole('button', { name: '교재 목차', exact: true })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(7);
+  await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(6);
   await page.locator('.resume-learning-card').getByRole('button', { name: '이어서 풀기', exact: true }).click();
   await expect(page.locator('.session-topbar')).toContainText('냉동공학 중간고사');
   await page.waitForTimeout(400);
@@ -407,9 +434,9 @@ test('학교 회차 첫 화면은 중간고사·일반 기출 버튼 없음·종
   await expect(page.getByRole('button', { name: '일반 기출', exact: true })).toHaveCount(0);
   await expect(choices).toHaveCount(0);
   await expect(page.locator('.cooling-midterm .round-card').first()).toBeVisible({ timeout: 30000 });
-  await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(7);
+  await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(6);
   await expect(page.locator('.cooling-midterm').getByRole('combobox', { name: '연도', exact: true })).toHaveCount(0);
-  for (const label of [...coolingTopics, '분류 미확인']) await expect(page.locator('.cooling-midterm').getByRole('heading', { name: label, exact: true })).toBeVisible();
+  for (const label of coolingTopics) await expect(page.locator('.cooling-midterm').getByRole('heading', { name: label, exact: true })).toBeVisible();
   await expect(page.locator('.school-hero')).toHaveCount(0);
   await page.screenshot({ path: `/private/tmp/cbt-cooling-relocated-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
@@ -466,6 +493,79 @@ test('오래된 분리 CSS가 남아도 버전별 CSS로 필터·버튼 스타�
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
 });
 
+test('계산5개 포함 학습·CBT·선택 기억·미출제 순환·범위 부족 안내', async ({ page }, info) => {
+  page.on('dialog', dialog => dialog.accept());
+  await page.addInitScript(() => {
+    localStorage.setItem('modern-cbt-qualification-industrial', 'school-exams');
+    localStorage.setItem('unified-cbt-dynamic-ui', 'false');
+    if (!localStorage.getItem('school-cooling-selection-v1')) localStorage.setItem('school-cooling-selection-v1', JSON.stringify({ layoutVersion: 3, tab: 'all', source: 'all', count: 20 }));
+  });
+  const context = { window: {} as Record<string, Catalog> };
+  for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`, 'utf8'), context);
+  const items: QuestionItem[] = Object.values(context.window).flatMap(c => c.rounds.flatMap(r => r.questions.map(q => ({ round: { ...r, qualificationKey: c.key }, question: q, id: questionId(r, q), subject: subjectFor(r, q) }))));
+  const byId = new Map(items.map(item => [item.id, item]));
+  await page.goto('./?safe=1');
+  if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
+  await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
+  const bank = page.locator('.cooling-midterm');
+  await expect(bank.getByRole('button', { name: '랜덤 20문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
+  await expect(bank.getByLabel('계산 5개 포함', { exact: true })).not.toBeChecked();
+  await bank.getByLabel('계산 5개 포함', { exact: true }).check();
+  await page.screenshot({ path: `/private/tmp/cbt-cooling-quota-${info.project.name}.png` });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+  let previous: string[] = [];
+  for (const [mode, button] of [['learn', '랜덤 20문제 학습'], ['exam', '랜덤 20문제 CBT']]) {
+    await bank.getByRole('button', { name: button, exact: true }).click();
+    await expect(page.locator('.session-topbar')).toContainText('계산5개 포함');
+    await expect(page.locator('.midterm-question-map summary')).toContainText('계산5문제');
+    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').mode)).toBe(mode);
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}'));
+    expect(saved.itemIds).toHaveLength(20);
+    expect(saved.itemIds.map((id: string) => byId.get(coolingOriginalId(id))!).filter(coolingCalculation)).toHaveLength(5);
+    expect(saved.itemIds.some((id: string) => previous.includes(id))).toBe(false);
+    previous = saved.itemIds;
+    await page.locator('.session-topbar .back-button').click();
+    await page.reload();
+    await expect(bank.getByLabel('계산 5개 포함', { exact: true })).toBeChecked();
+  }
+  await bank.getByRole('combobox', { name: '교재 장', exact: true }).selectOption('냉동장치의 구조');
+  await bank.getByRole('combobox', { name: '세부 목차', exact: true }).selectOption('냉동장치 구성 기기(제어기기)');
+  await expect(bank.getByText(/계산5개 또는 이론15개가 부족/)).toBeVisible();
+  await expect(bank.getByRole('button', { name: /^랜덤 .*학습$/ })).toBeDisabled();
+  await expect(bank.getByRole('button', { name: /^랜덤 .*CBT$/ })).toBeDisabled();
+  await bank.getByLabel('계산 5개 포함', { exact: true }).uncheck();
+  await expect(bank.getByRole('button', { name: /^랜덤 .*학습$/ })).toBeEnabled();
+});
+
+test('분류 검토 화면은 독립·검색·50개 페이지·에너지 출제 변경 없음', async ({ page }, info) => {
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  const report = JSON.parse(fs.readFileSync('docs/energy-midterm-classification-review-2026-10-08.json', 'utf8'));
+  expect(report.mode).toBe('review-only');
+  expect(report.originalEnergyQuestions).toBe(2640);
+  expect(report.states['기존 중간고사']).toBe(179);
+  expect(report.states['추가 검토 후보']).toBe(111);
+  await page.goto('./docs/energy-midterm-classification-review-2026-10-08.html');
+  await expect(page.getByRole('heading', { name: '에너지설비 분류 검토 전용' })).toBeVisible();
+  await expect(page.locator('#state')).toHaveValue('추가 검토 후보');
+  await expect(page.locator('#list article')).toHaveCount(50);
+  await page.screenshot({ path: `/private/tmp/cbt-energy-review-${info.project.name}.png` });
+  await page.getByRole('button', { name: '다음50개', exact: true }).click();
+  await expect(page.locator('#position')).toHaveText('51~100');
+  await page.getByRole('searchbox', { name: '문제 검색' }).fill('존재하지않는테스트문장');
+  await expect(page.locator('#list article')).toHaveCount(0);
+  await expect(page.locator('#position')).toHaveText('0~0');
+  await page.getByRole('searchbox', { name: '문제 검색' }).fill('');
+  await page.getByRole('combobox', { name: '검토 상태' }).selectOption('기존 중간고사');
+  await expect(page.locator('#count')).toContainText('179개');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
+  await page.goto('./docs/cooling-midterm-classification-review-2026-10-08.html');
+  await expect(page.getByRole('heading', { name: '냉동공학 목차 분류 검토' })).toBeVisible();
+  await page.getByRole('combobox', { name: '검토 상태' }).selectOption('안전 별도');
+  await expect(page.locator('#count')).toContainText('57개');
+  expect(errors).toEqual([]);
+});
+
 test('교재 세부 목차 선택·범위 학습/랜덤/오답·이어풀기와 소과목 표기 제거', async ({ page }, info) => {
   page.on('dialog', dialog => dialog.accept());
   await page.addInitScript(() => {
@@ -479,7 +579,7 @@ test('교재 세부 목차 선택·범위 학습/랜덤/오답·이어풀기와 
   await expect(bank.getByRole('button', { name: '학습모드 · 냉동이론', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByText('소과목', { exact: true })).toHaveCount(0);
   await bank.getByRole('button', { name: '세부 목차 보기 · 냉동이론', exact: true }).click();
-  await expect(bank.locator('.round-card')).toHaveCount(7);
+  await expect(bank.locator('.round-card')).toHaveCount(6);
   for (const title of coolingBookChapters[0].sections) await expect(bank.getByRole('heading', { name: title, exact: true })).toBeVisible();
   await page.screenshot({ path: `/private/tmp/cbt-cooling-book-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
@@ -524,5 +624,5 @@ test('교재 세부 목차 선택·범위 학습/랜덤/오답·이어풀기와 
   await page.waitForTimeout(300);
   await page.locator('.session-topbar .back-button').click();
   await bank.getByRole('button', { name: '교재 목차', exact: true }).click();
-  await expect(bank.locator('.round-card')).toHaveCount(7);
+  await expect(bank.locator('.round-card')).toHaveCount(6);
 });

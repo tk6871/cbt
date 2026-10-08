@@ -3,11 +3,13 @@ import { computed, ref, watch } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import type { ExamRecord } from './storage';
 import { uniqueSchoolItems, coolingTopics, coolingTopicGroups, coolingBookChapters, coolingSectionGroups } from './schoolQuestionBank';
+import { coolingCalculation } from './coolingPractice';
+import { coolingSafetyKind } from './coolingScope';
 
 type SavedSet = { id?: string; title: string; mode?: StudyMode; savedAt: number; itemIds: string[]; answers: Record<string, number> };
 const props = defineProps<{ items: QuestionItem[]; safetyItems: QuestionItem[]; wrongIds: string[]; attemptedIds: string[]; unusedIds: string[]; sessions: SavedSet[]; history: ExamRecord[]; loading: boolean; error: string }>();
 const emit = defineEmits<{
-  start: [payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; label?: string }];
+  start: [payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; calculationCount?: number; label?: string }];
   search: []; retry: []; resetDraws: []; resume: [id: string]; replay: [id: string];
 }>();
 const preferenceKey = 'school-cooling-selection-v1';
@@ -20,6 +22,7 @@ const tab = ref(savedPreferences.layoutVersion === 3 && ['all', 'topics', 'secti
 const section = ref(typeof savedPreferences.section === 'string' ? savedPreferences.section : 'all');
 const count = ref([10, 20, 40, 60].includes(Number(savedPreferences.count)) ? Number(savedPreferences.count) : 20);
 const excludeSeen = ref(savedPreferences.excludeSeen !== false);
+const includeFiveCalculations = ref(savedPreferences.includeFiveCalculations === true);
 const sourceItems = computed(() => props.items.filter(item => source.value === 'all' || item.round.qualificationKey === source.value));
 const groups = computed(() => coolingTopicGroups(sourceItems.value));
 type TopicGroup = ReturnType<typeof coolingTopicGroups>[number];
@@ -34,8 +37,12 @@ const filtered = computed(() => scopeGroup.value?.aliases || sourceItems.value);
 const pool = computed(() => scopeGroup.value?.items || uniqueSchoolItems(sourceItems.value));
 const totalCount = computed(() => groups.value.reduce((total, group) => total + group.items.length, 0));
 const safetyPool = computed(() => uniqueSchoolItems(props.safetyItems));
+const safetyCounts = computed(() => ['management', 'protection', 'leak'].map(kind => safetyPool.value.filter(item => coolingSafetyKind(item) === kind).length));
 const unused = computed(() => new Set(props.unusedIds));
 const randomPool = computed(() => excludeSeen.value ? pool.value.filter(item => unused.value.has(item.id)) : pool.value);
+const calculationAvailable = computed(() => randomPool.value.filter(coolingCalculation).length);
+const theoryAvailable = computed(() => randomPool.value.length - calculationAvailable.value);
+const calculationShortage = computed(() => includeFiveCalculations.value && (calculationAvailable.value < 5 || theoryAvailable.value < count.value - 5));
 const wrongItems = (items: QuestionItem[]) => uniqueSchoolItems(items.filter(item => props.wrongIds.includes(item.id)));
 const wrongPool = computed(() => wrongItems(filtered.value));
 const wrongGroups = computed(() => (selectedSection.value ? [selectedSection.value] : groups.value.filter(group => topic.value === 'all' || group.label === topic.value)).filter(group => wrongItems(group.aliases).length));
@@ -43,8 +50,8 @@ const sourceCount = (key: string) => props.items.filter(item => item.round.quali
 const answered = (group: TopicGroup) => uniqueSchoolItems(group.aliases.filter(item => props.attemptedIds.includes(item.id))).length;
 const wrongCount = (group: TopicGroup) => wrongItems(group.aliases).length;
 watch(topic, () => { section.value = 'all'; });
-watch([source, topic, section, tab, count, excludeSeen], () => {
-  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value }));
+watch([source, topic, section, tab, count, excludeSeen, includeFiveCalculations], () => {
+  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value, includeFiveCalculations: includeFiveCalculations.value }));
 });
 const sourceLabel = computed(() => source.value === 'all' ? '구 기출 + 한솔' : source.value === 'hvac' ? '2006년3회~2016년 공조' : '한솔 공조');
 const scopeLabel = computed(() => `${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value}${selectedSection.value ? ` · ${selectedSection.value.label}` : ''} · ${sourceLabel.value}`);
@@ -53,6 +60,10 @@ function openChapter(group: TopicGroup): void {
 }
 function startGroup(group: TopicGroup, mode: StudyMode, wrong = false): void {
   emit('start', { items: wrong ? wrongItems(group.aliases) : group.items, mode, randomCount: 0, label: `${tab.value === 'sections' ? `${topic.value} · ` : ''}${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}` });
+}
+function startRandom(mode: StudyMode): void {
+  if (calculationShortage.value || !randomPool.value.length) return;
+  emit('start', { items: randomPool.value, mode, randomCount: count.value, calculationCount: includeFiveCalculations.value ? 5 : undefined, label: `${scopeLabel.value}${includeFiveCalculations.value ? ' · 계산5개 포함' : ''}` });
 }
 function resumeForGroup(group: TopicGroup): SavedSet | undefined {
   const ids = new Set(group.aliases.map(item => item.id));
@@ -79,7 +90,7 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <label v-if="(tab === 'all' || tab === 'wrong') && sections.length">세부 목차<select v-model="section"><option value="all">이 장 전체</option><option v-for="group in sections" :key="group.label" :value="group.label">{{ group.label }} · {{ group.items.length }}문제</option></select></label>
       <button v-if="source !== 'all' || ((tab === 'all' || tab === 'wrong') && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'; section = 'all'; if (tab === 'sections') tab = 'topics'">전체 범위 보기</button>
     </div>
-    <p v-if="tab !== 'history'" class="topic-warning">목차 기준 자동 분류입니다. 미확인 문항도 함께 확인하세요. 교재 문제별 대조는 미완료입니다.</p>
+    <p v-if="tab !== 'history'" class="topic-warning">교재의 장·세부 목차로 문제 내용에 따라 분류했습니다. 교재 수록 문제와의 페이지별 동일성 대조는 미완료입니다.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
     <p v-else-if="loading" role="status">공조·한솔 문제를 불러오는 중입니다…</p>
     <template v-if="tab === 'topics' || tab === 'sections'">
@@ -88,7 +99,7 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
         <button @click="section = 'all'; tab = 'all'">이 장 전체·랜덤 풀기</button>
       </div>
       <div class="round-grid midterm-rounds">
-        <article v-for="group in displayedGroups" :key="group.label" :data-topic="group.label" :data-section="tab === 'sections' ? group.label : undefined" class="round-card">
+        <article v-for="group in displayedGroups.filter(group => group.items.length)" :key="group.label" :data-topic="group.label" :data-section="tab === 'sections' ? group.label : undefined" class="round-card">
           <header><b>{{ sourceLabel }}</b></header>
           <div v-if="latestResult(group)" class="round-record-badge"><span>최근 중간고사 CBT</span><strong>{{ latestResult(group)!.score }}점</strong><small>{{ new Date(latestResult(group)!.finishedAt).toLocaleDateString('ko-KR') }}</small></div>
           <h2>{{ group.label }}</h2>
@@ -118,11 +129,14 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <div class="random-options">
         <label>랜덤 문제 수<select v-model.number="count"><option v-for="size in [10, 20, 40, 60]" :key="size" :value="size">{{ size }}문제</option></select></label>
         <label class="check"><input v-model="excludeSeen" type="checkbox">이미 나온 문제 제외</label>
+        <label class="check"><input v-model="includeFiveCalculations" type="checkbox">계산 5개 포함</label>
         <span class="muted">{{ excludeSeen ? '새로 풀 수 있는' : '반복 포함' }} {{ randomPool.length.toLocaleString() }}문제</span>
       </div>
+      <p v-if="includeFiveCalculations" class="muted calculation-quota">계산5개 + 이론{{ count - 5 }}개 · 선택 범위에 남은 계산{{ calculationAvailable }}개 / 이론{{ theoryAvailable }}개. 숫자·공식 암기는 계산으로 세지 않습니다.</p>
+      <p v-if="calculationShortage" role="status" class="topic-warning">계산5개 또는 이론{{ count - 5 }}개가 부족합니다. 범위를 넓히거나 ‘이미 나온 문제 제외’ 또는 ‘계산 5개 포함’을 꺼 주세요.</p>
       <div class="midterm-actions">
-        <button :disabled="loading || !randomPool.length" @click="emit('start', { items: randomPool, mode: 'learn', randomCount: count, label: scopeLabel })">랜덤 {{ Math.min(count, randomPool.length) }}문제 학습</button>
-        <button :disabled="loading || !randomPool.length" @click="emit('start', { items: randomPool, mode: 'exam', randomCount: count, label: scopeLabel })">랜덤 {{ Math.min(count, randomPool.length) }}문제 CBT</button>
+        <button :disabled="loading || !randomPool.length || calculationShortage" @click="startRandom('learn')">랜덤 {{ Math.min(count, randomPool.length) }}문제 학습</button>
+        <button :disabled="loading || !randomPool.length || calculationShortage" @click="startRandom('exam')">랜덤 {{ Math.min(count, randomPool.length) }}문제 CBT</button>
       </div>
       <button class="cycle-reset" @click="emit('resetDraws')">랜덤 출제 순환 다시 시작</button>
       <p v-if="!loading && !randomPool.length && excludeSeen" class="muted">선택 범위가 모두 출제됐습니다. 풀이 기록에서 이어 풀거나 출제 순환을 다시 시작하세요. 오답 기록은 지워지지 않습니다.</p>
@@ -143,14 +157,16 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
     <details class="classification-help safety-separate">
       <summary>안전관리·법규 별도 {{ safetyPool.length }}문제</summary>
       <p>일반 전체·랜덤·목차 풀이에서는 제외했습니다. 필요한 경우에만 이 묶음을 따로 풉니다.</p>
+      <p>법규·운전안전 {{ safetyCounts[0] }}개 · 보호장치 {{ safetyCounts[1] }}개 · 냉매 누설검사 {{ safetyCounts[2] }}개</p>
       <div class="midterm-actions">
         <button :disabled="loading || !safetyPool.length" @click="emit('start', { items: safetyPool, mode: 'learn', randomCount: 0, label: '안전관리·법규 별도' })">안전관리 별도 학습</button>
         <button :disabled="loading || !safetyPool.length" @click="emit('start', { items: safetyPool, mode: 'exam', randomCount: 0, label: '안전관리·법규 별도' })">안전관리 별도 CBT</button>
       </div>
     </details>
     <details class="classification-help"><summary>시험 범위·목차 분류 안내</summary>
+      <p><a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">목차 분류 검토표 열기 ↗</a></p>
       <p>2006년3회~2016년은 기존 공조, 2017~2023년3회는 한솔 공조를 사용합니다. 교재 목차와 직접 관련된 냉각탑·냉매 배관·냉방설비 방식도 보강하고 안전관리·법규는 별도 분리했습니다. 교재 핵심예상문제 본문과의 페이지별 대조는 아직 하지 않았습니다.</p>
-      <p>보내주신 교재의6개 장과 세부 목차를 반영했습니다. 각 문항의 장·세부 목차 배치는 키워드 기반 자동 후보이며 교재 수록 문제와 동일하다고 확정한 것은 아닙니다. 현재 출처의 ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제와 각 장의 ‘세부 분류 미확인’도 확인하세요.</p>
+      <p>보내주신 교재의6개 장과 세부 목차를 반영했습니다. 본문에서 묻는 원리·운전·부품을 우선하고 모호한 문항은 보기·원문 그림을 추가 확인했습니다. 목차 배치가 교재에 실제 수록됐다는 뜻은 아닙니다. ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제는 판정이 어려울 때 별도 유지됩니다.</p>
       <p>원래 문제 그림·정답·해설과 기존 기록은 유지됩니다. 완전히 같은 문항은 한 번만 출제하지만 다른 그림의 유사문제까지 모두 같은 문제로 판정한 것은 아닙니다.</p>
     </details>
   </section>

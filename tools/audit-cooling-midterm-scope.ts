@@ -1,8 +1,10 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import { subjectFor, questionId } from '../src/cbt/catalog';
-import { coolingMidtermItems, coolingSafetyItems, coolingTopicGroups, coolingSectionGroups, normalizedSchoolSubject, uniqueSchoolItems } from '../src/cbt/schoolQuestionBank';
-import { coolingSourceAllowed, coolingSafety, coolingSupplementChapter, coolingStem } from '../src/cbt/coolingScope';
+import { coolingMidtermItems, coolingSafetyItems, coolingTopic, coolingBookSection, coolingTopicGroups, coolingSectionGroups, normalizedSchoolSubject, uniqueSchoolItems, coolingTopics } from '../src/cbt/schoolQuestionBank';
+import { coolingSourceAllowed, coolingSafetyKind, coolingSupplementChapter, coolingStem } from '../src/cbt/coolingScope';
+import { coolingCalculation } from '../src/cbt/coolingPractice';
+import { coolingContextPlacement, coolingReviewedPlacement } from '../src/cbt/coolingBookPlacement';
 import type { Catalog, QuestionItem } from '../src/cbt/types';
 
 const context = { window: {} as Record<string, Catalog> };
@@ -15,19 +17,29 @@ const pool = coolingMidtermItems(items);
 const safety = coolingSafetyItems(items);
 const selected = new Set(pool.map(item => item.id));
 const separate = new Set(safety.map(item => item.id));
+function classificationReason(item: QuestionItem) {
+  const manual = coolingReviewedPlacement(item);
+  if (manual) return manual.reason;
+  const context = coolingContextPlacement(item);
+  return context && coolingTopics[context.placement[0]] === coolingTopic(item)
+    ? context.reason : '본문·보기의 목차 단서';
+}
 const rows = items.map(item => ({ id: item.id, year: item.round.year, session: item.round.session,
   source: item.round.qualificationKey, subject: item.subject, number: item.question.number,
   state: selected.has(item.id) ? 'main' : separate.has(item.id) ? 'safety-separate' : 'excluded',
   reason: !coolingSourceAllowed(item) ? 'source-year-cutoff' : separate.has(item.id) ? 'safety-regulations'
     : normalizedSchoolSubject(item) === '냉동냉장설비' ? 'original-refrigeration-subject'
     : selected.has(item.id) ? 'textbook-related-supplement' : 'no-clear-textbook-topic',
-  stem: coolingStem(item).slice(0, 120), chapter: coolingSupplementChapter(item),
+  stem: coolingStem(item), chapter: coolingSupplementChapter(item), assignedChapter: coolingTopic(item), assignedSection: coolingBookSection(item, coolingTopic(item)), safetyKind: coolingSafetyKind(item), calculation: coolingCalculation(item),
+  classificationReason: classificationReason(item),
 }));
 const report = { schemaVersion: 1, date: '2026-10-08',
   limits: 'Metadata/stem-based scope review, not full source-image or answer correctness validation.',
   totalQuestions: items.length, totalRounds: catalogs.reduce((sum, c) => sum + c.rounds.length, 0),
   mainOriginal: pool.length, mainUnique: uniqueSchoolItems(pool).length,
   safetyOriginal: safety.length, safetyUnique: uniqueSchoolItems(safety).length,
+  safetyKinds: Object.fromEntries(['management', 'protection', 'leak'].map(kind => [kind, uniqueSchoolItems(safety).filter(item => coolingSafetyKind(item) === kind).length])),
+  calculationUnique: uniqueSchoolItems(pool).filter(coolingCalculation).length,
   sources: Object.fromEntries(['hvac', 'hvac-hansol'].map(key => [key, pool.filter(item => item.round.qualificationKey === key).length])),
   supplementary: pool.filter(item => normalizedSchoolSubject(item) !== '냉동냉장설비').length,
   groups: coolingTopicGroups(pool).map(group => ({ title: group.label, count: group.items.length,
