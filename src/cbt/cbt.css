@@ -641,6 +641,12 @@ img { max-width: 100%; }
 .energy-calculation-controls p { margin:8px 0 0; font-size:.9rem; color:var(--muted); }
 .energy-topic-calculation { display:flex; align-items:center; gap:8px; min-height:44px; margin:8px 0; padding:8px 10px; border:1px solid var(--line); border-radius:8px; cursor:pointer; color:var(--text); background:var(--surface-2); font-size:.95rem; }
 .energy-topic-calculation input { width:20px; height:20px; accent-color:var(--primary); flex-shrink:0; }
+.energy-calculation-review { margin:12px 0; padding:12px; border:1px solid var(--line); border-radius:10px; }
+.energy-calculation-review summary { cursor:pointer; min-height:32px; font-weight:700; overflow-wrap:anywhere; }
+.energy-calculation-review-item { margin-top:10px; padding:10px; background:var(--surface-2); border-radius:8px; }
+.energy-calculation-review .question-card { margin-top:10px; }
+.energy-occurrences { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+.energy-occurrences summary { cursor:pointer; }
 .midterm-question-map { margin:0 0 12px; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--surface); }
 .midterm-question-map summary { cursor:pointer; color:var(--text); font-size:.86rem; font-weight:700; }
 .midterm-question-map nav { display:grid; grid-template-columns:repeat(auto-fill,minmax(48px,1fr)); gap:6px; margin-top:10px; max-height:240px; overflow:auto; }

@@ -57,6 +57,9 @@ export type Question = {
   midtermMatch?: 'direct' | 'related';
   midtermPriority?: 'repeat' | 'recent' | 'note' | 'related';
   midtermCalculation?: boolean;
+  midtermDuplicateOf?: string;
+  midtermOccurrences?: string[];
+  midtermLatestSource?: string;
   midtermPriorSource?: string;
   midtermPdfSources?: Array<{ year: number; session: number; number: number; pdfPage: number; printedPage: number }>;
 };
