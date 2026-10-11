@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.8.4',scope:'industrial',date:'2026.10.11',
+      title:'에너지 이미지 답안·중복 비교',
+      summary:'원문 이미지73개의 직접 선택 좌표를 연결하고 중간고사 중복·의심 후보를 나란히 비교합니다.',
+      tags:['이미지 답안','좌표 보완','반복 문제 검토'],
+      changes:[
+        '설정의 답안 배치에서 이미지 직접 선택을 고르면 에너지 중간고사의 원문73문제에서①②③④와 보기 내용을 눌러 선택할 수 있습니다. 기존 답안 버튼 설정은 유지합니다.',
+        '두 줄 보기와 분수의 분자·분모를 한 박스로 묶고, 마우스 표시·클릭·선택 색상 박스에 같은 좌표를 사용합니다. 체크 마커 기본과 영역 색상 옵션을 유지합니다.',
+        '중간고사179문제만 비교하여 반복7묶음·15문항, 관련 변형6쌍, 추가 의심/같은 원리 후보61쌍을 검토 화면에 모았습니다. 주제별로 원문을 나란히 보고 판단·메모를 저장하거나 내보낼 수 있습니다. 일반 에너지 기출은 제외하며 원본 문제·정답·풀이 기록은 보존합니다.'
+      ]
+    },
+    {
       version:'5.8.3',scope:'industrial',date:'2026.10.08',
       title:'냉동 목차 분류 보강·계산5개 선택',
       summary:'냉동 중간고사의 세부 목차를 보강하고 계산5개 포함 연습과 별도 분류 검토 화면을 제공합니다.',
@@ -2446,8 +2457,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.8';
+  changelog.versions.industrial = '5.8.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.8';
+  changelog.currentVersion = '5.8.4';
   window.CBT_CHANGELOG = changelog;
 })();

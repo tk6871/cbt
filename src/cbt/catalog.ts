@@ -3,6 +3,10 @@ import { hvacAnswerHotspots } from './generatedHvacHotspots';
 import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
+import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json';
+import type { AnswerHotspot } from './types';
+
+const energyImageHotspots = energyMidtermHotspots as Record<string, AnswerHotspot[]>;
 
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'energy', 'energy-midterm', 'maintenance',
@@ -43,7 +47,12 @@ function prepareCatalog(source: Catalog): Catalog {
             })),
           };
         })
-      : round.questions,
+      : source.key === 'energy-midterm'
+        ? round.questions.map((question) => ({
+            ...question,
+            answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
+          }))
+        : round.questions,
   }));
   return { ...source, rounds };
 }
@@ -58,7 +67,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   if (pending) return pending;
   const promise = new Promise<Catalog>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${key}.js?v=583`, document.baseURI).href;
+    script.src = new URL(`data/${key}.js?v=584`, document.baseURI).href;
     script.onload = () => {
       const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
       if (loaded) resolve(loaded);

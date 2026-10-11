@@ -35,6 +35,9 @@ work/image-upscale-macos/
 work/bundle-report-*.html
 work/energy-midterm-*.png
 work/energy-pdf-*.png
+work/energy-answer-geometry/
+work/energy-restored-import/
+work/practical-upscale/
 work/sync-test-harness.js
 test-results/
 playwright-report/
