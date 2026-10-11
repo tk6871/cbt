@@ -111,23 +111,42 @@ export function coolingSafetyItems(items: QuestionItem[]): QuestionItem[] {
   return items.filter(item => coolingScopeCandidate(item, normalizedSchoolSubject(item)) && coolingSafety(item));
 }
 
-// Keep numerical conditions, choice order, images and answers in the key.
-// Similar wording alone is not enough to merge two exam questions.
+// Same readable question + same correct content may have reordered or changed
+// distractors. Preserve every number/unit/sign, and never infer diagram equality.
 export function schoolItemKey(item: QuestionItem): string {
     const q = item.question;
     const text = (q.text || q.html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+    const plain = (value: string) => value.normalize('NFC').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,'').replace(/^[①②③④]\s*/, '');
+    const choices = q.choices.map(c=>plain(c.text || c.html || ''));
+    const visual = (q.images?.length || q.choices.some(c=>c.images?.length)
+      || /<img|<svg|<math/i.test([q.html,...q.choices.map(c=>c.html)].join(' '))
+      || /그림|도면|선도|다음\s*표|아래\s*표|표에서|표를/.test(text));
+    if (text.length >= 18 && !visual && q.choices.length === 4
+      && choices.every(c=>c.length >= 2 && !/^(?:[①②③④1-4]|보기[1-4])$/.test(c))
+      && !/원문.*(?:이미지|확인)|인식.*필요/.test(text)) {
+      return JSON.stringify(['same-question-answer-v1',plain(text),choices[q.answer-1]]);
+    }
     return text.length < 8 ? coolingOriginalId(item.id) : JSON.stringify([
       text, q.choices, q.answer, q.images || [], q.sourceImage || '',
     ]);
 }
 
 export function uniqueSchoolItems(items: QuestionItem[]): QuestionItem[] {
-  const seen = new Set<string>();
-  return items.filter(item => {
+  const groups = new Map<string, QuestionItem[]>();
+  for (const item of items) {
     const key = schoolItemKey(item);
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key)!.push(item);
+  }
+  const score = (item: QuestionItem) => `${item.round.year}:${item.round.date || item.round.session || ''}`;
+  return [...groups.values()].map(group => {
+    const sorted = [...group].sort((a,b)=>score(b).localeCompare(score(a),'ko',{numeric:true}) || b.id.localeCompare(a.id));
+    const representative=sorted[0];
+    if (sorted.length < 2) return representative;
+    // Old banks store an exam date rather than a session; do not invent its round.
+    const occurrences=[...new Set(sorted.map(item=>/^\d{4}[.\-/]/.test(item.round.session || '')
+      ? item.round.session! : `${item.round.year}년 ${item.round.session || item.round.date || ''}`.trim()))];
+    return {...representative,question:{...representative.question,midtermOccurrences:occurrences}};
   });
 }
 

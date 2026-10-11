@@ -3,7 +3,7 @@ import { hvacAnswerHotspots } from './generatedHvacHotspots';
 import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
-import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json';
+import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with { type: 'json' };
 import type { AnswerHotspot } from './types';
 
 const energyImageHotspots = energyMidtermHotspots as Record<string, AnswerHotspot[]>;
@@ -67,7 +67,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   if (pending) return pending;
   const promise = new Promise<Catalog>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${key}.js?v=584`, document.baseURI).href;
+    script.src = new URL(`data/${key}.js?v=585`, document.baseURI).href;
     script.onload = () => {
       const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
       if (loaded) resolve(loaded);
@@ -241,7 +241,7 @@ export function questionItems(
     subjectMap = (subject) => mappedSubject(catalog.key, subject);
   }
 
-  return rounds.flatMap((round) => round.questions.map((question) => ({
+  return rounds.flatMap((round) => round.questions.filter(question => catalog.key !== 'energy-midterm' || !question.midtermDuplicateOf).map((question) => ({
     round,
     question,
     subject: subjectMap(subjectFor(round, question)),

@@ -1,3 +1,6 @@
+export const energyDefaultCalculationTopics = [2, 6] as const;
+export const energyDefaultCalculationExcluded = [1, 11, 15].map(n => `school-energy-topic-${n}`);
+
 /** Cover each note topic once; vary the chosen source question and presentation order. */
 export function energyMidtermPractice<T>(topicPools: readonly (readonly T[])[], random = Math.random,
   options?: { isCalculation: (item: T) => boolean; calculationTopics: readonly number[]; includeOtherCalculations?: boolean }): T[] {

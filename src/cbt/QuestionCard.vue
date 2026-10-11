@@ -487,6 +487,11 @@ onBeforeUnmount(() => {
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
       </span>
       <span v-if="item.round.kind === 'school-midterm'" class="source-chip school-source-chip">{{ item.question.sourcePage }}</span>
+      <details v-if="item.question.midtermOccurrences?.length" class="source-chip school-source-chip energy-occurrences">
+        <summary>나왔던 회차 {{ item.question.midtermOccurrences.length }}개</summary>
+        <span v-if="item.question.midtermLatestSource">최신 출제: {{ item.question.midtermLatestSource }} · </span>
+        <span>{{ item.question.midtermOccurrences.join(' · ') }}</span>
+      </details>
       <button v-if="mode === 'learn'" type="button" class="ai-question-button" @click="$emit('askAi')">✦ AI 질문</button>
       <button
         type="button"

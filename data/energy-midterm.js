@@ -170,7 +170,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20190427:9",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-energy-industrial-20170923:17"
         },
         {
           "number": 4,
@@ -218,7 +219,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」51장: 건식·습식 집진장치 분류. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20170923:17"
         },
         {
           "number": 5,
@@ -675,7 +677,13 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20170923:17",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2025년 3회",
+            "2023년 1회",
+            "2002년 4회"
+          ],
+          "midtermLatestSource": "2025년 3회 33번"
         },
         {
           "number": 14,
@@ -890,7 +898,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "bookVerified": true,
           "midtermPriority": "recent",
           "sourcePage": "2023년4회 29번 · 교재559쪽 대응 확인 · 시험범위 · 교재2021~2025년 예상",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-pdf-2024-2:34"
         },
         {
           "number": 18,
@@ -946,7 +955,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "bookVerified": true,
           "midtermPriority": "recent",
           "sourcePage": "2024년2회 34번 · 교재591쪽 대응 확인 · 시험범위 · 교재2021~2025년 예상",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2024년 2회",
+            "2023년 4회"
+          ],
+          "midtermLatestSource": "2024년 2회 34번"
         }
       ]
     },
@@ -1055,7 +1069,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "교재337쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-1:14"
         },
         {
           "number": 3,
@@ -1164,7 +1179,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-1:1"
         },
         {
           "number": 5,
@@ -1212,7 +1228,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-1:14"
         },
         {
           "number": 6,
@@ -1308,7 +1325,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "related"
+          "midtermPriority": "related",
+          "midtermDuplicateOf": "school-energy-pdf-2022-1:13"
         },
         {
           "number": 8,
@@ -1740,7 +1758,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-1:1"
         },
         {
           "number": 17,
@@ -1881,7 +1900,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-1 「열 및 증기」35장: 열역학 제1법칙·에너지 보존. 내부에너지 계산은 교재337쪽의 기출과 연결. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-1:1"
         },
         {
           "number": 20,
@@ -2129,7 +2149,14 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermPriorKey": "20020310:21",
           "midtermPriority": "repeat",
           "sourcePage": "2021년1회 1번 · 교재442쪽 대응 확인 · 시험범위 · 교재·CBT 반복 예상 · 2002년 CBT 21번(보기 순서 다름)",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2021년 1회",
+            "2014년 1회",
+            "2005년 1회",
+            "2002년 1회"
+          ],
+          "midtermLatestSource": "2021년 1회 1번"
         },
         {
           "number": 25,
@@ -2244,7 +2271,13 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermPriorKey": "20020310:25",
           "midtermPriority": "repeat",
           "sourcePage": "2021년1회 14번 · 교재444쪽 대응 확인 · 시험범위 · 교재·CBT 반복 예상 · 2002년 CBT 25번(보기 순서 다름)",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2021년 1회",
+            "2018년 2회",
+            "2002년 1회"
+          ],
+          "midtermLatestSource": "2021년 1회 14번"
         },
         {
           "number": 27,
@@ -2362,7 +2395,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermPriorKey": "20140525:4",
           "midtermPriority": "repeat",
           "sourcePage": "2022년1회 13번 · 교재476쪽 대응 확인 · 시험범위 · 교재·CBT 반복 예상 · 2014년 CBT 4번",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2022년 1회",
+            "2002년 2회"
+          ],
+          "midtermLatestSource": "2022년 1회 13번"
         },
         {
           "number": 29,
@@ -2577,7 +2615,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」60장: 기폭(폭기)은 철·망간 등을 제거, 탈기는 용존기체 제거. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-pdf-2021-2:65"
         },
         {
           "number": 4,
@@ -2838,7 +2877,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "bookVerified": true,
           "midtermPriority": "recent",
           "sourcePage": "2021년2회 65번 · 교재470쪽 대응 확인 · 시험범위 · 교재2021~2025년 예상",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2021년 2회",
+            "2019년 2회"
+          ],
+          "midtermLatestSource": "2021년 2회 65번"
         }
       ]
     },
@@ -2899,7 +2943,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "교재338쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20200822:4"
         },
         {
           "number": 2,
@@ -2967,7 +3012,15 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20200822:4",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2025년 3회",
+            "2024년 2회",
+            "2023년 1회",
+            "2020년 2회",
+            "2018년 2회"
+          ],
+          "midtermLatestSource": "2025년 3회 2번"
         },
         {
           "number": 3,
@@ -3173,7 +3226,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20130310:5",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-energy-industrial-20200822:4"
         },
         {
           "number": 7,
@@ -3503,7 +3557,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-4 「열효율·연소·자동제어」11~15장: 연료의 구비조건·액체/기체연료의 특징. 고체연료 비교는 관련 기출로 보강. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20200822:4"
         },
         {
           "number": 14,
@@ -3783,7 +3838,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 교재339쪽20번이 직접 대응합니다. 수업 PPT 1-4의11~18장은 연료·연소 관련 설명이며, 같은 질문이 PPT에 그대로 있다는 뜻은 아닙니다. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "related"
+          "midtermPriority": "related",
+          "midtermDuplicateOf": "school-energy-pdf-2022-1:12"
         },
         {
           "number": 4,
@@ -3842,7 +3898,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermPriorKey": "20020526:5",
           "midtermPriority": "related",
           "sourcePage": "2022년1회 12번 · 교재476쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정 · 2002년 CBT 5번(보기·조건 변형)",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2022년 1회",
+            "2002년 2회"
+          ],
+          "midtermLatestSource": "2022년 1회 12번"
         }
       ]
     },
@@ -3918,7 +3979,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20180428:22",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-pdf-2024-1:59"
         },
         {
           "number": 2,
@@ -4450,7 +4512,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermPriorKey": "20180428:22",
           "midtermPriority": "repeat",
           "sourcePage": "2024년1회 59번 · 교재580쪽 대응 확인 · 시험범위 · 교재·CBT 반복 예상 · 2018년 CBT 22번(보기·조건 변형)",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2024년 1회",
+            "2022년 1회"
+          ],
+          "midtermLatestSource": "2024년 1회 59번"
         },
         {
           "number": 13,
@@ -4836,7 +4903,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20180428:45",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-energy-industrial-20140302:59"
         },
         {
           "number": 2,
@@ -5040,7 +5108,13 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20140302:59",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2025년 2회",
+            "2023년 4회",
+            "2022년 4회"
+          ],
+          "midtermLatestSource": "2025년 2회 28번"
         },
         {
           "number": 6,
@@ -5294,7 +5368,13 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20180428:52",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2024년 1회",
+            "2014년 1회",
+            "2013년 1회"
+          ],
+          "midtermLatestSource": "2024년 1회 50번"
         },
         {
           "number": 2,
@@ -5437,7 +5517,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20180428:52"
         },
         {
           "number": 5,
@@ -5484,7 +5565,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 1-3 「부속장치」32~33장: 신축이음 목적과 루프·벨로즈·슬리브·스위블 네 종류. 교재에는 다른 형식도 함께 나옵니다. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20180428:52"
         },
         {
           "number": 6,
@@ -5958,7 +6040,14 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20180915:34",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2025년 3회",
+            "2024년 2회",
+            "2023년 2회",
+            "2023년 1회"
+          ],
+          "midtermLatestSource": "2025년 3회 43번"
         },
         {
           "number": 5,
@@ -6070,7 +6159,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "bookVerified": true,
           "midtermPriority": "recent",
           "sourcePage": "2024년2회 57번 · 교재594쪽 대응 확인 · 시험범위 · 교재2021~2025년 예상",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-energy-industrial-20180915:34"
         }
       ]
     },
@@ -7998,7 +8088,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "교재347쪽의 질문·보기·정답을 대조했습니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20190427:64"
         },
         {
           "number": 2,
@@ -8060,7 +8151,16 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20190427:64",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2024년 1회",
+            "2023년 4회",
+            "2022년 4회",
+            "2022년 2회",
+            "2018년 2회",
+            "2017년 1회"
+          ],
+          "midtermLatestSource": "2024년 1회 62번"
         },
         {
           "number": 3,
@@ -8136,7 +8236,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20140525:77",
           "midtermPriority": "repeat",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermDuplicateOf": "school-energy-energy-industrial-20190427:64"
         },
         {
           "number": 4,
@@ -8231,7 +8332,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」2장: 중력·기계·진공환수. 보일러 본체의 형식이 아니라 증기난방 응축수 환수 분류. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20190427:64"
         },
         {
           "number": 6,
@@ -8465,7 +8567,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "midtermRepetitionKind": "exact",
           "midtermPriorKey": "20180428:69",
           "midtermPriority": "related",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2025년 3회",
+            "2003년 2회"
+          ],
+          "midtermLatestSource": "2025년 3회 48번"
         },
         {
           "number": 2,
@@ -8573,7 +8680,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "related"
+          "midtermPriority": "related",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20180428:69"
         },
         {
           "number": 4,
@@ -8825,7 +8933,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "explanationProvenance": "lecture-notes-ppt-textbook-selection",
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1/2-2 「시공·안전관리」57·63~64장: 급수pH6~9(적정8.5), 관수11~11.8, 처리약품 용도. 교재260쪽은 급수6.5~9·관수10.5~11.5로 달라 수업 PPT 기준과 따로 표시합니다. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "related"
+          "midtermPriority": "related",
+          "midtermDuplicateOf": "school-energy-pdf-2024-2:58"
         },
         {
           "number": 9,
@@ -9049,7 +9158,12 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "bookVerified": true,
           "midtermPriority": "related",
           "sourcePage": "2024년2회 58번 · 교재595쪽 대응 확인 · 추가 예상 · 추가 예상·질문 취지 미확정",
-          "midtermCalculation": false
+          "midtermCalculation": false,
+          "midtermOccurrences": [
+            "2024년 2회",
+            "2017년 1회"
+          ],
+          "midtermLatestSource": "2024년 2회 58번"
         }
       ]
     },
@@ -9410,7 +9524,8 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermDuplicateOf": "school-energy-energy-industrial-20170923:69"
         },
         {
           "number": 4,
@@ -9458,7 +9573,11 @@ window.CBT_DATA_ENERGY_MIDTERM = {
           "additionalExplanations": [],
           "explanationBasis": "기존 CBT의 관련 유형 연습입니다. 수업 PPT 2-1 「시공·안전관리」72장 / 2-2 「안전관리」71장: 착화지연·환기 부족·연료 과다 공급 등 역화 원인. 확정 시험문제 예측은 아닙니다.",
           "midtermCalculation": false,
-          "midtermPriority": "note"
+          "midtermPriority": "note",
+          "midtermOccurrences": [
+            "2017년 4회",
+            "2014년 4회"
+          ]
         },
         {
           "number": 5,
