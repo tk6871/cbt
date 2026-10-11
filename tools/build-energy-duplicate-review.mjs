@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { applyVerdicts, verdictPath } from './energy-duplicate-verdicts.mjs';
 
 // Independent review only: never mutate the question bank, IDs or saved answers.
 const context = { window: {} };
@@ -125,5 +126,8 @@ const report = { date: '2026-10-11', scope: 'energy-midterm-only', midterm: 179,
   repeatGroups, repeatQuestions: connected.size,
   midtermSourceCount: rows.filter(r => r.midterm).length, candidates: candidates.length, midtermPairs: candidates.filter(p => rows[p.a].midterm && rows[p.b].midterm).length,
   states, limits: '중간고사 179문제만 비교했습니다. 일반 에너지 기출은 제외했습니다. 문자/유사도 후보는 의미 중복 확정이 아닙니다. 수식 이미지·OCR 오인식·다른 표현의 중복은 누락될 수 있습니다. 문제 삭제·통합·정답 변경은 하지 않았습니다.', rows, pairs: candidates };
+// Stable-ID overlay prevents regeneration from discarding the completed review
+// or the user's original 10 notes. Changed sources deliberately stop reuse.
+if (fs.existsSync(verdictPath)) applyVerdicts(report, JSON.parse(fs.readFileSync(verdictPath, 'utf8')));
 fs.writeFileSync('docs/energy-duplicate-review-2026-10-11.json', JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify({ ...report, rows: undefined, pairs: undefined }, null, 2));

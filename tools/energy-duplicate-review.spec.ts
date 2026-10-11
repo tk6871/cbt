@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
+import { applyVerdicts } from './energy-duplicate-verdicts.mjs';
 
 test('midterm-only audit preserves 179 questions and all candidate pairs', async () => {
   const data = JSON.parse(fs.readFileSync('docs/energy-duplicate-review-2026-10-11.json', 'utf8'));
@@ -8,31 +9,49 @@ test('midterm-only audit preserves 179 questions and all candidate pairs', async
   expect(data.comparisons).toBe(15931);
   expect(data.pairs).toHaveLength(76);
   expect(data.repeatGroups).toBe(7);
-  expect(data.repeatQuestions).toBe(15);
-  expect(data.states['확인된 반복']).toBe(9);
-  expect(data.states['확인된 변형']).toBe(6);
-  expect(data.states['추가 의심 후보']).toBe(61);
+  expect(data.repeatQuestions).toBe(17);
+  expect(data.states).toEqual({'확인된 반복':13,'확인된 변형':55,'다른 문제':8});
+  expect(data.reviewComplete).toBe(true);
+  expect(data.reviewedPairs).toBe(76);
+  expect(data.importedReviewCount).toBe(10);
+  expect(data.warningPairs).toBe(1);
+  const verdicts = JSON.parse(fs.readFileSync('docs/energy-midterm-duplicate-verdicts-2026-10-12.json','utf8'));
+  expect(data.pairs.filter((p: any)=>p.review.userReview).map((p: any)=>p.review.userReview)).toEqual(verdicts.importedReviews);
+  expect(data.groups.reduce((n: number,g: number[])=>n+g.length-1,0)).toBe(10);
+  const changed = structuredClone(data);
+  changed.rows[0].text += ' source changed';
+  expect(()=>applyVerdicts(changed,verdicts)).toThrow('Reviewed question content changed');
   expect(new Set(data.rows.map((r: { id: string }) => r.id)).size).toBe(179);
   expect(new Set(data.pairs.map((p: { id: string }) => p.id)).size).toBe(76);
   for (const p of data.pairs) {
     expect(p.a).not.toBe(p.b);
     expect(data.rows[p.a]).toBeTruthy();
     expect(data.rows[p.b]).toBeTruthy();
+    expect(['same','variant','different']).toContain(p.review.decision);
+    expect(p.review.reason.length).toBeGreaterThan(20);
   }
   const reported = data.pairs.find((p: { a: number; b: number }) => [data.rows[p.a].sourceImage, data.rows[p.b].sourceImage].sort().join('|') === 'assets/energy-midterm/questions/2023-1-26.webp|assets/energy-midterm/questions/2025-3-33.webp');
   expect(reported.state).toBe('확인된 반복');
   expect(reported.reviewedSameCorrectContent).toBe(true);
   expect([data.rows[reported.a].answer, data.rows[reported.b].answer]).toEqual([3, 4]);
+  const swivel = data.pairs.find((p:any)=>data.rows[p.a].label.startsWith('2013년 1회')&&data.rows[p.b].label.startsWith('2014년 1회 에너지관리산업기사 50번'));
+  expect(swivel.note).toContain('④→③');
+  expect(data.pairs.find((p:any)=>p.flags.length).review.decision).toBe('variant');
 });
 
 test('side-by-side review filters, zooms, saves decisions and exports them', async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/docs/energy-duplicate-review-2026-10-11.html');
-  await expect(page.locator('#overview')).toContainText('76쌍');
+  await expect(page.locator('#overview')).toContainText('76/76쌍 검수 완료');
+  await expect(page.locator('#verdict-summary')).toContainText('17문항');
+  await expect(page.locator('#verdict-summary > ol > li')).toHaveCount(7);
+  await expect(page.locator('#verdict-summary')).toContainText('과대예열/예열부족');
+  await expect(page.locator('#state')).toHaveValue('확인된 반복');
+  await page.screenshot({ path:testInfo.outputPath('energy-duplicates-summary.png'), fullPage:false });
   await expect(page.locator('.pair')).toHaveCount(10);
-  await page.locator('#state').selectOption('추가 의심 후보');
-  await expect(page.locator('#count')).toContainText('61쌍');
+  await page.locator('#state').selectOption('확인된 변형');
+  await expect(page.locator('#count')).toContainText('55쌍');
   await page.locator('#next').click();
   await expect(page.locator('.pair')).toHaveCount(10);
   await page.locator('#state').selectOption('');
@@ -45,10 +64,13 @@ test('side-by-side review filters, zooms, saves decisions and exports them', asy
   await originals.first().click();
   await expect(page.locator('#zoom')).toBeVisible();
   await page.locator('#zoom button').click();
+  await expect(first.locator('.imported-note')).toContainText('이건 제목만 살짝 다르고');
+  await first.locator('.optional-review summary').click();
   await first.locator('[data-role="note"]').fill('보기 3·4 순서 바뀜');
   await first.locator('[data-role="decision"]').selectOption('same');
   await page.reload();
   await page.locator('#query').fill('건식');
+  await page.locator('.pair').first().locator('.optional-review summary').click();
   await expect(page.locator('.pair').first().locator('[data-role="decision"]')).toHaveValue('same');
   await expect(page.locator('.pair').first().locator('[data-role="note"]')).toHaveValue('보기 3·4 순서 바뀜');
   await page.locator('#decision').selectOption('same');
@@ -60,7 +82,10 @@ test('side-by-side review filters, zooms, saves decisions and exports them', asy
   expect(result.scope).toBe('energy-midterm-only');
   expect(result.reviews[0].decision).toBe('same');
   expect(result.reviews[0].note).toBe('보기 3·4 순서 바뀜');
+  expect(result.importedReviews).toHaveLength(10);
+  expect(result.assistantReviews).toHaveLength(76);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  await page.screenshot({ path: testInfo.outputPath('energy-duplicates-desktop.png'), fullPage: true });
+  await first.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: testInfo.outputPath('energy-duplicates-desktop.png'), fullPage: false });
   expect(errors).toEqual([]);
 });
