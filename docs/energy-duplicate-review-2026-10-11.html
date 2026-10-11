@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>에너지 중간고사 중복 검토</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,"Apple SD Gothic Neo",sans-serif}*{box-sizing:border-box}body{margin:0;background:light-dark(#f2f5f9,#101923);color:light-dark(#182b3e,#eaf1f8)}main{max-width:1560px;padding:24px;margin:auto}h1{font-size:1.7rem;margin:0 0 12px}p{line-height:1.65}a{color:light-dark(#155eae,#9fcfff)}.intro,.pair{background:light-dark(white,#182635);border:1px solid #7d8b9b;border-radius:12px;padding:20px;margin-bottom:20px}.counts{font-weight:650}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}button,select,input{font:inherit;min-height:44px;border:1px solid #8191a3;border-radius:8px;padding:9px 12px;max-width:100%;color:inherit;background:light-dark(white,#23364a)}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #318bd9;outline-offset:3px}input{flex:1;min-width:200px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.question{border:1px solid #7d8b9b;border-radius:8px;padding:14px;min-width:0}.question h3{font-size:1.1rem;margin:0 0 8px}.original{width:100%;height:auto;display:block;background:#fff;cursor:zoom-in}.diagram{max-width:100%;height:auto;background:#fff}.choices{padding-left:28px;line-height:1.8}.answer{font-weight:700;color:light-dark(#105b34,#9be8b8)}.badge{display:inline-block;border:1px solid #8e9aac;padding:4px 10px;border-radius:20px;font-weight:650}.flags{color:light-dark(#825000,#ffdca1)}.note{padding:10px;background:light-dark(#edf4ff,#22374d);border-radius:8px}.review{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}.review input{min-width:160px}.small{font-size:.9rem;color:light-dark(#526376,#b9c9d9)}summary{cursor:pointer;padding:12px 0}footer{display:flex;gap:16px;align-items:center;margin-bottom:28px}dialog{max-width:96vw;max-height:96vh;padding:14px;border:1px solid #8898a8;border-radius:10px}dialog::backdrop{background:#000a}dialog img{display:block;max-width:90vw;max-height:82vh;width:auto;height:auto;background:white}.pair h2{font-size:1.1rem}.empty{padding:30px}button:disabled{opacity:.5;cursor:default}@media(max-width:800px){main{padding:12px}.columns{grid-template-columns:1fr}.intro,.pair{padding:14px}.toolbar>*{width:100%}}
+</style>
+</head>
+<body><main>
+<section class="intro"><h1>에너지 중간고사 중복 검토</h1>
+<p>중간고사 <strong>179문제만</strong> 비교했습니다. 일반 에너지 회차별 기출은 제외했습니다. 문제 삭제·통합·정답 변경은 하지 않았습니다.</p>
+<p id="overview" class="counts" role="status">검수 결과를 불러오는 중…</p>
+<p class="small">‘확인된 반복’은 원문을 대조한 항목입니다. 나머지 후보는 같은 주제일 뿐 다른 문제일 수도 있습니다. 특히 숫자·단위·부정 질문·오답 보기를 확인하세요. 유사도는 중복 확률이 아닙니다. OCR은 검색 보조일 뿐이며 원본 이미지로 판단하세요.</p>
+<a href="../">CBT로 돌아가기</a> · <a href="./energy-duplicate-review-2026-10-11.json">전체 검토 대장 JSON</a>
+<p class="small">아래 판단·메모는 이 브라우저에만 저장됩니다. ‘검토 결과 저장’으로 JSON을 받아 전달할 수 있습니다. 실제 풀이 기록에는 영향을 주지 않습니다.</p></section>
+<div class="toolbar"><select id="state" aria-label="검수 분류"><option value="">모든 분류</option></select><select id="topic" aria-label="수업 주제"><option value="">모든 주제</option></select><select id="decision" aria-label="내 검토 상태"><option value="">내 검토 전체</option><option value="pending">아직 검토 안 함</option><option value="same">내 판단: 중복</option><option value="variant">내 판단: 변형</option><option value="different">내 판단: 다른 문제</option><option value="unsure">내 판단: 판단 보류</option></select><input id="query" type="search" aria-label="후보 검색" placeholder="회차·번호·주제·문제 검색"><button id="export">검토 결과 저장</button></div>
+<p id="count" role="status"></p><div id="list"></div><footer><button id="prev">이전 10쌍</button><span id="position"></span><button id="next">다음 10쌍</button></footer>
+</main><dialog id="zoom"><form method="dialog"><button>닫기</button></form><img alt="원문 문제 크게 보기"></dialog>
+<script type="module">
+const $ = s => document.querySelector(s), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const key = 'cbt-energy-midterm-duplicate-review-20261011';
+let data, offset = 0, saved = {}, storageError = false;
+try { saved = JSON.parse(localStorage.getItem(key) || '{}'); if (!saved || Array.isArray(saved) || typeof saved !== 'object') saved = {}; } catch { saved = {}; }
+const labels = {same:'중복',variant:'변형',different:'다른 문제',unsure:'판단 보류'};
+const safeAsset = s => typeof s === 'string' && /^assets\/[\w./%-]+$/.test(s) && !s.includes('..');
+const img = (s, full = false) => safeAsset(s) ? '<img loading="lazy" class="'+(full?'original':'diagram')+'" src="../'+esc(s)+'" alt="원문 문제 그림"'+(full?' data-zoom="'+esc(s)+'"':'')+'>' : '';
+function question(r) {
+  const text = '<p>'+esc(r.text)+'</p>'+r.images.map(s=>img(s)).join('')+'<ol class="choices">'+r.choices.map(c=>'<li>'+esc(c.text)+c.images.map(s=>img(s)).join('')+'</li>').join('')+'</ol>';
+  return '<section class="question"><h3>'+esc(r.label)+'</h3><p class="small">'+esc(r.topic)+'</p>'+(r.sourceImage ? img(r.sourceImage,true)+'<details><summary>인식 텍스트 보기 · 원문 우선</summary>'+text+'</details>' : text)+'<p class="answer">기존 등록 정답: '+esc(r.answer)+'번</p><small>'+esc(r.id)+'</small></section>';
+}
+function render() {
+  const state=$('#state').value, topic=$('#topic').value, decision=$('#decision').value, query=$('#query').value.replace(/\s/g,'').toLowerCase();
+  const pairs=data.pairs.filter(p=>(!state||p.state===state)&&(!topic||data.rows[p.a].topic===topic||data.rows[p.b].topic===topic)&&(!decision||(decision==='pending'?!saved[p.id]?.decision:saved[p.id]?.decision===decision))&&(!query||JSON.stringify([data.rows[p.a],data.rows[p.b],p.note]).replace(/\s/g,'').toLowerCase().includes(query)));
+  offset=Math.min(offset,Math.max(0,Math.floor((pairs.length-1)/10)*10));
+  $('#count').textContent=pairs.length+'쌍 · 검토 저장 '+Object.values(saved).filter(r=>r.decision).length+'쌍'+(storageError?' · 브라우저 저장 불가: JSON으로 저장하세요':'');
+  $('#list').innerHTML=pairs.slice(offset,offset+10).map(p=>'<article class="pair" data-id="'+esc(p.id)+'"><h2><span class="badge">'+esc(p.state)+'</span> · 본문 '+Math.round(p.stem*100)+' / 보기 '+Math.round(p.options*100)+' 유사도</h2><p class="note">'+esc(p.note)+'</p><p class="flags">'+p.flags.map(esc).join(' · ')+'</p><div class="columns">'+question(data.rows[p.a])+question(data.rows[p.b])+'</div><div class="review"><label>내 판단 <select data-role="decision"><option value="">아직 검토 안 함</option>'+Object.entries(labels).map(([v,l])=>'<option value="'+v+'"'+(saved[p.id]?.decision===v?' selected':'')+'>'+l+'</option>').join('')+'</select></label><input data-role="note" aria-label="검토 메모" placeholder="보기 차이·중복 판단 메모" value="'+esc(saved[p.id]?.note||'')+'"></div></article>').join('')||'<p class="empty">조건에 맞는 후보가 없습니다.</p>';
+  $('#position').textContent=(pairs.length?offset+1:0)+'~'+Math.min(offset+10,pairs.length)+' / '+pairs.length;$('#prev').disabled=offset===0;$('#next').disabled=offset+10>=pairs.length;
+}
+$('#list').addEventListener('change',event=>{const article=event.target.closest('article');if(!article)return;const id=article.dataset.id;saved[id]={decision:article.querySelector('[data-role="decision"]').value,note:article.querySelector('[data-role="note"]').value,updatedAt:new Date().toISOString()};try{localStorage.setItem(key,JSON.stringify(saved));}catch{storageError=true;}render();});
+$('#list').addEventListener('click',event=>{const image=event.target.closest('[data-zoom]');if(image){$('#zoom img').src='../'+image.dataset.zoom;$('#zoom').showModal();}});
+for(const id of ['state','topic','decision','query'])$('#'+id).addEventListener('input',()=>{offset=0;render();});
+$('#prev').onclick=()=>{offset-=10;render();};$('#next').onclick=()=>{offset+=10;render();};
+$('#export').onclick=()=>{const blob=new Blob([JSON.stringify({schemaVersion:1,scope:'energy-midterm-only',date:new Date().toISOString(),reviews:Object.entries(saved).map(([id,value])=>({id,...value}))},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='energy-midterm-duplicate-decisions.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+try{const response=await fetch('./energy-duplicate-review-2026-10-11.json',{cache:'no-store'});if(!response.ok)throw Error('HTTP '+response.status);data=await response.json();for(const [state,count] of Object.entries(data.states)){if(!count)continue;const option=document.createElement('option');option.value=state;option.textContent=state+' · '+count+'쌍';$('#state').append(option);}for(const topic of [...new Set(data.rows.map(r=>r.topic))].sort()){const option=document.createElement('option');option.value=topic;option.textContent=topic;$('#topic').append(option);}$('#overview').textContent=data.midterm+'문제 · '+data.comparisons.toLocaleString()+'쌍 비교 → '+data.candidates+'쌍 검토 대상 / 반복 '+data.repeatGroups+'묶음·'+data.repeatQuestions+'문항';render();}catch(error){$('#overview').textContent='불러오기 실패: '+error.message+' · 로컬 서버 또는 배포 사이트에서 다시 열어주세요.';}
+</script></body></html>

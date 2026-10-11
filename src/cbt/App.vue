@@ -4785,6 +4785,7 @@ onBeforeUnmount(() => {
           </section>
           <section v-if="selectedKey === 'energy-midterm'" class="energy-midterm-intro">
             <p>먼저 풀 모음을 고르세요. 시험범위의3개 묶음은 한 번에, 추가 예상은 따로 풀 수 있습니다. 오답·점수는 일반 기출과 분리됩니다.</p>
+            <p class="energy-topic-note"><a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">중간고사 중복·의심 후보 나란히 비교하기 ↗</a> · 문제를 삭제하지 않는 검토 전용 화면입니다.</p>
             <details class="energy-topic-note"><summary>분류 결과 확인만 하기</summary><p>문제 구성을 바꾸지 않는 별도 검토 화면입니다. 기존179문제와20개 주제 관련 추가 후보를 구분합니다.</p><a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 분류 검토표 열기 ↗</a></details>
             <div class="energy-midterm-priority-grid energy-midterm-main-groups">
               <article>
@@ -5485,6 +5486,8 @@ onBeforeUnmount(() => {
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
             <p>v5.8.2 에너지설비 중간고사: 시험범위3개 묶음과 추가 예상만 두 카드로 고릅니다. 기존4개 묶음은 접힌 메뉴에 있습니다. 1~20번 주제에서 계산On/Off와 전체 선택을 지원하며, 상당증발량·스케줄번호 외 내부에너지·집진율·수압시험도 포함합니다. 새 풀이에만 적용하고 이어풀기 답안·전체179문제·원문73문제를 보존합니다.</p>
             <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
+            <p>v5.8.4 에너지 원문73문제: 설정 → 답안 배치 → 이미지 직접 선택으로①②③④와 보기 내용을 눌러 답합니다. 여러 줄 보기·분수도 한 박스로 표시하고, 체크 마커 또는 영역 색상을 고를 수 있습니다. 기존 답안 버튼 설정·179문제·풀이 기록은 유지합니다.</p>
+            <p>중복 검토: 중간고사179문제에서 추린76쌍을 <a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">원문 나란히 비교 화면 ↗</a>에서 확인하세요. 확인된 반복·관련 변형·추가 의심/같은 원리 후보를 구분하고 내 판단·메모를 저장할 수 있습니다. 자동 삭제나 일반 기출 변경은 없습니다.</p>
             <p>분류 확인 화면: <a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">냉동 목차 검토 ↗</a> · <a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 검토 전용 ↗</a>. 에너지 실제 출제 구성은 이번 분류 검토로 바꾸지 않았습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
