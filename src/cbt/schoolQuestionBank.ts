@@ -2,6 +2,12 @@ import { mappedSubject, subjectFor } from './catalog';
 import type { QuestionItem } from './types';
 import { coolingSafety, coolingScopeCandidate, coolingSupplementChapter } from './coolingScope';
 import { coolingContextPlacement, coolingReviewedPlacement, coolingSectionContext } from './coolingBookPlacement';
+import reviewedDuplicates from '../../data/cooling-midterm-reviewed-duplicates.json' with { type: 'json' };
+
+// Only explicitly reviewed in-scope IDs can use a semantic alias. The old key
+// guards against applying a verdict after its question/answer/diagram changes.
+const reviewedDuplicateKeys = new Map(reviewedDuplicates.clusters.flatMap(group =>
+  group.members.flatMap(member => member.ids.map(id => [id, { key: member.key, group: group.group }] as const))));
 
 export const coolingMidtermTitle = '냉동공학 중간고사';
 export const coolingRecordPrefix = 'school-cooling::';
@@ -113,7 +119,7 @@ export function coolingSafetyItems(items: QuestionItem[]): QuestionItem[] {
 
 // Same readable question + same correct content may have reordered or changed
 // distractors. Preserve every number/unit/sign, and never infer diagram equality.
-export function schoolItemKey(item: QuestionItem): string {
+export function schoolItemBaseKey(item: QuestionItem): string {
     const q = item.question;
     const text = (q.text || q.html || '').replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
     const plain = (value: string) => value.normalize('NFC').replace(/<[^>]*>/g,' ').replace(/&nbsp;/g,' ').replace(/\s+/g,'').replace(/^[①②③④]\s*/, '');
@@ -131,10 +137,16 @@ export function schoolItemKey(item: QuestionItem): string {
     ]);
 }
 
-export function uniqueSchoolItems(items: QuestionItem[]): QuestionItem[] {
+export function schoolItemKey(item: QuestionItem): string {
+  const key = schoolItemBaseKey(item);
+  const reviewed = reviewedDuplicateKeys.get(coolingOriginalId(item.id));
+  return reviewed?.key === key ? reviewed.group : key;
+}
+
+export function uniqueSchoolItems(items: QuestionItem[], keyFor = schoolItemKey): QuestionItem[] {
   const groups = new Map<string, QuestionItem[]>();
   for (const item of items) {
-    const key = schoolItemKey(item);
+    const key = keyFor(item);
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(item);
   }
@@ -147,6 +159,16 @@ export function uniqueSchoolItems(items: QuestionItem[]): QuestionItem[] {
     const occurrences=[...new Set(sorted.map(item=>/^\d{4}[.\-/]/.test(item.round.session || '')
       ? item.round.session! : `${item.round.year}년 ${item.round.session || item.round.date || ''}`.trim()))];
     return {...representative,question:{...representative.question,midtermOccurrences:occurrences}};
+  });
+}
+
+// Restoring an old saved ID must keep its own question/answer, not substitute
+// the latest representative. Only share occurrence metadata with its aliases.
+export function coolingItemsWithOccurrences(items: QuestionItem[]): QuestionItem[] {
+  const occurrences = new Map(uniqueSchoolItems(items).map(item => [schoolItemKey(item), item.question.midtermOccurrences]));
+  return items.map(item => {
+    const dates = occurrences.get(schoolItemKey(item));
+    return dates?.length ? { ...item, question: { ...item.question, midtermOccurrences: dates } } : item;
   });
 }
 

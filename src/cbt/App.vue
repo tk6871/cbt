@@ -20,7 +20,7 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
-import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded } from './energyMidtermPractice';
+import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded, restoreEnergyCalculationExcluded } from './energyMidtermPractice';
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
@@ -28,7 +28,7 @@ const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
-import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, type CoolingDrawState } from './schoolQuestionBank';
+import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
@@ -475,13 +475,17 @@ const visibleRounds = computed(() => {
 const energyMidtermQuestionCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.length, 0));
 const energyCalculationExcluded = ref<string[]>((() => {
   try {
-    const saved: unknown = JSON.parse(localStorage.getItem('cbt-energy-midterm-calculation-excluded-v2') || 'null');
-    return Array.isArray(saved) ? saved.filter((id): id is string => typeof id === 'string' && /^school-energy-topic-\d+$/.test(id)) : [...energyDefaultCalculationExcluded];
+    const read = (key: string): unknown => {
+      try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
+    };
+    const saved = read('cbt-energy-midterm-calculation-excluded-v3');
+    const legacy = read('cbt-energy-midterm-calculation-excluded-v2');
+    return restoreEnergyCalculationExcluded(saved, legacy);
   } catch { return [...energyDefaultCalculationExcluded]; }
 })());
 watch(energyCalculationExcluded, value => {
-  try { localStorage.setItem('cbt-energy-midterm-calculation-excluded-v2', JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
-}, { deep:true });
+  try { localStorage.setItem('cbt-energy-midterm-calculation-excluded-v3', JSON.stringify(value)); } catch { /* Storage may be unavailable. */ }
+}, { deep:true, immediate:true });
 const energyCalculationReviewOpen = ref(false);
 const energyCalculationReviewItems = computed(() => selectedKey.value === 'energy-midterm'
   ? visibleRounds.value.flatMap(round => roundToItems({ ...round, questions:round.questions.filter(q => q.midtermCalculation) })) : []);
@@ -527,7 +531,7 @@ const allItems = computed(() => [
 }))));
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
-const itemMap = computed(() => new Map([...allItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItems.value, ...coolingSafetyPool.value, ...uniqueSchoolItems(coolingItems.value), ...uniqueSchoolItems(coolingSafetyPool.value)].map((item) => [item.id, item])));
+const itemMap = computed(() => new Map([...allItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
 const coolingDrawKey = 'school-cooling-midterm-draws';
 const coolingArchiveKey = 'school-cooling-midterm-sessions';
 const coolingDrawState = computed<CoolingDrawState>(() => {
@@ -2032,7 +2036,8 @@ function isMidtermCalculation(item: QuestionItem): boolean {
 async function ensureItemSources(ids: string[]): Promise<void> {
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
-  await loadQuestionSources(keys);
+  // Occurrence groups can cross both banks, even when saved IDs use only one.
+  await loadQuestionSources([...new Set([...keys, ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
 }
 
 async function startSchoolQuestionSet(payload: { id: string; mode: StudyMode }): Promise<void> {
@@ -4806,8 +4811,8 @@ onBeforeUnmount(() => {
             <p class="energy-midterm-evidence-note">랜덤20은 시험범위+추가 예상에서 주제별1개씩 뽑습니다. 추가 예상을 빼려면 위의 ‘시험범위만’을 선택하세요.</p>
             <div class="energy-calculation-controls">
               <strong>계산 문제: {{ energyMidtermEligibleQuestions.filter(q => q.midtermCalculation).length }}개 포함</strong>
-              <div><button type="button" @click="energyCalculationExcluded = [...energyDefaultCalculationExcluded]">기본 2번·6번</button><button type="button" @click="setAllEnergyCalculations(true)">계산 전체 On</button><button type="button" @click="setAllEnergyCalculations(false)">계산 전체 Off</button></div>
-              <p>기본은2번 내부에너지·6번 상당증발량만 On입니다. 랜덤20은 두 주제에서 계산을1개씩 뽑고, 전체·주제별 풀기도 체크 설정을 따릅니다. 다른 주제의 계산은 개별 체크나 전체On으로 포함하세요. 새 풀이에만 적용하며 이어풀기 답안은 유지합니다.</p>
+              <div><button type="button" @click="energyCalculationExcluded = [...energyDefaultCalculationExcluded]">기본 6번·11번</button><button type="button" @click="setAllEnergyCalculations(true)">계산 전체 On</button><button type="button" @click="setAllEnergyCalculations(false)">계산 전체 Off</button></div>
+              <p>기본은6번 상당증발량·11번 스케줄번호만 On입니다. 랜덤20은 두 주제에서 계산을1개씩 뽑고, 전체·주제별 풀기도 체크 설정을 따릅니다. 2번 내부에너지 등 다른 주제의 계산은 개별 체크나 전체On으로 포함하세요. 새 풀이에만 적용하며 이어풀기 답안은 유지합니다.</p>
             </div>
             <details class="energy-calculation-review" @toggle="energyCalculationReviewOpen = ($event.target as HTMLDetailsElement).open">
               <summary>계산 문제만 보기 · 전체{{ energyCalculationReviewItems.length }}개</summary>
@@ -5502,6 +5507,8 @@ onBeforeUnmount(() => {
             <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
             <p>v5.8.4 에너지 원문73문제: 설정 → 답안 배치 → 이미지 직접 선택으로①②③④와 보기 내용을 눌러 답합니다. 여러 줄 보기·분수도 한 박스로 표시하고, 체크 마커 또는 영역 색상을 고를 수 있습니다. 기존 답안 버튼 설정·179문제·풀이 기록은 유지합니다.</p>
             <p>v5.8.5 중간고사: 에너지의 같은 질문·정답은 최신 회차로 정리해154문제를 출제하며 계산 수치·정답이 다른 변형은 유지합니다. 기본 계산 체크는2번·6번, ‘계산 문제만 보기’에서는22개 전체 원문을 확인합니다. 냉동도 같은 문장·정답은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 기존 기록과 일반 기출은 보존합니다.</p>
+            <p>v5.8.6 냉동 전체 범위 중복 검토: 원문1180개를 대상으로 표현이 다른 반복도 추가 확인하여 일반758문제·안전43문제로 정리했습니다. 수치·단위·질문 대상이 다른 변형과 원문·등록 정답 충돌은 통합하지 않습니다. <a href="docs/cooling-midterm-duplicate-review-2026-10-12.html" target="_blank" rel="noopener">검수 대장 ↗</a>에서 승인178묶음·주의8쌍·전체 문항과 미확정 후보를 확인합니다. 원본과 이전 답안은 보존합니다.</p>
+            <p>v5.8.6 에너지 계산 기본값 정정: 6번 상당증발량·11번 스케줄번호만 기본On입니다. 랜덤20은 각1개를 계산으로 뽑고 전체·주제별 새 풀이에도 적용합니다. ‘기본6번·11번’으로 언제든 복원하며 개별 선택과 이어풀기 기록은 유지합니다.</p>
             <p>통합 전 중복 검토: 기존179문제의76후보는 <a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">원문 나란히 비교 화면 ↗</a>에 보존합니다. 반복13쌍·변형55쌍·다른 문제8쌍의 이유와 기존 메모를 확인할 수 있습니다.</p>
             <p>분류 확인 화면: <a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">냉동 목차 검토 ↗</a> · <a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 검토 전용 ↗</a>. 에너지 실제 출제 구성은 이번 분류 검토로 바꾸지 않았습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>

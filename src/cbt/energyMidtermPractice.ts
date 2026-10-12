@@ -1,5 +1,17 @@
-export const energyDefaultCalculationTopics = [2, 6] as const;
-export const energyDefaultCalculationExcluded = [1, 11, 15].map(n => `school-energy-topic-${n}`);
+export const energyDefaultCalculationTopics = [6, 11] as const;
+export const energyDefaultCalculationExcluded = [1, 2, 15].map(n => `school-energy-topic-${n}`);
+
+/** Correct the old implicit default once without resetting custom choices. */
+export function restoreEnergyCalculationExcluded(current: unknown, legacy: unknown): string[] {
+  const valid = (value: unknown): value is string[] => Array.isArray(value)
+    && value.every(id => typeof id === 'string' && /^school-energy-topic-\d+$/.test(id));
+  if (valid(current)) return [...new Set(current)];
+  const oldDefault = [1, 11, 15].map(n => `school-energy-topic-${n}`);
+  if (valid(legacy) && !(legacy.length === oldDefault.length && oldDefault.every(id => legacy.includes(id)))) {
+    return [...new Set(legacy)];
+  }
+  return [...energyDefaultCalculationExcluded];
+}
 
 /** Cover each note topic once; vary the chosen source question and presentation order. */
 export function energyMidtermPractice<T>(topicPools: readonly (readonly T[])[], random = Math.random,
