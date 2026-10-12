@@ -1,0 +1,5923 @@
+{
+  "date": "2026-10-12",
+  "appVersion": "5.8.6",
+  "scope": "에너지설비 중간고사 교재 수록 대조 - 앱 필터 미적용",
+  "source": {
+    "name": "에너지설비.pdf",
+    "pages": 634,
+    "sha256": "840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d"
+  },
+  "bankSha256": "5c0c1953885b07f06150ffab77b8f4dc61b87c39f2ce0d5e7c5e65beb8e3f4bd",
+  "method": "634쪽 Apple Vision 검색 보조. 기존 수록 확인91개는 이전 근거를 유지하고 미확인88개의 질문·네 보기와 상위 후보 원문64쪽의22검수 시트 및 추가 전체 페이지를 시각 대조. 검색 유사도만으로 수록 승인하지 않음.",
+  "limits": "교재634쪽을 모두 눈으로 읽은 전수 검수나 정답 사실 검증은 아님. 미확인은 부재 증명이 아님. 숫자·단위·질문 대상·오답 내용이 다른 변형과 이론/해설에만 있는 내용은 동일 문항 수록으로 확정하지 않음. 계산 기본6/11 및 앱의 출제·기록은 변경 없음.",
+  "counts": {
+    "raw": 179,
+    "active": 154,
+    "retired": 25,
+    "previous": 91,
+    "newConfirmed": 28,
+    "confirmedRaw": 119,
+    "confirmedActive": 100,
+    "unconfirmedRaw": 60,
+    "unconfirmedActive": 54,
+    "byStatus": {
+      "previous": 91,
+      "same": 28,
+      "variant": 33,
+      "theory": 15,
+      "unresolved": 12
+    }
+  },
+  "topics": [
+    {
+      "topic": 1,
+      "title": "01. 집진장치",
+      "active": 15,
+      "confirmed": 8,
+      "unconfirmed": 7
+    },
+    {
+      "topic": 2,
+      "title": "02. 내부에너지·열역학 제1법칙",
+      "active": 23,
+      "confirmed": 9,
+      "unconfirmed": 14
+    },
+    {
+      "topic": 3,
+      "title": "03. 급수처리·탈기·철과 망간 제거",
+      "active": 7,
+      "confirmed": 6,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 4,
+      "title": "04. 연료의 종류와 특징",
+      "active": 12,
+      "confirmed": 6,
+      "unconfirmed": 6
+    },
+    {
+      "topic": 5,
+      "title": "05. 연소실 온도에 영향을 주는 인자",
+      "active": 3,
+      "confirmed": 3,
+      "unconfirmed": 0
+    },
+    {
+      "topic": 6,
+      "title": "06. 상당증발량 공식과 계산",
+      "active": 13,
+      "confirmed": 6,
+      "unconfirmed": 7
+    },
+    {
+      "topic": 7,
+      "title": "07. 보일러 자동제어 약호",
+      "active": 3,
+      "confirmed": 3,
+      "unconfirmed": 0
+    },
+    {
+      "topic": 8,
+      "title": "08. 보염장치·스테빌라이저·윈드박스",
+      "active": 6,
+      "confirmed": 3,
+      "unconfirmed": 3
+    },
+    {
+      "topic": 9,
+      "title": "09. 가용전·용융마개",
+      "active": 1,
+      "confirmed": 1,
+      "unconfirmed": 0
+    },
+    {
+      "topic": 10,
+      "title": "10. 신축이음 네 종류",
+      "active": 5,
+      "confirmed": 4,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 11,
+      "title": "11. 스케줄번호 공식과 계산",
+      "active": 2,
+      "confirmed": 2,
+      "unconfirmed": 0
+    },
+    {
+      "topic": 12,
+      "title": "12. 인터록 안전제어",
+      "active": 5,
+      "confirmed": 4,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 13,
+      "title": "13. 수트블로워·매연취출장치",
+      "active": 9,
+      "confirmed": 9,
+      "unconfirmed": 0
+    },
+    {
+      "topic": 14,
+      "title": "14. 증기트랩",
+      "active": 16,
+      "confirmed": 10,
+      "unconfirmed": 6
+    },
+    {
+      "topic": 15,
+      "title": "15. 수압시험",
+      "active": 9,
+      "confirmed": 8,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 16,
+      "title": "16. 증기난방 응축수 환수방법",
+      "active": 5,
+      "confirmed": 4,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 17,
+      "title": "17. 급수·관수 pH와 처리약품",
+      "active": 10,
+      "confirmed": 7,
+      "unconfirmed": 3
+    },
+    {
+      "topic": 18,
+      "title": "18. 가성취화",
+      "active": 3,
+      "confirmed": 2,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 19,
+      "title": "19. 역화·백파이어",
+      "active": 5,
+      "confirmed": 4,
+      "unconfirmed": 1
+    },
+    {
+      "topic": 20,
+      "title": "20. 도시가스 배관 표시·고정",
+      "active": 2,
+      "confirmed": 1,
+      "unconfirmed": 1
+    }
+  ],
+  "rows": [
+    {
+      "id": "school-energy-energy-industrial-20180428:1",
+      "fingerprint": "d4aaa5d7bd5ad1331ea9664b951191c686f4e408681b64e0952e9a75584c0deb",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 1번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 1,
+          "pdfPage": 325,
+          "printedPage": 336,
+          "answer": 4,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "전기식 집진장치의 특징에 관한 설명으로 틀린 것은?",
+      "choices": [
+        "집진효율이 90~99.5% 정도로 높다.",
+        "고전압장치 및 정전설비가 필요하다.",
+        "미세입자 처리도 가능하다.",
+        "압력손실이 크다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:2",
+      "fingerprint": "cb5efc5c43f8f7501796df844a1b15d78bf0e06314bb8e832186552de96e4fdb",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 2번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 2,
+          "pdfPage": 325,
+          "printedPage": 336,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "사이클론식 집진기는 어떤 성질을 이용한 것인가?",
+      "choices": [
+        "관성력",
+        "부력",
+        "원심력",
+        "중력"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:9",
+      "fingerprint": "3bbbcc6cdccdaa5f08971563f89786824cf0a3c1f2cba1ab4bd92908c8f419b0",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 9번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20170923:17",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 26,
+          "pdfPage": 515,
+          "printedPage": 526,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "다음 중 건식 집진장치에 해당하지 않는 것은?",
+      "choices": [
+        "백 필터",
+        "사이클론",
+        "벤튜리 스크레버",
+        "멀티클론"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2023-1-26.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20020908:61",
+      "fingerprint": "b8fafb79086a9b4b85fcafd039c65bea7e3ed8a1a7d146a50de5b5242ca1c206",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2002년 4회 에너지관리산업기사 61번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20170923:17",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
+      "evidence": [
+        {
+          "pdfPage": 625,
+          "bookQuestionNumber": 33,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 베가스 집진장치 중 건식 집진장치가 아닌 것은?",
+      "choices": [
+        "벤튜리 스크러버",
+        "백 필터",
+        "사이크론",
+        "멀티크론"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030316:17",
+      "fingerprint": "e07282a67a2ca5803e92518c1ecfb8f98f93abc14f0a4c0208837f6b0059994c",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2003년 1회 에너지관리산업기사 17번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "세정 집진 설명은 있으나 해당 네 보기 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 137,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 세정식 집진장치중에서 가장 미세한 입자의 집진과 높은 집진효율을 가진 것은 어떤 장치인가?",
+      "choices": [
+        "충전탑(Packed Tower)",
+        "분무탑식(Spray Tower)",
+        "벤츄리 스크래버식(Venturi Scrubber)",
+        "사이크론 스크래버식(Cyclone Scrubber)"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030831:12",
+      "fingerprint": "54618f3753a2029dc2ed0d53de5758a0838194cf7bb6b5d48721f5481d97c855",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2003년 4회 에너지관리산업기사 12번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "집진 분류표와 다른 질문만 확인. 해당 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 515,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러의 배출가스용 집진장치중 재나 매연의 입경이 비교적 크고 대용량의 설비에 적절한 것은?",
+      "choices": [
+        "멀티사이클론집진장치",
+        "코트렐집진기",
+        "여과집진장치",
+        "습식집진장치"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030831:13",
+      "fingerprint": "01af1683861d6bfe0672c0b6a1cdce0f4f9dce48eae6380ae7f0742261b1f430",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2003년 4회 에너지관리산업기사 13번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "집진 원리는 대응하나 해당 질문과 네 보기 조합 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 137,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 집진장치 중에서 미립자집진에 가장 적합한 것은?",
+      "choices": [
+        "중력집진",
+        "관성력집진",
+        "원심력집진",
+        "전기집진"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050306:4",
+      "fingerprint": "e86a76512e37c8d461ec541d3d3bc2fe9ea6824ef1b5bfac4b9f908894793018",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2005년 1회 에너지관리산업기사 4번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "원심력 장치 질문과 건식 아닌 장치 질문이 다르고 정답 내용도 다름.",
+      "evidence": [
+        {
+          "pdfPage": 370,
+          "bookQuestionNumber": 9,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 원심력식 집진장치와 관련이 없는 것은?",
+      "choices": [
+        "사이클론스크러버",
+        "백필터",
+        "사이클론",
+        "멀티클론"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140525:16",
+      "fingerprint": "403b135d3dc3ddbf3ca0b8a81156412509a923af709f51a8faf5d3d8a2070269",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2014년 2회 에너지관리산업기사 16번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "원문은 여과 집진, 교재 후보는 전기 집진. 장치가 다름.",
+      "evidence": [
+        {
+          "pdfPage": 325,
+          "bookQuestionNumber": 1,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "여과 집진장치를 설명한 것으로 틀린 것은?",
+      "choices": [
+        "건식 집진 장치의 한 종류이다.",
+        "외형상의 여과속도가 느릴수록 미세한 입자를 포집할 수 있다.",
+        "100℃ 이상의 고온가스, 습가스의 처리에 적합하다.",
+        "집진효율이 좋고, 설비비용이 적게 든다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140920:14",
+      "fingerprint": "1dc766cc21d88e7a53efa763ca8da18788a311b44568e94d5d27c040cfc86e72",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2014년 4회 에너지관리산업기사 14번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "장치를 고르는 질문과 사용 힘을 고르는 질문이 반대 방향.",
+      "evidence": [
+        {
+          "pdfPage": 325,
+          "bookQuestionNumber": 2,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러의 부속장치 중 원심력을 이용한 집진장치는?",
+      "choices": [
+        "루버식 집진장치",
+        "코로나식 집진장치",
+        "사이클론식 집진장치",
+        "백 필터식 집진장치"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150531:4",
+      "fingerprint": "749b712b8ca7071d21339d3efe605fbe3a146403c71dbdd20f3253f6e182caf6",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2015년 2회 에너지관리산업기사 4번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "집진 선정 조건의 틀린 보기가 먼지 색/산소 농도로 다름.",
+      "evidence": [
+        {
+          "pdfPage": 491,
+          "bookQuestionNumber": 72,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "집진장치의 선택을 위한 고려사항으로 가장 거리가 먼 것은?",
+      "choices": [
+        "분진의 색상",
+        "설치장소",
+        "예상 집진효율",
+        "분진의 입자크기"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:11",
+      "fingerprint": "484899e79edfe21a0fa04498780a3833f947f34b4d8cff8dc1e5a7d4a773adcf",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 11번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 15,
+          "pdfPage": 621,
+          "printedPage": 632,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 집진장치 중 매진을 액막이나 액방울에 충돌시키거나 접촉시켜 분리하는 것은?",
+      "choices": [
+        "여과식",
+        "세정식",
+        "전기식",
+        "관성 분리식"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-15.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170923:17",
+      "fingerprint": "e2061498cb521576dedf852408cee17bf6676cb83cbef318a899a768af75bfa2",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2017년 4회 에너지관리산업기사 17번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 33,
+          "pdfPage": 625,
+          "printedPage": 636,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "다음 중 건식 집진형식이 아닌 것은?",
+      "choices": [
+        "백필터식",
+        "사이클론식",
+        "멀티클론식",
+        "벤튜리스크러버식"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-33.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180915:3",
+      "fingerprint": "05b7d402ed56c77a84286a83662ec35065c25a3e215b36e7ba7167e33a1afa58",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2018년 4회 에너지관리산업기사 3번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 339,
+          "bookQuestionNumber": 3,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 중 집진효율이 가장 좋은 집진장치는 무엇인가?",
+      "choices": [
+        "중력식 집진장치",
+        "관성력식 집진장치",
+        "여과식 집진장치",
+        "원심력식 집진장치"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2022-1:2",
+      "fingerprint": "75582fa8c10c0b7e9f3106fbe7b3616f6da46acc302a75702172d9cfee4a43cd",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 2번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 2,
+          "pdfPage": 463,
+          "printedPage": 474,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "먼지농도95→10→0.5의 종합 집진율",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-2.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:72",
+      "fingerprint": "9ea0c1c04211e81973f17145dcf36d7a4512cbac63ce969c61b0384a79b2035b",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 72번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 72,
+          "pdfPage": 491,
+          "printedPage": 502,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "집진장치 선정 시 거리가 먼 고려사항",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-72.webp"
+    },
+    {
+      "id": "school-energy-pdf-2023-4:29",
+      "fingerprint": "68e89b989f97bbbd0537d840a6ed3335e54b5f2af1555da03e8f743c5861cbf3",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2023년 4회 에너지 교재 복원 29번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2024-2:34",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 29,
+          "pdfPage": 548,
+          "printedPage": 559,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보기 중 집진효율이 가장 좋은 집진장치",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2023-4-29.webp"
+    },
+    {
+      "id": "school-energy-pdf-2024-2:34",
+      "fingerprint": "8484768973812d51e54aad9687567ad0584d6478a3528a24ee784961c8b0bea6",
+      "topic": 1,
+      "topicTitle": "01. 집진장치",
+      "sourceLabel": "2024년 2회 에너지 교재 복원 34번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 34,
+          "pdfPage": 580,
+          "printedPage": 591,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "집진율이 가장 우수한 집진기",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2024-2-34.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:5",
+      "fingerprint": "6bd73d42410876b6c8a745cfdaa659d471e16a55a3ca7ebe2133b8d0296eee53",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 5번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 5,
+          "pdfPage": 326,
+          "printedPage": 337,
+          "answer": 1,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "가스가 40kJ의 열량을 받음과 동시에 외부에 30kJ의 일을 했다. 이 때 이 가스의 내부에너지 변화량은?",
+      "choices": [
+        "10kJ 증가",
+        "10kJ 감소",
+        "70kJ 증가",
+        "70kJ 감소"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:7",
+      "fingerprint": "703bde158bb18c41a14275de5ad5e13aa48fb244a5e260a0bc2ebe356a3b2d90",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 7번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-1:14",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 7,
+          "pdfPage": 326,
+          "printedPage": 337,
+          "answer": 1,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "열역학 제1법칙과 가장 밀접한 관련이 있는 것은?",
+      "choices": [
+        "시스템의 에너지 보존",
+        "시스템의 열역학적 반응속도",
+        "시스템의 반응방향",
+        "시스템의 온도효과"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:17",
+      "fingerprint": "c06359c4235fb51129164da4a8a75186e95d3e85542f162fd37bf0661650774e",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 17번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 17,
+          "pdfPage": 622,
+          "printedPage": 633,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "얍력 200kPa, 체적 0.4m\n3\n인 공기를 압력이 일정한 상태에서 체적을 0.6m\n3\n로 팽창시켰다. 팽창 중에 내부에너지가 80kJ 증가하였으면 팽창에 필요한 열량은?",
+      "choices": [
+        "40kJ",
+        "60kJ",
+        "80kJ",
+        "120kJ"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-17.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20020310:21",
+      "fingerprint": "22a945fde3593f287ae5afa9a126936e45ffd329f41ea6ec65ea84404e88d242",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 1회 에너지관리산업기사 21번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-1:1",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
+      "evidence": [
+        {
+          "pdfPage": 431,
+          "bookQuestionNumber": 1,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음은 열역학 제1법칙을 설명한 것이다. 옳은 것은?",
+      "choices": [
+        "열은 온도가 높은 곳에서 낮은 곳으로 흐른다.",
+        "에너지 보존의 법칙이다.",
+        "한계에 있어서 유한수의 조작으로 절대 0도에 도달할 수는 없다.",
+        "얻은 열을 완전히 일로 변환시킬 수 있는 장치는 없다."
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020310:25",
+      "fingerprint": "cc850b815756edd1b7330f853d3bea16ce506a655125c46b9b165a8dc952e80f",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 1회 에너지관리산업기사 25번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-1:14",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
+      "evidence": [
+        {
+          "pdfPage": 433,
+          "bookQuestionNumber": 14,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "열역학 제1법칙은 다음 중 어떠한 것과 관련이 있는가?",
+      "choices": [
+        "시스템의 열역학적 반응속도",
+        "시스템의 반응방향",
+        "시스템의 온도효과",
+        "시스템의 에너지 보존"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020310:39",
+      "fingerprint": "0b903d11e17274cc031ec14022d52bb04aa644fe484ed8106f9415574129f5fe",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 1회 에너지관리산업기사 39번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "200 kPa·kJ와 2 kgf/cm²·kcal 조건이 달라 동일 계산문항으로 확정하지 않음.",
+      "evidence": [
+        {
+          "pdfPage": 432,
+          "bookQuestionNumber": 10,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "압력 2㎏/㎝\n2\n, 체적 0.5m\n3\n인 공기가 일정압력하에서 체적이 0.7m\n3\n으로 팽창시 내부에너지가 25㎉만큼 증가하였다면 이 때 소요 열량은 몇 KJ인가?",
+      "choices": [
+        "34.4",
+        "93.7",
+        "127.4",
+        "143.9"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020526:32",
+      "fingerprint": "c044c2d1b24903d80b86ee1c349f4335250e182cb6eccf0098fa9255f66d24f0",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 2회 에너지관리산업기사 32번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2022-1:13",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 465,
+          "bookQuestionNumber": 13,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "기체가 가역 단열팽창할 때와 가역 등온팽창할 때 이들 중에서 내부에너지의 감소는?",
+      "choices": [
+        "같다.(변화가 없다.)",
+        "알 수 없다.",
+        "등온팽창 때가 크다.",
+        "단열팽창 때가 크다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020908:21",
+      "fingerprint": "b3f55e9cfd8e2c413ec3d865a2f191048df3c4861467616cf95af45a0c93d810",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 4회 에너지관리산업기사 21번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "상위 검색 후보는 다른 문제. 해당 네 보기 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 538,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "완전가스의 내부에너지(U)에 대한 사항중에서 옳은 것은?",
+      "choices": [
+        "U는 압력과 온도의 함수이다.",
+        "U는 압력만의 함수이다.",
+        "U는 체적과 압력의 함수이다.",
+        "U는 온도만의 함수이다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020908:30",
+      "fingerprint": "3ae9af13b68c383c60683ee91b88ebb75b6959a2cce2b37cd9ec7f87b8d80988",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 4회 에너지관리산업기사 30번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "200 kJ와 외부 일 입력 조건이 교재의 40 kJ·일 출력 조건과 다름.",
+      "evidence": [
+        {
+          "pdfPage": 326,
+          "bookQuestionNumber": 5,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "어느 닫힌 계에 200kJ의 열이 가해지고, 또한 10000Nㆍm의 일을 가하였다면 내부에너지의 변화는 몇 kJ 인가?",
+      "choices": [
+        "210kJ의 증가",
+        "210kJ의 감소",
+        "190kJ의 증가",
+        "190kJ의 감소"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020908:39",
+      "fingerprint": "2b51c20f2fbb7fad78fd46b72a804c1fdc362d8caa004426dc33af9fb254ebe7",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2002년 4회 에너지관리산업기사 39번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "50 kcal·5000 kgf·m 조건의 동일 문항을 찾지 못함.",
+      "evidence": [
+        {
+          "pdfPage": 450,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "어느 가스에 50kcal의 열량을 주었더니 외부에 대하여 5,000kgㆍm의 일을 하였다. 이 사이의 내부에너지 증가는 얼마인가?",
+      "choices": [
+        "38.29kcal",
+        "61.71kcal",
+        "88.52kcal",
+        "99.49kcal"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030316:38",
+      "fingerprint": "ecd3fe233a08376dc126a831966c5ca35efc0fe3e879a179e5026776f77b1542",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2003년 1회 에너지관리산업기사 38번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "10 kcal·4270 kgf·m 조건과 교재 40 kJ·30 kJ 조건이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 326,
+          "bookQuestionNumber": 5,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "가스가 10kcal의 열량을 받음과 동시에 외부에 4270kg·m의 일을 했다. 이 때 이 가스의 내부에너지의 변화량은?",
+      "choices": [
+        "3kcal 증가",
+        "2.1kcal 증가",
+        "4.3kcal 증가",
+        "변화없음"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030525:21",
+      "fingerprint": "af296894d8373a7c2cce2f74237f0457e327c07b2bc3d871218c0e991d2a06a4",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2003년 2회 에너지관리산업기사 21번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "원문 Q≠W와 교재 절댓값 Q/W 부등식 표기가 달라 동일 확정 보류.",
+      "evidence": [
+        {
+          "pdfPage": 403,
+          "bookQuestionNumber": 18,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 이상기체의 등온과정에 대하여 성립하는 것은? (단, W는 일, Q는 열, U는 내부에너지를 의미한다.)",
+      "choices": [
+        "W = O",
+        "Q = O",
+        "Q ≠ W",
+        "△U = O"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20040905:21",
+      "fingerprint": "a873fc85306b14570e7685da09ee718beb5dbdabd5ffe3a8118436be2f8b9174",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2004년 4회 에너지관리산업기사 21번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "제1법칙 이론 대응. 해당 네 공식 보기 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 6,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "열역학 제1법칙을 식으로 표현한 것은? (단, q, L, P, V, U는 각각 열량, 외부에 한 일량, 압력, 비체적, 비내부에너지를 표현한다.)",
+      "choices": [
+        "dq = dU + APdV",
+        "dq = dU - APdV",
+        "dq = dU - AVdP",
+        "dq = dU + AdV"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20040905:27",
+      "fingerprint": "7fa70bd163ba62410243abd3d5e60730b2dca9ad1535e761a11ad85d8a568c1a",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2004년 4회 에너지관리산업기사 27번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "내부에너지 정답 개념은 같으나 나머지 식과 질문 표현이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 432,
+          "bookQuestionNumber": 7,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "△E = Q = Cv△T가 의미하는 것 중 가장 타당한 설명은? (단, E는 내부에너지, Q는 열량, Cv는 정용 분자열용량, T는 온도이다.)",
+      "choices": [
+        "이상기체에 가해진 열량은 항상 내부에너지 변화량이 된다.",
+        "이상기체의 내부에너지 변화는 온도만의 함수이다.",
+        "내부에너지의 미분은 열량과 같다.",
+        "실제 기체와 이상기체의 에너지 차이가 곧 열량이다."
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20040905:32",
+      "fingerprint": "555cc3d3abc30c0406ec597a95163498ee63d02e6e81891d82f9f8a225ef1548",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2004년 4회 에너지관리산업기사 32번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "단열 압축 150℃·비열 조건의 동일 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 387,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "온도 150℃의 공기 1kg이 V\n1\n= 0.248m\n3\n/kg로 부터 V\n2\n= 0.496m\n3\n/kg로 될 때까지 단열팽창하였다. 내부에너지의 변화는 몇 kcal/kg인가? (단, Cv = 0.172kcal/kg℃, k = 1.4, (1/2)\n0.4\n= 0.7565 )",
+      "choices": [
+        "-6.3",
+        "-17.7",
+        "27.7",
+        "127.8"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050320:33",
+      "fingerprint": "5f7e2eada7965a781043d2a1deceedd3a8b5571f969a83b17bd4f6ae868200e3",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2005년 1회 추가시험 에너지관리산업기사 33번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-1:1",
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "제1법칙 정답 개념은 같으나 네 보기 조합이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 433,
+          "bookQuestionNumber": 14,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 열역학 제1법칙은?",
+      "choices": [
+        "에너지보존의 법칙이다.",
+        "온도계의 원리를 제공한다.",
+        "절대 0도에서의 엔트로피의 값을 준다.",
+        "효율 100%의 열기관은 불가능하며 에너지 이용의 방향성을 준다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20120304:27",
+      "fingerprint": "c1a9386359aeec4f5fb42bb1edd982e1b96928d9265ff18d453890c621fb0d48",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2012년 1회 에너지관리산업기사 27번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "정적 가열 10 kg·20→100℃ 조건과 후보의 조건이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 480,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "부피가 일정한 공간 내에서 공기 10kg 을 온도 20℃에서 100℃ 까지 가열하는 경우 내부에너지 변화량은 몇 kJ 인가? (단, 공기의 정적비열은 0.71kJ/kgㆍK 이고 정압비열은 1.0kJ/kgㆍK 이다.)(오류 신고가 접수된 문제입니다. 반드시 정답과 해설을 확인하시기 바랍니다.)",
+      "choices": [
+        "514",
+        "568",
+        "800",
+        "932"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20130310:34",
+      "fingerprint": "8c02cdd25b31fdaf48f32b4cc11e5a92e9623d5e125173496be574d805a15dbd",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2013년 1회 에너지관리산업기사 34번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "300 kPa·0.5→0.7·50→110 kJ와 후보 200 kPa·0.4→0.6·80→120 kJ는 다른 수치.",
+      "evidence": [
+        {
+          "pdfPage": 622,
+          "bookQuestionNumber": 17,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "압력이 300kPa, 체적이 0.5m\n3\n인 공기가 일정한 압력에서 체적이 0.7m\n3\n으로 팽창했다. 이 팽창 중에 내부에너지가 50kJ 증가하였다면 팽창에 필요한 열량은 몇 kJ인가?",
+      "choices": [
+        "50",
+        "60",
+        "100",
+        "110"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140302:14",
+      "fingerprint": "581f52b7b8fa4f26f1dee5eb140950932d396ded444c68c0f0b2ae706adc102b",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2014년 1회 에너지관리산업기사 14번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-1:1",
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "법칙의 설명/법칙명을 묻는 방향과 보기 구성이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 340,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "열역학 제1법칙은?",
+      "choices": [
+        "질량 불변의 법칙",
+        "에너지 보존의 법칙",
+        "엔트로피 보존의 법칙",
+        "작용, 반작용의 법칙"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140525:3",
+      "fingerprint": "7a9aa2d63ae90112ad5b69bb02b439883c23915a7c9e20d6850d628c3532c331",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2014년 2회 에너지관리산업기사 3번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "에너지 보존 개념은 같으나 질문과 네 보기 조합이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 431,
+          "bookQuestionNumber": 1,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "열역학 제1법칙을 가장 잘 설명한 것은?",
+      "choices": [
+        "열 에너지가 기계적 에너지 보다. 고급의 에너지 형태이다.",
+        "열은 일과 같이 에너지의 이동 형태의 하나로 일과 열은 서로 변환될 수 있다.",
+        "제1종의 영구기관은 에너지의 공급 없이 영구히 일할 수 있는 기관으로 실현 가능하다.",
+        "시스템과 주위의 총 엔트로피는 계속 증가한다."
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150531:18",
+      "fingerprint": "5c331cc3cd7b758e513db0d40d2b43d09f97f924e840c89ae0a995b274ca5b74",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2015년 2회 에너지관리산업기사 18번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "내부에너지·엔탈피 오답 진술을 포함한 동일 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 466,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "내부에너지의 엔탈피에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "내부에너지 변화량은 공급열량에서 외부로 한일을 차감한 것이다.",
+        "엔탈피는 유체가 가지는 에너지로서 내부에너지와 유동에너지의 합을 말한다.",
+        "내부에너지는 시스템의 분자구조 및 분자의 운동과 관련된 운동에너지이다.",
+        "내부에너지는 물체를 구성하는 분자운동의 강도와는 관련이 없다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:6",
+      "fingerprint": "09b5f1668c78a34f38fd3911fab5f40243b245fb4cc904069b9f015bf572ca5f",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 6번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "단열 비열 조건과 검색 후보의 엔트로피 조건이 달라 동일 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 480,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "온도 150℃의 공기 1kg이 초기 체적 0.248m\n3\n에서 0.496m\n3\n으로 될 때까지 단열 팽창 하였다. 내부에너지의 변화는 약 몇 kJ/kg인가? (단, 정적비열(C\nu\n)는 0.72kJ/kgㆍ℃, 비열비(k)는 1.4이다.)",
+      "choices": [
+        "-25",
+        "-74",
+        "110",
+        "532"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200606:18",
+      "fingerprint": "914c988688d26e255baca2af406ad41cc3abd94013a259114a3bdcc52c282f82",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2020년 1·2회 통합 에너지관리산업기사 18번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기의 수식 표기 일치.",
+      "evidence": [
+        {
+          "pdfPage": 403,
+          "bookQuestionNumber": 18,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 중 이상기체의 등온과정에 대하여 항상 성립하는 것은? (단, W는 일, Q는 열, U는 내부에너지를 나타낸다.)",
+      "choices": [
+        "W=0",
+        "Q=0",
+        "|Q|≠|W|",
+        "△U=0"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:1",
+      "fingerprint": "c6b1ae7a3efe8e7f16cfbbf8ef24160e5bfe1f1781077acb3e568181c6a831f8",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 1번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 1,
+          "pdfPage": 431,
+          "printedPage": 442,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "열역학 제1법칙을 설명한 것 중 옳은 것은?",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-1.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-1:10",
+      "fingerprint": "2b75b423559e359491a4154e04bfeddbd2b81cca3f585652f5bf6ee4cf491b7c",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 10번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 10,
+          "pdfPage": 432,
+          "printedPage": 443,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "일정 압력200 kPa에서0.5→0.7 m³ 팽창, 내부에너지25 kJ 증가에 필요한 열량",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-10.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-1:14",
+      "fingerprint": "bc3939dbd74530885e3846314194b81a0ba1f1c490def183b475c205a5b16e50",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 14번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 14,
+          "pdfPage": 433,
+          "printedPage": 444,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "열역학 제1법칙과 관련이 있는 것은?",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-14.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-1:1",
+      "fingerprint": "bc67ed28afb9125b2d77a2d86b3a513a3b4e8601814cd1e22569b3ccbb7b9cdb",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 1번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 1,
+          "pdfPage": 463,
+          "printedPage": 474,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "열과 일에 대한 틀린 설명",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-1.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-1:13",
+      "fingerprint": "b9809c6cbc3aac1c4f9445d7befdd43a15f5f5a566bc48516d511601b2f25617",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 13번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 13,
+          "pdfPage": 465,
+          "printedPage": 476,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "가역 단열팽창과 등온팽창의 내부에너지 감소",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-13.webp"
+    },
+    {
+      "id": "school-energy-pdf-2024-1:14",
+      "fingerprint": "7895f9a11484779c36535c24ea66e1a429a5e78d8a3dce3d48d8bcce69340ee3",
+      "topic": 2,
+      "topicTitle": "02. 내부에너지·열역학 제1법칙",
+      "sourceLabel": "2024년 1회 에너지 교재 복원 14번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 14,
+          "pdfPage": 561,
+          "printedPage": 572,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "열과 일의 전환은 열역학 몇 법칙인가?",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-14.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:9",
+      "fingerprint": "27ca671d10b8aa79db3204cabe9271446fe80c4976105520dc2b9e0899df591d",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 9번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 9,
+          "pdfPage": 326,
+          "printedPage": 337,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "급수 중 용존하고 있는 O\n2\n, CO\n2\n등의 용존 기체를 분리 제거하는 것을 무엇이라고 하는가?",
+      "choices": [
+        "폭기법",
+        "기폭법",
+        "탈기법",
+        "이온교환법"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:75",
+      "fingerprint": "2ea58e327b4be8c045b23f7c19ecc7ab7f819115ef23139cfbf088bbb5a23f14",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 75번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 75,
+          "pdfPage": 337,
+          "printedPage": 348,
+          "answer": 1,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "다음 중 보일러 급수 내 장해가 되는 철염이 함유되어 있는 경우, 이를 제거하기 위한 방법으로 가장 적합한 것은?",
+      "choices": [
+        "폭기법",
+        "탈기법",
+        "가열법",
+        "이온교환법"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:68",
+      "fingerprint": "eef710f0a3af699f43cc82ba20318596297d1da12a24c9f97a401971494e58fc",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 68번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2021-2:65",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 380,
+          "bookQuestionNumber": 68,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "급수처리 방법인 기폭법에 의하여 제거되지 않는 성분은?",
+      "choices": [
+        "탄산가스",
+        "황화수소",
+        "산소",
+        "철"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020310:74",
+      "fingerprint": "203c91b427c538c314c2ad454c4183bd45e6b66d9e68b36f344cde85b20a9798",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2002년 1회 에너지관리산업기사 74번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 75,
+          "pdfPage": 492,
+          "printedPage": 503,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 급수의 탈기법 가운데 화학적 방법을 설명한 것으로 다음 중 관계없는 것은?",
+      "choices": [
+        "히드라진을 보일러 급수에 첨가하면 탈산소가 이루어진다.",
+        "아황산나트륨을 보일러 급수에 첨가하면 탈산소가 행하여 진다.",
+        "기체분압의 감소 및 가열에 의한 용해도 감소, 비등과 확산 등이 발생된다.",
+        "탄닌은 저압보일러용의 탈산소제로서 사용되고 있다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-75.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20120304:63",
+      "fingerprint": "54e96239291124159cc15b070c1c92fd6422851eaaeabe730eb8dbed292c6049",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2012년 1회 에너지관리산업기사 63번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "물리적 처리 아닌 것/화학적 처리 아닌 것의 질문과 정답이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 492,
+          "bookQuestionNumber": 75,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러 급수의 탈기법 중 물리적인 방법에 대한 설명이 아닌 것은?",
+      "choices": [
+        "아황산나트륨을 보일러 급수에 첨가하면 탈산소가 이루어진다.",
+        "진공으로 하면 기체의 분압이 낮게 되고, 물의 용해도가 감소하여 탈기된다.",
+        "증기로 가열시키면 기체의 용해도는 감소하고 다시 교반, 비등에 의한 탈기가 용이하게 된다.",
+        "물을 진공의 용기 속에 작은 물방울로 하는 방법과 증기를 물 속에 불어넣어 물을 교반, 비등시키는 방법을 병용한 보일러 급수의 탈기법이 있다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170923:73",
+      "fingerprint": "cda2b98cda5e6d483a9a58ebd0f281e19a3cef5729f8916bebee0b18cee62eb3",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2017년 4회 에너지관리산업기사 73번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 518,
+          "bookQuestionNumber": 45,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 중 원수로부터 탄산가스나 철, 망간 등을 제거하기 위한 수처리 방식은?",
+      "choices": [
+        "탈기법",
+        "기폭법",
+        "응집법",
+        "이온교환법"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180915:66",
+      "fingerprint": "549493a8df48f566b480f069c9cc55803c95aacee3d5d36dda63c024aad30f36",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2018년 4회 에너지관리산업기사 66번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 350,
+          "bookQuestionNumber": 66,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "보일러 급수의 외처리 방법 중 기폭법과 탈기법으로 공통으로 제거할 수 있는 가스는?",
+      "choices": [
+        "수소",
+        "질소",
+        "탄산가스",
+        "황화수소"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-2:65",
+      "fingerprint": "8b8b47ea90eabb15db44acc058ef0b4574d355ae4c7130ed6d540e8936edad8b",
+      "topic": 3,
+      "topicTitle": "03. 급수처리·탈기·철과 망간 제거",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 65번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 65,
+          "pdfPage": 459,
+          "printedPage": 470,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "기폭법의 주 제거 대상이 아닌 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-65.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:13",
+      "fingerprint": "fe066059f0fa60102ae13decccaff6b2c0376e5995808222a31f948aa83beac9",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 13번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20200822:4",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 13,
+          "pdfPage": 327,
+          "printedPage": 338,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "다음 중 기체 연료의 장점이 아닌 것은?",
+      "choices": [
+        "연소가 균일하고 연소조절이 용이하다.",
+        "회분이나 매연이 없어 청결하다.",
+        "저장이 용이하고 설비비가 저가이다.",
+        "연소효율이 높고 점화소화가 용이하다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200822:4",
+      "fingerprint": "9a01b9c0c8b007519ab01c209c06634d18aab7faeb1497e5840250beee30d545",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2020년 3회 에너지관리산업기사 4번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 2,
+          "pdfPage": 510,
+          "printedPage": 521,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 2,
+          "pdfPage": 619,
+          "printedPage": 630,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "기체연료의 장점에 해당하지 않는 것은?",
+      "choices": [
+        "저장이나 운송이 쉽고 용이하다.",
+        "비열이 작아서 예열이 용이하고 열효율, 화염온도 조절이 비교적 용이하다.",
+        "연료의 공급량 조절이 쉽고 공기와의 혼합을 임의로 조절할 수 있다.",
+        "연소 후 유해잔류 성분이 거의 없다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-2.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20190921:2",
+      "fingerprint": "704c0569065a3dd2624b520947ff4fcc465bcddaba68093089d45f1a6ee434f6",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2019년 4회 에너지관리산업기사 2번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 384,
+          "bookQuestionNumber": 2,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "액체연료의 특징에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "수송과 저장이 편리하다.",
+        "단위 중량에 대한 발열량이 석탄보다 크다.",
+        "인화, 역화 등 화재의 위험성이 없다.",
+        "연소 시 매연이 적게 발생한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20120304:17",
+      "fingerprint": "abb1e2cf0ac1f2ac88ca63d5063b037a19d306fd73c76e92355c713d537635ce",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2012년 1회 에너지관리산업기사 17번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "고체연료 장점을 묻는 원문과 액체연료 후보가 달라 동일 수록 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 371,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "고체연료가 갖는 장점에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "설비비 및 유지비가 저렴하다.",
+        "공연비 조절이 용이해 부하변동에 쉽게 대처할 수 있다.",
+        "발열량이 크고 완전연소가 가능하다.",
+        "연소용 공기를 예열하므로 연소효율이 높다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050306:6",
+      "fingerprint": "02246d5b7866c5d15c7aba151a582978a0c42e89a131b318a27ae5e3db156df7",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2005년 1회 에너지관리산업기사 6번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "예혼합 연소 특징의 해당 네 보기 객관식 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 450,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 기체연료의 연소방식 중 예혼합연소방식의 특징 설명으로 잘못된 것은?",
+      "choices": [
+        "화염이 짧다.",
+        "고온의 화염을 얻을 수있다.",
+        "역화의 위험성이 매우 작다.",
+        "가스와 공기의 혼합형이다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20130310:5",
+      "fingerprint": "2b06f5555460d5e82d3f2fde8e91f8cc11f0eb8e5ac27774b17345b4a13f124a",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2013년 1회 에너지관리산업기사 5번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20200822:4",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 8,
+          "pdfPage": 575,
+          "printedPage": 586,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "기체연료의 일반적인 특징에 대한 설명으로 가장 거리가 먼 것은?",
+      "choices": [
+        "저장하기 쉽다.",
+        "열효율이 높다.",
+        "점화 및 소화가 간단하다.",
+        "연소용 공기 예열에 의해 저발열량이라도 전열효율을 높일 수 있다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2024-2-8.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:12",
+      "fingerprint": "2f79479cc40bccb8ea274bc9705398e0caa5e579264ccee914cbb4d98c0ff2ca",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 12번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "기체 버너의 틀린 보기가 조절범위/공기비 제어로 다름.",
+      "evidence": [
+        {
+          "pdfPage": 545,
+          "bookQuestionNumber": 17,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "기체연료 연소장치인 가스버너의 특징에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "연소 성능이 좋고 고부하 연소가 가능하다.",
+        "연소조절이 용이하며 속도가 빠르다.",
+        "연소의 조절범위가 좁고 보수가 어렵다.",
+        "매연이 적어 공해 대책에 유리하다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:17",
+      "fingerprint": "7a1f57ee00bae215a9948d0a29f8d2be0f11c4255bf56a9d9cca3266aa592d26",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 17번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "기체연료 질문은 있으나 온도 분포 진술 등 네 보기 구성이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 402,
+          "bookQuestionNumber": 10,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "기체연료의 특징에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "화염온도의 상승이 비교적 용이하다.",
+        "연소장치의 온도 및 온도분포의 조절이 어렵다.",
+        "다량으로 사용하는 경우 수송 및 저장 등이 불편하다.",
+        "연소 후에 유해성분의 잔류가 거의 없다."
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160306:1",
+      "fingerprint": "fef6d6cdfdda72f20cff5cf73dfcfe3407b79dd34f2fcb87832d0baf91aa14ed",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2016년 1회 에너지관리산업기사 1번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치. 561쪽15번에도 대응 후보가 있음.",
+      "evidence": [
+        {
+          "pdfPage": 545,
+          "bookQuestionNumber": 17,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "기체연료 연소 장치 중 가스버너의 특징으로 틀린 것은?",
+      "choices": [
+        "공기비 제어가 불가능하다.",
+        "정확한 온도제어가 가능하다.",
+        "연소상태가 좋아 고부하 연소가 용이하다.",
+        "버너의 구조가 간단하고 보수가 용이하다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:4",
+      "fingerprint": "7746ebd91b760866938a4a8429b385e5c078541aa2abed8aceb3b61251cbb3b0",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 4번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "기체연료 체적당 발열량 진술 등 보기 구성이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 402,
+          "bookQuestionNumber": 10,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "기체연료의 특징에 관한 설명으로 틀린 것은?",
+      "choices": [
+        "유황이나 회분이 거의 없다.",
+        "화재, 폭발의 위험이 크다.",
+        "액체연료에 비해 체적당 보유 발열량이 크다.",
+        "고부하 연소가 가능하고 연소실 용정을 작게 할 수 있다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:12",
+      "fingerprint": "dee0e75fc2652fd7a165c83f9a27554ddeb67cd877df01d33b4fc2bb0c939d05",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 12번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "회분이 많다는 오답 등 원문 네 보기와 교재 후보가 다름.",
+      "evidence": [
+        {
+          "pdfPage": 402,
+          "bookQuestionNumber": 10,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "기체연료의 특징에 관한 설명으로 틀린 것은?",
+      "choices": [
+        "회분발생이 많고 수송이나 저장이 편리하다.",
+        "노 내의 온도분포를 쉽게 조절할 수 있다.",
+        "연소조절, 점화, 소화가 용이하다.",
+        "연소효율이 높고 약간의 과잉공기로 완전연소가 가능하다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:15",
+      "fingerprint": "28976b4be7e9e26d1d1f663f3a2d212f8a4c4875bc9f40e5490a6812ce8c14ef",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 15번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 371,
+          "bookQuestionNumber": 15,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "액체연료의 특징에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "액체연료는 기체연료에 비해 밀도가 크다.",
+        "액체연료는 고체연료에 비해 단위 질량당 발열량이 크다.",
+        "액체연료는 고체연료에 비해 완전 연소시키기가 어렵다.",
+        "액체연료는 고체연료에 비해 연소장치를 작게 할 수 있다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200606:10",
+      "fingerprint": "51b01cfc839b2b98d2a999eadc90319481dec000a08d9a126da8f36106f1017d",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2020년 1·2회 통합 에너지관리산업기사 10번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20200822:4",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 402,
+          "bookQuestionNumber": 10,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "액체 및 고체연료와 비교한 기체연료의 일반적인 특징에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "점화 및 소화가 간단하다.",
+        "연소 시 재가 없고, 연소효율도 높다.",
+        "가스가 누출되면 폭발의 위험성이 있다.",
+        "저장이 용이하며, 취급에 주의를 요하지 않는다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-2:15",
+      "fingerprint": "ff53239eff331a0781b85c3d569e952b2659fe86037cad978c12d4c28faaf420",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 15번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 15,
+          "pdfPage": 450,
+          "printedPage": 461,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "기체연료 관리 문제점 중 잘못 설명된 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-15.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-4:9",
+      "fingerprint": "983c4031b4fad4859a30c86241eb19905ad45bf04d162726c1c4abfb44df7a69",
+      "topic": 4,
+      "topicTitle": "04. 연료의 종류와 특징",
+      "sourceLabel": "2022년 4회 에너지 교재 복원 9번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 9,
+          "pdfPage": 495,
+          "printedPage": 506,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 15,
+          "pdfPage": 607,
+          "printedPage": 618,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "고체연료의 일반적인 주성분",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-2-15.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:20",
+      "fingerprint": "498ea98f7f037ade67454f66a4a9db082c78665ae0665899390a2b7eba663212",
+      "topic": 5,
+      "topicTitle": "05. 연소실 온도에 영향을 주는 인자",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 20번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 20,
+          "pdfPage": 328,
+          "printedPage": 339,
+          "answer": 4,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "보일러의 연소 온도에 직접적으로 영향을 미치는 인자로 가장 거리가 먼 것은?",
+      "choices": [
+        "산소의 농도",
+        "연료의 발열량",
+        "공기비",
+        "연료의 단위 중량"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200822:8",
+      "fingerprint": "b6f5e27e114dc0ae4772246376e83fb68f212a56d81864fa88a977fafba344f3",
+      "topic": 5,
+      "topicTitle": "05. 연소실 온도에 영향을 주는 인자",
+      "sourceLabel": "2020년 3회 에너지관리산업기사 8번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 417,
+          "bookQuestionNumber": 8,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "과잉공기량이 많을 경우 발생되는 현상을 설명한 것으로 틀린 것은?",
+      "choices": [
+        "배기가스 중 CO\n2\n농도가 낮게 된다.",
+        "연소실 온도가 낮게 된다.",
+        "배기가스에 의한 열손실이 증가한다.",
+        "불완전연소를 일으키기 쉽다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020526:5",
+      "fingerprint": "f0a44c91509e48726e3b16b6aef731ebc42d9bb00ce7e357f4dc857c3c6dd55d",
+      "topic": 5,
+      "topicTitle": "05. 연소실 온도에 영향을 주는 인자",
+      "sourceLabel": "2002년 2회 에너지관리산업기사 5번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2022-1:12",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "네 공식의 의미와 조건 일치. 보기 순서 차이를 원문으로 확인.",
+      "evidence": [
+        {
+          "pdfPage": 465,
+          "bookQuestionNumber": 12,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 중 이론연소온도(화염온도) t℃를 구하는 식은? (단, H\nh\n: 고발열량, Hℓ : 저발열량, G\nT\n: 연소가스, C\nP\n: 비열)",
+      "choices": [
+        "t =Hℓ/G\nT\nC\np",
+        "t =H\nh\n/G\nT\nC\np",
+        "t =G\nT\nC\np\n/Hℓ",
+        "t =G\nT\nC\np\n/H\nh"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2022-1:12",
+      "fingerprint": "e5155b1f4db884adf26b16353cef951e72072ce0ac0c63c229882a5c5039748d",
+      "topic": 5,
+      "topicTitle": "05. 연소실 온도에 영향을 주는 인자",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 12번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 12,
+          "pdfPage": 465,
+          "printedPage": 476,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "이론연소온도 화염온도 공식",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-12.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:22",
+      "fingerprint": "ad5b7f3c79f9e01ef1fc074b3a63c16f8960e9453840135b8004f508b6468628",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 22번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2024-1:59",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 24,
+          "pdfPage": 467,
+          "printedPage": 478,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "상당증발량(G\ne\n, kg/hr)을 구하는 공식으로 맞는 것은? (단, G는 실제 증발량(kg/hr), h\n2\n는 발생증기의 엔탈피(kJ/kg), h\n1\n는 급수의 엔탈피(kJ/kg)이다.)",
+      "choices": [
+        "G\ne\n= G(h\n1\n-h\n2\n)/2256",
+        "G\ne\n= G(h\n2\n-h\n1\n)/2256",
+        "G\ne\n= G(h\n1\n-h\n2\n)/226",
+        "G\ne\n= G(h\n2\n-h\n1\n)/226"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-24.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:57",
+      "fingerprint": "f797879f26b197dc1198e2aa44f3faf9a298a3067af1fce7838957d802c60f50",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 57번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 57,
+          "pdfPage": 334,
+          "printedPage": 345,
+          "answer": 2,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "증발량 2000kg/h인 보일러의 상당증발량(kg/h)은? (단, 증기의 엔탈피는 600kcal/kg, 급수의 엔탈피는 30kcal/kg이다.)",
+      "choices": [
+        "1560kg/h",
+        "2115kg/h",
+        "2565kg/h",
+        "2890kg/h"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:25",
+      "fingerprint": "f04020dd7e47f1aeac3ec94ae35e9f84a4ad6eb03464cc5fb693510b86a9599e",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 25번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20190427",
+          "number": 25,
+          "pdfPage": 373,
+          "printedPage": 384,
+          "answer": 3,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "상당 증발량이 300 kg/h 이고, 급수온도가 30℃, 증기 엔탈피가 730 kcal/kg 인 보일러의 실제 증발량은 약 몇 kg/h 인가?",
+      "choices": [
+        "215.3",
+        "220.5",
+        "231.0",
+        "244.8"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150308:36",
+      "fingerprint": "712e94af2e729610d229b5ad077d3900e6bc6ab25bf0eadb29e393dd6a5189bf",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2015년 1회 에너지관리산업기사 36번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "보일러 마력 공식은 본문에 있으나 네 공식 보기 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 210,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러의 능력에 대한 표기인 보일러 마력이란 어떤 값인가? (단, 실제증발량 및 상당증발량 단위는 kgf/h이다.)",
+      "choices": [
+        "실제증발량/15.65",
+        "상당증발량/15.65",
+        "실제증발량/539",
+        "상당증발량/539"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150531:26",
+      "fingerprint": "20f7fa153e477803fb05e51e392c78c545f740b27a30f6455db5b62f87562af8",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2015년 2회 에너지관리산업기사 26번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "539Ge=GHLη 관계가 해설에 있으나 해당 공식 선택 문항은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 607,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "상당증발량(Ge)과 보일러 효율(η)과의 관계가 옳은 것은? (단, 연료 소비량은 G, 연료의 저위발열량은 H\nL\n이다.)",
+      "choices": [
+        "539ㆍGe=GㆍH\nL\nㆍη",
+        "539ㆍH\nL\n=GeㆍGㆍη",
+        "539ㆍG=H\nL\nㆍGeㆍη",
+        "539ㆍη=GㆍGeㆍH\nL"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:29",
+      "fingerprint": "67bc2efa304cdee67b681297ed13fa25fcd917d0d9c1dcc970d5ab016b438628",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 29번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "상당증발량 정의는 해설에 있으나 교재 객관식은 용량 진술 질문.",
+      "evidence": [
+        {
+          "pdfPage": 375,
+          "bookQuestionNumber": 36,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "상당증발량에 대한 정의로 옳은 것은?",
+      "choices": [
+        "보일러 발생열량을 이용하여 표준대기압하에서 100℃의 포화증기를 100℃의 포화수로 만들 수 있는 증기량을 말한다.",
+        "보일러 발생열량을 이용하여 표준대기압하에서 80℃의 환수를 100℃의 포화증기로 만들 수 있는 증기량을 말한다.",
+        "보일러 발생열량을 이용하여 표준대기압하에서 100℃의 포화수를 100℃의 포화증기로 만들 수 있는 증기량을 말한다.",
+        "보일러 발생열량을 이용하여 표준대기압하에서 0℃의 물을 100℃의 포화증기로 만들 수 있는 증기량을 말한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160306:23",
+      "fingerprint": "a58861697f3cfa8d23373394212065e9189eb4b8017f8ba1a34c8e51d73af7dd",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2016년 1회 에너지관리산업기사 23번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "5마력→78.25와 1마력 환산 질문은 수치가 다름.",
+      "evidence": [
+        {
+          "pdfPage": 344,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러 5 마력의 상당증발량은?",
+      "choices": [
+        "55.65 kg/h",
+        "78.25 kg/h",
+        "86.45 kg/h",
+        "98.35 kg/h"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160508:26",
+      "fingerprint": "7abbef3b585521f741015e4df3703bf7824fa8091e9b887ab718d5fe8c5695f1",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2016년 2회 에너지관리산업기사 26번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "증발량2000은 같아도 엔탈피715/급수15와 600/30 조건이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 334,
+          "bookQuestionNumber": 57,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "급수온도 15℃에서 압력 10kg/cm\n2\n, 온도 183.2℃의 증기를 2000kg/h 발생시키는 경우, 이 보일러의 상당증발량은? (단, 증기엔탈피는 715kcal/kg로 한다.)",
+      "choices": [
+        "2003kg/h",
+        "2473kg/h",
+        "2597kg/h",
+        "2950kg/h"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160508:38",
+      "fingerprint": "761c2f960efe18bece13caf61d1e17ec6314d4358a210cf53fae3457f2b34e73",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2016년 2회 에너지관리산업기사 38번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "1기압100℃ 정의가 해설에 있으나 해당 보기 조합의 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 375,
+          "bookQuestionNumber": 36,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러의 상당증발량이란 1시간 동안의 실제 증발량을 몇 기압, 몇℃의 포화수를 같은 온도의 포화증기로 만드는 증기량으로 환산하여 표시한 것인가?",
+      "choices": [
+        "1기압, 0℃",
+        "1기압, 100℃",
+        "3기압, 85℃",
+        "10기압, 100℃"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160508:51",
+      "fingerprint": "d77ebc1e5d298b9778f9d9206d08e59f9894baa650078e164bc90f7f2dc10851",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2016년 2회 에너지관리산업기사 51번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "3500·640/20과 2000·600/30은 다른 계산 조건.",
+      "evidence": [
+        {
+          "pdfPage": 334,
+          "bookQuestionNumber": 57,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "증발량 3500kg/h인 보일러의 증기엔탈피가 640kcal/kg이며, 급수엔탈피는 20kcal/kg이다. 이 보일러의 상당증발량은?",
+      "choices": [
+        "4155kg/h",
+        "4026kg/h",
+        "3500kg/h",
+        "3085kg/h"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:26",
+      "fingerprint": "b168554dc47c8e3ab3c6a0f10e1a13c71741559e7d085afae3fecc270a603802",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 26번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 628,
+          "bookQuestionNumber": 52,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "보일러 1마력은 몇 kgf의 상당 증발량에 해당하는가? (단, 100℃의 물을 1시간 동안 같은 온도의 증기로 변화시킬 수 있는 능력이다.)",
+      "choices": [
+        "10.65",
+        "12.68",
+        "15.65",
+        "17.64"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2024-1:59",
+      "fingerprint": "05d6bac5acd08128efcde9d3492f4c05d51200ac96117e7bd69ec43c61e68db2",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2024년 1회 에너지 교재 복원 59번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 59,
+          "pdfPage": 569,
+          "printedPage": 580,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "상당증발량 공식 kJ 기준",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-59.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-2:62",
+      "fingerprint": "bb96d56067b21b4ada2f6f6bebbd18ee19e51b4c5988f1d9c5f4b8cfc4a5d207",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 62번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 62,
+          "pdfPage": 458,
+          "printedPage": 469,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "실제증발량10000 kg/h의 상당증발량 계산",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-62.webp"
+    },
+    {
+      "id": "school-energy-pdf-2025-3:53",
+      "fingerprint": "e0fc1a8396f30c92e015cc19a9ff51139396a0c5c932d49a2f68f52315e655d4",
+      "topic": 6,
+      "topicTitle": "06. 상당증발량 공식과 계산",
+      "sourceLabel": "2025년 3회 에너지 교재 복원 53번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 53,
+          "pdfPage": 628,
+          "printedPage": 639,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "실제증발량에 증발계수를 곱한 값",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-53.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180915:26",
+      "fingerprint": "6697de440fe367fcc9de668b93943f93e58a02f0d658d9167652f7ef77aba894",
+      "topic": 7,
+      "topicTitle": "07. 보일러 자동제어 약호",
+      "sourceLabel": "2018년 4회 에너지관리산업기사 26번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180915",
+          "number": 26,
+          "pdfPage": 343,
+          "printedPage": 354,
+          "answer": 4,
+          "answerPdfPage": 353,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "다음 보일러 자동제어 중 증기온도 제어는?",
+      "choices": [
+        "ABC",
+        "ACC",
+        "FWC",
+        "STC"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170923:23",
+      "fingerprint": "81864ddfaae110bd9ab9e65c98f4e3bb9b13dd7c1e1851913f72705f20115927",
+      "topic": 7,
+      "topicTitle": "07. 보일러 자동제어 약호",
+      "sourceLabel": "2017년 4회 에너지관리산업기사 23번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 56,
+          "pdfPage": 504,
+          "printedPage": 515,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 56,
+          "pdfPage": 599,
+          "printedPage": 610,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러의 자동제어와 관련된 약호가 틀린 것은?",
+      "choices": [
+        "FWC : 급수제어",
+        "ACC : 자동연소제어",
+        "ABC : 보일러 자동제어",
+        "STC : 증기압력제어"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-1-56.webp"
+    },
+    {
+      "id": "school-energy-pdf-2023-4:49",
+      "fingerprint": "e38a311c99469ac4896422f290c9287edb3018f92bffec7b7016f4bbf9188ea9",
+      "topic": 7,
+      "topicTitle": "07. 보일러 자동제어 약호",
+      "sourceLabel": "2023년 4회 에너지 교재 복원 49번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 49,
+          "pdfPage": 551,
+          "printedPage": 562,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "ABC 제어량과 조작량에 속하지 않는 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2023-4-49.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:45",
+      "fingerprint": "be093211f8f21f54963bc474adca6cc11508c6c81751be3e7152f54a112e171d",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 45번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20140302:59",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 12,
+          "pdfPage": 496,
+          "printedPage": 507,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 10,
+          "pdfPage": 544,
+          "printedPage": 555,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러에서 보염장치를 설치하는 목적으로 가장 거리가 먼 것은?",
+      "choices": [
+        "연소 화염을 안정시킨다.",
+        "안정된 착화를 도모한다.",
+        "저공기비 연소를 가능하게 한다.",
+        "연소가스 체류 시간을 짧게 해 준다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2023-4-10.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:54",
+      "fingerprint": "bbc48b7d64ffb8586e34c4b3ad4abf83cdbbc139f821cc5fbbf008cb13aad1f8",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 54번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "보염기 아닌 보기의 원문 대류형과 교재 평행류형이 다름. 질문 표현도 다름.",
+      "evidence": [
+        {
+          "pdfPage": 621,
+          "bookQuestionNumber": 13,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "착화를 원활하게 하는 보염기(stabilizer)의 종류가 아닌 것은?",
+      "choices": [
+        "축류식 선회기",
+        "반경류식 선회기",
+        "대류식 선회기",
+        "혼류식 선회기"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030316:12",
+      "fingerprint": "3fe4456c069b2ffa645a819245999cddcfb60472fa07fb4d5544a5476e18d6dd",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2003년 1회 에너지관리산업기사 12번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "버너타일·에어레지스터 역할은 대응하나 장치 아닌 것 질문과 다름.",
+      "evidence": [
+        {
+          "pdfPage": 486,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "버너 타일(burner tyle) 및 에어 레지스터(air register)와 같은 보염장치의 가장 큰 목적은?",
+      "choices": [
+        "화염을 촉진",
+        "역화를 방지",
+        "연료의 무화를 촉진",
+        "연속적인 연소 안정을 촉진"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20130310:19",
+      "fingerprint": "da0a2b47d492ee15d7d3524e1ea67aea9a9cad919e6925212c81e598096f0b01",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2013년 1회 에너지관리산업기사 19번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "크레이머 포함 장치 종류 질문과 교재의 역할 아닌 것 질문은 다름.",
+      "evidence": [
+        {
+          "pdfPage": 609,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 보염장치(保炎裝置)가 아닌 것은?",
+      "choices": [
+        "에어레지스터",
+        "버너타일",
+        "컴버스터",
+        "크레이머"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140302:59",
+      "fingerprint": "aff73f4664b40df286761b240e6169ef0bbe9314de5269c7d3dc17328ef21a48",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2014년 1회 에너지관리산업기사 59번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 28,
+          "pdfPage": 609,
+          "printedPage": 620,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러에서 보염장치를 설치하는 목적이 아닌 것은?",
+      "choices": [
+        "연소 화염을 안정시킨다.",
+        "안정된 착화를 도모한다.",
+        "연소가스 체류 시간을 짧게 해 준다.",
+        "저공기비 연소를 가능하게 한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2025-2-28.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:9",
+      "fingerprint": "987b1558e6decf7f8a167ccb5154d31309cd42747476120a711b3b37aae677dc",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 9번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 13,
+          "pdfPage": 621,
+          "printedPage": 632,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "연소장치의 선회방식 보염기가 아닌 것은?",
+      "choices": [
+        "평행류식",
+        "축류식",
+        "반경류식",
+        "혼류식"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-13.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:41",
+      "fingerprint": "3724da35c15dcec4ad884d5fb826b4f392aa879278df1f7a340fe78477e22a6f",
+      "topic": 8,
+      "topicTitle": "08. 보염장치·스테빌라이저·윈드박스",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 41번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 41,
+          "pdfPage": 486,
+          "printedPage": 497,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보염장치에 해당하지 않는 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-41.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:48",
+      "fingerprint": "b0d9c8ecbeea06df541c4eeeebc16bbdd4ff0f548bd6b9fb5e52332cce07f67c",
+      "topic": 9,
+      "topicTitle": "09. 가용전·용융마개",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 48번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 48,
+          "pdfPage": 333,
+          "printedPage": 344,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "보일러의 가용전(가용마개)에 사용되는 금속의 성분은?",
+      "choices": [
+        "납과 알루미늄의 합금",
+        "구리와 아연의 합금",
+        "납과 주석의 합금",
+        "구리와 주석의 합금"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:52",
+      "fingerprint": "5124635360a5d66e534f81446a0411bba022164287e84ebe591faaaa9070285d",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 52번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 50,
+          "pdfPage": 568,
+          "printedPage": 579,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "신축이음 중 온수 혹은 저압증기의 배관분기관 등에 사용되는 것으로 2개 이상의 엘보를 사용하여 나사맞춤부의 작용에 의하여 신축을 흡수하는 것은?",
+      "choices": [
+        "벨로즈 이음",
+        "슬리브 이음",
+        "스위블 이음",
+        "신축곡관"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-50.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20150308:43",
+      "fingerprint": "dc1d3c7f1d93bc9eb01cff7406dca372d055ea47156577571cc08f344755eb35",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2015년 1회 에너지관리산업기사 43번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 579,
+          "bookQuestionNumber": 30,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "청동 또는 스테인리스강을 파형으로 주름을 잡아서 아코디언과 같이 만들고, 이 주름의 신축으로 온도 변화에 따른 배관의 길이 방향 신축을 흡수하는 이음은?",
+      "choices": [
+        "루프형",
+        "스위블형",
+        "슬리브형",
+        "벨로우즈형"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20020908:78",
+      "fingerprint": "334a9d57a4bf4b063f2917050a60a046b283bdb04372700a71beaffc654d0660",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2002년 4회 에너지관리산업기사 78번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "신축이음 설치 목적은 본문에 있으나 해당 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 118,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음중 수증기관에 만곡부(신축이음)를 설치하는 이유는?",
+      "choices": [
+        "증기속의 복수(drain)을 제거하기 위하여",
+        "열팽창에 의한 관의 고장을 막기 위하여",
+        "증기의 통과를 잘 시키기 위하여",
+        "증기속의 수분을 분리하기 위하여"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20130310:64",
+      "fingerprint": "55a3c6e6bd7a96cb38d3cdae684f782303c64bb71b84f8e029b047bdf657f1ba",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2013년 1회 에너지관리산업기사 64번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20180428:52",
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "스위블 원리와 정답 개념은 같지만 질문 축약 및 루프/신축곡관 등 보기 표기가 달라 엄격한 동일 수록에서는 보류.",
+      "evidence": [
+        {
+          "pdfPage": 568,
+          "bookQuestionNumber": 50,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "2개 이상의 엘보(Elbow)로 나사의 회전을 이용하여 온수 또는 저압증기용 배관에 사용하는 신축이음방식은?",
+      "choices": [
+        "루프형(Loop Type)",
+        "벨로즈형(Bellows Type)",
+        "슬리브형(Sleeve Type)",
+        "스위블형(Swivel Type)"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140302:50",
+      "fingerprint": "3ed1253309eb926cdf51eb218deea838c25e4fadadd17d5f3b847a4345a31b33",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2014년 1회 에너지관리산업기사 50번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20180428:52",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 의미 일치. 영문 병기 생략만 있음.",
+      "evidence": [
+        {
+          "pdfPage": 568,
+          "bookQuestionNumber": 50,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "신축이음 중 온수 혹은 저압증기의 배관분기관 등에 사용되는 것으로 2개 이상의 엘보를 사용하여 나사맞춤부의 작용에 의하여 신축을 흡수하는 것은?",
+      "choices": [
+        "벨로우즈 이음(Bellows Expansion Joint)",
+        "슬리브 이음(Sleeve Joint)",
+        "스위블 이음(Swivel Joint)",
+        "신축곡관(Expansion Loop Joint)"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:42",
+      "fingerprint": "5f887a2dd620b1e083cd59d379f39bbe7738c9747719d7ce57027455247f1cc8",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 42번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 42,
+          "pdfPage": 438,
+          "printedPage": 449,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "슬리브형 신축이음의 틀린 특징",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-42.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-4:39",
+      "fingerprint": "a37c37893201af99eebd9770c3b73398129c5182d5eca78f18e7782b6fe5503c",
+      "topic": 10,
+      "topicTitle": "10. 신축이음 네 종류",
+      "sourceLabel": "2022년 4회 에너지 교재 복원 39번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 39,
+          "pdfPage": 501,
+          "printedPage": 512,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "방진 방음도 가능한 신축이음",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2022-4-39.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:53",
+      "fingerprint": "980e59d91a380b7b6c70ed26d3e49c5c67cbbd51f0bf4c7ef2d7284597e9669f",
+      "topic": 11,
+      "topicTitle": "11. 스케줄번호 공식과 계산",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 53번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 53,
+          "pdfPage": 334,
+          "printedPage": 345,
+          "answer": 2,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "압력배관용 강관의 인장강도가 24kg/mm\n2\n, 스케줄번호가 120일 때 이 강관의 사용압력(kgf/cm\n2\n)은? (단, 안전율은 4로 한다.)",
+      "choices": [
+        "96",
+        "72",
+        "60",
+        "24"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160508:49",
+      "fingerprint": "51d0d11c2da4cea64a137b0251b8602133a8c9979e002e4747c0e6d0c1747003",
+      "topic": 11,
+      "topicTitle": "11. 스케줄번호 공식과 계산",
+      "sourceLabel": "2016년 2회 에너지관리산업기사 49번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 26,
+          "pdfPage": 563,
+          "printedPage": 574,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 25,
+          "pdfPage": 593,
+          "printedPage": 604,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "강관의 두께를 나타내는 변호인 스케줄 번호를 나타내는 식은? (단, 허용응력:S, 사용최고압력:P)",
+      "choices": [
+        "10×S/P",
+        "10×P/S",
+        "10×P/√S",
+        "10×S/√P"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2025-1-25.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:62",
+      "fingerprint": "5480f1430fcc88432f0af7fd9908417674556abeb1ad2607ca5c1e50d2dd6560",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 62번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 62,
+          "pdfPage": 335,
+          "printedPage": 346,
+          "answer": 2,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "다음 중 보일러의 인터록 제어에 속하지 않는 것은?",
+      "choices": [
+        "저수위 인터록",
+        "미분 인터록",
+        "불착화 인터록",
+        "프리퍼지 인터록"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190303:39",
+      "fingerprint": "0c25adc5a313c1fb84872d3d6b861804c1dae6379df7c5e30e78ab98271c4f1e",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2019년 1회 에너지관리산업기사 39번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 360,
+          "bookQuestionNumber": 39,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "보일러 연소특성으로 어떤 조건이 충족되지 않으면 다음 동작이 중지되는 인터록(InterLock)의 종류가 아닌 것은?",
+      "choices": [
+        "온오프 인터록",
+        "불착화 인터록",
+        "저수위 인터록",
+        "프리퍼지 인터록"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:69",
+      "fingerprint": "0dab1e40adf5f7cd63fdbcc0f3e1e5de5b354b198be1a4e683dc577eeb78966b",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 69번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "인터록 아닌 보기가 고수위/고온도 등으로 다름.",
+      "evidence": [
+        {
+          "pdfPage": 583,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 보일러의 인터록의 종류가 아닌 것은?",
+      "choices": [
+        "고수위",
+        "저연소",
+        "불착화",
+        "프리퍼지"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180915:34",
+      "fingerprint": "b0a28c93b6befd599f41bc1021bebfe61934659104eed765a868ec9553d5a8cb",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2018년 4회 에너지관리산업기사 34번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 58,
+          "pdfPage": 521,
+          "printedPage": 532,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 43,
+          "pdfPage": 626,
+          "printedPage": 637,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 52,
+          "pdfPage": 535,
+          "printedPage": 546,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러에 대한 인터록이 아닌 것은?",
+      "choices": [
+        "압력초과 인터록",
+        "온도초과 인터록",
+        "저수위 인터록",
+        "저연소 인터록"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2023-2-52.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-2:21",
+      "fingerprint": "ec8acea6277c23c8f546e60c99ff1d68a242d00cbc3a546919bb43cc14e27033",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 21번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 21,
+          "pdfPage": 451,
+          "printedPage": 462,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "송풍기 미작동 시 점화를 허용하지 않는 인터록",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-21.webp"
+    },
+    {
+      "id": "school-energy-pdf-2024-2:57",
+      "fingerprint": "3ea1e15c322dc8a7c7afdc292e27af28e8267a5b1729d911c758875001c027c9",
+      "topic": 12,
+      "topicTitle": "12. 인터록 안전제어",
+      "sourceLabel": "2024년 2회 에너지 교재 복원 57번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20180915:34",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 57,
+          "pdfPage": 583,
+          "printedPage": 594,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "기출의 보일러 인터록 종류가 아닌 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2024-2-57.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:59",
+      "fingerprint": "c87ccab073df70b1f092897435cdaa59e1565d4c81c588b7940f58c82162b1d7",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 59번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 49,
+          "pdfPage": 471,
+          "printedPage": 482,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 그을음 제거 장치인 수트블로워의 분사형식이 아닌 것은?",
+      "choices": [
+        "모래분사",
+        "물분사",
+        "공기분사",
+        "증기분사"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-49.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:64",
+      "fingerprint": "bbb7e360f42b5009d0d7e392c2aa6d5bbae6dc38b91a4eb3ba5033cbe8517751",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 64번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 64,
+          "pdfPage": 335,
+          "printedPage": 346,
+          "answer": 1,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "보일러에서 그을음 불어내기(수트 블로우) 작업을 할 때의 주의사항으로 틀린 것은?",
+      "choices": [
+        "댐퍼의 개도를 줄이고 통풍력을 적게 한다.",
+        "한 장소에 장시간 불어 대지 않도록 한다.",
+        "수트 블로우를 하기 전에 충분히 드레인을 실시한다.",
+        "소화한 직후의 고온 연소실 내에서는 하여서는 안된다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200822:55",
+      "fingerprint": "60b86696cbee2fe0bdd39e8282e82d8d8057d66589e0b181c2548c8fc18371b3",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2020년 3회 에너지관리산업기사 55번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 425,
+          "bookQuestionNumber": 55,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "주로 보일러 전열면이나 절탄기에 고정 설치해 두며, 분사관은 다수의 작은 구멍이 뚫려 있고 이곳에서 분사되는 증기로 매연을 제거하는 것으로서 분사관은 구조상 고온가스의 접촉을 고려해야 하는 매연 분출장치는?",
+      "choices": [
+        "롱레트랙터블형",
+        "쇼트레트랙터블형",
+        "정치 회전형",
+        "공기예열기 클리너"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:28",
+      "fingerprint": "44aab04e10e55fb2474861b7229a22f05ceaa11985a6eacbb0e7cda01d45a41d",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 28번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 28,
+          "pdfPage": 435,
+          "printedPage": 446,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "자동화학식 CO₂ 분석계의 특징 중 잘못된 설명",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-28.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:6",
+      "fingerprint": "f7f02e0bd0bf06c6545d55b280a9b48bb683faeb1d948a914f87a7a65e75aa68",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 6번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 6,
+          "pdfPage": 480,
+          "printedPage": 491,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "연소 중 매연이 가장 잘 생기는 연료",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-6.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:47",
+      "fingerprint": "0d94a1a867bcc912569e03ae4cc6e394a5e00499549188f2ef0b96ae38d71dfd",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 47번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 47,
+          "pdfPage": 487,
+          "printedPage": 498,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "롱 레트랙터블형 수트블로워 사용 장소",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-47.webp"
+    },
+    {
+      "id": "school-energy-pdf-2024-1:57",
+      "fingerprint": "e8c54435e4d5b6a78d75f4e4c86b9b8db04d0e02f72642b61ba03dc5e2513c45",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2024년 1회 에너지 교재 복원 57번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 57,
+          "pdfPage": 569,
+          "printedPage": 580,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "CO 그을음 회분 분진 등 매연의 발생 원인과 거리가 먼 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-57.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-2:60",
+      "fingerprint": "d9fa65e09c757f320a2c2c8bfdb688f1d615dc5a870ba1145d5cabb4277a62ba",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 60번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 60,
+          "pdfPage": 458,
+          "printedPage": 469,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "사용 후 벽 밖으로 빼내는 슈트 블로워 형식",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-60.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-1:6",
+      "fingerprint": "2fc4583c5cd4f6a2bd52ca77a1616297f6477fa954498b8a8d70b9a425cfcce5",
+      "topic": 13,
+      "topicTitle": "13. 수트블로워·매연취출장치",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 6번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 6,
+          "pdfPage": 463,
+          "printedPage": 474,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "매연 방지 조치로 부적당한 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-6.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20190303:62",
+      "fingerprint": "1cf2301b3a61b6037d49c3ee2f9d9a723ac3c436961258b4e385dc147854249b",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2019년 1회 에너지관리산업기사 62번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 29,
+          "pdfPage": 499,
+          "printedPage": 510,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기트랩을 사용하는 이유로 가장 적합한 것은?",
+      "choices": [
+        "증기배관 내의 수격작용을 방지한다.",
+        "증기의 송기량을 증가시킨다.",
+        "증기배관의 강도를 증가시킨다",
+        "증기발생을 왕성하게 해준다."
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2022-4-29.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:65",
+      "fingerprint": "27440bef45488f68ff6eb646991d4d01040be6c8b767f3b9da3dd3e6258226fc",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 65번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 22,
+          "pdfPage": 530,
+          "printedPage": 541,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기트랩의 설치에 관한 설명으로 옳은 것은?",
+      "choices": [
+        "응축수와 증기를 배출하기 위하여 설치하는 중요한 부품이다.",
+        "응축수량이 많이 발생하는 증기관에는 열동식 트랩이 주로 사용된다.",
+        "냉각래그(cooling leg)는 1.5m 이상 설치하며 증기 공급관의 관말부에 설치한다.",
+        "증기트랩의 주위에는 바이패스관을 설치할 필요가 없다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2023-2-22.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20030316:78",
+      "fingerprint": "f1962cf58af4591ffc90ea25070ab2751f05ee9121524480f46573db380e485c",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2003년 1회 에너지관리산업기사 78번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "트랩 작동 원리는 같으나 네 트랩 종류 보기 구성이 다름.",
+      "evidence": [
+        {
+          "pdfPage": 594,
+          "bookQuestionNumber": 32,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 드레인의 열역학 및 유체 역학적 성질을 이용한 트랩은?",
+      "choices": [
+        "서머스태틱 트랩",
+        "플로우트식 트랩",
+        "디스크식",
+        "바이메탈식"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050306:77",
+      "fingerprint": "695756d51a957683fba86897a322af6bee172cd0917a156e1e03f6b236b5cc37",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2005년 1회 에너지관리산업기사 77번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "검색 후보는 유량계 설치 문제. 해당 트랩 주의 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 435,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "스팀트랩 설치시 주의사항이 아닌 것은?",
+      "choices": [
+        "설비의 배수 위치보다 낮은 곳에 설치한다.",
+        "바이패스 라인을 설치한다.",
+        "가능한 한 곡선부를 많게 한다.",
+        "트랩 앞에 여과기를 설치한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20060305:72",
+      "fingerprint": "31ac8ba4535d4250505a511539b7c1f59030a1693b89b4909644db6119c4a5a5",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2006년 1회 에너지관리산업기사 72번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "자동 응축수 배출 설명은 있으나 해당 네 보기 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 172,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "스팀 트랩을 사용하는 목적으로 맞는 것은?",
+      "choices": [
+        "증기관의 도중에 설치하여 압력이 급상승 또는 급히 물이 들어가는 경우 다른곳으로 빼내는 안전장치이다.",
+        "증기관의 도중에 설치하여 증기를 함유한 침전물을 분리 시키는 장치이다.",
+        "보일러 도중에 설치하여 드레인을 빼내는 장치이다.",
+        "증기관의 도중에 설치하여 증기의 일부가 드레인상태로 괴어있을 때 그 물을 자동적으로 빼내는 장치이다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140302:51",
+      "fingerprint": "fdcc1d24623f498c79bb9efe30cfe13346ca6c2518ab758b329e969254ad01bb",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2014년 1회 에너지관리산업기사 51번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 27,
+          "pdfPage": 563,
+          "printedPage": 574,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기와 응축수의 온도 차이를 이용한 증기트랩은?",
+      "choices": [
+        "단노즐식",
+        "상향버켓식",
+        "플로트식",
+        "바이메탈식"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-27.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20140302:73",
+      "fingerprint": "c9017b2acb0ebf21cfabeccffd6dd127d827bb2fa3e4398e8a646499e1103dd4",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2014년 1회 에너지관리산업기사 73번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "버킷 트랩·역지밸브 설명은 있으나 해당 객관식 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 169,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "버킷 트랩을 사용하여 응축수를 위로 배출시키려면 트랩출구에 어떤 밸브를 설치하는가?",
+      "choices": [
+        "앵글 밸브",
+        "게이트 밸브",
+        "글로브 밸브",
+        "체크 밸브"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150531:60",
+      "fingerprint": "64476516592cd5b515f5d7c38905846db38dd9f7eeed842ec68ccac5c302adc5",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2015년 2회 에너지관리산업기사 60번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "트랩 누설 원인의 해당 보기 조합 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 504,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "증기트랩 불량으로 인한 증기 누출 원인으로 가장 거리가 먼 것은?",
+      "choices": [
+        "간헐적 작동",
+        "밸브개폐 불량",
+        "오리피스의 고장",
+        "트랩 작동부의 고장"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:49",
+      "fingerprint": "d2d4718572e95c3baff4da31fdb83332ac25aa000b2ee2e527540158f587e43f",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 49번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 594,
+          "bookQuestionNumber": 32,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "열역학적 트랩의 종류로 옳은 것은?",
+      "choices": [
+        "디스크 트랩",
+        "플로트 트랩",
+        "버킷 트랩",
+        "바이메탈 트랩"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20161001:51",
+      "fingerprint": "0ba231887754974f727d0b4352356db460460253c951bdbd388607cef78ee2a0",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2016년 4회 에너지관리산업기사 51번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 23,
+          "pdfPage": 593,
+          "printedPage": 604,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기트랩을 설치할 경우 나타나는 장점이 아닌 것은?",
+      "choices": [
+        "응축수로 인한 관 내의 부식을 방지할 수 있다.",
+        "응축수를 배출할 수 있어서 수격작용을 방지할 수 있다.",
+        "관 내 유체의 흐름에 대한 마찰 저항을 줄일 수 있다.",
+        "관 내의 불순물을 제거할 수 있다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-1-23.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:53",
+      "fingerprint": "86d1e21a415729f28be557c818af002832782feb0e56bc7f4a9b8be7c333dc6e",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 53번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 41,
+          "pdfPage": 438,
+          "printedPage": 449,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기난방 배관용으로 쓰이는 증기트랩에 관한 설명으로 옳은 것은?",
+      "choices": [
+        "방열기의 송수구 또는 배관의 윗부분에 증기가 모이는 곳에 설치한다.",
+        "증기트랩을 설치하는 주목적은 고압의 증기와 공기를 배출하는 것이다.",
+        "방열기나 증기관 속에 생긴 응축수를 환수관으로 배출한다.",
+        "증기트랩은 마찰 저항이 커야 하며 내마모성 및 내식성 등이 작아야 한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-41.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:73",
+      "fingerprint": "98b4b1cc8f96e22d960f8873d162c2e3272a6233f9fe6225d87be4847d0d9d66",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 73번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 17,
+          "pdfPage": 496,
+          "printedPage": 507,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 25,
+          "pdfPage": 563,
+          "printedPage": 574,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "열역학적 트랩으로 수격현상에 강하고 과열증기에도 사용할 수 있으며 구조가 간단하며 유지보수가 용이한 증기트랩은?",
+      "choices": [
+        "버킷 트랩",
+        "디스크 트랩",
+        "벨로즈 트랩",
+        "바이메탈식 트랩"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-25.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170507:64",
+      "fingerprint": "e03dd87206534e947ebfc3b3ff163ee229376e8ccf93bdf9435d3c3118a3292e",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2017년 2회 에너지관리산업기사 64번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치. 보일러 설비라는 도입 표현만 추가.",
+      "evidence": [
+        {
+          "pdfPage": 578,
+          "bookQuestionNumber": 25,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "트랩이나 스트레이너 등의 고장, 수리, 교환 등에 대비 하여 설치하는 것은?",
+      "choices": [
+        "바이패스 배관",
+        "드레인 포켓",
+        "냉각 레그",
+        "체크 밸브"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170923:52",
+      "fingerprint": "6a403677254c5b948be112c86d70d3979776705541835ba65b02d1f55410818e",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2017년 4회 에너지관리산업기사 52번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "검색 후보는 액주식 압력계. 트랩 구비조건의 해당 객관식 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 343,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "증기트랩의 구비 조건이 아닌 것은?",
+      "choices": [
+        "마찰저항이 적을 것",
+        "내구력이 있을 것",
+        "공기를 뺄 수 있는 구조로 할 것",
+        "보일러 정지와 함께 작동이 멈출 것"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:54",
+      "fingerprint": "2839d992680bee2181539f9181dde005eddfad5fdd315ef0dc139e2ce5f7a2c7",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 54번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 378,
+          "bookQuestionNumber": 54,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "증기와 응축수와의 비중차를 이용하는 증기트랩은?",
+      "choices": [
+        "버킷형",
+        "벨로즈형",
+        "디스크형",
+        "오리피스형"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200606:49",
+      "fingerprint": "97365dfd1e98114ba0f0de9e3adeb7f533499f145b3af0150bc8d83ea171be58",
+      "topic": 14,
+      "topicTitle": "14. 증기트랩",
+      "sourceLabel": "2020년 1·2회 통합 에너지관리산업기사 49번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 409,
+          "bookQuestionNumber": 49,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "증기트랩 중 고압증기의 관말트랩이나 유닛, 히터 등에 많이 사용하는 것으로 상향식과 하향식이 있는 트랩은?",
+      "choices": [
+        "벨로즈 트랩",
+        "플로트 트랩",
+        "온도조절식 트랩",
+        "버킷 트랩"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:67",
+      "fingerprint": "7abe295aff66b4b4fd2797c613ad71655a7665556edc64f45799568a2a520186",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 67번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 67,
+          "pdfPage": 336,
+          "printedPage": 347,
+          "answer": 4,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "강철제 보일러의 수압시험 방법에 관한 설명으로 틀린 것은?",
+      "choices": [
+        "수압시험 중 또는 시험 후에도 물이 얼지 않도록 해야 한다.",
+        "물을 채운 후 천천히 압력을 가한다.",
+        "규정된 시험수압에 도달된 후 30분이 경과된 뒤에 검사를 실시한다.",
+        "시험수압은 규정된 압력의 10% 이상을 초과하지 않도록 적절한 제어를 마련한다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20200606:73",
+      "fingerprint": "33055afed8e401dc68df28208165f63cf7b86e1d9c2377c55abfe53519d020d6",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2020년 1·2회 통합 에너지관리산업기사 73번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 413,
+          "bookQuestionNumber": 73,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "보일러 설치검사기준상 보일러 설치 후 수압시험을 할 때 규정된 시험수압에 도달된 후 얼마의 시간이 경과된 뒤에 검사를 실시하는가?",
+      "choices": [
+        "10분",
+        "15분",
+        "20분",
+        "30분"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20160306:64",
+      "fingerprint": "79ebac9ce121c0649c747b917fe89e16c7d7afcb58478a2b03dffdd0aeea9abd",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2016년 1회 에너지관리산업기사 64번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "최고사용압력1.6 MPa와 후보2.0 MPa가 달라 같은 계산문항으로 확정하지 않음.",
+      "evidence": [
+        {
+          "pdfPage": 491,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "강철제 보일러의 최고 사용압력이 1.6 MPa일 때 수압시험 압력은 최고 사용압력의 몇 배로 계산하는가?",
+      "choices": [
+        "최고 사용압력의 1.3배",
+        "최고 사용압력의 1.5배",
+        "최고 사용압력의 2배",
+        "최고 사용압력의 3배"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20180304:77",
+      "fingerprint": "44cb696bd5c19367da37577aa0707ed35de010b3627857ca573c2d14f049d60b",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2018년 1회 에너지관리산업기사 77번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 323,
+          "bookQuestionNumber": 77,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "강철제 보일러 수압시험압력에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "보일러 최고사용압력이 0.43MPa 이하일 때는 그 최고압력의 2배의 압력으로 한다.",
+        "시험압력이 0.2MPa 미만일 때는 0.2MPa의 압력으로 한다.",
+        "보일러 최고사용압력이 0.43MPa 초과 1.5MPa 이하일 때는 그최고사용압력의 1.3배의 압력으로 한다.",
+        "보일러 최고사용압력이 1.5MPa를 초과할 때는 그 최고사용압력의 1.5배의 압력으로 한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:55",
+      "fingerprint": "dfd80d755511e1bb9d437a964ad14a7077ec6baaa741fd20ce3e2d3f519aaf22",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 55번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 55,
+          "pdfPage": 441,
+          "printedPage": 452,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "강제압력용기0.5 MPa의 수압시험 압력",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-55.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-1:43",
+      "fingerprint": "be3a4245627283787692a8f48c9010a17aaa0662e150e02872c20973f78ac562",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2022년 1회 에너지 교재 복원 43번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 43,
+          "pdfPage": 470,
+          "printedPage": 481,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "강철제 증기보일러0.5 MPa의 수압시험 압력",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-1-43.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:69",
+      "fingerprint": "5bd53c368a7d58a8f9d5aa2c3df8417e815cf99941cf5883b5b94f20ed76451c",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 69번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": true,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 69,
+          "pdfPage": 491,
+          "printedPage": 502,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "강철제 증기보일러2.0 MPa의 수압시험 압력",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-69.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-2:74",
+      "fingerprint": "7488bb59cd6a1878f64002a0d5ac02d9c9b3866810e3acee503737a74fe374cb",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2022년 2회 에너지 교재 복원 74번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 74,
+          "pdfPage": 492,
+          "printedPage": 503,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "강철제 증기보일러 수압시험 방법의 틀린 설명",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-2-74.webp"
+    },
+    {
+      "id": "school-energy-pdf-2022-4:74",
+      "fingerprint": "3d3eebb491fee4936b0ebee6817fd1d5cd7bdb49f63ef27617e98581a050e221",
+      "topic": 15,
+      "topicTitle": "15. 수압시험",
+      "sourceLabel": "2022년 4회 에너지 교재 복원 74번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 74,
+          "pdfPage": 507,
+          "printedPage": 518,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "저압 강철제 보일러의 수압시험 압력",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-4-74.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:68",
+      "fingerprint": "045ae7338208778bd1f156e60dc3b9a21601d8721eb523ecf4fabc4944743ed1",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 68번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20190427:64",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 68,
+          "pdfPage": 336,
+          "printedPage": 347,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "다음 증기 난방의 응축수 환수방법 중 응축수의 환수 및 증기의 회전이 가장 빠른 방식은?",
+      "choices": [
+        "중력 환수식",
+        "기계 환수식",
+        "진공 환수식",
+        "자연 환수식"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190427:64",
+      "fingerprint": "41d940d32460106d9d0f78c38d12c6da7310cc0c4b762c99fa8ccefd17665ddb",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2019년 2회 에너지관리산업기사 64번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 62,
+          "pdfPage": 570,
+          "printedPage": 581,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기난방의 응축수 환수방법 중 증기의 순환이 가장 빠른 것은?",
+      "choices": [
+        "기계환수식",
+        "진공환수식",
+        "단관식 중력환수식",
+        "복관식 중력환수식"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-62.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20140525:77",
+      "fingerprint": "353951b6726ac3a9c07a41e6ec67557935585f7971318b9ba0dd1b27ad0e0d0e",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2014년 2회 에너지관리산업기사 77번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20190427:64",
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 70,
+          "pdfPage": 491,
+          "printedPage": 502,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 40,
+          "pdfPage": 501,
+          "printedPage": 512,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 40,
+          "pdfPage": 550,
+          "printedPage": 561,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "증기난방의 응축수 환수방법 중 증기의 순환 속도가 가장 빠른 환수방식은?",
+      "choices": [
+        "진공 환수식",
+        "기계 환수식",
+        "중력 환수식",
+        "강제 환수식"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2023-4-40.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20140920:62",
+      "fingerprint": "9ae08224ee775df70d0fe59f36a9ed3f2333f35966a93bcdfacf823fe5c87ede",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2014년 4회 에너지관리산업기사 62번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "환수 방식 아닌 것과 가장 빠른 방식의 질문은 다름.",
+      "evidence": [
+        {
+          "pdfPage": 336,
+          "bookQuestionNumber": 68,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 증기난방법 중에서 응축수 환수법이 아닌 것은?",
+      "choices": [
+        "중력환수식",
+        "건식환수관식",
+        "기계환수식",
+        "진공환수식"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:78",
+      "fingerprint": "9bc85321e3f79756da214b6b6e61a49ad33fc2efd434b8e0e464b58992db4e43",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 78번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20190427:64",
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "진공펌프·설치 제약 조건이 원문 질문에 있으나 교재 질문은 빠른 환수만 묻고 나머지는 해설에 있음.",
+      "evidence": [
+        {
+          "pdfPage": 336,
+          "bookQuestionNumber": 68,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "증기의 순환이 가장 빠르며 방열기 설치장소에 제한을 받지 않는 환수방식으로 증기와 응축수를 진공펌프로 흡입 순환시키는 난방법은?",
+      "choices": [
+        "중력환수식",
+        "기계환수식",
+        "진공환수식",
+        "자연환수식"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20190921:66",
+      "fingerprint": "6edf336056420390c842b8a4b000dd2e7a731aafc42610e27a2456c4d7aab355",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2019년 4회 에너지관리산업기사 66번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 396,
+          "bookQuestionNumber": 66,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "진공환수식 증기난방의 장점이 아닌 것은?",
+      "choices": [
+        "배관 및 방열기 내의 공기를 뽑아내므로 증기순환이 신속하다.",
+        "환수관의 기울기를 크게 할 수 있고 소규모 난방에 알맞다.",
+        "방열기 밸브의 개폐를 조절하여 방열량의 폭넓은 조절이 가능하다.",
+        "응축수의 유속이 신속하므로 환수관의 직경이 작아도 된다."
+      ],
+      "storedAnswer": 2,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:75",
+      "fingerprint": "77f5e22a57aaf70a9f4d79bf333706f4eb1f4639f7905cc2c03365f27092b3cc",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 75번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 75,
+          "pdfPage": 445,
+          "printedPage": 456,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "진공환수식 리프트 피팅1단의 최고 흡상높이",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-75.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-2:72",
+      "fingerprint": "bcdefafe0b479b45363e86a9ec3e2fc653ca2f5a94af4c99ea94346e429127c2",
+      "topic": 16,
+      "topicTitle": "16. 증기난방 응축수 환수방법",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 72번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 72,
+          "pdfPage": 460,
+          "printedPage": 471,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "진공환수식 환수관의 진공도",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-72.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:69",
+      "fingerprint": "aad60e8a21f23e48bf809e11ff23f40bae7c2f539d9da615eb5b9d02c0ef414c",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 69번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 48,
+          "pdfPage": 627,
+          "printedPage": 638,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 관수의 pH 및 알칼리도 조정제로 사용되는 약품이 아닌 것은?",
+      "choices": [
+        "탄닌",
+        "인산나트륨",
+        "탄산나트륨",
+        "수산화나트륨"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-48.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20200822:61",
+      "fingerprint": "32eeecc6074486b3ae63a4d410c611b8829899fb42aa6d7edfb0c9371a470374",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2020년 3회 에너지관리산업기사 61번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 74,
+          "pdfPage": 617,
+          "printedPage": 628,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 청관제 중 슬러지 조정제가 아닌 것은?",
+      "choices": [
+        "탄닌",
+        "리그닌",
+        "전분",
+        "수산화나트륨"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2025-2-74.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20030525:70",
+      "fingerprint": "90e26a0bcc408aead2a5e7133a55444fbd91e766660da2aca107576c599195ee",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2003년 2회 에너지관리산업기사 70번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20180428:69",
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "급수/관수 대상과 인산염/인산나트륨 표기가 달라 동일 확정 보류.",
+      "evidence": [
+        {
+          "pdfPage": 336,
+          "bookQuestionNumber": 69,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "급수의 pH와 알칼리도 조성에 사용되는 약품으로 적합하지 않은 것은?",
+      "choices": [
+        "NaOH",
+        "인산염",
+        "소다회",
+        "탄닌"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20030831:66",
+      "fingerprint": "7470be92cdeafbb44911794cfbd5671d2b7981f17eea257e0ba6c8a6e279572f",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2003년 4회 에너지관리산업기사 66번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "약품의 CaCO3 방지 용도와 산세척 중화 용도를 묻는 질문은 다름.",
+      "evidence": [
+        {
+          "pdfPage": 381,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 보일러의 청관제로서 사용할 수 없는 것은?",
+      "choices": [
+        "탄산칼슘",
+        "탄산나트륨",
+        "인산나트륨",
+        "히드라진"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050306:78",
+      "fingerprint": "baf25a88e769b6e854eeacec45c7a962dbbf5c2043bff20fe7fc1f487c8f72a7",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2005년 1회 에너지관리산업기사 78번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "unresolved",
+      "statusLabel": "동일 수록 미확인",
+      "confirmed": false,
+      "reason": "알칼리 처리의 해당 네 긴 진술 객관식 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 320,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 보일러에 사용되고 있는 보일러 물의 pH 조정방식인 알칼리처리 방식에 대한 설명으로 틀린 것은?",
+      "choices": [
+        "알칼리처리 방식은 pH 조정제로서 가성소다, 탄산나트륨 등의 알칼리제를 사용하며, 주로 중저압보일러에 적용된다.",
+        "알칼리처리 방식의 특징은 pH 조정이 용이하며, 경도성분의 대응이 용이하고 정상상태 또는 저온시의 방식력이 크다.",
+        "이 방식은 pH 조정제의 주입농도에 의한 고농도인산염 처리와 저농도인산염처리로 구분된다.",
+        "알칼리처리 방식의 보일러수의 pH 기준치는 보일러 압력에도 관계하지만 10.5~11.8의 범위이다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20050320:74",
+      "fingerprint": "fb7833c76d2a8a44cce48c99ee85965a7dcb9b0fc7f5e165d051840a49340506",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2005년 1회 추가시험 에너지관리산업기사 74번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "pH 처리 본문은 있으나 탈기가 포함된 해당 네 보기 문항 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 248,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러(관류식은 제외)에 사용되고 있는 보일러 물의 pH조정 방식을 열거한 것으로 관계없는 것은?",
+      "choices": [
+        "알칼리 처리방식",
+        "안산염 처리방식",
+        "급수의 탈기방식",
+        "휘발성 물질 처리방식"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20150531:65",
+      "fingerprint": "f61d16bdfbe4137cd91d535e8b22e98ddbc42685e5517d61db5524a6b7ef2ac7",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2015년 2회 에너지관리산업기사 65번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 48,
+          "pdfPage": 503,
+          "printedPage": 514,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 관수의 pH 값이 산성인 것은?",
+      "choices": [
+        "4",
+        "7",
+        "9",
+        "12"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2022-4-48.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20170305:70",
+      "fingerprint": "f2bd6abc903dd0be0e3f7ec4bb37f5da507579ec750a606b173fbddcd1a3099e",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2017년 1회 에너지관리산업기사 70번",
+      "active": false,
+      "duplicateOf": "school-energy-pdf-2024-2:58",
+      "calculation": false,
+      "status": "same",
+      "statusLabel": "이번 동일 문항 확인",
+      "confirmed": true,
+      "reason": "질문과 네 보기 내용 일치.",
+      "evidence": [
+        {
+          "pdfPage": 505,
+          "bookQuestionNumber": 58,
+          "kind": "current-visual-match"
+        }
+      ],
+      "question": "다음 중 보일러 수의 슬러지 조정제로 사용되는 청관제는?",
+      "choices": [
+        "전분",
+        "가성소다",
+        "탄산소다",
+        "아황산소다"
+      ],
+      "storedAnswer": 1,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:78",
+      "fingerprint": "53d3388262d8f214d0b88733cd3b22c951c90faa3d5b132ec3aae395255e4043",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 78번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 78,
+          "pdfPage": 445,
+          "printedPage": 456,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "일반 원통보일러 급수의 pH 기준",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-78.webp"
+    },
+    {
+      "id": "school-energy-pdf-2021-2:66",
+      "fingerprint": "f9e7bb2ba13923281b88110e70f78857b4e861e978911ab5d401c6af14e0384d",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2021년 2회 에너지 교재 복원 66번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 66,
+          "pdfPage": 459,
+          "printedPage": 470,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "슬러지 조정용 청관제가 아닌 약품",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2021-2-66.webp"
+    },
+    {
+      "id": "school-energy-pdf-2023-4:50",
+      "fingerprint": "d35c7ddd5f5bcbe7d6691d9398f0730168d00bdb1a039b2922e06e6b97481acf",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2023년 4회 에너지 교재 복원 50번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 50,
+          "pdfPage": 552,
+          "printedPage": 563,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "내처리 청관제를 사용하는 목적이 아닌 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2023-4-50.webp"
+    },
+    {
+      "id": "school-energy-pdf-2024-2:58",
+      "fingerprint": "0f3095cc94acc3f51b28f275bbd5a58b57be26e9eed0d2fdf9651f641829fb7e",
+      "topic": 17,
+      "topicTitle": "17. 급수·관수 pH와 처리약품",
+      "sourceLabel": "2024년 2회 에너지 교재 복원 58번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 58,
+          "pdfPage": 584,
+          "printedPage": 595,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "청관제 중 슬러지 조정제로 쓰는 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 1,
+      "sourceImage": "assets/energy-midterm/questions/2024-2-58.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:71",
+      "fingerprint": "e1b42d7c6704bcb670e60e8eabbce3c94843154b7355dc055bbf80a80dc724b9",
+      "topic": 18,
+      "topicTitle": "18. 가성취화",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 71번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "date": "20180428",
+          "number": 71,
+          "pdfPage": 337,
+          "printedPage": 348,
+          "answer": 3,
+          "answerPdfPage": 338,
+          "kind": "previous-book-check"
+        }
+      ],
+      "question": "보일러 내부부식 중의 하나인 가성취화의 특징에 관한 설명으로 틀린 것은?",
+      "choices": [
+        "균열의 방향이 불규칙적이다.",
+        "주로 인장응력을 받는 이음부에 발생한다.",
+        "반드시 수면 위쪽에서 발생한다.",
+        "농알칼리 용액의 작용에 의하여 발생한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20140525:79",
+      "fingerprint": "23eeb01b78f6ab1c4c75f5fdc7485b6ee5879e46317478ac627dc106fc8acadc",
+      "topic": 18,
+      "topicTitle": "18. 가성취화",
+      "sourceLabel": "2014년 2회 에너지관리산업기사 79번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "가성취화 방지 약품은 설명에 있으나 해당 객관식은 미확인.",
+      "evidence": [
+        {
+          "pdfPage": 246,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러 내처리제 중 가성취화 방지에 사용되는 약제는?",
+      "choices": [
+        "히드라진",
+        "염산",
+        "암모니아",
+        "인산나트륨"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2021-1:77",
+      "fingerprint": "258f850121446198ace7a29c3c354a871cb46323dcf2567e2c1cc124eb5e4245",
+      "topic": 18,
+      "topicTitle": "18. 가성취화",
+      "sourceLabel": "2021년 1회 에너지 교재 복원 77번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 77,
+          "pdfPage": 445,
+          "printedPage": 456,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "가성취화 현상의 특징 설명으로 틀린 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2021-1-77.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:74",
+      "fingerprint": "5eb846eb9b2e54fd8c3ea6c817c51c2600f1bec012f559b05f9c7129e30ef66f",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 74번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 57,
+          "pdfPage": 553,
+          "printedPage": 564,
+          "kind": "previous-pdf-source"
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 49,
+          "pdfPage": 503,
+          "printedPage": 514,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 점화 시 역화의 원인에 해당되지 않는 것은?",
+      "choices": [
+        "프리퍼지가 불충분 하였을 경우",
+        "착화가 지연되거나 혹은 불착화를 발견하지 못하고 연료를 노내에 분무한 경우",
+        "점화원(점화봉, 점화용 전극)을 사용하였을 경우",
+        "연료의 공급밸브를 필요이상 급개 하였을 경우"
+      ],
+      "storedAnswer": 3,
+      "sourceImage": "assets/energy-midterm/questions/2022-4-49.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20150919:71",
+      "fingerprint": "40836cc3e7fdebd47d69a2e426262ab191dc7a6fd89210f168da2f2a7a807dcd",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2015년 4회 에너지관리산업기사 71번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 63,
+          "pdfPage": 537,
+          "printedPage": 548,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "보일러 운전 중 역화방지 대책에 대한 설명으로 옳은 것은?",
+      "choices": [
+        "점화 시 착화는 천천히 한다.",
+        "노 내에 연료를 우선 공급한 후 공기를 공급한다.",
+        "점화 시 댐퍼를 닫고 미연소가스를 배출시킨 뒤 점화한다.",
+        "실화 시 재점화 할 때는 노 내는 충분히 환기시킨 후 점화한다."
+      ],
+      "storedAnswer": 4,
+      "sourceImage": "assets/energy-midterm/questions/2023-2-63.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20140920:78",
+      "fingerprint": "fe7951bca47fd84d060e3031f01c7bc30b8378a12cceeeb720df42995b12153d",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2014년 4회 에너지관리산업기사 78번",
+      "active": false,
+      "duplicateOf": "school-energy-energy-industrial-20170923:69",
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "점화 전 환기 설명은 있으나 해당 네 보기 문항 미확인. 427쪽 검색 후보는 수트블로워 질문.",
+      "evidence": [
+        {
+          "pdfPage": 163,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "보일러를 점화하기 전에 역화와 폭발을 방지하기 위하여 다음 중 가장 먼저 취해야 할 조치는?",
+      "choices": [
+        "포스트퍼지를 실시한다.",
+        "화력의 상승속도를 빠르게 한다.",
+        "댐퍼를 열고 체류가스를 배출시킨다.",
+        "연료의 점화가 빨리 그리고 신속하게 전파되도록 한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-energy-industrial-20170923:69",
+      "fingerprint": "ec77404d5b8510a7858ec48449303e9c68d9098a028f0ffc00d38ba3259dfdff",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2017년 4회 에너지관리산업기사 69번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "theory",
+      "statusLabel": "이론·해설 대응만 확인",
+      "confirmed": false,
+      "reason": "점화 전 환기 설명은 있으나 해당 네 보기 문항 미확인. 427쪽 검색 후보는 수트블로워 질문.",
+      "evidence": [
+        {
+          "pdfPage": 163,
+          "bookQuestionNumber": null,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "다음 중 보일러를 점화하기 전에 역화와 폭발을 방지하기 위하여 가장 먼저 취해야 할 조치는?",
+      "choices": [
+        "포스트 퍼지를 실시한다.",
+        "화력의 상승속도를 빠르게 한다.",
+        "댐퍼를 열고 체류가스를 배출시킨다.",
+        "연료의 점화가 신속하게 이루어지도록 한다."
+      ],
+      "storedAnswer": 3,
+      "sourceImage": null
+    },
+    {
+      "id": "school-energy-pdf-2025-2:52",
+      "fingerprint": "99863c9c0d8ba0ff91adfdf88283d34b6f939dc2f74182e70bdd561a59775393",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2025년 2회 에너지 교재 복원 52번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 52,
+          "pdfPage": 613,
+          "printedPage": 624,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "오일 연소장치 역화 원인으로 적절하지 않은 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2025-2-52.webp"
+    },
+    {
+      "id": "school-energy-pdf-2025-3:60",
+      "fingerprint": "65d4a0da909e46a4267122710244e324cff1bef863a5dbbd725fab6057cc437f",
+      "topic": 19,
+      "topicTitle": "19. 역화·백파이어",
+      "sourceLabel": "2025년 3회 에너지 교재 복원 60번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 60,
+          "pdfPage": 629,
+          "printedPage": 640,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "유류 연소장치의 역화 원인과 거리가 먼 것",
+      "choices": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2025-3-60.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20180428:70",
+      "fingerprint": "dec24a11b30e158966ce061f305e90af23766bfaf8ac0d8c9ee9c0a3a0792166",
+      "topic": 20,
+      "topicTitle": "20. 도시가스 배관 표시·고정",
+      "sourceLabel": "2018년 2회 에너지관리산업기사 70번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "previous",
+      "statusLabel": "기존 수록 근거",
+      "confirmed": true,
+      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "evidence": [
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 63,
+          "pdfPage": 570,
+          "printedPage": 581,
+          "kind": "previous-pdf-source"
+        }
+      ],
+      "question": "가스용 보일러의 연료 배관 외부에 표시해야 하는 항목이 아닌 것은?",
+      "choices": [
+        "사용 가스명",
+        "가스의 제조일자",
+        "최고 사용압력",
+        "가스 흐름방향"
+      ],
+      "storedAnswer": 2,
+      "sourceImage": "assets/energy-midterm/questions/2024-1-63.webp"
+    },
+    {
+      "id": "school-energy-energy-industrial-20161001:64",
+      "fingerprint": "8d0b5068d692961fb6460bbd038e019103b54002e1f50b1489b59b714b23fac2",
+      "topic": 20,
+      "topicTitle": "20. 도시가스 배관 표시·고정",
+      "sourceLabel": "2016년 4회 에너지관리산업기사 64번",
+      "active": true,
+      "duplicateOf": null,
+      "calculation": false,
+      "status": "variant",
+      "statusLabel": "관련 변형 - 동일 수록 미확인",
+      "confirmed": false,
+      "reason": "배관 외부 표시의 틀린 보기가 최고사용온도/가스제조일자로 다름.",
+      "evidence": [
+        {
+          "pdfPage": 336,
+          "bookQuestionNumber": 70,
+          "kind": "comparison-only-not-inclusion-evidence"
+        }
+      ],
+      "question": "가스용 보일러의 보일러 실내 연료 배관 외부에 반드시 표시해야 하는 항목이 아닌 것은?",
+      "choices": [
+        "사용 가스명",
+        "최고 사용압력",
+        "가스 흐름방향",
+        "최고 사용온도"
+      ],
+      "storedAnswer": 4,
+      "sourceImage": null
+    }
+  ]
+}
