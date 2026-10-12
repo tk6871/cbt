@@ -42,7 +42,7 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   const historical = coolingRecordSourceItems(items);
   expect(historical).toHaveLength(1920);
   expect(historical.filter(item => item.round.qualificationKey === 'hvac')).toHaveLength(1380);
-  expect(uniqueSchoolItems(pool)).toHaveLength(983);
+  expect(uniqueSchoolItems(pool)).toHaveLength(758);
   // Audit every source question and all subject boundaries, not only selected items.
   let audited = 0;
   for (const catalog of Object.values(context.window)) for (const round of catalog.rounds) {
@@ -66,12 +66,12 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   }
   const groups = coolingTopicGroups(pool);
   expect(groups.map(group => group.label)).toEqual([...coolingTopics, '분류 미확인']);
-  expect(groups.flatMap(group => group.items)).toHaveLength(983);
-  expect(new Set(groups.flatMap(group => group.items).map(schoolItemKey)).size).toBe(983);
+  expect(groups.flatMap(group => group.items)).toHaveLength(758);
+  expect(new Set(groups.flatMap(group => group.items).map(schoolItemKey)).size).toBe(758);
   expect(groups.flatMap(group => group.aliases)).toHaveLength(1123);
   expect(groups.find(group => group.label === '분류 미확인')!.items).toHaveLength(0);
   expect(pool.every(item => coolingBookSection(item, coolingTopic(item)) !== '세부 분류 미확인')).toBe(true);
-  expect(uniqueSchoolItems(pool).filter(coolingCalculation)).toHaveLength(226);
+  expect(uniqueSchoolItems(pool).filter(coolingCalculation)).toHaveLength(197);
   expect(coolingCalculation(items.find(item => item.id === 'hvac-20080511:40')!)).toBe(true);
   for (const id of ['hvac-20080511:26', 'hvac-20100725:31', 'hvac-20120304:21']) expect(coolingCalculation(items.find(item => item.id === id)!)).toBe(false);
   for (let run = 0; run < 100; run++) for (const count of [10, 20, 40, 60]) {
@@ -229,15 +229,15 @@ test('전체 범위 학습과 한솔 랜덤 CBT를 별도 학교 기록으로 �
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체 문제 학습', exact: true }).click();
-  await expect(page.locator('.session-topbar')).toContainText('전체 983문제');
+  await expect(page.locator('.session-topbar')).toContainText('전체 758문제');
   await page.waitForTimeout(400);
   const whole = await page.evaluate(() => Object.keys(localStorage).map(key => {
     try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
-  }).find(value => value?.itemIds?.length === 983));
+  }).find(value => value?.itemIds?.length === 758));
   expect(whole?.mode).toBe('learn');
   expect(whole?.qualificationKey).toBe('school-exams');
   expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('school-exams');
-  expect(new Set(whole?.itemIds).size).toBe(983);
+  expect(new Set(whole?.itemIds).size).toBe(758);
   await page.reload();
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac-hansol');
   await bank.getByRole('button', { name: '랜덤 20문제 CBT', exact: true }).click();
@@ -264,16 +264,16 @@ test('교재 목차 보강·2023년3회 제한·안전관리는 별도 학습과
   await expect(bank.getByRole('button', { name: '학습모드 · 냉방설비운영', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용', exact: true })).toBeVisible();
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용과 안전관리', exact: true })).toHaveCount(0);
-  await expect(bank.locator('.safety-separate summary')).toContainText('54문제');
+  await expect(bank.locator('.safety-separate summary')).toContainText('43문제');
   await bank.locator('.safety-separate summary').click();
   await page.screenshot({ path: `/private/tmp/cbt-cooling-scope-${info.project.name}.png` });
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   for (const label of ['안전관리 별도 학습', '안전관리 별도 CBT']) {
     if (!(await bank.locator('.safety-separate').evaluate(element => (element as HTMLDetailsElement).open))) await bank.locator('.safety-separate summary').click();
     await bank.getByRole('button', { name: label, exact: true }).click();
-    await expect(page.locator('.session-topbar')).toContainText('54문제');
+    await expect(page.locator('.session-topbar')).toContainText('43문제');
     await expect(page.locator('.session-topbar')).toContainText('안전관리·법규 별도');
-    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(54);
+    await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').itemIds?.length)).toBe(43);
     const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}'));
     const context = { window: {} as Record<string, Catalog> };
     for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`, 'utf8'), context);

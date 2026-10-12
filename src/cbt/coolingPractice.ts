@@ -6,7 +6,7 @@ import { uniqueSchoolItems } from './schoolQuestionBank';
 // A numeric constant/formula recall question is not an arithmetic exercise.
 const reviewed = new Set(['hvac-20060816:30', 'hvac-20070304:21', 'hvac-20070513:36', 'hvac-20080511:40',
     'hvac-20140817:22', 'hvac-20150816:39', 'hvac-20160508:22',
-    'hvac-hansol-2018-2:24', 'hvac-hansol-2021-2:28', 'hvac-hansol-2022-3:21',
+    'hvac-hansol-2018-2:24', 'hvac-hansol-2021-2:28', 'hvac-hansol-2021-3:30', 'hvac-hansol-2022-3:21',
     'hvac-hansol-2023-1:35', 'hvac-hansol-2023-2:28']);
 export function coolingCalculation(item: QuestionItem): boolean {
   const text = coolingStem(item);

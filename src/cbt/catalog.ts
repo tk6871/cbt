@@ -67,7 +67,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   if (pending) return pending;
   const promise = new Promise<Catalog>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${key}.js?v=585`, document.baseURI).href;
+    script.src = new URL(`data/${key}.js?v=586`, document.baseURI).href;
     script.onload = () => {
       const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
       if (loaded) resolve(loaded);

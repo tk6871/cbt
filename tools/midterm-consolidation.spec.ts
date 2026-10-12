@@ -30,7 +30,7 @@ test('냉동 최신 대표·회차·계산 수치/단위/정답·그림 보존',
   const c={window:{} as Record<string,Catalog>};for(const key of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${key}.js`,'utf8'),c);
   const source=Object.values(c.window).flatMap(c=>c.rounds.flatMap(r=>r.questions.map(q=>({round:{...r,qualificationKey:c.key},question:q,id:questionId(r,q),subject:subjectFor(r,q)}))));
   const pool=coolingMidtermItems(source),snapshot=JSON.stringify(pool),unique=uniqueSchoolItems(pool);
-  expect(unique).toHaveLength(983);
+  expect(unique).toHaveLength(758);
   for(const item of unique){
     const aliases=pool.filter(other=>schoolItemKey(other)===schoolItemKey(item));
     expect(item.round.year).toBe(Math.max(...aliases.map(a=>a.round.year)));
@@ -55,11 +55,28 @@ test.beforeEach(async({page})=>{
 const saved=(page:import('@playwright/test').Page)=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}'));
 async function rounds(page:import('@playwright/test').Page){await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await expect(page.locator('.energy-midterm-intro')).toBeVisible();}
 
-test('기본2·6,계산만22원문 확인·기록불변·전체/랜덤·제외문항 이어풀기',async({page})=>{
+test('이전 계산 기본2·6은6·11로 이전하고 직접 선택한 전체On은 유지',async({page})=>{
+  await page.addInitScript(()=>{
+    if(!localStorage.getItem('cbt-energy-midterm-calculation-excluded-v3'))
+      localStorage.setItem('cbt-energy-midterm-calculation-excluded-v2',JSON.stringify([1,11,15].map(n=>`school-energy-topic-${n}`)));
+  });
+  await page.goto('./?safe=1');await rounds(page);
+  await expect(page.locator('#round-card-school-energy-topic-2 input[type=checkbox]')).not.toBeChecked();
+  await expect(page.locator('#round-card-school-energy-topic-11 input[type=checkbox]')).toBeChecked();
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('cbt-energy-midterm-calculation-excluded-v3')!))).toEqual([1,2,15].map(n=>`school-energy-topic-${n}`));
+  await page.getByRole('button',{name:'계산 전체 On',exact:true}).click();
+  await page.reload();await expect(page.locator('.energy-midterm-intro')).toBeVisible();
+  for(const n of [1,2,6,11,15])await expect(page.locator(`#round-card-school-energy-topic-${n} input[type=checkbox]`)).toBeChecked();
+  await page.getByRole('button',{name:'기본 6번·11번',exact:true}).click();
+  await expect(page.locator('#round-card-school-energy-topic-2 input[type=checkbox]')).not.toBeChecked();
+  await expect(page.locator('#round-card-school-energy-topic-11 input[type=checkbox]')).toBeChecked();
+});
+
+test('기본6·11,계산만22원문 확인·기록불변·전체/랜덤·제외문항 이어풀기',async({page})=>{
   await page.goto('./?safe=1');await rounds(page);
   for(const n of [1,2,6,11,15]){
     const cb=page.locator(`#round-card-school-energy-topic-${n} input[type=checkbox]`);
-    if([2,6].includes(n))await expect(cb).toBeChecked();else await expect(cb).not.toBeChecked();
+    if([6,11].includes(n))await expect(cb).toBeChecked();else await expect(cb).not.toBeChecked();
   }
   const old=await saved(page);
   await page.getByText('계산 문제만 보기 · 전체22개',{exact:true}).click();
@@ -75,12 +92,12 @@ test('기본2·6,계산만22원문 확인·기록불변·전체/랜덤·제외�
   await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(20);
   const session=await saved(page),b=bank();
   const selected=b.rounds.flatMap((r,i)=>r.questions.map(q=>({q,topic:i+1}))).filter(({q})=>session.itemIds.includes(`${q._originRoundId}:${q._originalNumber}`));
-  expect(selected.filter(i=>i.q.midtermCalculation).map(i=>i.topic).sort((a,b)=>a-b)).toEqual([2,6]);
+  expect(selected.filter(i=>i.q.midtermCalculation).map(i=>i.topic).sort((a,b)=>a-b)).toEqual([6,11]);
   expect(selected.some(i=>i.q.midtermDuplicateOf)).toBe(false);
   await page.locator('.session-topbar .back-button').click();
   await page.locator('.energy-midterm-other-actions > summary').click();
-  await page.getByRole('button',{name:'전체149문제 학습',exact:true}).click();
-  await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(149);
+  await page.getByRole('button',{name:'전체139문제 학습',exact:true}).click();
+  await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(139);
   // A retired ID in an old saved session must still restore its original answer.
   const q=b.rounds.flatMap(r=>r.questions).find(q=>q.midtermDuplicateOf)!;
   const id=`${q._originRoundId}:${q._originalNumber}`;

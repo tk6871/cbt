@@ -90,7 +90,7 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <label v-if="(tab === 'all' || tab === 'wrong') && sections.length">세부 목차<select v-model="section"><option value="all">이 장 전체</option><option v-for="group in sections" :key="group.label" :value="group.label">{{ group.label }} · {{ group.items.length }}문제</option></select></label>
       <button v-if="source !== 'all' || ((tab === 'all' || tab === 'wrong') && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'; section = 'all'; if (tab === 'sections') tab = 'topics'">전체 범위 보기</button>
     </div>
-    <p v-if="tab !== 'history'" class="topic-warning">같은 질문·같은 정답 내용은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 계산 수치·단위·정답이 다른 문제와 그림 동일성이 불확실한 문제는 유지합니다. 교재 수록 페이지별 대조·다른 문장으로 표현된 전체 의미 중복 검수는 미완료입니다.</p>
+    <p v-if="tab !== 'history'" class="topic-warning">같은 질문·조건·정답 내용은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 수치·단위·질문 대상·정답이 다르거나 그림 동일성이 불확실한 문제는 유지합니다. <a href="docs/cooling-midterm-duplicate-review-2026-10-12.html" target="_blank" rel="noopener">전체 범위 중복 검수 결과 ↗</a>에서 통합 이유·원문 차이를 확인할 수 있습니다.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
     <p v-else-if="loading" role="status">공조·한솔 문제를 불러오는 중입니다…</p>
     <template v-if="tab === 'topics' || tab === 'sections'">
