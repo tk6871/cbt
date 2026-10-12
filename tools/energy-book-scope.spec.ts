@@ -21,6 +21,7 @@ test('book comparison covers every source ID without modifying the bank', () => 
     expect(row.evidence.every((e: any) => e.pdfPage >= 1 && e.pdfPage <= 634)).toBe(true);
     expect(row.storedAnswer).toBe(q.answer);
     expect(row.confirmed).toBe(['same', 'previous'].includes(row.status));
+    expect(row.directReview).toMatchObject({ date: '2026-10-12', questionAndChoices: true, sourceCandidateVisual: true });
   }
   expect(report.topics.reduce((sum: number, t: any) => sum + t.confirmed, 0)).toBe(100);
   const stabilizer = report.rows.find((r: any) => r.id.endsWith('20150919:54'));
@@ -36,6 +37,9 @@ test('standalone review filters, displays source evidence and leaves learning st
   await page.goto('/docs/energy-midterm-book-scope-2026-10-12.html');
   await expect(page.locator('article')).toHaveCount(154);
   await expect(page.locator('.notice')).toContainText('확인100개·미확인54개');
+  await expect(page.locator('.notice')).toContainText('원문179개');
+  await expect(page.locator('.notice')).toContainText('중복25개는 이미 새 출제에서 제외');
+  await expect(page.locator('.notice')).toContainText('설정 적용 시139개');
   await page.locator('#active').selectOption('all');
   await page.locator('#status').selectOption('same');
   await expect(page.locator('article')).toHaveCount(28);

@@ -38,7 +38,7 @@ const reviewText = `
 20040905:32|unresolved|387|0|단열 압축 150℃·비열 조건의 동일 문항 미확인.
 20050320:33|variant|433|14|제1법칙 정답 개념은 같으나 네 보기 조합이 다름.
 20120304:27|variant|480|0|정적 가열 10 kg·20→100℃ 조건과 후보의 조건이 다름.
-20130310:34|variant|622|17|300 kPa·0.5→0.7·50→110 kJ와 후보 200 kPa·0.4→0.6·80→120 kJ는 다른 수치.
+20130310:34|variant|622|17|300 kPa·0.5→0.7·내부에너지50→110 kJ와 후보 200 kPa·0.4→0.6·내부에너지80 kJ 증가 조건은 다름. 후보의120 kJ는 공급열량 답이지 최종 내부에너지가 아님.
 20140302:14|variant|340|0|법칙의 설명/법칙명을 묻는 방향과 보기 구성이 다름.
 20140525:3|variant|431|1|에너지 보존 개념은 같으나 질문과 네 보기 조합이 다름.
 20150531:18|unresolved|466|0|내부에너지·엔탈피 오답 진술을 포함한 동일 문항 미확인.
@@ -125,7 +125,8 @@ const rows = bank.rounds.flatMap((round, topicIndex) => round.questions.map(q =>
     sourceLabel: q.sourceQualification || q.sourcePage, active: !q.midtermDuplicateOf,
     duplicateOf: q.midtermDuplicateOf || null, calculation: !!q.midtermCalculation,
     status, statusLabel: labels[status], confirmed: previous || status === 'same',
-    reason: previous ? '이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.' : decision.reason,
+    directReview: { date: '2026-10-12', questionAndChoices: true, sourceCandidateVisual: true, verdict: previous || status === 'same' ? '수록 원문 재확인' : '후보 원문 비교 후 동일 수록 보류' },
+    reason: previous ? '기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.' : decision.reason,
     evidence, question: q.text || '', choices: q.choices.map(c => c.text || c.html || ''),
     storedAnswer: q.answer, sourceImage: q.sourceImage || null,
   };
@@ -137,7 +138,7 @@ const report = {
   date: '2026-10-12', appVersion: '5.8.6', scope: '에너지설비 중간고사 교재 수록 대조 - 앱 필터 미적용',
   source: { name: '에너지설비.pdf', pages: 634, sha256: '840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d' },
   bankSha256: sha(source),
-  method: '634쪽 Apple Vision 검색 보조. 기존 수록 확인91개는 이전 근거를 유지하고 미확인88개의 질문·네 보기와 상위 후보 원문64쪽의22검수 시트 및 추가 전체 페이지를 시각 대조. 검색 유사도만으로 수록 승인하지 않음.',
+  method: '중간고사 원문179개 모두를 기준으로 질문·네 보기와 교재634쪽 검색 자료를 역대입했다. 전체 창41912개 및 문제 단위 검색 후보1672개로 질문/보기 후보를 각각 찾고, 수록 근거119개와 미확인60개의 기록된 후보·대체 후보를60검수 시트 및 전체 페이지 원문으로 직접 대조했다. 기존91개도 이번에 원문 재확인했다. 검색 유사도만으로 수록 승인하지 않음.',
   limits: '교재634쪽을 모두 눈으로 읽은 전수 검수나 정답 사실 검증은 아님. 미확인은 부재 증명이 아님. 숫자·단위·질문 대상·오답 내용이 다른 변형과 이론/해설에만 있는 내용은 동일 문항 수록으로 확정하지 않음. 계산 기본6/11 및 앱의 출제·기록은 변경 없음.',
   counts: { raw: rows.length, active: count(r => r.active), retired: count(r => !r.active), previous: count(r => r.status === 'previous'), newConfirmed: count(r => r.status === 'same'), confirmedRaw: count(r => r.confirmed), confirmedActive: count(r => r.confirmed && r.active), unconfirmedRaw: count(r => !r.confirmed), unconfirmedActive: count(r => !r.confirmed && r.active), byStatus: Object.fromEntries(Object.keys(labels).map(s => [s, count(r => r.status === s)])) },
   topics: bank.rounds.map((r, i) => ({ topic: i + 1, title: r.title, active: count(q => q.topic === i + 1 && q.active), confirmed: count(q => q.topic === i + 1 && q.active && q.confirmed), unconfirmed: count(q => q.topic === i + 1 && q.active && !q.confirmed) })), rows,
@@ -151,11 +152,11 @@ const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;'
 const json = JSON.stringify(report).replaceAll('<', '\\u003c');
 fs.writeFileSync(`${base}.html`, `<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>에너지 중간고사 교재 수록 대조</title><style>
 :root{color-scheme:dark light;font-family:system-ui,sans-serif}body{margin:auto;padding:24px;max-width:1250px;background:light-dark(#f6f8fb,#101924);color:light-dark(#172333,#e7edf5);line-height:1.6}h1{font-size:26px}button,input,select{font:inherit;padding:9px;border:1px solid #7b8b9e;border-radius:8px;max-width:100%;box-sizing:border-box}a{color:light-dark(#135fb7,#8bc1ff)}.notice,article{padding:18px;border:1px solid #66788e;border-radius:12px;margin:14px 0}.notice{background:light-dark(#e9f1fc,#1b2d44)}.filters{display:flex;gap:12px;flex-wrap:wrap;position:sticky;top:0;padding:12px;background:light-dark(#f6f8fb,#101924);z-index:1}.muted{opacity:.75}.badge{display:inline-block;border-radius:5px;padding:2px 9px;background:light-dark(#dbe6f5,#33485f);margin-right:8px}.same,.previous{border-left:5px solid #38a97f}.variant{border-left:5px solid #e9ae43}summary{cursor:pointer}li{overflow-wrap:anywhere}img{display:block;max-width:100%;background:white;margin-top:12px}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:8px;border-bottom:1px solid #66788e}h2{font-size:19px}article p{margin:8px 0}code{overflow-wrap:anywhere}details{margin:12px 0}</style>
-<h1>에너지 중간고사: 교재 수록 대조</h1><p>2026-10-12 · 앱5.8.6 유지 · 원본·풀이 기록·출제 필터 변경 없음</p>
-<div class="notice"><strong>기존91개 + 이번28개 = 수록 근거119개</strong><br>기록용179ID 기준. 중복 제외 후 현재 대표154개 중 확인100개·미확인54개.<br>미확인은 ‘책에 없다’는 뜻이 아닙니다. 변형·본문 설명만 대응하는 경우를 동일 문항과 구분했습니다.</div>
+<h1>에너지 중간고사: 교재 수록 대조</h1><p>2026-10-12 · 앱5.8.6 유지 · 원본·풀이 기록·출제 필터 변경 없음 · <a href="energy-restored-patterns-2026-10-12.html">후기 복원 회차의 반복·변형 패턴</a></p>
+<div class="notice"><strong>중복25개는 이미 새 출제에서 제외했습니다.</strong><br>현재 출제 대상154개 · 계산 기본6/11 설정 적용 시139개입니다. 원문179개는 과거 풀이 복구용으로 보존한 수량이며,179개를 다시 출제한다는 뜻이 아닙니다.<br>이번 조사는 원문179개 전부 역대조 · 수록 근거119개 재확인입니다. 기존91개와 추가28개 모두 원문 재대조. 중복 제외 후 현재 대표154개 중 확인100개·미확인54개.<br>미확인은 ‘책에 없다’는 뜻이 아닙니다. 변형·본문 설명만 대응하는 경우를 동일 문항과 구분했습니다.</div>
 <p>${esc(report.method)}</p><p class="muted">${esc(report.limits)}</p><p>페이지는 <strong>PDF 첫 장을1쪽으로 센 위치</strong>이며 책 인쇄 쪽수와 다릅니다. 원본 PDF·OCR 전문·스캔 페이지는 공개하지 않습니다. 기존 앱 문제만 아래에서 확인합니다.</p>
 <details><summary>20주제별 현재 대표 수록 확인 수량</summary><table><thead><tr><th>주제</th><th>현재</th><th>확인</th><th>미확인</th></tr></thead><tbody>${report.topics.map(t => `<tr><td>${esc(t.title)}</td><td>${t.active}</td><td>${t.confirmed}</td><td>${t.unconfirmed}</td></tr>`).join('')}</tbody></table></details>
-<div class="filters"><label>판정 <select id="status"><option value="all">전체</option><option value="new">이번 검토88개</option><option value="same">이번 확인28개</option><option value="unconfirmed">수록 미확인60개</option><option value="previous">기존 근거91개</option></select></label><label>문항 <select id="active"><option value="active">현재 대표154개</option><option value="all">과거ID 포함179개</option></select></label><input id="search" type="search" aria-label="주제·문제·출처 검색" placeholder="주제·문제·출처 검색"></div><p id="count" role="status"></p><main id="rows"></main>
+<div class="filters"><label>판정 <select id="status"><option value="all">전체 판정 (문항 필터 기준)</option><option value="new">이전 미확인88개 (과거ID 포함)</option><option value="same">추가 수록28개 (과거ID 포함)</option><option value="unconfirmed">수록 미확인60개 (과거ID 포함)</option><option value="previous">기존 근거 재확인91개 (과거ID 포함)</option></select></label><label>문항 <select id="active"><option value="active">중복 제외 출제 대상154개</option><option value="all">복구용 과거ID 포함179개</option></select></label><input id="search" type="search" aria-label="주제·문제·출처 검색" placeholder="주제·문제·출처 검색"></div><p id="count" role="status"></p><main id="rows"></main>
 <script type="application/json" id="report">${json}</script><script>
 const report=JSON.parse(document.querySelector('#report').textContent),root=document.querySelector('#rows');
 const escapeHtml=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

@@ -8,7 +8,7 @@
     "sha256": "840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d"
   },
   "bankSha256": "5c0c1953885b07f06150ffab77b8f4dc61b87c39f2ce0d5e7c5e65beb8e3f4bd",
-  "method": "634쪽 Apple Vision 검색 보조. 기존 수록 확인91개는 이전 근거를 유지하고 미확인88개의 질문·네 보기와 상위 후보 원문64쪽의22검수 시트 및 추가 전체 페이지를 시각 대조. 검색 유사도만으로 수록 승인하지 않음.",
+  "method": "중간고사 원문179개 모두를 기준으로 질문·네 보기와 교재634쪽 검색 자료를 역대입했다. 전체 창41912개 및 문제 단위 검색 후보1672개로 질문/보기 후보를 각각 찾고, 수록 근거119개와 미확인60개의 기록된 후보·대체 후보를60검수 시트 및 전체 페이지 원문으로 직접 대조했다. 기존91개도 이번에 원문 재확인했다. 검색 유사도만으로 수록 승인하지 않음.",
   "limits": "교재634쪽을 모두 눈으로 읽은 전수 검수나 정답 사실 검증은 아님. 미확인은 부재 증명이 아님. 숫자·단위·질문 대상·오답 내용이 다른 변형과 이론/해설에만 있는 내용은 동일 문항 수록으로 확정하지 않음. 계산 기본6/11 및 앱의 출제·기록은 변경 없음.",
   "counts": {
     "raw": 179,
@@ -183,7 +183,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -217,7 +223,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -251,7 +263,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -284,6 +302,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
       "evidence": [
         {
@@ -314,6 +338,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "세정 집진 설명은 있으나 해당 네 보기 객관식은 미확인.",
       "evidence": [
         {
@@ -344,6 +374,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "집진 분류표와 다른 질문만 확인. 해당 객관식은 미확인.",
       "evidence": [
         {
@@ -374,6 +410,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "집진 원리는 대응하나 해당 질문과 네 보기 조합 미확인.",
       "evidence": [
         {
@@ -404,6 +446,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "원심력 장치 질문과 건식 아닌 장치 질문이 다르고 정답 내용도 다름.",
       "evidence": [
         {
@@ -434,6 +482,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "원문은 여과 집진, 교재 후보는 전기 집진. 장치가 다름.",
       "evidence": [
         {
@@ -464,6 +518,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "장치를 고르는 질문과 사용 힘을 고르는 질문이 반대 방향.",
       "evidence": [
         {
@@ -494,6 +554,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "집진 선정 조건의 틀린 보기가 먼지 색/산소 농도로 다름.",
       "evidence": [
         {
@@ -524,7 +590,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -557,7 +629,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -590,6 +668,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -620,7 +704,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -653,7 +743,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -686,7 +782,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -719,7 +821,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -752,7 +860,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -786,7 +900,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -820,7 +940,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -853,6 +979,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
       "evidence": [
         {
@@ -883,6 +1015,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치. 보기 순서는 다름.",
       "evidence": [
         {
@@ -913,6 +1051,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "200 kPa·kJ와 2 kgf/cm²·kcal 조건이 달라 동일 계산문항으로 확정하지 않음.",
       "evidence": [
         {
@@ -943,6 +1087,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -973,6 +1123,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "상위 검색 후보는 다른 문제. 해당 네 보기 문항 미확인.",
       "evidence": [
         {
@@ -1003,6 +1159,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "200 kJ와 외부 일 입력 조건이 교재의 40 kJ·일 출력 조건과 다름.",
       "evidence": [
         {
@@ -1033,6 +1195,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "50 kcal·5000 kgf·m 조건의 동일 문항을 찾지 못함.",
       "evidence": [
         {
@@ -1063,6 +1231,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "10 kcal·4270 kgf·m 조건과 교재 40 kJ·30 kJ 조건이 다름.",
       "evidence": [
         {
@@ -1093,6 +1267,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "원문 Q≠W와 교재 절댓값 Q/W 부등식 표기가 달라 동일 확정 보류.",
       "evidence": [
         {
@@ -1123,6 +1303,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "제1법칙 이론 대응. 해당 네 공식 보기 객관식은 미확인.",
       "evidence": [
         {
@@ -1153,6 +1339,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "내부에너지 정답 개념은 같으나 나머지 식과 질문 표현이 다름.",
       "evidence": [
         {
@@ -1183,6 +1375,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "단열 압축 150℃·비열 조건의 동일 문항 미확인.",
       "evidence": [
         {
@@ -1213,6 +1411,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "제1법칙 정답 개념은 같으나 네 보기 조합이 다름.",
       "evidence": [
         {
@@ -1243,6 +1447,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "정적 가열 10 kg·20→100℃ 조건과 후보의 조건이 다름.",
       "evidence": [
         {
@@ -1273,7 +1483,13 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
-      "reason": "300 kPa·0.5→0.7·50→110 kJ와 후보 200 kPa·0.4→0.6·80→120 kJ는 다른 수치.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
+      "reason": "300 kPa·0.5→0.7·내부에너지50→110 kJ와 후보 200 kPa·0.4→0.6·내부에너지80 kJ 증가 조건은 다름. 후보의120 kJ는 공급열량 답이지 최종 내부에너지가 아님.",
       "evidence": [
         {
           "pdfPage": 622,
@@ -1303,6 +1519,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "법칙의 설명/법칙명을 묻는 방향과 보기 구성이 다름.",
       "evidence": [
         {
@@ -1333,6 +1555,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "에너지 보존 개념은 같으나 질문과 네 보기 조합이 다름.",
       "evidence": [
         {
@@ -1363,6 +1591,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "내부에너지·엔탈피 오답 진술을 포함한 동일 문항 미확인.",
       "evidence": [
         {
@@ -1393,6 +1627,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "단열 비열 조건과 검색 후보의 엔트로피 조건이 달라 동일 문항 미확인.",
       "evidence": [
         {
@@ -1423,6 +1663,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기의 수식 표기 일치.",
       "evidence": [
         {
@@ -1453,7 +1699,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -1486,7 +1738,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -1519,7 +1777,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -1552,7 +1816,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -1585,7 +1855,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -1618,7 +1894,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -1651,7 +1933,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -1685,7 +1973,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -1719,6 +2013,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -1749,7 +2049,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -1782,6 +2088,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "물리적 처리 아닌 것/화학적 처리 아닌 것의 질문과 정답이 다름.",
       "evidence": [
         {
@@ -1812,6 +2124,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -1842,6 +2160,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -1872,7 +2196,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -1905,7 +2235,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -1939,7 +2275,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -1980,6 +2322,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -2010,6 +2358,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "고체연료 장점을 묻는 원문과 액체연료 후보가 달라 동일 수록 미확인.",
       "evidence": [
         {
@@ -2040,6 +2394,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "예혼합 연소 특징의 해당 네 보기 객관식 미확인.",
       "evidence": [
         {
@@ -2070,7 +2430,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -2103,6 +2469,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "기체 버너의 틀린 보기가 조절범위/공기비 제어로 다름.",
       "evidence": [
         {
@@ -2133,6 +2505,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "기체연료 질문은 있으나 온도 분포 진술 등 네 보기 구성이 다름.",
       "evidence": [
         {
@@ -2163,6 +2541,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치. 561쪽15번에도 대응 후보가 있음.",
       "evidence": [
         {
@@ -2193,6 +2577,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "기체연료 체적당 발열량 진술 등 보기 구성이 다름.",
       "evidence": [
         {
@@ -2223,6 +2613,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "회분이 많다는 오답 등 원문 네 보기와 교재 후보가 다름.",
       "evidence": [
         {
@@ -2253,6 +2649,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -2283,6 +2685,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -2313,7 +2721,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -2346,7 +2760,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -2387,7 +2807,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -2421,6 +2847,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -2451,6 +2883,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "네 공식의 의미와 조건 일치. 보기 순서 차이를 원문으로 확인.",
       "evidence": [
         {
@@ -2481,7 +2919,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -2514,7 +2958,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -2547,7 +2997,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -2581,7 +3037,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20190427",
@@ -2614,6 +3076,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "보일러 마력 공식은 본문에 있으나 네 공식 보기 문항 미확인.",
       "evidence": [
         {
@@ -2644,6 +3112,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "539Ge=GHLη 관계가 해설에 있으나 해당 공식 선택 문항은 미확인.",
       "evidence": [
         {
@@ -2674,6 +3148,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "상당증발량 정의는 해설에 있으나 교재 객관식은 용량 진술 질문.",
       "evidence": [
         {
@@ -2704,6 +3184,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "5마력→78.25와 1마력 환산 질문은 수치가 다름.",
       "evidence": [
         {
@@ -2734,6 +3220,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "증발량2000은 같아도 엔탈피715/급수15와 600/30 조건이 다름.",
       "evidence": [
         {
@@ -2764,6 +3256,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "1기압100℃ 정의가 해설에 있으나 해당 보기 조합의 객관식은 미확인.",
       "evidence": [
         {
@@ -2794,6 +3292,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "3500·640/20과 2000·600/30은 다른 계산 조건.",
       "evidence": [
         {
@@ -2824,6 +3328,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -2854,7 +3364,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -2887,7 +3403,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -2920,7 +3442,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -2953,7 +3481,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180915",
@@ -2987,7 +3521,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3028,7 +3568,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -3061,7 +3607,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3102,6 +3654,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "보염기 아닌 보기의 원문 대류형과 교재 평행류형이 다름. 질문 표현도 다름.",
       "evidence": [
         {
@@ -3132,6 +3690,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "버너타일·에어레지스터 역할은 대응하나 장치 아닌 것 질문과 다름.",
       "evidence": [
         {
@@ -3162,6 +3726,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "크레이머 포함 장치 종류 질문과 교재의 역할 아닌 것 질문은 다름.",
       "evidence": [
         {
@@ -3192,7 +3762,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -3225,7 +3801,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -3258,7 +3840,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3291,7 +3879,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -3325,7 +3919,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -3358,6 +3958,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -3388,6 +3994,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "신축이음 설치 목적은 본문에 있으나 해당 객관식은 미확인.",
       "evidence": [
         {
@@ -3418,6 +4030,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "스위블 원리와 정답 개념은 같지만 질문 축약 및 루프/신축곡관 등 보기 표기가 달라 엄격한 동일 수록에서는 보류.",
       "evidence": [
         {
@@ -3448,6 +4066,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 의미 일치. 영문 병기 생략만 있음.",
       "evidence": [
         {
@@ -3478,7 +4102,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -3511,7 +4141,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3544,7 +4180,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -3578,7 +4220,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -3619,7 +4267,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -3653,6 +4307,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -3683,6 +4343,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "인터록 아닌 보기가 고수위/고온도 등으로 다름.",
       "evidence": [
         {
@@ -3713,7 +4379,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -3762,7 +4434,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -3795,7 +4473,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -3828,7 +4512,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3861,7 +4551,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -3895,6 +4591,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -3925,7 +4627,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -3958,7 +4666,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -3991,7 +4705,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4024,7 +4744,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -4057,7 +4783,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -4090,7 +4822,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4123,7 +4861,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4156,7 +4900,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -4189,6 +4939,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "트랩 작동 원리는 같으나 네 트랩 종류 보기 구성이 다름.",
       "evidence": [
         {
@@ -4219,6 +4975,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "검색 후보는 유량계 설치 문제. 해당 트랩 주의 문항 미확인.",
       "evidence": [
         {
@@ -4249,6 +5011,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "자동 응축수 배출 설명은 있으나 해당 네 보기 객관식은 미확인.",
       "evidence": [
         {
@@ -4279,7 +5047,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -4312,6 +5086,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "버킷 트랩·역지밸브 설명은 있으나 해당 객관식 미확인.",
       "evidence": [
         {
@@ -4342,6 +5122,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "트랩 누설 원인의 해당 보기 조합 미확인.",
       "evidence": [
         {
@@ -4372,6 +5158,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -4402,7 +5194,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -4435,7 +5233,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -4468,7 +5272,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4509,6 +5319,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치. 보일러 설비라는 도입 표현만 추가.",
       "evidence": [
         {
@@ -4539,6 +5355,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "검색 후보는 액주식 압력계. 트랩 구비조건의 해당 객관식 미확인.",
       "evidence": [
         {
@@ -4569,6 +5391,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -4599,6 +5427,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -4629,7 +5463,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -4663,6 +5503,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -4693,6 +5539,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "최고사용압력1.6 MPa와 후보2.0 MPa가 달라 같은 계산문항으로 확정하지 않음.",
       "evidence": [
         {
@@ -4723,6 +5575,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -4753,7 +5611,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -4786,7 +5650,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4819,7 +5689,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4852,7 +5728,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4885,7 +5767,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -4918,7 +5806,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -4952,7 +5846,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -4985,7 +5885,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -5034,6 +5940,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "환수 방식 아닌 것과 가장 빠른 방식의 질문은 다름.",
       "evidence": [
         {
@@ -5064,6 +5976,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "진공펌프·설치 제약 조건이 원문 질문에 있으나 교재 질문은 빠른 환수만 묻고 나머지는 해설에 있음.",
       "evidence": [
         {
@@ -5094,6 +6012,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -5124,7 +6048,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -5157,7 +6087,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -5190,7 +6126,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -5223,7 +6165,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -5256,6 +6204,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "급수/관수 대상과 인산염/인산나트륨 표기가 달라 동일 확정 보류.",
       "evidence": [
         {
@@ -5286,6 +6240,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "약품의 CaCO3 방지 용도와 산세척 중화 용도를 묻는 질문은 다름.",
       "evidence": [
         {
@@ -5316,6 +6276,12 @@
       "status": "unresolved",
       "statusLabel": "동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "알칼리 처리의 해당 네 긴 진술 객관식 미확인.",
       "evidence": [
         {
@@ -5346,6 +6312,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "pH 처리 본문은 있으나 탈기가 포함된 해당 네 보기 문항 미확인.",
       "evidence": [
         {
@@ -5376,7 +6348,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2022,
@@ -5409,6 +6387,12 @@
       "status": "same",
       "statusLabel": "이번 동일 문항 확인",
       "confirmed": true,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
       "reason": "질문과 네 보기 내용 일치.",
       "evidence": [
         {
@@ -5439,7 +6423,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -5472,7 +6462,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -5505,7 +6501,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -5538,7 +6540,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -5571,7 +6579,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "date": "20180428",
@@ -5605,6 +6619,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "가성취화 방지 약품은 설명에 있으나 해당 객관식은 미확인.",
       "evidence": [
         {
@@ -5635,7 +6655,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2021,
@@ -5668,7 +6694,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -5709,7 +6741,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2023,
@@ -5742,6 +6780,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "점화 전 환기 설명은 있으나 해당 네 보기 문항 미확인. 427쪽 검색 후보는 수트블로워 질문.",
       "evidence": [
         {
@@ -5772,6 +6816,12 @@
       "status": "theory",
       "statusLabel": "이론·해설 대응만 확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "점화 전 환기 설명은 있으나 해당 네 보기 문항 미확인. 427쪽 검색 후보는 수트블로워 질문.",
       "evidence": [
         {
@@ -5802,7 +6852,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -5835,7 +6891,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2025,
@@ -5868,7 +6930,13 @@
       "status": "previous",
       "statusLabel": "기존 수록 근거",
       "confirmed": true,
-      "reason": "이전에 원문 대조해 기록한 수록 근거 유지. 이번에 91개를 전부 다시 시각 검수한 것은 아님.",
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "수록 원문 재확인"
+      },
+      "reason": "기록된 교재 위치의 질문·보기를 원문 이미지로 다시 대조해 수록 근거를 재확인함.",
       "evidence": [
         {
           "year": 2024,
@@ -5901,6 +6969,12 @@
       "status": "variant",
       "statusLabel": "관련 변형 - 동일 수록 미확인",
       "confirmed": false,
+      "directReview": {
+        "date": "2026-10-12",
+        "questionAndChoices": true,
+        "sourceCandidateVisual": true,
+        "verdict": "후보 원문 비교 후 동일 수록 보류"
+      },
       "reason": "배관 외부 표시의 틀린 보기가 최고사용온도/가스제조일자로 다름.",
       "evidence": [
         {
