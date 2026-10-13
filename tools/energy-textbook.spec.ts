@@ -5,13 +5,14 @@ import crypto from 'node:crypto';
 import { energySourceRounds, energyQuestionKey } from '../src/cbt/energyTextbook';
 import { energyMidtermPractice } from '../src/cbt/energyMidtermPractice';
 import type { Catalog } from '../src/cbt/types';
+test.use({serviceWorkers:'block'});
 function banks(){const c={window:{} as Record<string,Catalog>};for(const f of ['energy-midterm','energy-textbook'])vm.runInNewContext(fs.readFileSync(`data/${f}.js`,'utf8'),c);return {old:c.window.CBT_DATA_ENERGY_MIDTERM,book:c.window.CBT_DATA_ENERGY_TEXTBOOK};}
-test('교재140/통합194·기본131/177·반복51·원본179 불변',()=>{
+test('교재140/기존CBT154·기본131/139·반복51·원본179 불변',()=>{
  const {old,book}=banks();const review=JSON.parse(fs.readFileSync('data/energy-textbook-review.json','utf8'));
  expect(crypto.createHash('sha256').update(fs.readFileSync('data/energy-midterm.js')).digest('hex')).toBe(review.legacyBankSha256);
  expect(old.rounds.flatMap(r=>r.questions)).toHaveLength(179);expect(book.rounds.flatMap(r=>r.questions)).toHaveLength(191);
  const rounds=old.rounds.map(r=>({...r,questions:[...r.questions,...book.rounds.find(b=>b.id===r.id)!.questions]}));
- for(const [mode,total,eligible] of [['textbook',140,131],['combined',194,177]] as const){
+ for(const [mode,total,eligible] of [['textbook',140,131],['combined',154,139]] as const){
   const selected=energySourceRounds(rounds,mode);expect(selected.flatMap(r=>r.questions)).toHaveLength(total);
   const pools=selected.map((r,i)=>r.questions.filter(q=>!q.midtermCalculation||[5,10].includes(i)).map(q=>({q,topic:i+1})));
   expect(pools.flat()).toHaveLength(eligible);
@@ -19,8 +20,9 @@ test('교재140/통합194·기본131/177·반복51·원본179 불변',()=>{
    const draw=energyMidtermPractice(pools,Math.random,{isCalculation:i=>!!i.q.midtermCalculation,calculationTopics:[6,11]});
    expect(new Set(draw.map(i=>i.topic)).size).toBe(20);expect(draw.filter(i=>i.q.midtermCalculation).map(i=>i.topic).sort((a,b)=>a-b)).toEqual([6,11]);
   }
-  const equivalents=new Set(selected.flatMap(r=>r.questions.filter(q=>q.midtermTextbook).flatMap(q=>q.midtermLegacyEquivalentIds||[])));
-  expect(selected.flatMap(r=>r.questions).some(q=>!q.midtermTextbook&&equivalents.has(energyQuestionKey(q)))).toBe(false);
+  if(mode==='combined') {
+   expect(selected.flatMap(r=>r.questions)).toEqual(old.rounds.flatMap(r=>r.questions.filter(q=>!q.midtermDuplicateOf)));
+  } else expect(selected.flatMap(r=>r.questions).every(q=>q.midtermTextbook)).toBe(true);
  }
  expect(review.consolidated).toBe(51);expect(review.duplicateGroups).toBe(35);
 });
@@ -78,14 +80,15 @@ test('실제 교재/통합 출처·랜덤20·주제 풀이·원문 해설·다�
  await page.screenshot({path:`/private/tmp/energy-textbook-${info.project.name}-light.png`,fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.locator('.session-topbar .back-button').click();
- await page.getByRole('radio',{name:'CBT + 에너지 교재',exact:true}).check();await expect(page.locator('.energy-midterm-intro')).toContainText('현재 출처 194문제');
+ await page.getByRole('radio',{name:'CBT + 에너지 교재',exact:true}).check();await expect(page.locator('.energy-midterm-intro')).toContainText('현재 출처 154문제');
  await page.reload();await expect(page.getByRole('radio',{name:'CBT + 에너지 교재',exact:true})).toBeChecked();
  await page.locator('.energy-midterm-other-actions > summary').click();
- await page.getByRole('button',{name:'전체177문제 학습',exact:true}).click();
- await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(177);
+ await page.getByRole('button',{name:'전체139문제 학습',exact:true}).click();
+ await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(139);
  await page.locator('.session-topbar .back-button').click();
  await page.getByRole('button',{name:'랜덤20문제 CBT',exact:true}).click();await expect.poll(async()=> (await saved(page)).mode).toBe('exam');
- await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(20);expect(errors).toEqual([]);
+ await expect.poll(async()=> (await saved(page)).itemIds?.length).toBe(20);
+ expect((await saved(page)).itemIds.every((id:string)=>!id.startsWith('school-energy-textbook-'))).toBe(true);expect(errors).toEqual([]);
 });
 test('교재 기본에서도 과거179문항의 이어풀기 ID와 답안 복원',async({page})=>{
  const q=banks().old.rounds.flatMap(r=>r.questions).find(q=>q.midtermDuplicateOf)!;const id=energyQuestionKey(q);
@@ -96,4 +99,22 @@ test('교재 기본에서도 과거179문항의 이어풀기 ID와 답안 복원
  await page.locator('.resume-learning-card').getByRole('button',{name:'이어서 풀기',exact:true}).click();
  await expect.poll(async()=> (await saved(page)).itemIds).toEqual([id]);expect((await saved(page)).answers[id]).toBe(q.answer);
  await expect(page.locator('.choice-button.selected')).toHaveCount(1);
+});
+for(const mode of ['학습모드','CBT 시험모드'] as const)test(`배포본 교재 ${mode}: 이미지 직접선택·취소·새로고침 복원`,async({page})=>{
+ await page.addInitScript(()=>localStorage.setItem('unified-cbt-answer-layout','hotspot'));
+ await page.goto('./?safe=1');await rounds(page);
+ const round=page.locator('#round-card-school-energy-topic-1');
+ await round.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+ await round.getByRole('button',{name:mode,exact:true}).click();
+ const card=page.locator('.question-card').first(),buttons=card.locator('.image-answer-hotspot');
+ await expect(buttons).toHaveCount(4);await buttons.nth(2).click();await expect(buttons.nth(2)).toHaveClass(/selected/);
+ await expect(card.locator('.image-answer-pick-marker')).toBeVisible();
+ await buttons.nth(2).click();await expect(card.locator('.image-answer-pick-marker')).toHaveCount(0);
+ await buttons.nth(1).click();
+ await expect.poll(async()=>Object.values((await saved(page)).answers||{})).toContain(2);
+ const snapshot=await saved(page);
+ expect(snapshot.itemIds.every((id:string)=>id.startsWith('school-energy-textbook-'))).toBe(true);
+ await page.reload();await page.locator('.resume-learning-card').getByRole('button',{name:'이어서 풀기',exact:true}).click();
+ await expect(card.locator('.image-answer-hotspot').nth(1)).toHaveClass(/selected/);
+ expect((await saved(page)).answers).toEqual(snapshot.answers);
 });

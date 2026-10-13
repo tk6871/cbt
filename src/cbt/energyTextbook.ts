@@ -5,8 +5,6 @@ export function energyQuestionKey(q: Question): string { return `${q._originRoun
 
 /** Filter only new draws. The catalog retains every original ID for restoration. */
 export function energySourceRounds(rounds: readonly Round[], mode: EnergySourceMode): Round[] {
- const textbook = rounds.flatMap(r => r.questions).filter(q => q.midtermTextbook && !q.midtermDuplicateOf);
- const equivalents = new Set(textbook.flatMap(q => q.midtermLegacyEquivalentIds || []));
  return rounds.map(r => ({...r, questions:r.questions.filter(q => !q.midtermDuplicateOf
-  && (q.midtermTextbook || (mode === 'combined' && !equivalents.has(energyQuestionKey(q)))))}));
+  && (mode === 'textbook' ? q.midtermTextbook : !q.midtermTextbook))}));
 }

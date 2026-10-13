@@ -40,12 +40,13 @@ def candidates(ocr,width,height):
         out[choice].append(dict(x0=b[0]*width,y0=b[1]*height,x1=b[2]*width,y1=b[3]*height,rowTop=y0*height,score=row['score'],explicit=bool(m)))
     return out
 
-def generate(path,ocr):
+def generate(path,ocr,reviewed_markers=None):
     with Image.open(path) as im:
         width,height=im.size; gray=im.convert('L')
         options=candidates(ocr,width,height)
-        if path.stem in REVIEWED_MARKERS:
-            options={i:[dict(x0=x*width,y0=y*height,x1=(x+.03)*width,y1=(y+.05)*height,score=1,explicit=True)] for i,(x,y) in enumerate(REVIEWED_MARKERS[path.stem],1)}
+        overrides=REVIEWED_MARKERS if reviewed_markers is None else reviewed_markers
+        if path.stem in overrides:
+            options={i:[dict(x0=x*width,y0=y*height,x1=(x+.03)*width,y1=(y+.05)*height,score=1,explicit=True)] for i,(x,y) in enumerate(overrides[path.stem],1)}
         markers,layout=boxes_module.choose_markers(options,width,height)
         if len(markers)!=4:return None,dict(reason='missing-markers',counts={k:len(v) for k,v in candidates(ocr,width,height).items()})
         # Use the actual right-hand number column, not the midpoint between
