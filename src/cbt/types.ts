@@ -29,6 +29,7 @@ export type Question = {
   hint?: string;
   explanation?: string;
   explanationHtml?: string;
+  explanationImages?: string[];
   imageOnly?: boolean;
   _subject?: string;
   sourceSubject?: string;
@@ -54,6 +55,8 @@ export type Question = {
   visualSource?: string;
   teacherHint?: string;
   bookVerified?: boolean;
+  midtermTextbook?: boolean;
+  midtermLegacyEquivalentIds?: string[];
   midtermMatch?: 'direct' | 'related';
   midtermPriority?: 'repeat' | 'recent' | 'note' | 'related';
   midtermCalculation?: boolean;
@@ -150,6 +153,7 @@ declare global {
     CBT_DATA_SAFETY?: Catalog;
     CBT_DATA_ENERGY?: Catalog;
     CBT_DATA_ENERGY_MIDTERM?: Catalog;
+    CBT_DATA_ENERGY_TEXTBOOK?: Catalog;
     CBT_DATA_ENERGY_ENGINEER?: Catalog;
     CBT_DATA_MAINTENANCE?: Catalog;
     CBT_DATA_ELECTRIC_CRAFTSMAN?: Catalog;

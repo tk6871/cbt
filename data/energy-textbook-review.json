@@ -1,0 +1,8578 @@
+{
+  "date": "2026-10-13",
+  "sourceSha256": "840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d",
+  "sourceOccurrences": 191,
+  "representatives": 140,
+  "consolidated": 51,
+  "duplicateGroups": 35,
+  "calculationRepresentatives": 15,
+  "legacyBankSha256": "5c0c1953885b07f06150ffab77b8f4dc61b87c39f2ce0d5e7c5e65beb8e3f4bd",
+  "rows": [
+    {
+      "key": "2018-1-77",
+      "topic": 15,
+      "pdfPage": 323,
+      "answer": 3,
+      "answerTablePdfPage": 324,
+      "representative": "2018-1-77",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180304:77"
+      ],
+      "parts": [
+        {
+          "page": 323,
+          "side": 1,
+          "question": [
+            767,
+            1172,
+            1509,
+            1706
+          ],
+          "explanation": [
+            767,
+            1719,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 324,
+          "side": 0,
+          "explanation": [
+            125,
+            99,
+            780,
+            255
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        534
+      ],
+      "explanationSize": [
+        742,
+        484
+      ]
+    },
+    {
+      "key": "2018-2-1",
+      "topic": 1,
+      "pdfPage": 325,
+      "answer": 4,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-1",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:1"
+      ],
+      "parts": [
+        {
+          "page": 325,
+          "side": 0,
+          "question": [
+            119,
+            465,
+            780,
+            731
+          ],
+          "explanation": [
+            119,
+            744,
+            780,
+            1152
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        266
+      ],
+      "explanationSize": [
+        661,
+        408
+      ]
+    },
+    {
+      "key": "2018-2-2",
+      "topic": 1,
+      "pdfPage": 325,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:2"
+      ],
+      "parts": [
+        {
+          "page": 325,
+          "side": 0,
+          "question": [
+            119,
+            1184,
+            780,
+            1364
+          ],
+          "explanation": [
+            119,
+            1377,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        180
+      ],
+      "explanationSize": [
+        661,
+        654
+      ]
+    },
+    {
+      "key": "2018-2-5",
+      "topic": 2,
+      "pdfPage": 326,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-5",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:5"
+      ],
+      "parts": [
+        {
+          "page": 326,
+          "side": 0,
+          "question": [
+            61,
+            283,
+            780,
+            504
+          ],
+          "explanation": [
+            61,
+            517,
+            780,
+            759
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        719,
+        221
+      ],
+      "explanationSize": [
+        719,
+        242
+      ]
+    },
+    {
+      "key": "2018-2-7",
+      "topic": 2,
+      "pdfPage": 326,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2021-1-14",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:7"
+      ],
+      "parts": [
+        {
+          "page": 326,
+          "side": 0,
+          "question": [
+            77,
+            1421,
+            780,
+            1693
+          ],
+          "explanation": [
+            77,
+            1706,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        703,
+        272
+      ],
+      "explanationSize": [
+        703,
+        325
+      ]
+    },
+    {
+      "key": "2018-2-8",
+      "topic": 6,
+      "pdfPage": 326,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2025-2-20",
+      "calculation": true,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 326,
+          "side": 1,
+          "question": [
+            751,
+            135,
+            1509,
+            478
+          ],
+          "explanation": [
+            751,
+            491,
+            1509,
+            965
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        758,
+        343
+      ],
+      "explanationSize": [
+        758,
+        474
+      ]
+    },
+    {
+      "key": "2018-2-9",
+      "topic": 3,
+      "pdfPage": 326,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-9",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:9"
+      ],
+      "parts": [
+        {
+          "page": 326,
+          "side": 1,
+          "question": [
+            755,
+            980,
+            1509,
+            1198
+          ],
+          "explanation": [
+            755,
+            1211,
+            1509,
+            1438
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        754,
+        218
+      ],
+      "explanationSize": [
+        754,
+        227
+      ]
+    },
+    {
+      "key": "2018-2-13",
+      "topic": 4,
+      "pdfPage": 327,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-13",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:13"
+      ],
+      "parts": [
+        {
+          "page": 327,
+          "side": 0,
+          "question": [
+            132,
+            1533,
+            780,
+            1798
+          ],
+          "explanation": [
+            132,
+            1811,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 327,
+          "side": 1,
+          "explanation": [
+            848,
+            108,
+            1509,
+            430
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        648,
+        265
+      ],
+      "explanationSize": [
+        661,
+        558
+      ]
+    },
+    {
+      "key": "2018-2-20",
+      "topic": 5,
+      "pdfPage": 328,
+      "answer": 4,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-20",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:20"
+      ],
+      "parts": [
+        {
+          "page": 328,
+          "side": 1,
+          "question": [
+            770,
+            129,
+            1509,
+            443
+          ],
+          "explanation": [
+            770,
+            456,
+            1509,
+            767
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        739,
+        314
+      ],
+      "explanationSize": [
+        739,
+        311
+      ]
+    },
+    {
+      "key": "2018-2-22",
+      "topic": 6,
+      "pdfPage": 328,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2024-1-59",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 328,
+          "side": 1,
+          "question": [
+            780,
+            1647,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 329,
+          "side": 0,
+          "question": [
+            156,
+            158,
+            780,
+            155
+          ],
+          "explanation": [
+            156,
+            168,
+            780,
+            477
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        384
+      ],
+      "explanationSize": [
+        624,
+        309
+      ]
+    },
+    {
+      "key": "2018-2-26",
+      "topic": 13,
+      "pdfPage": 329,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-26",
+      "calculation": true,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 329,
+          "side": 1,
+          "question": [
+            761,
+            1216,
+            1509,
+            1470
+          ],
+          "explanation": [
+            761,
+            1483,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        254
+      ],
+      "explanationSize": [
+        748,
+        548
+      ]
+    },
+    {
+      "key": "2018-2-40",
+      "topic": 13,
+      "pdfPage": 331,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-40",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 331,
+          "side": 1,
+          "question": [
+            761,
+            1268,
+            1509,
+            1539
+          ],
+          "explanation": [
+            761,
+            1552,
+            1509,
+            2023
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        271
+      ],
+      "explanationSize": [
+        748,
+        471
+      ]
+    },
+    {
+      "key": "2018-2-45",
+      "topic": 8,
+      "pdfPage": 332,
+      "answer": 4,
+      "answerTablePdfPage": 338,
+      "representative": "2025-2-28",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 332,
+          "side": 1,
+          "question": [
+            758,
+            1047,
+            1509,
+            1356
+          ],
+          "explanation": [
+            758,
+            1369,
+            1509,
+            1671
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        751,
+        309
+      ],
+      "explanationSize": [
+        751,
+        302
+      ]
+    },
+    {
+      "key": "2018-2-48",
+      "topic": 9,
+      "pdfPage": 333,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-48",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:48"
+      ],
+      "parts": [
+        {
+          "page": 333,
+          "side": 0,
+          "question": [
+            119,
+            993,
+            780,
+            1300
+          ],
+          "explanation": [
+            119,
+            1313,
+            780,
+            1553
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        307
+      ],
+      "explanationSize": [
+        661,
+        240
+      ]
+    },
+    {
+      "key": "2018-2-52",
+      "topic": 10,
+      "pdfPage": 333,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2025-3-32",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 333,
+          "side": 1,
+          "question": [
+            773,
+            1337,
+            1509,
+            1690
+          ],
+          "explanation": [
+            773,
+            1703,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        736,
+        353
+      ],
+      "explanationSize": [
+        736,
+        328
+      ]
+    },
+    {
+      "key": "2018-2-53",
+      "topic": 11,
+      "pdfPage": 334,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-53",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:53"
+      ],
+      "parts": [
+        {
+          "page": 334,
+          "side": 0,
+          "question": [
+            90,
+            126,
+            780,
+            483
+          ],
+          "explanation": [
+            90,
+            496,
+            780,
+            917
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        690,
+        357
+      ],
+      "explanationSize": [
+        690,
+        421
+      ]
+    },
+    {
+      "key": "2018-2-57",
+      "topic": 6,
+      "pdfPage": 334,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-57",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:57"
+      ],
+      "parts": [
+        {
+          "page": 334,
+          "side": 1,
+          "question": [
+            780,
+            988,
+            1509,
+            1252
+          ],
+          "explanation": [
+            780,
+            1265,
+            1509,
+            1518
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        264
+      ],
+      "explanationSize": [
+        729,
+        253
+      ]
+    },
+    {
+      "key": "2018-2-59",
+      "topic": 13,
+      "pdfPage": 335,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2022-1-49",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 335,
+          "side": 0,
+          "question": [
+            106,
+            132,
+            780,
+            355
+          ],
+          "explanation": [
+            106,
+            368,
+            780,
+            538
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        674,
+        223
+      ],
+      "explanationSize": [
+        674,
+        170
+      ]
+    },
+    {
+      "key": "2018-2-62",
+      "topic": 12,
+      "pdfPage": 335,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-62",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:62"
+      ],
+      "parts": [
+        {
+          "page": 335,
+          "side": 1,
+          "question": [
+            764,
+            135,
+            1509,
+            410
+          ],
+          "explanation": [
+            764,
+            423,
+            1509,
+            575
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        275
+      ],
+      "explanationSize": [
+        745,
+        152
+      ]
+    },
+    {
+      "key": "2018-2-64",
+      "topic": 13,
+      "pdfPage": 335,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-64",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:64"
+      ],
+      "parts": [
+        {
+          "page": 335,
+          "side": 1,
+          "question": [
+            767,
+            1048,
+            1509,
+            1448
+          ],
+          "explanation": [
+            767,
+            1461,
+            1509,
+            1799
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        400
+      ],
+      "explanationSize": [
+        742,
+        338
+      ]
+    },
+    {
+      "key": "2018-2-65",
+      "topic": 14,
+      "pdfPage": 335,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2025-2-36",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 335,
+          "side": 1,
+          "question": [
+            761,
+            1814,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 336,
+          "side": 0,
+          "question": [
+            97,
+            86,
+            780,
+            428
+          ],
+          "explanation": [
+            97,
+            441,
+            780,
+            901
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        575
+      ],
+      "explanationSize": [
+        683,
+        460
+      ]
+    },
+    {
+      "key": "2018-2-67",
+      "topic": 15,
+      "pdfPage": 336,
+      "answer": 4,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-67",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:67"
+      ],
+      "parts": [
+        {
+          "page": 336,
+          "side": 0,
+          "question": [
+            84,
+            1408,
+            780,
+            1861
+          ],
+          "explanation": [
+            84,
+            1874,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 336,
+          "side": 1,
+          "explanation": [
+            802,
+            92,
+            1509,
+            370
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        696,
+        453
+      ],
+      "explanationSize": [
+        707,
+        451
+      ]
+    },
+    {
+      "key": "2018-2-68",
+      "topic": 16,
+      "pdfPage": 336,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:68"
+      ],
+      "parts": [
+        {
+          "page": 336,
+          "side": 1,
+          "question": [
+            764,
+            386,
+            1509,
+            612
+          ],
+          "explanation": [
+            764,
+            625,
+            1509,
+            901
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        226
+      ],
+      "explanationSize": [
+        745,
+        276
+      ]
+    },
+    {
+      "key": "2018-2-69",
+      "topic": 17,
+      "pdfPage": 336,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2025-3-48",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 336,
+          "side": 1,
+          "question": [
+            761,
+            916,
+            1509,
+            1134
+          ],
+          "explanation": [
+            761,
+            1147,
+            1509,
+            1485
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        218
+      ],
+      "explanationSize": [
+        748,
+        338
+      ]
+    },
+    {
+      "key": "2018-2-70",
+      "topic": 20,
+      "pdfPage": 336,
+      "answer": 2,
+      "answerTablePdfPage": 338,
+      "representative": "2024-1-63",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 336,
+          "side": 1,
+          "question": [
+            767,
+            1501,
+            1509,
+            1725
+          ],
+          "explanation": [
+            767,
+            1738,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        224
+      ],
+      "explanationSize": [
+        742,
+        293
+      ]
+    },
+    {
+      "key": "2018-2-71",
+      "topic": 18,
+      "pdfPage": 337,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2021-1-77",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:71"
+      ],
+      "parts": [
+        {
+          "page": 337,
+          "side": 0,
+          "question": [
+            125,
+            132,
+            780,
+            438
+          ],
+          "explanation": [
+            125,
+            451,
+            780,
+            965
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        655,
+        306
+      ],
+      "explanationSize": [
+        655,
+        514
+      ]
+    },
+    {
+      "key": "2018-2-74",
+      "topic": 19,
+      "pdfPage": 337,
+      "answer": 3,
+      "answerTablePdfPage": 338,
+      "representative": "2023-4-57",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 337,
+          "side": 1,
+          "question": [
+            774,
+            618,
+            1509,
+            979
+          ],
+          "explanation": [
+            774,
+            992,
+            1509,
+            1379
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        735,
+        361
+      ],
+      "explanationSize": [
+        735,
+        387
+      ]
+    },
+    {
+      "key": "2018-2-75",
+      "topic": 3,
+      "pdfPage": 337,
+      "answer": 1,
+      "answerTablePdfPage": 338,
+      "representative": "2018-2-75",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:75"
+      ],
+      "parts": [
+        {
+          "page": 337,
+          "side": 1,
+          "question": [
+            773,
+            1395,
+            1509,
+            1656
+          ],
+          "explanation": [
+            773,
+            1669,
+            1509,
+            2006
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        736,
+        261
+      ],
+      "explanationSize": [
+        736,
+        337
+      ]
+    },
+    {
+      "key": "2018-4-3",
+      "topic": 1,
+      "pdfPage": 339,
+      "answer": 3,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-3",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:3"
+      ],
+      "parts": [
+        {
+          "page": 339,
+          "side": 0,
+          "question": [
+            125,
+            1427,
+            780,
+            1695
+          ],
+          "explanation": [
+            125,
+            1708,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        655,
+        268
+      ],
+      "explanationSize": [
+        655,
+        323
+      ]
+    },
+    {
+      "key": "2018-4-12",
+      "topic": 13,
+      "pdfPage": 341,
+      "answer": 1,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-12",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 341,
+          "side": 0,
+          "question": [
+            106,
+            145,
+            780,
+            462
+          ],
+          "explanation": [
+            106,
+            475,
+            780,
+            785
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        674,
+        317
+      ],
+      "explanationSize": [
+        674,
+        310
+      ]
+    },
+    {
+      "key": "2018-4-15",
+      "topic": 4,
+      "pdfPage": 341,
+      "answer": 1,
+      "answerTablePdfPage": 353,
+      "representative": "2024-1-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 341,
+          "side": 0,
+          "question": [
+            106,
+            1801,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 341,
+          "side": 1,
+          "question": [
+            787,
+            102,
+            1509,
+            264
+          ],
+          "explanation": [
+            787,
+            277,
+            1509,
+            562
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        722,
+        408
+      ],
+      "explanationSize": [
+        722,
+        285
+      ]
+    },
+    {
+      "key": "2018-4-16",
+      "topic": 4,
+      "pdfPage": 341,
+      "answer": 4,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-16",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 341,
+          "side": 1,
+          "question": [
+            767,
+            577,
+            1509,
+            755
+          ],
+          "explanation": [
+            767,
+            768,
+            1509,
+            1012
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        178
+      ],
+      "explanationSize": [
+        742,
+        244
+      ]
+    },
+    {
+      "key": "2018-4-26",
+      "topic": 7,
+      "pdfPage": 343,
+      "answer": 4,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-26",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:26"
+      ],
+      "parts": [
+        {
+          "page": 343,
+          "side": 0,
+          "question": [
+            122,
+            1175,
+            780,
+            1352
+          ],
+          "explanation": [
+            122,
+            1365,
+            780,
+            1776
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        177
+      ],
+      "explanationSize": [
+        658,
+        411
+      ]
+    },
+    {
+      "key": "2018-4-33",
+      "topic": 6,
+      "pdfPage": 344,
+      "answer": 1,
+      "answerTablePdfPage": 353,
+      "representative": "2025-3-52",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 344,
+          "side": 1,
+          "question": [
+            761,
+            128,
+            1509,
+            441
+          ],
+          "explanation": [
+            761,
+            454,
+            1509,
+            718
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        313
+      ],
+      "explanationSize": [
+        748,
+        264
+      ]
+    },
+    {
+      "key": "2018-4-34",
+      "topic": 12,
+      "pdfPage": 344,
+      "answer": 2,
+      "answerTablePdfPage": 353,
+      "representative": "2025-3-43",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 344,
+          "side": 1,
+          "question": [
+            761,
+            733,
+            1509,
+            1006
+          ],
+          "explanation": [
+            761,
+            1019,
+            1509,
+            1313
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        273
+      ],
+      "explanationSize": [
+        748,
+        294
+      ]
+    },
+    {
+      "key": "2018-4-37",
+      "topic": 13,
+      "pdfPage": 345,
+      "answer": 2,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-37",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 345,
+          "side": 0,
+          "question": [
+            119,
+            794,
+            780,
+            1064
+          ],
+          "explanation": [
+            119,
+            1077,
+            780,
+            1384
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        270
+      ],
+      "explanationSize": [
+        661,
+        307
+      ]
+    },
+    {
+      "key": "2018-4-48",
+      "topic": 8,
+      "pdfPage": 347,
+      "answer": 3,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-48",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 347,
+          "side": 0,
+          "question": [
+            116,
+            1587,
+            780,
+            2025
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 347,
+          "side": 1,
+          "question": [
+            818,
+            98,
+            1509,
+            256
+          ],
+          "explanation": [
+            818,
+            269,
+            1509,
+            817
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        691,
+        612
+      ],
+      "explanationSize": [
+        691,
+        548
+      ]
+    },
+    {
+      "key": "2018-4-66",
+      "topic": 3,
+      "pdfPage": 350,
+      "answer": 3,
+      "answerTablePdfPage": 353,
+      "representative": "2018-4-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:66"
+      ],
+      "parts": [
+        {
+          "page": 350,
+          "side": 1,
+          "question": [
+            777,
+            1431,
+            1509,
+            1653
+          ],
+          "explanation": [
+            777,
+            1666,
+            1509,
+            2008
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        222
+      ],
+      "explanationSize": [
+        732,
+        342
+      ]
+    },
+    {
+      "key": "2019-1-1",
+      "topic": 2,
+      "pdfPage": 354,
+      "answer": 2,
+      "answerTablePdfPage": 368,
+      "representative": "2019-2-19",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 354,
+          "side": 0,
+          "question": [
+            96,
+            460,
+            780,
+            682
+          ],
+          "explanation": [
+            96,
+            695,
+            780,
+            968
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        222
+      ],
+      "explanationSize": [
+        684,
+        273
+      ]
+    },
+    {
+      "key": "2019-1-33",
+      "topic": 6,
+      "pdfPage": 359,
+      "answer": 2,
+      "answerTablePdfPage": 368,
+      "representative": "2019-1-33",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 359,
+          "side": 0,
+          "question": [
+            118,
+            1287,
+            780,
+            1632
+          ],
+          "explanation": [
+            118,
+            1645,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        662,
+        345
+      ],
+      "explanationSize": [
+        662,
+        386
+      ]
+    },
+    {
+      "key": "2019-1-35",
+      "topic": 13,
+      "pdfPage": 359,
+      "answer": 3,
+      "answerTablePdfPage": 368,
+      "representative": "2019-1-35",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 359,
+          "side": 1,
+          "question": [
+            777,
+            628,
+            1509,
+            849
+          ],
+          "explanation": [
+            777,
+            862,
+            1509,
+            1214
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        221
+      ],
+      "explanationSize": [
+        732,
+        352
+      ]
+    },
+    {
+      "key": "2019-1-39",
+      "topic": 12,
+      "pdfPage": 360,
+      "answer": 1,
+      "answerTablePdfPage": 368,
+      "representative": "2019-1-39",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190303:39"
+      ],
+      "parts": [
+        {
+          "page": 360,
+          "side": 0,
+          "question": [
+            84,
+            1127,
+            780,
+            1477
+          ],
+          "explanation": [
+            84,
+            1490,
+            780,
+            2028
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        696,
+        350
+      ],
+      "explanationSize": [
+        696,
+        538
+      ]
+    },
+    {
+      "key": "2019-1-62",
+      "topic": 14,
+      "pdfPage": 364,
+      "answer": 1,
+      "answerTablePdfPage": 368,
+      "representative": "2022-4-29",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 364,
+          "side": 1,
+          "question": [
+            764,
+            125,
+            1509,
+            398
+          ],
+          "explanation": [
+            764,
+            411,
+            1509,
+            752
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        273
+      ],
+      "explanationSize": [
+        745,
+        341
+      ]
+    },
+    {
+      "key": "2019-1-74",
+      "topic": 3,
+      "pdfPage": 366,
+      "answer": 2,
+      "answerTablePdfPage": 368,
+      "representative": "2019-1-74",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 366,
+          "side": 1,
+          "question": [
+            774,
+            1571,
+            1509,
+            1841
+          ],
+          "explanation": [
+            774,
+            1854,
+            1509,
+            2025
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        735,
+        270
+      ],
+      "explanationSize": [
+        735,
+        171
+      ]
+    },
+    {
+      "key": "2019-2-9",
+      "topic": 1,
+      "pdfPage": 370,
+      "answer": 3,
+      "answerTablePdfPage": 383,
+      "representative": "2025-3-33",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 370,
+          "side": 0,
+          "question": [
+            93,
+            1440,
+            780,
+            1627
+          ],
+          "explanation": [
+            93,
+            1640,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        187
+      ],
+      "explanationSize": [
+        687,
+        391
+      ]
+    },
+    {
+      "key": "2019-2-15",
+      "topic": 4,
+      "pdfPage": 371,
+      "answer": 3,
+      "answerTablePdfPage": 383,
+      "representative": "2019-4-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:15"
+      ],
+      "parts": [
+        {
+          "page": 371,
+          "side": 1,
+          "question": [
+            774,
+            139,
+            1509,
+            548
+          ],
+          "explanation": [
+            774,
+            561,
+            1509,
+            1022
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        735,
+        409
+      ],
+      "explanationSize": [
+        735,
+        461
+      ]
+    },
+    {
+      "key": "2019-2-19",
+      "topic": 2,
+      "pdfPage": 372,
+      "answer": 4,
+      "answerTablePdfPage": 383,
+      "representative": "2019-2-19",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 372,
+          "side": 0,
+          "question": [
+            96,
+            1402,
+            780,
+            1719
+          ],
+          "explanation": [
+            96,
+            1732,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        317
+      ],
+      "explanationSize": [
+        684,
+        299
+      ]
+    },
+    {
+      "key": "2019-2-21",
+      "topic": 13,
+      "pdfPage": 372,
+      "answer": 4,
+      "answerTablePdfPage": 383,
+      "representative": "2019-2-21",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 372,
+          "side": 1,
+          "question": [
+            767,
+            762,
+            1509,
+            1115
+          ],
+          "explanation": [
+            767,
+            1128,
+            1509,
+            1710
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        353
+      ],
+      "explanationSize": [
+        742,
+        582
+      ]
+    },
+    {
+      "key": "2019-2-25",
+      "topic": 6,
+      "pdfPage": 373,
+      "answer": 3,
+      "answerTablePdfPage": 383,
+      "representative": "2019-2-25",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:25"
+      ],
+      "parts": [
+        {
+          "page": 373,
+          "side": 0,
+          "question": [
+            109,
+            1501,
+            780,
+            1754
+          ],
+          "explanation": [
+            109,
+            1767,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        253
+      ],
+      "explanationSize": [
+        671,
+        264
+      ]
+    },
+    {
+      "key": "2019-2-54",
+      "topic": 14,
+      "pdfPage": 378,
+      "answer": 1,
+      "answerTablePdfPage": 383,
+      "representative": "2019-2-54",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:54"
+      ],
+      "parts": [
+        {
+          "page": 378,
+          "side": 0,
+          "question": [
+            87,
+            1408,
+            780,
+            1592
+          ],
+          "explanation": [
+            87,
+            1605,
+            780,
+            2006
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        693,
+        184
+      ],
+      "explanationSize": [
+        693,
+        401
+      ]
+    },
+    {
+      "key": "2019-2-64",
+      "topic": 16,
+      "pdfPage": 380,
+      "answer": 2,
+      "answerTablePdfPage": 383,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 380,
+          "side": 0,
+          "question": [
+            80,
+            126,
+            780,
+            442
+          ],
+          "explanation": [
+            80,
+            455,
+            780,
+            758
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        700,
+        316
+      ],
+      "explanationSize": [
+        700,
+        303
+      ]
+    },
+    {
+      "key": "2019-2-68",
+      "topic": 3,
+      "pdfPage": 380,
+      "answer": 3,
+      "answerTablePdfPage": 383,
+      "representative": "2021-2-65",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:68"
+      ],
+      "parts": [
+        {
+          "page": 380,
+          "side": 1,
+          "question": [
+            761,
+            666,
+            1509,
+            889
+          ],
+          "explanation": [
+            761,
+            902,
+            1509,
+            1240
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        223
+      ],
+      "explanationSize": [
+        748,
+        338
+      ]
+    },
+    {
+      "key": "2019-4-2",
+      "topic": 4,
+      "pdfPage": 384,
+      "answer": 3,
+      "answerTablePdfPage": 399,
+      "representative": "2019-4-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190921:2"
+      ],
+      "parts": [
+        {
+          "page": 384,
+          "side": 0,
+          "question": [
+            96,
+            976,
+            780,
+            1246
+          ],
+          "explanation": [
+            96,
+            1259,
+            780,
+            1757
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        270
+      ],
+      "explanationSize": [
+        684,
+        498
+      ]
+    },
+    {
+      "key": "2019-4-13",
+      "topic": 13,
+      "pdfPage": 386,
+      "answer": 4,
+      "answerTablePdfPage": 399,
+      "representative": "2019-4-13",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 386,
+          "side": 0,
+          "question": [
+            96,
+            1741,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 386,
+          "side": 1,
+          "question": [
+            815,
+            153,
+            1509,
+            151
+          ],
+          "explanation": [
+            815,
+            164,
+            1509,
+            532
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        290
+      ],
+      "explanationSize": [
+        694,
+        368
+      ]
+    },
+    {
+      "key": "2019-4-29",
+      "topic": 13,
+      "pdfPage": 389,
+      "answer": 3,
+      "answerTablePdfPage": 399,
+      "representative": "2022-4-45",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 389,
+          "side": 1,
+          "question": [
+            771,
+            705,
+            1509,
+            1065
+          ],
+          "explanation": [
+            771,
+            1078,
+            1509,
+            1444
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        738,
+        360
+      ],
+      "explanationSize": [
+        738,
+        366
+      ]
+    },
+    {
+      "key": "2019-4-66",
+      "topic": 16,
+      "pdfPage": 396,
+      "answer": 2,
+      "answerTablePdfPage": 399,
+      "representative": "2019-4-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190921:66"
+      ],
+      "parts": [
+        {
+          "page": 396,
+          "side": 1,
+          "question": [
+            754,
+            126,
+            1509,
+            582
+          ],
+          "explanation": [
+            754,
+            595,
+            1509,
+            1066
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        755,
+        456
+      ],
+      "explanationSize": [
+        755,
+        471
+      ]
+    },
+    {
+      "key": "2019-4-77",
+      "topic": 16,
+      "pdfPage": 398,
+      "answer": 3,
+      "answerTablePdfPage": 399,
+      "representative": "2021-2-72",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 398,
+          "side": 1,
+          "question": [
+            764,
+            449,
+            1509,
+            721
+          ],
+          "explanation": [
+            764,
+            734,
+            1509,
+            981
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        272
+      ],
+      "explanationSize": [
+        745,
+        247
+      ]
+    },
+    {
+      "key": "2020-1·2통합-10",
+      "topic": 4,
+      "pdfPage": 402,
+      "answer": 4,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-10",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200606:10"
+      ],
+      "parts": [
+        {
+          "page": 402,
+          "side": 0,
+          "question": [
+            106,
+            289,
+            780,
+            599
+          ],
+          "explanation": [
+            106,
+            612,
+            780,
+            1045
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        674,
+        310
+      ],
+      "explanationSize": [
+        674,
+        433
+      ]
+    },
+    {
+      "key": "2020-1·2통합-18",
+      "topic": 2,
+      "pdfPage": 403,
+      "answer": 4,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-18",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200606:18"
+      ],
+      "parts": [
+        {
+          "page": 403,
+          "side": 1,
+          "question": [
+            739,
+            145,
+            1509,
+            499
+          ],
+          "explanation": [
+            739,
+            512,
+            1509,
+            723
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        354
+      ],
+      "explanationSize": [
+        770,
+        211
+      ]
+    },
+    {
+      "key": "2020-1·2통합-29",
+      "topic": 13,
+      "pdfPage": 405,
+      "answer": 3,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-29",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 405,
+          "side": 1,
+          "question": [
+            783,
+            1491,
+            1509,
+            1766
+          ],
+          "explanation": [
+            783,
+            1779,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 406,
+          "side": 0,
+          "explanation": [
+            129,
+            95,
+            780,
+            404
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        726,
+        275
+      ],
+      "explanationSize": [
+        726,
+        577
+      ]
+    },
+    {
+      "key": "2020-1·2통합-49",
+      "topic": 14,
+      "pdfPage": 409,
+      "answer": 4,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-49",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200606:49"
+      ],
+      "parts": [
+        {
+          "page": 409,
+          "side": 1,
+          "question": [
+            783,
+            350,
+            1509,
+            705
+          ],
+          "explanation": [
+            783,
+            718,
+            1509,
+            1096
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        726,
+        355
+      ],
+      "explanationSize": [
+        726,
+        378
+      ]
+    },
+    {
+      "key": "2020-1·2통합-50",
+      "topic": 15,
+      "pdfPage": 409,
+      "answer": 4,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-50",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 409,
+          "side": 1,
+          "question": [
+            783,
+            1111,
+            1509,
+            1418
+          ],
+          "explanation": [
+            783,
+            1431,
+            1509,
+            1636
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        726,
+        307
+      ],
+      "explanationSize": [
+        726,
+        205
+      ]
+    },
+    {
+      "key": "2020-1·2통합-73",
+      "topic": 15,
+      "pdfPage": 413,
+      "answer": 4,
+      "answerTablePdfPage": 415,
+      "representative": "2020-1·2통합-73",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200606:73"
+      ],
+      "parts": [
+        {
+          "page": 413,
+          "side": 1,
+          "question": [
+            771,
+            1133,
+            1509,
+            1387
+          ],
+          "explanation": [
+            771,
+            1400,
+            1509,
+            1626
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        738,
+        254
+      ],
+      "explanationSize": [
+        738,
+        226
+      ]
+    },
+    {
+      "key": "2020-3-4",
+      "topic": 4,
+      "pdfPage": 416,
+      "answer": 1,
+      "answerTablePdfPage": 430,
+      "representative": "2025-3-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 416,
+          "side": 1,
+          "question": [
+            771,
+            753,
+            1509,
+            1112
+          ],
+          "explanation": [
+            771,
+            1125,
+            1509,
+            1575
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        738,
+        359
+      ],
+      "explanationSize": [
+        738,
+        450
+      ]
+    },
+    {
+      "key": "2020-3-8",
+      "topic": 5,
+      "pdfPage": 417,
+      "answer": 4,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-8",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200822:8"
+      ],
+      "parts": [
+        {
+          "page": 417,
+          "side": 1,
+          "question": [
+            780,
+            714,
+            1509,
+            1026
+          ],
+          "explanation": [
+            780,
+            1039,
+            1509,
+            1373
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        312
+      ],
+      "explanationSize": [
+        729,
+        334
+      ]
+    },
+    {
+      "key": "2020-3-21",
+      "topic": 13,
+      "pdfPage": 419,
+      "answer": 1,
+      "answerTablePdfPage": 430,
+      "representative": "2023-2-25",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 419,
+          "side": 1,
+          "question": [
+            773,
+            1693,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 420,
+          "side": 0,
+          "question": [
+            151,
+            146,
+            780,
+            140
+          ],
+          "explanation": [
+            151,
+            153,
+            780,
+            376
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        736,
+        338
+      ],
+      "explanationSize": [
+        629,
+        223
+      ]
+    },
+    {
+      "key": "2020-3-25",
+      "topic": 6,
+      "pdfPage": 420,
+      "answer": 1,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 420,
+          "side": 1,
+          "question": [
+            774,
+            670,
+            1509,
+            978
+          ],
+          "explanation": [
+            774,
+            991,
+            1509,
+            1430
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        735,
+        308
+      ],
+      "explanationSize": [
+        735,
+        439
+      ]
+    },
+    {
+      "key": "2020-3-40",
+      "topic": 13,
+      "pdfPage": 423,
+      "answer": 4,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-40",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 423,
+          "side": 0,
+          "question": [
+            128,
+            1453,
+            780,
+            1725
+          ],
+          "explanation": [
+            128,
+            1738,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        652,
+        272
+      ],
+      "explanationSize": [
+        652,
+        293
+      ]
+    },
+    {
+      "key": "2020-3-55",
+      "topic": 13,
+      "pdfPage": 425,
+      "answer": 3,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-55",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200822:55"
+      ],
+      "parts": [
+        {
+          "page": 425,
+          "side": 1,
+          "question": [
+            773,
+            1610,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 426,
+          "side": 0,
+          "question": [
+            141,
+            134,
+            780,
+            127
+          ],
+          "explanation": [
+            141,
+            140,
+            780,
+            886
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        736,
+        421
+      ],
+      "explanationSize": [
+        639,
+        746
+      ]
+    },
+    {
+      "key": "2020-3-59",
+      "topic": 13,
+      "pdfPage": 426,
+      "answer": 2,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-59",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 426,
+          "side": 1,
+          "question": [
+            767,
+            596,
+            1509,
+            906
+          ],
+          "explanation": [
+            767,
+            919,
+            1509,
+            1272
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        310
+      ],
+      "explanationSize": [
+        742,
+        353
+      ]
+    },
+    {
+      "key": "2020-3-61",
+      "topic": 17,
+      "pdfPage": 427,
+      "answer": 4,
+      "answerTablePdfPage": 430,
+      "representative": "2025-2-74",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 427,
+          "side": 0,
+          "question": [
+            116,
+            235,
+            780,
+            417
+          ],
+          "explanation": [
+            116,
+            430,
+            780,
+            555
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        664,
+        182
+      ],
+      "explanationSize": [
+        664,
+        125
+      ]
+    },
+    {
+      "key": "2020-3-63",
+      "topic": 13,
+      "pdfPage": 427,
+      "answer": 2,
+      "answerTablePdfPage": 430,
+      "representative": "2020-3-63",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 427,
+          "side": 0,
+          "question": [
+            112,
+            1274,
+            780,
+            1587
+          ],
+          "explanation": [
+            112,
+            1600,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        313
+      ],
+      "explanationSize": [
+        668,
+        431
+      ]
+    },
+    {
+      "key": "2021-1-1",
+      "topic": 2,
+      "pdfPage": 431,
+      "answer": 1,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-1",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020310:21",
+        "school-energy-pdf-2021-1:1"
+      ],
+      "parts": [
+        {
+          "page": 431,
+          "side": 0,
+          "question": [
+            109,
+            462,
+            780,
+            827
+          ],
+          "explanation": [
+            109,
+            840,
+            780,
+            1271
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        365
+      ],
+      "explanationSize": [
+        671,
+        431
+      ]
+    },
+    {
+      "key": "2021-1-10",
+      "topic": 2,
+      "pdfPage": 432,
+      "answer": 4,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-10",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:10"
+      ],
+      "parts": [
+        {
+          "page": 432,
+          "side": 1,
+          "question": [
+            770,
+            1425,
+            1509,
+            1738
+          ],
+          "explanation": [
+            770,
+            1751,
+            1509,
+            2022
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        739,
+        313
+      ],
+      "explanationSize": [
+        739,
+        271
+      ]
+    },
+    {
+      "key": "2021-1-14",
+      "topic": 2,
+      "pdfPage": 433,
+      "answer": 2,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-14",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020310:25",
+        "school-energy-pdf-2021-1:14"
+      ],
+      "parts": [
+        {
+          "page": 433,
+          "side": 1,
+          "question": [
+            777,
+            120,
+            1509,
+            399
+          ],
+          "explanation": [
+            777,
+            412,
+            1509,
+            696
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        279
+      ],
+      "explanationSize": [
+        732,
+        284
+      ]
+    },
+    {
+      "key": "2021-1-28",
+      "topic": 13,
+      "pdfPage": 435,
+      "answer": 1,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-28",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:28"
+      ],
+      "parts": [
+        {
+          "page": 435,
+          "side": 1,
+          "question": [
+            761,
+            1484,
+            1509,
+            1804
+          ],
+          "explanation": [
+            761,
+            1817,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 436,
+          "side": 0,
+          "explanation": [
+            145,
+            98,
+            780,
+            386
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        320
+      ],
+      "explanationSize": [
+        748,
+        518
+      ]
+    },
+    {
+      "key": "2021-1-41",
+      "topic": 14,
+      "pdfPage": 438,
+      "answer": 3,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-41",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170305:53"
+      ],
+      "parts": [
+        {
+          "page": 438,
+          "side": 0,
+          "question": [
+            93,
+            241,
+            780,
+            732
+          ],
+          "explanation": [
+            93,
+            745,
+            780,
+            980
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        491
+      ],
+      "explanationSize": [
+        687,
+        235
+      ]
+    },
+    {
+      "key": "2021-1-42",
+      "topic": 10,
+      "pdfPage": 438,
+      "answer": 1,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-42",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:42"
+      ],
+      "parts": [
+        {
+          "page": 438,
+          "side": 0,
+          "question": [
+            96,
+            1018,
+            780,
+            1375
+          ],
+          "explanation": [
+            96,
+            1388,
+            780,
+            1625
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        357
+      ],
+      "explanationSize": [
+        684,
+        237
+      ]
+    },
+    {
+      "key": "2021-1-51",
+      "topic": 19,
+      "pdfPage": 440,
+      "answer": 3,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-51",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 440,
+          "side": 0,
+          "question": [
+            93,
+            1156,
+            780,
+            1544
+          ],
+          "explanation": [
+            93,
+            1557,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        388
+      ],
+      "explanationSize": [
+        687,
+        474
+      ]
+    },
+    {
+      "key": "2021-1-55",
+      "topic": 15,
+      "pdfPage": 441,
+      "answer": 3,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-55",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:55"
+      ],
+      "parts": [
+        {
+          "page": 441,
+          "side": 0,
+          "question": [
+            122,
+            535,
+            780,
+            929
+          ],
+          "explanation": [
+            122,
+            942,
+            780,
+            1514
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        394
+      ],
+      "explanationSize": [
+        658,
+        572
+      ]
+    },
+    {
+      "key": "2021-1-75",
+      "topic": 16,
+      "pdfPage": 445,
+      "answer": 2,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-75",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:75"
+      ],
+      "parts": [
+        {
+          "page": 445,
+          "side": 0,
+          "question": [
+            112,
+            375,
+            780,
+            695
+          ],
+          "explanation": [
+            112,
+            708,
+            780,
+            1003
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        320
+      ],
+      "explanationSize": [
+        668,
+        295
+      ]
+    },
+    {
+      "key": "2021-1-77",
+      "topic": 18,
+      "pdfPage": 445,
+      "answer": 3,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-77",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:77"
+      ],
+      "parts": [
+        {
+          "page": 445,
+          "side": 0,
+          "question": [
+            109,
+            1808,
+            780,
+            2028
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 445,
+          "side": 1,
+          "question": [
+            822,
+            89,
+            1509,
+            478
+          ],
+          "explanation": [
+            822,
+            491,
+            1509,
+            902
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        625
+      ],
+      "explanationSize": [
+        687,
+        411
+      ]
+    },
+    {
+      "key": "2021-1-78",
+      "topic": 17,
+      "pdfPage": 445,
+      "answer": 3,
+      "answerTablePdfPage": 446,
+      "representative": "2021-1-78",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2021-1:78"
+      ],
+      "parts": [
+        {
+          "page": 445,
+          "side": 1,
+          "question": [
+            777,
+            938,
+            1509,
+            1285
+          ],
+          "explanation": [
+            777,
+            1298,
+            1509,
+            1466
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        347
+      ],
+      "explanationSize": [
+        732,
+        168
+      ]
+    },
+    {
+      "key": "2021-2-15",
+      "topic": 4,
+      "pdfPage": 450,
+      "answer": 3,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:15"
+      ],
+      "parts": [
+        {
+          "page": 450,
+          "side": 0,
+          "question": [
+            87,
+            337,
+            780,
+            652
+          ],
+          "explanation": [
+            87,
+            665,
+            780,
+            1105
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        693,
+        315
+      ],
+      "explanationSize": [
+        693,
+        440
+      ]
+    },
+    {
+      "key": "2021-2-21",
+      "topic": 12,
+      "pdfPage": 451,
+      "answer": 3,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-21",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:21"
+      ],
+      "parts": [
+        {
+          "page": 451,
+          "side": 0,
+          "question": [
+            106,
+            1357,
+            780,
+            1697
+          ],
+          "explanation": [
+            106,
+            1710,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 451,
+          "side": 1,
+          "explanation": [
+            806,
+            114,
+            1509,
+            498
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        674,
+        340
+      ],
+      "explanationSize": [
+        703,
+        721
+      ]
+    },
+    {
+      "key": "2021-2-24",
+      "topic": 13,
+      "pdfPage": 452,
+      "answer": 4,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-24",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 452,
+          "side": 0,
+          "question": [
+            87,
+            131,
+            780,
+            633
+          ],
+          "explanation": [
+            87,
+            646,
+            780,
+            1019
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        693,
+        502
+      ],
+      "explanationSize": [
+        693,
+        373
+      ]
+    },
+    {
+      "key": "2021-2-26",
+      "topic": 13,
+      "pdfPage": 452,
+      "answer": 4,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-26",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 452,
+          "side": 0,
+          "question": [
+            96,
+            1789,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 452,
+          "side": 1,
+          "question": [
+            806,
+            102,
+            1509,
+            251
+          ],
+          "explanation": [
+            806,
+            264,
+            1509,
+            545
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        703,
+        407
+      ],
+      "explanationSize": [
+        703,
+        281
+      ]
+    },
+    {
+      "key": "2021-2-60",
+      "topic": 13,
+      "pdfPage": 458,
+      "answer": 3,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-60",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:60"
+      ],
+      "parts": [
+        {
+          "page": 458,
+          "side": 0,
+          "question": [
+            99,
+            1603,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 458,
+          "side": 1,
+          "question": [
+            780,
+            102,
+            1509,
+            142
+          ],
+          "explanation": [
+            780,
+            155,
+            1509,
+            792
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        484
+      ],
+      "explanationSize": [
+        729,
+        637
+      ]
+    },
+    {
+      "key": "2021-2-62",
+      "topic": 6,
+      "pdfPage": 458,
+      "answer": 2,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-62",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:62"
+      ],
+      "parts": [
+        {
+          "page": 458,
+          "side": 1,
+          "question": [
+            767,
+            1690,
+            1509,
+            2022
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 459,
+          "side": 0,
+          "question": [
+            159,
+            144,
+            780,
+            140
+          ],
+          "explanation": [
+            159,
+            153,
+            780,
+            395
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        332
+      ],
+      "explanationSize": [
+        621,
+        242
+      ]
+    },
+    {
+      "key": "2021-2-64",
+      "topic": 18,
+      "pdfPage": 459,
+      "answer": 2,
+      "answerTablePdfPage": 462,
+      "representative": "2025-1-77",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 459,
+          "side": 0,
+          "question": [
+            112,
+            1408,
+            780,
+            1788
+          ],
+          "explanation": [
+            112,
+            1801,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        380
+      ],
+      "explanationSize": [
+        668,
+        230
+      ]
+    },
+    {
+      "key": "2021-2-65",
+      "topic": 3,
+      "pdfPage": 459,
+      "answer": 1,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-65",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:65"
+      ],
+      "parts": [
+        {
+          "page": 459,
+          "side": 1,
+          "question": [
+            777,
+            129,
+            1509,
+            313
+          ],
+          "explanation": [
+            777,
+            326,
+            1509,
+            674
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        184
+      ],
+      "explanationSize": [
+        732,
+        348
+      ]
+    },
+    {
+      "key": "2021-2-66",
+      "topic": 17,
+      "pdfPage": 459,
+      "answer": 2,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-66",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:66"
+      ],
+      "parts": [
+        {
+          "page": 459,
+          "side": 1,
+          "question": [
+            777,
+            689,
+            1509,
+            908
+          ],
+          "explanation": [
+            777,
+            921,
+            1509,
+            1159
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        219
+      ],
+      "explanationSize": [
+        732,
+        238
+      ]
+    },
+    {
+      "key": "2021-2-72",
+      "topic": 16,
+      "pdfPage": 460,
+      "answer": 3,
+      "answerTablePdfPage": 462,
+      "representative": "2021-2-72",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2021-2:72"
+      ],
+      "parts": [
+        {
+          "page": 460,
+          "side": 1,
+          "question": [
+            767,
+            1002,
+            1509,
+            1349
+          ],
+          "explanation": [
+            767,
+            1362,
+            1509,
+            1607
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        347
+      ],
+      "explanationSize": [
+        742,
+        245
+      ]
+    },
+    {
+      "key": "2022-1-1",
+      "topic": 2,
+      "pdfPage": 463,
+      "answer": 2,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-1",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-1:1"
+      ],
+      "parts": [
+        {
+          "page": 463,
+          "side": 0,
+          "question": [
+            112,
+            462,
+            780,
+            729
+          ],
+          "explanation": [
+            112,
+            742,
+            780,
+            936
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        267
+      ],
+      "explanationSize": [
+        668,
+        194
+      ]
+    },
+    {
+      "key": "2022-1-2",
+      "topic": 1,
+      "pdfPage": 463,
+      "answer": 4,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-2",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-1:2"
+      ],
+      "parts": [
+        {
+          "page": 463,
+          "side": 0,
+          "question": [
+            109,
+            951,
+            780,
+            1245
+          ],
+          "explanation": [
+            109,
+            1258,
+            780,
+            1521
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        294
+      ],
+      "explanationSize": [
+        671,
+        263
+      ]
+    },
+    {
+      "key": "2022-1-6",
+      "topic": 13,
+      "pdfPage": 463,
+      "answer": 3,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-6",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2022-1:6"
+      ],
+      "parts": [
+        {
+          "page": 463,
+          "side": 1,
+          "question": [
+            761,
+            1693,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 464,
+          "side": 0,
+          "question": [
+            151,
+            127,
+            780,
+            124
+          ],
+          "explanation": [
+            151,
+            137,
+            780,
+            476
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        338
+      ],
+      "explanationSize": [
+        629,
+        339
+      ]
+    },
+    {
+      "key": "2022-1-12",
+      "topic": 5,
+      "pdfPage": 465,
+      "answer": 1,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-12",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020526:5",
+        "school-energy-pdf-2022-1:12"
+      ],
+      "parts": [
+        {
+          "page": 465,
+          "side": 0,
+          "question": [
+            119,
+            1380,
+            780,
+            1743
+          ],
+          "explanation": [
+            119,
+            1756,
+            780,
+            2025
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        363
+      ],
+      "explanationSize": [
+        661,
+        269
+      ]
+    },
+    {
+      "key": "2022-1-13",
+      "topic": 2,
+      "pdfPage": 465,
+      "answer": 4,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-13",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020526:32",
+        "school-energy-pdf-2022-1:13"
+      ],
+      "parts": [
+        {
+          "page": 465,
+          "side": 1,
+          "question": [
+            777,
+            123,
+            1509,
+            438
+          ],
+          "explanation": [
+            777,
+            451,
+            1509,
+            709
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        315
+      ],
+      "explanationSize": [
+        732,
+        258
+      ]
+    },
+    {
+      "key": "2022-1-24",
+      "topic": 6,
+      "pdfPage": 467,
+      "answer": 2,
+      "answerTablePdfPage": 478,
+      "representative": "2024-1-59",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:22"
+      ],
+      "parts": [
+        {
+          "page": 467,
+          "side": 0,
+          "question": [
+            109,
+            1632,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 467,
+          "side": 1,
+          "question": [
+            800,
+            153,
+            1509,
+            153
+          ],
+          "explanation": [
+            800,
+            166,
+            1509,
+            750
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        399
+      ],
+      "explanationSize": [
+        709,
+        584
+      ]
+    },
+    {
+      "key": "2022-1-43",
+      "topic": 15,
+      "pdfPage": 470,
+      "answer": 3,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-43",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-1:43"
+      ],
+      "parts": [
+        {
+          "page": 470,
+          "side": 1,
+          "question": [
+            761,
+            477,
+            1509,
+            705
+          ],
+          "explanation": [
+            761,
+            718,
+            1509,
+            1128
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        228
+      ],
+      "explanationSize": [
+        748,
+        410
+      ]
+    },
+    {
+      "key": "2022-1-49",
+      "topic": 13,
+      "pdfPage": 471,
+      "answer": 1,
+      "answerTablePdfPage": 478,
+      "representative": "2022-1-49",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:59"
+      ],
+      "parts": [
+        {
+          "page": 471,
+          "side": 1,
+          "question": [
+            773,
+            618,
+            1509,
+            850
+          ],
+          "explanation": [
+            773,
+            863,
+            1509,
+            1051
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        736,
+        232
+      ],
+      "explanationSize": [
+        736,
+        188
+      ]
+    },
+    {
+      "key": "2022-2-6",
+      "topic": 13,
+      "pdfPage": 480,
+      "answer": 4,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-6",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:6"
+      ],
+      "parts": [
+        {
+          "page": 480,
+          "side": 0,
+          "question": [
+            93,
+            260,
+            780,
+            483
+          ],
+          "explanation": [
+            93,
+            496,
+            780,
+            715
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        223
+      ],
+      "explanationSize": [
+        687,
+        219
+      ]
+    },
+    {
+      "key": "2022-2-29",
+      "topic": 13,
+      "pdfPage": 484,
+      "answer": 4,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-29",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 484,
+          "side": 0,
+          "question": [
+            90,
+            505,
+            780,
+            688
+          ],
+          "explanation": [
+            90,
+            701,
+            780,
+            904
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        690,
+        183
+      ],
+      "explanationSize": [
+        690,
+        203
+      ]
+    },
+    {
+      "key": "2022-2-39",
+      "topic": 13,
+      "pdfPage": 485,
+      "answer": 2,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-39",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 485,
+          "side": 1,
+          "question": [
+            774,
+            724,
+            1509,
+            1265
+          ],
+          "explanation": [
+            774,
+            1278,
+            1509,
+            1515
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        735,
+        541
+      ],
+      "explanationSize": [
+        735,
+        237
+      ]
+    },
+    {
+      "key": "2022-2-41",
+      "topic": 8,
+      "pdfPage": 486,
+      "answer": 4,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-41",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:41"
+      ],
+      "parts": [
+        {
+          "page": 486,
+          "side": 0,
+          "question": [
+            74,
+            226,
+            780,
+            453
+          ],
+          "explanation": [
+            74,
+            466,
+            780,
+            900
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        706,
+        227
+      ],
+      "explanationSize": [
+        706,
+        434
+      ]
+    },
+    {
+      "key": "2022-2-47",
+      "topic": 13,
+      "pdfPage": 487,
+      "answer": 1,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-47",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:47"
+      ],
+      "parts": [
+        {
+          "page": 487,
+          "side": 0,
+          "question": [
+            134,
+            129,
+            780,
+            625
+          ],
+          "explanation": [
+            134,
+            638,
+            780,
+            1317
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        646,
+        496
+      ],
+      "explanationSize": [
+        646,
+        679
+      ]
+    },
+    {
+      "key": "2022-2-63",
+      "topic": 3,
+      "pdfPage": 490,
+      "answer": 4,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-63",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 490,
+          "side": 0,
+          "question": [
+            93,
+            117,
+            780,
+            434
+          ],
+          "explanation": [
+            93,
+            447,
+            780,
+            661
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        317
+      ],
+      "explanationSize": [
+        687,
+        214
+      ]
+    },
+    {
+      "key": "2022-2-65",
+      "topic": 14,
+      "pdfPage": 490,
+      "answer": 2,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-65",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 490,
+          "side": 0,
+          "question": [
+            96,
+            1642,
+            780,
+            2028
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 490,
+          "side": 1,
+          "question": [
+            812,
+            136,
+            1509,
+            133
+          ],
+          "explanation": [
+            812,
+            146,
+            1509,
+            450
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        684,
+        386
+      ],
+      "explanationSize": [
+        697,
+        304
+      ]
+    },
+    {
+      "key": "2022-2-69",
+      "topic": 15,
+      "pdfPage": 491,
+      "answer": 3,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-69",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:69"
+      ],
+      "parts": [
+        {
+          "page": 491,
+          "side": 0,
+          "question": [
+            122,
+            132,
+            780,
+            356
+          ],
+          "explanation": [
+            122,
+            369,
+            780,
+            760
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        224
+      ],
+      "explanationSize": [
+        658,
+        391
+      ]
+    },
+    {
+      "key": "2022-2-70",
+      "topic": 16,
+      "pdfPage": 491,
+      "answer": 1,
+      "answerTablePdfPage": 493,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20140525:77"
+      ],
+      "parts": [
+        {
+          "page": 491,
+          "side": 0,
+          "question": [
+            119,
+            775,
+            780,
+            995
+          ],
+          "explanation": [
+            119,
+            1008,
+            780,
+            1291
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        220
+      ],
+      "explanationSize": [
+        661,
+        283
+      ]
+    },
+    {
+      "key": "2022-2-72",
+      "topic": 1,
+      "pdfPage": 491,
+      "answer": 2,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-72",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:72"
+      ],
+      "parts": [
+        {
+          "page": 491,
+          "side": 1,
+          "question": [
+            745,
+            125,
+            1509,
+            448
+          ],
+          "explanation": [
+            745,
+            461,
+            1509,
+            806
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        764,
+        323
+      ],
+      "explanationSize": [
+        764,
+        345
+      ]
+    },
+    {
+      "key": "2022-2-74",
+      "topic": 15,
+      "pdfPage": 492,
+      "answer": 3,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-74",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-2:74"
+      ],
+      "parts": [
+        {
+          "page": 492,
+          "side": 0,
+          "question": [
+            84,
+            123,
+            780,
+            583
+          ],
+          "explanation": [
+            84,
+            596,
+            780,
+            867
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        696,
+        460
+      ],
+      "explanationSize": [
+        696,
+        271
+      ]
+    },
+    {
+      "key": "2022-2-75",
+      "topic": 3,
+      "pdfPage": 492,
+      "answer": 3,
+      "answerTablePdfPage": 493,
+      "representative": "2022-2-75",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020310:74"
+      ],
+      "parts": [
+        {
+          "page": 492,
+          "side": 0,
+          "question": [
+            90,
+            1034,
+            780,
+            1524
+          ],
+          "explanation": [
+            90,
+            1537,
+            780,
+            2012
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        690,
+        490
+      ],
+      "explanationSize": [
+        690,
+        475
+      ]
+    },
+    {
+      "key": "2022-4-9",
+      "topic": 4,
+      "pdfPage": 495,
+      "answer": 4,
+      "answerTablePdfPage": 509,
+      "representative": "2025-2-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-4:9"
+      ],
+      "parts": [
+        {
+          "page": 495,
+          "side": 1,
+          "question": [
+            770,
+            660,
+            1509,
+            841
+          ],
+          "explanation": [
+            770,
+            854,
+            1509,
+            1061
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        739,
+        181
+      ],
+      "explanationSize": [
+        739,
+        207
+      ]
+    },
+    {
+      "key": "2022-4-12",
+      "topic": 8,
+      "pdfPage": 496,
+      "answer": 4,
+      "answerTablePdfPage": 509,
+      "representative": "2025-2-28",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:45"
+      ],
+      "parts": [
+        {
+          "page": 496,
+          "side": 0,
+          "question": [
+            80,
+            430,
+            780,
+            743
+          ],
+          "explanation": [
+            80,
+            756,
+            780,
+            1067
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        700,
+        313
+      ],
+      "explanationSize": [
+        700,
+        311
+      ]
+    },
+    {
+      "key": "2022-4-17",
+      "topic": 14,
+      "pdfPage": 496,
+      "answer": 2,
+      "answerTablePdfPage": 509,
+      "representative": "2024-1-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170305:73"
+      ],
+      "parts": [
+        {
+          "page": 496,
+          "side": 1,
+          "question": [
+            777,
+            1715,
+            1509,
+            2018
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 497,
+          "side": 0,
+          "question": [
+            164,
+            141,
+            780,
+            136
+          ],
+          "explanation": [
+            164,
+            149,
+            780,
+            542
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        303
+      ],
+      "explanationSize": [
+        616,
+        393
+      ]
+    },
+    {
+      "key": "2022-4-29",
+      "topic": 14,
+      "pdfPage": 499,
+      "answer": 1,
+      "answerTablePdfPage": 509,
+      "representative": "2022-4-29",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190303:62"
+      ],
+      "parts": [
+        {
+          "page": 499,
+          "side": 0,
+          "question": [
+            115,
+            999,
+            780,
+            1268
+          ],
+          "explanation": [
+            115,
+            1281,
+            780,
+            1639
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        665,
+        269
+      ],
+      "explanationSize": [
+        665,
+        358
+      ]
+    },
+    {
+      "key": "2022-4-39",
+      "topic": 10,
+      "pdfPage": 501,
+      "answer": 4,
+      "answerTablePdfPage": 509,
+      "representative": "2022-4-39",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-4:39"
+      ],
+      "parts": [
+        {
+          "page": 501,
+          "side": 0,
+          "question": [
+            112,
+            1418,
+            780,
+            1730
+          ],
+          "explanation": [
+            112,
+            1743,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 501,
+          "side": 1,
+          "explanation": [
+            800,
+            111,
+            1509,
+            837
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        312
+      ],
+      "explanationSize": [
+        709,
+        1030
+      ]
+    },
+    {
+      "key": "2022-4-40",
+      "topic": 16,
+      "pdfPage": 501,
+      "answer": 1,
+      "answerTablePdfPage": 509,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20140525:77"
+      ],
+      "parts": [
+        {
+          "page": 501,
+          "side": 1,
+          "question": [
+            761,
+            852,
+            1509,
+            1074
+          ],
+          "explanation": [
+            761,
+            1087,
+            1509,
+            1469
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        222
+      ],
+      "explanationSize": [
+        748,
+        382
+      ]
+    },
+    {
+      "key": "2022-4-45",
+      "topic": 13,
+      "pdfPage": 502,
+      "answer": 3,
+      "answerTablePdfPage": 509,
+      "representative": "2022-4-45",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 502,
+          "side": 1,
+          "question": [
+            764,
+            1293,
+            1509,
+            1655
+          ],
+          "explanation": [
+            764,
+            1668,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        362
+      ],
+      "explanationSize": [
+        745,
+        363
+      ]
+    },
+    {
+      "key": "2022-4-48",
+      "topic": 17,
+      "pdfPage": 503,
+      "answer": 1,
+      "answerTablePdfPage": 509,
+      "representative": "2022-4-48",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20150531:65"
+      ],
+      "parts": [
+        {
+          "page": 503,
+          "side": 0,
+          "question": [
+            125,
+            1229,
+            780,
+            1405
+          ],
+          "explanation": [
+            125,
+            1418,
+            780,
+            1739
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        655,
+        176
+      ],
+      "explanationSize": [
+        655,
+        321
+      ]
+    },
+    {
+      "key": "2022-4-49",
+      "topic": 19,
+      "pdfPage": 503,
+      "answer": 3,
+      "answerTablePdfPage": 509,
+      "representative": "2023-4-57",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:74"
+      ],
+      "parts": [
+        {
+          "page": 503,
+          "side": 0,
+          "question": [
+            125,
+            1755,
+            780,
+            2015
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 503,
+          "side": 1,
+          "question": [
+            800,
+            95,
+            1509,
+            300
+          ],
+          "explanation": [
+            800,
+            313,
+            1509,
+            693
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        709,
+        481
+      ],
+      "explanationSize": [
+        709,
+        380
+      ]
+    },
+    {
+      "key": "2022-4-56",
+      "topic": 7,
+      "pdfPage": 504,
+      "answer": 4,
+      "answerTablePdfPage": 509,
+      "representative": "2025-1-56",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170923:23"
+      ],
+      "parts": [
+        {
+          "page": 504,
+          "side": 1,
+          "question": [
+            771,
+            1325,
+            1509,
+            1596
+          ],
+          "explanation": [
+            771,
+            1609,
+            1509,
+            2018
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        738,
+        271
+      ],
+      "explanationSize": [
+        738,
+        409
+      ]
+    },
+    {
+      "key": "2022-4-58",
+      "topic": 17,
+      "pdfPage": 505,
+      "answer": 1,
+      "answerTablePdfPage": 509,
+      "representative": "2024-2-58",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170305:70"
+      ],
+      "parts": [
+        {
+          "page": 505,
+          "side": 0,
+          "question": [
+            119,
+            602,
+            780,
+            821
+          ],
+          "explanation": [
+            119,
+            834,
+            780,
+            948
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        661,
+        219
+      ],
+      "explanationSize": [
+        661,
+        114
+      ]
+    },
+    {
+      "key": "2022-4-74",
+      "topic": 15,
+      "pdfPage": 507,
+      "answer": 3,
+      "answerTablePdfPage": 509,
+      "representative": "2022-4-74",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-4:74"
+      ],
+      "parts": [
+        {
+          "page": 507,
+          "side": 1,
+          "question": [
+            764,
+            1474,
+            1509,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 508,
+          "side": 0,
+          "question": [
+            119,
+            137,
+            780,
+            133
+          ],
+          "explanation": [
+            119,
+            146,
+            780,
+            503
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        557
+      ],
+      "explanationSize": [
+        661,
+        357
+      ]
+    },
+    {
+      "key": "2023-1-2",
+      "topic": 4,
+      "pdfPage": 510,
+      "answer": 1,
+      "answerTablePdfPage": 525,
+      "representative": "2025-3-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200822:4"
+      ],
+      "parts": [
+        {
+          "page": 510,
+          "side": 0,
+          "question": [
+            84,
+            1210,
+            780,
+            1568
+          ],
+          "explanation": [
+            84,
+            1581,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        696,
+        358
+      ],
+      "explanationSize": [
+        696,
+        450
+      ]
+    },
+    {
+      "key": "2023-1-26",
+      "topic": 1,
+      "pdfPage": 515,
+      "answer": 3,
+      "answerTablePdfPage": 525,
+      "representative": "2025-3-33",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:9"
+      ],
+      "parts": [
+        {
+          "page": 515,
+          "side": 0,
+          "question": [
+            112,
+            762,
+            780,
+            1031
+          ],
+          "explanation": [
+            112,
+            1044,
+            780,
+            1475
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        269
+      ],
+      "explanationSize": [
+        668,
+        431
+      ]
+    },
+    {
+      "key": "2023-1-29",
+      "topic": 13,
+      "pdfPage": 515,
+      "answer": 4,
+      "answerTablePdfPage": 525,
+      "representative": "2023-1-29",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 515,
+          "side": 1,
+          "question": [
+            764,
+            685,
+            1509,
+            905
+          ],
+          "explanation": [
+            764,
+            918,
+            1509,
+            1318
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        220
+      ],
+      "explanationSize": [
+        745,
+        400
+      ]
+    },
+    {
+      "key": "2023-1-45",
+      "topic": 3,
+      "pdfPage": 518,
+      "answer": 2,
+      "answerTablePdfPage": 525,
+      "representative": "2023-1-45",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170923:73"
+      ],
+      "parts": [
+        {
+          "page": 518,
+          "side": 1,
+          "question": [
+            755,
+            375,
+            1509,
+            592
+          ],
+          "explanation": [
+            755,
+            605,
+            1509,
+            929
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        754,
+        217
+      ],
+      "explanationSize": [
+        754,
+        324
+      ]
+    },
+    {
+      "key": "2023-1-58",
+      "topic": 12,
+      "pdfPage": 521,
+      "answer": 2,
+      "answerTablePdfPage": 525,
+      "representative": "2025-3-43",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:34"
+      ],
+      "parts": [
+        {
+          "page": 521,
+          "side": 0,
+          "question": [
+            122,
+            462,
+            780,
+            730
+          ],
+          "explanation": [
+            122,
+            743,
+            780,
+            1019
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        268
+      ],
+      "explanationSize": [
+        658,
+        276
+      ]
+    },
+    {
+      "key": "2023-2-22",
+      "topic": 14,
+      "pdfPage": 530,
+      "answer": 3,
+      "answerTablePdfPage": 541,
+      "representative": "2025-2-36",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:65"
+      ],
+      "parts": [
+        {
+          "page": 530,
+          "side": 1,
+          "question": [
+            764,
+            458,
+            1509,
+            907
+          ],
+          "explanation": [
+            764,
+            920,
+            1509,
+            1406
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        449
+      ],
+      "explanationSize": [
+        745,
+        486
+      ]
+    },
+    {
+      "key": "2023-2-25",
+      "topic": 13,
+      "pdfPage": 531,
+      "answer": 1,
+      "answerTablePdfPage": 541,
+      "representative": "2023-2-25",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 531,
+          "side": 0,
+          "question": [
+            106,
+            935,
+            780,
+            1286
+          ],
+          "explanation": [
+            106,
+            1299,
+            780,
+            1505
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        674,
+        351
+      ],
+      "explanationSize": [
+        674,
+        206
+      ]
+    },
+    {
+      "key": "2023-2-35",
+      "topic": 13,
+      "pdfPage": 533,
+      "answer": 2,
+      "answerTablePdfPage": 541,
+      "representative": "2023-2-35",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 533,
+          "side": 0,
+          "question": [
+            109,
+            158,
+            780,
+            334
+          ],
+          "explanation": [
+            109,
+            347,
+            780,
+            872
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        176
+      ],
+      "explanationSize": [
+        671,
+        525
+      ]
+    },
+    {
+      "key": "2023-2-47",
+      "topic": 13,
+      "pdfPage": 535,
+      "answer": 2,
+      "answerTablePdfPage": 541,
+      "representative": "2025-3-4",
+      "calculation": true,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 535,
+          "side": 0,
+          "question": [
+            122,
+            155,
+            780,
+            369
+          ],
+          "explanation": [
+            122,
+            382,
+            780,
+            583
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        214
+      ],
+      "explanationSize": [
+        658,
+        201
+      ]
+    },
+    {
+      "key": "2023-2-52",
+      "topic": 12,
+      "pdfPage": 535,
+      "answer": 2,
+      "answerTablePdfPage": 541,
+      "representative": "2025-3-43",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:34"
+      ],
+      "parts": [
+        {
+          "page": 535,
+          "side": 1,
+          "question": [
+            761,
+            1706,
+            1509,
+            2008
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 536,
+          "side": 0,
+          "question": [
+            125,
+            140,
+            780,
+            137
+          ],
+          "explanation": [
+            125,
+            150,
+            780,
+            420
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        302
+      ],
+      "explanationSize": [
+        655,
+        270
+      ]
+    },
+    {
+      "key": "2023-2-63",
+      "topic": 19,
+      "pdfPage": 537,
+      "answer": 4,
+      "answerTablePdfPage": 541,
+      "representative": "2023-2-63",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20150919:71"
+      ],
+      "parts": [
+        {
+          "page": 537,
+          "side": 1,
+          "question": [
+            761,
+            1532,
+            1509,
+            2011
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 538,
+          "side": 0,
+          "question": [
+            129,
+            127,
+            780,
+            127
+          ],
+          "explanation": [
+            129,
+            140,
+            780,
+            463
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        479
+      ],
+      "explanationSize": [
+        651,
+        323
+      ]
+    },
+    {
+      "key": "2023-4-3",
+      "topic": 2,
+      "pdfPage": 542,
+      "answer": 4,
+      "answerTablePdfPage": 558,
+      "representative": "2025-2-6",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 542,
+          "side": 1,
+          "question": [
+            755,
+            1226,
+            1509,
+            1525
+          ],
+          "explanation": [
+            755,
+            1538,
+            1509,
+            1716
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        754,
+        299
+      ],
+      "explanationSize": [
+        754,
+        178
+      ]
+    },
+    {
+      "key": "2023-4-10",
+      "topic": 8,
+      "pdfPage": 544,
+      "answer": 4,
+      "answerTablePdfPage": 558,
+      "representative": "2025-2-28",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:45"
+      ],
+      "parts": [
+        {
+          "page": 544,
+          "side": 0,
+          "question": [
+            55,
+            120,
+            780,
+            431
+          ],
+          "explanation": [
+            55,
+            444,
+            780,
+            752
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        725,
+        311
+      ],
+      "explanationSize": [
+        725,
+        308
+      ]
+    },
+    {
+      "key": "2023-4-17",
+      "topic": 4,
+      "pdfPage": 545,
+      "answer": 1,
+      "answerTablePdfPage": 558,
+      "representative": "2024-1-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20160306:1"
+      ],
+      "parts": [
+        {
+          "page": 545,
+          "side": 1,
+          "question": [
+            764,
+            919,
+            1509,
+            1182
+          ],
+          "explanation": [
+            764,
+            1195,
+            1509,
+            1457
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        263
+      ],
+      "explanationSize": [
+        745,
+        262
+      ]
+    },
+    {
+      "key": "2023-4-28",
+      "topic": 13,
+      "pdfPage": 547,
+      "answer": 1,
+      "answerTablePdfPage": 558,
+      "representative": "2024-2-36",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 547,
+          "side": 1,
+          "question": [
+            764,
+            1674,
+            1509,
+            2017
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 548,
+          "side": 0,
+          "question": [
+            103,
+            143,
+            780,
+            140
+          ],
+          "explanation": [
+            103,
+            153,
+            780,
+            550
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        343
+      ],
+      "explanationSize": [
+        677,
+        397
+      ]
+    },
+    {
+      "key": "2023-4-29",
+      "topic": 1,
+      "pdfPage": 548,
+      "answer": 4,
+      "answerTablePdfPage": 558,
+      "representative": "2024-2-34",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2023-4:29"
+      ],
+      "parts": [
+        {
+          "page": 548,
+          "side": 0,
+          "question": [
+            61,
+            566,
+            780,
+            754
+          ],
+          "explanation": [
+            61,
+            767,
+            780,
+            1406
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        719,
+        188
+      ],
+      "explanationSize": [
+        719,
+        639
+      ]
+    },
+    {
+      "key": "2023-4-40",
+      "topic": 16,
+      "pdfPage": 550,
+      "answer": 1,
+      "answerTablePdfPage": 558,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20140525:77"
+      ],
+      "parts": [
+        {
+          "page": 550,
+          "side": 0,
+          "question": [
+            51,
+            1087,
+            780,
+            1313
+          ],
+          "explanation": [
+            51,
+            1326,
+            780,
+            1740
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        226
+      ],
+      "explanationSize": [
+        729,
+        414
+      ]
+    },
+    {
+      "key": "2023-4-49",
+      "topic": 7,
+      "pdfPage": 551,
+      "answer": 4,
+      "answerTablePdfPage": 558,
+      "representative": "2023-4-49",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2023-4:49"
+      ],
+      "parts": [
+        {
+          "page": 551,
+          "side": 1,
+          "question": [
+            767,
+            1386,
+            1509,
+            1597
+          ],
+          "explanation": [
+            767,
+            1610,
+            1509,
+            2006
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        742,
+        211
+      ],
+      "explanationSize": [
+        742,
+        396
+      ]
+    },
+    {
+      "key": "2023-4-50",
+      "topic": 17,
+      "pdfPage": 552,
+      "answer": 4,
+      "answerTablePdfPage": 558,
+      "representative": "2023-4-50",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2023-4:50"
+      ],
+      "parts": [
+        {
+          "page": 552,
+          "side": 0,
+          "question": [
+            95,
+            113,
+            739,
+            422
+          ],
+          "explanation": [
+            95,
+            435,
+            739,
+            1504
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        644,
+        309
+      ],
+      "explanationSize": [
+        644,
+        1069
+      ]
+    },
+    {
+      "key": "2023-4-57",
+      "topic": 19,
+      "pdfPage": 553,
+      "answer": 3,
+      "answerTablePdfPage": 558,
+      "representative": "2023-4-57",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:74"
+      ],
+      "parts": [
+        {
+          "page": 553,
+          "side": 1,
+          "question": [
+            764,
+            900,
+            1509,
+            1246
+          ],
+          "explanation": [
+            764,
+            1259,
+            1509,
+            1647
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        346
+      ],
+      "explanationSize": [
+        745,
+        388
+      ]
+    },
+    {
+      "key": "2024-1-14",
+      "topic": 2,
+      "pdfPage": 561,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-14",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2024-1:14"
+      ],
+      "parts": [
+        {
+          "page": 561,
+          "side": 1,
+          "question": [
+            764,
+            1117,
+            1509,
+            1331
+          ],
+          "explanation": [
+            764,
+            1344,
+            1509,
+            1635
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        214
+      ],
+      "explanationSize": [
+        745,
+        291
+      ]
+    },
+    {
+      "key": "2024-1-15",
+      "topic": 4,
+      "pdfPage": 561,
+      "answer": 1,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 561,
+          "side": 1,
+          "question": [
+            764,
+            1650,
+            1509,
+            1996
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 562,
+          "side": 0,
+          "question": [
+            125,
+            133,
+            780,
+            129
+          ],
+          "explanation": [
+            125,
+            142,
+            780,
+            424
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        346
+      ],
+      "explanationSize": [
+        655,
+        282
+      ]
+    },
+    {
+      "key": "2024-1-25",
+      "topic": 14,
+      "pdfPage": 563,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170305:73"
+      ],
+      "parts": [
+        {
+          "page": 563,
+          "side": 0,
+          "question": [
+            112,
+            1715,
+            780,
+            2004
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 563,
+          "side": 1,
+          "question": [
+            803,
+            178,
+            1509,
+            179
+          ],
+          "explanation": [
+            803,
+            192,
+            1509,
+            547
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        289
+      ],
+      "explanationSize": [
+        706,
+        355
+      ]
+    },
+    {
+      "key": "2024-1-26",
+      "topic": 11,
+      "pdfPage": 563,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2025-1-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20160508:49"
+      ],
+      "parts": [
+        {
+          "page": 563,
+          "side": 1,
+          "question": [
+            758,
+            562,
+            1509,
+            775
+          ],
+          "explanation": [
+            758,
+            788,
+            1509,
+            1128
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        751,
+        213
+      ],
+      "explanationSize": [
+        751,
+        340
+      ]
+    },
+    {
+      "key": "2024-1-27",
+      "topic": 14,
+      "pdfPage": 563,
+      "answer": 4,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-27",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20140302:51"
+      ],
+      "parts": [
+        {
+          "page": 563,
+          "side": 1,
+          "question": [
+            761,
+            1143,
+            1509,
+            1318
+          ],
+          "explanation": [
+            761,
+            1331,
+            1509,
+            1702
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        175
+      ],
+      "explanationSize": [
+        748,
+        371
+      ]
+    },
+    {
+      "key": "2024-1-50",
+      "topic": 10,
+      "pdfPage": 568,
+      "answer": 3,
+      "answerTablePdfPage": 573,
+      "representative": "2025-3-32",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:52",
+        "school-energy-energy-industrial-20140302:50"
+      ],
+      "parts": [
+        {
+          "page": 568,
+          "side": 0,
+          "question": [
+            89,
+            117,
+            780,
+            472
+          ],
+          "explanation": [
+            89,
+            485,
+            780,
+            770
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        691,
+        355
+      ],
+      "explanationSize": [
+        691,
+        285
+      ]
+    },
+    {
+      "key": "2024-1-54",
+      "topic": 19,
+      "pdfPage": 568,
+      "answer": 3,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-54",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 568,
+          "side": 1,
+          "question": [
+            739,
+            761,
+            1509,
+            1074
+          ],
+          "explanation": [
+            739,
+            1087,
+            1509,
+            1466
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        313
+      ],
+      "explanationSize": [
+        770,
+        379
+      ]
+    },
+    {
+      "key": "2024-1-57",
+      "topic": 13,
+      "pdfPage": 569,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-57",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2024-1:57"
+      ],
+      "parts": [
+        {
+          "page": 569,
+          "side": 0,
+          "question": [
+            122,
+            713,
+            780,
+            1014
+          ],
+          "explanation": [
+            122,
+            1027,
+            780,
+            1448
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        301
+      ],
+      "explanationSize": [
+        658,
+        421
+      ]
+    },
+    {
+      "key": "2024-1-59",
+      "topic": 6,
+      "pdfPage": 569,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-59",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2024-1:59"
+      ],
+      "parts": [
+        {
+          "page": 569,
+          "side": 1,
+          "question": [
+            777,
+            165,
+            1509,
+            528
+          ],
+          "explanation": [
+            777,
+            541,
+            1509,
+            859
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        732,
+        363
+      ],
+      "explanationSize": [
+        732,
+        318
+      ]
+    },
+    {
+      "key": "2024-1-62",
+      "topic": 16,
+      "pdfPage": 570,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20190427:64"
+      ],
+      "parts": [
+        {
+          "page": 570,
+          "side": 0,
+          "question": [
+            90,
+            337,
+            739,
+            649
+          ],
+          "explanation": [
+            90,
+            662,
+            739,
+            958
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        649,
+        312
+      ],
+      "explanationSize": [
+        649,
+        296
+      ]
+    },
+    {
+      "key": "2024-1-63",
+      "topic": 20,
+      "pdfPage": 570,
+      "answer": 2,
+      "answerTablePdfPage": 573,
+      "representative": "2024-1-63",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:70"
+      ],
+      "parts": [
+        {
+          "page": 570,
+          "side": 0,
+          "question": [
+            93,
+            973,
+            780,
+            1192
+          ],
+          "explanation": [
+            93,
+            1205,
+            780,
+            1467
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        687,
+        219
+      ],
+      "explanationSize": [
+        687,
+        262
+      ]
+    },
+    {
+      "key": "2024-2-8",
+      "topic": 4,
+      "pdfPage": 575,
+      "answer": 1,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-8",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20130310:5"
+      ],
+      "parts": [
+        {
+          "page": 575,
+          "side": 0,
+          "question": [
+            115,
+            1169,
+            780,
+            1506
+          ],
+          "explanation": [
+            115,
+            1519,
+            780,
+            1967
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        665,
+        337
+      ],
+      "explanationSize": [
+        665,
+        448
+      ]
+    },
+    {
+      "key": "2024-2-25",
+      "topic": 14,
+      "pdfPage": 578,
+      "answer": 1,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170507:64"
+      ],
+      "parts": [
+        {
+          "page": 578,
+          "side": 1,
+          "question": [
+            739,
+            134,
+            1509,
+            447
+          ],
+          "explanation": [
+            739,
+            460,
+            1509,
+            642
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        313
+      ],
+      "explanationSize": [
+        770,
+        182
+      ]
+    },
+    {
+      "key": "2024-2-30",
+      "topic": 10,
+      "pdfPage": 579,
+      "answer": 4,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-30",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20150308:43"
+      ],
+      "parts": [
+        {
+          "page": 579,
+          "side": 0,
+          "question": [
+            109,
+            1568,
+            780,
+            1811
+          ],
+          "explanation": [
+            109,
+            1824,
+            780,
+            1986
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 579,
+          "side": 1,
+          "explanation": [
+            809,
+            145,
+            1509,
+            318
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        243
+      ],
+      "explanationSize": [
+        700,
+        351
+      ]
+    },
+    {
+      "key": "2024-2-34",
+      "topic": 1,
+      "pdfPage": 580,
+      "answer": 4,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-34",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2024-2:34"
+      ],
+      "parts": [
+        {
+          "page": 580,
+          "side": 0,
+          "question": [
+            96,
+            128,
+            739,
+            350
+          ],
+          "explanation": [
+            96,
+            363,
+            739,
+            817
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        643,
+        222
+      ],
+      "explanationSize": [
+        643,
+        454
+      ]
+    },
+    {
+      "key": "2024-2-36",
+      "topic": 13,
+      "pdfPage": 580,
+      "answer": 1,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-36",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 580,
+          "side": 0,
+          "question": [
+            100,
+            1472,
+            780,
+            1790
+          ],
+          "explanation": [
+            100,
+            1803,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        680,
+        318
+      ],
+      "explanationSize": [
+        680,
+        228
+      ]
+    },
+    {
+      "key": "2024-2-50",
+      "topic": 6,
+      "pdfPage": 582,
+      "answer": 4,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-50",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 582,
+          "side": 1,
+          "question": [
+            739,
+            1015,
+            1509,
+            1460
+          ],
+          "explanation": [
+            739,
+            1473,
+            1509,
+            1674
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        445
+      ],
+      "explanationSize": [
+        770,
+        201
+      ]
+    },
+    {
+      "key": "2024-2-57",
+      "topic": 12,
+      "pdfPage": 583,
+      "answer": 1,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-57",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2024-2:57"
+      ],
+      "parts": [
+        {
+          "page": 583,
+          "side": 1,
+          "question": [
+            761,
+            1482,
+            1509,
+            1691
+          ],
+          "explanation": [
+            761,
+            1704,
+            1509,
+            1993
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        209
+      ],
+      "explanationSize": [
+        748,
+        289
+      ]
+    },
+    {
+      "key": "2024-2-58",
+      "topic": 17,
+      "pdfPage": 584,
+      "answer": 1,
+      "answerTablePdfPage": 588,
+      "representative": "2024-2-58",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-pdf-2024-2:58"
+      ],
+      "parts": [
+        {
+          "page": 584,
+          "side": 0,
+          "question": [
+            99,
+            125,
+            780,
+            350
+          ],
+          "explanation": [
+            99,
+            363,
+            780,
+            504
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        681,
+        225
+      ],
+      "explanationSize": [
+        681,
+        141
+      ]
+    },
+    {
+      "key": "2025-1-23",
+      "topic": 14,
+      "pdfPage": 593,
+      "answer": 4,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-23",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20161001:51"
+      ],
+      "parts": [
+        {
+          "page": 593,
+          "side": 0,
+          "question": [
+            106,
+            1607,
+            780,
+            1999
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 593,
+          "side": 1,
+          "question": [
+            780,
+            130,
+            1509,
+            169
+          ],
+          "explanation": [
+            780,
+            182,
+            1509,
+            520
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        729,
+        447
+      ],
+      "explanationSize": [
+        729,
+        338
+      ]
+    },
+    {
+      "key": "2025-1-25",
+      "topic": 11,
+      "pdfPage": 593,
+      "answer": 2,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-25",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20160508:49"
+      ],
+      "parts": [
+        {
+          "page": 593,
+          "side": 1,
+          "question": [
+            761,
+            951,
+            1509,
+            1162
+          ],
+          "explanation": [
+            761,
+            1175,
+            1509,
+            1511
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        211
+      ],
+      "explanationSize": [
+        748,
+        336
+      ]
+    },
+    {
+      "key": "2025-1-32",
+      "topic": 14,
+      "pdfPage": 594,
+      "answer": 1,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-32",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20150919:49"
+      ],
+      "parts": [
+        {
+          "page": 594,
+          "side": 1,
+          "question": [
+            739,
+            1063,
+            1509,
+            1241
+          ],
+          "explanation": [
+            739,
+            1254,
+            1509,
+            1598
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        178
+      ],
+      "explanationSize": [
+        770,
+        344
+      ]
+    },
+    {
+      "key": "2025-1-56",
+      "topic": 7,
+      "pdfPage": 599,
+      "answer": 4,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-56",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170923:23"
+      ],
+      "parts": [
+        {
+          "page": 599,
+          "side": 0,
+          "question": [
+            128,
+            174,
+            780,
+            431
+          ],
+          "explanation": [
+            128,
+            444,
+            780,
+            845
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        652,
+        257
+      ],
+      "explanationSize": [
+        652,
+        401
+      ]
+    },
+    {
+      "key": "2025-1-66",
+      "topic": 16,
+      "pdfPage": 600,
+      "answer": 1,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-66",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 600,
+          "side": 1,
+          "question": [
+            739,
+            938,
+            1509,
+            1250
+          ],
+          "explanation": [
+            739,
+            1263,
+            1509,
+            1540
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        312
+      ],
+      "explanationSize": [
+        770,
+        277
+      ]
+    },
+    {
+      "key": "2025-1-77",
+      "topic": 18,
+      "pdfPage": 602,
+      "answer": 1,
+      "answerTablePdfPage": 603,
+      "representative": "2025-1-77",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 602,
+          "side": 0,
+          "question": [
+            103,
+            1383,
+            780,
+            1775
+          ],
+          "explanation": [
+            103,
+            1788,
+            780,
+            2023
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        677,
+        392
+      ],
+      "explanationSize": [
+        677,
+        235
+      ]
+    },
+    {
+      "key": "2025-2-6",
+      "topic": 2,
+      "pdfPage": 605,
+      "answer": 4,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-6",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 605,
+          "side": 0,
+          "question": [
+            112,
+            938,
+            780,
+            1225
+          ],
+          "explanation": [
+            112,
+            1238,
+            780,
+            1419
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        287
+      ],
+      "explanationSize": [
+        668,
+        181
+      ]
+    },
+    {
+      "key": "2025-2-15",
+      "topic": 4,
+      "pdfPage": 607,
+      "answer": 4,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2022-4:9"
+      ],
+      "parts": [
+        {
+          "page": 607,
+          "side": 0,
+          "question": [
+            109,
+            167,
+            780,
+            339
+          ],
+          "explanation": [
+            109,
+            352,
+            780,
+            589
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        172
+      ],
+      "explanationSize": [
+        671,
+        237
+      ]
+    },
+    {
+      "key": "2025-2-20",
+      "topic": 6,
+      "pdfPage": 607,
+      "answer": 3,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-20",
+      "calculation": true,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 607,
+          "side": 1,
+          "question": [
+            761,
+            1204,
+            1509,
+            1530
+          ],
+          "explanation": [
+            761,
+            1543,
+            1509,
+            2006
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 608,
+          "side": 0,
+          "explanation": [
+            244,
+            98,
+            780,
+            220
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        326
+      ],
+      "explanationSize": [
+        748,
+        601
+      ]
+    },
+    {
+      "key": "2025-2-28",
+      "topic": 8,
+      "pdfPage": 609,
+      "answer": 3,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-28",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20140302:59"
+      ],
+      "parts": [
+        {
+          "page": 609,
+          "side": 0,
+          "question": [
+            112,
+            554,
+            780,
+            811
+          ],
+          "explanation": [
+            112,
+            824,
+            780,
+            1083
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        668,
+        257
+      ],
+      "explanationSize": [
+        668,
+        259
+      ]
+    },
+    {
+      "key": "2025-2-36",
+      "topic": 14,
+      "pdfPage": 610,
+      "answer": 3,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-36",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 610,
+          "side": 1,
+          "question": [
+            739,
+            136,
+            1509,
+            593
+          ],
+          "explanation": [
+            739,
+            606,
+            1509,
+            1083
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        457
+      ],
+      "explanationSize": [
+        770,
+        477
+      ]
+    },
+    {
+      "key": "2025-2-45",
+      "topic": 6,
+      "pdfPage": 612,
+      "answer": 2,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-45",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 612,
+          "side": 0,
+          "question": [
+            118,
+            138,
+            780,
+            448
+          ],
+          "explanation": [
+            118,
+            461,
+            780,
+            901
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        662,
+        310
+      ],
+      "explanationSize": [
+        662,
+        440
+      ]
+    },
+    {
+      "key": "2025-2-52",
+      "topic": 19,
+      "pdfPage": 613,
+      "answer": 2,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-52",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2025-2:52"
+      ],
+      "parts": [
+        {
+          "page": 613,
+          "side": 0,
+          "question": [
+            109,
+            935,
+            780,
+            1237
+          ],
+          "explanation": [
+            109,
+            1250,
+            780,
+            1495
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        302
+      ],
+      "explanationSize": [
+        671,
+        245
+      ]
+    },
+    {
+      "key": "2025-2-74",
+      "topic": 17,
+      "pdfPage": 617,
+      "answer": 4,
+      "answerTablePdfPage": 618,
+      "representative": "2025-2-74",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200822:61"
+      ],
+      "parts": [
+        {
+          "page": 617,
+          "side": 0,
+          "question": [
+            109,
+            922,
+            780,
+            1178
+          ],
+          "explanation": [
+            109,
+            1191,
+            780,
+            1297
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        671,
+        256
+      ],
+      "explanationSize": [
+        671,
+        106
+      ]
+    },
+    {
+      "key": "2025-3-2",
+      "topic": 4,
+      "pdfPage": 619,
+      "answer": 1,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-2",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20200822:4"
+      ],
+      "parts": [
+        {
+          "page": 619,
+          "side": 0,
+          "question": [
+            122,
+            1210,
+            780,
+            1557
+          ],
+          "explanation": [
+            122,
+            1570,
+            780,
+            1999
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        347
+      ],
+      "explanationSize": [
+        658,
+        429
+      ]
+    },
+    {
+      "key": "2025-3-4",
+      "topic": 13,
+      "pdfPage": 619,
+      "answer": 2,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-4",
+      "calculation": true,
+      "related": true,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 619,
+          "side": 1,
+          "question": [
+            764,
+            1520,
+            1509,
+            1737
+          ],
+          "explanation": [
+            764,
+            1750,
+            1509,
+            2001
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        217
+      ],
+      "explanationSize": [
+        745,
+        251
+      ]
+    },
+    {
+      "key": "2025-3-13",
+      "topic": 8,
+      "pdfPage": 621,
+      "answer": 1,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-13",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170507:9"
+      ],
+      "parts": [
+        {
+          "page": 621,
+          "side": 0,
+          "question": [
+            122,
+            1785,
+            780,
+            1996
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 621,
+          "side": 1,
+          "question": [
+            802,
+            197,
+            1509,
+            196
+          ],
+          "explanation": [
+            802,
+            209,
+            1509,
+            565
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        658,
+        211
+      ],
+      "explanationSize": [
+        707,
+        356
+      ]
+    },
+    {
+      "key": "2025-3-15",
+      "topic": 1,
+      "pdfPage": 621,
+      "answer": 2,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-15",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170507:11"
+      ],
+      "parts": [
+        {
+          "page": 621,
+          "side": 1,
+          "question": [
+            764,
+            1040,
+            1509,
+            1332
+          ],
+          "explanation": [
+            764,
+            1345,
+            1509,
+            1734
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        292
+      ],
+      "explanationSize": [
+        745,
+        389
+      ]
+    },
+    {
+      "key": "2025-3-17",
+      "topic": 2,
+      "pdfPage": 622,
+      "answer": 4,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-17",
+      "calculation": true,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170507:17"
+      ],
+      "parts": [
+        {
+          "page": 622,
+          "side": 0,
+          "question": [
+            102,
+            553,
+            780,
+            859
+          ],
+          "explanation": [
+            102,
+            872,
+            780,
+            1212
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        678,
+        306
+      ],
+      "explanationSize": [
+        678,
+        340
+      ]
+    },
+    {
+      "key": "2025-3-32",
+      "topic": 10,
+      "pdfPage": 624,
+      "answer": 3,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-32",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 624,
+          "side": 1,
+          "question": [
+            739,
+            1418,
+            1509,
+            1673
+          ],
+          "explanation": [
+            739,
+            1686,
+            1509,
+            2025
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        770,
+        255
+      ],
+      "explanationSize": [
+        770,
+        339
+      ]
+    },
+    {
+      "key": "2025-3-33",
+      "topic": 1,
+      "pdfPage": 625,
+      "answer": 4,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-33",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20020908:61",
+        "school-energy-energy-industrial-20170923:17"
+      ],
+      "parts": [
+        {
+          "page": 625,
+          "side": 0,
+          "question": [
+            116,
+            177,
+            780,
+            432
+          ],
+          "explanation": [
+            116,
+            445,
+            780,
+            852
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        664,
+        255
+      ],
+      "explanationSize": [
+        664,
+        407
+      ]
+    },
+    {
+      "key": "2025-3-43",
+      "topic": 12,
+      "pdfPage": 626,
+      "answer": 2,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-43",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180915:34"
+      ],
+      "parts": [
+        {
+          "page": 626,
+          "side": 1,
+          "question": [
+            742,
+            1095,
+            1509,
+            1364
+          ],
+          "explanation": [
+            742,
+            1377,
+            1509,
+            1665
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        767,
+        269
+      ],
+      "explanationSize": [
+        767,
+        288
+      ]
+    },
+    {
+      "key": "2025-3-48",
+      "topic": 17,
+      "pdfPage": 627,
+      "answer": 1,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-48",
+      "calculation": false,
+      "related": true,
+      "legacyIds": [
+        "school-energy-energy-industrial-20180428:69"
+      ],
+      "parts": [
+        {
+          "page": 627,
+          "side": 1,
+          "question": [
+            758,
+            695,
+            1509,
+            905
+          ],
+          "explanation": [
+            758,
+            918,
+            1509,
+            1249
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        751,
+        210
+      ],
+      "explanationSize": [
+        751,
+        331
+      ]
+    },
+    {
+      "key": "2025-3-49",
+      "topic": 12,
+      "pdfPage": 627,
+      "answer": 1,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-49",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [],
+      "parts": [
+        {
+          "page": 627,
+          "side": 1,
+          "question": [
+            761,
+            1264,
+            1509,
+            1473
+          ],
+          "explanation": [
+            761,
+            1486,
+            1509,
+            1655
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        748,
+        209
+      ],
+      "explanationSize": [
+        748,
+        169
+      ]
+    },
+    {
+      "key": "2025-3-52",
+      "topic": 6,
+      "pdfPage": 628,
+      "answer": 3,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-52",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-energy-industrial-20170507:26"
+      ],
+      "parts": [
+        {
+          "page": 628,
+          "side": 0,
+          "question": [
+            128,
+            1200,
+            780,
+            1457
+          ],
+          "explanation": [
+            128,
+            1470,
+            780,
+            1729
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        652,
+        257
+      ],
+      "explanationSize": [
+        652,
+        259
+      ]
+    },
+    {
+      "key": "2025-3-53",
+      "topic": 6,
+      "pdfPage": 628,
+      "answer": 1,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-53",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2025-3:53"
+      ],
+      "parts": [
+        {
+          "page": 628,
+          "side": 0,
+          "question": [
+            135,
+            1744,
+            780,
+            2031
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        },
+        {
+          "page": 628,
+          "side": 1,
+          "question": [
+            799,
+            149,
+            1509,
+            147
+          ],
+          "explanation": [
+            799,
+            160,
+            1509,
+            420
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        645,
+        287
+      ],
+      "explanationSize": [
+        710,
+        260
+      ]
+    },
+    {
+      "key": "2025-3-60",
+      "topic": 19,
+      "pdfPage": 629,
+      "answer": 2,
+      "answerTablePdfPage": 633,
+      "representative": "2025-3-60",
+      "calculation": false,
+      "related": false,
+      "legacyIds": [
+        "school-energy-pdf-2025-3:60"
+      ],
+      "parts": [
+        {
+          "page": 629,
+          "side": 1,
+          "question": [
+            764,
+            628,
+            1509,
+            924
+          ],
+          "explanation": [
+            764,
+            937,
+            1509,
+            1272
+          ],
+          "pageSize": [
+            1556,
+            2200
+          ]
+        }
+      ],
+      "questionSize": [
+        745,
+        296
+      ],
+      "explanationSize": [
+        745,
+        335
+      ]
+    }
+  ],
+  "notes": {
+    "2025-2-45": "교재 해설 결과의 kJ/kg 표기는 단위 오기입니다. 증발계수는 같은 단위의 열량을 나눈 비율이므로 단위가 없습니다. 정답 ②는 유지합니다.",
+    "2025-2-52": "교재의 ②는 ‘2차 공기의 과대한 예열’입니다. 2025년 3회 60번의 ‘예열 부족’과 조건이 반대여서 중복 통합하지 않았습니다. 교재 정답 ②를 유지하며 조건을 구별해 읽으세요.",
+    "2025-3-60": "교재의 ②는 ‘2차 공기의 예열 부족’입니다. 2025년 2회 52번의 ‘과대한 예열’과 조건이 반대여서 별도 문항으로 유지합니다. 교재 정답 ②이며, 두 해설의 일관성은 추가 확인이 필요합니다."
+  }
+}

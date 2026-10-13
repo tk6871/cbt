@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { legacyEnergyFixture } from './energy-legacy-browser-fixture';
+test.use({serviceWorkers:'block'});
 import type {Catalog} from '../src/cbt/types';
 
 test('PDF73원문·84출처와 우선분류·중복 및 기존ID',()=>{
@@ -33,6 +35,7 @@ test('PDF73원문·84출처와 우선분류·중복 및 기존ID',()=>{
 });
 
 test.beforeEach(async({page})=>{
+  await legacyEnergyFixture(page);
   await page.addInitScript(()=>{
     localStorage.setItem('modern-cbt-qualification-industrial','energy-midterm');
     localStorage.setItem('unified-cbt-dynamic-ui','false');
@@ -85,7 +88,7 @@ test('분리 기본·통합 전환과 PDF 원문 다크/라이트·답안 복원
   await page.screenshot({path:`work/energy-midterm-priority-${info.project.name}.png`});
   await page.locator('.energy-midterm-subgroups > summary').click();
   await intro.getByRole('button',{name:'교재·CBT 반복 예상 학습',exact:true}).click();
-  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(35);
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(29);
   const card=page.locator('.question-card').first();const img=card.locator('.source-question-image');
   await expect(img).toBeVisible();
   await expect.poll(()=>img.evaluate((im:HTMLImageElement)=>im.naturalWidth)).toBeGreaterThan(1000);
