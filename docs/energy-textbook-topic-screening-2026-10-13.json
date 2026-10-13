@@ -1,0 +1,1242 @@
+{
+  "date": "2026-10-13",
+  "source": {
+    "pages": 634,
+    "sha256": "840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d"
+  },
+  "method": "교재1680슬롯의 OCR 질문부만20주제 탐색어로 1차 검색. 기존 CBT/179문항/정답으로 제한하지 않음. 후보는 포함 확정이 아님.",
+  "counts": {
+    "slots": 1680,
+    "located": 1666,
+    "missing": 14,
+    "candidateSlots": 183
+  },
+  "topics": [
+    {
+      "topic": 1,
+      "title": "집진장치",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 1,
+          "pdfPage": 325
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 2,
+          "pdfPage": 325
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 3,
+          "pdfPage": 339
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 9,
+          "pdfPage": 370
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 2,
+          "pdfPage": 463
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 72,
+          "pdfPage": 491
+        },
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 26,
+          "pdfPage": 515
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 29,
+          "pdfPage": 548
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 34,
+          "pdfPage": 580
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 15,
+          "pdfPage": 621
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 33,
+          "pdfPage": 625
+        }
+      ]
+    },
+    {
+      "topic": 2,
+      "title": "열역학 제1법칙·내부에너지",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 5,
+          "pdfPage": 326
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 7,
+          "pdfPage": 326
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 1,
+          "pdfPage": 354
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 19,
+          "pdfPage": 372
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 18,
+          "pdfPage": 403
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 1,
+          "pdfPage": 431
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 10,
+          "pdfPage": 432
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 14,
+          "pdfPage": 433
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 13,
+          "pdfPage": 465
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 3,
+          "pdfPage": 542
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 6,
+          "pdfPage": 605
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 17,
+          "pdfPage": 622
+        }
+      ]
+    },
+    {
+      "topic": 3,
+      "title": "급수처리·탈기·철·망간 제거",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 66,
+          "pdfPage": 350
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 74,
+          "pdfPage": 366
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 68,
+          "pdfPage": 380
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 65,
+          "pdfPage": 459
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 30,
+          "pdfPage": 484
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 63,
+          "pdfPage": 490
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 75,
+          "pdfPage": 492
+        },
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 45,
+          "pdfPage": 518
+        }
+      ]
+    },
+    {
+      "topic": 4,
+      "title": "고체·액체·기체 연료의 특징",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 13,
+          "pdfPage": 327
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 15,
+          "pdfPage": 341
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 16,
+          "pdfPage": 341
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 20,
+          "pdfPage": 357
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 15,
+          "pdfPage": 371
+        },
+        {
+          "year": 2019,
+          "session": 4,
+          "number": 2,
+          "pdfPage": 384
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 10,
+          "pdfPage": 402
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 4,
+          "pdfPage": 416
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 15,
+          "pdfPage": 450
+        },
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 2,
+          "pdfPage": 510
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 17,
+          "pdfPage": 545
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 15,
+          "pdfPage": 561
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 8,
+          "pdfPage": 575
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 2,
+          "pdfPage": 619
+        }
+      ]
+    },
+    {
+      "topic": 5,
+      "title": "연소실 온도 영향",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 20,
+          "pdfPage": 328
+        }
+      ]
+    },
+    {
+      "topic": 6,
+      "title": "상당증발량·관련 계산",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 8,
+          "pdfPage": 326
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 22,
+          "pdfPage": 328
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 57,
+          "pdfPage": 334
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 33,
+          "pdfPage": 344
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 33,
+          "pdfPage": 359
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 25,
+          "pdfPage": 373
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 25,
+          "pdfPage": 420
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 62,
+          "pdfPage": 458
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 24,
+          "pdfPage": 467
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 59,
+          "pdfPage": 569
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 50,
+          "pdfPage": 582
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 20,
+          "pdfPage": 607
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 45,
+          "pdfPage": 612
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 52,
+          "pdfPage": 628
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 53,
+          "pdfPage": 628
+        }
+      ]
+    },
+    {
+      "topic": 7,
+      "title": "자동제어 약호",
+      "candidates": [
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 56,
+          "pdfPage": 504
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 56,
+          "pdfPage": 599
+        }
+      ]
+    },
+    {
+      "topic": 8,
+      "title": "보염장치·윈드박스",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 45,
+          "pdfPage": 332
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 48,
+          "pdfPage": 347
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 41,
+          "pdfPage": 486
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 12,
+          "pdfPage": 496
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 10,
+          "pdfPage": 544
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 28,
+          "pdfPage": 609
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 13,
+          "pdfPage": 621
+        }
+      ]
+    },
+    {
+      "topic": 9,
+      "title": "가용전",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 48,
+          "pdfPage": 333
+        }
+      ]
+    },
+    {
+      "topic": 10,
+      "title": "신축이음",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 52,
+          "pdfPage": 333
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 42,
+          "pdfPage": 438
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 39,
+          "pdfPage": 501
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 50,
+          "pdfPage": 568
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 32,
+          "pdfPage": 624
+        }
+      ]
+    },
+    {
+      "topic": 11,
+      "title": "스케줄 번호",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 53,
+          "pdfPage": 334
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 26,
+          "pdfPage": 563
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 25,
+          "pdfPage": 593
+        }
+      ]
+    },
+    {
+      "topic": 12,
+      "title": "인터록",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 62,
+          "pdfPage": 335
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 34,
+          "pdfPage": 344
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 39,
+          "pdfPage": 360
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 21,
+          "pdfPage": 451
+        },
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 58,
+          "pdfPage": 521
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 52,
+          "pdfPage": 535
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 57,
+          "pdfPage": 583
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 43,
+          "pdfPage": 626
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 49,
+          "pdfPage": 627
+        }
+      ]
+    },
+    {
+      "topic": 13,
+      "title": "매연 취출·CO₂ 분석 관련",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 26,
+          "pdfPage": 329
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 40,
+          "pdfPage": 331
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 59,
+          "pdfPage": 335
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 64,
+          "pdfPage": 335
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 12,
+          "pdfPage": 341
+        },
+        {
+          "year": 2018,
+          "session": 4,
+          "number": 37,
+          "pdfPage": 345
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 35,
+          "pdfPage": 359
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 21,
+          "pdfPage": 372
+        },
+        {
+          "year": 2019,
+          "session": 4,
+          "number": 13,
+          "pdfPage": 386
+        },
+        {
+          "year": 2019,
+          "session": 4,
+          "number": 29,
+          "pdfPage": 389
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 29,
+          "pdfPage": 405
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 21,
+          "pdfPage": 419
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 40,
+          "pdfPage": 423
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 55,
+          "pdfPage": 425
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 59,
+          "pdfPage": 426
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 63,
+          "pdfPage": 427
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 24,
+          "pdfPage": 452
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 26,
+          "pdfPage": 452
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 60,
+          "pdfPage": 458
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 6,
+          "pdfPage": 463
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 49,
+          "pdfPage": 471
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 6,
+          "pdfPage": 480
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 29,
+          "pdfPage": 484
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 39,
+          "pdfPage": 485
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 47,
+          "pdfPage": 487
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 45,
+          "pdfPage": 502
+        },
+        {
+          "year": 2023,
+          "session": 1,
+          "number": 29,
+          "pdfPage": 515
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 25,
+          "pdfPage": 531
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 35,
+          "pdfPage": 533
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 47,
+          "pdfPage": 535
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 28,
+          "pdfPage": 547
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 57,
+          "pdfPage": 569
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 36,
+          "pdfPage": 580
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 4,
+          "pdfPage": 619
+        }
+      ]
+    },
+    {
+      "topic": 14,
+      "title": "증기트랩",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 65,
+          "pdfPage": 335
+        },
+        {
+          "year": 2019,
+          "session": 1,
+          "number": 62,
+          "pdfPage": 364
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 54,
+          "pdfPage": 378
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 49,
+          "pdfPage": 409
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 41,
+          "pdfPage": 438
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 65,
+          "pdfPage": 490
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 17,
+          "pdfPage": 496
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 29,
+          "pdfPage": 499
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 22,
+          "pdfPage": 530
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 25,
+          "pdfPage": 563
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 27,
+          "pdfPage": 563
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 25,
+          "pdfPage": 578
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 33,
+          "pdfPage": 579
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 23,
+          "pdfPage": 593
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 32,
+          "pdfPage": 594
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 36,
+          "pdfPage": 610
+        }
+      ]
+    },
+    {
+      "topic": 15,
+      "title": "수압시험",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 1,
+          "number": 77,
+          "pdfPage": 323
+        },
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 67,
+          "pdfPage": 336
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 50,
+          "pdfPage": 409
+        },
+        {
+          "year": 2020,
+          "session": "1·2통합",
+          "number": 73,
+          "pdfPage": 413
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 55,
+          "pdfPage": 441
+        },
+        {
+          "year": 2022,
+          "session": 1,
+          "number": 43,
+          "pdfPage": 470
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 69,
+          "pdfPage": 491
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 74,
+          "pdfPage": 492
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 74,
+          "pdfPage": 507
+        }
+      ]
+    },
+    {
+      "topic": 16,
+      "title": "증기난방 응축수 환수방식",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 68,
+          "pdfPage": 336
+        },
+        {
+          "year": 2019,
+          "session": 2,
+          "number": 64,
+          "pdfPage": 380
+        },
+        {
+          "year": 2019,
+          "session": 4,
+          "number": 66,
+          "pdfPage": 396
+        },
+        {
+          "year": 2019,
+          "session": 4,
+          "number": 77,
+          "pdfPage": 398
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 75,
+          "pdfPage": 445
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 72,
+          "pdfPage": 460
+        },
+        {
+          "year": 2022,
+          "session": 2,
+          "number": 70,
+          "pdfPage": 491
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 40,
+          "pdfPage": 501
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 40,
+          "pdfPage": 550
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 62,
+          "pdfPage": 570
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 66,
+          "pdfPage": 600
+        }
+      ]
+    },
+    {
+      "topic": 17,
+      "title": "급수 pH·청관제·약품",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 69,
+          "pdfPage": 336
+        },
+        {
+          "year": 2020,
+          "session": 3,
+          "number": 61,
+          "pdfPage": 427
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 78,
+          "pdfPage": 445
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 64,
+          "pdfPage": 459
+        },
+        {
+          "year": 2021,
+          "session": 2,
+          "number": 66,
+          "pdfPage": 459
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 48,
+          "pdfPage": 503
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 58,
+          "pdfPage": 505
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 50,
+          "pdfPage": 552
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 58,
+          "pdfPage": 584
+        },
+        {
+          "year": 2025,
+          "session": 1,
+          "number": 77,
+          "pdfPage": 602
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 74,
+          "pdfPage": 617
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 48,
+          "pdfPage": 627
+        }
+      ]
+    },
+    {
+      "topic": 18,
+      "title": "가성취화",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 71,
+          "pdfPage": 337
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 77,
+          "pdfPage": 445
+        }
+      ]
+    },
+    {
+      "topic": 19,
+      "title": "역화",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 74,
+          "pdfPage": 337
+        },
+        {
+          "year": 2021,
+          "session": 1,
+          "number": 51,
+          "pdfPage": 440
+        },
+        {
+          "year": 2022,
+          "session": 4,
+          "number": 49,
+          "pdfPage": 503
+        },
+        {
+          "year": 2023,
+          "session": 2,
+          "number": 63,
+          "pdfPage": 537
+        },
+        {
+          "year": 2023,
+          "session": 4,
+          "number": 57,
+          "pdfPage": 553
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 54,
+          "pdfPage": 568
+        },
+        {
+          "year": 2024,
+          "session": 2,
+          "number": 46,
+          "pdfPage": 582
+        },
+        {
+          "year": 2025,
+          "session": 2,
+          "number": 52,
+          "pdfPage": 613
+        },
+        {
+          "year": 2025,
+          "session": 3,
+          "number": 60,
+          "pdfPage": 629
+        }
+      ]
+    },
+    {
+      "topic": 20,
+      "title": "도시가스 배관 표시·고정",
+      "candidates": [
+        {
+          "year": 2018,
+          "session": 2,
+          "number": 70,
+          "pdfPage": 336
+        },
+        {
+          "year": 2024,
+          "session": 1,
+          "number": 63,
+          "pdfPage": 570
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "탐색어만으로 최종 포함/제외하거나 정확한 예상문제 수를 확정하지 않음.",
+    "같은 문제가 여러 주제 후보에 들어갈 수 있어 주제별 합계와 고유 후보 수는 다름.",
+    "숫자/수식/그림/OCR 누락·본문/보기 혼합을 원문으로 확인해야 함.",
+    "2번은 내부에너지뿐 아니라 터빈 등 관련 유형도 검색되어 실제 메모 범위와 추가 구분해야 함.",
+    "13번 CO₂/매연 메모는 의도가 불명확하여 가스분석 후보까지 넓게 검색했으며 확정 출제 범위가 아님.",
+    "중복 제거·보기/정답 검증·PPT 대조 후 최종 선별은 미완료. 기존 앱 구성 변경 없음."
+  ]
+}
