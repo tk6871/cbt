@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.1',scope:'industrial',date:'2026.10.13',
+      title:'에너지 문제 출처 구분·교재 이미지 답안 선택',
+      summary:'기존 CBT 문제 목록과 교재 원문을 따로 선택하고, 교재 이미지의 보기에서도 답을 직접 고릅니다.',
+      tags:['출처 구분','이미지 답안 선택'],
+      changes:[
+        'CBT + 에너지 교재 선택은 이전 CBT 문제 목록154개와 기존 문제·해설 방식 그대로 사용합니다. 교재만 선택은 교재 대표140문제를 사용합니다. 기본 계산6번·11번 설정에서는 각각139개·131개입니다.',
+        '교재 원문 이미지191장의 보기 위치를 연결했습니다. 설정의 이미지 직접 선택을 켜면①②③④와 보기 내용을 눌러 답을 선택·취소할 수 있습니다.',
+        '여러 줄 보기와 분수는 한 영역으로 표시하며 체크 마커 기본·영역 색상 박스 선택을 유지합니다. 원문 문제·정답·해설·이미지와 저장된 이어풀기 답안은 유지됩니다.'
+      ]
+    },
+    {
       version:'5.9',scope:'industrial',date:'2026.10.13',
       title:'에너지 교재판 선택·원문 해설',
       summary:'풀기 전에 교재만 또는 CBT와 함께 선택합니다. 교재 원문 문제·보기·해설의 화질과 다크·라이트 표시를 지원합니다.',
@@ -2495,8 +2506,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9';
+  changelog.versions.industrial = '5.9.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9';
+  changelog.currentVersion = '5.9.1';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -4,9 +4,10 @@ import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
 import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
 import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with { type: 'json' };
+import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' with { type: 'json' };
 import type { AnswerHotspot } from './types';
 
-const energyImageHotspots = energyMidtermHotspots as Record<string, AnswerHotspot[]>;
+const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
 
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'energy', 'energy-midterm', 'maintenance',
@@ -74,7 +75,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   const files = key === 'energy-midterm' ? [key, 'energy-textbook'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=590`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=591`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };
