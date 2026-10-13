@@ -60,10 +60,10 @@ test('실제 교재/통합 출처·랜덤20·주제 풀이·원문 해설·다�
  await page.locator('#round-card-school-energy-topic-9').evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
  await page.locator('#round-card-school-energy-topic-9').getByRole('button',{name:'학습모드',exact:true}).click();
  const card=page.locator('.question-card').first(),img=card.locator('.source-question-image');
- await expect.poll(()=>img.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>1000)).toBe(true);
+ await expect.poll(()=>img.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>300)).toBe(true);
  await card.locator('.choice-button').nth(2).click();
  const explanation=card.locator('.textbook-explanation-image img');await expect(explanation).toBeVisible();
- await expect.poll(()=>explanation.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>1000)).toBe(true);
+ await expect.poll(()=>explanation.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>300)).toBe(true);
  await page.evaluate(()=>document.documentElement.dataset.theme='dark');
  for(const image of [img,explanation])await expect.poll(()=>image.evaluate(el=>getComputedStyle(el).filter)).toContain('invert');
  await page.evaluate(()=>document.documentElement.dataset.resizing='true');

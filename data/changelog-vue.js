@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.2',scope:'industrial',date:'2026.10.14',
+      title:'큰 화면 읽기 폭·화면 크기에 맞는 이미지 로딩',
+      summary:'FHD·4K에서도 문제 크기를 안정적으로 유지하고, 작은 화면에 맞는 이미지와 목록 모션으로 표시 부담을 줄였습니다.',
+      tags:['화면 최적화','이미지 경량화'],
+      changes:[
+        '풀이 두 열의 최대 폭을 제한해 PC 전체화면에서도 문제 이미지와 긴 문장이 지나치게 넓어지지 않습니다. 큰 글씨 모드와 OMR은 그대로 사용할 수 있습니다.',
+        '지원 교재 문제·해설과 테마 이미지는 화면 크기·픽셀 밀도에 맞는 사본을 선택합니다. 크게 보기에는 원본을 사용하며, 사본을 못 받으면 원본으로 재시도합니다.',
+        '회차 목록 등 긴 화면의 진입 모션은 현재 보이는 카드에 집중하고, 창 크기 조절 중 보기 줄바꿈 계산은 한 프레임에 한 번만 실행합니다. 학습 기록과 답안 좌표는 유지됩니다.'
+      ]
+    },
+    {
       version:'5.9.1',scope:'industrial',date:'2026.10.13',
       title:'에너지 문제 출처 구분·교재 이미지 답안 선택',
       summary:'기존 CBT 문제 목록과 교재 원문을 따로 선택하고, 교재 이미지의 보기에서도 답을 직접 고릅니다.',
@@ -2506,7 +2517,7 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.1';
+  changelog.versions.industrial = '5.9.2';
   changelog.versions.jewelry = '4.0.1';
   changelog.currentVersion = '5.9.1';
   window.CBT_CHANGELOG = changelog;
