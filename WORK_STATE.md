@@ -15,6 +15,7 @@
 - 실제 최종 검증: vue-tsc typecheck·Vite production build/PWA590·Node3도구 구문·Python3도구 AST·diff 검사 통과.382해시/2배치수와 생성데이터3개 재생성 바이트동일성 확인. PC/휴대폰폭/태블릿12검사 최종 통과(36.0초):140/194·기본131/177·전체/랜덤20·주제풀이·인쇄해설 로딩·dark/light/original·크기변경중필터·선택기억·179과거ID/답안복원·가로넘침0·브라우저오류0. 최종 캡처를 세 화면 크기에서 직접 확인했다. 기존 은행 회귀PC23검사 통과(33.4초), 원본Vite검수서버 전용292영역hover검사는 조건 불충족으로1개건너뜀(통과로 세지 않음). 첫 검사에서 발견한 두번째 자료 초기로드 누락/새13번 계산 기본 제외 누락/리사이즈 해설필터를 수정했다. 구자료 fixture가SW에 덮이는 검사와 태블릿 스크롤 복귀중 클릭은 검사환경/대기 동작을 보완하여 최종 재검사했다. 기존 대형청크/Zod주석 경고는 유지된다.
 - 재현: prepare-energy-textbook-selection.mjs → stage-energy-textbook.py → upscale-energy-textbook.py → build-energy-textbook.mjs. 기존 로컬PDF/634쪽 OCR캐시/Node/Poppler/Pillow Python/Mac arm64 엔진 필요. 공개 PDF/전체페이지/OCR전문/개인자료경로/비밀키 없음. 공개 대장은 data/energy-textbook-review.json·energy-textbook-images.json, 자세한 범위는 docs/energy-textbook-release-2026-10-13.md.
 - 남은 별도 요청: 일반 에너지2021~2025년13회차1040문제 전체 추가, 필답형 이미지 업스케일링. 이 교재 중간고사 작업을 전체 추가 완료로 오해하지 않는다. 로컬 커밋 후 GitHub Desktop Push origin, 다음 장치는 Push 후 Pull하고 동시에 수정하지 않는다.
+- 커밋 `317ee132` 완료, 작업 트리 깨끗함을 확인했다. 커밋 전체 whitespace 확인에서는 생성 번들 OptionalFeatureBoundary-v590.js의 기존 라이브러리 문자열 리터럴 끝 공백1건이 표시된다. 위 diff검사 통과는 편집 소스/문서 범위이며 번들까지 경고0이라는 뜻은 아니다. 실행 문자열을 임의로 변경하지 않는다. 원격 Fetch/Push는 미실행이고 로컬 추적origin/main보다2커밋 앞선 상태였다.
 
 ### 2026-10-13: 에너지 교재 자체 기준 목록·1차 주제 탐색 (앱5.8.6 유지)
 

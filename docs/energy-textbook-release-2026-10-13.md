@@ -44,6 +44,8 @@
 
 최종 typecheck·production build/PWA590, PC/휴대폰폭/태블릿12검사(36.0초), 기존 은행PC회귀23검사(33.4초)를 통과했습니다. 원본Vite검수서버 전용292영역hover검사1개는 조건이 없어 건너뛰었으며 통과로 세지 않습니다. 생성데이터3개 재생성 바이트동일성·Node/Python구문·diff검사와 최종 화면 캡처를 확인했습니다. 실물기기·클라우드·기존SW 실제 배포 업데이트·APK는 이번 검증 범위가 아닙니다.
 
+diff검사 통과 범위는 편집 소스/문서입니다. 생성 번들 라이브러리 문자열의 끝 공백1건과 기존 대형청크/Zod주석 빌드 경고는 남아 있습니다.
+
 `tools/prepare-energy-textbook-selection.mjs` → `tools/stage-energy-textbook.py` → `tools/upscale-energy-textbook.py` → `tools/build-energy-textbook.mjs` 순서입니다. 기존 로컬 PDF/위치 OCR 캐시, Node, Poppler, Pillow 지원 Python, Mac arm64 Real-ESRGAN이 필요합니다. Windows 실행파일을 Mac에서 사용하지 않습니다.
 
 공개 대장은 `data/energy-textbook-review.json`과 `data/energy-textbook-images.json`입니다. 원본 PDF·전체 페이지·OCR 전문·개인 자료 경로는 공개하지 않습니다. 기존 문제은행이나 원본 이미지를 제거하지 않습니다.
