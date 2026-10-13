@@ -1,8 +1,10 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { legacyEnergyFixture } from './energy-legacy-browser-fixture';
 import type { Catalog } from '../src/cbt/types';
 import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded, restoreEnergyCalculationExcluded } from '../src/cbt/energyMidtermPractice';
+test.use({serviceWorkers:'block'});
 
 test('20주제179문항과 기존136문항 원문 정답·보기 보존 및 전용 ID', () => {
   const context = { window: {} as Record<string, Catalog> };
@@ -70,7 +72,8 @@ test('랜덤20은6번·11번 계산 각1개와 다른18주제 이론으로 구�
 test('기본값6·11 정정은 이전 기본만 이전하고 사용자 개별 선택은 보존',()=>{
   const ids=(ns:number[])=>ns.map(n=>`school-energy-topic-${n}`);
   expect(restoreEnergyCalculationExcluded(null,null)).toEqual(energyDefaultCalculationExcluded);
-  expect(restoreEnergyCalculationExcluded(null,ids([15,1,11]))).toEqual(ids([1,2,15]));
+  expect(restoreEnergyCalculationExcluded(null,ids([15,1,11]))).toEqual(ids([1,2,13,15]));
+  expect(restoreEnergyCalculationExcluded(ids([1,2,15]),null)).toEqual(ids([1,2,13,15]));
   for(const custom of [[],ids([1,2,6,11,15]),ids([2])]) {
     expect(restoreEnergyCalculationExcluded(null,custom)).toEqual(custom);
     expect(restoreEnergyCalculationExcluded(custom,ids([1,11,15]))).toEqual(custom);
@@ -95,6 +98,7 @@ test('계산 포함은 다른 주제까지 허용하고 제외는20주제 이론
 });
 
 test.beforeEach(async ({ page }) => {
+  await legacyEnergyFixture(page);
   await page.addInitScript(() => {
     localStorage.setItem('modern-cbt-qualification-industrial', 'energy-midterm');
     localStorage.setItem('unified-cbt-dynamic-ui', 'false');

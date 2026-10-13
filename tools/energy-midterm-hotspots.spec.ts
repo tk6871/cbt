@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {legacyEnergyFixture} from './energy-legacy-browser-fixture';
+test.use({serviceWorkers:'block'});
 import {unifiedAnswerHotspots} from '../src/cbt/answerHotspotGeometry';
 import type {AnswerHotspot} from '../src/cbt/types';
 const boxes=JSON.parse(fs.readFileSync('data/energy-midterm-hotspots.json','utf8')) as Record<string,AnswerHotspot[]>;
@@ -48,6 +50,7 @@ test('73이미지 실제 hover·클릭·선택 박스·취소·마커 292개',as
 });
 
 for(const mode of ['학습','CBT'])test(`실제 중간고사 ${mode}: 기존 설정·직접선택 전환·이어풀기`,async({page})=>{
+ await legacyEnergyFixture(page);
  await page.addInitScript(()=>{
   localStorage.setItem('modern-cbt-qualification-industrial','energy-midterm');
   localStorage.setItem('unified-cbt-dynamic-ui','false');

@@ -1525,6 +1525,16 @@ img { max-width: 100%; }
 }
 :root[data-theme="dark"] .restored-image-original { background:white; filter:none; }
 .choice-grid-shell { position:relative; }
+.textbook-explanation-image { margin:12px 0; min-width:0; }
+.textbook-explanation-image figcaption { margin-bottom:7px; font-weight:800; color:var(--muted); }
+.textbook-explanation-image img { display:block; width:100%; height:auto; max-width:1050px; background:white; }
+:root[data-theme="dark"] .textbook-explanation-image img:not(.restored-image-original) { background:#0d1824; filter:invert(.91) sepia(.08) saturate(1.25) hue-rotate(176deg) brightness(.84) contrast(.96); }
+:root[data-resizing="true"][data-theme="dark"] .textbook-explanation-image img:not(.restored-image-original) { filter:invert(.91) sepia(.08) saturate(1.25) hue-rotate(176deg) brightness(.84) contrast(.96) !important; }
+.energy-source-picker { margin:16px 0; padding:16px; border:1px solid var(--line); border-radius:12px; display:flex; flex-wrap:wrap; gap:12px 20px; background:var(--surface-2); }
+.energy-source-picker legend { font-weight:850; padding:0 6px; }
+.energy-source-picker label { display:flex; align-items:center; gap:8px; min-height:44px; cursor:pointer; font-weight:750; }
+.energy-source-picker input { width:20px; height:20px; accent-color:var(--primary); }
+.energy-source-picker p { width:100%; margin:0; color:var(--muted); }
 .choice-grid { margin-top: 10px; display: grid; gap: 6px; }
 .choice-layout-probe { position:absolute; z-index:-1; top:0; left:0; width:100%; margin:0; visibility:hidden; pointer-events:none; contain:layout style; }
 .compact-choice-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:5px 7px; }

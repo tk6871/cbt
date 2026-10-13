@@ -21,6 +21,7 @@ import {
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
 import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded, restoreEnergyCalculationExcluded } from './energyMidtermPractice';
+import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './energyTextbook';
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
@@ -465,14 +466,24 @@ const rangeRounds = computed(() => {
   }
   return rounds;
 });
+const energySourceMode = ref<EnergySourceMode>((() => {
+  try { return localStorage.getItem('cbt-energy-midterm-source-v1') === 'combined' ? 'combined' : 'textbook'; }
+  catch { return 'textbook'; }
+})());
+watch(energySourceMode, mode => { try { localStorage.setItem('cbt-energy-midterm-source-v1', mode); } catch {} });
 const visibleRounds = computed(() => {
   const rounds = sortedRounds(selectedCatalog.value);
-  if (selectedKey.value === 'energy-midterm') return rounds.map(round => ({ ...round, questions:round.questions.filter(q => !q.midtermDuplicateOf) }));
+  if (selectedKey.value === 'energy-midterm') return energySourceRounds(rounds, energySourceMode.value);
   if (selectedKey.value !== 'energy') return rounds;
   return [...referenceRounds, ...rounds].sort((a, b) =>
     b.year - a.year || String(b.date || b.session || '').localeCompare(String(a.date || a.session || ''), 'ko', { numeric: true }));
 });
 const energyMidtermQuestionCount = computed(() => visibleRounds.value.reduce((sum, round) => sum + round.questions.length, 0));
+function catalogDisplayQuestionCount(catalog: Catalog): number {
+  if (catalog.key === 'energy-midterm' && !catalog.isPlaceholder)
+    return energySourceRounds(catalog.rounds, energySourceMode.value).reduce((sum,r)=>sum+r.questions.length,0);
+  return catalog.questionCount ?? catalog.rounds.reduce((sum,r)=>sum+r.questions.length,0);
+}
 const energyCalculationExcluded = ref<string[]>((() => {
   try {
     const read = (key: string): unknown => {
@@ -510,7 +521,9 @@ const energyMidtermPriorityGroups = computed(() => [
   {key:'related' as const,title:'주제 관련 추가 예상',note:'범위 보강 · 같은 주제의 다른 질문과 불명확한 내용'},
 ].map(g=>({...g,count:energyMidtermEligibleQuestions.value.filter(q=>q.midtermPriority===g.key).length})));
 const selectedSubjects = computed(() => subjectsForScope(selectedCatalog.value, curriculum.value));
-const selectedItems = computed(() => questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
+const selectedItems = computed(() => selectedKey.value === 'energy-midterm'
+  ? visibleRounds.value.flatMap(round => roundToItems({ ...round, questions:energyTopicQuestions(round) }))
+  : questionItems(selectedCatalog.value, yearFrom.value, yearTo.value, curriculum.value));
 const targetItemMap = new Map((catalogs.find((catalog) => catalog.key === GEM_APPRAISER_TARGET_KEY)?.rounds || [])
   .flatMap((round) => round.questions.map((question) => ({
     round,
@@ -1983,7 +1996,7 @@ function startSchoolExamRound(payload: { round: Round; mode: StudyMode }): void 
 async function loadQuestionSources(keys: string[]): Promise<void> {
   await Promise.all(keys.map(async key => {
     const target = catalogs.find(catalog => catalog.key === key);
-    if (!target?.isPlaceholder) return;
+    if (!target || (!target.isPlaceholder && !(key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK))) return;
     const loaded = await ensureCatalogLoaded(key);
     Object.assign(target, loaded, { isPlaceholder: false });
   }));
@@ -2037,7 +2050,9 @@ async function ensureItemSources(ids: string[]): Promise<void> {
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
-  await loadQuestionSources([...new Set([...keys, ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
+  await loadQuestionSources([...new Set([...keys,
+    ...(ids.some(id=>id.startsWith('school-energy-')) ? ['energy-midterm'] : []),
+    ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
 }
 
 async function startSchoolQuestionSet(payload: { id: string; mode: StudyMode }): Promise<void> {
@@ -2691,7 +2706,7 @@ function startRound(round: Round, mode: StudyMode): void {
     }));
     beginSession(
       mode,
-      round.kind === 'school-midterm' ? `${round.title} 학습` : `${round.year}년 ${round.session || ''} 학습`,
+      round.kind === 'school-midterm' ? `${round.title}${selectedKey.value === 'energy-midterm' ? ` · ${energySourceLabel(energySourceMode.value)}` : ''} 학습` : `${round.year}년 ${round.session || ''} 학습`,
       items,
       previousAnswers,
       { resume: true },
@@ -2700,7 +2715,7 @@ function startRound(round: Round, mode: StudyMode): void {
   }
   beginSession(
     mode,
-    round.kind === 'school-midterm' ? `${round.title} CBT` : `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
+    round.kind === 'school-midterm' ? `${round.title}${selectedKey.value === 'energy-midterm' ? ` · ${energySourceLabel(energySourceMode.value)}` : ''} CBT` : `${round.year}년 ${round.session || ''} ${mode === 'exam' ? '실전시험' : '학습'}`,
     items,
     {},
   );
@@ -2716,7 +2731,7 @@ function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, mat
   } catch { showToast('시험 구성에 필요한 문제를 찾지 못했습니다. 자료를 다시 불러와 주세요.'); return; }
   if (!items.length) return;
   const priorityLabel = priority === 'pdf' ? '후기 PDF 원문' : energyMidtermPriorityGroups.value.find(g=>g.key===priority)?.title;
-  void beginSession(mode, `에너지설비 중간고사 · ${priorityLabel || (match === 'direct' ? '시험범위 3개 묶음' : match === 'related' ? '추가 예상만' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습')}`, items);
+  void beginSession(mode, `에너지설비 중간고사 · ${energySourceLabel(energySourceMode.value)} · ${priorityLabel || (match === 'direct' ? '시험범위 3개 묶음' : match === 'related' ? '추가 예상만' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습')}`, items);
 }
 
 function restartRoundLearning(round: Round): void {
@@ -4524,7 +4539,7 @@ onBeforeUnmount(() => {
                     <img :src="sunjaeImageAt(catalogIndex + 1)" alt="">
                     <span>{{ selectedKey === catalog.key ? '우리 오늘 이거 하자' : '같이 골라볼래?' }}</span>
                     <strong>{{ catalog.name }}</strong>
-                    <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
+                    <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ catalogDisplayQuestionCount(catalog).toLocaleString() }}문제</small>
                   </button>
                 </div>
               </section>
@@ -4619,7 +4634,7 @@ onBeforeUnmount(() => {
                 <span class="qualification-icon">{{ qualificationMeta[catalog.key]?.icon }}</span>
                 <span class="qualification-copy">
                   <strong>{{ catalog.name }}</strong>
-                  <small>{{ catalog.roundCount ?? catalog.rounds.length }}{{ catalog.key === 'energy-midterm' ? '주제' : '회차' }} · {{ (catalog.questionCount ?? catalog.rounds.reduce((sum, round) => sum + round.questions.length, 0)).toLocaleString() }}문제</small>
+                  <small>{{ catalog.roundCount ?? catalog.rounds.length }}{{ catalog.key === 'energy-midterm' ? '주제' : '회차' }} · {{ catalogDisplayQuestionCount(catalog).toLocaleString() }}문제</small>
                   <em>{{ qualificationMeta[catalog.key]?.description }}</em>
                 </span>
                 <b>›</b>
@@ -4793,13 +4808,19 @@ onBeforeUnmount(() => {
             <button type="button" @click="openView('home')">← 종목 선택으로</button>
           </section>
           <section v-if="selectedKey === 'energy-midterm'" class="energy-midterm-intro">
-            <p>먼저 풀 모음을 고르세요. 시험범위의3개 묶음은 한 번에, 추가 예상은 따로 풀 수 있습니다. 오답·점수는 일반 기출과 분리됩니다.</p>
+            <fieldset class="energy-source-picker">
+              <legend>풀기 전에 문제 출처 선택</legend>
+              <label><input v-model="energySourceMode" type="radio" value="textbook" name="energy-midterm-source">에너지 교재 문제</label>
+              <label><input v-model="energySourceMode" type="radio" value="combined" name="energy-midterm-source">CBT + 에너지 교재</label>
+              <p>{{ energySourceMode === 'textbook' ? '교재에 실린 원문 문제·보기·정답·해설로 풉니다.' : '교재 문제와 기존 CBT 보강 문제를 함께 풉니다. 확인된 동일 문제는 교재판을 우선합니다.' }} 선택은 새 풀이에만 적용하며, 풀던 문제와 기존 기록은 유지됩니다.</p>
+            </fieldset>
+            <p>출처를 고른 다음 아래 모음 또는 1~20번 주제로 풀면 됩니다. 현재 출처 {{ energyMidtermQuestionCount }}문제 중 계산 설정을 반영한 {{ energyMidtermEligibleQuestions.length }}문제가 선택됩니다. 오답·점수는 일반 기출과 분리됩니다.</p>
             <p class="energy-topic-note">같은 질문·같은 정답은 최신 회차만 출제하고 ‘나왔던 회차’를 표시합니다. 계산 수치·정답 내용이 다른 문제는 유지합니다. <a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">통합 전 원문 비교 ↗</a></p>
             <details class="energy-topic-note"><summary>분류 결과 확인만 하기</summary><p>문제 구성을 바꾸지 않는 별도 검토 화면입니다. 기존179문제와20개 주제 관련 추가 후보를 구분합니다.</p><a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 분류 검토표 열기 ↗</a></details>
             <div class="energy-midterm-priority-grid energy-midterm-main-groups">
               <article>
-                <h2>시험범위 3개 묶음 <span>{{ energyMidtermDirectCount }}문제</span></h2>
-                <p>교재·CBT 반복 + 교재2021~2025년 + 시험범위 기출</p>
+                <h2>시험범위에 맞는 문제 <span>{{ energyMidtermDirectCount }}문제</span></h2>
+                <p>교수님 출제 메모와 직접 대응하는 주제</p>
                 <div class="energy-midterm-actions"><button type="button" aria-label="시험범위만 학습" @click="startEnergyMidterm('learn', true, false, 'direct')">학습모드</button><button type="button" aria-label="시험범위만 CBT" @click="startEnergyMidterm('exam', true, false, 'direct')">CBT 시험</button></div>
               </article>
               <article>
@@ -4833,7 +4854,7 @@ onBeforeUnmount(() => {
             </div>
             </details>
             <details class="energy-midterm-other-actions"><summary>전체 함께 풀기·교재·PDF 선택</summary>
-            <p>교재 원문의 대응을 확인한{{ energyMidtermBookCount }}문제는 별도 기준입니다. 20문제는 실제 시험 문항 수이며 예상문제 수 제한이 아닙니다. 랜덤20문제는 대응이 미확정인 주제도 포함하여 전체20주제에서 각각1문제씩 뽑습니다. 확정 출제 예측은 아닙니다.</p>
+            <p>20문제는 실제 시험 문항 수이며 예상문제 수 제한이 아닙니다. 랜덤20은 전체20주제에서 각각1개씩 뽑습니다. 실제 출제를 보장하지 않습니다.</p>
             <div class="energy-midterm-actions">
               <button type="button" @click="startEnergyMidterm('learn', true, false, undefined, 'pdf')">후기 PDF{{ energyMidtermPdfCount }}문제 학습</button>
               <button type="button" @click="startEnergyMidterm('exam', true, false, undefined, 'pdf')">후기 PDF{{ energyMidtermPdfCount }}문제 CBT</button>
@@ -4856,7 +4877,7 @@ onBeforeUnmount(() => {
               <h2>{{ round.title }}</h2>
               <p v-if="selectedKey === 'energy-midterm'">{{ energyTopicQuestions(round).length }}문제 선택<template v-if="energyCalculationExcluded.includes(round.id)"> · 전체{{ round.questions.length }}문제 중 계산 제외</template></p>
               <p v-else>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
-              <small v-if="round.kind === 'school-midterm'">시험범위{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 관련 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}<template v-if="['school-energy-topic-2','school-energy-topic-6'].includes(round.id)"> · 계산 출제 예상</template></small>
+              <small v-if="round.kind === 'school-midterm'">시험범위{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 관련 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}<template v-if="['school-energy-topic-6','school-energy-topic-11'].includes(round.id)"> · 계산 출제 예상</template></small>
               <label v-if="selectedKey === 'energy-midterm' && round.questions.some(q => q.midtermCalculation)" class="energy-topic-calculation"><input type="checkbox" :checked="!energyCalculationExcluded.includes(round.id)" :aria-label="`${round.title} 계산 문제 포함`" @change="setEnergyTopicCalculation(round.id, ($event.target as HTMLInputElement).checked)">계산{{ round.questions.filter(q => q.midtermCalculation).length }}문제 {{ energyCalculationExcluded.includes(round.id) ? 'Off · 제외' : 'On · 포함' }}</label>
               <div v-if="selectedKey !== 'energy-midterm'" class="round-subjects"><span v-for="subject in round.subjects" :key="subject">{{ subject }}</span></div>
               <details v-if="round.kind === 'school-midterm' && round.questions[0]?.teacherHint" class="energy-topic-note"><summary>자료 대조 안내</summary><p>{{ round.questions[0].teacherHint }}</p></details>
@@ -5503,7 +5524,7 @@ onBeforeUnmount(() => {
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
-            <p>v5.8.2 에너지설비 중간고사: 시험범위3개 묶음과 추가 예상만 두 카드로 고릅니다. 기존4개 묶음은 접힌 메뉴에 있습니다. 1~20번 주제에서 계산On/Off와 전체 선택을 지원하며, 상당증발량·스케줄번호 외 내부에너지·집진율·수압시험도 포함합니다. 새 풀이에만 적용하고 이어풀기 답안·전체179문제·원문73문제를 보존합니다.</p>
+            <p>v5.9 에너지 교재판: 회차별 문제에서 ‘에너지 교재 문제’(기본) 또는 ‘CBT + 에너지 교재’를 골라 주제별·전체·랜덤20문제를 풉니다. 교재 191수록 사례는 반복을 정리한140문제로 제공하며 문제·보기와 원문 해설을 Real-ESRGAN 4x→2x로 개선했습니다. 다크·라이트·원본 표시를 지원하고 기존179문항ID와 풀이 기록은 보존합니다.</p>
             <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
             <p>v5.8.4 에너지 원문73문제: 설정 → 답안 배치 → 이미지 직접 선택으로①②③④와 보기 내용을 눌러 답합니다. 여러 줄 보기·분수도 한 박스로 표시하고, 체크 마커 또는 영역 색상을 고를 수 있습니다. 기존 답안 버튼 설정·179문제·풀이 기록은 유지합니다.</p>
             <p>v5.8.5 중간고사: 에너지의 같은 질문·정답은 최신 회차로 정리해154문제를 출제하며 계산 수치·정답이 다른 변형은 유지합니다. 기본 계산 체크는2번·6번, ‘계산 문제만 보기’에서는22개 전체 원문을 확인합니다. 냉동도 같은 문장·정답은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 기존 기록과 일반 기출은 보존합니다.</p>

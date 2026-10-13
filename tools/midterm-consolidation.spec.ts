@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import { legacyEnergyFixture } from './energy-legacy-browser-fixture';
+test.use({serviceWorkers:'block'});
 import { execFileSync } from 'node:child_process';
 import { schoolItemKey, uniqueSchoolItems, coolingMidtermItems } from '../src/cbt/schoolQuestionBank';
 import { questionId, subjectFor } from '../src/cbt/catalog';
@@ -45,6 +47,7 @@ test('냉동 최신 대표·회차·계산 수치/단위/정답·그림 보존',
 });
 
 test.beforeEach(async({page})=>{
+  await legacyEnergyFixture(page);
   await page.addInitScript(()=>{
     localStorage.setItem('modern-cbt-qualification-industrial','energy-midterm');
     localStorage.setItem('unified-cbt-dynamic-ui','false');
@@ -63,7 +66,7 @@ test('이전 계산 기본2·6은6·11로 이전하고 직접 선택한 전체On
   await page.goto('./?safe=1');await rounds(page);
   await expect(page.locator('#round-card-school-energy-topic-2 input[type=checkbox]')).not.toBeChecked();
   await expect(page.locator('#round-card-school-energy-topic-11 input[type=checkbox]')).toBeChecked();
-  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('cbt-energy-midterm-calculation-excluded-v3')!))).toEqual([1,2,15].map(n=>`school-energy-topic-${n}`));
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('cbt-energy-midterm-calculation-excluded-v3')!))).toEqual([1,2,13,15].map(n=>`school-energy-topic-${n}`));
   await page.getByRole('button',{name:'계산 전체 On',exact:true}).click();
   await page.reload();await expect(page.locator('.energy-midterm-intro')).toBeVisible();
   for(const n of [1,2,6,11,15])await expect(page.locator(`#round-card-school-energy-topic-${n} input[type=checkbox]`)).toBeChecked();

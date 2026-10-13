@@ -5,6 +5,9 @@ export function explanationSource(question: Question): { label: string; detail: 
   const provenance = question.explanationProvenance || '';
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';
+  if (question.explanationImages?.length && question.midtermTextbook) return {
+    label:'교재 원문 해설', detail:question.explanationBasis || '제공된 에너지 교재에 인쇄된 해설을 원문 이미지로 표시합니다. AI 작성 해설과 구분합니다.',
+  };
   if (!explanation.trim()) return { label: '해설 미등록', detail: '이 문제에는 상세 해설이 등록되어 있지 않습니다.' };
   if (question.explanationType === 'teacher-material-reference') return { label: '자료 기반 학습 해설', detail: question.explanationBasis || '제공된 수업 자료와 기출을 대조한 학습용 설명이며 공식 해설은 아닙니다.' };
   if (question.explanationType === 'ai-reference') return { label: 'AI 보강 해설', detail: '학습용으로 작성한 설명입니다. 공식 해설·공식 채점 기준이 아닙니다.' };

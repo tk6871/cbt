@@ -25,6 +25,12 @@ const legacyGemSubjectMap: Record<string, string> = {
 };
 
 function prepareCatalog(source: Catalog): Catalog {
+  if (source.key === 'energy-midterm' && window.CBT_DATA_ENERGY_TEXTBOOK) {
+    const bookRounds = window.CBT_DATA_ENERGY_TEXTBOOK.rounds;
+    source = { ...source, rounds:source.rounds.map(round => ({...round,
+      questions:[...round.questions, ...(bookRounds.find(r => r.id === round.id)?.questions || [])],
+    })) };
+  }
   const rounds = (source.rounds || []).map((round) => ({
     ...round,
     qualificationKey: source.key,
@@ -61,20 +67,25 @@ const catalogLoads = new Map<string, Promise<Catalog>>();
 
 export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   const existing = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
-  if (existing) return Promise.resolve(existing);
+  if (existing && (key !== 'energy-midterm' || window.CBT_DATA_ENERGY_TEXTBOOK)) return Promise.resolve(existing);
   if (!primaryKeys.includes(key)) return Promise.reject(new Error('지원하지 않는 문제 출처입니다.'));
   const pending = catalogLoads.get(key);
   if (pending) return pending;
-  const promise = new Promise<Catalog>((resolve, reject) => {
+  const files = key === 'energy-midterm' ? [key, 'energy-textbook'] : [key];
+  const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${key}.js?v=586`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=590`, document.baseURI).href;
     script.onload = () => {
-      const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
-      if (loaded) resolve(loaded);
-      else { catalogLoads.delete(key); reject(new Error('문제 자료를 읽지 못했습니다.')); }
+      resolve();
     };
     script.onerror = () => { catalogLoads.delete(key); script.remove(); reject(new Error('문제 자료에 연결하지 못했습니다.')); };
     document.head.appendChild(script);
+  }))).then(() => {
+    const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
+    if (!loaded || (key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)) {
+      catalogLoads.delete(key); throw new Error('문제 자료를 읽지 못했습니다.');
+    }
+    return loaded;
   });
   catalogLoads.set(key, promise);
   return promise;

@@ -704,7 +704,10 @@ onBeforeUnmount(() => {
         <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="closeInlineExplanation">닫기 ×</button>
       </div>
       <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
-      <p v-else class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+      <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+      <figure v-for="image in item.question.explanationImages || []" :key="image" class="textbook-explanation-image" @click="stopExplanationAutoClose">
+        <figcaption>교재 원문 해설</figcaption><img :src="image" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
+      </figure>
       <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">
         <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
@@ -746,7 +749,10 @@ onBeforeUnmount(() => {
               <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
             </div>
             <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
-            <p v-else class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+            <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+            <figure v-for="image in item.question.explanationImages || []" :key="image" class="textbook-explanation-image" @click="stopExplanationAutoClose">
+              <figcaption>교재 원문 해설</figcaption><img :src="image" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
+            </figure>
             <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
             <div class="explanation-extra-actions">
               <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">

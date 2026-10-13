@@ -5,6 +5,18 @@
 
   const entries = [
     {
+      version:'5.9',scope:'industrial',date:'2026.10.13',
+      title:'에너지 교재판 선택·원문 해설',
+      summary:'풀기 전에 교재만 또는 CBT와 함께 선택합니다. 교재 원문 문제·보기·해설의 화질과 다크·라이트 표시를 지원합니다.',
+      tags:['교재판 선택','원문 해설','화질 개선'],
+      changes:[
+        '에너지설비 중간고사에서 에너지 교재 문제(기본) 또는 CBT + 에너지 교재를 고릅니다. 주제별·전체·랜덤20 출제에 공통 적용하고 선택을 기억합니다.',
+        '교재의20주제 관련191수록 사례를 연결하고 확인된 반복51개를 최신 회차로 묶어140문제로 제공합니다. 통합 출처는194문제이며 계산 기본6번·11번은 유지합니다.',
+        '문제와 보기, 인쇄된 원문 해설을 별도 이미지로 표시합니다. 총382장을 Mac arm64 Real-ESRGAN x4plus-anime·타일256·4배 처리 후2배 bicubic 축소했습니다. 다크·라이트·원본 표시를 지원합니다.',
+        '교재 원문 해설의 출처를 명시하고 발견된 단위 오기와 서로 다른 역화 조건은 주의 문구로 구분합니다. 기존179문항·원본 이미지·과거 답안·오답·이어풀기는 보존합니다.'
+      ]
+    },
+    {
       version:'5.8.6',scope:'industrial',date:'2026.10.12',
       title:'냉동 전체 범위 반복 검토',
       summary:'표현이 다른 같은 반복도 확인하여 최신 회차로 묶습니다. 원문 차이·정답 주의와 전체 문항을 검수 대장에서 확인합니다.',
@@ -2483,8 +2495,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.8.5';
+  changelog.versions.industrial = '5.9';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.8.5';
+  changelog.currentVersion = '5.9';
   window.CBT_CHANGELOG = changelog;
 })();
