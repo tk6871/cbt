@@ -5,6 +5,7 @@ import type { ExamRecord } from './storage';
 import { uniqueSchoolItems, coolingTopics, coolingTopicGroups, coolingBookChapters, coolingSectionGroups } from './schoolQuestionBank';
 import { coolingCalculation } from './coolingPractice';
 import { coolingSafetyKind } from './coolingScope';
+import { coolingBookConfirmed, coolingBookReview } from './coolingBookScope';
 
 type SavedSet = { id?: string; title: string; mode?: StudyMode; savedAt: number; itemIds: string[]; answers: Record<string, number> };
 const props = defineProps<{ items: QuestionItem[]; safetyItems: QuestionItem[]; wrongIds: string[]; attemptedIds: string[]; unusedIds: string[]; sessions: SavedSet[]; history: ExamRecord[]; loading: boolean; error: string }>();
@@ -23,7 +24,9 @@ const section = ref(typeof savedPreferences.section === 'string' ? savedPreferen
 const count = ref([10, 20, 40, 60].includes(Number(savedPreferences.count)) ? Number(savedPreferences.count) : 20);
 const excludeSeen = ref(savedPreferences.excludeSeen !== false);
 const includeFiveCalculations = ref(savedPreferences.includeFiveCalculations === true);
-const sourceItems = computed(() => props.items.filter(item => source.value === 'all' || item.round.qualificationKey === source.value));
+const bookOnly = ref(savedPreferences.bookScopeVersion === 1 ? savedPreferences.bookOnly !== false : true);
+const sourceItems = computed(() => props.items.filter(item => (source.value === 'all' || item.round.qualificationKey === source.value)
+  && (!bookOnly.value || coolingBookConfirmed(item))));
 const groups = computed(() => coolingTopicGroups(sourceItems.value));
 type TopicGroup = ReturnType<typeof coolingTopicGroups>[number];
 const selectedGroup = computed(() => groups.value.find(group => group.label === topic.value));
@@ -36,7 +39,7 @@ const topicCount = (value: string) => groups.value.find(group => group.label ===
 const filtered = computed(() => scopeGroup.value?.aliases || sourceItems.value);
 const pool = computed(() => scopeGroup.value?.items || uniqueSchoolItems(sourceItems.value));
 const totalCount = computed(() => groups.value.reduce((total, group) => total + group.items.length, 0));
-const safetyPool = computed(() => uniqueSchoolItems(props.safetyItems));
+const safetyPool = computed(() => uniqueSchoolItems(props.safetyItems.filter(item => !bookOnly.value || coolingBookConfirmed(item))));
 const safetyCounts = computed(() => ['management', 'protection', 'leak'].map(kind => safetyPool.value.filter(item => coolingSafetyKind(item) === kind).length));
 const unused = computed(() => new Set(props.unusedIds));
 const randomPool = computed(() => excludeSeen.value ? pool.value.filter(item => unused.value.has(item.id)) : pool.value);
@@ -46,15 +49,20 @@ const calculationShortage = computed(() => includeFiveCalculations.value && (cal
 const wrongItems = (items: QuestionItem[]) => uniqueSchoolItems(items.filter(item => props.wrongIds.includes(item.id)));
 const wrongPool = computed(() => wrongItems(filtered.value));
 const wrongGroups = computed(() => (selectedSection.value ? [selectedSection.value] : groups.value.filter(group => topic.value === 'all' || group.label === topic.value)).filter(group => wrongItems(group.aliases).length));
-const sourceCount = (key: string) => props.items.filter(item => item.round.qualificationKey === key).length;
+const sourceCount = (key: string) => props.items.filter(item => item.round.qualificationKey === key
+  && (!bookOnly.value || coolingBookConfirmed(item))).length;
 const answered = (group: TopicGroup) => uniqueSchoolItems(group.aliases.filter(item => props.attemptedIds.includes(item.id))).length;
 const wrongCount = (group: TopicGroup) => wrongItems(group.aliases).length;
 watch(topic, () => { section.value = 'all'; });
-watch([source, topic, section, tab, count, excludeSeen, includeFiveCalculations], () => {
-  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value, includeFiveCalculations: includeFiveCalculations.value }));
+watch(bookOnly, () => {
+  topic.value = 'all'; section.value = 'all';
+  if (tab.value === 'sections') tab.value = 'topics';
+});
+watch([source, topic, section, tab, count, excludeSeen, includeFiveCalculations, bookOnly], () => {
+  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, bookScopeVersion: 1, bookOnly: bookOnly.value, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value, includeFiveCalculations: includeFiveCalculations.value }));
 });
 const sourceLabel = computed(() => source.value === 'all' ? '구 기출 + 한솔' : source.value === 'hvac' ? '2006년3회~2016년 공조' : '한솔 공조');
-const scopeLabel = computed(() => `${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value}${selectedSection.value ? ` · ${selectedSection.value.label}` : ''} · ${sourceLabel.value}`);
+const scopeLabel = computed(() => `${bookOnly.value ? '교재 본문 확인 · ' : ''}${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value}${selectedSection.value ? ` · ${selectedSection.value.label}` : ''} · ${sourceLabel.value}`);
 function openChapter(group: TopicGroup): void {
   topic.value = group.label; section.value = 'all'; tab.value = 'sections';
 }
@@ -89,6 +97,11 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <label v-if="tab === 'all' || tab === 'wrong'">교재 장<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
       <label v-if="(tab === 'all' || tab === 'wrong') && sections.length">세부 목차<select v-model="section"><option value="all">이 장 전체</option><option v-for="group in sections" :key="group.label" :value="group.label">{{ group.label }} · {{ group.items.length }}문제</option></select></label>
       <button v-if="source !== 'all' || ((tab === 'all' || tab === 'wrong') && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'; section = 'all'; if (tab === 'sections') tab = 'topics'">전체 범위 보기</button>
+    </div>
+    <div v-if="tab !== 'history'" class="topic-warning">
+      <label class="check"><input v-model="bookOnly" type="checkbox">교재 본문에서 연결 확인된 문제만 풀기</label>
+      <p>{{ bookOnly ? '켜짐: 본문 문제와 지문·보기·등록 정답을 대조한 원문만 선택합니다.' : '꺼짐: 기존 중간고사 전체 목록입니다.' }} 기존 오답·진행 중 풀이·기록은 그대로 보관합니다.</p>
+      <p>대조 {{ coolingBookReview.locations }}위치 중 연결 확인 {{ coolingBookReview.confirmed }}위치 · 추가 확인 {{ coolingBookReview.pending }}위치. 교재 전체 수록 완료를 뜻하지 않습니다. <a href="docs/cooling-book-review-2026-10-14.html" target="_blank" rel="noopener">교재 대조 목록 ↗</a></p>
     </div>
     <p v-if="tab !== 'history'" class="topic-warning">같은 질문·조건·정답 내용은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 수치·단위·질문 대상·정답이 다르거나 그림 동일성이 불확실한 문제는 유지합니다. <a href="docs/cooling-midterm-duplicate-review-2026-10-12.html" target="_blank" rel="noopener">전체 범위 중복 검수 결과 ↗</a>에서 통합 이유·원문 차이를 확인할 수 있습니다.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
@@ -165,7 +178,7 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
     </details>
     <details class="classification-help"><summary>시험 범위·목차 분류 안내</summary>
       <p><a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">목차 분류 검토표 열기 ↗</a></p>
-      <p>2006년3회~2016년은 기존 공조, 2017~2023년3회는 한솔 공조를 사용합니다. 교재 목차와 직접 관련된 냉각탑·냉매 배관·냉방설비 방식도 보강하고 안전관리·법규는 별도 분리했습니다. 교재 핵심예상문제 본문과의 페이지별 대조는 아직 하지 않았습니다.</p>
+      <p>2006년3회~2016년은 기존 공조, 2017~2023년3회는 한솔 공조를 사용합니다. 교재 본문의 핵심·실전·예제를 대조하며 맨 뒤 회차별 기출 부록은 제외합니다. 안전관리·법규는 계속 별도입니다. 미연결 예제·수치 변형·정답 차이는 확인 목록에 남기며 기존 자료를 임의 변경하지 않습니다.</p>
       <p>보내주신 교재의6개 장과 세부 목차를 반영했습니다. 본문에서 묻는 원리·운전·부품을 우선하고 모호한 문항은 보기·원문 그림을 추가 확인했습니다. 목차 배치가 교재에 실제 수록됐다는 뜻은 아닙니다. ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제는 판정이 어려울 때 별도 유지됩니다.</p>
       <p>원래 문제 그림·정답·해설과 기존 기록은 유지됩니다. 완전히 같은 문항은 한 번만 출제하지만 다른 그림의 유사문제까지 모두 같은 문제로 판정한 것은 아닙니다.</p>
     </details>
