@@ -4,6 +4,8 @@ import vm from 'node:vm';
 const input = 'work/cooling-book-scope/core-questions-progress.json';
 const output = 'work/cooling-book-scope/match-candidates.json';
 const progress = JSON.parse(fs.readFileSync(input, 'utf8'));
+const supplemental = 'work/cooling-book-scope/structure-questions-progress.json';
+if (fs.existsSync(supplemental)) progress.questions.push(...JSON.parse(fs.readFileSync(supplemental,'utf8')).questions);
 const context = { window:{} };
 for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`data/${key}.js`,'utf8'),context);
 const plain = value => String(value || '').normalize('NFC').replace(/<[^>]*>/g,' ').replace(/&[^;]+;/g,' ').replace(/[^가-힣a-zA-Z0-9]/g,'').toLowerCase();
