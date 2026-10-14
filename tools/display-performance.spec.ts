@@ -33,14 +33,15 @@ test('원본 보존·경량 사본 용량과 경로',()=>{
       expect(fs.statSync(variant.src).size).toBeLessThan(original*.7);
     }
   }
-  expect(Object.keys(manifest).filter(k=>k.includes('energy-textbook'))).toHaveLength(382);
+  expect(Object.keys(manifest).every(k=>k.startsWith('assets/theme/'))).toBe(true);
 });
 test('반응형 원문·답안 영역·확대 원본·다크/라이트·스크롤',async({page},info)=>{
   const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
   await start(page);
   const card=page.locator('.question-card').first(),image=card.locator('.source-question-image');
   await expect.poll(()=>image.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>0)).toBe(true);
-  await expect(image).toHaveAttribute('srcset',/assets\/responsive/);
+  await expect(image).not.toHaveAttribute('srcset');
+  expect(await image.evaluate((el:HTMLImageElement)=>el.currentSrc===el.src)).toBe(true);
   const original=await image.getAttribute('src');
   const buttons=card.locator('.image-answer-hotspot');
   for(let i=0;i<4;i++){
@@ -79,16 +80,10 @@ test('전체화면 FHD/4K에서도 문제 폭과 글자 크기 유지·OMR',asyn
   expect(await page.locator('.question-columns').evaluate(el=>el.getBoundingClientRect().width)).toBeLessThanOrEqual(1440);
   await page.screenshot({path:'/private/tmp/display-performance-4k.png'});
 });
-test('경량 파일을 못 받으면 원본 재시도',async({page})=>{
+test('문제는 경량 파일 없이 원본 표시',async({page})=>{
   await page.route('**/assets/responsive/**',route=>route.abort());
   await start(page);
   const image=page.locator('.source-question-image').first();
-  // Force the optional candidate even on a high-DPR device.
-  const manifest=JSON.parse(fs.readFileSync('data/responsive-images.json','utf8'));
-  const candidate=manifest[(await image.getAttribute('src'))!].variants[0].src;
-  await image.evaluate((el:HTMLImageElement,candidate)=>{
-    el.srcset=`${candidate} 1x`;el.removeAttribute('sizes');
-  },candidate);
   await expect.poll(()=>image.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>0&&!el.hasAttribute('srcset'))).toBe(true);
 });
 test('테마 아이콘은 작은 사본·목록 모션은 보이는 카드만',async({page},info)=>{

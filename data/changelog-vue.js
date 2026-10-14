@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.3',scope:'industrial',date:'2026.10.14',
+      title:'문제 원본 표시 복원·초기 로딩 최적화',
+      summary:'문제·해설은 원본 이미지로 표시하고, 시험 자료실은 필요할 때 불러옵니다.',
+      tags:['원본 유지','로딩 최적화'],
+      changes:[
+        '5.9.2에서 추가했던 문제·해설 경량 이미지 사용을 해제했습니다. 기존 업스케일링 원본과 답안 선택 영역, 다크·라이트 표시를 그대로 사용합니다.',
+        '필답형·시험 자료실 자료를 메뉴 진입 시 불러와 첫 화면의 코드 로딩을 줄였습니다. 진행 중인 필답형 세션이 있으면 자료를 준비하며 저장 답안을 유지합니다.',
+        '자료 연결 실패 시 재시도를 제공하고 문제은행의 반복 복사를 줄였습니다. PC 읽기 폭과 모션 개선, 테마 아이콘 최적화는 유지합니다.'
+      ]
+    },
+    {
       version:'5.9.2',scope:'industrial',date:'2026.10.14',
       title:'큰 화면 읽기 폭·화면 크기에 맞는 이미지 로딩',
       summary:'FHD·4K에서도 문제 크기를 안정적으로 유지하고, 작은 화면에 맞는 이미지와 목록 모션으로 표시 부담을 줄였습니다.',
@@ -2517,7 +2528,7 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.2';
+  changelog.versions.industrial = '5.9.3';
   changelog.versions.jewelry = '4.0.1';
   changelog.currentVersion = '5.9.1';
   window.CBT_CHANGELOG = changelog;

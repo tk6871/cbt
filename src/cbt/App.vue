@@ -4,6 +4,7 @@ import type { PluginListenerHandle } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { animate, stagger } from 'motion';
 import { visibleMotionTargets } from './viewMotion';
+import { pluginExperiences } from './pluginExperiences';
 import { responsiveImageAttrs, restoreOriginalImage } from './responsiveImages';
 import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
@@ -59,7 +60,8 @@ import {
   hvacFrequentFormulas,
 } from './hvacCalculatorSheet';
 import { buildHvacPredictionSet } from './hvacPrediction';
-import { practicalPrompts, practicalSources, studyGuidePages } from './qualificationStudyGuides';
+import { studyGuideKeys, useStudyGuideData } from './useStudyGuideData';
+const { practicalPrompts, practicalSources, studyGuidePages, guideLoaded, guideLoading, guideError, loadStudyGuide } = useStudyGuideData();
 import { matchesPracticalMaterialPeriod, type PracticalMaterialPeriod } from './practicalMaterialPeriod';
 import {
   practicalCategoryLabels,
@@ -114,31 +116,6 @@ type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; assessment?: PracticalAssessment; deleted?: boolean; updatedAt: number };
 type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number };
-type PluginExperience = {
-  name: string;
-  area: string;
-  role: string;
-  change: string;
-  loading: '기본' | '필요할 때만' | 'Android' | '검증 전용';
-};
-
-const pluginExperiences: PluginExperience[] = [
-  { name: 'VueUse', area: '설정 저장', role: 'UI 실험 설정과 기기 접근성 선호를 읽습니다.', change: '새 설정이 새로고침 뒤에도 유지되고 모션 줄이기·고대비 선호를 확인합니다.', loading: '기본' },
-  { name: 'Color.js', area: '색상 대비', role: '선택한 글자색과 배경색의 대비를 계산합니다.', change: '강조색을 바꾸면서 현재 가독성 점수를 바로 확인할 수 있습니다.', loading: '기본' },
-  { name: 'Reka UI', area: '접근성 UI', role: '키보드와 화면 읽기 도구를 고려한 스위치·접기 UI를 제공합니다.', change: 'UI 실험실을 한 번에 켜고 끄며 세부 설정을 접어 둘 수 있습니다.', loading: '기본' },
-  { name: 'Lucide', area: '선명한 아이콘', role: '화면 크기가 달라도 깨지지 않는 벡터 아이콘을 표시합니다.', change: '설정·자료 자르기·계산 도구의 아이콘이 작은 모바일에서도 또렷합니다.', loading: '기본' },
-  { name: 'Open Props', area: '동작 통일', role: '버튼과 패널의 시간·속도 곡선을 공통 값으로 맞춥니다.', change: '화면마다 제각각이던 전환 속도를 한결 자연스럽게 맞춥니다.', loading: '기본' },
-  { name: 'Driver.js', area: '기능 안내', role: '처음 쓰는 기능을 화면 위에서 순서대로 안내합니다.', change: 'UI 실험실에서 새 기능 안내를 눌러 주요 위치를 차례로 볼 수 있습니다.', loading: '필요할 때만' },
-  { name: 'Canvas Confetti', area: '합격 연출', role: '합격 결과에만 가벼운 축하 효과를 표시합니다.', change: 'UI 실험실이 켜진 상태에서 합격했을 때만 내려받고 실행합니다.', loading: '필요할 때만' },
-  { name: 'Compute Engine', area: '수식 계산', role: '입력한 수식을 해석하고 계산 결과를 확인합니다.', change: '공조 계산문제 메뉴에서 별도 수식 실험실을 열어 대입식을 검산할 수 있습니다.', loading: '필요할 때만' },
-  { name: 'Cropper.js', area: '사진 자르기', role: '촬영한 시험 자료에서 필요한 문제 영역만 자릅니다.', change: '학교 시험 준비관에서 회전·확대 후 PNG로 저장할 수 있습니다.', loading: '필요할 때만' },
-  { name: 'PDF.js', area: 'PDF 준비', role: '서버 업로드 없이 이 기기에서 PDF 페이지를 미리 봅니다.', change: '원하는 페이지를 골라 이미지로 만든 뒤 같은 자르기 도구를 사용합니다.', loading: '필요할 때만' },
-  { name: 'Zod', area: '자료 검사', role: '학교 시험 JSON의 필수 구조와 값 형식을 적용 전에 검사합니다.', change: '잘못된 정리본이 기존 시험 자료를 망가뜨리는 일을 줄입니다.', loading: '필요할 때만' },
-  { name: 'TS-FSRS', area: '복습 일정', role: '암기카드 결과를 바탕으로 다음 복습 시점을 계산합니다.', change: '오늘 볼 카드가 먼저 나오고 기억 정도에 따라 복습 간격이 달라집니다.', loading: '필요할 때만' },
-  { name: 'Capacitor Network', area: '연결 상태', role: 'Android 앱의 온라인·오프라인 전환을 감지합니다.', change: '연결이 끊기면 안내하고 내장 오프라인 화면으로 이어갈 준비를 합니다.', loading: 'Android' },
-  { name: 'Capacitor Keyboard', area: '모바일 키보드', role: 'Android 키보드가 열린 높이와 상태를 감지합니다.', change: '입력할 때 하단 풀이 버튼이 키보드에 가려지는 현상을 줄입니다.', loading: 'Android' },
-  { name: 'Playwright + axe', area: '화면 자동 검사', role: 'PC·휴대폰·태블릿 화면과 접근성 오류를 반복 검사합니다.', change: '업데이트 뒤 가로 넘침·버튼 이름·대비 같은 회귀 문제를 자동 확인할 기반을 만들었습니다.', loading: '검증 전용' },
-];
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
 type BetaModeMeta = {
@@ -826,7 +803,7 @@ const viewTitle = computed(() => ({
   wrong: '오답노트',
   search: '문제 검색',
   calculation: '계산문제만 풀기',
-  guide: studyGuidePages[selectedKey.value]?.title || '시험 자료실',
+  guide: studyGuidePages.value[selectedKey.value]?.title || '시험 자료실',
   coach: '합격 엔진',
   beta: '베타 학습 도구',
   showcase: '신기술 학습관',
@@ -834,8 +811,8 @@ const viewTitle = computed(() => ({
   updates: '패치노트',
   settings: '전체 설정',
 })[view.value]);
-const activeStudyGuide = computed(() => studyGuidePages[selectedKey.value] || null);
-const studyGuideAvailable = computed(() => Boolean(activeStudyGuide.value));
+const activeStudyGuide = computed(() => studyGuidePages.value[selectedKey.value] || null);
+const studyGuideAvailable = computed(() => studyGuideKeys.has(selectedKey.value));
 const hvacPracticalAvailable = computed(() =>
   (selectedKey.value === 'hvac' || selectedKey.value === 'hvac-hansol')
   && (Boolean(cloudSyncState.email) || location.hostname === '127.0.0.1' || location.hostname === 'localhost'));
@@ -844,10 +821,10 @@ const practicalCategoryFilter = ref<'all' | PracticalCategory>('all');
 const practicalRoundFilter = ref('all');
 const practicalMaterialPeriod = ref<PracticalMaterialPeriod>('all');
 const practicalPeriodAvailable = computed(() => ['all', 'restored', 'review'].includes(practicalPromptFilter.value));
-const practicalPeriodCounts = {
-  recent: practicalPrompts.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'since-2023-2')).length,
-  earlier: practicalPrompts.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'before-2023-2')).length,
-};
+const practicalPeriodCounts = computed(() => ({
+  recent: practicalPrompts.value.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'since-2023-2')).length,
+  earlier: practicalPrompts.value.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'before-2023-2')).length,
+}));
 const practicalSearch = ref('');
 const practicalGuideSection = ref<'practice' | 'theory'>('practice');
 const practicalPage = ref(1);
@@ -884,7 +861,7 @@ const practicalDisplayChoice = computed({
   },
 });
 const practicalSplit = ref(Math.min(65, Math.max(35, Number(localStorage.getItem('cbt-practical-split')) || 50)));
-const practicalPageSize = computed(() => practicalLayout.value === 'cbt' ? 1 : practicalBatchSize.value || practicalPrompts.length);
+const practicalPageSize = computed(() => practicalLayout.value === 'cbt' ? 1 : practicalBatchSize.value || practicalPrompts.value.length);
 watch(practicalLayout, (layout) => {
   localStorage.setItem('cbt-practical-layout', layout);
 });
@@ -895,7 +872,7 @@ watch(practicalSplit, value => localStorage.setItem('cbt-practical-split', Strin
 const practicalCategoryOptions = Object.entries(practicalCategoryLabels) as [PracticalCategory, string][];
 const practicalProgressStorageKey = 'unified-cbt-hvac-practical-progress-v1';
 const practicalSessionStorageKey = 'unified-cbt-hvac-practical-session-v1';
-const practicalPromptById = new Map(practicalPrompts.map((prompt) => [prompt.id, prompt]));
+const practicalPromptById = computed(() => new Map(practicalPrompts.value.map((prompt) => [prompt.id, prompt])));
 
 function loadPracticalProgress(): Record<string, PracticalProgress> {
   try {
@@ -914,7 +891,9 @@ function loadPracticalSession(): PracticalSessionSnapshot {
     const parsed = JSON.parse(localStorage.getItem(practicalSessionStorageKey) || 'null') as PracticalSessionSnapshot | null;
     if (!parsed || !Array.isArray(parsed.ids)) throw new Error('invalid practical session');
     return {
-      ids: parsed.ids.filter((id) => practicalPromptById.has(id)),
+      // Validate against the bank only after it loads; never erase saved work
+      // just because this optional module has not been downloaded yet.
+      ids: parsed.ids.filter((id) => typeof id === 'string'),
       deadline: Number(parsed.deadline) || 0,
       finished: Boolean(parsed.finished),
       stoppedSeconds: Math.max(0, Number(parsed.stoppedSeconds) || 0),
@@ -941,13 +920,13 @@ let practicalTimerHandle = 0;
 const practicalSessionActive = computed(() => practicalSessionIds.value.length > 0);
 const practicalLibraryOpen = ref(!practicalSessionActive.value);
 const practicalLibraryTab = ref<'rounds' | 'materials' | 'review'>('rounds');
-const practicalReviewCount = computed(() => practicalPrompts.filter((prompt) => {
+const practicalReviewCount = computed(() => practicalPrompts.value.filter((prompt) => {
   const grade = practicalProgress[prompt.id]?.grade;
   return grade === 'partial' || grade === 'review';
 }).length);
-const practicalMasteredCount = computed(() => practicalPrompts.filter((prompt) => practicalProgress[prompt.id]?.grade === 'correct').length);
-const practicalPartialCount = computed(() => practicalPrompts.filter((prompt) => practicalProgress[prompt.id]?.grade === 'partial').length);
-const practicalGroupCounts = computed(() => practicalPrompts.reduce<Record<PracticalPrompt['group'], number>>((counts, prompt) => {
+const practicalMasteredCount = computed(() => practicalPrompts.value.filter((prompt) => practicalProgress[prompt.id]?.grade === 'correct').length);
+const practicalPartialCount = computed(() => practicalPrompts.value.filter((prompt) => practicalProgress[prompt.id]?.grade === 'partial').length);
+const practicalGroupCounts = computed(() => practicalPrompts.value.reduce<Record<PracticalPrompt['group'], number>>((counts, prompt) => {
   counts[prompt.group] += 1;
   return counts;
 }, { public: 0, restored: 0, foundation: 0, drill: 0, supplement: 0, photos: 0 }));
@@ -958,7 +937,7 @@ const practicalProvidedFilterActive = computed(() => practicalPromptFilter.value
   || (practicalPromptFilter.value !== 'review' && practicalProvidedGroups.has(practicalPromptFilter.value as PracticalPrompt['group'])));
 const practicalRoundOptions = computed(() => {
   const rounds = new Map<string, string>();
-  for (const prompt of practicalPrompts) {
+  for (const prompt of practicalPrompts.value) {
     if (!prompt.year || !prompt.session) continue;
     if (!matchesPracticalMaterialPeriod(prompt, practicalMaterialPeriod.value)) continue;
     rounds.set(`${prompt.year}-${prompt.session}`, `${prompt.year}년 ${formatPracticalSession(prompt.session)}`);
@@ -967,7 +946,7 @@ const practicalRoundOptions = computed(() => {
 });
 const practicalRoundSummaries = computed(() => {
   const rounds = new Map<string, PracticalPrompt[]>();
-  for (const prompt of practicalPrompts) {
+  for (const prompt of practicalPrompts.value) {
     if (prompt.group !== 'restored' || !prompt.year || !prompt.session) continue;
     const key = `${prompt.year}-${prompt.session}`;
     rounds.set(key, [...(rounds.get(key) || []), prompt]);
@@ -1011,7 +990,7 @@ const practicalSelectionLabel = computed(() => {
 });
 const practicalFilteredPrompts = computed(() => {
   const query = practicalSearch.value.trim().toLocaleLowerCase('ko');
-  return practicalPrompts.filter((prompt) => {
+  return practicalPrompts.value.filter((prompt) => {
     const progress = practicalProgress[prompt.id];
     const sourceMatches = practicalPromptFilter.value === 'all'
       || (practicalPromptFilter.value === 'review'
@@ -1028,7 +1007,7 @@ const practicalFilteredPrompts = computed(() => {
   });
 });
 const practicalPagedPrompts = computed(() => practicalSessionActive.value
-  ? practicalSessionIds.value.map((id) => practicalPromptById.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt))
+  ? practicalSessionIds.value.map((id) => practicalPromptById.value.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt))
   : practicalFilteredPrompts.value);
 const practicalPageCount = computed(() => Math.max(1, Math.ceil(practicalPagedPrompts.value.length / practicalPageSize.value)));
 const visiblePracticalPrompts = computed(() => {
@@ -1047,7 +1026,10 @@ watch(practicalMaterialPeriod, () => {
   }
 });
 watch([practicalPage, practicalPromptFilter, practicalCategoryFilter, practicalRoundFilter, practicalMaterialPeriod, practicalSearch, practicalContinuousLimit], persistPracticalCursor);
-onMounted(async () => {
+watch(guideLoaded, async loaded => {
+  if (!loaded) return;
+  practicalSessionIds.value = practicalSessionIds.value.filter(id => practicalPromptById.value.has(id));
+  if (!practicalSessionIds.value.length) practicalLibraryOpen.value = true;
   try {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
     if (['all','public','restored','foundation','drill','supplement','photos','provided','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
@@ -1057,7 +1039,7 @@ onMounted(async () => {
     if (typeof cursor.search === 'string') practicalSearch.value = cursor.search.slice(0, 200);
     await nextTick();
     practicalPage.value = Math.min(practicalPageCount.value, Math.max(1, Number(cursor.page) || 1));
-    practicalContinuousLimit.value = Math.min(practicalPrompts.length, Math.max(20, Number(cursor.limit) || 20));
+    practicalContinuousLimit.value = Math.min(practicalPrompts.value.length, Math.max(20, Number(cursor.limit) || 20));
     await nextTick();
   } catch { /* Previous learning answers remain independent of the view cursor. */ }
   practicalCursorRestoring = false;
@@ -1078,12 +1060,12 @@ const practicalSessionRemainingSeconds = computed(() => {
 });
 const practicalSessionScore = computed(() => practicalSessionIds.value.reduce((total, id) => {
   const progress = practicalProgress[id];
-  const prompt = practicalPromptById.get(id);
+  const prompt = practicalPromptById.value.get(id);
   if (!prompt) return total;
   if (typeof progress?.assessment?.score === 'number') return total + progress.assessment.score;
   return total + (progress?.grade === 'correct' ? prompt.points : progress?.grade === 'partial' ? prompt.points / 2 : 0);
 }, 0));
-const practicalSessionTotalPoints = computed(() => practicalSessionIds.value.reduce((total, id) => total + (practicalPromptById.get(id)?.points || 0), 0));
+const practicalSessionTotalPoints = computed(() => practicalSessionIds.value.reduce((total, id) => total + (practicalPromptById.value.get(id)?.points || 0), 0));
 const practicalSessionGradedCount = computed(() => practicalSessionIds.value.filter((id) => Boolean(practicalProgress[id]?.grade)).length);
 const practicalSessionReport = computed(() => {
   const mistakes = new Map<PracticalMistakeReason, number>();
@@ -1091,7 +1073,7 @@ const practicalSessionReport = computed(() => {
   let hints = 0;
   let lowConfidence = 0;
   for (const id of practicalSessionIds.value) {
-    const prompt = practicalPromptById.get(id);
+    const prompt = practicalPromptById.value.get(id);
     const progress = practicalProgress[id];
     if (!prompt) continue;
     const current = categories.get(prompt.category) || { score: 0, total: 0 };
@@ -1185,7 +1167,7 @@ function updatePracticalAssessment(id: string, assessment: PracticalAssessment):
 
 function practicalSimilarCount(prompt: PracticalPrompt): number {
   const keyPoints = new Set((prompt.keyPoints || []).flatMap((point) => point.normalize('NFKC').split(/[^0-9a-z가-힣]+/i)).filter((word) => word.length >= 2));
-  return practicalPrompts.filter((candidate) => candidate.id !== prompt.id && candidate.category === prompt.category
+  return practicalPrompts.value.filter((candidate) => candidate.id !== prompt.id && candidate.category === prompt.category
     && (!keyPoints.size || (candidate.keyPoints || []).some((point) => [...keyPoints].some((word) => point.includes(word))))).length;
 }
 
@@ -1214,7 +1196,7 @@ function togglePracticalAnswer(id: string): void {
 
 function markPracticalPrompt(id: string, grade: PracticalGrade): void {
   const previousAssessment = practicalProgress[id]?.assessment;
-  const prompt = practicalPromptById.get(id);
+  const prompt = practicalPromptById.value.get(id);
   const points = prompt?.points || 5;
   const appliedScore = grade === 'correct' ? points : grade === 'review' ? 0
     : typeof previousAssessment?.score === 'number' && previousAssessment.score > 0 && previousAssessment.score < points
@@ -1443,7 +1425,7 @@ function startPracticalDaily(): void {
 
 function startPracticalRelated(prompt: PracticalPrompt): void {
   const sourceWords = new Set((prompt.keyPoints || []).flatMap((point) => point.normalize('NFKC').split(/[^0-9a-z가-힣]+/i)).filter((word) => word.length >= 2));
-  const related = uniquePracticalCandidates(practicalPrompts.filter((candidate) => candidate.category === prompt.category
+  const related = uniquePracticalCandidates(practicalPrompts.value.filter((candidate) => candidate.category === prompt.category
     && (candidate.id === prompt.id || !sourceWords.size || (candidate.keyPoints || []).some((point) => [...sourceWords].some((word) => point.includes(word))))));
   const selected = [prompt, ...shuffle(related.filter((candidate) => candidate.id !== prompt.id))].slice(0, 10);
   preparePracticalSessionPrompts(selected);
@@ -4274,6 +4256,30 @@ watch([view, roundsCollection], ([next, collection]) => {
 });
 watch([theme, visualStyle], () => void nextTick(applyUiLabPreferences));
 
+async function requestStudyGuide(): Promise<void> {
+  try { await loadStudyGuide(); } catch { /* Inline retry keeps other screens usable. */ }
+}
+function retryStudyGuide(): void {
+  // Browsers cache a rejected module import. A user-initiated reload resets that
+  // cache; existing pagehide handling persists work and history restores this view.
+  if (guideError.value) location.reload();
+  else void requestStudyGuide();
+}
+watch(view, next => {
+  if (next === 'guide') void requestStudyGuide();
+});
+watch([guideLoaded, practicalSessionActive, practicalSessionFinished], ([loaded, active, finished]) => {
+  window.clearInterval(practicalTimerHandle);
+  practicalTimerHandle = 0;
+  if (!loaded || !active || finished) return;
+  const tick = () => {
+    practicalClock.value = Date.now();
+    if (practicalSessionRemainingSeconds.value <= 0) finishPracticalMock(true);
+  };
+  tick();
+  if (!practicalSessionFinished.value) practicalTimerHandle = window.setInterval(tick, 1000);
+});
+
 onMounted(async () => {
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('cbt:pwa-error', handlePwaRegistrationError);
@@ -4283,20 +4289,13 @@ onMounted(async () => {
   window.addEventListener('resize', markViewportResizing, { passive: true });
   window.addEventListener('keydown', handleSessionKeydown);
   window.addEventListener('cbt:cloud-synced', handleCloudSynced);
-  practicalTimerHandle = window.setInterval(() => {
-    if (!practicalSessionActive.value || practicalSessionFinished.value) return;
-    practicalClock.value = Date.now();
-    if (practicalSessionRemainingSeconds.value <= 0) finishPracticalMock(true);
-  }, 1000);
-  if (practicalSessionActive.value && !practicalSessionFinished.value && practicalSessionDeadline.value <= Date.now()) {
-    practicalClock.value = Date.now();
-    finishPracticalMock(true);
-  }
   if (document.documentElement.dataset.nativeApp === 'true') {
     nativeBackHandle = await CapacitorApp.addListener('backButton', () => { void handleNativeBackButton(); });
     syncNativeStatusBar();
   }
   initializeNavigationHistory();
+  // Resume an existing timed practice even when the home screen opens first.
+  if (view.value === 'guide' || practicalSessionActive.value) void requestStudyGuide();
   applyTheme(theme.value);
   applyVisualStyle(visualStyle.value);
   applyDynamicUiPreference(dynamicUiEnabled.value);
@@ -5080,6 +5079,11 @@ onBeforeUnmount(() => {
           <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
         </template>
 
+        <section v-else-if="view === 'guide' && !guideLoaded" class="guide-notice" aria-live="polite">
+          <strong>{{ guideLoading ? '시험 자료를 불러오는 중입니다…' : '시험 자료실' }}</strong>
+          <p v-if="guideError" role="alert">{{ guideError }}</p>
+          <button v-if="!guideLoading" type="button" @click="retryStudyGuide">다시 불러오기</button>
+        </section>
         <template v-else-if="view === 'guide' && activeStudyGuide">
           <nav v-if="hvacPracticalAvailable" class="practical-guide-tabs" aria-label="시험 자료실 구분">
             <button type="button" :class="{ active: practicalGuideSection === 'practice' }" @click="practicalGuideSection = 'practice'">필답형 문제풀이</button>
@@ -5514,7 +5518,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
-            <p>v5.9.2 화면 최적화: PC 창을 전체화면으로 키워도 두 문제 열의 폭은 일정하게 유지됩니다. 교재 문제·해설과 지원 테마 이미지는 화면 크기에 맞춰 불러오고, 크게 보기는 원본으로 엽니다. 회차 목록의 진입 모션은 보이는 카드 중심으로 실행합니다.</p>
+            <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>정답을 펼쳐 보는 학습에서 벗어나 직접 작성하고, 빠진 핵심어와 단위·숫자·도면을 부분점수 기준으로 확인합니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>

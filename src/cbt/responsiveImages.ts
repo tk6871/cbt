@@ -3,9 +3,9 @@ import manifest from '../../data/responsive-images.json';
 type Entry = { width: number; height: number; variants: { src: string; width: number }[] };
 const images: Record<string, Entry> = manifest;
 
-// A question's fit-content stage cannot use sizes=auto: its containment fallback
-// can collapse intrinsic image width to 300px. Explicit slots keep text readable.
-export function responsiveImageAttrs(source: string, sizes = '(max-width: 820px) calc(100vw - 48px), (max-width: 1480px) 46vw, 700px') {
+// Theme decoration only. Problem and explanation images always use originals.
+export function responsiveImageAttrs(source: string, sizes = '64px') {
+  if (!source.startsWith('assets/theme/')) return {};
   const image = images[source];
   if (!image) return {};
   return {
