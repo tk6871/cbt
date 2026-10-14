@@ -41,8 +41,8 @@ const rows = progress.questions.map(([page,number,source,query])=>{
         score:item.stem.includes(needle)?1:overlap/Math.max(1,ngrams.size),
         queryContained:item.stem.includes(needle),
         stem:item.question.text || item.question.html || item.question.ocrText || '',
-        options:item.question.options, answer:item.question.answer,
-        image:item.question.image || item.question.imageUrl || null,
+        options:item.question.choices, answer:item.question.answer,
+        image:item.question.sourceImage || null, images:item.question.images || [],
       };
     }).filter(item=>item.score>=.45).sort((a,b)=>b.score-a.score||b.year-a.year).slice(0,3);
   return {page,number,source,query,status:'candidate-not-approved',
