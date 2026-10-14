@@ -1,7 +1,6 @@
 """Build optional display derivatives; source files are never modified.
 
-Question/answer derivatives use lossless WebP after proportional LANCZOS resizing.
-Original URLs remain the largest srcset candidate and the zoom source.
+Theme derivatives only. Question/explanation resizing is intentionally disabled.
 """
 import hashlib
 import json
@@ -14,10 +13,8 @@ OUT = ROOT / 'assets/responsive'
 OUT.mkdir(exist_ok=True)
 STAGING = ROOT / 'work/responsive-images-unused'
 STAGING.mkdir(parents=True, exist_ok=True)
-ledger = json.loads((ROOT / 'data/energy-textbook-images.json').read_text())['images']
-paths = {row['asset'] for row in ledger.values()}
-paths.update(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/theme').rglob('*')
-             if p.suffix.lower() in {'.jpg', '.jpeg', '.png', '.webp'})
+paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'assets/theme').rglob('*')
+         if p.suffix.lower() in {'.jpg', '.jpeg', '.png', '.webp'}}
 manifest = {}
 original_bytes = variant_bytes = 0
 for asset in sorted(paths):
@@ -30,7 +27,7 @@ for asset in sorted(paths):
         image = oriented.convert('RGBA' if 'A' in oriented.getbands() or 'transparency' in oriented.info else 'RGB')
         width, height = image.size
         candidates = []
-        for size in ([192, 640] if asset.startswith('assets/theme/') else [768]):
+        for size in [192, 640]:
             if size >= width:
                 continue
             target = OUT / f'{digest}-{size}.webp'

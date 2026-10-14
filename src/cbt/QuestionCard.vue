@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
-import { responsiveImageAttrs, restoreOriginalImage } from './responsiveImages';
 import { isImagePrimary } from './catalog';
 import { explanationSource } from './explanationSource';
 import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
@@ -555,9 +554,7 @@ onBeforeUnmount(() => {
             ref="sourceImageRef"
             class="source-question-image"
             :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]"
-            v-bind="responsiveImageAttrs(item.question.sourceImage)"
             :src="item.question.sourceImage"
-            @error="restoreOriginalImage"
             :alt="`${item.question.number}번 문제 원문`"
             loading="lazy"
             decoding="async"
@@ -719,7 +716,7 @@ onBeforeUnmount(() => {
       <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
       <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
       <figure v-for="image in item.question.explanationImages || []" :key="image" class="textbook-explanation-image" @click="stopExplanationAutoClose">
-        <figcaption>교재 원문 해설</figcaption><img v-bind="responsiveImageAttrs(image)" :src="image" @error="restoreOriginalImage" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
+        <figcaption>교재 원문 해설</figcaption><img :src="image" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
       </figure>
       <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">

@@ -25,7 +25,14 @@ const legacyGemSubjectMap: Record<string, string> = {
   보석가공기법: '보석 가공',
 };
 
+// Banks are immutable after loading. Reuse prepared question/coordinate objects
+// during cross-bank search instead of cloning the entire bank on every lookup.
+const preparedCatalogs = new WeakMap<Catalog, { book?: Catalog; result: Catalog }>();
 function prepareCatalog(source: Catalog): Catalog {
+  const original = source;
+  const book = source.key === 'energy-midterm' ? window.CBT_DATA_ENERGY_TEXTBOOK : undefined;
+  const cached = preparedCatalogs.get(original);
+  if (cached && cached.book === book) return cached.result;
   if (source.key === 'energy-midterm' && window.CBT_DATA_ENERGY_TEXTBOOK) {
     const bookRounds = window.CBT_DATA_ENERGY_TEXTBOOK.rounds;
     source = { ...source, rounds:source.rounds.map(round => ({...round,
@@ -61,7 +68,9 @@ function prepareCatalog(source: Catalog): Catalog {
           }))
         : round.questions,
   }));
-  return { ...source, rounds };
+  const result = { ...source, rounds };
+  preparedCatalogs.set(original, { book, result });
+  return result;
 }
 
 const catalogLoads = new Map<string, Promise<Catalog>>();
@@ -75,7 +84,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   const files = key === 'energy-midterm' ? [key, 'energy-textbook'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=592`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=593`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };
