@@ -34,6 +34,7 @@ const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
+import { orderCoolingSimilar } from './coolingSimilarOrder';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
 import { applyUiLabPreferences, useUiLab } from './uiLab';
 import { isCalculationItem } from './calculationGuide';
@@ -2020,11 +2021,12 @@ function openSchoolSetSearch(id: string): void {
   openView('search');
 }
 
-async function startCoolingMidterm(payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; calculationCount?: number; label?: string }): Promise<void> {
+async function startCoolingMidterm(payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; calculationCount?: number; groupRandom?: boolean; label?: string }): Promise<void> {
   if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
   let items: QuestionItem[];
   try { items = payload.randomCount ? coolingPracticeSelection(payload.items, payload.randomCount, payload.calculationCount) : payload.items; }
   catch (error) { showToast(error instanceof Error ? error.message : '출제 범위를 확인해 주세요.'); return; }
+  if (payload.randomCount && payload.groupRandom) items = orderCoolingSimilar(items);
   await beginSession(payload.mode, `${coolingMidtermTitle} · ${payload.randomCount ? '랜덤' : '전체'} ${items.length}문제${payload.label ? ` · ${payload.label}` : ''}`, items);
   if (payload.randomCount && session.value?.items[0]?.id === items[0]?.id) {
     studyStore.progress ||= {};
@@ -5518,6 +5520,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
+            <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>정답을 펼쳐 보는 학습에서 벗어나 직접 작성하고, 빠진 핵심어와 단위·숫자·도면을 부분점수 기준으로 확인합니다.</p></header>

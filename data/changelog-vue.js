@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.5',scope:'industrial',date:'2026.10.14',
+      title:'냉동 중간고사 비슷한 문제끼리 풀기',
+      summary:'같은 목차·주제를 연달아 풀거나 기존 순서를 선택합니다. 랜덤에도 선택 후 배치 옵션을 제공합니다.',
+      tags:['문제 배치','랜덤 옵션'],
+      changes:[
+        '목차·전체·오답 새 풀이의 문제 배치에서 비슷한 문제끼리(기본) 또는 기존 순서를 고를 수 있습니다. 지문에서 브라인·압축기 등 주제를 파악해 같은 세부 목차 안에서 붙여 줍니다.',
+        '랜덤은 문제를 무작위로 선택한 뒤 뽑힌 문제를 비슷한 내용끼리 배치하는 옵션을 따로 제공합니다(기본 꺼짐). 계산5개 포함과 이미 나온 문제 제외 조건은 그대로입니다.',
+        '기존 이어풀기와 같은 문제 다시 풀기는 저장된 순서 그대로입니다. 문제·정답·해설·이미지·학습 기록을 변경하거나 수치가 다른 문제를 삭제하지 않습니다.'
+      ]
+    },
+    {
       version:'5.9.4',scope:'industrial',date:'2026.10.14',
       title:'냉동 중간고사 교재 본문 확인 문제 선택',
       summary:'교재 본문과 대조한 문제만 고르거나 기존 전체 목록으로 바꿀 수 있습니다.',
@@ -2539,8 +2550,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.4';
+  changelog.versions.industrial = '5.9.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.1';
+  changelog.currentVersion = '5.9.5';
   window.CBT_CHANGELOG = changelog;
 })();
