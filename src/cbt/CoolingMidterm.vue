@@ -6,11 +6,12 @@ import { uniqueSchoolItems, coolingTopics, coolingTopicGroups, coolingBookChapte
 import { coolingCalculation } from './coolingPractice';
 import { coolingSafetyKind } from './coolingScope';
 import { coolingBookConfirmed, coolingBookReview } from './coolingBookScope';
+import { orderCoolingSimilar } from './coolingSimilarOrder';
 
 type SavedSet = { id?: string; title: string; mode?: StudyMode; savedAt: number; itemIds: string[]; answers: Record<string, number> };
 const props = defineProps<{ items: QuestionItem[]; safetyItems: QuestionItem[]; wrongIds: string[]; attemptedIds: string[]; unusedIds: string[]; sessions: SavedSet[]; history: ExamRecord[]; loading: boolean; error: string }>();
 const emit = defineEmits<{
-  start: [payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; calculationCount?: number; label?: string }];
+  start: [payload: { items: QuestionItem[]; mode: StudyMode; randomCount: number; calculationCount?: number; groupRandom?: boolean; label?: string }];
   search: []; retry: []; resetDraws: []; resume: [id: string]; replay: [id: string];
 }>();
 const preferenceKey = 'school-cooling-selection-v1';
@@ -25,6 +26,8 @@ const count = ref([10, 20, 40, 60].includes(Number(savedPreferences.count)) ? Nu
 const excludeSeen = ref(savedPreferences.excludeSeen !== false);
 const includeFiveCalculations = ref(savedPreferences.includeFiveCalculations === true);
 const bookOnly = ref(savedPreferences.bookScopeVersion === 1 ? savedPreferences.bookOnly !== false : true);
+const questionOrder = ref(savedPreferences.questionOrder === 'original' ? 'original' : 'similar');
+const groupRandom = ref(savedPreferences.groupRandom === true);
 const sourceItems = computed(() => props.items.filter(item => (source.value === 'all' || item.round.qualificationKey === source.value)
   && (!bookOnly.value || coolingBookConfirmed(item))));
 const groups = computed(() => coolingTopicGroups(sourceItems.value));
@@ -58,8 +61,8 @@ watch(bookOnly, () => {
   topic.value = 'all'; section.value = 'all';
   if (tab.value === 'sections') tab.value = 'topics';
 });
-watch([source, topic, section, tab, count, excludeSeen, includeFiveCalculations, bookOnly], () => {
-  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, bookScopeVersion: 1, bookOnly: bookOnly.value, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value, includeFiveCalculations: includeFiveCalculations.value }));
+watch([source, topic, section, tab, count, excludeSeen, includeFiveCalculations, bookOnly, questionOrder, groupRandom], () => {
+  localStorage.setItem(preferenceKey, JSON.stringify({ layoutVersion: 3, bookScopeVersion: 1, bookOnly: bookOnly.value, questionOrder: questionOrder.value, groupRandom: groupRandom.value, source: source.value, topic: topic.value, section: section.value, tab: tab.value, count: count.value, excludeSeen: excludeSeen.value, includeFiveCalculations: includeFiveCalculations.value }));
 });
 const sourceLabel = computed(() => source.value === 'all' ? '구 기출 + 한솔' : source.value === 'hvac' ? '2006년3회~2016년 공조' : '한솔 공조');
 const scopeLabel = computed(() => `${bookOnly.value ? '교재 본문 확인 · ' : ''}${topic.value === 'all' ? '냉동냉장설비 전체' : topic.value}${selectedSection.value ? ` · ${selectedSection.value.label}` : ''} · ${sourceLabel.value}`);
@@ -67,11 +70,14 @@ function openChapter(group: TopicGroup): void {
   topic.value = group.label; section.value = 'all'; tab.value = 'sections';
 }
 function startGroup(group: TopicGroup, mode: StudyMode, wrong = false): void {
-  emit('start', { items: wrong ? wrongItems(group.aliases) : group.items, mode, randomCount: 0, label: `${tab.value === 'sections' ? `${topic.value} · ` : ''}${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}` });
+  startOrdered(wrong ? wrongItems(group.aliases) : group.items, mode, `${tab.value === 'sections' ? `${topic.value} · ` : ''}${group.label} · ${sourceLabel.value}${wrong ? ' 오답' : ''}`);
+}
+function startOrdered(items: QuestionItem[], mode: StudyMode, label: string): void {
+  emit('start', { items: questionOrder.value === 'similar' ? orderCoolingSimilar(items) : items.slice(), mode, randomCount: 0, label: `${label} · ${questionOrder.value === 'similar' ? '비슷한 문제순' : '기존 순서'}` });
 }
 function startRandom(mode: StudyMode): void {
   if (calculationShortage.value || !randomPool.value.length) return;
-  emit('start', { items: randomPool.value, mode, randomCount: count.value, calculationCount: includeFiveCalculations.value ? 5 : undefined, label: `${scopeLabel.value}${includeFiveCalculations.value ? ' · 계산5개 포함' : ''}` });
+  emit('start', { items: randomPool.value, mode, randomCount: count.value, calculationCount: includeFiveCalculations.value ? 5 : undefined, groupRandom: groupRandom.value, label: `${scopeLabel.value}${includeFiveCalculations.value ? ' · 계산5개 포함' : ''}${groupRandom.value ? ' · 비슷한 문제순' : ''}` });
 }
 function resumeForGroup(group: TopicGroup): SavedSet | undefined {
   const ids = new Set(group.aliases.map(item => item.id));
@@ -94,11 +100,13 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
     </nav>
     <div v-if="tab !== 'history'" class="midterm-controls">
       <label>문제 출처<select v-model="source"><option value="all">구 기출 + 한솔 전체</option><option value="hvac">2006년3회~2016년 공조 · {{ sourceCount('hvac') }}문제</option><option value="hvac-hansol">한솔 공조 · {{ sourceCount('hvac-hansol') }}문제</option></select></label>
+      <label>문제 배치<select v-model="questionOrder"><option value="similar">비슷한 문제끼리 · 기본</option><option value="original">기존 순서</option></select></label>
       <label v-if="tab === 'all' || tab === 'wrong'">교재 장<select v-model="topic"><option value="all">냉동냉장설비 전체</option><option v-for="value in [...coolingTopics, '분류 미확인']" :key="value" :value="value">{{ value }} · {{ topicCount(value) }}문제</option></select></label>
       <label v-if="(tab === 'all' || tab === 'wrong') && sections.length">세부 목차<select v-model="section"><option value="all">이 장 전체</option><option v-for="group in sections" :key="group.label" :value="group.label">{{ group.label }} · {{ group.items.length }}문제</option></select></label>
       <button v-if="source !== 'all' || ((tab === 'all' || tab === 'wrong') && topic !== 'all')" class="filter-reset" @click="source = 'all'; topic = 'all'; section = 'all'; if (tab === 'sections') tab = 'topics'">전체 범위 보기</button>
     </div>
     <div v-if="tab !== 'history'" class="topic-warning">
+      <p>목차·전체·오답의 새 풀이는 선택한 문제 배치를 따릅니다. 랜덤은 아래 별도 옵션으로 배치만 바꿀 수 있습니다. 이어풀기·같은 문제 다시 풀기는 저장된 순서를 유지합니다.</p>
       <label class="check"><input v-model="bookOnly" type="checkbox">교재 본문에서 연결 확인된 문제만 풀기</label>
       <p>{{ bookOnly ? '켜짐: 본문 문제와 지문·보기·등록 정답을 대조한 원문만 선택합니다.' : '꺼짐: 기존 중간고사 전체 목록입니다.' }} 기존 오답·진행 중 풀이·기록은 그대로 보관합니다.</p>
       <p>대조 {{ coolingBookReview.locations }}위치 중 연결 확인 {{ coolingBookReview.confirmed }}위치 · 추가 확인 {{ coolingBookReview.pending }}위치. 교재 전체 수록 완료를 뜻하지 않습니다. <a href="docs/cooling-book-review-2026-10-14.html" target="_blank" rel="noopener">교재 대조 목록 ↗</a></p>
@@ -134,8 +142,8 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <h2>선택 범위를 한 번에 풀기</h2>
       <p class="muted">{{ scopeLabel }} · {{ pool.length.toLocaleString() }}문제</p>
       <div class="midterm-actions">
-        <button :disabled="loading || !pool.length" @click="emit('start', { items: pool, mode: 'learn', randomCount: 0, label: scopeLabel })">전체 문제 학습</button>
-        <button :disabled="loading || !pool.length" @click="emit('start', { items: pool, mode: 'exam', randomCount: 0, label: scopeLabel })">전체 문제 CBT</button>
+        <button :disabled="loading || !pool.length" @click="startOrdered(pool, 'learn', scopeLabel)">전체 문제 학습</button>
+        <button :disabled="loading || !pool.length" @click="startOrdered(pool, 'exam', scopeLabel)">전체 문제 CBT</button>
       </div>
       <hr>
       <h2>랜덤으로 골라 풀기</h2>
@@ -143,8 +151,10 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
         <label>랜덤 문제 수<select v-model.number="count"><option v-for="size in [10, 20, 40, 60]" :key="size" :value="size">{{ size }}문제</option></select></label>
         <label class="check"><input v-model="excludeSeen" type="checkbox">이미 나온 문제 제외</label>
         <label class="check"><input v-model="includeFiveCalculations" type="checkbox">계산 5개 포함</label>
+        <label class="check"><input v-model="groupRandom" type="checkbox">뽑힌 문제를 비슷한 내용끼리 배치</label>
         <span class="muted">{{ excludeSeen ? '새로 풀 수 있는' : '반복 포함' }} {{ randomPool.length.toLocaleString() }}문제</span>
       </div>
+      <p class="muted">문제 선택은 항상 랜덤입니다. 배치 옵션을 켜면 뽑힌 문제 안에서만 같은 목차·주제끼리 모으고, 끄면 순서도 무작위입니다.</p>
       <p v-if="includeFiveCalculations" class="muted calculation-quota">계산5개 + 이론{{ count - 5 }}개 · 선택 범위에 남은 계산{{ calculationAvailable }}개 / 이론{{ theoryAvailable }}개. 숫자·공식 암기는 계산으로 세지 않습니다.</p>
       <p v-if="calculationShortage" role="status" class="topic-warning">계산5개 또는 이론{{ count - 5 }}개가 부족합니다. 범위를 넓히거나 ‘이미 나온 문제 제외’ 또는 ‘계산 5개 포함’을 꺼 주세요.</p>
       <div class="midterm-actions">
@@ -156,9 +166,9 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
     </section>
     <section v-else-if="tab === 'wrong'" class="selection-panel">
       <h2>중간고사 전용 오답 {{ wrongPool.length }}문제</h2><p class="muted">기존 공조·한솔 오답과 섞이지 않습니다.</p>
-      <div class="midterm-actions"><button :disabled="!wrongPool.length" @click="emit('start', { items: wrongPool, mode: 'learn', randomCount: 0, label: '오답 복습' })">오답 {{ wrongPool.length }}문제 복습</button></div>
+      <div class="midterm-actions"><button :disabled="!wrongPool.length" @click="startOrdered(wrongPool, 'learn', '오답 복습')">오답 {{ wrongPool.length }}문제 복습</button></div>
       <div class="record-grid"><article v-for="group in wrongGroups" :key="group.label">
-        <h3>{{ group.label }}</h3><p>오답 {{ wrongCount(group) }}문제</p><button @click="emit('start', { items: wrongItems(group.aliases), mode: 'learn', randomCount: 0, label: `${group.label} · ${sourceLabel} 오답` })">이 범위 오답 풀기</button>
+        <h3>{{ group.label }}</h3><p>오답 {{ wrongCount(group) }}문제</p><button @click="startOrdered(wrongItems(group.aliases), 'learn', `${group.label} · ${sourceLabel} 오답`)">이 범위 오답 풀기</button>
       </article></div>
     </section>
     <section v-else class="selection-panel">
@@ -172,8 +182,8 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <p>일반 전체·랜덤·목차 풀이에서는 제외했습니다. 필요한 경우에만 이 묶음을 따로 풉니다.</p>
       <p>법규·운전안전 {{ safetyCounts[0] }}개 · 보호장치 {{ safetyCounts[1] }}개 · 냉매 누설검사 {{ safetyCounts[2] }}개</p>
       <div class="midterm-actions">
-        <button :disabled="loading || !safetyPool.length" @click="emit('start', { items: safetyPool, mode: 'learn', randomCount: 0, label: '안전관리·법규 별도' })">안전관리 별도 학습</button>
-        <button :disabled="loading || !safetyPool.length" @click="emit('start', { items: safetyPool, mode: 'exam', randomCount: 0, label: '안전관리·법규 별도' })">안전관리 별도 CBT</button>
+        <button :disabled="loading || !safetyPool.length" @click="startOrdered(safetyPool, 'learn', '안전관리·법규 별도')">안전관리 별도 학습</button>
+        <button :disabled="loading || !safetyPool.length" @click="startOrdered(safetyPool, 'exam', '안전관리·법규 별도')">안전관리 별도 CBT</button>
       </div>
     </details>
     <details class="classification-help"><summary>시험 범위·목차 분류 안내</summary>
