@@ -1,0 +1,4500 @@
+{
+  "version": 1,
+  "date": "2026-10-14",
+  "sourceHashes": {
+    "hvac": "ec4e84e705901c76eea7337b2ce377b8663c5aa76909b16509ada6936db822a1",
+    "hvac-hansol": "787e0debf32b7bbad793518d79963a97fd9e95b2398f1b358041de476939da5d"
+  },
+  "totalLocations": 589,
+  "confirmedLocations": 362,
+  "confirmedSourceIds": 362,
+  "pendingLocations": 227,
+  "limits": "기존 자료와 연결 확인된 부분 목록. 교재 전체 수록 완료·정답 사실 검증·미확인 문제의 부재 증명이 아님. 원문·정답·기록 변경 없음.",
+  "rows": [
+    {
+      "page": "2-18",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-18",
+      "number": 2,
+      "id": "hvac-hansol-2021-3:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "207a18b38927febf"
+    },
+    {
+      "page": "2-18",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-18",
+      "number": 4,
+      "id": "hvac-20150531:31",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "e60742f95b90bd2"
+    },
+    {
+      "page": "2-18",
+      "number": 5,
+      "id": "hvac-hansol-2022-1:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f3f15a36a50c1fa8"
+    },
+    {
+      "page": "2-19",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-19",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-19",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-19",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-20",
+      "number": 10,
+      "id": "hvac-20160821:40",
+      "status": "confirmed-native-transcription",
+      "note": "앱 화면에서 수식 배열·조사·기존 표기 차이를 확인. 조건·보기 의미·등록 정답 유지.",
+      "fingerprint": "f34a445723b5c7a8"
+    },
+    {
+      "page": "2-20",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-20",
+      "number": 12,
+      "id": "hvac-20090510:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "697b8fe5704f27d0"
+    },
+    {
+      "page": "2-20",
+      "number": 13,
+      "id": "hvac-20100725:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "284ad720fd2c5ce1"
+    },
+    {
+      "page": "2-20",
+      "number": 14,
+      "id": "hvac-20100509:22",
+      "status": "pending-answer-disagreement",
+      "note": "보기는 같지만 인쇄 정답 번호와 기존 정답 번호가 다름. 정답 변경 없이 보류."
+    },
+    {
+      "page": "2-21",
+      "number": 15,
+      "id": "hvac-hansol-2021-1:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "9e01900fac362870"
+    },
+    {
+      "page": "2-21",
+      "number": 16,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-32",
+      "number": 1,
+      "id": "hvac-20080727:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a69a637cc746b43b"
+    },
+    {
+      "page": "2-32",
+      "number": 2,
+      "id": "hvac-20130602:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "475528235b4148ee"
+    },
+    {
+      "page": "2-32",
+      "number": 3,
+      "id": "hvac-hansol-2022-1:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b3f60463352b5c1c"
+    },
+    {
+      "page": "2-32",
+      "number": 4,
+      "id": "hvac-20110320:28",
+      "status": "pending-printed-word-difference",
+      "note": "교재와 기존 자료의 단어가 다름. 원문 유지."
+    },
+    {
+      "page": "2-32",
+      "number": 5,
+      "id": "hvac-20150531:40",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a530bf0339f569f0"
+    },
+    {
+      "page": "2-32",
+      "number": 6,
+      "id": "hvac-20130310:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ef807f8281b2b948"
+    },
+    {
+      "page": "2-33",
+      "number": 7,
+      "id": "hvac-20080727:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "77b00dc00ca4212a"
+    },
+    {
+      "page": "2-33",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-33",
+      "number": 9,
+      "id": "hvac-hansol-2022-1:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b886a8a87f802658"
+    },
+    {
+      "page": "2-33",
+      "number": 10,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-33",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-34",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-34",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-34",
+      "number": 14,
+      "id": "hvac-20160508:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "7e664219ae199504"
+    },
+    {
+      "page": "2-34",
+      "number": 15,
+      "id": "hvac-20150531:39",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "d5a7b3ca43068ddb"
+    },
+    {
+      "page": "2-34",
+      "number": 16,
+      "id": "hvac-hansol-2023-3:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2a6897e9ffb2dbb1"
+    },
+    {
+      "page": "2-34",
+      "number": 17,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-35",
+      "number": 18,
+      "id": "hvac-20140817:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "43b70e74dcb18f41"
+    },
+    {
+      "page": "2-35",
+      "number": 19,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-35",
+      "number": 20,
+      "id": "hvac-20100307:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "fe12e470a3949ca0"
+    },
+    {
+      "page": "2-35",
+      "number": 21,
+      "id": "hvac-20100725:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "fe1e543575bfaaab"
+    },
+    {
+      "page": "2-35",
+      "number": 22,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-36",
+      "number": 23,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-44",
+      "number": 1,
+      "id": "hvac-20150531:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2d09f5d0d6490e26"
+    },
+    {
+      "page": "2-44",
+      "number": 2,
+      "id": "hvac-hansol-2021-1:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "5966e101811ef8e2"
+    },
+    {
+      "page": "2-44",
+      "number": 3,
+      "id": "hvac-hansol-2023-1:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f7cd630c120ecd4d"
+    },
+    {
+      "page": "2-44",
+      "number": 4,
+      "id": "hvac-20110821:39",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "97186e879a9b4e2b"
+    },
+    {
+      "page": "2-44",
+      "number": 5,
+      "id": "hvac-20160306:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "13f767d0eba30a97"
+    },
+    {
+      "page": "2-45",
+      "number": 6,
+      "id": "hvac-20130602:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "40fbd0415da1de8f"
+    },
+    {
+      "page": "2-45",
+      "number": 7,
+      "id": "hvac-20160306:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ccacd9fde126522a"
+    },
+    {
+      "page": "2-45",
+      "number": 8,
+      "id": "hvac-hansol-2023-2:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ef9352e713033710"
+    },
+    {
+      "page": "2-45",
+      "number": 9,
+      "id": "hvac-20150308:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a10343e72c5713f"
+    },
+    {
+      "page": "2-45",
+      "number": 10,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-46",
+      "number": 11,
+      "id": "hvac-20160508:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "d40ce550cc009e26"
+    },
+    {
+      "page": "2-46",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-46",
+      "number": 13,
+      "id": "hvac-hansol-2021-3:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "899041eb23a0ded2"
+    },
+    {
+      "page": "2-46",
+      "number": 14,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-47",
+      "number": 15,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-47",
+      "number": 16,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-47",
+      "number": 17,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-47",
+      "number": 18,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-47",
+      "number": 19,
+      "id": "hvac-hansol-2022-2:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "69602aab581cb09a"
+    },
+    {
+      "page": "2-60",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-60",
+      "number": 2,
+      "id": "hvac-20140817:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "e6f1c9fa22d104a4"
+    },
+    {
+      "page": "2-60",
+      "number": 3,
+      "id": "hvac-20120520:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "905833a569754d91"
+    },
+    {
+      "page": "2-60",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-60",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-61",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-61",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-61",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-61",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-62",
+      "number": 10,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-62",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-62",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-62",
+      "number": 13,
+      "id": "hvac-hansol-2021-3:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "22ccada492a119a7"
+    },
+    {
+      "page": "2-63",
+      "number": 14,
+      "id": "hvac-hansol-2022-1:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "65475a105dc3a2e3"
+    },
+    {
+      "page": "2-63",
+      "number": 15,
+      "id": "hvac-hansol-2022-2:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "e0d3bfcdfe5019eb"
+    },
+    {
+      "page": "2-63",
+      "number": 16,
+      "id": "hvac-hansol-2023-3:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b3f2b78d84c3cfaa"
+    },
+    {
+      "page": "2-63",
+      "number": 17,
+      "id": "hvac-hansol-2023-2:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "3e6f190c6e86a4dc"
+    },
+    {
+      "page": "2-74",
+      "number": 1,
+      "id": "hvac-20150531:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "aa686bc56d253042"
+    },
+    {
+      "page": "2-74",
+      "number": 2,
+      "id": "hvac-20090510:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "594a10d6b225e388"
+    },
+    {
+      "page": "2-74",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-74",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-75",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-75",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-75",
+      "number": 7,
+      "id": "hvac-hansol-2022-3:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "df8a713513f6ddca"
+    },
+    {
+      "page": "2-75",
+      "number": 8,
+      "id": "hvac-hansol-2023-2:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "10d38ab18c98c5b8"
+    },
+    {
+      "page": "2-84",
+      "number": 1,
+      "id": "hvac-20110612:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "7dc51c92c0d67df0"
+    },
+    {
+      "page": "2-84",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-84",
+      "number": 3,
+      "id": "hvac-20100509:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f14459d75511c7f8"
+    },
+    {
+      "page": "2-84",
+      "number": 4,
+      "id": "hvac-20130818:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "fb8159987729af2c"
+    },
+    {
+      "page": "2-84",
+      "number": 5,
+      "id": "hvac-20160821:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "6a703c038aa498a6"
+    },
+    {
+      "page": "2-85",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-85",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-85",
+      "number": 8,
+      "id": "hvac-20140525:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "7100ad345c47be61"
+    },
+    {
+      "page": "2-85",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-85",
+      "number": 10,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-85",
+      "number": 11,
+      "id": "hvac-20120304:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "c5746d374799f9fa"
+    },
+    {
+      "page": "2-86",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-86",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-86",
+      "number": 14,
+      "id": "hvac-hansol-2023-3:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f6c89fd9265e86a7"
+    },
+    {
+      "page": "2-127",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-127",
+      "number": 2,
+      "id": "hvac-20150308:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "eb836d3bfafc3946"
+    },
+    {
+      "page": "2-127",
+      "number": 3,
+      "id": "hvac-hansol-2022-1:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a1f1cc59ba37bc00"
+    },
+    {
+      "page": "2-127",
+      "number": 4,
+      "id": "hvac-20160306:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "176ab6d62363cc03"
+    },
+    {
+      "page": "2-128",
+      "number": 5,
+      "id": "hvac-20120826:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "40f18c14ebec2b32"
+    },
+    {
+      "page": "2-128",
+      "number": 6,
+      "id": "hvac-20160821:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "28318c302b501e6c"
+    },
+    {
+      "page": "2-128",
+      "number": 7,
+      "id": "hvac-hansol-2023-1:31",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "3f4d55f593d9a21c"
+    },
+    {
+      "page": "2-128",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-128",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-129",
+      "number": 10,
+      "id": "hvac-20160821:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "8d5121bff4235d08"
+    },
+    {
+      "page": "2-129",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-129",
+      "number": 12,
+      "id": "hvac-hansol-2023-1:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b19913a9160d8838"
+    },
+    {
+      "page": "2-129",
+      "number": 13,
+      "id": "hvac-20160306:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "eca0a86f9e2d2f1"
+    },
+    {
+      "page": "2-129",
+      "number": 14,
+      "id": "hvac-20150308:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "5b0e3a55cb5c499c"
+    },
+    {
+      "page": "2-130",
+      "number": 15,
+      "id": "hvac-20130310:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a5b2d200b454dde8"
+    },
+    {
+      "page": "2-130",
+      "number": 16,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-130",
+      "number": 17,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-130",
+      "number": 18,
+      "id": "hvac-20140817:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "db4e447f6a3c0c3b"
+    },
+    {
+      "page": "2-130",
+      "number": 19,
+      "id": "hvac-hansol-2022-2:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2bd3e6712650531e"
+    },
+    {
+      "page": "2-131",
+      "number": 20,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-142",
+      "number": 1,
+      "id": "hvac-20150531:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "5c5930f3b3b4e1df"
+    },
+    {
+      "page": "2-142",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-142",
+      "number": 3,
+      "id": "hvac-20080511:39",
+      "status": "confirmed-native-transcription",
+      "note": "앱 화면에서 수식 배열·조사·기존 표기 차이를 확인. 조건·보기 의미·등록 정답 유지.",
+      "fingerprint": "83e538ef71951993"
+    },
+    {
+      "page": "2-142",
+      "number": 4,
+      "id": "hvac-20080727:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "599bd91d5404cb89"
+    },
+    {
+      "page": "2-143",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-143",
+      "number": 6,
+      "id": "hvac-20080511:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "cb660ce7adc1b952"
+    },
+    {
+      "page": "2-143",
+      "number": 7,
+      "id": "hvac-hansol-2023-3:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "d55bf360e5ad90d5"
+    },
+    {
+      "page": "2-143",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-143",
+      "number": 9,
+      "id": "hvac-20160508:39",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "c0a82db1232988b4"
+    },
+    {
+      "page": "2-144",
+      "number": 10,
+      "id": "hvac-20100509:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b814900cc3fb6dc9"
+    },
+    {
+      "page": "2-144",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-144",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-144",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-145",
+      "number": 14,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-145",
+      "number": 15,
+      "id": "hvac-hansol-2022-1:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "44e5f9783b1fb57e"
+    },
+    {
+      "page": "2-145",
+      "number": 16,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-145",
+      "number": 17,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-145",
+      "number": 18,
+      "id": "hvac-hansol-2023-3:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "1602ce35bc131390"
+    },
+    {
+      "page": "2-146",
+      "number": 19,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-146",
+      "number": 20,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-158",
+      "number": 1,
+      "id": "hvac-20080511:30",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ee1c88bb889997b8"
+    },
+    {
+      "page": "2-158",
+      "number": 2,
+      "id": "hvac-hansol-2023-1:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "4ab3b57f93ff178"
+    },
+    {
+      "page": "2-158",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-158",
+      "number": 4,
+      "id": "hvac-hansol-2021-2:37",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "90c0794abffaac90"
+    },
+    {
+      "page": "2-158",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-159",
+      "number": 6,
+      "id": "hvac-20110612:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f3ed7103a8321fe"
+    },
+    {
+      "page": "2-159",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-159",
+      "number": 8,
+      "id": "hvac-20080727:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "636885fd36017e1c"
+    },
+    {
+      "page": "2-159",
+      "number": 9,
+      "id": "hvac-hansol-2022-3:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a5521c90e45aabae"
+    },
+    {
+      "page": "2-159",
+      "number": 10,
+      "id": "hvac-20100509:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a040f2498dc6f2f2"
+    },
+    {
+      "page": "2-160",
+      "number": 11,
+      "id": "hvac-20120304:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "6f06e2ee68ba7fd0"
+    },
+    {
+      "page": "2-160",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-160",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-160",
+      "number": 14,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-160",
+      "number": 15,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-161",
+      "number": 16,
+      "id": "hvac-hansol-2023-1:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "914bad5729987ceb"
+    },
+    {
+      "page": "2-161",
+      "number": 17,
+      "id": "hvac-hansol-2023-2:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "da0fc806aa730a49"
+    },
+    {
+      "page": "2-168",
+      "number": 1,
+      "id": "hvac-20080302:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a10343e72c5713f"
+    },
+    {
+      "page": "2-168",
+      "number": 2,
+      "id": "hvac-20130602:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "46867153877d30f9"
+    },
+    {
+      "page": "2-168",
+      "number": 3,
+      "id": "hvac-20130818:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "d45efda5576ffa65"
+    },
+    {
+      "page": "2-168",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-169",
+      "number": 5,
+      "id": "hvac-20080727:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "304af71857abc7b0"
+    },
+    {
+      "page": "2-169",
+      "number": 6,
+      "id": "hvac-20110821:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2da99658b24d0e0e"
+    },
+    {
+      "page": "2-169",
+      "number": 7,
+      "id": "hvac-hansol-2021-1:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a20d5c489726ea0"
+    },
+    {
+      "page": "2-169",
+      "number": 8,
+      "id": "hvac-20150816:40",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "60445b943ce94d1b"
+    },
+    {
+      "page": "2-169",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-170",
+      "number": 10,
+      "id": "hvac-20150308:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "e4a95e44de12e46b"
+    },
+    {
+      "page": "2-170",
+      "number": 11,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-170",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-170",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-170",
+      "number": 14,
+      "id": "hvac-20140525:24",
+      "status": "confirmed-native-transcription",
+      "note": "앱 화면에서 수식 배열·조사·기존 표기 차이를 확인. 조건·보기 의미·등록 정답 유지.",
+      "fingerprint": "d6bc62de9cee20fd"
+    },
+    {
+      "page": "2-171",
+      "number": 15,
+      "id": "hvac-hansol-2022-2:31",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "288144dcd7ca9018"
+    },
+    {
+      "page": "2-171",
+      "number": 16,
+      "id": "hvac-hansol-2023-1:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "97bc4a215dba66dd"
+    },
+    {
+      "page": "2-178",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-178",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-178",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-178",
+      "number": 4,
+      "id": "hvac-20160508:37",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "70a44c01a644a101"
+    },
+    {
+      "page": "2-178",
+      "number": 5,
+      "id": "hvac-20150816:24",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b498f0d165181790"
+    },
+    {
+      "page": "2-179",
+      "number": 6,
+      "id": "hvac-hansol-2021-2:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "52a7ea64b8ec9279"
+    },
+    {
+      "page": "2-179",
+      "number": 7,
+      "id": "hvac-20150531:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "536212959a911c11"
+    },
+    {
+      "page": "2-179",
+      "number": 8,
+      "id": "hvac-20130310:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "eaa3385bd95bc8f2"
+    },
+    {
+      "page": "2-179",
+      "number": 9,
+      "id": "hvac-hansol-2021-2:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "24b21078e5868271"
+    },
+    {
+      "page": "2-179",
+      "number": 10,
+      "id": "hvac-20150308:39",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ad50e62551a76f3c"
+    },
+    {
+      "page": "2-180",
+      "number": 11,
+      "id": "hvac-20130818:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fef74d82fa81494"
+    },
+    {
+      "page": "2-180",
+      "number": 12,
+      "id": "hvac-hansol-2022-2:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "5940e7e82dd81d76"
+    },
+    {
+      "page": "2-180",
+      "number": 13,
+      "id": "hvac-20150816:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c77727860def6ba8"
+    },
+    {
+      "page": "2-180",
+      "number": 14,
+      "id": "hvac-hansol-2022-2:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d6f84345bf377237"
+    },
+    {
+      "page": "2-181",
+      "number": 15,
+      "id": "hvac-20160821:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "69938eb3d7b05cde"
+    },
+    {
+      "page": "2-181",
+      "number": 16,
+      "id": "hvac-20110821:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "986ffdd9c683b1f0"
+    },
+    {
+      "page": "2-181",
+      "number": 17,
+      "id": "hvac-20080302:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b6997c7f0f20ae03"
+    },
+    {
+      "page": "2-181",
+      "number": 18,
+      "id": "hvac-20160821:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f25d178457575d91"
+    },
+    {
+      "page": "2-182",
+      "number": 19,
+      "id": "hvac-20080727:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8ca4351ca9adaa27"
+    },
+    {
+      "page": "2-182",
+      "number": 20,
+      "id": "hvac-20130818:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4df7e358a9211e11"
+    },
+    {
+      "page": "2-182",
+      "number": 21,
+      "id": "hvac-20120520:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "52d6c5892e905c66"
+    },
+    {
+      "page": "2-182",
+      "number": 22,
+      "id": "hvac-20110612:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fd4c04f1622ce79a"
+    },
+    {
+      "page": "2-182",
+      "number": 23,
+      "id": "hvac-20150308:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ec48758f0de86688"
+    },
+    {
+      "page": "2-183",
+      "number": 24,
+      "id": "hvac-20120520:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "776aff67f991990d"
+    },
+    {
+      "page": "2-183",
+      "number": 25,
+      "id": "hvac-20130818:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "62e5a41e52de8baa"
+    },
+    {
+      "page": "2-183",
+      "number": 26,
+      "id": "hvac-hansol-2018-2:40",
+      "status": "pending-wording-difference",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-183",
+      "number": 27,
+      "id": "hvac-20090510:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "54b4c704d3b944b"
+    },
+    {
+      "page": "2-184",
+      "number": 28,
+      "id": "hvac-20100725:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "47eb9206fe981bf1"
+    },
+    {
+      "page": "2-184",
+      "number": 29,
+      "id": "hvac-20130310:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "356b27cc33e951d3"
+    },
+    {
+      "page": "2-184",
+      "number": 30,
+      "id": "hvac-20160306:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "3be8edd066954ddd"
+    },
+    {
+      "page": "2-184",
+      "number": 31,
+      "id": "hvac-hansol-2022-3:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b3d0349a59564bd"
+    },
+    {
+      "page": "2-188",
+      "number": 1,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-189",
+      "number": 2,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-190",
+      "number": 1,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-190",
+      "number": 2,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-190",
+      "number": 3,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-190",
+      "number": 4,
+      "id": null,
+      "status": "pending-lower-bound",
+      "note": "교재 기재 회차가 2006년3회 이전. 허용 범위 안의 동일 원문 미연결."
+    },
+    {
+      "page": "2-191",
+      "number": 5,
+      "id": "hvac-hansol-2019-3:23",
+      "status": "pending-reordered-related",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-191",
+      "number": 6,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-191",
+      "number": 7,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-192",
+      "number": 1,
+      "id": "hvac-20080302:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "9ef8d5295e80994e"
+    },
+    {
+      "page": "2-192",
+      "number": 2,
+      "id": "hvac-20090510:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "7c69286754778a49"
+    },
+    {
+      "page": "2-192",
+      "number": 3,
+      "id": "hvac-20140302:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8d8f13c84d2cdb40"
+    },
+    {
+      "page": "2-192",
+      "number": 4,
+      "id": "hvac-hansol-2022-2:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f6f652b578f88e99"
+    },
+    {
+      "page": "2-193",
+      "number": 5,
+      "id": "hvac-20150308:38",
+      "status": "pending-fourth-choice-difference",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-193",
+      "number": 6,
+      "id": "hvac-20160821:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fd7b55567f870977"
+    },
+    {
+      "page": "2-193",
+      "number": 7,
+      "id": "hvac-20100509:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1fd6f112d8cbff30"
+    },
+    {
+      "page": "2-193",
+      "number": 8,
+      "id": "hvac-20140525:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "396a83043d9d1069"
+    },
+    {
+      "page": "2-194",
+      "number": 9,
+      "id": "hvac-20120826:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b63a85e5004aba60"
+    },
+    {
+      "page": "2-194",
+      "number": 10,
+      "id": "hvac-20150816:31",
+      "status": "pending-title-word-difference",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-194",
+      "number": 11,
+      "id": "hvac-20080511:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1d12ed3c226a5e2b"
+    },
+    {
+      "page": "2-194",
+      "number": 12,
+      "id": "hvac-hansol-2023-1:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b5f6c73b1d975f8e"
+    },
+    {
+      "page": "2-194",
+      "number": 13,
+      "id": "hvac-hansol-2023-3:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c4d490a794d910a2"
+    },
+    {
+      "page": "2-195",
+      "number": 14,
+      "id": "hvac-20100509:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "996d3b5a0a73291"
+    },
+    {
+      "page": "2-195",
+      "number": 15,
+      "id": "hvac-20140817:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d03f769cdd953644"
+    },
+    {
+      "page": "2-195",
+      "number": 16,
+      "id": "hvac-hansol-2022-2:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8fd0040d0c833789"
+    },
+    {
+      "page": "2-195",
+      "number": 17,
+      "id": "hvac-20120304:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ac9d4dd369304d"
+    },
+    {
+      "page": "2-195",
+      "number": 18,
+      "id": "hvac-20130602:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c4b91be0b36afa58"
+    },
+    {
+      "page": "2-195",
+      "number": 19,
+      "id": "hvac-20080727:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "68c79d35c153710b"
+    },
+    {
+      "page": "2-196",
+      "number": 20,
+      "id": "hvac-20080511:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6660b706bf7009f6"
+    },
+    {
+      "page": "2-196",
+      "number": 21,
+      "id": "hvac-hansol-2022-1:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2cd087f1f63e5f3b"
+    },
+    {
+      "page": "2-196",
+      "number": 22,
+      "id": "hvac-20160306:30",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-196",
+      "number": 23,
+      "id": "hvac-20100725:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d31ed91c433aef8e"
+    },
+    {
+      "page": "2-197",
+      "number": 24,
+      "id": "hvac-20130602:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2fc28a99a18563a"
+    },
+    {
+      "page": "2-197",
+      "number": 25,
+      "id": "hvac-hansol-2023-3:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b656aab9a264616e"
+    },
+    {
+      "page": "2-197",
+      "number": 26,
+      "id": "hvac-20080302:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "78a95092b732bb3f"
+    },
+    {
+      "page": "2-197",
+      "number": 27,
+      "id": "hvac-20160306:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8079ab86078b3d19"
+    },
+    {
+      "page": "2-197",
+      "number": 28,
+      "id": "hvac-20160821:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fccb471e646efc3b"
+    },
+    {
+      "page": "2-197",
+      "number": 29,
+      "id": "hvac-20140817:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "96fb0fda4a1f8145"
+    },
+    {
+      "page": "2-198",
+      "number": 30,
+      "id": "hvac-20120826:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f004db44a14618ab"
+    },
+    {
+      "page": "2-198",
+      "number": 31,
+      "id": "hvac-20100307:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "9fca8add174468"
+    },
+    {
+      "page": "2-198",
+      "number": 32,
+      "id": "hvac-20150816:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "738bf806689bf4b3"
+    },
+    {
+      "page": "2-198",
+      "number": 33,
+      "id": "hvac-20140302:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "26d4ed0487ff0553"
+    },
+    {
+      "page": "2-198",
+      "number": 34,
+      "id": "hvac-20110320:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "229fca24d361dcaf"
+    },
+    {
+      "page": "2-199",
+      "number": 35,
+      "id": "hvac-20110612:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "43494b469d63e3af"
+    },
+    {
+      "page": "2-199",
+      "number": 36,
+      "id": "hvac-hansol-2022-1:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "36e36ad765032fc0"
+    },
+    {
+      "page": "2-199",
+      "number": 37,
+      "id": "hvac-20160306:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2156b60287c436f9"
+    },
+    {
+      "page": "2-199",
+      "number": 38,
+      "id": "hvac-20120304:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e9a48a4df869670c"
+    },
+    {
+      "page": "2-199",
+      "number": 39,
+      "id": "hvac-20140525:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "dcd92c22b85cb764"
+    },
+    {
+      "page": "2-199",
+      "number": 40,
+      "id": "hvac-hansol-2022-1:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "14660a2a74c01393"
+    },
+    {
+      "page": "2-200",
+      "number": 41,
+      "id": "hvac-20120520:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8db7916efddebe56"
+    },
+    {
+      "page": "2-200",
+      "number": 42,
+      "id": "hvac-20140525:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4d9c92539faf4ce0"
+    },
+    {
+      "page": "2-200",
+      "number": 43,
+      "id": null,
+      "status": "pending-si-variant-search",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-200",
+      "number": 44,
+      "id": "hvac-hansol-2021-3:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6c28546488afbe82"
+    },
+    {
+      "page": "2-200",
+      "number": 45,
+      "id": "hvac-hansol-2022-2:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "383053dec4dd476"
+    },
+    {
+      "page": "2-201",
+      "number": 46,
+      "id": "hvac-20160508:31",
+      "status": "pending-unit-and-flow-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-201",
+      "number": 47,
+      "id": "hvac-20120826:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "a050b8bd477bc435"
+    },
+    {
+      "page": "2-201",
+      "number": 48,
+      "id": "hvac-20100725:30",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-201",
+      "number": 49,
+      "id": "hvac-hansol-2023-1:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "39d44274656ea065"
+    },
+    {
+      "page": "2-201",
+      "number": 50,
+      "id": "hvac-20110320:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "25bebbb73510921"
+    },
+    {
+      "page": "2-202",
+      "number": 51,
+      "id": "hvac-hansol-2023-2:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b7cc1487ff7da57"
+    },
+    {
+      "page": "2-202",
+      "number": 52,
+      "id": "hvac-20150531:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6d5d57dd30bea6cc"
+    },
+    {
+      "page": "2-202",
+      "number": 53,
+      "id": "hvac-20150531:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "24a658686320cf0c"
+    },
+    {
+      "page": "2-202",
+      "number": 54,
+      "id": "hvac-hansol-2023-2:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "cf9c54188d24261e"
+    },
+    {
+      "page": "2-202",
+      "number": 55,
+      "id": "hvac-20120304:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "23d1197dac1567e6"
+    },
+    {
+      "page": "2-203",
+      "number": 56,
+      "id": "hvac-20120520:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "3f7df3df6a586bc1"
+    },
+    {
+      "page": "2-203",
+      "number": 57,
+      "id": "hvac-20150308:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "144c7f41abb9b44f"
+    },
+    {
+      "page": "2-203",
+      "number": 58,
+      "id": "hvac-20160508:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "947dc83a30fb61f0"
+    },
+    {
+      "page": "2-203",
+      "number": 59,
+      "id": "hvac-hansol-2021-3:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "a424aabd53d5d5a9"
+    },
+    {
+      "page": "2-203",
+      "number": 60,
+      "id": "hvac-hansol-2022-1:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "42ccb7a3ccf0f5fb"
+    },
+    {
+      "page": "2-203",
+      "number": 61,
+      "id": "hvac-20140525:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "bf640b349b5fef80"
+    },
+    {
+      "page": "2-204",
+      "number": 62,
+      "id": "hvac-hansol-2023-1:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c1bfe5c5ccef8a71"
+    },
+    {
+      "page": "2-204",
+      "number": 63,
+      "id": "hvac-20110612:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "49cac9b64c2b17ed"
+    },
+    {
+      "page": "2-204",
+      "number": 64,
+      "id": "hvac-20140302:24",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-204",
+      "number": 65,
+      "id": "hvac-20130818:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f536d132e235d48"
+    },
+    {
+      "page": "2-204",
+      "number": 66,
+      "id": "hvac-20130818:28",
+      "status": "pending-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-204",
+      "number": 67,
+      "id": null,
+      "status": "pending-si-variant-search",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-205",
+      "number": 68,
+      "id": "hvac-20140817:37",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-205",
+      "number": 69,
+      "id": null,
+      "status": "pending-si-variant-search",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-205",
+      "number": 70,
+      "id": "hvac-hansol-2023-2:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "11e12fd9ece29f7b"
+    },
+    {
+      "page": "2-205",
+      "number": 71,
+      "id": "hvac-20140302:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "74d6b1228c27fce9"
+    },
+    {
+      "page": "2-205",
+      "number": 72,
+      "id": "hvac-20160821:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1a82177ae2e30c37"
+    },
+    {
+      "page": "2-205",
+      "number": 73,
+      "id": "hvac-20100725:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "11442d50cff4a0f4"
+    },
+    {
+      "page": "2-206",
+      "number": 74,
+      "id": "hvac-20150531:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "9599cc0791997e08"
+    },
+    {
+      "page": "2-206",
+      "number": 75,
+      "id": "hvac-20140817:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fe97029515b1f9ca"
+    },
+    {
+      "page": "2-206",
+      "number": 76,
+      "id": "hvac-20140817:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1fa57373c28b2669"
+    },
+    {
+      "page": "2-206",
+      "number": 77,
+      "id": "hvac-20140302:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "41beabc88f59e23e"
+    },
+    {
+      "page": "2-207",
+      "number": 78,
+      "id": "hvac-20150816:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2ca3ccc17ef30a17"
+    },
+    {
+      "page": "2-207",
+      "number": 79,
+      "id": "hvac-hansol-2023-2:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1145179f13c54fbb"
+    },
+    {
+      "page": "2-207",
+      "number": 80,
+      "id": "hvac-20130310:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "96be9535216cd323"
+    },
+    {
+      "page": "2-207",
+      "number": 81,
+      "id": "hvac-hansol-2023-3:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4c7fbe49df677de6"
+    },
+    {
+      "page": "2-207",
+      "number": 82,
+      "id": "hvac-hansol-2022-3:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f1d0bd94fd6d76ea"
+    },
+    {
+      "page": "2-207",
+      "number": 83,
+      "id": "hvac-20150308:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "81dbc8202e3feda3"
+    },
+    {
+      "page": "2-208",
+      "number": 84,
+      "id": "hvac-20130818:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "da5886216e1e8270"
+    },
+    {
+      "page": "2-208",
+      "number": 85,
+      "id": "hvac-hansol-2023-1:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "eaf2fab0e72ae873"
+    },
+    {
+      "page": "2-208",
+      "number": 86,
+      "id": "hvac-20130602:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "63b467c4be22ac1c"
+    },
+    {
+      "page": "2-208",
+      "number": 87,
+      "id": "hvac-20080302:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f05ebe054f626d0e"
+    },
+    {
+      "page": "2-208",
+      "number": 88,
+      "id": "hvac-20110320:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "27b75921da87e417"
+    },
+    {
+      "page": "2-209",
+      "number": 89,
+      "id": "hvac-20120304:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "eb321fdf248fa8c1"
+    },
+    {
+      "page": "2-209",
+      "number": 90,
+      "id": "hvac-20150816:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "863ede1d9a94991c"
+    },
+    {
+      "page": "2-209",
+      "number": 91,
+      "id": "hvac-20140817:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "870926f704b251a6"
+    },
+    {
+      "page": "2-209",
+      "number": 92,
+      "id": "hvac-20110612:23",
+      "status": "pending-fourth-choice-shortened",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-209",
+      "number": 93,
+      "id": "hvac-20130310:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e64cc3f60c7a5c35"
+    },
+    {
+      "page": "2-210",
+      "number": 94,
+      "id": "hvac-20140817:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d0bb9356d11ba25e"
+    },
+    {
+      "page": "2-210",
+      "number": 95,
+      "id": "hvac-20080302:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "eb0fdb1ab6eb65cc"
+    },
+    {
+      "page": "2-210",
+      "number": 96,
+      "id": "hvac-20110320:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "3a08a2fa5ce0874b"
+    },
+    {
+      "page": "2-210",
+      "number": 97,
+      "id": "hvac-20140525:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "44af4e5b1c2ab8aa"
+    },
+    {
+      "page": "2-210",
+      "number": 98,
+      "id": "hvac-20140302:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "741ee2d6e82e70d5"
+    },
+    {
+      "page": "2-211",
+      "number": 99,
+      "id": "hvac-20140302:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "39c1dd6b4ec16b83"
+    },
+    {
+      "page": "2-211",
+      "number": 100,
+      "id": "hvac-20070304:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4cdaf9444a1783ae"
+    },
+    {
+      "page": "2-211",
+      "number": 101,
+      "id": "hvac-20120304:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ddba89c2a0842771"
+    },
+    {
+      "page": "2-211",
+      "number": 102,
+      "id": "hvac-hansol-2023-3:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2b38953dc0319cad"
+    },
+    {
+      "page": "2-211",
+      "number": 103,
+      "id": "hvac-20100307:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "19f17405c86e191a"
+    },
+    {
+      "page": "2-211",
+      "number": 104,
+      "id": "hvac-20080511:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f09a65480ceef99c"
+    },
+    {
+      "page": "2-212",
+      "number": 105,
+      "id": "hvac-20160821:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c2a0f325252cf80e"
+    },
+    {
+      "page": "2-212",
+      "number": 106,
+      "id": "hvac-20090510:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "60dcb07bc170d28f"
+    },
+    {
+      "page": "2-212",
+      "number": 107,
+      "id": "hvac-20110612:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e82c2f8e1ee3f63b"
+    },
+    {
+      "page": "2-212",
+      "number": 108,
+      "id": "hvac-20120304:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "232697919d16f1f7"
+    },
+    {
+      "page": "2-212",
+      "number": 109,
+      "id": "hvac-20110320:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f35dad0cd78c1e8a"
+    },
+    {
+      "page": "2-212",
+      "number": 110,
+      "id": "hvac-20130602:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "deeaf53cf8e91d5a"
+    },
+    {
+      "page": "2-213",
+      "number": 111,
+      "id": "hvac-20160306:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6fea3b6c4e15bb79"
+    },
+    {
+      "page": "2-213",
+      "number": 112,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-213",
+      "number": 113,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-213",
+      "number": 114,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-214",
+      "number": 115,
+      "id": null,
+      "status": "pending-lower-bound",
+      "note": "교재 기재 회차가 2006년3회 이전. 허용 범위 안의 동일 원문 미연결."
+    },
+    {
+      "page": "2-214",
+      "number": 116,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-214",
+      "number": 117,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-214",
+      "number": 118,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-214",
+      "number": 119,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-214",
+      "number": 120,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-215",
+      "number": 121,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-215",
+      "number": 122,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-221",
+      "number": 1,
+      "id": null,
+      "status": "pending-non-multiple-choice-example",
+      "note": "객관식 보기 없는 계산 예제. 보기를 임의 생성하지 않음."
+    },
+    {
+      "page": "2-221",
+      "number": 2,
+      "id": null,
+      "status": "pending-non-multiple-choice-example",
+      "note": "객관식 보기 없는 계산 예제. 보기를 임의 생성하지 않음."
+    },
+    {
+      "page": "2-222",
+      "number": 1,
+      "id": "hvac-20130602:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "31d583973cdea962"
+    },
+    {
+      "page": "2-222",
+      "number": 2,
+      "id": "hvac-20160821:31",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-222",
+      "number": 3,
+      "id": "hvac-20150531:35",
+      "status": "pending-unit-and-value-variant",
+      "note": "단위·계산 수치 또는 보기 값이 기존 자료와 다름. 동일 문제로 자동 연결하지 않음."
+    },
+    {
+      "page": "2-222",
+      "number": 4,
+      "id": "hvac-20120520:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "923f6764cf80d529"
+    },
+    {
+      "page": "2-223",
+      "number": 5,
+      "id": "hvac-20130818:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1fb47e94173f2ad4"
+    },
+    {
+      "page": "2-230",
+      "number": 1,
+      "id": "hvac-20100307:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4b5766f84f2117dc"
+    },
+    {
+      "page": "2-230",
+      "number": 2,
+      "id": "hvac-20120826:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "dc4fedd2ed67c4"
+    },
+    {
+      "page": "2-230",
+      "number": 3,
+      "id": "hvac-20140525:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2b832226f6659dcd"
+    },
+    {
+      "page": "2-230",
+      "number": 4,
+      "id": "hvac-20160821:23",
+      "status": "pending-formula-graphics-review",
+      "note": "교재 수식·도표 확인, 기존 자료의 이미지 보기와 추가 대조 필요."
+    },
+    {
+      "page": "2-230",
+      "number": 5,
+      "id": "hvac-hansol-2022-2:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "cad4beecb2bf925e"
+    },
+    {
+      "page": "2-230",
+      "number": 6,
+      "id": "hvac-hansol-2022-3:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b58dca8d4d0b8bb4"
+    },
+    {
+      "page": "2-231",
+      "number": 7,
+      "id": "hvac-20150308:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ce09954a07643912"
+    },
+    {
+      "page": "2-231",
+      "number": 8,
+      "id": "hvac-20110320:31",
+      "status": "pending-first-choice-shortened",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-231",
+      "number": 9,
+      "id": "hvac-20100725:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "cdabe2cb696b2e21"
+    },
+    {
+      "page": "2-231",
+      "number": 10,
+      "id": "hvac-20110612:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ed100b4a1152525f"
+    },
+    {
+      "page": "2-231",
+      "number": 11,
+      "id": "hvac-20120520:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "71eb664bad014246"
+    },
+    {
+      "page": "2-234",
+      "number": 1,
+      "id": "hvac-20120304:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "17a23e88da1b1fbd"
+    },
+    {
+      "page": "2-234",
+      "number": 2,
+      "id": "hvac-20130818:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b14225c9da71414e"
+    },
+    {
+      "page": "2-234",
+      "number": 3,
+      "id": "hvac-20140525:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "30ef878ebf37b6e5"
+    },
+    {
+      "page": "2-235",
+      "number": 4,
+      "id": "hvac-20080302:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "df6752532a5f2394"
+    },
+    {
+      "page": "2-235",
+      "number": 5,
+      "id": "hvac-20120304:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "dab4bca2d09e03c5"
+    },
+    {
+      "page": "2-235",
+      "number": 6,
+      "id": "hvac-20160306:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "56b50f6d9b1359e9"
+    },
+    {
+      "page": "2-235",
+      "number": 7,
+      "id": "hvac-hansol-2022-2:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "17cdeed0dfa0af1f"
+    },
+    {
+      "page": "2-235",
+      "number": 8,
+      "id": "hvac-20130818:32",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e1722d2ae17ac9b"
+    },
+    {
+      "page": "2-236",
+      "number": 9,
+      "id": "hvac-20080727:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "25a6d8c3bf2f79ca"
+    },
+    {
+      "page": "2-236",
+      "number": 10,
+      "id": "hvac-20130602:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "4b942dd336c56b22"
+    },
+    {
+      "page": "2-236",
+      "number": 11,
+      "id": "hvac-20080511:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d9bdf16dab1e3cc8"
+    },
+    {
+      "page": "2-236",
+      "number": 12,
+      "id": "hvac-hansol-2023-3:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "446794d7cc468d7d"
+    },
+    {
+      "page": "2-236",
+      "number": 13,
+      "id": "hvac-20150531:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "8267e6407036772f"
+    },
+    {
+      "page": "2-256",
+      "number": 1,
+      "id": "hvac-hansol-2022-1:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c0c693ae08f30fa3"
+    },
+    {
+      "page": "2-256",
+      "number": 2,
+      "id": "hvac-hansol-2022-3:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b2f2ed009866d622"
+    },
+    {
+      "page": "2-256",
+      "number": 3,
+      "id": "hvac-hansol-2022-2:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c74dfe020c5eca71"
+    },
+    {
+      "page": "2-256",
+      "number": 4,
+      "id": "hvac-hansol-2022-2:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "7777c8eeaef639d9"
+    },
+    {
+      "page": "2-256",
+      "number": 5,
+      "id": "hvac-hansol-2023-3:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f29d4d0ee206d859"
+    },
+    {
+      "page": "2-257",
+      "number": 6,
+      "id": "hvac-hansol-2023-1:39",
+      "status": "pending-permit-report-stem-difference",
+      "note": "교재는 제조신고, 기존 자료는 제조허가를 물음. 질문 대상 차이로 보류."
+    },
+    {
+      "page": "2-257",
+      "number": 7,
+      "id": "hvac-hansol-2023-2:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "d44151364e6e1856"
+    },
+    {
+      "page": "2-257",
+      "number": 8,
+      "id": "hvac-hansol-2023-2:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "bee743de8d04b37e"
+    },
+    {
+      "page": "2-257",
+      "number": 9,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-258",
+      "number": 1,
+      "id": "hvac-20120520:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "598f2db67e0be2d7"
+    },
+    {
+      "page": "2-258",
+      "number": 2,
+      "id": "hvac-20120826:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "94f74347dbf5d6e"
+    },
+    {
+      "page": "2-258",
+      "number": 3,
+      "id": "hvac-20110821:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "88102430dc7813b3"
+    },
+    {
+      "page": "2-258",
+      "number": 4,
+      "id": "hvac-20150816:30",
+      "status": "pending-power-and-choice-variant",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-258",
+      "number": 5,
+      "id": "hvac-20110821:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "dd4d18a4950742c5"
+    },
+    {
+      "page": "2-259",
+      "number": 6,
+      "id": "hvac-20110821:38",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "35263a5cfd474dda"
+    },
+    {
+      "page": "2-259",
+      "number": 7,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-259",
+      "number": 8,
+      "id": "hvac-20140302:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "5d41480782787936"
+    },
+    {
+      "page": "2-259",
+      "number": 9,
+      "id": "hvac-20110821:23",
+      "status": "pending-formula-graphics-review",
+      "note": "교재 수식·도표 확인, 기존 자료의 이미지 보기와 추가 대조 필요."
+    },
+    {
+      "page": "2-259",
+      "number": 10,
+      "id": "hvac-hansol-2022-3:30",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "82f88bd956d14f8f"
+    },
+    {
+      "page": "2-259",
+      "number": 11,
+      "id": "hvac-hansol-2023-2:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "649d40c97c28455"
+    },
+    {
+      "page": "2-260",
+      "number": 12,
+      "id": "hvac-20140817:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "cb113b05922ccca"
+    },
+    {
+      "page": "2-260",
+      "number": 13,
+      "id": "hvac-20090510:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e4c592d1349d07e7"
+    },
+    {
+      "page": "2-260",
+      "number": 14,
+      "id": "hvac-20150308:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "22d81b3e1375e1f6"
+    },
+    {
+      "page": "2-260",
+      "number": 15,
+      "id": "hvac-20130602:35",
+      "status": "pending-fourth-choice-difference",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-261",
+      "number": 16,
+      "id": "hvac-20130310:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6c3e2847a49e9736"
+    },
+    {
+      "page": "2-261",
+      "number": 17,
+      "id": "hvac-20100509:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "a8bdbc28e22a80bd"
+    },
+    {
+      "page": "2-261",
+      "number": 18,
+      "id": "hvac-20140817:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "372545ceb7d91086"
+    },
+    {
+      "page": "2-261",
+      "number": 19,
+      "id": "hvac-20120826:32",
+      "status": "pending-second-choice-difference",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-261",
+      "number": 20,
+      "id": "hvac-20150308:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c513437d2a5a5a23"
+    },
+    {
+      "page": "2-261",
+      "number": 21,
+      "id": "hvac-20120520:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f75ba07f5a7e9831"
+    },
+    {
+      "page": "2-262",
+      "number": 22,
+      "id": "hvac-hansol-2023-2:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "a3243fec131003cb"
+    },
+    {
+      "page": "2-262",
+      "number": 23,
+      "id": "hvac-20130310:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "eb24321e71ef18d7"
+    },
+    {
+      "page": "2-262",
+      "number": 24,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-262",
+      "number": 25,
+      "id": "hvac-20110612:29",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "fffefb1e57be00c5"
+    },
+    {
+      "page": "2-262",
+      "number": 26,
+      "id": "hvac-hansol-2023-3:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f61f0a5d8984d4a"
+    },
+    {
+      "page": "2-262",
+      "number": 27,
+      "id": "hvac-hansol-2023-1:27",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "5f0fd291f94e7cc3"
+    },
+    {
+      "page": "2-263",
+      "number": 28,
+      "id": "hvac-20140302:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "a12249904afa1050"
+    },
+    {
+      "page": "2-263",
+      "number": 29,
+      "id": "hvac-20080511:36",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "6866acc4d95c639e"
+    },
+    {
+      "page": "2-263",
+      "number": 30,
+      "id": "hvac-20110612:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e4df2eec3b1450e6"
+    },
+    {
+      "page": "2-263",
+      "number": 31,
+      "id": "hvac-20080727:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "3e2fd1a0929673f7"
+    },
+    {
+      "page": "2-263",
+      "number": 32,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-264",
+      "number": 33,
+      "id": "hvac-20160821:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "1efd49d8f2d406e4"
+    },
+    {
+      "page": "2-264",
+      "number": 34,
+      "id": "hvac-20110612:26",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b12236e774c46c51"
+    },
+    {
+      "page": "2-264",
+      "number": 35,
+      "id": "hvac-20090510:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "9034d06ce2d410f5"
+    },
+    {
+      "page": "2-264",
+      "number": 36,
+      "id": "hvac-20100307:39",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c07aa99c4211a9d9"
+    },
+    {
+      "page": "2-264",
+      "number": 37,
+      "id": "hvac-20160508:28",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "34e39a94dd554857"
+    },
+    {
+      "page": "2-264",
+      "number": 38,
+      "id": "hvac-20120304:25",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "2cb22ae88455af73"
+    },
+    {
+      "page": "2-265",
+      "number": 39,
+      "id": "hvac-20110320:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "c4ff57feccf5b781"
+    },
+    {
+      "page": "2-265",
+      "number": 40,
+      "id": "hvac-20140525:22",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "46fbc5ec58cc088f"
+    },
+    {
+      "page": "2-265",
+      "number": 41,
+      "id": "hvac-20110612:31",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "5a4bd7b8b19d0f10"
+    },
+    {
+      "page": "2-265",
+      "number": 42,
+      "id": "hvac-hansol-2022-1:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "7d9b809fd4d2f3a3"
+    },
+    {
+      "page": "2-265",
+      "number": 43,
+      "id": "hvac-hansol-2022-3:35",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "ccaa284866586c72"
+    },
+    {
+      "page": "2-266",
+      "number": 44,
+      "id": "hvac-hansol-2023-1:34",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "f43be7373968e9c4"
+    },
+    {
+      "page": "2-266",
+      "number": 45,
+      "id": "hvac-hansol-2023-1:40",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "21e59436f708d176"
+    },
+    {
+      "page": "2-266",
+      "number": 46,
+      "id": "hvac-hansol-2023-2:21",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "998e729f0e05b628"
+    },
+    {
+      "page": "2-266",
+      "number": 47,
+      "id": "hvac-hansol-2023-2:23",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "3aa787004cf47116"
+    },
+    {
+      "page": "2-266",
+      "number": 48,
+      "id": "hvac-20110320:40",
+      "status": "pending-question-target-and-answer-difference",
+      "note": "교재는 시험용 가스(질소②), 기존 자료는 시험 매체(물①)를 물음. 질문 대상·정답 차이로 보류."
+    },
+    {
+      "page": "2-267",
+      "number": 49,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-272",
+      "number": 1,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-272",
+      "number": 2,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-272",
+      "number": 3,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-273",
+      "number": 1,
+      "id": "hvac-hansol-2022-3:28",
+      "status": "pending-unused-conditions-omitted",
+      "note": "보기 내용·순서 또는 문제 조건이 기존 자료와 다름. 같은 정답 번호만으로 연결하지 않음."
+    },
+    {
+      "page": "2-273",
+      "number": 2,
+      "id": "hvac-hansol-2023-2:37",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "9adc9ae17d47d83d"
+    },
+    {
+      "page": "2-279",
+      "number": 1,
+      "id": "hvac-hansol-2022-3:39",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "ce647b37e3d2a866"
+    },
+    {
+      "page": "2-279",
+      "number": 2,
+      "id": "hvac-hansol-2022-2:25",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "ed42578a0a3ef12c"
+    },
+    {
+      "page": "2-279",
+      "number": 3,
+      "id": "hvac-20130602:30",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "a330e2b6f0955a67"
+    },
+    {
+      "page": "2-279",
+      "number": 4,
+      "id": "hvac-hansol-2023-2:40",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "f650c79dffdd79cb"
+    },
+    {
+      "page": "2-280",
+      "number": 5,
+      "id": "hvac-hansol-2022-2:26",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "c863bb9c38da25fe"
+    },
+    {
+      "page": "2-280",
+      "number": 6,
+      "id": "hvac-hansol-2023-3:22",
+      "status": "confirmed-native",
+      "note": "문제·보기 대조. 교재 하단 정답 번호 어긋남은 해설과 대조했고 기존 정답은 변경하지 않음.",
+      "fingerprint": "e6870e650ac573"
+    },
+    {
+      "page": "2-286",
+      "number": 1,
+      "id": "hvac-hansol-2022-3:33",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "b91b0d9bf75f18e5"
+    },
+    {
+      "page": "2-286",
+      "number": 2,
+      "id": "hvac-hansol-2023-3:24",
+      "status": "confirmed-native",
+      "note": "앱 원문에서 문제·보기 4개·등록 정답 대조. 기존 원문은 유지.",
+      "fingerprint": "e69b1cbc54834f4d"
+    },
+    {
+      "page": "2-286",
+      "number": 3,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-286",
+      "number": 4,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-287",
+      "number": 5,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-287",
+      "number": 6,
+      "id": null,
+      "status": "pending-no-confident-match",
+      "note": "동일한 기존 원문과의 연결 미확정. 검색 후보만으로 연결하지 않음."
+    },
+    {
+      "page": "2-87",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-87",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-87",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-87",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-87",
+      "number": 5,
+      "id": "hvac-20140525:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "30e762cb8c83255e"
+    },
+    {
+      "page": "2-87",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-88",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-88",
+      "number": 8,
+      "id": "hvac-20130310:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "4d8128de43785a9c"
+    },
+    {
+      "page": "2-88",
+      "number": 9,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-89",
+      "number": 10,
+      "id": "hvac-hansol-2021-2:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "82c838c0e4005960"
+    },
+    {
+      "page": "2-89",
+      "number": 11,
+      "id": "hvac-20160508:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a38025939b586062"
+    },
+    {
+      "page": "2-89",
+      "number": 12,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-89",
+      "number": 13,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-89",
+      "number": 14,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-89",
+      "number": 15,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-90",
+      "number": 16,
+      "id": "hvac-20120826:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "90ae4fab836e09b1"
+    },
+    {
+      "page": "2-90",
+      "number": 17,
+      "id": "hvac-20160508:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a748521e5a171315"
+    },
+    {
+      "page": "2-90",
+      "number": 18,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-90",
+      "number": 19,
+      "id": "hvac-20110612:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ccc353fd14d90952"
+    },
+    {
+      "page": "2-90",
+      "number": 20,
+      "id": "hvac-20110821:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f1242a543be296e9"
+    },
+    {
+      "page": "2-90",
+      "number": 21,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-91",
+      "number": 22,
+      "id": "hvac-20120520:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "304754df5f5a7397"
+    },
+    {
+      "page": "2-91",
+      "number": 23,
+      "id": "hvac-20140302:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "c7e76cf4fb52bb44"
+    },
+    {
+      "page": "2-91",
+      "number": 24,
+      "id": "hvac-hansol-2020-4:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "b7077e2107576ee"
+    },
+    {
+      "page": "2-91",
+      "number": 25,
+      "id": "hvac-hansol-2022-1:31",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "8f737c7318298b62"
+    },
+    {
+      "page": "2-91",
+      "number": 26,
+      "id": "hvac-20120826:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f1b66fe503001109"
+    },
+    {
+      "page": "2-92",
+      "number": 27,
+      "id": "hvac-20130310:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "cc771ac4a7653ea1"
+    },
+    {
+      "page": "2-92",
+      "number": 28,
+      "id": "hvac-20100725:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "837a544001545c84"
+    },
+    {
+      "page": "2-92",
+      "number": 29,
+      "id": "hvac-20110320:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f0fc28f8ea0d6e9e"
+    },
+    {
+      "page": "2-92",
+      "number": 30,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-92",
+      "number": 31,
+      "id": "hvac-20140525:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "ecbbb1a807bc33cc"
+    },
+    {
+      "page": "2-92",
+      "number": 32,
+      "id": "hvac-20140525:37",
+      "status": "confirmed-native-transcription",
+      "note": "앱 화면에서 수식 배열·조사·기존 표기 차이를 확인. 조건·보기 의미·등록 정답 유지.",
+      "fingerprint": "4143fbe0620b226b"
+    },
+    {
+      "page": "2-93",
+      "number": 33,
+      "id": "hvac-20150531:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "16437bd3c4e265ac"
+    },
+    {
+      "page": "2-93",
+      "number": 34,
+      "id": "hvac-20140302:39",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "43df32cb2fb4fa63"
+    },
+    {
+      "page": "2-93",
+      "number": 35,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-93",
+      "number": 36,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-93",
+      "number": 37,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-93",
+      "number": 38,
+      "id": "hvac-20100509:24",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "187156bf9a381cb9"
+    },
+    {
+      "page": "2-94",
+      "number": 39,
+      "id": "hvac-20140302:31",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "4719f0dc44fc0609"
+    },
+    {
+      "page": "2-94",
+      "number": 40,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-94",
+      "number": 41,
+      "id": "hvac-20160508:23",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "d1940b85c925ead1"
+    },
+    {
+      "page": "2-94",
+      "number": 42,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-94",
+      "number": 43,
+      "id": "hvac-20080302:21",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "31b2142064f4889b"
+    },
+    {
+      "page": "2-94",
+      "number": 44,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-95",
+      "number": 45,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-95",
+      "number": 46,
+      "id": "hvac-20150816:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "92a264b16b668d12"
+    },
+    {
+      "page": "2-95",
+      "number": 47,
+      "id": "hvac-hansol-2022-2:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "6d21311a78dd91d9"
+    },
+    {
+      "page": "2-95",
+      "number": 48,
+      "id": "hvac-hansol-2022-1:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "189db30aed4989dd"
+    },
+    {
+      "page": "2-95",
+      "number": 49,
+      "id": "hvac-20130310:38",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "9157cedff4b9d477"
+    },
+    {
+      "page": "2-95",
+      "number": 50,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-96",
+      "number": 51,
+      "id": "hvac-20120304:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "914f44905b2702cd"
+    },
+    {
+      "page": "2-96",
+      "number": 52,
+      "id": "hvac-20120826:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "8a571d782bf4a978"
+    },
+    {
+      "page": "2-96",
+      "number": 53,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-96",
+      "number": 54,
+      "id": "hvac-20110320:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "bafa268a17915203"
+    },
+    {
+      "page": "2-96",
+      "number": 55,
+      "id": "hvac-20150308:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "e58948aba5adfada"
+    },
+    {
+      "page": "2-96",
+      "number": 56,
+      "id": "hvac-hansol-2023-3:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f4b37b5682f82fdd"
+    },
+    {
+      "page": "2-97",
+      "number": 57,
+      "id": "hvac-20160306:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "c258a42959d60320"
+    },
+    {
+      "page": "2-97",
+      "number": 58,
+      "id": "hvac-20140817:25",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "fb58754c9ac399e1"
+    },
+    {
+      "page": "2-97",
+      "number": 59,
+      "id": "hvac-20160508:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f165390923830a7a"
+    },
+    {
+      "page": "2-97",
+      "number": 60,
+      "id": "hvac-20150816:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "5918767e8aeb2df1"
+    },
+    {
+      "page": "2-97",
+      "number": 61,
+      "id": "hvac-hansol-2021-2:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "870fd8ccf0239a80"
+    },
+    {
+      "page": "2-98",
+      "number": 62,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-98",
+      "number": 63,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-98",
+      "number": 64,
+      "id": "hvac-20150308:26",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "51f64cf418dce9f1"
+    },
+    {
+      "page": "2-98",
+      "number": 65,
+      "id": "hvac-hansol-2020-4:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "bcb81f51be03ce79"
+    },
+    {
+      "page": "2-98",
+      "number": 66,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-98",
+      "number": 67,
+      "id": "hvac-20110821:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "6ade34f070620390"
+    },
+    {
+      "page": "2-99",
+      "number": 68,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-99",
+      "number": 69,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-99",
+      "number": 70,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-99",
+      "number": 71,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-100",
+      "number": 72,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-100",
+      "number": 73,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-100",
+      "number": 74,
+      "id": "hvac-hansol-2021-3:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "264149e3bced7aea"
+    },
+    {
+      "page": "2-101",
+      "number": 75,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-101",
+      "number": 76,
+      "id": "hvac-hansol-2021-2:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2c37670d58e958b6"
+    },
+    {
+      "page": "2-101",
+      "number": 77,
+      "id": "hvac-hansol-2022-2:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "3e299bb7fc9a0783"
+    },
+    {
+      "page": "2-101",
+      "number": 78,
+      "id": "hvac-hansol-2022-2:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "c555155ab0140b53"
+    },
+    {
+      "page": "2-101",
+      "number": 79,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-102",
+      "number": 80,
+      "id": "hvac-20120520:22",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "65c76888abb94fba"
+    },
+    {
+      "page": "2-102",
+      "number": 81,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-102",
+      "number": 82,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-102",
+      "number": 83,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-103",
+      "number": 84,
+      "id": "hvac-hansol-2023-3:33",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "963207aa4f47d71f"
+    },
+    {
+      "page": "2-103",
+      "number": 85,
+      "id": "hvac-hansol-2023-1:35",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2bcdcf120775f8d3"
+    },
+    {
+      "page": "2-103",
+      "number": 86,
+      "id": "hvac-hansol-2023-3:28",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "761a1f0859d4745d"
+    },
+    {
+      "page": "2-103",
+      "number": 87,
+      "id": "hvac-hansol-2023-3:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "f7f6d29347821198"
+    },
+    {
+      "page": "2-104",
+      "number": 88,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-104",
+      "number": 89,
+      "id": "hvac-hansol-2022-1:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "6f532ef4c1901c99"
+    },
+    {
+      "page": "2-104",
+      "number": 90,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-104",
+      "number": 91,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-105",
+      "number": 92,
+      "id": "hvac-20110821:29",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "11a95bf072905a58"
+    },
+    {
+      "page": "2-105",
+      "number": 93,
+      "id": "hvac-20150308:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "78393654ab707dd6"
+    },
+    {
+      "page": "2-105",
+      "number": 94,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-105",
+      "number": 95,
+      "id": "hvac-hansol-2023-2:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "3e297a74ccdeb49b"
+    },
+    {
+      "page": "2-106",
+      "number": 96,
+      "id": "hvac-20120826:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "45559e59dcd0d20d"
+    },
+    {
+      "page": "2-106",
+      "number": 97,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-106",
+      "number": 98,
+      "id": "hvac-20150816:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "858088eae095e2fe"
+    },
+    {
+      "page": "2-106",
+      "number": 99,
+      "id": "hvac-20100725:36",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "cccd56163ad27518"
+    },
+    {
+      "page": "2-106",
+      "number": 100,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-107",
+      "number": 101,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-107",
+      "number": 102,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-107",
+      "number": 103,
+      "id": "hvac-hansol-2022-3:34",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "df8fc93a908afe06"
+    },
+    {
+      "page": "2-107",
+      "number": 104,
+      "id": "hvac-20080727:27",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "12c933feb2e10a7e"
+    },
+    {
+      "page": "2-108",
+      "number": 105,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-108",
+      "number": 106,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-108",
+      "number": 107,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-108",
+      "number": 108,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-109",
+      "number": 109,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-109",
+      "number": 110,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-109",
+      "number": 111,
+      "id": "hvac-hansol-2020-4:32",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "a04ab0607685fec5"
+    },
+    {
+      "page": "2-109",
+      "number": 112,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-109",
+      "number": 113,
+      "id": "hvac-20160306:40",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "683c673fe90720db"
+    },
+    {
+      "page": "2-109",
+      "number": 114,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-110",
+      "number": 115,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-110",
+      "number": 116,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-110",
+      "number": 117,
+      "id": "hvac-hansol-2022-3:40",
+      "status": "confirmed-text",
+      "note": "지문·보기 4개·인쇄 정답 번호 일치. 읽어 둔 본문의 보기 끝 경계 확인.",
+      "fingerprint": "2453503752b45f3b"
+    },
+    {
+      "page": "2-11",
+      "number": 1,
+      "id": null,
+      "status": "pending-non-multiple-choice-example",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-13",
+      "number": 2,
+      "id": null,
+      "status": "pending-non-multiple-choice-example",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-27",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-27",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-30",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-51",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-52",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-57",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-66",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-69",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-71",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-71",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-73",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-73",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-79",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-79",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-80",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-80",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-81",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-81",
+      "number": 6,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-83",
+      "number": 7,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-83",
+      "number": 8,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-115",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-121",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-125",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-126",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-137",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-137",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-140",
+      "number": 3,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-140",
+      "number": 4,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-141",
+      "number": 5,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-151",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-155",
+      "number": 2,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    },
+    {
+      "page": "2-167",
+      "number": 1,
+      "id": null,
+      "status": "pending-full-comparison",
+      "note": "일치 연결 미확정. 검색 후보만으로 수록·부재를 판정하지 않음."
+    }
+  ]
+}

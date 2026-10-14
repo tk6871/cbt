@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.4',scope:'industrial',date:'2026.10.14',
+      title:'냉동 중간고사 교재 본문 확인 문제 선택',
+      summary:'교재 본문과 대조한 문제만 고르거나 기존 전체 목록으로 바꿀 수 있습니다.',
+      tags:['교재 대조','기록 유지'],
+      changes:[
+        '냉동 중간고사에 교재 본문 연결 확인 문제만 풀기를 추가했습니다. 기본 켜짐이며 끄면 기존 전체 목록입니다. 일반316문제와 안전관리 별도24문제를 제공합니다.',
+        '본문589위치 중362연결 확인과227추가 확인 대장을 공개합니다. 단위·수치·보기·정답이 다르거나 연결이 미확정인 항목은 확인 목록에 남기며 교재 전체 수록 완료로 표시하지 않습니다.',
+        '기존 문제·이미지·정답·해설과 오답·이어풀기 기록은 유지됩니다. 원문이나 정답이 바뀌면 이전 교재 연결 판정을 그대로 재사용하지 않습니다.'
+      ]
+    },
+    {
       version:'5.9.3',scope:'industrial',date:'2026.10.14',
       title:'문제 원본 표시 복원·초기 로딩 최적화',
       summary:'문제·해설은 원본 이미지로 표시하고, 시험 자료실은 필요할 때 불러옵니다.',
@@ -2528,7 +2539,7 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.3';
+  changelog.versions.industrial = '5.9.4';
   changelog.versions.jewelry = '4.0.1';
   changelog.currentVersion = '5.9.1';
   window.CBT_CHANGELOG = changelog;
