@@ -1,5 +1,5 @@
 import rows from '../../data/hvac-practical-photo-20260917.json';
-import { curatedPracticalAnswers } from './hvacPracticalPublicAnswers';
+import { curatedPracticalAnswers, completePracticalPublicAnswer } from './hvacPracticalPublicAnswers';
 import type { PracticalCategory, PracticalPrompt } from './hvacPracticalTypes';
 
 type Note = { explanation: string; keys: string[]; answer?: string; question?: string; correction?: string; url?: string };
@@ -47,7 +47,7 @@ const notes: Record<number, Note> = {
   83: n('버킷의 부력을 이용한다. 증기가 들어오면 버킷이 떠 밸브를 닫고, 증기가 빠지거나 응축하면 내려가 응축수를 배출한다.', ['버킷 트랩', '부력']),
   84: n('길쭉한 선 형태로 공기를 내보내는 라인형 취출구이다. 왼쪽 에어커튼 사진까지 모두 같은 기기로 외우지 않는다.', ['라인형 취출구']),
   85: n('팬이 핀코일을 통과하도록 공기를 강제로 보내 냉각한다. 코일 안의 냉매는 증발하며 공기의 열을 흡수한다.', ['유니트쿨러', '강제대류', '핀코일']),
-  86: n('장치 안 냉매를 회수용 용기로 옮긴다. 진공펌프처럼 공기와 수분을 빼는 작업과 구분한다.', ['냉매회수장치', '회수']),
+  86: n('장치 안 냉매를 회수용 용기로 옮긴다. 진공펌프처럼 공기와 수분을 빼는 작업과 구분한다.', ['냉매회수장치', '회수'], '명칭: 냉매회수장치. 역할: 냉동장치 안의 냉매를 회수용 용기에 옮겨 대기로 방출하지 않고 회수한다.'),
   87: n('덕트를 따라 화염이 번지는 길을 막는 장치이다. 사진처럼 온도퓨즈를 사용하는 방식은 화재 열로 퓨즈가 녹으면 날개가 닫힌다.', ['방화댐퍼', '퓨즈', '차단']),
   88: n('압축기가 밀어낸 뜨거운 기체냉매의 열을 밖으로 버려 액체로 만든다. 답안 확인 후 전체 장치 명칭 그림도 볼 수 있다.', ['응축기', '응축액화']),
   89: n('흡수식 냉동기 등 저압 장치에 들어온 공기·불응축가스를 제거해 필요한 진공을 유지한다. 냉매를 회수통으로 옮기는 냉매회수장치와 구분한다.', ['추기장치', '불응축가스', '진공'], '추기장치(진공펌프를 이용한 추기 계통). 장치 안의 공기·불응축가스를 제거하여 진공을 유지한다.'),
@@ -136,7 +136,7 @@ export const hvacPracticalPhotos: PracticalPrompt[] = rows.map(row => {
   return {
     id: row.id, number: row.number, group: 'photos', category, difficulty: 'basic', points: 5,
     question: note.question || row.question,
-    answer: note.answer || row.sourceAnswer.replaceAll('Ü', '·').replaceAll('í', '−').replaceAll('명치=', '명칭=').replaceAll('여여', '여').replaceAll('며며', '며'),
+    answer: note.answer || (match ? completePracticalPublicAnswer(match) : row.sourceAnswer.replaceAll('Ü', '·').replaceAll('í', '−').replaceAll('명치=', '명칭=').replaceAll('여여', '여').replaceAll('며며', '며')),
     explanation: note.explanation, keyPoints: note.keys,
     images: separateAnswer ? [`assets/hvac-practical/photo-20260917/${String(row.number).padStart(3, '0')}-question.png`] : row.images,
     answerImages: separateAnswer ? row.images : undefined,

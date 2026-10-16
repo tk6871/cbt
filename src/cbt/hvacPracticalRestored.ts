@@ -1,7 +1,10 @@
 import restoredRows from '../../data/hvac-practical-restored.json';
 import scanEnhancement from '../../data/hvac-practical-scan-enhancement-20261007.json';
 import publicVideos from '../../data/hvac-practical-public-video-sources.json';
+import cropRepairs from '../../data/hvac-practical-crop-repairs-20261016.json';
 import type { PracticalCategory, PracticalDifficulty, PracticalPrompt } from './hvacPracticalTypes';
+
+const repairedImage = (id: string, image: string) => cropRepairs.repairs.find(r => r.id === id && r.oldImage === image)?.output || image;
 
 type RestoredPracticalRow = {
   id: string;
@@ -44,8 +47,8 @@ export const hvacPracticalRestored: PracticalPrompt[] = [...(restoredRows as Res
   points: row.points,
   sourceNote: row.sourceNote.trim(),
   image: row.image,
-  images: (row.images || row.sourceImages)?.filter(Boolean).map(image =>
-    image === scanEnhancement.source ? scanEnhancement.output : image),
+  images: (row.images || row.sourceImages)?.filter(Boolean).map(image => repairedImage(row.id,
+    image === scanEnhancement.source ? scanEnhancement.output : image)),
   imageMaxHeight: row.images?.includes(scanEnhancement.source) ? 480 : undefined,
   answerImages: row.answerImages?.filter(Boolean),
   sourceUrl: (() => {

@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "date": "2026-10-16",
+  "repairs": [
+    {
+      "id": "hvac-practical-restored-2026-1-02",
+      "oldImage": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-question-pdf-v514.png",
+      "oldSha256": "5a4f1560b86f1e1179663b9936e2bba6b12c4ab077aed5ca670786074d3a81e5",
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-02-question-recrop-v596.png",
+      "sha256": "b080aea97d1193a9e7392c5492ea7bb7ec1cc466a103da774634d584f1f6cc46",
+      "source": "2026-1",
+      "sourceSha256": "dedeb351152148de0b9bf857c8dc4410d14dde658cde16d64884e02f24f7a34a",
+      "location": 2,
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "crop": [
+        375,
+        125,
+        655,
+        370
+      ],
+      "reason": "선도 T축 표기 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2026-1-03",
+      "oldImage": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-03-question-pdf-v514.png",
+      "oldSha256": "7daab74fce2c080508f26504517be6178e7352bda7faf4fd0d9ff9cbcfee8f8b",
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-03-question-recrop-v596.png",
+      "sha256": "b2307712f31c244afbfe3404a0afda532ddb4a8afb078e5029f10a28ca6f7267",
+      "source": "2026-1",
+      "sourceSha256": "dedeb351152148de0b9bf857c8dc4410d14dde658cde16d64884e02f24f7a34a",
+      "location": 2,
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "crop": [
+        80,
+        975,
+        460,
+        1270
+      ],
+      "reason": "볼밸브 아래쪽 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2026-1-09",
+      "oldImage": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-pdf-v514.png",
+      "oldSha256": "061e069c40026d4b10ff2fd52ceebf189493a74e9b90f2ed104e25215bf267c2",
+      "output": "assets/hvac-practical/restored/2026-1/hvac-practical-restored-2026-1-09-question-recrop-v596.png",
+      "sha256": "040a8963792cfb528876fde838e7bafba936b72527da8dd16b5d475896c24e59",
+      "source": "2026-1",
+      "sourceSha256": "dedeb351152148de0b9bf857c8dc4410d14dde658cde16d64884e02f24f7a34a",
+      "location": 7,
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "crop": [
+        85,
+        520,
+        385,
+        815
+      ],
+      "reason": "밸브 몸체 아래쪽 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2026-2-12",
+      "oldImage": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-pdf-v514.png",
+      "oldSha256": "352147c87230550461a71d1be4171e992be4d9052108d360bec59fcf25548946",
+      "output": "assets/hvac-practical/restored/2026-2/hvac-practical-restored-2026-2-12-question-recrop-v596.png",
+      "sha256": "2507ed0ad520b0c14200719b6251e0b6da3afb5ad9fd19383be56e4ba2ec242d",
+      "source": "2026-2",
+      "sourceSha256": "04655510fe17e8b35370f23bf48dce3179458b8a27ae748c8b508c02b475085d",
+      "location": 8,
+      "sourceSize": [
+        992,
+        1403
+      ],
+      "crop": [
+        65,
+        125,
+        550,
+        350
+      ],
+      "reason": "AIR·흡입 화살표 위쪽 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2023-3-07",
+      "oldImage": "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-07-question-book-scan-v514.png",
+      "oldSha256": "4cac9cfd1ee7a8d1cc1ff87853bb842b1e8f7cf17b54a22e34b38c7a5851cf08",
+      "output": "assets/hvac-practical/restored/2023-3/hvac-practical-restored-2023-3-07-question-recrop-v596.png",
+      "sha256": "c421ae42d426ca65e50551fa32d974ea42804c06d912540b4b5701f9c2fef6e3",
+      "source": "book",
+      "sourceSha256": "ff3d9ed3c6ad5c042d0ce71f935e17435054755e750caa01b034270654edf54f",
+      "location": "Scan0027.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        500,
+        455,
+        1510,
+        815
+      ],
+      "reason": "팽창밸브 도식 오른쪽 표기 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-05",
+      "oldImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-book-scan-v514.png",
+      "oldSha256": "c705b6e4970a02a172a4719d0a27fb6df2d36214a5865195a4cfa26924ce9722",
+      "output": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-recrop-v596.png",
+      "sha256": "904fd029175c10ddd2ee7161eea62eef1a870e00f59a6f90fa3ae652bc6008a5",
+      "source": "book",
+      "sourceSha256": "ff3d9ed3c6ad5c042d0ce71f935e17435054755e750caa01b034270654edf54f",
+      "location": "Scan0038.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        740,
+        1310,
+        1180,
+        1750
+      ],
+      "reason": "클램프미터 아래쪽 눈금·몸체 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-06",
+      "oldImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-book-scan-v514.png",
+      "oldSha256": "08172fdf75c2771b4d0598428a3bd2f44267dd61a08ae7af2c5b9b5b2ab428ce",
+      "output": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-recrop-v596.png",
+      "sha256": "e00d68530dc62c45dd7da016caf1b94a6a96ed188745e9c93ad4c84c562edfaf",
+      "source": "book",
+      "sourceSha256": "ff3d9ed3c6ad5c042d0ce71f935e17435054755e750caa01b034270654edf54f",
+      "location": "Scan0041.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        450,
+        1555,
+        1080,
+        2100
+      ],
+      "reason": "응축기 상단 송풍기 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-09",
+      "oldImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-book-scan-v514.png",
+      "oldSha256": "854b20ba1f46d494e44ad83a02732c4544a3be80a41588e886fa9aa8faaa8204",
+      "output": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-recrop-v596.png",
+      "sha256": "c6d69c4d72844304531a7f5f0ae28029eaaf3c0e851bd3ba0fe1db06c307e0e4",
+      "source": "book",
+      "sourceSha256": "ff3d9ed3c6ad5c042d0ce71f935e17435054755e750caa01b034270654edf54f",
+      "location": "Scan0042.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        500,
+        880,
+        1400,
+        1300
+      ],
+      "reason": "증발기 오른쪽 연결 표기 복구"
+    },
+    {
+      "id": "hvac-practical-restored-2023-2-10",
+      "oldImage": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-10-question-scan-v550.png",
+      "oldSha256": "3e856dfb531eb05777218f0a4cca0de7507fd8d11e68bba14c4f051c9e8d4798",
+      "output": "assets/hvac-practical/restored/2023-2/hvac-practical-restored-2023-2-10-question-recrop-v596.png",
+      "sha256": "42fb6797795bfb256aa4a4439691d47d51d1ae3032a3f7832a1aeb3c30d7c84f",
+      "source": "october",
+      "sourceSha256": "5eda9b0af075cd9b647db4a9ed5817d49c165a818172ca93a3e48169348a40d0",
+      "location": "Scan0002.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        580,
+        1070,
+        1530,
+        1575
+      ],
+      "reason": "냉수 입출구 오른쪽 표기 여백 확보"
+    },
+    {
+      "id": "hvac-practical-restored-2025-3-10",
+      "oldImage": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-10-question-scan-v550.png",
+      "oldSha256": "8d4edd026e924cbb57ae259bb1dab2c89ed406cfba56c1f1085eca5415a13588",
+      "output": "assets/hvac-practical/restored/2025-3/hvac-practical-restored-2025-3-10-question-recrop-v596.png",
+      "sha256": "a3bb8a72bf45e69599fa6d9d7f393f77ef616a46b542ecdb2feab62d3cf4113b",
+      "source": "october",
+      "sourceSha256": "5eda9b0af075cd9b647db4a9ed5817d49c165a818172ca93a3e48169348a40d0",
+      "location": "Scan0056.jpg",
+      "sourceSize": [
+        1700,
+        2338
+      ],
+      "crop": [
+        490,
+        1000,
+        1450,
+        1490
+      ],
+      "reason": "냉수 입출구 오른쪽 표기 여백 확보"
+    }
+  ]
+}
