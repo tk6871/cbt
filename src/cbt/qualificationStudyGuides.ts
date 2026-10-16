@@ -3,7 +3,7 @@ import practicalSourceRows from '../../data/hvac-practical-moducbt.json';
 import { hvacPracticalDrills } from './hvacPracticalDrills';
 import { hvacPracticalRestored } from './hvacPracticalRestored';
 import { hvacPracticalSupplement } from './hvacPracticalSupplement';
-import { curatedPracticalAnswers } from './hvacPracticalPublicAnswers';
+import { curatedPracticalAnswers, completePracticalPublicAnswer } from './hvacPracticalPublicAnswers';
 import { hvacPracticalPhotos } from './hvacPracticalPhotos';
 import type { PracticalCategory, PracticalPrompt } from './hvacPracticalTypes';
 
@@ -186,7 +186,7 @@ const publicPracticalPrompts: PracticalPrompt[] = practicalSourceRows.map((row) 
     difficulty: 'basic',
     points: 5,
     question: row.question.replace(/\s+,/g, ',').replace(/\s{2,}/g, ' ').trim(),
-    answer: curated.answer,
+    answer: completePracticalPublicAnswer(row.number),
     explanation: curated.explanation,
     sourceNote: '모두CBT 공개 필답형 대비 자료의 문제 이미지를 대조하고, 잘리거나 부정확한 원문 답안은 교정했습니다.',
     image: row.image,

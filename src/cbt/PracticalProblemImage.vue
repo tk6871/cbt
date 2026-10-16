@@ -9,7 +9,7 @@ onBeforeUnmount(() => dialog.value?.close());
 </script>
 <template>
   <button type="button" class="practical-image-button" :aria-label="alt + ' 크게 보기'" @click="open">
-    <img class="practical-prompt-image" :src="src" :alt="alt" :style="maxHeight ? {maxHeight: maxHeight + 'px', width: 'auto', maxWidth: '100%', marginInline: 'auto'} : undefined" loading="lazy" decoding="async">
+    <img class="practical-prompt-image" :src="src" :alt="alt" :style="maxHeight ? {maxHeight: maxHeight + 'px', height: 'auto', width: 'auto', maxWidth: '100%', marginInline: 'auto'} : undefined" loading="lazy" decoding="async">
     <span>그림 크게 보기 ↗</span>
   </button>
   <dialog ref="dialog" class="practical-image-dialog" :aria-label="alt" @close="opened = false">

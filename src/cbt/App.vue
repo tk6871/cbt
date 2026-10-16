@@ -27,6 +27,7 @@ import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCal
 import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './energyTextbook';
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
+import PracticalIssueReport from './PracticalIssueReport.vue';
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
 const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
@@ -5243,6 +5244,7 @@ onBeforeUnmount(() => {
                   <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.numberLabel || `${prompt.number}번` }}</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }} · {{ practicalAdaptiveLabel(prompt) }}</small><h3>{{ prompt.question }}</h3></div>
                   <b>{{ practicalGradeLabel(practicalProgress[prompt.id]?.grade) }}</b>
                 </header>
+                <PracticalIssueReport :prompt="prompt" :display-number="Number(practicalListNumber(index, prompt)) || (practicalPage - 1) * practicalPageSize + index + 1" />
                 <PracticalProblemImage v-if="prompt.image" :src="prompt.image" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림`" />
                 <div v-if="prompt.images?.length" class="practical-prompt-images">
                   <PracticalProblemImage v-for="(image, imageIndex) in prompt.images" :key="image" :src="image" :max-height="prompt.imageMaxHeight" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림 ${imageIndex + 1}`" />
@@ -5271,7 +5273,7 @@ onBeforeUnmount(() => {
                 </div>
                 <div v-if="practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id)" class="practical-solution">
                   <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
-                  <details class="practical-explanation"><summary>이해용 설명 펼치기</summary><p>{{ prompt.explanation }}</p></details>
+                  <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
                   <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
                   <div v-if="prompt.keyPoints?.length" class="practical-key-points"><strong>채점 핵심어</strong><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></div>
                   <div v-if="practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
@@ -5520,6 +5522,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
+            <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>

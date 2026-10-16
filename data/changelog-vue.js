@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.6',scope:'industrial',date:'2026.10.16',
+      title:'필답형 핵심 답안 보강·그림 잘림 복구',
+      summary:'명칭뿐 아니라 특징·목적·원리까지 답안에 표시하고, 이해용 설명을 기본으로 펼칩니다.',
+      tags:['필답형 답안','그림 복구'],
+      changes:[
+        '공개 필답형44문항의 핵심 답안에 요구한 특징·사용목적·작동원리를 함께 표시합니다. 같은 기기를 다루는 사진 자료에도 보강 답안을 연결합니다.',
+        '답안을 연 뒤 이해용 설명이 기본으로 펼쳐집니다. 필요하면 다시 접을 수 있으며 정답 확인 전에는 답안과 설명을 숨기는 방식은 유지합니다.',
+        '필답형 전체에 이상 신고를 추가하고, PDF·스캔 원본 대조로 그림 가장자리10개를 복구했습니다. 원본 이미지·문제ID·학습 기록을 보존합니다. 원본 사진 자체의 잘림까지 모두 해결됐다는 뜻은 아닙니다.'
+      ]
+    },
+    {
       version:'5.9.5',scope:'industrial',date:'2026.10.14',
       title:'냉동 중간고사 비슷한 문제끼리 풀기',
       summary:'같은 목차·주제를 연달아 풀거나 기존 순서를 선택합니다. 랜덤에도 선택 후 배치 옵션을 제공합니다.',
@@ -2550,8 +2561,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.5';
+  changelog.versions.industrial = '5.9.6';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.5';
+  changelog.currentVersion = '5.9.6';
   window.CBT_CHANGELOG = changelog;
 })();
