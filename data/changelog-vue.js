@@ -5,13 +5,14 @@
 
   const entries = [
     {
-      version:'5.10',scope:'industrial',date:'2026.10.17',
-      title:'문제 풀이 뒤로가기 후 모바일 메뉴 보완',
-      summary:'풀이에서 돌아올 때 닫힌 모바일 메뉴에 PC용 등장 모션이 적용되지 않도록 수정했습니다.',
-      tags:['모바일 메뉴','뒤로가기'],
+      version:'5.1',scope:'industrial',date:'2026.10.17',
+      title:'모바일 복귀 메뉴·그림 확대 조정',
+      summary:'뒤로가기 후 모바일 메뉴를 보완하고, 확대창 크기를 줄여 그림만 확대합니다.',
+      tags:['모바일 메뉴','뒤로가기','그림 확대'],
       changes:[
         'CBT·학습 풀이에서 뒤로 나온 직후 닫힌 모바일 메뉴가 복귀 모션으로 끌려 나와 화면을 덮지 않도록 했습니다. 닫힌 메뉴는 화면과 터치 대상에서 제외합니다.',
-        '모바일 메뉴 자체의 PC용 복귀·테마 모션만 제외하며, 문제와 본문 화면 전환 모션·PC 사이드바 모션은 유지합니다. 학습 기록과 답안은 변경하지 않습니다.'
+        '모바일 메뉴 자체의 PC용 복귀·테마 모션만 제외하며, 문제와 본문 화면 전환 모션·PC 사이드바 모션은 유지합니다. 학습 기록과 답안은 변경하지 않습니다.',
+        '필답형 그림 확대창을 화면보다 여유 있게 줄였습니다. 배율을 바꿔도 창은 커지지 않고 그림만 확대하며 내부에서 스크롤합니다. 그림을 다시 클릭하거나 닫기 버튼을 눌러 돌아갑니다.'
       ]
     },
     {
@@ -2600,12 +2601,13 @@
   ];
 
   entries.reverse().forEach((entry) => {
-    if (!changelog.entries.some((item) => item.version === entry.version && item.scope === entry.scope)) {
+    // Display versions can be reused; keep historical releases by date.
+    if (!changelog.entries.some((item) => item.version === entry.version && item.scope === entry.scope && item.date === entry.date)) {
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.10';
+  changelog.versions.industrial = '5.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.10';
+  changelog.currentVersion = '5.1';
   window.CBT_CHANGELOG = changelog;
 })();
