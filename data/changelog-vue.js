@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.8',scope:'industrial',date:'2026.10.17',
+      title:'필답형 CBT식 풀이 화면·표시 개수 확대',
+      summary:'S펜 답안지를 제거하고 문제 아래에 답안·풀이를 펼칩니다. 표시 개수 선택을 기억합니다.',
+      tags:['필답형 화면','설정 저장'],
+      changes:[
+        'S펜 답안지와 펜 도구를 풀이 화면에서 제거했습니다. 기존 필기 데이터는 삭제하지 않습니다. 직접 입력은 필요할 때만 펼치도록 접었습니다.',
+        '문제·그림 아래에서 정답·풀이를 여는 CBT식 세로 카드로 정리했습니다. 넓은 화면은 여러 문제를 두 열로 배치하고, 한 문제 보기는 읽기 폭을 제한합니다. 복원 비율 실전은 제출 전 답안 숨김을 유지합니다.',
+        '한 문제·2·4·6·8·10·12문제씩 또는 이어보기를 선택할 수 있고 같은 브라우저에서 표시 개수와 학습 방식을 기억합니다. 기존 답안·점수·회차 진행은 유지합니다.'
+      ]
+    },
+    {
       version:'5.9.7',scope:'industrial',date:'2026.10.17',
       title:'필답형 복원 비율 랜덤 실전',
       summary:'최근 복원 회차의 유형 구성을 따라 12문제를 뽑고, 90분 뒤 답안을 비교합니다.',
@@ -2572,8 +2583,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.7';
+  changelog.versions.industrial = '5.9.8';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.7';
+  changelog.currentVersion = '5.9.8';
   window.CBT_CHANGELOG = changelog;
 })();
