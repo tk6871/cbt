@@ -42,7 +42,7 @@ for (const repair of repairs.repairs) {
 }
 const app = fs.readFileSync('src/cbt/App.vue','utf8');
 assert.ok(app.includes('class="practical-explanation" open'), 'explanation defaults open only after answer reveal');
-assert.ok(app.includes('<PracticalIssueReport :prompt="prompt"'), 'all rendered practical prompts have report controls');
+assert.ok(app.includes('<PracticalIssueReport :prompt="practicalSourcePrompt(prompt)"'), 'all rendered practical prompts report their original source');
 const multi = practicalPrompts.filter(p => /명칭.{0,12}(?:특징|목적|역할|용도|원리|기능)/.test(p.question));
 const shortCandidates = multi.filter(p => p.answer.length < 20).map(p=>({id:p.id,question:p.question,answer:p.answer}));
 assert.deepEqual(shortCandidates, [], 'compound request with only a short name');
