@@ -13,7 +13,7 @@ onBeforeUnmount(() => dialog.value?.close());
     <span>그림 크게 보기 ↗</span>
   </button>
   <dialog ref="dialog" class="practical-image-dialog" :aria-label="alt" @close="opened = false">
-    <header><strong>{{ alt }}</strong><label>확대 <select v-model.number="zoom"><option v-for="size in [100,150,200]" :key="size" :value="size">{{ size }}%</option></select></label><button type="button" autofocus @click="dialog?.close()">닫기</button></header>
+    <header><strong>{{ alt }}</strong><label>확대 <select v-model.number="zoom" aria-label="그림 확대 비율"><option v-for="size in [100,150,200,300,400]" :key="size" :value="size">{{ size === 100 ? '화면 너비에 맞춤' : size + '%' }}</option></select></label><button type="button" autofocus @click="dialog?.close()">닫기</button></header>
     <div v-if="opened"><img :src="src" :alt="alt" :style="{ width: zoom + '%', maxWidth: 'none' }"></div>
   </dialog>
 </template>

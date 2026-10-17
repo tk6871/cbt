@@ -924,6 +924,14 @@ let practicalTimerHandle = 0;
 const practicalSessionActive = computed(() => practicalSessionIds.value.length > 0);
 const practicalExamLocked = computed(() => practicalSessionActive.value && !!practicalSessionPattern.value && !practicalSessionFinished.value);
 const practicalLibraryOpen = ref(!practicalSessionActive.value);
+// A solving room is separate from the site's navigation, just like a CBT session.
+const practicalSolving = computed(() => view.value === 'guide' && hvacPracticalAvailable.value
+  && guideLoaded.value && practicalGuideSection.value === 'practice'
+  && (!practicalLibraryOpen.value || practicalSessionActive.value));
+watch(practicalSolving, () => {
+  mobileMenuOpen.value = false;
+  nativeMoreOpen.value = false;
+});
 const practicalLibraryTab = ref<'rounds' | 'materials' | 'review'>('rounds');
 const practicalReviewCount = computed(() => practicalPrompts.value.filter((prompt) => {
   const grade = practicalProgress[prompt.id]?.grade;
@@ -4251,6 +4259,7 @@ watch(examResult, (result) => {
 });
 
 function markViewportResizing(): void {
+  if (mobileMenuOpen.value && window.innerWidth > 820) mobileMenuOpen.value = false;
   if (!resizeAnimationFrame) {
     resizeAnimationFrame = window.requestAnimationFrame(() => {
       document.documentElement.dataset.resizing = 'true';
@@ -4302,6 +4311,11 @@ function closeNativeOverlays(): boolean {
 
 async function handleNativeBackButton(): Promise<void> {
   if (closeNativeOverlays()) return;
+  if (practicalSolving.value) {
+    if (practicalSessionActive.value) closePracticalMock();
+    else openPracticalLibrary(practicalLibraryTab.value);
+    return;
+  }
   if (session.value) {
     await leaveSession();
     return;
@@ -4497,6 +4511,7 @@ onBeforeUnmount(() => {
     class="app-frame"
     :style="themeBackdropStyle"
     :class="{
+      'practical-solving': practicalSolving,
       'visual-style-leaving': visualTransitionPhase === 'leaving',
       'visual-style-entering': visualTransitionPhase === 'entering',
       'style-to-simpsons': visualTransitionTarget === 'simpsons',
@@ -4507,7 +4522,9 @@ onBeforeUnmount(() => {
     }"
   >
 
-    <aside class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }">
+    <Teleport to="body" :disabled="!mobileMenuOpen">
+    <aside v-if="!practicalSolving" :key="mobileMenuOpen ? 'mobile-open' : 'site-menu'" class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }" @keydown.esc.stop="mobileMenuOpen = false">
+      <button v-if="mobileMenuOpen" type="button" class="mobile-menu-close" aria-label="메뉴 닫기" @click="mobileMenuOpen = false">메뉴 닫기 ×</button>
       <img v-if="visualStyle === 'simpsons'" class="sidebar-background-photo simpsons-sidebar-background-photo" v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsKingSizeImage" alt="">
       <img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-sidebar-background-${currentSunjaeImage}`" class="sidebar-background-photo sunjae-sidebar-background-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt="">
       <button class="brand" type="button" @click="openView('home')">
@@ -4549,9 +4566,10 @@ onBeforeUnmount(() => {
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
+    </Teleport>
 
-    <main class="main-area">
-      <header class="topbar">
+    <main class="main-area" :inert="mobileMenuOpen">
+      <header v-if="!practicalSolving" class="topbar">
         <button class="menu-button" type="button" aria-label="메뉴 열기" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
@@ -5156,7 +5174,7 @@ onBeforeUnmount(() => {
           <button v-if="!guideLoading" type="button" @click="retryStudyGuide">다시 불러오기</button>
         </section>
         <template v-else-if="view === 'guide' && activeStudyGuide">
-          <nav v-if="hvacPracticalAvailable" class="practical-guide-tabs" aria-label="시험 자료실 구분">
+          <nav v-if="hvacPracticalAvailable && !practicalSolving" class="practical-guide-tabs" aria-label="시험 자료실 구분">
             <button type="button" :class="{ active: practicalGuideSection === 'practice' }" @click="practicalGuideSection = 'practice'">필답형 문제풀이</button>
             <button type="button" :class="{ active: practicalGuideSection === 'theory' }" @click="practicalGuideSection = 'theory'">필기 공식·자료</button>
           </nav>
@@ -5193,7 +5211,11 @@ onBeforeUnmount(() => {
             <header class="practical-room-header">
               <button v-if="!practicalLibraryOpen || practicalSessionActive" type="button" class="practical-library-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 회차·자료 목록</button>
               <div><span>WRITTEN CBT</span><h2>{{ practicalLibraryOpen && !practicalSessionActive ? '공조냉동 실기 필답형 훈련관' : practicalSelectionLabel }}</h2><p>{{ practicalLibraryOpen && !practicalSessionActive ? '풀 자료를 고른 뒤 문제 화면으로 들어갑니다. 회차와 별도 PDF 자료의 진도를 각각 이어서 볼 수 있습니다.' : `${practicalPagedPrompts.length}문제 · 작성한 답안과 채점 기록은 자동 저장됩니다.` }}</p></div>
-              <strong>{{ practicalLibraryOpen && !practicalSessionActive ? practicalPrompts.length : practicalPagedPrompts.length }}문제</strong>
+              <strong v-if="!practicalSolving">{{ practicalPrompts.length }}문제</strong>
+              <nav v-else class="practical-room-actions" aria-label="필답형 풀이 설정">
+                <button type="button" @click="openCalculator">계산기</button>
+                <button type="button" @click="settingsOpen = true">설정</button>
+              </nav>
             </header>
             <section v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-pattern-start" aria-label="복원 비율 실전">
               <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율을 따라 계산·시퀀스·그림·서술을 배합합니다. 같은 내용은 한 시험에서 제외합니다.</p><small>전체 최근 복원 범위에서 출제 · 90분 · 학습용 60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
@@ -5598,7 +5620,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
-            <p>v5.9.8 필답형 화면 정리: S펜 답안지를 제거하고 문제 아래 ‘정답·풀이 보기’로 답안과 설명을 펼칩니다. 직접 입력은 필요할 때만 여세요. 표시 개수는1·2·4·6·8·10·12개 또는 이어보기이며 선택을 저장합니다. 넓은 화면에서는 여러 문제를 두 열로, 한 문제는 읽기 좋은 폭으로 표시합니다. 기존 필기 데이터와 작성 답안은 삭제하지 않습니다.</p>
+            <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
             <p>v5.9.7 복원 비율 실전: 시험 자료실 → 필답형 목록의 ‘복원 비율 실전 시작’에서 최근9회차 구성에 맞춘12문제·90분 연습을 시작합니다. 수치 계산과 공식 쓰기를 구분하고 같은 내용은 한 시험에서 제외합니다. 제출 후 답안·해설·자가채점이 열리며 작성 답안과 S펜 필기는 기존 회차 학습과 별도입니다. 일반 랜덤도 유지합니다.</p>
             <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
@@ -5938,7 +5960,7 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </Transition>
-    <nav class="mobile-tabbar">
+    <nav v-if="!practicalSolving" class="mobile-tabbar" :inert="mobileMenuOpen">
       <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
       <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
       <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답</button>
@@ -5946,7 +5968,7 @@ onBeforeUnmount(() => {
       <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>✦</template></span>합격</button>
       <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
-    <nav class="native-app-tabbar" aria-label="Android 앱 메뉴">
+    <nav v-if="!practicalSolving" class="native-app-tabbar" aria-label="Android 앱 메뉴" :inert="mobileMenuOpen">
       <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
       <button :class="{ active: view === 'rounds' }" @click="nativeMoreOpen = false; openView('rounds')"><span>▤</span><strong>회차</strong></button>
       <button :class="{ active: view === 'wrong' }" @click="nativeMoreOpen = false; openView('wrong')"><span>!</span><strong>오답</strong><b v-if="stats.wrong">{{ Math.min(99, stats.wrong) }}</b></button>
@@ -6276,14 +6298,14 @@ onBeforeUnmount(() => {
   </div>
 
   <Transition name="toast">
-    <aside v-if="updateAvailable && !session" class="update-notice">
+    <aside v-if="updateAvailable && !session && !practicalSolving" class="update-notice">
       <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
       <button type="button" @click="applyUpdate">업데이트 적용</button>
     </aside>
   </Transition>
 
   <Transition name="toast">
-    <aside v-if="pwaRegistrationError && !updateAvailable && !session" class="update-notice pwa-error-notice">
+    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving" class="update-notice pwa-error-notice">
       <div><span>PWA RECOVERY</span><strong>업데이트 연결을 자동으로 복구할 수 있습니다</strong><small>학습 기록·오답·로그인은 보존하고 서비스워커와 CBT 캐시만 다시 설정합니다.</small></div>
       <div class="pwa-error-actions">
         <button type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>

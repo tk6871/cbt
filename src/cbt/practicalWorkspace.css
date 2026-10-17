@@ -7,13 +7,26 @@
 .practical-load-more { display:block; min-height:48px; margin:16px auto; padding:10px 24px; background:var(--surface); color:var(--text); border:1px solid var(--line); border-radius:8px; }
 .practical-image-button { display:block; width:100%; padding:0; border:0; background:transparent; color:var(--text); cursor:zoom-in; margin:12px 0; }
 .practical-image-button span { display:block; padding:6px; font-size:.85rem; text-align:right; }
-.practical-image-dialog { width:min(1200px,94vw); max-width:94vw; padding:16px; max-height:90dvh; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); }
+.practical-image-dialog { box-sizing:border-box; width:98vw; max-width:98vw; height:96dvh; max-height:96dvh; padding:12px; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); overflow:hidden; }
+.practical-image-dialog[open] { display:flex; flex-direction:column; }
 .practical-image-dialog::backdrop { background:#000a; }
 .practical-image-dialog > header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
-.practical-image-dialog > header strong { flex:1; }
+.practical-image-dialog > header { flex-shrink:0; }
+.practical-image-dialog > header strong { flex:1; min-width:0; overflow-wrap:anywhere; }
 .practical-image-dialog button,.practical-image-dialog select { min-height:44px; color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:6px 12px; }
-.practical-image-dialog > div { overflow:auto; max-height:72dvh; margin-top:12px; }
+.practical-image-dialog > div { overflow:auto; flex:1; min-height:0; margin-top:12px; overscroll-behavior:contain; touch-action:pan-x pan-y pinch-zoom; }
 .practical-image-dialog img { height:auto; object-fit:contain; }
+/* Dedicated solving screen: no site sidebar, top navigation or bottom tabs. */
+:root .app-frame.practical-solving { padding:0 !important; margin:0; }
+.practical-solving .page-content:has(.practical-study-room) { width:min(1920px,calc(100% - 32px)); padding-top:max(12px,env(safe-area-inset-top)); padding-bottom:calc(24px + env(safe-area-inset-bottom)); }
+:root .app-frame.practical-solving .practical-study-room .practical-pagination { bottom:env(safe-area-inset-bottom,0px); }
+.practical-room-actions { display:flex; flex-wrap:wrap; gap:8px; }
+.practical-room-actions button { min-height:44px; padding:8px 14px; border:1px solid var(--line); border-radius:8px; color:var(--text); background:var(--surface); font:inherit; }
+@media (max-width:600px) {
+  .practical-solving .page-content:has(.practical-study-room) { width:calc(100% - 16px); }
+  .practical-solving .practical-room-header > div { grid-column:1 / -1; grid-row:2; }
+  .practical-room-actions { justify-content:flex-end; }
+}
 :root[data-theme="dark"] .practical-image-dialog img { filter:brightness(.78) contrast(1.07); }
 .practical-question-grid > article { scroll-margin-top:100px; }
 @media (max-width:600px) {
