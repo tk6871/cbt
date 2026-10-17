@@ -158,3 +158,10 @@ body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
   .practical-solve-controls button { width:100%; margin-left:0; }
 }
 @media print { .practical-material-period { display: none; } }
+.practical-pattern-start { display:flex; flex-wrap:wrap; align-items:center; gap:16px; padding:18px; margin:16px 0; border:1px solid var(--primary); border-radius:12px; background:var(--surface); }
+.practical-pattern-start > div { flex:1 1 360px; min-width:0; }
+.practical-pattern-start p { margin:8px 0; line-height:1.6; }
+.practical-pattern-start small { color:var(--muted); line-height:1.5; }
+.practical-pattern-start button { min-height:48px; padding:12px 18px; flex:0 1 auto; border:1px solid #16836f; border-radius:10px; background:#16836f; color:#fff; cursor:pointer; font:inherit; font-weight:800; }
+.practical-pattern-actions button:first-child:not(:last-of-type) { background:var(--surface-2); color:var(--text); border-color:var(--line); }
+.practical-pattern-start .practical-pattern-actions { flex:0 1 260px; display:grid; gap:8px; }

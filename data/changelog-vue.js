@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.7',scope:'industrial',date:'2026.10.17',
+      title:'필답형 복원 비율 랜덤 실전',
+      summary:'최근 복원 회차의 유형 구성을 따라 12문제를 뽑고, 90분 뒤 답안을 비교합니다.',
+      tags:['필답형 실전','유형 배합'],
+      changes:[
+        '필답형 회차·자료 목록에 복원 비율 실전 시작을 추가했습니다. 최근9회차108문항의 수치계산·시퀀스·공조·기기·배관·서술·공식 쓰기를 직접 구분한 구성표를 사용합니다.',
+        '회차 구성 하나를 무작위로 고르고 같은 유형의 문제로 교체합니다. 같은 내용은 한 시험에서 제외하며, 기초·추가 자료는 이 실전의 기본 출제 범위에 포함하지 않습니다. 공식 출제비율이나 향후 출제 예측은 아닙니다.',
+        '제출 전에는 정답·해설·힌트·원문 해설 영상이 숨겨집니다. 제출 후 자가채점하며 새 실전의 작성 답안·S펜 필기는 기존 회차 학습과 별도로 저장합니다. 일반 랜덤도 그대로 사용할 수 있습니다.'
+      ]
+    },
+    {
       version:'5.9.6',scope:'industrial',date:'2026.10.16',
       title:'필답형 핵심 답안 보강·그림 잘림 복구',
       summary:'명칭뿐 아니라 특징·목적·원리까지 답안에 표시하고, 이해용 설명을 기본으로 펼칩니다.',
@@ -2561,8 +2572,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.6';
+  changelog.versions.industrial = '5.9.7';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.6';
+  changelog.currentVersion = '5.9.7';
   window.CBT_CHANGELOG = changelog;
 })();
