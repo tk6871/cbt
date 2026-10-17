@@ -66,6 +66,7 @@ import { studyGuideKeys, useStudyGuideData } from './useStudyGuideData';
 const { practicalPrompts, practicalSources, studyGuidePages, guideLoaded, guideLoading, guideError, loadStudyGuide } = useStudyGuideData();
 import { matchesPracticalMaterialPeriod, type PracticalMaterialPeriod } from './practicalMaterialPeriod';
 import { buildPracticalPattern, mockSessionPrompts, practicalPatternSummary, validPracticalPattern, type PracticalPattern } from './practicalMock';
+import { practicalBatchOptions, restorePracticalBatch, restorePracticalMode } from './practicalDisplay';
 import {
   practicalCategoryLabels,
   practicalDifficultyLabels,
@@ -96,7 +97,6 @@ import {
 import type { AttemptRecord, Catalog, CurriculumScope, Question, QuestionItem, Round, SessionState, StudyMode } from './types';
 
 const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
-const PracticalAnswerPad = defineAsyncComponent(() => import('./VisiblePracticalPad.vue'));
 const PracticalTrainingTools = defineAsyncComponent(() => import('./PracticalTrainingTools.vue'));
 const FormulaWorkbench = defineAsyncComponent(() => import('./FormulaWorkbench.vue'));
 
@@ -117,7 +117,7 @@ type PredictionRange = 'selected' | 'recent' | 'all';
 type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'provided' | 'review';
 type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; assessment?: PracticalAssessment; deleted?: boolean; updatedAt: number };
-type PracticalStudyMode = 'type' | 'handwrite' | 'memorize';
+type PracticalStudyMode = 'type' | 'memorize';
 type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number; pattern?: PracticalPattern };
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
@@ -842,15 +842,14 @@ function persistPracticalCursor(): void {
 }
 const practicalStudyModeStorageKey = 'unified-cbt-hvac-practical-study-mode-v1';
 const storedPracticalStudyMode = localStorage.getItem(practicalStudyModeStorageKey);
-const practicalStudyMode = ref<PracticalStudyMode>(
-  storedPracticalStudyMode === 'handwrite' || storedPracticalStudyMode === 'memorize' ? storedPracticalStudyMode : 'type',
-);
+const practicalStudyMode = ref<PracticalStudyMode>(restorePracticalMode(storedPracticalStudyMode));
 const practicalLayout = ref(localStorage.getItem('cbt-practical-layout') === 'list' ? 'list' : 'cbt');
 const practicalOptionsOpen = ref(false);
 const practicalNavigatorOpen = ref(false);
 let practicalLibraryScrollY = 0;
 const practicalHelperIds = ref<string[]>([]);
-const practicalBatchSize = ref([0, 2, 4].includes(Number(localStorage.getItem('cbt-practical-batch-size'))) ? Number(localStorage.getItem('cbt-practical-batch-size')) : 2);
+const practicalDraftOpenIds = ref<string[]>([]);
+const practicalBatchSize = ref(restorePracticalBatch(localStorage.getItem('cbt-practical-batch-size')));
 const practicalContinuousLimit = ref(20);
 const practicalContinuous = computed(() => practicalLayout.value === 'list' && practicalBatchSize.value === 0);
 const practicalDisplayChoice = computed({
@@ -863,7 +862,6 @@ const practicalDisplayChoice = computed({
     if (practicalContinuous.value) practicalContinuousLimit.value = Math.max(20, index + 1);
   },
 });
-const practicalSplit = ref(Math.min(65, Math.max(35, Number(localStorage.getItem('cbt-practical-split')) || 50)));
 const practicalPageSize = computed(() => practicalLayout.value === 'cbt' ? 1 : practicalBatchSize.value || practicalPrompts.value.length);
 watch(practicalLayout, (layout) => {
   localStorage.setItem('cbt-practical-layout', layout);
@@ -871,7 +869,6 @@ watch(practicalLayout, (layout) => {
 watch(practicalBatchSize, (size) => {
   localStorage.setItem('cbt-practical-batch-size', String(size));
 });
-watch(practicalSplit, value => localStorage.setItem('cbt-practical-split', String(value)));
 const practicalCategoryOptions = Object.entries(practicalCategoryLabels) as [PracticalCategory, string][];
 const practicalProgressStorageKey = 'unified-cbt-hvac-practical-progress-v1';
 const practicalSessionStorageKey = 'unified-cbt-hvac-practical-session-v1';
@@ -1156,6 +1153,7 @@ function replacePracticalDraft(id: string, draft: string): void {
   const previous = practicalDrafts[id] || '';
   if (previous.trim() && !draft.startsWith(previous) && !confirm('작성 중인 답안이 있습니다. 새 연습 양식으로 바꿀까요?')) return;
   practicalDrafts[id] = draft;
+  if (!practicalDraftOpenIds.value.includes(id)) practicalDraftOpenIds.value.push(id);
   practicalProgress[id] = {
     ...practicalProgress[id],
     draft,
@@ -1411,7 +1409,7 @@ function startPracticalMock(): void {
   practicalPage.value = 1;
   practicalRevealedIds.value = [];
   practicalLibraryOpen.value = false;
-  if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'handwrite';
+  if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'type';
   persistPracticalSession();
   showToast(selected.length === 12 ? '필답형 12문제 실전을 시작합니다.' : `${selected.length}문제 맞춤 연습을 시작합니다.`);
   void nextTick(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
@@ -5191,7 +5189,7 @@ onBeforeUnmount(() => {
             </div>
           </section>
           </template>
-          <section v-if="hvacPracticalAvailable && practicalGuideSection === 'practice'" class="practical-study-room" :class="{ 'practical-cbt-layout': practicalLayout === 'cbt' }" :style="{ '--practical-split': practicalSplit + '%' }">
+          <section v-if="hvacPracticalAvailable && practicalGuideSection === 'practice'" class="practical-study-room" :class="{ 'practical-cbt-layout': practicalLayout === 'cbt', 'practical-multi-layout': practicalLayout === 'list' }">
             <header class="practical-room-header">
               <button v-if="!practicalLibraryOpen || practicalSessionActive" type="button" class="practical-library-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 회차·자료 목록</button>
               <div><span>WRITTEN CBT</span><h2>{{ practicalLibraryOpen && !practicalSessionActive ? '공조냉동 실기 필답형 훈련관' : practicalSelectionLabel }}</h2><p>{{ practicalLibraryOpen && !practicalSessionActive ? '풀 자료를 고른 뒤 문제 화면으로 들어갑니다. 회차와 별도 PDF 자료의 진도를 각각 이어서 볼 수 있습니다.' : `${practicalPagedPrompts.length}문제 · 작성한 답안과 채점 기록은 자동 저장됩니다.` }}</p></div>
@@ -5259,8 +5257,8 @@ onBeforeUnmount(() => {
             </template>
 
             <div v-else class="practical-solve-controls">
-              <label><span>답안 방식</span><select v-model="practicalStudyMode"><option value="type">직접 입력</option><option value="handwrite">실전 답안지·S펜</option><option v-if="!practicalSessionActive" value="memorize">답까지 암기</option></select></label>
-              <label><span>화면</span><select v-model="practicalDisplayChoice" aria-label="필답형 화면 배치"><option value="single">한 문제씩</option><option value="2">2문제씩</option><option value="4">4문제씩</option><option value="0">여러 문제 이어보기</option></select></label>
+              <label><span>학습 방식</span><select v-model="practicalStudyMode"><option value="type">문제 → 풀이 확인</option><option v-if="!practicalSessionActive" value="memorize">답까지 암기</option></select></label>
+              <label><span>표시 개수</span><select v-model="practicalDisplayChoice" aria-label="필답형 화면 배치"><option value="single">한 문제씩</option><option v-for="count in practicalBatchOptions" :key="count" :value="String(count)">{{ count ? `${count}문제씩` : '여러 문제 이어보기' }}</option></select></label>
               <button v-if="!practicalSessionActive" type="button" @click="practicalOptionsOpen = !practicalOptionsOpen">{{ practicalOptionsOpen ? '검색·범위 닫기' : '검색·범위' }}</button>
             </div>
             <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
@@ -5305,7 +5303,6 @@ onBeforeUnmount(() => {
             <template v-if="!practicalLibraryOpen || practicalSessionActive">
             <div class="practical-cbt-toolbar">
               <button type="button" class="practical-toolbar-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 목록</button>
-              <label class="practical-split-control">문제 너비 <input v-model.number="practicalSplit" type="range" min="35" max="65" step="5" aria-label="문제 영역 너비"><span>{{ practicalSplit }}%</span></label>
               <span>{{ practicalPagedPrompts.filter(p => practicalProgress[p.id]?.grade).length }} / {{ practicalPagedPrompts.length }} 채점</span>
               <button type="button" :aria-expanded="practicalNavigatorOpen" @click="practicalNavigatorOpen = !practicalNavigatorOpen">문제 번호</button>
               <button type="button" @click="jumpPracticalUnanswered">미작성 이동</button>
@@ -5328,8 +5325,28 @@ onBeforeUnmount(() => {
                 </div>
                 <a v-if="!practicalExamLocked && prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="prompt.sourceUrl" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
                 </div><div class="practical-response-body">
-                <label v-if="practicalStudyMode === 'type'" class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="종이에 쓰듯 핵심어와 계산 과정을 직접 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
-                <PracticalAnswerPad v-else-if="practicalStudyMode === 'handwrite'" :prompt-id="prompt.id" :disabled="practicalSessionFinished" :answer-images="prompt.answerImages || []" :overlay-allowed="practicalAnswerRevealed(prompt.id)" />
+                <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-answer-actions">
+                  <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '풀이 닫기' : '정답·풀이 보기' }}</button>
+                  <button v-if="!practicalSessionActive" type="button" class="subtle" @click="startPracticalRelated(prompt)">같은 유형 연속 풀기</button>
+                  <button v-if="hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
+                </div>
+                <div v-if="!practicalExamLocked && (practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id))" class="practical-solution">
+                  <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
+                  <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
+                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
+                  <details v-if="prompt.keyPoints?.length" class="practical-key-points"><summary>채점 핵심어</summary><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></details>
+                  <div v-if="practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
+                    <span>내 답과 비교해 채점</span>
+                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'correct' }" @click="markPracticalPrompt(prompt.id, 'correct')">✓ 정답 {{ prompt.points }}점</button>
+                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
+                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'review' }" @click="markPracticalPrompt(prompt.id, 'review')">↻ 다시 보기</button>
+                  </div>
+                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
+                </div>
+                <details v-if="practicalStudyMode === 'type'" class="practical-draft" :open="practicalDraftOpenIds.includes(prompt.id)" @toggle="($event.target as HTMLDetailsElement).open ? (!practicalDraftOpenIds.includes(prompt.id) && practicalDraftOpenIds.push(prompt.id)) : practicalDraftOpenIds = practicalDraftOpenIds.filter(id => id !== prompt.id)">
+                  <summary>답안 직접 입력(선택){{ practicalDrafts[prompt.id] ? ' · 작성 답안 있음' : '' }}</summary>
+                  <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="필요할 때만 답안이나 계산 과정을 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
+                </details>
                 <details v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-extra-tools" @toggle="($event.target as HTMLDetailsElement).open && !practicalHelperIds.includes(prompt.id) && practicalHelperIds.push(prompt.id)"><summary>힌트 · 답안 골격 · 부분점수 채점</summary>
                 <PracticalTrainingTools
                   v-if="practicalHelperIds.includes(prompt.id)"
@@ -5343,24 +5360,6 @@ onBeforeUnmount(() => {
                   @reveal="togglePracticalAnswer(prompt.id)"
                 />
                 </details>
-                <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-answer-actions">
-                  <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '정답 닫기' : '정답·채점 기준 보기' }}</button>
-                  <button v-if="!practicalSessionActive" type="button" class="subtle" @click="startPracticalRelated(prompt)">같은 유형 연속 풀기</button>
-                  <button v-if="hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
-                </div>
-                <div v-if="!practicalExamLocked && (practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id))" class="practical-solution">
-                  <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
-                  <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
-                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
-                  <div v-if="prompt.keyPoints?.length" class="practical-key-points"><strong>채점 핵심어</strong><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></div>
-                  <div v-if="practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
-                    <span>내 답과 비교해 채점</span>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'correct' }" @click="markPracticalPrompt(prompt.id, 'correct')">✓ 정답 {{ prompt.points }}점</button>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'review' }" @click="markPracticalPrompt(prompt.id, 'review')">↻ 다시 보기</button>
-                  </div>
-                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
-                </div>
                 </div>
               </article>
             </div>
@@ -5599,17 +5598,18 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
+            <p>v5.9.8 필답형 화면 정리: S펜 답안지를 제거하고 문제 아래 ‘정답·풀이 보기’로 답안과 설명을 펼칩니다. 직접 입력은 필요할 때만 여세요. 표시 개수는1·2·4·6·8·10·12개 또는 이어보기이며 선택을 저장합니다. 넓은 화면에서는 여러 문제를 두 열로, 한 문제는 읽기 좋은 폭으로 표시합니다. 기존 필기 데이터와 작성 답안은 삭제하지 않습니다.</p>
             <p>v5.9.7 복원 비율 실전: 시험 자료실 → 필답형 목록의 ‘복원 비율 실전 시작’에서 최근9회차 구성에 맞춘12문제·90분 연습을 시작합니다. 수치 계산과 공식 쓰기를 구분하고 같은 내용은 한 시험에서 제외합니다. 제출 후 답안·해설·자가채점이 열리며 작성 답안과 S펜 필기는 기존 회차 학습과 별도입니다. 일반 랜덤도 유지합니다.</p>
             <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>정답을 펼쳐 보는 학습에서 벗어나 직접 작성하고, 빠진 핵심어와 단위·숫자·도면을 부분점수 기준으로 확인합니다.</p></header>
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인합니다. 직접 입력과 세부 채점 도구는 필요할 때만 펼칩니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
-              <article><b>02</b><strong>한·두·네·여러 문제 보기</strong><span>필답형 상단 화면 선택 · 넓은 창은 문제/답안 2열</span></article>
-              <article><b>03</b><strong>핵심 답안과 접힌 설명</strong><span>힌트·부분점수표는 펼쳐서 사용 · 자동 감지도 직접 해제</span></article>
-              <article><b>04</b><strong>S펜 큰 답안지</strong><span>크게 쓰기 · 아래 늘리기 · 손가락 이동과 펜 분리 · 지우개는 필기만 제거</span></article>
+              <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
+              <article><b>03</b><strong>핵심 답안과 이해용 풀이</strong><span>풀이를 열면 설명도 펼침 · 채점 핵심어와 힌트는 선택 확인</span></article>
+              <article><b>04</b><strong>문제 아래 바로 풀이</strong><span>정답·설명은 같은 카드 아래에 · 직접 입력은 선택 펼침</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
@@ -5626,7 +5626,7 @@ onBeforeUnmount(() => {
             <p>v5.6: 2018~2020년 공개 원문의 사진90개와15개 회로·평면도 선택 답안 설명을 보강했습니다. 정답이 인쇄된2개 사진은 답안에만 표시하며, 공개 원문192문항은 문제 아래 ‘원문 동작 영상 보기’로 해당 장면을 열 수 있습니다. 2023년1회2번의 다른 보기 그림은 원문 동작에 맞춰 제어부를 재작성했습니다. 책95개 대응·기존 기록·원본은 유지하며, 전체312문항의 정답 검증 완료를 뜻하지 않습니다.</p>
             <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
             <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
-            <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 입력·손글씨·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
+            <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 풀이 확인·직접 입력·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
             <p>9월17일 제공된 가지1 123문항은 사진·기기 자료123에서 따로 풀 수 있습니다. 원본 사진95개와 학습 답안·설명을 연결했으며 정답 표기가 있는 비교 사진2개는 문제용과 답안용을 분리했습니다.</p>
             <p>복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 수정 완료 표시는 아닙니다.</p>
             <p>2023년 2회1번의 주회로·제어회로 전체와 3회1번의 우측 PB2/X2 회로도 원본 영상으로 보완했습니다. 기존 잘린 이미지는 삭제하지 않았습니다.</p>
