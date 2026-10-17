@@ -5,6 +5,16 @@
 
   const entries = [
     {
+      version:'5.10',scope:'industrial',date:'2026.10.17',
+      title:'문제 풀이 뒤로가기 후 모바일 메뉴 보완',
+      summary:'풀이에서 돌아올 때 닫힌 모바일 메뉴에 PC용 등장 모션이 적용되지 않도록 수정했습니다.',
+      tags:['모바일 메뉴','뒤로가기'],
+      changes:[
+        'CBT·학습 풀이에서 뒤로 나온 직후 닫힌 모바일 메뉴가 복귀 모션으로 끌려 나와 화면을 덮지 않도록 했습니다. 닫힌 메뉴는 화면과 터치 대상에서 제외합니다.',
+        '모바일 메뉴 자체의 PC용 복귀·테마 모션만 제외하며, 문제와 본문 화면 전환 모션·PC 사이드바 모션은 유지합니다. 학습 기록과 답안은 변경하지 않습니다.'
+      ]
+    },
+    {
       version:'5.9.9',scope:'industrial',date:'2026.10.17',
       title:'필답형 전용 풀이 화면·이미지 확대·모바일 메뉴 보완',
       summary:'필답형 풀이 중 사이트 메뉴를 숨기고, 확대 그림은 화면 대부분을 사용합니다.',
@@ -2594,8 +2604,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.9';
+  changelog.versions.industrial = '5.10';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.9';
+  changelog.currentVersion = '5.10';
   window.CBT_CHANGELOG = changelog;
 })();

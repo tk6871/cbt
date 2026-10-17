@@ -28,4 +28,7 @@ assert.ok(css.includes('width:98vw;') && !css.includes('width:min(1200px,94vw)')
 const image=fs.readFileSync('src/cbt/PracticalProblemImage.vue','utf8');
 assert.ok(image.includes('[100,150,200,300,400]'));
 assert.ok(image.includes('zoom.value = 100'));
+const shellCss=fs.readFileSync('src/cbt/cbt.css','utf8');
+assert.ok(shellCss.includes('.sidebar:not(.open) { visibility:hidden; pointer-events:none; }'));
+assert.ok(shellCss.includes('transition: transform .22s ease; animation:none !important;'));
 console.log(JSON.stringify({batchOptions:practicalBatchOptions,retiredHandwriteMigrates:true,settingsSaved:true,solutionBelowQuestion:true,standaloneNavigationGates:true,bodyLevelFreshDrawer:true,viewportZoom400:true}));
