@@ -206,6 +206,7 @@ img { max-width: 100%; }
   box-shadow: 8px 0 35px rgba(20,48,82,.035);
 }
 .sidebar > :not(.sidebar-background-photo) { flex-shrink:0; }
+.mobile-menu-close { align-self:flex-end; min-height:44px; padding:8px 12px; margin-bottom:8px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--text); font:inherit; }
 .brand {
   width: 100%;
   padding: 4px 5px 20px;
@@ -1810,6 +1811,10 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   .app-frame { padding-left: 0; }
   .sidebar { transform: translateX(-105%); transition: transform .22s ease; }
   .sidebar.open { transform: translateX(0); }
+  /* A fresh body-level drawer avoids stale off-canvas/backdrop raster layers
+     after navigating or returning from a solving screen on mobile browsers. */
+  :root .sidebar.open { animation:none !important; opacity:1; backdrop-filter:none !important; background:var(--surface); max-width:calc(100vw - 44px); height:100dvh; max-height:100dvh; overflow-y:auto; overscroll-behavior:contain; }
+  body:has(> .sidebar.open) { overflow:hidden; }
   .mobile-backdrop { position: fixed; z-index: 45; inset: 0; background: rgba(5, 16, 29, .45); display: block; }
   .menu-button { min-height: 38px; padding: 0 11px; border: 1px solid var(--line); border-radius: 9px; color: var(--primary); background: var(--surface); display: flex; align-items: center; gap: 5px; font-size: .67rem; font-weight: 750; }
   .topbar { padding: 0 14px; }

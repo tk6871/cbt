@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      version:'5.9.9',scope:'industrial',date:'2026.10.17',
+      title:'필답형 전용 풀이 화면·이미지 확대·모바일 메뉴 보완',
+      summary:'필답형 풀이 중 사이트 메뉴를 숨기고, 확대 그림은 화면 대부분을 사용합니다.',
+      tags:['필답형 화면','이미지 확대','모바일 메뉴'],
+      changes:[
+        '필답형 회차·자료·실전에 들어가면 사이트 메뉴와 상·하단 탐색을 숨깁니다. 회차·자료 목록 복귀와 계산기·설정은 풀이 화면에서 이용합니다. 작성 답안과 기존 표시 설정은 유지합니다.',
+        '그림 확대창의 1200px 제한을 없애 화면 너비에 맞추며, 최대400% 확대와 가로·세로 스크롤을 제공합니다. 원본 이미지 파일은 변경하지 않습니다.',
+        '모바일 메뉴를 화면 전환 영역 밖에서 새로 표시하고 흐림 효과와 전환 애니메이션의 충돌을 줄였습니다. 메뉴 닫기 버튼을 추가하고 열린 동안 뒤 화면 조작을 막습니다.'
+      ]
+    },
+    {
       version:'5.9.8',scope:'industrial',date:'2026.10.17',
       title:'필답형 CBT식 풀이 화면·표시 개수 확대',
       summary:'S펜 답안지를 제거하고 문제 아래에 답안·풀이를 펼칩니다. 표시 개수 선택을 기억합니다.',
@@ -2583,8 +2594,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.9.8';
+  changelog.versions.industrial = '5.9.9';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.9.8';
+  changelog.currentVersion = '5.9.9';
   window.CBT_CHANGELOG = changelog;
 })();

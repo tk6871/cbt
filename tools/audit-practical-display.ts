@@ -16,4 +16,16 @@ assert.ok(app.indexOf('class="practical-solution"')<app.indexOf('class="practica
 const css=fs.readFileSync('src/cbt/practicalWorkspace.css','utf8');
 assert.ok(!css.includes('grid-template-columns: minmax(0,var(--practical-split'));
 assert.ok(css.includes('.practical-cbt-layout .practical-question-grid { max-width:920px;'));
-console.log(JSON.stringify({batchOptions:practicalBatchOptions,retiredHandwriteMigrates:true,settingsSaved:true,solutionBelowQuestion:true}));
+assert.ok(app.includes("'practical-solving': practicalSolving"));
+assert.ok(app.includes('<aside v-if="!practicalSolving"'));
+assert.ok(app.includes('<header v-if="!practicalSolving" class="topbar"'));
+for (const bar of ['mobile-tabbar','native-app-tabbar']) assert.ok(app.includes(`<nav v-if="!practicalSolving" class="${bar}"`));
+assert.ok(app.includes('<Teleport to="body" :disabled="!mobileMenuOpen">'));
+assert.ok(app.includes(":key=\"mobileMenuOpen ? 'mobile-open' : 'site-menu'\""));
+assert.ok(app.includes(':inert="mobileMenuOpen"'));
+assert.ok(app.includes('if (practicalSolving.value) {'));
+assert.ok(css.includes('width:98vw;') && !css.includes('width:min(1200px,94vw)'));
+const image=fs.readFileSync('src/cbt/PracticalProblemImage.vue','utf8');
+assert.ok(image.includes('[100,150,200,300,400]'));
+assert.ok(image.includes('zoom.value = 100'));
+console.log(JSON.stringify({batchOptions:practicalBatchOptions,retiredHandwriteMigrates:true,settingsSaved:true,solutionBelowQuestion:true,standaloneNavigationGates:true,bodyLevelFreshDrawer:true,viewportZoom400:true}));
