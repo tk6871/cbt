@@ -17,6 +17,7 @@ const rows = prompts.map(prompt => {
   const lesson = calculationLesson(prompt)!;
   assert.ok(lesson.symbols.length && lesson.steps.length && lesson.units.length && lesson.why && lesson.memory, prompt.id);
   if (lesson.kind === 'numeric') assert.ok(lesson.examAnswer && lesson.rounding, prompt.id);
+  assert.ok(lesson.numberSelection?.used && lesson.numberSelection.condition, `Missing number-selection review: ${prompt.id}`);
   for (const image of [prompt.image, ...(prompt.images || [])].filter((x): x is string => Boolean(x))) assert.ok(existsSync(resolve(image)), image);
   return { prompt, lesson, examFamilies:practicalExamFamiliesFor(prompt) };
 });

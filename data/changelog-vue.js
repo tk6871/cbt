@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.1.4',scope:'industrial',date:'2026.10.19',
+      title:'계산 숫자·함정 구별과 PDF 합본',
+      summary:'문제마다 쓰는 값·안 쓰는 값·필요한 조건을 구별하고 PDF를 짧게 합쳤습니다.',
+      tags:['필답형','함정·조건','PDF'],
+      changes:['계산36문제에 사용하는 숫자와 조건을 추가했습니다. 필요 없는 값이 있는7문제는 이번 식에 안 쓰는 이유와 다른 문제에서의 쓰임도 설명합니다.','선도 엔탈피1,821·방 높이·펌프 동력·현열/잠열·냉방/난방 표를 구별합니다. 숫자를 곱하지 않아도 중요한 단위·소수점·계산방법 조건도 따로 알려줍니다.','PDF는 같은 공식 설명을 묶고 문제와 풀이를 이어 배치해59쪽에서27쪽으로 줄였습니다. 36문제와 그림, SI·기호·단위 설명을 유지합니다.']
+    },
+    {
       version:'5.1.3',scope:'industrial',date:'2026.10.19',
       title:'필답형 네 공식 우선 학습',
       summary:'CGT·CR·COP·BF를 먼저 골라 공부하고, PDF도 네 공식 중심으로 읽습니다.',
@@ -2627,8 +2634,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.3';
+  changelog.versions.industrial = '5.1.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.3';
+  changelog.currentVersion = '5.1.4';
   window.CBT_CHANGELOG = changelog;
 })();
