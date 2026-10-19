@@ -2,10 +2,10 @@ import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
-import { calculationPrompts, calculationLesson, practicalCalculationLessons, practicalSiBasics, practicalCalculationReferences } from '../src/cbt/practicalCalculations';
+import { calculationPrompts, calculationLesson, practicalCalculationLessons, practicalSiBasics, practicalCalculationReferences, practicalExamFamilies, practicalExamFamiliesFor, orderPracticalCalculations } from '../src/cbt/practicalCalculations';
 import { practicalMockSlots } from '../src/cbt/practicalMock';
 
-const prompts = calculationPrompts(practicalPrompts);
+const prompts = orderPracticalCalculations(calculationPrompts(practicalPrompts));
 assert.equal(prompts.length, Object.keys(practicalCalculationLessons).length, 'All lesson IDs must resolve to bank items');
 assert.equal(new Set(prompts.map(p => p.id)).size, prompts.length);
 for (const p of practicalPrompts.filter(p => p.category === 'calculation')) assert.ok(calculationLesson(p), p.id);
@@ -18,9 +18,11 @@ const rows = prompts.map(prompt => {
   assert.ok(lesson.symbols.length && lesson.steps.length && lesson.units.length && lesson.why && lesson.memory, prompt.id);
   if (lesson.kind === 'numeric') assert.ok(lesson.examAnswer && lesson.rounding, prompt.id);
   for (const image of [prompt.image, ...(prompt.images || [])].filter((x): x is string => Boolean(x))) assert.ok(existsSync(resolve(image)), image);
-  return { prompt, lesson };
+  return { prompt, lesson, examFamilies:practicalExamFamiliesFor(prompt) };
 });
+assert.equal(rows.filter(r => r.examFamilies.length).length,13);
+for (const family of practicalExamFamilies) assert.ok(rows.some(r => r.examFamilies.includes(family.key)),family.key);
 const path = resolve(process.argv[2] || 'tmp/pdfs/practical-calculation-study.json');
 mkdirSync(dirname(path), { recursive:true });
-writeFileSync(path, JSON.stringify({ date:'2026-10-19', basics:practicalSiBasics, references:practicalCalculationReferences, rows }, null, 2));
+writeFileSync(path, JSON.stringify({ date:'2026-10-19', basics:practicalSiBasics, references:practicalCalculationReferences, examFamilies:practicalExamFamilies, rows }, null, 2));
 console.log(JSON.stringify({ path, total:rows.length, numeric:rows.filter(r => r.lesson.kind === 'numeric').length, formula:rows.filter(r => r.lesson.kind === 'formula').length, restored:rows.filter(r => r.prompt.group === 'restored').length, mockCalculationAndFormulaCoverage:'pass' }));

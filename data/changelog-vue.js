@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.1.3',scope:'industrial',date:'2026.10.19',
+      title:'필답형 네 공식 우선 학습',
+      summary:'CGT·CR·COP·BF를 먼저 골라 공부하고, PDF도 네 공식 중심으로 읽습니다.',
+      tags:['필답형','시험 대비','계산'],
+      changes:['전달받은 시험범위에 맞춰 네 공식 중심 13문항을 기본으로 표시합니다. 공식별 선택과 전체 계산36문항 전환을 지원합니다.','공식별 기호 뜻·쉬운 예제·단위 약분을 추가하고, 기본 연습부터 응용 문제로 이어지게 정렬했습니다. 복합문항은 여러 공식에 연결하되 함께 풀 때 중복 표시하지 않습니다.','학습 PDF는 SI 기초 다음에 CGT·CR·COP·BF 설명과 관련 문제를 먼저 배치했습니다.']
+    },
+    {
       version:'5.1.2',scope:'industrial',date:'2026.10.19',
       title:'필답형 계산·공식 공부와 PDF',
       summary:'필답형 계산과 공식 문제를 모아, 기호·SI 단위·숫자 대입부터 쉽게 공부합니다.',
@@ -2620,8 +2627,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.2';
+  changelog.versions.industrial = '5.1.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.2';
+  changelog.currentVersion = '5.1.3';
   window.CBT_CHANGELOG = changelog;
 })();

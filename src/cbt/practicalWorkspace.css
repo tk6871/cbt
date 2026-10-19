@@ -1,5 +1,10 @@
 /* The available content width, not monitor resolution, chooses the layout. */
 .practical-calculation-library { color:var(--text); }
+.practical-exam-focus { padding:12px 16px; margin:16px 0; border:1px solid #16836f; border-radius:12px; background:var(--surface); }
+.practical-exam-focus h4 { margin:6px 0; font-size:1.1rem; }
+.practical-exam-family-buttons { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.practical-exam-family-buttons button[aria-pressed="true"] { background:#16836f; color:#fff; }
+.practical-exam-focus details { border-top:1px solid var(--line); }
 .practical-calculation-library > header { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
 .practical-calculation-library h3 { margin:12px 0 6px; }
 .practical-calculation-library p, .practical-si-basics p { line-height:1.75; }

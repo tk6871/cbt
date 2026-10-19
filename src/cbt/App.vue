@@ -28,7 +28,7 @@ import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 import PracticalIssueReport from './PracticalIssueReport.vue';
-import { calculationLesson, calculationPrompts, practicalCalculationPdf, practicalSiBasics } from './practicalCalculations';
+import { calculationLesson, calculationPrompts, practicalCalculationPdf, practicalSiBasics, orderPracticalCalculations } from './practicalCalculations';
 const PracticalCalculationLibrary = defineAsyncComponent(() => import('./PracticalCalculationLibrary.vue'));
 const PracticalCalculationLesson = defineAsyncComponent(() => import('./PracticalCalculationLesson.vue'));
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
@@ -1031,7 +1031,7 @@ const practicalFilteredPrompts = computed(() => {
 });
 const practicalPagedPrompts = computed(() => practicalSessionActive.value
   ? practicalSessionIds.value.map((id) => practicalPromptById.value.get(id)).filter((prompt): prompt is PracticalPrompt => Boolean(prompt))
-  : practicalFilteredPrompts.value);
+  : practicalPromptFilter.value === 'calculation' ? orderPracticalCalculations(practicalFilteredPrompts.value) : practicalFilteredPrompts.value);
 const practicalPageCount = computed(() => Math.max(1, Math.ceil(practicalPagedPrompts.value.length / practicalPageSize.value)));
 const visiblePracticalPrompts = computed(() => {
   if (practicalContinuous.value) return practicalPagedPrompts.value.slice(0, practicalContinuousLimit.value);
@@ -5665,7 +5665,7 @@ onBeforeUnmount(() => {
           <section v-if="!isJewelry" class="feature-practical-lab">
             <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>
             <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
-            <p>v5.1.2 필답형 계산·공식 공부: 시험 자료실 → 필답형 → 계산·공식 공부에서 36문제를 유형별로 모아 봅니다. 공식의 기호·SI 단위·숫자 대입·단위 약분·반올림 최종값을 함께 설명하며, 같은 내용을 PDF로 받을 수 있습니다.</p>
+            <p>v5.1.3 시험 우선 계산: 시험 자료실 → 필답형 → 계산·공식 공부에서 CGT·CR·COP·BF 중심13문제를 먼저 봅니다. 공식별 기호·쉬운 예제·단위 약분을 읽고 기초부터 연습합니다. 전체36문항도 선택할 수 있으며, PDF도 네 공식 설명과 문제를 먼저 배치했습니다.</p>
             <p>v5.1.1 복원 비율 실전: 문제별 ‘정답·풀이 보기’로 제출 전에도 답안과 설명을 확인합니다. 미리 본 문제는 표시하고 이어풀기에도 유지합니다. 시간은 계속 진행하며 자가채점은 제출 후 열립니다.</p>
             <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
