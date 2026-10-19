@@ -4,6 +4,7 @@ export type CalculationLesson = {
   topic: string; title: string; kind: 'numeric' | 'formula'; formula: string;
   symbols: string[]; why: string; units: string[]; memory: string;
   steps: string[]; caution?: string; examAnswer?: string; rounding?: string;
+  numberSelection?: { used: string; unused?: string; condition: string };
 };
 type Method = Omit<CalculationLesson, 'steps'>;
 
@@ -118,6 +119,48 @@ for (const [suffix, answer] of Object.entries(examAnswers)) {
 practicalCalculationLessons['hvac-practical-restored-2025-2-07'].rounding = '개별 문제 우선: 소수점 6자리까지 → 0.000242. 둘째 자리로 줄이면 0.00이 되어 안 됩니다.';
 practicalCalculationLessons['hvac-practical-restored-2024-1-09'].rounding = '책 411쪽 개별 조건 확인: 절대습도는 소수점 셋째 자리까지 → 0.004.';
 practicalCalculationLessons['hvac-practical-restored-2024-3-07'].rounding = '책 423쪽 인쇄 답안도 0.00625를 둘째 자리로 반올림하여 0.01로 표기합니다. 계산 원리는 반올림 전 값으로 이해합니다.';
+
+// Read each stem and the relevant figure before marking an unused value. A
+// method/unit condition is still essential even if it is not multiplied in.
+const numberSelections: Record<string, NonNullable<CalculationLesson['numberSelection']>> = {
+  'restored-2026-2-09': { used:'현열25 kW, 밀도1.2, 비열1.01, 온도차26-15=11℃.', unused:'잠열10 kW. 온도차로 풍량을 구하는 현열식이므로 현열25만 사용합니다. 25+10을 넣으면 안 됩니다.', condition:'m³/h로 구하므로 초당 풍량에 마지막으로3,600을 곱합니다. 온도차를 주는 현열식인지 먼저 봅니다.' },
+  'restored-2026-2-10': { used:'열손실490 W, 그림의 바닥10×10 m, 온도차20-10.2℃.', unused:'높이3 m. 이번에는 바닥면적을 구하므로 가로×세로만 씁니다. 높이까지 곱하면 부피가 됩니다.', condition:'열량Q가 아니라 열관류율K를 구하므로 K=Q/(면적×온도차)로 나눕니다.' },
+  'restored-2026-1-05': { used:'유량200 L/min, 비열4.2, 물의31-28℃, 냉매40℃, 열관류율0.95.', condition:'31-28은 물이 데워진 온도차입니다. 전열면적을 구할 때는 (40-28)과(40-31)의 평균을 따로 씁니다. 산술평균하라는 조건은 숫자가 아니어도 반드시 필요합니다.' },
+  'restored-2026-1-06': { used:'직선350·500 mm, 반지름150 mm, 굽힘각90°.', condition:'150은 지름이 아니라 반지름입니다. 90/360은 원 한 바퀴의1/4이라는 비율이며, 360은 지문 밖에서 온 원의 전체 각도입니다.' },
+  'restored-2025-3-06': { used:'건조도0.1, 증발잠열1,675 kJ/kg, 유량1.3 kg/s, 1 RT=3.86 kW.', condition:'0.1은 이미 증기인 비율입니다. 새로 증발할 액체는1-0.1=0.9라서 잠열에0.9를 곱합니다. 1은 전체100%를 뜻합니다.' },
+  'restored-2025-3-07': { used:'오른쪽 난방부하9,000+10,000+2,000+1,000+4,000+2,500 W와 두 계수1.5·1.5.', unused:'왼쪽 냉방부하6,000·7,000·600·800·960·1,200·2,400·1,400·3,000 W. 보일러 난방출력을 묻기 때문에 냉방 열은 더하지 않습니다.', condition:'난방 표의 인체·조명0은 버린 숫자가 아니라 해당 부하를0으로 준 조건입니다. 같은1.5가 두 번 주어졌으므로 각각 곱합니다.' },
+  'restored-2025-2-07': { used:'전도율2.5×10⁻⁵, 두께10 cm, 두 표면 열전달률0.05·0.009.', condition:'두께만0.10 m로 환산합니다. 소수점6자리 조건 때문에 기본 둘째 자리로 줄이지 않습니다.' },
+  'restored-2025-2-08': { used:'기존 회전수800 rpm, 옛 유량1.5, 새 유량2 m³/min.', unused:'동력10 kW. 회전수는 유량비로 구하므로 기존 동력이 필요하지 않습니다. 동력을 묻는 문제라면 사용 여부가 달라집니다.', condition:'새 유량/옛 유량=2/1.5를 곱합니다. 유량 단위가 같아 비율에서 나뉘므로 둘 다 초당으로 바꿀 필요는 없습니다.' },
+  'restored-2025-1-11': { used:'물10 ton, 비열4.2, 온도차35-2℃, 냉각시간2 h, 1 RT=3.86 kW.', condition:'10 ton은 냉각할 물의 질량입니다. 답의RT(냉동톤)와 서로 다른 단위입니다. 2시간으로 나누는 과정도 빠뜨리지 않습니다.' },
+  'restored-2025-1-04': { used:'비중량9,800 N/m³, 유량1,500 m³/h, 양정10 m, 효율0.7.', condition:'9,800은 이미 물의 비중량입니다. 중력9.8을 또 곱하지 않습니다. 0.7은 효율이므로 나눠서 손실을 포함한 축동력을 구합니다.' },
+  'restored-2024-3-07': { used:'공기량비1:3, 온도-8·24℃, 절대습도0.001·0.008.', condition:'온도식에는 두 온도와 공기량비만, 습도식에는 두 습도와 공기량비만 씁니다. 서로 다른 소문항에 쓰는 값이지 불필요한 값이 아닙니다.' },
+  'restored-2024-3-10': { used:'L은 중심거리, A는 이음쇠 중심길이, a는 나사 물림길이입니다.', condition:'수치가 없는 공식 쓰기 문제입니다. l과L, A와a는 대소문자를 구별해야 합니다. 2는 양쪽 이음쇠 두 군데를 뜻합니다.' },
+  'restored-2024-2-05': { used:'가로10×세로10 m, K=0.5, 온도차20-8.2℃.', condition:'같은10이 두 번 나와도 가로와 세로이므로 둘 다 곱합니다. 20℃만 곱하지 않고 지중온도와의 차를 씁니다.' },
+  'restored-2024-2-08': { used:'표의 냉방부하5+6+0.1+0.9+1+1.3+2+4+1.8=22.1 kW, 환산값3.86 kW/RT.', unused:'오른쪽 난방부하6·3·3.2·2.5·8·5.8 kW. 냉동능력을 구하므로 난방 열은 더하지 않습니다.', condition:'냉방 표에서는 현열과 잠열, 외기부하까지 합칩니다. 현열식만 쓰는 송풍량 문제와 구별합니다.' },
+  'restored-2024-2-10': { used:'그림①입구, ②출구, ③코일 온도의 위치.', condition:'①②③은 온도값1·2·3이 아니라 위치 이름표입니다. BF는(②-③)/(①-③), CF는1-BF입니다.' },
+  'restored-2024-1-06': { used:'냉동능력12 RT, 환산3.86 kW/RT, 증발기 출구1,630·입구545 kJ/kg.', unused:'그림의1,821 kJ/kg. 압축기 토출 쪽 엔탈피이므로 증발기 냉동효과에는 넣지 않습니다. 압축일이나COP 문제에서는 필요할 수 있습니다.', condition:'kg/h를 요구하므로 냉동능력도kJ/h로 바꿔 나눕니다. 선도에서 숫자가 놓인 장치의 입·출구를 먼저 찾습니다.' },
+  'restored-2024-1-09': { used:'공기량비1:4, 온도-5·20℃, 절대습도0.001·0.005.', condition:'온도와 습도는 각각 따로 평균합니다. 절대습도는 소수점 셋째 자리까지 기입하라는 개별 조건이 우선입니다.' },
+  'restored-2023-3-02': { used:'질량1 kg, 처음-10℃·마지막100℃, 얼음/물 비열2.1·4.2, 융해열335·증발잠열2,257.', condition:'-10→0℃와0→100℃는CGT, 녹음과증발은CR입니다. 0℃는 얼음이 녹는 경계 온도이며, 모든 구간에 같은 비열을 넣지 않습니다.' },
+  'restored-2023-3-04': { used:'현열8.3 kW, 잠열2.8 kW.', unused:'실내26℃, 상대습도50%, 취출온도차10℃. 현열비는현열/(현열+잠열)이므로 이번 비율 계산에는 사용하지 않습니다.', condition:'현열비를 묻는지, 송풍량을 묻는지 먼저 봅니다. 취출온도차는 송풍량 계산이라면 필요한 값입니다.' },
+  'restored-2023-2-02': { used:'질량유량0.6 kg/s, 비열1.0, 선도에서 읽는 가열 전19·후28℃.', condition:'수평 가열은 절대습도가 일정한 변화입니다. 이번에는 온도만 바뀌는 현열을 구하므로 선도에서 두 온도를 읽습니다.' },
+  'restored-2023-2-12': { used:'급탕3,000 L/h·10→60℃·비열4.18, 상당증발량1,000 kg/h·잠열2,256, 손실20%·예열15%, 연료130 m³/h·발열량40,000.', condition:'소문항별로 다른 값을 씁니다. 급탕량 식에는 연료량을 넣지 않지만 효율 식에서는 필요합니다. 기존 복원 효율의 출력 기준은 주의 설명을 함께 읽습니다.' },
+  'foundation-2': { used:'냉동능력12 kW, 입력3 kW.', condition:'COP이므로12÷3입니다. 12+3은 응축기 방열량을 구하는 다른 식입니다.' },
+  'foundation-3': { used:'냉동능력12 kW, 입력3 kW.', condition:'이번에는 응축기 방열량이므로12+3입니다. 같은 두 숫자라도COP을 묻는 문제처럼 나누면 안 됩니다.' },
+  'foundation-8': { used:'물 유량1 kg/s, 비열4.18, 온도차5℃.', condition:'유량이 이미kg/s이므로3,600으로 나누지 않습니다. “5℃ 올린다”는5가 온도차라는 뜻입니다.' },
+  'foundation-11': { used:'진공압300 mmHg, 표준대기압760 mmHg=101.325 kPa.', condition:'진공압300은 남은 압력이 아니라 대기압에서 빠진 양입니다. 먼저760-300을 합니다.' },
+  'drill-07': { used:'냉동능력24 kW, 입력6 kW.', condition:'두 소문항을 구별합니다. COP은24÷6, 방열량은24+6입니다. 같은 숫자라도 구하는 것에 따라 연산이 바뀝니다.' },
+  'drill-08': { used:'냉동능력75 kW, 증발기 출구400·입구250 kJ/kg.', condition:'1 kg이 가져간 열은400-250입니다. 전체 열75를 그 열로 나눠야kg/s가 남습니다.' },
+  'drill-09': { used:'흡입400, 토출450, 팽창 전250 kJ/kg.', condition:'흡입400은 냉동효과(400-250)와 압축일(450-400)에 각각 쓰입니다. 숫자를 한 번 썼다고 다음 식에서 빼는 것이 아닙니다.' },
+  'drill-10': { used:'물 유량2 kg/s, 비열4.18, 온도차5℃.', condition:'온도변화에 따른 열이므로CGT입니다. 증발잠열은 주어지지 않았으며 임의로 넣지 않습니다.' },
+  'drill-11': { used:'풍량2 m³/s, 공기 밀도1.2, 비열1.005, 온도차10℃.', condition:'2는 질량이 아닌 부피유량입니다. 공기 밀도1.2를 곱해kg/s로 바꾼 뒤CGT에 넣습니다.' },
+  'drill-12': { used:'전열30 kW, 현열21 kW.', condition:'30은 이미현열+잠열의 전체입니다. 분모를30+21로 만들지 않습니다. 잠열은30-21입니다.' },
+  'drill-13': { used:'증발압력0.2, 응축압력1.8 MPa.', condition:'두 값은 절대압력으로 사용하는 이상식입니다. 단순 평균(0.2+1.8)/2가 아니라 곱한 값의루트를 씁니다.' },
+  'drill-14': { used:'진공압380 mmHg, 대기압760 mmHg=101.325 kPa.', condition:'760-380을 먼저 계산합니다. 380을 바로kPa로 바꾸는 것은 진공압의 환산이며, 이번에 구하는 절대압력과 구별합니다.' },
+  'drill-28': { used:'외기10 kg/s·32℃, 환기30 kg/s·24℃.', condition:'공기량10과30이 다르므로(32+24)/2가 아닙니다. 각 온도에각 공기량을 곱해 전체40으로 나눕니다.' },
+  'drill-29': { used:'건공기2 kg/s, 입구60·출구40 kJ/kg.', condition:'60과40은 온도가 아니라 엔탈피입니다. 엔탈피 차에 현열·잠열이 함께 포함되므로 비열을 또 곱하지 않습니다.' },
+  'supplement-20260916-16': { used:'냉각수 입구·출구온도, 외기 습구온도, 물의질량유량·비열.', condition:'레인지에는물의두 온도만, 어프로치에는출구수온과외기습구온도를 씁니다. 외기건구온도와 혼동하지 않습니다.' },
+};
+for (const [suffix, selection] of Object.entries(numberSelections)) practicalCalculationLessons[`hvac-practical-${suffix}`].numberSelection = selection;
 
 export const practicalCalculationPdf = 'output/pdf/hvac-practical-calculation-study.pdf';
 export function calculationLesson(prompt: PracticalPrompt): CalculationLesson | undefined {

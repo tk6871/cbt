@@ -6,6 +6,12 @@ defineProps<{ lesson: CalculationLesson }>();
 <template>
   <section class="practical-calculation-lesson" aria-label="초보자 계산 풀이">
     <h4>{{ lesson.title }}</h4>
+    <section v-if="lesson.numberSelection" class="calculation-number-selection" aria-label="함정과 조건 구별">
+      <h5>숫자부터 골라보기 · 함정과 조건 구별</h5>
+      <p><b>이번 계산에 쓰는 값</b> {{ lesson.numberSelection.used }}</p>
+      <p v-if="lesson.numberSelection.unused" class="calculation-unused"><b>이번 식에는 안 쓰는 값</b> {{ lesson.numberSelection.unused }}</p>
+      <p><b>반드시 읽을 조건</b> {{ lesson.numberSelection.condition }}</p>
+    </section>
     <div class="calculation-formula"><b>먼저 외울 공식</b><p>{{ lesson.formula }}</p></div>
     <details class="calculation-symbols" open><summary>기호는 무슨 뜻일까?</summary><ul><li v-for="symbol in lesson.symbols" :key="symbol">{{ symbol }}</li></ul></details>
     <p><b>왜 이렇게 계산할까?</b> {{ lesson.why }}</p>
