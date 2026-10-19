@@ -1,2 +1,2 @@
-const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./cbt.js","./chunks/preload-helper-v607.js","./chunks/main-v607.js","./chunks/OptionalFeatureBoundary-v607.js","./OptionalFeatureBoundary-v607.css","./chunks/import-wrapper-prod-v607.js","./cbt.css"])))=>i.map(i=>d[i]);
-import{_ as t}from"./chunks/preload-helper-v607.js";document.documentElement.dataset.uiMode="mobile";await t(()=>import("./cbt.js"),__vite__mapDeps([0,1,2,3,4,5,6]),import.meta.url);
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["./cbt.js","./chunks/preload-helper-v608.js","./chunks/main-v608.js","./chunks/OptionalFeatureBoundary-v608.js","./OptionalFeatureBoundary-v608.css","./chunks/import-wrapper-prod-v608.js","./chunks/index-v6082.js","./cbt.css"])))=>i.map(i=>d[i]);
+import{_ as t}from"./chunks/preload-helper-v608.js";document.documentElement.dataset.uiMode="mobile";await t(()=>import("./cbt.js"),__vite__mapDeps([0,1,2,3,4,5,6,7]),import.meta.url);

@@ -1,0 +1,37 @@
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { practicalFormulaSummary } from '../src/cbt/practicalFormulaSummary';
+import { practicalSourceLabel } from '../src/cbt/practicalLabels';
+import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
+import { adminViewLabel, issueImageUrl, issueTypeLabel, issueStatusLabel, seoulDayStart, resultModeLabel, resultResponseLabel, paginate } from '../src/admin/presentation';
+
+assert.deepEqual(practicalFormulaSummary.slice(0,5).map(f => f.key), ['cgt','cr','cop','bf','affinity']);
+assert.equal(new Set(practicalFormulaSummary.map(f => f.key)).size, 10);
+for (const f of practicalFormulaSummary) for (const field of ['title','formula','when','symbols','remember'] as const) assert.ok(f[field].trim(), `${f.key}.${field}`);
+// Arithmetic examples and the unit-scaled pump formula used in the recall sheet.
+assert.equal(2 * 4.18 * 5, 41.8);
+assert.equal(2 * 335, 670);
+assert.equal(12 / 3, 4);
+assert.equal((18 - 10) / (30 - 10), .4);
+assert.deepEqual([2, 2 ** 2, 2 ** 3], [2,4,8]);
+assert.equal(9800 * .01 * 20 / (1000 * .7), 2.8);
+for (const prompt of practicalPrompts) assert.doesNotMatch(practicalSourceLabel(prompt), /undefined|null/);
+assert.equal(adminViewLabel('next-guide'), '시험 자료실');
+assert.equal(adminViewLabel('next-showcase'), '신기술 체험관');
+assert.equal(issueImageUrl('assets/question.png'), './assets/question.png');
+assert.equal(issueImageUrl('./assets/question.png'), './assets/question.png');
+for (const path of [null,'','../assets/q.png','https://example.test/q.png','assets/../q.png','assets/q.png?x','assets\\q.png']) assert.equal(issueImageUrl(path), undefined);
+assert.equal(issueTypeLabel('missing-image'), '그림 없음');
+assert.equal(issueStatusLabel('resolved'), '수정 완료');
+assert.equal(new Date(seoulDayStart(Date.parse('2026-10-18T15:01:00Z'))).toISOString(), '2026-10-18T15:00:00.000Z');
+assert.equal(resultModeLabel('exam'), 'CBT');
+assert.equal(resultResponseLabel(2), '미응답 2문제 포함');
+const rows = Array.from({ length: 1000 }, (_,i) => i);
+assert.equal(paginate(rows, 1).rows.length, 50);
+assert.equal(paginate(rows, 20).rows.at(-1), 999);
+assert.equal(paginate(rows, 21).page, 20);
+assert.deepEqual(paginate([], 9), { page:1, pageCount:1, rows:[] });
+const main = readFileSync('src/cbt/App.vue','utf8');
+assert.ok(main.includes("!row.answered ? '미진단'"));
+assert.ok(main.includes("coachHasEvidence ? predictedScore : '—'"));
+console.log('PASS: 10 recall formulas, arithmetic examples, source labels, safe image links, Korea date, 1000-row pagination and no-record display guards');
