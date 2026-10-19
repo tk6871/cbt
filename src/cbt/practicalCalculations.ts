@@ -126,6 +126,57 @@ export function calculationLesson(prompt: PracticalPrompt): CalculationLesson | 
 export function calculationPrompts(bank: PracticalPrompt[]): PracticalPrompt[] {
   return bank.filter(p => Boolean(calculationLesson(p)));
 }
+
+export type PracticalExamFamily = 'cgt' | 'cr' | 'cop' | 'bf';
+export const practicalExamFamilies: Array<{
+  key: PracticalExamFamily; title: string; formula: string; when: string;
+  symbols: string; example: string; units: string; remember: string;
+}> = [
+  { key:'cgt', title:'CGT · 온도가 바뀔 때', formula:'Q = G × c × Δt',
+    when:'물이나 공기를 몇 ℃ 데우거나 식히는 문제입니다. 얼음이 녹는 것처럼 상태만 바뀌는 구간에는 이 식을 쓰지 않습니다.',
+    symbols:'Q는 열량, G는 물·공기의 질량 또는 질량유량, c는 비열, Δt(델타 티)는 온도차입니다. 온도차는 높은 온도에서 낮은 온도를 뺍니다.',
+    example:'물 2 kg의 온도를 5℃ 올리고 비열이 4.18 kJ/(kg·℃)라면 2×4.18×5=41.8 kJ입니다. 물 1 kg을 1℃ 올리는 열에 물의 양 2와 올릴 온도 5를 각각 곱한 것입니다.',
+    units:'kg × [kJ/(kg·℃)] × ℃ = kJ. kg와 ℃가 위아래에서 나뉩니다. G가 2 kg/s라면 처음부터 /s가 붙으므로 결과는 41.8 kJ/s=41.8 kW입니다. kg/h이면 결과는 kJ/h이며 ÷3,600으로 kW로 바꿉니다.',
+    remember:'온도 변화 = 양 × 비열 × 온도차. 전체 질량이면 열량, 초당 유량이면 kW.' },
+  { key:'cr', title:'CR · 녹거나 증발할 때', formula:'Q = G × r',
+    when:'얼음이 물로 녹거나 물·냉매가 증기로 변하는 구간입니다. 상태가 변하는 동안의 열을 구합니다. 수업에서 말한 CR을 여기서는 질량 G와 잠열 r로 표시합니다.',
+    symbols:'Q는 상태 변화에 필요한 열, G는 실제로 상태가 변하는 질량(또는 질량유량), r은 1 kg의 상태를 바꾸는 잠열(kJ/kg)입니다. r은 알파벳 알이고, 비열 c와 다릅니다.',
+    example:'얼음 2 kg을 녹이고 문제에서 융해열 r=335 kJ/kg을 주면 Q=2×335=670 kJ입니다. 1 kg을 녹이는 데 335 kJ가 필요하므로 2 kg은 두 배입니다. 이 구간에는 비열이나 온도차를 또 곱하지 않습니다.',
+    units:'kg × (kJ/kg) = kJ. kg가 위아래에서 나뉩니다. G가 kg/s라면 (kg/s)×(kJ/kg)=kJ/s=kW입니다. 이미 증기가 된 몫이 있으면 전체 질량이 아니라 아직 증발할 액체의 몫을 사용합니다.',
+    remember:'상태 변화 = 양 × 잠열. 온도 변화가 아니라 녹음·증발을 찾기.' },
+  { key:'cop', title:'COP · 성능계수', formula:'COP = Qe ÷ L',
+    when:'압축기에 넣은 동력에 비해 냉동능력을 얼마나 얻는지 묻습니다. 냉동 COP인지 난방 COP인지 먼저 봅니다.',
+    symbols:'Qe는 증발기의 냉동능력(kW), L은 압축기 입력동력(kW), COP는 성능계수입니다. L은 이 식에서 길이가 아닙니다.',
+    example:'냉동능력 12 kW, 입력 3 kW이면 COP=12÷3=4.00입니다. 입력 1에 대해 냉동능력 4를 얻는다는 뜻입니다. 응축기 방열량을 묻는다면 12+3=15 kW로 다른 계산입니다.',
+    units:'kW ÷ kW = 1. 같은 단위가 모두 나뉘므로 COP 뒤에 kW를 붙이지 않습니다. 엔탈피로 계산해도 냉동효과(kJ/kg)÷압축일(kJ/kg)이므로 단위가 없습니다.',
+    remember:'COP는 얻은 것 ÷ 넣은 것. 냉동은 증발기 열, 난방은 응축기 열을 분자에 쓰기.' },
+  { key:'bf', title:'BF · 코일을 지나친 몫', formula:'BF = (t출구 - t코일) ÷ (t입구 - t코일), CF = 1 - BF',
+    when:'입구공기, 실제 출구공기, 코일의 장치노점온도를 구별하는 문제입니다. BF는 바이패스팩터, CF는 콘택트팩터입니다.',
+    symbols:'t입구는 코일에 들어가기 전 온도, t출구는 실제로 나온 공기온도, t코일은 코일 표면의 장치노점온도입니다. t는 온도, BF와 CF는 비율입니다.',
+    example:'기호를 이해하기 위한 예제: 입구 30℃, 출구 18℃, 코일 10℃라면 BF=(18-10)÷(30-10)=8÷20=0.40. 전체를 1로 보면 CF=1-0.40=0.60입니다. 이 숫자는 원문 복원문제의 수치가 아닌 설명용 예제입니다.',
+    units:'(℃의 온도차) ÷ (℃의 온도차) = 1. 같은 단위가 나뉘므로 BF·CF에는 단위가 없습니다. 0.40을 %로 묻는다면 ×100하여 40%입니다.',
+    remember:'출구에 남은 차 ÷ 입구의 전체 차 = BF. CF는 1-BF.' },
+];
+
+// Explicit study selection, not keyword matching or an official prediction.
+const examFamilyIds: Partial<Record<PracticalExamFamily, string[]>> = {
+  cgt:['restored-2026-2-09','restored-2025-1-11','restored-2023-3-02','restored-2023-2-02','foundation-8','drill-10','drill-11','supplement-20260916-16'],
+  cr:['restored-2025-3-06','restored-2023-3-02'],
+  cop:['foundation-2','drill-07','drill-09'],
+  bf:['restored-2024-2-10'],
+};
+export function practicalExamFamiliesFor(prompt: PracticalPrompt): PracticalExamFamily[] {
+  return practicalExamFamilies.filter(f => examFamilyIds[f.key]?.some(id => prompt.id === `hvac-practical-${id}`)).map(f => f.key);
+}
+export function orderPracticalCalculations(prompts: PracticalPrompt[]): PracticalPrompt[] {
+  const rank = (p: PracticalPrompt) => {
+    const families = practicalExamFamiliesFor(p);
+    const family = families.length ? practicalExamFamilies.findIndex(f => f.key === families[0]) : 4;
+    const basic = p.group === 'foundation' ? 0 : p.group === 'drill' ? 1 : 2;
+    return family*10+basic;
+  };
+  return [...prompts].sort((a,b) => rank(a)-rank(b));
+}
 export const practicalCalculationReferences = [
   { title:'열량·비열', url:'https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer' },
   { title:'상태 변화·잠열', url:'https://openstax.org/books/college-physics/pages/14-3-phase-change-and-latent-heat' },

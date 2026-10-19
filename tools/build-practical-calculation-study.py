@@ -62,12 +62,23 @@ story.append(p('단위는 어떻게 없어질까?','title'))
 for item in DATA['basics'][5:]: section(item['title'],item['text'])
 section('시험에서 적는 순서','공식 쓰기 -> 숫자와 단위 넣기 -> 계산 -> 문제에서 정한 자리로 반올림한 최종값. 답만 적지 말고 계산과정을 함께 씁니다. 공통 기준보다 개별 문항의 요구사항이 우선입니다.')
 story.append(PageBreak())
+for family in DATA['examFamilies']:
+    story.append(p(family['title'],'title'))
+    story.append(p('전달받은 시험범위: CGT·CR·COP·BF 중 1문제, 경우에 따라 2문제. 아래 수치는 기호와 단위를 이해하는 연습 예제입니다.','small'))
+    story.append(p(family['formula'],'formula'))
+    section('이 공식을 고르는 순간',family['when'])
+    section('기호는 무슨 뜻일까?',family['symbols'])
+    section('아주 쉬운 예제',family['example'])
+    section('단위가 왜 이렇게 남을까?',family['units'])
+    section('한 줄로 기억',family['remember'])
+    story.append(PageBreak())
 story.append(p('계산 유형 찾아보기','title'))
 story.append(p('수치 계산 33문제 + 공식 쓰기 3문제. 회차별 복원 21문제와 기초·심화·추가 자료 15문제입니다. 문제 번호는 책 기준이며 이전 내부 ID 순서와 다를 수 있습니다.','small'))
 for i,row in enumerate(DATA['rows'],1):
     q,l=row['prompt'],row['lesson']
     source = f"{q['year']}년 {q['session']}회 {q.get('number','추가')}번" if q.get('year') else {'foundation':'기초 연습','drill':'심화 연습','supplement':'추가 자료'}.get(q['group'],q['group'])
-    story.append(p(f"{i:02d}. {l['title']} / {source}",'index'))
+    badge='/'.join(f.upper() for f in row['examFamilies']) or '보충'
+    story.append(p(f"{i:02d}. [{badge}] {l['title']} / {source}",'index'))
 section('읽을 때의 기준','문항의 수치와 단위는 기존 복원·연습 자료를 따릅니다. 중간값은 계산 이해를 위해 충분히 남겼고, 시험 최종값 예시에는 기본 둘째 자리 또는 확인된 개별 조건을 적용했습니다. 기초·심화 문제도 같은 기준으로 답안 쓰기를 연습합니다. 기존 참고답안과 자리수가 다를 수 있습니다.')
 story.append(PageBreak())
 
@@ -77,6 +88,7 @@ for i,row in enumerate(DATA['rows'],1):
     source = f"{q['year']}년 {q['session']}회 · 책 {q.get('number','추가')}번" if q.get('year') else {'foundation':'기초 연습','drill':'심화 연습','supplement':'추가 자료'}.get(q['group'],q['group'])
     story.append(p(f"{i:02d}  {l['title']}",'title'))
     story.append(p(f"{source} / {l['topic']} / {'수치 계산' if l['kind']=='numeric' else '공식 쓰기'}",'small'))
+    if row['examFamilies']: story.append(p('시험 우선 유형: '+' / '.join(f.upper() for f in row['examFamilies']),'small'))
     section('문제',q['question'])
     for asset in ([q['image']] if q.get('image') else []) + q.get('images',[]):
         path=ROOT/asset
