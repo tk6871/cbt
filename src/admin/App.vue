@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { createClient, type RealtimeChannel, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import { animate, stagger } from 'motion';
 import OptionalFeatureBoundary from '../components/OptionalFeatureBoundary.vue';
+import { adminViewLabel as viewLabel, issueImageUrl, issueTypeLabel, issueStatusLabel, seoulDayStart, resultModeLabel, resultResponseLabel, paginate } from './presentation';
 
 const AdminOverviewCharts = defineAsyncComponent(() => import('./AdminOverviewCharts.vue'));
 const AdminIssueWorkspace = defineAsyncComponent(() => import('./AdminIssueWorkspace.vue'));
@@ -147,6 +148,15 @@ const realtimeStatus = ref<'connecting' | 'connected' | 'error' | 'closed'>('con
 const realtimeUpdatedAt = ref<string | null>(null);
 const clockNow = ref(Date.now());
 const activeSection = ref<AdminSection>('overview');
+const lastLoadedAt = ref<string | null>(null);
+const loadedDays = ref(30);
+const dataLoading = ref(false);
+const resultSearch = ref('');
+const resultMode = ref('all');
+const resultPage = ref(1);
+const issueSearch = ref('');
+let dataRequestId = 0;
+let dataAbort: AbortController | null = null;
 const issueWorkspaceOpen = ref(false);
 let realtimeChannel: RealtimeChannel | null = null;
 let realtimeReloadTimer: number | null = null;
@@ -159,7 +169,7 @@ const activeVisitors = computed(() => {
 });
 const activeNow = computed(() => activeVisitors.value.length);
 const activeToday = computed(() => {
-  const since = Date.now() - 24 * 60 * 60 * 1000;
+  const since = seoulDayStart(clockNow.value);
   return new Set(visits.value.filter((item) => new Date(item.visited_at).getTime() >= since).map((item) => item.visitor_id)).size;
 });
 const answeredTotal = computed(() => results.value.reduce(
@@ -174,9 +184,14 @@ const completedResultCount = computed(() => results.value.filter((item) => !item
 const interruptedResultCount = computed(() => results.value.filter((item) => item.unanswered_count > 0).length);
 const recentOpenIssues = computed(() => issueReports.value.filter((item) => item.status === 'open').slice(0, 5));
 const recentResults = computed(() => results.value.slice(0, 6));
-const displayedIssueReports = computed(() => issueStatusFilter.value === 'all'
-  ? issueReports.value
-  : issueReports.value.filter((item) => item.status === issueStatusFilter.value));
+const displayedIssueReports = computed(() => issueReports.value.filter(item =>
+  (issueStatusFilter.value === 'all' || item.status === issueStatusFilter.value)
+  && `${item.id} ${item.qualification || item.qualification_key} ${item.round_title || ''} ${item.question_number} ${item.question_text || ''} ${item.details}`.toLocaleLowerCase('ko-KR').includes(issueSearch.value.trim().toLocaleLowerCase('ko-KR'))));
+const filteredResults = computed(() => results.value.filter(item =>
+  (resultMode.value === 'all' || item.mode === resultMode.value)
+  && `${item.qualification || ''} ${item.title || ''}`.toLocaleLowerCase('ko-KR').includes(resultSearch.value.trim().toLocaleLowerCase('ko-KR'))));
+const resultPagination = computed(() => paginate(filteredResults.value, resultPage.value));
+watch([resultSearch, resultMode, days], () => { resultPage.value = 1; });
 const realtimeLabel = computed(() => ({
   connecting: '실시간 연결 중',
   connected: '실시간 연결됨',
@@ -326,38 +341,6 @@ function locationDetail(visitor: VisitorProfile): string {
   return [visitor.network_provider, visitor.location_timezone].filter(Boolean).join(' · ') || 'IP 기반 추정 위치';
 }
 
-function viewLabel(value: string | null): string {
-  const labels: Record<string, string> = {
-    home: '첫 화면',
-    rounds: '기출 회차',
-    learning: '학습모드',
-    exam: '시험모드',
-    wrong: '오답·북마크',
-    search: '문제 검색',
-    stats: '학습 통계',
-    updates: '패치노트'
-  };
-  if (!value) return '-';
-  return labels[value] || value;
-}
-
-function issueTypeLabel(value: string): string {
-  return ({
-    'missing-image': '그림 없음',
-    'wrong-image': '그림 오류·잘림',
-    'answer-hotspot': '답안 클릭 영역',
-    answer: '정답 오류',
-    explanation: '해설 오류·부족',
-    'text-ocr': '글자·수식 오류',
-    layout: '화면 배치',
-    other: '기타',
-  } as Record<string, string>)[value] || value;
-}
-
-function issueStatusLabel(value: QuestionIssueStatus): string {
-  return ({ open: '대기', reviewing: '확인 중', resolved: '수정 완료', deferred: '보류' })[value];
-}
-
 async function updateIssueReport(report: QuestionIssueReport, patch: Partial<Pick<QuestionIssueReport, 'status' | 'admin_note'>>): Promise<void> {
   if (!client.value || !session.value) return;
   issueSavingId.value = report.id;
@@ -420,6 +403,11 @@ async function login(): Promise<void> {
 }
 
 async function logout(): Promise<void> {
+  dataRequestId += 1;
+  dataAbort?.abort();
+  dataLoading.value = false;
+  lastLoadedAt.value = null;
+  dataError.value = '';
   stopRealtime();
   await client.value?.auth.signOut();
   session.value = null;
@@ -439,35 +427,48 @@ async function logout(): Promise<void> {
 async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   if (!client.value || !session.value) return;
   const silent = options.silent === true;
-  if (!silent) loading.value = true;
+  if (silent && (dataLoading.value || document.hidden || issueSavingId.value !== null || document.activeElement?.matches('textarea'))) return;
+  const requestId = ++dataRequestId;
+  dataAbort?.abort();
+  const abort = new AbortController();
+  dataAbort = abort;
+  const timeout = window.setTimeout(() => abort.abort(), 20_000);
+  dataLoading.value = true;
   dataError.value = '';
-  const since = new Date(Date.now() - days.value * 24 * 60 * 60 * 1000).toISOString();
-  const analyticsRequests = canViewAnalytics.value ? await Promise.all([
-    client.value.from('visitor_profiles').select('*').order('last_seen', { ascending: false }).limit(300),
-    client.value.from('visit_events').select('id,visitor_id,visited_at,device_type,browser,path').gte('visited_at', since).order('visited_at', { ascending: false }).limit(3000),
-    client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000),
-  ]) : [];
-  const issueResponse = canManageIssues.value
-    ? await client.value.from('question_issue_reports').select('*').order('created_at', { ascending: false }).limit(1000)
-    : null;
-  if (!silent) loading.value = false;
-  const [visitorResponse, visitResponse, resultResponse] = analyticsRequests;
-  const error = visitorResponse?.error || visitResponse?.error || resultResponse?.error || issueResponse?.error;
-  if (error) {
-    dataError.value = '관리자 권한이 없거나 데이터베이스 설정이 완료되지 않았습니다.';
-    visitors.value = [];
-    return;
-  }
-  visitors.value = (visitorResponse?.data || []) as VisitorProfile[];
-  visits.value = (visitResponse?.data || []) as Visit[];
-  results.value = (resultResponse?.data || []) as ExamResult[];
-  issueReports.value = (issueResponse?.data || []) as QuestionIssueReport[];
-  await nextTick();
-  if (!silent) {
-    animate('.admin-stat-card', {
-      opacity: [0, 1],
-      transform: ['translateY(12px)', 'translateY(0px)']
+  const requestedDays = days.value;
+  const since = new Date(Date.now() - requestedDays * 24 * 60 * 60 * 1000).toISOString();
+  try {
+    const responses = await Promise.allSettled([
+      canViewAnalytics.value ? client.value.from('visitor_profiles').select('*').order('last_seen', { ascending: false }).limit(300).abortSignal(abort.signal) : null,
+      canViewAnalytics.value ? client.value.from('visit_events').select('id,visitor_id,visited_at,device_type,browser,path').gte('visited_at', since).order('visited_at', { ascending: false }).limit(3000).abortSignal(abort.signal) : null,
+      canViewAnalytics.value ? client.value.from('exam_results').select('*').gte('completed_at', since).order('completed_at', { ascending: false }).limit(1000).abortSignal(abort.signal) : null,
+      canManageIssues.value ? client.value.from('question_issue_reports').select('*').order('created_at', { ascending: false }).limit(1000).abortSignal(abort.signal) : null,
+    ]);
+    if (requestId !== dataRequestId || !session.value) return;
+    const failed = responses.flatMap((response, index) => response.status === 'rejected' || response.value?.error
+      ? [['접속 현황', '방문 기록', '학습 결과', '문제 제보'][index]] : []);
+    if (failed.length) {
+      dataError.value = `${failed.join('·')} 조회에 실패했습니다. 연결 상태를 확인하고 새로고침해 주세요.${lastLoadedAt.value ? ` 마지막 성공한 ${loadedDays.value}일 기준 자료를 유지합니다.` : ' 아직 조회된 자료가 없습니다.'}`;
+      return;
+    }
+    const data = responses.map(response => response.status === 'fulfilled' ? response.value?.data || [] : []);
+    visitors.value = data[0] as VisitorProfile[];
+    visits.value = data[1] as Visit[];
+    results.value = data[2] as ExamResult[];
+    issueReports.value = (data[3] as QuestionIssueReport[]).map(report => {
+      // Do not replace a row while its save is in flight.
+      const existing = issueReports.value.find(item => item.id === report.id);
+      return existing && issueSavingId.value === report.id ? existing : report;
+    });
+    loadedDays.value = requestedDays;
+    lastLoadedAt.value = new Date().toISOString();
+    await nextTick();
+    if (!silent && canViewAnalytics.value) animate('.admin-stat-card', {
+      opacity: [0, 1], transform: ['translateY(12px)', 'translateY(0px)'],
     }, { duration: 0.35, delay: stagger(0.055) });
+  } finally {
+    window.clearTimeout(timeout);
+    if (requestId === dataRequestId) dataLoading.value = false;
   }
 }
 
@@ -535,6 +536,8 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  dataRequestId += 1;
+  dataAbort?.abort();
   stopRealtime();
   if (clockTimer !== null) window.clearInterval(clockTimer);
   if (autoRefreshTimer !== null) window.clearInterval(autoRefreshTimer);
@@ -569,7 +572,7 @@ onBeforeUnmount(() => {
         <div class="admin-header-actions">
           <div class="live-status" :class="`is-${realtimeStatus}`"><i></i><div><strong>{{ realtimeLabel }}</strong><small>현재 {{ activeNow }}명</small></div></div>
           <label>조회 기간<select v-model.number="days" @change="loadData()"><option :value="7">7일</option><option :value="30">30일</option><option :value="90">90일</option></select></label>
-          <button @click="loadData()" :disabled="loading">{{ loading ? '불러오는 중' : '새로고침' }}</button>
+          <button @click="loadData()" :disabled="dataLoading">{{ dataLoading ? '불러오는 중' : '새로고침' }}</button>
           <button class="logout-button" @click="logout">로그아웃</button>
         </div>
       </header>
@@ -579,13 +582,14 @@ onBeforeUnmount(() => {
         <div class="admin-account"><span>{{ isSuperAdmin ? '슈퍼 관리자' : '권한 관리자' }}</span><strong>{{ session.user.user_metadata?.sync_username || session.user.email }}</strong><small>{{ isSuperAdmin ? '모든 운영 권한과 관리자 지정 권한' : '허용된 업무만 표시됩니다.' }}</small></div>
       </section>
 
-      <p v-if="dataError" class="admin-error admin-data-error">{{ dataError }}</p>
+      <p v-if="dataError" role="alert" class="admin-error admin-data-error">{{ dataError }}</p>
+      <p class="admin-data-scope" role="status">{{ lastLoadedAt ? `마지막 조회 ${formatDate(lastLoadedAt)} · 결과·방문 기록 ${loadedDays}일 기준` : dataLoading ? '운영 기록을 불러오는 중입니다.' : '아직 조회된 운영 기록이 없습니다.' }}<span>접속 현황 최신 300명 · 방문 최대 3,000건 · 결과·제보 최대 1,000건. 통계는 불러온 자료 기준입니다.</span></p>
 
       <section v-if="canViewAnalytics" class="admin-stats" aria-label="핵심 운영 지표">
         <button type="button" class="admin-stat-card live-card" @click="openSection('overview')"><span>현재 접속</span><strong>{{ activeNow.toLocaleString() }}<b>명</b></strong><small>최근 3분 활동</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('visitors')"><span>오늘 방문자</span><strong>{{ activeToday.toLocaleString() }}</strong><small>고유 브라우저</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('results')"><span>채점된 답안</span><strong>{{ answeredTotal.toLocaleString() }}</strong><small>선택 기간 합계</small></button>
-        <button type="button" class="admin-stat-card" @click="openSection('results')"><span>완료한 결과</span><strong>{{ completedResultCount.toLocaleString() }}</strong><small>중도 종료 {{ interruptedResultCount }}건</small></button>
+        <button type="button" class="admin-stat-card" @click="openSection('results')"><span>전체 응답 결과</span><strong>{{ completedResultCount.toLocaleString() }}</strong><small>미응답 포함 {{ interruptedResultCount }}건</small></button>
         <button type="button" class="admin-stat-card" @click="openSection('results')"><span>평균 점수</span><strong>{{ averageScore }}<b>점</b></strong><small>{{ results.length }}건 기준</small></button>
         <button v-if="canManageIssues" type="button" class="admin-stat-card issue-stat-card" @click="openSection('issues')"><span>확인 대기</span><strong>{{ openIssueCount.toLocaleString() }}<b>건</b></strong><small>이상 문제 신고</small></button>
       </section>
@@ -634,7 +638,7 @@ onBeforeUnmount(() => {
           <article class="admin-panel admin-compact-panel">
             <div class="admin-panel-title"><div><span>LATEST</span><h2>최근 학습 결과</h2></div><button type="button" @click="openSection('results')">전체 보기</button></div>
             <div v-if="recentResults.length" class="admin-result-list">
-              <button v-for="result in recentResults" :key="result.id" type="button" @click="openSection('results')"><span><strong>{{ result.qualification || '-' }}</strong><small>{{ result.title || '-' }} · {{ result.mode === 'exam' ? 'CBT' : '학습' }}</small></span><b>{{ result.score }}점</b><time>{{ formatDate(result.completed_at) }}</time></button>
+              <button v-for="result in recentResults" :key="result.id" type="button" @click="openSection('results')"><span><strong>{{ result.qualification || '-' }}</strong><small>{{ result.title || '-' }} · {{ resultModeLabel(result.mode) }}</small></span><b>{{ result.score }}점</b><time>{{ formatDate(result.completed_at) }}</time></button>
             </div>
             <p v-else class="admin-empty-note">선택 기간의 학습 결과가 없습니다.</p>
           </article>
@@ -645,6 +649,7 @@ onBeforeUnmount(() => {
         <div class="admin-panel-title issue-panel-title">
           <div><span>QUESTION REVIEW QUEUE</span><h2>이상 문제 관리</h2><p>문제 파일을 수정할 때 JSON으로 내보내 그대로 대조할 수 있습니다.</p></div>
           <div class="issue-panel-actions">
+            <label>검색<input v-model="issueSearch" type="search" placeholder="종목·회차·문제·내용"></label>
             <label>상태<select v-model="issueStatusFilter"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option><option value="all">전체</option></select></label>
             <button type="button" :disabled="!displayedIssueReports.length" @click="issueWorkspaceOpen = !issueWorkspaceOpen">{{ issueWorkspaceOpen ? '기존 표 보기' : '집중 검토' }}</button>
             <button type="button" :disabled="!displayedIssueReports.length" @click="exportIssueReports">JSON 내보내기</button>
@@ -668,7 +673,7 @@ onBeforeUnmount(() => {
                 <td><strong>#{{ report.id }}</strong><small>{{ formatDate(report.created_at) }}</small><small>v{{ report.app_version || '-' }}</small></td>
                 <td class="issue-question-cell"><strong>{{ report.qualification || report.qualification_key }}</strong><span>{{ report.round_title || report.round_id }}</span><b>{{ report.subject || '-' }} · {{ report.question_number }}번</b><code>{{ report.question_id }}</code></td>
                 <td class="issue-detail-cell"><div><span v-for="type in report.issue_types" :key="type">{{ issueTypeLabel(type) }}</span></div><p>{{ report.details }}</p></td>
-                <td class="issue-source-cell"><p>{{ report.question_text || '원문 이미지 문제' }}</p><small>설정 정답 {{ report.configured_answer || '-' }}번</small><a v-if="report.source_image" :href="`../${report.source_image}`" target="_blank" rel="noopener">문제 이미지 열기</a></td>
+                <td class="issue-source-cell"><p>{{ report.question_text || '원문 이미지 문제' }}</p><small v-if="report.configured_answer">설정 정답 {{ report.configured_answer }}번</small><small v-else>서술형·정답 번호 없음</small><a v-if="issueImageUrl(report.source_image)" :href="issueImageUrl(report.source_image)" target="_blank" rel="noopener">문제 이미지 열기</a></td>
                 <td><select class="issue-status-select" :class="`is-${report.status}`" :value="report.status" :disabled="issueSavingId === report.id" @change="updateIssueReport(report, { status: ($event.target as HTMLSelectElement).value as QuestionIssueStatus })"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select><small>{{ issueStatusLabel(report.status) }}</small></td>
                 <td class="issue-note-cell"><textarea :value="report.admin_note || ''" rows="3" maxlength="3000" placeholder="수정 파일·확인 결과 메모" @blur="updateIssueReport(report, { admin_note: ($event.target as HTMLTextAreaElement).value.trim() || null })" /><small>{{ issueSavingId === report.id ? '저장 중…' : '포커스를 벗어나면 저장' }}</small></td>
               </tr>
@@ -698,15 +703,16 @@ onBeforeUnmount(() => {
       </section>
 
       <section v-else-if="activeSection === 'results'" class="admin-panel">
-        <div class="admin-panel-title"><span>SESSION RESULTS</span><h2>최근 학습·CBT 결과</h2><p>문제별 선택은 수집하지 않으며 선택 기간 {{ results.length }}건</p></div>
+        <div class="admin-panel-title"><span>SESSION RESULTS</span><h2>최근 학습·CBT 결과</h2><p>문제별 선택은 수집하지 않으며 {{ loadedDays }}일 자료 {{ results.length }}건 중 {{ filteredResults.length }}건 표시. 미응답이 있어도 제출한 시험일 수 있습니다.</p></div>
+        <div class="admin-result-filters"><label>검색<input v-model="resultSearch" type="search" placeholder="종목·회차·학습 범위"></label><label>모드<select v-model="resultMode"><option value="all">전체</option><option value="learn">학습</option><option value="exam">CBT</option></select></label></div>
         <div class="admin-table-wrap">
           <table>
             <thead><tr><th>제출 시각</th><th>IP 주소</th><th>종목</th><th>학습 범위</th><th>모드</th><th>상태</th><th>총점</th><th>과목별 점수</th><th>정답</th></tr></thead>
             <tbody>
-              <tr v-for="result in results.slice(0, 100)" :key="result.id">
+              <tr v-for="result in resultPagination.rows" :key="result.id">
                 <td>{{ formatDate(result.completed_at) }}</td><td><code>{{ result.ip_address || '-' }}</code></td><td>{{ result.qualification || '-' }}</td><td>{{ result.title || '-' }}</td>
-                <td>{{ result.mode === 'exam' ? 'CBT' : '학습' }}</td>
-                <td><span :class="result.unanswered_count ? 'exit-chip' : 'complete-chip'">{{ result.unanswered_count ? `중도 종료 · ${result.unanswered_count}문제 미응답` : '완료' }}</span></td>
+                <td>{{ resultModeLabel(result.mode) }}</td>
+                <td><span :class="result.unanswered_count ? 'exit-chip' : 'complete-chip'">{{ resultResponseLabel(result.unanswered_count) }}</span></td>
                 <td><strong class="score">{{ result.score }}점</strong></td>
                 <td>
                   <div v-if="result.subject_scores?.length" class="subject-score-list">
@@ -716,10 +722,11 @@ onBeforeUnmount(() => {
                 </td>
                 <td>{{ result.correct_count }}/{{ result.total_count }}</td>
               </tr>
-              <tr v-if="!results.length"><td colspan="9" class="empty-cell">제출된 학습·CBT 결과가 없습니다.</td></tr>
+              <tr v-if="!filteredResults.length"><td colspan="9" class="empty-cell">{{ dataError ? '조회 상태를 먼저 확인해 주세요.' : '조건에 맞는 학습·CBT 결과가 없습니다.' }}</td></tr>
             </tbody>
           </table>
         </div>
+        <nav class="admin-result-pagination" aria-label="학습 결과 페이지"><button type="button" :disabled="resultPagination.page <= 1" @click="resultPage = resultPagination.page - 1">이전</button><span>{{ resultPagination.page }} / {{ resultPagination.pageCount }} · 50건씩</span><button type="button" :disabled="resultPagination.page >= resultPagination.pageCount" @click="resultPage = resultPagination.page + 1">다음</button></nav>
       </section>
 
       <section v-else-if="activeSection === 'accounts'" class="admin-panel account-panel">

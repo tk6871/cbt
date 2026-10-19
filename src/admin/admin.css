@@ -5,6 +5,15 @@ body { margin:0; min-width:320px; min-height:100vh; background:#eef2f6; }
 button,input,select,textarea { font:inherit; }
 button { cursor:pointer; }
 
+.admin-data-scope { margin:12px 0; color:#4c6077; font-size:.85rem; line-height:1.6; }
+.admin-data-scope span { display:block; color:#65758a; }
+.admin-result-filters,.admin-result-pagination { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:14px 0; }
+.admin-result-filters label,.issue-panel-actions label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.admin-result-filters input,.admin-result-filters select,.issue-panel-actions input { max-width:100%; min-height:40px; padding:8px 10px; border:1px solid #c2cedc; border-radius:8px; background:#fff; color:#17283d; }
+.admin-result-pagination { justify-content:center; }
+.admin-result-pagination button { min-height:40px; min-width:64px; border:1px solid #c2cedc; border-radius:8px; background:#f5f8fc; color:#245c98; }
+.admin-result-pagination button:disabled { opacity:.5; cursor:default; }
+
 .admin-page { width:min(1380px,calc(100% - 32px)); margin:0 auto; padding:18px 0 56px; }
 .admin-header { position:sticky; top:10px; z-index:20; min-height:66px; padding:11px 14px; border:1px solid #d6dee8; border-radius:14px; background:rgba(255,255,255,.96); box-shadow:0 8px 24px rgba(34,54,78,.08); backdrop-filter:blur(15px); display:flex; align-items:center; justify-content:space-between; gap:18px; }
 .admin-brand { display:flex; align-items:center; gap:10px; }

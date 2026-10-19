@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
 import type { PracticalPrompt } from './hvacPracticalTypes';
+import { practicalSourceLabel } from './practicalLabels';
+import { practicalFormulaSummary } from './practicalFormulaSummary';
 import { calculationLesson, calculationPrompts, practicalSiBasics, practicalCalculationPdf, practicalCalculationReferences, practicalExamFamilies, practicalExamFamiliesFor, orderPracticalCalculations, type PracticalExamFamily } from './practicalCalculations';
 defineOptions({ name:'PracticalCalculationLibrary' });
 const props = defineProps<{ prompts: PracticalPrompt[] }>();
@@ -42,6 +44,20 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
 <template>
   <section class="practical-calculation-library">
     <header><div><h3>필답형 계산문제 모아보기</h3><p>기호 읽기부터 숫자 대입·단위 약분까지. 복원문제와 연습문제를 함께 공부합니다.</p></div><a :href="practicalCalculationPdf" download>공식·풀이 PDF 받기 ↓</a></header>
+    <section class="formula-recall" aria-label="먼저 외울 한 줄 공식">
+      <h4>먼저 외울 한 줄 공식</h4>
+      <p>CGT·CR·COP·BF를 먼저, 상사법칙은 함께 기억하세요. 보충 공식은 출제 확정이 아닌 계산 복습용입니다.</p>
+      <div class="formula-recall-grid">
+        <article v-for="item in practicalFormulaSummary.slice(0, 5)" :key="item.key">
+          <h5>{{ item.title }}</h5><p class="calculation-formula">{{ item.formula }}</p>
+          <details><summary>언제 쓰나 · 기호 뜻 · 암기법</summary><p>{{ item.when }}</p><p>{{ item.symbols }}</p><p><b>{{ item.remember }}</b></p></details>
+        </article>
+      </div>
+      <details class="formula-recall-more"><summary>보충 공식 5개 · 펌프·냉매순환량·송풍량·열관류·현열비</summary>
+        <div class="formula-recall-grid"><article v-for="item in practicalFormulaSummary.slice(5)" :key="item.key"><h5>{{ item.title }}</h5><p class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p>{{ item.symbols }}</p><p><b>{{ item.remember }}</b></p></article></div>
+      </details>
+      <p>같은 Q라도 열량 또는 유량일 수 있어요. 해당 공식의 뜻·단위를 확인하고, 자세한 숫자 대입은 아래 문제 풀이에서 보세요.</p>
+    </section>
     <section class="practical-exam-focus" aria-label="시험 우선 네 가지 공식">
       <h4>이번 시험은 CGT · CR · COP · BF부터</h4><p>전달받은 시험 안내: 네 유형 중 계산문제 1개, 경우에 따라 2개. 해당 공식을 중심으로 푸는 {{ examCount }}문제를 먼저 모았습니다.</p>
       <nav class="practical-exam-family-buttons" aria-label="시험 우선 공식 선택"><button type="button" :aria-pressed="scope === 'exam' && family === 'all'" @click="selectFamily('all')">네 유형 함께 {{ examCount }}</button><button v-for="item in practicalExamFamilies" :key="item.key" type="button" :aria-pressed="scope === 'exam' && family === item.key" @click="selectFamily(item.key)">{{ item.key.toUpperCase() }} {{ rows.filter(p => practicalExamFamiliesFor(p).includes(item.key)).length }}</button><button type="button" :aria-pressed="scope === 'all'" @click="scope = 'all'">전체 계산 {{ rows.length }}</button></nav>
@@ -55,8 +71,19 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
     </div>
     <div class="practical-calculation-start"><strong>{{ filtered.length }}문제</strong><button :disabled="!filtered.length" type="button" @click="start(false)">선택 범위 문제부터 풀기</button><button :disabled="!filtered.length" type="button" @click="start(true)">풀이·공식 공부하기</button></div>
     <p class="calculation-scope-note">{{ scope === 'exam' ? '네 공식의 기본·응용 문제를 모았습니다. 얼음 가열·상태 변화처럼 두 공식을 함께 쓰는 문제는 두 유형에 모두 연결하되 한 번만 표시합니다.' : '기존 계산 분류에 공기조화의 혼합공기·전열 계산도 포함했습니다.' }} 전체 계산을 누르면 다른 계산문제도 볼 수 있습니다.</p>
-    <ol class="practical-calculation-index"><li v-for="prompt in filtered" :key="prompt.id"><div><small>{{ calculationLesson(prompt)!.topic }} · {{ calculationLesson(prompt)!.kind === 'numeric' ? '수치 계산' : '공식 쓰기' }} · {{ prompt.year ? `${prompt.year}년 ${prompt.session}회 ${prompt.number}번` : prompt.group === 'foundation' ? '기초 연습' : prompt.group === 'drill' ? '심화 연습' : '추가 자료' }}</small><strong>{{ calculationLesson(prompt)!.title }}</strong><p>{{ prompt.question }}</p></div><button type="button" @click="start(true, prompt)">이 문제 공부 →</button></li></ol>
+    <ol class="practical-calculation-index"><li v-for="prompt in filtered" :key="prompt.id"><div><small>{{ calculationLesson(prompt)!.topic }} · {{ calculationLesson(prompt)!.kind === 'numeric' ? '수치 계산' : '공식 쓰기' }} · {{ practicalSourceLabel(prompt) }}</small><strong>{{ calculationLesson(prompt)!.title }}</strong><p>{{ prompt.question }}</p></div><button type="button" @click="start(true, prompt)">이 문제 공부 →</button></li></ol>
     <p v-if="!filtered.length">해당 조건의 문제가 없습니다. 유형이나 출처를 전체로 바꿔 보세요.</p>
     <details><summary>공식 원리 참고 자료</summary><p>문항 수치와 조건은 기존 복원·연습 자료를 따릅니다. 기본 원리는 아래 자료와 대조했습니다. 문제에서 준 비열·밀도·환산값이 우선입니다.</p><a v-for="reference in practicalCalculationReferences" :key="reference.url" :href="reference.url" target="_blank" rel="noreferrer">{{ reference.title }} ↗ </a></details>
   </section>
 </template>
+
+<style scoped>
+.formula-recall { margin-block: 1rem; padding: 1rem; border: 1px solid var(--line, #64748b); border-radius: 12px; }
+.formula-recall h4 { font-size: 1.15rem; margin: 0 0 .5rem; }
+.formula-recall-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: .8rem; }
+.formula-recall article { min-width: 0; padding: .8rem; border: 1px solid var(--line, #64748b); border-radius: 8px; }
+.formula-recall h5 { font-size: 1rem; margin: 0 0 .5rem; }
+.formula-recall p { line-height: 1.65; overflow-wrap: anywhere; }
+.formula-recall summary { cursor: pointer; padding-block: .5rem; font-size: .95rem; }
+.formula-recall-more { margin-top: .75rem; }
+</style>

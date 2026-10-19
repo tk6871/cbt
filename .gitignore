@@ -45,6 +45,7 @@ work/audit-cooling-similar-order.mjs
 work/energy-book-scope/
 work/energy-textbook/
 work/responsive-images-unused/
+work/build-conflicts-*/
 work/sync-test-harness.js
 test-results/
 playwright-report/

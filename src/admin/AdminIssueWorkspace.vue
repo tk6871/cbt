@@ -3,6 +3,8 @@ import { computed, ref, watch } from 'vue';
 import { useVirtualizer } from '@tanstack/vue-virtual';
 import { Pane, Splitpanes } from 'splitpanes';
 import { ChevronLeft, ExternalLink, FileDown, Save, Search } from '@lucide/vue';
+import { useMediaQuery } from '@vueuse/core';
+import { issueImageUrl, issueStatusLabel, issueTypeLabel } from './presentation';
 import 'splitpanes/dist/splitpanes.css';
 
 type IssueStatus = 'open' | 'reviewing' | 'resolved' | 'deferred';
@@ -58,7 +60,7 @@ const virtualizer = useVirtualizer(computed(() => ({
   overscan: 7,
 })));
 const virtualRows = computed(() => virtualizer.value.getVirtualItems());
-const narrow = ref(matchMedia('(max-width: 820px)').matches);
+const narrow = useMediaQuery('(max-width: 820px)');
 
 watch(filtered, (rows) => {
   if (!rows.some((item) => item.id === selectedId.value)) selectedId.value = rows[0]?.id || 0;
@@ -86,7 +88,7 @@ watch(filtered, (rows) => {
                 :style="{ position: 'absolute', top: 0, left: 0, width: '100%', height: `${row.size}px`, transform: `translateY(${row.start}px)` }"
                 @click="selectedId = filtered[row.index]!.id"
               >
-                <span>#{{ filtered[row.index]!.id }} · {{ filtered[row.index]!.status }}</span>
+                <span>#{{ filtered[row.index]!.id }} · {{ issueStatusLabel(filtered[row.index]!.status) }}</span>
                 <strong>{{ filtered[row.index]!.qualification || filtered[row.index]!.qualification_key }} · {{ filtered[row.index]!.question_number }}번</strong>
                 <small>{{ filtered[row.index]!.details || '상세 내용 없음' }}</small>
               </button>
@@ -100,13 +102,13 @@ watch(filtered, (rows) => {
           <h2>{{ selected.qualification || selected.qualification_key }} {{ selected.question_number }}번</h2>
           <p>{{ selected.question_text || '이미지 원문 문제입니다.' }}</p>
           <ol v-if="selected.choices_snapshot?.length"><li v-for="(choice, index) in selected.choices_snapshot" :key="index">{{ index + 1 }}. {{ choice }}</li></ol>
-          <img v-if="selected.source_image" :src="`../${selected.source_image}`" alt="제보된 문제 원문">
-          <a v-if="selected.source_image" :href="`../${selected.source_image}`" target="_blank" rel="noopener"><ExternalLink :size="15" /> 원본 새 창으로 열기</a>
+          <img v-if="issueImageUrl(selected.source_image)" :src="issueImageUrl(selected.source_image)" alt="제보된 문제 원문">
+          <a v-if="issueImageUrl(selected.source_image)" :href="issueImageUrl(selected.source_image)" target="_blank" rel="noopener"><ExternalLink :size="15" /> 원본 새 창으로 열기</a>
         </article>
       </Pane>
       <Pane :size="32" :min-size="24">
         <aside v-if="selected" class="issue-workspace-editor">
-          <div><span>신고 유형</span><p><b v-for="type in selected.issue_types" :key="type">{{ type }}</b></p></div>
+          <div><span>신고 유형</span><p><b v-for="type in selected.issue_types" :key="type">{{ issueTypeLabel(type) }}</b></p></div>
           <div><span>사용자 설명</span><p>{{ selected.details || '-' }}</p></div>
           <label>처리 상태<select :value="selected.status" :disabled="savingId === selected.id" @change="emit('updateStatus', selected, ($event.target as HTMLSelectElement).value as IssueStatus)"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select></label>
           <label>관리자 메모<textarea :value="selected.admin_note || ''" rows="9" placeholder="대조 결과·수정 파일·남은 작업" @blur="emit('updateNote', selected, ($event.target as HTMLTextAreaElement).value.trim() || null)" /></label>
@@ -119,4 +121,14 @@ watch(filtered, (rows) => {
 
 <style scoped>
 .issue-workspace{height:min(720px,calc(100vh - 220px));min-height:520px;border:1px solid #d7e1ec;border-radius:14px;background:#fff;overflow:hidden}.issue-workspace>header{height:58px;padding:0 13px;border-bottom:1px solid #dfe6ee;display:flex;align-items:center;justify-content:space-between;gap:10px}.issue-workspace>header div{min-width:0;text-align:center}.issue-workspace>header strong,.issue-workspace>header small{display:block}.issue-workspace>header strong{font-size:.72rem}.issue-workspace>header small{margin-top:2px;color:#8190a2;font-size:.5rem}.issue-workspace>header button{min-height:34px;padding:0 9px;border:1px solid #d4dfeb;border-radius:8px;color:#1769d2;background:#f7faff;display:flex;align-items:center;gap:5px;font-size:.55rem;font-weight:850}.issue-splitpanes{height:calc(100% - 58px)}:deep(.splitpanes__splitter){position:relative;background:#edf1f6}:deep(.splitpanes--vertical>.splitpanes__splitter){width:5px}:deep(.splitpanes--horizontal>.splitpanes__splitter){height:5px}.issue-workspace-list,.issue-workspace-source,.issue-workspace-editor{height:100%;min-width:0;padding:12px;overflow:auto}.issue-workspace-list label{height:36px;padding:0 9px;border:1px solid #d7e1ec;border-radius:8px;background:#f8fafc;display:flex;align-items:center;gap:6px}.issue-workspace-list input{min-width:0;width:100%;border:0;outline:0;background:transparent;font-size:.58rem}.issue-virtual-scroll{height:calc(100% - 44px);margin-top:8px;overflow:auto}.issue-virtual-scroll button{padding:9px;border-bottom:1px solid #e6ebf1;color:#263b54;background:#fff;text-align:left;overflow:hidden}.issue-virtual-scroll button.active{border-left:4px solid #1769d2;background:#edf5ff}.issue-virtual-scroll span,.issue-virtual-scroll strong,.issue-virtual-scroll small{display:block}.issue-virtual-scroll span{color:#71839a;font-size:.48rem}.issue-virtual-scroll strong{margin-top:4px;font-size:.59rem}.issue-virtual-scroll small{margin-top:4px;color:#718095;font-size:.5rem;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.issue-workspace-source>span{color:#1769d2;font-size:.54rem;font-weight:850}.issue-workspace-source h2{margin:6px 0 12px;font-size:1rem}.issue-workspace-source p,.issue-workspace-source li{font-size:.64rem;line-height:1.72;white-space:pre-wrap}.issue-workspace-source ol{padding-left:20px}.issue-workspace-source img{max-height:430px;margin-top:12px;border:1px solid #dfe6ee;border-radius:9px;background:#fff;object-fit:contain}.issue-workspace-source a{width:max-content;margin-top:9px;color:#1769d2;display:flex;align-items:center;gap:5px;font-size:.56rem;font-weight:850}.issue-workspace-editor{background:#f8fafc;display:grid;align-content:start;gap:13px}.issue-workspace-editor span,.issue-workspace-editor label{color:#5f7188;font-size:.55rem;font-weight:850}.issue-workspace-editor p{margin:6px 0 0;color:#263b54;font-size:.59rem;line-height:1.6}.issue-workspace-editor p b{display:inline-block;margin:0 4px 4px 0;padding:4px 6px;border-radius:999px;color:#9b561d;background:#fff0dd;font-size:.48rem}.issue-workspace-editor select,.issue-workspace-editor textarea{width:100%;margin-top:6px;padding:8px;border:1px solid #d4dfeb;border-radius:8px;color:#243b55;background:#fff;font-size:.58rem}.issue-workspace-editor textarea{resize:vertical}.issue-workspace-editor>small{color:#73849a;display:flex;align-items:center;gap:5px;font-size:.5rem}@media(max-width:820px){.issue-workspace{height:calc(100vh - 110px);min-height:620px}.issue-workspace>header small{display:none}.issue-splitpanes :deep(.splitpanes__pane){min-height:170px}.issue-workspace-list,.issue-workspace-source,.issue-workspace-editor{padding:10px}}
+</style>
+
+<style scoped>
+.issue-workspace>header strong{font-size:.95rem}
+.issue-workspace>header small,.issue-workspace>header button,.issue-workspace-list input,.issue-workspace-source>span,.issue-workspace-source a,.issue-workspace-editor span,.issue-workspace-editor label,.issue-workspace-editor>small{font-size:.8rem}
+.issue-virtual-scroll strong{font-size:.85rem}
+.issue-virtual-scroll span,.issue-virtual-scroll small,.issue-workspace-editor p b{font-size:.75rem}
+.issue-workspace-source p,.issue-workspace-source li,.issue-workspace-editor p,.issue-workspace-editor select,.issue-workspace-editor textarea{font-size:.9rem;line-height:1.6}
+.issue-workspace-source img{display:block;max-width:100%;height:auto}
+.issue-workspace-source a{max-width:100%;overflow-wrap:anywhere}
 </style>

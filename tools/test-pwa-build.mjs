@@ -52,6 +52,10 @@ if (!questionCard.includes('beginnerCalculationOpen.value = false;')) {
 }
 
 await access(resolve(root, 'modern/cbt.css'));
+const [learnerCss, adminCss] = await Promise.all([read('modern/cbt.css'), read('modern/admin.css')]);
+if (!learnerCss.includes('.app-frame') || !adminCss.includes('.admin-page') || learnerCss.includes('.admin-data-scope')) {
+  throw new Error('학습/관리 CSS 진입점이 뒤바뀌었거나 누락됐습니다.');
+}
 for (const file of await readdir(resolve(root, 'modern'))) {
   if (file.endsWith('.css') && !['cbt.css', 'admin.css'].includes(file) && !file.endsWith(`-v${version}.css`)) {
     throw new Error(`분리 CSS가 버전 없는 주소를 사용합니다: ${file}`);

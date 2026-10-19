@@ -59,6 +59,13 @@ story.append(p('단위와 조건을 읽는 방법','title'))
 for item in DATA['basics'][5:]: story.extend(section(item['title'],item['text']))
 story.extend(section('숫자가 보여도 전부 대입하지 않습니다','먼저 무엇을 구하는지 정합니다. 그 식에 쓰는 값, 다른 소문항에 쓰는 값, 이번 식에는 필요 없는 값을 구별합니다. “현열”, “진공압”, “산술평균”, “소수점 몇 자리”는 직접 곱하지 않아도 풀이를 결정하는 조건입니다. 불필요한 숫자와 필요한 조건을 같은 것으로 보지 않습니다.'))
 story.append(PageBreak())
+for page_index in range(2):
+    story.append(p('먼저 외울 한 줄 공식' if page_index==0 else '함께 알아둘 보충 공식','title'))
+    story.append(p('공식 이름 → 한 줄 식 → 기호 뜻 → 짧은 암기법. 같은 글자라도 공식마다 뜻이 다릅니다. 보충 공식은 출제 확정이 아닌 복습용입니다.','small'))
+    for item in DATA['formulaSummary'][page_index*5:(page_index+1)*5]:
+        story.append(KeepTogether([p(item['title'],'head'),p(item['formula'],'formula'),
+                                  p(item['when']),p(item['symbols']),labeled('기억',item['remember'])]))
+    story.append(PageBreak())
 story.append(p('시험 우선 네 공식','title'))
 story.append(p('전달받은 시험범위: 네 유형 중1문제, 경우에 따라2문제. 아래는 공식의 뜻을 이해하는 설명용 예제입니다. 같은 기호·단위 설명은 묶음 앞에서 한 번 읽고 문제에서 적용합니다.','small'))
 for family_index,family in enumerate(DATA['examFamilies']):
@@ -91,7 +98,7 @@ for priority in (True,False):
         for row in rows:
             number+=1
             q,l=row['prompt'],row['lesson']
-            source=f"{q['year']}년 {q['session']}회 · 책{q.get('number','추가')}번" if q.get('year') else {'foundation':'기초 연습','drill':'심화 연습','supplement':'추가 자료'}.get(q['group'],q['group'])
+            source=row['sourceLabel']
             heading=f'{number:02d}. {source}'
             question_headings.append(heading)
             block=[p(heading,'head'),p(q['question'])]

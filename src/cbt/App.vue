@@ -1763,6 +1763,8 @@ const betaModeSummaries = computed(() => (['learn', 'exam'] as StudyMode[]).map(
   };
 }));
 const coachAnswered = computed(() => masteryRows.value.filter((item) => item.attempted).length);
+const coachHasEvidence = computed(() => coachAnswered.value > 0);
+const coachHasUnmeasuredSubjects = computed(() => coachSubjectRows.value.some(row => !row.answered));
 const coachCoverage = computed(() =>
   masteryRows.value.length ? Math.round((coachAnswered.value / masteryRows.value.length) * 100) : 0);
 const coachSubjectRows = computed(() => selectedSubjects.value.map((subject) => {
@@ -1785,7 +1787,7 @@ const coachSubjectRows = computed(() => selectedSubjects.value.map((subject) => 
     mastery,
     coverage,
     predicted,
-    risk: predicted < 40,
+    risk: attempted.length > 0 && predicted < 40,
   };
 }));
 const weakestSubject = computed(() =>
@@ -1802,7 +1804,7 @@ const predictedScore = computed(() => {
     : subjectPrediction * .58 + recentExamAverage.value * .42));
 });
 const passChance = computed(() => {
-  if (!coachAnswered.value) return 4;
+  if (!coachAnswered.value) return 0;
   const logistic = 100 / (1 + Math.exp(-(predictedScore.value - 60) / 7.5));
   const coverageFactor = .38 + .62 * Math.sqrt(coachCoverage.value / 100);
   const minimumSubject = Math.min(...coachSubjectRows.value.map((row) => row.predicted));
@@ -5457,15 +5459,15 @@ onBeforeUnmount(() => {
               <div class="coach-hero-badges">
                 <span>학습 {{ coachAnswered.toLocaleString() }}문제</span>
                 <span>분석 신뢰도 {{ coachConfidence }}</span>
-                <span :class="{ danger: weakestSubject?.risk }">{{ weakestSubject?.risk ? '과락 위험 감지' : '과락 위험 안정' }}</span>
+                <span :class="{ danger: coachHasEvidence && coachSubjectRows.some(row => row.risk) }">{{ !coachHasEvidence ? '기록을 쌓으면 분석합니다' : coachSubjectRows.some(row => row.risk) ? '과락 위험 감지' : coachHasUnmeasuredSubjects ? '아직 풀지 않은 과목 있음' : '과락 위험 안정' }}</span>
               </div>
             </div>
             <div class="coach-gauge-wrap">
               <div class="coach-gauge" :style="{ '--coach-angle': `${displayedPassChance * 3.6}deg` }">
                 <div>
                   <span>예상 합격 가능성</span>
-                  <strong>{{ displayedPassChance }}<small>%</small></strong>
-                  <b>{{ passChance >= 70 ? '합격권' : passChance >= 40 ? '상승 구간' : '진단·보강 필요' }}</b>
+                  <strong>{{ coachHasEvidence ? displayedPassChance : '—' }}<small v-if="coachHasEvidence">%</small></strong>
+                  <b>{{ !coachHasEvidence ? '학습 후 분석' : passChance >= 70 ? '합격권' : passChance >= 40 ? '상승 구간' : '진단·보강 필요' }}</b>
                 </div>
               </div>
               <small>학습 기록 기반 추정치 · 실제 결과를 보장하지 않음</small>
@@ -5476,7 +5478,7 @@ onBeforeUnmount(() => {
             <article class="coach-panel coach-score-panel">
               <header><div><span>READINESS SIGNAL</span><h2>현재 시험 준비도</h2></div><b>{{ coachConfidence }}</b></header>
               <div class="coach-metric-grid">
-                <div><span>예상 점수</span><strong>{{ predictedScore }}<small>점</small></strong><i :style="{ width: `${predictedScore}%` }" /></div>
+                <div><span>예상 점수</span><strong>{{ coachHasEvidence ? predictedScore : '—' }}<small v-if="coachHasEvidence">점</small></strong><i :style="{ width: `${coachHasEvidence ? predictedScore : 0}%` }" /></div>
                 <div><span>선택 범위 학습률</span><strong>{{ coachCoverage }}<small>%</small></strong><i :style="{ width: `${coachCoverage}%` }" /></div>
                 <div><span>지금 복습</span><strong>{{ dueRows.length }}<small>문제</small></strong><i :style="{ width: `${Math.min(100, dueRows.length * 5)}%` }" /></div>
                 <div><span>최근 모의평균</span><strong>{{ recentExamAverage ?? '—' }}<small>{{ recentExamAverage === null ? '' : '점' }}</small></strong><i :style="{ width: `${recentExamAverage || 0}%` }" /></div>
@@ -5496,7 +5498,7 @@ onBeforeUnmount(() => {
               <div v-else class="coach-empty-trend">
                 <span>◎</span>
                 <strong>아직 모의시험 기록이 없습니다</strong>
-                <small>한 번만 풀어도 예측 정확도가 크게 올라갑니다.</small>
+                <small>문제를 풀면 점수와 복습할 과목을 여기서 확인할 수 있습니다.</small>
                 <button type="button" @click="startCoachPlan('exam')">첫 진단시험 시작</button>
               </div>
             </article>
@@ -5537,8 +5539,8 @@ onBeforeUnmount(() => {
                   :class="{ risk: row.risk }"
                   @click="startCoachSubject(row.subject)"
                 >
-                  <div><span>{{ row.risk ? '위험' : '안정' }}</span><strong>{{ row.subject }}</strong><small>{{ row.answered }}/{{ row.total }}문제 학습 · 숙련도 {{ row.mastery }}%</small></div>
-                  <div class="coach-readiness-ring" :style="{ '--readiness-angle': `${row.predicted * 3.6}deg` }"><strong>{{ row.predicted }}</strong><small>예상점수</small></div>
+                  <div><span>{{ !row.answered ? '미진단' : row.risk ? '위험' : '안정' }}</span><strong>{{ row.subject }}</strong><small>{{ row.answered }}/{{ row.total }}문제 학습 · {{ row.answered ? `숙련도 ${row.mastery}%` : '학습 후 분석' }}</small></div>
+                  <div class="coach-readiness-ring" :style="{ '--readiness-angle': `${row.answered ? row.predicted * 3.6 : 0}deg` }"><strong>{{ row.answered ? row.predicted : '—' }}</strong><small>예상점수</small></div>
                 </button>
               </div>
             </article>
@@ -5665,7 +5667,7 @@ onBeforeUnmount(() => {
           <section v-if="!isJewelry" class="feature-practical-lab">
             <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>
             <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
-            <p>v5.1.4 숫자·함정 구별: 계산36문제에 ‘쓰는 값 / 이번 식에 안 쓰는 값 / 반드시 읽을 조건’을 붙였습니다. 숫자가 보여도 전부 곱하지 않는 이유를 문제별로 읽습니다. PDF는 같은 공식 설명을 묶고 문제와 풀이를 이어 배치한27쪽 합본으로 정리했습니다. 시험 우선 CGT·CR·COP·BF 13문제와 전체36문제 선택은 유지합니다.</p>
+            <p>v5.1.5 먼저 외울 한 줄 공식: CGT·CR·COP·BF·상사법칙과 보충5개 공식을 이름으로 모았습니다. 언제 쓰는지·기호 뜻·암기법을 펼쳐 보세요. PDF는 SI 다음에 공식 요약2쪽을 넣은29쪽 합본이며 기존36문제의 숫자·함정·조건 설명과 우선13문제 선택을 유지합니다.</p>
             <p>v5.1.1 복원 비율 실전: 문제별 ‘정답·풀이 보기’로 제출 전에도 답안과 설명을 확인합니다. 미리 본 문제는 표시하고 이어풀기에도 유지합니다. 시간은 계속 진행하며 자가채점은 제출 후 열립니다.</p>
             <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>

@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.1.5',scope:'industrial',date:'2026.10.19',
+      title:'먼저 외울 한 줄 공식 모음',
+      summary:'상사법칙과 CGT·CR·COP·BF 등 공식을 이름으로 찾아 먼저 외웁니다.',
+      tags:['필답형','공식 모음','PDF'],
+      changes:['계산·공식 공부 첫 부분에 주요5개와 보충5개 공식을 모았습니다. 언제 쓰는지·기호 뜻·짧은 암기법을 펼쳐 볼 수 있습니다.','PDF는 SI 기초 다음에 공식 요약2쪽을 추가한29쪽 합본입니다. 기존36문제·그림·풀이를 유지합니다.','학습 기록이 없는 과목은 합격 엔진에서 위험 점수 대신 미진단으로 표시하고, 추가 복원 문항의 출처 표시를 보완했습니다.']
+    },
+    {
       version:'5.1.4',scope:'industrial',date:'2026.10.19',
       title:'계산 숫자·함정 구별과 PDF 합본',
       summary:'문제마다 쓰는 값·안 쓰는 값·필요한 조건을 구별하고 PDF를 짧게 합쳤습니다.',
@@ -2634,8 +2641,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.4';
+  changelog.versions.industrial = '5.1.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.4';
+  changelog.currentVersion = '5.1.5';
   window.CBT_CHANGELOG = changelog;
 })();

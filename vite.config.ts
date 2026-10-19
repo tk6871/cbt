@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '607';
+const buildVersion = '608';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -49,7 +49,7 @@ export default defineConfig({
       // an unversioned app entry and mount a second Vue app into the same root.
       preserveEntrySignatures: 'strict',
       input: {
-        admin: resolve(projectRoot, 'src/admin/main.ts'),
+        admin: resolve(projectRoot, 'src/admin/admin.ts'),
         visitor: resolve(projectRoot, 'src/visitor.ts'),
         cbt: resolve(projectRoot, 'src/cbt/main.ts'),
         mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
