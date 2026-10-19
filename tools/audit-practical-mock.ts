@@ -44,6 +44,7 @@ assert.ok(!validPracticalPattern({}));
 assert.equal(JSON.stringify(practicalPrompts),bankBefore,'source bank is never changed');
 const app=fs.readFileSync('src/cbt/App.vue','utf8');
 assert.ok(app.includes('!practicalExamLocked && practicalStudyMode'));
-assert.ok(app.includes('!practicalExamLocked && (practicalStudyMode'));
+assert.ok(app.includes("(!practicalExamLocked && practicalStudyMode === 'memorize') || practicalAnswerRevealed(prompt.id)"));
+assert.ok(app.includes('viewedAnswerIds: practicalViewedAnswerIds.value.filter'));
 assert.ok(app.includes('pattern: practicalSessionPattern.value'));
 console.log(JSON.stringify({templates:9,reviewed:108,draws:2700,reachable:ids.size,calculation:17,sequence:17,formulaOnly:2,originalBankUnchanged:true},null,2));

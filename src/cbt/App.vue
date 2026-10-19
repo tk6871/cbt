@@ -28,6 +28,9 @@ import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 import PracticalIssueReport from './PracticalIssueReport.vue';
+import { calculationLesson, calculationPrompts, practicalCalculationPdf, practicalSiBasics } from './practicalCalculations';
+const PracticalCalculationLibrary = defineAsyncComponent(() => import('./PracticalCalculationLibrary.vue'));
+const PracticalCalculationLesson = defineAsyncComponent(() => import('./PracticalCalculationLesson.vue'));
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
 const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
@@ -114,11 +117,11 @@ type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
 type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
-type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'provided' | 'review';
+type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'provided' | 'review' | 'calculation';
 type PracticalGrade = 'correct' | 'partial' | 'review';
 type PracticalProgress = { draft?: string; grade?: PracticalGrade; assessment?: PracticalAssessment; deleted?: boolean; updatedAt: number };
 type PracticalStudyMode = 'type' | 'memorize';
-type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number; pattern?: PracticalPattern };
+type PracticalSessionSnapshot = { ids: string[]; deadline: number; finished: boolean; stoppedSeconds: number; pattern?: PracticalPattern; viewedAnswerIds?: string[] };
 type BetaConfidence = 'sure' | 'unsure' | 'guess';
 type BetaMistakeReason = 'concept' | 'formula' | 'unit' | 'careless';
 type BetaModeMeta = {
@@ -829,6 +832,7 @@ const practicalPeriodCounts = computed(() => ({
   earlier: practicalPrompts.value.filter(prompt => matchesPracticalMaterialPeriod(prompt, 'before-2023-2')).length,
 }));
 const practicalSearch = ref('');
+const practicalCalculationIds = ref<string[]>([]);
 const practicalGuideSection = ref<'practice' | 'theory'>('practice');
 const practicalPage = ref(1);
 let practicalCursorRestoring = true;
@@ -838,6 +842,7 @@ function persistPracticalCursor(): void {
     page: practicalPage.value, filter: practicalPromptFilter.value, category: practicalCategoryFilter.value,
     round: practicalRoundFilter.value, materialPeriod: practicalMaterialPeriod.value,
     search: practicalSearch.value, limit: practicalContinuousLimit.value,
+    calculationIds: practicalCalculationIds.value,
   }));
 }
 const practicalStudyModeStorageKey = 'unified-cbt-hvac-practical-study-mode-v1';
@@ -898,6 +903,7 @@ function loadPracticalSession(storageKey = practicalSessionStorageKey): Practica
       finished: Boolean(parsed.finished),
       stoppedSeconds: Math.max(0, Number(parsed.stoppedSeconds) || 0),
       pattern: validPracticalPattern(parsed.pattern) ? parsed.pattern : undefined,
+      viewedAnswerIds: Array.isArray(parsed.viewedAnswerIds) ? [...new Set(parsed.viewedAnswerIds.filter(id => typeof id === 'string' && parsed.ids.includes(id)))] : [],
     };
   } catch {
     return { ids: [], deadline: 0, finished: false, stoppedSeconds: 0 };
@@ -912,6 +918,7 @@ const practicalDrafts = reactive<Record<string, string>>(Object.fromEntries(
   Object.entries(loadedPracticalProgress).filter(([, progress]) => !progress.deleted).map(([id, progress]) => [id, progress.draft || '']),
 ));
 const practicalRevealedIds = ref<string[]>(loadedPracticalSession.pattern && loadedPracticalSession.finished ? loadedPracticalSession.ids : []);
+const practicalViewedAnswerIds = ref<string[]>(loadedPracticalSession.viewedAnswerIds || []);
 const practicalSessionIds = ref<string[]>(loadedPracticalSession.ids);
 const practicalSessionDeadline = ref(loadedPracticalSession.deadline);
 const practicalSessionFinished = ref(loadedPracticalSession.finished);
@@ -932,7 +939,8 @@ watch(practicalSolving, () => {
   mobileMenuOpen.value = false;
   nativeMoreOpen.value = false;
 });
-const practicalLibraryTab = ref<'rounds' | 'materials' | 'review'>('rounds');
+const practicalLibraryTab = ref<'rounds' | 'materials' | 'review' | 'calculation'>('rounds');
+const practicalCalculationCount = computed(() => calculationPrompts(practicalPrompts.value).length);
 const practicalReviewCount = computed(() => practicalPrompts.value.filter((prompt) => {
   const grade = practicalProgress[prompt.id]?.grade;
   return grade === 'partial' || grade === 'review';
@@ -998,7 +1006,7 @@ const practicalSelectionLabel = computed(() => {
   if (practicalRoundFilter.value !== 'all') return practicalRoundSummaries.value.find((round) => round.key === practicalRoundFilter.value)?.label || '회차별 기출';
   return ({
     restored: '회차별 기출 전체', provided: '추가 자료 전체', public: '공개 자료', supplement: '필답문제2 PDF',
-    photos: '사진·기기 PDF', foundation: '기초 연습', drill: '심화 연습', review: '복습 문제', all: '전체 필답 문제',
+    photos: '사진·기기 PDF', foundation: '기초 연습', drill: '심화 연습', review: '복습 문제', all: '전체 필답 문제', calculation: '필답형 계산·공식 공부',
   } as Record<PracticalPromptFilter, string>)[practicalPromptFilter.value];
 });
 const practicalFilteredPrompts = computed(() => {
@@ -1006,6 +1014,8 @@ const practicalFilteredPrompts = computed(() => {
   return practicalPrompts.value.filter((prompt) => {
     const progress = practicalProgress[prompt.id];
     const sourceMatches = practicalPromptFilter.value === 'all'
+      || (practicalPromptFilter.value === 'calculation' && Boolean(calculationLesson(prompt))
+        && (!practicalCalculationIds.value.length || practicalCalculationIds.value.includes(prompt.id)))
       || (practicalPromptFilter.value === 'review'
         ? progress?.grade === 'partial' || progress?.grade === 'review'
         : practicalPromptFilter.value === 'provided'
@@ -1045,7 +1055,9 @@ watch(guideLoaded, async loaded => {
   if (!practicalSessionIds.value.length) practicalLibraryOpen.value = true;
   try {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
-    if (['all','public','restored','foundation','drill','supplement','photos','provided','review'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
+    if (['all','public','restored','foundation','drill','supplement','photos','provided','review','calculation'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
+    if (Array.isArray(cursor.calculationIds)) practicalCalculationIds.value = cursor.calculationIds.filter((id: unknown) => typeof id === 'string' && practicalPrompts.value.some(p => p.id === id && calculationLesson(p)));
+    if (cursor.filter === 'calculation') practicalLibraryTab.value = 'calculation';
     if (cursor.category === 'all' || cursor.category in practicalCategoryLabels) practicalCategoryFilter.value = cursor.category;
     if (practicalPeriodAvailable.value && ['all', 'since-2023-2', 'before-2023-2'].includes(cursor.materialPeriod)) practicalMaterialPeriod.value = cursor.materialPeriod;
     if (cursor.round === 'all' || practicalRoundOptions.value.some(([key]) => key === cursor.round)) practicalRoundFilter.value = cursor.round;
@@ -1137,6 +1149,7 @@ function persistPracticalSession(): void {
     finished: practicalSessionFinished.value,
     stoppedSeconds: practicalSessionStoppedSeconds.value,
     pattern: practicalSessionPattern.value,
+    viewedAnswerIds: practicalViewedAnswerIds.value.filter(id => practicalSessionIds.value.includes(id)),
   };
   localStorage.setItem(practicalSessionStorageKey, JSON.stringify(snapshot));
   if (snapshot.pattern) {
@@ -1207,11 +1220,14 @@ function practicalAdaptiveLabel(prompt: PracticalPrompt): string {
 }
 
 function practicalAnswerRevealed(id: string): boolean {
-  return !practicalExamLocked.value && practicalRevealedIds.value.includes(id);
+  return practicalRevealedIds.value.includes(id);
 }
 
 function togglePracticalAnswer(id: string): void {
-  if (practicalExamLocked.value) return;
+  if (practicalExamLocked.value && !practicalAnswerRevealed(id) && !practicalViewedAnswerIds.value.includes(id)) {
+    practicalViewedAnswerIds.value.push(id);
+    persistPracticalSession();
+  }
   practicalRevealedIds.value = practicalAnswerRevealed(id)
     ? practicalRevealedIds.value.filter((value) => value !== id)
     : [...practicalRevealedIds.value, id];
@@ -1293,7 +1309,7 @@ function scrollPracticalRoomStart(behavior: ScrollBehavior = 'auto'): void {
   });
 }
 
-function openPracticalLibrary(tab: 'rounds' | 'materials' | 'review' = 'rounds'): void {
+function openPracticalLibrary(tab: 'rounds' | 'materials' | 'review' | 'calculation' = practicalPromptFilter.value === 'calculation' ? 'calculation' : 'rounds'): void {
   practicalLibraryTab.value = tab;
   practicalLibraryOpen.value = true;
   practicalNavigatorOpen.value = false;
@@ -1301,6 +1317,25 @@ function openPracticalLibrary(tab: 'rounds' | 'materials' | 'review' = 'rounds')
     top: practicalLibraryScrollY,
     behavior: motionAllowed.value ? 'smooth' : 'instant',
   }));
+}
+
+function openPracticalCalculations(ids: string[], memorize: boolean): void {
+  const valid = new Set(calculationPrompts(practicalPrompts.value).map(p => p.id));
+  practicalCalculationIds.value = [...new Set(ids)].filter(id => valid.has(id));
+  if (!practicalCalculationIds.value.length) return;
+  practicalLibraryScrollY = window.scrollY;
+  practicalPromptFilter.value = 'calculation';
+  practicalRoundFilter.value = 'all';
+  practicalMaterialPeriod.value = 'all';
+  practicalCategoryFilter.value = 'all';
+  practicalSearch.value = '';
+  practicalRevealedIds.value = practicalRevealedIds.value.filter(id => !practicalCalculationIds.value.includes(id));
+  practicalStudyMode.value = memorize ? 'memorize' : 'type';
+  practicalPage.value = 1;
+  practicalLibraryOpen.value = false;
+  practicalNavigatorOpen.value = false;
+  persistPracticalCursor();
+  scrollPracticalRoomStart();
 }
 
 function openPracticalRound(key: string): void {
@@ -1331,7 +1366,7 @@ function openPracticalMaterial(filter: Extract<PracticalPromptFilter, 'provided'
 
 function practicalListNumber(index: number, prompt?: PracticalPrompt): string {
   if (!practicalSessionActive.value && prompt?.numberLabel) return '+';
-  if (!practicalSessionActive.value && prompt?.group === 'restored' && prompt.number) return String(prompt.number).padStart(2, '0');
+  if (!practicalSessionActive.value && practicalPromptFilter.value !== 'calculation' && prompt?.group === 'restored' && prompt.number) return String(prompt.number).padStart(2, '0');
   const number = ((practicalPage.value - 1) * practicalPageSize.value) + index + 1;
   return String(number).padStart(2, '0');
 }
@@ -1385,6 +1420,7 @@ function uniquePracticalCandidates(candidates: PracticalPrompt[]): PracticalProm
 }
 
 function preparePracticalSessionPrompts(prompts: PracticalPrompt[]): void {
+  practicalViewedAnswerIds.value = [];
   const now = Date.now();
   for (const prompt of prompts) {
     const previous = practicalProgress[prompt.id]?.assessment;
@@ -1450,7 +1486,7 @@ function startPracticalPatternMock(): void {
     practicalLibraryOpen.value = false;
     if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'type';
     persistPracticalSession();
-    showToast('복원 비율 실전 12문제를 시작합니다. 제출 후 답안과 채점 기준이 열립니다.');
+    showToast('복원 비율 실전 12문제를 시작합니다. 문제별 풀이를 볼 수 있으며, 채점은 제출 후 진행합니다.');
     void nextTick(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   } catch (error) { showToast(error instanceof Error ? error.message : '실전 문제를 구성하지 못했습니다.'); }
 }
@@ -1465,6 +1501,7 @@ function resumePracticalPatternMock(): void {
   practicalSessionFinished.value = saved.finished;
   practicalClock.value = Date.now();
   practicalRevealedIds.value = saved.finished ? [...saved.ids] : [];
+  practicalViewedAnswerIds.value = [...(saved.viewedAnswerIds || [])];
   practicalPage.value = 1;
   practicalLibraryOpen.value = false;
   if (practicalStudyMode.value === 'memorize') practicalStudyMode.value = 'type';
@@ -5218,7 +5255,7 @@ onBeforeUnmount(() => {
               </nav>
             </header>
             <section v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-pattern-start" aria-label="복원 비율 실전">
-              <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율을 따라 계산·시퀀스·그림·서술을 배합합니다. 같은 내용은 한 시험에서 제외합니다.</p><small>전체 최근 복원 범위에서 출제 · 90분 · 학습용 60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
+              <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율을 따라 계산·시퀀스·그림·서술을 배합합니다. 같은 내용은 한 시험에서 제외합니다.</p><small>전체 최근 복원 범위에서 출제 · 90분 · 문제별 풀이 확인 가능 · 학습용 60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
               <div class="practical-pattern-actions"><button v-if="practicalPatternResume.pattern" type="button" @click="resumePracticalPatternMock">{{ practicalPatternResume.finished ? '마지막 실전 답안·채점 보기' : '마지막 실전 이어풀기' }}</button><button type="button" @click="startPracticalPatternMock">복원 비율 실전 시작</button><small v-if="practicalPatternResume.pattern && !practicalPatternResume.finished">목록에 있어도 제한 시간은 계속 흐릅니다.</small></div>
             </section>
             <details v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-overview"><summary>학습 현황 · 일반 랜덤 · 자료 출처</summary>
@@ -5240,12 +5277,14 @@ onBeforeUnmount(() => {
             </details>
             <template v-if="practicalLibraryOpen && !practicalSessionActive">
               <nav class="practical-library-tabs" aria-label="필답형 자료 선택">
+                <button type="button" :class="{ active: practicalLibraryTab === 'calculation' }" @click="practicalLibraryTab = 'calculation'"><b>계산·공식 공부</b><small>{{ practicalCalculationCount }}문제 · SI 단위부터 · PDF</small></button>
                 <button type="button" :class="{ active: practicalLibraryTab === 'rounds' }" @click="practicalLibraryTab = 'rounds'"><b>회차별 기출</b><small>{{ practicalGroupCounts.restored }}문제 · {{ practicalRoundSummaries.length }}회차</small></button>
                 <button type="button" :class="{ active: practicalLibraryTab === 'materials' }" @click="practicalLibraryTab = 'materials'"><b>추가 자료</b><small>PDF·사진·연습 {{ practicalPrompts.length - practicalGroupCounts.restored }}문제</small></button>
                 <button type="button" :class="{ active: practicalLibraryTab === 'review' }" @click="practicalLibraryTab = 'review'"><b>복습</b><small>부분 정답·다시 보기 {{ practicalReviewCount }}문제</small></button>
               </nav>
 
-              <section v-if="practicalLibraryTab === 'rounds'" class="practical-round-library">
+              <PracticalCalculationLibrary v-if="practicalLibraryTab === 'calculation'" :prompts="practicalPrompts" @start="openPracticalCalculations" />
+              <section v-else-if="practicalLibraryTab === 'rounds'" class="practical-round-library">
                 <button v-if="practicalLatestRound" type="button" class="practical-resume-round" @click="openPracticalRound(practicalLatestRound.key)">
                   <span>최근 학습</span><strong>{{ practicalLatestRound.label }}</strong><small>{{ practicalLatestRound.answered }} / {{ practicalLatestRound.total }}문제 작성 · 이어풀기 →</small>
                 </button>
@@ -5284,9 +5323,10 @@ onBeforeUnmount(() => {
               <button v-if="!practicalSessionActive" type="button" @click="practicalOptionsOpen = !practicalOptionsOpen">{{ practicalOptionsOpen ? '검색·범위 닫기' : '검색·범위' }}</button>
             </div>
             <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
-              <div><span>{{ practicalSessionFinished ? '제출 완료 · 자가 채점' : practicalSessionPattern ? '복원 비율 실전 · 제출 전 답안 비공개' : practicalSessionIds.length <= 5 ? 'TODAY 5 WRITTEN PRACTICE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionTotalPoints}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small><small v-if="practicalSessionPattern">구성 기준 {{ practicalSessionPattern.template }}회 · {{ practicalPatternSummary(practicalSessionPattern.kinds) }}</small></div>
+              <div><span>{{ practicalSessionFinished ? '제출 완료 · 자가 채점' : practicalSessionPattern ? '복원 비율 실전 · 풀이 확인 가능' : practicalSessionIds.length <= 5 ? 'TODAY 5 WRITTEN PRACTICE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionTotalPoints}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small><small v-if="practicalSessionPattern">구성 기준 {{ practicalSessionPattern.template }}회 · {{ practicalPatternSummary(practicalSessionPattern.kinds) }}</small></div>
               <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">{{ practicalSessionPattern ? '답안 제출·자가채점' : '실전 종료·점수 보기' }}</button><button type="button" @click="closePracticalMock">목록으로 돌아가기</button></div>
             </div>
+            <p v-if="practicalSessionActive && practicalSessionPattern">제출 전 풀이 확인 {{ practicalViewedAnswerIds.length }}문제 · 제출 전에는 풀이를 봐도 시간이 계속 진행됩니다. 점수는 자가채점한 학습용 결과입니다.</p>
             <section v-if="practicalSessionActive && practicalSessionFinished" class="practical-session-report">
               <header><div><span>WRITTEN SCORE REPORT</span><h3>필답형 실전 분석</h3></div><strong>{{ practicalSessionGradedCount === practicalSessionIds.length ? `${Math.round((practicalSessionScore / Math.max(1, practicalSessionTotalPoints)) * 100)}%` : `${practicalSessionGradedCount}/${practicalSessionIds.length} 채점` }}</strong></header>
               <p v-if="practicalSessionGradedCount < practicalSessionIds.length">아래 답안과 비교해 자가채점해 주세요. 모든 문제를 채점한 뒤 취약 분야를 정리합니다. 미채점은 오답 판정이 아닙니다.</p>
@@ -5323,6 +5363,7 @@ onBeforeUnmount(() => {
               </div>
             </details>
             <template v-if="!practicalLibraryOpen || practicalSessionActive">
+            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><a :href="practicalCalculationPdf" download>같은 내용 PDF 받기 ↓</a></details>
             <div class="practical-cbt-toolbar">
               <button type="button" class="practical-toolbar-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 목록</button>
               <span>{{ practicalPagedPrompts.filter(p => practicalProgress[p.id]?.grade).length }} / {{ practicalPagedPrompts.length }} 채점</span>
@@ -5347,17 +5388,19 @@ onBeforeUnmount(() => {
                 </div>
                 <a v-if="!practicalExamLocked && prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="prompt.sourceUrl" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
                 </div><div class="practical-response-body">
-                <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-answer-actions">
+                <div v-if="practicalStudyMode !== 'memorize'" class="practical-answer-actions">
                   <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '풀이 닫기' : '정답·풀이 보기' }}</button>
                   <button v-if="!practicalSessionActive" type="button" class="subtle" @click="startPracticalRelated(prompt)">같은 유형 연속 풀기</button>
-                  <button v-if="hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
+                  <button v-if="!practicalExamLocked && hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
                 </div>
-                <div v-if="!practicalExamLocked && (practicalStudyMode === 'memorize' || practicalAnswerRevealed(prompt.id))" class="practical-solution">
+                <small v-if="practicalSessionPattern && practicalViewedAnswerIds.includes(prompt.id)">제출 전 풀이 확인한 문제</small>
+                <div v-if="(!practicalExamLocked && practicalStudyMode === 'memorize') || practicalAnswerRevealed(prompt.id)" class="practical-solution">
                   <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
                   <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
+                  <PracticalCalculationLesson v-if="calculationLesson(practicalSourcePrompt(prompt))" :lesson="calculationLesson(practicalSourcePrompt(prompt))!" />
                   <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
                   <details v-if="prompt.keyPoints?.length" class="practical-key-points"><summary>채점 핵심어</summary><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></details>
-                  <div v-if="practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
+                  <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
                     <span>내 답과 비교해 채점</span>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'correct' }" @click="markPracticalPrompt(prompt.id, 'correct')">✓ 정답 {{ prompt.points }}점</button>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
@@ -5388,7 +5431,7 @@ onBeforeUnmount(() => {
             <PracticalLoadMore v-if="practicalContinuous && visiblePracticalPrompts.length < practicalPagedPrompts.length" @more="practicalContinuousLimit += 20" />
             <nav v-if="visiblePracticalPrompts.length && !practicalContinuous" class="practical-pagination" aria-label="필답형 문제 페이지">
               <button type="button" :disabled="practicalPage === 1" @click="changePracticalPage(practicalPage - 1)">← {{ practicalPageSize === 1 ? '이전 문제' : '이전 묶음' }}</button>
-              <div class="practical-page-center"><span><b>{{ practicalPage }}</b> / {{ practicalPageCount }}</span><button v-if="!practicalExamLocked && practicalPageSize === 1 && practicalStudyMode !== 'memorize'" type="button" @click="togglePracticalAnswer(visiblePracticalPrompts[0].id)">{{ practicalAnswerRevealed(visiblePracticalPrompts[0].id) ? '답안 닫기' : '답안 확인' }}</button></div>
+              <div class="practical-page-center"><span><b>{{ practicalPage }}</b> / {{ practicalPageCount }}</span><button v-if="practicalPageSize === 1 && practicalStudyMode !== 'memorize'" type="button" @click="togglePracticalAnswer(visiblePracticalPrompts[0].id)">{{ practicalAnswerRevealed(visiblePracticalPrompts[0].id) ? '답안 닫기' : '답안 확인' }}</button></div>
               <button type="button" :disabled="practicalPage === practicalPageCount" @click="changePracticalPage(practicalPage + 1)">{{ practicalPageSize === 1 ? '다음 문제' : '다음 묶음' }} →</button>
             </nav>
             </template>
@@ -5622,7 +5665,8 @@ onBeforeUnmount(() => {
           <section v-if="!isJewelry" class="feature-practical-lab">
             <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>
             <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
-            <p>v5.9.7 복원 비율 실전: 시험 자료실 → 필답형 목록의 ‘복원 비율 실전 시작’에서 최근9회차 구성에 맞춘12문제·90분 연습을 시작합니다. 수치 계산과 공식 쓰기를 구분하고 같은 내용은 한 시험에서 제외합니다. 제출 후 답안·해설·자가채점이 열리며 작성 답안과 S펜 필기는 기존 회차 학습과 별도입니다. 일반 랜덤도 유지합니다.</p>
+            <p>v5.1.2 필답형 계산·공식 공부: 시험 자료실 → 필답형 → 계산·공식 공부에서 36문제를 유형별로 모아 봅니다. 공식의 기호·SI 단위·숫자 대입·단위 약분·반올림 최종값을 함께 설명하며, 같은 내용을 PDF로 받을 수 있습니다.</p>
+            <p>v5.1.1 복원 비율 실전: 문제별 ‘정답·풀이 보기’로 제출 전에도 답안과 설명을 확인합니다. 미리 본 문제는 표시하고 이어풀기에도 유지합니다. 시간은 계속 진행하며 자가채점은 제출 후 열립니다.</p>
             <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>

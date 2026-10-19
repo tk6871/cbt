@@ -5,6 +5,20 @@
 
   const entries = [
     {
+      version:'5.1.2',scope:'industrial',date:'2026.10.19',
+      title:'필답형 계산·공식 공부와 PDF',
+      summary:'필답형 계산과 공식 문제를 모아, 기호·SI 단위·숫자 대입부터 쉽게 공부합니다.',
+      tags:['필답형','계산','공식·단위','PDF'],
+      changes:['시험 자료실 → 필답형에 계산·공식 공부 탭을 추가했습니다. 유형·출처·수치 계산/공식 쓰기로 고르고 문제부터 풀거나 풀이를 펼쳐 공부합니다.','기호의 뜻과 단위, 곱하고 나누는 이유, 숫자 대입 순서, 단위 약분, 외울 핵심과 시험 최종값 예시를 제공합니다. 기존 답안과 해설도 유지합니다.','SI 단위부터 시작하는 그림 포함 학습 PDF를 받을 수 있습니다. 기본 둘째 자리 반올림과 문제별 예외를 구분합니다.','2024년 1회 책 8번의 누락된 절대습도 소수점 셋째 자리 조건을 원문 스캔과 대조해 보완했습니다.']
+    },
+    {
+      version:'5.1.1',scope:'industrial',date:'2026.10.18',
+      title:'필답형 복원 실전 풀이 확인',
+      summary:'복원 실전에서도 제출 전 문제별 답안·해설을 열고 닫을 수 있습니다.',
+      tags:['필답형','실전 연습'],
+      changes:['실전 중 정답·풀이 보기 버튼을 제공합니다. 풀이를 미리 확인한 문제는 표시하고 이어풀기에도 기록을 유지합니다.','제한 시간은 계속 진행하며 자가채점은 제출 후에 합니다.']
+    },
+    {
       version:'5.1',scope:'industrial',date:'2026.10.17',
       title:'모바일 복귀 메뉴·그림 확대 조정',
       summary:'뒤로가기 후 모바일 메뉴를 보완하고, 확대창 크기를 줄여 그림만 확대합니다.',
@@ -2606,8 +2620,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1';
+  changelog.versions.industrial = '5.1.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1';
+  changelog.currentVersion = '5.1.2';
   window.CBT_CHANGELOG = changelog;
 })();
