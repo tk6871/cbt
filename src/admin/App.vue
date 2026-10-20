@@ -137,7 +137,18 @@ const visits = ref<Visit[]>([]);
 const results = ref<ExamResult[]>([]);
 const issueReports = ref<QuestionIssueReport[]>([]);
 const issueStatusFilter = ref<'all' | QuestionIssueStatus>('open');
-const issueSavingId = ref<number | null>(null);
+type IssuePatch = Partial<Pick<QuestionIssueReport, 'status' | 'admin_note'>>;
+const issueSaving = ref<Record<number, boolean>>({});
+const issueSavingId = computed(() => Number(Object.keys(issueSaving.value).find(id => issueSaving.value[Number(id)])) || null);
+const issueDrafts = ref<Record<number, string>>({});
+const issueMessages = ref<Record<number, string>>({});
+const issueFailed = ref<Record<number, IssuePatch>>({});
+const issueQueues = new Map<number, Promise<void>>();
+const operationAborts = new Set<AbortController>();
+let authEpoch = 0;
+let accountRequestId = 0;
+let issueRevision = 0;
+let authSubscription: { unsubscribe(): void } | null = null;
 const syncAccounts = ref<SyncAccountRow[]>([]);
 const accountLoading = ref(false);
 const accountError = ref('');
@@ -225,10 +236,20 @@ function firstAllowedSection(): AdminSection {
 }
 
 async function accountRequest(body: Record<string, unknown>): Promise<Record<string, unknown>> {
-  if (!config || !session.value) return { error: '관리자 로그인이 필요합니다.' };
+  if (!config || !session.value || !client.value) return { error: '관리자 로그인이 필요합니다.' };
+  const epoch = authEpoch;
+  const userId = session.value.user.id;
+  const abort = new AbortController();
+  operationAborts.add(abort);
+  const timeout = window.setTimeout(() => abort.abort(), 20_000);
   try {
+    // Read the SDK's refreshed token; server authorization remains mandatory.
+    const { data, error } = await client.value.auth.getSession();
+    if (epoch !== authEpoch || abort.signal.aborted || error || !data.session || data.session.user.id !== userId) return { error: '로그인 상태를 다시 확인해 주세요.' };
+    session.value = data.session;
     const response = await fetch(`${config.supabaseUrl.replace(/\/$/, '')}/functions/v1/sync-account`, {
       method: 'POST',
+      signal: abort.signal,
       headers: {
         apikey: config.supabaseAnonKey,
         Authorization: `Bearer ${session.value.access_token}`,
@@ -237,16 +258,23 @@ async function accountRequest(body: Record<string, unknown>): Promise<Record<str
       body: JSON.stringify(body),
     });
     const result = await response.json() as Record<string, unknown>;
+    if (epoch !== authEpoch) return { error: '로그인 상태가 변경되었습니다.' };
     return response.ok ? result : { error: String(result.error || '회원 계정 요청을 처리하지 못했습니다.') };
   } catch {
-    return { error: '회원 계정 서버에 연결하지 못했습니다.' };
+    return { error: '서버 응답을 확인하지 못했습니다. 목록을 새로고침해 처리 결과를 확인한 뒤 다시 시도해 주세요.' };
+  } finally {
+    window.clearTimeout(timeout);
+    operationAborts.delete(abort);
   }
 }
 
-async function loadSyncAccounts(): Promise<void> {
+async function loadSyncAccounts(preserveMessage = false): Promise<void> {
+  const requestId = ++accountRequestId;
+  const epoch = authEpoch;
   accountLoading.value = true;
-  accountError.value = '';
+  if (!preserveMessage) accountError.value = '';
   const result = await accountRequest({ action: 'admin-list' });
+  if (epoch !== authEpoch || requestId !== accountRequestId) return;
   accountLoading.value = false;
   if (result.error) {
     accountError.value = String(result.error);
@@ -256,8 +284,13 @@ async function loadSyncAccounts(): Promise<void> {
 }
 
 async function loadAdminSession(): Promise<boolean> {
+  const epoch = authEpoch;
   const result = await accountRequest({ action: 'admin-session' });
-  if (result.error || !result.access) return false;
+  if (epoch !== authEpoch || !session.value) return false;
+  if (result.error || !result.access) {
+    loginError.value = result.error ? String(result.error) : '관리자 권한이 없는 계정입니다.';
+    return false;
+  }
   adminAccess.value = result.access as unknown as AdminAccess;
   activeSection.value = firstAllowedSection();
   if (activeSection.value === 'accounts') await loadSyncAccounts();
@@ -266,6 +299,7 @@ async function loadAdminSession(): Promise<boolean> {
 
 async function saveAccountRole(account: SyncAccountRow): Promise<void> {
   if (!isSuperAdmin.value) return;
+  const epoch = authEpoch;
   roleSavingId.value = account.userId;
   accountError.value = '';
   const result = await accountRequest({
@@ -274,21 +308,24 @@ async function saveAccountRole(account: SyncAccountRow): Promise<void> {
     role: account.role || 'none',
     permissions: account.permissions,
   });
+  if (epoch !== authEpoch) return;
   roleSavingId.value = null;
   if (result.error) {
     accountError.value = String(result.error);
-    await loadSyncAccounts();
+    await loadSyncAccounts(true);
     return;
   }
   accountError.value = `${account.username} 계정 권한을 저장했습니다.`;
-  await loadSyncAccounts();
+  await loadSyncAccounts(true);
 }
 
 async function issueTemporaryPassword(account: SyncAccountRow): Promise<void> {
+  const epoch = authEpoch;
   accountLoading.value = true;
   accountError.value = '';
   issuedCredentials.value = null;
   const result = await accountRequest({ action: 'admin-temp-password', username: account.username });
+  if (epoch !== authEpoch) return;
   accountLoading.value = false;
   if (result.error) {
     accountError.value = String(result.error);
@@ -341,22 +378,62 @@ function locationDetail(visitor: VisitorProfile): string {
   return [visitor.network_provider, visitor.location_timezone].filter(Boolean).join(' · ') || 'IP 기반 추정 위치';
 }
 
-async function updateIssueReport(report: QuestionIssueReport, patch: Partial<Pick<QuestionIssueReport, 'status' | 'admin_note'>>): Promise<void> {
-  if (!client.value || !session.value) return;
-  issueSavingId.value = report.id;
-  const nextStatus = patch.status || report.status;
-  const values = {
-    ...patch,
-    updated_at: new Date().toISOString(),
-    resolved_at: nextStatus === 'resolved' ? (report.resolved_at || new Date().toISOString()) : null,
-  };
-  const { error } = await client.value.from('question_issue_reports').update(values).eq('id', report.id);
-  issueSavingId.value = null;
-  if (error) {
-    dataError.value = '이상 문제 처리 상태를 저장하지 못했습니다.';
-    return;
+async function updateIssueReport(report: QuestionIssueReport, patch: IssuePatch): Promise<void> {
+  if (!client.value || !session.value || !canManageIssues.value) return;
+  const epoch = authEpoch;
+  const id = report.id;
+  issueSaving.value[id] = true;
+  // Serialize changes to the same report; different reports may save independently.
+  const task = (issueQueues.get(id) || Promise.resolve()).then(async () => {
+    if (epoch !== authEpoch || !client.value || !session.value) return;
+    const current = issueReports.value.find(item => item.id === id) || report;
+    const nextStatus = patch.status || current.status;
+    const values = { ...patch, updated_at: new Date().toISOString(), resolved_at: nextStatus === 'resolved' ? (current.resolved_at || new Date().toISOString()) : null };
+    const abort = new AbortController();
+    operationAborts.add(abort);
+    const timeout = window.setTimeout(() => abort.abort(), 20_000);
+    issueMessages.value[id] = '저장 중…';
+    try {
+      const { data, error } = await client.value.from('question_issue_reports').update(values).eq('id', id)
+        .select('id,status,admin_note,updated_at,resolved_at').abortSignal(abort.signal).single();
+      if (epoch !== authEpoch) return;
+      if (error || !data || data.id !== id) throw new Error('Save not confirmed');
+      issueRevision += 1;
+      Object.assign(current, data);
+      if ('admin_note' in patch && (issueDrafts.value[id]?.trim() || null) === patch.admin_note) delete issueDrafts.value[id];
+      const failed = issueFailed.value[id];
+      if (failed) {
+        for (const key of Object.keys(patch) as (keyof IssuePatch)[]) delete failed[key];
+        if (!Object.keys(failed).length) delete issueFailed.value[id];
+      }
+      issueMessages.value[id] = issueFailed.value[id] ? '일부 변경 미저장 · 다시 저장해 주세요.' : '저장 완료';
+    } catch {
+      if (epoch !== authEpoch) return;
+      issueFailed.value[id] = { ...issueFailed.value[id], ...patch };
+      issueMessages.value[id] = '저장 확인 실패 · 입력은 유지됩니다. 연결·권한 확인 후 다시 저장해 주세요.';
+    } finally {
+      window.clearTimeout(timeout);
+      operationAborts.delete(abort);
+    }
+  });
+  issueQueues.set(id, task);
+  await task;
+  if (epoch === authEpoch && issueQueues.get(id) === task) {
+    issueQueues.delete(id);
+    issueSaving.value[id] = false;
   }
-  Object.assign(report, values);
+}
+
+function saveIssueNote(report: QuestionIssueReport): void {
+  const draft = issueDrafts.value[report.id];
+  if (draft === undefined) return;
+  void updateIssueReport(report, { admin_note: draft.trim() || null });
+}
+
+function retryIssue(report: QuestionIssueReport): void {
+  const patch = { ...issueFailed.value[report.id] };
+  if (issueDrafts.value[report.id] !== undefined) patch.admin_note = issueDrafts.value[report.id]!.trim() || null;
+  if (Object.keys(patch).length) void updateIssueReport(report, patch);
 }
 
 function exportIssueReports(): void {
@@ -377,14 +454,17 @@ function exportIssueReports(): void {
 
 async function login(): Promise<void> {
   if (!client.value) return;
+  const epoch = authEpoch;
   loginError.value = '';
   loading.value = true;
+  try {
   const loginId = email.value.normalize('NFKC').trim();
   const loginEmail = loginId.includes('@') ? loginId : await internalEmail(loginId.toLocaleLowerCase('ko-KR'));
   const { data, error } = await client.value.auth.signInWithPassword({
     email: loginEmail,
     password: password.value
   });
+  if (epoch !== authEpoch) return;
   loading.value = false;
   if (error || !data.session) {
     loginError.value = '로그인 정보를 확인해 주세요.';
@@ -392,24 +472,43 @@ async function login(): Promise<void> {
   }
   session.value = data.session;
   if (!await loadAdminSession()) {
+    if (epoch !== authEpoch) return;
+    const reason = loginError.value;
     await client.value.auth.signOut();
     session.value = null;
-    loginError.value = '관리자 권한이 없는 계정입니다.';
+    loginError.value = reason;
     return;
   }
   await loadData();
   startRealtime();
   startAutoRefresh();
+  } catch {
+    if (epoch === authEpoch) loginError.value = '연결을 확인한 뒤 다시 로그인해 주세요.';
+  } finally {
+    if (epoch === authEpoch) loading.value = false;
+  }
 }
 
-async function logout(): Promise<void> {
+function clearAdminState(): void {
+  authEpoch += 1;
+  accountRequestId += 1;
+  for (const abort of operationAborts) abort.abort();
+  operationAborts.clear();
+  issueQueues.clear();
+  issueSaving.value = {};
+  issueDrafts.value = {};
+  issueFailed.value = {};
+  issueMessages.value = {};
+  accountLoading.value = false;
+  loading.value = false;
+  roleSavingId.value = null;
+  accountError.value = '';
   dataRequestId += 1;
   dataAbort?.abort();
   dataLoading.value = false;
   lastLoadedAt.value = null;
   dataError.value = '';
   stopRealtime();
-  await client.value?.auth.signOut();
   session.value = null;
   adminAccess.value = null;
   visitors.value = [];
@@ -424,6 +523,22 @@ async function logout(): Promise<void> {
   }
 }
 
+async function logout(): Promise<void> {
+  if (hasUnsavedNotes() && !window.confirm('저장되지 않은 메모가 있습니다. 로그아웃하면 입력 내용이 사라집니다. 로그아웃할까요?')) return;
+  clearAdminState();
+  await client.value?.auth.signOut();
+}
+
+function hasUnsavedNotes(): boolean {
+  return Object.keys(issueDrafts.value).length > 0 || Object.keys(issueFailed.value).length > 0 || issueSavingId.value !== null;
+}
+
+function warnUnsavedNotes(event: BeforeUnloadEvent): void {
+  if (!hasUnsavedNotes()) return;
+  event.preventDefault();
+  event.returnValue = '';
+}
+
 async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   if (!client.value || !session.value) return;
   const silent = options.silent === true;
@@ -436,6 +551,7 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
   dataLoading.value = true;
   dataError.value = '';
   const requestedDays = days.value;
+  const requestedIssueRevision = issueRevision;
   const since = new Date(Date.now() - requestedDays * 24 * 60 * 60 * 1000).toISOString();
   try {
     const responses = await Promise.allSettled([
@@ -455,10 +571,10 @@ async function loadData(options: { silent?: boolean } = {}): Promise<void> {
     visitors.value = data[0] as VisitorProfile[];
     visits.value = data[1] as Visit[];
     results.value = data[2] as ExamResult[];
-    issueReports.value = (data[3] as QuestionIssueReport[]).map(report => {
+    if (requestedIssueRevision === issueRevision) issueReports.value = (data[3] as QuestionIssueReport[]).map(report => {
       // Do not replace a row while its save is in flight.
       const existing = issueReports.value.find(item => item.id === report.id);
-      return existing && issueSavingId.value === report.id ? existing : report;
+      return existing && (issueSaving.value[report.id] || issueDrafts.value[report.id] !== undefined || issueFailed.value[report.id]) ? existing : report;
     });
     loadedDays.value = requestedDays;
     lastLoadedAt.value = new Date().toISOString();
@@ -517,12 +633,27 @@ function startAutoRefresh(): void {
 
 onMounted(async () => {
   if (!client.value) return;
+  window.addEventListener('beforeunload', warnUnsavedNotes);
+  authSubscription = client.value.auth.onAuthStateChange((event, nextSession) => {
+    // Keep this callback synchronous; never await another Auth call inside it.
+    if (event === 'SIGNED_OUT' || (session.value && nextSession && session.value.user.id !== nextSession.user.id)) {
+      clearAdminState();
+      loginError.value = '로그인 상태가 변경되었습니다. 다시 로그인해 주세요.';
+    } else if (nextSession && session.value?.user.id === nextSession.user.id) {
+      session.value = nextSession;
+    }
+  }).data.subscription;
+  const epoch = authEpoch;
   const { data } = await client.value.auth.getSession();
+  if (epoch !== authEpoch) return;
   if (data.session) {
     session.value = data.session;
     if (!await loadAdminSession()) {
+      if (epoch !== authEpoch) return;
+      const reason = loginError.value;
       await client.value.auth.signOut();
       session.value = null;
+      loginError.value = reason;
     }
   }
   if (session.value) {
@@ -536,9 +667,9 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
-  dataRequestId += 1;
-  dataAbort?.abort();
-  stopRealtime();
+  window.removeEventListener('beforeunload', warnUnsavedNotes);
+  authSubscription?.unsubscribe();
+  clearAdminState();
   if (clockTimer !== null) window.clearInterval(clockTimer);
   if (autoRefreshTimer !== null) window.clearInterval(autoRefreshTimer);
 });
@@ -658,11 +789,16 @@ onBeforeUnmount(() => {
         <OptionalFeatureBoundary v-if="issueWorkspaceOpen" label="문제 제보 집중 검토">
           <AdminIssueWorkspace
             :reports="displayedIssueReports"
-            :saving-id="issueSavingId"
+            :saving="issueSaving"
+            :drafts="issueDrafts"
+            :messages="issueMessages"
+            :failed="issueFailed"
             @close="issueWorkspaceOpen = false"
             @export="exportIssueReports"
             @update-status="(report, status) => updateIssueReport(report, { status })"
-            @update-note="(report, adminNote) => updateIssueReport(report, { admin_note: adminNote })"
+            @draft-note="(id, note) => issueDrafts[id] = note"
+            @save-note="saveIssueNote"
+            @retry="retryIssue"
           />
         </OptionalFeatureBoundary>
         <div v-else class="admin-table-wrap issue-table-wrap">
@@ -674,8 +810,12 @@ onBeforeUnmount(() => {
                 <td class="issue-question-cell"><strong>{{ report.qualification || report.qualification_key }}</strong><span>{{ report.round_title || report.round_id }}</span><b>{{ report.subject || '-' }} · {{ report.question_number }}번</b><code>{{ report.question_id }}</code></td>
                 <td class="issue-detail-cell"><div><span v-for="type in report.issue_types" :key="type">{{ issueTypeLabel(type) }}</span></div><p>{{ report.details }}</p></td>
                 <td class="issue-source-cell"><p>{{ report.question_text || '원문 이미지 문제' }}</p><small v-if="report.configured_answer">설정 정답 {{ report.configured_answer }}번</small><small v-else>서술형·정답 번호 없음</small><a v-if="issueImageUrl(report.source_image)" :href="issueImageUrl(report.source_image)" target="_blank" rel="noopener">문제 이미지 열기</a></td>
-                <td><select class="issue-status-select" :class="`is-${report.status}`" :value="report.status" :disabled="issueSavingId === report.id" @change="updateIssueReport(report, { status: ($event.target as HTMLSelectElement).value as QuestionIssueStatus })"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select><small>{{ issueStatusLabel(report.status) }}</small></td>
-                <td class="issue-note-cell"><textarea :value="report.admin_note || ''" rows="3" maxlength="3000" placeholder="수정 파일·확인 결과 메모" @blur="updateIssueReport(report, { admin_note: ($event.target as HTMLTextAreaElement).value.trim() || null })" /><small>{{ issueSavingId === report.id ? '저장 중…' : '포커스를 벗어나면 저장' }}</small></td>
+                <td><select class="issue-status-select" :class="`is-${report.status}`" :value="report.status" :disabled="issueSaving[report.id]" @change="updateIssueReport(report, { status: ($event.target as HTMLSelectElement).value as QuestionIssueStatus })"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select><small>{{ issueStatusLabel(report.status) }}</small></td>
+                <td class="issue-note-cell">
+                  <textarea :value="issueDrafts[report.id] ?? report.admin_note ?? ''" rows="3" maxlength="3000" aria-label="관리자 메모" placeholder="수정 파일·확인 결과 메모" @input="issueDrafts[report.id] = ($event.target as HTMLTextAreaElement).value" @blur="saveIssueNote(report)" />
+                  <small role="status">{{ issueSaving[report.id] ? '저장 중…' : issueMessages[report.id] || '입력 후 다른 곳을 누르면 저장' }}</small>
+                  <button v-if="issueFailed[report.id]" type="button" :disabled="issueSaving[report.id]" @click="retryIssue(report)">다시 저장</button>
+                </td>
               </tr>
               <tr v-if="!displayedIssueReports.length"><td colspan="6" class="empty-cell">선택한 상태의 이상 문제 신고가 없습니다.</td></tr>
             </tbody>
@@ -732,7 +872,7 @@ onBeforeUnmount(() => {
       <section v-else-if="activeSection === 'accounts'" class="admin-panel account-panel">
         <div class="admin-panel-title account-panel-title">
           <div><span>MEMBERS & ACCESS</span><h2>회원 가입 목록과 관리자 권한</h2><p>가입·최근 로그인 상태를 확인하고, 슈퍼 관리자는 업무별 권한을 나눠 줄 수 있습니다.</p></div>
-          <div class="account-panel-tools"><input v-model="accountSearch" type="search" placeholder="아이디·이메일 검색"><button type="button" :disabled="accountLoading" @click="loadSyncAccounts">{{ accountLoading ? '불러오는 중…' : '회원 새로고침' }}</button></div>
+          <div class="account-panel-tools"><input v-model="accountSearch" type="search" placeholder="아이디·이메일 검색"><button type="button" :disabled="accountLoading" @click="loadSyncAccounts()">{{ accountLoading ? '불러오는 중…' : '회원 새로고침' }}</button></div>
         </div>
         <p v-if="accountError" class="admin-account-message">{{ accountError }}</p>
         <article v-if="issuedCredentials" class="issued-credentials">

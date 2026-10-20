@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { practicalFormulaSummary } from '../src/cbt/practicalFormulaSummary';
+import { pageItems } from '../src/cbt/listPresentation';
 import { practicalSourceLabel } from '../src/cbt/practicalLabels';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
 import { adminViewLabel, issueImageUrl, issueTypeLabel, issueStatusLabel, seoulDayStart, resultModeLabel, resultResponseLabel, paginate } from '../src/admin/presentation';
@@ -32,6 +33,16 @@ assert.equal(paginate(rows, 20).rows.at(-1), 999);
 assert.equal(paginate(rows, 21).page, 20);
 assert.deepEqual(paginate([], 9), { page:1, pageCount:1, rows:[] });
 const main = readFileSync('src/cbt/App.vue','utf8');
+for (const count of [0,1,39,40,41,434]) {
+  const input = Array.from({length:count},(_,i)=>i);
+  const pages = pageItems(input,1).pages;
+  const output = Array.from({length:pages},(_,i)=>pageItems(input,i+1).rows).flat();
+  assert.deepEqual(output,input);
+  assert.equal(pageItems(input,999).page,pages);
+}
+assert.ok(main.includes('v-for="item in calculationPagination.rows"'));
+assert.ok(main.includes('v-if="filteredCalculationRows.length" class="library-pagination"'));
+assert.ok(main.includes("weakRows.value.length ? '취약 문제 집중' : '기초 진단 학습'"));
 assert.ok(main.includes("!row.answered ? '미진단'"));
 assert.ok(main.includes("coachHasEvidence ? predictedScore : '—'"));
 console.log('PASS: 10 recall formulas, arithmetic examples, source labels, safe image links, Korea date, 1000-row pagination and no-record display guards');

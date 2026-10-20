@@ -37,12 +37,14 @@ type IssueRow = {
   resolved_at: string | null;
 };
 
-const props = defineProps<{ reports: IssueRow[]; savingId: number | null }>();
+const props = defineProps<{ reports: IssueRow[]; saving: Record<number, boolean>; drafts: Record<number, string>; messages: Record<number, string>; failed: Record<number, unknown> }>();
 const emit = defineEmits<{
   close: [];
   export: [];
   updateStatus: [report: IssueRow, status: IssueStatus];
-  updateNote: [report: IssueRow, note: string | null];
+  draftNote: [id: number, note: string];
+  saveNote: [report: IssueRow];
+  retry: [report: IssueRow];
 }>();
 const query = ref('');
 const scrollElement = ref<HTMLElement | null>(null);
@@ -110,9 +112,10 @@ watch(filtered, (rows) => {
         <aside v-if="selected" class="issue-workspace-editor">
           <div><span>신고 유형</span><p><b v-for="type in selected.issue_types" :key="type">{{ issueTypeLabel(type) }}</b></p></div>
           <div><span>사용자 설명</span><p>{{ selected.details || '-' }}</p></div>
-          <label>처리 상태<select :value="selected.status" :disabled="savingId === selected.id" @change="emit('updateStatus', selected, ($event.target as HTMLSelectElement).value as IssueStatus)"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select></label>
-          <label>관리자 메모<textarea :value="selected.admin_note || ''" rows="9" placeholder="대조 결과·수정 파일·남은 작업" @blur="emit('updateNote', selected, ($event.target as HTMLTextAreaElement).value.trim() || null)" /></label>
-          <small><Save :size="14" /> {{ savingId === selected.id ? '저장 중…' : '상태 변경 또는 메모 입력 후 자동 저장' }}</small>
+          <label>처리 상태<select :value="selected.status" :disabled="saving[selected.id]" @change="emit('updateStatus', selected, ($event.target as HTMLSelectElement).value as IssueStatus)"><option value="open">대기</option><option value="reviewing">확인 중</option><option value="resolved">수정 완료</option><option value="deferred">보류</option></select></label>
+          <label>관리자 메모<textarea :value="drafts[selected.id] ?? selected.admin_note ?? ''" rows="9" maxlength="3000" placeholder="대조 결과·수정 파일·남은 작업" @input="emit('draftNote', selected.id, ($event.target as HTMLTextAreaElement).value)" @blur="emit('saveNote', selected)" /></label>
+          <small role="status"><Save :size="14" /> {{ saving[selected.id] ? '저장 중…' : messages[selected.id] || '상태 변경 또는 메모 입력 후 자동 저장' }}</small>
+          <button v-if="failed[selected.id]" type="button" :disabled="saving[selected.id]" @click="emit('retry', selected)">다시 저장</button>
         </aside>
       </Pane>
     </Splitpanes>

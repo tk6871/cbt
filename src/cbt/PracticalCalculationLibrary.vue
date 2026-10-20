@@ -22,6 +22,8 @@ watch([topic, source, kind, scope, family], () => {
   try { localStorage.setItem(storageKey, JSON.stringify({ topic:topic.value, source:source.value, kind:kind.value, scope:scope.value, family:family.value })); } catch { /* Viewing remains available if device storage is full. */ }
 });
 const rows = computed(() => orderPracticalCalculations(calculationPrompts(props.prompts)));
+const formulaSection = ref<HTMLElement | null>(null);
+const problemSection = ref<HTMLElement | null>(null);
 const examCount = computed(() => rows.value.filter(p => practicalExamFamiliesFor(p).length).length);
 const topics = computed(() => [...new Set(rows.value.map(p => calculationLesson(p)!.topic))]);
 const filtered = computed(() => rows.value.filter(p => {
@@ -44,7 +46,8 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
 <template>
   <section class="practical-calculation-library">
     <header><div><h3>필답형 계산문제 모아보기</h3><p>기호 읽기부터 숫자 대입·단위 약분까지. 복원문제와 연습문제를 함께 공부합니다.</p></div><a :href="practicalCalculationPdf" download>공식·풀이 PDF 받기 ↓</a></header>
-    <section class="formula-recall" aria-label="먼저 외울 한 줄 공식">
+    <nav class="calculation-jumps" aria-label="계산 공부 바로가기"><button type="button" @click="formulaSection?.scrollIntoView({ block: 'start', behavior: 'smooth' })">공식 먼저 보기</button><button type="button" @click="problemSection?.scrollIntoView({ block: 'start', behavior: 'smooth' })">문제 {{ filtered.length }}개로 이동 ↓</button></nav>
+    <section ref="formulaSection" class="formula-recall" aria-label="먼저 외울 한 줄 공식">
       <h4>먼저 외울 한 줄 공식</h4>
       <p>CGT·CR·COP·BF를 먼저, 상사법칙은 함께 기억하세요. 보충 공식은 출제 확정이 아닌 계산 복습용입니다.</p>
       <div class="formula-recall-grid">
@@ -64,7 +67,7 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
       <details v-for="item in practicalExamFamilies" :key="item.key" :open="scope === 'exam' && family === item.key"><summary>{{ item.title }} · 공식부터 이해하기</summary><p class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p><b>기호 뜻</b> {{ item.symbols }}</p><p><b>쉬운 예제</b> {{ item.example }}</p><p><b>단위가 남는 과정</b> {{ item.units }}</p><p class="calculation-memory">{{ item.remember }}</p></details>
     </section>
     <details class="practical-si-basics"><summary>계산이 처음이라면 · SI 단위부터 읽기</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article></details>
-    <div class="practical-calculation-filters">
+    <div ref="problemSection" class="practical-calculation-filters">
       <label v-if="scope === 'all'">유형<select v-model="topic"><option value="all">모든 유형</option><option v-for="item in topics" :key="item">{{ item }}</option></select></label>
       <label>출처<select v-model="source"><option value="all">복원 + 연습 전체</option><option value="restored">회차별 복원문제</option><option value="practice">추가 자료·기초·심화</option></select></label>
       <label>문제 종류<select v-model="kind"><option value="all">계산 + 공식 쓰기</option><option value="numeric">숫자 계산만</option><option value="formula">공식 쓰기만</option></select></label>
@@ -72,12 +75,15 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
     <div class="practical-calculation-start"><strong>{{ filtered.length }}문제</strong><button :disabled="!filtered.length" type="button" @click="start(false)">선택 범위 문제부터 풀기</button><button :disabled="!filtered.length" type="button" @click="start(true)">풀이·공식 공부하기</button></div>
     <p class="calculation-scope-note">{{ scope === 'exam' ? '네 공식의 기본·응용 문제를 모았습니다. 얼음 가열·상태 변화처럼 두 공식을 함께 쓰는 문제는 두 유형에 모두 연결하되 한 번만 표시합니다.' : '기존 계산 분류에 공기조화의 혼합공기·전열 계산도 포함했습니다.' }} 전체 계산을 누르면 다른 계산문제도 볼 수 있습니다.</p>
     <ol class="practical-calculation-index"><li v-for="prompt in filtered" :key="prompt.id"><div><small>{{ calculationLesson(prompt)!.topic }} · {{ calculationLesson(prompt)!.kind === 'numeric' ? '수치 계산' : '공식 쓰기' }} · {{ practicalSourceLabel(prompt) }}</small><strong>{{ calculationLesson(prompt)!.title }}</strong><p>{{ prompt.question }}</p></div><button type="button" @click="start(true, prompt)">이 문제 공부 →</button></li></ol>
-    <p v-if="!filtered.length">해당 조건의 문제가 없습니다. 유형이나 출처를 전체로 바꿔 보세요.</p>
+    <p v-if="!filtered.length">해당 조건의 문제가 없습니다. <button type="button" @click="selectFamily('all')">시험 우선 4공식으로 초기화</button></p>
     <details><summary>공식 원리 참고 자료</summary><p>문항 수치와 조건은 기존 복원·연습 자료를 따릅니다. 기본 원리는 아래 자료와 대조했습니다. 문제에서 준 비열·밀도·환산값이 우선입니다.</p><a v-for="reference in practicalCalculationReferences" :key="reference.url" :href="reference.url" target="_blank" rel="noreferrer">{{ reference.title }} ↗ </a></details>
   </section>
 </template>
 
 <style scoped>
+.calculation-jumps { display:flex; flex-wrap:wrap; gap:.6rem; margin-block:.8rem; }
+.calculation-jumps button { min-height:44px; padding:.6rem 1rem; border:1px solid var(--line); border-radius:8px; background:var(--panel); color:var(--text); font:inherit; cursor:pointer; }
+.formula-recall,.practical-calculation-filters { scroll-margin-top:90px; }
 .formula-recall { margin-block: 1rem; padding: 1rem; border: 1px solid var(--line, #64748b); border-radius: 12px; }
 .formula-recall h4 { font-size: 1.15rem; margin: 0 0 .5rem; }
 .formula-recall-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: .8rem; }
