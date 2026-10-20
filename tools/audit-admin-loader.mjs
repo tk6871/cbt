@@ -18,7 +18,7 @@ function harness(responder) {
   const context = {
     client:ref({from:query}), session:ref({user:{id:'test-only'}}),
     dataLoading:ref(false), document:{hidden:false,activeElement:null},
-    issueSavingId:ref(null), dataRequestId:0, dataAbort:null,
+    issueSavingId:ref(null), issueSaving:ref({}), issueDrafts:ref({}), issueFailed:ref({}), issueRevision:0, dataRequestId:0, dataAbort:null,
     window:{setTimeout,clearTimeout}, AbortController, dataError:ref(''),
     days:ref(30), canViewAnalytics:ref(true), canManageIssues:ref(true),
     lastLoadedAt:ref(null), loadedDays:ref(30), visitors:ref([]), visits:ref([]), results:ref([]), issueReports:ref([]),
@@ -62,4 +62,12 @@ for (const resolve of pending.slice(0,4)) resolve({data:[{id:'old'}]});
 await first;
 assert.equal(stale.results.value[0].id,'new','Late older request must not overwrite the newest snapshot');
 assert.equal(stale.dataLoading.value,false);
+const lateSnapshot=[];
+const saved = harness(() => new Promise(resolve=>lateSnapshot.push(resolve)));
+const loadingSnapshot = saved.loadData();
+saved.issueReports.value=[{id:17,admin_note:'saved newest note'}];
+saved.issueRevision += 1;
+for (const resolve of lateSnapshot) resolve({data:[{id:17,admin_note:'old note'}]});
+await loadingSnapshot;
+assert.equal(saved.issueReports.value[0].admin_note,'saved newest note','A snapshot started before a successful save must not erase it');
 console.log('PASS: actual admin loader success, partial failure retention, network rejection, editing guard, out-of-order request protection (local fixtures only)');

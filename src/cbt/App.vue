@@ -23,6 +23,8 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import QuestionLibraryPreview from './QuestionLibraryPreview.vue';
+import { pageItems } from './listPresentation';
 import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded, restoreEnergyCalculationExcluded } from './energyMidtermPractice';
 import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './energyTextbook';
 import PracticalLoadMore from './PracticalLoadMore.vue';
@@ -331,6 +333,7 @@ const wrongTypeFilter = ref<'all' | 'calculation'>('all');
 const calculationSubjectFilter = ref('all');
 const calculationRoundFilter = ref('all');
 const calculationResultFilter = ref<'all' | 'wrong'>('all');
+const calculationPage = ref(1);
 const bookmarkRoundFilter = ref('all');
 const questionJudgmentEnabled = ref(localStorage.getItem('unified-cbt-question-judgment') === 'true');
 const betaModeFilter = ref<StudyMode>('learn');
@@ -1863,20 +1866,22 @@ const filteredCalculationRows = computed(() => calculationRows.value.filter((ite
   &&
   (calculationSubjectFilter.value === 'all' || item.subject === calculationSubjectFilter.value)
   && (calculationRoundFilter.value === 'all' || item.round.id === calculationRoundFilter.value)));
+const calculationPagination = computed(() => pageItems(filteredCalculationRows.value, calculationPage.value));
+watch([calculationSubjectFilter, calculationRoundFilter, calculationResultFilter, selectedKey], () => { calculationPage.value = 1; });
 const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: string; description: string; count: number; tone: string }>>(() => [
   {
     key: 'due',
     eyebrow: 'FORGOTTEN CURVE',
-    title: '오늘의 망각 복습',
-    description: '기억 확률이 낮아진 문제부터 다시 잡습니다.',
+    title: dueRows.value.length ? '오늘의 망각 복습' : weakRows.value.length ? '최근 학습 복습' : '처음 문제 익히기',
+    description: dueRows.value.length ? '복습 시기가 된 문제와 최근 오답부터 다시 풉니다.' : weakRows.value.length ? '지금 복습 대기 문제가 없어, 이미 푼 문제부터 다시 봅니다.' : '아직 학습 기록이 없어, 처음 보는 문제로 연습을 시작합니다.',
     count: Math.min(20, dueRows.value.length || weakRows.value.length || unseenRows.value.length),
     tone: 'mint',
   },
   {
     key: 'weak',
     eyebrow: 'WEAK POINT',
-    title: '취약 문제 집중',
-    description: '숙련도가 가장 낮은 문제 20개를 선별합니다.',
+    title: weakRows.value.length ? '취약 문제 집중' : '기초 진단 학습',
+    description: weakRows.value.length ? '학습한 문제 중 숙련도가 낮은 문제를 최대20개 선별합니다.' : '최대20문제를 풀어 현재 이해도를 확인합니다. 아직 취약 문제로 판단한 것은 아닙니다.',
     count: Math.min(20, weakRows.value.length || unseenRows.value.length),
     tone: 'coral',
   },
@@ -1891,8 +1896,8 @@ const coachPlans = computed<Array<{ key: CoachPlanKey; eyebrow: string; title: s
   {
     key: 'subject',
     eyebrow: 'CUT-LINE SHIELD',
-    title: `${weakestSubject.value?.subject || '취약 과목'} 과락 방어`,
-    description: '예상 점수가 가장 낮은 과목을 우선 보강합니다.',
+    title: `${weakestSubject.value?.subject || '선택 과목'} ${weakestSubject.value?.answered ? '집중 학습' : '첫 진단'}`,
+    description: weakestSubject.value?.answered ? '현재 학습 기록상 보강이 필요한 과목부터 연습합니다.' : '아직 풀지 않은 과목을 먼저 확인합니다. 미학습을 과락으로 판단하지 않습니다.',
     count: Math.min(20, masteryRows.value.filter((item) => item.subject === weakestSubject.value?.subject).length),
     tone: 'amber',
   },
@@ -3027,15 +3032,15 @@ function startCoachPlan(key: CoachPlanKey): void {
   let title = '';
   if (key === 'due') {
     pool = dueRows.value.length ? dueRows.value : (weakRows.value.length ? weakRows.value : shuffle(unseenRows.value));
-    title = '합격 엔진 · 망각 복습';
+    title = `합격 엔진 · ${coachPlans.value.find(plan => plan.key === key)?.title || '복습'}`;
   } else if (key === 'weak') {
     pool = weakRows.value.length ? weakRows.value : shuffle(unseenRows.value);
-    title = '합격 엔진 · 취약 문제 집중';
+    title = `합격 엔진 · ${coachPlans.value.find(plan => plan.key === key)?.title || '진단 학습'}`;
   } else {
     pool = masteryRows.value
       .filter((item) => item.subject === weakestSubject.value?.subject)
       .sort((a, b) => a.mastery - b.mastery || a.recall - b.recall);
-    title = `합격 엔진 · ${weakestSubject.value?.subject || '취약 과목'} 과락 방어`;
+    title = `합격 엔진 · ${coachPlans.value.find(plan => plan.key === key)?.title || '과목 학습'}`;
   }
 
   const items = pool.slice(0, 20).map(({ mastery: _mastery, recall: _recall, dueAt: _dueAt, due: _due, attempted: _attempted, ...item }) => item);
@@ -5064,7 +5069,7 @@ onBeforeUnmount(() => {
           <TransitionGroup v-if="displayedWrongItems.length" name="list-shift" tag="div" class="question-library">
             <article v-for="item in displayedWrongItems" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
-              <p>{{ item.question.text || '원문 이미지 문제' }}</p>
+              <QuestionLibraryPreview :text="item.question.text || ''" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
               <footer>
                 <span v-if="wrongAnswerDetailMap.get(item.id)">내 답 {{ wrongAnswerDetailMap.get(item.id)?.selected }}번 · 정답 {{ wrongAnswerDetailMap.get(item.id)?.answer }}번</span>
                 <span v-else>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
@@ -5118,7 +5123,7 @@ onBeforeUnmount(() => {
           <TransitionGroup v-if="displayedSearchResults.length" name="list-shift" tag="div" class="question-library search-library">
             <article v-for="item in displayedSearchResults" :key="item.id">
               <header><span>{{ item.round.shortQualification || item.round.qualification }} · {{ item.round.year }}년 · {{ normalizedSchoolSubject(item) }}</span><b>{{ item.question.number }}번</b></header>
-              <p>{{ item.question.text || '원문 이미지 문제' }}</p>
+              <QuestionLibraryPreview :text="item.question.text || ''" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
               <footer>
                 <span>{{ item.round.session || item.round.title }}</span>
                 <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번`, [item])">문제 열기 →</button>
@@ -5197,14 +5202,18 @@ onBeforeUnmount(() => {
             <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 공식과 숫자 출처, 계산 순서를 간단히 확인할 수 있습니다.</p>
           </section>
           <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
-            <article v-for="item in filteredCalculationRows.slice(0, 40)" :key="item.id">
+            <article v-for="item in calculationPagination.rows" :key="item.id">
               <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
-              <p>{{ stripMarkup(item.question.text || item.question.html) || '원문 이미지 계산 문제' }}</p>
+              <QuestionLibraryPreview :text="stripMarkup(item.question.text || item.question.html)" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
               <footer><span>{{ item.round.session || item.round.title }}</span><button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 계산 풀이`, [item], {}, { calculationMode: true })">풀어보기 →</button></footer>
             </article>
           </TransitionGroup>
-          <p v-if="filteredCalculationRows.length > 40" class="calculation-preview-note">목록은 처음 40문제만 미리 보여주며, ‘전체 풀기’에는 선택된 {{ filteredCalculationRows.length.toLocaleString() }}문제가 모두 포함됩니다.</p>
-          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p></section>
+          <nav v-if="filteredCalculationRows.length" class="library-pagination" aria-label="계산문제 목록 페이지">
+            <button type="button" :disabled="calculationPagination.page <= 1" @click="calculationPage = calculationPagination.page - 1">← 이전 목록</button>
+            <span role="status">{{ calculationPagination.first }}~{{ calculationPagination.last }} / {{ filteredCalculationRows.length }}문제 · {{ calculationPagination.page }}/{{ calculationPagination.pages }}쪽</span>
+            <button type="button" :disabled="calculationPagination.page >= calculationPagination.pages" @click="calculationPage = calculationPagination.page + 1">다음 목록 →</button>
+          </nav>
+          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p><button type="button" @click="calculationSubjectFilter = 'all'; calculationRoundFilter = 'all'; calculationResultFilter = 'all'">계산 필터 초기화</button></section>
         </template>
 
         <section v-else-if="view === 'guide' && !guideLoaded" class="guide-notice" aria-live="polite">
@@ -5665,6 +5674,8 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
+            <header><div><span>STUDY FLOW</span><h2>필답형과 계산 공부를 더 편하게</h2></div><p>공식부터 읽거나 문제 목록으로 바로 이동하세요. 계산 목록은40개씩 끝까지 둘러보고, 검색·오답·계산 목록의 이미지 문제는 원문으로 미리 봅니다.</p></header>
+            <details class="feature-history"><summary>이전 필답형 화면 개선 기록 보기</summary>
             <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>
             <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
             <p>v5.1.5 먼저 외울 한 줄 공식: CGT·CR·COP·BF·상사법칙과 보충5개 공식을 이름으로 모았습니다. 언제 쓰는지·기호 뜻·암기법을 펼쳐 보세요. PDF는 SI 다음에 공식 요약2쪽을 넣은29쪽 합본이며 기존36문제의 숫자·함정·조건 설명과 우선13문제 선택을 유지합니다.</p>
@@ -5673,6 +5684,7 @@ onBeforeUnmount(() => {
             <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
+            </details>
             <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인합니다. 직접 입력과 세부 채점 도구는 필요할 때만 펼칩니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
@@ -5681,6 +5693,8 @@ onBeforeUnmount(() => {
               <article><b>04</b><strong>문제 아래 바로 풀이</strong><span>정답·설명은 같은 카드 아래에 · 직접 입력은 선택 펼침</span></article>
               <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
             </div>
+            <details class="feature-history"><summary>이전 자료 추가·분류 기록 보기 (당시 기준)</summary>
+            <p>아래 문항 수와 기본값은 해당 업데이트 당시 기록입니다. 현재 선택 화면의 수량·설정이 우선합니다.</p>
             <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
             <p>v5.9.1 에너지 출처 선택: ‘에너지 교재 문제’는 교재 원문140문제, ‘CBT + 에너지 교재’는 이전 CBT 목록154문제를 기존 방식으로 풉니다. 교재 이미지191장의 보기에도 직접 선택 영역을 연결했습니다. 설정 → 답안 선택 방식에서 이미지 직접 선택을 켜고 체크 마커 또는 영역 색상 박스를 비교하세요. 원문 해설·다크·라이트 표시와 기존 풀이 기록은 유지됩니다.</p>
             <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
@@ -5699,6 +5713,7 @@ onBeforeUnmount(() => {
             <p>9월17일 제공된 가지1 123문항은 사진·기기 자료123에서 따로 풀 수 있습니다. 원본 사진95개와 학습 답안·설명을 연결했으며 정답 표기가 있는 비교 사진2개는 문제용과 답안용을 분리했습니다.</p>
             <p>복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 수정 완료 표시는 아닙니다.</p>
             <p>2023년 2회1번의 주회로·제어회로 전체와 3회1번의 우측 PB2/X2 회로도 원본 영상으로 보완했습니다. 기존 잘린 이미지는 삭제하지 않았습니다.</p>
+            </details>
             <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
           </section>
 

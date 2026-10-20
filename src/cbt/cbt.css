@@ -2522,6 +2522,15 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   :root[data-visual-style="simpsons"] .sidebar { box-shadow:none; }
 }
 
+.library-pagination { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; padding:18px 0; }
+.feature-history { margin-block:12px; padding:12px; border:1px solid var(--line); border-radius:10px; }
+.feature-history>summary { cursor:pointer; min-height:32px; font-weight:700; line-height:1.6; }
+.feature-history>p { line-height:1.7; margin-block:12px; }
+.library-pagination button { min-height:44px; padding:10px 16px; border:1px solid var(--line); border-radius:10px; background:var(--panel); color:var(--text); font:inherit; cursor:pointer; }
+.library-pagination button:disabled { opacity:.45; cursor:default; }
+.library-pagination span { font-size:.95rem; line-height:1.5; }
+@media(max-width:600px) { .library-pagination span { flex-basis:100%; order:-1; text-align:center; } }
+
 /* Capacitor Android app: the website keeps its existing layout; native builds use
    touch-first phone/tablet navigation and system safe areas. */
 .native-app-tabbar,
@@ -3606,4 +3615,16 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   :root:not([data-native-app="true"]) .layout-combat .omr-sheet {
     inset:calc(126px + env(safe-area-inset-top)) 0 0;
   }
+}
+.settings-feature-guide > button {
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 10px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }

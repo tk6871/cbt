@@ -1,0 +1,9 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><title>로컬 반응형 검사</title>
+<style>body{margin:12px;background:#ddd;font:16px sans-serif}nav{display:flex;gap:8px;margin-bottom:12px}button{padding:10px}#stage{position:relative;overflow:hidden}iframe{border:0;transform-origin:top left;background:white}</style>
+<nav aria-label="검사 화면 크기"><button data-width="390" data-height="844" data-scale="1">휴대폰 390</button><button data-width="820" data-height="1180" data-scale="0.8">태블릿 820</button><button data-width="1440" data-height="1000" data-scale="0.8">PC 1440</button><button data-width="3840" data-height="2160" data-scale="0.3">4K 3840</button></nav>
+<p id="size" role="status"></p><div id="stage"><iframe title="CBT 반응형 검사" src="../index.html"></iframe></div>
+<script>
+const frame=document.querySelector('iframe'),stage=document.querySelector('#stage');
+for(const button of document.querySelectorAll('button'))button.onclick=()=>{const {width,height,scale}=button.dataset;frame.style.width=width+'px';frame.style.height=height+'px';frame.style.transform=`scale(${scale})`;stage.style.width=width*scale+'px';stage.style.height=height*scale+'px';document.querySelector('#size').textContent=`${width} × ${height} CSS 픽셀 / 보기 배율 ${scale} (실물기기 검사가 아닙니다)`;};
+document.querySelector('[data-width="1440"]').click();
+</script></html>

@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.2',scope:'industrial',date:'2026.10.20',
+      title:'학습 목록·필답형 동선 통합 보완',
+      summary:'계산 목록을 끝까지 살펴보고, 이미지 원문과 필답형 공식을 더 쉽게 찾습니다.',
+      tags:['화면 보완','필답형','가독성'],
+      changes:['계산문제 목록을40개씩 넘겨 전체 확인할 수 있습니다. 좁힌 범위에 문제가 있어도 빈 목록 안내가 뜨던 현상을 수정했습니다.','검색·오답·계산 목록에서 이미지 문제는 원문 미리보기를 열어 확인합니다. 원본 화질과 다크·라이트 설정을 유지합니다.','필답형 계산 공부에 공식/문제 목록 바로가기를 추가하고, 결과가 없는 필터를 쉽게 초기화합니다.','기록 없는 추천 훈련을 첫 진단으로 구분하고, 신기술 학습관의 과거 기록은 접어서 현재 기능을 먼저 볼 수 있게 했습니다.']
+    },
+    {
       version:'5.1.5',scope:'industrial',date:'2026.10.19',
       title:'먼저 외울 한 줄 공식 모음',
       summary:'상사법칙과 CGT·CR·COP·BF 등 공식을 이름으로 찾아 먼저 외웁니다.',
@@ -2641,8 +2648,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.1.5';
+  changelog.versions.industrial = '5.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.1.5';
+  changelog.currentVersion = '5.2';
   window.CBT_CHANGELOG = changelog;
 })();
