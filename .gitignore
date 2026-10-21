@@ -10,6 +10,7 @@ dist/
 *.jks
 *.keystore
 work/jewelry-import/
+work/maintenance-engineer-import/
 node_modules/
 .pnpm-store/
 .env

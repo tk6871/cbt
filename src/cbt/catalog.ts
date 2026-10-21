@@ -12,7 +12,7 @@ const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspot
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'energy', 'energy-midterm', 'maintenance',
   'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
-  'information-engineer', 'forklift-craftsman',
+  'information-engineer', 'forklift-craftsman', 'maintenance-engineer',
 ];
 
 export const GEM_APPRAISER_TARGET_KEY = 'gem-appraiser-target';
@@ -113,6 +113,7 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_ENERGY,
     window.CBT_DATA_ENERGY_MIDTERM,
     window.CBT_DATA_MAINTENANCE,
+    window.CBT_DATA_MAINTENANCE_ENGINEER,
     window.CBT_DATA_ELECTRIC_CRAFTSMAN,
     window.CBT_DATA_GAS_CRAFTSMAN,
     window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
@@ -254,6 +255,8 @@ export function questionItems(
     rounds = rounds.filter((round) =>
       round.subjects.length === currentSubjects.length
       && round.subjects.every((subject, index) => subject === currentSubjects[index]));
+  } else if (scope === 'legacy-original' && catalog.key === 'maintenance-engineer') {
+    rounds = rounds.filter(round => round.subjects.length === 5);
   } else if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol' || catalog.key === 'information-engineer')) {
     rounds = catalog.key === 'information-engineer'
       ? rounds.filter((round) => Number(round.year) < 2020)
@@ -271,6 +274,10 @@ export function questionItems(
 }
 
 export function subjectsForScope(catalog: Catalog, scope: CurriculumScope): string[] {
+  if (catalog.key === 'maintenance-engineer') {
+    if (scope === 'legacy-original') return catalog.rounds.find(round => round.subjects.length === 5)?.subjects || [];
+    if (scope === 'all-mapped') return [...new Set(catalog.rounds.flatMap(round => round.subjects))];
+  }
   if (scope === 'legacy-original' && (catalog.key === 'hvac' || catalog.key === 'hvac-hansol' || catalog.key === 'information-engineer')) {
     return catalog.key === 'information-engineer'
       ? catalog.rounds.find((round) => Number(round.year) < 2020)?.subjects || []

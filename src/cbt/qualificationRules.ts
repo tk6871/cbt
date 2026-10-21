@@ -50,6 +50,11 @@ export const qualificationRules: Record<string, QualificationRule> = {
   safety: industrialRule('산업안전산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2381&jmInfoDivCcd=B0'),
   energy: industrialRule('에너지관리산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2960&jmInfoDivCcd=B0'),
   maintenance: industrialRule('설비보전산업기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=2035&jmInfoDivCcd=B0'),
+  'maintenance-engineer': {
+    ...engineerRule('설비보전기사', 'https://www.q-net.or.kr/crf005.do?id=crf00503s02&jmCd=1837&jmInfoDivCcd=B0'),
+    examMinutes: 120,
+    note: '과목별 40점 이상·평균 60점 이상. 수록 기출은 2006~2022년 체계이며 2025년 개편 과목과 다릅니다.',
+  },
   'electric-craftsman': totalRule('전기기능사', 'https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=7780&jmInfoDivCcd=B0'),
   'gas-craftsman': totalRule('가스기능사', 'https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=6335&jmInfoDivCcd=B0'),
   'hazardous-craftsman': totalRule('위험물기능사', 'https://www.q-net.or.kr/crf005.do?gId=&gSite=Q&id=crf00503s02&jmCd=6697&jmInfoDivCcd=B0'),

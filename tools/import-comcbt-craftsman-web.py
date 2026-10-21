@@ -12,7 +12,6 @@ import argparse
 import html as html_std
 import json
 import re
-import shutil
 import time
 import unicodedata
 import urllib.request
@@ -37,6 +36,7 @@ class Target:
     question_count: int = 60
     legacy_subject_ranges: tuple[tuple[int, int, str], ...] = ()
     legacy_before_year: int | None = None
+    legacy_question_count: int | None = None
     preserve_original_assets: bool = False
     index_pages_are_exam_pages: bool = False
 
@@ -81,11 +81,18 @@ def explanation_signature(question: dict) -> str:
     ])
 
 
+def has_visual_content(question: dict) -> bool:
+    # Text equality cannot prove that diagrams/formula image choices are equal.
+    return bool(question.get("images") or any(choice.get("images") for choice in question["choices"]))
+
+
 def reuse_exact_duplicate_explanations(catalog: dict) -> int:
     fallback = "등록된 상세 해설은 없습니다."
     candidates: dict[str, tuple[str, str]] = {}
     questions = [question for round_data in catalog["rounds"] for question in round_data["questions"]]
     for question in questions:
+        if has_visual_content(question):
+            continue
         if fallback in question["explanation"]:
             continue
         candidates.setdefault(
@@ -94,6 +101,8 @@ def reuse_exact_duplicate_explanations(catalog: dict) -> int:
         )
     reused = 0
     for question in questions:
+        if has_visual_content(question):
+            continue
         if fallback not in question["explanation"]:
             continue
         candidate = candidates.get(explanation_signature(question))
@@ -282,11 +291,13 @@ def parse_question(grid: etree._Element, target: Target, exam: Exam) -> tuple[di
 
 def parse_exam_file(target: Target, exam: Exam, html_path: Path) -> tuple[dict, dict[str, Path]]:
     document = html.fromstring(html_path.read_bytes())
+    expected_count = (target.legacy_question_count if target.legacy_before_year and exam.year < target.legacy_before_year
+                      and target.legacy_question_count else target.question_count)
     grids = document.xpath('//div[contains(concat(" ", normalize-space(@class), " "), " grid-box ")]')
-    if len(grids) != target.question_count:
+    if len(grids) != expected_count:
         raise ValueError(
             f"{target.name} {exam.date} {exam.session_label}: "
-            f"expected {target.question_count} questions, found {len(grids)}"
+            f"expected {expected_count} questions, found {len(grids)}"
         )
 
     questions = []
@@ -298,7 +309,7 @@ def parse_exam_file(target: Target, exam: Exam, html_path: Path) -> tuple[dict, 
             asset_records[url] = output
 
     numbers = [item["number"] for item in questions]
-    if numbers != list(range(1, target.question_count + 1)):
+    if numbers != list(range(1, expected_count + 1)):
         raise ValueError(f"{target.name}: invalid question order {numbers}")
 
     subjects = list(dict.fromkeys(item["_subject"] for item in questions))
@@ -384,10 +395,7 @@ def download_page(url: str, output: Path) -> None:
 
 def parse_target(target: Target, cache_root: Path, download_assets: bool = True) -> tuple[dict, dict[str, Path]]:
     exams = list_exams(target)
-    output_root = ROOT / "assets" / target.key
-    clean_root = output_root / "original" if target.preserve_original_assets else output_root
-    if download_assets and clean_root.exists():
-        shutil.rmtree(clean_root)
+    # Preserve originals and support retries without deleting previous assets.
 
     rounds = []
     all_assets: dict[str, Path] = {}
@@ -399,7 +407,7 @@ def parse_target(target: Target, cache_root: Path, download_assets: bool = True)
         all_assets.update(assets)
         print(
             f"  [{index:02d}/{len(exams):02d}] {target.name} "
-            f"{exam.date} {exam.session_label} {target.question_count}문제"
+            f"{exam.date} {exam.session_label} {len(round_data['questions'])}문제"
         )
 
     if download_assets:
@@ -424,6 +432,7 @@ def main() -> None:
     parser.add_argument("--information-current-index", type=Path)
     parser.add_argument("--information-old-index", type=Path)
     parser.add_argument("--forklift-index", type=Path, nargs="+")
+    parser.add_argument("--maintenance-engineer-index", type=Path, nargs="+")
     parser.add_argument("--cache-root", type=Path, default=Path("/private/tmp/cbt-comcbt-craftsman"))
     parser.add_argument("--skip-assets", action="store_true")
     parser.add_argument("--asset-manifest", type=Path)
@@ -477,6 +486,19 @@ def main() -> None:
             ((1, 60, "과목 구분 없음"),),
             preserve_original_assets=True,
             index_pages_are_exam_pages=True,
+        ))
+    if args.maintenance_engineer_index:
+        targets.append(Target(
+            "maintenance-engineer", "설비보전기사", "설비보전기사",
+            tuple(args.maintenance_engineer_index), "CBT_DATA_MAINTENANCE_ENGINEER",
+            ((1, 20, "설비진단 및 계측"), (21, 40, "설비관리"),
+             (41, 60, "기계일반 및 기계보전"), (61, 80, "공유압 및 자동화")),
+            question_count=80,
+            legacy_subject_ranges=((1, 20, "설비진단 및 계측"), (21, 40, "설비관리"),
+                                   (41, 60, "기계일반 및 기계보전"), (61, 80, "윤활관리"),
+                                   (81, 100, "공유압 및 자동화")),
+            legacy_before_year=2022, legacy_question_count=100,
+            preserve_original_assets=True,
         ))
     if not targets:
         parser.error("가져올 종목 목록 파일을 하나 이상 지정해야 합니다.")

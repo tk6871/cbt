@@ -55,7 +55,7 @@ async function pointAssetsToPublishedSite(file) {
 await Promise.all([
   ...['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-midterm.js', 'energy-engineer.js', 'maintenance.js',
     'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js',
-    'forklift-craftsman.js', 'jewelry.js']
+    'forklift-craftsman.js', 'maintenance-engineer.js', 'jewelry.js']
     .map((file) => pointAssetsToPublishedSite(`data/${file}`)),
   pointAssetsToPublishedSite('modern/cbt.js'),
 ]);
