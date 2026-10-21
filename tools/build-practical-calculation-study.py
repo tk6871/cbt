@@ -11,6 +11,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from PIL import Image as PILImage
 from pypdf import PdfReader
+from practical_algebra_primer import build_algebra_primer
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
@@ -124,6 +125,7 @@ story.extend(section('숫자가 보여도 전부 대입하지 않습니다','먼
 story.append(p('분수 읽기 · 위를 아래로 나누세요','head'))
 story.extend(fraction_rows(DATA['fractionBasics']))
 story.append(PageBreak())
+story.extend(build_algebra_primer(p,FractionFormula))
 for page_index in range(2):
     story.append(p('먼저 외울 한 줄 공식' if page_index==0 else '함께 알아둘 보충 공식','title'))
     story.append(p('공식 이름 → 한 줄 식 → 기호 뜻 → 짧은 암기법. 같은 글자라도 공식마다 뜻이 다릅니다. 보충 공식은 출제 확정이 아닌 복습용입니다.','small'))
