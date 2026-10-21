@@ -248,6 +248,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   energy: { icon: '♨', className: 'green', description: '열·연소·설비관리' },
   'energy-midterm': { icon: '♨', className: 'green', description: '중간고사20주제 · 전용 오답·점수' },
   maintenance: { icon: '⚙', className: 'violet', description: '자동화·진단·기계정비' },
+  'maintenance-engineer': { icon: '⚙', className: 'violet', description: '기사 기출 · 진단·관리·보전·공유압' },
   'electric-craftsman': { icon: '⚡', className: 'blue', description: '전기이론·기기·설비' },
   'gas-craftsman': { icon: '◉', className: 'green', description: '가스안전·장치·일반' },
   'hazardous-craftsman': { icon: '◆', className: 'orange', description: '화재예방·위험물 취급' },
@@ -1666,6 +1667,7 @@ const formattedTime = computed(() => {
 });
 function examDurationSeconds(questionCount: number): number {
   if (selectedKey.value === 'energy-midterm') return Math.max(60, questionCount * 90);
+  if (selectedKey.value === 'maintenance-engineer') return Math.max(60, questionCount * 90);
   const rule = officialRule.value;
   if (!rule) return Math.max(90 * 60, Math.ceil(questionCount * 90));
   const officialQuestionCount = rule.totalQuestions
@@ -4633,6 +4635,7 @@ onBeforeUnmount(() => {
       </header>
 
       <div class="page-content">
+        <p v-if="selectedKey === 'maintenance-engineer' && !session" class="qualification-scope-notice" role="note">설비보전기사 수록 범위: 2006~2022년 공개 기출 27회차. 2022년 4과목과 이전 5과목을 구분합니다. 2025년부터 개편된 현행 과목과는 다르며, 최신 시험 준비 시 출제기준을 함께 확인하세요.</p>
         <div v-if="appHydrating && dynamicUiEnabled" class="dashboard-skeleton" aria-label="학습 화면을 준비하는 중">
           <i class="skeleton-title" /><i /><i /><i /><i class="skeleton-wide" />
         </div>
@@ -4684,7 +4687,7 @@ onBeforeUnmount(() => {
                     <label><span>종목</span><select :value="selectedKey" @change="updateQualificationFromSetup"><option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option></select></label>
                     <label><span>시작</span><select v-model.number="yearFrom"><option v-for="year in [...availableYears].reverse()" :key="year" :value="year">{{ year }}년</option></select></label>
                     <label><span>끝</span><select v-model.number="yearTo"><option v-for="year in availableYears" :key="year" :value="year">{{ year }}년</option></select></label>
-                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : (selectedKey === 'information-engineer' ? '현행 5과목 · 구문제 연결' : '전체 기출문제 포함')) }}</option><option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option><option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option><option v-if="selectedKey === 'information-engineer'" value="legacy-original">구 5과목 원형</option></select></label>
+                    <label><span>출제 체계</span><select v-model="curriculum"><option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : (selectedKey === 'information-engineer' ? '현행 5과목 · 구문제 연결' : '전체 기출문제 포함')) }}</option><option v-if="!selectedCatalog.isVirtual" value="current">{{ selectedKey === 'maintenance-engineer' ? '수록 최신 4과목 · 2022년' : '현재 과목 체계만' }}</option><option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option><option v-if="selectedKey === 'information-engineer' || selectedKey === 'maintenance-engineer'" value="legacy-original">구 5과목 원형</option></select></label>
                   </div>
                   <div class="sunjae-ticket-summary"><span><b>{{ yearFrom }}~{{ yearTo }}</b>년</span><span><b>{{ rangeRounds.length }}</b>회차</span><span><b>{{ selectedItems.length.toLocaleString() }}</b>문제</span></div>
                 </div>
@@ -4814,9 +4817,9 @@ onBeforeUnmount(() => {
                 <span>출제 체계</span>
                 <select v-model="curriculum">
                   <option value="all-mapped">{{ selectedCatalog.isVirtual ? '통폐합 목표 과목 · 유사 보강 포함' : ((selectedKey === 'hvac' || selectedKey === 'hvac-hansol') ? '통합 3과목 · 구문제 포함' : '전체 기출문제 포함') }}</option>
-                  <option v-if="!selectedCatalog.isVirtual" value="current">현재 과목 체계만</option>
+                  <option v-if="!selectedCatalog.isVirtual" value="current">{{ selectedKey === 'maintenance-engineer' ? '수록 최신 4과목 · 2022년' : '현재 과목 체계만' }}</option>
                   <option v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" value="legacy-original">구 4과목 원형</option>
-                  <option v-if="selectedKey === 'information-engineer'" value="legacy-original">구 5과목 원형</option>
+                  <option v-if="selectedKey === 'information-engineer' || selectedKey === 'maintenance-engineer'" value="legacy-original">구 5과목 원형</option>
                 </select>
               </label>
             </div>
@@ -5674,6 +5677,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">
+            <header><div><span>NEW SUBJECT · v5.3</span><h2>설비보전기사 기출 추가</h2></div><p>종목 선택에서 설비보전기사를 고르면 2006~2022년27회차·2,660문제를 학습·시험·랜덤으로 풀 수 있습니다. 산업기사와 별도 기록이며, 그림265장은 원본을 보존하고2배 개선했습니다. 다크·라이트·원본 표시도 기존 설정을 따릅니다. 상세 해설 미등록 문항과2025년 개편 체계의 차이는 별도로 안내합니다.</p></header>
             <header><div><span>STUDY FLOW</span><h2>필답형과 계산 공부를 더 편하게</h2></div><p>공식부터 읽거나 문제 목록으로 바로 이동하세요. 계산식은 분수선으로 보고 분자·분모와 숫자 대입을 함께 익힙니다. PDF도 같은 수식입니다. 계산 목록은40개씩 끝까지 둘러보고, 검색·오답·계산 목록의 이미지 문제는 원문으로 미리 봅니다.</p></header>
             <details class="feature-history"><summary>이전 필답형 화면 개선 기록 보기</summary>
             <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>

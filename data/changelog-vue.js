@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3',scope:'industrial',date:'2026.10.21',
+      title:'설비보전기사 기출 추가',
+      summary:'설비보전산업기사와 별개로 기사 공개 기출27회차·2,660문제를 풉니다.',
+      tags:['새 종목','설비보전기사','그림 개선'],
+      changes:['2006~2022년 COMCBT 공개 시험 화면의 문제·정답·등록 해설과 그림 보기를 연결했습니다.','2022년4과목80문제와 이전5과목100문제를 구분하고, 윤활관리를 포함한 구 과목도 선택할 수 있습니다. 수록 기출은2025년 개편 과목과 다릅니다.','그림265장을 Mac Real-ESRGAN 타일256으로4배 처리 후2배로 축소했습니다. 원본을 보존하며 기존 다크·라이트·원본 표시 설정을 적용합니다.','회차별 학습·시험, 랜덤·검색·즐겨찾기·오답·이어풀기를 기존 방식으로 사용합니다. 상세 해설이 없는 문제는 미등록으로 안내합니다.']
+    },
+    {
       version:'5.2.1',scope:'industrial',date:'2026.10.21',
       title:'계산식을 분수로 읽고 대입하기',
       summary:'나누기 공식을 가로 분수선으로 보고 위·아래에 넣는 값을 이해합니다.',
@@ -2655,8 +2662,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.2.1';
+  changelog.versions.industrial = '5.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.2.1';
+  changelog.currentVersion = '5.3';
   window.CBT_CHANGELOG = changelog;
 })();

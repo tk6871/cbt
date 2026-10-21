@@ -1,0 +1,2673 @@
+{
+  "date": "2026-10-21",
+  "qualification": "설비보전기사",
+  "rounds": 27,
+  "questions": 2660,
+  "yearRange": [
+    2006,
+    2022
+  ],
+  "images": 265,
+  "reusedExactTextExplanations": 99,
+  "detailedExplanations": 1571,
+  "model": "realesrgan-x4plus-anime",
+  "tile": 256,
+  "pipeline": "4x-model-to-2x-bicubic",
+  "sourceIndexes": [
+    "https://www.comcbt.com/xe/webhaesul/10153024",
+    "https://www.comcbt.com/xe/webhaesul/10153026"
+  ],
+  "limits": "구 기출 정답·해설 구조 대조이며 전체 정답의 사실 검증이나 2025년 개편 범위 수록을 뜻하지 않습니다.",
+  "assets": [
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m6b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m6b1.png",
+      "sourceSha256": "542efa4a815ed4f4eeff3b34e2f50f8513a8ac7af15c3193212c21f9f750fdee",
+      "outputSha256": "bf87c7c93e5a260fbcc934f0d2a9253bdbb5e5e32b80e9310e40a4be580f2a14",
+      "size": [
+        158,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m6b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m6b2.png",
+      "sourceSha256": "a5055af434759c3d6accba78470bd88aafc988f2036cf7a5e08234077248794b",
+      "outputSha256": "e0a9b8e80115493ffba15979f1fdff9d83685ae34c9703ae86ab86f8788205c8",
+      "size": [
+        156,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m6b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m6b3.png",
+      "sourceSha256": "731fb92530fcbe8d249e17f77fd839c3c828e76f78cd82c834b25e3a632a86de",
+      "outputSha256": "21b7774cd1dd8dab3fa353eeb02f349b7e0176edf5c1100ec4473fb6d7a40cac",
+      "size": [
+        156,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m6b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m6b4.png",
+      "sourceSha256": "b18960a08b024a1165b1d19482208194e2ca842f99c5112096d91886cb4ddefc",
+      "outputSha256": "a7856f80815592df6af78d4a6abdcb8fb537f38e84024f8560b686b0b2d25064",
+      "size": [
+        162,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m6.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m6.png",
+      "sourceSha256": "5ba93f9a5e32cf75342b478103ea8b4a36d9f65a3bf292cb2b4f0447455a1e42",
+      "outputSha256": "d7344668d9eae4f6ddfbca6aac6da528c9182fdf0f386410f426b6314a246732",
+      "size": [
+        352,
+        294
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m13.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m13.png",
+      "sourceSha256": "d9913a93d1b3f01a20cac5d789a8ec2708d92a6ad755667093f45ae8a08a4ac1",
+      "outputSha256": "e2b12d3e60e6cb61fc81ddec7b1cac98e6115f25523c8d2b0a9b023604432a08",
+      "size": [
+        648,
+        404
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m14b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m14b1.png",
+      "sourceSha256": "16ef57d09e179064abf3f61d397240788844b4b6c31225d326d64c188991a69f",
+      "outputSha256": "c632c1ff0ef0f6e5cb6644d1e5acf0db36b5547842a81eb4c1a6d83f11d7bc6a",
+      "size": [
+        186,
+        54
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m14b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m14b2.png",
+      "sourceSha256": "a0456506cb878859f6eaeb9b8eaba08c8207146919572549f5dd2d6b51b823cf",
+      "outputSha256": "b03d9960e2d98c9dd55f2abf45c7040f6a622bc4f7da9eccaaf005733195fc3a",
+      "size": [
+        190,
+        54
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m14b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m14b3.png",
+      "sourceSha256": "50d46009f49bedf54076b092df3defcc6489fd0e361679958feca1c6ed4cc464",
+      "outputSha256": "0357239cd19f9f54bf61cc737f6e14e12fabaedae426bb9b2741d0a0cb1e8ade",
+      "size": [
+        184,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m14b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m14b4.png",
+      "sourceSha256": "56d60863240df387ff00136715b89f5ecd02052715dec065720a83078bf425d3",
+      "outputSha256": "b6ffcf205893cec55aca11605a21caeec9281c6632538eda16e7d0c3fc8ce0a5",
+      "size": [
+        232,
+        152
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m14.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m14.png",
+      "sourceSha256": "3be8c3f335b197db5915833247023c67f28c3f98fbf07b781193112296eb90d2",
+      "outputSha256": "7edf5ed72ca9b5c93838f7039a7c5d724da15651f213d92e894db4afb16c5047",
+      "size": [
+        200,
+        362
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m22b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m22b3.png",
+      "sourceSha256": "9309029dcd2d1a6846a1b16da344871ea551aa842c5911ff24370b617cd0ac75",
+      "outputSha256": "2bc7b7b2b01d4ff8d8faa76a9e0795f5e730cb7bdeec950a98a089cf95f178dc",
+      "size": [
+        134,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m22b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m22b4.png",
+      "sourceSha256": "2243590d1a2754965c12081fa23f8d32a03d7582814c2f5e730958c77b9ac959",
+      "outputSha256": "5065c1f4855c11b187c12f095602391a2d6af43bf6b52625c06fc7a33fadfed0",
+      "size": [
+        128,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m27.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m27.png",
+      "sourceSha256": "0e945fa24c1e7f02302014127e0844d478c9e78b5096cb55375a53c826343ecb",
+      "outputSha256": "ac51aae734dc0126855a2dcf7f869a3ef8e7c1cf83e3c41798f4a968a59580ab",
+      "size": [
+        438,
+        146
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m32.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m32.png",
+      "sourceSha256": "447df1feb0a671af0e1d3abe4135cad9baaab2d36931359d8f9fdc96b73761cd",
+      "outputSha256": "a8a781fb18b0367d3182f703c40e61c9f110bd3eefaa35b4245a961fc9477e76",
+      "size": [
+        204,
+        66
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220424/images/cet20220424m68.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220424/images/cet20220424m68.png",
+      "sourceSha256": "183c23129f9b355459538fed542176efa417c97323324007dfb2ccb155448b6a",
+      "outputSha256": "828e0ce2ff291ba3b937793dbbe1218b55a1729d623fe71b38144e5ad3b4e5a0",
+      "size": [
+        636,
+        620
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m25.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m25.png",
+      "sourceSha256": "df1370365dd634288441761de876342e36a1ed86270f5b1670c78997c6e29a49",
+      "outputSha256": "206638f60dbf81333e783e3bd69bad85b7d9f392ac087f0518a8acc80cc1a33e",
+      "size": [
+        590,
+        228
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m71.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m71.png",
+      "sourceSha256": "a1f7d00034666dca591e7958d16911e3fdd5ddc45a72033fef794bede47d9587",
+      "outputSha256": "4d01b7d33fb885a9cbbf30ce5c30fa9c39abbf03e05eac97e4f100d8188eb0f9",
+      "size": [
+        396,
+        258
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m75b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m75b1.png",
+      "sourceSha256": "80c8c070dae2ebe5dcd8c4c44f78d9b1b8e1b3429e3755d99cec11fdc2e10177",
+      "outputSha256": "adddb06873bd3a7014de3ccb57646241b1959650756491abf3a570b080725aa0",
+      "size": [
+        246,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m75b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m75b2.png",
+      "sourceSha256": "1577d42324d4103378601eb6dfdf23f657c1bc5be09bafbda568b44b328934b7",
+      "outputSha256": "809b3bf29a9a4e9bec24d2862b6f243ea46eaa6cc5b9e60b105e6b1ceef2f957",
+      "size": [
+        244,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m75b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m75b3.png",
+      "sourceSha256": "959580eae46c9f3aed9069872f82189931404f16badc814a8678d96f12df9ce0",
+      "outputSha256": "f63524c81419eca9280bd11ce22553dc3bed528a5d797c56f476842d5bd5f104",
+      "size": [
+        240,
+        122
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m75b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m75b4.png",
+      "sourceSha256": "28defce9e242f4fbd361439cb600821b0568eeb53ba8ea8fa523801a3506a7b9",
+      "outputSha256": "d2517aadad7e4f78a04e83c576a86704df52cb1fdc7c71755658df08321434e7",
+      "size": [
+        222,
+        116
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m75.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m75.png",
+      "sourceSha256": "6083cce98b2e21b1a12be6e222193f1f4cfe898f5b4b70e6d151d3a31bf430a8",
+      "outputSha256": "519da37532b595f2baa5b9e5a7c2b6b331fef3abfa998eaa8fe8a0d6af417d12",
+      "size": [
+        336,
+        172
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m80b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m80b1.png",
+      "sourceSha256": "22156083289e39e21a7b1322bb7e684b930ff58a5be532091a9c0069058cf7bc",
+      "outputSha256": "bf14d8c7dd156fd927feed5ec64f4a5210817741dd01f7dcd2347184fd33d8d8",
+      "size": [
+        314,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m80b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m80b2.png",
+      "sourceSha256": "f061bc6a3d4d6dc51a6671483f3f44b0d40ee8fa17793cc3e8cd2baf388f1532",
+      "outputSha256": "d9242450db685b7ac5805d9466e200eaedcccf59b1ca83dc306ff318c4e7e022",
+      "size": [
+        312,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m80b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m80b3.png",
+      "sourceSha256": "913b0fea6167c3ee0c08110594acfa3e39191be3e2c17be5182d281d8b6ce422",
+      "outputSha256": "ec1292cfcc882d1ece0caf292f8ae54926d22e76dc8b4fb815a23e48cf844a08",
+      "size": [
+        310,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20220305/images/cet20220305m80b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20220305/images/cet20220305m80b4.png",
+      "sourceSha256": "2dbbe56f95bb5b279b4bdc88702d37e9860532ab7cc3fb77d18bf8dac2cacfc7",
+      "outputSha256": "62038adf08991ac7ca60aa54e753c934247e54614484e13621b05ce7a4055c56",
+      "size": [
+        318,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m5b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m5b1.png",
+      "sourceSha256": "e1bbc62db470843d883116fc4c6ff92eda675092db41a5ef5feeccab81c3a2eb",
+      "outputSha256": "ca0c395d9323e6b816aba9015a4a5cf63b3bad76904217b22fa214d17a6c0388",
+      "size": [
+        142,
+        54
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m5b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m5b2.png",
+      "sourceSha256": "84041ff45ec60627421be3c52e8f378938909e8521add1bf9481c38ceeb98cc3",
+      "outputSha256": "63c667dc201ca49da2134e0c9f3d17780c2ef806d7ad66f490739ca4b5f4a450",
+      "size": [
+        144,
+        56
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m5b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m5b3.png",
+      "sourceSha256": "64b501370cde98e45fc5297a0f443ce0ffb92437415c018e98e1dec54061b658",
+      "outputSha256": "fe3b9df0f6abf0dc33913ad9321f77dd9601e6034829e3190b397cb786c32f2f",
+      "size": [
+        198,
+        62
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m5b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m5b4.png",
+      "sourceSha256": "665d6620ccae36585946cbc97eb5ca5762f9db2ea38ec4bedc49cb7b682f7964",
+      "outputSha256": "8d4aa2e04b4efabcbfba637d8a0230c3d5054d3ef8071a3e5ffcd91f2e3da766",
+      "size": [
+        218,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m32b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m32b1.png",
+      "sourceSha256": "16981b3ae92a90f51df560e6c3053b844d15ceab2f58b1244a972cc47585ff51",
+      "outputSha256": "cb9b4c35466b66a4ac5d630c5f9c0999b4438552999c26819482516c6c310901",
+      "size": [
+        298,
+        126
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m32b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m32b2.png",
+      "sourceSha256": "3aabf9089be07dbbd22582695ea4c17b58bdc83044b4ffdaa788fa53b6384e93",
+      "outputSha256": "3f9eec5ba8055299fbcb759e0caeb976b0f056ab6b03ee6f9f1ca292b11d9a63",
+      "size": [
+        300,
+        128
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m32b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m32b3.png",
+      "sourceSha256": "c73c149797a105bc80e99b789097b5c3c565f7347b4e86cdfa8db22eea202b22",
+      "outputSha256": "06785282018909c44d7bbfd6aea0ca3525fe9a0651953b3de61cd325cb093842",
+      "size": [
+        302,
+        128
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m32b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m32b4.png",
+      "sourceSha256": "80887457b2f9d831827e3025471437bd3172c32df12c0432621286f3a813ba4f",
+      "outputSha256": "e0f5afba6997a05526d684688da0e50c5ec89d1983780d58a7be7aada6beb3b4",
+      "size": [
+        216,
+        130
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m33.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m33.png",
+      "sourceSha256": "6e65073953a6bcdcbc87bee6883c5cfbd04cb7ed7318e0447b66f4b33fd7474c",
+      "outputSha256": "c9433faedaead9066c01b7e2a692e001d08fd6a80ef44cf58431289d2df41c5b",
+      "size": [
+        616,
+        660
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m38.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m38.png",
+      "sourceSha256": "9e0d20a2eec95cbca006c7bc24dee89f317d7170cea6f1a077930819c708a832",
+      "outputSha256": "21fd289a96ec2626dd2f764ffc51087be09f61b5a22c2788c9007b2c25f9d455",
+      "size": [
+        696,
+        486
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m43.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m43.png",
+      "sourceSha256": "2da4a6b873b7b9193bd6b195b5194a084a207e9c120979efa5ae0c6b3840fa86",
+      "outputSha256": "aba53dbc099ba00d4b49ed82d7be4c78b468c8eb5c772ba90c6fa9a58cbdfbff",
+      "size": [
+        226,
+        202
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m72.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m72.png",
+      "sourceSha256": "d1533217bb183f5939eb793269127d227159747da52176223202ff0fdb56fcc9",
+      "outputSha256": "fc79b92a2a8ce007f0cc3bd0b05eb49f97a52c336ef885bb42034de0b82f230b",
+      "size": [
+        612,
+        148
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m82b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m82b1.png",
+      "sourceSha256": "e4f13ea8e2ba19d90862fcd9305019d07a2d8f30c9268cb7f44598bf8080866b",
+      "outputSha256": "433e943550a5588b4e24d06078ea4c02d4f38dbb5fc30911d3fb38c47e4a3f4c",
+      "size": [
+        366,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m82b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m82b2.png",
+      "sourceSha256": "f47b1cda0e9241e575ed411bb0a025a957229e03c08cd8df057d9d29c435fba6",
+      "outputSha256": "e805bd9f58003423d8b0ffd87c7851bdca62e20c45fbc032ea0d3bcdb970ad19",
+      "size": [
+        358,
+        116
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m82b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m82b3.png",
+      "sourceSha256": "f46a666abd3ea55c2cc5bc5dfe341bdc29f79a32416977a53907abd6ad5ecd39",
+      "outputSha256": "6adb0e25988e669fdd1166ba692514cc91f1f318bd46e76773d9bbfcb54820c3",
+      "size": [
+        360,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m82b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m82b4.png",
+      "sourceSha256": "4c1b5f6d6a1cf61aeb5e40035e7fabfbcbe605addef9047bc4151d02183c4ab5",
+      "outputSha256": "57f67a97d265c3f9d9a22cb38c38634250daa4da508b5c47f30fc452d8396466",
+      "size": [
+        362,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m85b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m85b1.png",
+      "sourceSha256": "31f637b231f035ab7017e4a38424fc001b99aafd7383346baa1948ee6c5f4cba",
+      "outputSha256": "e897183b1b4ea0ad88a2495fe406be168829790c7887ed22e432c01a0f37072e",
+      "size": [
+        232,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m85b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m85b2.png",
+      "sourceSha256": "25e44cfed4ace429dcf334473d6cd1e8f657e2f1d89f5954fa13e48564e14a2b",
+      "outputSha256": "793078ca8dccbd0dd7525f5d1f6496873c2f467c7a5f523ca5ee1eb53d863aa9",
+      "size": [
+        206,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m85b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m85b3.png",
+      "sourceSha256": "e43408bebec5d3cfa1a69eb18b47c7a3e6b2ab3935400292b1a892d55a43ce92",
+      "outputSha256": "4463b8b3e2fbe48d0d097609ac77eaf1344d7b378e2b87f5f8327b53dcd73834",
+      "size": [
+        194,
+        130
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m85b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m85b4.png",
+      "sourceSha256": "7d6452397ced11f5785fc6026c2dc71bfb52c6c48d353e78fd9e712a579ac2f8",
+      "outputSha256": "350ee1b5815412498ac48e8233946c52e463cc2decb38f403bef60e5d2b2dfed",
+      "size": [
+        188,
+        124
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m85.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m85.png",
+      "sourceSha256": "09ef9c7c27c37d12b37f2a09c0a4a39ccff860d0314c334c8f1b42ae597fc582",
+      "outputSha256": "4804d23bf2d6eaddfeedf7f3f971be21fe286ca5acae6af95618910286b6af55",
+      "size": [
+        364,
+        298
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m96b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m96b1.png",
+      "sourceSha256": "f3e89543cff496c6ced343a613ed1e39bca34646eb3840f4b0bb2e4749fbfea7",
+      "outputSha256": "073c5f1be79d0d7a3266e622b006b497f5429b27f78bdd6dba5c0c8b674884c9",
+      "size": [
+        212,
+        142
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m96b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m96b2.png",
+      "sourceSha256": "84050d157c4bfa338199fd36b0e1e252b5476eb6b7f083bfc983a2e30641a327",
+      "outputSha256": "47ef00bb03d273113ffcc5e7c6256425e55683d4e09879f45b69b29f62ee060d",
+      "size": [
+        230,
+        130
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m96b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m96b3.png",
+      "sourceSha256": "d017a8cad5f74c3d07ef1acc941fbea5fed3212ba86a05623ab86dfdb9a1185a",
+      "outputSha256": "58e96801ccc67baaf53452c2b38805949ef13efeca4bc5506c8942738aad826d",
+      "size": [
+        218,
+        136
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210912/images/de20210912m96b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210912/images/de20210912m96b4.png",
+      "sourceSha256": "1221a04ce56c2c19765652668d39763d7cf7aa04e26a434b61edafc59c5d5cda",
+      "outputSha256": "0cd673b2c7edc2e7e85bae452d85fdaf4a01210acc9ab550df5c080ba2865981",
+      "size": [
+        216,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m1b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m1b3.png",
+      "sourceSha256": "13bb66e446042bbe106cdbec4317a1eb0addb2477acc467a169caede71086e7c",
+      "outputSha256": "53b96bfb8caecaa2b7e3b395e36cff3d3581c61ae05e6b4ad2848edc4ad1a5ab",
+      "size": [
+        182,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m1b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m1b4.png",
+      "sourceSha256": "f7e63bbba3e4e6cf41b40c3380f8d11e9a4182eb45a4fc48a9a70152a2396ca5",
+      "outputSha256": "6c705c727abc5a1b5b1104818c4454de53ba08372504f713ab10e002a570f647",
+      "size": [
+        308,
+        116
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m1.png",
+      "sourceSha256": "cfd4bfaefc3c4f42a19bc74ee7a351b0ebf8664828301634244b1658c22729f9",
+      "outputSha256": "030de6959525faadcfe5a7d2ba2baebc30cf62dd37a256124c17ee3d814f7762",
+      "size": [
+        318,
+        138
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m6b2-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m6b2-1.png",
+      "sourceSha256": "6f0353c2bd5bdaa58b38536bf4252f926ba76157b0d9573f3df5f7894b807c7a",
+      "outputSha256": "d57451a9d386e2b4db05c2cd6c98b411412e9a6a7b401b31e192349706bc16a7",
+      "size": [
+        372,
+        118
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m6b3-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m6b3-1.png",
+      "sourceSha256": "90174c88656f4f080e67393a8f1da9135c826f9f3de2df050432f22473b27dae",
+      "outputSha256": "6c765073ca4175e44b8f52ece7413c230c6eb624614af81009c18541c1ee0d5d",
+      "size": [
+        490,
+        128
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m6b4-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m6b4-1.png",
+      "sourceSha256": "abac1c92f1e08796d43a654514274a1bf94066e92d0934b6feb9ebc93c9b35b4",
+      "outputSha256": "c0d85fe5c2fb91c5ec34abcf4d9d1bf7771485ad5ff7c052a7bd2d981bf2a244",
+      "size": [
+        464,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m17m1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m17m1.png",
+      "sourceSha256": "7e6fb57b6040c4269140aee8076e7a9025385ad3d662aa10451b2967ab99c587",
+      "outputSha256": "7e3bddb57801b802e024f09717493b64f03fa3013daa7b19d2dbc402b5fb5143",
+      "size": [
+        154,
+        116
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m27.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m27.png",
+      "sourceSha256": "8fb9f50d74fe724f3969abd1a164c46f0139e1910f06af0a2143de98cb96180b",
+      "outputSha256": "9bb12791f8e852a45e1a9de5498056c8eb8dbb9e7d42f44b8fe3713311662d5a",
+      "size": [
+        588,
+        216
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m97b1-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m97b1-1.png",
+      "sourceSha256": "65082ad215f1cd0f91b8d13f740f662f30f3ccced6fc0c46be65a4f716656c87",
+      "outputSha256": "3571720529bf26974af08ea8aac96a0f7eb8a64fa98822ef26ded27afd97f3cd",
+      "size": [
+        220,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m97b2-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m97b2-1.png",
+      "sourceSha256": "44c23d30c9600bc087bce278807d52308294bd19de10e0782ca7b18e66014026",
+      "outputSha256": "9dd9f649e55b8fd569696a23e2aa69a4dbe5cc923b1bc575958a629349a78047",
+      "size": [
+        218,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m97b3-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m97b3-1.png",
+      "sourceSha256": "3670dc8b4761625015d9291e2488ce29eed254f5132810e4264e6fc551f2088a",
+      "outputSha256": "602c6cd139095312c1f639b2aed09952335a71f3dbb5c9ba73cce2435d56a2d7",
+      "size": [
+        216,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210515/images/de20210515m97b4-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m97b4-1.png",
+      "sourceSha256": "6eb239c4ec0ced87c0891fd2fae6248c9ad8d0533ad72bf441acd7a7ea6e1d07",
+      "outputSha256": "9aa2e73f4e8d8afb56b76a21ca26d99ad69c817ce2b20179bdf5e788a2c28322",
+      "size": [
+        222,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m25.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m25.png",
+      "sourceSha256": "64f81cc3a6b14cbd6c82e6d310ebbe42248764eaa41700fc7415fc36b666cc1a",
+      "outputSha256": "e4326eb1f648cd80ba3d05fb4ebc576530ea5accd9311386f27a6e572203baaf",
+      "size": [
+        610,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m27b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m27b1.png",
+      "sourceSha256": "e6c5803933c3900f4303e2919ec4d0ae9a9fd1cef6df7211807a012d2755dfbd",
+      "outputSha256": "dc6b2d87c9903ceb87983d64726929c5265512e1af21b5c06d07216b332be67a",
+      "size": [
+        354,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m27b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m27b2.png",
+      "sourceSha256": "3b093f9719de21c606c980f6eb2e9f8919fc6febbec6c551756b79faed8b40c4",
+      "outputSha256": "2d0b40d099ba760244c3fd8310a8781eb4368f06da3d09cb5ec8e6ab557f3512",
+      "size": [
+        356,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m27b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m27b3.png",
+      "sourceSha256": "c739a0fef911475b5a21ad55425f7ac9287e1c48ba37369880eb3775ff2ef214",
+      "outputSha256": "f7ea10eb5e98ebfefeb5072100716c6f459141b1315f440374a5a5bbfce14888",
+      "size": [
+        352,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m27b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m27b4.png",
+      "sourceSha256": "e5776315a7881b56f36836cfbaee6779c3b3deaa626987ccddec4f63424a1a19",
+      "outputSha256": "d6b156e672bf8792b1f96a7486bcd2f90c1eac34e2c89cc50260381d78037aba",
+      "size": [
+        342,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m30.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m30.png",
+      "sourceSha256": "898418008de4f42eeff0fbad3498f0468852d928e93ded3aedb5df28fdb6bf5f",
+      "outputSha256": "7631d7d9345beb03664b9fa0e551e0c338233616643342e6801f82634eb212eb",
+      "size": [
+        618,
+        338
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m94b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m94b1.png",
+      "sourceSha256": "f3879d987e51e3486a5b2c52735703d30cb1020552047ce6dff3dde17ca4d663",
+      "outputSha256": "3a11b48da70f6387f3bafada84cbcbbd35a071a9f7974c9a3add4f005b8784ec",
+      "size": [
+        110,
+        144
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m94b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m94b2.png",
+      "sourceSha256": "f01f8330d8c584cd9b71bc8a07a1a5bb34ce68016a28bcaa2cacffb1ad5cdb95",
+      "outputSha256": "27b3bda366208e15334db3dd78db4dec33e9349accb83bf7a4653bcefe0ae00d",
+      "size": [
+        112,
+        150
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m94b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m94b3.png",
+      "sourceSha256": "9e1c7a9bb799a25fe705eafb662583fce9479b0997a3167fad749f30bb8e78cd",
+      "outputSha256": "8325afb25f2ca6660b24d8a4012922e799caa5dd1c2e2411e9ab8e7243227efc",
+      "size": [
+        156,
+        150
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m94b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m94b4.png",
+      "sourceSha256": "f0950deffa93d2e95e3d43c949a190a8b18c95eb4a92d322abc0af4fd9432560",
+      "outputSha256": "aeaf266a1ee0cbefec5864997260872a7c5073db397b298d8d232b4e0900bcd2",
+      "size": [
+        190,
+        148
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20210307/images/de20210307m97.gif",
+      "output": "assets/maintenance-engineer/comcbt/20210307/images/de20210307m97.png",
+      "sourceSha256": "4a59df938153d22002a4e342da00b2591cf987616a2af591ab524a3cdb181b06",
+      "outputSha256": "4e93700633ec8f44003d32ca4069fbf91da60d6493e4c1b0be2c9eba90f739ac",
+      "size": [
+        488,
+        480
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200926/images/de20200926m2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200926/images/de20200926m2.png",
+      "sourceSha256": "5897d53b01fd853c888b2226eac67cffbc706c92413f60bd00804c4baba990f0",
+      "outputSha256": "033ee2a49a391e8ba90e42f6f54d154207d38f6568d88a66dbc809e6cffddaf3",
+      "size": [
+        612,
+        184
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200926/images/de20200926m37.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200926/images/de20200926m37.png",
+      "sourceSha256": "04b8c03f8082d999cf2506f58bd1f8ef9937e0753c303169320a9771c2059d65",
+      "outputSha256": "02c9f36465d65d6f7cc5cf9d6e0c188a55796b5a766e45e1c155378628f92c10",
+      "size": [
+        478,
+        418
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200926/images/de20200926m89.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200926/images/de20200926m89.png",
+      "sourceSha256": "a6a56e411ae8063b94e8c21d65d1530dd376cfb05a49b836a48ee527cb0cda8c",
+      "outputSha256": "8fe76746bebb1b50671baa2138e0a2b258fe5a08260c5366db6298e909a6880c",
+      "size": [
+        470,
+        212
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200926/images/de20200926m91.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200926/images/de20200926m91.png",
+      "sourceSha256": "24d94cd9ceb42144d1a1f3738176d793bd461cc700745810745cb6685c8298ad",
+      "outputSha256": "ed73bf1d8fdcea4274e3884509bc3c2d3a59d6661c75b58fb4b4007691fb43b9",
+      "size": [
+        612,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m4.png",
+      "sourceSha256": "4fa8abcb0dbb407a10e256d4afc403b1f691a513f271799d73e7acd0231a3511",
+      "outputSha256": "8979b72ec9f9471bc81689a1b1ab10376e9baf389083c818841339bf578f6269",
+      "size": [
+        608,
+        142
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m14b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m14b1.png",
+      "sourceSha256": "6799842cba46bdb7ccace2df591eb05064bc3869b526d381c238a5eef7c00b39",
+      "outputSha256": "18a4777980a8f62d4c85aa5d6a87f062dfc2d8b5c39cc79803ebe275a90b927e",
+      "size": [
+        134,
+        60
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m14b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m14b2.png",
+      "sourceSha256": "f9d4177a8715134a16bfe470d0325e9cd48e659eba338aab35db646e94ff65f9",
+      "outputSha256": "b6d79af481984f628891f5e24876f4e2d34b31a0dc854bc9ccbb97018b7936e0",
+      "size": [
+        212,
+        62
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m14b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m14b3.png",
+      "sourceSha256": "54de456e72a8e00e62cec9983b5b67ef14e81a35db7016825426d045d64d87c0",
+      "outputSha256": "6d88b21adc270d6b2cce3d786d8c82ad3d39608f70b3fbef75f8e479b8bca668",
+      "size": [
+        230,
+        66
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m14b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m14b4.png",
+      "sourceSha256": "f9712cc1a3379e4472aa59e50019893a5bddcf1f0730e64dc3c6ee035b9b4b61",
+      "outputSha256": "78516cb2eef230827a415f638b872ca96ed5a9ac4321c6a7257aeef5d6537872",
+      "size": [
+        230,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m14.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m14.png",
+      "sourceSha256": "22b0bb026efbbd371bbf6a6510f61b82d62cf9298a09f56c1a945aad5d778cd3",
+      "outputSha256": "e0f54f8d75a8c7001bbd872a607a24adb1cb510b012d7f186fb13033d1374efb",
+      "size": [
+        602,
+        274
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m39.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m39.png",
+      "sourceSha256": "fe49624676a4692e8ef8687d72c5f12c456e5d67730c4306ea76c5b9e3da3360",
+      "outputSha256": "a496272e80565096677d92511db6f40d7e2a2c8ccaca0849a14550d211459bd7",
+      "size": [
+        612,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m62.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m62.png",
+      "sourceSha256": "eb86976c7504831ff88e0a8ae42881c59d202d6fcd66dcb39c227a0c3ae74d87",
+      "outputSha256": "4d71001fcaa4a67d8561567971d7eae8c58acecd316a76cc04c29ee0fcf7cac3",
+      "size": [
+        628,
+        142
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m81.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m81.png",
+      "sourceSha256": "f9050ab5549b06aed59893afced6515e3ca604b04fafd14a42514cd0fda5a266",
+      "outputSha256": "420dfbca167165f70a0acc04c637411d1f0eb338bf2b00a8e90ab117105d9591",
+      "size": [
+        566,
+        564
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m84.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m84.png",
+      "sourceSha256": "f6ed2702dfddf6b76a6efacfb8b1a24798af1037a06fc836f54a316036a9e7fc",
+      "outputSha256": "425830fa6df5afde743a8358de8b3c200e113c5ec1ad1e752e9994d4b73a5512",
+      "size": [
+        592,
+        254
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200822/images/de20200822m97.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200822/images/de20200822m97.png",
+      "sourceSha256": "1cc83db029beb7f713bceb7d6630fa154b556c71e1011bc644f30dc87305f901",
+      "outputSha256": "753f7e5e7b5a71acef4dec081db8c56ae7590b7a581e6b89f9800a8b79533d1c",
+      "size": [
+        318,
+        394
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m5.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m5.png",
+      "sourceSha256": "114c505d2fbaae90d38c66be6437cd73d14d8f69c2406430dec0455e45f2bfed",
+      "outputSha256": "be4d25ce9896de441024d533b5289c67a8b1c3b01745cc30263b7486bc9d3828",
+      "size": [
+        682,
+        242
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m8b1-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m8b1-1.png",
+      "sourceSha256": "748936d55f8e9d5c32c58bd5f1ddde3e471afaf55b5114c1643697d6948fbc0e",
+      "outputSha256": "71136e1d6225c28f6bee01655cdde1a1314acfec84bd71eaa70c576a9e884d78",
+      "size": [
+        206,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m10b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m10b2.png",
+      "sourceSha256": "fce58ac339777bd018725b0e932fe5185082ab0da14a58d2f1404389b2f3bcdf",
+      "outputSha256": "345ef8ecb2bae05affd8e9d241c96688f02847a4c4070fd1b75efa461ee38337",
+      "size": [
+        172,
+        84
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m10b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m10b3.png",
+      "sourceSha256": "fb4833818bc86d491a00ac583fe5b1711bc665c9d665ddb9a454712d9f5115a8",
+      "outputSha256": "d0fd68122bff858be5f992d5b3f7e3e25038eede55091f52c1660d7a1298a269",
+      "size": [
+        124,
+        80
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m10b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m10b4.png",
+      "sourceSha256": "6a30e6074aa370054f211cf91c951b67250ad5dc732dd0d2f48d2101e63f4c90",
+      "outputSha256": "9a9905988242f992a814dda707099f586f2439ccb99b1b377bb8c83685aeab49",
+      "size": [
+        134,
+        84
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m85b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m85b1.png",
+      "sourceSha256": "f15e72ba17565fd4890a29452be97f7683d1ae7f2a89c639fc9ed879996c2295",
+      "outputSha256": "546f2bac961a9a31439b36beedbc9d8a4cd76f78101c18180101f786fc97a4b1",
+      "size": [
+        394,
+        180
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m85b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m85b2.png",
+      "sourceSha256": "9bea4e3c64636435188bb81140c5e7a6c4968823479fd40ee88c712993be9878",
+      "outputSha256": "7178d4177520792ac235e3a0413069e95c9585e5276cdbe5d5dbcad2956e5c45",
+      "size": [
+        404,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m85b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m85b3.png",
+      "sourceSha256": "a4d8410465ff4cf4f8249a597bc94e11e8bb6606ee42ad701ffb2ec3a804c9dd",
+      "outputSha256": "be9f92f81cdc67f06c433dc1b29d3eca88a19407954b6387ac02b0ccc58ea811",
+      "size": [
+        400,
+        152
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m85b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m85b4.png",
+      "sourceSha256": "ec98976ae0a8f3182ea6d4c710d71e787adb3abc2d5d41dafc3fb56125108955",
+      "outputSha256": "7a80fe7be091c0f28bb43221487e9b0f886c72b9ed00b46c8a3723cda6166cae",
+      "size": [
+        406,
+        168
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m85.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m85.png",
+      "sourceSha256": "48138d351eee3ea9f1a9222dd29582ec2cd39e27d0b515af57564566c3dfb8b1",
+      "outputSha256": "90c7a264ef9d29f885fa8893804504129897b5a5bd1495f7eed15aefad1ac58c",
+      "size": [
+        526,
+        524
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m87.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m87.png",
+      "sourceSha256": "e41ba932462e59b59b542588df1b87714f5a53d7b8b678fca1d20ce3531a109c",
+      "outputSha256": "a2b41ec25e3fa1801c634781448bb477723ba1295c45bde8a66dc00c126fea31",
+      "size": [
+        624,
+        68
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20200606/images/de20200606m88.gif",
+      "output": "assets/maintenance-engineer/comcbt/20200606/images/de20200606m88.png",
+      "sourceSha256": "e9ce6c9e9b0df0c966d2abf6856a17c2e2877cf12ec07157c6e7578692592757",
+      "outputSha256": "16edeeb5f89697bc3f78689b1ecb7af4e1e4100018f3fd60e4ac0b15e093ea0d",
+      "size": [
+        558,
+        556
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m21b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m21b1.png",
+      "sourceSha256": "9549f1287b40b931b347e5ca68a5b171b31523069a24f0734df69455dde86518",
+      "outputSha256": "cfa0f331519f82845ac3829b15aca1d7fb541d7ffa6db3c4b5177eaff7d7bbbd",
+      "size": [
+        206,
+        74
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m21b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m21b2.png",
+      "sourceSha256": "ac72170027f477be247458e7168248ce97ba435ddf432e200c78a3951bdc910f",
+      "outputSha256": "ba71a423494ff01d3fc03f35b2bf659df8192cd5ef1d377a6ab32afbf0e06284",
+      "size": [
+        212,
+        70
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m21b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m21b3.png",
+      "sourceSha256": "3cb4b030d8d3835439d0161ea7596bff9524f0a69d9c1a0d0d261127eebeb379",
+      "outputSha256": "ed3b69e1853210dc6d52c378434e721b73aa8124126f0fbe6076279967aca766",
+      "size": [
+        214,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m21b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m21b4.png",
+      "sourceSha256": "832a267fc11879ad632005425ba9880b1780ec212cb0ece025ffd5018b0c8931",
+      "outputSha256": "3fb925bf44af8dc4a3c9514c7e0f4f47bd894a289e6c125abddf1449eb2421fc",
+      "size": [
+        224,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m35b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m35b3.png",
+      "sourceSha256": "b4dafd787321ef328b97319a48479756fba40c9b56cc3d9f7cebc0dcf92dd188",
+      "outputSha256": "ee03414466eb0062e0fe293819fb5fed855bcd5c088f3f9c9e78cddc526092de",
+      "size": [
+        620,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m35b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m35b4.png",
+      "sourceSha256": "98151a2b53e10448b07a89abf65b60e18d14ed717cbd80f69b2fe75d046851f2",
+      "outputSha256": "0a6526cf05992c9091cbfffdbb99e9fed6c1780034aef431bd64afa4cbfded07",
+      "size": [
+        612,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m45.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m45.png",
+      "sourceSha256": "1be7e21fd76f4acb34beece2939f48ff895281e483c30d9b7051d2c2420b9ecf",
+      "outputSha256": "c101258ce5140049742c9b19faa86c50aaaa81d74a6533aea516667cf3a9c292",
+      "size": [
+        386,
+        60
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m94b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m94b1.png",
+      "sourceSha256": "55b5831e4cb6229c6d6fd41bd2381359f9abc5ca4091a3efcb8ba353f92c0092",
+      "outputSha256": "127008558ceda431a4836044343a8fb1b69b82766df9b6be68e141b3745660ba",
+      "size": [
+        228,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m94b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m94b2.png",
+      "sourceSha256": "e753ba3fc2dc7c529d9090a9800e55ad5e45be6136fc74ddc70902bfed90f245",
+      "outputSha256": "a55fa6d027cd26d2f35abb4115944ad4245f9b87e8cbe09ff3d8fa266b065e41",
+      "size": [
+        228,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m94b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m94b3.png",
+      "sourceSha256": "4c9a83022b428b1342d74376948270092f19b6404712efb05547dd9e3d480018",
+      "outputSha256": "e70f584022883a097b6cd806f08c0ffa1df80929675f20fd657bfa43550d0d90",
+      "size": [
+        250,
+        106
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m94b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m94b4.png",
+      "sourceSha256": "698c7bb7ba7d7c098501c275e7b11a10305274fcacf74e3f00c89b09e52412cc",
+      "outputSha256": "e7c7a68c679990b74c841de10b292a830fc27f6f33d204e445ccda0d65803a8d",
+      "size": [
+        246,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190427/images/de20190427m99.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190427/images/de20190427m99.png",
+      "sourceSha256": "1a3b7bc9a3a4feac968a19d7681624e7fbab604b5798ea5eff45e8433dca43c4",
+      "outputSha256": "327469a3a83a89314b46ef7d4f389f5a2138af6351fdce0f14cf7f57b42ed81a",
+      "size": [
+        446,
+        660
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m1b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m1b1.png",
+      "sourceSha256": "76cda01bae52b36a4af9eee8641e8544740d1aa8b7194b733e4a5d911e557d12",
+      "outputSha256": "b7200e64d2ff50c00b2be3741f6d0cffed131348ff152492078a8dbdababf166",
+      "size": [
+        302,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m1b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m1b2.png",
+      "sourceSha256": "1ce7dace942772de66bf9f263f0835410956df3be96792370b41e9e0ea53d7fd",
+      "outputSha256": "76d9d0c9d3cafaa816a62a350bab8ff632dae54df2574ba82b16e14e61e72012",
+      "size": [
+        342,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m1b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m1b3.png",
+      "sourceSha256": "432520ffee5e1a7946e5e349c31b55fbd7f6f78a2f5d5bbb9a45009f4aeeadb4",
+      "outputSha256": "76119ffc10e545f5073401267cd63e684a796715142dd71a8839d63fcbb4fff3",
+      "size": [
+        386,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m1b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m1b4.png",
+      "sourceSha256": "2daeba730c93e4d2e9d709cc4fc55e74e4904e93a51111ba72e4a107fe4a8dff",
+      "outputSha256": "35bf4bd45903936cf90882e209b69193e8373a4c47489eba79874987b2859f27",
+      "size": [
+        404,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m91.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m91.png",
+      "sourceSha256": "df809a4cf684e1d89cb97876a2c51138cf40958770c659e1bf535165edd925a1",
+      "outputSha256": "86195dcf5a62da28e628c2d252015a30e021bfe3eafdcba212d91e92df7f1f5b",
+      "size": [
+        402,
+        448
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m92.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m92.png",
+      "sourceSha256": "8e7e146440b184da64ad428e9e57e5d8a45f8d02cb915952a18dcfeb6b90a734",
+      "outputSha256": "732439d7d2757a615706832e12fbaa47a718b292249939a02027cf5909ed144b",
+      "size": [
+        612,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20190303/images/de20190303m98.gif",
+      "output": "assets/maintenance-engineer/comcbt/20190303/images/de20190303m98.png",
+      "sourceSha256": "6f3dbe2308d38f7069622aaeb8b5235d4c22f322b1d2b450260237848dc103c3",
+      "outputSha256": "b10983bbf3d68668275569937cc87f84956ac4a5efc7283e3ed3403adb34a216",
+      "size": [
+        626,
+        522
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m15b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m15b1.png",
+      "sourceSha256": "517aa05cde5ad2980d2d748be9618050cb43458e69345b2a94aaf66dfe2447a7",
+      "outputSha256": "f3dcacd59bdbe455dbb00c59294401ab9ca3fe1bf814ee0b085560407d5f1b1d",
+      "size": [
+        280,
+        68
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m15b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m15b2.png",
+      "sourceSha256": "d6ee7b509fc932d7249d3dcbcaf8387a5972c35d6e29545cde00a7f02d3b3240",
+      "outputSha256": "41a05faedd3c17f22928f9a3111be20634c634591333c53f6b1a191b7fa75156",
+      "size": [
+        166,
+        54
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m15b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m15b3.png",
+      "sourceSha256": "08636f224a7c154627f5454f4d9b2d5f2269e0e7db61dfec1f3fb6ab0a96aae3",
+      "outputSha256": "8b848b5ebb27606c9f7560a1a34304c188f803e3b5cbb6fa90526a6dba6df7c6",
+      "size": [
+        260,
+        86
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m15b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m15b4.png",
+      "sourceSha256": "79ddd32eb9f9b418937cda9407283bc57ce3e663b3821dc1b7f2e150865b3554",
+      "outputSha256": "5d7738ce0296af46ea025f1d0f7c2d56a2284901a9eb63821720788dfa9e0d7a",
+      "size": [
+        156,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m18b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m18b1.png",
+      "sourceSha256": "c2ee8d6a83b3980075ee7e22a3870fe524323565efce51ffaa559ba7243d9f65",
+      "outputSha256": "f8030de42b5f1ca3e83bf17fa3d83fdb57dc982983e058c2cf1d641e83aeceb6",
+      "size": [
+        502,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m18b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m18b2.png",
+      "sourceSha256": "8136ba9d3504c87fc2216c390f5606de278ed106be079776a810f8c0a5e64ebf",
+      "outputSha256": "ad39b529e4f9f15dfb3cc4b54ea9011ab45765cbf97796d7c4279b12e2a9551d",
+      "size": [
+        498,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m18b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m18b3.png",
+      "sourceSha256": "04e58e264db286a36d1bed75101561cec8ce5f1b06d71556588ce2a3c3ff3d8d",
+      "outputSha256": "7afd7763e064a045f6b90416e5ed2b1336fde4d7dd46eb632eb8892b9068b44c",
+      "size": [
+        506,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m18b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m18b4.png",
+      "sourceSha256": "748f420ac4e99ebef2ba79f5bbf7110fd87f3f4c860adb71414a30b0b6b49741",
+      "outputSha256": "94666753ae285d0230eb8a37a6f1f332ff74983d4b53b6dea2bda4a62e99e422",
+      "size": [
+        526,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m37b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m37b1.png",
+      "sourceSha256": "93ec89bf1979d5aee57ffa1c39add9f94009e665a3f199647a0bae09959109cc",
+      "outputSha256": "2cedfeeb179b2bf4cddeabd6b6ed497b73bc0665053abff14588c16ca60eab29",
+      "size": [
+        460,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m37b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m37b2.png",
+      "sourceSha256": "5efec5110490e9c80aa36527206e0260e678970998f89ea678d39ec998c22ae4",
+      "outputSha256": "12ee2e6fe9089f9f21d5cb0fa686bfb9214f3e4dcb275e570c9d81d73ee54f4c",
+      "size": [
+        468,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m37b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m37b3.png",
+      "sourceSha256": "59cdfc1d7031f89493d484d411dc986e34dc983a9a5c8f9b1d6aeda228625b29",
+      "outputSha256": "fdc33df38fddf7a4b3b537736a83f71ec66fd3e5872a96aedcce95a59ebc94ab",
+      "size": [
+        472,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m37b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m37b4.png",
+      "sourceSha256": "2b5be117bafb807d2431296f13101dd1b42326f3c23c9593b9c70c41e32aed58",
+      "outputSha256": "495a80168374f3d56bfe5289ff024b7acfa327917e949c0904f4ed4d866ba16b",
+      "size": [
+        542,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m87.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m87.png",
+      "sourceSha256": "e319cc9eb04d799ac497434fd98ecdafc168b26506c9de127e9890bc3e019f6a",
+      "outputSha256": "bfc6d059db8f40f2f1b20e146d364d4ede865959dfdb851a40fa0ab0406ff55b",
+      "size": [
+        516,
+        284
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180915/images/de20180915m89.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180915/images/de20180915m89.png",
+      "sourceSha256": "2853e447023e8da6565764c20478ba0be5256b7d710cc42687823e6c2e237325",
+      "outputSha256": "47d61cd39051c257c02efe273def9f8d710a969bcc3ea469216585d1996d6ca6",
+      "size": [
+        498,
+        254
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m5b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m5b3.png",
+      "sourceSha256": "8faea3f8d8a11e4554b014f1da49ae4eb303ce517e1d7fb571b0fb7759b78a99",
+      "outputSha256": "63ff881a037580f92c82a802bcbfffb0c2a37c8fe3f4183d304127c01116705e",
+      "size": [
+        170,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m5b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m5b4.png",
+      "sourceSha256": "990c72cc90967a502ef90046e6079680f64a50b07ced5d15ccd0f94ae3ca72e5",
+      "outputSha256": "5b7caf71e555c37b970e9a73ab7b756b4edb8efa38da066c98d8498dcc48062e",
+      "size": [
+        232,
+        142
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m5.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m5.png",
+      "sourceSha256": "0e54fde0f8551b8e4898c5db31dc88eded1de820b024527dfe47260cdf37236f",
+      "outputSha256": "8b89b7a5cbc27348a3c72e662df3c602963ffa5ad6e8fa05442a70d1b928e6ec",
+      "size": [
+        192,
+        404
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m21.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m21.png",
+      "sourceSha256": "d17b009e334b254388a86d277aa6f547cd4763fac6ab584e0df5f6c8b4f52513",
+      "outputSha256": "ee50dfbbb350a994a30f1ed9a5fae22013960750ae6eb5b701ed8477496846aa",
+      "size": [
+        796,
+        442
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m45.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m45.png",
+      "sourceSha256": "372fcce23c879958848189792578b1ccc621b17444302dd6b029f7866b3d1219",
+      "outputSha256": "3156209a161c995c1eebe157e73a6ff125c1416a06972e2fd83526b45757c1af",
+      "size": [
+        270,
+        250
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20180428/images/de20180428m83.gif",
+      "output": "assets/maintenance-engineer/comcbt/20180428/images/de20180428m83.png",
+      "sourceSha256": "2b330e792bc2492518ca11548de81e682a12037862f280f13ebdeb12d62551be",
+      "outputSha256": "acbe1b9b98e38e611d3497b1d903ed0fcee3aba0545428bad40e895e106cf38f",
+      "size": [
+        896,
+        884
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20170507/images/de20170507m32.gif",
+      "output": "assets/maintenance-engineer/comcbt/20170507/images/de20170507m32.png",
+      "sourceSha256": "ca52892c4b6c1bee943e40a63e8115cd6a42784b625f27fe7523b74c3082f397",
+      "outputSha256": "5e7beed3f2dfb817f24682e49179825cd9b263aa1bf2331e9f33cafa31dccd61",
+      "size": [
+        184,
+        236
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20170507/images/de20170507m33.gif",
+      "output": "assets/maintenance-engineer/comcbt/20170507/images/de20170507m33.png",
+      "sourceSha256": "5e07b5ca71aa055b52ef74c7b9b005999f529281bd22b5a7d2757dc00523d8de",
+      "outputSha256": "2b10ef83563816cffa96accc414b6ebadbadf99666bd29ce6002f24e44099680",
+      "size": [
+        424,
+        340
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20170507/images/de20170507m82.gif",
+      "output": "assets/maintenance-engineer/comcbt/20170507/images/de20170507m82.png",
+      "sourceSha256": "eab78f1ffd24d2343312b88e42c6ba2e2f61e22b0271cbebfb7fee732f69c8fd",
+      "outputSha256": "ad5131c8f8b59ec6f39281af4c877630293690911d9114f1657bd3dbdb67dd8f",
+      "size": [
+        386,
+        480
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m10b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m10b1.png",
+      "sourceSha256": "bb0df3cc56e144ca1b872812f17eadf55cce24aba6cc39b1ce6a6ae061ea28c9",
+      "outputSha256": "5962314f72efa2eaa29e8b4610ab3739641f31c8e4eb176af3fc07bc3796c4f7",
+      "size": [
+        164,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m10b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m10b2.png",
+      "sourceSha256": "0f01dde6088e0d3930f3330d04a507d421acc184d6bf1b6885c2ca33c55b8840",
+      "outputSha256": "0fdd37b39d05cb96c0c033b26c1aa5a2145c496e9afa37a69ab7be7849d02f80",
+      "size": [
+        170,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m10b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m10b3.png",
+      "sourceSha256": "0f7547a6a26c9b576997f7c1dec75411f4893936e0975cfdeacf67192ec8a329",
+      "outputSha256": "97a51a58a1692a3b22dd840f8802a38b92aea7a708f07d850a5ae8cca5c298ae",
+      "size": [
+        232,
+        60
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m10b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m10b4.png",
+      "sourceSha256": "c690b3999399c4c7fa0f9baf9cd9a8cedacbd0807698c02f83748f326e67c121",
+      "outputSha256": "e115a8762791fc699b63bcfb6d58f8c9833a99f91a45a8623d8fa4209e245292",
+      "size": [
+        184,
+        48
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m26.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m26.png",
+      "sourceSha256": "cb1aa7ae00dae52ecc85dff7e687c05f0f4e6f9817ac18cfab5c33d5d8cc46e4",
+      "outputSha256": "05f31f6c83f32c1ab121391711c411ae2b0a4c5925d6ec9a427a8ad401e688ec",
+      "size": [
+        320,
+        288
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m58.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m58.png",
+      "sourceSha256": "724094e91a832c058724b591f0d281140321f18da5f9b4be08022b7cc699dc84",
+      "outputSha256": "ddfdfe97e54fac9c82c21b0cb90ba7ebc50b7e2967ce4ff8c21096f11cd711a8",
+      "size": [
+        306,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20161001/images/de20161001m83.gif",
+      "output": "assets/maintenance-engineer/comcbt/20161001/images/de20161001m83.png",
+      "sourceSha256": "b418cb0979f6153656dd3364757fb55cc15b9c21fe5c6e6312d2b784e24b41eb",
+      "outputSha256": "2e7c1af31c2f0b21e1b3ad9985cf8395be3dbc61ec2842a831e3e46c3ee4f5d9",
+      "size": [
+        280,
+        270
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20160508/images/de20160508m41.gif",
+      "output": "assets/maintenance-engineer/comcbt/20160508/images/de20160508m41.png",
+      "sourceSha256": "0064dd1afd59949cd6db69be2ff33eec5e564e84ca5b4bb7277db6c25b8b2203",
+      "outputSha256": "b8593a0dee458d81d003c28796e630a33a8e5c654c7e5a3827faf31a4825636d",
+      "size": [
+        508,
+        164
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20160508/images/de20160508m65.gif",
+      "output": "assets/maintenance-engineer/comcbt/20160508/images/de20160508m65.png",
+      "sourceSha256": "a80df98352192663d2c7d865587ad652052a5345989f3f794116cbff94269312",
+      "outputSha256": "131ded58561e8c5bf4a7b8da62a29bf1f5bbe27d5f4720f359dcc4eb3a68e6b2",
+      "size": [
+        612,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20160508/images/de20160508m89.gif",
+      "output": "assets/maintenance-engineer/comcbt/20160508/images/de20160508m89.png",
+      "sourceSha256": "edd5e72d121c4402e86f7fd1c6800753a12b0825e31fd822c6c826551b4121ab",
+      "outputSha256": "4717fe5bc8dd8579ebe0a80aa7a34b3134094d9a4eed9ed47393d54d582db64b",
+      "size": [
+        316,
+        152
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20160508/images/de20160508m96.gif",
+      "output": "assets/maintenance-engineer/comcbt/20160508/images/de20160508m96.png",
+      "sourceSha256": "f24cc23487233f3fc9a79cbd1f0d921d605b753bcbe68f6705ae8cd7dc2f62af",
+      "outputSha256": "f4d7a2170147d52a7f82abd65a4d9562a918cb6853672dfb79cd2f9b8c0b2994",
+      "size": [
+        250,
+        332
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m12b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m12b3.png",
+      "sourceSha256": "f39978cf889519c75cf1987e205858b4e603e9c8d97c4dc37d7da3ca4ef45044",
+      "outputSha256": "1b43a650dabd50928c1393f1f7d069edf1fc0a64632531582bce3f46e2b831d7",
+      "size": [
+        188,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m12b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m12b4.png",
+      "sourceSha256": "8d129441565a0b119b10079cd7e24e7e17244c401f1b8513aab75846df6293f9",
+      "outputSha256": "32cc101ffae3ad8ff1c88a1b1e1de4dfb319ec45eb01594a5355be1f135bed85",
+      "size": [
+        218,
+        134
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m12.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m12.png",
+      "sourceSha256": "3544a211c575b8ab045e60c8188dc85d26a208adf00571d37b556d8de9121a8d",
+      "outputSha256": "109b9b0e022552fee99d532cd6e210898ea7764eb07a510b5c3f6cacf07711e7",
+      "size": [
+        144,
+        280
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m44b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m44b1.png",
+      "sourceSha256": "0ab40f3b20a53797a298c563e7bc1623dfca2dcfa6f2c6920123d5c52ba38799",
+      "outputSha256": "8c71cceb0eb58a9348ef38b8142767f8894844f15646a6f2dabdd277bc465fbd",
+      "size": [
+        200,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m44b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m44b2.png",
+      "sourceSha256": "bccb3156803fea5803c74dd2e74ff4f3457f85dd9e970c9db62d7dcde2fdc6a2",
+      "outputSha256": "37e25b9c4723e5ef9e50ffab3bb828e8cf1a80df2ed81e62a938f32950c1f06e",
+      "size": [
+        230,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m44b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m44b3.png",
+      "sourceSha256": "9eebbe12eb8316166a4cbf681c78ab3e52a6ed90318135761e70743922f3a5b7",
+      "outputSha256": "ac1d12c30c51129d16eb0f5cb223fc809c87eb779197d3896d8a6c4c6dc33476",
+      "size": [
+        220,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m44b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m44b4.png",
+      "sourceSha256": "d86be1449d4d0cc1f5eba3d5ebf61daa62d1bd668f2856f5ddda34850d0f2c0a",
+      "outputSha256": "7443c082a962b6688a0204f7d57fa53344023278ac0ed624796e0a0d74d8cf34",
+      "size": [
+        202,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m84b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m84b1.png",
+      "sourceSha256": "01e1815c4fdea0a8fb25bdce3f22aa32ff8bbbdfae51f6a507a4bc21c8479a77",
+      "outputSha256": "c00e6af448fed588b8441cc4a45a2f3f5259a3eaa445d9d54e1caf93224aff1b",
+      "size": [
+        136,
+        132
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m84b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m84b2.png",
+      "sourceSha256": "74b907966f426b4ea082a2e770235b8747662c51b0ef5ffe94f9358a6564689f",
+      "outputSha256": "22942109a2f39485619d9f1a8ff08ee33db814453d95dd074d6dfc5782d81859",
+      "size": [
+        124,
+        136
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m84b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m84b3.png",
+      "sourceSha256": "0487b76305afb8c99e04bc6b600d342b9b7ee84563d895fd943e50421fb8bbc4",
+      "outputSha256": "0592748a01b3bfb7e3249be22943e2ec3233a6fd1fb4e8d6ab3f87a7af074d16",
+      "size": [
+        138,
+        134
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m84b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m84b4.png",
+      "sourceSha256": "14eb6e7eadf77810f33a2508a46422d182d594784a5b38ae0447e39ce26de0f5",
+      "outputSha256": "e1769d1f4631bc42946c340f046cb40e0b75ad18661eb8e934fe8a9083861bac",
+      "size": [
+        142,
+        136
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m88b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m88b1.png",
+      "sourceSha256": "a6cb9be9858293a87bb33e8c30a3d789406909ddd5146c27ee79077d984c9eb8",
+      "outputSha256": "959b2337a0332fc10d11973b629d740678790fcc726c1c67a4b578293902d273",
+      "size": [
+        348,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m88b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m88b2.png",
+      "sourceSha256": "83b342a4a339c2f71ed00619622007d7039f744b1b82740536596340f727bd26",
+      "outputSha256": "72c913f16005d9e920fe3f508ce721f7badf44cf8ec23ed96adc8a5076810a0e",
+      "size": [
+        350,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m88b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m88b3.png",
+      "sourceSha256": "1d2b24d530858dc6d8ab150b0bf221786364e02d952774f3d11e8570df981b90",
+      "outputSha256": "365293c4775e25edeb5e162efd21e208182921cb29a90b2250418243e08eec99",
+      "size": [
+        354,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m88b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m88b4.png",
+      "sourceSha256": "5fec026048242ed59e256162fb5b76209f3237fb2099ca9a7caccb5efa019a77",
+      "outputSha256": "ff4522db9153f5bd9dca570c9ec6e896f01c07bf215720d45727e3a777ceb7a7",
+      "size": [
+        352,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m97b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m97b1.png",
+      "sourceSha256": "fd0b3abb0f60f7467efa74278ff6c438de6a412aa6d395a0b4f2ca70f188526a",
+      "outputSha256": "df4bc9e97f63480bc12b3c80a8c8f49484ee7d89007ce9143fda4751a666abec",
+      "size": [
+        162,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m97b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m97b2.png",
+      "sourceSha256": "72dcdf130f84a34ee6034c8a324822c0ccc4133f7c6fedf87330255f39b77a71",
+      "outputSha256": "e19bea0d257ebf9152439fd5fc5a8049796c6d18162c26bfefe4b3415098e8f8",
+      "size": [
+        170,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m97b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m97b3.png",
+      "sourceSha256": "c2a4eed050d8f0cb8c27bbcf69fe350bd7e4c02d33d7f32c8ecbc63d4ade2dcb",
+      "outputSha256": "069aace88b98de9f050f9e66462493c90572d87aa4728719205f44c48434d3da",
+      "size": [
+        168,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m97b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m97b4.png",
+      "sourceSha256": "c1008515cd066faa2cc353bdf9d6f917b052191ca7296c15177239caa3aff2ff",
+      "outputSha256": "90d9cc6ee1eb5526c010f77bfb224e562847b26aa490795dbf327498d797fdac",
+      "size": [
+        164,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150919/images/de20150919m97.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150919/images/de20150919m97.png",
+      "sourceSha256": "7ccdb57802fd4b24132abb7f2de54ec3d07afabb433e46ebadb519e5342c97b6",
+      "outputSha256": "ac83f6ff5920dd2db5a6f1fce923faff8ab29b01f43a70286a07f448c980cb80",
+      "size": [
+        298,
+        252
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150531/images/de20150531m2b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150531/images/de20150531m2b1.png",
+      "sourceSha256": "612d28ec6554fbda27ae8a49bb24cda7bfd62838460cacc239369fb35be8a754",
+      "outputSha256": "f7fb27cb65b21bcad43709f1632ed855c3821685c3d24f0e3573bb07ff41aaae",
+      "size": [
+        298,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150531/images/de20150531m2b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150531/images/de20150531m2b2.png",
+      "sourceSha256": "78fcfbf2e87197d5d07608295c0d5e5a1afe783eb6bf4d90af8d2f6ed74accb7",
+      "outputSha256": "da1199b80617683a3fcfd354b34aa8f4b4560c6aee9e3a147482e1b63480aa43",
+      "size": [
+        330,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150531/images/de20150531m2b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150531/images/de20150531m2b3.png",
+      "sourceSha256": "ac0e761d4c75ae37220eb6041fc619abe54c9acd89783d37d8e90d65a9eded0e",
+      "outputSha256": "573cedac74607a11fba70dabe30bafc980be08ff585f9dcefb836d71e14d6b24",
+      "size": [
+        378,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20150531/images/de20150531m2b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20150531/images/de20150531m2b4.png",
+      "sourceSha256": "57c93b337a77b47e70816dd7a18f5379902ef573fb1fa7bde95e0482add195a7",
+      "outputSha256": "3ac69a3ac363eca0c5189c54a26bd19941a977e7b5d8c888f0ee7eab2ccf64b3",
+      "size": [
+        380,
+        102
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m50.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m50.png",
+      "sourceSha256": "3c51d220382f1f527d43a7571805f8aabb7d3e0a7b13bade2db4321d25e9c68c",
+      "outputSha256": "fa2d4b4d9e4d6d9a03608d9b6200778bd4407995f95b35c3da55de95bbb9b46f",
+      "size": [
+        554,
+        380
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m54.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m54.png",
+      "sourceSha256": "d98051d7f78842bcc3632e81f59f86ace23ee0571e03faf66146b69f2537bf95",
+      "outputSha256": "37a3f79e259b7cff8d8e40f8715ef6b084a8c97f15ae8b73778b8b866e906f0f",
+      "size": [
+        288,
+        60
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m90.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m90.png",
+      "sourceSha256": "91e1c4f3ac3a35e6869b8633e122e55c7b6c85065dcff3e3dc3244a42ab646f5",
+      "outputSha256": "f6f5c18f7f535eb8d0322822758de3dd3d82c3da58fb7e88c7dcf9e8cda993b6",
+      "size": [
+        242,
+        342
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m91.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m91.png",
+      "sourceSha256": "5b8fbc594e498d443f7a1c4a6668e826da12e63c1649c948dc750173f98bd505",
+      "outputSha256": "17e0c8383e000453694dc6b0e433858f75ff123d88084c9c12da4676f1a57c88",
+      "size": [
+        396,
+        354
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m97b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m97b1.png",
+      "sourceSha256": "fb4942187faf48dc3a90197afc9881b4ba8f6219cc5aba65f649e9cc226111a9",
+      "outputSha256": "08dd0ef5da57c0ca43bffdf15f1edebca0eca457a7e412b78012f02e000de386",
+      "size": [
+        196,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m97b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m97b2.png",
+      "sourceSha256": "57ce4a9e0b1871e4d80d4f9616a964ce7b3ae124b483611ec8bf89346a91057a",
+      "outputSha256": "6051da6cbcb6c65f89f225349a3b987a38564996537434e8c242903db7ef91c7",
+      "size": [
+        206,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m97b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m97b3.png",
+      "sourceSha256": "b38452f3a291b7f10a60e782d54d98640692e45a7a485e7cf0dffca1e980fb9c",
+      "outputSha256": "f3be78e31659f3da643f8cd6da553a65fdc2b7b2c45d647dbe1c9ef763898f60",
+      "size": [
+        198,
+        82
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140920/images/de20140920m97b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140920/images/de20140920m97b4.png",
+      "sourceSha256": "1f1e3c63db560e8eab150c37dea38cb0246f2a8bb324164fb57dc9056b8a6760",
+      "outputSha256": "1b1a6a1f3baa9aac191a96e6eb5d06d496a2f330b68bfdf8580cecf8dc55dd07",
+      "size": [
+        196,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m26b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m26b1.png",
+      "sourceSha256": "5ef13db990b9951b5107d6bd9b3750782023fbb446297bd54292192ecf18a1a3",
+      "outputSha256": "3eeee6442144aa14d48b0e440ac8f73f4101ddaf51513ef7e93b2ba692e31d8b",
+      "size": [
+        248,
+        78
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m26b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m26b2.png",
+      "sourceSha256": "5d676c16e428f8b5296c6391547b4318295f0095bbd647943c15f12ffae621df",
+      "outputSha256": "9c77621446f88228c909fe67aef5a2185d27aba4185c6a2348d45af28be414c2",
+      "size": [
+        248,
+        82
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m26b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m26b3.png",
+      "sourceSha256": "a1ee1d2cf084f98661371559b9913283785b5ace7be9475e5b53f641a752a738",
+      "outputSha256": "ba4dc926ce28944e14c413354ab6fa0c1084efea646a8373a19f1d4dc29cb258",
+      "size": [
+        248,
+        78
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m26b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m26b4.png",
+      "sourceSha256": "ced6a5fe22b9c040edb50165259967ce195e82d27b5c853fffd3087ae708806c",
+      "outputSha256": "e8f6db64df8788e6aab3a6caddb2c948982e3f154411f9b027439936e715143f",
+      "size": [
+        248,
+        80
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m50.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m50.png",
+      "sourceSha256": "4a5f111c68360e0cd01db495c8f466b26c0a3df67cab8df21e1defe65ab1480a",
+      "outputSha256": "69f04703a807933a129b17537d3f0951bf78eada1e81ea9fff2a292dc65fd06b",
+      "size": [
+        244,
+        82
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m90b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m90b1.png",
+      "sourceSha256": "6dd0b27dfda26729d4df637cdb63cde2a0ad4ca5493e1629907070c9148af1ac",
+      "outputSha256": "dab9521cdf663a3f6264adec59a627b15af6567c033a85991404a27375e2a7bd",
+      "size": [
+        198,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m90b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m90b2.png",
+      "sourceSha256": "c19d7d409f12acc7cc64be189b5c4dbfdfe308be45b4f82aad7cb2ca61cd5f0c",
+      "outputSha256": "9d0f6dbc81afa78bb76dcd9064a5478ce8592e65dc630cd2f6e4f6e5ea1fa39a",
+      "size": [
+        194,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m90b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m90b3.png",
+      "sourceSha256": "824cc29229ab693f361e7da8830d25428eb445c906ee1256fd4351bd75ab7075",
+      "outputSha256": "7cce4d7ba3eff6a7490a75758d9e4822e28c8b982ff7651b992c262ab5553f4e",
+      "size": [
+        196,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m90b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m90b4.png",
+      "sourceSha256": "2e7f9eeba719fca109f89e60b77507cdf15213120ac6953fef72ef1c650dbf09",
+      "outputSha256": "561713e44e84f29c50f325e2e7378c46df2fb6793e39f828ab30dca233998f68",
+      "size": [
+        192,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20140525/images/de20140525m96.gif",
+      "output": "assets/maintenance-engineer/comcbt/20140525/images/de20140525m96.png",
+      "sourceSha256": "6658569c017cca0cdaa55d40cc224067e024ccc9f8683cc1bc5bc0240ee1422a",
+      "outputSha256": "9dae43da1a9776d10353da20a7c728230763c01fbc2b02ef9eecd73c02240899",
+      "size": [
+        354,
+        112
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20130928/images/de20130928m7.gif",
+      "output": "assets/maintenance-engineer/comcbt/20130928/images/de20130928m7.png",
+      "sourceSha256": "b98314bf8c7e3f30e4faceb8be46c88076154381370c127399376869b93033c9",
+      "outputSha256": "a915fb48fba21a0d8ebd80989f9344c02a171744451d635e746ea994117aaec0",
+      "size": [
+        420,
+        204
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20130928/images/de20130928m17.gif",
+      "output": "assets/maintenance-engineer/comcbt/20130928/images/de20130928m17.png",
+      "sourceSha256": "c97117755d4b07d66a84401cc3a39d3d062025abecbd962837248d9fc013eece",
+      "outputSha256": "22e8c96e04368e1a180017143e6a6f82c4586c2947e9cd1ffeca77ea6bda0cf0",
+      "size": [
+        574,
+        208
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20130928/images/de20130928m46.gif",
+      "output": "assets/maintenance-engineer/comcbt/20130928/images/de20130928m46.png",
+      "sourceSha256": "569f8e113afea5f172da52df6b08cd83c3a33ca09256e1177aafe8b04e621daf",
+      "outputSha256": "05f3e1f9094089600fe93afad9a2264565bb3e6824542963feb99314b6110e3a",
+      "size": [
+        610,
+        176
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20130928/images/de20130928m81.gif",
+      "output": "assets/maintenance-engineer/comcbt/20130928/images/de20130928m81.png",
+      "sourceSha256": "55021bd725bfc879ed7e71d0ba577f7e9ee98c7c696250bc5891548dbcfa8ecb",
+      "outputSha256": "ba270d72445004939ec9826614ef8f1d16594402641598015ca5df7977f66cd4",
+      "size": [
+        574,
+        254
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20130928/images/de20130928m86.gif",
+      "output": "assets/maintenance-engineer/comcbt/20130928/images/de20130928m86.png",
+      "sourceSha256": "2516c42ec02d8823105ad8ace82ee4f5cd80fbe2f1ce8e675099173f5815a0ab",
+      "outputSha256": "8f01deb3ebf38b3d692200bbfa1ede8774a5fd74facaf95625d61895ecca5e1c",
+      "size": [
+        496,
+        242
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20120915/images/de20120915m36.gif",
+      "output": "assets/maintenance-engineer/comcbt/20120915/images/de20120915m36.png",
+      "sourceSha256": "038c72f5de77652a741183ff907462a1eac420c10ee952f2b1d49ce48772c4bd",
+      "outputSha256": "38daca41a16b804a5423901f8fa444debf7c1d4f498e99ab5b175b637ba84f19",
+      "size": [
+        626,
+        172
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20120915/images/de20120915m43.gif",
+      "output": "assets/maintenance-engineer/comcbt/20120915/images/de20120915m43.png",
+      "sourceSha256": "d0eda23ac87364516dac27ac8573da9f82e8ba44fb13e556143176a21f198bfa",
+      "outputSha256": "17a4097063e0b5ae5c938df3a74bace385826d7404cd66e23dc8e4d22dbc07bb",
+      "size": [
+        610,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20120915/images/de20120915m57.gif",
+      "output": "assets/maintenance-engineer/comcbt/20120915/images/de20120915m57.png",
+      "sourceSha256": "be597b02d50455d2702284693bc6ee85f0bb513399d10b859fce2d8d89ec7eca",
+      "outputSha256": "122cac2049590caf7743689028b1666ee34ad01fb533b3587b44c1e647663fd2",
+      "size": [
+        538,
+        182
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20120915/images/de20120915m93.gif",
+      "output": "assets/maintenance-engineer/comcbt/20120915/images/de20120915m93.png",
+      "sourceSha256": "c51f7261ae4947f982f83dc76862720274270eb121dd3c10b411636ea5f17719",
+      "outputSha256": "1b2a9b1fd52df554b14d17a2405f73562c75802de96523e63a9bfcf17b6a3efd",
+      "size": [
+        530,
+        420
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m24.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m24.png",
+      "sourceSha256": "fdf8cd96f54d04f45d68e4c249f3f8583152ab80819887f70c3aedf57772f4f8",
+      "outputSha256": "9e3c6c8db95c742009c8de88f681457eb3fce314c829664d63a9051bdd2a09c9",
+      "size": [
+        692,
+        530
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m54.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m54.png",
+      "sourceSha256": "dd952774112959bf2988237593d750bdff19bdfac1dc56a468376741da511c6e",
+      "outputSha256": "b2c908c4b8d925ebde6be617f4541dd5f50b08cc27a75b9bcf63af24acbf0e2c",
+      "size": [
+        218,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m75.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m75.png",
+      "sourceSha256": "dce387e04468cb4080fbb7af67b2211389b60c2d88913e0d8a78a65188d35356",
+      "outputSha256": "746f680fcf1e760f8f7fc34e192337844e87aa1e343548423c66e2a7bed45a13",
+      "size": [
+        574,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m85b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m85b1.png",
+      "sourceSha256": "edf3f874e539ec1dcc73871813b5f59a5d4b0c52de18da3d4eec713e4f1f30fb",
+      "outputSha256": "4006a5dbc554ec8994808a0d67396ce08aea736375d050559b725b7c01c783a2",
+      "size": [
+        100,
+        158
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m85b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m85b2.png",
+      "sourceSha256": "f45fbe17956b9d99cf5527039b3b89750ceeca14ea0222ea90349f3c35bd72de",
+      "outputSha256": "dcd30641ab837eb3a69d14a1e7b25e0998990f7a72f511de03d64c7527166bd4",
+      "size": [
+        102,
+        144
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m85b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m85b3.png",
+      "sourceSha256": "637c21f8f73258b0b245e0fb25aba569fd4fa5f6b2e88a4eb870e3094da6274d",
+      "outputSha256": "0aaabcaf17f8c959b457c6d0de8b0182da54eb83cbe6b5199540aa6a397c609a",
+      "size": [
+        106,
+        164
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20111002/images/de20111002m85b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20111002/images/de20111002m85b4.png",
+      "sourceSha256": "b5b79847625e811c67dc32a03735f263ca9a22817f3fee29dabc64d07e1781d0",
+      "outputSha256": "55645b1f6eded479cea42f75a8a78fa1addac8b577f539c0ecd0fe9381caf043",
+      "size": [
+        122,
+        168
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m8b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m8b1.png",
+      "sourceSha256": "779e92874b94dab2c526757188f3a2919c7bc290392ea7cada0c0937716b0bf1",
+      "outputSha256": "9f3e111b7752a909b7a005e38394d06d744fe54adaa2ce7f506ae94b7ab3bb55",
+      "size": [
+        250,
+        52
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m8b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m8b2.png",
+      "sourceSha256": "d2216a6944ea1d9ced140052d6892418310694e2b52ba984f899b2b2eb85d49b",
+      "outputSha256": "ea841e3443b19214bd87586600740ddde2fb6dc0015f6aaf44cbdba353f59663",
+      "size": [
+        156,
+        48
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m8b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m8b3.png",
+      "sourceSha256": "300557263f6e871b7a25883ddd7b88122519a203c6a3b451c267751fabf8acd9",
+      "outputSha256": "bc2b89394a5006cde14ba0ccef1a41488aedff9326bf48b1e2a42f8946cb534e",
+      "size": [
+        238,
+        82
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m8b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m8b4.png",
+      "sourceSha256": "1b9d4665e15bfd1354b912bb1ae9798af161791ce958e8174f797839e98b7dc5",
+      "outputSha256": "968beb170b243486a724a592b477597fdd4b0533fd23c0e1cbc63a73ea311ef8",
+      "size": [
+        150,
+        86
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m9.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m9.png",
+      "sourceSha256": "41c4375690d6c88d9315e23af6337bb6859d3a2af4e8d4f2eb5fa06e0c5535d1",
+      "outputSha256": "392de1745d4d1953247899de162c64b0a64f6d44518e15f54563a4acd84a7686",
+      "size": [
+        594,
+        298
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m81.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m81.png",
+      "sourceSha256": "d1b339e90c2d63090651ca37b551ab25f710d1966e371ee872ab10eedd791afc",
+      "outputSha256": "767e8fb12b8e130252d673b7a03edfc76ff6eef79e2ff7f7f8d993469aba15a9",
+      "size": [
+        196,
+        174
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m89b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m89b1.png",
+      "sourceSha256": "e8bb9f48a19da2bc72f111397fcb8f9c31fa85ccec646c8455ce85e0ce9802da",
+      "outputSha256": "317848832f1f12f55110055c4bbe1f2eecd88f64932e822c6e413f9ef1933f27",
+      "size": [
+        182,
+        100
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m89b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m89b2.png",
+      "sourceSha256": "ecb1c9bbe6267a59bb244ef54a716780eacf8be10587c6d07de73d86f4daeca9",
+      "outputSha256": "5d0a10a318c49f1e5d22e6f9533fcfb86f5217bf93cd766ce18aad9b70dd4bb3",
+      "size": [
+        172,
+        110
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m89b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m89b3.png",
+      "sourceSha256": "b692cc879bc80c9c62da2eaf06f9d89f34f62a4cfe43c617371b714eb55cec1c",
+      "outputSha256": "d44e1fd0b57810df90468eadc8b7a70cc0dab01b6c721914a12da1639960402a",
+      "size": [
+        116,
+        122
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20100905/images/de20100905m89b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20100905/images/de20100905m89b4.png",
+      "sourceSha256": "ce6e2cdf8daf82f810cba61376a43691940c1e3cb9ae39bb7886d915c029111d",
+      "outputSha256": "b12dade7ddd380f0f1234e6c7c4b2b7cb7fef40e40158e6cc487a79af9854617",
+      "size": [
+        176,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m6b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m6b1.png",
+      "sourceSha256": "dc00eb50a2194b8348a6f4809880e9602ff8cab1a1a13e570695835c96bf8ed2",
+      "outputSha256": "98c365d59d7b18897c09b2703eebe186ba56d5f6de11a0f845b79f00967476ec",
+      "size": [
+        208,
+        112
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m6b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m6b2.png",
+      "sourceSha256": "df913fc394fa9abf76c2819c84fd6b6265e79758afce6ef4e20ad5c25758fa7e",
+      "outputSha256": "23b98d45b9f5b8f70608c8eea03bc94715b5074e41c45dc7d6557c9ff7e5aa36",
+      "size": [
+        192,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m6b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m6b3.png",
+      "sourceSha256": "fc360cf224f08e2742a58f9d873d3baf8d4ed5c6d6b56aa62d685c217b4b4949",
+      "outputSha256": "e258b5298394e868bb81f7ef9271a3c13fd00379759128924ffd8259159082a0",
+      "size": [
+        208,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m6b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m6b4.png",
+      "sourceSha256": "d130c9c650a38fd56eb9946b2a963f52421fb3f6f7011c63cc09e9dab4ea5228",
+      "outputSha256": "ebe609a461cf22ced712ea35368a606e0a3a44ea85e0c0f5ac5882cf538a2f8f",
+      "size": [
+        212,
+        104
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m8b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m8b1.png",
+      "sourceSha256": "3f2c87309e1a7931459c506bcc66f8d461c970f67a7cb89bd168572534fe89e2",
+      "outputSha256": "1f7e357f686be4ea3aac409c148f60328345a03b2247f04ef847278947cec0aa",
+      "size": [
+        154,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m8b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m8b2.png",
+      "sourceSha256": "00afba45f6d0db40f92e0d379cbf196929660894ffc1df04b5cf078c4bf94ca3",
+      "outputSha256": "b891547406d6b7c0ca058cc343751404645ef8a331100558dd7b17c21470605c",
+      "size": [
+        144,
+        82
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m8b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m8b3.png",
+      "sourceSha256": "556a6edd1f9203bdee49cf2de69881c204cdadae5aa91065f8ed395b2193ff6a",
+      "outputSha256": "4068b6f430e45f2f65db6300107fe4223c67873f2fcef6c57950c2e638e35691",
+      "size": [
+        174,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m8b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m8b4.png",
+      "sourceSha256": "724baf05ae492c5f0e2a07de01c0501dfb385287d6ae58fff1f1155d95b3e684",
+      "outputSha256": "19ae5d1a66f42b0eac52e60ccd3d2e7cdbb607cbce28213c494dae5abb5425a8",
+      "size": [
+        156,
+        96
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m8.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m8.png",
+      "sourceSha256": "507d5f562274b0bee80b8f1094991c86a8aa741154c34789efd1a2cb5c5a6fe3",
+      "outputSha256": "9b4edce071b9a0e65597fc0fff308e5636c901f2023798ee1c678bd7a1c4d6b1",
+      "size": [
+        248,
+        140
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m13.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m13.png",
+      "sourceSha256": "64e03becaaad219076c27eddfe1037d60fb085a6f5f6a106a9b8ff0d3dc98db3",
+      "outputSha256": "21484587746fb960aff8efda6034aaed8262ff59579d12d736d0eb758c0a0a14",
+      "size": [
+        574,
+        98
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m35.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m35.png",
+      "sourceSha256": "1471ea540d09436b52ce004b03f7bc56583be990cd0abbbc2a40151a0f273344",
+      "outputSha256": "7517b6512f00532e6e8f0b60f9352c647b0f8422c10fd2f0259b5531f9669ecb",
+      "size": [
+        782,
+        60
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m46b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m46b1.png",
+      "sourceSha256": "9f795e54ea9c40307bd3153adb4ffbb2a7ea8ee2dad021284de040f4171d2a15",
+      "outputSha256": "24fc01caffaa0dbc1420ec2153142d85a30e6ddf1013dc8b3f71ffa63ec6f5e4",
+      "size": [
+        82,
+        88
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m46b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m46b2.png",
+      "sourceSha256": "f6d2b497ce8cab7acb105b17be60c3e785e4878f491ead84310ac20a0de069db",
+      "outputSha256": "87253413669d3e69dc7c1c24b2c1bf384bba34673b3932e201fc62427b8383ce",
+      "size": [
+        104,
+        90
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m46b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m46b3.png",
+      "sourceSha256": "8ea3a17c15bbe9c4698337d0767dd767ccc49e876cb5febde643c43a60b9f743",
+      "outputSha256": "f410307946f5db96c7504c589a981ee654c644a94c94bd6a756e6b7f353e4307",
+      "size": [
+        96,
+        80
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m46b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m46b4.png",
+      "sourceSha256": "61ce552d1823118414bfa0337beb0e922428bc6a527d5e6c061193e1d8755898",
+      "outputSha256": "bf0c0f775894e9f3a193bfda3c65a4c186419984c0f4d5f3e8b8173b1c5c1e95",
+      "size": [
+        118,
+        86
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m87.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m87.png",
+      "sourceSha256": "07e9f35b7e74bc0a6fd3a9bb7da60cc3e820f4c1ddf2f4b9b0fe6c407b97ff97",
+      "outputSha256": "397d27b706e2c1b3307fa3afae92624c96f716965723bdac1ba302f07df3040f",
+      "size": [
+        354,
+        182
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m90b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m90b1.png",
+      "sourceSha256": "1e968fb3371b8e1cd5e8c324af6d7be2220597c947ca5ff80b7a7ec3bc664288",
+      "outputSha256": "d7364fff1ab07f2945765e3ed453e5e330e59624f83b160c21c9537f635340e3",
+      "size": [
+        114,
+        74
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m90b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m90b2.png",
+      "sourceSha256": "1ea80db698f7ad011c6db3e0fff48f6d4e1ad7f1205d6d2753a46b76d9fdaabb",
+      "outputSha256": "073c7cfa7cafde80c4f1be9e8ff0df13993cc2f500c98b0ac888f9ca496004c2",
+      "size": [
+        110,
+        84
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m90.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m90.png",
+      "sourceSha256": "7eb49686ffbd24c3c93f7a8d33f5911a73e8e1a51fcade9bedee92900fb83784",
+      "outputSha256": "e26dd4b27b1489376c39bfcc24b9bd2f1bb465f4f70b27379625409a5f33fc0a",
+      "size": [
+        422,
+        108
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m91b1-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m91b1-1.png",
+      "sourceSha256": "cd34065e1ebe1fc3ac98169103177ecd6a9d08e7801947ce8bf2673d4d9845b6",
+      "outputSha256": "100023eec57faba79d949964ad2bb7f9b73f6fd9e5e137695857520d7703b74a",
+      "size": [
+        146,
+        62
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m91b2-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m91b2-1.png",
+      "sourceSha256": "accf7e72d0486892a03547915e7cae2bf1109a480e0b8cf7cebea10e7922d4cc",
+      "outputSha256": "e83b0ea50e5f575e8acce7a4aab0822a63256cafa343c9676932643ad5713652",
+      "size": [
+        134,
+        58
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m91b3-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m91b3-1.png",
+      "sourceSha256": "be68c6ea81b5fa3affdadd18e314c7b137ab3f670971b28cdf1d0f1632c6cba7",
+      "outputSha256": "2b66b2708fe5ef564946d4d69e39864e86d201c5dd4b0c626f6172fb58dc9d8c",
+      "size": [
+        146,
+        50
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20090830/images/de20090830m91b4-1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20090830/images/de20090830m91b4-1.png",
+      "sourceSha256": "ca62b7c3da1052b28d03a4819c31b63705376e2aeecb67c991a0d65a52448700",
+      "outputSha256": "242707ad424f8a2412461bed14a08986e2ac9a77e98ea4623e4c88b64a462a24",
+      "size": [
+        146,
+        54
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m36.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m36.png",
+      "sourceSha256": "4199e7f48ccd17fbeeb27528e808be819f7031d32d6cc9648e53e684eaa23e81",
+      "outputSha256": "1e96aae7b66e10e7977866bf7fa04c71288e84d17db8c47696824ee5e618bf72",
+      "size": [
+        574,
+        138
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m38.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m38.png",
+      "sourceSha256": "2c77490202d835d1f144a6f5e122421305820c5a12914842efb689fe8060a05b",
+      "outputSha256": "f02898cee61a15fd206787372ff9d4575bcc03d95bb1ad3ae418bc6ab3be19c1",
+      "size": [
+        736,
+        508
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m92b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m92b1.png",
+      "sourceSha256": "71f201d2653a3d5a3aff4584049f4c5d312a8f37eb1ae8efaac4255d574c9f1b",
+      "outputSha256": "fa99d87383d259282c66668ff868cf7cbfc515c671961f41045f04a65859e3b1",
+      "size": [
+        166,
+        72
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m92b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m92b2.png",
+      "sourceSha256": "5051defdb16ba22a119b2c7e44b23bed89fa9281f7a075c2e8ee58639e9652f9",
+      "outputSha256": "0cbd1d7e07789d994df1844d1f16e1a717c6d2ea9219a61a789afeb9320ac9b5",
+      "size": [
+        174,
+        74
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m92b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m92b3.png",
+      "sourceSha256": "065bf8399be086799c676a3cffb6a4f5895ec28f29989673058257f9b13c604c",
+      "outputSha256": "f7dcf1eb42e9a55550adc791cbdcc858e01a78bab44f12b5605cb662545dec83",
+      "size": [
+        162,
+        72
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20080907/images/de20080907m92b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20080907/images/de20080907m92b4.png",
+      "sourceSha256": "e0e1f54be9ce04bfc341bc0f84e6b8cad9c7c61952511b85de47a71eefe52601",
+      "outputSha256": "21c53f9419017e7b4284986d32819a553c863f918b9efdd92e901cbfa719a922",
+      "size": [
+        172,
+        66
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m2.png",
+      "sourceSha256": "ac84be6504f23b468d807e009b27fd644f15a8a0c0dc8473e735536c6e23ea37",
+      "outputSha256": "276247fe0df7324e06174b16531ba550d173a5a522ee91b13ae7ed28a985b79a",
+      "size": [
+        520,
+        418
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m10b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m10b2.png",
+      "sourceSha256": "044d584403157d65b010d029591ba1bf15d90e7ff028e7f306cf38d907551dc6",
+      "outputSha256": "086f68148d0a6c26b14779126ea6a54ee53882a3c0a64abd33da903c8e255f92",
+      "size": [
+        188,
+        52
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m10b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m10b3.png",
+      "sourceSha256": "b95b5e6798310e3af8b0e2046d1f5a13daccc0730ffa0f65e6bb903a585f739b",
+      "outputSha256": "e8139b52e469f3ac58c5d7ade2d5504669260b5bc96edde97b60d7593675a886",
+      "size": [
+        208,
+        86
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m10b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m10b4.png",
+      "sourceSha256": "ea537518c617323967ffff01efbc2a5a69217bd05e965e9f901f388ee8aa1983",
+      "outputSha256": "891217f1ceb066c2107faee504544afc1259e57b4a07451f20f62723002dea87",
+      "size": [
+        210,
+        64
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m10.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m10.png",
+      "sourceSha256": "98982997374777dadecfbe64c23a10d2975e149286a0c224031af217e4ff8d81",
+      "outputSha256": "de668fe9117db918a3bc7527379c547965022e1515e8c4ec6d7a038da06f4bb4",
+      "size": [
+        454,
+        188
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20070902/images/de20070902m93.gif",
+      "output": "assets/maintenance-engineer/comcbt/20070902/images/de20070902m93.png",
+      "sourceSha256": "88094500d76506446ff484f75cf2c7e7e266f7cf749a03066e6e069af34c87cc",
+      "outputSha256": "1df038f4a87a6fbb3072ed28211de2247d3883cc2abbe2a8f67a23c87df212c1",
+      "size": [
+        282,
+        128
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m17b1.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m17b1.png",
+      "sourceSha256": "636d1864b0930b7f83ca2d4a468fe63d920a0440d7beb9f8e599ff672bccc308",
+      "outputSha256": "525ca218bc18054d03084bf913586db9b6c337e00d41b81ebf3edd85d99140c0",
+      "size": [
+        166,
+        92
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m17b2.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m17b2.png",
+      "sourceSha256": "168c7f06363a169d658887d081deeed61db9cd13e12428beb9963e6a400e129d",
+      "outputSha256": "745bab715662c4bc725ab8188cae824e0f4e472e40d7efb0035cd948d8b699e5",
+      "size": [
+        162,
+        94
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m17b3.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m17b3.png",
+      "sourceSha256": "92117a0faaa5fa67da6fb43ad82ecaf31547f50a6cf0b64da012fb72a051af2e",
+      "outputSha256": "c11ff804633a4d7bf1ff038e2846f6f01fd959121dbd480c3847eed124626bee",
+      "size": [
+        222,
+        64
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m17b4.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m17b4.png",
+      "sourceSha256": "a6610f149c5065dee81a9824ba3e0bd26fa392a03a6222d8b63c5ca8bf147b71",
+      "outputSha256": "9be4b1cc358dd67e4b9da7d60eaebbb10713de9b59933c9f84186c869dd93e73",
+      "size": [
+        176,
+        58
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m37.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m37.png",
+      "sourceSha256": "e363dce40349a05780d52c709d2e8ec08368bc83debc446fdac811236f59bcf4",
+      "outputSha256": "eb916050a12c8a813b6acc6fc0ae735dd425006d8c538d0ef34958cbbe870a60",
+      "size": [
+        524,
+        62
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m88.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m88.png",
+      "sourceSha256": "75bd7955ba71d57b80557678213f3c2fb2b6f9e6632665974af97d8ba40bb494",
+      "outputSha256": "b7109e592415273a61e1ec7b8c48d3052a935cca7fa9ffae6b8fcab0f69494f6",
+      "size": [
+        222,
+        156
+      ]
+    },
+    {
+      "source": "assets/maintenance-engineer/original/comcbt/20060910/images/de20060910m91.gif",
+      "output": "assets/maintenance-engineer/comcbt/20060910/images/de20060910m91.png",
+      "sourceSha256": "095b27f9b58adfb590f8f9bbe192f9a92f5bf2a1ebe701fc3eb396c8431ed558",
+      "outputSha256": "6f329c879a280d1b6280e9ba168256bf079109fd15611cd89cc7990165f5bdf7",
+      "size": [
+        232,
+        196
+      ]
+    }
+  ]
+}

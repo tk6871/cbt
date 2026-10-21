@@ -1529,6 +1529,7 @@ img { max-width: 100%; }
 }
 :root[data-theme="dark"] .restored-image-original { background:white; filter:none; }
 .choice-grid-shell { position:relative; }
+.qualification-scope-notice { margin:0 0 16px; padding:12px 16px; border:1px solid var(--line); border-radius:12px; background:var(--surface-2); color:var(--text); font-size:.72rem; line-height:1.65; overflow-wrap:anywhere; }
 .textbook-explanation-image { margin:12px 0; min-width:0; }
 .textbook-explanation-image figcaption { margin-bottom:7px; font-weight:800; color:var(--muted); }
 .textbook-explanation-image img { display:block; width:100%; height:auto; max-width:1050px; background:white; }

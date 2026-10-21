@@ -65,6 +65,15 @@ class Item:
 
 
 TARGETS = {
+    "maintenance-engineer": Target(
+        key="maintenance-engineer",
+        source_relative=Path("assets/maintenance-engineer/original/comcbt"),
+        source_extensions=(".gif", ".jpg", ".jpeg", ".png", ".webp"),
+        output_extension=".png",
+        expected_count=265,
+        data_relative=Path("data/maintenance-engineer.js"),
+        destination_relative=Path("assets/maintenance-engineer/comcbt"),
+    ),
     "hvac-restored": Target(
         key="hvac-restored",
         source_relative=Path("assets/hvac/assets/questions"),

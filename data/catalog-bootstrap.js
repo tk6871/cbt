@@ -1,7 +1,7 @@
 (function () {
   var DISPLAY_KEY = "unified-cbt-display-mode";
   var QUALIFICATION_KEY = "modern-cbt-qualification-industrial";
-  var allowed = ["hvac", "hvac-hansol", "safety", "energy", "energy-midterm", "maintenance", "electric-craftsman", "gas-craftsman", "hazardous-craftsman", "information-engineer", "forklift-craftsman", "school-exams"];
+  var allowed = ["hvac", "hvac-hansol", "safety", "energy", "energy-midterm", "maintenance", "maintenance-engineer", "electric-craftsman", "gas-craftsman", "hazardous-craftsman", "information-engineer", "forklift-craftsman", "school-exams"];
   var displayPreference = "auto";
   var qualification = "hvac";
   try {
