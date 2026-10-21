@@ -32,6 +32,8 @@ styles={
     'reference':ParagraphStyle('reference',fontName='Nanum',fontSize=8.5,leading=11,textColor=MUTED,spaceAfter=3,wordWrap='CJK'),
     'formula':ParagraphStyle('formula',fontName='NanumBold',fontSize=12,leading=19,textColor=GREEN,backColor=HexColor('#edf6f3'),borderPadding=7,spaceBefore=6,spaceAfter=10,wordWrap='CJK'),
     'warning':ParagraphStyle('warning',fontName='Nanum',fontSize=11,leading=15.5,textColor=INK,backColor=HexColor('#fff4df'),borderPadding=6,spaceBefore=6,spaceAfter=9,wordWrap='CJK'),
+    'questionLabel':ParagraphStyle('questionLabel',fontName='NanumBold',fontSize=11,leading=16,textColor=HexColor('#183e68'),spaceAfter=6,wordWrap='CJK',keepWithNext=True),
+    'solutionLabel':ParagraphStyle('solutionLabel',fontName='NanumBold',fontSize=11,leading=17,textColor=HexColor('#14543d'),backColor=HexColor('#e3f1e9'),borderPadding=6,spaceBefore=10,spaceAfter=9,wordWrap='CJK',keepWithNext=True),
 }
 
 def clean(text):
@@ -116,6 +118,26 @@ def formula_block(item,notes=True):
 def block_height(block):
     return sum(f.wrap(WIDTH-12,H)[1]+f.getSpaceBefore()+f.getSpaceAfter() for f in block)
 
+class ReadingPhase(Flowable):
+    """Remember which question/solution continues onto the next page."""
+    width=height=0
+    keepWithNext=True
+    def __init__(self,label):
+        super().__init__()
+        self.label=label
+    def draw(self):
+        self.canv._reading_phase=self.label
+        self.canv._phase_fresh=True
+
+class StudyDocument(SimpleDocTemplate):
+    def afterFlowable(self,flowable):
+        if isinstance(flowable,(Paragraph,Table,FractionFormula,Image)) and not getattr(self.canv,'_phase_seen',False):
+            self.canv._page_phase=getattr(self.canv,'_reading_phase','')
+            self.canv._page_continued=not getattr(self.canv,'_phase_fresh',False)
+            self.canv._phase_seen=True
+    def afterPage(self):
+        page_end(self.canv,self)
+
 story=[p('공조 필답형 계산 공부\n단위 · 네 공식 · 숫자 고르기','title'),p('CGT·CR·COP·BF 우선 / 분수식과 풀이를 이어 읽는 합본 / '+DATA['date'],'small')]
 for item in DATA['basics'][:5]: story.extend(section(item['title'],item['text']))
 story.append(PageBreak())
@@ -155,9 +177,10 @@ for row in DATA['rows']:
 question_headings=[]
 number=0
 for priority in (True,False):
+    story.append(ReadingPhase(''))
     story.append(PageBreak())
     story.append(p('시험 우선 13문제' if priority else '보충 계산 23문제','title'))
-    story.append(p('같은 공식은 함께 설명하고 문제별 숫자·조건·계산은 바로 아래에 붙였습니다. 기본 반올림은 최종값 둘째 자리, 개별 요구가 있으면 그 조건이 우선입니다.','small'))
+    story.append(p('파란 상자 “문제”를 먼저 읽고, 아래 초록 제목 “해설”부터 풀이를 확인하세요. 같은 번호가 한 쌍입니다. 기본 반올림은 최종값 둘째 자리, 개별 요구가 있으면 그 조건이 우선입니다.','small'))
     for (is_priority,title,formula),rows in groups.items():
         if is_priority!=priority: continue
         lesson=rows[0]['lesson']
@@ -165,6 +188,7 @@ for priority in (True,False):
                labeled('기호',' / '.join(lesson['symbols'])),labeled('원리',lesson['why']),
                labeled('단위',' '.join(lesson['units'])),labeled('기억',lesson['memory'])]
         story.append(CondPageBreak(180))
+        story.append(ReadingPhase(''))
         story.append(KeepTogether(intro))
         for row in rows:
             number+=1
@@ -172,16 +196,24 @@ for priority in (True,False):
             source=row['sourceLabel']
             heading=f'{number:02d}. {source}'
             question_headings.append(heading)
-            block=[p(heading,'head'),p(q['question'])]
+            block=[p(f'문제 {number:02d} | {source}','questionLabel'),p(q['question'])]
             for asset in ([q['image']] if q.get('image') else [])+q.get('images',[]):
                 path=ROOT/asset
                 if path.suffix.lower()=='.svg': path=ROOT/'tmp/pdfs'/f'{path.stem}.png'
                 with PILImage.open(path) as im: iw,ih=im.size
-                scale=min(WIDTH/iw,155/ih)
+                scale=min((WIDTH-20)/iw,155/ih)
                 image=Image(str(path),width=iw*scale,height=ih*scale)
                 image.hAlign='CENTER'
                 block.extend([image,Spacer(1,7)])
-            question_end=len(block)
+            question_panel=Table([[block]],colWidths=[WIDTH])
+            question_panel.setStyle(TableStyle([
+                ('BACKGROUND',(0,0),(-1,-1),HexColor('#edf3fb')),
+                ('BOX',(0,0),(-1,-1),.7,HexColor('#688bb2')),
+                ('LINEBEFORE',(0,0),(0,-1),3,HexColor('#315f91')),
+                ('LEFTPADDING',(0,0),(-1,-1),10),('RIGHTPADDING',(0,0),(-1,-1),10),
+                ('TOPPADDING',(0,0),(-1,-1),9),('BOTTOMPADDING',(0,0),(-1,-1),9),
+            ]))
+            block=[ReadingPhase(f'해설 {number:02d} | {source}'),p(f'해설 {number:02d} | 숫자 고르기 → 계산 → 최종값','solutionLabel')]
             s=l['numberSelection']
             block.append(labeled('쓰는 값',s['used']))
             if s.get('unused'): block.append(labeled('이번 식에는 안 씀',s['unused'],'warning'))
@@ -192,14 +224,18 @@ for priority in (True,False):
             rounding=l.get('rounding','')
             if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): block.append(p(rounding,'small'))
             if l.get('caution'): block.append(labeled('주의',l['caution'],'small'))
-            block.append(Spacer(1,9))
-            story.extend([CondPageBreak(180),KeepTogether(block[:question_end]),*block[question_end:]])
+            block.append(Spacer(1,4))
+            story.extend([CondPageBreak(block_height([question_panel])+70),ReadingPhase(f'문제 {number:02d} | {source}'),question_panel,*block])
 
-story.extend([Spacer(1,10),p('근거와 답안 표기','head')])
+story.extend([ReadingPhase(''),Spacer(1,10),p('근거와 답안 표기','head')])
 story.append(p('문항·그림·숫자는 기존 복원·연습 자료를 대조했습니다. 이번 식의 미사용 값도 다른 소문항에는 필요할 수 있습니다. 채점 안내는 사용자 제공 IMG_9883.JPG를 따르며 반올림 예외는 해당 문항 풀이에 표시했습니다.','small'))
-for ref in DATA['references']: story.append(p(ref['title']+' / '+ref['url'],'reference'))
+reference_links=['<link color="#315f91" href="'+escape(ref['url'],quote=True)+'">'+markup(ref['title'],'reference')+'</link>' for ref in DATA['references']]
+story.append(Paragraph('원문 열기: '+' / '.join(reference_links),styles['reference']))
 
 def footer(canvas,doc):
+    canvas._phase_seen=False
+    canvas._page_phase=''
+    canvas._phase_fresh=False
     canvas.saveState()
     canvas.setStrokeColor(HexColor('#dce5e8'))
     canvas.line(MARGIN,34,W-MARGIN,34)
@@ -209,12 +245,23 @@ def footer(canvas,doc):
     canvas.drawRightString(W-MARGIN,21,str(doc.page))
     canvas.restoreState()
 
-SimpleDocTemplate(str(OUT),pagesize=A4,rightMargin=MARGIN,leftMargin=MARGIN,topMargin=35,bottomMargin=47,
-                  title='공조 필답형 계산 공부 - 공식·함정·풀이 합본',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
+def page_end(canvas,doc):
+    label=getattr(canvas,'_page_phase','')
+    if label:
+        canvas.saveState()
+        canvas.setFont('NanumBold',8.5)
+        canvas.setFillColor(MUTED)
+        canvas.drawString(MARGIN,H-22,label+(' · 해설 계속' if getattr(canvas,'_page_continued',False) else ''))
+        canvas.restoreState()
+
+StudyDocument(str(OUT),pagesize=A4,rightMargin=MARGIN,leftMargin=MARGIN,topMargin=35,bottomMargin=47,
+              title='공조 필답형 계산 공부 - 공식·함정·풀이 합본',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
 reader=PdfReader(str(OUT))
 text=''.join(''.join((page.extract_text() or '').split()) for page in reader.pages)
 assert number==len(DATA['rows'])==36
-for heading in question_headings: assert ''.join(clean(heading).split()) in text,heading
+for i,heading in enumerate(question_headings,1):
+    assert ''.join(clean(f'문제 {i:02d} | {heading.split(". ",1)[1]}').split()) in text,heading
+    assert ''.join(f'해설 {i:02d}'.split()) in text
 for needle in ['1,821','잠열10','높이3','동력10','난방부하','소수점']:
     assert needle in text,needle
 assert 'SI' in (reader.pages[0].extract_text() or '')
