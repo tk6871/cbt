@@ -1,6 +1,9 @@
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { practicalFormulaSummary } from '../src/cbt/practicalFormulaSummary';
+import katex from 'katex';
+import { fractionFormula, fractionTex, fractionText, fractionBasics, fractionsForProblem } from '../src/cbt/practicalFractions';
+import { practicalCalculationLessons } from '../src/cbt/practicalCalculations';
 import { pageItems } from '../src/cbt/listPresentation';
 import { practicalSourceLabel } from '../src/cbt/practicalLabels';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
@@ -9,6 +12,22 @@ import { adminViewLabel, issueImageUrl, issueTypeLabel, issueStatusLabel, seoulD
 assert.deepEqual(practicalFormulaSummary.slice(0,5).map(f => f.key), ['cgt','cr','cop','bf','affinity']);
 assert.equal(new Set(practicalFormulaSummary.map(f => f.key)).size, 10);
 for (const f of practicalFormulaSummary) for (const field of ['title','formula','when','symbols','remember'] as const) assert.ok(f[field].trim(), `${f.key}.${field}`);
+for (const item of [...practicalFormulaSummary, ...Object.values(practicalCalculationLessons)]) {
+  const rows = fractionFormula(item.formula);
+  if (item.formula.includes('÷')) assert.ok(rows.length, `Fraction layout missing: ${item.formula}`);
+  for (const row of rows) {
+    const markup = katex.renderToString(fractionTex(row.parts), { throwOnError:true, strict:'ignore' });
+    assert.ok(markup.includes('katex'));
+  }
+}
+for (const prompt of practicalPrompts) for (const row of fractionsForProblem(prompt.id)) {
+  assert.ok(katex.renderToString(fractionTex(row.parts),{throwOnError:true,strict:'ignore'}).includes('mfrac'));
+}
+assert.match(fractionText(fractionBasics[1].parts), /\(24\) ÷ \(2 × 3\)/);
+assert.equal(24/(2*3),4);
+assert.equal(24/2*3,36);
+assert.equal((400-250)/(450-400),3);
+assert.ok(Math.abs(9800*(1500/3600)*10/(1000*.7)-58.3333333333)<1e-8);
 // Arithmetic examples and the unit-scaled pump formula used in the recall sheet.
 assert.equal(2 * 4.18 * 5, 41.8);
 assert.equal(2 * 335, 670);

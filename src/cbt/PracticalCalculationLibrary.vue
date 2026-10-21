@@ -3,6 +3,8 @@ import { computed, ref, watch } from 'vue';
 import type { PracticalPrompt } from './hvacPracticalTypes';
 import { practicalSourceLabel } from './practicalLabels';
 import { practicalFormulaSummary } from './practicalFormulaSummary';
+import PracticalFractionLines from './PracticalFractionLines.vue';
+import { fractionFormula, fractionBasics } from './practicalFractions';
 import { calculationLesson, calculationPrompts, practicalSiBasics, practicalCalculationPdf, practicalCalculationReferences, practicalExamFamilies, practicalExamFamiliesFor, orderPracticalCalculations, type PracticalExamFamily } from './practicalCalculations';
 defineOptions({ name:'PracticalCalculationLibrary' });
 const props = defineProps<{ prompts: PracticalPrompt[] }>();
@@ -50,21 +52,22 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
     <section ref="formulaSection" class="formula-recall" aria-label="먼저 외울 한 줄 공식">
       <h4>먼저 외울 한 줄 공식</h4>
       <p>CGT·CR·COP·BF를 먼저, 상사법칙은 함께 기억하세요. 보충 공식은 출제 확정이 아닌 계산 복습용입니다.</p>
+      <details class="fraction-intro"><summary>분수 처음 읽기 · 위를 아래로 나눕니다</summary><PracticalFractionLines :rows="fractionBasics" /><p>가로 분수선은 괄호 역할도 합니다. 위·아래를 각각 먼저 계산한 뒤 나누세요. 분모가 0이면 나눌 수 없습니다.</p></details>
       <div class="formula-recall-grid">
         <article v-for="item in practicalFormulaSummary.slice(0, 5)" :key="item.key">
-          <h5>{{ item.title }}</h5><p class="calculation-formula">{{ item.formula }}</p>
+          <h5>{{ item.title }}</h5><PracticalFractionLines v-if="fractionFormula(item.formula).length" :rows="fractionFormula(item.formula)" /><p v-else class="calculation-formula">{{ item.formula }}</p>
           <details><summary>언제 쓰나 · 기호 뜻 · 암기법</summary><p>{{ item.when }}</p><p>{{ item.symbols }}</p><p><b>{{ item.remember }}</b></p></details>
         </article>
       </div>
       <details class="formula-recall-more"><summary>보충 공식 5개 · 펌프·냉매순환량·송풍량·열관류·현열비</summary>
-        <div class="formula-recall-grid"><article v-for="item in practicalFormulaSummary.slice(5)" :key="item.key"><h5>{{ item.title }}</h5><p class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p>{{ item.symbols }}</p><p><b>{{ item.remember }}</b></p></article></div>
+        <div class="formula-recall-grid"><article v-for="item in practicalFormulaSummary.slice(5)" :key="item.key"><h5>{{ item.title }}</h5><PracticalFractionLines v-if="fractionFormula(item.formula).length" :rows="fractionFormula(item.formula)" /><p v-else class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p>{{ item.symbols }}</p><p><b>{{ item.remember }}</b></p></article></div>
       </details>
       <p>같은 Q라도 열량 또는 유량일 수 있어요. 해당 공식의 뜻·단위를 확인하고, 자세한 숫자 대입은 아래 문제 풀이에서 보세요.</p>
     </section>
     <section class="practical-exam-focus" aria-label="시험 우선 네 가지 공식">
       <h4>이번 시험은 CGT · CR · COP · BF부터</h4><p>전달받은 시험 안내: 네 유형 중 계산문제 1개, 경우에 따라 2개. 해당 공식을 중심으로 푸는 {{ examCount }}문제를 먼저 모았습니다.</p>
       <nav class="practical-exam-family-buttons" aria-label="시험 우선 공식 선택"><button type="button" :aria-pressed="scope === 'exam' && family === 'all'" @click="selectFamily('all')">네 유형 함께 {{ examCount }}</button><button v-for="item in practicalExamFamilies" :key="item.key" type="button" :aria-pressed="scope === 'exam' && family === item.key" @click="selectFamily(item.key)">{{ item.key.toUpperCase() }} {{ rows.filter(p => practicalExamFamiliesFor(p).includes(item.key)).length }}</button><button type="button" :aria-pressed="scope === 'all'" @click="scope = 'all'">전체 계산 {{ rows.length }}</button></nav>
-      <details v-for="item in practicalExamFamilies" :key="item.key" :open="scope === 'exam' && family === item.key"><summary>{{ item.title }} · 공식부터 이해하기</summary><p class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p><b>기호 뜻</b> {{ item.symbols }}</p><p><b>쉬운 예제</b> {{ item.example }}</p><p><b>단위가 남는 과정</b> {{ item.units }}</p><p class="calculation-memory">{{ item.remember }}</p></details>
+      <details v-for="item in practicalExamFamilies" :key="item.key" :open="scope === 'exam' && family === item.key"><summary>{{ item.title }} · 공식부터 이해하기</summary><PracticalFractionLines v-if="fractionFormula(item.formula).length" :rows="fractionFormula(item.formula)" /><p v-else class="calculation-formula">{{ item.formula }}</p><p>{{ item.when }}</p><p><b>기호 뜻</b> {{ item.symbols }}</p><p><b>쉬운 예제</b> {{ item.example }}</p><p><b>단위가 남는 과정</b> {{ item.units }}</p><p class="calculation-memory">{{ item.remember }}</p></details>
     </section>
     <details class="practical-si-basics"><summary>계산이 처음이라면 · SI 단위부터 읽기</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article></details>
     <div ref="problemSection" class="practical-calculation-filters">

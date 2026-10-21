@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import type { CalculationLesson } from './practicalCalculations';
+import PracticalFractionLines from './PracticalFractionLines.vue';
+import { fractionFormula } from './practicalFractions';
 defineProps<{ lesson: CalculationLesson }>();
 </script>
 
@@ -12,10 +14,10 @@ defineProps<{ lesson: CalculationLesson }>();
       <p v-if="lesson.numberSelection.unused" class="calculation-unused"><b>이번 식에는 안 쓰는 값</b> {{ lesson.numberSelection.unused }}</p>
       <p><b>반드시 읽을 조건</b> {{ lesson.numberSelection.condition }}</p>
     </section>
-    <div class="calculation-formula"><b>먼저 외울 공식</b><p>{{ lesson.formula }}</p></div>
+    <div class="calculation-formula"><b>먼저 외울 공식</b><PracticalFractionLines v-if="fractionFormula(lesson.formula).length" :rows="fractionFormula(lesson.formula)" /><p v-else>{{ lesson.formula }}</p></div>
     <details class="calculation-symbols" open><summary>기호는 무슨 뜻일까?</summary><ul><li v-for="symbol in lesson.symbols" :key="symbol">{{ symbol }}</li></ul></details>
     <p><b>왜 이렇게 계산할까?</b> {{ lesson.why }}</p>
-    <div class="calculation-steps"><b>숫자 넣어 풀기</b><ol><li v-for="step in lesson.steps" :key="step">{{ step }}</li></ol></div>
+    <div class="calculation-steps"><b>숫자 넣어 풀기</b><PracticalFractionLines v-if="lesson.fractions?.length" :rows="lesson.fractions" /><ol><li v-for="step in lesson.steps" :key="step">{{ step }}</li></ol></div>
     <details class="calculation-units" open><summary>단위가 왜 이렇게 남을까?</summary><ul><li v-for="unit in lesson.units" :key="unit">{{ unit }}</li></ul></details>
     <div v-if="lesson.examAnswer" class="calculation-final"><b>시험 답안의 최종값 예시</b><p>{{ lesson.examAnswer }}</p><small>{{ lesson.rounding }} 위 계산과정도 함께 작성하세요.</small></div>
     <p class="calculation-memory"><b>한 줄로 기억</b> {{ lesson.memory }}</p>
