@@ -1,6 +1,5 @@
 """Compact booklet: shared formula lessons, then consecutive worked questions."""
 from pathlib import Path
-from collections import OrderedDict
 import json
 from html import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image, KeepTogether, CondPageBreak, Flowable, Table, TableStyle
@@ -12,6 +11,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from PIL import Image as PILImage
 from pypdf import PdfReader
 from practical_algebra_primer import build_algebra_primer
+from practical_formula_families import CHAPTERS, CARD_LESSONS
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
@@ -34,6 +34,7 @@ styles={
     'warning':ParagraphStyle('warning',fontName='Nanum',fontSize=11,leading=15.5,textColor=INK,backColor=HexColor('#fff4df'),borderPadding=6,spaceBefore=6,spaceAfter=9,wordWrap='CJK'),
     'questionLabel':ParagraphStyle('questionLabel',fontName='NanumBold',fontSize=11,leading=16,textColor=HexColor('#183e68'),spaceAfter=6,wordWrap='CJK',keepWithNext=True),
     'solutionLabel':ParagraphStyle('solutionLabel',fontName='NanumBold',fontSize=11,leading=17,textColor=HexColor('#14543d'),backColor=HexColor('#e3f1e9'),borderPadding=6,spaceBefore=10,spaceAfter=9,wordWrap='CJK',keepWithNext=True),
+    'calculation':ParagraphStyle('calculation',fontName='Nanum',fontSize=11,leading=15.5,textColor=INK,spaceAfter=5,wordWrap='CJK',keepWithNext=True),
 }
 
 def clean(text):
@@ -44,7 +45,7 @@ def clean(text):
 def markup(text,style):
     value=clean(text)
     font=pdfmetrics.getFont(styles[style].fontName)
-    greek='γρηαδλθΔπ'
+    greek='γρηαδλθΔπτ'
     missing={c for c in value if not c.isspace() and ord(c) not in font.face.charToGlyph and c not in greek}
     if missing: raise ValueError(f'Unsupported glyphs: {missing}')
     return ''.join(f'<font name="Math">{c}</font>' if c in greek else escape(c) for c in value).replace('\n','<br/>')
@@ -58,7 +59,7 @@ def math_box(parts,size=11):
     for part in parts:
         if isinstance(part,str):
             value=clean(part)
-            chars=[(char,'Math' if char in 'γρηαδλθΔπ' else 'NanumBold') for char in value]
+            chars=[(char,'Math' if char in 'γρηαδλθΔπτ' else 'NanumBold') for char in value]
             width=sum(pdfmetrics.stringWidth(char,font,size) for char,font in chars)
             def draw(canvas,x,y,chars=chars,size=size):
                 canvas.setFillColor(GREEN)
@@ -131,6 +132,9 @@ class ReadingPhase(Flowable):
 
 class StudyDocument(SimpleDocTemplate):
     def afterFlowable(self,flowable):
+        if getattr(flowable,'bookmark_key',None):
+            self.canv.bookmarkPage(flowable.bookmark_key)
+            self.canv.addOutlineEntry(flowable.bookmark_title,flowable.bookmark_key,0,False)
         if isinstance(flowable,(Paragraph,Table,FractionFormula,Image)) and not getattr(self.canv,'_phase_seen',False):
             self.canv._page_phase=getattr(self.canv,'_reading_phase','')
             self.canv._page_continued=not getattr(self.canv,'_phase_fresh',False)
@@ -138,8 +142,35 @@ class StudyDocument(SimpleDocTemplate):
     def afterPage(self):
         page_end(self.canv,self)
 
-story=[p('공조 필답형 계산 공부\n단위 · 네 공식 · 숫자 고르기','title'),p('CGT·CR·COP·BF 우선 / 분수식과 풀이를 이어 읽는 합본 / '+DATA['date'],'small')]
+story=[p('공조 필답형 계산 공부\n단위 · 식 바꾸기 · 유형별 풀이','title'),p('SI → 사칙연산·이항 → 비슷한 공식 7묶음 / '+DATA['date'],'small')]
 for item in DATA['basics'][:5]: story.extend(section(item['title'],item['text']))
+story.append(p('먼저 외울 공식 · 이름을 누르면 해당 묶음으로','head'))
+quick_keys=['cgt','cr','cop','bf','affinity','pump','circulation','air','transfer','shf']
+quick_formulas={
+    'cgt':['Q = G × c × Δt'], 'cr':['Q = G × r'],
+    'cop':['COP = ',{'top':['Qe'],'bottom':['L']}],
+    'bf':['BF = ',{'top':['t출구 - t코일'],'bottom':['t입구 - t코일']}],
+    'affinity':['유량 a · 양정 a² · 동력 a³'],
+    'pump':['L = ',{'top':['γ × Q × H'],'bottom':['1,000 × η']}],
+    'circulation':['G = ',{'top':['Qe'],'bottom':['Δh']}],
+    'air':['V = ',{'top':['Q현열'],'bottom':['ρ × c × Δt']}],
+    'transfer':['Q = K × A × Δt'],
+    'shf':['SHF = ',{'top':['현열'],'bottom':['현열 + 잠열']}],
+}
+quick_cells=[]
+for key in quick_keys:
+    item=next(item for item in DATA['formulaSummary'] if item['key']==key)
+    chapter_index=next(i for i,ch in enumerate(CHAPTERS,1) if key in ch['cards'])
+    label={'cgt':'CGT · 현열','cr':'CR · 잠열','cop':'COP','bf':'BF',
+           'affinity':'상사법칙\n회전수 a배','pump':'펌프 축동력',
+           'circulation':'냉매순환량','air':'공기 송풍량','transfer':'열관류','shf':'현열비 SHF'}[key]
+    link=Paragraph(f'<link href="#chapter-{chapter_index}">{markup(label,"small")}</link>',styles['small'])
+    cell=Table([[link,FractionFormula(quick_formulas[key])]],colWidths=[78,WIDTH/2-92])
+    cell.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(-1,-1),0),('RIGHTPADDING',(0,0),(-1,-1),0),('TOPPADDING',(0,0),(-1,-1),0),('BOTTOMPADDING',(0,0),(-1,-1),0)]))
+    quick_cells.append(cell)
+quick_table=Table([[quick_cells[i],quick_cells[i+1]] for i in range(0,10,2)],colWidths=[WIDTH/2]*2)
+quick_table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5),('TOPPADDING',(0,0),(-1,-1),2),('BOTTOMPADDING',(0,0),(-1,-1),2),('LINEBELOW',(0,0),(-1,-1),.3,HexColor('#dce5e8'))]))
+story.append(quick_table)
 story.append(PageBreak())
 story.append(p('단위와 조건을 읽는 방법','title'))
 for item in DATA['basics'][5:]: story.extend(section(item['title'],item['text']))
@@ -148,46 +179,64 @@ story.append(p('분수 읽기 · 위를 아래로 나누세요','head'))
 story.extend(fraction_rows(DATA['fractionBasics']))
 story.append(PageBreak())
 story.extend(build_algebra_primer(p,FractionFormula))
-for page_index in range(2):
-    story.append(p('먼저 외울 한 줄 공식' if page_index==0 else '함께 알아둘 보충 공식','title'))
-    story.append(p('공식 이름 → 한 줄 식 → 기호 뜻 → 짧은 암기법. 같은 글자라도 공식마다 뜻이 다릅니다. 보충 공식은 출제 확정이 아닌 복습용입니다.','small'))
-    cells=[]
-    for item in DATA['formulaSummary'][page_index*5:(page_index+1)*5]:
-        cells.append([p(item['title'],'head'),*formula_block(item,notes=False),
-                      p(item['when']),p(item['symbols']),labeled('기억',item['remember'])])
-    table=Table([[cells[i],cells[i+1] if i+1<len(cells) else ''] for i in range(0,len(cells),2)],colWidths=[WIDTH/2]*2)
-    table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),5),('BOTTOMPADDING',(0,0),(-1,-1),7),('LINEBELOW',(0,0),(-1,-1),.4,HexColor('#dce5e8'))]))
-    story.append(table)
-    story.append(PageBreak())
-story.append(p('시험 우선 네 공식','title'))
-story.append(p('전달받은 시험범위: 네 유형 중1문제, 경우에 따라2문제. 아래는 공식의 뜻을 이해하는 설명용 예제입니다. 같은 기호·단위 설명은 묶음 앞에서 한 번 읽고 문제에서 적용합니다.','small'))
-for family_index,family in enumerate(DATA['examFamilies']):
-    if family_index==2: story.append(PageBreak())
-    block=[p(family['title'],'head'),*formula_block(family),p(family['when']),
-           labeled('기호',family['symbols']),labeled('예제',family['example']),
-           labeled('단위',family['units']),labeled('기억',family['remember'])]
-    story.append(KeepTogether(block))
-
-groups=OrderedDict()
+groups={}
 for row in DATA['rows']:
     lesson=row['lesson']
-    key=(bool(row['examFamilies']),lesson['title'],lesson['formula'])
-    groups.setdefault(key,[]).append(row)
+    groups.setdefault(lesson['title'],[]).append(row)
+chapter_lessons=[name for chapter in CHAPTERS for name in chapter['lessons']]
+assert len(chapter_lessons)==len(set(chapter_lessons))
+assert set(chapter_lessons)==set(groups), (set(chapter_lessons)^set(groups))
+summary_by_key={item['key']:item for item in DATA['formulaSummary']}
+assert {key for chapter in CHAPTERS for key in chapter['cards']}==set(summary_by_key)
+
+# Keep formulas near the related questions rather than repeating them in
+# separate summary, priority, and supplementary sections.
+def chapter_guide(chapter):
+    content=[p(chapter['hint'])]
+    cards=[]
+    for key in chapter['cards']:
+        item=summary_by_key[key]
+        cards.append([p(item['title'],'head'),*formula_block(item,notes=False),
+                      p(item['symbols'],'small'),p(item['remember'],'small')])
+    if cards:
+        columns=3 if len(cards)==3 else 2
+        table=Table([[cards[i+j] if i+j<len(cards) else '' for j in range(columns)] for i in range(0,len(cards),columns)],colWidths=[WIDTH/columns]*columns)
+        table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),5),('LINEBELOW',(0,0),(-1,-1),.4,HexColor('#dce5e8'))]))
+        content.append(table)
+    for title,explanation,equations in chapter['changes']:
+        block=[p(title,'head'),p(explanation)]
+        # Side-by-side fraction rows share one baseline when they fit.
+        if equations:
+            combined=[]
+            for equation in equations:
+                combined.extend((['    ;    '] if combined else [])+equation)
+            if math_box(combined)[0]<=WIDTH:
+                block.append(FractionFormula(combined))
+            else:
+                block.extend(FractionFormula(equation) for equation in equations)
+        content.append(KeepTogether(block))
+    return content
 
 question_headings=[]
 number=0
-for priority in (True,False):
+for chapter_index,chapter in enumerate(CHAPTERS,1):
     story.append(ReadingPhase(''))
-    story.append(PageBreak())
-    story.append(p('시험 우선 13문제' if priority else '보충 계산 23문제','title'))
-    story.append(p('파란 상자 “문제”를 먼저 읽고, 아래 초록 제목 “해설”부터 풀이를 확인하세요. 같은 번호가 한 쌍입니다. 기본 반올림은 최종값 둘째 자리, 개별 요구가 있으면 그 조건이 우선입니다.','small'))
-    for (is_priority,title,formula),rows in groups.items():
-        if is_priority!=priority: continue
+    if chapter_index>1: story.append(CondPageBreak(330))
+    chapter_heading=p(f'{chapter_index:02d} · '+chapter['title'],'title')
+    chapter_heading.bookmark_key=f'chapter-{chapter_index}'
+    chapter_heading.bookmark_title=chapter['title']
+    story.append(chapter_heading)
+    if chapter_index==1:
+        story.append(p('파란 상자=문제 / 초록 제목=해설. “시험 우선”13개도 유형별로 함께 배치했습니다. 기본 반올림은 최종값 둘째 자리이며 문제의 별도 조건이 우선입니다.','small'))
+    story.extend(chapter_guide(chapter))
+    for title in chapter['lessons']:
+        rows=groups[title]
         lesson=rows[0]['lesson']
-        intro=[p(title+' · 공통 공식과 기호','head'),*formula_block(lesson),
-               labeled('기호',' / '.join(lesson['symbols'])),labeled('원리',lesson['why']),
-               labeled('단위',' '.join(lesson['units'])),labeled('기억',lesson['memory'])]
-        story.append(CondPageBreak(180))
+        intro=[p(title,'head'),labeled('왜 이 계산?',lesson['why'])]
+        if title not in CARD_LESSONS:
+            intro.extend([*formula_block(lesson,notes=False),labeled('기호',' / '.join(lesson['symbols']),'small')])
+        intro.append(labeled('단위',' '.join(lesson['units']),'small'))
+        story.append(CondPageBreak(block_height(intro)+120))
         story.append(ReadingPhase(''))
         story.append(KeepTogether(intro))
         for row in rows:
@@ -196,7 +245,8 @@ for priority in (True,False):
             source=row['sourceLabel']
             heading=f'{number:02d}. {source}'
             question_headings.append(heading)
-            block=[p(f'문제 {number:02d} | {source}','questionLabel'),p(q['question'])]
+            priority_label=' · 시험 우선' if row['examFamilies'] else ''
+            block=[p(f'문제 {number:02d} | {source}{priority_label}','questionLabel'),p(q['question'])]
             for asset in ([q['image']] if q.get('image') else [])+q.get('images',[]):
                 path=ROOT/asset
                 if path.suffix.lower()=='.svg': path=ROOT/'tmp/pdfs'/f'{path.stem}.png'
@@ -219,7 +269,7 @@ for priority in (True,False):
             if s.get('unused'): block.append(labeled('이번 식에는 안 씀',s['unused'],'warning'))
             block.append(labeled('조건·함정',s['condition']))
             block.extend(fraction_rows(l.get('fractions',[])))
-            block.append(labeled('계산','\n'.join(l['steps'])))
+            block.append(labeled('계산','\n'.join(l['steps']),'calculation'))
             if l.get('examAnswer'): block.append(labeled('최종값',l['examAnswer']))
             rounding=l.get('rounding','')
             if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): block.append(p(rounding,'small'))
@@ -227,8 +277,7 @@ for priority in (True,False):
             block.append(Spacer(1,4))
             story.extend([CondPageBreak(block_height([question_panel])+70),ReadingPhase(f'문제 {number:02d} | {source}'),question_panel,*block])
 
-story.extend([ReadingPhase(''),Spacer(1,10),p('근거와 답안 표기','head')])
-story.append(p('문항·그림·숫자는 기존 복원·연습 자료를 대조했습니다. 이번 식의 미사용 값도 다른 소문항에는 필요할 수 있습니다. 채점 안내는 사용자 제공 IMG_9883.JPG를 따르며 반올림 예외는 해당 문항 풀이에 표시했습니다.','small'))
+story.extend([ReadingPhase(''),Spacer(1,4),p('근거: 기존 복원·연습 자료와 사용자 제공 채점 안내를 대조했습니다. 반올림 예외는 각 문항에 표시하며, 이번 식의 미사용 값도 다른 소문항에는 필요할 수 있습니다.','reference')])
 reference_links=['<link color="#315f91" href="'+escape(ref['url'],quote=True)+'">'+markup(ref['title'],'reference')+'</link>' for ref in DATA['references']]
 story.append(Paragraph('원문 열기: '+' / '.join(reference_links),styles['reference']))
 
@@ -247,7 +296,7 @@ def footer(canvas,doc):
 
 def page_end(canvas,doc):
     label=getattr(canvas,'_page_phase','')
-    if label:
+    if label.startswith('해설') and getattr(canvas,'_page_continued',False):
         canvas.saveState()
         canvas.setFont('NanumBold',8.5)
         canvas.setFillColor(MUTED)
@@ -265,4 +314,12 @@ for i,heading in enumerate(question_headings,1):
 for needle in ['1,821','잠열10','높이3','동력10','난방부하','소수점']:
     assert needle in text,needle
 assert 'SI' in (reader.pages[0].extract_text() or '')
+assert len(reader.outline)==7
+assert sum(bool(row['examFamilies']) for row in DATA['rows'])==13
+for row in DATA['rows']:
+    assert ''.join(clean(row['prompt']['question']).split()) in text, row['id']
+    if row['lesson'].get('examAnswer'):
+        assert ''.join(clean(row['lesson']['examAnswer']).split()) in text, row['id']
+# Do not silently add a near-empty final page for a single reference line.
+assert len(''.join((reader.pages[-1].extract_text() or '').split()))>250
 print(json.dumps({'output':str(OUT),'pages':len(reader.pages),'questions':number,'bytes':OUT.stat().st_size,'unusedValueNotes':sum(bool(r['lesson']['numberSelection'].get('unused')) for r in DATA['rows'])},ensure_ascii=False))
