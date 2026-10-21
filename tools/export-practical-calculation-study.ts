@@ -6,6 +6,7 @@ import { calculationPrompts, calculationLesson, practicalCalculationLessons, pra
 import { practicalMockSlots } from '../src/cbt/practicalMock';
 import { practicalFormulaSummary } from '../src/cbt/practicalFormulaSummary';
 import { practicalSourceLabel } from '../src/cbt/practicalLabels';
+import { fractionFormula, fractionBasics } from '../src/cbt/practicalFractions';
 
 const prompts = orderPracticalCalculations(calculationPrompts(practicalPrompts));
 assert.equal(prompts.length, Object.keys(practicalCalculationLessons).length, 'All lesson IDs must resolve to bank items');
@@ -21,7 +22,8 @@ const rows = prompts.map(prompt => {
   if (lesson.kind === 'numeric') assert.ok(lesson.examAnswer && lesson.rounding, prompt.id);
   assert.ok(lesson.numberSelection?.used && lesson.numberSelection.condition, `Missing number-selection review: ${prompt.id}`);
   for (const image of [prompt.image, ...(prompt.images || [])].filter((x): x is string => Boolean(x))) assert.ok(existsSync(resolve(image)), image);
-  return { prompt, sourceLabel:practicalSourceLabel(prompt), lesson, examFamilies:practicalExamFamiliesFor(prompt) };
+  if (lesson.formula.includes('÷')) assert.ok(fractionFormula(lesson.formula).length, `Missing fraction formula: ${prompt.id}`);
+  return { prompt, sourceLabel:practicalSourceLabel(prompt), lesson: { ...lesson, formulaFractions:fractionFormula(lesson.formula) }, examFamilies:practicalExamFamiliesFor(prompt) };
 });
 assert.equal(rows.filter(r => r.examFamilies.length).length,13);
 for (const family of practicalExamFamilies) assert.ok(rows.some(r => r.examFamilies.includes(family.key)),family.key);
@@ -29,5 +31,5 @@ const path = resolve(process.argv[2] || 'tmp/pdfs/practical-calculation-study.js
 mkdirSync(dirname(path), { recursive:true });
 assert.equal(practicalFormulaSummary.length, 10);
 assert.equal(new Set(practicalFormulaSummary.map(f => f.key)).size, 10);
-writeFileSync(path, JSON.stringify({ date:'2026-10-19', basics:practicalSiBasics, formulaSummary:practicalFormulaSummary, references:practicalCalculationReferences, examFamilies:practicalExamFamilies, rows }, null, 2));
+writeFileSync(path, JSON.stringify({ date:'2026-10-21', basics:practicalSiBasics, fractionBasics, formulaSummary:practicalFormulaSummary.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), references:practicalCalculationReferences, examFamilies:practicalExamFamilies.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), rows }, null, 2));
 console.log(JSON.stringify({ path, total:rows.length, numeric:rows.filter(r => r.lesson.kind === 'numeric').length, formula:rows.filter(r => r.lesson.kind === 'formula').length, restored:rows.filter(r => r.prompt.group === 'restored').length, mockCalculationAndFormulaCoverage:'pass' }));

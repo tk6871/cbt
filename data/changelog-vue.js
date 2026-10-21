@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.2.1',scope:'industrial',date:'2026.10.21',
+      title:'계산식을 분수로 읽고 대입하기',
+      summary:'나누기 공식을 가로 분수선으로 보고 위·아래에 넣는 값을 이해합니다.',
+      tags:['필답형','분수','PDF'],
+      changes:['COP·BF·펌프 동력·송풍량·열저항 등의 공식을 분자와 분모로 표시합니다.','25문제에 숫자 대입 분수식을 추가하고, 분모 전체를 먼저 계산하는 방법을 설명합니다.','웹과 PDF에 같은 수식을 적용하고, 기존36문제·그림·기호·단위·풀이를 유지했습니다.']
+    },
+    {
       version:'5.2',scope:'industrial',date:'2026.10.20',
       title:'학습 목록·필답형 동선 통합 보완',
       summary:'계산 목록을 끝까지 살펴보고, 이미지 원문과 필답형 공식을 더 쉽게 찾습니다.',
@@ -2648,8 +2655,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.2';
+  changelog.versions.industrial = '5.2.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.2';
+  changelog.currentVersion = '5.2.1';
   window.CBT_CHANGELOG = changelog;
 })();

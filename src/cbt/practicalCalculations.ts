@@ -1,9 +1,11 @@
 import type { PracticalPrompt } from './hvacPracticalTypes';
+import { fractionsForProblem, type FractionLine } from './practicalFractions';
 
 export type CalculationLesson = {
   topic: string; title: string; kind: 'numeric' | 'formula'; formula: string;
   symbols: string[]; why: string; units: string[]; memory: string;
   steps: string[]; caution?: string; examAnswer?: string; rounding?: string;
+  fractions?: FractionLine[];
   numberSelection?: { used: string; unused?: string; condition: string };
 };
 type Method = Omit<CalculationLesson, 'steps'>;
@@ -164,7 +166,8 @@ for (const [suffix, selection] of Object.entries(numberSelections)) practicalCal
 
 export const practicalCalculationPdf = 'output/pdf/hvac-practical-calculation-study.pdf';
 export function calculationLesson(prompt: PracticalPrompt): CalculationLesson | undefined {
-  return practicalCalculationLessons[prompt.id];
+  const lesson = practicalCalculationLessons[prompt.id];
+  return lesson ? { ...lesson, fractions: fractionsForProblem(prompt.id) } : undefined;
 }
 export function calculationPrompts(bank: PracticalPrompt[]): PracticalPrompt[] {
   return bank.filter(p => Boolean(calculationLesson(p)));
