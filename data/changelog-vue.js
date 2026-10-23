@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3.1',scope:'industrial',date:'2026.10.23',
+      title:'필답형 답안 입력 바로 시작',
+      summary:'직접 풀기에서 답안 입력칸을 처음부터 펼쳐 보여줍니다.',
+      tags:['필답형','답안 입력'],
+      changes:['일반 학습·계산 공부·랜덤 실전의 직접 풀기에서 답안 입력칸이 바로 보입니다. 필요하면 접을 수 있습니다.','작성 답안 자동 저장과 이어풀기를 유지합니다. 모바일 키보드는 입력칸을 눌렀을 때 열립니다.','계산 학습 PDF에 다른 공식의 역산 예제와 기초 설명을 보강했습니다.']
+    },
+    {
       version:'5.3',scope:'industrial',date:'2026.10.21',
       title:'설비보전기사 기출 추가',
       summary:'설비보전산업기사와 별개로 기사 공개 기출27회차·2,660문제를 풉니다.',
@@ -2662,8 +2669,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3';
+  changelog.versions.industrial = '5.3.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3';
+  changelog.currentVersion = '5.3.1';
   window.CBT_CHANGELOG = changelog;
 })();

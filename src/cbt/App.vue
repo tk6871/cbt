@@ -857,7 +857,7 @@ const practicalOptionsOpen = ref(false);
 const practicalNavigatorOpen = ref(false);
 let practicalLibraryScrollY = 0;
 const practicalHelperIds = ref<string[]>([]);
-const practicalDraftOpenIds = ref<string[]>([]);
+const practicalDraftClosedIds = ref<string[]>([]);
 const practicalBatchSize = ref(restorePracticalBatch(localStorage.getItem('cbt-practical-batch-size')));
 const practicalContinuousLimit = ref(20);
 const practicalContinuous = computed(() => practicalLayout.value === 'list' && practicalBatchSize.value === 0);
@@ -1178,7 +1178,7 @@ function replacePracticalDraft(id: string, draft: string): void {
   const previous = practicalDrafts[id] || '';
   if (previous.trim() && !draft.startsWith(previous) && !confirm('작성 중인 답안이 있습니다. 새 연습 양식으로 바꿀까요?')) return;
   practicalDrafts[id] = draft;
-  if (!practicalDraftOpenIds.value.includes(id)) practicalDraftOpenIds.value.push(id);
+  practicalDraftClosedIds.value = practicalDraftClosedIds.value.filter(closedId => closedId !== id);
   practicalProgress[id] = {
     ...practicalProgress[id],
     draft,
@@ -5422,9 +5422,9 @@ onBeforeUnmount(() => {
                   </div>
                   <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
                 </div>
-                <details v-if="practicalStudyMode === 'type'" class="practical-draft" :open="practicalDraftOpenIds.includes(prompt.id)" @toggle="($event.target as HTMLDetailsElement).open ? (!practicalDraftOpenIds.includes(prompt.id) && practicalDraftOpenIds.push(prompt.id)) : practicalDraftOpenIds = practicalDraftOpenIds.filter(id => id !== prompt.id)">
-                  <summary>답안 직접 입력(선택){{ practicalDrafts[prompt.id] ? ' · 작성 답안 있음' : '' }}</summary>
-                  <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="필요할 때만 답안이나 계산 과정을 적어보세요." @input="updatePracticalDraft(prompt.id, $event)" /></label>
+                <details v-if="practicalStudyMode === 'type'" class="practical-draft" :open="!practicalDraftClosedIds.includes(prompt.id)" @toggle="($event.target as HTMLDetailsElement).open ? practicalDraftClosedIds = practicalDraftClosedIds.filter(id => id !== prompt.id) : (!practicalDraftClosedIds.includes(prompt.id) && practicalDraftClosedIds.push(prompt.id))">
+                  <summary>답안 직접 입력 · 접기/펼치기{{ practicalDrafts[prompt.id] ? ' · 작성 답안 있음' : '' }}</summary>
+                  <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="답안이나 계산 과정을 적어보세요. 작성 내용은 자동 저장됩니다." @input="updatePracticalDraft(prompt.id, $event)" /></label>
                 </details>
                 <details v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-extra-tools" @toggle="($event.target as HTMLDetailsElement).open && !practicalHelperIds.includes(prompt.id) && practicalHelperIds.push(prompt.id)"><summary>힌트 · 답안 골격 · 부분점수 채점</summary>
                 <PracticalTrainingTools
@@ -5689,7 +5689,7 @@ onBeforeUnmount(() => {
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             </details>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인합니다. 직접 입력과 세부 채점 도구는 필요할 때만 펼칩니다.</p></header>
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>직접 풀기에서는 답안 입력칸이 처음부터 열립니다. 입력한 답안은 자동 저장되며 필요하면 접을 수 있습니다. 문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인하고, 세부 채점 도구를 펼쳐 연습합니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
               <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
