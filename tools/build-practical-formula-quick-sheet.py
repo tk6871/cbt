@@ -70,38 +70,39 @@ def card(title, *content):
 cards = [
     card('01  CGT · 온도가 바뀔 때',
          '현열량 = 질량 × 비열 × 온도차',
-         p('온도차 = 높은 온도 - 낮은 온도', 'note'),
+         p('열의 크기: 온도차 = 높은 온도 - 낮은 온도', 'note'),
          Fraction('질량', '현열량', '비열 × 온도차')),
     card('02  CR · 녹거나 증발할 때',
-         '잠열량 = 질량 × 잠열',
-         p('잠열 = 1 kg의 상태를 바꾸는 데 필요한 열', 'note'),
-         Fraction('질량', '잠열량', '잠열')),
+         '잠열량 = 질량 × 1 kg당 잠열',
+         p('kg × kJ/kg → kJ. 온도차는 또 곱하지 않기.', 'note'),
+         Fraction('질량', '잠열량', '1 kg당 잠열')),
     card('03  COP · 얻은 것 ÷ 넣은 것',
          Fraction('냉동 COP', '냉동능력', '압축기 동력'),
          Fraction('압축기 동력', '냉동능력', '냉동 COP'),
-         p('응축기 방열량 = 냉동능력 + 압축기 동력', 'note')),
-    card('04  BF · 코일을 지나친 몫',
+         p('두 값 모두 kW. 방열량 = 냉동능력 + 동력', 'note')),
+    card('04  BF · 덜 냉각된 정도',
          Fraction('BF', '출구온도 - 코일온도', '입구온도 - 코일온도'),
          'CF = 1 - BF',
-         p('BF·CF는 단위 없음. 온도 자리 바꾸지 않기.', 'note')),
+         p('코일온도는 장치노점. BF 0.2 → CF 0.8', 'note')),
     card('05  공기 송풍량',
-         Fraction('송풍량', '현열량', '밀도 × 비열 × 온도차'),
-         p('위에는 현열만. 잠열까지 더하지 않기.', 'note')),
+         Fraction('송풍량', '현열부하(kW)', '밀도 × 비열 × 온도차'),
+         p('밀도 kg/m³ · 비열 kJ/(kg·°C) → m³/s\n시간당 m³/h를 물으면 ×3,600. 잠열은 제외.', 'note')),
     card('06  냉매 순환량',
          Fraction('냉매순환량', '냉동능력', '출구 엔탈피 - 입구 엔탈피'),
-         p('증발기 기준. 차이 = 냉매 1 kg이 가져가는 열', 'note')),
+         p('증발기 기준. kW ÷ kJ/kg → kg/s\n시간당 kg/h를 물으면 ×3,600.', 'note')),
     card('07  벽·바닥의 열 / 필요한 면적',
-         '열 = 열관류율 × 면적 × 온도차',
-         Fraction('면적', '열', '열관류율 × 온도차')),
+         '열부하 = 열관류율 × 면적 × 온도차',
+         Fraction('면적', '열부하', '열관류율 × 온도차'),
+         p('열관류율 W/(m²·°C) → 열부하 W', 'note')),
     card('08  펌프 축동력',
          Fraction('축동력', '비중량 × 유량 × 양정', '1,000 × 효율'),
          p('비중량 N/m³ · 유량 m³/s → 동력 kW\n효율 70%는 0.7. 비중량에 중력을 또 곱하지 않기.', 'note')),
     card('09  현열비 SHF',
          Fraction('현열비', '현열', '현열 + 잠열'),
-         p('분모는 전체 열. COP·BF·SHF는 단위 없음.', 'note')),
+         p('전체 = 현열 + 잠열. 모두 같은 단위로.\nSHF 0.7이면 전체 열의 70%가 현열.', 'note')),
     card('10  상사법칙 · 회전수 a배',
          '유량 a배 · 양정 a²배 · 동력 a³배',
-         p('회전수 2배 → 유량 2배 · 양정 4배 · 동력 8배\n같은 펌프·송풍기, 밀도·효율 등 상사조건에서 적용.', 'note')),
+         p('a = 새 회전수 ÷ 기존 회전수\n2배 → 2·4·8배. 송풍기는 양정 대신 압력.\n같은 장치·밀도·효율 등 상사조건에서 적용.', 'note')),
 ]
 
 story = [p('시험 직전 · 한글 공식 한 장', 'title'),
@@ -114,8 +115,8 @@ for index in range(0, len(cards), 2):
         rows.append(['', '', ''])
 table = Table(rows, colWidths=[(WIDTH - 12) / 2, 12, (WIDTH - 12) / 2])
 commands = [('VALIGN', (0, 0), (-1, -1), 'TOP'), ('LEFTPADDING', (0, 0), (-1, -1), 9),
-            ('RIGHTPADDING', (0, 0), (-1, -1), 9), ('TOPPADDING', (0, 0), (-1, -1), 7),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 6)]
+            ('RIGHTPADDING', (0, 0), (-1, -1), 9), ('TOPPADDING', (0, 0), (-1, -1), 5),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 4)]
 for row in range(len(rows)):
     if row % 2:
         commands.extend([('TOPPADDING', (0, row), (-1, row), 2), ('BOTTOMPADDING', (0, row), (-1, row), 2)])
@@ -125,14 +126,14 @@ for row in range(len(rows)):
                              ('BOX', (col, row), (col, row), .4, HexColor('#cbd9d6'))])
 table.setStyle(TableStyle(commands))
 story.extend([table, Spacer(1, 9),
-              p('단위만 확인: 질량 kg이면 열량 kJ / 질량유량 kg/s이면 열처리속도 kW.\n비열 kJ/(kg·°C), 엔탈피 kJ/kg 기준. 열관류율 W/(m²·°C)이면 열 W. kW와 섞지 않습니다.\n초당 → 시간당은 ×3,600 / 시간당 → 초당은 ÷3,600. 분모 전체는 계산기에서 괄호로 묶습니다.', 'note'),
+              p('CGT·CR에서 흐르는 양 kg/s를 넣으면 결과도 kJ/s = kW.\n시간당 → 초당은 ÷3,600. 계산기에서 분모 전체를 괄호로 묶습니다.', 'note'),
               p('마지막: 문제의 단위·지정 상수·반올림 조건 우선. 별도 조건이 없으면 최종값 소수 둘째 자리.', 'warning')])
 
 
 def footer(c, doc):
     c.setFont('Nanum', 8)
     c.setFillColor(MUTED)
-    c.drawString(36, 21, '상세 풀이·기호·이항은 별도 34쪽 학습 PDF 참고 / 2026-10-23')
+    c.drawString(36, 21, '상세 풀이·기호·식 바꾸기는 계산 학습 PDF 참고 / 2026-10-23 개정')
     c.drawRightString(PAGE_W - 36, 21, str(doc.page))
 
 
