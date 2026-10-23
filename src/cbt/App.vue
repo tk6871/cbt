@@ -153,6 +153,7 @@ type CbtHistoryState = {
   cbtSpace: string;
   view: ViewName;
   sessionId?: string;
+  practicalRoom?: boolean;
 };
 type MasteryRow = QuestionItem & {
   mastery: number;
@@ -847,6 +848,7 @@ function persistPracticalCursor(): void {
     round: practicalRoundFilter.value, materialPeriod: practicalMaterialPeriod.value,
     search: practicalSearch.value, limit: practicalContinuousLimit.value,
     calculationIds: practicalCalculationIds.value,
+    libraryTab: practicalLibraryTab.value, libraryScrollY: practicalLibraryScrollY,
   }));
 }
 const practicalStudyModeStorageKey = 'unified-cbt-hvac-practical-study-mode-v1';
@@ -1061,7 +1063,10 @@ watch(guideLoaded, async loaded => {
     const cursor = JSON.parse(localStorage.getItem('cbt-practical-cursor') || '{}');
     if (['all','public','restored','foundation','drill','supplement','photos','provided','review','calculation'].includes(cursor.filter)) practicalPromptFilter.value = cursor.filter;
     if (Array.isArray(cursor.calculationIds)) practicalCalculationIds.value = cursor.calculationIds.filter((id: unknown) => typeof id === 'string' && practicalPrompts.value.some(p => p.id === id && calculationLesson(p)));
-    if (cursor.filter === 'calculation') practicalLibraryTab.value = 'calculation';
+    if (['rounds', 'materials', 'review', 'calculation'].includes(cursor.libraryTab)) practicalLibraryTab.value = cursor.libraryTab;
+    else if (cursor.filter === 'calculation') practicalLibraryTab.value = 'calculation';
+    else if (['provided','public','supplement','photos','foundation','drill'].includes(cursor.filter)) practicalLibraryTab.value = 'materials';
+    if (Number.isFinite(cursor.libraryScrollY)) practicalLibraryScrollY = Math.max(0, cursor.libraryScrollY);
     if (cursor.category === 'all' || cursor.category in practicalCategoryLabels) practicalCategoryFilter.value = cursor.category;
     if (practicalPeriodAvailable.value && ['all', 'since-2023-2', 'before-2023-2'].includes(cursor.materialPeriod)) practicalMaterialPeriod.value = cursor.materialPeriod;
     if (cursor.round === 'all' || practicalRoundOptions.value.some(([key]) => key === cursor.round)) practicalRoundFilter.value = cursor.round;
@@ -1313,21 +1318,34 @@ function scrollPracticalRoomStart(behavior: ScrollBehavior = 'auto'): void {
   });
 }
 
-function openPracticalLibrary(tab: 'rounds' | 'materials' | 'review' | 'calculation' = practicalPromptFilter.value === 'calculation' ? 'calculation' : 'rounds'): void {
+function rememberPracticalLibrary(): void {
+  if (!practicalLibraryOpen.value || practicalSessionActive.value) return;
+  practicalLibraryScrollY = window.scrollY;
+  persistPracticalCursor();
+  if (ownHistoryState()?.view === 'guide' && !ownHistoryState()?.practicalRoom) {
+    history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', location.href);
+  }
+}
+
+function openPracticalLibrary(tab: 'rounds' | 'materials' | 'review' | 'calculation' = practicalLibraryTab.value, fromHistory = false): void {
+  if (!fromHistory && ownHistoryState()?.practicalRoom) {
+    history.back();
+    return;
+  }
   practicalLibraryTab.value = tab;
   practicalLibraryOpen.value = true;
   practicalNavigatorOpen.value = false;
-  void nextTick(() => window.scrollTo({
+  void nextTick(() => window.requestAnimationFrame(() => window.scrollTo({
     top: practicalLibraryScrollY,
-    behavior: motionAllowed.value ? 'smooth' : 'instant',
-  }));
+    behavior: 'instant',
+  })));
 }
 
 function openPracticalCalculations(ids: string[], memorize: boolean): void {
   const valid = new Set(calculationPrompts(practicalPrompts.value).map(p => p.id));
   practicalCalculationIds.value = [...new Set(ids)].filter(id => valid.has(id));
   if (!practicalCalculationIds.value.length) return;
-  practicalLibraryScrollY = window.scrollY;
+  rememberPracticalLibrary();
   practicalPromptFilter.value = 'calculation';
   practicalRoundFilter.value = 'all';
   practicalMaterialPeriod.value = 'all';
@@ -1343,7 +1361,7 @@ function openPracticalCalculations(ids: string[], memorize: boolean): void {
 }
 
 function openPracticalRound(key: string): void {
-  practicalLibraryScrollY = window.scrollY;
+  rememberPracticalLibrary();
   practicalPromptFilter.value = 'restored';
   practicalRoundFilter.value = key;
   practicalMaterialPeriod.value = 'all';
@@ -1356,7 +1374,7 @@ function openPracticalRound(key: string): void {
 }
 
 function openPracticalMaterial(filter: Extract<PracticalPromptFilter, 'provided' | 'public' | 'supplement' | 'photos' | 'foundation' | 'drill'>): void {
-  practicalLibraryScrollY = window.scrollY;
+  rememberPracticalLibrary();
   practicalPromptFilter.value = filter;
   practicalRoundFilter.value = 'all';
   practicalMaterialPeriod.value = 'all';
@@ -1447,6 +1465,7 @@ function startPracticalMock(): void {
     showToast('현재 조건에 맞는 필답형 문제가 없습니다.');
     return;
   }
+  rememberPracticalLibrary();
   practicalSessionPattern.value = undefined;
   preparePracticalSessionPrompts(selected);
   practicalSessionIds.value = selected.map((prompt) => prompt.id);
@@ -1477,6 +1496,7 @@ function startPracticalPatternMock(): void {
     const pattern: PracticalPattern = { attempt: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`, template: built.template, sourceIds: built.prompts.map(p => p.id), kinds: built.kinds };
     const prompts = mockSessionPrompts(practicalPrompts.value, pattern);
     // Fresh IDs isolate both typed answers and S-Pen ink from round learning.
+    rememberPracticalLibrary();
     preparePracticalSessionPrompts(prompts);
     practicalSessionPattern.value = pattern;
     practicalSessionIds.value = prompts.map(p => p.id);
@@ -1498,6 +1518,7 @@ function startPracticalPatternMock(): void {
 function resumePracticalPatternMock(): void {
   const saved = practicalPatternResume.value;
   if (!saved.pattern || mockSessionPrompts(practicalPrompts.value, saved.pattern).length !== 12) { showToast('이어풀기 자료를 불러오지 못했습니다. 자료를 다시 불러와 주세요.'); return; }
+  rememberPracticalLibrary();
   practicalSessionPattern.value = saved.pattern;
   practicalSessionIds.value = [...saved.ids];
   practicalSessionDeadline.value = saved.deadline;
@@ -1523,6 +1544,7 @@ function startPracticalDaily(): void {
     showToast('현재 조건에 맞는 필답형 문제가 없습니다.');
     return;
   }
+  rememberPracticalLibrary();
   practicalSessionPattern.value = undefined;
   preparePracticalSessionPrompts(ranked);
   practicalSessionIds.value = ranked.map((prompt) => prompt.id);
@@ -1577,7 +1599,7 @@ function finishPracticalMock(timedOut = false): void {
   showToast(timedOut ? '제한 시간이 지나 실전 연습을 종료했습니다.' : '필답형 연습을 제출했습니다. 답안과 비교해 자가 채점해 주세요.');
 }
 
-function closePracticalMock(): void {
+function closePracticalMock(returnToLibrary = true): void {
   if (!practicalSessionPattern.value && !practicalSessionFinished.value && practicalSessionGradedCount.value < practicalSessionIds.value.length
     && !confirm('현재 필답형 실전 연습을 닫을까요? 작성한 답과 채점 기록은 보존됩니다.')) return;
   if (practicalSessionPattern.value) persistPracticalSession();
@@ -1589,11 +1611,12 @@ function closePracticalMock(): void {
   practicalRevealedIds.value = [];
   practicalPage.value = 1;
   persistPracticalSession();
-  practicalLibraryOpen.value = true;
+  if (returnToLibrary) openPracticalLibrary();
 }
 
 function showPracticalReview(): void {
-  closePracticalMock();
+  rememberPracticalLibrary();
+  closePracticalMock(false);
   if (practicalSessionActive.value) return;
   practicalPromptFilter.value = 'review';
   practicalCategoryFilter.value = 'all';
@@ -2498,6 +2521,21 @@ function deactivateSession(preserveForForward = false): void {
 function handleBrowserHistory(event: PopStateEvent): void {
   const target = ownHistoryState(event.state);
   if (!target) return;
+  if (practicalSolving.value && !target.practicalRoom) {
+    if (practicalSessionActive.value) closePracticalMock();
+    else openPracticalLibrary(practicalLibraryTab.value, true);
+    if (practicalSessionActive.value) {
+      history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', location.href);
+    } else if (target.view !== 'guide') {
+      history.pushState(viewHistoryState('guide'), '', location.href);
+    }
+    return;
+  }
+  if (target.view === 'guide' && target.practicalRoom && view.value === 'guide') {
+    practicalLibraryOpen.value = false;
+    scrollPracticalRoomStart();
+    return;
+  }
 
   if (target.sessionId) {
     if (suspendedSession?.id === target.sessionId) {
@@ -5338,7 +5376,7 @@ onBeforeUnmount(() => {
             </div>
             <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
               <div><span>{{ practicalSessionFinished ? '제출 완료 · 자가 채점' : practicalSessionPattern ? '복원 비율 실전 · 풀이 확인 가능' : practicalSessionIds.length <= 5 ? 'TODAY 5 WRITTEN PRACTICE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionTotalPoints}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small><small v-if="practicalSessionPattern">구성 기준 {{ practicalSessionPattern.template }}회 · {{ practicalPatternSummary(practicalSessionPattern.kinds) }}</small></div>
-              <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">{{ practicalSessionPattern ? '답안 제출·자가채점' : '실전 종료·점수 보기' }}</button><button type="button" @click="closePracticalMock">목록으로 돌아가기</button></div>
+              <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">{{ practicalSessionPattern ? '답안 제출·자가채점' : '실전 종료·점수 보기' }}</button><button type="button" @click="closePracticalMock()">목록으로 돌아가기</button></div>
             </div>
             <p v-if="practicalSessionActive && practicalSessionPattern">제출 전 풀이 확인 {{ practicalViewedAnswerIds.length }}문제 · 제출 전에는 풀이를 봐도 시간이 계속 진행됩니다. 점수는 자가채점한 학습용 결과입니다.</p>
             <section v-if="practicalSessionActive && practicalSessionFinished" class="practical-session-report">
@@ -5689,7 +5727,7 @@ onBeforeUnmount(() => {
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             </details>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>직접 풀기에서는 답안 입력칸이 처음부터 열립니다. 입력한 답안은 자동 저장되며 필요하면 접을 수 있습니다. 문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인하고, 세부 채점 도구를 펼쳐 연습합니다.</p></header>
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>직접 풀기에서는 답안 입력칸이 처음부터 열립니다. 입력한 답안은 자동 저장되며 필요하면 접을 수 있습니다. 목록이나 뒤로가기를 누르면 들어왔던 자료 탭과 스크롤 위치로 돌아갑니다. 문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인하고, 세부 채점 도구를 펼쳐 연습합니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
               <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
