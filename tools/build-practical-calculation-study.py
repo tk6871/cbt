@@ -12,6 +12,7 @@ from PIL import Image as PILImage
 from pypdf import PdfReader
 from practical_algebra_primer import build_algebra_primer
 from practical_formula_families import CHAPTERS, CARD_LESSONS
+from practical_pdf_solutions import NOTES, REARRANGE
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
@@ -32,9 +33,24 @@ styles={
     'reference':ParagraphStyle('reference',fontName='Nanum',fontSize=8.5,leading=11,textColor=MUTED,spaceAfter=3,wordWrap='CJK'),
     'formula':ParagraphStyle('formula',fontName='NanumBold',fontSize=12,leading=19,textColor=GREEN,backColor=HexColor('#edf6f3'),borderPadding=7,spaceBefore=6,spaceAfter=10,wordWrap='CJK'),
     'warning':ParagraphStyle('warning',fontName='Nanum',fontSize=11,leading=15.5,textColor=INK,backColor=HexColor('#fff4df'),borderPadding=6,spaceBefore=6,spaceAfter=9,wordWrap='CJK'),
-    'questionLabel':ParagraphStyle('questionLabel',fontName='NanumBold',fontSize=11,leading=16,textColor=HexColor('#183e68'),spaceAfter=6,wordWrap='CJK',keepWithNext=True),
-    'solutionLabel':ParagraphStyle('solutionLabel',fontName='NanumBold',fontSize=11,leading=17,textColor=HexColor('#14543d'),backColor=HexColor('#e3f1e9'),borderPadding=6,spaceBefore=10,spaceAfter=9,wordWrap='CJK',keepWithNext=True),
+    'questionLabel':ParagraphStyle('questionLabel',fontName='NanumBold',fontSize=11,leading=16,textColor=HexColor('#183e68'),spaceAfter=4,wordWrap='CJK',keepWithNext=True),
+    'solutionLabel':ParagraphStyle('solutionLabel',fontName='NanumBold',fontSize=11,leading=16,textColor=HexColor('#14543d'),spaceBefore=7,spaceAfter=4,wordWrap='CJK',keepWithNext=True),
     'calculation':ParagraphStyle('calculation',fontName='Nanum',fontSize=11,leading=15.5,textColor=INK,spaceAfter=5,wordWrap='CJK',keepWithNext=True),
+    'answer':ParagraphStyle('answer',fontName='NanumBold',fontSize=11,leading=16,textColor=GREEN,backColor=HexColor('#edf6f3'),borderPadding=4,spaceBefore=3,spaceAfter=8,wordWrap='CJK'),
+}
+
+# Editorial corrections are confined to this study PDF. Bank data stays intact.
+STEP_EDITS = {
+    '시간당으로: 1.87519×3,600=약 6,750.68 m³/h. 약 6,751 m³/h이며 기존 답안 약 6,750은 거칠게 반올림한 값입니다.':
+        '시간당으로: (25÷13.332)×3,600=6,750.68 m³/h. 중간값은 반올림하지 않고 계산합니다.',
+    '460×101.325÷760=61.327… kPa, 약 61.3 kPa.':
+        '460×101.325÷760=61.328289… kPa → 61.33 kPa.',
+    '380×101.325÷760=50.6625 kPa, 약 50.7 kPa.':
+        '380×101.325÷760=50.6625 kPa → 50.66 kPa.',
+    'N₂=800×(2÷1.5)=1,066.67 rpm, 약 1,067 rpm.':
+        'N₂=800×(2÷1.5)=1,066.666… rpm → 1,066.67 rpm.',
+    'SHF=8.3÷11.1=0.747747… → 약 0.748 또는 0.75.':
+        'SHF=8.3÷11.1=0.747747… → 0.75(단위 없음).',
 }
 
 def clean(text):
@@ -142,7 +158,7 @@ class StudyDocument(SimpleDocTemplate):
     def afterPage(self):
         page_end(self.canv,self)
 
-story=[p('공조 필답형 계산 공부\n단위 · 식 바꾸기 · 유형별 풀이','title'),p('SI → 사칙연산·이항 → 비슷한 공식 7묶음 / '+DATA['date'],'small')]
+story=[p('공조 필답형 계산 공부\n단위 · 식 바꾸기 · 유형별 풀이','title'),p('SI → 식 읽기·바꾸기 → 유형별 36문제 / 2026-10-23 개정','small')]
 for item in DATA['basics'][:5]: story.extend(section(item['title'],item['text']))
 story.append(p('먼저 외울 공식 · 이름을 누르면 해당 묶음으로','head'))
 quick_keys=['cgt','cr','cop','bf','affinity','pump','circulation','air','transfer','shf']
@@ -173,7 +189,11 @@ quick_table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(
 story.append(quick_table)
 story.append(PageBreak())
 story.append(p('단위와 조건을 읽는 방법','title'))
-for item in DATA['basics'][5:]: story.extend(section(item['title'],item['text']))
+for item in DATA['basics'][5:]:
+    text=item['text']
+    if item['title']=='반올림과 시험 답안 쓰기':
+        text='제공된 채점 안내는 기본적으로 소수 셋째 자리에서 반올림하여 둘째 자리까지 씁니다. 61.328289…는 셋째 숫자 8을 보고 61.33으로 씁니다. “셋째 자리까지”라면 넷째 숫자 2를 보고 61.328입니다. 개별 문제의 조건이 우선이며 중간값은 유지하고 최종 답만 반올림합니다. 계산과정과 단위도 씁니다.'
+    story.extend(section(item['title'],text))
 story.extend(section('숫자가 보여도 전부 대입하지 않습니다','먼저 무엇을 구하는지 정합니다. 그 식에 쓰는 값, 다른 소문항에 쓰는 값, 이번 식에는 필요 없는 값을 구별합니다. “현열”, “진공압”, “산술평균”, “소수점 몇 자리”는 직접 곱하지 않아도 풀이를 결정하는 조건입니다. 불필요한 숫자와 필요한 조건을 같은 것으로 보지 않습니다.'))
 story.append(p('분수 읽기 · 위를 아래로 나누세요','head'))
 story.extend(fraction_rows(DATA['fractionBasics']))
@@ -191,7 +211,7 @@ assert {key for chapter in CHAPTERS for key in chapter['cards']}==set(summary_by
 
 # Keep formulas near the related questions rather than repeating them in
 # separate summary, priority, and supplementary sections.
-def chapter_guide(chapter):
+def chapter_guide(chapter, chapter_index):
     content=[p(chapter['hint'])]
     cards=[]
     for key in chapter['cards']:
@@ -203,8 +223,9 @@ def chapter_guide(chapter):
         table=Table([[cards[i+j] if i+j<len(cards) else '' for j in range(columns)] for i in range(0,len(cards),columns)],colWidths=[WIDTH/columns]*columns)
         table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),5),('LINEBELOW',(0,0),(-1,-1),.4,HexColor('#dce5e8'))]))
         content.append(table)
-    for title,explanation,equations in chapter['changes']:
-        block=[p(title,'head'),p(explanation)]
+    assert len(REARRANGE[chapter_index-1])==len(chapter['changes'])
+    for (title,explanation,equations),short in zip(chapter['changes'], REARRANGE[chapter_index-1]):
+        block=[labeled(title+' ·',short)]
         # Side-by-side fraction rows share one baseline when they fit.
         if equations:
             combined=[]
@@ -228,11 +249,13 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
     story.append(chapter_heading)
     if chapter_index==1:
         story.append(p('파란 상자=문제 / 초록 제목=해설. “시험 우선”13개도 유형별로 함께 배치했습니다. 기본 반올림은 최종값 둘째 자리이며 문제의 별도 조건이 우선입니다.','small'))
-    story.extend(chapter_guide(chapter))
+    story.extend(chapter_guide(chapter,chapter_index))
     for title in chapter['lessons']:
         rows=groups[title]
         lesson=rows[0]['lesson']
-        intro=[p(title,'head'),labeled('왜 이 계산?',lesson['why'])]
+        intro=[p(title,'head')]
+        if not all(r['prompt']['id'] in NOTES for r in rows):
+            intro.append(labeled('왜 이 계산?',lesson['why']))
         if title not in CARD_LESSONS:
             intro.extend([*formula_block(lesson,notes=False),labeled('기호',' / '.join(lesson['symbols']),'small')])
         intro.append(labeled('단위',' '.join(lesson['units']),'small'))
@@ -251,7 +274,8 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
                 path=ROOT/asset
                 if path.suffix.lower()=='.svg': path=ROOT/'tmp/pdfs'/f'{path.stem}.png'
                 with PILImage.open(path) as im: iw,ih=im.size
-                scale=min((WIDTH-20)/iw,155/ih)
+                diagram_height=125 if q['id']=='hvac-practical-restored-2024-2-10' else 155
+                scale=min((WIDTH-20)/iw,diagram_height/ih)
                 image=Image(str(path),width=iw*scale,height=ih*scale)
                 image.hAlign='CENTER'
                 block.extend([image,Spacer(1,7)])
@@ -261,21 +285,35 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
                 ('BOX',(0,0),(-1,-1),.7,HexColor('#688bb2')),
                 ('LINEBEFORE',(0,0),(0,-1),3,HexColor('#315f91')),
                 ('LEFTPADDING',(0,0),(-1,-1),10),('RIGHTPADDING',(0,0),(-1,-1),10),
-                ('TOPPADDING',(0,0),(-1,-1),9),('BOTTOMPADDING',(0,0),(-1,-1),9),
+                ('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),
             ]))
-            block=[ReadingPhase(f'해설 {number:02d} | {source}'),p(f'해설 {number:02d} | 숫자 고르기 → 계산 → 최종값','solutionLabel')]
+            block=[ReadingPhase(f'해설 {number:02d} | {source}'),p(f'해설 {number:02d} | 풀이','solutionLabel')]
             s=l['numberSelection']
-            block.append(labeled('쓰는 값',s['used']))
             if s.get('unused'): block.append(labeled('이번 식에는 안 씀',s['unused'],'warning'))
-            block.append(labeled('조건·함정',s['condition']))
-            block.extend(fraction_rows(l.get('fractions',[])))
-            block.append(labeled('계산','\n'.join(l['steps']),'calculation'))
-            if l.get('examAnswer'): block.append(labeled('최종값',l['examAnswer']))
+            short_notes=NOTES.get(q['id'])
+            if not short_notes: block.append(labeled('판단',s['condition']))
+            # Fractions show the final substitution; the preceding short steps
+            # explain the intermediate quantities before that substitution.
+            for step in short_notes or l['steps']:
+                block.append(p(STEP_EDITS.get(step,step),'calculation'))
+            substitution=fraction_rows(l.get('fractions',[]),notes=False)
+            for equation in substitution[:-1]: equation.keepWithNext=True
+            block.extend(substitution)
+            if l.get('examAnswer'): block.append(labeled('답',l['examAnswer'],'answer'))
             rounding=l.get('rounding','')
             if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): block.append(p(rounding,'small'))
-            if l.get('caution'): block.append(labeled('주의',l['caution'],'small'))
+            caution=l.get('caution','')
+            if '문항 ID의 09' in caution:
+                caution='교재의 개별 조건: 절대습도는 소수점 셋째 자리까지. 0.0042 → 0.004입니다.'
+            if caution: block.append(labeled('주의',caution,'small'))
             block.append(Spacer(1,4))
-            story.extend([CondPageBreak(block_height([question_panel])+70),ReadingPhase(f'문제 {number:02d} | {source}'),question_panel,*block])
+            pair=[ReadingPhase(f'문제 {number:02d} | {source}'),question_panel,*block]
+            # Short questions and their complete answer travel together. Longer
+            # ones may split, but the question is not orphaned at a page foot.
+            if block_height([question_panel,*block])<=350 or q['id']=='hvac-practical-restored-2024-2-10':
+                story.append(KeepTogether(pair))
+            else:
+                story.extend([CondPageBreak(block_height([question_panel])+125),*pair])
 
 story.extend([ReadingPhase(''),Spacer(1,4),p('근거: 기존 복원·연습 자료와 사용자 제공 채점 안내를 대조했습니다. 반올림 예외는 각 문항에 표시하며, 이번 식의 미사용 값도 다른 소문항에는 필요할 수 있습니다.','reference')])
 reference_links=['<link color="#315f91" href="'+escape(ref['url'],quote=True)+'">'+markup(ref['title'],'reference')+'</link>' for ref in DATA['references']]
@@ -308,6 +346,7 @@ StudyDocument(str(OUT),pagesize=A4,rightMargin=MARGIN,leftMargin=MARGIN,topMargi
 reader=PdfReader(str(OUT))
 text=''.join(''.join((page.extract_text() or '').split()) for page in reader.pages)
 assert number==len(DATA['rows'])==36
+assert set(NOTES)<=set(row['prompt']['id'] for row in DATA['rows'])
 for i,heading in enumerate(question_headings,1):
     assert ''.join(clean(f'문제 {i:02d} | {heading.split(". ",1)[1]}').split()) in text,heading
     assert ''.join(f'해설 {i:02d}'.split()) in text
