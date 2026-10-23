@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3.2',scope:'industrial',date:'2026.10.23',
+      title:'필답형 목록 복귀 위치 유지',
+      summary:'추가자료·계산 공부 등 들어왔던 목록 탭과 스크롤 위치로 돌아갑니다.',
+      tags:['필답형','목록 복귀'],
+      changes:['목록·회차 자료 목록·뒤로가기에서 문제를 열기 전 자료 탭과 위치를 복원합니다.','최근 자료 탭과 목록 위치를 저장해 새로고침 후에도 이어서 찾기 쉽게 했습니다.']
+    },
+    {
       version:'5.3.1',scope:'industrial',date:'2026.10.23',
       title:'필답형 답안 입력 바로 시작',
       summary:'직접 풀기에서 답안 입력칸을 처음부터 펼쳐 보여줍니다.',
@@ -2669,8 +2676,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3.1';
+  changelog.versions.industrial = '5.3.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3.1';
+  changelog.currentVersion = '5.3.2';
   window.CBT_CHANGELOG = changelog;
 })();
