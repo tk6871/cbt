@@ -163,7 +163,7 @@ body:has(.practical-study-room) .android-apk-floating-trigger { display: none; }
 .practical-room-header > div { min-width:0; }
 .practical-room-header > div p { max-width:850px; }
 .practical-library-back { min-height:44px; padding:8px 13px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--text); font:inherit; font-weight:800; }
-.practical-library-tabs { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:8px; margin:16px 0; }
+.practical-library-tabs { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:16px 0; }
 .practical-library-tabs button { min-height:68px; display:grid; gap:4px; padding:10px 14px; border:1px solid var(--line); border-radius:12px; background:var(--surface); color:var(--text); text-align:left; font:inherit; }
 .practical-library-tabs button b { font-size:.98rem; }
 .practical-library-tabs button small { color:var(--muted); line-height:1.4; }
