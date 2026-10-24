@@ -10,9 +10,9 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from PIL import Image as PILImage
 from pypdf import PdfReader
-from practical_algebra_primer import build_algebra_primer
+from practical_beginner_primer import build_algebra_primer
 from practical_formula_families import CHAPTERS, CARD_LESSONS
-from practical_pdf_solutions import NOTES, REARRANGE
+from practical_beginner_solutions import NOTES, REARRANGE, BASICS
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
@@ -158,9 +158,9 @@ class StudyDocument(SimpleDocTemplate):
     def afterPage(self):
         page_end(self.canv,self)
 
-story=[p('공조 필답형 계산 공부\n단위 · 식 바꾸기 · 유형별 풀이','title'),p('SI → 식 읽기·바꾸기 → 유형별 36문제 / 2026-10-23 개정','small')]
-for item in DATA['basics'][:5]: story.extend(section(item['title'],item['text']))
-story.append(p('먼저 외울 공식 · 이름을 누르면 해당 묶음으로','head'))
+story=[p('공조 필답형 계산 공부\n숫자의 뜻부터 · 처음 배우는 풀이','title'),p('단위 → 숫자로 이해하기 → 글자식 연결 → 유형별36문제 / 2026-10-24 개정','small')]
+for item in BASICS[:5]: story.extend(section(item['title'],item['text']))
+story.append(p('공식 찾아보기 · 지금 어려우면 설명을 읽고 돌아오세요','head'))
 quick_keys=['cgt','cr','cop','bf','affinity','pump','circulation','air','transfer','shf']
 quick_formulas={
     'cgt':['Q = G × c × Δt'], 'cr':['Q = G × r'],
@@ -189,7 +189,7 @@ quick_table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(
 story.append(quick_table)
 story.append(PageBreak())
 story.append(p('단위와 조건을 읽는 방법','title'))
-for item in DATA['basics'][5:]:
+for item in BASICS[5:]:
     text=item['text']
     if item['title']=='반올림과 시험 답안 쓰기':
         text='제공된 채점 안내는 기본적으로 소수 셋째 자리에서 반올림하여 둘째 자리까지 씁니다. 61.328289…는 셋째 숫자 8을 보고 61.33으로 씁니다. “셋째 자리까지”라면 넷째 숫자 2를 보고 61.328입니다. 개별 문제의 조건이 우선이며 중간값은 유지하고 최종 답만 반올림합니다. 계산과정과 단위도 씁니다.'
@@ -222,7 +222,7 @@ def chapter_guide(chapter, chapter_index):
         columns=3 if len(cards)==3 else 2
         table=Table([[cards[i+j] if i+j<len(cards) else '' for j in range(columns)] for i in range(0,len(cards),columns)],colWidths=[WIDTH/columns]*columns)
         table.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),5),('LINEBELOW',(0,0),(-1,-1),.4,HexColor('#dce5e8'))]))
-        content.append(table)
+        # Put the reference formulas after the plain-language reading guide.
     assert len(REARRANGE[chapter_index-1])==len(chapter['changes'])
     for (title,explanation,equations),short in zip(chapter['changes'], REARRANGE[chapter_index-1]):
         block=[labeled(title+' ·',short)]
@@ -236,6 +236,7 @@ def chapter_guide(chapter, chapter_index):
             else:
                 block.extend(FractionFormula(equation) for equation in equations)
         content.append(KeepTogether(block))
+    if cards: content.extend([p('설명을 읽은 뒤의 공식 확인','head'),table])
     return content
 
 question_headings=[]
@@ -253,15 +254,11 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
     for title in chapter['lessons']:
         rows=groups[title]
         lesson=rows[0]['lesson']
-        intro=[p(title,'head')]
+        intro=[p(title,'questionLabel')]
         if not all(r['prompt']['id'] in NOTES for r in rows):
             intro.append(labeled('왜 이 계산?',lesson['why']))
-        if title not in CARD_LESSONS:
-            intro.extend([*formula_block(lesson,notes=False),labeled('기호',' / '.join(lesson['symbols']),'small')])
-        intro.append(labeled('단위',' '.join(lesson['units']),'small'))
         story.append(CondPageBreak(block_height(intro)+120))
         story.append(ReadingPhase(''))
-        story.append(KeepTogether(intro))
         for row in rows:
             number+=1
             q,l=row['prompt'],row['lesson']
@@ -269,7 +266,7 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
             heading=f'{number:02d}. {source}'
             question_headings.append(heading)
             priority_label=' · 시험 우선' if row['examFamilies'] else ''
-            block=[p(f'문제 {number:02d} | {source}{priority_label}','questionLabel'),p(q['question'])]
+            block=[*(intro if row is rows[0] else []),p(f'문제 {number:02d} | {source}{priority_label}','questionLabel'),p(q['question'])]
             for asset in ([q['image']] if q.get('image') else [])+q.get('images',[]):
                 path=ROOT/asset
                 if path.suffix.lower()=='.svg': path=ROOT/'tmp/pdfs'/f'{path.stem}.png'
@@ -296,8 +293,14 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
             # explain the intermediate quantities before that substitution.
             for step in short_notes or l['steps']:
                 block.append(p(STEP_EDITS.get(step,step),'calculation'))
+            if row is rows[0]:
+                block.append(p('말로 이해한 내용을 식으로 확인','small'))
+                if title not in CARD_LESSONS:
+                    block.extend([*formula_block(l,notes=False),labeled('기호',' / '.join(l['symbols']),'small')])
+                block.append(labeled('단위 연결',' '.join(l['units']),'small'))
             substitution=fraction_rows(l.get('fractions',[]),notes=False)
             for equation in substitution[:-1]: equation.keepWithNext=True
+            if substitution and l.get('examAnswer'): substitution[-1].keepWithNext=True
             block.extend(substitution)
             if l.get('examAnswer'): block.append(labeled('답',l['examAnswer'],'answer'))
             rounding=l.get('rounding','')
@@ -328,7 +331,7 @@ def footer(canvas,doc):
     canvas.line(MARGIN,34,W-MARGIN,34)
     canvas.setFont('Nanum',8)
     canvas.setFillColor(MUTED)
-    canvas.drawString(MARGIN,21,'공조 계산 공부 / 공식 → 숫자 선택 → 풀이 → 단위')
+    canvas.drawString(MARGIN,21,'공조 계산 공부 / 숫자의 뜻 → 계산 이유 → 식과 단위 확인')
     canvas.drawRightString(W-MARGIN,21,str(doc.page))
     canvas.restoreState()
 
@@ -342,11 +345,11 @@ def page_end(canvas,doc):
         canvas.restoreState()
 
 StudyDocument(str(OUT),pagesize=A4,rightMargin=MARGIN,leftMargin=MARGIN,topMargin=35,bottomMargin=47,
-              title='공조 필답형 계산 공부 - 공식·함정·풀이 합본',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
+              title='공조 필답형 계산 공부 - 숫자의 뜻부터 배우는 풀이',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
 reader=PdfReader(str(OUT))
 text=''.join(''.join((page.extract_text() or '').split()) for page in reader.pages)
 assert number==len(DATA['rows'])==36
-assert set(NOTES)<=set(row['prompt']['id'] for row in DATA['rows'])
+assert set(NOTES)==set(row['prompt']['id'] for row in DATA['rows'])
 for i,heading in enumerate(question_headings,1):
     assert ''.join(clean(f'문제 {i:02d} | {heading.split(". ",1)[1]}').split()) in text,heading
     assert ''.join(f'해설 {i:02d}'.split()) in text
