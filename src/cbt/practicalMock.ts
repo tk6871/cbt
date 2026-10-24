@@ -1,4 +1,5 @@
 import type { PracticalPrompt } from './hvacPracticalTypes';
+import { additionalMockCandidate, type MockCandidate } from './practicalMockCandidates';
 
 export type MockKind = 'calculation' | 'sequence' | 'air' | 'device' | 'piping' | 'theory' | 'formula';
 export const mockKindLabels: Record<MockKind, string> = { calculation: '수치 계산', sequence: '시퀀스·제어', air: '공조·선도', device: '기기·계측', piping: '배관·시공', theory: '원리·서술', formula: '공식 쓰기' };
@@ -31,7 +32,7 @@ export function validPracticalPattern(value: unknown): value is PracticalPattern
   const p = value as PracticalPattern;
   return typeof p.attempt === 'string' && /^[a-z0-9-]{1,70}$/.test(p.attempt) && practicalMockRounds.includes(p.template)
     && Array.isArray(p.sourceIds) && p.sourceIds.length === 12 && new Set(p.sourceIds).size === 12
-    && p.sourceIds.every(id => typeof id === 'string' && /^hvac-practical-restored-/.test(id))
+    && p.sourceIds.every(id => typeof id === 'string' && /^(?:hvac-practical-(?:restored|foundation|drill|supplement|photo)-[a-z0-9-]+|moducbt-hvac-practical-\d+)$/.test(id))
     && Array.isArray(p.kinds) && p.kinds.length === 12 && p.kinds.every(k => typeof k === 'string' && Object.prototype.hasOwnProperty.call(mockKindLabels, k));
 }
 function shuffled<T>(items: readonly T[], random: () => number): T[] {
@@ -45,18 +46,28 @@ export function buildPracticalPattern(bank: PracticalPrompt[], random = Math.ran
   const round = template || practicalMockRounds[Math.floor(random() * practicalMockRounds.length)];
   const slots = practicalMockSlots.filter(s => s.round === round);
   if (slots.length !== 12) throw new Error('실전 구성표를 찾지 못했습니다.');
-  const chosen: typeof linked = [], seenTopics = new Set<string>(), seenContent = new Set<string>();
+  const recentIds = new Set(linked.map(x => x.prompt!.id));
+  const pool: MockCandidate[] = [
+    ...linked.map(x => ({ prompt:x.prompt!, kind:x.slot.kind, topic:x.slot.topic })),
+    ...bank.filter(p => !recentIds.has(p.id)).flatMap(p => { const candidate=additionalMockCandidate(p); return candidate ? [candidate] : []; }),
+  ];
+  const chosen: MockCandidate[] = [], seenTopics = new Set<string>(), seenContent = new Set<string>();
+  const hasAdditional = pool.some(x => x.prompt.group !== 'restored' && slots.some(s => s.kind === x.kind));
   // Topics are selected uniformly first; a repeatedly restored question does not
   // gain weight merely because it appears in several rounds. Never relax uniqueness.
   for (const slot of slots) {
-    const available = linked.filter(x => x.slot.kind === slot.kind && !seenTopics.has(x.slot.topic) && !seenContent.has(contentKey(x.prompt!)));
-    const topics = [...new Set(available.map(x => x.slot.topic))];
+    let available = pool.filter(x => x.kind === slot.kind && !seenTopics.has(x.topic) && !seenContent.has(contentKey(x.prompt)));
+    if (hasAdditional && !chosen.some(x => x.prompt.group !== 'restored')) {
+      const extras = available.filter(x => x.prompt.group !== 'restored');
+      if (extras.length) available = extras;
+    }
+    const topics = [...new Set(available.map(x => x.topic))];
     const topic = shuffled(topics, random)[0];
-    const candidate = shuffled(available.filter(x => x.slot.topic === topic), random)[0];
+    const candidate = shuffled(available.filter(x => x.topic === topic), random)[0];
     if (!candidate) throw new Error('중복 없이 12문제를 구성하지 못했습니다. 다시 시작해 주세요.');
-    chosen.push(candidate); seenTopics.add(topic); seenContent.add(contentKey(candidate.prompt!));
+    chosen.push(candidate); seenTopics.add(topic); seenContent.add(contentKey(candidate.prompt));
   }
-  return { prompts: chosen.map(x => x.prompt!), template: round, kinds: slots.map(s => s.kind), topics: chosen.map(x => x.slot.topic) };
+  return { prompts: chosen.map(x => x.prompt), template: round, kinds: slots.map(s => s.kind), topics: chosen.map(x => x.topic) };
 }
 function contentKey(p: PracticalPrompt): string { return `${p.question}|${p.answer}`.normalize('NFKC').replace(/\s+/g, ''); }
 export function practicalPatternSummary(kinds: MockKind[]): string {

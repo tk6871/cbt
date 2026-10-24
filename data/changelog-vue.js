@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3.3',scope:'industrial',date:'2026.10.24',
+      title:'필답형 랜덤 실전 출처 확대',
+      summary:'추가자료와 과거 기출 사진문제도 랜덤 실전에 함께 나옵니다.',
+      tags:['필답형','랜덤 실전','추가자료'],
+      changes:['최근9회 복원문제의 유형별 구성은 유지하면서 PDF·사진·공개·연습 자료와 과거 기출 사진문제를 후보로 추가했습니다.','실전마다 추가자료를1문제 이상 포함하고 기출·추가자료 출제 개수를 표시합니다.','동일 문항과 이름이 연결된 같은 기기 주제의 중복을 피하며, 기존90분·12문제·60점·풀이 확인·이어풀기를 유지합니다.']
+    },
+    {
       version:'5.3.2',scope:'industrial',date:'2026.10.23',
       title:'필답형 목록 복귀 위치 유지',
       summary:'추가자료·계산 공부 등 들어왔던 목록 탭과 스크롤 위치로 돌아갑니다.',
@@ -2676,8 +2683,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3.2';
+  changelog.versions.industrial = '5.3.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3.2';
+  changelog.currentVersion = '5.3.3';
   window.CBT_CHANGELOG = changelog;
 })();

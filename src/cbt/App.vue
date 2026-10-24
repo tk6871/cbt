@@ -5307,7 +5307,7 @@ onBeforeUnmount(() => {
               </nav>
             </header>
             <section v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-pattern-start" aria-label="복원 비율 실전">
-              <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율을 따라 계산·시퀀스·그림·서술을 배합합니다. 같은 내용은 한 시험에서 제외합니다.</p><small>전체 최근 복원 범위에서 출제 · 90분 · 문제별 풀이 확인 가능 · 학습용 60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
+              <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율에 맞춰 최근 기출·추가자료·과거 기출 사진문제를 섞습니다. 추가자료는 매번1문제 이상 포함하며 같은 문항은 중복 출제하지 않습니다.</p><small>추가자료 PDF·사진·공개·연습 포함 · 90분 · 문제별 풀이 확인 가능 · 학습용60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
               <div class="practical-pattern-actions"><button v-if="practicalPatternResume.pattern" type="button" @click="resumePracticalPatternMock">{{ practicalPatternResume.finished ? '마지막 실전 답안·채점 보기' : '마지막 실전 이어풀기' }}</button><button type="button" @click="startPracticalPatternMock">복원 비율 실전 시작</button><small v-if="practicalPatternResume.pattern && !practicalPatternResume.finished">목록에 있어도 제한 시간은 계속 흐릅니다.</small></div>
             </section>
             <details v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-overview"><summary>학습 현황 · 일반 랜덤 · 자료 출처</summary>
@@ -5379,6 +5379,7 @@ onBeforeUnmount(() => {
               <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">{{ practicalSessionPattern ? '답안 제출·자가채점' : '실전 종료·점수 보기' }}</button><button type="button" @click="closePracticalMock()">목록으로 돌아가기</button></div>
             </div>
             <p v-if="practicalSessionActive && practicalSessionPattern">제출 전 풀이 확인 {{ practicalViewedAnswerIds.length }}문제 · 제출 전에는 풀이를 봐도 시간이 계속 진행됩니다. 점수는 자가채점한 학습용 결과입니다.</p>
+            <p v-if="practicalSessionActive && practicalSessionPattern">이번 출제: 회차별 기출 {{ practicalPagedPrompts.filter(p => p.group === 'restored').length }}문제 · 추가자료 {{ practicalPagedPrompts.filter(p => p.group !== 'restored').length }}문제</p>
             <section v-if="practicalSessionActive && practicalSessionFinished" class="practical-session-report">
               <header><div><span>WRITTEN SCORE REPORT</span><h3>필답형 실전 분석</h3></div><strong>{{ practicalSessionGradedCount === practicalSessionIds.length ? `${Math.round((practicalSessionScore / Math.max(1, practicalSessionTotalPoints)) * 100)}%` : `${practicalSessionGradedCount}/${practicalSessionIds.length} 채점` }}</strong></header>
               <p v-if="practicalSessionGradedCount < practicalSessionIds.length">아래 답안과 비교해 자가채점해 주세요. 모든 문제를 채점한 뒤 취약 분야를 정리합니다. 미채점은 오답 판정이 아닙니다.</p>
@@ -5727,7 +5728,7 @@ onBeforeUnmount(() => {
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             </details>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>직접 풀기에서는 답안 입력칸이 처음부터 열립니다. 입력한 답안은 자동 저장되며 필요하면 접을 수 있습니다. 목록이나 뒤로가기를 누르면 들어왔던 자료 탭과 스크롤 위치로 돌아갑니다. 문제를 푼 뒤 같은 카드 아래에서 답안과 풀이를 확인하고, 세부 채점 도구를 펼쳐 연습합니다.</p></header>
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 실전 채점 훈련</h2></div><p>복원 비율 랜덤 실전에 추가자료와 과거 기출 사진문제도 출제합니다. 매번 추가자료를1문제 이상 포함하고 기출·자료 개수를 표시합니다. 직접 풀기 답안 입력과 자동 저장을 사용하고, 목록이나 뒤로가기로 들어왔던 자료 탭과 위치에 복귀합니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
               <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
