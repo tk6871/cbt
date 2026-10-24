@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3.4',scope:'industrial',date:'2026.10.24',
+      title:'필답형 전용 문제 검색',
+      summary:'회차별 기출과 추가자료를 문제·정답·해설·회차로 찾습니다.',
+      tags:['필답형','검색'],
+      changes:['필답형 목록에 문제 검색 탭을 추가했습니다. 자료·분야·검색 위치를 좁히고 여러 단어를 함께 검색합니다.','검색 목록에서 정답은 숨기고, 선택한 문제를 바로 열거나 결과를 모아 풉니다.','검색 조건과 결과 풀이 위치를 저장하며 목록 복귀·기존 답안·학습 기록을 유지합니다. 이미지 안 글자는 등록된 텍스트 범위에서 검색합니다.']
+    },
+    {
       version:'5.3.3',scope:'industrial',date:'2026.10.24',
       title:'필답형 랜덤 실전 출처 확대',
       summary:'추가자료와 과거 기출 사진문제도 랜덤 실전에 함께 나옵니다.',
@@ -2683,8 +2690,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3.3';
+  changelog.versions.industrial = '5.3.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3.3';
+  changelog.currentVersion = '5.3.4';
   window.CBT_CHANGELOG = changelog;
 })();
