@@ -106,6 +106,19 @@ SHORT = {
     'restored-2023-2-12':'급탕은 물의 양×비열×온도차로 구하고 난방열과 더하며, 배관·예열 여유를 더하려고1.20·1.15를 곱합니다. 효율은 기존 복원답안의 출력을 연료가 준 열로 나눠100을 곱한 백분율입니다.',
 }
 
+# Compact replacements explain unspoken references as well as the operation,
+# without appending a second, repetitive explanation block.
+NUMBER_ORIGINS = {
+    'restored-2023-3-02': '0°C는 얼음이 녹는 경계입니다. -10→0은10°C 상승이라0-(-10)=10, 녹은 물은0→100°C라100-0을 씁니다.2.1은 얼음·4.2는 물의 비열이고, 녹는 열335·증발열2,257까지 네 구간의 열을 모두 더합니다.',
+    'restored-2025-3-06': '1은 전체100%이므로 이미 증기인0.1(10%)을 빼면 아직 액체인0.9(90%)가 남습니다. 액체 몫×냉매량×1 kg당 잠열로 얻는 열을 구하고3.86으로 나눠RT로 바꿉니다.',
+    'restored-2026-1-05': '물의 양×비열×(출구-입구)는 받은 열이며 이를1 m²당 전달열로 나누면 면적입니다. 두 온도차를 더해2로 나누는 평균을 합쳐 분자에×2가 붙고, ÷60은분→초이며 물1 L≈1 kg으로 봅니다.',
+    'restored-2025-2-07': '표면의1/열전달률과 벽의두께/열전도율은 열이 지나가기 어려운 정도라 모두 더합니다.1은 측정값이 아닌K×전체 열저항=1의 숫자여서 그 합으로1을 나눕니다.10 cm=0.10 m,2.5×10^(-5)=0.000025입니다.',
+    'restored-2026-1-06': '2×반지름은 지름, π(약3.14159)는 원주율,360°는 원 한 바퀴입니다. 원둘레에90/360을 곱해90도 곡선만 구하고 직선350·500을 더합니다.',
+    'restored-2024-2-10': '①입구·②출구·③코일은 위치 이름표이지 실제 온도1·2·3°C가 아닙니다. 빼서 구한 온도차끼리 나눠BF는 남은 몫,CF는 줄어든 몫을 구합니다.',
+    'restored-2024-1-06': '1,630·545는 그림의 증발기 출구·입구 엔탈피이며 그 차이는 냉매1 kg이 가져가는 열이라 전체 냉동능력을 이것으로 나눕니다. ×3.86은문제의RT→kW 환산, ×3,600은1시간=3,600초인시간당 환산입니다.',
+    'restored-2023-2-12': '급탕은물의 양×비열×온도차이며 난방열과 더해1.20(원래100%+손실20%)·1.15(원래100%+예열15%)를 곱합니다. 효율은기존 복원출력÷연료열이며×100은% 환산, 물1 L≈1 kg 조건을 씁니다.',
+}
+
 def audit_arithmetic():
     pairs = [
         (1*4.18*5,20.9),(2*4.18*5,41.8),(1.2*2*1.005*10,24.12),
@@ -134,6 +147,7 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
     from reportlab.platypus import Paragraph
     assert set(DIRECT)=={row['prompt']['id'].replace('hvac-practical-','') for row in data['rows']}
     assert set(DIRECT)==set(NOTES)|set(SHORT)
+    assert set(NUMBER_ORIGINS)<=set(DIRECT)
     checks=audit_arithmetic()
     story=[p('공조 필답형 계산\n공식 · 한 번에 대입 · 짧은 해설','title'),
            p('36문제 / 문제와 그림 유지 / 2026-10-25','small'),
@@ -196,7 +210,7 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
                     fraction_sizes.append(11*flow.scale)
                     solution.append(flow)
                 if l.get('examAnswer'): solution.append(labeled('답',l['examAnswer'],'answer'))
-                explanation=NOTES.get(short) or SHORT.get(short)
+                explanation=NUMBER_ORIGINS.get(short) or NOTES.get(short) or SHORT.get(short)
                 if explanation: solution.append(labeled('짧은 해설',explanation))
                 used=l['numberSelection']
                 if used.get('unused'): solution.append(labeled('넣지 않는 값',used['unused'],'small'))
