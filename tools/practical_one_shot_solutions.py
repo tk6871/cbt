@@ -149,7 +149,7 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
     assert set(DIRECT)==set(NOTES)|set(SHORT)
     assert set(NUMBER_ORIGINS)<=set(DIRECT)
     checks=audit_arithmetic()
-    story=[p('공조 필답형 계산\n공식 · 한 번에 대입 · 짧은 해설','title'),
+    story=[p('공조 필답형 계산\n숫자 고르기 · 공식 · 한 번에 대입','title'),
            p('36문제 / 문제와 그림 유지 / 2026-10-25','small'),
            p('먼저 보는 단위 · SI','head')]
     for line in [
@@ -195,15 +195,21 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
                     body.extend([img,Spacer(1,5)])
                 panel=Table([[body]],colWidths=[width])
                 panel.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),HexColor('#edf3fb')),('BOX',(0,0),(-1,-1),.6,HexColor('#688bb2')),('LEFTPADDING',(0,0),(-1,-1),10),('RIGHTPADDING',(0,0),(-1,-1),10),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]))
-                solution=[ReadingPhase(f'해설 {number:02d} | {row["sourceLabel"]}'),p(f'해설 {number:02d} | 한 번에 대입','solutionLabel')]
+                used=l['numberSelection']
+                solution=[ReadingPhase(f'해설 {number:02d} | {row["sourceLabel"]}'),p(f'해설 {number:02d}','solutionLabel'),
+                          labeled('이번 계산에 쓰는 값',used['used'])]
+                if used.get('condition'):
+                    solution.append(labeled('반드시 읽을 조건',used['condition']))
                 if l['kind']!='formula':
-                    solution.append(p('공식','small'))
+                    solution.append(p('먼저 외울 공식','small'))
                     formula=FORMULAS.get(title) or [x['parts'] for x in l.get('formulaFractions',[])] or [[l['formula']]]
                     if title=='COP와 응축기 방열량' and short=='foundation-2': formula=[eq('COP','Qe','L')]
                     if short=='foundation-3': formula=[['Qc = Qe + L']]
                     if short=='drill-11': formula=[['Q = ρ × V × c × Δt']]
                     for parts in formula: solution.append(FractionFormula(parts))
                     solution.append(p('한 번에 대입','small'))
+                else:
+                    solution.append(p('먼저 외울 공식','small'))
                 for parts in DIRECT[short]:
                     flow=FractionFormula(parts)
                     flow.wrap(width,999)
@@ -211,8 +217,7 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
                     solution.append(flow)
                 if l.get('examAnswer'): solution.append(labeled('답',l['examAnswer'],'answer'))
                 explanation=NUMBER_ORIGINS.get(short) or NOTES.get(short) or SHORT.get(short)
-                if explanation: solution.append(labeled('짧은 해설',explanation))
-                used=l['numberSelection']
+                if explanation: solution.append(labeled('이해용 설명',explanation))
                 if used.get('unused'): solution.append(labeled('넣지 않는 값',used['unused'],'small'))
                 rounding=l.get('rounding','')
                 if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): solution.append(p(rounding,'small'))

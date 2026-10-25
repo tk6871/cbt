@@ -368,6 +368,9 @@ for i,heading in enumerate(question_headings,1):
 for needle in ['1,821','잠열10','높이3','동력10','난방부하','소수점']:
     assert needle in text,needle
 assert 'SI' in (reader.pages[0].extract_text() or '')
+if ONE_SHOT:
+    for label in ['이번 계산에 쓰는 값','반드시 읽을 조건','먼저 외울 공식','이해용 설명']:
+        assert text.count(''.join(label.split()))==36,label
 assert len(reader.outline)==7
 assert sum(bool(row['examFamilies']) for row in DATA['rows'])==13
 for row in DATA['rows']:
