@@ -1,6 +1,7 @@
 """Compact booklet: shared formula lessons, then consecutive worked questions."""
 from pathlib import Path
 import json
+import sys
 from html import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image, KeepTogether, CondPageBreak, Flowable, Table, TableStyle
 from reportlab.lib.pagesizes import A4
@@ -16,7 +17,8 @@ from practical_beginner_solutions import NOTES, REARRANGE, BASICS
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
-OUT=ROOT/'output/pdf/hvac-practical-calculation-study.pdf'
+ONE_SHOT='--one-shot' in sys.argv
+OUT=ROOT/'output/pdf'/('hvac-practical-calculation-one-shot.pdf' if ONE_SHOT else 'hvac-practical-calculation-study.pdf')
 OUT.parent.mkdir(parents=True,exist_ok=True)
 pdfmetrics.registerFont(TTFont('Nanum',str(ROOT/'assets/fonts/NanumGothic-Regular.ttf')))
 pdfmetrics.registerFont(TTFont('NanumBold',str(ROOT/'assets/fonts/NanumGothic-Bold.ttf')))
@@ -298,7 +300,13 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
                 if title not in CARD_LESSONS:
                     block.extend([*formula_block(l,notes=False),labeled('기호',' / '.join(l['symbols']),'small')])
                 block.append(labeled('단위 연결',' '.join(l['units']),'small'))
-            substitution=fraction_rows(l.get('fractions',[]),notes=False)
+            if q['id']=='hvac-practical-restored-2026-2-09':
+                # The worked equation must reach the requested m³/h, not stop
+                # at m³/s immediately above an hourly final-answer box.
+                from practical_one_shot_solutions import DIRECT
+                substitution=[FractionFormula(parts) for parts in DIRECT['restored-2026-2-09']]
+            else:
+                substitution=fraction_rows(l.get('fractions',[]),notes=False)
             for equation in substitution[:-1]: equation.keepWithNext=True
             if substitution and l.get('examAnswer'): substitution[-1].keepWithNext=True
             block.extend(substitution)
@@ -331,7 +339,7 @@ def footer(canvas,doc):
     canvas.line(MARGIN,34,W-MARGIN,34)
     canvas.setFont('Nanum',8)
     canvas.setFillColor(MUTED)
-    canvas.drawString(MARGIN,21,'공조 계산 공부 / 숫자의 뜻 → 계산 이유 → 식과 단위 확인')
+    canvas.drawString(MARGIN,21,'공조 계산 / 기본식 → 한 번에 대입 → 답' if ONE_SHOT else '공조 계산 공부 / 숫자의 뜻 → 계산 이유 → 식과 단위 확인')
     canvas.drawRightString(W-MARGIN,21,str(doc.page))
     canvas.restoreState()
 
@@ -344,8 +352,12 @@ def page_end(canvas,doc):
         canvas.drawString(MARGIN,H-22,label+(' · 해설 계속' if getattr(canvas,'_page_continued',False) else ''))
         canvas.restoreState()
 
+arithmetic_checks=0
+if ONE_SHOT:
+    from practical_one_shot_solutions import build_story
+    story,question_headings,number,arithmetic_checks=build_story(DATA,ROOT,WIDTH,p,labeled,FractionFormula,math_box,ReadingPhase)
 StudyDocument(str(OUT),pagesize=A4,rightMargin=MARGIN,leftMargin=MARGIN,topMargin=35,bottomMargin=47,
-              title='공조 필답형 계산 공부 - 숫자의 뜻부터 배우는 풀이',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
+              title='공조 필답형 계산 - 한 번에 대입하는 분수 풀이' if ONE_SHOT else '공조 필답형 계산 공부 - 숫자의 뜻부터 배우는 풀이',author='CBT 학습 자료').build(story,onFirstPage=footer,onLaterPages=footer)
 reader=PdfReader(str(OUT))
 text=''.join(''.join((page.extract_text() or '').split()) for page in reader.pages)
 assert number==len(DATA['rows'])==36
@@ -363,5 +375,5 @@ for row in DATA['rows']:
     if row['lesson'].get('examAnswer'):
         assert ''.join(clean(row['lesson']['examAnswer']).split()) in text, row['id']
 # Do not silently add a near-empty final page for a single reference line.
-assert len(''.join((reader.pages[-1].extract_text() or '').split()))>250
-print(json.dumps({'output':str(OUT),'pages':len(reader.pages),'questions':number,'bytes':OUT.stat().st_size,'unusedValueNotes':sum(bool(r['lesson']['numberSelection'].get('unused')) for r in DATA['rows'])},ensure_ascii=False))
+assert len(''.join((reader.pages[-1].extract_text() or '').split()))>(120 if ONE_SHOT else 250)
+print(json.dumps({'output':str(OUT),'pages':len(reader.pages),'questions':number,'bytes':OUT.stat().st_size,'unusedValueNotes':sum(bool(r['lesson']['numberSelection'].get('unused')) for r in DATA['rows']),'directArithmeticChecks':arithmetic_checks},ensure_ascii=False))
