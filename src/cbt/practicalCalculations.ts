@@ -6,6 +6,9 @@ export type CalculationLesson = {
   symbols: string[]; why: string; units: string[]; memory: string;
   steps: string[]; caution?: string; examAnswer?: string; rounding?: string;
   fractions?: FractionLine[];
+  temperatureNote?: string;
+  temperatureMode?: 'difference' | 'mixing' | 'coefficient';
+  temperatureFractions?: FractionLine[];
   numberSelection?: { used: string; unused?: string; condition: string };
 };
 type Method = Omit<CalculationLesson, 'steps'>;
@@ -17,7 +20,8 @@ export const practicalSiBasics = [
   { title: '왜 3,600을 곱하거나 나누나?', text: '1시간 = 60분 × 60초 = 3,600초입니다. 3,600 m³/h ÷ 3,600 = 1 m³/s: 한 시간 양을 3,600초로 나눕니다. 반대로 1 m³/s × 3,600 = 3,600 m³/h: 1초 양을 한 시간 동안 모읍니다. kg/h와 kg/s도 같습니다.' },
   { title: '왜 1,000이나 60이 갑자기 나오나?', text: 'k(킬로)는 1,000배입니다. W → kW는 ÷1,000, kW → W는 ×1,000입니다. 1 ton = 1,000 kg, 1분 = 60초라서 ton → kg는 ×1,000, L/min → L/s는 ÷60입니다. 물 1 L를 약 1 kg으로 보는 문제에서는 L/s와 kg/s의 숫자가 같습니다. 모든 액체에 적용하면 안 됩니다.' },
   { title: '곱할 때 단위도 같이 곱합니다', text: '2 kg/s × 4.2 kJ/(kg·℃) × 5℃ = 42 kJ/s = 42 kW입니다. kg는 위의 kg와 아래의 kg가 나누어져 1이 되고, ℃도 같습니다. 없어지는 것이 아니라 같은 단위끼리 나눈 결과입니다. ·는 곱하기입니다.' },
-  { title: '더하기·빼기는 같은 단위끼리', text: '3 m + 20 cm는 바로 23이 아닙니다. 20 cm = 0.2 m로 바꾼 뒤 3 + 0.2 = 3.2 m입니다. 20℃ - 8℃ = 12℃는 온도차이며 12 K와 크기가 같습니다. 절대온도를 구할 때만 ℃ + 273.15 = K를 씁니다. 온도차에는 273.15를 더하지 않습니다.' },
+  { title: '더하기·빼기는 같은 단위끼리', text: '3 m + 20 cm는 바로 23이 아닙니다. 20 cm = 0.2 m로 바꾼 뒤 3 + 0.2 = 3.2 m입니다. 20℃ - 8℃ = 12℃는 온도차이며 12 K와 크기가 같습니다. 온도 자체 T를 절대온도로 대입하는 식에서는 ℃ + 273.15 = K를 씁니다. 온도차에는 273.15를 더하지 않습니다.' },
+  { title: '비열의 K는 무조건 절대온도로 바꾸라는 뜻일까?', text: 'kJ/(kg·K)는 1 kg의 온도를 1 K 바꾸는 데 필요한 열입니다. 온도차 1 K와 1℃의 크기는 같습니다. 31℃-28℃=3 K이고, 각각 절대온도로 바꿔도 304.15 K-301.15 K=3 K입니다. “5℃ 올린다”는 5 K 상승이지 278.15 K 상승이 아닙니다. 카르노 온도비·이상기체식처럼 온도 자체 T를 넣는 식은 T=t+273.15로 바꿉니다. COP=Q/L처럼 온도가 없는 식과도 구별합니다.' },
   { title: '기호를 먼저 읽고 계산합니다', text: '×는 곱하기, ÷와 /는 나누기입니다. ( ) 안을 먼저 계산하고, 2²는 2×2, √9는 두 번 곱해 9가 되는 수 3입니다. Δ(델타)는 “차이”, ρ(로)는 밀도, γ(감마)는 비중량, η(에타)는 효율을 뜻하는 경우가 많습니다. 기호 뜻은 공식마다 옆에서 다시 설명합니다.' },
   { title: '분수로 나누면 뒤집어 곱합니다', text: '(kJ/s) ÷ (kJ/kg)는 (kJ/s) × (kg/kJ)와 같습니다. 나누는 쪽의 위아래를 뒤집어 곱하는 것입니다. kJ끼리 나누어 1이 되면 kg/s만 남습니다. kW ÷ (kW/m²)도 kW × (m²/kW)이므로 m²입니다. 같은 단위끼리 나눈 COP·SHF·효율에는 단위가 없습니다. 효율에 ×100을 하면 %로 표시합니다. RT는 냉동능력 단위이며 문제에서 준 kW/RT 값으로 바꿉니다.' },
   { title: '반올림과 시험 답안 쓰기', text: '사용자 제공 채점 안내는 기본적으로 소수 셋째 자리에서 반올림하여 둘째 자리까지 쓰도록 합니다. 단, 개별 문제의 조건이 우선입니다. “셋째 자리까지”면 넷째 숫자를 보고 세 자리를 남깁니다. 0.0042는 0.004입니다. “셋째 자리에서 반올림”이면 둘째 자리까지 남기므로 서로 다릅니다. 중간값은 충분히 유지하고 최종 답에서만 반올림합니다. 계산과정과 단위를 함께 씁니다.' },
@@ -164,6 +168,42 @@ const numberSelections: Record<string, NonNullable<CalculationLesson['numberSele
 };
 for (const [suffix, selection] of Object.entries(numberSelections)) practicalCalculationLessons[`hvac-practical-${suffix}`].numberSelection = selection;
 
+// Explicit review of the current calculation bank, not a unit-string heuristic.
+export const practicalTemperatureModes = {
+  'foundation-8':'difference','drill-10':'difference','drill-11':'difference',
+  'restored-2026-2-09':'difference','restored-2025-1-11':'difference',
+  'restored-2023-3-02':'difference','restored-2023-2-02':'difference',
+  'supplement-20260916-16':'difference','restored-2026-2-10':'difference',
+  'restored-2026-1-05':'difference','restored-2024-2-05':'difference',
+  'restored-2024-2-10':'difference','restored-2023-2-12':'difference',
+  'drill-28':'mixing','restored-2024-3-07':'mixing','restored-2024-1-09':'mixing',
+  'restored-2025-2-07':'coefficient',
+} as const;
+const temperatureNotes = {
+  difference:'이 식은 온도 자체가 아닌 온도차 Δt를 씁니다. 비열의 kJ/(kg·K)는 1 kg·온도차 1 K당 열이라는 뜻입니다. 설명용 예:31-28=3℃의 차이는 3 K이며, (31+273.15)-(28+273.15)도 3 K입니다. 이미 구한 온도차에 273.15를 더하지 않습니다. 식의 열관류율 기호 K와 온도 단위 K도 구별하세요.',
+  mixing:'이 문제의 같은 비열·단순 혼합 조건에서는 섭씨로 가중평균해도 됩니다. 절대온도로 계산하면 결과가 K로 나오므로 마지막에 273.15를 빼야 같은 섭씨 답이 됩니다. 절대습도는 수증기량이지 절대온도가 아닙니다.',
+  coefficient:'W/(m²·K)의 K는 온도차 단위이고, 식 앞의 K는 열관류율을 뜻하는 이름입니다. 이 문제는 열저항을 더해 역수를 구하므로 온도 자체를 대입하지 않으며 273.15를 넣지 않습니다.',
+};
+for (const [suffix, mode] of Object.entries(practicalTemperatureModes)) {
+  practicalCalculationLessons[`hvac-practical-${suffix}`].temperatureMode = mode;
+  practicalCalculationLessons[`hvac-practical-${suffix}`].temperatureNote = temperatureNotes[mode];
+}
+for (const [suffix, top, bottom, answer] of [
+  ['restored-2024-1-09','(-5 + 273.15) × 1 + (20 + 273.15) × 4','1 + 4','15.00'],
+  ['restored-2024-3-07','(-8 + 273.15) × 1 + (24 + 273.15) × 3','1 + 3','16.00'],
+  ['drill-28','(32 + 273.15) × 10 + (24 + 273.15) × 30','10 + 30','26.00'],
+]) {
+  practicalCalculationLessons[`hvac-practical-${suffix}`].temperatureFractions = [
+    {parts:['혼합온도 = ',{top:[top],bottom:[bottom]},` - 273.15 = ${answer}℃`],note:'선택 대체 풀이: 각 온도를 K로 바꿔 평균하고 마지막에273.15를 빼서 ℃로 되돌립니다. 섭씨 직접 계산과 같은 답이며 절대습도에는 이 환산을 하지 않습니다.'},
+  ];
+}
+
+export const practicalAbsoluteTemperatureExample = {
+  title:'온도 자체 T를 넣는 계산 · 구별용 예시(등록 기출 아님)',
+  text:'카르노 냉동 COP는 분자에 온도 자체T를 넣으므로 K로 바꿉니다. 저온-5℃·고온23℃인 설명용 예이며 일반 COP=Q/L과 구별합니다. 이상기체식·이상적인 압축 온도비도 T는 절대온도입니다. 구한 온도를 ℃로 쓸 때는 마지막에273.15를 뺍니다.',
+  fractions:[{parts:['카르노 냉동 COP = ',{top:['-5 + 273.15'],bottom:['(23 + 273.15) - (-5 + 273.15)']},' ≈ 9.58']} satisfies FractionLine],
+};
+
 export const practicalCalculationPdf = 'output/pdf/hvac-practical-calculation-study.pdf';
 export function calculationLesson(prompt: PracticalPrompt): CalculationLesson | undefined {
   const lesson = practicalCalculationLessons[prompt.id];
@@ -224,6 +264,9 @@ export function orderPracticalCalculations(prompts: PracticalPrompt[]): Practica
   return [...prompts].sort((a,b) => rank(a)-rank(b));
 }
 export const practicalCalculationReferences = [
+  { title:'온도차·절대온도 구분(BIPM SI Brochure)', url:'https://www.bipm.org/en/publications/si-brochure' },
+  { title:'카르노 절대온도 비율(OpenStax)', url:'https://openstax.org/books/university-physics-volume-2/pages/4-5-the-carnot-cycle' },
+  { title:'이상적인 압축 온도비(NASA)', url:'https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/isentrophic-compression/' },
   { title:'열량·비열', url:'https://openstax.org/books/physics/pages/11-2-heat-specific-heat-and-heat-transfer' },
   { title:'상태 변화·잠열', url:'https://openstax.org/books/college-physics/pages/14-3-phase-change-and-latent-heat' },
   { title:'SI 환산·표준대기압', url:'https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors' },

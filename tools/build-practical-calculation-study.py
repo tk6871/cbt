@@ -14,6 +14,7 @@ from pypdf import PdfReader
 from practical_beginner_primer import build_algebra_primer
 from practical_formula_families import CHAPTERS, CARD_LESSONS
 from practical_beginner_solutions import NOTES, REARRANGE, BASICS
+from practical_one_shot_solutions import temperature_note, absolute_temperature_example
 
 ROOT=Path(__file__).resolve().parents[1]
 DATA=json.loads((ROOT/'tmp/pdfs/practical-calculation-study.json').read_text())
@@ -196,9 +197,11 @@ for item in BASICS[5:]:
     if item['title']=='반올림과 시험 답안 쓰기':
         text='제공된 채점 안내는 기본적으로 소수 셋째 자리에서 반올림하여 둘째 자리까지 씁니다. 61.328289…는 셋째 숫자 8을 보고 61.33으로 씁니다. “셋째 자리까지”라면 넷째 숫자 2를 보고 61.328입니다. 개별 문제의 조건이 우선이며 중간값은 유지하고 최종 답만 반올림합니다. 계산과정과 단위도 씁니다.'
     story.extend(section(item['title'],text))
+story.extend(absolute_temperature_example(DATA,p,FractionFormula))
 story.extend(section('숫자가 보여도 전부 대입하지 않습니다','먼저 무엇을 구하는지 정합니다. 그 식에 쓰는 값, 다른 소문항에 쓰는 값, 이번 식에는 필요 없는 값을 구별합니다. “현열”, “진공압”, “산술평균”, “소수점 몇 자리”는 직접 곱하지 않아도 풀이를 결정하는 조건입니다. 불필요한 숫자와 필요한 조건을 같은 것으로 보지 않습니다.'))
 story.append(p('분수 읽기 · 위를 아래로 나누세요','head'))
-story.extend(fraction_rows(DATA['fractionBasics']))
+story.extend(fraction_rows(DATA['fractionBasics'],notes=False))
+story.append(p('분수선은 나누기입니다. 위(분자) 전체와 아래(분모) 전체를 각각 괄호로 묶어 계산합니다.','small'))
 story.append(PageBreak())
 story.extend(build_algebra_primer(p,FractionFormula))
 groups={}
@@ -287,6 +290,7 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
                 ('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),
             ]))
             block=[ReadingPhase(f'해설 {number:02d} | {source}'),p(f'해설 {number:02d} | 풀이','solutionLabel')]
+            if temperature_note(l): block.append(labeled('온도 단위',temperature_note(l),'small'))
             s=l['numberSelection']
             if s.get('unused'): block.append(labeled('이번 식에는 안 씀',s['unused'],'warning'))
             short_notes=NOTES.get(q['id'])
@@ -311,6 +315,10 @@ for chapter_index,chapter in enumerate(CHAPTERS,1):
             if substitution and l.get('examAnswer'): substitution[-1].keepWithNext=True
             block.extend(substitution)
             if l.get('examAnswer'): block.append(labeled('답',l['examAnswer'],'answer'))
+            if l.get('temperatureFractions'):
+                block.append(p('K로 바꿔 푸는 대체 과정 · 선택','small'))
+                block.extend(FractionFormula(x['parts']) for x in l['temperatureFractions'])
+                block.append(p(l['temperatureFractions'][0]['note'],'small'))
             rounding=l.get('rounding','')
             if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): block.append(p(rounding,'small'))
             caution=l.get('caution','')
