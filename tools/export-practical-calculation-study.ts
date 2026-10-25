@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
-import { calculationPrompts, calculationLesson, practicalCalculationLessons, practicalSiBasics, practicalCalculationReferences, practicalExamFamilies, practicalExamFamiliesFor, orderPracticalCalculations } from '../src/cbt/practicalCalculations';
+import { calculationPrompts, calculationLesson, practicalCalculationLessons, practicalSiBasics, practicalCalculationReferences, practicalExamFamilies, practicalExamFamiliesFor, orderPracticalCalculations, practicalAbsoluteTemperatureExample } from '../src/cbt/practicalCalculations';
 import { practicalMockSlots } from '../src/cbt/practicalMock';
 import { practicalFormulaSummary } from '../src/cbt/practicalFormulaSummary';
 import { practicalSourceLabel } from '../src/cbt/practicalLabels';
@@ -31,5 +31,5 @@ const path = resolve(process.argv[2] || 'tmp/pdfs/practical-calculation-study.js
 mkdirSync(dirname(path), { recursive:true });
 assert.equal(practicalFormulaSummary.length, 10);
 assert.equal(new Set(practicalFormulaSummary.map(f => f.key)).size, 10);
-writeFileSync(path, JSON.stringify({ date:'2026-10-21', basics:practicalSiBasics, fractionBasics, formulaSummary:practicalFormulaSummary.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), references:practicalCalculationReferences, examFamilies:practicalExamFamilies.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), rows }, null, 2));
+writeFileSync(path, JSON.stringify({ date:'2026-10-25', temperatureExample:practicalAbsoluteTemperatureExample, basics:practicalSiBasics, fractionBasics, formulaSummary:practicalFormulaSummary.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), references:practicalCalculationReferences, examFamilies:practicalExamFamilies.map(item => ({ ...item, formulaFractions:fractionFormula(item.formula) })), rows }, null, 2));
 console.log(JSON.stringify({ path, total:rows.length, numeric:rows.filter(r => r.lesson.kind === 'numeric').length, formula:rows.filter(r => r.lesson.kind === 'formula').length, restored:rows.filter(r => r.prompt.group === 'restored').length, mockCalculationAndFormulaCoverage:'pass' }));

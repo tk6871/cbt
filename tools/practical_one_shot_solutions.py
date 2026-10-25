@@ -119,6 +119,17 @@ NUMBER_ORIGINS = {
     'restored-2023-2-12': '급탕은물의 양×비열×온도차이며 난방열과 더해1.20(원래100%+손실20%)·1.15(원래100%+예열15%)를 곱합니다. 효율은기존 복원출력÷연료열이며×100은% 환산, 물1 L≈1 kg 조건을 씁니다.',
 }
 
+def temperature_note(lesson):
+    return {
+        'difference':'온도차1°C=1 K입니다. 비열·열관류율 단위의K 때문에 온도차에273.15를 더하지 않습니다.',
+        'mixing':'이 단순 혼합은 섭씨로 평균해도 됩니다. K로 평균했다면 마지막에273.15를 빼서°C로 돌립니다.',
+        'coefficient':'단위의K는 온도차 단위, 식의K는 열관류율 이름입니다. 여기에 절대온도를 대입하지 않습니다.',
+    }.get(lesson.get('temperatureMode'),'')
+
+def absolute_temperature_example(data,p,FractionFormula):
+    example=data['temperatureExample']
+    return [p(example['title'],'head'),p(example['text']),*[FractionFormula(x['parts']) for x in example['fractions']]]
+
 def audit_arithmetic():
     pairs = [
         (1*4.18*5,20.9),(2*4.18*5,41.8),(1.2*2*1.005*10,24.12),
@@ -156,15 +167,18 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
         '1 ton=1,000 kg / 1 h=3,600 s / 1 min=60 s / 물1 L≈1 kg.',
         '1 kW=1 kJ/s / W→kW는÷1,000 / 이 문제들의1 RT 환산값은3.86 kW.',
         '시간당 유량→초당 유량은÷3,600. 초당 풍량→시간당 풍량은×3,600.',
-        '온도차5°C=5 K입니다. 온도차에273.15를 더하지 않습니다. 혼합온도도 이 자료의 조건에서는 섭씨로 바로 계산합니다.',
+        '비열kJ/(kg·K)는1 kg·온도차1 K당 열입니다. 온도차5°C=5 K이지278.15 K가 아닙니다.',
+        '31-28=3 K. 두 온도를 각각 바꿔도(31+273.15)-(28+273.15)=3 K라서 같은 값입니다.',
+        '카르노 온도비·이상기체식처럼 온도 자체T를 넣는 식은T=t+273.15. 비열 단위의K만 보고 판단하지 않습니다. 혼합온도는 이 자료의 단순 혼합 조건에서 섭씨로 바로 구합니다.',
         '효율70%는0.70. 기본적으로 최종 답만 소수 셋째 자리에서 반올림해 둘째 자리까지 쓰되, 개별 조건을 우선합니다.',
     ]: story.append(p(line))
+    story.extend(absolute_temperature_example(data,p,FractionFormula))
     story.extend([p('분수 한 개 = 계산기에서는 한 번의 나누기','head'),
                   FractionFormula(eq('V','25 × 3,600','1.2 × 1.01 × (26 - 15)',' ≈ 6,750.68 m³/h')),
                   p('입력: (25×3600)÷(1.2×1.01×(26-15)). 위 전체와 아래 전체를 각각 괄호로 묶습니다.'),
                   p('중간값을 외워 넣지 않고 문제 숫자를 바로 대입합니다. 곱셈만 있는Q=G×c×Δt는 분수로 만들지 않습니다.'),
                   p('기존 필답 해설의 계산 관계를 합친 풀이입니다. 여러 답을 묻는 아주 긴 식만Q1·Q2처럼 나눕니다.','small'),
-                  p('더 자세한 기호·이항·계산 이유는 기존32쪽 상세본에 그대로 남겨 두었습니다.','small'),PageBreak()])
+                  p('더 자세한 기호·이항·계산 이유는 별도 상세본에 그대로 남겨 두었습니다.','small'),PageBreak()])
     groups={}
     for row in data['rows']: groups.setdefault(row['lesson']['title'],[]).append(row)
     number=0
@@ -200,6 +214,8 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
                           labeled('이번 계산에 쓰는 값',used['used'])]
                 if used.get('condition'):
                     solution.append(labeled('반드시 읽을 조건',used['condition']))
+                if temperature_note(l):
+                    solution.append(labeled('온도 단위',temperature_note(l),'small'))
                 if l['kind']!='formula':
                     solution.append(p('먼저 외울 공식','small'))
                     formula=FORMULAS.get(title) or [x['parts'] for x in l.get('formulaFractions',[])] or [[l['formula']]]
@@ -218,6 +234,10 @@ def build_story(data, root, width, p, labeled, FractionFormula, math_box, Readin
                 if l.get('examAnswer'): solution.append(labeled('답',l['examAnswer'],'answer'))
                 explanation=NUMBER_ORIGINS.get(short) or NOTES.get(short) or SHORT.get(short)
                 if explanation: solution.append(labeled('이해용 설명',explanation))
+                if l.get('temperatureFractions'):
+                    solution.append(p('K로 바꿔 푸는 대체 과정 · 선택','small'))
+                    solution.extend(FractionFormula(x['parts']) for x in l['temperatureFractions'])
+                    solution.append(p(l['temperatureFractions'][0]['note'],'small'))
                 if used.get('unused'): solution.append(labeled('넣지 않는 값',used['unused'],'small'))
                 rounding=l.get('rounding','')
                 if rounding and not rounding.startswith('제공된 채점 안내의 기본 조건'): solution.append(p(rounding,'small'))

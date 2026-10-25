@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.3.5',scope:'industrial',date:'2026.10.25',
+      title:'비열의 K와 절대온도 구분',
+      summary:'온도차와 온도 자체를 구별하고 필답 계산과 PDF에서 환산 기준을 확인합니다.',
+      tags:['필답형','단위','PDF'],
+      changes:['온도 관련17개 계산·공식에 온도차·단순 혼합·열관류율 단위 안내를 추가했습니다.','비열의K를 보고 온도차에273.15를 더하지 않도록 두 온도의 섭씨·켈빈 계산을 비교합니다. 카르노 온도비·이상기체식의 절대온도와 구별합니다.','간단·상세 계산PDF도 같은 기준으로 보강했습니다. 기존 정답·수식·반올림·풀이 기록은 유지합니다.']
+    },
+    {
       version:'5.3.4',scope:'industrial',date:'2026.10.24',
       title:'필답형 전용 문제 검색',
       summary:'회차별 기출과 추가자료를 문제·정답·해설·회차로 찾습니다.',
@@ -2690,8 +2697,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3.4';
+  changelog.versions.industrial = '5.3.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3.4';
+  changelog.currentVersion = '5.3.5';
   window.CBT_CHANGELOG = changelog;
 })();

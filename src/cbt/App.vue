@@ -30,7 +30,8 @@ import { energySourceRounds, energySourceLabel, type EnergySourceMode } from './
 import PracticalLoadMore from './PracticalLoadMore.vue';
 import PracticalProblemImage from './PracticalProblemImage.vue';
 import PracticalIssueReport from './PracticalIssueReport.vue';
-import { calculationLesson, calculationPrompts, practicalCalculationPdf, practicalSiBasics, orderPracticalCalculations } from './practicalCalculations';
+import { calculationLesson, calculationPrompts, practicalCalculationPdf, practicalSiBasics, orderPracticalCalculations, practicalAbsoluteTemperatureExample } from './practicalCalculations';
+const PracticalFractionLines = defineAsyncComponent(() => import('./PracticalFractionLines.vue'));
 const PracticalCalculationLibrary = defineAsyncComponent(() => import('./PracticalCalculationLibrary.vue'));
 const PracticalSearchLibrary = defineAsyncComponent(() => import('./PracticalSearchLibrary.vue'));
 import { matchesPracticalText } from './practicalSearch';
@@ -5449,7 +5450,7 @@ onBeforeUnmount(() => {
               </div>
             </details>
             <template v-if="!practicalLibraryOpen || practicalSessionActive">
-            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><a :href="practicalCalculationPdf" download>같은 내용 PDF 받기 ↓</a></details>
+            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><article><h4>{{ practicalAbsoluteTemperatureExample.title }}</h4><p>{{ practicalAbsoluteTemperatureExample.text }}</p><PracticalFractionLines :rows="practicalAbsoluteTemperatureExample.fractions" /></article><a :href="practicalCalculationPdf" download>같은 내용 PDF 받기 ↓</a></details>
             <div class="practical-cbt-toolbar">
               <button type="button" class="practical-toolbar-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 목록</button>
               <span>{{ practicalPagedPrompts.filter(p => practicalProgress[p.id]?.grade).length }} / {{ practicalPagedPrompts.length }} 채점</span>
@@ -5761,7 +5762,7 @@ onBeforeUnmount(() => {
             <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
             <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
             </details>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답형 문제 검색과 실전 훈련</h2></div><p>필답형의 ‘문제 검색’에서 회차별 기출과 추가자료를 함께 찾습니다. 문제·정답·해설·회차로 검색하고 자료·분야를 좁힌 뒤, 찾은 문제부터 열거나 결과를 모아 풉니다. 목록 복귀 시 검색 조건을 유지하며 목록에는 정답을 표시하지 않습니다. 복원 비율 랜덤 실전·답안 자동 저장도 그대로 사용합니다.</p></header>
+            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답 계산 · 온도차와 절대온도</h2></div><p>필답 계산 풀이에서 ‘온도차와 절대온도 구별’을 확인하세요. 비열의 kJ/(kg·K)는 온도차1 K당 열이며, 31℃-28℃=3 K입니다. 두 온도를 켈빈으로 바꿔 빼도 같은3 K이고, 온도차 자체에273.15를 더하지 않습니다. 카르노 온도비·이상기체식의 온도 자체와 구별하며, 간단·상세 PDF도 같은 안내로 보강했습니다. 기존 문제 검색·복원 비율 실전·답안 저장은 유지합니다.</p></header>
             <div>
               <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
               <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
