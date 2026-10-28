@@ -24,7 +24,7 @@
 
   var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=590"];
   if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=590");
-  if (qualification === "energy") scripts.push("data/energy-engineer.js?v=584");
+  if (qualification === "energy") scripts.push("data/energy-restored.js?v=617");
   document.write(scripts.map(function (src) {
     return '<script src="' + src + '"></script>';
   }).join(""));

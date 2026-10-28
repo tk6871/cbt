@@ -5,8 +5,11 @@ export function explanationSource(question: Question): { label: string; detail: 
   const provenance = question.explanationProvenance || '';
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';
-  if (question.explanationImages?.length && question.midtermTextbook) return {
+  if (question.explanationImages?.length && (question.midtermTextbook || provenance === 'printed-textbook-explanation-image')) return {
     label:'교재 원문 해설', detail:question.explanationBasis || '제공된 에너지 교재에 인쇄된 해설을 원문 이미지로 표시합니다. AI 작성 해설과 구분합니다.',
+  };
+  if (question.explanationType === 'editorial-supplement') return {
+    label:'교재 정답 기준 보충 설명', detail:question.explanationBasis || '교재에 별도 해설이 없는 문항의 학습용 보충 설명이며 공식 해설은 아닙니다.',
   };
   if (!explanation.trim()) return { label: '해설 미등록', detail: '이 문제에는 상세 해설이 등록되어 있지 않습니다.' };
   if (question.explanationType === 'teacher-material-reference') return { label: '자료 기반 학습 해설', detail: question.explanationBasis || '제공된 수업 자료와 기출을 대조한 학습용 설명이며 공식 해설은 아닙니다.' };

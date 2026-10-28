@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.4',scope:'industrial',date:'2026.10.28',
+      title:'에너지관리산업기사 교재 복원문제 추가',
+      summary:'2021~2025년 13회차·1,040문제를 회차별 학습과 CBT로 풉니다.',
+      tags:['에너지관리','복원문제','원문 이미지'],
+      changes:['교재의 산업기사 복원문제와 인쇄된 정답표·원문 해설을 연결했습니다. 별도 해설이 없는3문항은 보충 설명으로 구분합니다.','문제와 해설 이미지를 Mac Real-ESRGAN 타일256으로4배 처리한 뒤2배로 축소했습니다. 다크·라이트·원본 표시와 이미지 보기 직접 선택을 사용합니다.','산업기사에 섞여 있던 기사2022년 추가자료는 풀이 목록에서 제외했습니다. 기존 산업기사2,640문제와 중간고사 선별 목록·풀이 기록은 유지합니다.']
+    },
+    {
       version:'5.3.5',scope:'industrial',date:'2026.10.25',
       title:'비열의 K와 절대온도 구분',
       summary:'온도차와 온도 자체를 구별하고 필답 계산과 PDF에서 환산 기준을 확인합니다.',
@@ -2697,8 +2704,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.3.5';
+  changelog.versions.industrial = '5.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.3.5';
+  changelog.currentVersion = '5.4';
   window.CBT_CHANGELOG = changelog;
 })();

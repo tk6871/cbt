@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
-const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-engineer.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
+const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
 const context = { window: {} };
 
 for (const file of dataFiles) {
@@ -16,7 +16,7 @@ const catalogs = [
   context.window.CBT_DATA_HANSOL_HVAC,
   context.window.CBT_DATA_SAFETY,
   context.window.CBT_DATA_ENERGY,
-  context.window.CBT_DATA_ENERGY_ENGINEER,
+  context.window.CBT_DATA_ENERGY_RESTORED,
   context.window.CBT_DATA_MAINTENANCE,
   context.window.CBT_DATA_MAINTENANCE_ENGINEER,
   context.window.CBT_DATA_ELECTRIC_CRAFTSMAN,
@@ -135,10 +135,11 @@ for (const catalog of catalogs) {
       }
       if (choices.length !== 4) warnings.push({ location: questionLocation, issue: `보기 ${choices.length}개` });
       if (!question.text && !question.html && !question.sourceImage) errors.push({ location: questionLocation, issue: '문제 본문과 원문 이미지가 모두 없음' });
-      if (question.explanation || question.explanationHtml) explanationCount += 1;
+      if (question.explanation || question.explanationHtml || question.explanationImages?.length) explanationCount += 1;
       const images = [question.sourceImage, ...(question.images || []), ...choices.flatMap((choice) => choice.images || [])].filter(Boolean);
       if (images.length) imageQuestionCount += 1;
       images.forEach((image) => addImage(image, questionLocation));
+      (question.explanationImages || []).forEach((image) => addImage(image, `${questionLocation}/explanation`));
       const htmlImages = [question.html, question.explanationHtml, ...choices.map((choice) => choice.html)]
         .filter(Boolean).join(' ').matchAll(/(?:src|href)=["']([^"']+)["']/gi);
       for (const match of htmlImages) addImage(match[1], questionLocation);
@@ -153,7 +154,7 @@ for (const catalog of catalogs) {
       if (question.imageOnly && !question.sourceImage && !(question.images || []).length) {
         manualReview.push({ location: questionLocation, issue: 'imageOnly인데 표시할 문제 이미지 없음' });
       }
-      if (images.length && !question.explanation && !question.explanationHtml) {
+      if (images.length && !question.explanation && !question.explanationHtml && !question.explanationImages?.length) {
         manualReview.push({
           location: questionLocation,
           issue: '이미지 문제·해설 없음: 원본 육안 검수 필요',

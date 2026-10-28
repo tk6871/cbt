@@ -30,7 +30,8 @@ const legacyGemSubjectMap: Record<string, string> = {
 const preparedCatalogs = new WeakMap<Catalog, { book?: Catalog; result: Catalog }>();
 function prepareCatalog(source: Catalog): Catalog {
   const original = source;
-  const book = source.key === 'energy-midterm' ? window.CBT_DATA_ENERGY_TEXTBOOK : undefined;
+  const book = source.key === 'energy-midterm' ? window.CBT_DATA_ENERGY_TEXTBOOK
+    : source.key === 'energy' ? window.CBT_DATA_ENERGY_RESTORED : undefined;
   const cached = preparedCatalogs.get(original);
   if (cached && cached.book === book) return cached.result;
   if (source.key === 'energy-midterm' && window.CBT_DATA_ENERGY_TEXTBOOK) {
@@ -38,6 +39,9 @@ function prepareCatalog(source: Catalog): Catalog {
     source = { ...source, rounds:source.rounds.map(round => ({...round,
       questions:[...round.questions, ...(bookRounds.find(r => r.id === round.id)?.questions || [])],
     })) };
+  }
+  if (source.key === 'energy' && book) {
+    source = { ...source, rounds: [...source.rounds, ...book.rounds] };
   }
   const rounds = (source.rounds || []).map((round) => ({
     ...round,
@@ -77,14 +81,17 @@ const catalogLoads = new Map<string, Promise<Catalog>>();
 
 export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   const existing = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
-  if (existing && (key !== 'energy-midterm' || window.CBT_DATA_ENERGY_TEXTBOOK)) return Promise.resolve(existing);
+  const supplementReady = key === 'energy-midterm' ? Boolean(window.CBT_DATA_ENERGY_TEXTBOOK)
+    : key === 'energy' ? Boolean(window.CBT_DATA_ENERGY_RESTORED) : true;
+  if (existing && supplementReady) return Promise.resolve(existing);
   if (!primaryKeys.includes(key)) return Promise.reject(new Error('지원하지 않는 문제 출처입니다.'));
   const pending = catalogLoads.get(key);
   if (pending) return pending;
-  const files = key === 'energy-midterm' ? [key, 'energy-textbook'] : [key];
+  const files = key === 'energy-midterm' ? [key, 'energy-textbook']
+    : key === 'energy' ? [key, 'energy-restored'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=603`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=617`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };
@@ -92,7 +99,8 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
     document.head.appendChild(script);
   }))).then(() => {
     const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
-    if (!loaded || (key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)) {
+    if (!loaded || (key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)
+      || (key === 'energy' && !window.CBT_DATA_ENERGY_RESTORED)) {
       catalogLoads.delete(key); throw new Error('문제 자료를 읽지 못했습니다.');
     }
     return loaded;
@@ -183,14 +191,9 @@ function createGemAppraiserTargetCatalog(sourceCatalogs: Catalog[]): Catalog {
 }
 
 export function loadReferenceRounds(): Round[] {
-  const source = window.CBT_DATA_ENERGY_ENGINEER;
-  if (!source?.rounds?.length) return [];
-  return source.rounds.map((round) => ({
-    ...round,
-    qualificationKey: 'energy',
-    qualification: round.qualification || source.name,
-    shortQualification: '기사 추가자료',
-  }));
+  // Engineer supplemental material is not an industrial-engineer exam.
+  // Keep its original data on disk, but do not mix it into industrial study.
+  return [];
 }
 
 export function questionId(round: Round, question: Question): string {
