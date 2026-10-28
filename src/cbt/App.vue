@@ -2165,7 +2165,9 @@ function startSchoolExamRound(payload: { round: Round; mode: StudyMode }): void 
 async function loadQuestionSources(keys: string[]): Promise<void> {
   await Promise.all(keys.map(async key => {
     const target = catalogs.find(catalog => catalog.key === key);
-    if (!target || (!target.isPlaceholder && !(key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK))) return;
+    if (!target || (!target.isPlaceholder
+      && !(key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)
+      && !(key === 'energy' && !window.CBT_DATA_ENERGY_RESTORED))) return;
     const loaded = await ensureCatalogLoaded(key);
     Object.assign(target, loaded, { isPlaceholder: false });
   }));
@@ -5722,6 +5724,12 @@ onBeforeUnmount(() => {
               <strong>LIVE</strong>
               <span>Vue Motion</span>
             </div>
+          </section>
+
+          <section class="feature-layout-lab settings-feature-guide">
+            <header><div><span>NEW · v5.4</span><h2>에너지관리산업기사 교재 복원 13회차</h2></div><p>회차별 문제에서 에너지관리산업기사를 고르면 2021~2025년 복원문제 1,040개를 추가로 풀 수 있습니다. 문제·보기를 교재 이미지로 표시하고 정답표와 원문 해설을 연결했습니다.</p></header>
+            <p>설정 → 답안 선택 방식 → 이미지 직접 선택에서 보기 번호와 내용을 누릅니다. 체크 마커·영역 강조, 다크·라이트·원본 표시를 비교하세요. 해설이 없는3문항은 보충 설명으로 구분합니다. 기존 기출과 중간고사 기록은 유지하며 기사 추가자료는 산업기사 목록에서 제외했습니다.</p>
+            <button type="button" @click="configureQualification('energy'); openView('rounds')">에너지 회차별 문제 열기 →</button>
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">

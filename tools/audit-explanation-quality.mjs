@@ -10,7 +10,7 @@ const files = [
   'data/hvac-hansol.js',
   'data/safety.js',
   'data/energy.js',
-  'data/energy-engineer.js',
+  'data/energy-restored.js',
   'data/maintenance.js',
   'data/electric-craftsman.js',
   'data/gas-craftsman.js',
@@ -105,7 +105,7 @@ for (const { filename, catalog } of parsedCatalogs) {
         counts.questions += 1;
         const location = `${catalog.key || filename}:${round.id}:${question.number}`;
         const explanation = plain(question.explanation || question.explanationHtml || '');
-        if (!explanation) {
+        if (!explanation && !question.explanationImages?.length) {
           errors.push(`${location}: 해설이 비어 있습니다.`);
           continue;
         }
