@@ -23,6 +23,7 @@ export type Question = {
   ocrText?: string;
   images?: string[];
   sourceImage?: string | null;
+  sourceImageSize?: number[];
   choices: Choice[];
   answer: number;
   answerRate?: number | null;
@@ -30,6 +31,7 @@ export type Question = {
   explanation?: string;
   explanationHtml?: string;
   explanationImages?: string[];
+  originalExplanationImagesFolded?: boolean;
   imageOnly?: boolean;
   _subject?: string;
   sourceSubject?: string;

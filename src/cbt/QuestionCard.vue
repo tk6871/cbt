@@ -6,6 +6,7 @@ import { explanationSource } from './explanationSource';
 import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem } from './calculationGuide';
 import { submitQuestionIssue, type QuestionIssueType } from './cloudSync';
 import type { QuestionItem, StudyMode } from './types';
+import ExplanationFigures from './ExplanationFigures.vue';
 
 const props = defineProps<{
   item: QuestionItem;
@@ -155,6 +156,12 @@ function readableText(value = ''): string {
   return String(value)
     .replace(/<[^>]+>/g, ' ')
     .replace(/&nbsp;|&#160;/gi, ' ')
+    .replace(/&(gt|lt|amp|quot|apos|#39|#\d+|#x[\da-f]+);/gi, (entity, code:string) => {
+      const named:Record<string,string>={gt:'>',lt:'<',amp:'&',quot:'"',apos:"'"};
+      if(named[code.toLowerCase()])return named[code.toLowerCase()];
+      const n=code.toLowerCase().startsWith('#x')?parseInt(code.slice(2),16):Number(code.slice(1));
+      return Number.isInteger(n)&&n>0&&n<=0x10ffff?String.fromCodePoint(n):entity;
+    })
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -555,6 +562,8 @@ onBeforeUnmount(() => {
             class="source-question-image"
             :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]"
             :src="item.question.sourceImage"
+            :width="item.question.sourceImageSize?.[0]"
+            :height="item.question.sourceImageSize?.[1]"
             :alt="`${item.question.number}번 문제 원문`"
             loading="lazy"
             decoding="async"
@@ -713,11 +722,9 @@ onBeforeUnmount(() => {
         <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
         <button type="button" class="explanation-close-button" aria-label="해설 닫기" @click="closeInlineExplanation">닫기 ×</button>
       </div>
-      <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
+      <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
       <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
-      <figure v-for="image in item.question.explanationImages || []" :key="image" class="textbook-explanation-image" @click="stopExplanationAutoClose">
-        <figcaption>교재 원문 해설</figcaption><img :src="image" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
-      </figure>
+      <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
       <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">
         <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
@@ -758,11 +765,9 @@ onBeforeUnmount(() => {
               <strong>핵심부터 차근차근 확인하세요</strong>
               <small v-if="explanationAutoCloseSeconds" class="explanation-auto-close">{{ explanationAutoCloseSeconds }}초 후 자동 닫힘</small>
             </div>
-            <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>쉬운 핵심</strong>{{ primaryExplanationText }}</p>
+            <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
             <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
-            <figure v-for="image in item.question.explanationImages || []" :key="image" class="textbook-explanation-image" @click="stopExplanationAutoClose">
-              <figcaption>교재 원문 해설</figcaption><img :src="image" :class="restoredImageClass" alt="교재 원문 해설" loading="lazy" decoding="async">
-            </figure>
+            <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
             <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
             <div class="explanation-extra-actions">
               <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">

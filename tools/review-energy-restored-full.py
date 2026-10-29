@@ -3,8 +3,10 @@ import argparse,json,importlib.util,hashlib,re
 import numpy as np
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
-ROOT=Path(__file__).resolve().parents[1];WORK=ROOT/'work/energy-restored-full'
-parser=argparse.ArgumentParser();parser.add_argument('--geometry',action='store_true');parser.add_argument('--prepare-upscaled',action='store_true');args=parser.parse_args()
+ROOT=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser();parser.add_argument('--geometry',action='store_true');parser.add_argument('--prepare-upscaled',action='store_true');parser.add_argument('--work',default='work/energy-restored-full');args=parser.parse_args()
+WORK=ROOT/args.work
+assert WORK.is_relative_to(ROOT/'work')
 manifest=json.loads((WORK/'manifest.json').read_text());assert not manifest['errors']
 geometry=WORK/'answer-geometry';geometry.mkdir(exist_ok=True)
 paths=[str(WORK/'original'/f"{q['key']}-question.png") for q in manifest['rows']]
@@ -145,7 +147,7 @@ for start in range(0,len(manifest['rows']),8):
 print('Private proofs / OCR inputs ready',len(paths),flush=True)
 if args.geometry:
  items=[dict(round=dict(id=f"energy-industrial-restored-{q['year']}-{q['session']}",year=q['year'],qualificationKey='energy',subjects=['에너지관리']),
-  question=dict(number=q['number'],text=q['key'],imageOnly=True,sourceImage=f"work/energy-restored-full/original/{q['key']}-question.png",choices=[dict(text='') for _ in range(4)],answer=q['answer'],answerHotspots=result.get(q['key']) or []),subject='에너지관리',id=q['key']) for q in manifest['rows']]
+  question=dict(number=q['number'],text=q['key'],imageOnly=True,sourceImage=f"{WORK.relative_to(ROOT).as_posix()}/original/{q['key']}-question.png",choices=[dict(text='') for _ in range(4)],answer=q['answer'],answerHotspots=result.get(q['key']) or []),subject='에너지관리',id=q['key']) for q in manifest['rows']]
  (geometry/'items.json').write_text(json.dumps(items,ensure_ascii=False)+'\n')
  (geometry/'harness.html').write_text('''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/"></head><body><main id="review"></main><script type="module">
 import {createApp,h,ref,nextTick} from 'vue';

@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.5',scope:'industrial',date:'2026.10.29',
+      title:'교재 쪽번호 풀이와 에너지 해설 출처 연결',
+      summary:'확인된 교재 페이지를 책 순서대로 풀고 동일 문항의 COMCBT 해설을 먼저 봅니다.',
+      tags:['교재 페이지','에너지','해설'],
+      changes:['회차별 문제 → 교재 페이지별에서 한솔 공조·에너지 교재의 대조 완료 페이지를 고릅니다. 한솔4-10은 한 쪽의 인쇄 번호이며 순서대로 넘깁니다. 전체 교재 연결은 진행 중으로 미확인 위치를 별도 표시합니다.','확인된 좌우 열·교재 번호를 표시하고 휴대폰에서는 한 열로 읽습니다. 범위를 모아 학습·CBT로 풀고 교재 풀이 기록은 일반 기출·중간고사와 분리합니다.','동일 지문·보기 순서·정답을 대조한 에너지316개 풀이 항목에 기존 수집 COMCBT 해설을 우선 연결했습니다. 교재 원문 해설은 접어서 보존하고 출처를 구분합니다. 최신 실시간 수집이나 공식 해설 인증은 아닙니다.']
+    },
+    {
       version:'5.4',scope:'industrial',date:'2026.10.28',
       title:'에너지관리산업기사 교재 복원문제 추가',
       summary:'2021~2025년 13회차·1,040문제를 회차별 학습과 CBT로 풉니다.',
@@ -2704,8 +2711,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.4';
+  changelog.versions.industrial = '5.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.4';
+  changelog.currentVersion = '5.5';
   window.CBT_CHANGELOG = changelog;
 })();
