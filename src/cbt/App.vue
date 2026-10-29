@@ -41,6 +41,8 @@ const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
+const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
+import { textbookStudyItems, textbookSourceKeys, bookForStudyId, type TextbookKey } from './textbookPages';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
 import { orderCoolingSimilar } from './coolingSimilarOrder';
@@ -279,7 +281,12 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
-const roundsCollection = computed(() => !isJewelry && selectedKey.value === SCHOOL_EXAM_CATALOG_KEY ? 'cooling' : 'regular');
+const textbookPagesOpen = ref(false);
+const textbookKey = ref<TextbookKey>(localStorage.getItem('cbt-textbook-selected')==='energy'?'energy':'hansol');
+const textbookLoading = ref(false);
+const textbookError = ref('');
+let textbookLoadRevision = 0;
+const roundsCollection = computed(() => textbookPagesOpen.value ? 'textbook' : !isJewelry && selectedKey.value === SCHOOL_EXAM_CATALOG_KEY ? 'cooling' : 'regular');
 const settingsReturnView = ref<ViewName>('home');
 const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
@@ -537,7 +544,12 @@ const allItems = computed(() => [
 }))));
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
-const itemMap = computed(() => new Map([...allItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
+const textbookItems = computed(() => textbookStudyItems(allItems.value));
+const textbookAnswers = computed<Record<string,number>>(() => {
+ const state=studyStore.progress?.textbookPageAnswersV1;
+ return state && typeof state==='object' && !Array.isArray(state) ? state as Record<string,number> : {};
+});
+const itemMap = computed(() => new Map([...allItems.value, ...textbookItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
 const coolingDrawKey = 'school-cooling-midterm-draws';
 const coolingArchiveKey = 'school-cooling-midterm-sessions';
 const coolingDrawState = computed<CoolingDrawState>(() => {
@@ -2115,6 +2127,7 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 function configureQualification(key: string): void {
+  textbookPagesOpen.value = false;
   const target = catalogs.find((catalog) => catalog.key === key);
   if (target?.isPlaceholder) {
     localStorage.setItem(qualificationStorageKey, key);
@@ -2182,6 +2195,22 @@ async function loadCoolingMidterm(): Promise<void> {
   finally { coolingLoading.value = false; }
 }
 
+async function loadTextbookPages():Promise<void> {
+ const revision=++textbookLoadRevision;
+ textbookLoading.value=true;textbookError.value='';
+ try{await loadQuestionSources(textbookSourceKeys(textbookKey.value));}
+ catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
+ finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
+}
+function openTextbookPages():void {textbookPagesOpen.value=true;openView('rounds');void loadTextbookPages();}
+function selectTextbook(book:TextbookKey):void {textbookKey.value=book;localStorage.setItem('cbt-textbook-selected',book);void loadTextbookPages();}
+function chooseTextbookAnswer(item:QuestionItem,choice:number):void {
+ const next={...textbookAnswers.value};
+ if(next[item.id]===choice)delete next[item.id];
+ else{next[item.id]=choice;recordAttempt(item.id,choice,item.question.answer);}
+ studyStore.progress||={};studyStore.progress.textbookPageAnswersV1=next;
+}
+
 function openCoolingSearch(): void {
   searchScope.value = 'hvac';
   searchSubject.value = '냉동냉장설비';
@@ -2223,6 +2252,7 @@ async function ensureItemSources(ids: string[]): Promise<void> {
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
   await loadQuestionSources([...new Set([...keys,
+    ...ids.flatMap(id=>{const book=bookForStudyId(id);return book?textbookSourceKeys(book):[];}),
     ...(ids.some(id=>id.startsWith('school-energy-')) ? ['energy-midterm'] : []),
     ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
 }
@@ -4985,6 +5015,7 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'school'">
+          <button type="button" class="primary-button" @click="openTextbookPages">▤ 교재 페이지별로 풀기 · 한솔 공조 / 에너지</button>
           <section v-if="savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY && !coolingSavedSession" class="resume-learning-card">
             <div><span>자동 저장된 학교 시험 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
             <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
@@ -4994,10 +5025,15 @@ onBeforeUnmount(() => {
 
         <template v-else-if="view === 'rounds'">
           <nav v-if="!isJewelry" class="rounds-collection" aria-label="학교 시험 문제 모음">
+            <button :class="{ active: roundsCollection === 'textbook' }" @click="openTextbookPages">교재 페이지별</button>
             <button :class="{ active: roundsCollection === 'cooling' }" @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
             <button :class="{ active: selectedKey === 'energy-midterm' }" @click="configureQualification('energy-midterm'); openView('rounds')">에너지설비 중간고사</button>
           </nav>
-          <template v-if="roundsCollection === 'cooling' && !isJewelry">
+          <template v-if="roundsCollection === 'textbook' && !isJewelry">
+            <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>
+            <TextbookPages :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
+          </template>
+          <template v-else-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
               <div><span>자동 저장된 중간고사 {{ savedLearningSession.mode === 'exam' ? 'CBT' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ Object.keys(savedLearningSession.answers).length }} / {{ savedLearningSession.itemIds.length }}문제 풀이</small></div>
               <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
@@ -5724,6 +5760,12 @@ onBeforeUnmount(() => {
               <strong>LIVE</strong>
               <span>Vue Motion</span>
             </div>
+          </section>
+
+          <section class="feature-layout-lab settings-feature-guide">
+            <header><div><span>NEW · v5.5</span><h2>교재 쪽번호 풀이 · 에너지 COMCBT 해설</h2></div><p>회차별 문제 → 교재 페이지별에서 대조 완료된 쪽을 책 번호·좌우 순서로 풉니다. 이전·다음 쪽 이동과 범위 학습·CBT를 지원하며 전체 교재 연결은 계속 진행 중입니다.</p></header>
+            <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
+            <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">

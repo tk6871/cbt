@@ -6,6 +6,7 @@ import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with { type: 'json' };
 import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' with { type: 'json' };
 import type { AnswerHotspot } from './types';
+import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
 
 const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
 
@@ -27,13 +28,14 @@ const legacyGemSubjectMap: Record<string, string> = {
 
 // Banks are immutable after loading. Reuse prepared question/coordinate objects
 // during cross-bank search instead of cloning the entire bank on every lookup.
-const preparedCatalogs = new WeakMap<Catalog, { book?: Catalog; result: Catalog }>();
+const preparedCatalogs = new WeakMap<Catalog, { book?: Catalog; energy?: Catalog; result: Catalog }>();
 function prepareCatalog(source: Catalog): Catalog {
   const original = source;
   const book = source.key === 'energy-midterm' ? window.CBT_DATA_ENERGY_TEXTBOOK
     : source.key === 'energy' ? window.CBT_DATA_ENERGY_RESTORED : undefined;
   const cached = preparedCatalogs.get(original);
-  if (cached && cached.book === book) return cached.result;
+  const energy = window.CBT_DATA_ENERGY;
+  if (cached && cached.book === book && cached.energy === energy) return cached.result;
   if (source.key === 'energy-midterm' && window.CBT_DATA_ENERGY_TEXTBOOK) {
     const bookRounds = window.CBT_DATA_ENERGY_TEXTBOOK.rounds;
     source = { ...source, rounds:source.rounds.map(round => ({...round,
@@ -43,6 +45,8 @@ function prepareCatalog(source: Catalog): Catalog {
   if (source.key === 'energy' && book) {
     source = { ...source, rounds: [...source.rounds, ...book.rounds] };
   }
+  const energySources = source.key==='energy' || source.key==='energy-midterm'
+    ? new Map<string, Question>((window.CBT_DATA_ENERGY?.rounds||[]).flatMap(r=>r.questions.map(q=>[`${r.id}:${q.number}`,q] as const))) : undefined;
   const rounds = (source.rounds || []).map((round) => ({
     ...round,
     qualificationKey: source.key,
@@ -67,13 +71,13 @@ function prepareCatalog(source: Catalog): Catalog {
         })
       : source.key === 'energy-midterm'
         ? round.questions.map((question) => ({
-            ...question,
+            ...withEnergyTextbookComcbt(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
             answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
           }))
-        : round.questions,
+        : source.key==='energy' ? round.questions.map(q=>withEnergyTextbookComcbt(q,`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
   }));
   const result = { ...source, rounds };
-  preparedCatalogs.set(original, { book, result });
+  preparedCatalogs.set(original, { book, energy, result });
   return result;
 }
 
@@ -81,17 +85,17 @@ const catalogLoads = new Map<string, Promise<Catalog>>();
 
 export function ensureCatalogLoaded(key: string): Promise<Catalog> {
   const existing = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
-  const supplementReady = key === 'energy-midterm' ? Boolean(window.CBT_DATA_ENERGY_TEXTBOOK)
+  const supplementReady = key === 'energy-midterm' ? Boolean(window.CBT_DATA_ENERGY_TEXTBOOK && window.CBT_DATA_ENERGY)
     : key === 'energy' ? Boolean(window.CBT_DATA_ENERGY_RESTORED) : true;
   if (existing && supplementReady) return Promise.resolve(existing);
   if (!primaryKeys.includes(key)) return Promise.reject(new Error('지원하지 않는 문제 출처입니다.'));
   const pending = catalogLoads.get(key);
   if (pending) return pending;
-  const files = key === 'energy-midterm' ? [key, 'energy-textbook']
+  const files = key === 'energy-midterm' ? [key, 'energy-textbook', 'energy']
     : key === 'energy' ? [key, 'energy-restored'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=617`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=618`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };

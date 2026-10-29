@@ -42,6 +42,8 @@ PRINTED_ANSWERS = {
 # Page, column, top coordinate observed on the scan. OCR misses a minus sign,
 # splits the number, combines both columns, or reads 66 as 60 at these places.
 ANCHOR_REPAIRS = {
+ '2018-1-47':(318,0,.075), '2019-1-72':(366,1,.075),
+ '2020-1·2통합-64':(412,0,.418), '2020-3-47':(424,1,.075),
  '2022-1-66':(474,1,.765), '2022-2-26':(483,1,.075),
  '2022-2-28':(483,1,.801), '2022-4-2':(494,0,.532),
  '2022-4-35':(500,1,.071), '2022-4-78':(508,1,.068),
@@ -108,7 +110,7 @@ def prepare(pdf):
         answers.append(dict(year=year,session=session,page=last,answers=values,
                             missing=[n for n in range(1,81) if str(n) not in values]))
     save(WORK/'answers-staged.json',answers)
-    print('Prepared',len(pages),'source pages and13 answer tables',flush=True)
+    print('Prepared',len(pages),'source pages and',len(RANGES),'answer tables',flush=True)
 
 def units():
     bank=read(CACHE/'book-first-questions.json')['rows']; result=[]
@@ -116,9 +118,15 @@ def units():
         stream=[]
         for page in range(first,last+1):
             for side in [0,1]:
-                if page==last and side==1: continue # Printed answer grid, not a question.
                 rs=[dict(r,page=page,side=side) for r in page_rows(page)
                     if (r['box'][0]>=.44)==bool(side)]
+                if page==last and side==1:
+                    if not args.earlier:continue
+                    cells=[r for r in rs if re.fullmatch(r'\s*0?\d{1,2}\s*[①②③④1]\s*[)\]]?\s*',r['text'])]
+                    cutoff=min((1-r['box'][1]-r['box'][3] for r in cells),default=0)-.025
+                    # Earlier editions sometimes put question 80 above the
+                    # answer grid in the same column. Preserve that question.
+                    rs=[r for r in rs if 1-r['box'][1]-r['box'][3]<cutoff]
                 # Two observed cross-column OCR rows require a locator on the
                 # right too. Pixels are cropped independently of this text.
                 for number in [26,35]:
@@ -138,7 +146,9 @@ def units():
                 index,row=min(candidates,key=lambda ir:abs(1-ir[1]['box'][1]-ir[1]['box'][3]-top)+(.1 if ir[1]['box'][0]>(.14 if side==0 else .55) else 0))
             else:
                 r0=old['rows'][0]
-                index,row=next((i,r) for i,r in enumerate(stream) if r['page']==r0['page'] and r['side']==r0['side'] and r['text']==r0['text'] and r['box']==r0['box'])
+                match=next(((i,r) for i,r in enumerate(stream) if r['page']==r0['page'] and r['side']==r0['side'] and r['text']==r0['text'] and r['box']==r0['box']),None)
+                if match is None:raise ValueError(f'{key}: source anchor not in stream: {r0}')
+                index,row=match
             assert not anchors or index>anchors[-1][0],(key,index,anchors[-1][:2])
             anchors.append((index,number,row))
         for n,(index,number,anchor) in enumerate(anchors):
@@ -146,7 +156,7 @@ def units():
             result.append(dict(key=f'{year}-{session}-{number}',year=year,session=session,
                 number=number,page=anchor['page'],answerPage=last,anchor=anchor,rows=rows,
                 nextAnchor=anchors[n+1][2] if n<79 else None))
-    assert len(result)==1040
+    assert len(result)==len(RANGES)*80
     save(WORK/'units.json',result)
     return result
 
@@ -204,6 +214,8 @@ def crop_all(keys=None):
                 if not found and q['key'] not in NO_PRINTED_EXPLANATION:
                     marker=find_banner(im,box,x0,y0,gi==0)
                     if q['key']=='2022-1-13' and page==465:marker=round(.205*h)
+                    if q['key']=='2018-1-49' and page==318:marker=round(.711*h)
+                    if q['key']=='2018-4-52' and page==348:marker=round(.675*h)
                     if q['key']=='2025-3-13' and page==621 and side==1:marker=round(.095*h)
                     if q['key']=='2025-2-69' and page==616:marker=round(.854*h)
                     if q['key']=='2025-2-78' and page==618:marker=round(.068*h)
@@ -242,13 +254,23 @@ def check_answers():
         assert len(digits)==80 and set(digits)<=set('1234'),key
         for number,value in row['answers'].items():
             if int(digits[int(number)-1])!=value:disagreements.append((key,number,value,digits[int(number)-1]))
-    save(WORK/'answer-audit.json',dict(printedGridsVisuallyRead=13,printedAnswers=1040,ocrDisagreements=disagreements))
+    save(WORK/'answer-audit.json',dict(printedGridsVisuallyRead=len(RANGES),printedAnswers=len(RANGES)*80,ocrDisagreements=disagreements))
     print('Answer OCR discrepancies',disagreements,flush=True)
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('pdf',type=Path)
     parser.add_argument('--crop',action='store_true')
     parser.add_argument('--keys',nargs='+')
+    parser.add_argument('--earlier',action='store_true',help='Stage the eight earlier textbook exams in a separate work folder.')
     args=parser.parse_args()
+    if args.earlier:
+        WORK=ROOT/'work/energy-earlier-full'
+        RANGES=[(2018,1,310,324),(2018,2,325,338),(2018,4,339,353),
+            (2019,1,354,368),(2019,2,369,383),(2019,4,384,399),
+            (2020,'1·2통합',400,415),(2020,3,416,430)]
+        # Filled only after independently reading all eight printed grids.
+        # Missing keys deliberately prevent cropping/publication.
+        earlier=ROOT/'tools/energy-earlier-printed-answers.json'
+        PRINTED_ANSWERS=json.loads(earlier.read_text()) if earlier.exists() else {}
     if args.crop:check_answers();crop_all(args.keys)
     else:prepare(args.pdf)
