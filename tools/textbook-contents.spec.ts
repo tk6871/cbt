@@ -1,0 +1,61 @@
+import {test,expect} from '@playwright/test';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {bookContents,contentsRows,searchContents,contentsEntries} from '../src/cbt/textbookContents';
+import {textbookEntries} from '../src/cbt/textbookPages';
+import energyIndex from '../data/energy-textbook-search.json' with {type:'json'};
+test.use({serviceWorkers:'block'});
+test('실제 장절 경계 · 부분/순서/붙여쓰기/가벼운 오타 검색',()=>{
+ const context:any={window:{}};for(const k of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${k}.js`,'utf8'),context);
+ const text=Object.fromEntries(Object.values(context.window).flatMap((b:any)=>b.rounds.flatMap((r:any)=>r.questions.map((q:any)=>[`${r.id}:${q.number}`,[q.text,q.ocrText,...q.choices.map((c:any)=>c.text)].join(' ')]))));
+ const rows=contentsRows(bookContents.hansol,textbookEntries,text);
+ expect(new Set(rows.map(r=>r.node.id)).size).toBe(rows.length);
+ const core=rows.find(r=>r.node.id==='hansol-2-1-2-core')!;
+ expect(core.node.from).toBe('2-32');expect(core.node.to).toBe('2-36');
+ expect(core.entries.length).toBeGreaterThan(0);expect(core.entries.every(e=>e.page.startsWith('2-3'))).toBe(true);
+ for(const query of ['냉동 대용량 급속동결','급속동결 대용량 냉동','냉동대용량급속동결']){
+  const results=searchContents(rows,query);
+  expect(results.slice(0,8).some(r=>r.node.id==='hansol-2-3-1-core'),query).toBe(true);
+  expect(results.find(r=>r.node.id==='hansol-2-3-1-core')!.matched).toHaveLength(3);
+ }
+ expect(searchContents(rows,'압축긔').some(r=>r.path.join('').includes('압축기'))).toBe(true);
+ expect(searchContents(rows,'몰리엘선도').some(r=>[...r.path,r.node.title].join('').includes('냉매선도'))).toBe(true);
+ expect(searchContents(rows,'브라인')[0].path.join('')+searchContents(rows,'브라인')[0].node.title).toContain('브라인');
+ expect(searchContents(rows,'외계행성우주선')).toHaveLength(0);
+ const energy=contentsRows(bookContents.energy,textbookEntries,energyIndex.texts);
+ expect(searchContents(energy,'집진 압력손실').some(r=>r.node.id==='energy-exam-2018-2')).toBe(true);
+ expect(contentsEntries(bookContents.energy[1],textbookEntries).length).toBeGreaterThan(1000);
+});
+test('책 목차 탐색과 느슨한 검색에서 페이지 범위로 진입',async({page},info)=>{
+ await page.addInitScript(()=>{
+  localStorage.setItem('modern-cbt-qualification-industrial','hvac');localStorage.setItem('unified-cbt-dynamic-ui','false');
+  sessionStorage.setItem('unified-cbt-ios-pwa-popup-seen-v351','true');sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
+ });
+ await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
+ await page.goto('/?safe=1');if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
+ await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ const root=page.locator('.textbook-pages'),search=root.getByRole('searchbox',{name:'목차·문제 내용 검색'});
+ await search.fill('냉동대용량급속동결');
+ const result=root.locator('.contents-results button').filter({hasText:'제빙 및 동결장치'}).filter({hasText:'핵심예상문제'}).first();
+ await expect(result).toBeVisible();await expect(result).toContainText('급속동결');await result.click();
+ await expect(root.locator('.book-page-result h2')).toContainText('제빙 및 동결장치');
+ await expect(root.locator('.page-picker input').first()).toHaveValue(/^2-22[23]$/);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await root.getByRole('button',{name:'↑ 목차 다시 고르기',exact:true}).click();await search.fill('');
+ await expect(root.locator('.contents-tree')).toBeVisible();
+ await root.locator('summary').filter({hasText:'2과목 · 냉동냉장 설비'}).click();
+ await root.locator('summary').filter({hasText:'01 냉동이론'}).click();
+ const summary=root.locator('summary').filter({has:page.getByText('냉매와 브라인',{exact:true})});await summary.click();
+ await summary.locator('..').getByRole('button',{name:/핵심예상문제/}).click();
+ await expect(root.locator('.page-picker input').first()).toHaveValue('2-32');
+ await expect(root.locator('.page-picker input').nth(1)).toHaveValue('2-36');
+ await root.getByRole('button',{name:'↑ 목차 다시 고르기',exact:true}).click();await search.fill('외계행성우주선');
+ await expect(root.getByText(/일치하는 목차를 찾지 못했습니다/)).toBeVisible();
+ await root.getByRole('button',{name:'에너지설비 교재',exact:true}).click();await expect(search).toHaveValue('');
+ await search.fill('집진 압력손실');const energyResult=root.locator('.contents-results button').filter({hasText:'2018년 2회'}).first();await expect(energyResult).toBeVisible();await energyResult.click();
+ await expect(root.locator('.book-page-result h2')).toContainText('2018년 2회');
+ await expect(root.locator('.page-picker input').first()).toHaveValue('336');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await root.getByRole('button',{name:'↑ 목차 다시 고르기',exact:true}).click();
+ await page.screenshot({path:`/private/tmp/textbook-contents-${info.project.name}.png`});
+});

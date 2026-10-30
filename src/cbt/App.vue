@@ -5763,7 +5763,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.5</span><h2>교재 쪽번호 풀이 · 에너지 COMCBT 해설</h2></div><p>회차별 문제 → 교재 페이지별에서 대조 완료된 쪽을 책 번호·좌우 순서로 풉니다. 이전·다음 쪽 이동과 범위 학습·CBT를 지원하며 전체 교재 연결은 계속 진행 중입니다.</p></header>
+            <header><div><span>NEW · v5.5.1</span><h2>책 목차·느슨한 검색 · 에너지 COMCBT 해설</h2></div><p>회차별 문제 → 교재 페이지별에서 장·절·예상문제 목차를 고릅니다. ‘냉동 대용량 급속동결’처럼 일부 단어·붙여쓰기·연관어와 가벼운 오타로 찾고 연결 문제 범위의 학습·CBT로 이동합니다. 전체 교재 연결은 계속 진행 중입니다.</p></header>
             <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
