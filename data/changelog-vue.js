@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.5.1',scope:'industrial',date:'2026.10.29',
+      title:'책 목차로 고르기와 느슨한 내용 검색',
+      summary:'교재의 장·절·예상문제 목차를 펼치고 일부 단어와 연관어로 찾습니다.',
+      tags:['교재 목차','검색','페이지 풀이'],
+      changes:['한솔의3과목 장·절·핵심/실전예상문제와 부록 모의고사를 목차 형태로 탐색합니다. 에너지는 제공PDF 본문 장 제목·기출 회차 순서로 구성했습니다. 현재 연결 문제 수와 대조 중인 범위를 구분합니다.','검색어 순서·일부 단어·붙여쓰기를 참고하며 가벼운 오타와 연관어로 관련 목차를 찾습니다. 에너지1,112개 이미지 문항의 기존OCR은 검색 보조로만 쓰고 원문 이미지·보기·정답은 바꾸지 않습니다.','목차를 고르면 대조 완료된 첫 문제 쪽과 해당 범위로 이동하고 일반 학습/CBT로 모아 풉니다. 선택 목차를 저장하며 목차로 돌아가는 버튼을 제공합니다. 전체 교재 문제 연결이 완료됐다는 뜻은 아닙니다.']
+    },
+    {
       version:'5.5',scope:'industrial',date:'2026.10.29',
       title:'교재 쪽번호 풀이와 에너지 해설 출처 연결',
       summary:'확인된 교재 페이지를 책 순서대로 풀고 동일 문항의 COMCBT 해설을 먼저 봅니다.',
@@ -2711,8 +2718,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.5';
+  changelog.versions.industrial = '5.5.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.5';
+  changelog.currentVersion = '5.5.1';
   window.CBT_CHANGELOG = changelog;
 })();

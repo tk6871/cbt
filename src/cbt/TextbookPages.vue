@@ -1,16 +1,19 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, nextTick } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import QuestionCard from './QuestionCard.vue';
+import TextbookContents from './TextbookContents.vue';
+import type {ContentsRow} from './textbookContents';
 import { adjacentBookPage, compareBookPages, normalizeBookPage, textbookEntries, textbookNames, textbookStudyId, type TextbookKey } from './textbookPages';
 const props=defineProps<{ book:TextbookKey; items:QuestionItem[]; answers:Record<string,number>; loading:boolean; error:string; answerLayout:'classic'|'inline'|'hotspot'; hotspotIndicator:'marker'|'area'; restoredImageTheme:'auto'|'original' }>();
 const emit=defineEmits<{ book:[book:TextbookKey]; retry:[]; choose:[item:QuestionItem,choice:number]; bookmark:[item:QuestionItem]; ai:[item:QuestionItem]; start:[payload:{items:QuestionItem[];mode:StudyMode;label:string}] }>();
 const preferenceKey='cbt-textbook-pages-v1';
 function saved(){try{return JSON.parse(localStorage.getItem(preferenceKey)||'{}');}catch{return {};}}
 const from=ref('');const to=ref('');
-function restore(){const s=saved()[props.book];from.value=typeof s?.from==='string'?s.from:props.book==='hansol'?'4-10':'442';to.value=typeof s?.to==='string'?s.to:'';}
+const contentsId=ref(''),contentsLabel=ref('');const contentsWrap=ref<HTMLElement|null>(null),pageResult=ref<HTMLElement|null>(null);
+function restore(){const s=saved()[props.book];from.value=typeof s?.from==='string'?s.from:props.book==='hansol'?'4-10':'442';to.value=typeof s?.to==='string'?s.to:'';contentsId.value=s?.contentsId||'';contentsLabel.value=s?.contentsLabel||'';}
 restore();watch(()=>props.book,restore);
-watch([from,to],()=>{try{localStorage.setItem(preferenceKey,JSON.stringify({...saved(),[props.book]:{from:from.value,to:to.value}}));}catch{}});
+watch([from,to,contentsId,contentsLabel],()=>{try{localStorage.setItem(preferenceKey,JSON.stringify({...saved(),[props.book]:{from:from.value,to:to.value,contentsId:contentsId.value,contentsLabel:contentsLabel.value}}));}catch{}});
 const entries=computed(()=>textbookEntries.filter(e=>e.book===props.book));
 const pages=computed(()=>[...new Set(entries.value.map(e=>e.page))].sort(compareBookPages));
 const start=computed(()=>normalizeBookPage(from.value));const end=computed(()=>normalizeBookPage(to.value));
@@ -23,9 +26,19 @@ const matched=computed(()=>{
 });
 const pending=computed(()=>locations.value.filter(e=>!props.items.some(i=>i.id===textbookStudyId(e))).length);
 const selectedPages=computed(()=>[...new Set(locations.value.map(e=>e.page))].sort(compareBookPages));
-const label=computed(()=>`${textbookNames[props.book]} ${start.value}${end.value?`~${end.value}`:''}쪽`);
-function go(delta:number){const next=adjacentBookPage(props.book,start.value,delta);if(next){from.value=next;to.value='';}}
-function choose(page:string){from.value=page;to.value='';}
+const label=computed(()=>`${textbookNames[props.book]} ${start.value}${end.value?`~${end.value}`:''}쪽${contentsLabel.value?` · ${contentsLabel.value}`:''}`);
+function clearContents(){contentsId.value='';contentsLabel.value='';}
+function go(delta:number){const next=adjacentBookPage(props.book,start.value,delta);if(next){from.value=next;to.value='';clearContents();}}
+function choose(page:string){from.value=page;to.value='';clearContents();}
+async function selectContents(row:ContentsRow){
+ const ready=new Set(props.items.map(i=>i.id));
+ const pages=[...new Set(row.entries.filter(e=>ready.has(textbookStudyId(e))).map(e=>e.page))].sort(compareBookPages);
+ from.value=pages[0]||row.node.from||'';
+ const last=row.node.to||pages.at(-1);to.value=last&&last!==from.value?last:'';
+ contentsId.value=row.node.id;contentsLabel.value=[...row.path.slice(1),row.node.title].join(' › ');
+ await nextTick();pageResult.value?.scrollIntoView({block:'start',behavior:'instant'});
+}
+function openContents(){contentsWrap.value?.scrollIntoView({block:'start',behavior:'instant'});}
 function play(mode:StudyMode){if(!props.loading&&!invalid.value&&matched.value.length)emit('start',{items:matched.value,mode,label:label.value});}
 const pageColumns=computed(()=>{
  const rows=entries.value.filter(e=>e.page===start.value);
@@ -44,9 +57,10 @@ const pageColumns=computed(()=>{
   <div class="book-tabs" aria-label="교재 선택">
    <button v-for="(name,key) in textbookNames" :key="key" :aria-pressed="book===key" @click="emit('book',key)">{{name}}</button>
   </div>
+  <div ref="contentsWrap"><TextbookContents :book="book" :items="items" :selected="contentsId" @select="selectContents" /></div>
   <form class="page-picker" @submit.prevent>
-   <label>시작 쪽<input v-model="from" :list="`book-pages-${book}`" :placeholder="book==='hansol'?'예: 4-10':'예: 442'" autocomplete="off"></label>
-   <label>끝 쪽 <small>여러 페이지를 풀 때만</small><input v-model="to" :list="`book-pages-${book}`" placeholder="한 페이지만 풀면 비워 두세요" autocomplete="off"></label>
+   <label>시작 쪽<input v-model="from" :list="`book-pages-${book}`" :placeholder="book==='hansol'?'예: 4-10':'예: 442'" autocomplete="off" @input="clearContents"></label>
+   <label>끝 쪽 <small>여러 페이지를 풀 때만</small><input v-model="to" :list="`book-pages-${book}`" placeholder="한 페이지만 풀면 비워 두세요" autocomplete="off" @input="clearContents"></label>
    <datalist :id="`book-pages-${book}`"><option v-for="page in pages" :key="page" :value="page"/></datalist>
    <button type="button" :disabled="!adjacentBookPage(book,start,-1)" @click="go(-1)">← 이전 쪽</button>
    <button type="button" :disabled="!adjacentBookPage(book,start,1)" @click="go(1)">다음 쪽 →</button>
@@ -55,7 +69,7 @@ const pageColumns=computed(()=>{
   <p v-if="loading" role="status">교재에 연결된 원문을 불러오는 중…</p>
   <p v-else-if="error" role="alert">{{error}} <button @click="emit('retry')">다시 불러오기</button></p>
   <template v-else>
-   <div class="book-page-result" aria-live="polite"><h2>{{label}}</h2><p>풀 수 있는 문제 <strong>{{matched.length}}개</strong><template v-if="pending"> · 추가 대조 {{pending}}위치</template></p>
+   <div ref="pageResult" class="book-page-result" aria-live="polite"><h2>{{label}}</h2><button type="button" @click="openContents">↑ 목차 다시 고르기</button><p>풀 수 있는 문제 <strong>{{matched.length}}개</strong><template v-if="pending"> · 추가 대조 {{pending}}위치</template></p>
     <p v-if="!locations.length">이 쪽은 아직 문제 연결을 확인하지 않았습니다. 교재에 문제가 없다는 뜻은 아닙니다.</p>
     <p v-else-if="pending">보기·수치·정답이 다르거나 연결하지 못한 위치는 출제하지 않습니다.</p>
     <div class="book-play"><button :disabled="!matched.length||invalid" @click="play('learn')">범위를 모아 일반 학습</button><button :disabled="!matched.length||invalid" @click="play('exam')">범위를 모아 CBT 시험</button></div>
