@@ -6,6 +6,10 @@
   {"page":"1-137","column":1,"rawNumber":7,"number":17,"contains":"HEPA","spread":77},
   {"page":"3-180","column":1,"rawNumber":2,"number":28,"contains":"저탕조","spread":363},
   {"page":"1-29","column":1,"rawNumber":54,"number":4,"contains":"기류분포","spread":23},
-  {"page":"1-116","column":1,"rawNumber":1,"number":91,"contains":"북측 외벽","spread":67}
+  {"page":"1-116","column":1,"rawNumber":1,"number":91,"contains":"북측 외벽","spread":67},
+  {"page":"2-63","column":1,"rawNumber":6,"number":16,"contains":"사이클에서 증발압력","spread":160},
+  {"page":"2-98","column":1,"rawNumber":7,"number":67,"contains":"건조도","spread":178},
+  {"page":"2-143","column":1,"rawNumber":18,"number":8,"contains":"증발식 응축기","spread":200},
+  {"page":"2-203","column":0,"rawNumber":7,"number":57,"contains":"다음 증발기","spread":230}
  ]
 }

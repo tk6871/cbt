@@ -21,7 +21,10 @@ function usableExactSource(q,row){
   &&normalizeStem(q.text||q.html)===norm(row.stem)&&JSON.stringify(q.choices.map(c=>norm(c.text||c.html)))===JSON.stringify(row.choices);
 }
 const grouped=new Map();const candidates=new Map();
+const exclusions=read('tools/hansol-individual-review-exclusions.json').rows;
+const compact=s=>s.normalize('NFKC').replace(/\s/g,'');
 for(const [variant,v] of variants.entries())for(const row of v.questions){
+ if(exclusions.some(f=>f.page===row.page&&f.column===row.column&&f.rawNumber===row.number&&compact(row.stem).includes(compact(f.contains))))continue;
  const key=`${row.page}:${row.number}`;const list=candidates.get(key)||[];list.push({...row,variant});candidates.set(key,list);
  if(row.status!=='exact-screen-and-printed-answer'||!row.sourceId||row.requiresImageComparison||row.printedAnswerConflict)continue;
  const q=source.get(row.sourceId);assert.ok(q,row.sourceId);assert.equal(q.answer,row.printedAnswer);

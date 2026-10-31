@@ -159,6 +159,7 @@ type CbtHistoryState = {
   view: ViewName;
   sessionId?: string;
   practicalRoom?: boolean;
+  textbookRoom?: boolean;
 };
 type MasteryRow = QuestionItem & {
   mastery: number;
@@ -282,6 +283,7 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
 const textbookPagesOpen = ref(false);
+const textbookReaderOpen = ref(false);
 const textbookKey = ref<TextbookKey>(localStorage.getItem('cbt-textbook-selected')==='energy'?'energy':'hansol');
 const textbookLoading = ref(false);
 const textbookError = ref('');
@@ -2128,6 +2130,7 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 function configureQualification(key: string): void {
+  textbookReaderOpen.value = false;
   textbookPagesOpen.value = false;
   const target = catalogs.find((catalog) => catalog.key === key);
   if (target?.isPlaceholder) {
@@ -2204,7 +2207,21 @@ async function loadTextbookPages():Promise<void> {
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
 }
-function openTextbookPages():void {textbookPagesOpen.value=true;openView('rounds');void loadTextbookPages();}
+function openTextbookPages():void {
+ textbookPagesOpen.value=true;openView('rounds');
+ textbookReaderOpen.value=true;
+ if(!ownHistoryState()?.textbookRoom)history.pushState(viewHistoryState('rounds'),'',location.href);
+ void loadTextbookPages();
+ window.scrollTo({top:0});
+}
+function closeTextbookReader():void {
+ textbookReaderOpen.value=false;
+ settingsOpen.value=false;
+ // An older history entry may be a CBT session after reload/resume. The
+ // explicit list action must always return to the textbook collection.
+ openView('rounds',{replace:true});
+ history.replaceState(viewHistoryState('rounds'),'',location.href);
+}
 function selectTextbook(book:TextbookKey):void {textbookKey.value=book;localStorage.setItem('cbt-textbook-selected',book);void loadTextbookPages();}
 function chooseTextbookAnswer(item:QuestionItem,choice:number):void {
  const next={...textbookAnswers.value};
@@ -2497,7 +2514,7 @@ function ownHistoryState(value: unknown = history.state): CbtHistoryState | null
 }
 
 function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
-  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}) };
+  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}), ...(next==='rounds'&&textbookReaderOpen.value?{textbookRoom:true}:{}) };
 }
 
 function initializeNavigationHistory(): void {
@@ -2514,6 +2531,9 @@ function initializeNavigationHistory(): void {
     ? 'home'
     : restoredView;
   view.value = initialView;
+  if(initialView==='rounds'&&current?.textbookRoom&&!openUpdatesAfterRefresh){
+    textbookPagesOpen.value=true;textbookReaderOpen.value=true;void loadTextbookPages();
+  }
   history.replaceState(viewHistoryState(initialView), '', location.href);
 }
 
@@ -2523,6 +2543,7 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
     showToast('설정에서 실험 기능 전체를 켜면 베타 학습 도구를 비교할 수 있습니다.');
     return;
   }
+  if(next!=='rounds')textbookReaderOpen.value=false;
   const previousView = view.value;
   if (next === 'settings' && previousView !== 'settings') settingsReturnView.value = previousView;
   settingsOpen.value = false;
@@ -2588,6 +2609,8 @@ function deactivateSession(preserveForForward = false): void {
 function handleBrowserHistory(event: PopStateEvent): void {
   const target = ownHistoryState(event.state);
   if (!target) return;
+  textbookReaderOpen.value=target.view==='rounds'&&!!target.textbookRoom;
+  if(textbookReaderOpen.value){textbookPagesOpen.value=true;void loadTextbookPages();}
   if (practicalSolving.value && !target.practicalRoom) {
     if (practicalSessionActive.value) closePracticalMock();
     else openPracticalLibrary(practicalLibraryTab.value, true);
@@ -4462,6 +4485,11 @@ function closeNativeOverlays(): boolean {
 
 async function handleNativeBackButton(): Promise<void> {
   if (closeNativeOverlays()) return;
+  if(textbookReaderOpen.value&&!session.value){
+    const picker=document.querySelector<HTMLDialogElement>('#textbook-navigator');
+    if(picker?.open)picker.close();else closeTextbookReader();
+    return;
+  }
   if (practicalSolving.value) {
     if (practicalSessionActive.value) closePracticalMock();
     else openPracticalLibrary(practicalLibraryTab.value);
@@ -4588,7 +4616,7 @@ const settingsValues = computed<SettingsValues>(() => ({
   imageTheme: restoredImageTheme.value, experimental: experimentalFeaturesEnabled.value,
   judgment: questionJudgmentEnabled.value, rotation: sunjaeRotationSeconds.value,
 }));
-const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value),
+const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value)||textbookReaderOpen.value,
   exam: session.value?.mode === 'exam', omr: examSheetOpen.value, version: currentVersion.value,
   displayLabel: resolvedDisplayMode === 'mobile' ? '모바일·태블릿' : 'PC',
 }));
@@ -4616,7 +4644,7 @@ function settingsAction(action: SettingsAction): void {
       else if (view.value === 'settings') openView(settingsReturnView.value);
       break;
     case 'full':
-      if (session.value) settingsExpanded.value = true;
+      if (session.value || textbookReaderOpen.value) settingsExpanded.value = true;
       else { settingsOpen.value = false; openView('settings'); }
       break;
     case 'tour': void startUiTour(); break;
@@ -4658,7 +4686,7 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    v-if="!session"
+    v-if="!session && !textbookReaderOpen"
     class="app-frame"
     :style="themeBackdropStyle"
     :class="{
@@ -5034,7 +5062,7 @@ onBeforeUnmount(() => {
           </nav>
           <template v-if="roundsCollection === 'textbook' && !isJewelry">
             <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>
-            <TextbookPages :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
+            <section class="resume-learning-card"><div><strong>교재 전용 풀이</strong><small>책 목차와 쪽번호로 골라, 메뉴 없는 넓은 화면에서 풉니다.</small></div><button type="button" @click="openTextbookPages">교재 열기 →</button></section>
           </template>
           <template v-else-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
@@ -5768,6 +5796,7 @@ onBeforeUnmount(() => {
           <section class="feature-layout-lab settings-feature-guide">
             <header><div><span>NEW · v5.6</span><h2>책 쪽순 풀이와 전체 자동 대조 현황</h2></div><p>회차별 문제 → 교재 페이지별에서 장·절·예상문제 목차를 고릅니다. 에너지 기출21회차1,680문제와 한솔1,687위치를 연결했습니다. ‘전체 자동 대조 현황’에서는1,176쪽의 연결·미확정 후보·보류 상태를 쪽번호로 찾아 확인합니다. 모든 문항의 연결·육안 검증 완료를 뜻하지는 않습니다.</p></header>
             <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 한솔의 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하고 기존 CBT 원본과 기록은 유지합니다. 책 내부 정답표·풀이 불일치나 복수정답은 보류 사유를 표시하며, CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
+            <p>교재는 메뉴 없는 전용 화면에서 풉니다. 책 목차·검색·쪽번호는 ‘목차·쪽 선택’ 팝업에서 고르고, 연결 현황과 안내는 별도 탭에서 확인하세요.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
 
@@ -6188,8 +6217,10 @@ onBeforeUnmount(() => {
 
   </div>
 
+  <TextbookPages v-else-if="!session && textbookReaderOpen" :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @close="closeTextbookReader" @settings="settingsOpen=true" @calculator="openCalculator()" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
+
   <div
-    v-else
+    v-else-if="session"
     class="session-shell"
     :class="{
       'exam-mode': session.mode === 'exam',
@@ -6490,14 +6521,14 @@ onBeforeUnmount(() => {
   </div>
 
   <Transition name="toast">
-    <aside v-if="updateAvailable && !session && !practicalSolving" class="update-notice">
+    <aside v-if="updateAvailable && !session && !practicalSolving && !textbookReaderOpen" class="update-notice">
       <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
       <button type="button" @click="applyUpdate">업데이트 적용</button>
     </aside>
   </Transition>
 
   <Transition name="toast">
-    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving" class="update-notice pwa-error-notice">
+    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving && !textbookReaderOpen" class="update-notice pwa-error-notice">
       <div><span>PWA RECOVERY</span><strong>업데이트 연결을 자동으로 복구할 수 있습니다</strong><small>학습 기록·오답·로그인은 보존하고 서비스워커와 CBT 캐시만 다시 설정합니다.</small></div>
       <div class="pwa-error-actions">
         <button type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>
