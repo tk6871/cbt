@@ -2,6 +2,7 @@ import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {adjacentBookPage,normalizeBookPage,textbookStudyItems,textbookEntries} from '../src/cbt/textbookPages';
+import {closeBookNavigator,chooseBookPage,switchTextbook} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test('쪽번호·독립 기록·수정 원문 차단',()=>{
  expect(normalizeBookPage('４－１０쪽')).toBe('4-10');
@@ -44,7 +45,7 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
   sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
- async function open(){await page.goto('/?safe=1');if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();}
+ async function open(){await page.goto('/?safe=1');await expect(page.locator('.app-frame,.textbook-pages')).toBeVisible();if(!await page.locator('.textbook-pages').count()){if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();}await closeBookNavigator(page);}
  await open();const root=page.locator('.textbook-pages');
  await expect(root.locator('.book-sheet-question')).toHaveCount(5);
  await expect(root.locator('.book-sheet-column').nth(0).locator('h3')).toHaveText(['교재 17번','교재 18번','교재 19번']);
@@ -57,11 +58,11 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
  await root.getByRole('button',{name:'다음 쪽 →',exact:true}).first().click();await expect(root.locator('.book-sheet>footer>strong')).toHaveText('4-11');
  await root.getByRole('button',{name:'← 이전 쪽',exact:true}).first().click();await expect(card.locator('.image-answer-hotspot').nth(2)).toHaveClass(/selected/);
  await open();await expect(root.locator('.question-card').first().locator('.image-answer-hotspot').nth(2)).toHaveClass(/selected/);
- await root.getByRole('button',{name:'에너지설비 교재',exact:true}).click();await expect(root.locator('.book-sheet-question')).not.toHaveCount(0);
+ await switchTextbook(page,'energy');await expect(root.locator('.book-sheet-question')).not.toHaveCount(0);
  await expect(root.locator('.book-sheet>footer>strong')).toHaveText('442');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`/private/tmp/textbook-${info.project.name}-energy.png`,fullPage:true});
- await root.locator('.page-picker input').first().fill('450');
+ await chooseBookPage(page,'450');
  const matchedCard=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 46번',exact:true})}).locator('.question-card');
  await expect(matchedCard.locator('.image-answer-hotspot')).toHaveCount(4);
  await matchedCard.locator('.image-answer-hotspot').first().click();
@@ -77,14 +78,14 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
  await page.evaluate(()=>document.documentElement.dataset.theme='light');
  expect(await originalImage.evaluate(img=>getComputedStyle(img).filter)).toBe('none');
  await original.locator('summary').click();await expect(originalImage).not.toBeVisible();
- await root.locator('.page-picker input').first().fill('336');
+ await chooseBookPage(page,'336');
  const textbookCard=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 1번',exact:true})}).locator('.question-card');
  await textbookCard.locator('.image-answer-hotspot').nth(3).click();
  await expect(textbookCard.locator('.beginner-primary-explanation strong')).toHaveText('COMCBT 해설');
  await expect(textbookCard.locator('.beginner-primary-explanation')).not.toContainText('&gt;');
  if(info.project.name==='desktop'){
   await page.setViewportSize({width:3840,height:2160});await root.scrollIntoViewIfNeeded();
-  expect((await root.boundingBox())!.width).toBeLessThanOrEqual(1500);
+  expect((await root.locator('.reader-main').boundingBox())!.width).toBeLessThanOrEqual(1500);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   const columns=await root.locator('.book-sheet-column').all();
   expect((await columns[1].boundingBox())!.x).toBeGreaterThan((await columns[0].boundingBox())!.x);
@@ -99,6 +100,7 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
  await expect.poll(async()=>Object.keys((await saved()).answers||{}).length).toBe(1);
  expect((await saved()).itemIds.every((id:string)=>id.startsWith('book-study::energy::336::'))).toBe(true);
  await open();
+ await page.getByRole('button',{name:'교재 목록으로 돌아가기',exact:true}).click();
  await page.locator('.resume-learning-card').getByRole('button',{name:'이어서 풀기',exact:true}).click();
  await expect(page.locator('.question-card').first().locator('.image-answer-hotspot').nth(3)).toHaveClass(/selected/);
 });
