@@ -9,7 +9,7 @@ import type {Question} from '../src/cbt/types';
 
 function banks(){
  const context:any={window:{}};
- for(const file of ['energy','energy-restored','energy-textbook','energy-midterm'])vm.runInNewContext(fs.readFileSync(`data/${file}.js`,'utf8'),context);
+ for(const file of ['energy','energy-restored','energy-textbook','energy-midterm','energy-book-earlier'])vm.runInNewContext(fs.readFileSync(`data/${file}.js`,'utf8'),context);
  return new Map<string,Question>(Object.values(context.window).flatMap((b:any)=>b.rounds.flatMap((r:any)=>r.questions.map((q:any)=>[`${q._originRoundId||r.id}:${q._originalNumber||q.number}`,q]))));
 }
 test('동일 문항만 실제 COMCBT 해설 우선 · 원문/기존 설명 보존',()=>{

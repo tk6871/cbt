@@ -42,7 +42,7 @@ import type { SettingsValues, SettingChange, SettingsAction } from './settingsCa
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
 const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
-import { textbookStudyItems, textbookSourceKeys, bookForStudyId, type TextbookKey } from './textbookPages';
+import { textbookStudyItems, textbookSourceKeys, loadTextbookSupplement, bookForStudyId, type TextbookKey } from './textbookPages';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
 import { orderCoolingSimilar } from './coolingSimilarOrder';
@@ -544,7 +544,8 @@ const allItems = computed(() => [
 }))));
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
-const textbookItems = computed(() => textbookStudyItems(allItems.value));
+const textbookSupplement = ref<QuestionItem[]>([]);
+const textbookItems = computed(() => textbookStudyItems([...allItems.value,...textbookSupplement.value]));
 const textbookAnswers = computed<Record<string,number>>(() => {
  const state=studyStore.progress?.textbookPageAnswersV1;
  return state && typeof state==='object' && !Array.isArray(state) ? state as Record<string,number> : {};
@@ -2198,7 +2199,8 @@ async function loadCoolingMidterm(): Promise<void> {
 async function loadTextbookPages():Promise<void> {
  const revision=++textbookLoadRevision;
  textbookLoading.value=true;textbookError.value='';
- try{await loadQuestionSources(textbookSourceKeys(textbookKey.value));}
+ try{const book=textbookKey.value;await loadQuestionSources(textbookSourceKeys(book));
+  if(book==='energy')textbookSupplement.value=await loadTextbookSupplement(book);}
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
 }
@@ -2248,6 +2250,7 @@ function isMidtermCalculation(item: QuestionItem): boolean {
 }
 
 async function ensureItemSources(ids: string[]): Promise<void> {
+  if(ids.some(id=>bookForStudyId(id)==='energy'))textbookSupplement.value=await loadTextbookSupplement('energy');
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
@@ -5763,8 +5766,8 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.5.1</span><h2>책 목차·느슨한 검색 · 에너지 COMCBT 해설</h2></div><p>회차별 문제 → 교재 페이지별에서 장·절·예상문제 목차를 고릅니다. ‘냉동 대용량 급속동결’처럼 일부 단어·붙여쓰기·연관어와 가벼운 오타로 찾고 연결 문제 범위의 학습·CBT로 이동합니다. 전체 교재 연결은 계속 진행 중입니다.</p></header>
-            <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
+            <header><div><span>NEW · v5.6</span><h2>책 쪽순 풀이와 전체 자동 대조 현황</h2></div><p>회차별 문제 → 교재 페이지별에서 장·절·예상문제 목차를 고릅니다. 에너지 기출21회차1,680문제와 한솔1,687위치를 연결했습니다. ‘전체 자동 대조 현황’에서는1,176쪽의 연결·미확정 후보·보류 상태를 쪽번호로 찾아 확인합니다. 모든 문항의 연결·육안 검증 완료를 뜻하지는 않습니다.</p></header>
+            <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 한솔의 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하고 기존 CBT 원본과 기록은 유지합니다. 책 내부 정답표·풀이 불일치나 복수정답은 보류 사유를 표시하며, CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
 

@@ -499,7 +499,7 @@ onBeforeUnmount(() => {
       <span v-if="item.question.answerRate" class="answer-rate">정답률 {{ item.question.answerRate }}%</span>
       <span v-if="fieldReportQuestion" class="source-chip field-report-source-chip">비공식 제보 재구성</span>
       <span v-else-if="restoredQuestion" class="source-chip">CBT 복원문제{{ primaryImage ? ' · 원문 이미지' : '' }}</span>
-      <span v-else-if="hansolQuestion" class="source-chip hansol-source-chip">한솔아카데미 원문</span>
+      <span v-else-if="hansolQuestion" class="source-chip hansol-source-chip">{{item.question.bookCorrection?'교재 대조 정정본':'한솔아카데미 원문'}}</span>
       <span v-if="item.question.targetMapping" class="source-chip target-source-chip">
         {{ item.question.targetRelevance === 'core' ? '직접 연계' : '유사 보강' }} · {{ item.question.sourceQualification }}
       </span>
@@ -628,6 +628,11 @@ onBeforeUnmount(() => {
       </template>
     </div>
 
+    <aside v-if="item.question.bookCorrection" class="book-correction-note">
+      <p v-if="mode === 'learn'">{{item.question.bookCorrection.note}}</p>
+      <p v-else>교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수 있습니다.</p>
+      <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img class="source-question-image" :class="restoredImageClass" :src="item.question.bookCorrection.originalImage" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
+    </aside>
     <div v-if="!verifiedHotspots.length" class="choice-grid-shell">
       <div
         class="choice-grid"

@@ -1,0 +1,11 @@
+{
+ "date":"2026-10-31",
+ "basis":"원래 화면의 파란 문항 번호를 직접 확대 확인했습니다. 누락된 숫자를 연도·정답에서 추정하지 않았습니다.",
+ "rows":[
+  {"page":"1-59","column":1,"rawNumber":2,"number":12,"contains":"가변 풍량","spread":38},
+  {"page":"1-137","column":1,"rawNumber":7,"number":17,"contains":"HEPA","spread":77},
+  {"page":"3-180","column":1,"rawNumber":2,"number":28,"contains":"저탕조","spread":363},
+  {"page":"1-29","column":1,"rawNumber":54,"number":4,"contains":"기류분포","spread":23},
+  {"page":"1-116","column":1,"rawNumber":1,"number":91,"contains":"북측 외벽","spread":67}
+ ]
+}

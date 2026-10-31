@@ -2,7 +2,7 @@
 import {computed,ref,shallowRef,watch,onBeforeUnmount} from 'vue';
 import type {QuestionItem} from './types';
 import {textbookEntries,textbookStudyId,type TextbookKey} from './textbookPages';
-import {bookContents,contentsRows,searchContents,type ContentsRow} from './textbookContents';
+import {bookContents,contentsRows,searchContents,contentsExamples,type ContentsRow} from './textbookContents';
 import BookContentsBranch from './BookContentsBranch.vue';
 const props=defineProps<{book:TextbookKey;items:QuestionItem[];selected:string}>();
 const emit=defineEmits<{select:[row:ContentsRow]}>();
@@ -23,7 +23,7 @@ const text=computed(()=>{
  }return result;
 });
 const rows=computed(()=>contentsRows(bookContents[props.book],textbookEntries,text.value));
-const counts=computed(()=>Object.fromEntries(rows.value.map(row=>[row.node.id,{ready:new Set(row.entries.filter(e=>itemMap.value.has(textbookStudyId(e))).map(e=>e.sourceId)).size,pending:row.entries.filter(e=>!itemMap.value.has(textbookStudyId(e))).length}])));
+const counts=computed(()=>Object.fromEntries(rows.value.map(row=>[row.node.id,{ready:new Set(row.entries.filter(e=>itemMap.value.has(textbookStudyId(e))).map(e=>e.sourceId)).size,pending:row.entries.filter(e=>!itemMap.value.has(textbookStudyId(e))).length,examples:contentsExamples(row.node).length}])));
 const results=computed(()=>searchContents(rows.value,debounced.value));
 function select(id:string){const row=rows.value.find(r=>r.node.id===id);if(row?.node.from)emit('select',row);}
 </script>
@@ -40,7 +40,7 @@ function select(id:string){const row=rows.value.find(r=>r.node.id===id);if(row?.
     <li v-for="row in results.slice(0,limit)" :key="row.node.id">
      <button type="button" :disabled="!row.node.from" :aria-pressed="selected===row.node.id" @click="select(row.node.id)">
       <small>{{row.path.join(' › ')}}</small><strong>{{row.node.title}}</strong>
-      <span>{{row.node.from||'쪽번호 대조 중'}}<template v-if="row.node.to">~{{row.node.to}}</template> · {{counts[row.node.id].ready}}문제 연결</span>
+      <span>{{row.node.from||'쪽번호 대조 중'}}<template v-if="row.node.to">~{{row.node.to}}</template> · {{counts[row.node.id].ready}}문제 연결<template v-if="counts[row.node.id].examples"> · 풀이 예제 {{counts[row.node.id].examples}}개</template></span>
       <small>맞은 검색어: {{row.matched.map(m=>m.term).join(' · ')}}<template v-if="row.matched.some(m=>m.kind==='비슷한 단어')"> · 비슷한 단어 참고</template></small>
      </button>
     </li>

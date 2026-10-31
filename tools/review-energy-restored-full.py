@@ -4,7 +4,7 @@ import numpy as np
 from pathlib import Path
 from PIL import Image,ImageDraw,ImageFont
 ROOT=Path(__file__).resolve().parents[1]
-parser=argparse.ArgumentParser();parser.add_argument('--geometry',action='store_true');parser.add_argument('--prepare-upscaled',action='store_true');parser.add_argument('--work',default='work/energy-restored-full');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--geometry',action='store_true');parser.add_argument('--prepare-upscaled',action='store_true');parser.add_argument('--work',default='work/energy-restored-full');parser.add_argument('--manual',default='tools/energy-restored-geometry-review.json');parser.add_argument('--manual-proofs',action='store_true');args=parser.parse_args()
 WORK=ROOT/args.work
 assert WORK.is_relative_to(ROOT/'work')
 manifest=json.loads((WORK/'manifest.json').read_text());assert not manifest['errors']
@@ -55,12 +55,13 @@ if args.geometry:
  engine=importlib.util.module_from_spec(spec);spec.loader.exec_module(engine)
  old_images=json.loads((ROOT/'work/energy-textbook/upscale-ledger.json').read_text())
  old_boxes=json.loads((ROOT/'data/energy-textbook-hotspots.json').read_text())
- manual=json.loads((ROOT/'tools/energy-restored-geometry-review.json').read_text())
+ manual=json.loads((ROOT/args.manual).read_text())
  result={};review=[]
  for q,p in zip(manifest['rows'],paths):
   path=Path(p);file=geometry/'ocr'/f'{path.stem}.json'
   improved=geometry/'ocr-upscaled'/f"{q['key']}.json"
-  ocr=json.loads((improved if improved.exists() else file).read_text())
+  corrected=geometry/'ocr-corrected'/file.name
+  ocr=json.loads((corrected if corrected.exists() else improved if improved.exists() else file).read_text())
   circled={r['text'].strip()[0] for r in ocr['rows'] if r['text'].strip() and r['text'].strip()[0] in '①②③④'}
   if len(circled)==4:
    # A diagram's plain 1/2/3/4 labels are not selectable answer numbers.
@@ -132,9 +133,13 @@ if args.geometry:
   sheet.save(WORK/'proofs'/f'pending-{start//6+1:03}.jpg',quality=97)
 else:
  result={}
-for start in range(0,len(manifest['rows']),8):
+proof_rows=manifest['rows']
+if args.manual_proofs:
+ keys={key for kind in ['grid','column','points','regions'] for key in manual[kind]}
+ proof_rows=[q for q in proof_rows if q['key'] in keys or (geometry/'ocr-corrected'/f"{q['key']}-question.json").exists()]
+for start in range(0,len(proof_rows),8):
  sheet=Image.new('RGB',(2400,2400),'#dce3ec');draw=ImageDraw.Draw(sheet)
- for i,q in enumerate(manifest['rows'][start:start+8]):
+ for i,q in enumerate(proof_rows[start:start+8]):
   x=i%4*600;y=i//4*1200
   im=Image.open(WORK/'original'/f"{q['key']}-question.png").convert('RGB')
   paint=ImageDraw.Draw(im)
@@ -143,7 +148,7 @@ for start in range(0,len(manifest['rows']),8):
    paint.rectangle((left,top,left+im.width*b['width']/100,top+im.height*b['height']/100),outline=['red','blue','green','purple'][b['choice']-1],width=2)
   im.thumbnail((580,1130));sheet.paste(im,(x+10,y+55))
   draw.text((x+10,y+10),q['key']+(' REVIEW' if args.geometry and not result.get(q['key']) else ''),font=font,fill='black')
- sheet.save(WORK/'proofs'/f"{'geometry' if args.geometry else 'questions'}-{start//8+1:03}.jpg",quality=94)
+ sheet.save(WORK/'proofs'/f"{'manual' if args.manual_proofs else 'geometry' if args.geometry else 'questions'}-{start//8+1:03}.jpg",quality=94)
 print('Private proofs / OCR inputs ready',len(paths),flush=True)
 if args.geometry:
  items=[dict(round=dict(id=f"energy-industrial-restored-{q['year']}-{q['session']}",year=q['year'],qualificationKey='energy',subjects=['에너지관리']),
@@ -156,4 +161,4 @@ const items=await fetch('/work/energy-restored-full/answer-geometry/items.json')
 const index=ref(0),selected=ref(),indicator=ref('area'),mode=ref('exam');
 createApp({setup:()=>()=>h(Card,{item:items[index.value],selected:selected.value,mode:mode.value,imageAnswerMode:'hotspot',hotspotIndicator:indicator.value,onChoose:c=>selected.value=selected.value===c?undefined:c})}).mount('#review');
 window.review={items,async show(i,style='area'){index.value=i;selected.value=undefined;indicator.value=style;await nextTick();},async tick(){await nextTick();},get selected(){return selected.value;}};
-</script><style>body{margin:16px;background:#f2f4f8}#review{max-width:720px;margin:auto}.question-card{width:100%;box-sizing:border-box}</style></body></html>''')
+</script><style>body{margin:16px;background:#f2f4f8}#review{max-width:720px;margin:auto}.question-card{width:100%;box-sizing:border-box}</style></body></html>'''.replace('work/energy-restored-full',WORK.relative_to(ROOT).as_posix()))

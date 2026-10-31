@@ -8,8 +8,14 @@ test('쪽번호·독립 기록·수정 원문 차단',()=>{
  expect(adjacentBookPage('hansol','4-10',1)).toBe('4-11');
  expect(adjacentBookPage('hansol','4-1',-1)).toBeUndefined();
  expect(adjacentBookPage('energy','645',1)).toBeUndefined();
+ for(const book of ['hansol','energy']){
+  const rows=textbookEntries.filter(e=>e.book===book);for(let i=1;i<rows.length;i++){
+   const prior=rows[i-1],next=rows[i],order=prior.page.localeCompare(next.page,'ko',{numeric:true});
+   expect(order).toBeLessThanOrEqual(0);if(!order)expect(prior.number).toBeLessThan(next.number);
+  }
+ }
  const context={window:{}};
- for(const k of ['hvac','hvac-hansol','energy-textbook','energy-restored'])vm.runInNewContext(fs.readFileSync(`data/${k}.js`,'utf8'),context);
+ for(const k of ['hvac','hvac-hansol','energy-textbook','energy-restored','energy-book-earlier'])vm.runInNewContext(fs.readFileSync(`data/${k}.js`,'utf8'),context);
  const items=Object.values(context.window).flatMap((b:any)=>b.rounds.flatMap((r:any)=>r.questions.map((q:any)=>({round:r,question:q,subject:q.sourceSubject||q._subject||r.subjects[0],id:`${q._originRoundId||r.id}:${q._originalNumber||q.number}`}))));
  const snapshot=JSON.stringify(context.window),result=textbookStudyItems(items);
  const page=result.filter(i=>i.id.startsWith('book-study::hansol::4-10::'));
@@ -20,6 +26,14 @@ test('쪽번호·독립 기록·수정 원문 차단',()=>{
  const changed=page[0];const original=items.find(i=>i.id===textbookEntries.find(e=>e.page==='4-10'&&e.number===17)!.sourceId)!;
  expect(textbookStudyItems([{...original,question:{...original.question,answer:1}}])).toHaveLength(0);
  expect(changed.id).not.toBe(original.id);
+ const corrected=result.find(i=>i.id.startsWith('book-study::hansol::1-15::6::'))!;
+ expect(corrected.question.choices[2].text).toBe('예상온열감(PMV)');
+ expect(corrected.question.bookCorrection?.originalImage).toBe('assets/hvac-hansol/questions/2022_2/08.webp');
+ expect(corrected.question.answerHotspots).toHaveLength(4);expect(corrected.question.sourceImage).toContain('textbook-corrections');
+ const si=result.find(i=>i.id.startsWith('book-study::hansol::1-25::6::'))!;
+ expect(si.question.choices.map(c=>c.text)).toEqual(['kJ/kgK','kJ/kg','W/m²K','W/mK']);expect(si.question.answer).toBe(2);expect(si.question.explanationProvenance).toBe('book-verified-correction');
+ expect(si.question.explanation).toContain('kJ/kg');expect(items.find(i=>i.id==='hvac-20150531:5')!.question.choices[1].text).toBe('kcal/kg');
+ expect(JSON.stringify(context.window)).toBe(snapshot);
 });
 test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async({page},info)=>{
  await page.addInitScript(()=>{
