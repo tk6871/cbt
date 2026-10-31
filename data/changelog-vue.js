@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.6',scope:'industrial',date:'2026.10.31',
+      title:'교재 페이지 연결·책 기준 대조 보강',
+      summary:'에너지 기출21회차와 한솔1,687위치를 연결하고 전체 쪽별 자동 대조 현황을 제공합니다.',
+      tags:['교재 페이지','에너지','원문 이미지'],
+      changes:['에너지 구회차8회640문제의 문제·원문 해설과 이미지 답안 선택을 확인해 교재 페이지에 연결했습니다. 기존 연결72문제의 기록ID는 유지하고568문제를 보강했습니다. 일반 CBT 회차나 중간고사 선별 목록은 늘리지 않습니다.','Mac arm64 Real-ESRGAN x4plus-anime 타일256·4배 처리 후2배 bicubic 이미지를 사용하며 다크·라이트·원본 표시를 유지합니다. 검색 보조OCR도1,680문제로 확장했습니다.','기존 COMCBT 해설 우선 연결은566개 독립 풀이ID로 보강하고 교재 원문 해설을 보존합니다. 에너지 본문88~89쪽 예제는 객관식과 구분합니다.','한솔의 직접 확인한125개 정정 사본에서 오타·수치·보기·정답 차이를 구분합니다. 수식·도면 기호와 책 내부 불일치도 따로 대조하며 미확정 문항은 사유를 표시하고 출제를 보류합니다. 기존 CBT 원문·해설·기록은 보존하고 CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다.','교재 페이지별의 전체 자동 대조 현황에서1,176쪽의 연결·미확정 인식 후보·보류 상태를 쪽번호로 찾습니다. 전체 화면 자동 대조는 완료됐지만 모든 문항의 연결·육안 검증 완료를 뜻하지는 않습니다.']
+    },
+    {
       version:'5.5.1',scope:'industrial',date:'2026.10.29',
       title:'책 목차로 고르기와 느슨한 내용 검색',
       summary:'교재의 장·절·예상문제 목차를 펼치고 일부 단어와 연관어로 찾습니다.',
@@ -2718,8 +2725,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.5.1';
+  changelog.versions.industrial = '5.6';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.5.1';
+  changelog.currentVersion = '5.6';
   window.CBT_CHANGELOG = changelog;
 })();

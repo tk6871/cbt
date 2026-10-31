@@ -1410,6 +1410,2006 @@
       "targetImageSha256": "37f2fa2bab131471655814713f4554c4e628e54f70ace94fa4d977d297329a15",
       "targetFingerprint": "3296bc02f77c0300"
     },
+    "energy-book-earlier-2018-1:1": {
+      "sourceId": "energy-industrial-20180304:1",
+      "sourceFingerprint": "ca2febd5b32f5525",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9fccf805315e04fb218de82452f05a464eb01b3b516c562f6171dc74f0798d46",
+      "targetFingerprint": "4e2537e949678dc"
+    },
+    "energy-book-earlier-2018-1:2": {
+      "sourceId": "energy-industrial-20180304:2",
+      "sourceFingerprint": "b9726271bc239c73",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e0d627050156a5386dc2eabf1ad748f1510e550ba81672a3cdd166fd9e75a356",
+      "targetFingerprint": "e07356ac1f951e0e"
+    },
+    "energy-book-earlier-2018-1:4": {
+      "sourceId": "energy-industrial-20180304:4",
+      "sourceFingerprint": "cf7b84395644c5d4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1a95ba496f46ace0332089499dc94996b3e67000bbe45ff49bd676ea6eabb202",
+      "targetFingerprint": "2f8432955b062941"
+    },
+    "energy-book-earlier-2018-1:6": {
+      "sourceId": "energy-industrial-20180304:6",
+      "sourceFingerprint": "610c2bb37a41b59",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4adfb14b860fddeb5b806c7d777f87b7161d10ce19b5bd3808c457e721181968",
+      "targetFingerprint": "9c50142afb4b86ce"
+    },
+    "energy-book-earlier-2018-1:8": {
+      "sourceId": "energy-industrial-20180304:8",
+      "sourceFingerprint": "6ec453b96896d53e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9a61fa47f97478583ae9f766637afa02ab366940f97a3a02111498d007ef19b4",
+      "targetFingerprint": "ee3ae43a5d994569"
+    },
+    "energy-book-earlier-2018-1:9": {
+      "sourceId": "energy-industrial-20180304:9",
+      "sourceFingerprint": "58827bc8dfb41046",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ec340bc96553158d2784f8e918b9f2442d49a1aa1c87bc6e1e156d3a1286b0d8",
+      "targetFingerprint": "e7378affc6cd71"
+    },
+    "energy-book-earlier-2018-1:10": {
+      "sourceId": "energy-industrial-20180304:10",
+      "sourceFingerprint": "436d25d9dff5f012",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "930bff41792634bc13e29a556b104253320b0a6ae9bdcb225d2e36150596ca3b",
+      "targetFingerprint": "e1097833fbf2f211"
+    },
+    "energy-book-earlier-2018-1:11": {
+      "sourceId": "energy-industrial-20180304:11",
+      "sourceFingerprint": "763c95dbf06f5bea",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "850e553315bd058b8887a6d4d9f72851887bd646679038ca6736ec519a036f75",
+      "targetFingerprint": "2a9d59802aafcd9d"
+    },
+    "energy-book-earlier-2018-1:13": {
+      "sourceId": "energy-industrial-20180304:13",
+      "sourceFingerprint": "75064ec9164824d2",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "cc2174db0a6ae4bba5d194f29576132f3b3c95bd8316fb027d1d97539405bd95",
+      "targetFingerprint": "cf53526286984413"
+    },
+    "energy-book-earlier-2018-1:15": {
+      "sourceId": "energy-industrial-20180304:15",
+      "sourceFingerprint": "350e315dc49949f9",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "90dd1ea4d247910306803a887a839b55d6a782ca80d90779ce2f8a6d48fd4dde",
+      "targetFingerprint": "f357c16c94007125"
+    },
+    "energy-book-earlier-2018-1:17": {
+      "sourceId": "energy-industrial-20180304:17",
+      "sourceFingerprint": "ac6b3623e36243e9",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "52f1519cb53cf5942a51e17eb9b69dd0da7e6c9172724c1896a4e8f422d57550",
+      "targetFingerprint": "1e943cb474939066"
+    },
+    "energy-book-earlier-2018-1:23": {
+      "sourceId": "energy-industrial-20180304:23",
+      "sourceFingerprint": "22e6d454dfcb8ca4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ee059303aad319f8d8de65ee963cc1353db1910b3c3ff1c638bf072c7e0ae297",
+      "targetFingerprint": "fe3c1f633cf0e7c9"
+    },
+    "energy-book-earlier-2018-1:24": {
+      "sourceId": "energy-industrial-20180304:24",
+      "sourceFingerprint": "982cbebf7f9e2ebd",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "68b32daec28ad18af9c58671fdf40aaad60fed926dbfa8008c46e19f37ad6efb",
+      "targetFingerprint": "fb9510527648e296"
+    },
+    "energy-book-earlier-2018-1:25": {
+      "sourceId": "energy-industrial-20180304:25",
+      "sourceFingerprint": "797cb2acc9899ce2",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "623d8ba129585decf4f71962bb9ca525b63822cf9835ae5850138a6b6e7b1952",
+      "targetFingerprint": "b5943be78be8b741"
+    },
+    "energy-book-earlier-2018-1:27": {
+      "sourceId": "energy-industrial-20180304:27",
+      "sourceFingerprint": "25e1249c993b8212",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "52eb30757fea4e49303cc62db4c1851de06a843e87fe33538744a4aedb674bd4",
+      "targetFingerprint": "c80199fb080293d9"
+    },
+    "energy-book-earlier-2018-1:29": {
+      "sourceId": "energy-industrial-20180304:29",
+      "sourceFingerprint": "c33a6c6d2d7262f9",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1d98d5f73deaa1aff7c0595fe5b8ce7be60650ba18982f2c8741fe6d26a1cf06",
+      "targetFingerprint": "fc7a5b9e1733769a"
+    },
+    "energy-book-earlier-2018-1:32": {
+      "sourceId": "energy-industrial-20180304:32",
+      "sourceFingerprint": "72387104e81b8ea3",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ef8bd204f5831de20c4eb7416f21c778e2feb904110ef75aa688bc88c8f74222",
+      "targetFingerprint": "e12b8bfc3b581b1a"
+    },
+    "energy-book-earlier-2018-1:33": {
+      "sourceId": "energy-industrial-20180304:33",
+      "sourceFingerprint": "b99ca7685ec49b33",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d4d38ff9872ef4515366298a26380d7cee1afe28c309accd18eb39e0dc2e2c8f",
+      "targetFingerprint": "3fe15260ed681db2"
+    },
+    "energy-book-earlier-2018-1:35": {
+      "sourceId": "energy-industrial-20180304:35",
+      "sourceFingerprint": "b63171a851e40996",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "de4e746b72339ae8cc2500cacf41a7737ba0853f8984509dba72724431d215c4",
+      "targetFingerprint": "cfe0c3f156cc9b01"
+    },
+    "energy-book-earlier-2018-1:36": {
+      "sourceId": "energy-industrial-20180304:36",
+      "sourceFingerprint": "63f61603a8885d07",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "136cce2ff2a62f61185079beb44f8d694633ed8da4845031568a12f5e565d87b",
+      "targetFingerprint": "cc55a66359f1ce2a"
+    },
+    "energy-book-earlier-2018-1:37": {
+      "sourceId": "energy-industrial-20180304:37",
+      "sourceFingerprint": "399f75c44b7a69f8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "361867b1104401197bfbfbc8bea4bbe1b0951f447427428e5014803e93eef416",
+      "targetFingerprint": "ce9c88f33e787c47"
+    },
+    "energy-book-earlier-2018-1:40": {
+      "sourceId": "energy-industrial-20140920:40",
+      "sourceFingerprint": "edb162c460f73db0",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d90976e27fec0eb13be2fa7eb07cb966069f6b2769aaab0f0c35b7d59f06bb99",
+      "targetFingerprint": "33b1a5b34d286535"
+    },
+    "energy-book-earlier-2018-1:42": {
+      "sourceId": "energy-industrial-20180304:42",
+      "sourceFingerprint": "fddbe6e7a2f7719d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d122d441c2116992eed7448132e10ff1da8d4bb0aa54f0d5f68ba81c5d7e87a8",
+      "targetFingerprint": "4a5e0d175dfb3116"
+    },
+    "energy-book-earlier-2018-1:44": {
+      "sourceId": "energy-industrial-20180304:44",
+      "sourceFingerprint": "98d41e52d9fc4c69",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4760cd4d70e8fc967d4449cbb24c4b27d1d6ab3b5dde24224a0c18fcdf76d2fd",
+      "targetFingerprint": "31ac2f280176f924"
+    },
+    "energy-book-earlier-2018-1:45": {
+      "sourceId": "energy-industrial-20180304:45",
+      "sourceFingerprint": "a336b2fb21fd83a4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "16c4bbf091d26b6d75e810831a47e65c421380b972635226cd56dbea48a8abc2",
+      "targetFingerprint": "26e94b216bb9f6b9"
+    },
+    "energy-book-earlier-2018-1:58": {
+      "sourceId": "energy-industrial-20180304:58",
+      "sourceFingerprint": "50cb7d5f3a0da1aa",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "eb63de897357520ec0439877ce13be3870367493227b39067ac346485fc0e048",
+      "targetFingerprint": "ad2fa59da8d41981"
+    },
+    "energy-book-earlier-2018-1:61": {
+      "sourceId": "energy-industrial-20180304:61",
+      "sourceFingerprint": "b5f66a4866200273",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ab1ef89a9033ecfa2a7853f499429604726685338479bf51de099e4210d31301",
+      "targetFingerprint": "4a838300dae251fa"
+    },
+    "energy-book-earlier-2018-1:62": {
+      "sourceId": "energy-industrial-20180304:62",
+      "sourceFingerprint": "b64b8ab8568a9700",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ac92fbf425c32ea21e653d96f9cee0007086f2009054979c2362f8f8aba0038e",
+      "targetFingerprint": "8557eb3ea8dbdc43"
+    },
+    "energy-book-earlier-2018-1:63": {
+      "sourceId": "energy-industrial-20180304:63",
+      "sourceFingerprint": "ec7aefe7fbe8f8ba",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6fa3a6ed766199584d55e4eb8197df4acc163e5d40975c398f72bec490177fd2",
+      "targetFingerprint": "b762e2a299f968a7"
+    },
+    "energy-book-earlier-2018-1:64": {
+      "sourceId": "energy-industrial-20180304:64",
+      "sourceFingerprint": "c60c558ff67aca9d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "247651ed625de6c2755385a0be764029704a16efaa0656bc44088b84d8a26ca0",
+      "targetFingerprint": "9f71ea120b36084e"
+    },
+    "energy-book-earlier-2018-1:65": {
+      "sourceId": "energy-industrial-20180304:65",
+      "sourceFingerprint": "1f8149aeb9e76a98",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d9e027aca5b5295b927b64da5c1c56c961cf75cfab17e0d28eb2dda99be5ff1b",
+      "targetFingerprint": "89625ce1f66575ff"
+    },
+    "energy-book-earlier-2018-1:66": {
+      "sourceId": "energy-industrial-20180304:66",
+      "sourceFingerprint": "3ffdfab0ec7f4dcf",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6f68303f5e0e68f5088eae9bc2ed7275c48150bad426552b3edd44bd0c1a463b",
+      "targetFingerprint": "5efe7be0da2fe48e"
+    },
+    "energy-book-earlier-2018-1:72": {
+      "sourceId": "energy-industrial-20180304:72",
+      "sourceFingerprint": "d2a74ea1427f0cf3",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ef3a188a1ce97aad191ff477239ae8c52b320abab34a249437e6ffe39a67b16e",
+      "targetFingerprint": "41b056334bc325c0"
+    },
+    "energy-book-earlier-2018-1:75": {
+      "sourceId": "energy-industrial-20180304:75",
+      "sourceFingerprint": "59755b175c3b9e7c",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4c5918499999f3ff564dbd6f031f4d858030e01d3811f63ce8a19c1f86c83f1b",
+      "targetFingerprint": "c0b12e3de900aed1"
+    },
+    "energy-book-earlier-2018-1:77": {
+      "sourceId": "energy-industrial-20180304:77",
+      "sourceFingerprint": "9143153070db8618",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e5b1f87f0c58387071229ba0c4b27a7fa2808a72ca631b038a317e13ad122f22",
+      "targetFingerprint": "21ab4bcd3f3bc551"
+    },
+    "energy-book-earlier-2018-1:78": {
+      "sourceId": "energy-industrial-20180304:78",
+      "sourceFingerprint": "b93eaddf2dfac4fb",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5905b45d0ef49653596aa6d72f7d563a8485937e4c7e763e459d120dee2b67d2",
+      "targetFingerprint": "695d23b8a74ff050"
+    },
+    "energy-book-earlier-2018-2:1": {
+      "sourceId": "energy-industrial-20180428:1",
+      "sourceFingerprint": "7750e59188209c39",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8b0637cdb4e8ce29548006196fed2c02f6b8162d6adf34d5ae14ef145779e65e",
+      "targetFingerprint": "802381d36f2d2bc2"
+    },
+    "energy-book-earlier-2018-2:3": {
+      "sourceId": "energy-industrial-20180428:3",
+      "sourceFingerprint": "7fbcdd03c6cf2990",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8b923d4849194687d173c642932f8842d5dc679c284cc1345802ce110f2600e5",
+      "targetFingerprint": "ae09e213f8c9113"
+    },
+    "energy-book-earlier-2018-2:8": {
+      "sourceId": "energy-industrial-20180428:8",
+      "sourceFingerprint": "fc477df963008af0",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e44fd4060e4b111a20daa6decc86317e98994bb5a69ebf4bfd0bbdba4e121a56",
+      "targetFingerprint": "897961875e9905b1"
+    },
+    "energy-book-earlier-2018-2:13": {
+      "sourceId": "energy-industrial-20180428:13",
+      "sourceFingerprint": "38da46312ad57fe8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "53eeb7db7e27a3603446af712741161490892111341019a9204ef0179e1d01c0",
+      "targetFingerprint": "52b59bd6dd6a80f1"
+    },
+    "energy-book-earlier-2018-2:14": {
+      "sourceId": "energy-industrial-20180428:14",
+      "sourceFingerprint": "cad1a8e0a2ad8ae5",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "eb1f28172d5cc5cdb276a4e8d06aeb0414ad7b25bc5027b50c00a187e79c87ed",
+      "targetFingerprint": "72a8280d3df4144"
+    },
+    "energy-book-earlier-2018-2:15": {
+      "sourceId": "energy-industrial-20180428:15",
+      "sourceFingerprint": "affd46b74b53dac3",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "be162d4104d21996da2c3da2477843f726bc01fec621e883ca39fa4c863d9e8e",
+      "targetFingerprint": "90da439ba9cc6a9a"
+    },
+    "energy-book-earlier-2018-2:17": {
+      "sourceId": "energy-industrial-20180428:17",
+      "sourceFingerprint": "79b759727a26cef0",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f6db0fff08e3c44394f8e4b395175a03b1046713862753f709e84e92ad5e375d",
+      "targetFingerprint": "683a9aafeb879fd3"
+    },
+    "energy-book-earlier-2018-2:20": {
+      "sourceId": "energy-industrial-20180428:20",
+      "sourceFingerprint": "8e1281fc80c3d915",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8f84523ae687d401d19ffc678588793ff5fc1e5847090ee8445798c0953e6015",
+      "targetFingerprint": "5ae780916e11e74"
+    },
+    "energy-book-earlier-2018-2:25": {
+      "sourceId": "energy-industrial-20180428:25",
+      "sourceFingerprint": "aa5f2ce1c2083224",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "3342039cbf090f54832096ca7fc93b871e764bea111e0f986f4d84eb2abf9a3c",
+      "targetFingerprint": "40ba159ab5c7192d"
+    },
+    "energy-book-earlier-2018-2:28": {
+      "sourceId": "energy-industrial-20180428:28",
+      "sourceFingerprint": "27d4e23782c4c7f6",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "735862cddf2c6492b46bfbabd6bc12a52baf113e12db8d02bb3d83930c79fb21",
+      "targetFingerprint": "b4cd63a39388c919"
+    },
+    "energy-book-earlier-2018-2:29": {
+      "sourceId": "energy-industrial-20180428:29",
+      "sourceFingerprint": "bd0d7ef440758ae9",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a5dc95c4c44196fa4d478ff07bccc077d1f560313685584dd640f0da5d1e42e4",
+      "targetFingerprint": "cfffaf83297a580e"
+    },
+    "energy-book-earlier-2018-2:31": {
+      "sourceId": "energy-industrial-20180428:31",
+      "sourceFingerprint": "14f55ba2baf352ba",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "31735d485f2b69abc6cda4dfe035489f16e66910a64776f91fc61f9dacc21f92",
+      "targetFingerprint": "517d2b86eeb1c033"
+    },
+    "energy-book-earlier-2018-2:35": {
+      "sourceId": "energy-industrial-20180428:35",
+      "sourceFingerprint": "288ac7cab621482f",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5c5d01dc257b77a9afa63d5a317bb14a6597660074d004d7216d3cd767b35135",
+      "targetFingerprint": "679caa3313d1d7aa"
+    },
+    "energy-book-earlier-2018-2:36": {
+      "sourceId": "energy-industrial-20180428:36",
+      "sourceFingerprint": "99c05e7fb226f",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5f972091086197c13a9548a54b2a59e5cf6e32805230be7ee1059d2ad81fc626",
+      "targetFingerprint": "39b5ef1b10d87b44"
+    },
+    "energy-book-earlier-2018-2:39": {
+      "sourceId": "energy-industrial-20180428:39",
+      "sourceFingerprint": "eda158a29a6cad8f",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c5b1d11df9a239e98b46b0978f1b8a7132034992041dd839669a612c80b8eed8",
+      "targetFingerprint": "af452b12701e6a3c"
+    },
+    "energy-book-earlier-2018-2:40": {
+      "sourceId": "energy-industrial-20180428:40",
+      "sourceFingerprint": "83a31cdca007a59d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5c3569c9ac867f3811307aa6e02ac36e09b68a15419cf7f41c7f42045efd8d8b",
+      "targetFingerprint": "4fa408590605e18a"
+    },
+    "energy-book-earlier-2018-2:41": {
+      "sourceId": "energy-industrial-20180428:41",
+      "sourceFingerprint": "22fe9de18731eeeb",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "560c7b2951ed1bff20bd04030131ec2033bca7388749b34ca4d3768059056b29",
+      "targetFingerprint": "23403d1a6ec7f3c4"
+    },
+    "energy-book-earlier-2018-2:47": {
+      "sourceId": "energy-industrial-20180428:47",
+      "sourceFingerprint": "64b66e464a1517e2",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4ba69080396c0b9cae9c56f4528e182f46f66d2bc47b962255e7facc9fabc9c5",
+      "targetFingerprint": "1609e44d92c5e3e1"
+    },
+    "energy-book-earlier-2018-2:52": {
+      "sourceId": "energy-industrial-20180428:52",
+      "sourceFingerprint": "8f98d1efd3ccae74",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "3748b191495c98eba62a54620fec804577eb7f0dc29a35ef3b4f46d0f72c9f64",
+      "targetFingerprint": "cc3852e4027c0387"
+    },
+    "energy-book-earlier-2018-2:56": {
+      "sourceId": "energy-industrial-20180428:56",
+      "sourceFingerprint": "68a9eee93f31197e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "de5b1fbe94e8c07c7645fa30220b303912e8b99ad6c1c159b560b2614e3f6e00",
+      "targetFingerprint": "a2e01d40984b2b1f"
+    },
+    "energy-book-earlier-2018-2:57": {
+      "sourceId": "energy-industrial-20180428:57",
+      "sourceFingerprint": "a51118e3a858ca11",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e5820dc1372f4e6715596c4ea3061758268c9d1e94ac7a102f481de9b916844f",
+      "targetFingerprint": "5e01fa160ae56c5a"
+    },
+    "energy-book-earlier-2018-2:58": {
+      "sourceId": "energy-industrial-20180428:58",
+      "sourceFingerprint": "1ed11e75436c74aa",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "20bf6a7f9c65c19cf6f6a7c8c60edab6b6df461cc51bc29c426c92b3cfa29f1b",
+      "targetFingerprint": "445cfc41094f9cb1"
+    },
+    "energy-book-earlier-2018-2:60": {
+      "sourceId": "energy-industrial-20180428:60",
+      "sourceFingerprint": "9b34ac2014ebc737",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bfe1dc2acc280b3a56e9daa489ed2653ef1bb8744212a97e08a5319216dfec64",
+      "targetFingerprint": "8f1e91e12071bc0"
+    },
+    "energy-book-earlier-2018-2:63": {
+      "sourceId": "energy-industrial-20180428:63",
+      "sourceFingerprint": "4e05b9dc0fc801e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e7318c7c72b50b457a5faa23a87372ec4b9ff2540c88a6a3050f8b34c6ba757b",
+      "targetFingerprint": "71171c8df46f9bdb"
+    },
+    "energy-book-earlier-2018-2:65": {
+      "sourceId": "energy-industrial-20180428:65",
+      "sourceFingerprint": "8c5bfa00938922d4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "91869be957c3d4ecaf97ccb17c801fc9b672bfef259bb611d7f24f8a2c832a4a",
+      "targetFingerprint": "611b213a78becfa7"
+    },
+    "energy-book-earlier-2018-2:66": {
+      "sourceId": "energy-industrial-20180428:66",
+      "sourceFingerprint": "98f14441861236d3",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "44014eee70233a98bc5932445875a35f61dbb545000e4031564631ebfc80538c",
+      "targetFingerprint": "5a980adfa92f0f00"
+    },
+    "energy-book-earlier-2018-2:69": {
+      "sourceId": "energy-industrial-20180428:69",
+      "sourceFingerprint": "61a421a31ee8204e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a4cc1b2ef20688ae1995d58d21d814f407c83b54d5468abe571d420155e1029f",
+      "targetFingerprint": "c27e478e7c670e25"
+    },
+    "energy-book-earlier-2018-2:75": {
+      "sourceId": "energy-industrial-20180428:75",
+      "sourceFingerprint": "4b06175c32ba5d1a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d911501a39b3ecf8ec0e9213f8c5f244ad82efccda8c4d5ec71032802d302db7",
+      "targetFingerprint": "a4b9caa5d8c2d47b"
+    },
+    "energy-book-earlier-2018-2:79": {
+      "sourceId": "energy-industrial-20180428:79",
+      "sourceFingerprint": "17131794db8fd08f",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a13636dda89cc6399978cbacfb7128dd2089ba160a707f53cdf1fdb49b4ab38e",
+      "targetFingerprint": "f36e9b616c44411c"
+    },
+    "energy-book-earlier-2018-4:1": {
+      "sourceId": "energy-industrial-20180915:1",
+      "sourceFingerprint": "f50a9fd11b85bd95",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "17cfb0e95952c068d60ef648b542192e1ee28164832c5969b97164e10f9808bf",
+      "targetFingerprint": "ba4cca529281b98e"
+    },
+    "energy-book-earlier-2018-4:3": {
+      "sourceId": "energy-industrial-20180915:3",
+      "sourceFingerprint": "353df2f002a898c",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0dbe3619089487f72b8cfd9a995c6a227a2a049fb37c6de43bdc720b4423c444",
+      "targetFingerprint": "c135f1867e443ddd"
+    },
+    "energy-book-earlier-2018-4:4": {
+      "sourceId": "energy-industrial-20180915:4",
+      "sourceFingerprint": "f75340797fb51ae1",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2cb5840e64c25e81403b1f392a518d63b5643dee95910c99dad9a9e5cddd14a1",
+      "targetFingerprint": "4f2289dffbb5f034"
+    },
+    "energy-book-earlier-2018-4:7": {
+      "sourceId": "energy-industrial-20180915:7",
+      "sourceFingerprint": "bfb6bc5641efaafb",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "890b3be642ad14206b506aca910615d1975dfa93e42d52dbb915b57192033565",
+      "targetFingerprint": "277bb2bb49a586c6"
+    },
+    "energy-book-earlier-2018-4:9": {
+      "sourceId": "energy-industrial-20180915:9",
+      "sourceFingerprint": "107ae84c24e61c9a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "09053b3efff00bcf3985cf9bcdc8a8840b96ed2602de70dcb32f9994ea6e7535",
+      "targetFingerprint": "b13e3b9c0ffdbcad"
+    },
+    "energy-book-earlier-2018-4:10": {
+      "sourceId": "energy-industrial-20180915:10",
+      "sourceFingerprint": "d1ccbea9a576384",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "18994a7f619300d36fc209bd7029471a453299cb5469c4beb8a22112db1f19b3",
+      "targetFingerprint": "3bd20062da5e3f61"
+    },
+    "energy-book-earlier-2018-4:11": {
+      "sourceId": "energy-industrial-20180915:11",
+      "sourceFingerprint": "d361b2ee310fefc7",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "063bbc866c7cffd6e975a3948ee554d5c4cb3fb53d0c230586f28c93916d4de5",
+      "targetFingerprint": "2efce3eba1fa3f4"
+    },
+    "energy-book-earlier-2018-4:16": {
+      "sourceId": "energy-industrial-20180915:16",
+      "sourceFingerprint": "b982dab3e70ccb87",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "337d5b22d20c3497c3bff6c936a3be6e2772576ff91472e30dee16b56e304414",
+      "targetFingerprint": "a03cffdad2de757e"
+    },
+    "energy-book-earlier-2018-4:18": {
+      "sourceId": "energy-industrial-20180915:18",
+      "sourceFingerprint": "580884d8644910c8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "fd02fb2e74db8d3e350c055223d1fff898ba48d9d226f78b6bbf8d275dfbb9a2",
+      "targetFingerprint": "5e699b89fbcfad91"
+    },
+    "energy-book-earlier-2018-4:19": {
+      "sourceId": "energy-industrial-20180915:19",
+      "sourceFingerprint": "c7c6c762e61a263d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bade058aac3f96cdff9f7457979c36b0bd8fdf3e83dce2a07550a3c68dae1456",
+      "targetFingerprint": "4f1625dcc0c4da92"
+    },
+    "energy-book-earlier-2018-4:20": {
+      "sourceId": "energy-industrial-20180915:20",
+      "sourceFingerprint": "f23ab2a7c42e6485",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "560d6d17248cec6a018866225bc0a3898dda6d21abc095b239c106b3adeb13a0",
+      "targetFingerprint": "5fb37f256f549154"
+    },
+    "energy-book-earlier-2018-4:23": {
+      "sourceId": "energy-industrial-20180915:23",
+      "sourceFingerprint": "7d58783995fe86d8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a6de012a70cc3db53494743db2eeb0dd764b5030d037e78e04f838c80bca9bed",
+      "targetFingerprint": "b24b858c81ba53a9"
+    },
+    "energy-book-earlier-2018-4:25": {
+      "sourceId": "energy-industrial-20180915:25",
+      "sourceFingerprint": "babca1e8b4b79c38",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5b355350fd43347fbaece04a270fdb8c88926ed5bbd28d77afb5f22420d9309b",
+      "targetFingerprint": "20d3a6e2332a8769"
+    },
+    "energy-book-earlier-2018-4:26": {
+      "sourceId": "energy-industrial-20180915:26",
+      "sourceFingerprint": "9d1ded7c4e0c136f",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e48cbff58573f5e5b34e7c665c2ed3b32e8f3032e06034c45ee920c6d82bf55e",
+      "targetFingerprint": "efb69770fdc1648"
+    },
+    "energy-book-earlier-2018-4:31": {
+      "sourceId": "energy-industrial-20180915:31",
+      "sourceFingerprint": "cc14cba0cf1c6c83",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e514439203632c6c9304c5784da63ea23584eb8d837c1a4969404ba89e03a2a4",
+      "targetFingerprint": "1e310cd625e7cfe2"
+    },
+    "energy-book-earlier-2018-4:34": {
+      "sourceId": "energy-industrial-20180915:34",
+      "sourceFingerprint": "66548520f4cdea31",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1bc30609f28d82bbb8df206513de3ba9cad91c9330c407c78076efc9815ddc88",
+      "targetFingerprint": "fd57e13fca4d2e0"
+    },
+    "energy-book-earlier-2018-4:35": {
+      "sourceId": "energy-industrial-20180915:35",
+      "sourceFingerprint": "6c5e69cdd9d741c4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "eefef3cc0d9139ab69cc9c0b284263d14dde3c7d6fda80badd13b03b684eda90",
+      "targetFingerprint": "9e013454a5831c0b"
+    },
+    "energy-book-earlier-2018-4:37": {
+      "sourceId": "energy-industrial-20180915:37",
+      "sourceFingerprint": "ea4c81b0acf26e97",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "60e78865dded286e9c8d69f317642fab5a4b0ad3be283be05adc8a733381294f",
+      "targetFingerprint": "24f65b3a379a3452"
+    },
+    "energy-book-earlier-2018-4:46": {
+      "sourceId": "energy-industrial-20180915:46",
+      "sourceFingerprint": "98e3f9113cb9192e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "29b85d91c361cc2ddf97f74a1979e3c570471ead1e7f6aa52fc7fe62aefcaece",
+      "targetFingerprint": "362b84e2dc78c64d"
+    },
+    "energy-book-earlier-2018-4:48": {
+      "sourceId": "energy-industrial-20180915:48",
+      "sourceFingerprint": "5e9e489916319a58",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a666c6a81105533070d123affa8369b38d7f6a5e0148a8e453fb3658dfa776c4",
+      "targetFingerprint": "8d52a6fcac408e79"
+    },
+    "energy-book-earlier-2018-4:50": {
+      "sourceId": "energy-industrial-20180915:50",
+      "sourceFingerprint": "68f7a59a23b3a6ca",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e67a37e9e02c8daa3272ea16553168a81a3e122326866ebef633bc3b0b9d1823",
+      "targetFingerprint": "7ae0c5d05f0d64ab"
+    },
+    "energy-book-earlier-2018-4:52": {
+      "sourceId": "energy-industrial-20180915:52",
+      "sourceFingerprint": "89283516bc45d620",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "872326f555eba07be2dedf235d29f7bf5008cd5a909385dd4dda44662f8fe948",
+      "targetFingerprint": "69561c5e2bdf68dd"
+    },
+    "energy-book-earlier-2018-4:53": {
+      "sourceId": "energy-industrial-20180915:53",
+      "sourceFingerprint": "c2bf193a9070c6ec",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "cc0a77ce50561b1193f970a2f408b807d46e4b44fa5f1fc3f5d5e9b71cbb2186",
+      "targetFingerprint": "f10d7ab04c217aad"
+    },
+    "energy-book-earlier-2018-4:55": {
+      "sourceId": "energy-industrial-20180915:55",
+      "sourceFingerprint": "f3e4b5f3c33307aa",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f25b3f895b0361b8e281756d38b312ee5bd258086a91caf3164e57fd0402342b",
+      "targetFingerprint": "2e81071458178b5b"
+    },
+    "energy-book-earlier-2018-4:56": {
+      "sourceId": "energy-industrial-20180915:56",
+      "sourceFingerprint": "88eccf00544bc0ba",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bacab46e59dbbb4fd1f4f3ac89cf2263582958ffafb726732fc6304c691af901",
+      "targetFingerprint": "ab3deb291ff5534f"
+    },
+    "energy-book-earlier-2018-4:59": {
+      "sourceId": "energy-industrial-20180915:59",
+      "sourceFingerprint": "28182163ca30246",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0753180a8f6deb391266ac07bed8dc2a5292d08c5628b08ab270ee66348bc7c6",
+      "targetFingerprint": "a0ededde8552f7bd"
+    },
+    "energy-book-earlier-2018-4:61": {
+      "sourceId": "energy-industrial-20180915:61",
+      "sourceFingerprint": "168fb399e8c6854d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f7ce69bc916ca1c1c8c922198f79838c80bbc671625a74f68adb4eba29e85e36",
+      "targetFingerprint": "921ddcde3319f832"
+    },
+    "energy-book-earlier-2018-4:63": {
+      "sourceId": "energy-industrial-20180915:63",
+      "sourceFingerprint": "927040812a90ac7f",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "50987edefa50e300379b6f1f40054412bbb2ddcf09d4a06438f6ff08f607613d",
+      "targetFingerprint": "76a203f04a474ad6"
+    },
+    "energy-book-earlier-2018-4:68": {
+      "sourceId": "energy-industrial-20180915:68",
+      "sourceFingerprint": "73c1a42512e680cb",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f043cab93e19615f913c8249481e12d4f05d8e2800cc1c1e2891b564c5598d53",
+      "targetFingerprint": "eaec233f36653be6"
+    },
+    "energy-book-earlier-2018-4:71": {
+      "sourceId": "energy-industrial-20180915:71",
+      "sourceFingerprint": "983b02ea40bc4cc6",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8632938d892fd1059b168924b3a60bdfb87ec682f8a777f4cf5e721af738977b",
+      "targetFingerprint": "adb946ff31320f4d"
+    },
+    "energy-book-earlier-2018-4:72": {
+      "sourceId": "energy-industrial-20180915:72",
+      "sourceFingerprint": "fefe3056e271b3a6",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a497071521372885011ad2c76895307e920624eb09000d2b24f9320369066e3f",
+      "targetFingerprint": "f4520a739f34062f"
+    },
+    "energy-book-earlier-2018-4:76": {
+      "sourceId": "energy-industrial-20180915:76",
+      "sourceFingerprint": "11a10b5485b1f2e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "26a41f10f1fafe3eb8ee9fd34c02af870748471b8d957db0eb7c2ad3f7356a41",
+      "targetFingerprint": "ab66b81ec0a27c9f"
+    },
+    "energy-book-earlier-2018-4:78": {
+      "sourceId": "energy-industrial-20180915:78",
+      "sourceFingerprint": "970fccb3b02fc622",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "52d01d03c8ee32040379216fcc26fcb189d6bf861543e48c16837b5c6505b33a",
+      "targetFingerprint": "b008ecbc867674db"
+    },
+    "energy-book-earlier-2018-4:79": {
+      "sourceId": "energy-industrial-20180915:79",
+      "sourceFingerprint": "968cd38366b89bed",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2e8d3088a436a22467727c0dcee066818dae4dbc604fc34b13f1e0878e32d2bd",
+      "targetFingerprint": "bed49854dad07ce2"
+    },
+    "energy-book-earlier-2018-4:80": {
+      "sourceId": "energy-industrial-20180915:80",
+      "sourceFingerprint": "969c9dba99c33926",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1f30249689fbcb82fe8132fdc9ad2ad4f96c663dccf32661da70b9f2291df469",
+      "targetFingerprint": "43ed66ae92da4d03"
+    },
+    "energy-book-earlier-2019-1:1": {
+      "sourceId": "energy-industrial-20190303:1",
+      "sourceFingerprint": "330dc3f80d168dbf",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e9943c9aa5ace2d20965c08b76cc357817ab109981dceb336ea25397ccad0da3",
+      "targetFingerprint": "576cf91ad8e92d0a"
+    },
+    "energy-book-earlier-2019-1:4": {
+      "sourceId": "energy-industrial-20190303:4",
+      "sourceFingerprint": "f49892fb5fa62a77",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e6d0f9f63e5390549eb05a95cf119ecad37bf158988d9e2bec0056b5d3d3ca1a",
+      "targetFingerprint": "71bab73e6a3fc742"
+    },
+    "energy-book-earlier-2019-1:5": {
+      "sourceId": "energy-industrial-20190303:5",
+      "sourceFingerprint": "42b41a7a6f408b08",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "00a898ffe1f51fcf477cf1f365b27db31bab5b93833ef7c2ce88c48d7c89b2ef",
+      "targetFingerprint": "1986a073be7dba83"
+    },
+    "energy-book-earlier-2019-1:8": {
+      "sourceId": "energy-industrial-20190303:8",
+      "sourceFingerprint": "d9852a20833bf957",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4735fd7c18fbdb2aeb2fea4c392bdcf014f25249f42ea950b78cf55bb45e8926",
+      "targetFingerprint": "72e2139f5c03e0f0"
+    },
+    "energy-book-earlier-2019-1:10": {
+      "sourceId": "energy-industrial-20190303:10",
+      "sourceFingerprint": "48c4df1f8cd51bec",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ad9444bc8603733936fa06f6e9dcc86efa411275b79ccce43e5eed322665e437",
+      "targetFingerprint": "e959d43681af49a1"
+    },
+    "energy-book-earlier-2019-1:11": {
+      "sourceId": "energy-industrial-20190303:11",
+      "sourceFingerprint": "7f500bd8f9606411",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a11bb8680b441f26137778aab969d503e0de1f5b87709260c53c58f884bf16ac",
+      "targetFingerprint": "aacc6a5b629a71e"
+    },
+    "energy-book-earlier-2019-1:14": {
+      "sourceId": "energy-industrial-20190303:14",
+      "sourceFingerprint": "ad0e948e5404ad11",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2c17eab9e31c7889490f0657d7778260aff5ebae0dd9f722b0d76fdf7bbc9730",
+      "targetFingerprint": "9d1e824a949d61e2"
+    },
+    "energy-book-earlier-2019-1:16": {
+      "sourceId": "energy-industrial-20190303:16",
+      "sourceFingerprint": "88bff1630faab298",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5d282dcc0388ac44d5b2a79c9ec37da0b9118bfd1ea25d6945dd22d5532fe09e",
+      "targetFingerprint": "db7be7656ba62c4d"
+    },
+    "energy-book-earlier-2019-1:17": {
+      "sourceId": "energy-industrial-20190303:17",
+      "sourceFingerprint": "a1050e77296474c1",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "7d74493b4acb7ec07a6cbda53f80928974695655745b2bb3513d889020065441",
+      "targetFingerprint": "fa68f3ad8a85c2a4"
+    },
+    "energy-book-earlier-2019-1:18": {
+      "sourceId": "energy-industrial-20190303:18",
+      "sourceFingerprint": "3d2795c607ec5138",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a18ce22624a8143751824f799dfddcdbb2f05578abe6e8e372a9a5f89db32595",
+      "targetFingerprint": "f421367e25eba641"
+    },
+    "energy-book-earlier-2019-1:22": {
+      "sourceId": "energy-industrial-20190303:22",
+      "sourceFingerprint": "f656a800fc58aaa2",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "fd0298c6ec98ecdcd60cd3fe6754e05578daaba6d15d5c286822d4a30d457a49",
+      "targetFingerprint": "e5434b4b89be2edf"
+    },
+    "energy-book-earlier-2019-1:23": {
+      "sourceId": "energy-industrial-20190303:23",
+      "sourceFingerprint": "a03ca52d86be5964",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "412149a29c622e78259191b434268166bd267505f9683db842b53c013d8beb87",
+      "targetFingerprint": "db236e1096c95c7b"
+    },
+    "energy-book-earlier-2019-1:28": {
+      "sourceId": "energy-industrial-20190303:28",
+      "sourceFingerprint": "f69df63834fec9f9",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0c1b402ba2c7fc294de59c411e05ef57292f00821800b6924017a46e092834cc",
+      "targetFingerprint": "501ca4d120afe89c"
+    },
+    "energy-book-earlier-2019-1:33": {
+      "sourceId": "energy-industrial-20190303:33",
+      "sourceFingerprint": "b3cee9ba6cc4cb2b",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c394c03b3da8471a8f5e05003c23f4fb5da04a11273c720f8d919e9b9d3a10ed",
+      "targetFingerprint": "6b1ecbf8b8c7ce4c"
+    },
+    "energy-book-earlier-2019-1:35": {
+      "sourceId": "energy-industrial-20190303:35",
+      "sourceFingerprint": "41755a5b8e016b04",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1a4fbd24a61f5c085ab8351e3dea54cb5362a9798ef4e584afb204b1839cb0f7",
+      "targetFingerprint": "76767d1860aa7457"
+    },
+    "energy-book-earlier-2019-1:37": {
+      "sourceId": "energy-industrial-20190303:37",
+      "sourceFingerprint": "21ff7fc94afcf83e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "59cba2b9b4935d1f8ea5febab86d71ece15fda3a556826d18a930b47ace2ade2",
+      "targetFingerprint": "39b02f56915dd45d"
+    },
+    "energy-book-earlier-2019-1:38": {
+      "sourceId": "energy-industrial-20190303:38",
+      "sourceFingerprint": "b948bc01c9a18548",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f901d576cf416be2ead42d0374bc314b1180cbb93e526597c52ecfccb223147d",
+      "targetFingerprint": "b86892376029a1e1"
+    },
+    "energy-book-earlier-2019-1:43": {
+      "sourceId": "energy-industrial-20190303:43",
+      "sourceFingerprint": "9bb8a48ad055a057",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a98c5528b119b448526ab5bd05a754e83c3a559939e9f83fd163780599856643",
+      "targetFingerprint": "7bb25c51e78b2594"
+    },
+    "energy-book-earlier-2019-1:44": {
+      "sourceId": "energy-industrial-20190303:44",
+      "sourceFingerprint": "60d30fd370f66b8b",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "fd4db50979fc1f0fe21982f84ed5f23217d7aeffe51e4248ee1f69752ab52dab",
+      "targetFingerprint": "60efe326b973b402"
+    },
+    "energy-book-earlier-2019-1:47": {
+      "sourceId": "energy-industrial-20190303:47",
+      "sourceFingerprint": "644abec55d0fbc5a",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4647041e49f0237cec5117ac591be145e7b9e57e11ea83b17220f5211ed176b2",
+      "targetFingerprint": "e5cdeed712368737"
+    },
+    "energy-book-earlier-2019-1:48": {
+      "sourceId": "energy-industrial-20190303:48",
+      "sourceFingerprint": "dc410e7170ee16b9",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "877365ce14dfddc67ed2228ee2fe01e20b110aba9bc83c8b94cb3fb6a67bdf48",
+      "targetFingerprint": "860942932c8d11e2"
+    },
+    "energy-book-earlier-2019-1:49": {
+      "sourceId": "energy-industrial-20190303:49",
+      "sourceFingerprint": "3ccddc2d61bbc997",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "b89f28add3d5f983988356d08eec2017dcafeb70cb300513aae24e6fc264df4b",
+      "targetFingerprint": "2eb4b894e7a63c6e"
+    },
+    "energy-book-earlier-2019-1:52": {
+      "sourceId": "energy-industrial-20190303:52",
+      "sourceFingerprint": "d45df6c01f6d62fb",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8c8e1057ee08fa7bc59802b24eb3d88d66e649827e365578e9c946041d2db807",
+      "targetFingerprint": "27ee556db7291878"
+    },
+    "energy-book-earlier-2019-1:54": {
+      "sourceId": "energy-industrial-20190303:54",
+      "sourceFingerprint": "6b7c2f62ae709330",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "86600dcc82f9f9a42ed48fc8c1512a3822be38a3154e065aa9b6bc31b8ac796d",
+      "targetFingerprint": "4c3a7b2a6d471341"
+    },
+    "energy-book-earlier-2019-1:63": {
+      "sourceId": "energy-industrial-20190303:63",
+      "sourceFingerprint": "7f6af073c0bb1e73",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "695306aa8129ee675445423a5a59d88d559aa314ddf05e4db1fb161ceb227974",
+      "targetFingerprint": "7f1a46edf26dd6dd"
+    },
+    "energy-book-earlier-2019-1:68": {
+      "sourceId": "energy-industrial-20190303:68",
+      "sourceFingerprint": "e5ecc1bb03592ec8",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "739e3db0ccce26f258040a37f47602503bbf9675c97f83027d5ae9151a3a6448",
+      "targetFingerprint": "e871f7dede7fd6e6"
+    },
+    "energy-book-earlier-2019-1:69": {
+      "sourceId": "energy-industrial-20150531:67",
+      "sourceFingerprint": "68fd9288234c274b",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "decbaaa3f411feb60c8bbed524154eca14140a6561e32e4135cd6871f9cf9fcf",
+      "targetFingerprint": "8ba32eda3fdf4c3a"
+    },
+    "energy-book-earlier-2019-1:75": {
+      "sourceId": "energy-industrial-20190303:75",
+      "sourceFingerprint": "5182ae12796f8092",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d43c4075da59f23900b82d971bf7fcc419e9f3c14ac8fb799e279b3d6ae1b10a",
+      "targetFingerprint": "a28658167d312c35"
+    },
+    "energy-book-earlier-2019-1:76": {
+      "sourceId": "energy-industrial-20190303:76",
+      "sourceFingerprint": "6339f9586833b11c",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ab904b35ea6649b81f174f2780eae896430626488171e8e4a891ead885f602c3",
+      "targetFingerprint": "2c74c3e2e8f1bc55"
+    },
+    "energy-book-earlier-2019-1:78": {
+      "sourceId": "energy-industrial-20190303:78",
+      "sourceFingerprint": "8121f5b0b02c281e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "42cf1716978c2ae749c0ed3a548516eaee645e66c50e4e250c714e0c2156756a",
+      "targetFingerprint": "3063bcdb36d8a149"
+    },
+    "energy-book-earlier-2019-2:1": {
+      "sourceId": "energy-industrial-20190427:1",
+      "sourceFingerprint": "1b5d46f015de7299",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "93dd9842d24f2783ca058102dc26d486ba17e242671699e381d83bb5914e1ed4",
+      "targetFingerprint": "70437cce75c83158"
+    },
+    "energy-book-earlier-2019-2:2": {
+      "sourceId": "energy-industrial-20190427:2",
+      "sourceFingerprint": "82f7d08ae2266876",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "b0be7f8d88df0485ea71b9fc1cd7766e7ba1aeda07fe9d6f6d9ed1d464da7574",
+      "targetFingerprint": "fcd52b174f745f27"
+    },
+    "energy-book-earlier-2019-2:6": {
+      "sourceId": "energy-industrial-20190427:6",
+      "sourceFingerprint": "b9a4e16383d7f32e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1728482d6704dd48f2d7cb72a8f84548b6efcbd22f35fddbe67fe3aa0f927c72",
+      "targetFingerprint": "e4a4b13f4d02257f"
+    },
+    "energy-book-earlier-2019-2:9": {
+      "sourceId": "energy-industrial-20190427:9",
+      "sourceFingerprint": "93e0424ad423205e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1c8e7df7768adaa1873a98bfb5c308769cc567d20541a44230e9dc8ea2909b7b",
+      "targetFingerprint": "6c4fd9b147e15b0d"
+    },
+    "energy-book-earlier-2019-2:10": {
+      "sourceId": "energy-industrial-20190427:10",
+      "sourceFingerprint": "371c914dccbbdb4b",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "de3fc55fa1b987d12b001d1d2295e0fa4100f61c1912e35344873b5eb166ad1e",
+      "targetFingerprint": "4ba85db97f70cc4a"
+    },
+    "energy-book-earlier-2019-2:12": {
+      "sourceId": "energy-industrial-20190427:12",
+      "sourceFingerprint": "551f54a5aeff1b34",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "604f7d99bc87568d95263aa3abd653032b2488d099625ebff207e4c6dc9092f6",
+      "targetFingerprint": "d9b66f22d25976f"
+    },
+    "energy-book-earlier-2019-2:15": {
+      "sourceId": "energy-industrial-20190427:15",
+      "sourceFingerprint": "1f72f14887d0365e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9044286c3ec18181b00df68b8f42a43fe7403eea7b305e29be4b522cd26cd474",
+      "targetFingerprint": "eab85f80b5de8a93"
+    },
+    "energy-book-earlier-2019-2:18": {
+      "sourceId": "energy-industrial-20190427:18",
+      "sourceFingerprint": "9265fe6fc023f6c4",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "075117e22ac78b9d8c43673784620a12bff244b85fe2e2fa41a007bb1c092126",
+      "targetFingerprint": "c1e0bf2a0fecaa41"
+    },
+    "energy-book-earlier-2019-2:19": {
+      "sourceId": "energy-industrial-20190427:19",
+      "sourceFingerprint": "8eaa924cf6212a81",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0400be60ca053cc8d4ec6bacdc8fc6a142b841d95c507a2a179270208565e64f",
+      "targetFingerprint": "63beefe532302d62"
+    },
+    "energy-book-earlier-2019-2:23": {
+      "sourceId": "energy-industrial-20190427:23",
+      "sourceFingerprint": "f7595494d5b1961a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9841ad6bfe03a7be96bf34a686a65ee949e751379f71da042cc6fdca4f5b658e",
+      "targetFingerprint": "381de47878b3d21"
+    },
+    "energy-book-earlier-2019-2:25": {
+      "sourceId": "energy-industrial-20190427:25",
+      "sourceFingerprint": "92220b308f00dd0",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "763bd1f46ff2a2edde6f5d51279cc44f6441f49e8ed2b6fcb054743a8bed2bd6",
+      "targetFingerprint": "fd57317d3ee6ae5"
+    },
+    "energy-book-earlier-2019-2:28": {
+      "sourceId": "energy-industrial-20190427:28",
+      "sourceFingerprint": "1733d119f4fce5ae",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "75233f4c4e189de9b87c5cf533cb4d7a1e62fc9881b43d35a902f2ae4d5ea15f",
+      "targetFingerprint": "33ca35e73541baf"
+    },
+    "energy-book-earlier-2019-2:32": {
+      "sourceId": "energy-industrial-20190427:32",
+      "sourceFingerprint": "ded02a45af49cde3",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2149585ec2a20cc6567cfd0288a00e6d48953d23bab8e62ce38c57cf801ba870",
+      "targetFingerprint": "d543965ed48c2dfe"
+    },
+    "energy-book-earlier-2019-2:33": {
+      "sourceId": "energy-industrial-20190427:33",
+      "sourceFingerprint": "213bdfedc1faad5e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0cb42625e6270b66c3d9d8b80b2ef86ab2798761bd2d0840535eca4e6a266c86",
+      "targetFingerprint": "7570227c40ed8b89"
+    },
+    "energy-book-earlier-2019-2:40": {
+      "sourceId": "energy-industrial-20190427:40",
+      "sourceFingerprint": "d27cb14daf5dee31",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c66e71c0c4638d98faafda2021f8296d4c275ca50624e7ccbdde6e38c6f4744c",
+      "targetFingerprint": "61f82be8a0025bda"
+    },
+    "energy-book-earlier-2019-2:41": {
+      "sourceId": "energy-industrial-20190427:41",
+      "sourceFingerprint": "63da3f131ef0a07d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "7ccdcf0ba67dd37f22845d693a914fc74c4ef0ead6d2ac260e695cfd4b1f65be",
+      "targetFingerprint": "e341e833d55232d0"
+    },
+    "energy-book-earlier-2019-2:44": {
+      "sourceId": "energy-industrial-20190427:44",
+      "sourceFingerprint": "a2ae8f36d35977a1",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bc63c52e94cadad66fb0df30cdd1a0ef91da2e0a863e78281d6fa5fec7cd9819",
+      "targetFingerprint": "dd3fd6155adae548"
+    },
+    "energy-book-earlier-2019-2:45": {
+      "sourceId": "energy-industrial-20190427:45",
+      "sourceFingerprint": "ebcf7afc4cf146ae",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e011f01e99464a90d9d56ed16bdc56376a793fea58a99df0e49d18b88a3fc620",
+      "targetFingerprint": "dfd39eee2d4ca361"
+    },
+    "energy-book-earlier-2019-2:46": {
+      "sourceId": "energy-industrial-20190427:46",
+      "sourceFingerprint": "42bfccee85273584",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "28c5c53575ca176e819e282da346952ae6d153e85652512aa9d0ee81c6dc1baf",
+      "targetFingerprint": "5529ca445eeee6d1"
+    },
+    "energy-book-earlier-2019-2:47": {
+      "sourceId": "energy-industrial-20190427:47",
+      "sourceFingerprint": "cdf37ecb0d490a85",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "21a602754d03e03d261657260a3d6293df5c55734b74d749e42038e19b86a3b0",
+      "targetFingerprint": "7382129db4243524"
+    },
+    "energy-book-earlier-2019-2:48": {
+      "sourceId": "energy-industrial-20190427:48",
+      "sourceFingerprint": "fd0e78e931ac257a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "029f2995b945110fa14f14c12a502e3ec320d868727d6f31bab7b555e4b3dccc",
+      "targetFingerprint": "30acc5130bb95157"
+    },
+    "energy-book-earlier-2019-2:49": {
+      "sourceId": "energy-industrial-20190427:49",
+      "sourceFingerprint": "28a3cd617d607e19",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "55abc1dcdbc40695a11bae6b728e226798fb1c4d26228f7ae3fdd6d76358c672",
+      "targetFingerprint": "cff8b041ecbc837e"
+    },
+    "energy-book-earlier-2019-2:54": {
+      "sourceId": "energy-industrial-20190427:54",
+      "sourceFingerprint": "bd416f97d463b816",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "09a6ac5abc897681983592b431352f273e61bec2da0a46c82c9ce563b7c6f3ff",
+      "targetFingerprint": "fe77943633606eab"
+    },
+    "energy-book-earlier-2019-2:56": {
+      "sourceId": "energy-industrial-20190427:56",
+      "sourceFingerprint": "9bbc6a9a72b1f7c7",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8341ca800e63e2697d9b19242c59a9ee66be96a20ae4329597d51e179031452b",
+      "targetFingerprint": "e18ddc2ff901c10"
+    },
+    "energy-book-earlier-2019-2:61": {
+      "sourceId": "energy-industrial-20190427:61",
+      "sourceFingerprint": "6024333f1cd6c43d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "28596bd5656803fc0e0029d359f0fcf068d4907f4d56657b67249f0d97dc5218",
+      "targetFingerprint": "5bd06d22c3dc8e70"
+    },
+    "energy-book-earlier-2019-2:63": {
+      "sourceId": "energy-industrial-20190427:63",
+      "sourceFingerprint": "d5727e4800d9617b",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c3556998e9e2f189333cb2921784033a18afa880911c2f9ce7fe6bbb92623ba4",
+      "targetFingerprint": "4a1d76558febab2c"
+    },
+    "energy-book-earlier-2019-2:67": {
+      "sourceId": "energy-industrial-20190427:67",
+      "sourceFingerprint": "3f9bb3e2f6b88de7",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "49820ec5c92ecd8276abb11e9239123c18c5404b74c2cbdd743e1bd2ed1c694b",
+      "targetFingerprint": "4362dab3a0f6b4ea"
+    },
+    "energy-book-earlier-2019-2:68": {
+      "sourceId": "energy-industrial-20190427:68",
+      "sourceFingerprint": "38323f8dae1be9c8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6922e65be9257c2169bcafc20d14c245a8e5a2a6fa3666e1519686446af0163a",
+      "targetFingerprint": "92dcd13b5cb539ff"
+    },
+    "energy-book-earlier-2019-2:72": {
+      "sourceId": "energy-industrial-20190427:72",
+      "sourceFingerprint": "7da08425594a3f18",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "b0a154e5307fe6957268112790f8265343b9bdb26aa1a75f21c673501d45361b",
+      "targetFingerprint": "793f2315453c2d09"
+    },
+    "energy-book-earlier-2019-2:73": {
+      "sourceId": "energy-industrial-20190427:73",
+      "sourceFingerprint": "bc9b5ab8a1c0e611",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5d124f475895d8cf4eadff1ace4585d5dafabf3148ec3617920b01f7ba47c3b4",
+      "targetFingerprint": "9aae1c3b9df07268"
+    },
+    "energy-book-earlier-2019-2:75": {
+      "sourceId": "energy-industrial-20190427:75",
+      "sourceFingerprint": "3060c6a4341e18e6",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "620a2228aa6a0d190234bd3cca8da2cdcdb48d1a5c7eba653dfb4340999c6c41",
+      "targetFingerprint": "7fa260482f5d3ba9"
+    },
+    "energy-book-earlier-2019-2:76": {
+      "sourceId": "energy-industrial-20190427:76",
+      "sourceFingerprint": "c21e481a2a6494d4",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bc361973cc4ef3304c9e0dab5c9d918a372aafa0a8176868c2b37442a03659cf",
+      "targetFingerprint": "1896ac9f74ff9539"
+    },
+    "energy-book-earlier-2019-2:80": {
+      "sourceId": "energy-industrial-20190427:80",
+      "sourceFingerprint": "350bab2905bc78df",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bf7a9183cb7911114488e3a9f71c51840d7ea34ff4063b0927166bd8c978402a",
+      "targetFingerprint": "b41d43bd69007d68"
+    },
+    "energy-book-earlier-2019-4:4": {
+      "sourceId": "energy-industrial-20190921:4",
+      "sourceFingerprint": "a68cc122d0ea5cb1",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ca105bbeda17bdc0f2b719b2b7bfaf445ae615f94b235ef001fd48c6eeff4fc9",
+      "targetFingerprint": "e61125589fed4bee"
+    },
+    "energy-book-earlier-2019-4:5": {
+      "sourceId": "energy-industrial-20190921:5",
+      "sourceFingerprint": "e939d231754d55e9",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6cbcb51d3609299878393391a3597138f45ad2c6b96836aec3da128bf50c0af0",
+      "targetFingerprint": "e073e5093182e8a4"
+    },
+    "energy-book-earlier-2019-4:6": {
+      "sourceId": "energy-industrial-20190921:6",
+      "sourceFingerprint": "38e94934d4d91e37",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d7f5a21c5201bea91ff926dbc24d994cfc6af3711565acec40b9d625b1338222",
+      "targetFingerprint": "be2994e2abb264e6"
+    },
+    "energy-book-earlier-2019-4:9": {
+      "sourceId": "energy-industrial-20190921:9",
+      "sourceFingerprint": "b49995f5dcd83caf",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "99e83abce38c091fa85ab10f3333380e3e4b5e41871512c1123fdb958d66891e",
+      "targetFingerprint": "5a8ed972a0b0432c"
+    },
+    "energy-book-earlier-2019-4:10": {
+      "sourceId": "energy-industrial-20190921:10",
+      "sourceFingerprint": "15ed090f8ad841be",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a7d6e4c272a5247cc239fb988485f1d5f0df8486e081f4025e7b8ef66789f789",
+      "targetFingerprint": "e608b10ed3ee9611"
+    },
+    "energy-book-earlier-2019-4:17": {
+      "sourceId": "energy-industrial-20190921:17",
+      "sourceFingerprint": "35d93bde815c5e5c",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "cf7c5cdce01b80b467967f0c0ec94a99300add4d63399e1405a7096fb0d7df0e",
+      "targetFingerprint": "c8607940b7db40bd"
+    },
+    "energy-book-earlier-2019-4:24": {
+      "sourceId": "energy-industrial-20190921:24",
+      "sourceFingerprint": "83fe64538c7ae25a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c199b513f9eeb2a9214227fdd7238f97e8bd1a90755fcc803a75ea6a060199eb",
+      "targetFingerprint": "210ac7b4e3e57523"
+    },
+    "energy-book-earlier-2019-4:25": {
+      "sourceId": "energy-industrial-20190921:25",
+      "sourceFingerprint": "6eff43e13d167a43",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8f2d3453ad349a2b5aa87d131f76f69990920bc17b44a58fb54333cb68cf6e4f",
+      "targetFingerprint": "273c5dfde97f9cba"
+    },
+    "energy-book-earlier-2019-4:27": {
+      "sourceId": "energy-industrial-20190921:27",
+      "sourceFingerprint": "b37eb8c1238788be",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "7b62a643ca85e59ee573af71f8a1eb9b525f8e6f08bae4b6cc739ada95dffe55",
+      "targetFingerprint": "cb8a1aefaff84183"
+    },
+    "energy-book-earlier-2019-4:28": {
+      "sourceId": "energy-industrial-20190921:28",
+      "sourceFingerprint": "fbf55efa3c3df5ae",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8bc3dc7676385c6758ea8e33bbe53fadffbeb329796e9275cd8cff5afa6de604",
+      "targetFingerprint": "199bf478b248845b"
+    },
+    "energy-book-earlier-2019-4:33": {
+      "sourceId": "energy-industrial-20190921:33",
+      "sourceFingerprint": "b6d00655d609d2eb",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2449e585b527222f4d6f62d1457a5216c734703b16590b538bfa52cf645458c5",
+      "targetFingerprint": "854e68c5abc671b0"
+    },
+    "energy-book-earlier-2019-4:37": {
+      "sourceId": "energy-industrial-20190921:37",
+      "sourceFingerprint": "a5c65221526ba658",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9d08939d76334a4db374c352d57c38c604a228ee0232d1bf33c16658fe99cd79",
+      "targetFingerprint": "7c783455c923272f"
+    },
+    "energy-book-earlier-2019-4:41": {
+      "sourceId": "energy-industrial-20190921:41",
+      "sourceFingerprint": "895b10a7ce9c828",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f7433001d5a242a61b5f6ca1e55060ea44243df40ed8ead9cc26451de9ad3752",
+      "targetFingerprint": "c8eb32c862093643"
+    },
+    "energy-book-earlier-2019-4:42": {
+      "sourceId": "energy-industrial-20190921:42",
+      "sourceFingerprint": "169cd7f0f46a3aed",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "697db0267160498460efa9a74a714dddf4f5788823678b071ebcb1c223639489",
+      "targetFingerprint": "853485f05dfe6d74"
+    },
+    "energy-book-earlier-2019-4:43": {
+      "sourceId": "energy-industrial-20190921:43",
+      "sourceFingerprint": "1d7405fb1585a9d7",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d749db78847a4455e3502d1ad06d638d2d1908e26b97c3c8e2483f8fcc72b18c",
+      "targetFingerprint": "14dd65ba4b3b3266"
+    },
+    "energy-book-earlier-2019-4:49": {
+      "sourceId": "energy-industrial-20190921:49",
+      "sourceFingerprint": "5a6d41ae1e99d1f1",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8421ae811a58089e26ca1e4446890aa27709f8ea43969df8b528eb43599ffc4e",
+      "targetFingerprint": "b3f94675c3c7b922"
+    },
+    "energy-book-earlier-2019-4:50": {
+      "sourceId": "energy-industrial-20190921:50",
+      "sourceFingerprint": "1eb2027f2cdefcee",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "7af750beb331d1b4ba94f702c7a373130ae82359168201bf0c0fa1942da2ba1e",
+      "targetFingerprint": "b8e02c2a2990a289"
+    },
+    "energy-book-earlier-2019-4:53": {
+      "sourceId": "energy-industrial-20190921:53",
+      "sourceFingerprint": "934d948b6925c870",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a4dd39c7e2602240398cb1ff0271d449111534f38f4f0c750ce2a1a1ed48d7cd",
+      "targetFingerprint": "d4f7398ef1c04725"
+    },
+    "energy-book-earlier-2019-4:56": {
+      "sourceId": "energy-industrial-20190921:56",
+      "sourceFingerprint": "f3678db48059f296",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8e1ae458c059d1259d693a4263cbe1e770ed1a1823d643c32b07cb555f7f5397",
+      "targetFingerprint": "e8b657a9739b4327"
+    },
+    "energy-book-earlier-2019-4:60": {
+      "sourceId": "energy-industrial-20190921:60",
+      "sourceFingerprint": "583a87146eaf681d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d044e114c4a46e41c360ade3df3de036d7194a090655bd5805df8a8f3880e772",
+      "targetFingerprint": "3ea48279d0e8fbb6"
+    },
+    "energy-book-earlier-2019-4:61": {
+      "sourceId": "energy-industrial-20190921:61",
+      "sourceFingerprint": "4919cc833fb2e288",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1921962a13b01a43964f6f01e1e00e13360eb1c48dc0a971a2ea0e145d69558b",
+      "targetFingerprint": "eb63f6bb4f62d12b"
+    },
+    "energy-book-earlier-2019-4:63": {
+      "sourceId": "energy-industrial-20190921:63",
+      "sourceFingerprint": "903937c6f06bdad5",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d127e0b5baa245c4bb2579b10458cc54380c59c48c89fba70172f82c01d31ace",
+      "targetFingerprint": "4b43d7d89f058d56"
+    },
+    "energy-book-earlier-2019-4:65": {
+      "sourceId": "energy-industrial-20190921:65",
+      "sourceFingerprint": "e3bc95e35d5db054",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "119abc1365b12b30e627e1b0ea50347de927f6c54a4f50ba8da07bb3eb9229a6",
+      "targetFingerprint": "94b1fcd91c8a8f23"
+    },
+    "energy-book-earlier-2019-4:69": {
+      "sourceId": "energy-industrial-20140302:68",
+      "sourceFingerprint": "cae4831eede562b4",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1d30ef0d31a0646604937937fba2569a3461115588bd85f8ad81ac0ea8242bfe",
+      "targetFingerprint": "bbe941c21941576d"
+    },
+    "energy-book-earlier-2019-4:74": {
+      "sourceId": "energy-industrial-20190921:74",
+      "sourceFingerprint": "ebbd2c6ef6b23b6a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2237c87a87cbaa61bf9888ee5baaeb127aaba58126f69e543c62ccdc10dec383",
+      "targetFingerprint": "f138cdc705d632ed"
+    },
+    "energy-book-earlier-2019-4:80": {
+      "sourceId": "energy-industrial-20190921:80",
+      "sourceFingerprint": "aa180f49ce297c86",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a0fa49c03c51791a620502c036ec262ff52a8187c5ae715a2210f75e90136d94",
+      "targetFingerprint": "db630eadcba9e17b"
+    },
+    "energy-book-earlier-2020-1·2통합:7": {
+      "sourceId": "energy-industrial-20200606:7",
+      "sourceFingerprint": "3711e1f0b98b29e6",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "3b93962a1346f7c82614f7db9d31c8d00371fb44233405ed4bbdadce53bfc655",
+      "targetFingerprint": "a151c3c9ad982103"
+    },
+    "energy-book-earlier-2020-1·2통합:10": {
+      "sourceId": "energy-industrial-20200606:10",
+      "sourceFingerprint": "bc9486c117e9951b",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "891bae9bf47c0df9111499c375be5650cb84a8bee865c03b8f5ea1fca65b6837",
+      "targetFingerprint": "bd942aa8195c2204"
+    },
+    "energy-book-earlier-2020-1·2통합:11": {
+      "sourceId": "energy-industrial-20200606:11",
+      "sourceFingerprint": "e05d7f4960b9b4de",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "bbde16bd413a56f7f28b0b1b43733381f73789885fd4c662807c9c9a5c3da3a0",
+      "targetFingerprint": "99879a2f835cce3f"
+    },
+    "energy-book-earlier-2020-1·2통합:17": {
+      "sourceId": "energy-industrial-20200606:17",
+      "sourceFingerprint": "80947d70ffe52c3e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "fad3e23a5f15100a6018b429e60a1c2e382350ca8ad6a90d99b94aa69cc7ce3e",
+      "targetFingerprint": "d93fae77e6ea8761"
+    },
+    "energy-book-earlier-2020-1·2통합:28": {
+      "sourceId": "energy-industrial-20200606:28",
+      "sourceFingerprint": "b3c3e554fc02e7ea",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e0496e9b7ddea2659268484d508ad5ad6844f6310c49f172747718ad67cd12d1",
+      "targetFingerprint": "7c7ba86588503ad1"
+    },
+    "energy-book-earlier-2020-1·2통합:36": {
+      "sourceId": "energy-industrial-20200606:36",
+      "sourceFingerprint": "fd3763c5c857829b",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9f451b07b4eee33ae0ac1c1d6f448fb661ef87f3498a3589bdd8393cdcb5d3f3",
+      "targetFingerprint": "15997edfebb0149c"
+    },
+    "energy-book-earlier-2020-1·2통합:38": {
+      "sourceId": "energy-industrial-20200606:38",
+      "sourceFingerprint": "9e6f1d4f0808d66d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d9aa7dd5c6f68d03f010a2246a8b035fe77d39c5d57743722e30f82e5684c448",
+      "targetFingerprint": "d6c3edda3c41a40"
+    },
+    "energy-book-earlier-2020-1·2통합:39": {
+      "sourceId": "energy-industrial-20200606:39",
+      "sourceFingerprint": "935247351f9dc623",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4e7ae21e1348bb4d15162ac8b09208610d241acd289e35b49e1a3b0e85acd5e9",
+      "targetFingerprint": "7bcac02e6e43ecc8"
+    },
+    "energy-book-earlier-2020-1·2통합:41": {
+      "sourceId": "energy-industrial-20200606:41",
+      "sourceFingerprint": "d4f9a6fb3274f4e8",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0b90e86a0d3be282cbe0a60f38d375fdb6c8ca26cf8bd465553d791aebc01d19",
+      "targetFingerprint": "a50008a06af08af3"
+    },
+    "energy-book-earlier-2020-1·2통합:42": {
+      "sourceId": "energy-industrial-20200606:42",
+      "sourceFingerprint": "4a05c750189a50c",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8c3bb92cad409580279905521abb8f65b518613948982fbed53afa58fecbd998",
+      "targetFingerprint": "a87395c1aa571473"
+    },
+    "energy-book-earlier-2020-1·2통합:43": {
+      "sourceId": "energy-industrial-20200606:43",
+      "sourceFingerprint": "7d93856a0d2ea588",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9611920dc9a45d4db2650e30bce56e827a9ccc4b4855a284904d79aeb2137a97",
+      "targetFingerprint": "54bcde1ab5591e45"
+    },
+    "energy-book-earlier-2020-1·2통합:44": {
+      "sourceId": "energy-industrial-20200606:44",
+      "sourceFingerprint": "917e6781f39bd44d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "f2a60d94153c0485ef57794492b7eeb6f886e5587a7a68cc5ef0e5e5b8b3371f",
+      "targetFingerprint": "239233fb0c1d6268"
+    },
+    "energy-book-earlier-2020-1·2통합:46": {
+      "sourceId": "energy-industrial-20200606:46",
+      "sourceFingerprint": "5f8040b7ee8d7a22",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a85eb75c46ca77ab5c83cc2e1c3500c7d7ca07e6b501008d12de0a0c187e12e0",
+      "targetFingerprint": "987df333a7076833"
+    },
+    "energy-book-earlier-2020-1·2통합:58": {
+      "sourceId": "energy-industrial-20200606:58",
+      "sourceFingerprint": "9e131c751efa1cf5",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "57c30dd34eeef4410ba78152b85b6d235a7b9b3278d4b8703e9cb084b0c01025",
+      "targetFingerprint": "8da171ed2b07ea40"
+    },
+    "energy-book-earlier-2020-1·2통합:62": {
+      "sourceId": "energy-industrial-20170923:74",
+      "sourceFingerprint": "b55b60ab08a1032a",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "2a6b9a5b1e2112f577fe42a82d394c30209d796f74f29876380ab6d6565b3a4a",
+      "targetFingerprint": "79043ef3d1ab8fa7"
+    },
+    "energy-book-earlier-2020-1·2통합:64": {
+      "sourceId": "energy-industrial-20200606:64",
+      "sourceFingerprint": "8be6e62861180967",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "30da82c1853055eb22a935c4bb683c5ac0719f321ee07829ea7599624c01dbeb",
+      "targetFingerprint": "64c637ff0fc91082"
+    },
+    "energy-book-earlier-2020-1·2통합:65": {
+      "sourceId": "energy-industrial-20200606:65",
+      "sourceFingerprint": "3947b6800ec57509",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5b2289b9458a86bebfc17fdb87b69fbfb86a8bde03c35112976416c6ec5a7d11",
+      "targetFingerprint": "d89b4e59e6919406"
+    },
+    "energy-book-earlier-2020-1·2통합:66": {
+      "sourceId": "energy-industrial-20200606:66",
+      "sourceFingerprint": "7efd08c5bcb41e92",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0b56d9f842dd56f78c491ee86fd68c0a970652eb302a31d5998de1f152029239",
+      "targetFingerprint": "f899dcb05291618f"
+    },
+    "energy-book-earlier-2020-1·2통합:67": {
+      "sourceId": "energy-industrial-20200606:67",
+      "sourceFingerprint": "f967256f554a9a11",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9f43f152627b75ad9eb9dd6303f3f789b649e737ba068bc93706d8d364f169f3",
+      "targetFingerprint": "127632c70cd8cdb4"
+    },
+    "energy-book-earlier-2020-1·2통합:70": {
+      "sourceId": "energy-industrial-20200606:70",
+      "sourceFingerprint": "f360396af46ca8ba",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "55ae27de413f619ff2a2c5e817b31c5576e98970282546c024eca03581248342",
+      "targetFingerprint": "56cd0e7f34e749a9"
+    },
+    "energy-book-earlier-2020-1·2통합:71": {
+      "sourceId": "energy-industrial-20200606:71",
+      "sourceFingerprint": "689984a045daf039",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9514d524e254c4533464f632763a791e68bdd9773e501d9403d8d92162c12de0",
+      "targetFingerprint": "da6c35bfff64ab08"
+    },
+    "energy-book-earlier-2020-1·2통합:73": {
+      "sourceId": "energy-industrial-20200606:73",
+      "sourceFingerprint": "663603abeb5e2f53",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d0d24b873387d30d704fef2f4cf47979bc19f1fc14486e31cdec6e79e6ad08c2",
+      "targetFingerprint": "8c855cba51f2b22"
+    },
+    "energy-book-earlier-2020-1·2통합:74": {
+      "sourceId": "energy-industrial-20200606:74",
+      "sourceFingerprint": "9ae5081801468bb0",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a0d4f171ea1ec2bcb84aff1faf4c8a92f167fe9133642010c37235a0e2d294ef",
+      "targetFingerprint": "a1b7b413babec2f9"
+    },
+    "energy-book-earlier-2020-1·2통합:77": {
+      "sourceId": "energy-industrial-20200606:77",
+      "sourceFingerprint": "25604556948afe01",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a9ca51a763aa9dcda84aec5d292f45eac96e3f0013942731a775f8e8023a0d4c",
+      "targetFingerprint": "f294fa0069aa142"
+    },
+    "energy-book-earlier-2020-3:2": {
+      "sourceId": "energy-industrial-20200822:2",
+      "sourceFingerprint": "17a1664f2b852a6",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c5ed76169889b9d1a5ac4738db88f3a8b0b03ad3126a02360f75d5bdbb44eba8",
+      "targetFingerprint": "544993a4c4c3b82b"
+    },
+    "energy-book-earlier-2020-3:4": {
+      "sourceId": "energy-industrial-20200822:4",
+      "sourceFingerprint": "ad5216abfd62fc0",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "b4a9a657141e1b11c10dce4cd20ab2882c4f2432b6ed41e38edeb8e8793e7f6c",
+      "targetFingerprint": "6ba4709b0d448bc1"
+    },
+    "energy-book-earlier-2020-3:7": {
+      "sourceId": "energy-industrial-20200822:7",
+      "sourceFingerprint": "555a435f6d2cbb7a",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "a2b70dbfc3c51394f5be66f3715c8ea00af324bb00fde0e8f8e27736e487e7c8",
+      "targetFingerprint": "f31ba758ecdd1281"
+    },
+    "energy-book-earlier-2020-3:14": {
+      "sourceId": "energy-industrial-20200822:14",
+      "sourceFingerprint": "bc45c2e617d84d57",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1f0fecef08825da37d50cce35085ca757271de117f4172b1694882b247cbb4f2",
+      "targetFingerprint": "4caa397eb206c7aa"
+    },
+    "energy-book-earlier-2020-3:15": {
+      "sourceId": "energy-industrial-20200822:15",
+      "sourceFingerprint": "548b5b43760090e3",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5fee6a2995294d4c3669d3efa3acfa8e4254a3d043fcf6dc9b56a183226f1f80",
+      "targetFingerprint": "745957178ceeb628"
+    },
+    "energy-book-earlier-2020-3:16": {
+      "sourceId": "energy-industrial-20200822:16",
+      "sourceFingerprint": "52e821f3965aa5d",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c7158f3678821a679bd08a5c793b089ec1a54369bf1ed345f8b796ec693dd566",
+      "targetFingerprint": "6a24722df4a439e0"
+    },
+    "energy-book-earlier-2020-3:17": {
+      "sourceId": "energy-industrial-20200822:17",
+      "sourceFingerprint": "7b9a889850609d4",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "179a68af3689795c22f2c6f729504768f71943008f261df16331b0bc05bd9df8",
+      "targetFingerprint": "913880309086e7c7"
+    },
+    "energy-book-earlier-2020-3:18": {
+      "sourceId": "energy-industrial-20200822:18",
+      "sourceFingerprint": "7fb7eb20f0d5d4e",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9378dfe2e7b887a05efe1acbed77d2d6bab6a088f9bd4b8bcf01b77c8025f97d",
+      "targetFingerprint": "b860fef19b00ca27"
+    },
+    "energy-book-earlier-2020-3:20": {
+      "sourceId": "energy-industrial-20200822:20",
+      "sourceFingerprint": "16dd59fa64679b65",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d530603a9fcd6b7d833c874cde4490c0e52c7e9f3aa96c6d7795c816c6113eb8",
+      "targetFingerprint": "76d2f55ddec111ce"
+    },
+    "energy-book-earlier-2020-3:21": {
+      "sourceId": "energy-industrial-20200822:21",
+      "sourceFingerprint": "5a906255294db990",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d600dbe77fce38ca2b104fabd150b0590ccae89375281afeddd7e921a17d7ed6",
+      "targetFingerprint": "883108ee414eb787"
+    },
+    "energy-book-earlier-2020-3:22": {
+      "sourceId": "energy-industrial-20200822:22",
+      "sourceFingerprint": "81eab9201858d6e4",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "4119fdea26eb48011a4eba101d942523dd3c76e366cf4074cc8d37b6c1170949",
+      "targetFingerprint": "15cc96fcafa596b7"
+    },
+    "energy-book-earlier-2020-3:24": {
+      "sourceId": "energy-industrial-20200822:24",
+      "sourceFingerprint": "2dd63773842cd02d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8ef5b0d7d04a119acc58553be8a8ea17d0e53b1143c47212aa61b3f090c450f5",
+      "targetFingerprint": "8664a2d0d974d138"
+    },
+    "energy-book-earlier-2020-3:26": {
+      "sourceId": "energy-industrial-20200822:26",
+      "sourceFingerprint": "e41bc643991f2d5a",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0bc8b649ff35aeb2b94bba1adeed4da93131a1a941f92f307064b6ed8386cd6a",
+      "targetFingerprint": "944144b48094d2f9"
+    },
+    "energy-book-earlier-2020-3:29": {
+      "sourceId": "energy-industrial-20200822:29",
+      "sourceFingerprint": "64960b5f1fb50896",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9d9df011f7639849f04b27aebf4711180b7f0b6b7db10d9b1e5af68556363be7",
+      "targetFingerprint": "5e93a1a38b604009"
+    },
+    "energy-book-earlier-2020-3:30": {
+      "sourceId": "energy-industrial-20180304:23",
+      "sourceFingerprint": "22e6d454dfcb8ca4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "da808189caca82560de8717c1cf1d3882e6ffe3e741ade0a110da3082270e2a2",
+      "targetFingerprint": "80329ff3da79841b"
+    },
+    "energy-book-earlier-2020-3:31": {
+      "sourceId": "energy-industrial-20200822:31",
+      "sourceFingerprint": "b5fb4e79ab1ba599",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9a577f7f3fd213fd9f7968b59c16fafce1f27a531a082bc4338cad28c37969b7",
+      "targetFingerprint": "10444161f71e8b06"
+    },
+    "energy-book-earlier-2020-3:32": {
+      "sourceId": "energy-industrial-20200822:32",
+      "sourceFingerprint": "1992e66aed720dfb",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "d2cb6b836f462342f3fcc47c95e9e7d4b012b034edabe597c0a155e36394cc66",
+      "targetFingerprint": "477c74847a357da2"
+    },
+    "energy-book-earlier-2020-3:33": {
+      "sourceId": "energy-industrial-20200822:33",
+      "sourceFingerprint": "6da10af36df92e42",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "e14eb67a13197c91078991c98dc031da1bd37f0cbb80be9d18b15d2888cd0186",
+      "targetFingerprint": "c4d325e60296902b"
+    },
+    "energy-book-earlier-2020-3:34": {
+      "sourceId": "energy-industrial-20200822:34",
+      "sourceFingerprint": "1a0589800966dba4",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "c64472fa55589368a4f4919b1c0a9923fbcf32497d09317fc195f57807be95e6",
+      "targetFingerprint": "d5f68e5b901e05d3"
+    },
+    "energy-book-earlier-2020-3:39": {
+      "sourceId": "energy-industrial-20200822:39",
+      "sourceFingerprint": "1b2ee8c97ef58b25",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "96d3481eb5d64638d4b9280d77a20d1e75afe9d23be978fa6d1bf4e7da76d1d0",
+      "targetFingerprint": "7e55ac94ec6b8686"
+    },
+    "energy-book-earlier-2020-3:40": {
+      "sourceId": "energy-industrial-20200822:40",
+      "sourceFingerprint": "9549e2467b51ca3d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0b5d3f22b1b8e357381d7c27579f2a36054e19ea10adb365fb683ab82511fc66",
+      "targetFingerprint": "167cf9ef52ae3ad2"
+    },
+    "energy-book-earlier-2020-3:42": {
+      "sourceId": "energy-industrial-20200822:42",
+      "sourceFingerprint": "af8a8fc8734a0900",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "da0ad9c88505005a5cbf2a4978e16be52a5fd99774b5e646765b009645b99465",
+      "targetFingerprint": "aec7a9b5baecb951"
+    },
+    "energy-book-earlier-2020-3:43": {
+      "sourceId": "energy-industrial-20200822:43",
+      "sourceFingerprint": "f3399f5a0afdeef0",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "7517f264e042938d43ef5d6e95c08d65c100bd58ae634ddf6a63a179a1f686ed",
+      "targetFingerprint": "efa52d58965490b5"
+    },
+    "energy-book-earlier-2020-3:46": {
+      "sourceId": "energy-industrial-20200822:46",
+      "sourceFingerprint": "83efb3c51d1e0775",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "35206a428f6d6e00a82f3e2934546916dbd333ab1d549c7396c6b78f11025da6",
+      "targetFingerprint": "255cb0fcb155ffa2"
+    },
+    "energy-book-earlier-2020-3:50": {
+      "sourceId": "energy-industrial-20200822:50",
+      "sourceFingerprint": "1882240d25cb963f",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "0162c49adc3706de6d2c846899379804df0a25c475b433179e6fceb565f3bd27",
+      "targetFingerprint": "5cda9baf8f514384"
+    },
+    "energy-book-earlier-2020-3:52": {
+      "sourceId": "energy-industrial-20200822:52",
+      "sourceFingerprint": "574e91c0db87179e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "8deee98a13eb3d037f26da5e9a26a695641d950ad516b9a5fb90e8542bb857b9",
+      "targetFingerprint": "69cb62525bd8179"
+    },
+    "energy-book-earlier-2020-3:56": {
+      "sourceId": "energy-industrial-20200822:56",
+      "sourceFingerprint": "4921bc7e0a5e55c7",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "86a35126cb995db003e859d870cb6c347a2d0af0759101650d3e44e938b1dd59",
+      "targetFingerprint": "c2add6f0685a6f9e"
+    },
+    "energy-book-earlier-2020-3:57": {
+      "sourceId": "energy-industrial-20200822:57",
+      "sourceFingerprint": "5dfa8813d4caf8b6",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6a107d3545bb84da2f92907658303efa2d87ad8053dd3fda92b7124b35c5cba6",
+      "targetFingerprint": "b2dec632bcbf3db7"
+    },
+    "energy-book-earlier-2020-3:58": {
+      "sourceId": "energy-industrial-20200822:58",
+      "sourceFingerprint": "1d930aae87d78ef",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "859ed6a2b030b0af4e7a39c91c7ef25b6fce388b3209a960735d4e5ec43c7925",
+      "targetFingerprint": "8a59205df60be144"
+    },
+    "energy-book-earlier-2020-3:61": {
+      "sourceId": "energy-industrial-20200822:61",
+      "sourceFingerprint": "176f4f2337e2373b",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "5828ab5a0cbbd502eb0d5be59ebc7af8804808dfaeadf0854f9f3b6eb425da56",
+      "targetFingerprint": "d908e15bb8e79d78"
+    },
+    "energy-book-earlier-2020-3:66": {
+      "sourceId": "energy-industrial-20200822:66",
+      "sourceFingerprint": "6007a58cc32ac222",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "fe2253c0e74d9679fa13349560c475dc84a4ee25dee9b2460a26038e3b3c8907",
+      "targetFingerprint": "6a0f35243c0c6b69"
+    },
+    "energy-book-earlier-2020-3:67": {
+      "sourceId": "energy-industrial-20200822:67",
+      "sourceFingerprint": "dc7081051e172fa2",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "ac954e9c0d1330ff0f2278145f87894dd977c48478850a2c8e532a5e45fabfbc",
+      "targetFingerprint": "430e893c6c41226f"
+    },
+    "energy-book-earlier-2020-3:68": {
+      "sourceId": "energy-industrial-20200822:68",
+      "sourceFingerprint": "fafe64e3f0b2e92e",
+      "answer": 1,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6cbfd719502317744caba68cb25da53c874a2f0e148adbb726b3934366e011f8",
+      "targetFingerprint": "651a15922983ae7f"
+    },
+    "energy-book-earlier-2020-3:70": {
+      "sourceId": "energy-industrial-20200822:70",
+      "sourceFingerprint": "d72ddfcddee2653d",
+      "answer": 4,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "1a492b08ec33a33da04fc19f998722ff9d23de75f69862ec9f1aa8c4ddfe93c7",
+      "targetFingerprint": "cde299a9b181546e"
+    },
+    "energy-book-earlier-2020-3:72": {
+      "sourceId": "energy-industrial-20200822:72",
+      "sourceFingerprint": "2478f3b944ec21b2",
+      "answer": 3,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "36ed415c1b7be50eb9d8f465a5e41ca49a0a4f5181ca211b24cd0a8a445abd97",
+      "targetFingerprint": "e7e276996cdc6503"
+    },
+    "energy-book-earlier-2020-3:75": {
+      "sourceId": "energy-industrial-20200822:75",
+      "sourceFingerprint": "1cbf250335a9a231",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "9c5f395a1da1d535da015b3982e0ebb4cf1fa7782625922649360663e800a3cb",
+      "targetFingerprint": "86b1839937ccd20e"
+    },
+    "energy-book-earlier-2020-3:78": {
+      "sourceId": "energy-industrial-20200822:78",
+      "sourceFingerprint": "1937b2ca5a735a79",
+      "answer": 2,
+      "match": "exact-stem-and-four-ordered-choices",
+      "targetImageSha256": "6cd032aab4875b16194bf5623926df048668e7df26f938c8388e4438c73b4829",
+      "targetFingerprint": "8c10399bef725470"
+    },
     "energy-industrial-20020310:23": {
       "sourceId": "energy-industrial-20060305:25",
       "sourceFingerprint": "c597e81af1598081",

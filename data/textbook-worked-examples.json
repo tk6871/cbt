@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-30",
+  "entries": [
+    {
+      "id": "energy-theory-88-toe",
+      "book": "energy",
+      "pages": [
+        "88",
+        "89"
+      ],
+      "title": "월간 에너지 소비량의 석유환산톤(TOE)",
+      "kind": "worked-example",
+      "question": "assets/energy-theory-examples/questions/theory-88-toe.webp",
+      "questionSize": [
+        1934,
+        328
+      ],
+      "solution": "assets/energy-theory-examples/explanations/theory-88-toe.webp",
+      "solutionSize": [
+        1820,
+        690
+      ],
+      "answer": "89.125 TOE",
+      "note": "객관식 보기가 없는 본문 풀이 예제입니다. 교재에 인쇄된 환산계수를 사용합니다. 원문 합계의 쉼표 표기는 앞의 세 값을 더한 89.125 TOE로 읽습니다.",
+      "explanation": "도시가스 31.65 + 전력 17.2 + 등유 40.275 = 89.125 TOE입니다. 각 사용량에 교재의 환산계수를 곱해 같은 기준의 석유환산량으로 바꾸고, 1,000으로 나누어 톤 단위로 맞춥니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "14ba33a7aa0cd3561208d6962b2649813bedf92f4c6308b10989dd1ad577f36d",
+          "outputSha256": "64e369b8b90824ad8e74e5c6bf16c74766b208eb744c380b8d7f9311e309194d",
+          "sourceSize": [
+            967,
+            164
+          ],
+          "outputSize": [
+            1934,
+            328
+          ],
+          "asset": "assets/energy-theory-examples/questions/theory-88-toe.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "d05d807d15ad5726fded4ea625067bc7efffb24eb11c2dec4fcc453186b51574",
+          "outputSha256": "dd667784792df72e0839d7258fdc6cc623663a90107e329373b024b9c90b660d",
+          "sourceSize": [
+            910,
+            345
+          ],
+          "outputSize": [
+            1820,
+            690
+          ],
+          "asset": "assets/energy-theory-examples/explanations/theory-88-toe.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      },
+      "sourcePdfSha256": "840565d198cbbfe871b25a08e2bcb9b2d3dbdcbbadead2b2ca031308caed767d",
+      "sourcePdfPages": [
+        77,
+        78
+      ]
+    }
+  ]
+}

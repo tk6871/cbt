@@ -5,6 +5,7 @@ export function explanationSource(question: Question): { label: string; detail: 
   const provenance = question.explanationProvenance || '';
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';
+  if(provenance==='book-verified-correction')return {label:'교재 대조 후 작성 설명',detail:question.explanationBasis||'교재의 정정된 보기·단위에 맞춘 학습 설명입니다. 인쇄된 해설을 그대로 옮긴 것은 아닙니다.'};
   if(provenance==='comcbt-matched-textbook')return {label:'COMCBT 등록 해설 · 교재 대조',detail:question.explanationBasis||'기존 COMCBT 등록 해설을 같은 교재 문제에 연결했습니다.',url:source};
   if (question.explanationImages?.length && (question.midtermTextbook || provenance === 'printed-textbook-explanation-image')) return {
     label:'교재 원문 해설', detail:question.explanationBasis || '제공된 에너지 교재에 인쇄된 해설을 원문 이미지로 표시합니다. AI 작성 해설과 구분합니다.',

@@ -3632,3 +3632,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
   font-weight: 700;
   cursor: pointer;
 }
+.book-correction-note {margin:8px 0;color:var(--muted);font-size:.85em;}
+.book-correction-note p {margin:4px 0;}
+.book-correction-note summary {cursor:pointer;min-height:28px;}
+.book-correction-note img {display:block;width:100%;height:auto;max-width:900px;margin-top:8px;}

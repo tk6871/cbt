@@ -1,5 +1,5 @@
 import type {TextbookEntry,TextbookKey} from './textbookPages';
-import {compareBookPages} from './textbookPages';
+import {compareBookPages,textbookWorkedExamples} from './textbookPages';
 export type BookContentsNode={id:string;book:TextbookKey;title:string;from?:string;to?:string;prefix?:string;pages?:string[];keywords?:string[];children?:BookContentsNode[];note?:string};
 type Chapter=[string,Array<[string,number,number?]>,number?];
 const keywords=(title:string):string[]=>{
@@ -67,11 +67,11 @@ export const bookContents:Record<TextbookKey,BookContentsNode[]>={
    ['제어용 기기',[['제어용기기',358,363]]],
    ['시퀀스 제어',[['시퀀스 제어',368,376]]],
   ]),
-  {id:'hansol-mock',book:'hansol',title:'부록 · 핵심 모의고사',prefix:'4-',note:'15회 구성. 회차별 쪽번호는 확인된 곳부터 연결합니다.',children:Array.from({length:15},(_,i)=>({id:`hansol-mock-${i+1}`,book:'hansol',title:`제${i+1}회 핵심 모의고사`,from:i===0?'4-7':i===5?'4-71':undefined,pages:i===0?['4-10']:[],note:i===0?'현재 확인된4-10쪽 연결': '회차별 페이지 연결 준비 중'}))},
-  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',note:'2023~2025년 회차별 책 쪽번호 연결 준비 중',children:[2023,2024,2025].flatMap(year=>[1,2,3].map(session=>({id:`hansol-latest-${year}-${session}`,book:'hansol',title:`${year}년 ${session}회`,note:'쪽번호 대조 중'})))},
+  {id:'hansol-mock',book:'hansol',title:'부록 · 핵심 모의고사',prefix:'4-',note:'정상 열람한 교재 목차의 15회 쪽번호를 사용합니다. 문제 연결 수는 별도로 표시합니다.',children:[7,20,33,46,58,71,84,96,109,122,134,147,160,172,184].map((from,i,starts)=>({id:`hansol-mock-${i+1}`,book:'hansol',title:`제${i+1}회 핵심 모의고사`,from:`4-${from}`,to:`4-${(starts[i+1]||196)-1}`,prefix:'4-'}))},
+  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',prefix:'5-',note:'정상 열람한 교재 목차의 2023~2025년 회차별 쪽번호입니다.',children:[4,16,27,39,51,64,75,86,98].map((from,i,starts)=>({id:`hansol-latest-${2023+Math.floor(i/3)}-${i%3+1}`,book:'hansol',title:`${2023+Math.floor(i/3)}년 ${i%3+1}회`,from:`5-${from}`,to:`5-${(starts[i+1]||109)-1}`,prefix:'5-'}))},
  ],
  energy:[
-  {id:'energy-theory',book:'energy',title:'이론편 · 제공 PDF 본문 순서',note:'스캔에 앞쪽 목차가 없어 본문의 확인된 장 제목으로 구성했습니다. 본문 예제 연결은 진행 중입니다.',children:[
+  {id:'energy-theory',book:'energy',title:'이론편 · 제공 PDF 본문 순서',note:'스캔에 앞쪽 목차가 없어 본문의 확인된 장 제목으로 구성했습니다. 객관식과 본문 풀이 예제를 구분합니다.',children:[
    ['열의 기초',12,39],['보일러 연소설비 관리',40,81],['보일러 에너지 관리',82,99],['냉동설비 운영',100,103],['요로',104,114],['보일러 배관설비',115,141],['보일러 부속설비',142,178],['보일러 부대설비',179,211],['보일러 설비운영',212,229],['보일러 운전',230,247],['보일러 수질 관리',248,261],['보일러 자동제어 관리',262,273],['보일러 안전관리',274,287],['보일러 안전장치 정비',288,291],['에너지 관계 법규',292,318],
   ].map(([title,from,to],i)=>({id:`energy-theory-${i}`,book:'energy',title:String(title),from:String(from),to:String(to),keywords:keywords(String(title))}))},
   {id:'energy-exams',book:'energy',title:'기출·CBT 복원문제',children:[
@@ -84,6 +84,10 @@ export function contentsEntries(node:BookContentsNode,entries:TextbookEntry[]):T
  if(node.pages)return entries.filter(e=>e.book===node.book&&node.pages!.includes(e.page));
  if(!node.from){if(node.prefix)return entries.filter(e=>e.book===node.book&&e.page.startsWith(node.prefix!));return [...new Map((node.children||[]).flatMap(child=>contentsEntries(child,entries)).map(e=>[`${e.page}:${e.number}`,e])).values()];}
  return entries.filter(e=>e.book===node.book&&(!node.prefix||e.page.startsWith(node.prefix))&&compareBookPages(e.page,node.from!)>=0&&(!node.to||compareBookPages(e.page,node.to)<=0));
+}
+export function contentsExamples(node:BookContentsNode):typeof textbookWorkedExamples {
+ if(!node.from)return [...new Map((node.children||[]).flatMap(contentsExamples).map(e=>[e.id,e])).values()];
+ return textbookWorkedExamples.filter(e=>e.book===node.book&&e.pages.some(page=>compareBookPages(page,node.from!)>=0&&(!node.to||compareBookPages(page,node.to)<=0)));
 }
 export type ContentsRow={node:BookContentsNode;path:string[];entries:TextbookEntry[];text:string;terms:string[]};
 const normalize=(s:string)=>s.normalize('NFKC').toLowerCase().replace(/<[^>]*>/g,' ').replace(/[^\p{L}\p{N}]/gu,'');

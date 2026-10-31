@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-31",
+  "basis": "정상 열람 화면의 문제·네 보기·정답표를 직접 확대 대조했습니다. 인쇄 정답과 같은 쪽 풀이가 다르면 임의로 단일 정답을 결정하지 않습니다. 기존 CBT 원본·정답은 변경하지 않습니다.",
+  "rows": [
+    {"page":"1-29","number":4,"sourceId":"hvac-20140302:15","sourceAnswer":4,"printedAnswers":[1],"bookAnswer":1,"decision":"book-copy-answer"},
+    {"page":"1-70","number":2,"sourceId":"hvac-20140302:4","sourceAnswer":1,"printedAnswers":[2],"decision":"held","reason":"풀이 조건과 정답표 차이가 해결되지 않음"},
+    {"page":"1-165","number":8,"sourceId":"hvac-20150531:18","sourceAnswer":4,"printedAnswers":[3],"explanationAnswer":4,"decision":"held","reason":"교재 정답표·같은 쪽 공식/설명 불일치"},
+    {"page":"2-20","number":14,"sourceId":"hvac-20100509:22","sourceAnswer":4,"printedAnswers":[3],"bookAnswer":3,"explanationAnswer":3,"decision":"book-copy-answer"},
+    {"page":"3-66","number":48,"sourceId":"hvac-20080511:51","sourceAnswer":1,"printedAnswers":[2],"bookAnswer":2,"explanationAnswer":2,"decision":"book-copy-answer"},
+    {"page":"3-92","number":22,"sourceId":"hvac-hansol-2022-1:46","sourceAnswer":3,"printedAnswers":[2,3],"decision":"held","reason":"교재 정답표가 복수정답이며 두 보기가 같은 유량임"},
+    {"page":"3-105","number":19,"sourceId":"hvac-20150531:43","sourceAnswer":4,"printedAnswers":[3],"bookAnswer":3,"explanationAnswer":3,"decision":"book-copy-answer"},
+    {"page":"3-177","number":11,"sourceId":"hvac-20110320:55","sourceAnswer":4,"printedAnswers":[2],"bookAnswer":2,"explanationAnswer":2,"decision":"book-copy-answer"},
+    {"page":"3-241","number":3,"sourceId":"hvac-hansol-2022-2:41","sourceAnswer":4,"printedAnswers":[3],"decision":"held","reason":"동일한 네 보기의 안전조치/건강위험 정답 차이가 해결되지 않음"},
+    {"page":"3-348","number":27,"sourceId":"hvac-20110821:65","sourceAnswer":3,"printedAnswers":[1],"explanationAnswer":3,"decision":"held","reason":"교재 정답표·같은 쪽 설명 불일치"},
+    {"page":"4-175","number":22,"sourceId":"hvac-hansol-2020-3:22","sourceAnswer":4,"printedAnswers":[2],"bookAnswer":2,"explanationAnswer":2,"decision":"book-copy-answer","check":"6.7/5.8=1.15517… →1.16"},
+    {"page":"5-107","number":55,"sourceId":"hvac-20110821:69","sourceAnswer":3,"printedAnswers":[2],"bookAnswer":2,"decision":"numerical-variant","check":"교재5%:100/5=20배. 기존4%:100/4=25배"}
+  ]
+}

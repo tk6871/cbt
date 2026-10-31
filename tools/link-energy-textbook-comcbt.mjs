@@ -3,7 +3,7 @@ import fs from 'node:fs';import vm from 'node:vm';import crypto from 'node:crypt
 const imageHashes=new Map();
 function imageHash(path){if(!imageHashes.has(path))imageHashes.set(path,crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex'));return imageHashes.get(path);}
 const context={window:{}};
-for(const name of ['energy','energy-restored','energy-textbook','energy-midterm'])vm.runInNewContext(fs.readFileSync(`data/${name}.js`,'utf8'),context);
+for(const name of ['energy','energy-restored','energy-textbook','energy-midterm','energy-book-earlier'])vm.runInNewContext(fs.readFileSync(`data/${name}.js`,'utf8'),context);
 function fingerprint(q){let h=14695981039346656037n;const text=JSON.stringify([q.text||'',q.html||'',q.ocrText||'',q.choices.map(c=>[c.text||'',c.html||'',c.images||[]]),q.answer,q.images||[],q.sourceImage||'']);for(const ch of text){h^=BigInt(ch.codePointAt(0));h=BigInt.asUintN(64,h*1099511628211n);}return h.toString(16);}
 const norm=s=>String(s||'').normalize('NFKC').replace(/<[^>]*>|&[^;]+;/g,' ').toLowerCase().replace(/[^\p{L}\p{N}+\-*=<>.%]/gu,'');
 const bank=context.window.CBT_DATA_ENERGY.rounds.flatMap(r=>r.questions.map(q=>({id:`${r.id}:${q.number}`,q,stem:norm(q.text||q.html),choices:q.choices.map(c=>norm(c.text||c.html))})));
@@ -18,7 +18,8 @@ for(const [work,prefix] of [['work/energy-restored-full','energy-industrial-rest
  const manifest=JSON.parse(fs.readFileSync(`${work}/manifest.json`));const geometry=JSON.parse(fs.readFileSync(`${work}/answer-geometry/staged.json`));
  const ledger=JSON.parse(fs.readFileSync(`${work}/upscale-ledger.json`));
  for(const row of manifest.rows){
-  const ocr=JSON.parse(fs.readFileSync(`${work}/answer-geometry/ocr/${row.key}-question.json`));
+  const corrected=`${work}/answer-geometry/ocr-corrected/${row.key}-question.json`;
+  const ocr=JSON.parse(fs.readFileSync(fs.existsSync(corrected)?corrected:`${work}/answer-geometry/ocr/${row.key}-question.json`));
   const full=norm(ocr.rows.map(r=>r.text).join(' '));const boxes=geometry[row.key];
   const choices=boxes?.map(b=>norm(ocr.rows.filter(r=>{
    const [x,y,x1,y1]=r.box;const cx=(x+x1)*50,cy=(y+y1)*50;

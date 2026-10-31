@@ -24,6 +24,7 @@ export type Question = {
   images?: string[];
   sourceImage?: string | null;
   sourceImageSize?: number[];
+  bookCorrection?: {note:string;originalImage?:string};
   choices: Choice[];
   answer: number;
   answerRate?: number | null;
@@ -157,6 +158,7 @@ declare global {
     CBT_DATA_ENERGY_MIDTERM?: Catalog;
     CBT_DATA_ENERGY_TEXTBOOK?: Catalog;
     CBT_DATA_ENERGY_RESTORED?: Catalog;
+    CBT_DATA_ENERGY_BOOK_EARLIER?: Catalog;
     CBT_DATA_ENERGY_ENGINEER?: Catalog;
     CBT_DATA_MAINTENANCE?: Catalog;
     CBT_DATA_MAINTENANCE_ENGINEER?: Catalog;

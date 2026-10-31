@@ -1,0 +1,343 @@
+{
+  "date": "2026-10-31",
+  "basis": "정상 교보 앱 열람으로 책 번호·지문·4보기 순서·인쇄 정답을 기존 문제와 대조. 책 본문/해설을 복제하지 않고 확인된 기존 CBT 위치만 연결한다.",
+  "rows": [
+    {
+      "page": "1-15",
+      "number": 1,
+      "sourceId": "hvac-20140302:6",
+      "answer": 1,
+      "column": 0
+    },
+    {
+      "page": "1-15",
+      "number": 2,
+      "sourceId": "hvac-20100307:15",
+      "answer": 4,
+      "column": 0
+    },
+    {
+      "page": "1-15",
+      "number": 3,
+      "sourceId": null,
+      "answer": 4,
+      "column": 0,
+      "reason": "기존 은행의 동일 문항 연결을 찾지 못함. 다른 문항으로 대체하지 않음."
+    },
+    {
+      "page": "1-15",
+      "number": 4,
+      "sourceId": "hvac-20120826:15",
+      "answer": 3,
+      "column": 1
+    },
+    {
+      "page": "1-15",
+      "number": 5,
+      "sourceId": "hvac-20130818:10",
+      "answer": 2,
+      "column": 1
+    },
+    {
+      "page": "1-15",
+      "number": 6,
+      "sourceId": "hvac-hansol-2022-2:8",
+      "answer": 1,
+      "column": 1,
+      "correction": {
+        "text": "다음 온열환경지표 중 복사의 영향을 고려하지 않는 것은?",
+        "choices": [
+          "유효온도(ET)",
+          "수정유효온도(CET)",
+          "예상온열감(PMV)",
+          "작용온도(OT)"
+        ],
+        "note": "교재에서 확인한 표기를 우선해 보기의 오타를 고쳤습니다. 기존 CBT 원본은 보존합니다."
+      }
+    },
+    {
+      "page": "1-16",
+      "number": 7,
+      "sourceId": "hvac-20100509:2",
+      "answer": 1,
+      "column": 0
+    },
+    {
+      "page": "1-16",
+      "number": 8,
+      "sourceId": "hvac-20090510:4",
+      "answer": 2,
+      "column": 0
+    },
+    {
+      "page": "1-16",
+      "number": 9,
+      "sourceId": "hvac-20110821:4",
+      "answer": 3,
+      "column": 0
+    },
+    {
+      "page": "1-16",
+      "number": 10,
+      "sourceId": "hvac-hansol-2022-2:1",
+      "answer": 3,
+      "column": 1
+    },
+    {
+      "page": "1-24",
+      "number": 6,
+      "sourceId": null,
+      "answer": 2,
+      "column": 0,
+      "reason": "본문 예제의 선도와 보기 조합에 맞는 기존 문항을 추가 대조 중"
+    },
+    {
+      "page": "1-24",
+      "number": 7,
+      "sourceId": null,
+      "answer": 3,
+      "column": 0,
+      "reason": "본문 예제와 같은 수치·단위의 기존 문항을 추가 대조 중"
+    },
+    {
+      "page": "1-25",
+      "number": 1,
+      "sourceId": "hvac-hansol-2024-1:1",
+      "answer": 1,
+      "column": 0
+    },
+    {
+      "page": "1-25",
+      "number": 2,
+      "sourceId": "hvac-20130310:12",
+      "answer": 2,
+      "column": 0,
+      "correction": {
+        "text": "습공기의 상태를 나타내는 요소에 대한 설명 중 맞는 것은?",
+        "choices": [
+          "상대습도는 공기 중에 포함된 수분의 양을 계산하는 데 사용한다.",
+          "수증기 분압에서 습공기가 가진 압력(보통 대기압)은 그 혼합성분인 건공기와 수증기가 가진 분압의 합과 같다.",
+          "습구온도는 주위공기가 포화증기에 가까우면 건구온도와의 차는 커진다.",
+          "엔탈피는 0℃ 건공기의 값을 593kJ/kg으로 기준하여 사용한다."
+        ],
+        "note": "단위와 보기 표기를 현재 교재 기준으로 맞춘 사본입니다. 단순 오타와 구분하고 책의 정답표도 대조했습니다. 기존 CBT 원본은 보존합니다.",
+        "explanation": "습공기의 전체 압력은 건공기 분압과 수증기 분압을 더한 값입니다. 수분의 질량을 계산할 때는 절대습도를 사용합니다. 포화에 가까울수록 건구·습구온도 차는 작아지고, 건공기 엔탈피의 0℃ 기준값은 0입니다."
+      }
+    },
+    {
+      "page": "1-25",
+      "number": 3,
+      "sourceId": "hvac-20140302:20",
+      "answer": 4,
+      "column": 1,
+      "correction": {
+        "text": "습공기선도 상에 나타나 있는 것이 아닌 것은?",
+        "choices": [
+          "상대습도",
+          "건구온도",
+          "절대습도",
+          "엔트로피"
+        ],
+        "note": "보기 내용을 현재 교재 기준으로 맞춘 사본입니다. 단순 오타와 구분하고 책의 정답표도 대조했습니다. 기존 CBT 원본은 보존합니다.",
+        "explanation": "습공기선도에는 온도·습도·엔탈피·비체적 등의 상태값이 표시됩니다. 엔트로피는 이 선도의 표시 항목이 아닙니다."
+      }
+    },
+    {
+      "page": "1-25",
+      "number": 4,
+      "sourceId": "hvac-20150531:10",
+      "answer": 3,
+      "column": 1
+    },
+    {
+      "page": "1-25",
+      "number": 5,
+      "sourceId": "hvac-20140302:17",
+      "answer": 3,
+      "column": 1
+    },
+    {
+      "page": "1-25",
+      "number": 6,
+      "sourceId": "hvac-20150531:5",
+      "answer": 2,
+      "column": 1,
+      "correction": {
+        "text": "다음 중 습공기의 엔탈피 단위는?",
+        "choices": [
+          "kJ/kgK",
+          "kJ/kg",
+          "W/m²K",
+          "W/mK"
+        ],
+        "note": "보기의 단위를 현재 교재 기준으로 맞춘 사본입니다. 단순 오타와 구분하고 책의 정답표도 대조했습니다. 기존 CBT 원본은 보존합니다.",
+        "explanation": "여기서 엔탈피는 단위 질량당 에너지이므로 에너지 kJ를 질량 kg으로 나눈 kJ/kg입니다. kJ/kgK는 비열, W/m²K는 열관류율, W/mK는 열전도율의 단위입니다."
+      }
+    },
+    {
+      "page": "2-197",
+      "number": 29,
+      "sourceId": "hvac-20140817:23",
+      "answer": 2,
+      "column": 1,
+      "correction": {
+        "text": "나선모양의 관으로 냉매증기를 통과시키고 이 나선관을 원형 또는 구형의 수조에 넣어 냉매를 응축시키는 방법을 이용한 응축기는?",
+        "choices": [
+          "대기식 응축기(atmospheric condenser)",
+          "지수식 응축기(submerged coil condenser)",
+          "증발식 응축기(evaporative condenser)",
+          "공랭식 응축기(air cooled condenser)"
+        ],
+        "note": "책의 atmospheric 표기를 직접 확인해 기존 보기의 영문 오타를 교재용 사본에서 정정했습니다. 기존 문제와 풀이ID는 보존합니다."
+      }
+    },
+    {
+      "page": "2-236",
+      "number": 9,
+      "sourceId": "hvac-20080727:24",
+      "answer": 3,
+      "column": 0,
+      "correction": {
+        "text": "이중 효용 흡수식 냉동기에 대한 설명 중 옳지 않은 것은?",
+        "choices": [
+          "일중 효용 흡수식 냉동기에 비해 효율이 높다.",
+          "2개의 재생기를 갖고 있다.",
+          "2개의 증발기를 갖고 있다.",
+          "이중 효용 흡수식 냉동기에서 일중 효용 흡수식 냉동기와 같은 양의 냉매액을 얻기 위해서는 가열량이 일중 효용보다 작다."
+        ],
+        "note": "책에서 확인한 ‘이중 효용’ 표기로 기존 보기의 오타를 정정한 교재용 사본입니다. 기존 문제와 풀이ID는 보존합니다."
+      }
+    },
+    {
+      "page": "2-236",
+      "number": 11,
+      "sourceId": "hvac-20080511:29",
+      "answer": 3,
+      "column": 0,
+      "correction": {
+        "text": "CA 냉장고(Controlled Atmosphere storage room)의 용도로 가장 적당한 것은?",
+        "choices": [
+          "가정용 냉장고로 쓰인다.",
+          "제빙용으로 주로 쓰인다.",
+          "청과물 저장에 쓰인다.",
+          "공조용으로 철도, 항공에 주로 쓰인다."
+        ],
+        "note": "책에서 확인한 CA 풀네임과 지문 표기를 교재용 사본에 적용했습니다. 기존 문제와 풀이ID는 보존합니다."
+      }
+    },
+    {
+      "page": "2-258",
+      "number": 5,
+      "sourceId": "hvac-20110821:30",
+      "answer": 2,
+      "column": 1,
+      "correction": {
+        "text": "저온장치 중 얇은 금속판에 브라인이나 냉매를 통하게 하여 금속판의 외면에 식품을 부착시켜 동결하는 장치는 무엇인가?",
+        "choices": [
+          "반 송풍 동결장치",
+          "접촉식 동결장치",
+          "송풍 동결장치",
+          "터널식 공기 동결장치"
+        ],
+        "note": "책의 ‘부착시켜’ 표기를 직접 확인해 기존 지문의 ‘부탁시켜’ 오타를 정정한 교재용 사본입니다. 기존 문제와 풀이ID는 보존합니다."
+      }
+    },
+    {
+      "page":"1-31","number":18,"sourceId":"hvac-20100725:2","answer":3,"column":1,
+      "correction":{"text":"대기의 절대습도가 일정할 때 하루 동안의 상대습도 변화를 설명한 것 중 올바른 것은?","choices":["절대습도가 일정하므로 상대습도의 변화는 없다.","낮에는 상대습도가 높아지고 밤에는 상대습도가 낮아진다.","낮에는 상대습도가 낮아지고 밤에는 상대습도가 높아진다.","낮에는 상대습도가 정해지면 하루 종일 그 상태로 일정하다."],"note":"책의 보기 끝 문장까지 직접 대조한 교재용 사본입니다. 기존 CBT 원본과 해설은 보존합니다."}
+    },
+    {
+      "page":"1-61","number":23,"sourceId":"hvac-20110821:5","answer":2,"column":1,
+      "correction":{"text":"공기조화방식 중 복사냉난방식의 설명으로 옳지 않은 것은?","choices":["다른 방식에 비하여 실내 쾌감도가 높다.","잠열부하가 많은 곳에 적당하다.","중간기에 냉동기의 운전이 필요하다.","덕트 스페이스 및 열운반 동력을 줄일 수 있다."],"note":"책의 ‘쾌감도’를 직접 확인해 기존 보기의 중복 글자 오타를 정정한 교재용 사본입니다. 기존 CBT 원본과 해설은 보존합니다."}
+    },
+    {
+      "page":"1-90","number":6,"sourceId":"hvac-20080511:5","answer":4,"column":1,
+      "correction":{"text":"다음의 온수난방에 관한 설명 중 옳지 않은 것은?","choices":["밀폐식일 경우에는 배관의 부식이 적고 수명이 길다.","각 방열기기에 공급되는 온수가 균일하고 양호하게 순환되도록 한다.","온수순환으로 인한 소음이나 진동 등의 장애가 일어나지 않도록 한다.","팽창 탱크의 팽창관에는 밸브를 부착하여 유량을 조절할 수 있도록 한다."],"note":"책의 ‘부착하여’를 직접 확인해 기존 보기의 ‘부탁하여’ 오타를 정정한 교재용 사본입니다. 기존 CBT 원본과 해설은 보존합니다."}
+    },
+    {
+      "page":"1-94","number":25,"sourceId":"hvac-20100509:4","answer":1,"column":0,
+      "correction":{"text":"지역난방의 특징 설명으로 잘못된 것은?","choices":["연료비는 절감되나 열효율이 낮고 인건비가 증가된다.","개별 건물의 보일러실 및 굴뚝이 불필요하므로 건물 이용의 효율이 높다.","설비의 합리화로 대기오염이 적다.","대규모 열원기기를 이용하므로 에너지를 효율적으로 이용할 수 있다."],"note":"책에서 확인한 ‘건물 이용의 효율’ 표기를 적용한 교재용 사본입니다. 기존 CBT 원본과 해설은 보존합니다."}
+    }
+    ,{"page":"1-33","number":31,"sourceId":"hvac-hansol-2022-2:11","answer":1,"column":1,"reason":"책과 기존 원문 이미지에서 지문·0/0.5/1/무한대 보기·설명을 직접 대조. 무한대 기호의 OCR 누락을 확인."}
+    ,{"page":"1-73","number":23,"sourceId":"hvac-hansol-2023-2:3","answer":1,"column":1,"reason":"책과 기존 원문 이미지의 수치·kW·kg/m³·4보기를 직접 대조. 세제곱의 OCR 누락을 확인."}
+    ,{"page":"1-139","number":29,"sourceId":"hvac-hansol-2023-1:18","answer":3,"column":1,"reason":"책과 기존 원문 이미지의14.1kPa/2m/s/926kg/m³·4보기·원문 풀이를 직접 대조."}
+    ,{"page":"1-141","number":34,"sourceId":"hvac-hansol-2023-1:16","answer":4,"column":0,"reason":"책과 기존 원문 이미지에서5℃/37℃/32℃/23L/minRT·4보기·원문 풀이를 직접 대조. 은행 텍스트의PUA 슬래시 대신 실제 이미지 확인."}
+    ,{"page":"2-84","number":2,"sourceId":"hvac-20120520:29","answer":4,"column":0,"reason":"책의1번 보기에서 실제 인쇄는 ‘일을 열로 변화하거나’로 기존 CBT와 일치함을 직접 확인. OCR의 ‘변환’ 오인식을 정정하지 않고 기존 원문 그대로 연결."}
+    ,{"page":"3-32","number":49,"sourceId":"hvac-hansol-2024-1:42","answer":1,"column":0,"reason":"정답표 작은 글자가 불명확하여 책 지문·4보기·‘앵커는 배관을 어떤 위치에 완전히 고정’이라는 원문 해설까지 직접 대조.1번 확인."}
+    ,{"page":"3-71","number":81,"sourceId":"hvac-20120304:60","answer":2,"column":0,"reason":"정답표 작은 글자가 불명확하여 책 지문·4보기·Flare Joint는 동관 접합이라는 원문 설명까지 직접 대조.2번 확인."}
+    ,{"page":"3-145","number":19,"sourceId":"hvac-hansol-2023-3:51","answer":2,"column":0,"reason":"정답표 작은 글자가 불명확하여 책 지문·4보기·피츠버그 스냅록이라는 원문 설명까지 직접 대조.2번 확인."}
+    ,{"page":"5-104","number":33,"sourceId":"hvac-hansol-2025-3:33","answer":4,"column":0,"reason":"정답표 번호가 중복 표기되어 지문·4보기와 원문 해설의 무기질/유기질 브라인 목록을 직접 대조. 유기질로 명시된 에틸렌글리콜4번을 기존 기출 원문과 함께 확인."}
+    ,{"page":"3-67","number":56,"sourceId":"hvac-20140525:47","answer":3,"column":0,"reason":"원문 보기4의13mm 뒤 쉼표를 OCR이 마침표로 읽었음.9/13mm 지름·1.0/1.5/2.0/2.5m 지지간격과4보기·답3을 직접 대조하여 기존 원문 그대로 연결."}
+    ,{"page":"3-70","number":78,"sourceId":"hvac-hansol-2023-2:46","answer":2,"column":1,"reason":"보기1의‘분해·결합’ 가운뎃점을 OCR이 누락함. 책의지문·4보기·타이튼/빅토릭 이음 원문 설명을 직접 대조하여 기존 원문 그대로 연결."}
+    ,{"page":"4-51","number":25,"sourceId":"hvac-hansol-2022-2:27","answer":1,"column":0,"reason":"책과 기존 원문 이미지의30℃/-10℃/2000kg/32℃/37℃/60m³/h·4보기와 원문 풀이를 직접 대조. OCR의 세제곱 누락을 확인."}
+    ,{"page":"4-60","number":15,"sourceId":"hvac-hansol-2017-2:15","answer":1,"column":1,"reason":"책과 기존 원문 이미지의 지문·네 보기 및4~8열(列) 한자를 직접 대조. OCR이列을5로 잘못 읽은 것으로 원본 유지."}
+    ,{"page":"4-74","number":17,"sourceId":"hvac-hansol-2024-2:17","answer":4,"column":0,"reason":"책과 기존 원문 이미지의350m³/min/1.5m/s/0.5m²/80% 및7~10개 네 보기를 직접 대조. 지수의 OCR 누락만 확인하고 원본 유지."}
+    ,{"page":"4-125","number":19,"sourceId":"hvac-hansol-2019-1:19","answer":3,"column":0,"reason":"책과 기존 원문 이미지의30℃/60%/760mmHg/27.65mmHg·4보기를 직접 대조. 책 풀이 말미 단위mmAq는 문제의mmHg와 다르므로 그 오기를 새 해설로 복제하지 않음."}
+    ,{"page":"4-155","number":40,"sourceId":"hvac-hansol-2019-3:40","answer":2,"column":1,"reason":"책과 기존 원문 이미지의 조건 표5RT/3.9kW/240·400kJ/kg 및 네 보기·숫자 대입을 직접 대조. OCR의1RT/I 혼동을 확인하고 원본 유지."}
+    ,{"page":"4-51","number":29,"sourceId":"hvac-hansol-2024-2:30","answer":2,"column":1,"reason":"책과 기존 원문 이미지에서30RT/7W/m²K/10℃/4℃·네 면적 보기를 직접 대조. OCR의 제곱 누락을 확인하고 원본 유지."}
+    ,{"page":"4-75","number":21,"sourceId":"hvac-20170826:21","answer":4,"column":0,"reason":"책의0.35/20/5.4W/m²K·187.5mm 및 네 열전도도 보기를 직접 대조. 원문에 연결된 식 이미지도 별도 확인."}
+    ,{"page":"4-81","number":48,"sourceId":"hvac-hansol-2024-2:48","answer":2,"column":0,"reason":"책과 기존 원문 이미지의 네 보기·8:1/풀이4:1을 직접 대조. 가운뎃점 글꼴 차이만 확인하여 원본 그대로 연결."}
+    ,{"page":"4-142","number":43,"sourceId":"hvac-hansol-2024-2:48","answer":2,"column":1,"reason":"책의 이 위치에서도 동일 네 보기·8:1/풀이4:1을 직접 대조. 기존 이미지의 모든 보기와 일치함을 확인."}
+    ,{"page":"4-147","number":3,"sourceId":"hvac-hansol-2025-3:5","answer":4,"column":1,"reason":"책과 기존 원문 이미지의90℃/25kg/100℃/4.2kJ/kg·K·네 보기를 직접 대조. kJ의 OCR 누락을 확인하고 원본 유지."}
+    ,{"page":"4-173","number":11,"sourceId":"hvac-20200822:20","answer":3,"column":1,"reason":"책의2℃/19℃/50%RH/1:3·5.3/10.3/14.8/17.3 네 보기를 직접 대조. 최종온도 단위의 OCR 오독이며 기존 문제 유지."}
+    ,{"page":"4-176","number":25,"sourceId":"hvac-hansol-2020-3:25","answer":2,"column":1,"reason":"책과 기존 원문 이미지의1764kPa/196kPa/300℃/442.3kJ/kg·네 속도 보기를 직접 대조. 기존 텍스트의300C 대신 이미지가 정확한℃를 표시함을 확인."}
+    ,{"page":"4-179","number":39,"sourceId":"hvac-20200822:30","answer":2,"column":0,"reason":"책의1kg/1ton·1시간/24시간 네 조합과0℃ 물·얼음의 지문을 직접 대조. OCR의숫자1/l 혼동을 확인하고 기존 문제 유지."}
+    ,{"page":"4-181","number":48,"sourceId":"hvac-20200822:41","answer":1,"column":0,"reason":"책의 지문·네 보기·충격/인장강도 설명을 직접 대조. 목록의 가운뎃점과 쉼표는 표기 차이로 원문 유지."}
+    ,{"page":"4-191","number":36,"sourceId":"hvac-hansol-2022-3:33","answer":2,"column":0,"reason":"책과 기존 원문 이미지에서12kW/800rpm/1.5·1.8m³/min·네 회전수 보기와 대입식을 직접 대조. 기존 텍스트의 PUA 지수 대신 실제 이미지 확인."}
+    ,{"page":"4-193","number":46,"sourceId":"hvac-hansol-2022-3:43","answer":4,"column":0,"reason":"책과 기존 원문 이미지 모두 실제 이산화질소 표기는NO₂임을 직접 확인. 네ppm보기·책 해설과 일치하며 OCR의NOx 오독으로 원문을 바꾸지 않음."}
+    ,{"page":"5-6","number":12,"sourceId":"hvac-hansol-2023-1:12","answer":2,"column":0,"reason":"책과 기존 원문 이미지의 긴 네 보기 전체 및예열부→증발부→과열부 화살표를 직접 대조. OCR의 화살표 누락으로 원문 유지."}
+    ,{"page":"5-7","number":18,"sourceId":"hvac-hansol-2023-1:18","answer":3,"column":0,"reason":"책의14.1kPa/2m/s/926kg/m³·네 정압 보기를 기존 원문 이미지와 직접 대조. 앞서 확인한1-139쪽29번과 같은 지문·수치임을 확인."}
+    ,{"page":"5-11","number":36,"sourceId":"hvac-hansol-2025-1:30","answer":2,"column":0,"reason":"책과 기존 원문 이미지의120m³/h/1.1kW/0.65m³/kg/0.81 및 네 kg/h 보기를 직접 대조. 텍스트 인식의 PUA 지수 대신 실제 이미지 확인."}
+    ,{"page":"5-16","number":3,"sourceId":"hvac-hansol-2023-2:3","answer":1,"column":1,"reason":"책의1.1kW/0.28kW/10℃/1.01kJ/kgK/1.2kg/m³ 및327/527/3270/4270CMH 네 보기를 직접 대조. 앞서 대조한 기존 원문 이미지와 일치."}
+    ,{"page":"5-22","number":34,"sourceId":"hvac-hansol-2023-2:34","answer":4,"column":0,"reason":"책과 기존 원문 이미지의0.5MPa/150℃/0.4m³/kg/J/kgK 및 네 수치 보기를 직접 대조. 책 풀이 말미의kJ 단위 오기는 복제하지 않음."}
+    ,{"page":"5-22","number":36,"sourceId":"hvac-hansol-2025-1:27","answer":3,"column":1,"reason":"책과 기존 원문 이미지의 건도0.2/1884kJ/kg 및 네 보기를 직접 대조. OCR의kaJ 오독으로 원문은 바꾸지 않음."}
+    ,{"page":"5-40","number":7,"sourceId":"hvac-hansol-2023-1:12","answer":2,"column":0,"reason":"책의 이 위치에서도 수관식 보일러 네 보기·예열부→증발부→과열부 화살표와 원문 이미지를 직접 대조하여 동일함을 확인."}
+    ,{"page":"5-45","number":34,"sourceId":"hvac-hansol-2024-1:34","answer":2,"column":1,"reason":"책과 기존 원문 이미지에서 네 보기와CO₂ 아래첨자를 직접 대조. ‘옳지 않은’ 조건과 책의 탄산암모늄 설명도 확인. PUA/OCR누락으로 원본은 바꾸지 않음."}
+    ,{"page":"5-61","number":48,"sourceId":"hvac-hansol-2024-2:48","answer":2,"column":0,"reason":"책에서합류/flexible 인쇄를 직접 읽어 OCR의함류/fexible 오독을 확인. 기존 원문 이미지의 네 보기·8:1과 일치."}
+    ,{"page":"5-62","number":55,"sourceId":"hvac-hansol-2024-2:55","answer":3,"column":0,"reason":"책과 기존 원문 이미지의 추종/비율/정치/프로그램 네 보기와 일정 목표값 설명을 직접 대조. 원문 이미지는 관계없는PUA 글자가 없이 정확함."}
+    ,{"page":"5-65","number":10,"sourceId":"hvac-hansol-2021-2:9","answer":3,"column":1,"reason":"책과 기존 원문 이미지에서CO₂ 아래첨자·조닝조건·로비/체육관/사무실/식당 및 주방 네 보기를 직접 대조. OCR/텍스트 PUA 대신 정확한 이미지 유지."}
+    ,{"page":"5-65","number":12,"sourceId":"hvac-hansol-2025-3:5","answer":4,"column":1,"reason":"책의 이 위치에서도90℃/100℃/25kg/4.2kJ/kgK·42/250/525/1050 네 보기를 직접 대조. 기존 이미지와 일치."}
+    ,{"page":"5-67","number":23,"sourceId":"hvac-hansol-2024-3:23","answer":4,"column":1,"reason":"책과 기존 원문 이미지의70mm/60mm/8기통/1800rpm·65/132/168/199m³/h 네 보기를 직접 대조. OCR의 m³ 오독만 확인."}
+    ,{"page":"5-73","number":50,"sourceId":"hvac-hansol-2024-3:50","answer":1,"column":0,"reason":"책과 기존 원문 이미지의2000kg/h/60℃/20℃/60000kJ/kg/95%·네 소모량 보기를 직접 대조. OCR의 kJl 오독만 확인."}
+    ,{"page":"5-77","number":15,"sourceId":"hvac-hansol-2025-1:15","answer":4,"column":1,"reason":"책과 기존 원문 이미지의350m³/min/1.5m/s/0.5m²/80% 및5/6/7/10개 네 보기를 직접 대조.7/8/9/10개인 다른 회차로 대체하지 않음."}
+    ,{"page":"5-78","number":18,"sourceId":"hvac-hansol-2025-1:18","answer":4,"column":0,"reason":"책과 기존 원문 이미지의10m²EDR·온수 방열기 및4500/6500/7558/5233W 네 보기를 직접 대조. 텍스트 PUA 지수 대신 실제 이미지 확인."}
+    ,{"page":"5-80","number":30,"sourceId":"hvac-hansol-2025-1:30","answer":2,"column":0,"reason":"책의 이 위치에서도120m³/h/1.1kW/0.65m³/kg/0.81 및100/150/200/250kg/h 보기를 직접 대조. 기존 원문 이미지와 동일."}
+    ,{"page":"5-81","number":38,"sourceId":"hvac-hansol-2022-3:31","answer":3,"column":1,"reason":"책과 기존 원문 이미지의10RT/25℃/-20℃/1RT=3.86kW 및 네 동력 보기를 직접 대조. 텍스트 PUA 등호 대신 실제 이미지 확인."}
+    ,{"page":"5-87","number":8,"sourceId":"hvac-hansol-2025-2:8","answer":4,"column":1,"reason":"책과 기존 원문 이미지의11760kJ/h/600·400m³/h/27℃/8L/min/1.7~2.0배 네 보기를 직접 대조. m³ OCR 누락으로 원문을 바꾸지 않음."}
+    ,{"page":"5-91","number":29,"sourceId":"hvac-hansol-2025-2:29","answer":3,"column":0,"reason":"책과 기존 원문 이미지의 냉동제조능력 조건 표 전체·3톤/20·50톤/20·100톤 및40/30/20/10톤 네 보기를 직접 대조. 가운뎃점 글꼴 차이는 내용 변화가 아님."}
+    ,{"page":"5-102","number":25,"sourceId":"hvac-hansol-2022-3:33","answer":2,"column":1,"reason":"책의 이 위치에서도12kW/800rpm/1.5·1.8m³/min 및850/960/1025/1365rpm 네 보기를 직접 대조. 기존 이미지와 동일."}
+    ,{"page":"5-104","number":36,"sourceId":"hvac-hansol-2024-3:23","answer":4,"column":1,"reason":"책의 이 위치에서도70mm/60mm/8기통/1800rpm 및65/132/168/199m³/h 네 보기를 직접 대조. 기존 이미지와 동일."}
+    ,{"page":"1-26","number":8,"sourceId":"hvac-hansol-2022-3:3","answer":3,"column":1,"reason":"책과 기존 원문 이미지의13℃/12.83mmHg/0.008kg/kg/760mmHg·네%보기를 직접 대조. OCR의 소수점/쉼표·mmHlg 오독으로 원문을 바꾸지 않음."}
+    ,{"page":"1-26","number":10,"sourceId":"hvac-hansol-2023-2:19","answer":4,"column":1,"reason":"책과 기존 원문 이미지에서20℃/60%/101.3kPa/3.9kPa 조건 표·네kPa보기를 직접 대조. 괄호 장식 인식 오류만 확인하고 원본 유지."}
+    ,{"page":"3-184","number":56,"sourceId":"hvac-20140817:45","answer":3,"column":1,"reason":"책의 네 보기와 잡배수 설명을 직접 대조하고 별도로 확대한 정답표56③을 직접 읽음. 추정한 정답이 아님."}
+    ,{"page":"1-70","number":2,"sourceId":null,"reviewHold":true,"candidateSourceId":"hvac-20140302:4","answer":2,"column":0,"reason":"직접 읽은 교재 정답표는②, 기존 CBT는①입니다. 교재 풀이의 부하계산 조건과 정답표 사이에도 확인이 필요해 단일 정답을 확정하지 않고 출제 보류합니다."}
+    ,{"page":"1-165","number":8,"sourceId":null,"reviewHold":true,"candidateSourceId":"hvac-20150531:18","answer":3,"column":1,"reason":"교재 정답표는③이지만 같은 쪽 공식·설명은④의 ‘중력가속도에 비례’가 틀렸다고 설명합니다. 책 내부 정답표·풀이 불일치로 출제 보류합니다."}
+    ,{"page":"3-92","number":22,"sourceId":null,"reviewHold":true,"candidateSourceId":"hvac-hansol-2022-1:46","answer":2,"column":1,"reason":"교재 정답표가②·③ 복수정답입니다.30분에V를 채우는②와1시간에2V를 채우는③은 같은 유량이며, 단일 정답으로 임의 축소하지 않고 출제 보류합니다."}
+    ,{"page":"3-241","number":3,"sourceId":null,"reviewHold":true,"candidateSourceId":"hvac-hansol-2022-2:41","answer":3,"column":0,"reason":"직접 읽은 교재 정답표는③, 기존 CBT는④입니다. 동일 지문·네 보기지만 안전조치/건강위험 구분의 정답 차이가 해결되지 않아 출제 보류합니다."}
+    ,{"page":"3-348","number":27,"sourceId":null,"reviewHold":true,"candidateSourceId":"hvac-20110821:65","answer":1,"column":0,"reason":"교재 정답표는①, 같은 쪽 풀이와 기존 CBT는③입니다. 책 내부 정답표·풀이가 달라 단일 정답으로 확정하지 않고 출제 보류합니다."}
+    ,{"page":"1-35","number":46,"sourceId":"hvac-20110821:2","answer":2,"column":1,"reason":"책의32℃/25℃·0.02/0.002kg/kg·5000/10000CMH·네 온도 보기를 직접 대조.1번 보기의°C 기호 OCR 누락이며 기존 텍스트는℃로 정확함."}
+    ,{"page":"1-72","number":13,"sourceId":"hvac-hansol-2023-3:18","answer":3,"column":0,"reason":"책과 기존 원문 이미지의3kW/1kW/0.55kW/25℃/15℃ 및 네 송풍량 보기를 직접 대조. OCR이1065의 천단위 쉼표를 소수점으로 읽은 오류이며 원문은 유지."}
+    ,{"page":"1-108","number":43,"sourceId":null,"candidateSourceId":"hvac-20100307:10","reviewHold":true,"answer":2,"column":0,"reason":"수식 이미지가 다릅니다. 교재 식에는 면적A가 없고 단위가kJ/h, 기존 CBT 식에는×A가 있고 단위가kcal/h입니다. 네 보기·인쇄정답②는 같지만 수식까지 같은 문제로 확정하지 않고 출제 보류합니다."}
+    ,{"page":"1-110","number":55,"sourceId":"hvac-20130818:13","answer":2,"column":1,"reason":"책의 네 보기와 유리를 통과하는 전도열은 현열이라는 원문 설명을 직접 대조. 온습도/냉각·감습의 목록 구분만 달라 기존 원문 유지."}
+    ,{"page":"1-114","number":77,"sourceId":"hvac-20120304:6","answer":4,"column":0,"reason":"책의0.48W/m²℃/200m²/CLTD34℃/실내26℃와 네W보기를 직접 대조. 단위 괄호 표기만 달라 원문 유지."}
+    ,{"page":"1-116","number":91,"sourceId":"hvac-hansol-2024-1:8","answer":3,"column":1,"reason":"책 번호91을 직접 확인하고 기존 원문 이미지의11층/40m²/0.43W/m²℃/26℃/-5℃/1.2/3℃·네W보기를 대조. OCR이91을1로,0.43을0.48로 읽은 오류이며 실제 이미지와 수치는 일치."}
+    ,{"page":"1-139","number":26,"sourceId":"hvac-hansol-2022-3:5","answer":2,"column":0,"reason":"책과 기존 원문 이미지의45000kg/h/2.4m/s/1.2kg/m³·전면적m² 및 네 보기를 직접 대조. 지수 OCR 오독이며 원문 유지."}
+    ,{"page":"4-130","number":44,"sourceId":"hvac-hansol-2025-3:46","answer":3,"column":1,"reason":"손그림2019판의T와 책의S 표시 차이를 확인해 그 원문으로 연결하지 않음. 책의 배관 연결·밸브기호·S/P 및 가/나/다/라/마/바/사/아 위치·네 보기가 실제로 같은 한솔2025판 이미지를 직접 비교하여 연결."}
+    ,{"page":"5-72","number":46,"sourceId":"hvac-hansol-2024-3:46","answer":3,"column":0,"reason":"책과 한솔2024판의 실제 배관 연결·밸브기호·S/P 및 모든 지시문자와 네 보기를 직접 대조. 도면 배치가 달라도 부품·지시문자 연결은 같고,2019손그림의T표시는 채택하지 않음."}
+    ,{"page":"5-106","number":46,"sourceId":"hvac-hansol-2025-3:46","answer":3,"column":1,"reason":"책과 한솔2025판의 실제 배관 그림·S/P·모든 지시문자 위치와 네 보기를 직접 대조. 손그림T/책S 차이가 있는2019판 대신 실제 책과 같은2025판 이미지를 연결."}
+    ,{"page":"1-154","number":14,"sourceId":"hvac-20130310:10","answer":4,"column":1,"reason":"책의2중 효용 흡수식 냉동기 지문·보일러 종류를 포함한 네 보기·압축기 설명과 정답표④를 직접 대조. OCR의 ‘응죽기’ 오독이며 기존 텍스트 응축기는 정확함."}
+    ,{"page":"1-168","number":22,"sourceId":"hvac-20120826:11","answer":1,"column":0,"reason":"책의 송풍기와 배풍기·대규모 보일러실/변전실 지문과1~4종 네 보기 및 급기/배기 설명을 직접 대조. 인쇄정답①과 기존 정답 일치."}
+    ,{"page":"1-168","number":24,"sourceId":"hvac-hansol-2023-2:1","answer":4,"column":1,"reason":"책과 기존 원문 이미지를 직접 대조.6인×100실/300ppm/0.1%/0.015m³/h·CO₂ 지수와 네 보기(인쇄885,7 포함)가 일치하며 기존 정확한 이미지 유지. 텍스트OCR의 허용온도는 실제 이미지의 허용농도와 다름을 확인."}
+    ,{"page":"1-171","number":15,"sourceId":"hvac-20130602:8","answer":2,"column":1,"reason":"책의 냉각탑·축류식 송풍기 지문과 네 보기·프로펠러형 설명을 직접 대조. 실제 인쇄는 프로펠러이며 프로팰러는OCR오독으로 원문 유지."}
+    ,{"page":"1-173","number":28,"sourceId":"hvac-20120826:5","answer":1,"column":1,"reason":"책의 네 보기와 대향류 설명을 직접 대조.4~8열(列)의 범위·한자와1m/s 값이 같으며 OCR의 제 오독으로 원문을 바꾸지 않음."}
+    ,{"page":"1-174","number":35,"sourceId":"hvac-hansol-2023-1:4","answer":3,"column":1,"reason":"책과 기존 원문 이미지의3000m³/min·2.5m/s·1.2kg/m³와 네 보기 및 확대 정답표35③를 직접 대조. 실제 이미지의 단위 지수는 정확하므로 원문 유지."}
+    ,{"page":"1-177","number":49,"sourceId":null,"candidateSourceId":"hvac-20110320:12","reviewHold":true,"answer":4,"column":1,"reason":"책 지문은 ‘가습’인데 네 보기·같은 쪽 설명은 모두 ‘감습’이며 기존 CBT 지문도 ‘감습’입니다. 확대 정답표49④를 확인했지만 가습/감습 오기를 임의로 같은 지문으로 확정하지 않고 출제 보류합니다."}
+    ,{"page":"1-182","number":83,"sourceId":null,"candidateSourceId":"hvac-20100509:9","reviewHold":true,"answer":4,"column":1,"reason":"책의2번 보기는 ‘효율이 낮다’지만 기존 CBT는 ‘효율이 높다’입니다. 책의4번과 함께 ‘장점이 아닌’ 보기가 중복될 수 있어 원래4번 정답만 그대로 적용하지 않고 출제 보류합니다."}
+    ,{"page":"3-183","number":45,"sourceId":"hvac-20211:45","answer":4,"column":0,"reason":"새로 인식한 기존 원문 이미지와 책의 지문·네 보기를 직접 대조. 원래 텍스트의WEES/Ct 오인식과 달리 실제 원본 이미지는 공기빼기밸브·노출배관 문장이 정확하여 이미지를 그대로 연결."}
+    ,{"page":"3-327","number":54,"sourceId":"hvac-hansol-2018-3:69","answer":4,"column":1,"reason":"책과 기존 이미지의 농형 유도전동기 지문·전전압/기동보상/Y-△/2차저항 네 보기를 직접 대조. 삼각형을Δ/△로 읽는 OCR 글리프 차이이며 원문 이미지 보존."}
+    ,{"page":"4-107","number":55,"sourceId":"hvac-hansol-2018-3:69","answer":4,"column":0,"reason":"모의고사 위치에서도 책과 기존 이미지의 농형 유도전동기 지문·네 기동법과Y-△글리프를 직접 대조. 원본 이미지·해설 보존."}
+    ,{"page":"4-152","number":27,"sourceId":"hvac-20231:31","answer":1,"column":1,"reason":"책과 기존 원문 이미지의 최고사용압력2배·최소한의압력 조건 및1/3/5/10MPa 네 보기를 직접 대조. 기존 텍스트 OCR과 달리 실제 원문은 정확하므로 이미지를 유지. 교재 수록문항 대조이며 현행 규정 인증 아님."}
+    ,{"page":"4-175","number":19,"sourceId":"hvac-hansol-2020-3:19","answer":4,"column":0,"reason":"책과 기존 이미지의 축류 취출구 지문·노즐/평커루버/베인격자/팬 네 보기를 직접 대조. 텍스트OCR의평커/평커루버 표현과 무관하게 실제 이미지는 책과 일치."}
+    ,{"page":"5-68","number":28,"sourceId":"hvac-hansol-2024-3:28","answer":3,"column":1,"reason":"책과 기존 이미지의 안전장치 지문·가용전/안전밸브/핫가스/고·저압차단 네 보기를 직접 대조. 가운뎃점 글리프 차이로 원문을 바꾸지 않음."}
+  ]
+}

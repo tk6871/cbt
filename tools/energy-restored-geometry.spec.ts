@@ -1,11 +1,14 @@
 import {test,expect} from '@playwright/test';
 test.use({serviceWorkers:'block'});
-test('1040문제4160보기 선택·취소·강조 사각형 일치',async({page})=>{
+for(const [folder,count] of [['energy-restored-full',1040],['energy-earlier-full',640]] as const)test(`${count}문제 선택·취소·강조 사각형 일치`,async({page})=>{
  test.setTimeout(300000);
- await page.goto('/work/energy-restored-full/answer-geometry/harness.html');
- await page.waitForFunction(()=>Boolean((window as any).review));
- expect(await page.evaluate(()=>(window as any).review.items.length)).toBe(1040);
- for(let first=0;first<1040;first+=40){
+ // This source-component harness needs Vite, even when the other specs use
+ // a static production server. A DOM element named "review" is not ready.
+ const origin=process.env.CBT_GEOMETRY_TEST_URL||process.env.CBT_TEST_URL||'';
+ await page.goto(`${origin}/work/${folder}/answer-geometry/harness.html`);
+ await page.waitForFunction(()=>Array.isArray((window as any).review?.items));
+ expect(await page.evaluate(()=>(window as any).review.items.length)).toBe(count);
+ for(let first=0;first<count;first+=40){
   const errors=await page.evaluate(async first=>{
    const r=(window as any).review;const errors:string[]=[];
    for(let i=first;i<Math.min(first+40,r.items.length);i++){

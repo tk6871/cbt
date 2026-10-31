@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
-const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
+const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'energy-book-earlier.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
 const context = { window: {} };
 
 for (const file of dataFiles) {
@@ -17,6 +17,7 @@ const catalogs = [
   context.window.CBT_DATA_SAFETY,
   context.window.CBT_DATA_ENERGY,
   context.window.CBT_DATA_ENERGY_RESTORED,
+  context.window.CBT_DATA_ENERGY_BOOK_EARLIER,
   context.window.CBT_DATA_MAINTENANCE,
   context.window.CBT_DATA_MAINTENANCE_ENGINEER,
   context.window.CBT_DATA_ELECTRIC_CRAFTSMAN,
