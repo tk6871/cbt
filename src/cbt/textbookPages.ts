@@ -6,8 +6,12 @@ import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextb
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 export type TextbookKey = 'hansol' | 'energy';
-export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; correction?:{text:string;choices:string[];answer?:number;note:string;asset:string;size:number[];hotspots:AnswerHotspot[];sourceImage?:string|null;explanation?:string} };
-export const textbookEntries: TextbookEntry[] = links.entries;
+export type TextbookCorrection = {text:string;choices:string[];answer?:number;note:string;sourceImage?:string|null;explanation?:string} & (
+ {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
+ {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
+);
+export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; correction?:TextbookCorrection };
+export const textbookEntries: TextbookEntry[] = links.entries as TextbookEntry[];
 export const textbookNames = { hansol:'한솔 공조 교재', energy:'에너지설비 교재' };
 export const textbookWorkedExamples=workedExamples.entries;
 const auditedPages=new Map(pageAudit.pages.map(row=>[row.page,row]));
@@ -63,8 +67,10 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
   const location=`${textbookNames[e.book as TextbookKey]} ${e.page}쪽 · ${e.number}번`;
   const enhanced=e.book==='energy'?withEnergyTextbookComcbt(original.question,e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
   const correction=e.correction;
-  const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:true,answer:correction.answer??enhanced.answer,sourceImage:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
-   choices:correction.choices.map(text=>({text,html:'',images:[]})),bookCorrection:{note:correction.note,originalImage:correction.sourceImage?textbookAssetUrl(correction.sourceImage):undefined}}:{}),sourceImageSize:e.imageSize||enhanced.sourceImageSize,number:e.number,_originRoundId:roundId,_originalNumber:e.number,
+  const textCorrection=correction?.presentation==='text'?correction:undefined;
+  const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
+   images:textCorrection?textCorrection.images.map(path=>textbookAssetUrl(path)):enhanced.images,
+   choices:correction.choices.map((text,index)=>({text,html:'',images:(textCorrection?.choiceImages[index]||[]).map(path=>textbookAssetUrl(path))})),bookCorrection:{note:correction.note,originalImage:correction.sourceImage?textbookAssetUrl(correction.sourceImage):undefined}}:{}),sourceImageSize:textCorrection?undefined:e.imageSize||enhanced.sourceImageSize,number:e.number,_originRoundId:roundId,_originalNumber:e.number,
    _subject:original.subject,sourcePage:location};
   if(correction?.explanation){
    question.additionalExplanations=[...(enhanced.additionalExplanations||[]),...(enhanced.explanation?[{label:'수정 전 기존 CBT 해설',source:'기존 문제 보존본',text:enhanced.explanation}]:[])];

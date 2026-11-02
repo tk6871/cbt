@@ -7,9 +7,10 @@ import {rasterDimensions} from './raster-dimensions.mjs';
 import {chooseBookPage,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test('교재 정정 사본125개와 원본 해시·겹치지 않는 보기 영역',()=>{
- expect(Object.keys(corrections.entries)).toHaveLength(125);
+ const imageRows=Object.values(corrections.entries).filter(row=>!('presentation' in row&&row.presentation==='text'));
+ expect(imageRows).toHaveLength(125);
  const sha=(p:string)=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
- for(const row of Object.values(corrections.entries)){
+ for(const row of imageRows){
   expect(sha(row.asset)).toBe(row.sha256);if(row.sourceImage)expect(sha(row.sourceImage)).toBe(row.sourceImageSha256);
   expect(row.size).toEqual(rasterDimensions(row.asset));
   const entry=textbookEntries.find(e=>e.book==='hansol'&&e.correction?.asset===row.asset)!;expect(entry.imageSize).toEqual(row.size);

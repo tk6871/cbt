@@ -6,7 +6,7 @@ const ready=new Set(read('data/textbook-pages.json').entries.filter(e=>e.book===
 const held=new Map(read('data/textbook-pages.json').entries.filter(e=>e.book==='hansol'&&!e.sourceId&&e.pendingReason).map(e=>[`${e.page}:${e.number}`,e.pendingReason]));
 // Individual review can precede a batch render. Do not requeue already read
 // inputs merely because the public correction images have not been rebuilt.
-const manual=[...read('tools/hansol-textbook-page-review.json').rows,...read('tools/hansol-book-copy-patches.json').rows];
+const manual=[...read('tools/hansol-textbook-page-review.json').rows,...read('tools/hansol-book-copy-patches.json').rows,...read('tools/hansol-numeric-text-review.json').rows];
 for(const r of manual){const key=`${r.page}:${r.number}`;if(r.sourceId){ready.add(key);held.delete(key);}else if(r.reason){ready.delete(key);held.set(key,r.reason);}}
 const numberFixes=read('tools/hansol-screen-number-review.json').rows;
 const exclusions=read('tools/hansol-individual-review-exclusions.json').rows;

@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.7.1',scope:'industrial',date:'2026.11.02',
+      title:'교재 수치 차이는 선명한 텍스트로',
+      summary:'직접 대조한 숫자·단위·보기 차이9문항을 교재용 텍스트로 반영했습니다.',
+      tags:['교재 대조','텍스트 답안','해설'],
+      changes:['교재의 압력·열량·비열·엔트로피 조건과 네 보기·정답표를 직접 확인한9문항을 텍스트로 표시합니다. 답안을 직접 선택하고 글자 크기와 다크·라이트 설정을 그대로 사용합니다.','같은 원문2문항은 기존 이미지를 유지합니다. 선도는 보존하고, 교재에서 완전히 다른 문장으로 바뀐 보기만 예전 분수 그림과 구분합니다. 원래 CBT 은행·이미지·기록은 수정하지 않습니다.','바뀐 조건에 맞는 짧은 계산 설명을 우선하고 기존 해설은 추가로 보존합니다. 교재 풀이의 산술 오기도 지문 수치와 구분합니다. OCR 번호 중복 후보를 정리했으며 전체 개별 검토는 계속 진행 중입니다.']
+    },
+    {
       version:'5.7',scope:'industrial',date:'2026.11.02',
       title:'목차에서 고르고, 책처럼 풀기',
       summary:'교재 선택은 메뉴 안에서, 문제 풀이는 독립된 인쇄 교재형 화면에서 진행합니다.',
@@ -2732,8 +2739,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.7';
+  changelog.versions.industrial = '5.7.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.7';
+  changelog.currentVersion = '5.7.1';
   window.CBT_CHANGELOG = changelog;
 })();

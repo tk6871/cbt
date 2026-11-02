@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-31",
+  "date": "2026-11-02",
   "book": "hansol",
   "normalScreensRead": 620,
   "columnOcrRegions": 2480,
@@ -1923,25 +1923,25 @@
       "page": "2-18",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2
+      "unconfirmedCandidates": 1
     },
     {
       "page": "2-19",
       "basis": "printed-footer",
       "detectedPositions": 2,
-      "linkedPositions": 0,
+      "linkedPositions": 1,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2
+      "unconfirmedCandidates": 1
     },
     {
       "page": "2-20",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1
+      "unconfirmedCandidates": 0
     },
     {
       "page": "2-21",
@@ -2282,10 +2282,10 @@
     {
       "page": "2-63",
       "basis": "printed-footer",
-      "detectedPositions": 5,
+      "detectedPositions": 4,
       "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2
+      "unconfirmedCandidates": 0
     },
     {
       "page": "2-64",
@@ -2378,10 +2378,10 @@
     {
       "page": "2-75",
       "basis": "printed-footer",
-      "detectedPositions": 5,
-      "linkedPositions": 2,
+      "detectedPositions": 4,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3
+      "unconfirmedCandidates": 1
     },
     {
       "page": "2-76",
@@ -2459,9 +2459,9 @@
       "page": "2-85",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 2,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3
+      "unconfirmedCandidates": 0
     },
     {
       "page": "2-86",
@@ -2491,9 +2491,9 @@
       "page": "2-89",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 2,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3
+      "unconfirmedCandidates": 2
     },
     {
       "page": "2-90",
@@ -3955,17 +3955,17 @@
       "page": "2-272",
       "basis": "printed-footer",
       "detectedPositions": 1,
-      "linkedPositions": 0,
+      "linkedPositions": 1,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1
+      "unconfirmedCandidates": 0
     },
     {
       "page": "2-273",
       "basis": "printed-footer",
       "detectedPositions": 2,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1
+      "unconfirmedCandidates": 0
     },
     {
       "page": "2-274",

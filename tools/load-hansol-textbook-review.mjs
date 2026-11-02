@@ -3,7 +3,9 @@ import fs from 'node:fs';import assert from 'node:assert/strict';
 export function loadHansolReview(originals){
  const base=JSON.parse(fs.readFileSync('tools/hansol-textbook-page-review.json','utf8'));
  const changes=JSON.parse(fs.readFileSync('tools/hansol-book-copy-patches.json','utf8'));
- const rows=[...base.rows];const seen=new Set(rows.map(r=>`${r.page}:${r.number}`));
+ const numeric=JSON.parse(fs.readFileSync('tools/hansol-numeric-text-review.json','utf8'));
+ const rows=[...base.rows,...numeric.rows];const seen=new Set();
+ for(const row of rows){const key=`${row.page}:${row.number}`;assert.ok(!seen.has(key),key);seen.add(key);}
  for(const row of changes.rows){
   const key=`${row.page}:${row.number}`;assert.ok(!seen.has(key),key);seen.add(key);
   const source=originals.get(row.sourceId);assert.ok(source,row.sourceId);assert.equal(source.answer,row.answer,key);

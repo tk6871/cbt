@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import {loadHansolReview} from './load-hansol-textbook-review.mjs';
 import {rasterDimensions} from './raster-dimensions.mjs';
 import {correctionFigures,correctionFigureAssets} from './textbook-correction-figures.mjs';
+import {makeTextCorrection} from './textbook-text-correction.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const context={window:{}};
 for(const key of ['hvac','hvac-hansol','energy-textbook','energy-restored','energy-book-earlier'])vm.runInNewContext(fs.readFileSync(`data/${key}.js`,'utf8'),context);
@@ -22,7 +23,8 @@ for(const r of loadHansolReview(items).rows){
  const correction=corrections[`${r.page}:${r.number}`];
  if(r.correction){assert.ok(correction);assert.equal(correction.sourceId,r.sourceId);assert.deepEqual(correction.choices,r.correction.choices);assert.equal(correction.text,r.correction.text);
   assert.equal(correction.answer,r.correction.answer);if(correction.answer!==undefined)assert.ok([1,2,3,4].includes(correction.answer));
-  assert.deepEqual(correction.figureAssets||[],correctionFigureAssets(correctionFigures(q,r)),`${r.page}:${r.number}: figure assets must be rendered and unchanged`);
+  if(r.presentation==='text')assert.deepEqual(correction,makeTextCorrection(q,r),`${r.page}:${r.number}: verified text must match`);
+  else assert.deepEqual(correction.figureAssets||[],correctionFigureAssets(correctionFigures(q,r)),`${r.page}:${r.number}: figure assets must be rendered and unchanged`);
   for(const [path,hash] of [[correction.asset,correction.sha256],[correction.sourceImage,correction.sourceImageSha256]])if(path)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex'),hash,path);}
  entries.push({book:'hansol',page:r.page,number:r.number,sourceId:r.sourceId,fingerprint:q?fingerprint(q):null,column:r.column,...(r.reviewHold?{reviewHold:true}:{}),...(!q&&r.reason?{pendingReason:r.reason}:{}),...(correction?{correction,imageSize:correction.size}:{})});
 }

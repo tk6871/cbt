@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';import {chromium} from '@playwright/test
 import {loadHansolReview} from './load-hansol-textbook-review.mjs';
 import {rasterDimensions} from './raster-dimensions.mjs';
 import {correctionFigures,correctionFigureHtml,correctionFigureAssets} from './textbook-correction-figures.mjs';
+import {makeTextCorrection} from './textbook-text-correction.mjs';
 const w={window:{}};for(const f of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${f}.js`,'utf8'),w);
 const originals=new Map(Object.values(w.window).flatMap(b=>b.rounds.flatMap(r=>r.questions.map(q=>[`${r.id}:${q.number}`,q]))));
 const review=loadHansolReview(originals);
@@ -19,6 +20,7 @@ const browser=await chromium.launch({channel:'chrome'});const page=await browser
 const result={};
 try{for(const row of review.rows.filter(r=>r.correction&&(!previewFigures||r.retainSourceFigures))){
  const original=originals.get(row.sourceId);assert.ok(original);assert.equal(original.answer,row.answer);assert.equal(row.correction.choices.length,4);
+ if(row.presentation==='text'){result[`${row.page}:${row.number}`]=makeTextCorrection(original,row);continue;}
  const figures=correctionFigures(original,row);const figureAssets=correctionFigureAssets(figures);
  await page.setContent(`<style>@font-face{font-family:Book;src:url(data:font/ttf;base64,${font})}*{box-sizing:border-box}html,body{margin:0;background:white}#question{width:742px;padding:22px 24px;color:#111;font:30px/1.55 Book,sans-serif}.stem{margin:0 0 20px;word-break:keep-all;overflow-wrap:anywhere;white-space:pre-line}.stem-figures{display:grid;justify-items:center;gap:16px;margin:0 0 24px}.stem-figures .source-figure{display:block;max-width:100%;height:auto}.choices{display:grid;grid-template-columns:1fr 1fr;gap:18px 22px;padding:0 12px}.choices.long{grid-template-columns:1fr}.choice{display:flex;align-items:flex-start;gap:10px;width:fit-content;max-width:100%;word-break:keep-all;overflow-wrap:anywhere}.choice-content{min-width:0}.choice .source-figure{display:block;min-width:140px;max-width:100%;height:auto}.number{flex-shrink:0}</style><article id="question"><div class="stem">${row.number}. ${escape(row.correction.text)}</div>${figures.stem.length?`<div class="stem-figures">${correctionFigureHtml(figures.stem)}</div>`:''}<div class="choices ${row.correction.choices.some(c=>c.length>35)?'long':''}">${row.correction.choices.map((c,i)=>`<div class="choice" data-choice="${i+1}"><span class="number">${'①②③④'[i]}</span><span class="choice-content">${escape(c)}${correctionFigureHtml(figures.choices[i])}</span></div>`).join('')}</div></article>`);
  await page.evaluate(()=>document.fonts.ready);

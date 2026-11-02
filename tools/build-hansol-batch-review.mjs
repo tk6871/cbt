@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import assert from 'node:assert/strict';
 import {classify,digest,topicFor,riskNames,differenceMarkup} from './hansol-batch-review-lib.mjs';
 import {pageHtml} from './hansol-batch-review-page.mjs';
 const root=path.resolve(import.meta.dirname,'..'),work=path.join(root,'work/hansol-whole-book'),out=path.join(work,'batch-review');
@@ -12,7 +13,7 @@ const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const sourceIndex=read('work/hansol-whole-book/source-index.json'),sources=new Map(sourceIndex.map(r=>[r.id,r]));
 const comparisons=['comparison.json','comparison-columns.json'].flatMap(p=>JSON.parse(fs.readFileSync(path.join(work,p),'utf8')).questions);
 const queue=read('work/hansol-whole-book/review-queue.json').rows;
-const manual=[...read('tools/hansol-textbook-page-review.json').rows,...read('tools/hansol-book-copy-patches.json').rows];
+const manual=[...read('tools/hansol-textbook-page-review.json').rows,...read('tools/hansol-book-copy-patches.json').rows,...read('tools/hansol-numeric-text-review.json').rows];
 const fixes=read('tools/hansol-screen-number-review.json').rows;
 const entries=read('data/textbook-pages.json').entries.filter(r=>r.book==='hansol');
 const confirmed=new Map(entries.filter(r=>r.sourceId).map(r=>[`${r.page}:${r.number}`,r]));
@@ -41,10 +42,15 @@ function snapshot(q,source){
 fs.mkdirSync(out,{recursive:true});
 const baselinePath=path.join(out,'confirmed-baseline.json');
 const baseline=fs.existsSync(baselinePath)?JSON.parse(fs.readFileSync(baselinePath,'utf8')):{version:1,limits:'이 기준은 생성 당시 파일 상태입니다. 과거 개별 검수 당시의 이미지 해시를 증명하지 않습니다.',rows:{}};
+// Explicit acknowledgement after a direct review, limited to the checked
+// batch. Never clear unrelated changed-source alerts by rebuilding the viewer.
+const acknowledged=process.argv.includes('--accept-verified-text-batch')?new Map(read('tools/hansol-numeric-text-review.json').rows.map(r=>[`${r.page}:${r.number}`,r])):new Map();
+if(acknowledged.size)execFileSync(process.execPath,[path.join(root,'tools/publish-hansol-text-review.mjs'),'--check'],{cwd:root,stdio:'pipe'});
 const changed=[];let unchanged=0,newBaselines=0;
 for(const [key,r] of confirmed){
  const q=anchor(r.page,r.number),source=sources.get(r.sourceId);
  const fp=digest({entry:r,snapshot:snapshot(q,source)});
+ if(acknowledged.has(key)){assert.deepEqual(r,acknowledged.get(key));baseline.rows[key]=fp;unchanged++;continue;}
  if(!baseline.rows[key]){baseline.rows[key]=fp;newBaselines++;}
  else if(baseline.rows[key]!==fp)changed.push({...q,page:r.page,number:r.number,source,candidates:[{id:r.sourceId,stemScore:1,choiceScore:1}],changedConfirmed:true,reviewReason:'확정 기준 생성 후 책 캡처·원문·검토 입력이 바뀌었습니다.'});
  else unchanged++;
