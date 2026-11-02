@@ -7,7 +7,7 @@ const held=new Map(read('data/textbook-pages.json').entries.filter(e=>e.book==='
 // Individual review can precede a batch render. Do not requeue already read
 // inputs merely because the public correction images have not been rebuilt.
 const manual=[...read('tools/hansol-textbook-page-review.json').rows,...read('tools/hansol-book-copy-patches.json').rows];
-for(const r of manual){const key=`${r.page}:${r.number}`;if(r.sourceId)ready.add(key);else if(r.reason)held.set(key,r.reason);}
+for(const r of manual){const key=`${r.page}:${r.number}`;if(r.sourceId){ready.add(key);held.delete(key);}else if(r.reason){ready.delete(key);held.set(key,r.reason);}}
 const numberFixes=read('tools/hansol-screen-number-review.json').rows;
 const exclusions=read('tools/hansol-individual-review-exclusions.json').rows;
 const compact=s=>s.normalize('NFKC').replace(/\s/g,'');
@@ -25,5 +25,5 @@ const priority={'very-close-text':0,'printed-key-needed':1,'close-text':2,'image
 const queue=[...rows.values()].sort((a,b)=>priority[a.kind]-priority[b.kind]||a.page.localeCompare(b.page,'ko',{numeric:true})||a.number-b.number);
 fs.writeFileSync('work/hansol-whole-book/review-queue.json',JSON.stringify({limits:'OCR 후보 수이며 실제 책의 문제 총수/미수록 판정이 아닙니다.',rows:queue},null,2)+'\n');
 const publicReady=new Set(read('data/textbook-pages.json').entries.filter(e=>e.book==='hansol'&&e.sourceId).map(e=>`${e.page}:${e.number}`));
-fs.writeFileSync('work/hansol-whole-book/individual-progress.json',JSON.stringify({phase:'direct-individual-review-in-progress',publishedLinks:publicReady.size,newReviewedInputs:[...ready].filter(k=>!publicReady.has(k)).length,preparedCorrections:manual.filter(r=>r.correction||r.patches).length,numberFixes:numberFixes.length,reviewedNonQuestionAnchors:exclusions.length,unreviewedCandidates:queue.filter(r=>r.kind!=='reviewed-unresolved').length,reviewedUnresolved:queue.filter(r=>r.kind==='reviewed-unresolved').length,limits:'직접 확인한 입력과 실제 공개 반영/렌더 완료 수는 다릅니다. 전체 개별 검토 완료가 아닙니다.'},null,2)+'\n');
+fs.writeFileSync('work/hansol-whole-book/individual-progress.json',JSON.stringify({phase:'direct-individual-review-in-progress',publishedLinks:publicReady.size,newReviewedInputs:[...ready].filter(k=>!publicReady.has(k)).length,preparedCorrections:manual.filter(r=>r.correction||r.patches).length,numberFixes:numberFixes.length,reviewedNonQuestionAnchors:exclusions.length,unreviewedCandidates:queue.filter(r=>r.kind!=='reviewed-unresolved').length,reviewedUnresolved:queue.filter(r=>r.kind==='reviewed-unresolved').length,heldLocationsTotal:[...held.keys()].filter(k=>!ready.has(k)).length,heldLocationsWithoutOcrCandidate:[...held.keys()].filter(k=>!ready.has(k)&&!rows.has(k)),limits:'직접 확인한 입력과 실제 공개 반영/렌더 완료 수는 다릅니다. 전체 개별 검토 완료가 아닙니다.'},null,2)+'\n');
 console.log(Object.fromEntries(Object.keys(priority).map(kind=>[kind,queue.filter(r=>r.kind===kind).length])));
