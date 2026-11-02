@@ -154,6 +154,7 @@ declare global {
   interface Window {
     CBT_DATA_HVAC?: Catalog;
     CBT_DATA_HANSOL_HVAC?: Catalog;
+    CBT_DATA_HVAC_HANSOL_BOOK?: Catalog;
     CBT_DATA_SAFETY?: Catalog;
     CBT_DATA_ENERGY?: Catalog;
     CBT_DATA_ENERGY_MIDTERM?: Catalog;

@@ -2206,7 +2206,8 @@ async function loadTextbookPages():Promise<void> {
  const revision=++textbookLoadRevision;
  textbookLoading.value=true;textbookError.value='';
  try{const book=textbookKey.value;await loadQuestionSources(textbookSourceKeys(book));
-  if(book==='energy')textbookSupplement.value=await loadTextbookSupplement(book);}
+  const supplement=await loadTextbookSupplement(book);
+  if(revision===textbookLoadRevision&&textbookKey.value===book)textbookSupplement.value=supplement;}
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
 }
@@ -2277,7 +2278,8 @@ function isMidtermCalculation(item: QuestionItem): boolean {
 }
 
 async function ensureItemSources(ids: string[]): Promise<void> {
-  if(ids.some(id=>bookForStudyId(id)==='energy'))textbookSupplement.value=await loadTextbookSupplement('energy');
+  const savedBooks=[...new Set(ids.map(bookForStudyId).filter((book):book is TextbookKey=>!!book))];
+  if(savedBooks.length)textbookSupplement.value=(await Promise.all(savedBooks.map(loadTextbookSupplement))).flat();
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
@@ -5807,7 +5809,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.7.1</span><h2>목차에서 고르고, 책처럼 풀기</h2></div><p>교재 탭에서 책·장·절·쪽을 고르세요. 선택하는 동안에는 메뉴가 보이고, 문제를 열었을 때만 독립된 교재 화면으로 전환합니다. 큰 CBT 카드 대신 좌우 열·단원 제목·인쇄 쪽번호로 배치하고 중복 표시를 줄였습니다. 쪽번호를 누르면 다른 쪽을 고를 수 있습니다. 직접 대조한 숫자·단위 차이9문항은 교재용 텍스트와 해당 조건의 해설로 읽습니다. 같은 원문·그림과 기존 풀이 기록은 유지하며 전체 개별 대조는 진행 중입니다.</p></header>
+            <header><div><span>NEW · v5.7.2</span><h2>교재 빈칸은 원문으로, 풀이도 따로 보기</h2></div><p>교재 탭에서 책·장·절·쪽을 고르고 문제만 독립된 화면에서 풉니다. 미연결 위치201곳을 직접 읽은 원문으로 보강했습니다. 객관식175개는 이미지 속 보기를 선택하고, 예제·검토용 원문26개는 답과 풀이를 접어 봅니다. 문제·해설402장은 화질을 개선하고 다크·라이트 표시를 유지합니다. 숫자·단위·보기 차이40개는 책 기준 텍스트와 짧은 해설로 구분합니다. 기존 기출·중간고사·기록은 그대로이며 전체 교재 개별 대조는 아직 진행 중입니다.</p></header>
             <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 한솔의 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하고 기존 CBT 원본과 기록은 유지합니다. 책 내부 정답표·풀이 불일치나 복수정답은 보류 사유를 표시하며, CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
             <p>교재 선택 화면에서는 사이트 메뉴를 그대로 사용합니다. 문제를 펼친 뒤에는 ‘목차·쪽 선택’과 인쇄 쪽번호를 눌러 이동할 수 있습니다. 연결 현황과 긴 안내는 필요한 경우에만 별도 탭에서 확인하세요.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>

@@ -3,6 +3,7 @@ import type { Question } from './types';
 /** Describe recorded provenance; a source label is never a claim of factual verification. */
 export function explanationSource(question: Question): { label: string; detail: string; url?: string } {
   const provenance = question.explanationProvenance || '';
+  if(provenance==='book-original-reviewed')return {label:'교재 원문 대조 설명',detail:question.explanationBasis||'교재 원문 지문·보기·정답을 직접 확인한 학습 설명이며 원문 풀이 이미지를 함께 보존합니다.'};
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';
   if(provenance==='book-verified-correction')return {label:'교재 대조 후 작성 설명',detail:question.explanationBasis||'교재의 정정된 보기·단위에 맞춘 학습 설명입니다. 인쇄된 해설을 그대로 옮긴 것은 아닙니다.'};

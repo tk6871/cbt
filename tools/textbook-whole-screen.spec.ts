@@ -25,14 +25,14 @@ test('전체 화면 대조의 연결 범위·기존 기록 보존·목차·비�
   expect(r).not.toHaveProperty('stem');expect(r).not.toHaveProperty('choices');expect(r).not.toHaveProperty('bounds');
  }
  for(let part=1;part<=5;part++)expect(screenLinks.rows.some(r=>r.page.startsWith(`${part}-`))).toBe(true);
- const before=JSON.parse(execFileSync('git',['show','HEAD:data/textbook-pages.json'],{encoding:'utf8'})).entries;
+ const before=JSON.parse(execFileSync('git',['show','HEAD:data/textbook-pages.json'],{encoding:'utf8',maxBuffer:32*1024*1024})).entries;
  for(const old of before.filter((e:any)=>e.sourceId)){const now=textbookEntries.find(e=>e.book===old.book&&e.page===old.page&&e.number===old.number);expect(now?.sourceId).toBe(old.sourceId);}
  const mock=bookContents.hansol.find(n=>n.id==='hansol-mock')!.children!;expect(mock).toHaveLength(15);expect(mock[0].from).toBe('4-7');expect(mock[14].to).toBe('4-195');expect(mock.every(n=>n.from&&n.to&&!n.pages)).toBe(true);
  const latest=bookContents.hansol.find(n=>n.id==='hansol-latest')!.children!;expect(latest).toHaveLength(9);expect(latest.map(n=>n.from)).toEqual(['5-4','5-16','5-27','5-39','5-51','5-64','5-75','5-86','5-98']);
  expect(textbookAssetUrl('assets/sample.webp',true)).toBe('https://tk6871.github.io/cbt/assets/sample.webp');expect(textbookAssetUrl('assets/sample.webp',false)).toBe('assets/sample.webp');
 });
 test('본문 예제는 객관식과 분리하고 원본·업스케일·계산 합계를 확인',()=>{
- expect(examples.entries).toHaveLength(1);const e=examples.entries[0];expect(e.pages).toEqual(['88','89']);expect(e.kind).toBe('worked-example');expect(e.answer).toBe('89.125 TOE');
+ const energyExamples=examples.entries.filter(e=>e.book==='energy');expect(energyExamples).toHaveLength(1);const e=energyExamples[0];expect(e.pages).toEqual(['88','89']);expect(e.kind).toBe('worked-example');expect(e.answer).toBe('89.125 TOE');
  expect((30000*1.055+80000*.215+45000*.895)/1000).toBeCloseTo(89.125,10);
  for(const row of Object.values(e.images)){
   expect(crypto.createHash('sha256').update(fs.readFileSync(row.asset)).digest('hex')).toBe(row.outputSha256);expect(row.outputSize).toEqual(row.sourceSize.map(n=>n*2));expect(row.tile).toBe(256);expect(row.native).toBe('arm64');
@@ -55,5 +55,5 @@ test('본문 예제 원문·풀이 접기와 다크/라이트를 실제 페이�
  await root.getByRole('searchbox',{name:'교재 대조 쪽 검색'}).fill('1-108');
  const auditRow=root.locator('.book-audit-list button');await expect(auditRow).toHaveCount(1);await expect(auditRow).toContainText('보류 1');
  await auditRow.scrollIntoViewIfNeeded();await page.screenshot({path:`/private/tmp/textbook-audit-v56-${info.project.name}.png`});await auditRow.click();
- await expect(root.locator('.book-sheet>footer>strong')).toHaveText('1-108');await expect(root.locator('.book-pending').filter({hasText:'면적A'})).toBeVisible();
+ await expect(root.locator('.book-sheet>footer>strong')).toHaveText('1-108');await expect(root.locator('.book-worked-example').filter({hasText:'면적A'})).toBeVisible();
 });

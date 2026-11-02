@@ -26,7 +26,7 @@ export function calculationSource(item: QuestionItem): string {
 export function comcbtCalculationExplanation(item: QuestionItem): string {
   // A book-specific editorial explanation inherits the original question's
   // source URL, not COMCBT authorship or the original numeric conditions.
-  if (item.question.explanationProvenance === 'book-verified-correction') return '';
+  if (['book-verified-correction','book-original-reviewed'].includes(item.question.explanationProvenance||'')) return '';
   const raw = item.question.explanation || item.question.explanationHtml || '';
   const supplement = raw.split('[COMCBT 동일 문제 추가 해설]')[1];
   if (supplement) return plainText(supplement.replace(/\[해설작성자[^\]]*\]/g, ' '));
@@ -153,7 +153,7 @@ export function calculationGuideFor(item: QuestionItem): CalculationGuide {
   // 유형 판별에 사용한다. 화면에 자세한 해설이 있는데도 일반 안내로 떨어지는 일을 막는다.
   const source = `${questionSource} ${primaryExplanation} ${comcbtExplanation}`.trim();
   const goal = plainText(item.question.text || item.question.html) || `${item.subject}의 조건을 읽고 보기와 일치하는 값을 찾는 문제`;
-  if (item.question.explanationProvenance === 'book-verified-correction') {
+  if (['book-verified-correction','book-original-reviewed'].includes(item.question.explanationProvenance||'')) {
     const equation = primaryExplanation.split(/(?<=[.!?。])\s+/).find(line => /[=＝]/.test(line));
     return {goal,formula:equation || '',symbols:'',reason:'',unitTip:'',reliable:!!equation};
   }

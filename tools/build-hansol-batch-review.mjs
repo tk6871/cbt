@@ -19,6 +19,7 @@ const entries=read('data/textbook-pages.json').entries.filter(r=>r.book==='hanso
 const confirmed=new Map(entries.filter(r=>r.sourceId).map(r=>[`${r.page}:${r.number}`,r]));
 const holds=new Map(entries.filter(r=>!r.sourceId&&r.pendingReason).map(r=>[`${r.page}:${r.number}`,r]));
 for(const r of manual){const key=`${r.page}:${r.number}`;if(r.sourceId){confirmed.set(key,r);holds.delete(key);}else if(r.reason){confirmed.delete(key);holds.set(key,{...r,pendingReason:r.reason});}}
+if(fs.existsSync('data/hansol-book-native-audit.json'))for(const r of read('data/hansol-book-native-audit.json').locations){const key=`${r.page}:${r.number}`;if(r.reviewHold)holds.set(key,r);else holds.delete(key);if(r.sourceId)confirmed.set(key,r);else confirmed.delete(key);}
 const canonical=q=>fixes.find(f=>f.page===q.page&&f.column===q.column&&f.rawNumber===q.number&&q.stem.replace(/\s/g,'').includes(f.contains.replace(/\s/g,'')))?.number??q.number;
 function anchor(page,number){return comparisons.find(q=>q.page===page&&canonical(q)===number);}
 const fileHashes=new Map(),dimensions=new Map();
@@ -44,8 +45,9 @@ const baselinePath=path.join(out,'confirmed-baseline.json');
 const baseline=fs.existsSync(baselinePath)?JSON.parse(fs.readFileSync(baselinePath,'utf8')):{version:1,limits:'이 기준은 생성 당시 파일 상태입니다. 과거 개별 검수 당시의 이미지 해시를 증명하지 않습니다.',rows:{}};
 // Explicit acknowledgement after a direct review, limited to the checked
 // batch. Never clear unrelated changed-source alerts by rebuilding the viewer.
-const acknowledged=process.argv.includes('--accept-verified-text-batch')?new Map(read('tools/hansol-numeric-text-review.json').rows.map(r=>[`${r.page}:${r.number}`,r])):new Map();
+const acknowledged=process.argv.includes('--accept-verified-text-batch')?new Map([...read('tools/hansol-numeric-text-review.json').rows,...manual.filter(r=>r.presentation==='text'||r.publicationBatch==='continue-2026-11-02'),...(fs.existsSync('data/hansol-book-native-audit.json')?read('data/hansol-book-native-audit.json').locations.filter(r=>r.sourceId):[])].map(r=>[`${r.page}:${r.number}`,r])):new Map();
 if(acknowledged.size)execFileSync(process.execPath,[path.join(root,'tools/publish-hansol-text-review.mjs'),'--check'],{cwd:root,stdio:'pipe'});
+if(acknowledged.size&&fs.existsSync('data/hansol-book-native-audit.json'))execFileSync(process.execPath,[path.join(root,'tools/build-hansol-book-native.mjs'),'--check'],{cwd:root,stdio:'pipe'});
 const changed=[];let unchanged=0,newBaselines=0;
 for(const [key,r] of confirmed){
  const q=anchor(r.page,r.number),source=sources.get(r.sourceId);

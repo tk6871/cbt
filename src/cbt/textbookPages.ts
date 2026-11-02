@@ -10,7 +10,7 @@ export type TextbookCorrection = {text:string;choices:string[];answer?:number;no
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
 );
-export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; correction?:TextbookCorrection };
+export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; correction?:TextbookCorrection };
 export const textbookEntries: TextbookEntry[] = links.entries as TextbookEntry[];
 export const textbookNames = { hansol:'한솔 공조 교재', energy:'에너지설비 교재' };
 export const textbookWorkedExamples=workedExamples.entries;
@@ -29,17 +29,17 @@ export function textbookReferencePage(book:TextbookKey,page:string):string|undef
 export const textbookSourceKeys = (book: TextbookKey) => book === 'hansol' ? ['hvac','hvac-hansol'] : ['energy','energy-midterm'];
 // Book-only scans must not duplicate the existing ordinary exam rounds or
 // expand a midterm selection. Load them only for the book reader/resume.
-let earlierLoad:Promise<QuestionItem[]>|undefined;
+const supplementLoads:Partial<Record<TextbookKey,Promise<QuestionItem[]>>>={};
 export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]> {
- if(book!=='energy')return Promise.resolve([]);
- const items=()=> (window.CBT_DATA_ENERGY_BOOK_EARLIER?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
- if(window.CBT_DATA_ENERGY_BOOK_EARLIER)return Promise.resolve(items());
- return earlierLoad ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL('data/energy-book-earlier.js?v=621',document.baseURI).href;
-  script.onload=()=>window.CBT_DATA_ENERGY_BOOK_EARLIER?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
+ const bank=()=>book==='energy'?window.CBT_DATA_ENERGY_BOOK_EARLIER:window.CBT_DATA_HVAC_HANSOL_BOOK;
+ const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
+ if(bank())return Promise.resolve(items());
+ return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=624',document.baseURI).href;
+  script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);
- }).then(items).catch(error=>{earlierLoad=undefined;throw error;});
+ }).then(items).catch(error=>{delete supplementLoads[book];throw error;});
 }
 export function normalizeBookPage(value: string): string {
  return value.normalize('NFKC').trim().replace(/쪽|페이지|\s/g,'').replace(/[–—−]/g,'-').replace(/^p\.?/i,'');

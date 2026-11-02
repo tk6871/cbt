@@ -11,14 +11,18 @@ const originals=new Map(Object.values(w.window).flatMap(b=>b.rounds.flatMap(r=>r
 const review=loadHansolReview(originals);
 // Inspect the small, figure-bearing subset without changing public assets/data.
 const previewFigures=process.argv.includes('--preview-figures');
+const pendingOnly=process.argv.includes('--pending-only');
+assert.ok(!(previewFigures&&pendingOnly),'choose preview or pending publication');
 const outputDir=previewFigures?'work/textbook-correction-preview':'assets/textbook-corrections';
 const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const font=fs.readFileSync('assets/fonts/NanumGothic-Regular.ttf').toString('base64');
 const escape=s=>s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 fs.mkdirSync(outputDir,{recursive:true});
 const browser=await chromium.launch({channel:'chrome'});const page=await browser.newPage({viewport:{width:900,height:1800},deviceScaleFactor:2});
-const result={};
+const result=pendingOnly?JSON.parse(fs.readFileSync('data/textbook-corrections.json','utf8')).entries:{};
+let created=0;
 try{for(const row of review.rows.filter(r=>r.correction&&(!previewFigures||r.retainSourceFigures))){
+ if(pendingOnly&&result[`${row.page}:${row.number}`])continue;
  const original=originals.get(row.sourceId);assert.ok(original);assert.equal(original.answer,row.answer);assert.equal(row.correction.choices.length,4);
  if(row.presentation==='text'){result[`${row.page}:${row.number}`]=makeTextCorrection(original,row);continue;}
  const figures=correctionFigures(original,row);const figureAssets=correctionFigureAssets(figures);
@@ -34,6 +38,7 @@ try{for(const row of review.rows.filter(r=>r.correction&&(!previewFigures||r.ret
  const sx=layout.size[0]*2/size[0],sy=layout.size[1]*2/size[1];
  const hotspots=layout.boxes.map(b=>({...b,x:b.x*sx,width:b.width*sx,y:b.y*sy,height:b.height*sy}));
  result[`${row.page}:${row.number}`]={...row.correction,asset,size,hotspots,sourceId:row.sourceId,sourceImage:original.sourceImage||null,sourceImageSha256:original.sourceImage?sha(original.sourceImage):null,...(figureAssets.length?{figureAssets}:{}),sha256:sha(asset)};
+ created++;
 }}finally{await browser.close();}
 fs.writeFileSync(previewFigures?`${outputDir}/manifest.json`:'data/textbook-corrections.json',JSON.stringify({date:review.date,entries:result},null,2)+'\n');
-console.log({manuallyReviewedCorrections:Object.keys(result).length});
+console.log({manuallyReviewedCorrections:Object.keys(result).length,newlyRendered:created});

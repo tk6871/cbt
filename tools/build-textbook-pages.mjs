@@ -8,8 +8,10 @@ import {rasterDimensions} from './raster-dimensions.mjs';
 import {correctionFigures,correctionFigureAssets} from './textbook-correction-figures.mjs';
 import {makeTextCorrection} from './textbook-text-correction.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const previouslyPublished=read('data/textbook-pages.json').entries;
 const context={window:{}};
 for(const key of ['hvac','hvac-hansol','energy-textbook','energy-restored','energy-book-earlier'])vm.runInNewContext(fs.readFileSync(`data/${key}.js`,'utf8'),context);
+if(fs.existsSync('data/hvac-hansol-book.js'))vm.runInNewContext(fs.readFileSync('data/hvac-hansol-book.js','utf8'),context);
 const items=new Map(Object.values(context.window).flatMap(b=>b.rounds.flatMap(r=>r.questions.map(q=>[`${q._originRoundId||r.id}:${q._originalNumber||q.number}`,q]))));
 function fingerprint(q){
  const text=JSON.stringify([q.text||'',q.html||'',q.ocrText||'',q.choices.map(c=>[c.text||'',c.html||'',c.images||[]]),q.answer,q.images||[],q.sourceImage||'']);
@@ -74,11 +76,18 @@ for(const r of existing){
  assert.ok(items.has(id),id);
  for(const page of new Set(r.parts.filter(p=>p.question).map(p=>p.page+11)))entries.push({book:'energy',page:String(page),number:r.number,sourceId:id,fingerprint:fingerprint(items.get(id)),column:r.parts.find(p=>p.question&&p.page+11===page).side});
 }
+if(fs.existsSync('data/hansol-book-native-audit.json'))for(const r of read('data/hansol-book-native-audit.json').locations){
+ if(r.sourceId)assert.equal(fingerprint(items.get(r.sourceId)),r.fingerprint);
+ const old=entries.findIndex(e=>e.book==='hansol'&&e.page===r.page&&e.number===r.number);
+ const published=previouslyPublished.find(e=>e.book==='hansol'&&e.page===r.page&&e.number===r.number);
+ assert.ok(!published?.sourceId||published.sourceId===r.sourceId,`${r.page}:${r.number}: keep the published learning source`);
+ if(old>=0)entries[old]=r;else entries.push(r);
+}
 const sizes=new Map([...Object.values(full.images),...Object.values(earlier.images),...Object.values(textbookImages)].map(r=>[r.asset,r.outputSize]));
 for(const e of entries.filter(e=>e.book==='hansol'&&e.sourceId&&!e.correction)){
  const image=items.get(e.sourceId).sourceImage;if(image&&!sizes.has(image))sizes.set(image,rasterDimensions(image));
 }
-const seen=new Set();for(const e of entries){const key=`${e.book}:${e.page}:${e.number}`;assert.ok(!seen.has(key),key);seen.add(key);if(e.sourceId){assert.equal(fingerprint(items.get(e.sourceId)),e.fingerprint,e.sourceId);const size=e.correction?.size||sizes.get(items.get(e.sourceId).sourceImage);if(size)e.imageSize=size;}}
+const seen=new Set();for(const e of entries){const key=`${e.book}:${e.page}:${e.number}`;assert.ok(!seen.has(key),key);seen.add(key);if(e.sourceId){assert.equal(fingerprint(items.get(e.sourceId)),e.fingerprint,e.sourceId);if(e.correction?.presentation!=='text'){const size=e.correction?.size||sizes.get(items.get(e.sourceId).sourceImage);if(size)e.imageSize=size;}}}
 // Manual confirmations are appended during review, not necessarily in page
 // order. Publish the actual book order without changing stable study IDs.
 entries.sort((a,b)=>a.book.localeCompare(b.book)||a.page.localeCompare(b.page,'ko',{numeric:true})||a.number-b.number);

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-30",
+  "date": "2026-11-02",
   "entries": [
     {
       "id": "energy-theory-88-toe",
@@ -64,6 +64,1540 @@
         77,
         78
       ]
+    },
+    {
+      "id": "hansol-book-example-2-11-1",
+      "book": "hansol",
+      "pages": [
+        "2-11"
+      ],
+      "number": 1,
+      "title": "냉동기의 저압측 연성계가10cmHgV를 가리킨다. 대기압750mmHg일 때 절대압력(MPa)은?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-11-1.webp",
+      "questionSize": [
+        1710,
+        300
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-11-1.webp",
+      "solutionSize": [
+        1708,
+        538
+      ],
+      "answer": "0.087MPa",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "절대압력=0.101325×(750−100)÷760≈0.087MPa입니다.10cmHg를100mmHg로 바꾸고 현장 대기압750에서 뺍니다.760은 현장압이 아니라 표준대기압의 환산 기준입니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "0b3415d063e2ec35c7e996f951c1a04bd9e795dd38756c00be99db9a91e95ea0",
+          "outputSha256": "b61db465f09a917b0fd11a337326704e76a0f137d29b992c2c1ef160272231e8",
+          "sourceSize": [
+            855,
+            150
+          ],
+          "outputSize": [
+            1710,
+            300
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-11-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "a6694f9b5e544a487d91133d417a227e95716ee0c46260caf09cba222ba5f1ff",
+          "outputSha256": "98f6d2c76c34753fe2976c08b18930b49dc7605212decd5287ae6193ee5ec9dd",
+          "sourceSize": [
+            854,
+            269
+          ],
+          "outputSize": [
+            1708,
+            538
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-11-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-13-2",
+      "book": "hansol",
+      "pages": [
+        "2-13"
+      ],
+      "number": 2,
+      "title": "15℃의 물을0℃의 얼음으로 매시50kg 만드는 냉동기의 냉동능력은? 물의 비열4.2kJ/(kg·K),응고열333.5kJ/kg,1RT=3.86kW.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-13-2.webp",
+      "questionSize": [
+        1710,
+        302
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-13-2.webp",
+      "solutionSize": [
+        1708,
+        336
+      ],
+      "answer": "1.43냉동톤",
+      "note": "교재에 사용자가 남긴 붉은 필기 표시가 일부 있습니다. 계산 조건15℃와50kg/h는 지문·바로 아래 풀이를 함께 읽어 확인했습니다.",
+      "explanation": "냉동능력=50×(4.2×15+333.5)÷3600÷3.86≈1.43냉동톤입니다. 물을15℃에서0℃로 식히는 열과0℃에서 얼리는 잠열을 더합니다. 매시 열량을3600으로 나눠kW로 바꾸고3.86으로 나누면 냉동톤입니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "4b3a480c4736f9607f1c3da456f78e8fa1f73879208cc2948431e5439bfead94",
+          "outputSha256": "6930b1eeeb63ad270bdf670cb78c92807fd062dffcbc80e58713a24ff537ef69",
+          "sourceSize": [
+            855,
+            151
+          ],
+          "outputSize": [
+            1710,
+            302
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-13-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "ee032e11aed52559546fef686d109c3ca61946f631dd027ab2f9c00e56a98141",
+          "outputSha256": "bd7dc1cf0455f861e7c957db2c4651039bd5cf99a5ee8c824d49e4684d4fcd9a",
+          "sourceSize": [
+            854,
+            168
+          ],
+          "outputSize": [
+            1708,
+            336
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-13-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-51-1",
+      "book": "hansol",
+      "pages": [
+        "2-51"
+      ],
+      "number": 1,
+      "title": "R134a 이론 냉동사이클의 냉동능력96kW,압축효율0.7,기계효율0.9,비엔탈피235/395/438kJ/kg.냉매순환량·실제축동력·응축부하·실제COP를 구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-51-1.webp",
+      "questionSize": [
+        1712,
+        1372
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-51-1.webp",
+      "solutionSize": [
+        1704,
+        1050
+      ],
+      "answer": "(1)0.6kg/s (2)40.95kW (3)121.8kW (4)2.344",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "순환량=96÷(395−235)=0.6kg/s. 축동력=0.6×(438−395)÷(0.7×0.9)=40.95kW. 응축부하=0.6×(438−235)=121.8kW. 실제COP=96÷40.95≈2.344입니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "6ca33a84d36b7cd6922bb8a4546ffba68296e962a34ed73c39f752e0a800082d",
+          "outputSha256": "4f98ddfd930a752d9621f945202b88f24adb8949cd0cf17f184cb0744d6d6f02",
+          "sourceSize": [
+            856,
+            686
+          ],
+          "outputSize": [
+            1712,
+            1372
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-51-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "db64135a84efe766bec753e9aef65755a9b76c7d6ac557ac3d9ff0262fe52345",
+          "outputSha256": "0648dbe3c7b3c8cb8dd4097790fa31bd9defa8164b54e9275167e98d05330853",
+          "sourceSize": [
+            852,
+            525
+          ],
+          "outputSize": [
+            1704,
+            1050
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-51-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-52-2",
+      "book": "hansol",
+      "pages": [
+        "2-52"
+      ],
+      "number": 2,
+      "title": "암모니아 냉동장치의 피스톤압출량250m³/h,흡입비체적0.43m³/kg,흡입엔탈피1450,토출1670,증발기입구340kJ/kg,체적효율0.7,압축효율0.8,기계효율0.9.냉동효과·순환량·실제COP를 구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-52-2.webp",
+      "questionSize": [
+        1708,
+        1352
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-52-2.webp",
+      "solutionSize": [
+        1702,
+        768
+      ],
+      "answer": "(1)1110kJ/kg (2)0.113kg/s (3)3.63",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "냉동효과=1450−340=1110kJ/kg. 순환량=250×0.7÷(0.43×3600)≈0.113kg/s. 실제COP=1110÷(1670−1450)×0.8×0.9≈3.63입니다. 체적효율은 실제 유입 냉매량에,압축·기계효율은 실제동력에 관계합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "1dcd10a5cdd582c6c9ac0fe0cf442fdf2f28427507772b6ec993990c63a09a49",
+          "outputSha256": "cd46f1fb401f7f226849fca4519f2391ae3bbf2dc3fba203705401016a35cbd1",
+          "sourceSize": [
+            854,
+            676
+          ],
+          "outputSize": [
+            1708,
+            1352
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-52-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "79646f2d50945b11ee6c5b4b1b4bca383a02c18c36621cc4b46e7ce7e50e4760",
+          "outputSha256": "0634e2a1e1ec5249fa2d713dd3306d8e9de989a615bc88c730d8827aef654d74",
+          "sourceSize": [
+            851,
+            384
+          ],
+          "outputSize": [
+            1702,
+            768
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-52-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-57-3",
+      "book": "hansol",
+      "pages": [
+        "2-57"
+      ],
+      "number": 3,
+      "title": "2원 냉동사이클에서 h₃=h₄=374.61,h₁=476.58,h₂=516.13,h₇=h₈=451.08,h₅=604.46,h₆=674.36kJ/kg.성적계수와 냉동톤당 냉매순환량을 구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-57-3.webp",
+      "questionSize": [
+        1712,
+        1504
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-57-3.webp",
+      "solutionSize": [
+        1704,
+        988
+      ],
+      "answer": "COP0.98,저온측136.28kg/h,고온측125.74kg/h",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "저온COP=(476.58−374.61)÷(516.13−476.58)≈2.58,고온COP=(604.46−451.08)÷(674.36−604.46)≈2.19입니다. 종합COP=2.58×2.19÷(2.58+2.19+1)≈0.98. 저온순환량=3.86×3600÷(476.58−374.61)≈136.28kg/h,고온순환량=136.28×(516.13−374.61)÷(604.46−451.08)≈125.74kg/h입니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "35435bff960bfff01bad870d70e7359501a69645fe97d20eb69bcf2987cfca1a",
+          "outputSha256": "de55d0dd0829732b24e3a7525ba43a9444c00f345494cf18a66860a8417dca5e",
+          "sourceSize": [
+            856,
+            752
+          ],
+          "outputSize": [
+            1712,
+            1504
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-57-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "99b6913fb73d71c48c8252d53d5820afe51307311a5402558c3eca9f6d722041",
+          "outputSha256": "b5a436464d0f9d216f72a31b6cb567816c5b4c618389eff85a36867a7d909e96",
+          "sourceSize": [
+            852,
+            494
+          ],
+          "outputSize": [
+            1704,
+            988
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-57-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-87-6",
+      "book": "hansol",
+      "pages": [
+        "2-87"
+      ],
+      "number": 6,
+      "title": "−10℃얼음10kg을100℃증기로 변화시키는 데 필요한 전열량.얼음 비열2.1,융해잠열333.6,물 증발잠열2256kJ/kg.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-87-6.webp",
+      "questionSize": [
+        1104,
+        406
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-87-6.webp",
+      "solutionSize": [
+        1048,
+        772
+      ],
+      "answer": "10kg기준30306kJ; 원문 정답표③와 보기3036kJ는 불일치",
+      "note": "지문은 질량10kg이지만 보기③3036kJ·정답표③가 풀이의30306kJ와 맞지 않습니다. 자동채점·CBT에서는 제외하고 원문과 보강 설명을 함께 제공합니다.",
+      "explanation": "일반적인 융해잠열333.6kJ/kg와 물 비열4.2kJ/(kg·K)를 쓰면10×[2.1×10+333.6+4.2×100+2256]=30306kJ입니다. 얼음을0℃로 데우기·녹이기·물을100℃로 데우기·증발시키기의 열을 더합니다. 교재 풀이 마지막 문장의−15℃도 지문−10℃와 다릅니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "b4363a3ee7b22341389478608b98449d0867a9d65ecf1e44a2fc549258541ca7",
+          "outputSha256": "ffa44ae460f885bd9a12cc33a99430ed2ae191eeb143ba3adc65caadbacee378",
+          "sourceSize": [
+            552,
+            203
+          ],
+          "outputSize": [
+            1104,
+            406
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-87-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "cf7fb35a342bc663678aa63ee8f832193fa26c88eb2b3a76e95ea3c071c8e49e",
+          "outputSha256": "c44ec7d24fb165083345189f788b72983d20ee88fb1a45bb39328257ab676f4d",
+          "sourceSize": [
+            524,
+            386
+          ],
+          "outputSize": [
+            1048,
+            772
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-87-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-73-5",
+      "book": "hansol",
+      "pages": [
+        "2-73"
+      ],
+      "number": 5,
+      "title": "압력1MPa,온도200℃인 공기2kg을0.2MPa까지 등온변화.기체상수287J/(kg·K).가열량·절대일·공업일·엔트로피변화는?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-73-5.webp",
+      "questionSize": [
+        1712,
+        512
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-73-5.webp",
+      "solutionSize": [
+        1704,
+        846
+      ],
+      "answer": "가열량·절대일·공업일436.97kJ,엔트로피변화0.924kJ/K",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "가열량=절대일=공업일=2×0.287×(273+200)×ln(1÷0.2)≈436.97kJ.엔트로피변화=2×0.287×ln(1÷0.2)≈0.924kJ/K입니다. 등온 이상기체에서는 내부에너지 변화가0이어서 받은 열과 한 일이 같습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "8b3fc52374411bb81bc205ce26b61a734a78f6b585dd7c9833f07325a950360c",
+          "outputSha256": "175d378becbefb9349b11f770ca6919ddf8b016b1f9b0a2adafa85285820ad0d",
+          "sourceSize": [
+            856,
+            256
+          ],
+          "outputSize": [
+            1712,
+            512
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-73-5.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "a059069fe63b9286cb654fbedc0e659c24f70f1f99c91195e087ed511c186007",
+          "outputSha256": "5d6580024aa7fc31bfbd1a83d79c6440f52aca1d791c4d37af65663fc9f0503e",
+          "sourceSize": [
+            852,
+            423
+          ],
+          "outputSize": [
+            1704,
+            846
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-73-5.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-73-6",
+      "book": "hansol",
+      "pages": [
+        "2-73"
+      ],
+      "number": 6,
+      "title": "0.1MPa,20℃인 공기5kg을 가역단열변화로1.2MPa까지 압축.기체상수287J/(kg·K),비열비1.4.가열량·엔트로피변화·절대일·공업일은?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-73-6.webp",
+      "questionSize": [
+        1712,
+        574
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-73-6.webp",
+      "solutionSize": [
+        1704,
+        956
+      ],
+      "answer": "가열량0,엔트로피변화0,절대일 약−1086.81kJ,공업일 약−1521.53kJ(기체가 한 일 기준)",
+      "note": "교재 풀이의 압축 후 온도308.67K와 그에 따른 일−56.22/−78.71kJ는 인쇄 수치로 계산한 값과 다릅니다. 원문 풀이 이미지를 보존하되 아래 설명은 주어진 압력비12로 다시 계산했습니다.",
+      "explanation": "T₂=293×(1.2÷0.1)^((1.4−1)÷1.4)≈595.94K입니다. 열 출입과 엔트로피변화는0.기체가 한 절대일=5×0.287÷0.4×(293−595.94)≈−1086.81kJ,공업일=1.4×(−1086.81)≈−1521.53kJ입니다. 압축에 필요한 투입일의 크기로 쓰면 각각 양수입니다. 교재의308.67K는 압력비12를 넣은 계산과 일치하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "ef37bb9494ec431d567941e4a5111dadc5488646c0ce04175f84732ebe13e053",
+          "outputSha256": "349e3947e8c792535c403402795d0b43edb98afc93424d60383cf277c6fda32b",
+          "sourceSize": [
+            856,
+            287
+          ],
+          "outputSize": [
+            1712,
+            574
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-73-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "53d4955a73e293180e9bfd777e818d15cdab2e18e77fc18cac1619dd6e39c06f",
+          "outputSha256": "6cb3b8410ff54fc173c4a6bf1cea1de0ab0418c8694cdc515c473bbf07ddeec1",
+          "sourceSize": [
+            852,
+            478
+          ],
+          "outputSize": [
+            1704,
+            956
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-73-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-79-2",
+      "book": "hansol",
+      "pages": [
+        "2-79"
+      ],
+      "number": 2,
+      "title": "압축기 실린더의 기체0.2kg을 압축하며12000N·m의 일을 소비하고2kJ를 방열했다.내부에너지와 비내부에너지 증가량은?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-79-2.webp",
+      "questionSize": [
+        1712,
+        370
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-79-2.webp",
+      "solutionSize": [
+        1704,
+        546
+      ],
+      "answer": "내부에너지 증가10kJ,비내부에너지 증가50kJ/kg",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "들어온 압축일12000N·m=12kJ에서 밖으로 나간 열2kJ를 빼면 내부에너지 증가는10kJ입니다. 질량1kg당 증가량은10÷0.2=50kJ/kg입니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "63d101c4f53e4b344520b5db7b6d4b560ffc76041c78728dcc2e3f653ec7b219",
+          "outputSha256": "f0d1521dff51496a874f7c10f8a23ed0a3d0ecde067200cd054d61d4187e9339",
+          "sourceSize": [
+            856,
+            185
+          ],
+          "outputSize": [
+            1712,
+            370
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-79-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "85b6e413988246f9152d63b31204cfc546ee303c4a879012623f0baa44e0907d",
+          "outputSha256": "151a927949fb4af3c0ba4108c9d5a53da564374940527f4265410fc33832370e",
+          "sourceSize": [
+            852,
+            273
+          ],
+          "outputSize": [
+            1704,
+            546
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-79-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-81-5",
+      "book": "hansol",
+      "pages": [
+        "2-81"
+      ],
+      "number": 5,
+      "title": "그림과 같은 노즐에서의 출구 유속w₂를 구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-81-5.webp",
+      "questionSize": [
+        1712,
+        524
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-81-5.webp",
+      "solutionSize": [
+        1704,
+        366
+      ],
+      "answer": "출구유속w₂=√[w₁²+2(h₁−h₂)](h단위J/kg)",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "입구의 엔탈피가 줄어든 만큼 운동에너지가 늘어납니다. 열·축일·위치에너지 변화를 무시하면w₂=√[w₁²+2(h₁−h₂)]입니다. 엔탈피가kJ/kg이면1000을 곱해J/kg으로 맞춰야 유속이m/s가 됩니다. 그림에 숫자가 없어 일반식으로 답합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "f214dc5003479c8cacda7e851549674d7e99a48adc493e5a071785faa2f4021a",
+          "outputSha256": "96d6e483ca7c2c95b7a331f689dac0d91c92197ceeba5ef5ed0abb4d83380c77",
+          "sourceSize": [
+            856,
+            262
+          ],
+          "outputSize": [
+            1712,
+            524
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-81-5.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "6891ccf802fa45e969314de615c5162d8c197e08a733f386ece7f491402e5b50",
+          "outputSha256": "ac54b4618c014c6000acb29f92de6cae02b1fdb16964ca1ac57763e202e672f9",
+          "sourceSize": [
+            852,
+            183
+          ],
+          "outputSize": [
+            1704,
+            366
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-81-5.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-81-6",
+      "book": "hansol",
+      "pages": [
+        "2-81"
+      ],
+      "number": 6,
+      "title": "물 유량50×10³kg/s,댐 낙차100m,입출구압력1atm,열 출입 없음.수차의 발생동력MW를 구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-81-6.webp",
+      "questionSize": [
+        1712,
+        836
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-81-6.webp",
+      "solutionSize": [
+        1704,
+        268
+      ],
+      "answer": "49MW",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "발생동력=질량유량×중력가속도×낙차=50000×9.8×100=49000000W=49MW입니다.1MW는100만W입니다. 입출구 압력이 같고 속도 차이도 무시하므로 높이 차이의 에너지만 사용합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "e6d7d388f1ad9ec217121a63e9a3830f9fd2d3ca06aba3e732c9e248d4994f96",
+          "outputSha256": "02785f0e741d723bc5f1470ef84f2c77370f0e06b449a7bf2ef7b0ad7f5d4a8e",
+          "sourceSize": [
+            856,
+            418
+          ],
+          "outputSize": [
+            1712,
+            836
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-81-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "fe9ae57aa3bd67b68c0bae9d23bd40df8c8f9cb8570de676029ae9beb356f9af",
+          "outputSha256": "8a6c9f3c8d9c61bb438b1be5acae3345c9f3f5834cfd2eeb76fdd8ebe792a088",
+          "sourceSize": [
+            852,
+            134
+          ],
+          "outputSize": [
+            1704,
+            268
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-81-6.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-140-3",
+      "book": "hansol",
+      "pages": [
+        "2-140"
+      ],
+      "number": 3,
+      "title": "로우핀튜브셸앤튜브응축기.냉매측면적40m²,물측10m²,열전달률3와9kW/(m²·K),오염계수0.15m²·K/kW,온도차5℃.열관류율과응축부하를구하시오.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-140-3.webp",
+      "questionSize": [
+        1708,
+        644
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-140-3.webp",
+      "solutionSize": [
+        1700,
+        558
+      ],
+      "answer": "열관류율0.726kW/(m²·K),응축부하145.2kW",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "면적비40÷10=4입니다. 냉매측면적기준열관류율K=1÷[1÷3+4×(1÷9+0.15)]≈0.726kW/(m²·K).응축부하=K×40×5≈145.2kW입니다. 서로다른면적기준의저항을같은기준으로맞추려고면적비를곱합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "e7b212f5fb089e97fb8753bc21386d5c78b795bdcba3b254d8156d66725a214f",
+          "outputSha256": "20cea6bee20cab96afb6b18878897d1ed5a1a9746e1a7b42a26d67fd37e72737",
+          "sourceSize": [
+            854,
+            322
+          ],
+          "outputSize": [
+            1708,
+            644
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-140-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "637d948137014b0ddfbceed3c5f048c46aa4d7bdc799c7791d58ed734b722678",
+          "outputSha256": "6e6bccd5f86bfa41c9f8956151bea7e655e252c2519b908069d0e0e543b6135d",
+          "sourceSize": [
+            850,
+            279
+          ],
+          "outputSize": [
+            1700,
+            558
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-140-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-140-4",
+      "book": "hansol",
+      "pages": [
+        "2-140"
+      ],
+      "number": 4,
+      "title": "R134a공랭응축기.토출엔탈피446.5,출구액249kJ/kg,순환량0.060kg/s,응축40℃,공기입구25℃,풍량2m³/s,밀도1.2kg/m³,비열1kJ/(kg·K),열관류율0.020kW/(m²·K).",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-140-4.webp",
+      "questionSize": [
+        1708,
+        860
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-140-4.webp",
+      "solutionSize": [
+        1700,
+        1034
+      ],
+      "answer": "응축부하11.85kW,출구공기29.94℃,평균온도차12.53℃,전열면적47.29m²",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "부하=0.060×(446.5−249)=11.85kW.공기출구=25+11.85÷(1.2×2×1)=29.94℃.산술평균온도차=[(40−25)+(40−29.94)]÷2=12.53℃.면적=11.85÷(0.020×12.53)=47.29m²입니다. 문제에서산술평균을지정하므로대수평균식으로바꾸지않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "317f16c334879401069468a6ae08987ad7f209dc3b198d6668d5e10d33c45cdc",
+          "outputSha256": "4675e900fb11f012062c6db46b1a3a728b9b97d30c8678b5868da110a43dca02",
+          "sourceSize": [
+            854,
+            430
+          ],
+          "outputSize": [
+            1708,
+            860
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-140-4.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "6b2f7a919fb1b152781384a47a4577677c23cc989ef22617c09369c403b2fe16",
+          "outputSha256": "8eb66a63e576c3526fc091c0a00db7bd7cb4c35c9f2e244e8125f96d3077fdff",
+          "sourceSize": [
+            850,
+            517
+          ],
+          "outputSize": [
+            1700,
+            1034
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-140-4.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-1-182-83",
+      "book": "hansol",
+      "pages": [
+        "1-182"
+      ],
+      "number": 83,
+      "title": "노통연관식 보일러의 장점이 아닌 것",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/1-182-83.webp",
+      "questionSize": [
+        1112,
+        434
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/1-182-83.webp",
+      "solutionSize": [
+        1050,
+        194
+      ],
+      "answer": "정답표④ / 보기②도 확인 필요",
+      "note": "교재 보기와 정답의 단일선택 타당성을 재확인해야 하는 검토용 원문입니다. 자동 채점·객관식 출제에서 제외합니다.",
+      "explanation": "정답표는④이며 해설은 보유수량이 많아 압력변동이 작다고 설명합니다. 다만②효율이 낮다는 표현도 장점이라고 보기 어려워 단일정답 문제로 강제 채점하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "b25b9b3d375e5b4ec7b7f5db4da904a7276e8f225414f0ba407f5034cf386def",
+          "outputSha256": "96b3978898d199ddb7562ad6e471400fde43abf4ef8c9dc059c058a5977849cc",
+          "sourceSize": [
+            556,
+            217
+          ],
+          "outputSize": [
+            1112,
+            434
+          ],
+          "asset": "assets/hvac-hansol-book/questions/1-182-83.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "18f36cbb8b36209597765ab2a413fb3549f20edba9a67945e3226740b1cb7f49",
+          "outputSha256": "3b2d0a34cc6e631dfcc5d8427587a9e90d092c3a7ca898ad4b9ea644fc7a1b69",
+          "sourceSize": [
+            525,
+            97
+          ],
+          "outputSize": [
+            1050,
+            194
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/1-182-83.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-1-108-43",
+      "book": "hansol",
+      "pages": [
+        "1-108"
+      ],
+      "number": 43,
+      "title": "손실열량식 Ht=(1/Rt)×(tr−to)에서Rt가 나타내는 것은?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/1-108-43.webp",
+      "questionSize": [
+        1110,
+        672
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/1-108-43.webp",
+      "solutionSize": [
+        1054,
+        252
+      ],
+      "answer": "정답표② / 식의 면적A 누락",
+      "note": "교재 수식의 단위·면적 표시를 재확인해야 하는 검토용 원문입니다. 자동 채점·객관식 출제에서 제외합니다.",
+      "explanation": "Rt의 명칭은②열통과저항이며K=1/Rt입니다. 다만 교재는 총손실열량Ht를 구하는 식에서 면적A가 누락되어 있고,kJ/h와 저항의 단위 기준도 그대로는 맞지 않습니다. 식 전체를 정확한 계산식으로 외우지 않도록 원문과 주의사항을 함께 보존합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "e8c083315132ed06bf9bcb162f1bce9d4ca40547c0a9659bf3d3997c4c2fb713",
+          "outputSha256": "acd7f0b9be3fdfc135f375b99253faccea810b23982a7127d94287637076f640",
+          "sourceSize": [
+            555,
+            336
+          ],
+          "outputSize": [
+            1110,
+            672
+          ],
+          "asset": "assets/hvac-hansol-book/questions/1-108-43.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "93af0bda249eb9a98f268f2f2a35fd25da8dae9ace8ce96e9249dfc5a18a3057",
+          "outputSha256": "aaa704c5b9d26c107b9033811c751ec4169a4948b262e84e6d89932800063a82",
+          "sourceSize": [
+            527,
+            126
+          ],
+          "outputSize": [
+            1054,
+            252
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/1-108-43.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-3-92-22",
+      "book": "hansol",
+      "pages": [
+        "3-92"
+      ],
+      "number": 22,
+      "title": "고가수조 양수펌프 용량",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/3-92-22.webp",
+      "questionSize": [
+        1112,
+        846
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/3-92-22.webp",
+      "solutionSize": [
+        1050,
+        332
+      ],
+      "answer": "교재 복수정답②·③",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "30분에V만큼 양수하는②와1시간에2V만큼 양수하는③는 같은 용량입니다. 인쇄 정답표도②·③이므로 단일정답으로 강제 채점하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "244ac02527a4a4a70a6525f278b999766f3c3d56a6cbb3d39d1bc7c8b5bd4826",
+          "outputSha256": "bd82fbc7b3b9493b6de657749c74d0eed7bde3033deb502dee7a95fa0aac71be",
+          "sourceSize": [
+            556,
+            423
+          ],
+          "outputSize": [
+            1112,
+            846
+          ],
+          "asset": "assets/hvac-hansol-book/questions/3-92-22.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "0ea8ac2dff1a3debc47922142be7efbc481336a0ef9dbb064f20fa5d04f51b3c",
+          "outputSha256": "1eaf5f3a6bca760be1c93607de9d91ddade848306c1d757f28d6dea806b6b402",
+          "sourceSize": [
+            525,
+            166
+          ],
+          "outputSize": [
+            1050,
+            332
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/3-92-22.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-3-186-69",
+      "book": "hansol",
+      "pages": [
+        "3-186"
+      ],
+      "number": 69,
+      "title": "배수용U·S·P트랩 설명",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/3-186-69.webp",
+      "questionSize": [
+        1112,
+        742
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/3-186-69.webp",
+      "solutionSize": [
+        1050,
+        258
+      ],
+      "answer": "정답표① / 보기·풀이 재확인 필요",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "정답표는①이지만 해설은U트랩의 가옥트랩 용도만 설명하고,S/P트랩의 수평·수직 연결 설명도 다시 확인해야 합니다. 정답을 추정해 자동 채점하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "b21910a3cbdcff645789a41acc6e1caa4b77e6f596bd971d3132e8357ad0a916",
+          "outputSha256": "94463a7e60950dd51fee2e17577c42acf7fbc9c90288ef6d5310891104b73d73",
+          "sourceSize": [
+            556,
+            371
+          ],
+          "outputSize": [
+            1112,
+            742
+          ],
+          "asset": "assets/hvac-hansol-book/questions/3-186-69.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "7cd36ea6553917a67095077ab7a66be045526b3f8e9dd832c7850b1c78fbb392",
+          "outputSha256": "d429a4fea2d973b4f07f719c06b822425d21469577493069989fc8f6bb60d8da",
+          "sourceSize": [
+            525,
+            129
+          ],
+          "outputSize": [
+            1050,
+            258
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/3-186-69.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-3-241-3",
+      "book": "hansol",
+      "pages": [
+        "3-241"
+      ],
+      "number": 3,
+      "title": "산업안전보건법상 안전조치와 보건조치",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/3-241-3.webp",
+      "questionSize": [
+        1112,
+        658
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/3-241-3.webp",
+      "solutionSize": [
+        1046,
+        194
+      ],
+      "answer": "정답표③ / 풀이④",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "정답표는③이나 본문 풀이에는①②③은 안전조치,④는 보건조치라고 적혀 있습니다. 인쇄 불일치를 그대로 알리고 자동 채점에서 제외합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "dc7cbe02f88f05269c0d05b54330c265f002794590a025f14d865c7ca7e80254",
+          "outputSha256": "ff89304af85f7cc0b4aa627536c41f169b454ba0f7fd73e185834149aadb6802",
+          "sourceSize": [
+            556,
+            329
+          ],
+          "outputSize": [
+            1112,
+            658
+          ],
+          "asset": "assets/hvac-hansol-book/questions/3-241-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "eec0dd2393c7ddd89c94673f61a5be75623cada3302ab4f82cab4ce957468d3d",
+          "outputSha256": "db3c3e78bbc524c01213f57f1ab94a8b07205bedcaa9de611cce77ed3b9c854d",
+          "sourceSize": [
+            523,
+            97
+          ],
+          "outputSize": [
+            1046,
+            194
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/3-241-3.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-3-348-27",
+      "book": "hansol",
+      "pages": [
+        "3-348"
+      ],
+      "number": 27,
+      "title": "피드백제어계의 장점이 아닌 것",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/3-348-27.webp",
+      "questionSize": [
+        1110,
+        752
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/3-348-27.webp",
+      "solutionSize": [
+        1054,
+        134
+      ],
+      "answer": "정답표① / 풀이③",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "원문 풀이가 고도의 지식·기술이 필요한③을 단점으로 설명하지만 정답표는①입니다. 둘을 구분해 원문을 보존하고 자동 채점하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "6915c88bd4f7a8bfca04b16c69c463166b52840012f21aacb68312cd88af9db0",
+          "outputSha256": "cf36ed844383000391b41a132dd38c4100563385660fb38d28b4162fcf4db0ac",
+          "sourceSize": [
+            555,
+            376
+          ],
+          "outputSize": [
+            1110,
+            752
+          ],
+          "asset": "assets/hvac-hansol-book/questions/3-348-27.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "5f2dbdbaa3b08d52198f95339b95212aa391fd77cc6d1fbb395bd9eafdb67c22",
+          "outputSha256": "244a2a32661c2561bc93bb6a328a542696dc75f872fa4d86ce45bee8e4c86874",
+          "sourceSize": [
+            527,
+            67
+          ],
+          "outputSize": [
+            1054,
+            134
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/3-348-27.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-4-87-22",
+      "book": "hansol",
+      "pages": [
+        "4-87"
+      ],
+      "number": 22,
+      "title": "산소10kg,등압 체적5→11m³,비열0.221kJ/(kgK).엔트로피변화",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/4-87-22.webp",
+      "questionSize": [
+        1104,
+        472
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/4-87-22.webp",
+      "solutionSize": [
+        1046,
+        264
+      ],
+      "answer": "정답표② / 지문 비열 불일치",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "지문값 그대로면10×0.221×ln(11/5)≈1.74kJ/K로 보기와 다릅니다. 책 풀이와 정답②7.33은0.93을 사용합니다.0.221kcal를kJ로 환산하면 약0.925지만 지문의kJ표기와 충돌하므로 추정해 바꾸지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "0ff5629c79c95b1c21b817ca3e3a379c6c33dfa085890aba94c306b75403d7c2",
+          "outputSha256": "0c91928b8e5429a536d2ff5e3682b5e5d829a644618a26bc124df5525eb9af8c",
+          "sourceSize": [
+            552,
+            236
+          ],
+          "outputSize": [
+            1104,
+            472
+          ],
+          "asset": "assets/hvac-hansol-book/questions/4-87-22.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "3dc8fa7515ef09d6872999ad2c471bcfd44af36e439d2e575c78acd0db5b8e9d",
+          "outputSha256": "df8c2075d3c8a3f21ca10af0bf7468d3602ba987c3cfaae8197824edf345d695",
+          "sourceSize": [
+            523,
+            132
+          ],
+          "outputSize": [
+            1046,
+            264
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/4-87-22.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-1-70-2",
+      "book": "hansol",
+      "pages": [
+        "1-70"
+      ],
+      "number": 2,
+      "title": "공기조화 부하계산에서 고려하지 않아도 되는 것",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/1-70-2.webp",
+      "questionSize": [
+        1110,
+        434
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/1-70-2.webp",
+      "solutionSize": [
+        1054,
+        194
+      ],
+      "answer": "정답표② / 풀이상①",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "본문 풀이는 벽체 재료·면적·실내외온도차·인체·기구발열을 부하조건으로 나열하므로 열원방식①을 가리키지만 정답표는②입니다. 이 불일치는 보류하고 자동 채점하지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "37673db7b7145c5904ed0fb3e95f5b44ab566eea8b5e943cb5faa22b4f968963",
+          "outputSha256": "a278331233a67d81c670397195b5becce6ffba4e44bcfd31253d921829efbc73",
+          "sourceSize": [
+            555,
+            217
+          ],
+          "outputSize": [
+            1110,
+            434
+          ],
+          "asset": "assets/hvac-hansol-book/questions/1-70-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "b8321aa308df68425b11d29579951a71bb432644aaa761cfa133569773bdd5f1",
+          "outputSha256": "0dd5850ff7c5aa6082131bf8aa3267e54049d346c82e112d7e6c1ab8382ef070",
+          "sourceSize": [
+            527,
+            97
+          ],
+          "outputSize": [
+            1054,
+            194
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/1-70-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-1-165-8",
+      "book": "hansol",
+      "pages": [
+        "1-165"
+      ],
+      "number": 8,
+      "title": "덕트 직관 마찰저항 설명 중 틀린 것",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/1-165-8.webp",
+      "questionSize": [
+        1104,
+        488
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/1-165-8.webp",
+      "solutionSize": [
+        1048,
+        258
+      ],
+      "answer": "정답표③ / 풀이상④",
+      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
+      "explanation": "풀이식 ΔP=λ(l/d)(V²/2g)γ와 설명은 속도의 제곱에 비례하고 중력가속도2배에는 반비례한다고 적혀 있습니다. 따라서 틀린 보기는④지만 정답표는③입니다. 원문 불일치로 자동 채점을 제외합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "76f6c19a9afefb77505a2490cc134e4359cd9af07f0aad06bd30bf6eee4f36d9",
+          "outputSha256": "e46e384572d77908337e2f5b22325151cfeb5c36301e4c2b15134f7050cfb9e1",
+          "sourceSize": [
+            552,
+            244
+          ],
+          "outputSize": [
+            1104,
+            488
+          ],
+          "asset": "assets/hvac-hansol-book/questions/1-165-8.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "10c87a809e3fa5a4e56d26fc092104b1dec537f4990f70facd6864d2ca4f9bf8",
+          "outputSha256": "0d064e7b83f240d7ded0a4f8c22a978de8f41b0e606921acdde218c50e001286",
+          "sourceSize": [
+            524,
+            129
+          ],
+          "outputSize": [
+            1048,
+            258
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/1-165-8.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-221-1",
+      "book": "hansol",
+      "pages": [
+        "2-221"
+      ],
+      "number": 1,
+      "title": "쇠고기10ton을19℃에서 동결 후−21℃까지 냉각.동결온도−1℃,동결전비열2.85,후1.59kJ/(kgK),동결잠열200kJ/kg.",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-221-1.webp",
+      "questionSize": [
+        1710,
+        630
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-221-1.webp",
+      "solutionSize": [
+        1702,
+        362
+      ],
+      "answer": "2,888,000kJ",
+      "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
+      "explanation": "열량=10000×[2.85×(19−(−1))+200+1.59×((−1)−(−21))]=2888000kJ입니다. 동결점 전·후의 온도차와 상태변화 잠열을 더합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "fbf1cbf465a13de4b955e7d0e2df11235825f1a698ff19b403a09c11997e7b97",
+          "outputSha256": "213da04f505354e6b2ebee807434e7e6d060e42b3973e78be1b82d8f6b768a94",
+          "sourceSize": [
+            855,
+            315
+          ],
+          "outputSize": [
+            1710,
+            630
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-221-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "7ce3b6bd1ea885918b3096b641976bfa4bb65b987fa6e7873c866f404adfdb9e",
+          "outputSha256": "2273e28de07d6909955814bcf55c1c77da43a1d786d89902a2510e2de7a4e74a",
+          "sourceSize": [
+            851,
+            181
+          ],
+          "outputSize": [
+            1702,
+            362
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-221-1.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-2-221-2",
+      "book": "hansol",
+      "pages": [
+        "2-221"
+      ],
+      "number": 2,
+      "title": "사과200상자·각18kg을24시간에0℃까지 냉각.표면적200m²,K0.35W/(m²K),외기15℃,사과비열3.64kJ/(kgK).",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/2-221-2.webp",
+      "questionSize": [
+        1710,
+        502
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/2-221-2.webp",
+      "solutionSize": [
+        1702,
+        586
+      ],
+      "answer": "3,325W",
+      "note": "지문에는 외기15℃만 명시되어 있으나 교재 풀이도 사과 초기온도를15℃로 사용합니다. 추가 가정을 확인하며 보는 채점 제외 예제입니다.",
+      "explanation": "필요능력=0.35×200×15+200×18×3.64×15×1000÷(24×3600)=3325W입니다. 벽을 통해 들어오는 열과 사과에서 빼는 열을 합칩니다. 문제 풀이가 가정한 사과 초기온도15℃를 사용합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "a4c2e4d4616beff48e45af272309e027c799f6e11029ee8adb7dc6972ddcdc4f",
+          "outputSha256": "c75e24c22747c50789d287675df93a1c37728db7ac5a27f6bbde80bb86296d60",
+          "sourceSize": [
+            855,
+            251
+          ],
+          "outputSize": [
+            1710,
+            502
+          ],
+          "asset": "assets/hvac-hansol-book/questions/2-221-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "eedb66ac1a619d7a3282306e155f2f0593420a6fe57102400189ef95e7b7aeb7",
+          "outputSha256": "080727246d36cfca13ca01264f6098aae64b7650d006aa53bfc4f291f9f90411",
+          "sourceSize": [
+            851,
+            293
+          ],
+          "outputSize": [
+            1702,
+            586
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/2-221-2.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-1-116-89",
+      "book": "hansol",
+      "pages": [
+        "1-116"
+      ],
+      "number": 89,
+      "title": "난방부하 계산 시 침입외기에 의한 열손실로 가장 거리가 먼 것은?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/1-116-89.webp",
+      "questionSize": [
+        1110,
+        538
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/1-116-89.webp",
+      "solutionSize": [
+        180,
+        80
+      ],
+      "answer": "정답표④ / 지문·보기 내용 불일치",
+      "note": "교재의 지문은 침입외기 열손실을 묻지만 보기는 공기냉각기·공기가열기·수액기·냉각탑으로 되어 있어 서로 맞지 않습니다. 정답표④는 보존하되 자동채점·객관식 시험에서는 제외합니다.",
+      "explanation": "침입외기 부하는 외기가 들어오면서 생기는 현열·잠열 부하입니다. 이 원문은 질문과 네 보기의 대응이 불명확하므로 기존 CBT의 다른 보기를 임의로 붙이지 않습니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "776ecf6fcf4bf4c3964720526ba49feecf75d049a62b1ef711524a51366d532a",
+          "outputSha256": "b4a5e003286cce914e8e9c40c3670f6d65fbb6ece548fb29408081f97c356dae",
+          "sourceSize": [
+            555,
+            269
+          ],
+          "outputSize": [
+            1110,
+            538
+          ],
+          "asset": "assets/hvac-hansol-book/questions/1-116-89.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "6db3f7cc2bf429c0101dd038244e7b78fcb885517ec73e2b5b2eed4b681cabb7",
+          "outputSha256": "1d9f0b66306a8589828b22f938aba43547e48cd4b5e31fbe203fd41c8f1b3978",
+          "sourceSize": [
+            90,
+            40
+          ],
+          "outputSize": [
+            180,
+            80
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/1-116-89.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
+    },
+    {
+      "id": "hansol-book-example-3-133-20",
+      "book": "hansol",
+      "pages": [
+        "3-133"
+      ],
+      "number": 20,
+      "title": "진공 환수식에서 지나친 진공 때 공기를 넣는 기기는?",
+      "kind": "worked-example",
+      "question": "assets/hvac-hansol-book/questions/3-133-20.webp",
+      "questionSize": [
+        1112,
+        600
+      ],
+      "solution": "assets/hvac-hansol-book/explanations/3-133-20.webp",
+      "solutionSize": [
+        1050,
+        206
+      ],
+      "answer": "정답표② / 지문과 풀이①",
+      "note": "지문·네 보기·같은 쪽 풀이가①버큠 브레이커를 가리키지만 정답표는②입니다. 원문 불일치를 보존하고 자동채점·객관식 출제에서는 제외합니다.",
+      "explanation": "진공이 너무 커졌을 때 공기를 넣어 진공도를 낮추는 기기는①버큠 브레이커입니다. 원문 풀이도 이를 설명하지만 인쇄 정답표20번은②로 되어 있으므로 서로 구분합니다.",
+      "images": {
+        "question": {
+          "sourceSha256": "10ade7676fb92e1e0fd94f4df28366eded7a12667b6a1cb400064fc44b244ce9",
+          "outputSha256": "074fa6d8c4d794ecd8142f811a044761e5de29767a221aa19b4f9464dbbcea02",
+          "sourceSize": [
+            556,
+            300
+          ],
+          "outputSize": [
+            1112,
+            600
+          ],
+          "asset": "assets/hvac-hansol-book/questions/3-133-20.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        },
+        "explanation": {
+          "sourceSha256": "4a219c89567098e143ea49bbeb26f15d68b6cc4dc1bd02e6a922ef701cbbe64c",
+          "outputSha256": "2989af95259e28494d366552559de47d3e33333051f269b6b266413c7efa83e0",
+          "sourceSize": [
+            525,
+            103
+          ],
+          "outputSize": [
+            1050,
+            206
+          ],
+          "asset": "assets/hvac-hansol-book/explanations/3-133-20.webp",
+          "model": "realesrgan-x4plus-anime",
+          "tile": 256,
+          "native": "arm64",
+          "pipeline": "4x -> 2x bicubic"
+        }
+      }
     }
   ]
 }

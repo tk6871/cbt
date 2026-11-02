@@ -38,8 +38,8 @@ const referencePage=computed(()=>!end.value?textbookReferencePage(props.book,sta
 const audit=computed(()=>!end.value?textbookPageAudit(props.book,start.value):undefined);
 const invalid=computed(()=>!!end.value&&compareBookPages(start.value,end.value)>0);
 const examples=computed(()=>textbookWorkedExamples.filter(e=>e.book===props.book&&e.pages.some(page=>end.value?compareBookPages(page,start.value)>=0&&compareBookPages(page,end.value)<=0:page===start.value)));
-const locations=computed(()=>!start.value||invalid.value?[]:entries.value.filter(e=>end.value
- ? compareBookPages(e.page,start.value)>=0&&compareBookPages(e.page,end.value)<=0:e.page===start.value));
+const locations=computed(()=>!start.value||invalid.value?[]:entries.value.filter(e=>!e.workedExampleId&&(end.value
+ ? compareBookPages(e.page,start.value)>=0&&compareBookPages(e.page,end.value)<=0:e.page===start.value)));
 const itemById=computed(()=>new Map(props.items.map(i=>[i.id,i])));
 const matched=computed(()=>{
  const map=itemById.value;const seen=new Set<string>();
@@ -61,7 +61,7 @@ async function selectContents(row:ContentsRow){
 }
 function play(mode:StudyMode){if(!props.loading&&!invalid.value&&matched.value.length)emit('start',{items:matched.value,mode,label:label.value});}
 const pageColumns=computed(()=>{
- const rows=entries.value.filter(e=>e.page===start.value);
+ const rows=entries.value.filter(e=>e.page===start.value&&!e.workedExampleId);
  const map=itemById.value;
  const cutoff=Math.ceil(rows.length/2);
  return [0,1].map(column=>rows.flatMap((e,index)=>{
@@ -91,17 +91,17 @@ const pageColumns=computed(()=>{
    <div v-if="referencePage||!locations.length||examples.length||pending" class="reader-page-note">
     <p v-if="referencePage">{{referencePage}}</p>
     <p v-else-if="!locations.length&&!examples.length">{{audit?'이 쪽은 전체 화면 자동 대조에 포함되었지만, 확정 연결된 문항은 아직 없습니다.':'이 쪽은 아직 문제 연결을 확인하지 않았습니다.'}} 교재에 문제가 없다는 뜻은 아닙니다.</p>
-    <p v-if="examples.length">본문 풀이 예제 {{examples.length}}개 · 객관식 시험에는 넣지 않습니다.</p>
+    <p v-if="examples.length">본문 예제·검토용 원문 {{examples.length}}개 · 객관식 시험에는 넣지 않습니다.</p>
     <p v-else-if="pending">보기·수치·정답이 다르거나 연결하지 못한 위치는 출제하지 않습니다.</p>
    </div>
-   <article v-for="example in examples" :key="example.id" class="book-worked-example">
-    <h2>본문 풀이 예제 · {{example.title}}</h2><p>{{example.note}}</p>
-    <figure class="textbook-explanation-image"><figcaption>교재 {{example.pages[0]}}쪽 · 문제</figcaption><img :class="{'restored-image-original':restoredImageTheme==='original'}" :src="textbookAssetUrl(example.question)" :width="example.questionSize[0]" :height="example.questionSize[1]" alt="월간 에너지 소비량 예제 원문" loading="lazy"></figure>
-    <details><summary>풀이와 답 보기 · 교재 {{example.pages[1]}}쪽</summary><p><strong>답 {{example.answer}}</strong></p><p>{{example.explanation}}</p><figure class="textbook-explanation-image"><figcaption>교재 원문 풀이</figcaption><img :class="{'restored-image-original':restoredImageTheme==='original'}" :src="textbookAssetUrl(example.solution)" :width="example.solutionSize[0]" :height="example.solutionSize[1]" alt="석유환산톤 계산 원문 풀이" loading="lazy"></figure></details>
-   </article>
-   <article class="book-sheet" :class="{'one-print-column':pageColumns.some(c=>!c.length)}" :key="`${book}-${start}`" aria-label="교재 페이지 풀이">
+   <article v-if="locations.length||examples.length" class="book-sheet" :class="{'one-print-column':pageColumns.some(c=>!c.length)}" :key="`${book}-${start}`" aria-label="교재 페이지 풀이">
     <header class="printed-page-heading"><div><small>{{book==='hansol'?'HANSOL · 공조냉동':'ENERGY · 에너지설비'}}</small><strong>{{contentsLabel?contentsLabel.split(' › ').at(-1):'기출 · 예상문제'}}</strong></div><button type="button" class="printed-page-number" :aria-label="`${start}쪽 · 쪽번호 선택`" @click="openNavigator('pages')">{{start}} <span>쪽 ▾</span></button></header>
-    <div class="book-sheet-columns">
+    <article v-for="example in examples" :key="example.id" class="book-worked-example">
+     <h2>교재 원문 · {{example.title}}</h2><p>{{example.note}}</p>
+     <figure class="textbook-explanation-image"><figcaption>교재 {{example.pages[0]}}쪽 · 문제</figcaption><img :class="{'restored-image-original':restoredImageTheme==='original'}" :src="textbookAssetUrl(example.question)" :width="example.questionSize[0]" :height="example.questionSize[1]" :alt="`${example.title} 원문 문제`" loading="lazy"></figure>
+     <details><summary>풀이와 답 보기 · 교재 {{example.pages.at(-1)}}쪽</summary><p><strong>답 {{example.answer}}</strong></p><p>{{example.explanation}}</p><figure class="textbook-explanation-image"><figcaption>교재 원문 풀이·정답</figcaption><img :class="{'restored-image-original':restoredImageTheme==='original'}" :src="textbookAssetUrl(example.solution)" :width="example.solutionSize[0]" :height="example.solutionSize[1]" :alt="`${example.title} 원문 풀이·정답`" loading="lazy"></figure></details>
+    </article>
+    <div v-if="locations.length" class="book-sheet-columns">
      <div v-for="(column,index) in pageColumns" :key="index" class="book-sheet-column">
       <section v-for="row in column" :key="row.entry.number" class="book-sheet-question">
        <h3 :aria-label="`교재 ${row.entry.number}번`" :class="{'printed-number-embedded':row.item&&isImagePrimary(row.item)&&row.item.question.bookSourceNumber===row.entry.number}"><span>{{String(row.entry.number).padStart(2,'0')}}</span><small>교재 {{row.entry.number}}번</small></h3>
@@ -110,7 +110,7 @@ const pageColumns=computed(()=>{
       </section>
      </div>
     </div>
-    <p v-if="!pageColumns.some(c=>c.length)" class="book-pending">{{referencePage||(examples.length?'위의 본문 풀이 예제를 확인하세요.':audit?'자동 대조 자료는 있지만 확정된 문항 연결은 없습니다.':'아직 대조하지 않은 쪽입니다.')}}</p>
+    <p v-if="!pageColumns.some(c=>c.length)&&!examples.length" class="book-pending">{{referencePage||(audit?'자동 대조 자료는 있지만 확정된 문항 연결은 없습니다.':'아직 대조하지 않은 쪽입니다.')}}</p>
     <footer><button :disabled="!adjacentBookPage(book,start,-1)" @click="go(-1)">← 이전 쪽</button><strong><button type="button" :aria-label="`${start}쪽 · 쪽번호 선택`" @click="openNavigator('pages')">{{start}}</button></strong><button :disabled="!adjacentBookPage(book,start,1)" @click="go(1)">다음 쪽 →</button></footer>
    </article>
   </template>

@@ -5,7 +5,7 @@ test.use({serviceWorkers:'block'});
 test('분류 누락 없음·모든 미확정 보류 유지·현재 기준 해시',()=>{
  const data=JSON.parse(fs.readFileSync('work/hansol-whole-book/batch-review/triage.json','utf8'));
  const queue=JSON.parse(fs.readFileSync('work/hansol-whole-book/review-queue.json','utf8')).rows;
- expect(data.rows).toHaveLength(data.summary.total);expect(data.summary.unreviewed).toBe(queue.filter((r:any)=>r.kind!=='reviewed-unresolved').length);expect(data.summary.held).toBe(21);
+ expect(data.rows).toHaveLength(data.summary.total);expect(data.summary.unreviewed).toBe(queue.filter((r:any)=>r.kind!=='reviewed-unresolved').length);expect(data.summary.held).toBe(data.rows.filter((r:any)=>r.risk==='hold').length);
  const keys=new Set(data.rows.map((r:any)=>r.key));expect(keys.size).toBe(data.rows.length);
  for(const r of queue)expect(keys.has(`${r.page}:${r.number}`)).toBe(true);
  expect(Object.values(data.summary.riskCounts).reduce((n:any,v:any)=>n+v,0)).toBe(data.rows.length);
@@ -46,7 +46,7 @@ test('원문 대조용4문제 캡처',async({page},info)=>{
  test.skip(info.project.name!=='desktop');
  await page.setViewportSize({width:1700,height:1100});
  for(const risk of ['values','wording']){
-  await page.goto(`/work/hansol-whole-book/batch-review/index.html?part=2&risk=${risk}&size=8&inspect=1`);
+  await page.goto(`/work/hansol-whole-book/batch-review/index.html?risk=${risk}&size=8&inspect=1`);
   await expect(page.locator('.review-card')).not.toHaveCount(0);
   // Keep a small, directly legible group; don't generate thousands of crops.
   await page.locator('.review-card').evaluateAll(rows=>rows.slice(4).forEach(r=>r.remove()));

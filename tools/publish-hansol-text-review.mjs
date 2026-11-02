@@ -11,6 +11,8 @@ for(const name of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`dat
 const originals=new Map(Object.values(w.window).flatMap(b=>b.rounds.flatMap(r=>r.questions.map(q=>[`${r.id}:${q.number}`,q]))));
 const batch=read('tools/hansol-numeric-text-review.json');
 const checked=loadHansolReview(originals).rows;
+// Include new explicitly reviewed text variants, not the older pending PNGs.
+batch.rows=[...new Map([...batch.rows,...checked.filter(r=>r.presentation==='text'||r.publicationBatch==='continue-2026-11-02')].map(r=>[`${r.page}:${r.number}`,r])).values()];
 const keys=read('tools/hansol-printed-key-review.json').answers;
 const pages=read('data/textbook-pages.json'),corrections=read('data/textbook-corrections.json'),audit=read('data/textbook-page-audit.json');
 const touched=new Set();
@@ -40,7 +42,8 @@ for(const name of ['comparison.json','comparison-columns.json'])for(const q of r
 for(const page of touched){
  const a=audit.pages.find(r=>r.page===page);assert.ok(a,page);
  const es=pages.entries.filter(e=>e.book==='hansol'&&e.page===page),linked=new Set(es.filter(e=>e.sourceId).map(e=>e.number)),held=new Set(es.filter(e=>e.reviewHold).map(e=>e.number));
- Object.assign(a,{detectedPositions:detected.get(page)?.size||0,linkedPositions:linked.size,heldPositions:held.size,unconfirmedCandidates:[...detected.get(page)||[]].filter(n=>!linked.has(n)&&!held.has(n)).length});
+ const worked=new Set(es.filter(e=>e.workedExampleId).map(e=>e.number)),covered=new Set([...linked,...held,...worked]);
+ Object.assign(a,{detectedPositions:detected.get(page)?.size||0,linkedPositions:linked.size,heldPositions:held.size,workedExamplePositions:worked.size,unconfirmedCandidates:Math.max(0,(detected.get(page)?.size||0)-covered.size)});
 }
 pages.entries.sort((a,b)=>a.book.localeCompare(b.book)||a.page.localeCompare(b.page,'ko',{numeric:true})||a.number-b.number);
 const seen=new Set();for(const e of pages.entries){const key=`${e.book}:${e.page}:${e.number}`;assert.ok(!seen.has(key),key);seen.add(key);}

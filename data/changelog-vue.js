@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.7.2',scope:'industrial',date:'2026.11.03',
+      title:'교재 미연결 문제·원문 풀이 보강',
+      summary:'직접 읽은201위치를 교재 원문으로 채우고 문제·풀이를 분리했습니다.',
+      tags:['교재 원문','이미지 선택','해설'],
+      changes:['교재에서 미연결 상태였던 위치를 객관식175개와 예제·검토용 원문26개로 보강했습니다. 분수·선도·여러 줄 보기는 원문을 유지하고 이미지 속 답안을 선택합니다.','문제·해설402장을 Mac Real-ESRGAN x4plus-anime 타일256·4배 처리 후2배 bicubic으로 개선했습니다. 다크·라이트·원본 설정과 해설 접기·쪽 이동·이어풀기를 유지합니다.','책과 기존 CBT의 수치·단위·보기·정답 차이40개는 직접 확인한 교재용 텍스트와 해당 조건의 설명으로 분리합니다. 교재 내부 정답 불일치는 표시하고 객관식 출제에서 제외합니다.','예제만 있는 쪽도 이전·다음 이동이 가능하고, 다른 쪽으로 이어진 문제·해설을 연결합니다. 기존 CBT 은행·이미지·학습 기록은 그대로입니다. 전체 교재 개별 검토 완료를 뜻하지 않으며 미검토 후보는 별도로 남습니다.']
+    },
+    {
       version:'5.7.1',scope:'industrial',date:'2026.11.02',
       title:'교재 수치 차이는 선명한 텍스트로',
       summary:'직접 대조한 숫자·단위·보기 차이9문항을 교재용 텍스트로 반영했습니다.',
@@ -2739,8 +2746,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.7.1';
+  changelog.versions.industrial = '5.7.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.7.1';
+  changelog.currentVersion = '5.7.2';
   window.CBT_CHANGELOG = changelog;
 })();

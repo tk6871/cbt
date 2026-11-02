@@ -4,11 +4,13 @@ import {textbookEntries,textbookStudyItems} from '../src/cbt/textbookPages';
 import {calculationGuideFor,comcbtCalculationExplanation} from '../src/cbt/calculationGuide';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
-test('교재 텍스트 정정9개·원본 불변·교재 전용 기록·그림 보존',()=>{
+test('교재 텍스트 정정 전체·원본 불변·교재 전용 기록·그림 보존',()=>{
  const c:any={window:{}};for(const name of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${name}.js`,'utf8'),c);
  const originals:any[]=Object.values(c.window).flatMap((b:any)=>b.rounds.flatMap((round:any)=>round.questions.map((question:any)=>({id:`${round.id}:${question.number}`,question,round,subject:'냉동냉장설비'}))));
- const es=textbookEntries.filter(e=>e.correction?.presentation==='text');expect(es).toHaveLength(9);
- const before=JSON.stringify(originals),copies=textbookStudyItems(originals,es);expect(copies).toHaveLength(9);
+ const manifest=JSON.parse(fs.readFileSync('data/textbook-corrections.json','utf8')).entries;
+ const expected=Object.keys(manifest).filter(key=>manifest[key].presentation==='text').sort();
+ const es=textbookEntries.filter(e=>e.correction?.presentation==='text');expect(es.map(e=>`${e.page}:${e.number}`).sort()).toEqual(expected);
+ const before=JSON.stringify(originals),copies=textbookStudyItems(originals,es);expect(copies).toHaveLength(expected.length);
  for(const q of copies){expect(q.question.sourceImage).toBeNull();expect(q.question.imageOnly).toBe(false);expect(q.question.answerHotspots).toBeUndefined();expect(q.question.sourceImageSize).toBeUndefined();expect(q.id).toMatch(/^book-study::hansol::/);expect(q.question.explanationProvenance).toBe('book-verified-correction');}
  for(const q of copies){expect(comcbtCalculationExplanation(q)).toBe('');expect(calculationGuideFor(q).formula).not.toContain('COMCBT 풀이식');}
  expect(calculationGuideFor(copies.find(q=>q.question.sourcePage?.includes('2-18쪽'))!).formula).toContain('1.23+0.1');

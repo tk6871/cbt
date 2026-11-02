@@ -6,14 +6,16 @@ import {textbookEntries,textbookStudyItems,textbookSelectionKey} from '../src/cb
 import {rasterDimensions} from './raster-dimensions.mjs';
 import {chooseBookPage,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
-test('교재 정정 사본125개와 원본 해시·겹치지 않는 보기 영역',()=>{
+test('교재 정정 사본281개와 원본 해시·겹치지 않는 보기 영역',()=>{
  const imageRows=Object.values(corrections.entries).filter(row=>!('presentation' in row&&row.presentation==='text'));
- expect(imageRows).toHaveLength(125);
+ expect(imageRows).toHaveLength(281);
  const sha=(p:string)=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
  for(const row of imageRows){
   expect(sha(row.asset)).toBe(row.sha256);if(row.sourceImage)expect(sha(row.sourceImage)).toBe(row.sourceImageSha256);
   expect(row.size).toEqual(rasterDimensions(row.asset));
-  const entry=textbookEntries.find(e=>e.book==='hansol'&&e.correction?.asset===row.asset)!;expect(entry.imageSize).toEqual(row.size);
+  const entry=textbookEntries.find(e=>e.book==='hansol'&&e.correction?.asset===row.asset);
+  if(entry)expect(entry.imageSize).toEqual(row.size);
+  else{const key=Object.entries(corrections.entries).find(([,r])=>r===row)![0];expect(['2-18:3','2-21:16']).toContain(key);const [page,number]=key.split(':');expect(textbookEntries.find(e=>e.book==='hansol'&&e.page===page&&e.number===Number(number))?.sourceId).toMatch(/^hvac-hansol-book-/);}
   expect(row.choices).toHaveLength(4);expect(row.hotspots.map(b=>b.choice)).toEqual([1,2,3,4]);
   for(const b of row.hotspots){expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(100);expect(b.y+b.height).toBeLessThanOrEqual(100);}
   for(let i=0;i<4;i++)for(let j=i+1;j<4;j++){const a=row.hotspots[i],b=row.hotspots[j];expect(Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y))).toBe(0);}
@@ -60,7 +62,8 @@ test('교재 인쇄정답 차이는 교재용 사본에만 적용하고 기존 �
  expect(corrections.entries['1-155:17'].text).toContain('압축기를');expect(corrections.entries['1-155:17'].choices[2]).toContain('빙축열');
  expect(corrections.entries['1-165:7'].choices[1]).toContain('덕트경로 결정');expect(keys['1-165']['7']).toBe(2);
  expect(corrections.entries['1-177:51'].choices[2]).toContain('420kJ');expect(corrections.entries['1-177:51'].explanation).toContain('2520kJ');
- for(const [page,number,reason] of [['1-177',49,'가습/감습'],['1-182',83,'효율이 낮다']] as const){const held=textbookEntries.find(e=>e.book==='hansol'&&e.page===page&&e.number===number)!;expect(held.sourceId).toBeNull();expect(held.reviewHold).toBe(true);expect(held.pendingReason).toContain(reason);}
+ const directlyRead=textbookEntries.find(e=>e.book==='hansol'&&e.page==='1-177'&&e.number===49)!;expect(directlyRead.sourceId).toBe('hvac-hansol-book-1-177:49');expect(directlyRead.reviewHold).toBeUndefined();
+ const held=textbookEntries.find(e=>e.book==='hansol'&&e.page==='1-182'&&e.number===83)!;expect(held.sourceId).toBeNull();expect(held.reviewHold).toBe(true);expect(held.pendingReason).toContain('효율이 낮다');expect(held.workedExampleId).toBeTruthy();
  for(const [page,number,sourceId] of [['4-130',44,'hvac-hansol-2025-3:46'],['5-72',46,'hvac-hansol-2024-3:46'],['5-106',46,'hvac-hansol-2025-3:46']] as const)expect(textbookEntries.find(e=>e.book==='hansol'&&e.page===page&&e.number===number)?.sourceId).toBe(sourceId);
 });
 test('책 우선 오타 정정 이미지·직접 선택·원본 비교·해설',async({page})=>{
@@ -78,8 +81,9 @@ test('책 우선 오타 정정 이미지·직접 선택·원본 비교·해설',
  await si.locator('.image-answer-hotspot').nth(1).click();await expect(si.locator('.explanation-box')).toContainText('kJ/kg');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await chooseBookPage(page,'3-92');
- const held=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 22번',exact:true})});
- await expect(held.locator('.book-pending')).toContainText('②·③ 복수정답');await expect(held.locator('.question-card')).toHaveCount(0);
+ const held=root.locator('.book-worked-example');
+ await expect(held).toContainText('객관식 시험에서 제외');await expect(held.locator('.question-card')).toHaveCount(0);await expect(held.locator('img').first()).toBeVisible();
+ await held.locator('summary').click();await expect(held).toContainText('교재 복수정답②·③');
  await chooseBookPage(page,'1-29');
  const bookAnswerCard=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 4번',exact:true})}).locator('.question-card');
  await expect(bookAnswerCard.locator('.book-correction-note')).toContainText('정답표는1번');
