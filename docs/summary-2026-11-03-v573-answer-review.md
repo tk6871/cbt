@@ -44,4 +44,4 @@
 - 비공개 비교판은 work/hansol-whole-book/batch-review/index.html. 비교판·화면·OCR·proof는 Git 제외이며 다른 장치에 자동 복원되지 않는다. 원본/후보 변경 경고를 일괄 무시하지 않는다.
 - 다음 작업은 남은 수치·그림·문장 후보를 같은 기준으로 개별 대조하는 것이다.
 
-README·CHANGELOG·신기술 학습관·공개 패치노트와 캐시를5.7.3/625로 맞췄다. 이 문서는 커밋 전 검증 기록이며 Push/공개 배포 완료를 증명하지 않는다.
+README·CHANGELOG·신기술 학습관·공개 패치노트와 캐시를5.7.3/625로 맞췄다. 내용 커밋ce50b159를 GitHub Desktop으로 Push하고 push complete·HEAD/origin 차이0/0을 확인했다. 공개 사이트 배포 완료는 별도로 검사하지 않았다.
