@@ -14,7 +14,9 @@ for r in rows:
     a,b,c,d=r['bounds'];rect=(math.floor(a*w),max(0,math.floor(b*h)-15),math.ceil(c*w),min(h,math.ceil(d*h)+30))
     crop=screen.crop(rect);half=0 if a<.5 else 1
     key=Image.open(WORK/'regions'/f"spread-{r['spread']:04}-{'left' if half==0 else 'right'}-key.png")
-    canvas=Image.new('RGB',(max(crop.width,key.width),crop.height+key.height+45),'white')
+    crop=crop.resize((crop.width*2,crop.height*2))
+    key.thumbnail((crop.width,1000))
+    canvas=Image.new('RGB',(crop.width,crop.height+key.height+45),'white')
     ImageDraw.Draw(canvas).text((4,4),r['key']+' | '+r['risk'],font=font,fill='black')
     canvas.paste(crop,(0,45));canvas.paste(key,(0,45+crop.height));canvas.save(dest/(r['key'].replace(':','-')+'.png'))
 print(json.dumps([{'key':r['key'],'sourceId':r.get('source',{}).get('id'),'printedAnswer':r.get('printedAnswer'),'proof':str(dest/(r['key'].replace(':','-')+'.png'))} for r in rows],ensure_ascii=False))

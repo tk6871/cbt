@@ -35,7 +35,7 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
  const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
  if(bank())return Promise.resolve(items());
  return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=624',document.baseURI).href;
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=625',document.baseURI).href;
   script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);

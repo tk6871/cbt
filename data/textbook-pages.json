@@ -26567,6 +26567,18 @@
     {
       "book": "hansol",
       "page": "1-164",
+      "number": 4,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-164:4",
+      "fingerprint": "e3c9da4fd82561c8",
+      "imageSize": [
+        1112,
+        710
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-164",
       "number": 5,
       "sourceId": "hvac-hansol-2022-1:18",
       "fingerprint": "b4e8d5867a032ae6",
@@ -28569,6 +28581,18 @@
     {
       "book": "hansol",
       "page": "1-182",
+      "number": 82,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-182:82",
+      "fingerprint": "8b711d7076e72164",
+      "imageSize": [
+        1112,
+        868
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-182",
       "number": 83,
       "column": 1,
       "sourceId": null,
@@ -28827,6 +28851,18 @@
       "sourceId": "hvac-20070304:13",
       "fingerprint": "1f35f3f418edc0d4",
       "column": 1
+    },
+    {
+      "book": "hansol",
+      "page": "1-184",
+      "number": 96,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-184:96",
+      "fingerprint": "2744f7527c5e997c",
+      "imageSize": [
+        1112,
+        300
+      ]
     },
     {
       "book": "hansol",
@@ -29140,6 +29176,18 @@
     {
       "book": "hansol",
       "page": "1-226",
+      "number": 3,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-1-226:3",
+      "fingerprint": "29b320427c127cd4",
+      "imageSize": [
+        1110,
+        1012
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-226",
       "number": 5,
       "sourceId": "hvac-hansol-2018-2:2",
       "fingerprint": "3c6aaf87d1169914",
@@ -29212,6 +29260,18 @@
     {
       "book": "hansol",
       "page": "1-239",
+      "number": 3,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-1-239:3",
+      "fingerprint": "f853bbf17c59da68",
+      "imageSize": [
+        1112,
+        932
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-239",
       "number": 4,
       "sourceId": "hvac-hansol-2023-1:3",
       "fingerprint": "9382102f545a557d",
@@ -29243,6 +29303,30 @@
       "imageSize": [
         742,
         290
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-240",
+      "number": 9,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-240:9",
+      "fingerprint": "5599a935041cdf",
+      "imageSize": [
+        1112,
+        772
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-240",
+      "number": 10,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-240:10",
+      "fingerprint": "a9443af04bda7e81",
+      "imageSize": [
+        1112,
+        1156
       ]
     },
     {
@@ -36949,6 +37033,18 @@
     {
       "book": "hansol",
       "page": "3-25",
+      "number": 5,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-25:5",
+      "fingerprint": "5a973f0ba07449ff",
+      "imageSize": [
+        1104,
+        472
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-25",
       "number": 6,
       "sourceId": "hvac-20060816:57",
       "fingerprint": "ea1dd751767f588c",
@@ -39829,6 +39925,18 @@
     },
     {
       "book": "hansol",
+      "page": "3-89",
+      "number": 6,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-89:6",
+      "fingerprint": "4adf534944b3f4f2",
+      "imageSize": [
+        1104,
+        516
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "3-90",
       "number": 7,
       "sourceId": "hvac-20140817:53",
@@ -40918,6 +41026,18 @@
     {
       "book": "hansol",
       "page": "3-121",
+      "number": 22,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-121:22",
+      "fingerprint": "e411dff63a419c1",
+      "imageSize": [
+        1104,
+        466
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-121",
       "number": 23,
       "sourceId": "hvac-hansol-2017-1:49",
       "fingerprint": "a79a59a727d1f6c",
@@ -40949,6 +41069,18 @@
       "imageSize": [
         902,
         237
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-130",
+      "number": 4,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-130:4",
+      "fingerprint": "371b57a659db471b",
+      "imageSize": [
+        1112,
+        520
       ]
     },
     {
@@ -41755,6 +41887,18 @@
     {
       "book": "hansol",
       "page": "3-143",
+      "number": 8,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-143:8",
+      "fingerprint": "6d2eb26e82c43941",
+      "imageSize": [
+        1112,
+        536
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-143",
       "number": 9,
       "sourceId": "hvac-hansol-2022-1:48",
       "fingerprint": "f66cead22844a580",
@@ -41798,6 +41942,18 @@
       "imageSize": [
         902,
         343
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-145",
+      "number": 20,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-145:20",
+      "fingerprint": "13582c5a95839545",
+      "imageSize": [
+        1112,
+        696
       ]
     },
     {
@@ -42503,6 +42659,18 @@
     {
       "book": "hansol",
       "page": "3-177",
+      "number": 8,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-177:8",
+      "fingerprint": "6b39c166470a3288",
+      "imageSize": [
+        1112,
+        538
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-177",
       "number": 9,
       "sourceId": "hvac-20060816:54",
       "fingerprint": "20ab7f07d202258d",
@@ -42764,6 +42932,18 @@
       "imageSize": [
         1484,
         536
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-178",
+      "number": 17,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-178:17",
+      "fingerprint": "777a685e7855a092",
+      "imageSize": [
+        1112,
+        370
       ]
     },
     {
@@ -44298,6 +44478,42 @@
     },
     {
       "book": "hansol",
+      "page": "3-207",
+      "number": 4,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-207:4",
+      "fingerprint": "df32a3ece69f2be0",
+      "imageSize": [
+        1104,
+        956
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-221",
+      "number": 2,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-221:2",
+      "fingerprint": "f8049dd57ce782f7",
+      "imageSize": [
+        1112,
+        794
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-221",
+      "number": 4,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-221:4",
+      "fingerprint": "4c5f58da26c32784",
+      "imageSize": [
+        1104,
+        936
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "3-221",
       "number": 5,
       "sourceId": "hvac-hansol-2023-1:45",
@@ -44425,6 +44641,18 @@
       "imageSize": [
         621,
         184
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-262",
+      "number": 20,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-262:20",
+      "fingerprint": "290e1c1832a79734",
+      "imageSize": [
+        1110,
+        370
       ]
     },
     {
@@ -45099,6 +45327,18 @@
     {
       "book": "hansol",
       "page": "3-327",
+      "number": 51,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-327:51",
+      "fingerprint": "d9784c964fd62477",
+      "imageSize": [
+        1112,
+        652
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-327",
       "number": 52,
       "sourceId": "hvac-20200822:78",
       "fingerprint": "f348e25bd0318ec9",
@@ -45123,6 +45363,18 @@
       "sourceId": "hvac-20090510:78",
       "fingerprint": "7384a7ec1a56ef6",
       "column": 0
+    },
+    {
+      "book": "hansol",
+      "page": "3-328",
+      "number": 58,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-3-328:58",
+      "fingerprint": "2d3ed40158a620b2",
+      "imageSize": [
+        1112,
+        370
+      ]
     },
     {
       "book": "hansol",
@@ -45950,6 +46202,18 @@
     {
       "book": "hansol",
       "page": "3-365",
+      "number": 9,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-365:9",
+      "fingerprint": "68273e3a9564f792",
+      "imageSize": [
+        1112,
+        300
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "3-365",
       "number": 10,
       "sourceId": "hvac-20140525:78",
       "fingerprint": "606643e305522fc2",
@@ -45962,6 +46226,18 @@
       "sourceId": "hvac-20130602:74",
       "fingerprint": "52192dea9d1d03a2",
       "column": 0
+    },
+    {
+      "book": "hansol",
+      "page": "3-379",
+      "number": 15,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-3-379:15",
+      "fingerprint": "27d81612e821c616",
+      "imageSize": [
+        1112,
+        658
+      ]
     },
     {
       "book": "hansol",
@@ -46322,6 +46598,18 @@
     },
     {
       "book": "hansol",
+      "page": "4-16",
+      "number": 47,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-16:47",
+      "fingerprint": "f088262a5cf6cbc",
+      "imageSize": [
+        1112,
+        1072
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-17",
       "number": 48,
       "sourceId": "hvac-20160306:50",
@@ -46412,6 +46700,18 @@
       "sourceId": "hvac-20100509:67",
       "fingerprint": "2564118f264555d",
       "column": 1
+    },
+    {
+      "book": "hansol",
+      "page": "4-17",
+      "number": 53,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-17:53",
+      "fingerprint": "479bc0db4cd03b8a",
+      "imageSize": [
+        1104,
+        310
+      ]
     },
     {
       "book": "hansol",
@@ -46812,6 +47112,18 @@
       "imageSize": [
         1112,
         552
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-29",
+      "number": 47,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-29:47",
+      "fingerprint": "950bf418ad3829fe",
+      "imageSize": [
+        1104,
+        536
       ]
     },
     {
@@ -47483,6 +47795,30 @@
     },
     {
       "book": "hansol",
+      "page": "4-42",
+      "number": 47,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-42:47",
+      "fingerprint": "f29ad0c5ec4629d6",
+      "imageSize": [
+        1112,
+        768
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-43",
+      "number": 50,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-43:50",
+      "fingerprint": "9b8305ef56198bf5",
+      "imageSize": [
+        1112,
+        536
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-43",
       "number": 51,
       "sourceId": "hvac-hansol-2019-3:61",
@@ -48057,6 +48393,18 @@
     },
     {
       "book": "hansol",
+      "page": "4-54",
+      "number": 43,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-54:43",
+      "fingerprint": "74acd752e671e7b7",
+      "imageSize": [
+        1112,
+        1338
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-55",
       "number": 47,
       "sourceId": "hvac-hansol-2017-1:49",
@@ -48378,6 +48726,18 @@
     },
     {
       "book": "hansol",
+      "page": "4-62",
+      "number": 24,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-62:24",
+      "fingerprint": "7baacdf1d9e85a5c",
+      "imageSize": [
+        1110,
+        1384
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-63",
       "number": 27,
       "sourceId": "hvac-hansol-2017-2:27",
@@ -48542,6 +48902,18 @@
       "imageSize": [
         941,
         618
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-67",
+      "number": 47,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-67:47",
+      "fingerprint": "6580a26a2166aac1",
+      "imageSize": [
+        1112,
+        940
       ]
     },
     {
@@ -48915,6 +49287,30 @@
     },
     {
       "book": "hansol",
+      "page": "4-77",
+      "number": 30,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-77:30",
+      "fingerprint": "aaa578dcf06debf7",
+      "imageSize": [
+        1112,
+        1958
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-77",
+      "number": 31,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-77:31",
+      "fingerprint": "4b575b18a76863d1",
+      "imageSize": [
+        1104,
+        760
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-78",
       "number": 33,
       "sourceId": "hvac-hansol-2017-3:33",
@@ -48947,6 +49343,18 @@
       "imageSize": [
         887,
         344
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-78",
+      "number": 36,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-78:36",
+      "fingerprint": "1defcbe273720e27",
+      "imageSize": [
+        1112,
+        1060
       ]
     },
     {
@@ -49201,6 +49609,18 @@
     {
       "book": "hansol",
       "page": "4-85",
+      "number": 5,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-85:5",
+      "fingerprint": "77e3384d8989d4e8",
+      "imageSize": [
+        1112,
+        934
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-85",
       "number": 7,
       "sourceId": "hvac-hansol-2018-1:6",
       "fingerprint": "bc28d8d2913661de",
@@ -49417,6 +49837,18 @@
     {
       "book": "hansol",
       "page": "4-89",
+      "number": 27,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-89:27",
+      "fingerprint": "7dd92769c3de82fe",
+      "imageSize": [
+        1112,
+        1180
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-89",
       "number": 29,
       "sourceId": "hvac-hansol-2018-1:25",
       "fingerprint": "7fe42bc468528c38",
@@ -49580,6 +50012,18 @@
       "imageSize": [
         902,
         343
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-97",
+      "number": 4,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-97:4",
+      "fingerprint": "4d86f070fe49ff34",
+      "imageSize": [
+        1112,
+        930
       ]
     },
     {
@@ -49862,6 +50306,18 @@
     {
       "book": "hansol",
       "page": "4-102",
+      "number": 32,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-102:32",
+      "fingerprint": "2292dfc60be9d815",
+      "imageSize": [
+        1112,
+        1170
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-102",
       "number": 34,
       "sourceId": "hvac-hansol-2018-2:34",
       "fingerprint": "2903cf1b81a133db",
@@ -49917,6 +50373,18 @@
       "imageSize": [
         902,
         503
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-104",
+      "number": 43,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-104:43",
+      "fingerprint": "7a047b3e1414f2d7",
+      "imageSize": [
+        1112,
+        798
       ]
     },
     {
@@ -50395,6 +50863,18 @@
       "imageSize": [
         901,
         235
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-115",
+      "number": 34,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-115:34",
+      "fingerprint": "1b3917ff44b087a",
+      "imageSize": [
+        1112,
+        1004
       ]
     },
     {
@@ -51361,6 +51841,18 @@
     },
     {
       "book": "hansol",
+      "page": "4-135",
+      "number": 8,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-135:8",
+      "fingerprint": "7a54c70dcbf16ecc",
+      "imageSize": [
+        1112,
+        860
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-136",
       "number": 11,
       "sourceId": "hvac-hansol-2019-2:11",
@@ -52028,6 +52520,18 @@
     {
       "book": "hansol",
       "page": "4-152",
+      "number": 25,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-152:25",
+      "fingerprint": "c4d08c0b5ef4c47a",
+      "imageSize": [
+        1110,
+        1886
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-152",
       "number": 27,
       "sourceId": "hvac-20231:31",
       "fingerprint": "bee40a985a70f4d8",
@@ -52035,6 +52539,18 @@
       "imageSize": [
         936,
         418
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-153",
+      "number": 28,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-153:28",
+      "fingerprint": "d9ee0907ff332ed",
+      "imageSize": [
+        1112,
+        1062
       ]
     },
     {
@@ -52232,6 +52748,18 @@
     {
       "book": "hansol",
       "page": "4-157",
+      "number": 48,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-157:48",
+      "fingerprint": "dd318ba2e3a09d87",
+      "imageSize": [
+        1112,
+        940
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-157",
       "number": 50,
       "sourceId": "hvac-hansol-2019-3:56",
       "fingerprint": "6a720c8cf7b75af7",
@@ -52315,6 +52843,18 @@
       "imageSize": [
         1256,
         462
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-161",
+      "number": 8,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-161:8",
+      "fingerprint": "7bac9edd7e5672fc",
+      "imageSize": [
+        1104,
+        778
       ]
     },
     {
@@ -52440,6 +52980,18 @@
         ],
         "figureAssets": []
       }
+    },
+    {
+      "book": "hansol",
+      "page": "4-164",
+      "number": 25,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-4-164:25",
+      "fingerprint": "dfe4ea3569ece79a",
+      "imageSize": [
+        1112,
+        850
+      ]
     },
     {
       "book": "hansol",
@@ -53234,6 +53786,18 @@
     },
     {
       "book": "hansol",
+      "page": "4-180",
+      "number": 43,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-180:43",
+      "fingerprint": "a48c71e40574c384",
+      "imageSize": [
+        1110,
+        772
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "4-181",
       "number": 47,
       "sourceId": "hvac-20200822:55",
@@ -53802,6 +54366,18 @@
       "imageSize": [
         926,
         808
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-193",
+      "number": 47,
+      "column": 0,
+      "sourceId": "hvac-hansol-book-4-193:47",
+      "fingerprint": "152cbf38c95a0877",
+      "imageSize": [
+        1112,
+        940
       ]
     },
     {

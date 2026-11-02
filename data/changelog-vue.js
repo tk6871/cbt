@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.7.3',scope:'industrial',date:'2026.11.03',
+      title:'교재 정답·보기 차이 원문 대조 보강',
+      summary:'정답 관련 후보48문항을 직접 대조하고 교재 전용 원문·풀이로 연결했습니다.',
+      tags:['교재 대조','정답 구분','이미지 선택'],
+      changes:['교재 지문·네 보기·인쇄 정답표·풀이를 직접 읽어 수치·단위 변경, 보기 순서 변경, 다른 문제의 잘못된 추천을 구분했습니다. 기존 CBT 정답을 교재에 그대로 복사하지 않습니다.','확인한48문항의 문제·풀이96장을 기존 Mac Real-ESRGAN 타일256 방식으로 개선했습니다. 도면·분수·여러 줄 보기를 유지하고 이미지 답안 선택과 다크·라이트 표시를 지원합니다.','다른 열·쪽에 이어지는 풀이를 연결하고 긴 보기의 마지막 줄까지 선택 영역을 조정했습니다. 기존 기출·중간고사·이미지·기록은 보존하며 전체 교재의 개별 대조는 계속 진행 중입니다.']
+    },
+    {
       version:'5.7.2',scope:'industrial',date:'2026.11.03',
       title:'교재 미연결 문제·원문 풀이 보강',
       summary:'직접 읽은201위치를 교재 원문으로 채우고 문제·풀이를 분리했습니다.',
@@ -2746,8 +2753,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.7.2';
+  changelog.versions.industrial = '5.7.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.7.2';
+  changelog.currentVersion = '5.7.3';
   window.CBT_CHANGELOG = changelog;
 })();
