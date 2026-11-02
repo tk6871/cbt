@@ -28,6 +28,7 @@ const props = defineProps<{
   confidence?: 'sure' | 'unsure' | 'guess';
   mistakeReason?: 'concept' | 'formula' | 'unit' | 'careless';
   studyNote?: string;
+  presentation?: 'book';
 }>();
 
 defineEmits<{
@@ -479,6 +480,7 @@ onBeforeUnmount(() => {
       'compact-solve-card': compactSolveLayout,
       'combat-solve-card': solveLayout === 'combat',
       'keyboard-active': active,
+      'book-question-card': presentation === 'book',
     }"
     @pointerdown="$emit('activate')"
     @focusin="$emit('activate')"
@@ -488,7 +490,7 @@ onBeforeUnmount(() => {
       <strong>{{ item.subject }}</strong>
     </div>
 
-    <header class="question-head">
+    <header v-if="presentation !== 'book'" class="question-head">
       <div v-if="showQuestionIdentity" class="question-current-identity">
         <span>현재 문제</span>
         <strong>{{ displayNumber }}번</strong>
@@ -628,11 +630,12 @@ onBeforeUnmount(() => {
       </template>
     </div>
 
-    <aside v-if="item.question.bookCorrection" class="book-correction-note">
+    <component :is="presentation==='book'?'details':'aside'" v-if="item.question.bookCorrection" class="book-correction-note">
+      <summary v-if="presentation==='book'">교재 표기 안내 · 원문 비교</summary>
       <p v-if="mode === 'learn'">{{item.question.bookCorrection.note}}</p>
       <p v-else>교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수 있습니다.</p>
       <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img class="source-question-image" :class="restoredImageClass" :src="item.question.bookCorrection.originalImage" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
-    </aside>
+    </component>
     <div v-if="!verifiedHotspots.length" class="choice-grid-shell">
       <div
         class="choice-grid"
@@ -749,6 +752,11 @@ onBeforeUnmount(() => {
       </details>
     </div>
 
+    <div v-if="presentation === 'book'" class="book-question-tools">
+      <button type="button" :aria-label="bookmarked?'북마크 제거':'북마크 추가'" :aria-pressed="!!bookmarked" @click="$emit('toggleBookmark')">{{bookmarked?'★':'☆'}} <span>저장</span></button>
+      <button type="button" @click="$emit('askAi')">✦ AI 질문</button>
+      <button type="button" :aria-expanded="issueReportOpen" @click="issueReportOpen=!issueReportOpen">{{issueReportSubmitted?'✓ 접수됨':'이상 신고'}}</button>
+    </div>
     <Teleport to="body">
       <div
         v-if="explanationOpen && compactSolveLayout && !inlineCompactExplanation && mode === 'learn' && correctSelected"

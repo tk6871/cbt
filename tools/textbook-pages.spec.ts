@@ -2,7 +2,7 @@ import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {adjacentBookPage,normalizeBookPage,textbookStudyItems,textbookEntries} from '../src/cbt/textbookPages';
-import {closeBookNavigator,chooseBookPage,switchTextbook} from './textbook-reader-test-helpers';
+import {closeBookNavigator,chooseBookPage,switchTextbook,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test('쪽번호·독립 기록·수정 원문 차단',()=>{
  expect(normalizeBookPage('４－１０쪽')).toBe('4-10');
@@ -45,11 +45,11 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
   sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
- async function open(){await page.goto('/?safe=1');await expect(page.locator('.app-frame,.textbook-pages')).toBeVisible();if(!await page.locator('.textbook-pages').count()){if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();}await closeBookNavigator(page);}
+ async function open(){await page.goto('/?safe=1');await expect(page.locator('.app-frame,.textbook-pages')).toBeVisible();if(!await page.locator('.textbook-pages').count()){if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();await enterBookReader(page);}await closeBookNavigator(page);}
  await open();const root=page.locator('.textbook-pages');
  await expect(root.locator('.book-sheet-question')).toHaveCount(5);
- await expect(root.locator('.book-sheet-column').nth(0).locator('h3')).toHaveText(['교재 17번','교재 18번','교재 19번']);
- await expect(root.locator('.book-sheet-column').nth(1).locator('h3')).toHaveText(['교재 20번','교재 21번']);
+ await expect(root.locator('.book-sheet-column').nth(0).locator('h3 small')).toHaveText(['교재 17번','교재 18번','교재 19번']);
+ await expect(root.locator('.book-sheet-column').nth(1).locator('h3 small')).toHaveText(['교재 20번','교재 21번']);
  const card=root.locator('.question-card').first();await expect(card.locator('.image-answer-hotspot')).toHaveCount(4);
  await card.locator('.image-answer-hotspot').nth(2).click();await expect(card.locator('.image-answer-hotspot').nth(2)).toHaveClass(/selected/);
  await expect(card.locator('.explanation-box')).toBeVisible();

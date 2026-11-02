@@ -1,5 +1,5 @@
 import {test,expect} from '@playwright/test';
-import {chooseBookPage,openBookNavigator,closeBookNavigator,switchTextbook} from './textbook-reader-test-helpers';
+import {chooseBookPage,openBookNavigator,closeBookNavigator,switchTextbook,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test.beforeEach(async({page})=>{
  await page.addInitScript(()=>{
@@ -14,6 +14,7 @@ test.beforeEach(async({page})=>{
  if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
  await expect(page.locator('#textbook-navigator')).toBeVisible();
 });
 test('독립 풀이 화면 · 팝업 취소/선택 · 키보드 포커스 · 새로고침/뒤로/앞으로',async({page},info)=>{
@@ -36,10 +37,10 @@ test('독립 풀이 화면 · 팝업 취소/선택 · 키보드 포커스 · 새
  await expect(reader.locator('.book-sheet>footer>strong')).toHaveText('2-32');
  await expect(reader.locator('.reader-main .book-contents')).toHaveCount(0);
  await expect(reader.locator('.reader-main .book-comparison-summary')).toHaveCount(0);
- await page.reload();await expect(dialog).toBeVisible();await closeBookNavigator(page);
+ await page.reload();await openBookNavigator(page);await closeBookNavigator(page);
  await expect(reader.locator('.book-sheet>footer>strong')).toHaveText('2-32');
  await page.goBack();await expect(reader).toHaveCount(0);await expect(page.locator('.app-frame')).toBeVisible();
- await page.goForward();await expect(dialog).toBeVisible();await closeBookNavigator(page);
+ await page.goForward();await openBookNavigator(page);await closeBookNavigator(page);
  await expect(reader.locator('.book-sheet>footer>strong')).toHaveText('2-32');
  await reader.getByRole('button',{name:'교재 목록으로 돌아가기',exact:true}).click();await expect(reader).toHaveCount(0);
 });

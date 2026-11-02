@@ -63,7 +63,7 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
   const location=`${textbookNames[e.book as TextbookKey]} ${e.page}쪽 · ${e.number}번`;
   const enhanced=e.book==='energy'?withEnergyTextbookComcbt(original.question,e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
   const correction=e.correction;
-  const question={...enhanced,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:true,answer:correction.answer??enhanced.answer,sourceImage:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
+  const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:true,answer:correction.answer??enhanced.answer,sourceImage:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
    choices:correction.choices.map(text=>({text,html:'',images:[]})),bookCorrection:{note:correction.note,originalImage:correction.sourceImage?textbookAssetUrl(correction.sourceImage):undefined}}:{}),sourceImageSize:e.imageSize||enhanced.sourceImageSize,number:e.number,_originRoundId:roundId,_originalNumber:e.number,
    _subject:original.subject,sourcePage:location};
   if(correction?.explanation){

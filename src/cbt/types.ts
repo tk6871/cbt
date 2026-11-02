@@ -25,6 +25,7 @@ export type Question = {
   sourceImage?: string | null;
   sourceImageSize?: number[];
   bookCorrection?: {note:string;originalImage?:string};
+  bookSourceNumber?: number;
   choices: Choice[];
   answer: number;
   answerRate?: number | null;

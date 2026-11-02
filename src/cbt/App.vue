@@ -42,6 +42,8 @@ import type { SettingsValues, SettingChange, SettingsAction } from './settingsCa
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
 const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
+const TextbookLibrary = defineAsyncComponent(() => import('./TextbookLibrary.vue'));
+import {saveBookSelection,type BookSelection} from './textbookReaderState';
 import { textbookStudyItems, textbookSourceKeys, loadTextbookSupplement, bookForStudyId, type TextbookKey } from './textbookPages';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
@@ -160,6 +162,7 @@ type CbtHistoryState = {
   sessionId?: string;
   practicalRoom?: boolean;
   textbookRoom?: boolean;
+  textbookCollection?: boolean;
 };
 type MasteryRow = QuestionItem & {
   mastery: number;
@@ -2209,6 +2212,13 @@ async function loadTextbookPages():Promise<void> {
 }
 function openTextbookPages():void {
  textbookPagesOpen.value=true;openView('rounds');
+ textbookReaderOpen.value=false;
+ history.replaceState(viewHistoryState('rounds'),'',location.href);
+ void loadTextbookPages();
+ window.scrollTo({top:0});
+}
+function startTextbookReader(selection:BookSelection):void {
+ saveBookSelection(textbookKey.value,selection);
  textbookReaderOpen.value=true;
  if(!ownHistoryState()?.textbookRoom)history.pushState(viewHistoryState('rounds'),'',location.href);
  void loadTextbookPages();
@@ -2514,7 +2524,7 @@ function ownHistoryState(value: unknown = history.state): CbtHistoryState | null
 }
 
 function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
-  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}), ...(next==='rounds'&&textbookReaderOpen.value?{textbookRoom:true}:{}) };
+  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}), ...(next==='rounds'&&textbookPagesOpen.value?{textbookCollection:true}:{}), ...(next==='rounds'&&textbookReaderOpen.value?{textbookRoom:true}:{}) };
 }
 
 function initializeNavigationHistory(): void {
@@ -2531,6 +2541,7 @@ function initializeNavigationHistory(): void {
     ? 'home'
     : restoredView;
   view.value = initialView;
+  if(initialView==='rounds'&&current?.textbookCollection&&!current.textbookRoom&&!openUpdatesAfterRefresh){textbookPagesOpen.value=true;void loadTextbookPages();}
   if(initialView==='rounds'&&current?.textbookRoom&&!openUpdatesAfterRefresh){
     textbookPagesOpen.value=true;textbookReaderOpen.value=true;void loadTextbookPages();
   }
@@ -2610,6 +2621,8 @@ function handleBrowserHistory(event: PopStateEvent): void {
   const target = ownHistoryState(event.state);
   if (!target) return;
   textbookReaderOpen.value=target.view==='rounds'&&!!target.textbookRoom;
+  textbookPagesOpen.value=target.view==='rounds'&&!!(target.textbookCollection||target.textbookRoom);
+  if(textbookPagesOpen.value&&!textbookReaderOpen.value)void loadTextbookPages();
   if(textbookReaderOpen.value){textbookPagesOpen.value=true;void loadTextbookPages();}
   if (practicalSolving.value && !target.practicalRoom) {
     if (practicalSessionActive.value) closePracticalMock();
@@ -5062,7 +5075,7 @@ onBeforeUnmount(() => {
           </nav>
           <template v-if="roundsCollection === 'textbook' && !isJewelry">
             <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>
-            <section class="resume-learning-card"><div><strong>교재 전용 풀이</strong><small>책 목차와 쪽번호로 골라, 메뉴 없는 넓은 화면에서 풉니다.</small></div><button type="button" @click="openTextbookPages">교재 열기 →</button></section>
+            <TextbookLibrary :book="textbookKey" :items="textbookItems" :loading="textbookLoading" :error="textbookError" @book="selectTextbook" @open="startTextbookReader" @retry="loadTextbookPages" />
           </template>
           <template v-else-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
@@ -5794,9 +5807,9 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.6</span><h2>책 쪽순 풀이와 전체 자동 대조 현황</h2></div><p>회차별 문제 → 교재 페이지별에서 장·절·예상문제 목차를 고릅니다. 에너지 기출21회차1,680문제와 한솔1,687위치를 연결했습니다. ‘전체 자동 대조 현황’에서는1,176쪽의 연결·미확정 후보·보류 상태를 쪽번호로 찾아 확인합니다. 모든 문항의 연결·육안 검증 완료를 뜻하지는 않습니다.</p></header>
+            <header><div><span>NEW · v5.7</span><h2>목차에서 고르고, 책처럼 풀기</h2></div><p>교재 탭에서 책·장·절·쪽을 고르세요. 선택하는 동안에는 메뉴가 보이고, 문제를 열었을 때만 독립된 교재 화면으로 전환합니다. 큰 CBT 카드 대신 좌우 열·단원 제목·인쇄 쪽번호로 배치하고 중복 표시를 줄였습니다. 쪽번호를 누르면 다른 쪽을 고를 수 있습니다. 원본 이미지와 기존 풀이 기록은 유지합니다.</p></header>
             <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 한솔의 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하고 기존 CBT 원본과 기록은 유지합니다. 책 내부 정답표·풀이 불일치나 복수정답은 보류 사유를 표시하며, CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
-            <p>교재는 메뉴 없는 전용 화면에서 풉니다. 책 목차·검색·쪽번호는 ‘목차·쪽 선택’ 팝업에서 고르고, 연결 현황과 안내는 별도 탭에서 확인하세요.</p>
+            <p>교재 선택 화면에서는 사이트 메뉴를 그대로 사용합니다. 문제를 펼친 뒤에는 ‘목차·쪽 선택’과 인쇄 쪽번호를 눌러 이동할 수 있습니다. 연결 현황과 긴 안내는 필요한 경우에만 별도 탭에서 확인하세요.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
 
@@ -6217,7 +6230,7 @@ onBeforeUnmount(() => {
 
   </div>
 
-  <TextbookPages v-else-if="!session && textbookReaderOpen" :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @close="closeTextbookReader" @settings="settingsOpen=true" @calculator="openCalculator()" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
+  <TextbookPages v-else-if="!session && textbookReaderOpen" :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :bookmarked-ids="studyStore.bookmarks" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @close="closeTextbookReader" @settings="settingsOpen=true" @calculator="openCalculator()" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
 
   <div
     v-else-if="session"

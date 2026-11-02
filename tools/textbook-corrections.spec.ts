@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import corrections from '../data/textbook-corrections.json' with {type:'json'};
 import {textbookEntries,textbookStudyItems,textbookSelectionKey} from '../src/cbt/textbookPages';
 import {rasterDimensions} from './raster-dimensions.mjs';
-import {chooseBookPage} from './textbook-reader-test-helpers';
+import {chooseBookPage,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test('교재 정정 사본125개와 원본 해시·겹치지 않는 보기 영역',()=>{
  expect(Object.keys(corrections.entries)).toHaveLength(125);
@@ -66,12 +66,13 @@ test('책 우선 오타 정정 이미지·직접 선택·원본 비교·해설',
  await page.addInitScript(()=>{localStorage.setItem('modern-cbt-qualification-industrial','hvac');localStorage.setItem('unified-cbt-dynamic-ui','false');localStorage.setItem('unified-cbt-answer-layout','hotspot');sessionStorage.setItem('unified-cbt-ios-pwa-popup-seen-v351','true');sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');});
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('/?safe=1');if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
  const root=page.locator('.textbook-pages');await chooseBookPage(page,'1-15');
  const card=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 6번',exact:true})}).locator('.question-card');
  await expect(card.locator('.source-image-stage>img')).toHaveAttribute('src',/textbook-corrections/);await expect(card.locator('.image-answer-hotspot')).toHaveCount(4);
  await card.locator('.image-answer-hotspot').first().click();await expect(card.locator('.explanation-box')).toBeVisible();
  const image=card.locator('.source-image-stage>img');await page.evaluate(()=>document.documentElement.dataset.theme='dark');expect(await image.evaluate(el=>getComputedStyle(el).filter)).toContain('invert');await page.evaluate(()=>document.documentElement.dataset.theme='light');expect(await image.evaluate(el=>getComputedStyle(el).filter)).toBe('none');
- await card.getByText('수정 전 CBT 원본 비교',{exact:true}).click();await expect(card.locator('.book-correction-note img')).toHaveAttribute('src','assets/hvac-hansol/questions/2022_2/08.webp');
+ await card.getByText('교재 표기 안내 · 원문 비교',{exact:true}).click();await card.getByText('수정 전 CBT 원본 비교',{exact:true}).click();await expect(card.locator('.book-correction-note img')).toHaveAttribute('src','assets/hvac-hansol/questions/2022_2/08.webp');
  await chooseBookPage(page,'1-25');const si=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 6번',exact:true})}).locator('.question-card');
  await si.locator('.image-answer-hotspot').nth(1).click();await expect(si.locator('.explanation-box')).toContainText('kJ/kg');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);

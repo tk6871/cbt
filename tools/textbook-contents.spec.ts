@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {bookContents,contentsRows,searchContents,contentsEntries} from '../src/cbt/textbookContents';
 import {textbookEntries} from '../src/cbt/textbookPages';
 import energyIndex from '../data/energy-textbook-search.json' with {type:'json'};
-import {openBookNavigator} from './textbook-reader-test-helpers';
+import {openBookNavigator,enterBookReader} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 test('실제 장절 경계 · 부분/순서/붙여쓰기/가벼운 오타 검색',()=>{
  const context:any={window:{}};for(const k of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${k}.js`,'utf8'),context);
@@ -35,6 +35,7 @@ test('책 목차 탐색과 느슨한 검색에서 페이지 범위로 진입',as
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('/?safe=1');if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
  const root=page.locator('.textbook-pages'),search=root.getByRole('searchbox',{name:'목차·문제 내용 검색'});
  await search.fill('냉동대용량급속동결');
  const result=root.locator('.contents-results button').filter({hasText:'제빙 및 동결장치'}).filter({hasText:'핵심예상문제'}).first();

@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.7',scope:'industrial',date:'2026.11.02',
+      title:'목차에서 고르고, 책처럼 풀기',
+      summary:'교재 선택은 메뉴 안에서, 문제 풀이는 독립된 인쇄 교재형 화면에서 진행합니다.',
+      tags:['교재 UI','목차','쪽 이동'],
+      changes:['교재 페이지별 탭에서 책·장·절·문제 쪽을 바로 고릅니다. 풀이 후 목록으로 돌아왔을 때 안내 하나만 남던 빈 화면을 없앴습니다.','실제 문제 풀이만 메뉴 없는 전용 화면으로 열립니다. 좌우 열·교재 번호를 유지하고, 큰 카드·반복 과목표시·안내를 줄여 한 장의 교재처럼 배치했습니다. 한 열만 등록된 쪽은 빈 반쪽 없이 읽습니다.','인쇄 쪽번호를 누르면 쪽 선택창이 열립니다. 목차 검색·쪽 넘김·설정·계산기·이미지 확대·답안 선택·해설과 기존 풀이 기록을 유지합니다.','한솔 교재4-163쪽18번의 오른쪽 답안 영역이 왼쪽으로 밀린 문제를 원본 이미지에 맞춰 수정했습니다. PC·휴대폰·태블릿에서 교재를 읽고 고를 수 있도록 화면 폭을 조절합니다.']
+    },
+    {
       version:'5.6',scope:'industrial',date:'2026.10.31',
       title:'교재 페이지 연결·책 기준 대조 보강',
       summary:'에너지 기출21회차와 한솔1,687위치를 연결하고 전체 쪽별 자동 대조 현황을 제공합니다.',
@@ -2725,8 +2732,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.6';
+  changelog.versions.industrial = '5.7';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.6';
+  changelog.currentVersion = '5.7';
   window.CBT_CHANGELOG = changelog;
 })();

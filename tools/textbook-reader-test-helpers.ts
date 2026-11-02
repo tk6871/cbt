@@ -1,5 +1,12 @@
 import {expect,type Page} from '@playwright/test';
 
+export async function enterBookReader(page:Page){
+ await expect(page.locator('.textbook-library')).toBeVisible();
+ await page.locator('.textbook-library .library-selection .library-open').click();
+ await expect(page.locator('.textbook-pages')).toBeVisible();
+ await openBookNavigator(page);
+}
+
 export async function openBookNavigator(page:Page,tab?:'pages'|'info'|'contents'){
  const dialog=page.locator('#textbook-navigator');
  await expect(dialog).toBeAttached();
