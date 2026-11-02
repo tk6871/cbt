@@ -10,6 +10,11 @@
   {"page":"2-63","column":1,"rawNumber":6,"number":16,"contains":"사이클에서 증발압력","spread":160},
   {"page":"2-98","column":1,"rawNumber":7,"number":67,"contains":"건조도","spread":178},
   {"page":"2-143","column":1,"rawNumber":18,"number":8,"contains":"증발식 응축기","spread":200},
-  {"page":"2-203","column":0,"rawNumber":7,"number":57,"contains":"다음 증발기","spread":230}
+  {"page":"2-203","column":0,"rawNumber":7,"number":57,"contains":"다음 증발기","spread":230},
+  {"page":"3-266","column":1,"rawNumber":4,"number":44,"contains":"커피포트","spread":406},
+  {"page":"1-31","column":1,"rawNumber":1,"number":17,"contains":"습구온도","spread":24},
+  {"page":"1-166","column":0,"rawNumber":17,"number":11,"contains":"덕트에서","spread":92},
+  {"page":"1-192","column":0,"rawNumber":13,"number":140,"contains":"송풍기의 전압","spread":105},
+  {"page":"2-47","column":0,"rawNumber":6,"number":16,"contains":"응축기의 방열량","spread":152}
  ]
 }
