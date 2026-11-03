@@ -2934,6 +2934,18 @@
         1104,
         310
       ]
+    },
+    {
+      "book": "hansol",
+      "page": "1-28",
+      "number": 22,
+      "column": 1,
+      "sourceId": "hvac-hansol-book-1-28:22",
+      "fingerprint": "1cc3b6615a9006a2",
+      "imageSize": [
+        1112,
+        982
+      ]
     }
   ],
   "images": {
@@ -11398,6 +11410,40 @@
         392
       ],
       "asset": "assets/hvac-hansol-book/explanations/4-17-53.webp",
+      "model": "realesrgan-x4plus-anime",
+      "tile": 256,
+      "native": "arm64",
+      "pipeline": "4x -> 2x bicubic"
+    },
+    "1-28-22-question": {
+      "sourceSha256": "f95a354662ddd56a341050efdd46fe00e315b9768f2cb8b90c9268cd02691242",
+      "outputSha256": "a4ee700a65a2511668e0d8f779c3a1aa691b635b8609b5fe6808070a0c5f086a",
+      "sourceSize": [
+        556,
+        491
+      ],
+      "outputSize": [
+        1112,
+        982
+      ],
+      "asset": "assets/hvac-hansol-book/questions/1-28-22.webp",
+      "model": "realesrgan-x4plus-anime",
+      "tile": 256,
+      "native": "arm64",
+      "pipeline": "4x -> 2x bicubic"
+    },
+    "1-28-22-explanation": {
+      "sourceSha256": "e8085db1401b107c69d64525b7301cf322a94586c9054438b264701a304e9a39",
+      "outputSha256": "5dd51a0cc0b113f460678ff560758ce5446fc2e057f934253f29d7a645eb4148",
+      "sourceSize": [
+        525,
+        111
+      ],
+      "outputSize": [
+        1050,
+        222
+      ],
+      "asset": "assets/hvac-hansol-book/explanations/1-28-22.webp",
       "model": "realesrgan-x4plus-anime",
       "tile": 256,
       "native": "arm64",

@@ -17,6 +17,8 @@
   {"page":"1-31","column":1,"rawNumber":1,"number":17,"contains":"습구온도","spread":24},
   {"page":"1-166","column":0,"rawNumber":17,"number":11,"contains":"덕트에서","spread":92},
   {"page":"1-192","column":0,"rawNumber":13,"number":140,"contains":"송풍기의 전압","spread":105},
-  {"page":"2-47","column":0,"rawNumber":6,"number":16,"contains":"응축기의 방열량","spread":152}
+  {"page":"2-47","column":0,"rawNumber":6,"number":16,"contains":"응축기의 방열량","spread":152},
+  {"page":"1-26","column":0,"rawNumber":4,"number":8,"contains":"외기온도","spread":22},
+  {"page":"1-27","column":0,"rawNumber":2,"number":14,"contains":"건구온도","spread":22}
  ]
 }

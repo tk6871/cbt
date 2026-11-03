@@ -2,6 +2,8 @@
 // existing ordinary banks; OCR is never the displayed question body.
 import fs from 'node:fs';import assert from 'node:assert/strict';import crypto from 'node:crypto';
 import {textbookSourceFingerprint} from './textbook-text-correction.mjs';
+import {validateBookImagePipeline} from './hansol-book-image-validation.mjs';
+import {rasterDimensions} from './raster-dimensions.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8')),sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const review=read('tools/hansol-book-native-review.json'),staged=read('work/hansol-book-native/manifest.json'),ledger=read('work/hansol-book-native/upscale-ledger.json');
 const keys=read('tools/hansol-printed-key-review.json').answers;
@@ -13,7 +15,7 @@ for(const r of review.rows){
  for(const [path,hash] of Object.entries(stage.sourceScreens||{}))assert.equal(sha(path),hash,`${key}: continued book segment changed`);
  const ims=Object.fromEntries(['question','explanation'].map(kind=>{
   const im=ledger[`${key}-${kind}`];assert.ok(im,key);assert.equal(im.sourceSha256,sha(`work/hansol-book-native/original/${key}-${kind}.png`),key);assert.equal(im.outputSha256,sha(im.asset),key);
-  assert.equal(im.native,'arm64');assert.equal(im.tile,256);assert.equal(im.model,'realesrgan-x4plus-anime');assert.deepEqual(im.sourceSize,stage[kind+'Size']);assert.deepEqual(im.outputSize,im.sourceSize.map(n=>n*2));
+  validateBookImagePipeline(im);assert.deepEqual(im.sourceSize,stage[kind+'Size']);assert.deepEqual(rasterDimensions(im.asset),im.outputSize);
   imageAudit[`${key}-${kind}`]=im;return [kind,im];
  }));
  let entry={book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null};

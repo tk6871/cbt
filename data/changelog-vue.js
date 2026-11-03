@@ -5,6 +5,13 @@
 
   const entries = [
     {
+      version:'5.7.4',scope:'industrial',date:'2026.11.03',
+      title:'교재 수치·단위·문항 번호 대조 보강',
+      summary:'수치 차이20후보를 확인하고14문항을 교재용 텍스트로 맞췄습니다. 새 이미지의 업스케일링은 보류합니다.',
+      tags:['교재 대조','SI 단위','다크·라이트'],
+      changes:['혼합온도·현열비·송풍량·열량 문제의 조건과 네 보기·인쇄 정답표·풀이를 직접 확인했습니다. kcal/kJ/W와 시간당·초당 단위 차이를 교재용 설명에서 구분하고 기존 CBT 원문·해설·기록은 보존합니다.','OCR이08을04,14를02로 읽은 중복 후보를 정리하고08번의 실제 왼쪽 열 배치를 맞췄습니다. 같은 원문은 이미지와 기존 풀이ID를 유지합니다.','1-28쪽22번의 다른 선도·분수 보기는 교재 원문으로 분리했습니다. 이미 처리 완료된 문제·풀이2장의 개선 결과를 사용하고 다크/라이트·이미지 답안 선택을 지원합니다. 완료된 확대본은 유지하며 이후 새 업스케일링은 보류합니다. 새 원문은 원래 해상도로 연결하는 경로도 지원합니다. 전체 개별 대조는 계속 진행 중입니다.']
+    },
+    {
       version:'5.7.3',scope:'industrial',date:'2026.11.03',
       title:'교재 정답·보기 차이 원문 대조 보강',
       summary:'정답 관련 후보48문항을 직접 대조하고 교재 전용 원문·풀이로 연결했습니다.',
@@ -2753,8 +2760,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.7.3';
+  changelog.versions.industrial = '5.7.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.7.3';
+  changelog.currentVersion = '5.7.4';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -3,12 +3,13 @@ import fs from 'node:fs';import vm from 'node:vm';import crypto from 'node:crypt
 import {textbookEntries,textbookStudyItems} from '../src/cbt/textbookPages';
 import {chooseBookPage,enterBookReader} from './textbook-reader-test-helpers';
 import {rasterDimensions} from './raster-dimensions.mjs';
+import {validateBookImagePipeline} from './hansol-book-image-validation.mjs';
 test.use({serviceWorkers:'block'});
-test('직접 검토한 교재 문제·예제·업스케일 이미지와 분리 답안 좌표',()=>{
+test('직접 검토한 교재 문제·예제·원래 해상도/기존 업스케일 이미지와 분리 답안 좌표',()=>{
  const audit=JSON.parse(fs.readFileSync('data/hansol-book-native-audit.json','utf8'));
  const review=JSON.parse(fs.readFileSync('tools/hansol-book-native-review.json','utf8')).rows;
  expect(audit.locations).toHaveLength(review.length);expect(Object.keys(audit.images)).toHaveLength(review.length*2);
- for(const im of Object.values(audit.images) as any[]){expect(im.native).toBe('arm64');expect(im.tile).toBe(256);expect(im.model).toBe('realesrgan-x4plus-anime');expect(im.outputSize).toEqual(im.sourceSize.map((n:number)=>n*2));expect(rasterDimensions(im.asset)).toEqual(im.outputSize);expect(crypto.createHash('sha256').update(fs.readFileSync(im.asset)).digest('hex')).toBe(im.outputSha256);}
+ for(const im of Object.values(audit.images) as any[]){validateBookImagePipeline(im);expect(rasterDimensions(im.asset)).toEqual(im.outputSize);expect(crypto.createHash('sha256').update(fs.readFileSync(im.asset)).digest('hex')).toBe(im.outputSha256);}
  const w:any={window:{}};vm.runInNewContext(fs.readFileSync('data/hvac-hansol-book.js','utf8'),w);const bank=w.window.CBT_DATA_HVAC_HANSOL_BOOK;
  const items=bank.rounds.flatMap((round:any)=>round.questions.map((question:any)=>({id:`${round.id}:${question.number}`,round,question,subject:question._subject})));
  expect(items).toHaveLength(review.filter((r:any)=>r.kind==='mcq').length);const copies=textbookStudyItems(items);expect(copies).toHaveLength(items.length);
@@ -62,5 +63,16 @@ test('교재 지연 로딩·분수 그림 선택/취소·원문 풀이·다크/�
  await page.reload();await expect(page.locator('.textbook-pages')).toBeVisible();await expect(page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 6번',exact:true})}).locator('.image-answer-hotspot').nth(1)).toHaveClass(/selected/);
  await chooseBookPage(page,'2-11');await expect(page.locator('.book-worked-example')).toHaveCount(1);await expect(page.locator('.book-pending')).toHaveCount(0);await expect(page.getByRole('button',{name:'범위를 모아 CBT 시험',exact:true})).toBeDisabled();
  await page.locator('.book-worked-example summary').click();await expect(page.locator('.book-worked-example details')).toContainText('0.087MPa');
+ await chooseBookPage(page,'1-28');
+ const original=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 22번',exact:true})}).locator('.question-card');
+ const originalImage=original.locator('.source-image-stage>img');
+ await expect(originalImage).toHaveAttribute('src',/1-28-22\.webp/);await originalImage.evaluate((im:HTMLImageElement)=>im.decode());
+ expect(await originalImage.evaluate((im:HTMLImageElement)=>[im.naturalWidth,im.naturalHeight])).toEqual([1112,982]);
+ await original.locator('.image-answer-hotspot').nth(3).click();
+ await expect(original.locator('.explanation-box')).toContainText('h꜀−h₂');
+ const solution=original.locator('.original-textbook-explanation');await solution.locator('summary').click();
+ await expect(solution.locator('img')).toHaveAttribute('src',/1-28-22\.webp/);
+ for(const theme of ['dark','light']){await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);for(const im of [originalImage,solution.locator('img')]){const filter=await im.evaluate(el=>getComputedStyle(el).filter);if(theme==='light')expect(filter).toBe('none');else expect(filter).toContain('invert');}}
+ await page.screenshot({path:'/private/tmp/hansol-completed-images-v574.png',fullPage:true});
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
 });
