@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-02",
+  "date": "2026-11-03",
   "book": "hansol",
   "normalScreensRead": 620,
   "columnOcrRegions": 2480,
@@ -164,9 +164,9 @@
       "page": "1-27",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 3,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -182,9 +182,9 @@
       "page": "1-29",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -227,9 +227,9 @@
       "page": "1-34",
       "basis": "printed-footer",
       "detectedPositions": 7,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 2,
       "workedExamplePositions": 0
     },
     {
@@ -479,9 +479,9 @@
       "page": "1-62",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -551,18 +551,18 @@
       "page": "1-70",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 1,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 1
     },
     {
       "page": "1-71",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 0,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 4,
+      "unconfirmedCandidates": 2,
       "workedExamplePositions": 0
     },
     {
@@ -767,9 +767,9 @@
       "page": "1-94",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 2,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -902,9 +902,9 @@
       "page": "1-109",
       "basis": "printed-footer",
       "detectedPositions": 2,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -920,9 +920,9 @@
       "page": "1-111",
       "basis": "printed-footer",
       "detectedPositions": 7,
-      "linkedPositions": 6,
+      "linkedPositions": 7,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -938,18 +938,18 @@
       "page": "1-113",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 1,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "1-114",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 1,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -983,9 +983,9 @@
       "page": "1-118",
       "basis": "printed-footer",
       "detectedPositions": 1,
-      "linkedPositions": 0,
+      "linkedPositions": 1,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -1163,27 +1163,27 @@
       "page": "1-138",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "1-139",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
       "page": "1-140",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -1199,9 +1199,9 @@
       "page": "1-142",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -1316,9 +1316,9 @@
       "page": "1-155",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 2,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -1433,9 +1433,9 @@
       "page": "1-168",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -7985,9 +7985,9 @@
       "page": "4-11",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -8084,9 +8084,9 @@
       "page": "4-22",
       "basis": "printed-footer",
       "detectedPositions": 7,
-      "linkedPositions": 6,
+      "linkedPositions": 7,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -8111,9 +8111,9 @@
       "page": "4-25",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -8129,9 +8129,9 @@
       "page": "4-27",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 2,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -8192,18 +8192,18 @@
       "page": "4-34",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 2,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
       "page": "4-35",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -8219,9 +8219,9 @@
       "page": "4-37",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -8300,9 +8300,9 @@
       "page": "4-46",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -8435,9 +8435,9 @@
       "page": "4-61",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 2,
+      "linkedPositions": 3,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -8651,9 +8651,9 @@
       "page": "4-85",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 2,
       "workedExamplePositions": 0
     },
     {
@@ -8768,18 +8768,18 @@
       "page": "4-98",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "4-99",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9101,9 +9101,9 @@
       "page": "4-135",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 2,
       "workedExamplePositions": 0
     },
     {
@@ -9254,9 +9254,9 @@
       "page": "4-152",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9335,9 +9335,9 @@
       "page": "4-161",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9686,9 +9686,9 @@
       "page": "5-8",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -9767,9 +9767,9 @@
       "page": "5-17",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9803,9 +9803,9 @@
       "page": "5-21",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -9857,9 +9857,9 @@
       "page": "5-27",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 1,
+      "linkedPositions": 2,
       "heldPositions": 0,
-      "unconfirmedCandidates": 3,
+      "unconfirmedCandidates": 2,
       "workedExamplePositions": 0
     },
     {
@@ -9875,9 +9875,9 @@
       "page": "5-29",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 1,
       "workedExamplePositions": 0
     },
     {
@@ -10343,9 +10343,9 @@
       "page": "5-81",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -10397,18 +10397,18 @@
       "page": "5-87",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "5-88",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {

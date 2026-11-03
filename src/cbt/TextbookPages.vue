@@ -2,11 +2,12 @@
 import { computed, ref, watch, nextTick } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import QuestionCard from './QuestionCard.vue';
+import TextbookDirectQuestion from './TextbookDirectQuestion.vue';
 import {isImagePrimary} from './catalog';
 import TextbookContents from './TextbookContents.vue';
 import type {ContentsRow} from './textbookContents';
 import {readBookSelection,saveBookSelection} from './textbookReaderState';
-import { adjacentBookPage, compareBookPages, normalizeBookPage, textbookEntries, textbookNames, textbookStudyId, textbookSelectionKey, textbookReferencePage, textbookWorkedExamples, textbookAssetUrl, textbookPageAudit, textbookAuditPages, type TextbookKey } from './textbookPages';
+import { adjacentBookPage, compareBookPages, normalizeBookPage, textbookEntries, textbookNames, textbookStudyId, textbookSelectionKey, textbookReferencePage, textbookWorkedExamples, textbookAssetUrl, textbookPageAudit, textbookAuditPages, textbookDirectSources, textbookDirectPageMap, type TextbookKey } from './textbookPages';
 const props=defineProps<{ book:TextbookKey; items:QuestionItem[]; answers:Record<string,number>; bookmarkedIds?:string[]; loading:boolean; error:string; answerLayout:'classic'|'inline'|'hotspot'; hotspotIndicator:'marker'|'area'; restoredImageTheme:'auto'|'original' }>();
 const emit=defineEmits<{ close:[]; settings:[]; calculator:[]; book:[book:TextbookKey]; retry:[]; choose:[item:QuestionItem,choice:number]; bookmark:[item:QuestionItem]; ai:[item:QuestionItem]; start:[payload:{items:QuestionItem[];mode:StudyMode;label:string}] }>();
 const from=ref('');const to=ref('');
@@ -45,7 +46,9 @@ const matched=computed(()=>{
  const map=itemById.value;const seen=new Set<string>();
   return locations.value.flatMap(e=>{const item=map.get(textbookStudyId(e));const key=textbookSelectionKey(e);if(!item||!e.sourceId||seen.has(key))return [];seen.add(key);return [item];});
 });
-const pending=computed(()=>locations.value.filter(e=>!itemById.value.has(textbookStudyId(e))).length);
+const directById=new Map(textbookDirectSources.map(r=>[r.id,r]));
+const directCount=computed(()=>locations.value.filter(e=>e.directSourceId).length);
+const pending=computed(()=>locations.value.filter(e=>!e.directSourceId&&!itemById.value.has(textbookStudyId(e))).length);
 const selectedPages=computed(()=>[...new Set(locations.value.map(e=>e.page))].sort(compareBookPages));
 const label=computed(()=>`${textbookNames[props.book]} ${start.value}${end.value?`~${end.value}`:''}쪽${contentsLabel.value?` · ${contentsLabel.value}`:''}`);
 function clearContents(){contentsId.value='';contentsLabel.value='';}
@@ -53,7 +56,7 @@ function go(delta:number){const next=adjacentBookPage(props.book,start.value,del
 function choose(page:string){from.value=page;to.value='';clearContents();}
 async function selectContents(row:ContentsRow){
  const ready=new Set(props.items.map(i=>i.id));
- const pages=[...new Set(row.entries.filter(e=>ready.has(textbookStudyId(e))).map(e=>e.page))].sort(compareBookPages);
+ const pages=[...new Set(row.entries.filter(e=>e.directSourceId||ready.has(textbookStudyId(e))).map(e=>e.page))].sort(compareBookPages);
  from.value=pages[0]||row.node.from||'';
  const last=row.node.to||pages.at(-1);to.value=last&&last!==from.value?last:'';
  contentsId.value=row.node.id;contentsLabel.value=[...row.path.slice(1),row.node.title].join(' › ');
@@ -66,7 +69,7 @@ const pageColumns=computed(()=>{
  const cutoff=Math.ceil(rows.length/2);
  return [0,1].map(column=>rows.flatMap((e,index)=>{
   if((e.column??(index<cutoff?0:1))!==column)return [];
-  return [{entry:e,item:map.get(textbookStudyId(e))}];
+  return [{entry:e,item:map.get(textbookStudyId(e)),direct:e.directSourceId?directById.get(e.directSourceId):undefined}];
  }));
 });
 </script>
@@ -85,9 +88,10 @@ const pageColumns=computed(()=>{
   <p v-if="loading" role="status">교재에 연결된 원문을 불러오는 중…</p>
   <p v-else-if="error" role="alert">{{error}} <button @click="emit('retry')">다시 불러오기</button></p>
   <template v-else>
-   <div ref="pageResult" class="book-page-result" aria-live="polite"><div><h2>{{contentsLabel||`${start}쪽${end?` ~ ${end}쪽`:''}`}}</h2><p><strong>{{matched.length}}문제</strong><template v-if="end"> · 범위 {{start}}~{{end}}쪽 · 아래는 {{start}}쪽</template><template v-if="pending"> · 대조 중 {{pending}}위치</template></p></div>
+   <div ref="pageResult" class="book-page-result" aria-live="polite"><div><h2>{{contentsLabel||`${start}쪽${end?` ~ ${end}쪽`:''}`}}</h2><p><strong>{{matched.length}}문제</strong><template v-if="directCount"> · 교재 원문 {{directCount}}개</template><template v-if="end"> · 범위 {{start}}~{{end}}쪽 · 아래는 {{start}}쪽</template><template v-if="pending"> · 대조 중 {{pending}}위치</template></p></div>
     <div class="book-play"><button :disabled="!matched.length||invalid" @click="play('learn')">범위를 모아 일반 학습</button><button :disabled="!matched.length||invalid" @click="play('exam')">범위를 모아 CBT 시험</button></div>
    </div>
+   <p v-if="directCount" class="reader-page-note direct-reading-notice">대조를 기다리던 위치는 교재 원문으로 먼저 수록했습니다. ①~④로 내 답안을 기록하고 접힌 교재 풀이·정답표를 확인하세요. 자가확인 원문은 일반 학습·CBT 점수에 합산하지 않습니다. 선택은 이 기기에 저장됩니다.</p>
    <div v-if="referencePage||!locations.length||examples.length||pending" class="reader-page-note">
     <p v-if="referencePage">{{referencePage}}</p>
     <p v-else-if="!locations.length&&!examples.length">{{audit?'이 쪽은 전체 화면 자동 대조에 포함되었지만, 확정 연결된 문항은 아직 없습니다.':'이 쪽은 아직 문제 연결을 확인하지 않았습니다.'}} 교재에 문제가 없다는 뜻은 아닙니다.</p>
@@ -104,8 +108,9 @@ const pageColumns=computed(()=>{
     <div v-if="locations.length" class="book-sheet-columns">
      <div v-for="(column,index) in pageColumns" :key="index" class="book-sheet-column">
       <section v-for="row in column" :key="row.entry.number" class="book-sheet-question">
-       <h3 :aria-label="`교재 ${row.entry.number}번`" :class="{'printed-number-embedded':row.item&&isImagePrimary(row.item)&&row.item.question.bookSourceNumber===row.entry.number}"><span>{{String(row.entry.number).padStart(2,'0')}}</span><small>교재 {{row.entry.number}}번</small></h3>
+       <h3 :aria-label="`교재 ${row.entry.number}번`" :class="{'printed-number-embedded':!!row.direct||row.item&&isImagePrimary(row.item)&&row.item.question.bookSourceNumber===row.entry.number}"><span>{{String(row.entry.number).padStart(2,'0')}}</span><small>교재 {{row.entry.number}}번</small></h3>
        <QuestionCard v-if="row.item" :item="row.item" presentation="book" mode="learn" :bookmarked="bookmarkedIds?.includes(row.item.id)" :selected="answers[row.item.id]" :display-number="row.entry.number" :answer-layout="answerLayout" :image-answer-mode="answerLayout==='hotspot'?'hotspot':'buttons'" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @choose="emit('choose',row.item!,$event)" @toggle-bookmark="emit('bookmark',row.item!)" @ask-ai="emit('ai',row.item!)"/>
+       <TextbookDirectQuestion v-else-if="row.direct&&textbookDirectPageMap.has(row.entry.page)" :source="row.direct" :page="textbookDirectPageMap.get(row.entry.page)!" :original="restoredImageTheme==='original'"/>
        <p v-else class="book-pending">{{row.entry.pendingReason||'이 위치는 원문 연결을 추가 확인 중입니다. 다른 문제로 임의 대체하지 않습니다.'}}</p>
       </section>
      </div>

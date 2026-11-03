@@ -5,13 +5,22 @@ import {questionId,subjectFor} from './catalog';
 import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
+import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
 export type TextbookKey = 'hansol' | 'energy';
 export type TextbookCorrection = {text:string;choices:string[];answer?:number;note:string;sourceImage?:string|null;explanation?:string} & (
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
 );
-export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; correction?:TextbookCorrection };
-export const textbookEntries: TextbookEntry[] = links.entries as TextbookEntry[];
+export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; directSourceId?:string; correction?:TextbookCorrection };
+export type TextbookDirectSource=typeof directBook.locations[number];
+export type TextbookDirectPage=typeof directBook.pages[number];
+export const textbookDirectSources=directBook.locations;
+export const textbookDirectPageMap=new Map(directBook.pages.map(p=>[p.page,p]));
+const existingPositions=new Set(links.entries.map(e=>`${e.book}:${e.page}:${e.number}`));
+const directEntries:TextbookEntry[]=directBook.locations.filter(r=>!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
+// Source-first reading must not become an automatically graded question or
+// replace an already verified/held book location.
+export const textbookEntries: TextbookEntry[] = [...links.entries as TextbookEntry[],...directEntries];
 export const textbookNames = { hansol:'한솔 공조 교재', energy:'에너지설비 교재' };
 export const textbookWorkedExamples=workedExamples.entries;
 const auditedPages=new Map(pageAudit.pages.map(row=>[row.page,row]));
@@ -35,7 +44,7 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
  const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
  if(bank())return Promise.resolve(items());
  return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=626',document.baseURI).href;
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=628',document.baseURI).href;
   script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);

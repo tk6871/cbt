@@ -22,5 +22,7 @@ export function loadHansolReview(originals){
   }
   const {patches,...meta}=row;rows.push({...meta,correction});
  }
- return {...base,date:changes.date,rows};
+ // Rebuilding native links must not restore an older wording-patch date.
+ const date=[base.date,changes.date,numeric.date].filter(Boolean).sort().at(-1);
+ return {...base,date,rows};
 }

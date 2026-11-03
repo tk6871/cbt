@@ -23,13 +23,13 @@ const text=computed(()=>{
  }return result;
 });
 const rows=computed(()=>contentsRows(bookContents[props.book],textbookEntries,text.value));
-const counts=computed(()=>Object.fromEntries(rows.value.map(row=>[row.node.id,{ready:new Set(row.entries.filter(e=>itemMap.value.has(textbookStudyId(e))).map(e=>e.sourceId)).size,pending:row.entries.filter(e=>!itemMap.value.has(textbookStudyId(e))).length,examples:contentsExamples(row.node).length}])));
+const counts=computed(()=>Object.fromEntries(rows.value.map(row=>[row.node.id,{ready:new Set(row.entries.filter(e=>itemMap.value.has(textbookStudyId(e))).map(e=>e.sourceId)).size,direct:row.entries.filter(e=>e.directSourceId).length,pending:row.entries.filter(e=>!e.directSourceId&&!itemMap.value.has(textbookStudyId(e))).length,examples:contentsExamples(row.node).length}])));
 const results=computed(()=>searchContents(rows.value,debounced.value));
 function select(id:string){const row=rows.value.find(r=>r.node.id===id);if(row?.node.from)emit('select',row);}
 </script>
 <template>
  <section class="book-contents" aria-label="교재 목차">
-  <header><h2>목차에서 골라 풀기</h2><p>장 → 절 → 핵심·실전예상문제 순서로 고릅니다. 연결 문제 수는 현재 대조가 끝난 범위입니다.</p></header>
+  <header><h2>목차에서 골라 풀기</h2><p>장 → 절 → 핵심·실전예상문제 순서로 고릅니다. 채점 가능한 연결 문제와 바로 읽는 교재 원문을 구분합니다.</p></header>
   <label class="contents-search-label">목차·문제 내용 검색<input v-model="query" type="search" placeholder="예: 냉동 대용량 급속동결 / 몰리엘 / 집진" autocomplete="off"></label>
   <p class="contents-help">단어 일부·띄어쓰기·순서가 달라도 찾습니다. 여러 단어는 일치 개수가 많은 순서로 보여 주며, 연관어와 가벼운 오타도 참고합니다. 검색 보조 OCR은 오타가 있을 수 있고 원문 문제 이미지는 그대로입니다.</p>
   <p v-if="indexLoading" role="status">에너지 교재 내용 검색 자료를 불러오는 중…</p>
@@ -40,7 +40,7 @@ function select(id:string){const row=rows.value.find(r=>r.node.id===id);if(row?.
     <li v-for="row in results.slice(0,limit)" :key="row.node.id">
      <button type="button" :disabled="!row.node.from" :aria-pressed="selected===row.node.id" @click="select(row.node.id)">
       <small>{{row.path.join(' › ')}}</small><strong>{{row.node.title}}</strong>
-      <span>{{row.node.from||'쪽번호 대조 중'}}<template v-if="row.node.to">~{{row.node.to}}</template> · {{counts[row.node.id].ready}}문제 연결<template v-if="counts[row.node.id].examples"> · 풀이 예제 {{counts[row.node.id].examples}}개</template></span>
+      <span>{{row.node.from||'쪽번호 대조 중'}}<template v-if="row.node.to">~{{row.node.to}}</template> · {{counts[row.node.id].ready}}문제 연결<template v-if="counts[row.node.id].direct"> · 교재 원문 {{counts[row.node.id].direct}}개</template><template v-if="counts[row.node.id].examples"> · 풀이 예제 {{counts[row.node.id].examples}}개</template></span>
       <small>맞은 검색어: {{row.matched.map(m=>m.term).join(' · ')}}<template v-if="row.matched.some(m=>m.kind==='비슷한 단어')"> · 비슷한 단어 참고</template></small>
      </button>
     </li>
