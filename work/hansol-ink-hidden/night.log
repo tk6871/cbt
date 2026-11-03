@@ -1,0 +1,183 @@
+Clean-image release baseline prepared; originals and seven bank files protected.
+Release edits validated and journaled; no version/cache files changed.
+{"planned": 423, "alreadyComplete": 0, "thisRun": 423, "oldImprovedRetained": 474}
+{"status": "upscaling", "completed": 1, "total": 423, "remaining": 422, "current": "1-24-7-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:26+0900", "error": null, "elapsedSeconds": 2.5, "averageSeconds": 2.46, "estimatedRemainingSeconds": 1040}
+{"status": "upscaling", "completed": 2, "total": 423, "remaining": 421, "current": "2-107-102-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:27+0900", "error": null, "elapsedSeconds": 3.3, "averageSeconds": 1.66, "estimatedRemainingSeconds": 700}
+{"status": "upscaling", "completed": 3, "total": 423, "remaining": 420, "current": "2-108-108-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:28+0900", "error": null, "elapsedSeconds": 4.3, "averageSeconds": 1.42, "estimatedRemainingSeconds": 598}
+{"status": "upscaling", "completed": 4, "total": 423, "remaining": 419, "current": "2-127-1-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:29+0900", "error": null, "elapsedSeconds": 5.3, "averageSeconds": 1.34, "estimatedRemainingSeconds": 560}
+{"status": "upscaling", "completed": 5, "total": 423, "remaining": 418, "current": "2-128-9-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:30+0900", "error": null, "elapsedSeconds": 6.2, "averageSeconds": 1.24, "estimatedRemainingSeconds": 518}
+{"status": "upscaling", "completed": 6, "total": 423, "remaining": 417, "current": "2-13-2-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:31+0900", "error": null, "elapsedSeconds": 7.4, "averageSeconds": 1.23, "estimatedRemainingSeconds": 513}
+{"status": "upscaling", "completed": 7, "total": 423, "remaining": 416, "current": "2-142-2-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:32+0900", "error": null, "elapsedSeconds": 8.6, "averageSeconds": 1.22, "estimatedRemainingSeconds": 510}
+{"status": "upscaling", "completed": 8, "total": 423, "remaining": 415, "current": "2-151-1-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:34+0900", "error": null, "elapsedSeconds": 10.6, "averageSeconds": 1.33, "estimatedRemainingSeconds": 551}
+{"status": "upscaling", "completed": 9, "total": 423, "remaining": 414, "current": "2-188-1-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:36+0900", "error": null, "elapsedSeconds": 12.9, "averageSeconds": 1.43, "estimatedRemainingSeconds": 593}
+{"status": "upscaling", "completed": 10, "total": 423, "remaining": 413, "current": "2-189-2-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:38+0900", "error": null, "elapsedSeconds": 15.2, "averageSeconds": 1.52, "estimatedRemainingSeconds": 627}
+{"status": "upscaling", "completed": 11, "total": 423, "remaining": 412, "current": "2-19-7-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:39+0900", "error": null, "elapsedSeconds": 16.1, "averageSeconds": 1.46, "estimatedRemainingSeconds": 602}
+{"status": "upscaling", "completed": 12, "total": 423, "remaining": 411, "current": "2-19-8-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:41+0900", "error": null, "elapsedSeconds": 17.5, "averageSeconds": 1.46, "estimatedRemainingSeconds": 598}
+{"status": "upscaling", "completed": 13, "total": 423, "remaining": 410, "current": "2-190-1-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:43+0900", "error": null, "elapsedSeconds": 19.2, "averageSeconds": 1.48, "estimatedRemainingSeconds": 606}
+{"status": "upscaling", "completed": 14, "total": 423, "remaining": 409, "current": "2-190-3-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:44+0900", "error": null, "elapsedSeconds": 20.8, "averageSeconds": 1.49, "estimatedRemainingSeconds": 608}
+{"status": "upscaling", "completed": 15, "total": 423, "remaining": 408, "current": "2-191-5-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:45+0900", "error": null, "elapsedSeconds": 21.8, "averageSeconds": 1.45, "estimatedRemainingSeconds": 593}
+{"status": "upscaling", "completed": 16, "total": 423, "remaining": 407, "current": "2-196-22-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:46+0900", "error": null, "elapsedSeconds": 22.7, "averageSeconds": 1.42, "estimatedRemainingSeconds": 578}
+{"status": "upscaling", "completed": 17, "total": 423, "remaining": 406, "current": "2-213-114-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:47+0900", "error": null, "elapsedSeconds": 23.9, "averageSeconds": 1.41, "estimatedRemainingSeconds": 572}
+{"status": "upscaling", "completed": 18, "total": 423, "remaining": 405, "current": "2-27-1-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:50+0900", "error": null, "elapsedSeconds": 26.5, "averageSeconds": 1.47, "estimatedRemainingSeconds": 596}
+{"status": "upscaling", "completed": 19, "total": 423, "remaining": 404, "current": "2-33-10-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:51+0900", "error": null, "elapsedSeconds": 27.4, "averageSeconds": 1.44, "estimatedRemainingSeconds": 581}
+{"status": "upscaling", "completed": 20, "total": 423, "remaining": 403, "current": "2-33-11-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:52+0900", "error": null, "elapsedSeconds": 28.3, "averageSeconds": 1.41, "estimatedRemainingSeconds": 570}
+{"status": "upscaling", "completed": 21, "total": 423, "remaining": 402, "current": "2-34-12-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:53+0900", "error": null, "elapsedSeconds": 29.8, "averageSeconds": 1.42, "estimatedRemainingSeconds": 570}
+{"status": "upscaling", "completed": 22, "total": 423, "remaining": 401, "current": "2-46-12-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:55+0900", "error": null, "elapsedSeconds": 31.3, "averageSeconds": 1.42, "estimatedRemainingSeconds": 570}
+{"status": "upscaling", "completed": 23, "total": 423, "remaining": 400, "current": "2-46-14-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:56+0900", "error": null, "elapsedSeconds": 32.5, "averageSeconds": 1.41, "estimatedRemainingSeconds": 565}
+{"status": "upscaling", "completed": 24, "total": 423, "remaining": 399, "current": "2-71-3-explanation", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:57+0900", "error": null, "elapsedSeconds": 33.6, "averageSeconds": 1.4, "estimatedRemainingSeconds": 559}
+{"status": "upscaling", "completed": 25, "total": 423, "remaining": 398, "current": "2-87-4-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:58+0900", "error": null, "elapsedSeconds": 34.6, "averageSeconds": 1.38, "estimatedRemainingSeconds": 551}
+{"status": "upscaling", "completed": 26, "total": 423, "remaining": 397, "current": "2-89-14-question", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:49:59+0900", "error": null, "elapsedSeconds": 35.3, "averageSeconds": 1.36, "estimatedRemainingSeconds": 538}
+{"status": "upscaling", "completed": 27, "total": 423, "remaining": 396, "current": "page-1-25", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:50:13+0900", "error": null, "elapsedSeconds": 50.0, "averageSeconds": 1.85, "estimatedRemainingSeconds": 733}
+{"status": "upscaling", "completed": 28, "total": 423, "remaining": 395, "current": "page-1-100", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:50:28+0900", "error": null, "elapsedSeconds": 64.7, "averageSeconds": 2.31, "estimatedRemainingSeconds": 912}
+{"status": "upscaling", "completed": 29, "total": 423, "remaining": 394, "current": "page-1-103", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:50:43+0900", "error": null, "elapsedSeconds": 79.4, "averageSeconds": 2.74, "estimatedRemainingSeconds": 1079}
+{"status": "upscaling", "completed": 30, "total": 423, "remaining": 393, "current": "page-1-105", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:50:57+0900", "error": null, "elapsedSeconds": 94.0, "averageSeconds": 3.13, "estimatedRemainingSeconds": 1231}
+{"status": "upscaling", "completed": 31, "total": 423, "remaining": 392, "current": "page-1-106", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:51:12+0900", "error": null, "elapsedSeconds": 108.4, "averageSeconds": 3.5, "estimatedRemainingSeconds": 1371}
+{"status": "upscaling", "completed": 32, "total": 423, "remaining": 391, "current": "page-1-112", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:51:26+0900", "error": null, "elapsedSeconds": 122.8, "averageSeconds": 3.84, "estimatedRemainingSeconds": 1500}
+{"status": "upscaling", "completed": 33, "total": 423, "remaining": 390, "current": "page-1-117", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:51:40+0900", "error": null, "elapsedSeconds": 137.0, "averageSeconds": 4.15, "estimatedRemainingSeconds": 1619}
+{"status": "upscaling", "completed": 34, "total": 423, "remaining": 389, "current": "page-1-119", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:51:55+0900", "error": null, "elapsedSeconds": 151.3, "averageSeconds": 4.45, "estimatedRemainingSeconds": 1731}
+{"status": "upscaling", "completed": 35, "total": 423, "remaining": 388, "current": "page-1-135", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:52:09+0900", "error": null, "elapsedSeconds": 165.5, "averageSeconds": 4.73, "estimatedRemainingSeconds": 1835}
+{"status": "upscaling", "completed": 36, "total": 423, "remaining": 387, "current": "page-1-136", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:52:23+0900", "error": null, "elapsedSeconds": 179.8, "averageSeconds": 4.99, "estimatedRemainingSeconds": 1933}
+{"status": "upscaling", "completed": 37, "total": 423, "remaining": 386, "current": "page-1-137", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:52:37+0900", "error": null, "elapsedSeconds": 193.9, "averageSeconds": 5.24, "estimatedRemainingSeconds": 2023}
+{"status": "upscaling", "completed": 38, "total": 423, "remaining": 385, "current": "page-1-139", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:52:51+0900", "error": null, "elapsedSeconds": 208.0, "averageSeconds": 5.47, "estimatedRemainingSeconds": 2108}
+{"status": "upscaling", "completed": 39, "total": 423, "remaining": 384, "current": "page-1-141", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:53:06+0900", "error": null, "elapsedSeconds": 222.3, "averageSeconds": 5.7, "estimatedRemainingSeconds": 2189}
+{"status": "upscaling", "completed": 40, "total": 423, "remaining": 383, "current": "page-1-143", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:53:20+0900", "error": null, "elapsedSeconds": 236.8, "averageSeconds": 5.92, "estimatedRemainingSeconds": 2267}
+{"status": "upscaling", "completed": 41, "total": 423, "remaining": 382, "current": "page-1-153", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:53:34+0900", "error": null, "elapsedSeconds": 251.0, "averageSeconds": 6.12, "estimatedRemainingSeconds": 2339}
+{"status": "upscaling", "completed": 42, "total": 423, "remaining": 381, "current": "page-1-154", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:53:49+0900", "error": null, "elapsedSeconds": 265.3, "averageSeconds": 6.32, "estimatedRemainingSeconds": 2406}
+{"status": "upscaling", "completed": 43, "total": 423, "remaining": 380, "current": "page-1-164", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:54:03+0900", "error": null, "elapsedSeconds": 279.5, "averageSeconds": 6.5, "estimatedRemainingSeconds": 2470}
+{"status": "upscaling", "completed": 44, "total": 423, "remaining": 379, "current": "page-1-165", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:54:17+0900", "error": null, "elapsedSeconds": 293.8, "averageSeconds": 6.68, "estimatedRemainingSeconds": 2531}
+{"status": "upscaling", "completed": 45, "total": 423, "remaining": 378, "current": "page-1-167", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:54:31+0900", "error": null, "elapsedSeconds": 308.1, "averageSeconds": 6.85, "estimatedRemainingSeconds": 2588}
+{"status": "upscaling", "completed": 46, "total": 423, "remaining": 377, "current": "page-1-168", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:54:46+0900", "error": null, "elapsedSeconds": 322.3, "averageSeconds": 7.01, "estimatedRemainingSeconds": 2642}
+{"status": "upscaling", "completed": 47, "total": 423, "remaining": 376, "current": "page-1-169", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:55:00+0900", "error": null, "elapsedSeconds": 336.7, "averageSeconds": 7.16, "estimatedRemainingSeconds": 2693}
+{"status": "upscaling", "completed": 48, "total": 423, "remaining": 375, "current": "page-1-170", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:55:14+0900", "error": null, "elapsedSeconds": 350.9, "averageSeconds": 7.31, "estimatedRemainingSeconds": 2742}
+{"status": "upscaling", "completed": 49, "total": 423, "remaining": 374, "current": "page-1-173", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:55:29+0900", "error": null, "elapsedSeconds": 365.3, "averageSeconds": 7.45, "estimatedRemainingSeconds": 2788}
+{"status": "upscaling", "completed": 50, "total": 423, "remaining": 373, "current": "page-1-174", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:55:43+0900", "error": null, "elapsedSeconds": 379.5, "averageSeconds": 7.59, "estimatedRemainingSeconds": 2831}
+{"status": "upscaling", "completed": 51, "total": 423, "remaining": 372, "current": "page-1-175", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:55:57+0900", "error": null, "elapsedSeconds": 393.8, "averageSeconds": 7.72, "estimatedRemainingSeconds": 2872}
+{"status": "upscaling", "completed": 52, "total": 423, "remaining": 371, "current": "page-1-176", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:56:11+0900", "error": null, "elapsedSeconds": 407.7, "averageSeconds": 7.84, "estimatedRemainingSeconds": 2909}
+{"status": "upscaling", "completed": 53, "total": 423, "remaining": 370, "current": "page-1-177", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:56:25+0900", "error": null, "elapsedSeconds": 421.9, "averageSeconds": 7.96, "estimatedRemainingSeconds": 2945}
+{"status": "upscaling", "completed": 54, "total": 423, "remaining": 369, "current": "page-1-178", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:56:40+0900", "error": null, "elapsedSeconds": 436.2, "averageSeconds": 8.08, "estimatedRemainingSeconds": 2981}
+{"status": "upscaling", "completed": 55, "total": 423, "remaining": 368, "current": "page-1-179", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:56:54+0900", "error": null, "elapsedSeconds": 450.6, "averageSeconds": 8.19, "estimatedRemainingSeconds": 3015}
+{"status": "upscaling", "completed": 56, "total": 423, "remaining": 367, "current": "page-1-180", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T03:57:08+0900", "error": null, "elapsedSeconds": 464.9, "averageSeconds": 8.3, "estimatedRemainingSeconds": 3047}
+Traceback (most recent call last):
+  File "/Users/sh/Documents/GitHub/cbt/tools/finish-hansol-ink-hidden.py", line 108, in <module>
+    subprocess.run(['arch','-arm64',str(ENGINE),'-i',str(ROOT/row['sourceAsset']),
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1201, in communicate
+    self.wait()
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "/Users/sh/Documents/GitHub/cbt/tools/run-hansol-ink-hidden-night.py", line 65, in <module>
+    subprocess.run([sys.executable,'tools/finish-hansol-ink-hidden.py','--publish','--finish'],check=True)
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1201, in communicate
+    self.wait()
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/Users/sh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+Clean-image release baseline prepared; originals and seven bank files protected.
+Release edits validated and journaled; no version/cache files changed.
+{"planned": 40, "alreadyComplete": 27, "thisRun": 13, "oldImprovedRetained": 474}
+{"status": "upscaling", "completed": 28, "total": 40, "remaining": 12, "current": "page-1-26", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:01:54+0900", "error": null, "elapsedSeconds": 14.3, "averageSeconds": 14.3, "estimatedRemainingSeconds": 172}
+{"status": "upscaling", "completed": 29, "total": 40, "remaining": 11, "current": "page-1-27", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:02:08+0900", "error": null, "elapsedSeconds": 28.6, "averageSeconds": 14.32, "estimatedRemainingSeconds": 158}
+{"status": "upscaling", "completed": 30, "total": 40, "remaining": 10, "current": "page-1-30", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:02:23+0900", "error": null, "elapsedSeconds": 43.1, "averageSeconds": 14.38, "estimatedRemainingSeconds": 144}
+{"status": "upscaling", "completed": 31, "total": 40, "remaining": 9, "current": "page-1-32", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:02:37+0900", "error": null, "elapsedSeconds": 57.5, "averageSeconds": 14.38, "estimatedRemainingSeconds": 129}
+{"status": "upscaling", "completed": 32, "total": 40, "remaining": 8, "current": "page-1-33", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:02:52+0900", "error": null, "elapsedSeconds": 72.0, "averageSeconds": 14.4, "estimatedRemainingSeconds": 115}
+{"status": "upscaling", "completed": 33, "total": 40, "remaining": 7, "current": "page-1-34", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:03:06+0900", "error": null, "elapsedSeconds": 86.5, "averageSeconds": 14.41, "estimatedRemainingSeconds": 101}
+{"status": "upscaling", "completed": 34, "total": 40, "remaining": 6, "current": "page-1-35", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:03:21+0900", "error": null, "elapsedSeconds": 101.0, "averageSeconds": 14.43, "estimatedRemainingSeconds": 87}
+{"status": "upscaling", "completed": 35, "total": 40, "remaining": 5, "current": "page-1-36", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:03:35+0900", "error": null, "elapsedSeconds": 115.5, "averageSeconds": 14.43, "estimatedRemainingSeconds": 72}
+{"status": "upscaling", "completed": 36, "total": 40, "remaining": 4, "current": "page-1-58", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:03:50+0900", "error": null, "elapsedSeconds": 130.1, "averageSeconds": 14.45, "estimatedRemainingSeconds": 58}
+{"status": "upscaling", "completed": 37, "total": 40, "remaining": 3, "current": "page-2-128", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:04:04+0900", "error": null, "elapsedSeconds": 144.7, "averageSeconds": 14.47, "estimatedRemainingSeconds": 43}
+{"status": "upscaling", "completed": 38, "total": 40, "remaining": 2, "current": "page-2-200", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:04:19+0900", "error": null, "elapsedSeconds": 159.2, "averageSeconds": 14.48, "estimatedRemainingSeconds": 29}
+{"status": "upscaling", "completed": 39, "total": 40, "remaining": 1, "current": "page-2-213", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:04:34+0900", "error": null, "elapsedSeconds": 174.0, "averageSeconds": 14.5, "estimatedRemainingSeconds": 15}
+{"status": "upscaling", "completed": 40, "total": 40, "remaining": 0, "current": "page-2-60", "retainedPreviousImages": 474, "updatedAt": "2026-11-04T04:04:48+0900", "error": null, "elapsedSeconds": 188.5, "averageSeconds": 14.5, "estimatedRemainingSeconds": 0}
+{"published": 40, "retained": 474}
+VERIFY typecheck
+VERIFY text-publication
+VERIFY native-publication
+VERIFY unit-tests
+VERIFY build
+VERIFY pwa
+VERIFY changelog-identity
+VERIFY clean-image-browser-tests
+{
+  "date": "2026-11-03T19:05:27.204Z",
+  "status": "finished-local-release",
+  "version": "5.8.1",
+  "cache": 629,
+  "pages": 14,
+  "nativeReplacements": 26,
+  "retainedPreviousImages": 474,
+  "retainedPages": 383,
+  "screens": 332,
+  "checks": [
+    {
+      "name": "typecheck",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/typecheck.log"
+    },
+    {
+      "name": "text-publication",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/text-publication.log"
+    },
+    {
+      "name": "native-publication",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/native-publication.log"
+    },
+    {
+      "name": "unit-tests",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/unit-tests.log"
+    },
+    {
+      "name": "build",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/build.log"
+    },
+    {
+      "name": "pwa",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/pwa.log"
+    },
+    {
+      "name": "changelog-identity",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/changelog-identity.log"
+    },
+    {
+      "name": "clean-image-browser-tests",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/clean-image-browser-tests.log"
+    }
+  ],
+  "protectedInputsUnchanged": true,
+  "git": "not run; connected GitHub write previously403"
+}

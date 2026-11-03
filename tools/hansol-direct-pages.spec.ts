@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-import {textbookEntries,textbookStudyItems,textbookDirectSources,textbookDirectPageMap} from '../src/cbt/textbookPages';
+import {textbookEntries,textbookStudyItems,textbookDirectSources,textbookDirectPageMap,textbookDirectImage} from '../src/cbt/textbookPages';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 const read=(p:string)=>JSON.parse(fs.readFileSync(p,'utf8'));
@@ -46,7 +46,7 @@ test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목
  const card=page.locator('[data-source-id="hansol-direct-1-168-25"]');await expect(card).toBeVisible();
  await expect(page.locator('.direct-reading-notice')).toContainText('자가확인');
  const image=card.locator('.direct-viewport img').first();
- await expect(image).toHaveJSProperty('naturalWidth',1342);
+ await expect(image).toHaveJSProperty('naturalWidth',textbookDirectImage(textbookDirectPageMap.get('1-168')!).pixelSize[0]);
  await expect(card.locator('.direct-solution')).not.toHaveAttribute('open','');
  const choice=card.getByRole('button',{name:'②',exact:true});await choice.click();await expect(choice).toHaveAttribute('aria-pressed','true');
  expect(await page.evaluate(()=>localStorage.getItem('cbt-book-direct-choice-v1::hansol-direct-1-168-25'))).toBe('2');

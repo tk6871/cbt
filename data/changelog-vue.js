@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'5.8.1',scope:'industrial',date:'2026.11.04',title:'교재 필기 부분만 깨끗하게 교체',summary:'필기 영향이 있는 부분만 교보 필기 숨김 원문으로 교체하고 화질을 개선했습니다.',tags:['교재 원문','필기 숨김','기존 이미지 유지'],changes:['교보 눈 버튼으로 필기 레이어를 숨긴 원문을 확인했습니다. 색을 지우거나 글자·도면을 AI로 다시 그리지 않았습니다.','필기 영향이 있던 원문14쪽과 문제·풀이26장만 교체·개선했습니다. 영향 없는383쪽·기존 개선474장은 그대로 유지하며 이전 자산도 보존합니다.','문제·정답·풀이 영역·선택 기록·다크/라이트는 유지합니다. 교체한 확대본을 읽지 못하면 필기 없는 원해상도 쪽으로 표시합니다. 풀이 경계127곳의 보완이나 전체 정답 검증 완료를 뜻하지 않습니다.']},
     {
       version:'5.8',scope:'industrial',date:'2026.11.03',
       title:'대조를 기다리지 않는 교재 원문 풀이',
@@ -2767,8 +2768,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '5.8';
+  changelog.versions.industrial = '5.8.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '5.8';
+  changelog.currentVersion = '5.8.1';
   window.CBT_CHANGELOG = changelog;
 })();

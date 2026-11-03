@@ -6,6 +6,8 @@ import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextb
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
+import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
+import {resolveBookInkHidden} from './textbookInkHidden';
 export type TextbookKey = 'hansol' | 'energy';
 export type TextbookCorrection = {text:string;choices:string[];answer?:number;note:string;sourceImage?:string|null;explanation?:string} & (
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
@@ -16,6 +18,23 @@ export type TextbookDirectSource=typeof directBook.locations[number];
 export type TextbookDirectPage=typeof directBook.pages[number];
 export const textbookDirectSources=directBook.locations;
 export const textbookDirectPageMap=new Map(directBook.pages.map(p=>[p.page,p]));
+export type TextbookDirectUpscale={page:string;sourceAsset:string;sourceSha256:string;coordinateSize:number[];outputSize:number[];asset:string;outputSha256:string;model:string;tile:number;native:string;pipeline:string};
+const directUpgrades=new Map((directUpscale.pages as TextbookDirectUpscale[]).map(p=>[p.page,p]));
+export function resolveTextbookDirectImage(page:TextbookDirectPage,upgrade?:TextbookDirectUpscale){
+ const safe=upgrade&&upgrade.page===page.page&&upgrade.sourceAsset===page.asset&&upgrade.sourceSha256===page.sha256
+  &&upgrade.coordinateSize.length===2&&upgrade.outputSize.length===2
+  &&upgrade.coordinateSize.every((n,i)=>n===page.size[i])&&upgrade.outputSize.every((n,i)=>n===page.size[i]*2)
+  &&upgrade.pipeline==='4x -> 2x bicubic'&&upgrade.model==='realesrgan-x4plus-anime'&&upgrade.tile===256&&upgrade.native==='arm64'
+  &&/^assets\/hvac-hansol-book\/direct-pages\/upscaled-2x\/[1-5]-\d+\.webp$/.test(upgrade.asset);
+ return safe?{asset:upgrade.asset,pixelSize:upgrade.outputSize,improved:true}:{asset:page.asset,pixelSize:page.size,improved:false};
+}
+// Region geometry remains in the original coordinate system. A denser image
+// has the same displayed dimensions, so no question/solution region can move.
+export function textbookDirectImage(page:TextbookDirectPage){
+ const clean=resolveBookInkHidden(page.asset,page.size);
+ if(clean&&clean.oldSha256===page.sha256)return {asset:clean.asset,pixelSize:clean.outputSize,improved:true,fallbackAsset:clean.sourceAsset};
+ return {...resolveTextbookDirectImage(page,directUpgrades.get(page.page)),fallbackAsset:page.asset};
+}
 const existingPositions=new Set(links.entries.map(e=>`${e.book}:${e.page}:${e.number}`));
 const directEntries:TextbookEntry[]=directBook.locations.filter(r=>!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
 // Source-first reading must not become an automatically graded question or
@@ -27,6 +46,7 @@ const auditedPages=new Map(pageAudit.pages.map(row=>[row.page,row]));
 export const textbookAuditPages=pageAudit.pages;
 export function textbookPageAudit(book:TextbookKey,page:string){return book==='hansol'?auditedPages.get(normalizeBookPage(page)):undefined;}
 export function textbookAssetUrl(path:string,native=typeof document!=='undefined'&&document.documentElement.dataset.nativeApp==='true'):string {
+ path=resolveBookInkHidden(path)?.asset||path;
  return native&&path.startsWith('assets/')?`https://tk6871.github.io/cbt/${path}`:path;
 }
 // Visually checked scan pages: these contain only an answer table or the
@@ -44,7 +64,7 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
  const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
  if(bank())return Promise.resolve(items());
  return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=628',document.baseURI).href;
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=629',document.baseURI).href;
   script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);
@@ -86,6 +106,10 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
    question.explanation=correction.explanation;question.explanationHtml='';question.explanationType='editorial-supplement';question.explanationProvenance='book-verified-correction';
    question.explanationBasis='교재 지문·보기·정답표를 직접 대조하고, 원문과의 조건·정답 차이를 구분한 학습 설명입니다.';question.originalExplanationImagesFolded=true;
   }
+  // Apply display-only reader-ink-hidden variants after checking the original
+  // fingerprint. Question IDs, answers, percent hotspots and banks stay intact.
+  if(question.sourceImage)question.sourceImage=textbookAssetUrl(question.sourceImage);
+  if(question.explanationImages)question.explanationImages=question.explanationImages.map(path=>textbookAssetUrl(path));
   return [{id:textbookStudyId(e),subject:original.subject,question,
    round:{...original.round,id:roundId,title:location,kind:'textbook-pages',questions:[question]}}];
  });

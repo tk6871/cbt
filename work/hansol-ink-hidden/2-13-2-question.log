@@ -1,0 +1,8 @@
+[0 Apple M4 Pro]  queueC=0[1]  queueG=0[1]  queueT=0[1]
+[0 Apple M4 Pro]  bugsbn1=0  bugbilz=84  bugcopc=0  bugihfa=0
+[0 Apple M4 Pro]  fp16-p/s/a=1/1/1  int8-p/s/a=1/1/1
+[0 Apple M4 Pro]  subgroup=32  basic=1  vote=1  ballot=1  shuffle=1
+0.00%
+25.00%
+50.00%
+75.00%

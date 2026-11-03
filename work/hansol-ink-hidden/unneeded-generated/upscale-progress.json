@@ -1,0 +1,13 @@
+{
+  "status": "interrupted",
+  "completed": 56,
+  "total": 423,
+  "remaining": 367,
+  "current": null,
+  "retainedPreviousImages": 474,
+  "updatedAt": "2026-11-04T03:57:09+0900",
+  "error": "",
+  "elapsedSeconds": 465.8,
+  "averageSeconds": 8.3,
+  "estimatedRemainingSeconds": 3047
+}

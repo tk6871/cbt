@@ -1,0 +1,10 @@
+
+Running 5 tests using 1 worker
+
+  ✓  1 [desktop] › tools/hansol-direct-pages.spec.ts:9:1 › 759원문·397원해상도 쪽·모든 영역·자가확인 분리 (3.7s)
+  ✓  2 [desktop] › tools/hansol-direct-pages.spec.ts:33:1 › 원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목차 복귀 (4.5s)
+  ✓  3 [desktop] › tools/hansol-ink-hidden.spec.ts:10:1 › 필기 숨김 연결 가드: 지정 원문·경로·SHA·좌표와 정확한2배 크기만 허용 (1ms)
+  ✓  4 [desktop] › tools/hansol-ink-hidden.spec.ts:17:1 › 필기 영향14쪽/26영역만 교체·나머지383쪽/474개선본 보존 (398ms)
+  ✓  5 [desktop] › tools/hansol-ink-hidden.spec.ts:37:1 › 깨끗한2배 쪽 표시·다크/라이트·기록 유지·연결 실패 시 깨끗한 원해상도 (3.5s)
+
+  5 passed (17.0s)

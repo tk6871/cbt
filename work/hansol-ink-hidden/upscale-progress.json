@@ -1,0 +1,13 @@
+{
+  "status": "finished-local-release",
+  "completed": 40,
+  "total": 40,
+  "remaining": 0,
+  "current": null,
+  "retainedPreviousImages": 474,
+  "updatedAt": "2026-11-04T04:05:27+0900",
+  "error": null,
+  "elapsedSeconds": 227.2,
+  "averageSeconds": 14.5,
+  "estimatedRemainingSeconds": 0
+}

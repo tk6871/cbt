@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-03T19:05:27.204Z",
+  "status": "finished-local-release",
+  "version": "5.8.1",
+  "cache": 629,
+  "pages": 14,
+  "nativeReplacements": 26,
+  "retainedPreviousImages": 474,
+  "retainedPages": 383,
+  "screens": 332,
+  "checks": [
+    {
+      "name": "typecheck",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/typecheck.log"
+    },
+    {
+      "name": "text-publication",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/text-publication.log"
+    },
+    {
+      "name": "native-publication",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/native-publication.log"
+    },
+    {
+      "name": "unit-tests",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/unit-tests.log"
+    },
+    {
+      "name": "build",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/build.log"
+    },
+    {
+      "name": "pwa",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/pwa.log"
+    },
+    {
+      "name": "changelog-identity",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/changelog-identity.log"
+    },
+    {
+      "name": "clean-image-browser-tests",
+      "status": 0,
+      "signal": null,
+      "log": "work/hansol-ink-hidden/clean-image-browser-tests.log"
+    }
+  ],
+  "protectedInputsUnchanged": true,
+  "git": "not run; connected GitHub write previously403"
+}

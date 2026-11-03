@@ -1,0 +1,5769 @@
+{
+  "basis": "user-observed Kyobo eye-button hides ink; normal visible UI only",
+  "originalsPreserved": true,
+  "targetScreens": [
+    16,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    38,
+    40,
+    41,
+    44,
+    54,
+    55,
+    59,
+    60,
+    61,
+    62,
+    63,
+    65,
+    67,
+    68,
+    76,
+    77,
+    78,
+    79,
+    80,
+    85,
+    86,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    113,
+    114,
+    121,
+    122,
+    127,
+    128,
+    129,
+    134,
+    135,
+    138,
+    139,
+    142,
+    144,
+    145,
+    146,
+    147,
+    152,
+    154,
+    155,
+    157,
+    159,
+    160,
+    162,
+    163,
+    164,
+    165,
+    166,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    175,
+    176,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184,
+    186,
+    189,
+    191,
+    192,
+    193,
+    194,
+    197,
+    198,
+    199,
+    200,
+    201,
+    202,
+    204,
+    206,
+    208,
+    209,
+    212,
+    213,
+    218,
+    223,
+    224,
+    225,
+    226,
+    227,
+    229,
+    231,
+    233,
+    235,
+    236,
+    239,
+    240,
+    244,
+    257,
+    258,
+    259,
+    260,
+    262,
+    265,
+    272,
+    285,
+    286,
+    287,
+    288,
+    289,
+    294,
+    295,
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    317,
+    318,
+    319,
+    324,
+    325,
+    332,
+    333,
+    338,
+    339,
+    340,
+    344,
+    345,
+    346,
+    352,
+    353,
+    355,
+    357,
+    360,
+    361,
+    362,
+    363,
+    364,
+    365,
+    366,
+    367,
+    368,
+    370,
+    376,
+    377,
+    378,
+    383,
+    393,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407,
+    408,
+    412,
+    413,
+    414,
+    417,
+    432,
+    433,
+    434,
+    435,
+    436,
+    437,
+    438,
+    439,
+    441,
+    445,
+    446,
+    447,
+    448,
+    449,
+    450,
+    451,
+    454,
+    455,
+    461,
+    462,
+    463,
+    464,
+    465,
+    468,
+    469,
+    470,
+    471,
+    472,
+    473,
+    475,
+    476,
+    477,
+    478,
+    479,
+    480,
+    481,
+    482,
+    483,
+    486,
+    487,
+    488,
+    489,
+    490,
+    491,
+    492,
+    493,
+    494,
+    495,
+    496,
+    497,
+    498,
+    499,
+    500,
+    501,
+    502,
+    503,
+    504,
+    505,
+    506,
+    507,
+    508,
+    509,
+    510,
+    511,
+    512,
+    513,
+    515,
+    516,
+    517,
+    518,
+    519,
+    520,
+    522,
+    523,
+    524,
+    525,
+    526,
+    527,
+    528,
+    529,
+    530,
+    531,
+    532,
+    534,
+    536,
+    537,
+    539,
+    540,
+    541,
+    543,
+    544,
+    545,
+    546,
+    547,
+    548,
+    549,
+    550,
+    551,
+    552,
+    553,
+    554,
+    555,
+    556,
+    557,
+    558,
+    559,
+    560,
+    561,
+    562,
+    565,
+    567,
+    568,
+    570,
+    572,
+    573,
+    574,
+    575,
+    576,
+    577,
+    579,
+    580,
+    581,
+    582,
+    584,
+    585,
+    587,
+    588,
+    589,
+    590,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598,
+    599,
+    600,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617
+  ],
+  "rows": {
+    "16": {
+      "spread": 16,
+      "image": "work/hansol-ink-hidden/screens/spread-0016.png",
+      "sha256": "6323679da47b9baaec4f1253887e955f2daf21e1bed94961092bad93b01c9b20",
+      "oldSha256": "5ec3ab5a07be5ddeb3eafad8b1ca6cee0ba55075731a129ffeac0cd216665c75",
+      "layoutComparison": {
+        "mae": 1.114918,
+        "correlation": 0.985018,
+        "changedFraction": 0.006864
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "21": {
+      "spread": 21,
+      "image": "work/hansol-ink-hidden/screens/spread-0021.png",
+      "sha256": "bbc8e36c5dd74b9c29d3dac1b6c95944ae5c6a23987492c0bd526b1eae80d484",
+      "oldSha256": "1e8f0df61d769880101e678c4da13cfa23bad0fad59adff7305ec61aba716981",
+      "layoutComparison": {
+        "mae": 0.520274,
+        "correlation": 0.996942,
+        "changedFraction": 0.005237
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "22": {
+      "spread": 22,
+      "image": "work/hansol-ink-hidden/screens/spread-0022.png",
+      "sha256": "b004ea662139045260c70cc01ef85a8d6cf8f45d1ac7fd69a677d1c8744aff35",
+      "oldSha256": "8b6874f963bd87b70cfd3934a875f39f8bc776f933c32d890133d26d434336d8",
+      "layoutComparison": {
+        "mae": 0.388679,
+        "correlation": 0.996233,
+        "changedFraction": 0.003127
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "23": {
+      "spread": 23,
+      "image": "work/hansol-ink-hidden/screens/spread-0023.png",
+      "sha256": "147bfca2899fe6ed75ec010955c311d1a91f71b6e2093f782badb350c87faf09",
+      "oldSha256": "e09846ae2ac6f8ad6053c8e55861b1bcafb08d734080e98218f0925f53a2b519",
+      "layoutComparison": {
+        "mae": 0.771581,
+        "correlation": 0.995937,
+        "changedFraction": 0.001605
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "24": {
+      "spread": 24,
+      "image": "work/hansol-ink-hidden/screens/spread-0024.png",
+      "sha256": "6271398133e6782bc79f43afadd79b938d0c99817f81b29bfabc1fdfd7bf253d",
+      "oldSha256": "c4d80fdd0cccbe48920ae262d089821716a7c03cd3ac0f02d16a562903b590b9",
+      "layoutComparison": {
+        "mae": 0.243008,
+        "correlation": 0.998925,
+        "changedFraction": 0.002084
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "25": {
+      "spread": 25,
+      "image": "work/hansol-ink-hidden/screens/spread-0025.png",
+      "sha256": "41cd8a9f2fb182a73ecda20551f64ef762f97fe389144fca5b62f5928b86c1bb",
+      "oldSha256": "75e17064a4fba61f11397e055cc4b048a52d4607b1169662da4f01e7235d33c7",
+      "layoutComparison": {
+        "mae": 0.347754,
+        "correlation": 0.997481,
+        "changedFraction": 0.002407
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "26": {
+      "spread": 26,
+      "image": "work/hansol-ink-hidden/screens/spread-0026.png",
+      "sha256": "0c45bb63cadeab89a1cbaeb020b8c9d51bd2af2e525d4a9ebf8d809762427732",
+      "oldSha256": "a6f4e86b4bfdf42e62768647297d40437baef906bd2c1b94902e0058e60b9ad1",
+      "layoutComparison": {
+        "mae": 0.30346,
+        "correlation": 0.99883,
+        "changedFraction": 0.002145
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "27": {
+      "spread": 27,
+      "image": "work/hansol-ink-hidden/screens/spread-0027.png",
+      "sha256": "f835264fa8eae1d492376ab80d9e37f15260008653b4f0fe35bb0e43f0dfad7e",
+      "oldSha256": "b70bd7cf35adb15d981cc3a3a495f954203f1ddfd20e99b161f6220fa20b9bb5",
+      "layoutComparison": {
+        "mae": 0.208119,
+        "correlation": 0.998916,
+        "changedFraction": 0.002014
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "38": {
+      "spread": 38,
+      "image": "work/hansol-ink-hidden/screens/spread-0038.png",
+      "sha256": "96907c0c2f177335447eea6152b54c6bd4328a8d4f0608f5d58b44b92f2e9692",
+      "oldSha256": "c99b40d2f8eed2dd59168ae3e85a8223606be6fb1889ac03a8410da3a288c965",
+      "layoutComparison": {
+        "mae": 0.287602,
+        "correlation": 0.99833,
+        "changedFraction": 0.005147
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "40": {
+      "spread": 40,
+      "image": "work/hansol-ink-hidden/screens/spread-0040.png",
+      "sha256": "e7fa1d00767ce1e70468f1691360309b5e18bab1f6cd7789347a3238c9791b75",
+      "oldSha256": "8ddbc9c5b488317c893a5fb77edcf94ded1433751fea171142dbed6ccf9fbc51",
+      "layoutComparison": {
+        "mae": 0.136769,
+        "correlation": 0.999197,
+        "changedFraction": 0.004095
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "41": {
+      "spread": 41,
+      "image": "work/hansol-ink-hidden/screens/spread-0041.png",
+      "sha256": "5806521dcf9afe599595278cddf227ebcf9d727137106f406c01eb6ec959e52f",
+      "oldSha256": "564c25061926ebb251076e8f7f25eba8d2b7c64a12fb8c78b3dacc082412b159",
+      "layoutComparison": {
+        "mae": 0.459876,
+        "correlation": 0.999323,
+        "changedFraction": 0.002177
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "44": {
+      "spread": 44,
+      "image": "work/hansol-ink-hidden/screens/spread-0044.png",
+      "sha256": "ea891e52e5d2c87b7a1a0050deeccbaf847bd2ec9283b16cfde099a2afe2e94b",
+      "oldSha256": "245f7932db80e167aa56b6254cd699267af7b82925c45ebd69f9b0fd163715e8",
+      "layoutComparison": {
+        "mae": 0.302487,
+        "correlation": 0.999394,
+        "changedFraction": 0.004735
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "54": {
+      "spread": 54,
+      "image": "work/hansol-ink-hidden/screens/spread-0054.png",
+      "sha256": "99ede570a3b730c7d138550e8c6917faa8300d3f2303855598fff5f3698d1412",
+      "oldSha256": "ae947cc9af0c6ca9bfe8edc5d44656ad22cac33fdebd9b122004f5572a7bfc2f",
+      "layoutComparison": {
+        "mae": 0.278068,
+        "correlation": 0.999378,
+        "changedFraction": 0.004728
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "55": {
+      "spread": 55,
+      "image": "work/hansol-ink-hidden/screens/spread-0055.png",
+      "sha256": "b0c8337705d202868a902f4619c6fa72ea576c27d90d242ea319926ba9201d96",
+      "oldSha256": "00f708b28378456f33f156cb8693cfa33d659f25e18b4fd9a8d5303b3c0c0066",
+      "layoutComparison": {
+        "mae": 0.238319,
+        "correlation": 0.999676,
+        "changedFraction": 0.001829
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "59": {
+      "spread": 59,
+      "image": "work/hansol-ink-hidden/screens/spread-0059.png",
+      "sha256": "6264470a5be48a91227a26a10433b68f97cbc244635d6996603da1d5200cce0f",
+      "oldSha256": "d1e86da758ce194be66ee293dc110420db2dc36e70e98ca6451b2939da2ce533",
+      "layoutComparison": {
+        "mae": 0.710291,
+        "correlation": 0.997951,
+        "changedFraction": 0.003808
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "60": {
+      "spread": 60,
+      "image": "work/hansol-ink-hidden/screens/spread-0060.png",
+      "sha256": "3cb8e43e21a8955c7832e12e2dcf97c9c6f4e63b3cd432454f6e87ecf55ba15f",
+      "oldSha256": "f483e19caa1f2e0a0ed01e5fcb0c346b6c159bd4a33e27de19fe35960cf36b13",
+      "layoutComparison": {
+        "mae": 0.228995,
+        "correlation": 0.999702,
+        "changedFraction": 0.001829
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "61": {
+      "spread": 61,
+      "image": "work/hansol-ink-hidden/screens/spread-0061.png",
+      "sha256": "1e94e1cb44bc9482210133afac134fc4437752773770f1995727708dee4b03c2",
+      "oldSha256": "cec73b413a486bee39ec607a3a3ade48fb43e346c94bee8a66bf55c6d806641c",
+      "layoutComparison": {
+        "mae": 0.271661,
+        "correlation": 0.999646,
+        "changedFraction": 0.001835
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "62": {
+      "spread": 62,
+      "image": "work/hansol-ink-hidden/screens/spread-0062.png",
+      "sha256": "0650d2a0b531695a3cbefe425274c6eaae286f88f4a771beb4df75f6d02b18e2",
+      "oldSha256": "47b4201fb9e1e6d79fabf410a3b62e8c3f0b01dfd2831273f582415f7d9184ae",
+      "layoutComparison": {
+        "mae": 0.255161,
+        "correlation": 0.999647,
+        "changedFraction": 0.001832
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "63": {
+      "spread": 63,
+      "image": "work/hansol-ink-hidden/screens/spread-0063.png",
+      "sha256": "6c37a98ce9dd16a7570e460222b956d08e47a533304782defbba5b7808e22896",
+      "oldSha256": "46da55474c89419c15a9b3325df32dd46c512235f8eedb945b75af262c4404f5",
+      "layoutComparison": {
+        "mae": 0.288703,
+        "correlation": 0.999709,
+        "changedFraction": 0.001832
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "65": {
+      "spread": 65,
+      "image": "work/hansol-ink-hidden/screens/spread-0065.png",
+      "sha256": "72a57baefc158ff476b60cda1cb8493c89820cb10fd303e7a90103bff185ffa3",
+      "oldSha256": "267ece7e81f2a0df660bdeb1c718dbf92982ba8d10e3a0b5654fd875daf15fbb",
+      "layoutComparison": {
+        "mae": 0.291683,
+        "correlation": 0.99976,
+        "changedFraction": 0.001829
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "67": {
+      "spread": 67,
+      "image": "work/hansol-ink-hidden/screens/spread-0067.png",
+      "sha256": "5e8a067ce272bd1fcdd3642343584006841c7f73eaaeb8b22e5810ab280f0fa9",
+      "oldSha256": "ae0c8cc1cac2deab67235f849361d7570513ebdebf99e476e9d2a551d1a657b3",
+      "layoutComparison": {
+        "mae": 0.236369,
+        "correlation": 0.999645,
+        "changedFraction": 0.001832
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "68": {
+      "spread": 68,
+      "image": "work/hansol-ink-hidden/screens/spread-0068.png",
+      "sha256": "a229ab0ec7f860db3d325ded86ca6229d373472153dd3be0e2b4c02f00dfe0be",
+      "oldSha256": "3188e4565bad4b04066b3b45dffd8991e692a592bf755671b2ebfec69a7d2772",
+      "layoutComparison": {
+        "mae": 0.265308,
+        "correlation": 0.999672,
+        "changedFraction": 0.001832
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "76": {
+      "spread": 76,
+      "image": "work/hansol-ink-hidden/screens/spread-0076.png",
+      "sha256": "42a948a27780d49cdf837220cee31b72dd5534c988466e5b956d254f8e89fd68",
+      "oldSha256": "35b740e796091a648a359d1547cc82e64a0a879bf8d6a787c47aa69a2f691514",
+      "layoutComparison": {
+        "mae": 0.366387,
+        "correlation": 0.999112,
+        "changedFraction": 0.004815
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "77": {
+      "spread": 77,
+      "image": "work/hansol-ink-hidden/screens/spread-0077.png",
+      "sha256": "3f76baeefc701aa759b461459c4dcbfb96287db8cad967e0ac5301991deaf8fb",
+      "oldSha256": "bf928c2edc9cf20a217bb3fcdd829b4e03bca9de3dcb94f7320af75b7021faf2",
+      "layoutComparison": {
+        "mae": 0.277497,
+        "correlation": 0.99969,
+        "changedFraction": 0.001813
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "78": {
+      "spread": 78,
+      "image": "work/hansol-ink-hidden/screens/spread-0078.png",
+      "sha256": "d87d3fd6b03385166901030a8cb5149174e53b2ad392fa5fbb92042bc5ed9954",
+      "oldSha256": "aa9b8e2ff03c3d1996121335ecd71ab394f39affcfd20eee9060a5910b140a25",
+      "layoutComparison": {
+        "mae": 0.268363,
+        "correlation": 0.999714,
+        "changedFraction": 0.001809
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "79": {
+      "spread": 79,
+      "image": "work/hansol-ink-hidden/screens/spread-0079.png",
+      "sha256": "573b306b4b505994103bfbba0da0b0fa74fd3987331e297781b714c233f8dd8d",
+      "oldSha256": "e5037ed00fd727532ae0a5d14a43e494a135cbf3192754c76b946d4bfcc8bf6d",
+      "layoutComparison": {
+        "mae": 0.251883,
+        "correlation": 0.999679,
+        "changedFraction": 0.001816
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "80": {
+      "spread": 80,
+      "image": "work/hansol-ink-hidden/screens/spread-0080.png",
+      "sha256": "2fd61deb6d6c70bd209590f6552ba8ec46103cf654ae72d96ae01ac1be70b1b3",
+      "oldSha256": "ebc58e6158f98b078f04e7a3b23967f36dc89105206b0c3e5758a0c2f8bd91c0",
+      "layoutComparison": {
+        "mae": 0.262934,
+        "correlation": 0.999731,
+        "changedFraction": 0.001819
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "85": {
+      "spread": 85,
+      "image": "work/hansol-ink-hidden/screens/spread-0085.png",
+      "sha256": "0ebebc0f310ee556bd3c9a3e6d05a8565f116b70898ab3d427585c910ca1883c",
+      "oldSha256": "09b824d14b102827e55a6a3ad5f80c97f2a1f9bcf55b7771bc8f41597c442679",
+      "layoutComparison": {
+        "mae": 0.273732,
+        "correlation": 0.999336,
+        "changedFraction": 0.004738
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "86": {
+      "spread": 86,
+      "image": "work/hansol-ink-hidden/screens/spread-0086.png",
+      "sha256": "418f4f0c7b1125ab4c8373cf7abe10cf6b4d928e5637205b4828ebe876a7461d",
+      "oldSha256": "96d4d7fbd0ae969c588367152fcb0eb28e4536a9ffcf1a0ef018091d72e25cc4",
+      "layoutComparison": {
+        "mae": 0.202393,
+        "correlation": 0.999701,
+        "changedFraction": 0.001819
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "91": {
+      "spread": 91,
+      "image": "work/hansol-ink-hidden/screens/spread-0091.png",
+      "sha256": "a0ecb5909ba909b9ffe918deb8502042e1824028bd89fec10aee1fab5f04305d",
+      "oldSha256": "80fa1ead9edacf86504d0caa0b93761ff7dfe4f2a6486fb1e3b1c40bd48d3eb5",
+      "layoutComparison": {
+        "mae": 0.251831,
+        "correlation": 0.999342,
+        "changedFraction": 0.004731
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "92": {
+      "spread": 92,
+      "image": "work/hansol-ink-hidden/screens/spread-0092.png",
+      "sha256": "440e5ad8b0b1bc9a3803bc1744b0e622fcdb7fce81d2fa445d2a5efaca7f0f79",
+      "oldSha256": "917122d24ce22a24a0ffa899254d12e6773945d86bbe8b7fbd04ad0951ad365d",
+      "layoutComparison": {
+        "mae": 0.242999,
+        "correlation": 0.999687,
+        "changedFraction": 0.001816
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "93": {
+      "spread": 93,
+      "image": "work/hansol-ink-hidden/screens/spread-0093.png",
+      "sha256": "59f747822790fe9e5dd5c7bebb364df7ace12ea98a106b9223d63508b0cd314a",
+      "oldSha256": "293b4c0f8e3d4cdd0222b074cea174951c1250c406161c1e595709a9a4294677",
+      "layoutComparison": {
+        "mae": 0.681636,
+        "correlation": 0.998126,
+        "changedFraction": 0.000879
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "94": {
+      "spread": 94,
+      "image": "work/hansol-ink-hidden/screens/spread-0094.png",
+      "sha256": "adbf6c17ecc4e667fb8953527e030bd4576cc90100a92c5d6e7d060dbdde1700",
+      "oldSha256": "9b799b06106fedb607a505d1658b5930312c5235abee014dc5d55aebeb3c117b",
+      "layoutComparison": {
+        "mae": 0.225779,
+        "correlation": 0.999681,
+        "changedFraction": 0.001813
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "95": {
+      "spread": 95,
+      "image": "work/hansol-ink-hidden/screens/spread-0095.png",
+      "sha256": "5149e89fe3e24dabb3183667466af1c1ed371c18c774f0954a8a149bf0d2de39",
+      "oldSha256": "443b0e5104ed157281c7ddb37da51f84e797cfe1f4ca28014f91e06cc2ddbdb0",
+      "layoutComparison": {
+        "mae": 0.237302,
+        "correlation": 0.999654,
+        "changedFraction": 0.001813
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "96": {
+      "spread": 96,
+      "image": "work/hansol-ink-hidden/screens/spread-0096.png",
+      "sha256": "c8eb0d0e6c50dcabe9d962d23b1ac59bc06e88d017bda0c08a70a8b4d475112d",
+      "oldSha256": "c7b2c5b926161b4b0a4ab25587a71984c34fe7096f0d0df7648d885e84891344",
+      "layoutComparison": {
+        "mae": 0.258042,
+        "correlation": 0.99969,
+        "changedFraction": 0.001813
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "97": {
+      "spread": 97,
+      "image": "work/hansol-ink-hidden/screens/spread-0097.png",
+      "sha256": "db28dd115bfcea92c4e4d86485b42facfd9e653a9c019fb00035a05bfc844d1b",
+      "oldSha256": "b376358aa16e1ff91e6dd161ac48d8e269ac554d5ae966ed8078f84c49c06afa",
+      "layoutComparison": {
+        "mae": 0.224308,
+        "correlation": 0.999662,
+        "changedFraction": 0.001819
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "98": {
+      "spread": 98,
+      "image": "work/hansol-ink-hidden/screens/spread-0098.png",
+      "sha256": "95eb185a8caaa1743c11312e715c6cdaa7b13f9c5a631e567b0cede6b4cab985",
+      "oldSha256": "f9680bda3f1c5035473999af9d2ee429b4acae87b82a68b6471b1f3316cd080c",
+      "layoutComparison": {
+        "mae": 0.247169,
+        "correlation": 0.999682,
+        "changedFraction": 0.001816
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "99": {
+      "spread": 99,
+      "image": "work/hansol-ink-hidden/screens/spread-0099.png",
+      "sha256": "2aaee0d16c40e1e760fafdbab71267383402c30a66731ee7c8a9e3efd3970c8c",
+      "oldSha256": "abbdb0fb17db771c3a9c1a7f137dc68adaa4743283f956915e538a76c38e3d76",
+      "layoutComparison": {
+        "mae": 0.222027,
+        "correlation": 0.999713,
+        "changedFraction": 0.001809
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "100": {
+      "spread": 100,
+      "image": "work/hansol-ink-hidden/screens/spread-0100.png",
+      "sha256": "97f5d13a4b9a03a6a71e857095c171f6a85ec8c1051b97e6efe9dc961dfa0928",
+      "oldSha256": "221dccf13139ed9b7ddd872b1e2d40207042c88780ff5541e6e579a865772b48",
+      "layoutComparison": {
+        "mae": 0.244039,
+        "correlation": 0.999631,
+        "changedFraction": 0.001809
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "101": {
+      "spread": 101,
+      "image": "work/hansol-ink-hidden/screens/spread-0101.png",
+      "sha256": "8172d7743bdd4463072f66efbb720d0af8557559f5f0e8baf333462e4f587d5f",
+      "oldSha256": "9788d98fc73f3480bbfacb0a438dfb8b4a0c1eae493ad325aefa3f72d96a4823",
+      "layoutComparison": {
+        "mae": 0.25312,
+        "correlation": 0.99969,
+        "changedFraction": 0.001813
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "113": {
+      "spread": 113,
+      "image": "work/hansol-ink-hidden/screens/spread-0113.png",
+      "sha256": "26a1593d8e81f0c30ec2c7fd37e888f0dddbfea62377e31f7bd0400720b11879",
+      "oldSha256": "fc4a16a30f51ffd60c47880cb752ce03cf96f6851abef2818437e42fb1552093",
+      "layoutComparison": {
+        "mae": 0.172866,
+        "correlation": 0.999598,
+        "changedFraction": 0.001841
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "114": {
+      "spread": 114,
+      "image": "work/hansol-ink-hidden/screens/spread-0114.png",
+      "sha256": "88d7380aae075eb0b87f16050c03d9363a4a48e79f7b436cbf9e6f37d013c4c2",
+      "oldSha256": "511fd1410125ac43fc8baae62be84387a4b4d96e8f440a6c2a51fe92395cc498",
+      "layoutComparison": {
+        "mae": 0.637365,
+        "correlation": 0.998076,
+        "changedFraction": 0.000934
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "121": {
+      "spread": 121,
+      "image": "work/hansol-ink-hidden/screens/spread-0121.png",
+      "sha256": "2e4677a3495a5d4e8cb40c419f44450f95ec4a6b3e471bb9d4e3d7b7a8c49af8",
+      "oldSha256": "3a843dd10880f34f6507a4fb50f0b71b008b7201dd8f821ee2a042a958d26880",
+      "layoutComparison": {
+        "mae": 0.731178,
+        "correlation": 0.997979,
+        "changedFraction": 0.003871
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "122": {
+      "spread": 122,
+      "image": "work/hansol-ink-hidden/screens/spread-0122.png",
+      "sha256": "2f1e8cf8233ea35a6d29b55acfa4209f5067520cb3847057e1c8b49d7dca5656",
+      "oldSha256": "fb08b87ad7f564394e0bfa4525903ecabafe4316e4fc38da57392d92fe9c3edd",
+      "layoutComparison": {
+        "mae": 1.085523,
+        "correlation": 0.997728,
+        "changedFraction": 0.004613
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "127": {
+      "spread": 127,
+      "image": "work/hansol-ink-hidden/screens/spread-0127.png",
+      "sha256": "b9348cdc723459883d5bf2898b268c0794702c267c18c7bb74b8a968890a47a1",
+      "oldSha256": "d3ed3e9307f981bb3a8d095e32a32d8b747c06bb7ce160af84dd965b52cf5dab",
+      "layoutComparison": {
+        "mae": 0.229677,
+        "correlation": 0.999261,
+        "changedFraction": 0.005096
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "128": {
+      "spread": 128,
+      "image": "work/hansol-ink-hidden/screens/spread-0128.png",
+      "sha256": "4cb0603d3f0963cc622f0668e1341161d12ee2ae432cfec3f4b1deb32e95fd24",
+      "oldSha256": "4e325b1de3be7ef1c67779d7ae2230a9535555cddb293cbdd63fa06e269a2b89",
+      "layoutComparison": {
+        "mae": 0.58757,
+        "correlation": 0.997754,
+        "changedFraction": 0.000886
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "129": {
+      "spread": 129,
+      "image": "work/hansol-ink-hidden/screens/spread-0129.png",
+      "sha256": "87ffac56c881e275cac7e190255946dcb173e1cafaebb897eb26e2138debb540",
+      "oldSha256": "89f7b366923cc699b8c11f03d8fcbdfbf61f2e03c499f5f4d6c367d6d20cf142",
+      "layoutComparison": {
+        "mae": 6.278354,
+        "correlation": 0.997648,
+        "changedFraction": 0.463159,
+        "halfEdgeCorrelations": [
+          0.999701,
+          0.999842
+        ],
+        "luminanceMAE": 4.483667
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "134": {
+      "spread": 134,
+      "image": "work/hansol-ink-hidden/screens/spread-0134.png",
+      "sha256": "bca95f9b63f555186f3f9aa85361c50d32210e1ead75ba5fd7f3b419181bf269",
+      "oldSha256": "f3eea263487a42ebbf3f0fba5e8bd50e437640d672ef08dd05cd57b03a9a47e8",
+      "layoutComparison": {
+        "mae": 0.176497,
+        "correlation": 0.999043,
+        "changedFraction": 0.004409,
+        "halfEdgeCorrelations": [
+          0.999636,
+          0.999435
+        ],
+        "luminanceMAE": 0.110582
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "135": {
+      "spread": 135,
+      "image": "work/hansol-ink-hidden/screens/spread-0135.png",
+      "sha256": "da868f7dd2aa9465777675063b0adebefb057ad6919bc849d8a1d7a7867b621f",
+      "oldSha256": "0c9d9aed5db62a9ae0f0478489c153296fb203171647cda6a4c9cc9e70ed41ba",
+      "layoutComparison": {
+        "mae": 0.214998,
+        "correlation": 0.991334,
+        "changedFraction": 0.003389,
+        "halfEdgeCorrelations": [
+          0.999471,
+          0.97824
+        ],
+        "luminanceMAE": 0.157286
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "138": {
+      "spread": 138,
+      "image": "work/hansol-ink-hidden/screens/spread-0138.png",
+      "sha256": "a5fb3f5b3464775838b56c59dfe836a4e1fbd49bf21a0406d82a24db9f715b41",
+      "oldSha256": "df33c8e57b14d1feb8e143f01e039ab4e9adf69287ffbfe72d439a2b9006631c",
+      "layoutComparison": {
+        "mae": 0.40101,
+        "correlation": 0.995946,
+        "changedFraction": 0.005783,
+        "halfEdgeCorrelations": [
+          0.993741,
+          0.993951
+        ],
+        "luminanceMAE": 0.210612
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "139": {
+      "spread": 139,
+      "image": "work/hansol-ink-hidden/screens/spread-0139.png",
+      "sha256": "3054439ad4a4285b7fff086a2604d63e85eb8a6688bc92607958f678eb45c09f",
+      "oldSha256": "6fc15f16607ab174a2dc1c6d538f6897fe37b4c782db11ead083d11559bd4660",
+      "layoutComparison": {
+        "mae": 0.234571,
+        "correlation": 0.998343,
+        "changedFraction": 0.002113,
+        "halfEdgeCorrelations": [
+          0.99617,
+          0.999564
+        ],
+        "luminanceMAE": 0.100748
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "142": {
+      "spread": 142,
+      "image": "work/hansol-ink-hidden/screens/spread-0142.png",
+      "sha256": "dea9a550d32e153edb4cb4945e6f7064f12e9af6b90b1c82de2ecc76ae034e9b",
+      "oldSha256": "38bee865663677d95f7b746cb68247045aba97c550d117c4db4452134dd766de",
+      "layoutComparison": {
+        "mae": 0.649932,
+        "correlation": 0.960336,
+        "changedFraction": 0.004604,
+        "halfEdgeCorrelations": [
+          0.901888,
+          0.997946
+        ],
+        "luminanceMAE": 0.456874
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "144": {
+      "spread": 144,
+      "image": "work/hansol-ink-hidden/screens/spread-0144.png",
+      "sha256": "113dbc34cc7d9d5cf17a86346b5b40633f306dd97b1842a462bcb9a798f5cc73",
+      "oldSha256": "03af08b08572024775ecec8dd454e5b1d9e55fdb2cea8652b1ec3d6c2222f490",
+      "layoutComparison": {
+        "mae": 0.684998,
+        "correlation": 0.970219,
+        "changedFraction": 0.010035,
+        "halfEdgeCorrelations": [
+          0.931164,
+          0.988101
+        ],
+        "luminanceMAE": 0.509767
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "145": {
+      "spread": 145,
+      "image": "work/hansol-ink-hidden/screens/spread-0145.png",
+      "sha256": "c673aac15c6cb531a00c3699a381eff07857c4da41cb1541b3d7fe6724d1241c",
+      "oldSha256": "cf90fd714e7bac9e15a622a1c829f817a3da07beef56efc21751d7691e38884f",
+      "layoutComparison": {
+        "mae": 0.392652,
+        "correlation": 0.997075,
+        "changedFraction": 0.005419,
+        "halfEdgeCorrelations": [
+          0.999324,
+          0.991781
+        ],
+        "luminanceMAE": 0.193025
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "146": {
+      "spread": 146,
+      "image": "work/hansol-ink-hidden/screens/spread-0146.png",
+      "sha256": "7ce0660af8cd483915afa3c465250f1b7408ee325509232fca756ce8d209cb0d",
+      "oldSha256": "ee139a229a7b735b28a33900e273c0217db9012d66acd633ade26e40d2a6b4cf",
+      "layoutComparison": {
+        "mae": 0.349608,
+        "correlation": 0.996025,
+        "changedFraction": 0.002948,
+        "halfEdgeCorrelations": [
+          0.995766,
+          0.991808
+        ],
+        "luminanceMAE": 0.166324
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "147": {
+      "spread": 147,
+      "image": "work/hansol-ink-hidden/screens/spread-0147.png",
+      "sha256": "bae4ba2271dd72d83cec8c27782de258d11e653713b27d8bb53fb396409a504a",
+      "oldSha256": "241e3c932749ddfb6d2376f98127e83396bd6da3080623fa4d7e38fcb3a75d9b",
+      "layoutComparison": {
+        "mae": 0.158001,
+        "correlation": 0.998971,
+        "changedFraction": 0.004239,
+        "halfEdgeCorrelations": [
+          0.999241,
+          0.999593
+        ],
+        "luminanceMAE": 0.095862
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "152": {
+      "spread": 152,
+      "image": "work/hansol-ink-hidden/screens/spread-0152.png",
+      "sha256": "b1dd5b6950c4111ca5a503e257a1ccb815f7f0b4c5177de8855da4dbf0069579",
+      "oldSha256": "29baf6ec755bf52c440702576876bd111f0986fd66fe435b0f76e2e0ffca872b",
+      "layoutComparison": {
+        "mae": 0.335264,
+        "correlation": 0.998926,
+        "changedFraction": 0.002215,
+        "halfEdgeCorrelations": [
+          0.998776,
+          0.998299
+        ],
+        "luminanceMAE": 0.128348
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "154": {
+      "spread": 154,
+      "image": "work/hansol-ink-hidden/screens/spread-0154.png",
+      "sha256": "92e7b15b5267936de3f60323d81f458aea5d28e5268eddf351759410e1a06fae",
+      "oldSha256": "271319de7079caa397527765c298cd90a7a7ac6d5cdb829e5183d7eb182f3f72",
+      "layoutComparison": {
+        "mae": 0.283247,
+        "correlation": 0.999306,
+        "changedFraction": 0.001905,
+        "halfEdgeCorrelations": [
+          0.999552,
+          0.999445
+        ],
+        "luminanceMAE": 0.140508
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "155": {
+      "spread": 155,
+      "image": "work/hansol-ink-hidden/screens/spread-0155.png",
+      "sha256": "8f82c98a454e1c1fbe6af6376a70558dbdecda02ab5bb6a9d5b55949723e82b4",
+      "oldSha256": "af45739916c6d70d92ae89365b3baebdb2ea8cb7e20b383cf57d756765f66987",
+      "layoutComparison": {
+        "mae": 0.314314,
+        "correlation": 0.999264,
+        "changedFraction": 0.002283,
+        "halfEdgeCorrelations": [
+          0.99928,
+          0.999564
+        ],
+        "luminanceMAE": 0.161931
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "157": {
+      "spread": 157,
+      "image": "work/hansol-ink-hidden/screens/spread-0157.png",
+      "sha256": "c9976d0f04f4c40aa0fa035742a4e4b78d7e51f4d46a52a4a9c085c8a4d69ada",
+      "oldSha256": "c8128666042e02e01e8dc6aeef87e923388e62124deb89012372d5a01067897c",
+      "layoutComparison": {
+        "mae": 0.272312,
+        "correlation": 0.999296,
+        "changedFraction": 0.001925,
+        "halfEdgeCorrelations": [
+          0.999567,
+          0.99944
+        ],
+        "luminanceMAE": 0.124866
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "159": {
+      "spread": 159,
+      "image": "work/hansol-ink-hidden/screens/spread-0159.png",
+      "sha256": "3e2f6ddd83c583aa917a133626ac8f5229d40cf3358255d227b97f96935cda77",
+      "oldSha256": "1dd23e802628d8256a19a5a1f9297a37775d34f4e9dda9dd9e29f586af6fc199",
+      "layoutComparison": {
+        "mae": 0.377467,
+        "correlation": 0.998663,
+        "changedFraction": 0.004971,
+        "halfEdgeCorrelations": [
+          0.997349,
+          0.999726
+        ],
+        "luminanceMAE": 0.170835
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "160": {
+      "spread": 160,
+      "image": "work/hansol-ink-hidden/screens/spread-0160.png",
+      "sha256": "c6849375b62657fc6047e7c0362a50d3c861d8dbd98958972856d2cb34b2646a",
+      "oldSha256": "7c1e1f8dec6e3d3a469458a29808303e6a61be7f24a1a118bf99babfd91c2b1b",
+      "layoutComparison": {
+        "mae": 0.351735,
+        "correlation": 0.996818,
+        "changedFraction": 0.002801,
+        "halfEdgeCorrelations": [
+          0.997135,
+          0.993825
+        ],
+        "luminanceMAE": 0.159475
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "162": {
+      "spread": 162,
+      "image": "work/hansol-ink-hidden/screens/spread-0162.png",
+      "sha256": "12142968850d093f2479de1b824f04a0e35bfb538fa81582a674c12479fbfdff",
+      "oldSha256": "8d42573317e2d58682dfe80d3c45a9960cddd07d8a6c66950dcb48b0d7bb9dad",
+      "layoutComparison": {
+        "mae": 0.160788,
+        "correlation": 0.99923,
+        "changedFraction": 0.002193,
+        "halfEdgeCorrelations": [
+          0.998982,
+          0.999613
+        ],
+        "luminanceMAE": 0.088579
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "163": {
+      "spread": 163,
+      "image": "work/hansol-ink-hidden/screens/spread-0163.png",
+      "sha256": "e515426fe8a0bebf0edc6d2df1c79c147c7db4187e67c9dce5a5d1450b502074",
+      "oldSha256": "3af08ff23a42e2955c326be8c3d8524df94c2262493a95dba7c8467b95162c2a",
+      "layoutComparison": {
+        "mae": 0.506505,
+        "correlation": 0.997635,
+        "changedFraction": 0.008891,
+        "halfEdgeCorrelations": [
+          0.996571,
+          0.998703
+        ],
+        "luminanceMAE": 0.308906
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "164": {
+      "spread": 164,
+      "image": "work/hansol-ink-hidden/screens/spread-0164.png",
+      "sha256": "e2c83b94f4630bafcb82752511d929ca448fd8973b8efc0ec06eed00ddccdec2",
+      "oldSha256": "ecf84c8e17097621a2ec5215ada1c9f4eef6e886b762f6ab1d4546dea8b9cecf",
+      "layoutComparison": {
+        "mae": 0.980688,
+        "correlation": 0.904973,
+        "changedFraction": 0.012705,
+        "halfEdgeCorrelations": [
+          0.93357,
+          0.79086
+        ],
+        "luminanceMAE": 0.826562,
+        "printedBlockRecallMinimum": 1.0
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "165": {
+      "spread": 165,
+      "image": "work/hansol-ink-hidden/screens/spread-0165.png",
+      "sha256": "37db667bb274dc2f20304e7c0a47098352854f4b611929f22dbf3c2ea3466136",
+      "oldSha256": "287d3ad83838d99b6a86aca873c64340fe55e8aa6535a863cfee2380eb1fb462",
+      "layoutComparison": {
+        "mae": 0.287277,
+        "correlation": 0.999014,
+        "changedFraction": 0.002334,
+        "halfEdgeCorrelations": [
+          0.999494,
+          0.998833
+        ],
+        "luminanceMAE": 0.154945
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "166": {
+      "spread": 166,
+      "image": "work/hansol-ink-hidden/screens/spread-0166.png",
+      "sha256": "ebf5fad9c717f78fed959208bc6d8af2ae1e8b1fdbf536afb756bd83cf24d6c2",
+      "oldSha256": "6f1d8d876cf31e402babc115df35c805adba76f3f9289417017c62c93cb89d9e",
+      "layoutComparison": {
+        "mae": 0.432371,
+        "correlation": 0.995486,
+        "changedFraction": 0.005588,
+        "halfEdgeCorrelations": [
+          0.999291,
+          0.986825
+        ],
+        "luminanceMAE": 0.212204
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "168": {
+      "spread": 168,
+      "image": "work/hansol-ink-hidden/screens/spread-0168.png",
+      "sha256": "ee37e86354a6c1794dbefd08e8463bdbea3d25a7d4e75218fdf800192119c2dc",
+      "oldSha256": "be82658eceb4fb7f5ea89395beeb3b385aca4a5283c9b15b080cd4b607fb22b4",
+      "layoutComparison": {
+        "mae": 0.233832,
+        "correlation": 0.999186,
+        "changedFraction": 0.001976,
+        "halfEdgeCorrelations": [
+          0.999513,
+          0.999269
+        ],
+        "luminanceMAE": 0.119155
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "169": {
+      "spread": 169,
+      "image": "work/hansol-ink-hidden/screens/spread-0169.png",
+      "sha256": "e085a13de52464cbcaf464389b0bcd8e1aeb97c6e267c92d6e422f211bb5a6c0",
+      "oldSha256": "5049de71c6abee01c9bff3e3ef1d1eb9e6aca97081f642e51be5c4565f78b1cf",
+      "layoutComparison": {
+        "mae": 0.442921,
+        "correlation": 0.999123,
+        "changedFraction": 0.002126,
+        "halfEdgeCorrelations": [
+          0.999273,
+          0.999302
+        ],
+        "luminanceMAE": 0.201764
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "170": {
+      "spread": 170,
+      "image": "work/hansol-ink-hidden/screens/spread-0170.png",
+      "sha256": "d72bc2dbb369a1777e69c87165cf7c330056e35fb2fd951577442f21916c14af",
+      "oldSha256": "593fd783e50f57b2c3f18375df53f855c7f720bb5a69abd0655ff717e82f9d47",
+      "layoutComparison": {
+        "mae": 0.323139,
+        "correlation": 0.999365,
+        "changedFraction": 0.002404,
+        "halfEdgeCorrelations": [
+          0.999552,
+          0.999509
+        ],
+        "luminanceMAE": 0.182953
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "171": {
+      "spread": 171,
+      "image": "work/hansol-ink-hidden/screens/spread-0171.png",
+      "sha256": "49dd69464dd460fa8c3bfd3a42695639b2d9871183f6d866c7fe8d36b15f9b4e",
+      "oldSha256": "418e73f670b014819020fa6e3408125ea8d0ff0040940742cc3787ef554bcd12",
+      "layoutComparison": {
+        "mae": 0.360821,
+        "correlation": 0.999417,
+        "changedFraction": 0.004757,
+        "halfEdgeCorrelations": [
+          0.999342,
+          0.999796
+        ],
+        "luminanceMAE": 0.152694
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "172": {
+      "spread": 172,
+      "image": "work/hansol-ink-hidden/screens/spread-0172.png",
+      "sha256": "0619e52eb5227b9d233e039e888270be54335773e336ea813b264f72b2efe677",
+      "oldSha256": "d37439b063253a6fae7e978a544a34bba21f0ff5ee4b265d00073b87e588416a",
+      "layoutComparison": {
+        "mae": 0.707797,
+        "correlation": 0.997715,
+        "changedFraction": 0.001119,
+        "halfEdgeCorrelations": [
+          0.999741,
+          0.998073
+        ],
+        "luminanceMAE": 0.422482
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "173": {
+      "spread": 173,
+      "image": "work/hansol-ink-hidden/screens/spread-0173.png",
+      "sha256": "afe70838e6e21b4581672ab4c7a6a50e4695544960e7175d81d8c7b8bd32587c",
+      "oldSha256": "3f347a60972e240c20097d4d8f10cbdaa1b0612f903fc969d948c5ebdbdfe64e",
+      "layoutComparison": {
+        "mae": 0.378023,
+        "correlation": 0.998511,
+        "changedFraction": 0.002225,
+        "halfEdgeCorrelations": [
+          0.999693,
+          0.996036
+        ],
+        "luminanceMAE": 0.146365
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "175": {
+      "spread": 175,
+      "image": "work/hansol-ink-hidden/screens/spread-0175.png",
+      "sha256": "c5611bc11988e5dca67ecb2fd1177144a806e645d5484bf0e0a9517b77a11700",
+      "oldSha256": "3eb1e77aa17d8e2c1bdba9cb6603ec2e9677e4420837b76fdbc2de1610847360",
+      "layoutComparison": {
+        "mae": 0.297229,
+        "correlation": 0.999598,
+        "changedFraction": 0.001867,
+        "halfEdgeCorrelations": [
+          0.999656,
+          0.999653
+        ],
+        "luminanceMAE": 0.108367
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "176": {
+      "spread": 176,
+      "image": "work/hansol-ink-hidden/screens/spread-0176.png",
+      "sha256": "11b3cc98fdc32f7322759f050afa889b8872ace5c674714e1aeb290020550726",
+      "oldSha256": "1b3dd1117db97569190d68039b46fdfaeeb93e4337c62c84199ff2c765776a85",
+      "layoutComparison": {
+        "mae": 0.254208,
+        "correlation": 0.998289,
+        "changedFraction": 0.002196,
+        "halfEdgeCorrelations": [
+          0.99832,
+          0.997239
+        ],
+        "luminanceMAE": 0.108539
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "178": {
+      "spread": 178,
+      "image": "work/hansol-ink-hidden/screens/spread-0178.png",
+      "sha256": "29fbaba558f50486728d13253cb13bd01589b8b14b3a93ac18c502fbaec8cbf5",
+      "oldSha256": "5bd39f4a7c228dffeceaac24e49dbb57be1518fb77b2a7b8c59796f97dbcee22",
+      "layoutComparison": {
+        "mae": 0.257223,
+        "correlation": 0.999633,
+        "changedFraction": 0.00187,
+        "halfEdgeCorrelations": [
+          0.999684,
+          0.999703
+        ],
+        "luminanceMAE": 0.095194
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "179": {
+      "spread": 179,
+      "image": "work/hansol-ink-hidden/screens/spread-0179.png",
+      "sha256": "23be943d96c7531a18b4274d8d684b280042c84f9e5d0af7a69eb340fe886b85",
+      "oldSha256": "2d6714d3e3bbb0cac100b1cd4c46bda4927a78f2b15fd88efce559955499bd4b",
+      "layoutComparison": {
+        "mae": 0.240149,
+        "correlation": 0.999699,
+        "changedFraction": 0.001867,
+        "halfEdgeCorrelations": [
+          0.999798,
+          0.999708
+        ],
+        "luminanceMAE": 0.087597
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "180": {
+      "spread": 180,
+      "image": "work/hansol-ink-hidden/screens/spread-0180.png",
+      "sha256": "d88a2b520fbc23a5a12f0ce9f8c7c3d0bf186c4b88a23128cb3711fb3c361bdd",
+      "oldSha256": "9986ab19748ca75bfdcde2d526b7cf721bb79f2a1494eee61bd1521b1ee16134",
+      "layoutComparison": {
+        "mae": 0.238863,
+        "correlation": 0.998894,
+        "changedFraction": 0.002072,
+        "halfEdgeCorrelations": [
+          0.999655,
+          0.997975
+        ],
+        "luminanceMAE": 0.098729
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "181": {
+      "spread": 181,
+      "image": "work/hansol-ink-hidden/screens/spread-0181.png",
+      "sha256": "da12a37dbaf05a95f61e934764a9bdcc8d8dc85e9982adbcfa18eccb5f2b3873",
+      "oldSha256": "0760a255b799becd243f17d35f526fc58afdc69c649ca215374f44784f0c7de5",
+      "layoutComparison": {
+        "mae": 0.270802,
+        "correlation": 0.999651,
+        "changedFraction": 0.00187,
+        "halfEdgeCorrelations": [
+          0.999749,
+          0.999677
+        ],
+        "luminanceMAE": 0.097761
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "182": {
+      "spread": 182,
+      "image": "work/hansol-ink-hidden/screens/spread-0182.png",
+      "sha256": "a69a795181140c4473c140e3d1ae203acca89cee9854ec35f0ec1ee12ce67070",
+      "oldSha256": "b7d066afb43f8cab1410fcf54d92d61cb81cae251a3fe2b75f0bc28becb47393",
+      "layoutComparison": {
+        "mae": 0.340687,
+        "correlation": 0.998969,
+        "changedFraction": 0.002056,
+        "halfEdgeCorrelations": [
+          0.999696,
+          0.997837
+        ],
+        "luminanceMAE": 0.130732
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "183": {
+      "spread": 183,
+      "image": "work/hansol-ink-hidden/screens/spread-0183.png",
+      "sha256": "5842f189858669c43dec37ae85677e343344365708fde0a09efb4a1aec8964cf",
+      "oldSha256": "049c5b2d171f381c15ab1041a8c3ca46dc7242a3ffffac8a582f6d86e0a4eddf",
+      "layoutComparison": {
+        "mae": 0.269881,
+        "correlation": 0.999265,
+        "changedFraction": 0.002004,
+        "halfEdgeCorrelations": [
+          0.998758,
+          0.999714
+        ],
+        "luminanceMAE": 0.104191
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "184": {
+      "spread": 184,
+      "image": "work/hansol-ink-hidden/screens/spread-0184.png",
+      "sha256": "923e201a4a1248147b18792d3d18bd9b93408621975f4467bfb267931c05eb6a",
+      "oldSha256": "e52d185571d76caf95f97555655462a249fa2692100270d8fedfd1f6db07eeef",
+      "layoutComparison": {
+        "mae": 1.15854,
+        "correlation": 0.997747,
+        "changedFraction": 0.004447,
+        "halfEdgeCorrelations": [
+          0.99969,
+          0.998986
+        ],
+        "luminanceMAE": 0.792282
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "186": {
+      "spread": 186,
+      "image": "work/hansol-ink-hidden/screens/spread-0186.png",
+      "sha256": "f4c42b1b594b9e12efefc5e019c4e45b77c675624b070570488e5e1e504d6b18",
+      "oldSha256": "df5e5c56a906a1ba4724b53ccae4e606568fdedf7ad141752d718f14717c4f51",
+      "layoutComparison": {
+        "mae": 0.578086,
+        "correlation": 0.996726,
+        "changedFraction": 0.011976,
+        "halfEdgeCorrelations": [
+          0.993474,
+          0.998713
+        ],
+        "luminanceMAE": 0.340462
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "189": {
+      "spread": 189,
+      "image": "work/hansol-ink-hidden/screens/spread-0189.png",
+      "sha256": "e403551168fc4aff476bf7e3ca22445482b197fd5c33de483688d7c3531b637b",
+      "oldSha256": "d85b1dc53c11c647f5f5134b39f5f6e0849da086ac8388a59bffa922008edb2a",
+      "layoutComparison": {
+        "mae": 0.299887,
+        "correlation": 0.999249,
+        "changedFraction": 0.00296,
+        "halfEdgeCorrelations": [
+          0.999592,
+          0.999163
+        ],
+        "luminanceMAE": 0.180417
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "191": {
+      "spread": 191,
+      "image": "work/hansol-ink-hidden/screens/spread-0191.png",
+      "sha256": "468908f9471b338ab99518af4f1d69a62abd846fd48c16e79ec366aa54ba3ab2",
+      "oldSha256": "6371eb219737d75c7b5e7d141ed82b91d80ba8104527b361481eb237a904d8c9",
+      "layoutComparison": {
+        "mae": 0.233634,
+        "correlation": 0.998954,
+        "changedFraction": 0.003923,
+        "halfEdgeCorrelations": [
+          0.999202,
+          0.998797
+        ],
+        "luminanceMAE": 0.144729
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "192": {
+      "spread": 192,
+      "image": "work/hansol-ink-hidden/screens/spread-0192.png",
+      "sha256": "c462b509037e8eedb550626b401da63b3b9db4e86da1830858845ccd7437f3e5",
+      "oldSha256": "e7bcc322c11e6b7294a42a91d017f65ae656a5f3045e95d09c259f5749ea0082",
+      "layoutComparison": {
+        "mae": 0.352227,
+        "correlation": 0.997483,
+        "changedFraction": 0.005086,
+        "halfEdgeCorrelations": [
+          0.998888,
+          0.995891
+        ],
+        "luminanceMAE": 0.176027
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "193": {
+      "spread": 193,
+      "image": "work/hansol-ink-hidden/screens/spread-0193.png",
+      "sha256": "92a47eb112895924ca3458c04353d85629af6d3be4285db8fbab0f8f6e933393",
+      "oldSha256": "83ffadb851f5ca6c0ccb01568ef736d00a77d8de2956d5a09dee031ca913a4b2",
+      "layoutComparison": {
+        "mae": 0.335072,
+        "correlation": 0.99774,
+        "changedFraction": 0.002388,
+        "halfEdgeCorrelations": [
+          0.996661,
+          0.996465
+        ],
+        "luminanceMAE": 0.142292
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "194": {
+      "spread": 194,
+      "image": "work/hansol-ink-hidden/screens/spread-0194.png",
+      "sha256": "aad4409f77f162a0837009a7b4b0f49af64c4f85e5f881e199bcb7011b52f098",
+      "oldSha256": "c6eb4197ce985bb0b69c51c2054dc8e6ef49e5c09fb9820d5a423f97e1af98e3",
+      "layoutComparison": {
+        "mae": 0.195515,
+        "correlation": 0.999569,
+        "changedFraction": 0.001809,
+        "halfEdgeCorrelations": [
+          0.999742,
+          0.999327
+        ],
+        "luminanceMAE": 0.074648
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "197": {
+      "spread": 197,
+      "image": "work/hansol-ink-hidden/screens/spread-0197.png",
+      "sha256": "f7d6c498a456baa77c981401e9e465ef33083afbce05023399131ff8ce17522f",
+      "oldSha256": "904c3344f5a6d225aa6468c6dc5d85ea3690e4c53858f6cf07f3b01469739fe7",
+      "layoutComparison": {
+        "mae": 0.338492,
+        "correlation": 0.999375,
+        "changedFraction": 0.001781,
+        "halfEdgeCorrelations": [
+          0.999691,
+          0.999428
+        ],
+        "luminanceMAE": 0.173933
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "198": {
+      "spread": 198,
+      "image": "work/hansol-ink-hidden/screens/spread-0198.png",
+      "sha256": "5bb6c61f6c0e61de81efb99796aa0b2e04383763117b8cc3d587af15e5cb6c64",
+      "oldSha256": "429faa283ed828a8fe32c6a2ecc34b95b8e55f71d5bef81d6243b1912fe57c6b",
+      "layoutComparison": {
+        "mae": 0.200518,
+        "correlation": 0.999424,
+        "changedFraction": 0.002049,
+        "halfEdgeCorrelations": [
+          0.999551,
+          0.9997
+        ],
+        "luminanceMAE": 0.153767
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "199": {
+      "spread": 199,
+      "image": "work/hansol-ink-hidden/screens/spread-0199.png",
+      "sha256": "5df9c05624bdad909ac2e901a5d3f78829a3bcd6de8e5803dab413305411d280",
+      "oldSha256": "0b33a1738c502164d9784d193d1ef777a4fd01dadfa91ad9be293b4cebb51760",
+      "layoutComparison": {
+        "mae": 0.396845,
+        "correlation": 0.999312,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999551,
+          0.999066
+        ],
+        "luminanceMAE": 0.182417
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "200": {
+      "spread": 200,
+      "image": "work/hansol-ink-hidden/screens/spread-0200.png",
+      "sha256": "d655a1a3aa2aa9cf826f8cb9c21b71426e28f4bdbd9f8c198a349cc4d9aff0d1",
+      "oldSha256": "a01e0e7ff7555165944335fda90514f9a57e9219ab8009e3e8137b84c92c8a14",
+      "layoutComparison": {
+        "mae": 0.398883,
+        "correlation": 0.997165,
+        "changedFraction": 0.005518,
+        "halfEdgeCorrelations": [
+          0.997237,
+          0.994152
+        ],
+        "luminanceMAE": 0.199739
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "201": {
+      "spread": 201,
+      "image": "work/hansol-ink-hidden/screens/spread-0201.png",
+      "sha256": "c5e7dd4678b97501c352a15600526b1ced3d451a228cc1ce1487c2ec2e28132e",
+      "oldSha256": "ca0ba33e39dd27447a0ef9c5125d08643087d543ce5704ef9894b8df6dfa12d9",
+      "layoutComparison": {
+        "mae": 0.315021,
+        "correlation": 0.999702,
+        "changedFraction": 0.001819,
+        "halfEdgeCorrelations": [
+          0.999747,
+          0.999777
+        ],
+        "luminanceMAE": 0.106735
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "202": {
+      "spread": 202,
+      "image": "work/hansol-ink-hidden/screens/spread-0202.png",
+      "sha256": "ca443d16f22959eeea6c58912f1dd9c7532200f2de34cd0b2529b7593b563703",
+      "oldSha256": "f9ebfd96a09eec75360ca4783a81cb607ead6d83aae73d71ae814d9c2cff3816",
+      "layoutComparison": {
+        "mae": 0.228668,
+        "correlation": 0.999044,
+        "changedFraction": 0.005182,
+        "halfEdgeCorrelations": [
+          0.999657,
+          0.999209
+        ],
+        "luminanceMAE": 0.118296
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "204": {
+      "spread": 204,
+      "image": "work/hansol-ink-hidden/screens/spread-0204.png",
+      "sha256": "d5d58dc2178dacb11eb508891c4fd9169b30d43fd801a5ce7aa57ff8622dabf2",
+      "oldSha256": "3ac9e4e04cc49d81d38ddc88e5e520f834ab4125da2f9e70462b48f3e9697b87",
+      "layoutComparison": {
+        "mae": 0.210079,
+        "correlation": 0.999065,
+        "changedFraction": 0.002267,
+        "halfEdgeCorrelations": [
+          0.999753,
+          0.99821
+        ],
+        "luminanceMAE": 0.116926
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "206": {
+      "spread": 206,
+      "image": "work/hansol-ink-hidden/screens/spread-0206.png",
+      "sha256": "61696ee6c6c35f14e3a9475c2723f157fc925a31712e14d2f53993521e8e3d68",
+      "oldSha256": "8b1353fd96055f8ac03bf08bce9cea0ff9a76dd874eec325e3b3716307da4e7f",
+      "layoutComparison": {
+        "mae": 0.290582,
+        "correlation": 0.998645,
+        "changedFraction": 0.004971,
+        "halfEdgeCorrelations": [
+          0.999685,
+          0.997879
+        ],
+        "luminanceMAE": 0.162069
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "208": {
+      "spread": 208,
+      "image": "work/hansol-ink-hidden/screens/spread-0208.png",
+      "sha256": "004b6c19cff7674357b6986d1d44bd84339413fbb8d6a83c8e35843374cedd7f",
+      "oldSha256": "a267ca95a4b0fc3b67a5b36b4f91f53a336988bcb386293fc6672a1e0a1f0d90",
+      "layoutComparison": {
+        "mae": 0.344256,
+        "correlation": 0.999388,
+        "changedFraction": 0.004735,
+        "halfEdgeCorrelations": [
+          0.999396,
+          0.999736
+        ],
+        "luminanceMAE": 0.150102
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "209": {
+      "spread": 209,
+      "image": "work/hansol-ink-hidden/screens/spread-0209.png",
+      "sha256": "757cb43a78eaed09a0ae1ee6e1c5fcc68c409b68f249685d5d1782a6525c0d7c",
+      "oldSha256": "18ede6d60dfa66883bd9a241ec7a9d2fb28ad9165507b1cb1e66ed0ae3c9e6d7",
+      "layoutComparison": {
+        "mae": 0.263988,
+        "correlation": 0.999333,
+        "changedFraction": 0.001893,
+        "halfEdgeCorrelations": [
+          0.999775,
+          0.998378
+        ],
+        "luminanceMAE": 0.096477
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "212": {
+      "spread": 212,
+      "image": "work/hansol-ink-hidden/screens/spread-0212.png",
+      "sha256": "46ef253281d25111527e1819f5266e643719f623fc8fde65c46440bea1282bfc",
+      "oldSha256": "06905492392ac84472a123fca55738b955b71a685145466c9dd71648376763af",
+      "layoutComparison": {
+        "mae": 0.241401,
+        "correlation": 0.999502,
+        "changedFraction": 0.001857,
+        "halfEdgeCorrelations": [
+          0.999706,
+          0.999567
+        ],
+        "luminanceMAE": 0.133212
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "213": {
+      "spread": 213,
+      "image": "work/hansol-ink-hidden/screens/spread-0213.png",
+      "sha256": "e4c7693a63fca2b2ae82c9ef64504d4884d184bfbc6df9ed5868a18e8623b74b",
+      "oldSha256": "2954cf86579111fefd6e7681c10277e6a2a65e6e3deffcfb90735a1031581258",
+      "layoutComparison": {
+        "mae": 0.349277,
+        "correlation": 0.998398,
+        "changedFraction": 0.005006,
+        "halfEdgeCorrelations": [
+          0.995458,
+          0.999721
+        ],
+        "luminanceMAE": 0.162311
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "218": {
+      "spread": 218,
+      "image": "work/hansol-ink-hidden/screens/spread-0218.png",
+      "sha256": "7f717a9b30df64da9c827dc9294577f36d2b667cf1008d2239a3ac9581a7ef50",
+      "oldSha256": "6bfca30e4ff8da6da5f5c809737a063b2da16095ad834ed0033af4cdec48f2fd",
+      "layoutComparison": {
+        "mae": 0.363026,
+        "correlation": 0.999311,
+        "changedFraction": 0.004725,
+        "halfEdgeCorrelations": [
+          0.999288,
+          0.999727
+        ],
+        "luminanceMAE": 0.153678
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "223": {
+      "spread": 223,
+      "image": "work/hansol-ink-hidden/screens/spread-0223.png",
+      "sha256": "b8c64f86417f9dd5d0566081f4f596cc84540c10996284d9e8071617b407d1c4",
+      "oldSha256": "2eff18b09239494460b516e478bf575c2ffe0986f285d7c4ee791922ae507edc",
+      "layoutComparison": {
+        "mae": 0.350015,
+        "correlation": 0.995835,
+        "changedFraction": 0.002478,
+        "halfEdgeCorrelations": [
+          0.99386,
+          0.989907
+        ],
+        "luminanceMAE": 0.197755
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "224": {
+      "spread": 224,
+      "image": "work/hansol-ink-hidden/screens/spread-0224.png",
+      "sha256": "82433f3bc494e44ff0bfaf82e56af6f1fe4952d29bd6ca3572ae0ac9c24f661a",
+      "oldSha256": "6e3898d60739e1d5df145eca08c3f53ab5539f5b82d29e74dd935a3979a16531",
+      "layoutComparison": {
+        "mae": 0.380929,
+        "correlation": 0.996844,
+        "changedFraction": 0.005502,
+        "halfEdgeCorrelations": [
+          0.994354,
+          0.995879
+        ],
+        "luminanceMAE": 0.191244
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "225": {
+      "spread": 225,
+      "image": "work/hansol-ink-hidden/screens/spread-0225.png",
+      "sha256": "38498faa048b15b96e89f19797bb7eb62dff67c2caa2d8fb16ddb6cb4f322715",
+      "oldSha256": "9ec5e1f507c39765c36e543da450fe7ea3e24a5052ba1f673dd3cdee6cb5aa94",
+      "layoutComparison": {
+        "mae": 0.734124,
+        "correlation": 0.997813,
+        "changedFraction": 0.000937,
+        "halfEdgeCorrelations": [
+          0.999335,
+          0.999617
+        ],
+        "luminanceMAE": 0.421791
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "226": {
+      "spread": 226,
+      "image": "work/hansol-ink-hidden/screens/spread-0226.png",
+      "sha256": "d5864d13cea4eec2062f56aa23ce4674b1844d3ea1cd14def972a50824640b63",
+      "oldSha256": "b38e03c3fe23a897c5c81c89d07a5a97787f795bcdeee64425990589149287b5",
+      "layoutComparison": {
+        "mae": 0.286257,
+        "correlation": 0.999655,
+        "changedFraction": 0.001813,
+        "halfEdgeCorrelations": [
+          0.999723,
+          0.99969
+        ],
+        "luminanceMAE": 0.104686
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "227": {
+      "spread": 227,
+      "image": "work/hansol-ink-hidden/screens/spread-0227.png",
+      "sha256": "34fbdf1e102316202dcb6719de23086936e469ef569cf5db85ea3adbf06308eb",
+      "oldSha256": "1ca0983b4041f61fa8398f2e69dc911cd68fc99dcf1abd82bfe1b162b208c12a",
+      "layoutComparison": {
+        "mae": 0.350599,
+        "correlation": 0.997611,
+        "changedFraction": 0.002407,
+        "halfEdgeCorrelations": [
+          0.992695,
+          0.999695
+        ],
+        "luminanceMAE": 0.150638
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "229": {
+      "spread": 229,
+      "image": "work/hansol-ink-hidden/screens/spread-0229.png",
+      "sha256": "46dcee7381e20d690577c18ebf1e9aea767021eabc2b0991b08348d3fef34d85",
+      "oldSha256": "6d31816f220bba53b7d6b3f7213c0661427fdbc3fd15febdab2ed400a0cde481",
+      "layoutComparison": {
+        "mae": 0.331129,
+        "correlation": 0.999287,
+        "changedFraction": 0.001963,
+        "halfEdgeCorrelations": [
+          0.99882,
+          0.999751
+        ],
+        "luminanceMAE": 0.120148
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "231": {
+      "spread": 231,
+      "image": "work/hansol-ink-hidden/screens/spread-0231.png",
+      "sha256": "69d935ca4cf9fee57ff8bfcc3ec6768f4f74eae45cb21b3fdca8aa85e4a7f15a",
+      "oldSha256": "2c1b7a6b4910def4053e22f68ee46e2ab7318290258648d598a5f40a24bae083",
+      "layoutComparison": {
+        "mae": 0.290288,
+        "correlation": 0.999685,
+        "changedFraction": 0.001809,
+        "halfEdgeCorrelations": [
+          0.999771,
+          0.999724
+        ],
+        "luminanceMAE": 0.105787
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "233": {
+      "spread": 233,
+      "image": "work/hansol-ink-hidden/screens/spread-0233.png",
+      "sha256": "7d2879d22e24b792b67279471e05a286e55bdebf3fb06803cb9c931a7714fc32",
+      "oldSha256": "ee3aec581a34bd2edab7d957a36ca42dd2cc78b4b5760a54c770bec852bb0c39",
+      "layoutComparison": {
+        "mae": 0.338412,
+        "correlation": 0.999651,
+        "changedFraction": 0.001813,
+        "halfEdgeCorrelations": [
+          0.999679,
+          0.999734
+        ],
+        "luminanceMAE": 0.125966
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "235": {
+      "spread": 235,
+      "image": "work/hansol-ink-hidden/screens/spread-0235.png",
+      "sha256": "ea6d6a5b5f8724356cc4a29654b4c93ee4e5d9eec698d95d76f57e18323e41d6",
+      "oldSha256": "7949dc2ed0202afd7065b08feb676d7c209f8c238e885549ac4d6baa3d743e95",
+      "layoutComparison": {
+        "mae": 0.285248,
+        "correlation": 0.99927,
+        "changedFraction": 0.001944,
+        "halfEdgeCorrelations": [
+          0.999721,
+          0.998363
+        ],
+        "luminanceMAE": 0.116144
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "236": {
+      "spread": 236,
+      "image": "work/hansol-ink-hidden/screens/spread-0236.png",
+      "sha256": "55464e98b3531072eb0945b18201e73a83f775d9fbd5d0357c07053d0f355a74",
+      "oldSha256": "231e49fa80692e6f5254f612aa6feaa2bcc35dc8eece69f26c827f177f2f5a95",
+      "layoutComparison": {
+        "mae": 0.241367,
+        "correlation": 0.999634,
+        "changedFraction": 0.001813,
+        "halfEdgeCorrelations": [
+          0.999729,
+          0.999581
+        ],
+        "luminanceMAE": 0.09181
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "239": {
+      "spread": 239,
+      "image": "work/hansol-ink-hidden/screens/spread-0239.png",
+      "sha256": "01c5e97087522f3630a0976bfa5e8b4479bd18e31632cc6bd9b67264962fbc27",
+      "oldSha256": "6510ee37607ee04418fdcbe85c38076e8194e56a57ec7aee900d727e202bf313",
+      "layoutComparison": {
+        "mae": 0.334917,
+        "correlation": 0.999429,
+        "changedFraction": 0.001736,
+        "halfEdgeCorrelations": [
+          0.999728,
+          0.99941
+        ],
+        "luminanceMAE": 0.188757
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "240": {
+      "spread": 240,
+      "image": "work/hansol-ink-hidden/screens/spread-0240.png",
+      "sha256": "9ce4c5e7ab984e4f0373cd0b7d2f79cc1bc1ec23e5ccf204358efc012b7c7703",
+      "oldSha256": "56d33a7fdb61f1cd70af973067d496898e182f16bbe714c658249e5bbf564799",
+      "layoutComparison": {
+        "mae": 0.280324,
+        "correlation": 0.999261,
+        "changedFraction": 0.004802,
+        "halfEdgeCorrelations": [
+          0.999471,
+          0.99938
+        ],
+        "luminanceMAE": 0.129644
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "244": {
+      "spread": 244,
+      "image": "work/hansol-ink-hidden/screens/spread-0244.png",
+      "sha256": "c2914097b5cffe534774362d53d795206357ac69fc9dd29b55ed6c396b72acca",
+      "oldSha256": "cfdc97767e61e36577881f7af0833c7f64b0946fffa94e7c346c4e56e956d820",
+      "layoutComparison": {
+        "mae": 0.333826,
+        "correlation": 0.999361,
+        "changedFraction": 0.004735,
+        "halfEdgeCorrelations": [
+          0.999417,
+          0.99972
+        ],
+        "luminanceMAE": 0.144474
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "257": {
+      "spread": 257,
+      "image": "work/hansol-ink-hidden/screens/spread-0257.png",
+      "sha256": "a25f1017697e9f85d79824c44a3721bffcfaa66fdccfa682946d67fd16ddbfba",
+      "oldSha256": "9c21a2ecd0e6fa5be59e21fbc0ff72ed547727b73fd4b26dcc7b7644c86b9cab",
+      "layoutComparison": {
+        "mae": 0.286065,
+        "correlation": 0.999361,
+        "changedFraction": 0.004744,
+        "halfEdgeCorrelations": [
+          0.999373,
+          0.999735
+        ],
+        "luminanceMAE": 0.13357
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "258": {
+      "spread": 258,
+      "image": "work/hansol-ink-hidden/screens/spread-0258.png",
+      "sha256": "2127aad4dc53b1b95e117643f95db19e8c0d0e4a71a4b63e80f22f6c9e821163",
+      "oldSha256": "d388201ef830f4f96a880ee24815b2a679c96371b19a422b2641b23111b23bb5",
+      "layoutComparison": {
+        "mae": 0.71807,
+        "correlation": 0.998135,
+        "changedFraction": 0.000937,
+        "halfEdgeCorrelations": [
+          0.999486,
+          0.999706
+        ],
+        "luminanceMAE": 0.42058
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "259": {
+      "spread": 259,
+      "image": "work/hansol-ink-hidden/screens/spread-0259.png",
+      "sha256": "d21f94f6ccddda948c842d32d00aa9953ba541e57ef109cb1b9343287a75d7a1",
+      "oldSha256": "72a6b45d67b612a06f163635915651de06a30b656accc4f067abfad3793a1cb9",
+      "layoutComparison": {
+        "mae": 0.305085,
+        "correlation": 0.999603,
+        "changedFraction": 0.001733,
+        "halfEdgeCorrelations": [
+          0.999705,
+          0.999664
+        ],
+        "luminanceMAE": 0.108315
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "260": {
+      "spread": 260,
+      "image": "work/hansol-ink-hidden/screens/spread-0260.png",
+      "sha256": "8bb2bc977c6279bd3e245c4ab7c46f945d984c64c5302736ee4e4982b075c085",
+      "oldSha256": "bf18e7abac3a4b7aba3ca141fe5f32759ab5a1d7ccd58921831c11275ab4e066",
+      "layoutComparison": {
+        "mae": 0.295632,
+        "correlation": 0.999668,
+        "changedFraction": 0.001733,
+        "halfEdgeCorrelations": [
+          0.99972,
+          0.999703
+        ],
+        "luminanceMAE": 0.108907
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "262": {
+      "spread": 262,
+      "image": "work/hansol-ink-hidden/screens/spread-0262.png",
+      "sha256": "fd869f8be23eb68b3fe16a6a1fa16a65e1055deafd58ef5b76a4bd6e61f63e69",
+      "oldSha256": "580ec653603b32c0ec904ff09aa4d944ee758113638d04d9954b4b4e4d0b5757",
+      "layoutComparison": {
+        "mae": 0.166254,
+        "correlation": 0.999636,
+        "changedFraction": 0.001736,
+        "halfEdgeCorrelations": [
+          0.999752,
+          0.999554
+        ],
+        "luminanceMAE": 0.069118
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "265": {
+      "spread": 265,
+      "image": "work/hansol-ink-hidden/screens/spread-0265.png",
+      "sha256": "2000b62fe8ad0a6b2fb1080c4a4ffb4505e29966c98d8909ce6a25bd6047f931",
+      "oldSha256": "f8be3d25bbcb2f68a3374e0e01b50c5f550bded4868af20fc6522aedec082bb0",
+      "layoutComparison": {
+        "mae": 0.703052,
+        "correlation": 0.997841,
+        "changedFraction": 0.003868,
+        "halfEdgeCorrelations": [
+          0.999461,
+          0.999185
+        ],
+        "luminanceMAE": 0.439266
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "272": {
+      "spread": 272,
+      "image": "work/hansol-ink-hidden/screens/spread-0272.png",
+      "sha256": "88dbb1928f4393ee4de0a21c006454cb1f4598e9cd12a11e86f4fedb176d2217",
+      "oldSha256": "fb9a283ecc39fcc66c34c536d72cc2470057c2daae41357a10f92a4cd99d0ffd",
+      "layoutComparison": {
+        "mae": 0.595239,
+        "correlation": 0.997794,
+        "changedFraction": 0.000937,
+        "halfEdgeCorrelations": [
+          0.999412,
+          0.999636
+        ],
+        "luminanceMAE": 0.380575
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "285": {
+      "spread": 285,
+      "image": "work/hansol-ink-hidden/screens/spread-0285.png",
+      "sha256": "b9c50db0aefc77890c9523ff623c8f86c1d0f66639636c0dcd08df7972a48340",
+      "oldSha256": "5bae55bc33ba7422fa1d8019c218d556685b75a903de2878bb77d158b9fc2f01",
+      "layoutComparison": {
+        "mae": 0.288293,
+        "correlation": 0.999039,
+        "changedFraction": 0.004789,
+        "halfEdgeCorrelations": [
+          0.999414,
+          0.99929
+        ],
+        "luminanceMAE": 0.155348
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "286": {
+      "spread": 286,
+      "image": "work/hansol-ink-hidden/screens/spread-0286.png",
+      "sha256": "e41ffca5e03eeecd562f8331657dccae30ad60f99ed8bed5a2db6ac5bedab605",
+      "oldSha256": "7dcf979922ff956b599b60b3ba1efcebc13d0a4806c72aec52369d22cce84bfa",
+      "layoutComparison": {
+        "mae": 0.22375,
+        "correlation": 0.999679,
+        "changedFraction": 0.001809,
+        "halfEdgeCorrelations": [
+          0.999715,
+          0.999729
+        ],
+        "luminanceMAE": 0.087553
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "287": {
+      "spread": 287,
+      "image": "work/hansol-ink-hidden/screens/spread-0287.png",
+      "sha256": "2a35cfd080c2ff263564d036cc2222da4fb20fc73181bfe60168c1a35fc2b8c0",
+      "oldSha256": "9127428e07bc8a5598d04288058eb8dc23571b5c703745bf66555b3e0ff729a4",
+      "layoutComparison": {
+        "mae": 0.234253,
+        "correlation": 0.999665,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999713,
+          0.999694
+        ],
+        "luminanceMAE": 0.092364
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "288": {
+      "spread": 288,
+      "image": "work/hansol-ink-hidden/screens/spread-0288.png",
+      "sha256": "dfb14e4015a6291fad46b9c64ad87f00b9959c6b80d2957471e8317a408d9dfb",
+      "oldSha256": "220caa3ca056e0f22e0186727e407bace659449c51a23c9b74ac217ece9a78cb",
+      "layoutComparison": {
+        "mae": 0.215182,
+        "correlation": 0.999651,
+        "changedFraction": 0.001803,
+        "halfEdgeCorrelations": [
+          0.999726,
+          0.999681
+        ],
+        "luminanceMAE": 0.084637
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "289": {
+      "spread": 289,
+      "image": "work/hansol-ink-hidden/screens/spread-0289.png",
+      "sha256": "5690c52957553baa1e9cd78f08c0025a6ce022e27164e7bbfa4e48dd400b4260",
+      "oldSha256": "18d39ad3937342e6331705a242fec355e77844bc5ee179d274d690c25e93e7cd",
+      "layoutComparison": {
+        "mae": 0.247837,
+        "correlation": 0.999646,
+        "changedFraction": 0.001803,
+        "halfEdgeCorrelations": [
+          0.999746,
+          0.999623
+        ],
+        "luminanceMAE": 0.093515
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "294": {
+      "spread": 294,
+      "image": "work/hansol-ink-hidden/screens/spread-0294.png",
+      "sha256": "3b2265381f4fb1bcfdb0be00ea75b62e8122ef99b10b30efc41c9056b5c9f242",
+      "oldSha256": "5897d6ca8e6eea1fe381a63d7ecf2877215e7e849856bf383d4c53b420421f67",
+      "layoutComparison": {
+        "mae": 0.267999,
+        "correlation": 0.999096,
+        "changedFraction": 0.00468,
+        "halfEdgeCorrelations": [
+          0.99935,
+          0.999374
+        ],
+        "luminanceMAE": 0.13674
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "295": {
+      "spread": 295,
+      "image": "work/hansol-ink-hidden/screens/spread-0295.png",
+      "sha256": "033dcf230ea2c5afc5ed88b92011fa5246d71bdea7298b24238746fe40895f5a",
+      "oldSha256": "a3e807bae8386075640738e074c9071b95c8b6390254ddfde12a5183a7db16b3",
+      "layoutComparison": {
+        "mae": 0.188071,
+        "correlation": 0.999575,
+        "changedFraction": 0.001819,
+        "halfEdgeCorrelations": [
+          0.999701,
+          0.999477
+        ],
+        "luminanceMAE": 0.075324
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "301": {
+      "spread": 301,
+      "image": "work/hansol-ink-hidden/screens/spread-0301.png",
+      "sha256": "c6f24008f172c5fc6a60524dcb623b001f360ee9f96d3dc93d4720d6c26fc7a8",
+      "oldSha256": "9b5a23f5a95afb679bf675bf77012d1249ed4630fbe87e5aa4742b5a1b0d7144",
+      "layoutComparison": {
+        "mae": 0.280431,
+        "correlation": 0.99906,
+        "changedFraction": 0.004981,
+        "halfEdgeCorrelations": [
+          0.999517,
+          0.999214
+        ],
+        "luminanceMAE": 0.143006
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "302": {
+      "spread": 302,
+      "image": "work/hansol-ink-hidden/screens/spread-0302.png",
+      "sha256": "fbb2ef3edafe9ff4eb454e8c1f49ed1b6f86d65038d3209483e46f133c4b4650",
+      "oldSha256": "d561ad0dddb7a70b173e4eeaeaecacb5b751d878691f93ad1b3433fcdfa39e8d",
+      "layoutComparison": {
+        "mae": 0.180861,
+        "correlation": 0.999531,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999641,
+          0.999595
+        ],
+        "luminanceMAE": 0.071922
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "303": {
+      "spread": 303,
+      "image": "work/hansol-ink-hidden/screens/spread-0303.png",
+      "sha256": "776351ccd09e20bd8e25c6e7ea8f85faff52102c91495a80c90edbe19d42fddd",
+      "oldSha256": "9c03c3031076b6dd3f7aa3d7382d5ececaaf22babf3429a72a4bc7d56b898afa",
+      "layoutComparison": {
+        "mae": 0.640307,
+        "correlation": 0.9979,
+        "changedFraction": 0.000934,
+        "halfEdgeCorrelations": [
+          0.999356,
+          0.999682
+        ],
+        "luminanceMAE": 0.399356
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "304": {
+      "spread": 304,
+      "image": "work/hansol-ink-hidden/screens/spread-0304.png",
+      "sha256": "d55c42c0072790b84cf7d925183abf5b54f980bf92edb2ca3d96f635c37f6540",
+      "oldSha256": "1c33d2c63978ab666c16046b822fc85897e797223bbbf6323a93147f116b13a0",
+      "layoutComparison": {
+        "mae": 0.239143,
+        "correlation": 0.999641,
+        "changedFraction": 0.001803,
+        "halfEdgeCorrelations": [
+          0.999696,
+          0.999673
+        ],
+        "luminanceMAE": 0.092836
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "305": {
+      "spread": 305,
+      "image": "work/hansol-ink-hidden/screens/spread-0305.png",
+      "sha256": "0c9e349d5f0fa1611fbb7a2629900cc2f42b6860f7d63032283e82b5c70ecd00",
+      "oldSha256": "23a635b47b1873813632da429796b97d5a0c753ca1bedec3c7f48f824d22a595",
+      "layoutComparison": {
+        "mae": 0.256095,
+        "correlation": 0.999669,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999706,
+          0.999723
+        ],
+        "luminanceMAE": 0.098779
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "306": {
+      "spread": 306,
+      "image": "work/hansol-ink-hidden/screens/spread-0306.png",
+      "sha256": "42ed971f7f120ba85193ef0d3ad3efacd988422903add9aa140c4428ca6b8aaf",
+      "oldSha256": "a1189e584b87e677946d744057e1085e2ac4b26a55f9c95eac7c1b08ffc2e372",
+      "layoutComparison": {
+        "mae": 0.248164,
+        "correlation": 0.999627,
+        "changedFraction": 0.001809,
+        "halfEdgeCorrelations": [
+          0.999688,
+          0.999677
+        ],
+        "luminanceMAE": 0.095053
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "307": {
+      "spread": 307,
+      "image": "work/hansol-ink-hidden/screens/spread-0307.png",
+      "sha256": "f6945ee9cb167f008111d1f14e1403bb6ffc04fbd5e484d8506523069b3ea1a4",
+      "oldSha256": "c5168e2ea2ecdcc3b5f79543bcaae6f4178d8a408d0bc8670ff83de8d9bbc7ad",
+      "layoutComparison": {
+        "mae": 0.219987,
+        "correlation": 0.999598,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999681,
+          0.999649
+        ],
+        "luminanceMAE": 0.089715
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "308": {
+      "spread": 308,
+      "image": "work/hansol-ink-hidden/screens/spread-0308.png",
+      "sha256": "238c7c7ca788f525339e56e999123648797bfde257f0c03fbca7c17d551b7239",
+      "oldSha256": "5576431c14accf858adc30757fcaef8d13e0d978cb26b84555cf0a18ccc408b3",
+      "layoutComparison": {
+        "mae": 0.233334,
+        "correlation": 0.999606,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999684,
+          0.999628
+        ],
+        "luminanceMAE": 0.091495
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "309": {
+      "spread": 309,
+      "image": "work/hansol-ink-hidden/screens/spread-0309.png",
+      "sha256": "c359807368e00327086650b2dc72c9ef9cf9b323864a76ec241c0a402e8b66e5",
+      "oldSha256": "d92a22af0b5f64097df41ea38c62f9e7f2d5dbfca8b25b314becad58386d0e1a",
+      "layoutComparison": {
+        "mae": 0.300606,
+        "correlation": 0.999512,
+        "changedFraction": 0.001806,
+        "halfEdgeCorrelations": [
+          0.999657,
+          0.999563
+        ],
+        "luminanceMAE": 0.1082
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "310": {
+      "spread": 310,
+      "image": "work/hansol-ink-hidden/screens/spread-0310.png",
+      "sha256": "cc3c551052b67649db39df1fa102c26e77d79b3169a4abece6d66b7d9e3b5ac2",
+      "oldSha256": "42a51a9fd29643b1cfb6a1939e5565fe3a356982835eeef32ca60e10bdb6afdf",
+      "layoutComparison": {
+        "mae": 1.0654,
+        "correlation": 0.997858,
+        "changedFraction": 0.004255,
+        "halfEdgeCorrelations": [
+          0.999545,
+          0.998824
+        ],
+        "luminanceMAE": 0.764596
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "317": {
+      "spread": 317,
+      "image": "work/hansol-ink-hidden/screens/spread-0317.png",
+      "sha256": "f68f91ef9d56371b87e456000afbca1524e6f0228d1b713fa141d27a7a10f48f",
+      "oldSha256": "2de9034dbea0bbaf636b02b40fc226b60259e836131d939936823da2bb6da4f4",
+      "layoutComparison": {
+        "mae": 0.45914,
+        "correlation": 0.999005,
+        "changedFraction": 0.00491,
+        "halfEdgeCorrelations": [
+          0.999233,
+          0.999382
+        ],
+        "luminanceMAE": 0.21677
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "318": {
+      "spread": 318,
+      "image": "work/hansol-ink-hidden/screens/spread-0318.png",
+      "sha256": "ee0e1d4146b2b7e5eec036da67a8e2afa263912aea98220ffce89aeaec5d7614",
+      "oldSha256": "1f83569c7fa3c7bf02e42b2a914f9f638e7c0465ddfe83d8c1ddc8db3b81ea5c",
+      "layoutComparison": {
+        "mae": 0.239717,
+        "correlation": 0.999696,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999745,
+          0.999726
+        ],
+        "luminanceMAE": 0.092292
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "319": {
+      "spread": 319,
+      "image": "work/hansol-ink-hidden/screens/spread-0319.png",
+      "sha256": "92577ca53f96c5cb61b93d7e39b9452a37bb39f208c9030eddadf0b598b6fdfb",
+      "oldSha256": "5b0ce1ad832e7545fb9fdfb158e541ca777f8135a3eced20579849cfbb275fad",
+      "layoutComparison": {
+        "mae": 0.210634,
+        "correlation": 0.999326,
+        "changedFraction": 0.004076,
+        "halfEdgeCorrelations": [
+          0.999737,
+          0.99959
+        ],
+        "luminanceMAE": 0.110104
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "324": {
+      "spread": 324,
+      "image": "work/hansol-ink-hidden/screens/spread-0324.png",
+      "sha256": "2cbf5b82f3955045036c44065ce6aee341d281cec093127ec32f6b3c3eea41af",
+      "oldSha256": "7cae554e37f0f8c4f555624a86f913aa31147253f3692c40b089b6c46b356a44",
+      "layoutComparison": {
+        "mae": 0.303719,
+        "correlation": 0.999371,
+        "changedFraction": 0.004735,
+        "halfEdgeCorrelations": [
+          0.999421,
+          0.999721
+        ],
+        "luminanceMAE": 0.138221
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "325": {
+      "spread": 325,
+      "image": "work/hansol-ink-hidden/screens/spread-0325.png",
+      "sha256": "8217de66ab170df2e42c11302ad480f9ce7f6c605435923d1cc98b4e320c95c1",
+      "oldSha256": "bf060408e2a7cf025b0db964e3c55d3e9b25aac23851d301b38f2620a63f99e6",
+      "layoutComparison": {
+        "mae": 0.165818,
+        "correlation": 0.999563,
+        "changedFraction": 0.001841,
+        "halfEdgeCorrelations": [
+          0.999697,
+          0.999419
+        ],
+        "luminanceMAE": 0.069404
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "332": {
+      "spread": 332,
+      "image": "work/hansol-ink-hidden/screens/spread-0332.png",
+      "sha256": "5875b370d8c3dfdb67d65a17ad13cd9c8562414d6a33baa638fa01af39608adf",
+      "oldSha256": "b7a03757cb42082fafee0db8635da14fe66978161a7d2f1127a697024bc2d116",
+      "layoutComparison": {
+        "mae": 0.270325,
+        "correlation": 0.999389,
+        "changedFraction": 0.004731,
+        "halfEdgeCorrelations": [
+          0.999429,
+          0.999735
+        ],
+        "luminanceMAE": 0.128458
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "333": {
+      "spread": 333,
+      "image": "work/hansol-ink-hidden/screens/spread-0333.png",
+      "sha256": "d5f092cd51863e18d622a39898b0452aff35d916a24722f39ab7222b871802f7",
+      "oldSha256": "4dd8935bbf96f76e9ad375ccca83e72f9a74bea1fbb6f80d1db20a33ee8f00e2",
+      "layoutComparison": {
+        "mae": 0.237676,
+        "correlation": 0.999651,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999735,
+          0.999664
+        ],
+        "luminanceMAE": 0.093898
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "338": {
+      "spread": 338,
+      "image": "work/hansol-ink-hidden/screens/spread-0338.png",
+      "sha256": "dbe26b3e69adcf118b322c6b6b83b903e5ec2eb466c041334c833473e56b9445",
+      "oldSha256": "777214faeac9a0a9427384ff8bddcea2d4e090a7d8585868b717fe2c8c3ee7c3",
+      "layoutComparison": {
+        "mae": 0.299809,
+        "correlation": 0.999344,
+        "changedFraction": 0.004741,
+        "halfEdgeCorrelations": [
+          0.999395,
+          0.999705
+        ],
+        "luminanceMAE": 0.138488
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "339": {
+      "spread": 339,
+      "image": "work/hansol-ink-hidden/screens/spread-0339.png",
+      "sha256": "00fe07c3205d5ed038f615a0b7b2bcd09d3b5592c4e4005ec4a2e47576371fef",
+      "oldSha256": "51b33ca67037b3dfbc995ba13b05497bd9f125ac4bde87cbbb9337c28eef7bc9",
+      "layoutComparison": {
+        "mae": 0.230655,
+        "correlation": 0.999708,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999765,
+          0.999728
+        ],
+        "luminanceMAE": 0.089458
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "340": {
+      "spread": 340,
+      "image": "work/hansol-ink-hidden/screens/spread-0340.png",
+      "sha256": "3748b18cd0780a427bf88f6c3583892f2130689a2243637523a40322ce89f8c9",
+      "oldSha256": "ced8fc36f4c2e88f74d9570b8362c0d48857a2f7419c15f4c406b4a9fbae455f",
+      "layoutComparison": {
+        "mae": 0.264832,
+        "correlation": 0.999672,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999714,
+          0.999728
+        ],
+        "luminanceMAE": 0.098766
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "344": {
+      "spread": 344,
+      "image": "work/hansol-ink-hidden/screens/spread-0344.png",
+      "sha256": "8d3db122f9d55b5cbdd9587a365ce9187ee1dd265363c200d97587e2b9d423b6",
+      "oldSha256": "e92b53510189e45e5a9495491194d189f579e99aa21e98928f6e76348f5b5742",
+      "layoutComparison": {
+        "mae": 0.304869,
+        "correlation": 0.999306,
+        "changedFraction": 0.004725,
+        "halfEdgeCorrelations": [
+          0.999333,
+          0.999695
+        ],
+        "luminanceMAE": 0.139964
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "345": {
+      "spread": 345,
+      "image": "work/hansol-ink-hidden/screens/spread-0345.png",
+      "sha256": "dd96d6eab748ceebcd2b08a7af309506a5ace79eb9cd83d9d79e4df1b5cec474",
+      "oldSha256": "72cf3218a46b0a8c76687acfe2823bab6d21e9a6c614e7fea539109d5964fd23",
+      "layoutComparison": {
+        "mae": 0.267279,
+        "correlation": 0.999693,
+        "changedFraction": 0.001848,
+        "halfEdgeCorrelations": [
+          0.999726,
+          0.999734
+        ],
+        "luminanceMAE": 0.100585
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "346": {
+      "spread": 346,
+      "image": "work/hansol-ink-hidden/screens/spread-0346.png",
+      "sha256": "3c7b767e68bcfcf1969b697e68eaf2c0d02d813421a3ac946a94341417814736",
+      "oldSha256": "213afaaff93b12682d240dc633e86e030c9c6b513d673e49cfdc9ea45d78b7db",
+      "layoutComparison": {
+        "mae": 0.250963,
+        "correlation": 0.999319,
+        "changedFraction": 0.004082,
+        "halfEdgeCorrelations": [
+          0.999719,
+          0.999609
+        ],
+        "luminanceMAE": 0.135609
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "352": {
+      "spread": 352,
+      "image": "work/hansol-ink-hidden/screens/spread-0352.png",
+      "sha256": "14e59dadb5c458cac3cb82d59fcc36a9e237c8b06e4a6d2f1c69f46ad43ee65e",
+      "oldSha256": "f81450595233b3c774ce719fe17600b0fbca217a3149591b58b2b5841fa4e6a3",
+      "layoutComparison": {
+        "mae": 0.301023,
+        "correlation": 0.999043,
+        "changedFraction": 0.00476,
+        "halfEdgeCorrelations": [
+          0.998973,
+          0.999399
+        ],
+        "luminanceMAE": 0.152595
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "353": {
+      "spread": 353,
+      "image": "work/hansol-ink-hidden/screens/spread-0353.png",
+      "sha256": "fd0a1c6b518b563d993b47d7c78773bb1245ba0fbb08b659c098a28adf88b367",
+      "oldSha256": "ffd02dfe0bf147123c5d087388451eb79e7b30fced8419ca8a7949a065367ddb",
+      "layoutComparison": {
+        "mae": 0.156936,
+        "correlation": 0.999578,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999722,
+          0.99947
+        ],
+        "luminanceMAE": 0.065956
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "355": {
+      "spread": 355,
+      "image": "work/hansol-ink-hidden/screens/spread-0355.png",
+      "sha256": "31abaeb49655076d53d803792855b93da99012fcae8b2c0a368c5f045cc2a05a",
+      "oldSha256": "d65e1a4fa05cb7a1dd6249e6a4efb2d6a48fdb65a809ca3d0deacea612c5cc99",
+      "layoutComparison": {
+        "mae": 0.204238,
+        "correlation": 0.999376,
+        "changedFraction": 0.002363,
+        "halfEdgeCorrelations": [
+          0.99965,
+          0.999457
+        ],
+        "luminanceMAE": 0.121054
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "357": {
+      "spread": 357,
+      "image": "work/hansol-ink-hidden/screens/spread-0357.png",
+      "sha256": "d70a5128e942187b40ecca804356d7f9c3fe1a89c6986d05d9be69cf5fc14c98",
+      "oldSha256": "cbb50d2ee1157cb554c41341af1f6b636c44db4a9bb1ffe8d2be2f3d23c8abfb",
+      "layoutComparison": {
+        "mae": 0.152606,
+        "correlation": 0.99957,
+        "changedFraction": 0.001841,
+        "halfEdgeCorrelations": [
+          0.99974,
+          0.999221
+        ],
+        "luminanceMAE": 0.065338
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "360": {
+      "spread": 360,
+      "image": "work/hansol-ink-hidden/screens/spread-0360.png",
+      "sha256": "5eb8011f7c53f7d56cd9538ab993192a47032e39818d30806c9ba569c947406d",
+      "oldSha256": "80154b368b22476bbc91dd87230e378b864b726858b1910f9f20cb86873b5554",
+      "layoutComparison": {
+        "mae": 0.273223,
+        "correlation": 0.998894,
+        "changedFraction": 0.004709,
+        "halfEdgeCorrelations": [
+          0.999011,
+          0.999257
+        ],
+        "luminanceMAE": 0.142818
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "361": {
+      "spread": 361,
+      "image": "work/hansol-ink-hidden/screens/spread-0361.png",
+      "sha256": "e2c024caaae225ac4391e772c228da02c53ecf0169ecd90c9cbbcd9c932ac262",
+      "oldSha256": "889afeeae09c3ca8d90890be3a2e0618f012694ee204ae69c2e458c5be3c7fdd",
+      "layoutComparison": {
+        "mae": 0.665445,
+        "correlation": 0.997947,
+        "changedFraction": 0.000943,
+        "halfEdgeCorrelations": [
+          0.999396,
+          0.999695
+        ],
+        "luminanceMAE": 0.406079
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "362": {
+      "spread": 362,
+      "image": "work/hansol-ink-hidden/screens/spread-0362.png",
+      "sha256": "1dde1c99f3fbc0b16e307871e1d0a99e31d65a938d5a20ddaf38878b7d78ed23",
+      "oldSha256": "d660715b825ec6b2e2162792903c217b1b219fbbc773a121e563d8a133c39012",
+      "layoutComparison": {
+        "mae": 0.22584,
+        "correlation": 0.999648,
+        "changedFraction": 0.001845,
+        "halfEdgeCorrelations": [
+          0.999705,
+          0.999683
+        ],
+        "luminanceMAE": 0.087612
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "363": {
+      "spread": 363,
+      "image": "work/hansol-ink-hidden/screens/spread-0363.png",
+      "sha256": "d365a31eeb0107eeda886e6022cb83f363048c68ed27de3a663cb6eb90d99a66",
+      "oldSha256": "276e7e00ec500e6aa54f1d6eeb4ac6467095c92ef368488a40596e7b2bf8dae3",
+      "layoutComparison": {
+        "mae": 0.242803,
+        "correlation": 0.99962,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.99964,
+          0.999725
+        ],
+        "luminanceMAE": 0.09498
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "364": {
+      "spread": 364,
+      "image": "work/hansol-ink-hidden/screens/spread-0364.png",
+      "sha256": "5cf7cb9d8f2186d135733cbfefc65c18af627402694015a6836ea457e4228c8d",
+      "oldSha256": "4dc42d506a2e47f7d4bc9c2426070f9f9b9cec64b3e6454f415f023407555b2e",
+      "layoutComparison": {
+        "mae": 0.23903,
+        "correlation": 0.999602,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999695,
+          0.99965
+        ],
+        "luminanceMAE": 0.095076
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "365": {
+      "spread": 365,
+      "image": "work/hansol-ink-hidden/screens/spread-0365.png",
+      "sha256": "5f6bccf88f24811075846f7c95c70e740465964dad112a25f91b48bece6bd2c0",
+      "oldSha256": "68bd01dd04d1405923ab85dd9f0cfc285dbda5b5f2aaf8ea055cbbe20040ce2f",
+      "layoutComparison": {
+        "mae": 0.243475,
+        "correlation": 0.999656,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999715,
+          0.999703
+        ],
+        "luminanceMAE": 0.094643
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "366": {
+      "spread": 366,
+      "image": "work/hansol-ink-hidden/screens/spread-0366.png",
+      "sha256": "8ed549a425d44d0bc5eaa5f18e1569d6f82987c43ea8ff427b4ef7ee990eff05",
+      "oldSha256": "2c0322bda519f19d7bec8e5896c627fc814fe44de1741c364de7bbf221f88470",
+      "layoutComparison": {
+        "mae": 0.23259,
+        "correlation": 0.999631,
+        "changedFraction": 0.001845,
+        "halfEdgeCorrelations": [
+          0.99972,
+          0.999661
+        ],
+        "luminanceMAE": 0.092848
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "367": {
+      "spread": 367,
+      "image": "work/hansol-ink-hidden/screens/spread-0367.png",
+      "sha256": "cd6680ced9b862658ca45ca3169f4352e32846f37a7b3cf82b0e47902324fdb5",
+      "oldSha256": "620e362a96123e8b63199c987c275e63feedb5901c4d480b0b71e8e63e446a5f",
+      "layoutComparison": {
+        "mae": 0.208227,
+        "correlation": 0.999629,
+        "changedFraction": 0.001841,
+        "halfEdgeCorrelations": [
+          0.999689,
+          0.999681
+        ],
+        "luminanceMAE": 0.08538
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "368": {
+      "spread": 368,
+      "image": "work/hansol-ink-hidden/screens/spread-0368.png",
+      "sha256": "ef036bf76b2b59b15cca25b9a6ab098a25915a6115b226cb2740df830b871526",
+      "oldSha256": "16f14034b4d15cb3711aea9c52e77d33576cbe3c343174fdd564a6cebc4d3e55",
+      "layoutComparison": {
+        "mae": 0.250099,
+        "correlation": 0.999658,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999721,
+          0.999692
+        ],
+        "luminanceMAE": 0.098028
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "370": {
+      "spread": 370,
+      "image": "work/hansol-ink-hidden/screens/spread-0370.png",
+      "sha256": "9f1f2d172867b7c24dc70254be4caf0f0c5004f52dea8f79f7e27c142ed5d7ae",
+      "oldSha256": "8e665bfc8012da740aafe7ec11d280041dda49d0ca1d0acc8b4c38b962b6b678",
+      "layoutComparison": {
+        "mae": 0.253543,
+        "correlation": 0.999626,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999671,
+          0.999681
+        ],
+        "luminanceMAE": 0.09905
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "376": {
+      "spread": 376,
+      "image": "work/hansol-ink-hidden/screens/spread-0376.png",
+      "sha256": "d4e99d898c7e4eb7dfef14aa26fbc0b92075a779c683330edaa80843d90327f1",
+      "oldSha256": "d445e484240109ed2e0453041cb89860e8c25b0430775e58de4b4b720e98769e",
+      "layoutComparison": {
+        "mae": 0.315668,
+        "correlation": 0.998824,
+        "changedFraction": 0.007484,
+        "halfEdgeCorrelations": [
+          0.999602,
+          0.999263
+        ],
+        "luminanceMAE": 0.168912
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "377": {
+      "spread": 377,
+      "image": "work/hansol-ink-hidden/screens/spread-0377.png",
+      "sha256": "10a654f08005293c5b195d8a3253beca55eb801636a5851a2abac94136338aa1",
+      "oldSha256": "18d64e97349db68bbc550aee6d60039a6a7f82b6de78029615ab076dae763b69",
+      "layoutComparison": {
+        "mae": 0.76685,
+        "correlation": 0.997986,
+        "changedFraction": 0.000937,
+        "halfEdgeCorrelations": [
+          0.999479,
+          0.999656
+        ],
+        "luminanceMAE": 0.431902
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "378": {
+      "spread": 378,
+      "image": "work/hansol-ink-hidden/screens/spread-0378.png",
+      "sha256": "ea16f5bd4ccf10d3cffcc3535c86e30815550658e8e3475044f00bd0115eca94",
+      "oldSha256": "4af2dd59311b2297cff1e509daffff115ff98a5358ec97fcb53ee1ef684e544e",
+      "layoutComparison": {
+        "mae": 1.186027,
+        "correlation": 0.997673,
+        "changedFraction": 0.00765,
+        "halfEdgeCorrelations": [
+          0.999679,
+          0.999973
+        ],
+        "luminanceMAE": 0.827983
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "383": {
+      "spread": 383,
+      "image": "work/hansol-ink-hidden/screens/spread-0383.png",
+      "sha256": "708e8898e22cb848f3291160b9345f718ffbbc943b39d7cdf31933492627d10c",
+      "oldSha256": "c7a67becd8fa474ce2042d91117f822bccf786d212142d53523ba4fceab362d9",
+      "layoutComparison": {
+        "mae": 0.180735,
+        "correlation": 0.999249,
+        "changedFraction": 0.004661,
+        "halfEdgeCorrelations": [
+          0.999622,
+          0.999428
+        ],
+        "luminanceMAE": 0.107079
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "393": {
+      "spread": 393,
+      "image": "work/hansol-ink-hidden/screens/spread-0393.png",
+      "sha256": "d3f103292cda62314953d4e0867b47787d5738daf7b18adc1ec28cc7093f6dca",
+      "oldSha256": "ebd1a32c62f118a3e74d42700d05be4c2a23fd59fb3bb9a5899efb49f1a709f6",
+      "layoutComparison": {
+        "mae": 0.216958,
+        "correlation": 0.999252,
+        "changedFraction": 0.004719,
+        "halfEdgeCorrelations": [
+          0.999521,
+          0.999464
+        ],
+        "luminanceMAE": 0.117162
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "402": {
+      "spread": 402,
+      "image": "work/hansol-ink-hidden/screens/spread-0402.png",
+      "sha256": "34116981e0d4e8842ab0793ff83b670dbbfa7fa97ab1c86733fd58bac8b476f9",
+      "oldSha256": "ecdd37050c978d40a824b51d20995da2cdf3cf62b825b819366c30847588e00b",
+      "layoutComparison": {
+        "mae": 0.347661,
+        "correlation": 0.999115,
+        "changedFraction": 0.004808,
+        "halfEdgeCorrelations": [
+          0.999138,
+          0.999675
+        ],
+        "luminanceMAE": 0.146654
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "403": {
+      "spread": 403,
+      "image": "work/hansol-ink-hidden/screens/spread-0403.png",
+      "sha256": "189a0b69fb688b3a77657b6fba838c9733acfa6b3da144a0a217692c5eb03f47",
+      "oldSha256": "e5b176eb0ef298b62eb50da9c0d4af0a0e3e7d65ce1e9a655fbba5316e06c395",
+      "layoutComparison": {
+        "mae": 0.25803,
+        "correlation": 0.999532,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.999545,
+          0.999654
+        ],
+        "luminanceMAE": 0.093927
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "404": {
+      "spread": 404,
+      "image": "work/hansol-ink-hidden/screens/spread-0404.png",
+      "sha256": "2cdcc19cf8eb704600a1a7c5c7d94de9bcedb4e7ed6d2960755c4179e8ffadcf",
+      "oldSha256": "5cb1ed5db7c2e9a5e7c4586d98477dddbad0ba55b61a380cd559e5ae3f243415",
+      "layoutComparison": {
+        "mae": 0.341483,
+        "correlation": 0.999605,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.999703,
+          0.99966
+        ],
+        "luminanceMAE": 0.116178
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "405": {
+      "spread": 405,
+      "image": "work/hansol-ink-hidden/screens/spread-0405.png",
+      "sha256": "bd987afd305f127d8047fc804af98a946b82f03eaa21486402c1254ec89bf9bd",
+      "oldSha256": "1814836102fc2b72a9ccd290eea783c9e4d9783bc691ca12c4df5bfbe73029c8",
+      "layoutComparison": {
+        "mae": 0.35323,
+        "correlation": 0.999518,
+        "changedFraction": 0.00188,
+        "halfEdgeCorrelations": [
+          0.999574,
+          0.999668
+        ],
+        "luminanceMAE": 0.118369
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "406": {
+      "spread": 406,
+      "image": "work/hansol-ink-hidden/screens/spread-0406.png",
+      "sha256": "4db21d8612bb7f40be1dc520fd6ac6bc759583fca4d4e0cd290cc2a76ec49686",
+      "oldSha256": "b7fbf1b2a76815465c2a63d9aad6ce3626180c1da3760a5eb5f1c57b9e5ce3ea",
+      "layoutComparison": {
+        "mae": 0.342059,
+        "correlation": 0.999604,
+        "changedFraction": 0.00188,
+        "halfEdgeCorrelations": [
+          0.99966,
+          0.9997
+        ],
+        "luminanceMAE": 0.117773
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "407": {
+      "spread": 407,
+      "image": "work/hansol-ink-hidden/screens/spread-0407.png",
+      "sha256": "b7ccc897fb060f103e876a8cbabf9bb1284c19ff0a83e150c265df15f52092ed",
+      "oldSha256": "b51e73235d69ea4793322533bddc7eb8ec7015e88b4e3998a7ea0d17fa374406",
+      "layoutComparison": {
+        "mae": 0.350551,
+        "correlation": 0.999587,
+        "changedFraction": 0.001877,
+        "halfEdgeCorrelations": [
+          0.999728,
+          0.999628
+        ],
+        "luminanceMAE": 0.116253
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "408": {
+      "spread": 408,
+      "image": "work/hansol-ink-hidden/screens/spread-0408.png",
+      "sha256": "29730d496e1e7cce08980d6ecbd751650581ae944aee8c822c92b50d5c7dea50",
+      "oldSha256": "0ac20749475db1498fb808a35447642cb774ae2a61355192b624db85ad9820e7",
+      "layoutComparison": {
+        "mae": 0.236854,
+        "correlation": 0.999428,
+        "changedFraction": 0.00187,
+        "halfEdgeCorrelations": [
+          0.99964,
+          0.999364
+        ],
+        "luminanceMAE": 0.085048
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "412": {
+      "spread": 412,
+      "image": "work/hansol-ink-hidden/screens/spread-0412.png",
+      "sha256": "e7212d7a40aab76e2d8b11e5764c5e18d4eef778e5a7feb0ca413666998981a5",
+      "oldSha256": "ede92e023e71dba1bbe1cf9659e9e220d6e6ccf7a7d95f0c91f93cbccf638127",
+      "layoutComparison": {
+        "mae": 0.277127,
+        "correlation": 0.998586,
+        "changedFraction": 0.004847,
+        "halfEdgeCorrelations": [
+          0.998717,
+          0.99911
+        ],
+        "luminanceMAE": 0.13895
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "413": {
+      "spread": 413,
+      "image": "work/hansol-ink-hidden/screens/spread-0413.png",
+      "sha256": "4d3cd0503349b4a0aae19b4e6216ad709bf1ff16ef4e5f07cd61a94269b839ba",
+      "oldSha256": "b4d7cacff74379a4ca0e145e635ceee17231a95163c934f162f3077d052c9b17",
+      "layoutComparison": {
+        "mae": 0.303534,
+        "correlation": 0.999614,
+        "changedFraction": 0.00187,
+        "halfEdgeCorrelations": [
+          0.999709,
+          0.999671
+        ],
+        "luminanceMAE": 0.104315
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "414": {
+      "spread": 414,
+      "image": "work/hansol-ink-hidden/screens/spread-0414.png",
+      "sha256": "f02d43aa33c07d6bf3382079a5780f28c64261a0d9efc6ba8c6efd8c01b2b6ae",
+      "oldSha256": "cdccc5a5880c40d575bba727b9d865d0e68a9f5fa46313b5e9b13beb02b35d5b",
+      "layoutComparison": {
+        "mae": 0.333323,
+        "correlation": 0.999642,
+        "changedFraction": 0.00187,
+        "halfEdgeCorrelations": [
+          0.999656,
+          0.999707
+        ],
+        "luminanceMAE": 0.118287
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "417": {
+      "spread": 417,
+      "image": "work/hansol-ink-hidden/screens/spread-0417.png",
+      "sha256": "aca1c647f6c1d53c76d3e59320f8a843eefd3351e2639856cf291109870ba51d",
+      "oldSha256": "5a4f3b562c3a4dc2c60e994d22deee6e22377add3e2a4e86443e7be26b3dc75c",
+      "layoutComparison": {
+        "mae": 0.217815,
+        "correlation": 0.999412,
+        "changedFraction": 0.001966,
+        "halfEdgeCorrelations": [
+          0.999578,
+          0.999605
+        ],
+        "luminanceMAE": 0.11603
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "432": {
+      "spread": 432,
+      "image": "work/hansol-ink-hidden/screens/spread-0432.png",
+      "sha256": "52de3467813d5d0286c31b8c26359cb0d0254348f5cefcfc8ca9b7fb061bccba",
+      "oldSha256": "727f50e2d84e21a67ea4b8b8235913ce87dfa51d43558a7c79ae3b56fcbfdc4e",
+      "layoutComparison": {
+        "mae": 0.357235,
+        "correlation": 0.999616,
+        "changedFraction": 0.001877,
+        "halfEdgeCorrelations": [
+          0.999673,
+          0.999686
+        ],
+        "luminanceMAE": 0.122023
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "433": {
+      "spread": 433,
+      "image": "work/hansol-ink-hidden/screens/spread-0433.png",
+      "sha256": "24a86e1f8cac2f890756ea336b846d9a05b50b6e2ada458dbcab349086558cb2",
+      "oldSha256": "d24cc5e60bf15db6575d8826e4672a301e1dd6b237a4689bdeb5e1f536a11586",
+      "layoutComparison": {
+        "mae": 0.342463,
+        "correlation": 0.999618,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.999703,
+          0.99962
+        ],
+        "luminanceMAE": 0.118631
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "434": {
+      "spread": 434,
+      "image": "work/hansol-ink-hidden/screens/spread-0434.png",
+      "sha256": "9ec748c65787d0ac2fbafd85f53b8283ae79063d63d144b894fdcbdfc23b131a",
+      "oldSha256": "339cd8290e81f5232ae0ffec9e2fac58cd1e77d02185c54321b00f7a2d977cb3",
+      "layoutComparison": {
+        "mae": 0.373595,
+        "correlation": 0.999651,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.999694,
+          0.999726
+        ],
+        "luminanceMAE": 0.127531
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "435": {
+      "spread": 435,
+      "image": "work/hansol-ink-hidden/screens/spread-0435.png",
+      "sha256": "c48d9537fdeeec1d40522ab2e1726a0b00401ecf6ca7baf87cfc1d053c28563a",
+      "oldSha256": "1f9c69b28b9ef173474ff47c9e30f1ec44dc1991b2e5d83097004765290ec64f",
+      "layoutComparison": {
+        "mae": 0.341743,
+        "correlation": 0.999571,
+        "changedFraction": 0.00188,
+        "halfEdgeCorrelations": [
+          0.999615,
+          0.999668
+        ],
+        "luminanceMAE": 0.116714
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "436": {
+      "spread": 436,
+      "image": "work/hansol-ink-hidden/screens/spread-0436.png",
+      "sha256": "30960905af40dcf682f21e3a1c4936307bdc15de72eda97384a7ef2dfc45c3d4",
+      "oldSha256": "d4e5552d7f9da0fbd801a7d42d116b8f5e80f76cccb5032da4067314362d99bd",
+      "layoutComparison": {
+        "mae": 0.344751,
+        "correlation": 0.99961,
+        "changedFraction": 0.001877,
+        "halfEdgeCorrelations": [
+          0.999687,
+          0.999662
+        ],
+        "luminanceMAE": 0.117628
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "437": {
+      "spread": 437,
+      "image": "work/hansol-ink-hidden/screens/spread-0437.png",
+      "sha256": "2f9590ea75cf22833a4d867474bbcfcbd245ffdf95a6e6d521613101938bfe10",
+      "oldSha256": "8add81970ccb2774e1cd606827c9e45345b68c8e2d9ee9acd5b0dac9f75ae8e6",
+      "layoutComparison": {
+        "mae": 0.339919,
+        "correlation": 0.999629,
+        "changedFraction": 0.001877,
+        "halfEdgeCorrelations": [
+          0.99969,
+          0.999681
+        ],
+        "luminanceMAE": 0.117736
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "438": {
+      "spread": 438,
+      "image": "work/hansol-ink-hidden/screens/spread-0438.png",
+      "sha256": "63e423ade1531f99b446543500bf15f62d1f0bbc3b5ff9b917b39f8969391e2e",
+      "oldSha256": "e01036583025e5f3c7b7b89fef0eca773b0db64901cd19861080321c60e73e5e",
+      "layoutComparison": {
+        "mae": 0.286139,
+        "correlation": 0.999586,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.99968,
+          0.999582
+        ],
+        "luminanceMAE": 0.103802
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "439": {
+      "spread": 439,
+      "image": "work/hansol-ink-hidden/screens/spread-0439.png",
+      "sha256": "4550ed6aa0c91db9ab082f8ce303739027a84a6cacacc0af76c927dd2e78d680",
+      "oldSha256": "3927977525f9e7d7ec214146adee3310faae1af374e24ebedf573952a95bb994",
+      "layoutComparison": {
+        "mae": 0.320269,
+        "correlation": 0.999618,
+        "changedFraction": 0.001873,
+        "halfEdgeCorrelations": [
+          0.999705,
+          0.999653
+        ],
+        "luminanceMAE": 0.111339
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "441": {
+      "spread": 441,
+      "image": "work/hansol-ink-hidden/screens/spread-0441.png",
+      "sha256": "9e90d6b7006863d6ea1b73609c72501229d40785b27b47c699224f3f2663dcf0",
+      "oldSha256": "3a6f13c8f76e3118ab12138c4630c997735ee47f570ed18c907d478913d7d4f9",
+      "layoutComparison": {
+        "mae": 0.348737,
+        "correlation": 0.999211,
+        "changedFraction": 0.004469,
+        "halfEdgeCorrelations": [
+          0.999725,
+          0.999431
+        ],
+        "luminanceMAE": 0.207139
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "445": {
+      "spread": 445,
+      "image": "work/hansol-ink-hidden/screens/spread-0445.png",
+      "sha256": "aa87303a8688cc809eae08914a3f8a6ca633c229f516b2dd717c98d9fea6b52b",
+      "oldSha256": "3b86b155bebf0dd39d51d612b65eaa4670210687a5ba2d935b46927b3448ad3e",
+      "layoutComparison": {
+        "mae": 0.331614,
+        "correlation": 0.999309,
+        "changedFraction": 0.004815,
+        "halfEdgeCorrelations": [
+          0.999289,
+          0.999714
+        ],
+        "luminanceMAE": 0.14833
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "446": {
+      "spread": 446,
+      "image": "work/hansol-ink-hidden/screens/spread-0446.png",
+      "sha256": "a65aeeaa2df20fd9e9e8f1e6a09d62bfdb90639ac0aa237843d414d55cb9a389",
+      "oldSha256": "04bf3e8c9557c82908ff31b8603c47a5f28ec470f0337d75b9d36a9e447dde16",
+      "layoutComparison": {
+        "mae": 0.283351,
+        "correlation": 0.999667,
+        "changedFraction": 0.001774,
+        "halfEdgeCorrelations": [
+          0.999754,
+          0.999672
+        ],
+        "luminanceMAE": 0.103653
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "447": {
+      "spread": 447,
+      "image": "work/hansol-ink-hidden/screens/spread-0447.png",
+      "sha256": "2e343bc072fea6c8ecc57ecfd26a35857656cd906223630e3d90ebc3541dc898",
+      "oldSha256": "f919f850d5252abb8e1026112b5e10010d5a11853e6a053182f1b3279d41e2cf",
+      "layoutComparison": {
+        "mae": 0.276138,
+        "correlation": 0.999642,
+        "changedFraction": 0.001781,
+        "halfEdgeCorrelations": [
+          0.9997,
+          0.999681
+        ],
+        "luminanceMAE": 0.103334
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "448": {
+      "spread": 448,
+      "image": "work/hansol-ink-hidden/screens/spread-0448.png",
+      "sha256": "0ebebc863efe25adc18f89a744fc32a5134dc63b09fc0a4fab5bcb107e0d2652",
+      "oldSha256": "26b869f712ce9f0b4593c289349b2df82745ec454a5396ba1edc646eb32e7426",
+      "layoutComparison": {
+        "mae": 0.296613,
+        "correlation": 0.999668,
+        "changedFraction": 0.001768,
+        "halfEdgeCorrelations": [
+          0.999713,
+          0.999699
+        ],
+        "luminanceMAE": 0.111352
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "449": {
+      "spread": 449,
+      "image": "work/hansol-ink-hidden/screens/spread-0449.png",
+      "sha256": "f0f2c71e66897f35250b6c279c99eed90334446748bf47de725487020d18c893",
+      "oldSha256": "aed4dfcf8b1961de0eeebc01a8a3325f260250bedf604a775f0945fb3e33c1ee",
+      "layoutComparison": {
+        "mae": 0.314606,
+        "correlation": 0.999633,
+        "changedFraction": 0.001768,
+        "halfEdgeCorrelations": [
+          0.999689,
+          0.999663
+        ],
+        "luminanceMAE": 0.116558
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "450": {
+      "spread": 450,
+      "image": "work/hansol-ink-hidden/screens/spread-0450.png",
+      "sha256": "c6135a84f035cdd2828b2ef92f779034ab98c437cfefe81f44854807bd50e181",
+      "oldSha256": "3a4d6f85d39044b1f3539b2ec43e7c23391d1ede695526e0384b10bf2925122b",
+      "layoutComparison": {
+        "mae": 0.291945,
+        "correlation": 0.999653,
+        "changedFraction": 0.001771,
+        "halfEdgeCorrelations": [
+          0.999699,
+          0.999693
+        ],
+        "luminanceMAE": 0.106418
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "451": {
+      "spread": 451,
+      "image": "work/hansol-ink-hidden/screens/spread-0451.png",
+      "sha256": "7d771f7fb2e08588778dd7505aa27788e06fc3455563352c6abbeb260afe763c",
+      "oldSha256": "72e63c1c7dee80e78f76130da592f7ad0f9151d1bfe8816c8c41f01791f7e1cd",
+      "layoutComparison": {
+        "mae": 1.173812,
+        "correlation": 0.997767,
+        "changedFraction": 0.003376,
+        "halfEdgeCorrelations": [
+          0.999719,
+          0.999958
+        ],
+        "luminanceMAE": 0.789971
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "454": {
+      "spread": 454,
+      "image": "work/hansol-ink-hidden/screens/spread-0454.png",
+      "sha256": "3970cd8a9bc28bfc919a679fb2e8d5f287df9418873228c196af5275232176db",
+      "oldSha256": "0a415a351fbcf61ad8b7a374ebfa83e34db8270308dbb64ce7264b93d47f06a7",
+      "layoutComparison": {
+        "mae": 0.272461,
+        "correlation": 0.998946,
+        "changedFraction": 0.005051,
+        "halfEdgeCorrelations": [
+          0.999133,
+          0.999289
+        ],
+        "luminanceMAE": 0.130506
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "455": {
+      "spread": 455,
+      "image": "work/hansol-ink-hidden/screens/spread-0455.png",
+      "sha256": "bd499cc04c7ee6b56f5e30f155d88ef620e6b4df3fb547399057cbf93b0db6b3",
+      "oldSha256": "60d1a28eeff451e093b5b1a0a16421e655643f0d2c1ec2ae02668b0d4a37b4c5",
+      "layoutComparison": {
+        "mae": 0.255303,
+        "correlation": 0.999477,
+        "changedFraction": 0.001835,
+        "halfEdgeCorrelations": [
+          0.999648,
+          0.999276
+        ],
+        "luminanceMAE": 0.091241
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "461": {
+      "spread": 461,
+      "image": "work/hansol-ink-hidden/screens/spread-0461.png",
+      "sha256": "1205bebb6500ced372d251d7a10bad42ec8c6ca2593a37d46d66b0db32fbd907",
+      "oldSha256": "6944f19efa449e990aa295ce9a5890b92d94d386bec0937625667f72639c6543",
+      "layoutComparison": {
+        "mae": 0.380087,
+        "correlation": 0.999132,
+        "changedFraction": 0.004808,
+        "halfEdgeCorrelations": [
+          0.999264,
+          0.999619
+        ],
+        "luminanceMAE": 0.155715
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "462": {
+      "spread": 462,
+      "image": "work/hansol-ink-hidden/screens/spread-0462.png",
+      "sha256": "6f31f5915a48bc6b2f7887be5aee29afdd07e67502d88bde0e9ea9d789a5ed55",
+      "oldSha256": "bcd226d8bf80e5fc021426b2cb4c3579650ada9b1e97e4ac6907c2b054ea6391",
+      "layoutComparison": {
+        "mae": 0.239836,
+        "correlation": 0.999498,
+        "changedFraction": 0.001838,
+        "halfEdgeCorrelations": [
+          0.999628,
+          0.999635
+        ],
+        "luminanceMAE": 0.085997
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "463": {
+      "spread": 463,
+      "image": "work/hansol-ink-hidden/screens/spread-0463.png",
+      "sha256": "972ec5bce839dea2a0231d0c1c958c9868946828c3e758112a13a88c8ad70810",
+      "oldSha256": "6e9d0886e14b1944fa3884f538ae42326f47193c6b9094a3e8df3f86ba89ed26",
+      "layoutComparison": {
+        "mae": 0.252131,
+        "correlation": 0.999481,
+        "changedFraction": 0.001835,
+        "halfEdgeCorrelations": [
+          0.999633,
+          0.999599
+        ],
+        "luminanceMAE": 0.093566
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "464": {
+      "spread": 464,
+      "image": "work/hansol-ink-hidden/screens/spread-0464.png",
+      "sha256": "b4aaa8d495524efea6d7eb1a25ddcab3bea4237ad5032a82edaf687fbedc5fd5",
+      "oldSha256": "f4695dd4399c778ac6d62778853a4da652e940fd1ab4b01105a9f1cd2f57109f",
+      "layoutComparison": {
+        "mae": 0.266337,
+        "correlation": 0.999553,
+        "changedFraction": 0.001835,
+        "halfEdgeCorrelations": [
+          0.999596,
+          0.999698
+        ],
+        "luminanceMAE": 0.104206
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "465": {
+      "spread": 465,
+      "image": "work/hansol-ink-hidden/screens/spread-0465.png",
+      "sha256": "3d0a879963fbcf15199a5999af06b8486a4aa594cef1b55442fc8646128d99f2",
+      "oldSha256": "e703431dfe94ba513374952d6320112ba239ed2d4200081e3d31ed570c056cc4",
+      "layoutComparison": {
+        "mae": 6.359971,
+        "correlation": 0.998469,
+        "changedFraction": 0.463373,
+        "halfEdgeCorrelations": [
+          0.999576,
+          0.999842
+        ],
+        "luminanceMAE": 4.505196
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "468": {
+      "spread": 468,
+      "image": "work/hansol-ink-hidden/screens/spread-0468.png",
+      "sha256": "e960b75ca8cd1063800f6e13f914b309e563abdc6bacb1490c8cff1faab38538",
+      "oldSha256": "df3a973bbb265004fae9823f975a1631eee4521fe8fdb245e1ae9ba11996f190",
+      "layoutComparison": {
+        "mae": 0.730231,
+        "correlation": 0.996081,
+        "changedFraction": 0.001637,
+        "halfEdgeCorrelations": [
+          0.995575,
+          0.992975
+        ],
+        "luminanceMAE": 0.56979
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "469": {
+      "spread": 469,
+      "image": "work/hansol-ink-hidden/screens/spread-0469.png",
+      "sha256": "5fbbac3d3628a4ee3440603a34997583191b95c547d1c4dbf700003e4233d660",
+      "oldSha256": "c264894035bab476a2dec84f0cfbfc41f81225baaab517ee0442521c432c69ce",
+      "layoutComparison": {
+        "mae": 1.145605,
+        "correlation": 0.989169,
+        "changedFraction": 0.002442,
+        "halfEdgeCorrelations": [
+          0.985521,
+          0.986199
+        ],
+        "luminanceMAE": 1.134203
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "470": {
+      "spread": 470,
+      "image": "work/hansol-ink-hidden/screens/spread-0470.png",
+      "sha256": "2ef622f441542053ce8f4c44d82541c306cbefb6ecc95f41650315942c1a7f63",
+      "oldSha256": "cfad83fcf7b1e5b9f6a9dd2f4f293e4eace62ca2ca41d45eeb0280c9895e6cf2",
+      "layoutComparison": {
+        "mae": 1.281399,
+        "correlation": 0.988759,
+        "changedFraction": 0.002762,
+        "halfEdgeCorrelations": [
+          0.985173,
+          0.985104
+        ],
+        "luminanceMAE": 1.269442
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "471": {
+      "spread": 471,
+      "image": "work/hansol-ink-hidden/screens/spread-0471.png",
+      "sha256": "982245faccef18f24b22478a68dec5654e34bd0e483a11277d58910bb0287a50",
+      "oldSha256": "e2890dc16cd1ee6d47fed65f7eedce118e34e389aac73991c6a20e64a76e3516",
+      "layoutComparison": {
+        "mae": 1.073233,
+        "correlation": 0.990505,
+        "changedFraction": 0.002433,
+        "halfEdgeCorrelations": [
+          0.986054,
+          0.985015
+        ],
+        "luminanceMAE": 1.062476
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "472": {
+      "spread": 472,
+      "image": "work/hansol-ink-hidden/screens/spread-0472.png",
+      "sha256": "4d7e28f069ea9e5d612f0e388a1ab4e62a60d0632acb81a2590392428ff1ba18",
+      "oldSha256": "d76585902e98b1e2b604e3c302e8a214861c34b5cb8bb0b0f53823017144a736",
+      "layoutComparison": {
+        "mae": 1.01967,
+        "correlation": 0.989586,
+        "changedFraction": 0.002788,
+        "halfEdgeCorrelations": [
+          0.986549,
+          0.985799
+        ],
+        "luminanceMAE": 1.007577
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "473": {
+      "spread": 473,
+      "image": "work/hansol-ink-hidden/screens/spread-0473.png",
+      "sha256": "167f636644682644312bc2d1e1fadf78502bcdff5b07ec9c1de80e0fc48c8435",
+      "oldSha256": "2bfaff671af79c915cdfd06ecfae15f3c03c1ffd09994afdf7fe43ffeda4d8c0",
+      "layoutComparison": {
+        "mae": 1.1716,
+        "correlation": 0.989018,
+        "changedFraction": 0.00251,
+        "halfEdgeCorrelations": [
+          0.985193,
+          0.985163
+        ],
+        "luminanceMAE": 1.160842
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "475": {
+      "spread": 475,
+      "image": "work/hansol-ink-hidden/screens/spread-0475.png",
+      "sha256": "07e4a39fa98f158935756eadeaa8a56184c2db996e410b1ddec3655ececc1e48",
+      "oldSha256": "10e65135104d374f32446b052ecbb038d9d85d9728e1debaf794f83d091c2ad3",
+      "layoutComparison": {
+        "mae": 1.152392,
+        "correlation": 0.98939,
+        "changedFraction": 0.002644,
+        "halfEdgeCorrelations": [
+          0.985711,
+          0.986094
+        ],
+        "luminanceMAE": 1.097848
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "476": {
+      "spread": 476,
+      "image": "work/hansol-ink-hidden/screens/spread-0476.png",
+      "sha256": "2d9c1f20573a2f2426e5110fe060c518d012298dff5c2af93a483f66edb59dc0",
+      "oldSha256": "1924693517fd674947170c0984770fc9a8d073e31e0a9d5883dbd38545c70b05",
+      "layoutComparison": {
+        "mae": 1.100011,
+        "correlation": 0.989573,
+        "changedFraction": 0.002919,
+        "halfEdgeCorrelations": [
+          0.985886,
+          0.987624
+        ],
+        "luminanceMAE": 1.089074
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "477": {
+      "spread": 477,
+      "image": "work/hansol-ink-hidden/screens/spread-0477.png",
+      "sha256": "578a43855a1d42dc884787a6899d3012cfde74f80a5cfda809a031f8126154e1",
+      "oldSha256": "0a6d67b6cefc01bb63ac98cea7ace4a6b40a3116bd8e483fe80594001b421e6f",
+      "layoutComparison": {
+        "mae": 1.256016,
+        "correlation": 0.988583,
+        "changedFraction": 0.002759,
+        "halfEdgeCorrelations": [
+          0.98489,
+          0.985255
+        ],
+        "luminanceMAE": 1.243914
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "478": {
+      "spread": 478,
+      "image": "work/hansol-ink-hidden/screens/spread-0478.png",
+      "sha256": "aee9424ee31a6b47405929c07b250f6b0c9e46f95ea04ffdc9ce20a33cb63a20",
+      "oldSha256": "83846ac16df541ddc1ea58a87276a65b7debfb730edcfaf328a9c1125efa966e",
+      "layoutComparison": {
+        "mae": 1.13903,
+        "correlation": 0.989853,
+        "changedFraction": 0.002775,
+        "halfEdgeCorrelations": [
+          0.985769,
+          0.986562
+        ],
+        "luminanceMAE": 1.128099
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "479": {
+      "spread": 479,
+      "image": "work/hansol-ink-hidden/screens/spread-0479.png",
+      "sha256": "1b0dbd3d2c086c340149c9ae745585ba8d1d03790875aa30214bea4832ca0088",
+      "oldSha256": "6fc902f9643e02c0c990907e342a8d0b03a4e379c589015f046ce7296bb003a0",
+      "layoutComparison": {
+        "mae": 1.160341,
+        "correlation": 0.989468,
+        "changedFraction": 0.002797,
+        "halfEdgeCorrelations": [
+          0.985803,
+          0.985716
+        ],
+        "luminanceMAE": 1.148108
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "480": {
+      "spread": 480,
+      "image": "work/hansol-ink-hidden/screens/spread-0480.png",
+      "sha256": "bea314302a9ea29a5b2b821549cb8f52a79f3107a739bdc70fc6eeedf0c17cfe",
+      "oldSha256": "cf4219e41df3c3b7f9898241b222ae92c96f16cb1697c01198403c7e6364e4bd",
+      "layoutComparison": {
+        "mae": 0.87317,
+        "correlation": 0.98985,
+        "changedFraction": 0.002446,
+        "halfEdgeCorrelations": [
+          0.985729,
+          0.986263
+        ],
+        "luminanceMAE": 0.862315
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "481": {
+      "spread": 481,
+      "image": "work/hansol-ink-hidden/screens/spread-0481.png",
+      "sha256": "c6f7521de844da43a57deb0b1db13cebf9d28d8513ad97ece5e3b2034ae8f11b",
+      "oldSha256": "4714d3ced8bc029acfea3a35cbe4b2c331b481e5edcabe7ef35c6bff26bfd6e3",
+      "layoutComparison": {
+        "mae": 1.073119,
+        "correlation": 0.990338,
+        "changedFraction": 0.001845,
+        "halfEdgeCorrelations": [
+          0.986451,
+          0.98614
+        ],
+        "luminanceMAE": 1.019649
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "482": {
+      "spread": 482,
+      "image": "work/hansol-ink-hidden/screens/spread-0482.png",
+      "sha256": "0067c6d9d5eadd5d65892902a03e7dabf00351bb8daa0aabbb87d9cfd1252a04",
+      "oldSha256": "aa6975e049e2543d80fb6597403813a7d5b59e7677991fd05d0b655e5e5bc7b5",
+      "layoutComparison": {
+        "mae": 1.233048,
+        "correlation": 0.989507,
+        "changedFraction": 0.002599,
+        "halfEdgeCorrelations": [
+          0.986207,
+          0.984735
+        ],
+        "luminanceMAE": 1.222291
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "483": {
+      "spread": 483,
+      "image": "work/hansol-ink-hidden/screens/spread-0483.png",
+      "sha256": "7f090ce88a46dd75a4a0ae6e4960f4499fca091bed89d6278d200efb6b23cabc",
+      "oldSha256": "07d616de13c96870a89ec64a19e23499610b413d269df21d945df6050fb7499b",
+      "layoutComparison": {
+        "mae": 1.281765,
+        "correlation": 0.988899,
+        "changedFraction": 0.002922,
+        "halfEdgeCorrelations": [
+          0.986782,
+          0.984564
+        ],
+        "luminanceMAE": 1.269341
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "486": {
+      "spread": 486,
+      "image": "work/hansol-ink-hidden/screens/spread-0486.png",
+      "sha256": "42448f5e70a09b20766ac517f40f56d3730b05c8028eddefee965409eeee6482",
+      "oldSha256": "eca1e0c9c55d75ef5344deea34b350bd901cd21c2147a16e681bae6abae66868",
+      "layoutComparison": {
+        "mae": 0.95253,
+        "correlation": 0.99015,
+        "changedFraction": 0.002436,
+        "halfEdgeCorrelations": [
+          0.987397,
+          0.985799
+        ],
+        "luminanceMAE": 0.941773
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "487": {
+      "spread": 487,
+      "image": "work/hansol-ink-hidden/screens/spread-0487.png",
+      "sha256": "5354119355d7da240b50bf8fedb0c4558a25e38f37c23e36862d0500e541a54d",
+      "oldSha256": "8749f9a5960871c6ebc4ab1e3cec46fc2c38c00256aba896b7986df7d5fa9439",
+      "layoutComparison": {
+        "mae": 0.790848,
+        "correlation": 0.990581,
+        "changedFraction": 0.002337,
+        "halfEdgeCorrelations": [
+          0.986452,
+          0.985778
+        ],
+        "luminanceMAE": 0.780091
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "488": {
+      "spread": 488,
+      "image": "work/hansol-ink-hidden/screens/spread-0488.png",
+      "sha256": "7e2645b0c1a0f2dc8f1007171e42b108173be1e142690c49d054bd5f68e3206d",
+      "oldSha256": "d151a0e4dc4a7ea9209dbdd5ef42ec1d0874aec5f9ee23445c422de40367b9ce",
+      "layoutComparison": {
+        "mae": 1.153333,
+        "correlation": 0.989339,
+        "changedFraction": 0.002385,
+        "halfEdgeCorrelations": [
+          0.987731,
+          0.985245
+        ],
+        "luminanceMAE": 1.099249
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "489": {
+      "spread": 489,
+      "image": "work/hansol-ink-hidden/screens/spread-0489.png",
+      "sha256": "a4589e32b5c7643d85a9c56bf94740101442fb17c292473732e5c34751cd513c",
+      "oldSha256": "99abf4b6eb14cc182f85a65fcb8211ad0972392df14f4249ed02ae05ef351a29",
+      "layoutComparison": {
+        "mae": 1.257892,
+        "correlation": 0.988937,
+        "changedFraction": 0.002615,
+        "halfEdgeCorrelations": [
+          0.984526,
+          0.985862
+        ],
+        "luminanceMAE": 1.247104
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "490": {
+      "spread": 490,
+      "image": "work/hansol-ink-hidden/screens/spread-0490.png",
+      "sha256": "9872e0668135ae259e87d825f377f06e2b9534e05de1d2b1e161c92644eaf820",
+      "oldSha256": "0bf18d66d9334e2d3cd4805481569de2595a92dcd4b22bfe5c569fad54dd1b97",
+      "layoutComparison": {
+        "mae": 1.315568,
+        "correlation": 0.989368,
+        "changedFraction": 0.002801,
+        "halfEdgeCorrelations": [
+          0.984787,
+          0.985795
+        ],
+        "luminanceMAE": 1.303525
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "491": {
+      "spread": 491,
+      "image": "work/hansol-ink-hidden/screens/spread-0491.png",
+      "sha256": "5fab65102b3981afcf46c0e9a1f0beeff97c222ecc818f856380bdadc9d59eb1",
+      "oldSha256": "7a77ab67f600c3037dfcb81d44c352dbd858b8c8b9d68e0b2025d4091bda052c",
+      "layoutComparison": {
+        "mae": 1.156795,
+        "correlation": 0.989793,
+        "changedFraction": 0.002516,
+        "halfEdgeCorrelations": [
+          0.985154,
+          0.985599
+        ],
+        "luminanceMAE": 1.146037
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "492": {
+      "spread": 492,
+      "image": "work/hansol-ink-hidden/screens/spread-0492.png",
+      "sha256": "4f279fd8a9aa93e9c78cc2fb07760a42c1551c46b115a54d968841c2fd38a524",
+      "oldSha256": "e91ba32becbb18ff17d0c7240a2819b9dfb7e510670540ca5bd307cb4bc080e2",
+      "layoutComparison": {
+        "mae": 1.089179,
+        "correlation": 0.988661,
+        "changedFraction": 0.002641,
+        "halfEdgeCorrelations": [
+          0.984971,
+          0.985127
+        ],
+        "luminanceMAE": 1.077247
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "493": {
+      "spread": 493,
+      "image": "work/hansol-ink-hidden/screens/spread-0493.png",
+      "sha256": "29848a322c99311d01984dc530cef3a1c0bc61512a3cc24202bfa3d3918f9d67",
+      "oldSha256": "74ab5e9726d5baf40d97a3018a496e8793c945590bb83e051d56d749f6e105df",
+      "layoutComparison": {
+        "mae": 1.050558,
+        "correlation": 0.989636,
+        "changedFraction": 0.002653,
+        "halfEdgeCorrelations": [
+          0.986025,
+          0.985699
+        ],
+        "luminanceMAE": 1.039801
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "494": {
+      "spread": 494,
+      "image": "work/hansol-ink-hidden/screens/spread-0494.png",
+      "sha256": "d873324f2b6fe5e9906bd557dbc4adccdc3d7d5def60cf7d9cfca19f38ede312",
+      "oldSha256": "7f9133465670fb3e4e59df2af54dce48bef61e26ba2be578b7374b3d8a414d39",
+      "layoutComparison": {
+        "mae": 1.421594,
+        "correlation": 0.988896,
+        "changedFraction": 0.002816,
+        "halfEdgeCorrelations": [
+          0.985348,
+          0.985615
+        ],
+        "luminanceMAE": 1.367497
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "495": {
+      "spread": 495,
+      "image": "work/hansol-ink-hidden/screens/spread-0495.png",
+      "sha256": "825a2e916c5530cadb3d180d469808ec917b96a2c543581f7dc3742f3883a021",
+      "oldSha256": "c378b138437d9f60f1ef2728ab755e83f2dfed9fc205e663f9a09a72a9e7a03f",
+      "layoutComparison": {
+        "mae": 1.141968,
+        "correlation": 0.989676,
+        "changedFraction": 0.00281,
+        "halfEdgeCorrelations": [
+          0.98637,
+          0.985124
+        ],
+        "luminanceMAE": 1.130074
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "496": {
+      "spread": 496,
+      "image": "work/hansol-ink-hidden/screens/spread-0496.png",
+      "sha256": "67ebf75c069e4a65c440560c0eb1a44389c5694942382e6cc044b614c78c3754",
+      "oldSha256": "445d5e8f090ec706c21881b60b4d72112d72b26990e2cabeecf9dbee73db6c0f",
+      "layoutComparison": {
+        "mae": 1.341334,
+        "correlation": 0.988947,
+        "changedFraction": 0.002759,
+        "halfEdgeCorrelations": [
+          0.98487,
+          0.985305
+        ],
+        "luminanceMAE": 1.330577
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "497": {
+      "spread": 497,
+      "image": "work/hansol-ink-hidden/screens/spread-0497.png",
+      "sha256": "99c1c337790a738c7538a82558674465a695d651c2eb5370aec7e27e8ea81724",
+      "oldSha256": "c71657c7e84ff93f5c21526d8af8b0847896c986787299bf543be74810e7213d",
+      "layoutComparison": {
+        "mae": 0.988729,
+        "correlation": 0.990624,
+        "changedFraction": 0.002516,
+        "halfEdgeCorrelations": [
+          0.985815,
+          0.986234
+        ],
+        "luminanceMAE": 0.977972
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "498": {
+      "spread": 498,
+      "image": "work/hansol-ink-hidden/screens/spread-0498.png",
+      "sha256": "0ccfe500a24b52806e70a5747fbf4406ef7cd366db621d71aff8200d3bd2abe2",
+      "oldSha256": "b0b492b5d6a2229f2d683b269636883fa660ec895bbd9b48c690bc6a8a0089c9",
+      "layoutComparison": {
+        "mae": 1.181515,
+        "correlation": 0.988788,
+        "changedFraction": 0.002711,
+        "halfEdgeCorrelations": [
+          0.98641,
+          0.98414
+        ],
+        "luminanceMAE": 1.169569
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "499": {
+      "spread": 499,
+      "image": "work/hansol-ink-hidden/screens/spread-0499.png",
+      "sha256": "10004b80c3a22c6659e7c9b24fe59d0d2519bf34bb037b3089dd253dd9640b44",
+      "oldSha256": "37822112542c5f484e238428789eef36ea6a3dab041b8a5dc36817d858192990",
+      "layoutComparison": {
+        "mae": 0.957546,
+        "correlation": 0.989537,
+        "changedFraction": 0.002717,
+        "halfEdgeCorrelations": [
+          0.985445,
+          0.986741
+        ],
+        "luminanceMAE": 0.946789
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "500": {
+      "spread": 500,
+      "image": "work/hansol-ink-hidden/screens/spread-0500.png",
+      "sha256": "a40b0de62476b559b5a6c61a04f6640efb9ca3fbd93da72d354cc3eb7a456f92",
+      "oldSha256": "8b7d59cb5797f41ec3c4d490bd2a48f0f7c65e09ead1dae025884a4b054787d8",
+      "layoutComparison": {
+        "mae": 0.792122,
+        "correlation": 0.990458,
+        "changedFraction": 0.002263,
+        "halfEdgeCorrelations": [
+          0.988372,
+          0.986888
+        ],
+        "luminanceMAE": 0.736837
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "501": {
+      "spread": 501,
+      "image": "work/hansol-ink-hidden/screens/spread-0501.png",
+      "sha256": "9b73162193f12f2ddabfba0f20576cda63808e1f6505761284b7e43f2a637599",
+      "oldSha256": "db5fb89dda88879876c375089430169953762fd1c41fb8cc536a1895c378d4bc",
+      "layoutComparison": {
+        "mae": 0.967341,
+        "correlation": 0.989789,
+        "changedFraction": 0.002283,
+        "halfEdgeCorrelations": [
+          0.987566,
+          0.985615
+        ],
+        "luminanceMAE": 0.955951
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "502": {
+      "spread": 502,
+      "image": "work/hansol-ink-hidden/screens/spread-0502.png",
+      "sha256": "d44e544bcf4505af156389ab53e14b2d24f37ab25ee8f411e82b8b249677256e",
+      "oldSha256": "791c10a583907a886f9e1d1b8463af1e78f940f287bdea8841288b414143a973",
+      "layoutComparison": {
+        "mae": 1.076388,
+        "correlation": 0.98932,
+        "changedFraction": 0.002673,
+        "halfEdgeCorrelations": [
+          0.986157,
+          0.985115
+        ],
+        "luminanceMAE": 1.064314
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "503": {
+      "spread": 503,
+      "image": "work/hansol-ink-hidden/screens/spread-0503.png",
+      "sha256": "9bdd402e2f7508ea147042685ccb199f7f1a334def7bb0c3bfffecb0c20b8c39",
+      "oldSha256": "f7a81c6a459fc9fbea55912ef81d81d2c2005acc31c5c5422e30efcf4ceb9f40",
+      "layoutComparison": {
+        "mae": 1.313562,
+        "correlation": 0.988646,
+        "changedFraction": 0.002714,
+        "halfEdgeCorrelations": [
+          0.986654,
+          0.98268
+        ],
+        "luminanceMAE": 1.302805
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "504": {
+      "spread": 504,
+      "image": "work/hansol-ink-hidden/screens/spread-0504.png",
+      "sha256": "d9ad53400d922b642b1d200d6d112fe74a62b3efcfc195e007128c3d3119bf3b",
+      "oldSha256": "764b138da3a780588ab571ee3e87e9302bbdb09fe5ab9797cf0d615a237e46d1",
+      "layoutComparison": {
+        "mae": 1.22837,
+        "correlation": 0.989209,
+        "changedFraction": 0.002596,
+        "halfEdgeCorrelations": [
+          0.985282,
+          0.985406
+        ],
+        "luminanceMAE": 1.216432
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "505": {
+      "spread": 505,
+      "image": "work/hansol-ink-hidden/screens/spread-0505.png",
+      "sha256": "d195c93b8819f97df46a37e542453e8c7401326699f8569a22ce238aa88b6154",
+      "oldSha256": "d839b2f45d6ea6f1b08fd4f3dff7c8f02b308f969ae1b15fc1983db3e4f4d65e",
+      "layoutComparison": {
+        "mae": 1.143253,
+        "correlation": 0.989036,
+        "changedFraction": 0.002506,
+        "halfEdgeCorrelations": [
+          0.985561,
+          0.985548
+        ],
+        "luminanceMAE": 1.132495
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "506": {
+      "spread": 506,
+      "image": "work/hansol-ink-hidden/screens/spread-0506.png",
+      "sha256": "64dd4cb33f3d5456e0a61e48f76ef28067bd5690ca62d6780c1f9c2376ce8508",
+      "oldSha256": "4bff8298ddace1301d4f7412fd4ff3a0b968517f7e892e34f055f46a0d53b080",
+      "layoutComparison": {
+        "mae": 0.648505,
+        "correlation": 0.990847,
+        "changedFraction": 0.002267,
+        "halfEdgeCorrelations": [
+          0.986501,
+          0.987897
+        ],
+        "luminanceMAE": 0.637748
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "507": {
+      "spread": 507,
+      "image": "work/hansol-ink-hidden/screens/spread-0507.png",
+      "sha256": "6b181e32adc773e09c7f151a700ce239e60dcdaedc3b3c74a73d8c3ca92e52bb",
+      "oldSha256": "a18ef85a08228ea610626aca0d9a04068f267b500b752d005573f19707280fc2",
+      "layoutComparison": {
+        "mae": 1.280483,
+        "correlation": 0.989008,
+        "changedFraction": 0.002724,
+        "halfEdgeCorrelations": [
+          0.986997,
+          0.98504
+        ],
+        "luminanceMAE": 1.226391
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "508": {
+      "spread": 508,
+      "image": "work/hansol-ink-hidden/screens/spread-0508.png",
+      "sha256": "1bd591df39d83f68ff8bfacc1c1495e8e4bc093a79c400f9bcbaf8b685d23c40",
+      "oldSha256": "c7be7b21ddfa39f8176335358a4fee694196eedd2c7b2b158a5762ecc5b8b07d",
+      "layoutComparison": {
+        "mae": 1.261244,
+        "correlation": 0.989148,
+        "changedFraction": 0.002737,
+        "halfEdgeCorrelations": [
+          0.985184,
+          0.985009
+        ],
+        "luminanceMAE": 1.24931
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "509": {
+      "spread": 509,
+      "image": "work/hansol-ink-hidden/screens/spread-0509.png",
+      "sha256": "7a120bab299cd26c044f5bc8856b93f6614d9df32fa9fd83f16c4274bc875258",
+      "oldSha256": "fa509ec1ac3ea6a5f7089d67a2b731483f5bc2e08fc9d802230669a639541b8d",
+      "layoutComparison": {
+        "mae": 1.38541,
+        "correlation": 0.988277,
+        "changedFraction": 0.00298,
+        "halfEdgeCorrelations": [
+          0.984359,
+          0.983515
+        ],
+        "luminanceMAE": 1.374653
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "510": {
+      "spread": 510,
+      "image": "work/hansol-ink-hidden/screens/spread-0510.png",
+      "sha256": "11ca238754f528bb459da5f986c493a05a6bc88522f24e4622d7d11323ccce5f",
+      "oldSha256": "b73362aec1457280d9640f0b4ba9e486919960d664eee996230f52d2daf948c3",
+      "layoutComparison": {
+        "mae": 1.166026,
+        "correlation": 0.989197,
+        "changedFraction": 0.002612,
+        "halfEdgeCorrelations": [
+          0.985841,
+          0.985636
+        ],
+        "luminanceMAE": 1.155257
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "511": {
+      "spread": 511,
+      "image": "work/hansol-ink-hidden/screens/spread-0511.png",
+      "sha256": "444746687064324a5513a58a09c7f635518e60e84a3a7ca279ee9737d22ab8f4",
+      "oldSha256": "bfcb27c6e2a47ac880999e62f68fe7b3798a2cbd14313a28c92dda7c28807883",
+      "layoutComparison": {
+        "mae": 1.1624,
+        "correlation": 0.989109,
+        "changedFraction": 0.002564,
+        "halfEdgeCorrelations": [
+          0.986691,
+          0.984336
+        ],
+        "luminanceMAE": 1.150358
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "512": {
+      "spread": 512,
+      "image": "work/hansol-ink-hidden/screens/spread-0512.png",
+      "sha256": "bafe02d38067e9e34c2b57b9c8e21aca464105b9cd93d82195c9f4dc913a0f65",
+      "oldSha256": "cb8c7a741acc0efbedaa08de0a530ba29d046673ca218a2bf397502a20779e15",
+      "layoutComparison": {
+        "mae": 1.013403,
+        "correlation": 0.989711,
+        "changedFraction": 0.002628,
+        "halfEdgeCorrelations": [
+          0.986293,
+          0.986728
+        ],
+        "luminanceMAE": 1.002645
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "513": {
+      "spread": 513,
+      "image": "work/hansol-ink-hidden/screens/spread-0513.png",
+      "sha256": "048b5d56dc6f01fbddb5b206823350fd68f27e1d9a732f30b17088f14709afa1",
+      "oldSha256": "a3468d4adbbe264ba3300553952a60209a270de7bc8875c5e1e1114c08b987c5",
+      "layoutComparison": {
+        "mae": 1.183166,
+        "correlation": 0.98926,
+        "changedFraction": 0.002529,
+        "halfEdgeCorrelations": [
+          0.986348,
+          0.985722
+        ],
+        "luminanceMAE": 1.129146
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "515": {
+      "spread": 515,
+      "image": "work/hansol-ink-hidden/screens/spread-0515.png",
+      "sha256": "f04701314b1c855cf9bd28e7f875bc3e3cddb5fa202b772ec859400c59ce3a0e",
+      "oldSha256": "cd65cb1e34d65f597e3f49254766bfb3020e56553ab9087c323d369f29114ef4",
+      "layoutComparison": {
+        "mae": 1.021597,
+        "correlation": 0.989908,
+        "changedFraction": 0.002612,
+        "halfEdgeCorrelations": [
+          0.986353,
+          0.984379
+        ],
+        "luminanceMAE": 1.009644
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "516": {
+      "spread": 516,
+      "image": "work/hansol-ink-hidden/screens/spread-0516.png",
+      "sha256": "a88bfea2da6c56aed1a49fa4665fdf2934ea12ec4678a8fa90fa91f1bb0b0cba",
+      "oldSha256": "c148638b6513e84a7a43e9ea45fc811e82521335af531855b4ab35ca3d444033",
+      "layoutComparison": {
+        "mae": 1.365234,
+        "correlation": 0.988342,
+        "changedFraction": 0.002756,
+        "halfEdgeCorrelations": [
+          0.984889,
+          0.984636
+        ],
+        "luminanceMAE": 1.354477
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "517": {
+      "spread": 517,
+      "image": "work/hansol-ink-hidden/screens/spread-0517.png",
+      "sha256": "a1cb0acf1c3339bd6d0e45c2158ca3d0ee1bd4e860cc9a74c35e11c23108e718",
+      "oldSha256": "5134d423067630b5ad03c8b2d62ff7a590642d98dc61e3c3e8fee6e024c7c266",
+      "layoutComparison": {
+        "mae": 1.187089,
+        "correlation": 0.988932,
+        "changedFraction": 0.00258,
+        "halfEdgeCorrelations": [
+          0.98565,
+          0.984933
+        ],
+        "luminanceMAE": 1.175129
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "518": {
+      "spread": 518,
+      "image": "work/hansol-ink-hidden/screens/spread-0518.png",
+      "sha256": "cc2a2e1f4a7f5c9abb733b8da175d5d7a41d5f6acf89ba5870f0e9dea8d393c9",
+      "oldSha256": "445a3f18efdcdb278045c8f960aae25e70552e6207fcf7c003ee4b1651c24ee5",
+      "layoutComparison": {
+        "mae": 0.907501,
+        "correlation": 0.99074,
+        "changedFraction": 0.002366,
+        "halfEdgeCorrelations": [
+          0.986149,
+          0.986324
+        ],
+        "luminanceMAE": 0.896744
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "519": {
+      "spread": 519,
+      "image": "work/hansol-ink-hidden/screens/spread-0519.png",
+      "sha256": "de6b2c9bae561676fe26c5428258bb1a4f56b760fa0b07cd0a3a3989b86535ca",
+      "oldSha256": "707522eacc590619b97892a6200f86c43af7e11cc89bac1e2c30d006e80cb813",
+      "layoutComparison": {
+        "mae": 0.777181,
+        "correlation": 0.990683,
+        "changedFraction": 0.002206,
+        "halfEdgeCorrelations": [
+          0.988422,
+          0.986647
+        ],
+        "luminanceMAE": 0.722894
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "520": {
+      "spread": 520,
+      "image": "work/hansol-ink-hidden/screens/spread-0520.png",
+      "sha256": "fd169a9470f5dc4efeb1cf2d99207ff72cb34ce33dde93ae61f1f3767794525d",
+      "oldSha256": "cd09e5ea8d8a38e1c881722e720ed854ef9f8acaf37912902c19bab80e7993c9",
+      "layoutComparison": {
+        "mae": 1.252786,
+        "correlation": 0.988456,
+        "changedFraction": 0.00281,
+        "halfEdgeCorrelations": [
+          0.986237,
+          0.984633
+        ],
+        "luminanceMAE": 1.242028
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "522": {
+      "spread": 522,
+      "image": "work/hansol-ink-hidden/screens/spread-0522.png",
+      "sha256": "ddc06216066b3dc4b00cd5095a057a2a9a722fe4caa768f612a61e4781884181",
+      "oldSha256": "b62128074df803279a521eaff1257c25b6c5ac6ffc802cf2a0f43cb194dd6ed0",
+      "layoutComparison": {
+        "mae": 1.278933,
+        "correlation": 0.988538,
+        "changedFraction": 0.00282,
+        "halfEdgeCorrelations": [
+          0.985077,
+          0.984607
+        ],
+        "luminanceMAE": 1.268171
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "523": {
+      "spread": 523,
+      "image": "work/hansol-ink-hidden/screens/spread-0523.png",
+      "sha256": "e3cf3f829dc19b0a3868c9fd5a9a98ad36137a4be231e0569dd2ea30d51d808c",
+      "oldSha256": "e5c927bcdf264f64e34577f94c98aaf836494c5a29539c47f301350bdcc6b5f3",
+      "layoutComparison": {
+        "mae": 1.239219,
+        "correlation": 0.989555,
+        "changedFraction": 0.002462,
+        "halfEdgeCorrelations": [
+          0.986186,
+          0.983441
+        ],
+        "luminanceMAE": 1.227114
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "524": {
+      "spread": 524,
+      "image": "work/hansol-ink-hidden/screens/spread-0524.png",
+      "sha256": "8f7761bc63ffec72702cc1ff0b4a5326a7ff6420be36d8fa718069fe2721ba74",
+      "oldSha256": "1f56aaca68c837313d59bcb3e654c3f451c46b63e53a94dc6a3f8a874136b1f5",
+      "layoutComparison": {
+        "mae": 1.034458,
+        "correlation": 0.989512,
+        "changedFraction": 0.002542,
+        "halfEdgeCorrelations": [
+          0.985704,
+          0.986111
+        ],
+        "luminanceMAE": 1.0237
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "525": {
+      "spread": 525,
+      "image": "work/hansol-ink-hidden/screens/spread-0525.png",
+      "sha256": "6541878a987d22d473b1337e1c584b6f26d68a3e4304e282426aae81be4b55d4",
+      "oldSha256": "a0e51b9646a784418dbe2e35bb3ff2b7c2ff569b26d2c099c10e32980102cb21",
+      "layoutComparison": {
+        "mae": 0.614176,
+        "correlation": 0.991392,
+        "changedFraction": 0.002075,
+        "halfEdgeCorrelations": [
+          0.986536,
+          0.98675
+        ],
+        "luminanceMAE": 0.603419
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "526": {
+      "spread": 526,
+      "image": "work/hansol-ink-hidden/screens/spread-0526.png",
+      "sha256": "fbb6d381feee89cc25741225a2fba139f782df5aca71c47f014584bb5f80191d",
+      "oldSha256": "8c701287323222fa986a6bcd51c24fb1ba6bf832199ed8ffb16676aa9eb2d3ec",
+      "layoutComparison": {
+        "mae": 1.2865,
+        "correlation": 0.988895,
+        "changedFraction": 0.002954,
+        "halfEdgeCorrelations": [
+          0.986238,
+          0.985439
+        ],
+        "luminanceMAE": 1.232523
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "527": {
+      "spread": 527,
+      "image": "work/hansol-ink-hidden/screens/spread-0527.png",
+      "sha256": "fb770938ada6bcbd82f9ad8260c25509b0428a630592bab3224f264215894d43",
+      "oldSha256": "c19826c837e514037ee8926faa5b4618b8088fd70c52cc74888f11969d124c1c",
+      "layoutComparison": {
+        "mae": 1.227991,
+        "correlation": 0.988643,
+        "changedFraction": 0.002954,
+        "halfEdgeCorrelations": [
+          0.985995,
+          0.985133
+        ],
+        "luminanceMAE": 1.216051
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "528": {
+      "spread": 528,
+      "image": "work/hansol-ink-hidden/screens/spread-0528.png",
+      "sha256": "d5118bd3d75664c945fa2a972a6c8b3df56f370ef1ce9e3d816152e961a24fee",
+      "oldSha256": "0e1864619e6dc5fa096710dcf3e1cb5472d7fafabd974bdef6ba5ecdf740f43c",
+      "layoutComparison": {
+        "mae": 1.27745,
+        "correlation": 0.989305,
+        "changedFraction": 0.002756,
+        "halfEdgeCorrelations": [
+          0.985791,
+          0.984809
+        ],
+        "luminanceMAE": 1.266693
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "529": {
+      "spread": 529,
+      "image": "work/hansol-ink-hidden/screens/spread-0529.png",
+      "sha256": "ef157dc1992ff2a53e1b5bdf2e225a0794b036e5b004ac7d55250b4f436c92ce",
+      "oldSha256": "63e813afe71e82322cd0f793d61459e3381174919f94923f0c0aaf484e5fd2d4",
+      "layoutComparison": {
+        "mae": 1.118589,
+        "correlation": 0.98994,
+        "changedFraction": 0.002417,
+        "halfEdgeCorrelations": [
+          0.985917,
+          0.986685
+        ],
+        "luminanceMAE": 1.106594
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "530": {
+      "spread": 530,
+      "image": "work/hansol-ink-hidden/screens/spread-0530.png",
+      "sha256": "6ab1754bde52032d8b26340fb4ddfa3d857f773ecb29008068d921ab99585c2e",
+      "oldSha256": "55f17408fd1124c2fbd13d7b7b132ce40c08b5abca84069e64820f1460e74929",
+      "layoutComparison": {
+        "mae": 1.12717,
+        "correlation": 0.989147,
+        "changedFraction": 0.00257,
+        "halfEdgeCorrelations": [
+          0.986813,
+          0.983701
+        ],
+        "luminanceMAE": 1.116374
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "531": {
+      "spread": 531,
+      "image": "work/hansol-ink-hidden/screens/spread-0531.png",
+      "sha256": "4c1592dfbe864cfa12b409414bf6ef098e923fc702f0fe2e5b0f55063cf4219a",
+      "oldSha256": "11ed8821aacb94554da6358ffe221248ae2d25b59a5646ac89e25534af63efe8",
+      "layoutComparison": {
+        "mae": 0.959406,
+        "correlation": 0.990021,
+        "changedFraction": 0.002257,
+        "halfEdgeCorrelations": [
+          0.985923,
+          0.986389
+        ],
+        "luminanceMAE": 0.948649
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "532": {
+      "spread": 532,
+      "image": "work/hansol-ink-hidden/screens/spread-0532.png",
+      "sha256": "99ce3b47b755cf1f9bff615194809fe13ade52bad44f0fadbbfe0b380b23d183",
+      "oldSha256": "b062615932936784013826c1fa600ce82ce4a62749b1caa49cfd73ab877e7cb2",
+      "layoutComparison": {
+        "mae": 1.387209,
+        "correlation": 0.989323,
+        "changedFraction": 0.00281,
+        "halfEdgeCorrelations": [
+          0.987032,
+          0.984819
+        ],
+        "luminanceMAE": 1.333738
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "534": {
+      "spread": 534,
+      "image": "work/hansol-ink-hidden/screens/spread-0534.png",
+      "sha256": "2a54d59df1b17e1ead51190822c42e9b7bd883b5bdffb3ac55a32ead1b441b91",
+      "oldSha256": "109142d10f5c3d6404b473e058594dcc74e1b8108edc56d2e4b7849f2104f863",
+      "layoutComparison": {
+        "mae": 1.17609,
+        "correlation": 0.989712,
+        "changedFraction": 0.002449,
+        "halfEdgeCorrelations": [
+          0.985619,
+          0.984478
+        ],
+        "luminanceMAE": 1.165332
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "536": {
+      "spread": 536,
+      "image": "work/hansol-ink-hidden/screens/spread-0536.png",
+      "sha256": "9808e26f5005186481eea0581e8087f150db3e41d10029c366f4d1689a4724fd",
+      "oldSha256": "11c93b1a7f35f9fce9acb286049f7e61028bc44f01e178fae234e9cbf9eb15f3",
+      "layoutComparison": {
+        "mae": 1.369396,
+        "correlation": 0.987852,
+        "changedFraction": 0.002769,
+        "halfEdgeCorrelations": [
+          0.985322,
+          0.982964
+        ],
+        "luminanceMAE": 1.357454
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "537": {
+      "spread": 537,
+      "image": "work/hansol-ink-hidden/screens/spread-0537.png",
+      "sha256": "764065ef432a4745e541a990a927ffdcf2eea4ae12ff1fbe3717d70db7410fe9",
+      "oldSha256": "82d36a53450006c4d177d6e77ba1b678c540161f8637313d0a2effc1e91afbd2",
+      "layoutComparison": {
+        "mae": 0.837836,
+        "correlation": 0.991162,
+        "changedFraction": 0.002292,
+        "halfEdgeCorrelations": [
+          0.986426,
+          0.986516
+        ],
+        "luminanceMAE": 0.827077
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "539": {
+      "spread": 539,
+      "image": "work/hansol-ink-hidden/screens/spread-0539.png",
+      "sha256": "ce5478c1b1f1473afdfe5b3e4058be9235848b34458f39d2acca7bd786db3745",
+      "oldSha256": "ff21d6586132dcfa852999166e92ff0abd9de842328b6c857adf580eff6a0661",
+      "layoutComparison": {
+        "mae": 1.262708,
+        "correlation": 0.989021,
+        "changedFraction": 0.00288,
+        "halfEdgeCorrelations": [
+          0.985203,
+          0.985753
+        ],
+        "luminanceMAE": 1.251949
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "540": {
+      "spread": 540,
+      "image": "work/hansol-ink-hidden/screens/spread-0540.png",
+      "sha256": "d1c666ce8542ac6bcc00e344e9cb4961fefd29a6e57b6c956153f5f6756d27fc",
+      "oldSha256": "bbf338d4b4ae24c865d7c0819a6b54444daac7ccab5ab5f6b06e9cd6185d6170",
+      "layoutComparison": {
+        "mae": 0.912344,
+        "correlation": 0.989955,
+        "changedFraction": 0.002494,
+        "halfEdgeCorrelations": [
+          0.986923,
+          0.984851
+        ],
+        "luminanceMAE": 0.90024
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "541": {
+      "spread": 541,
+      "image": "work/hansol-ink-hidden/screens/spread-0541.png",
+      "sha256": "f04b282499058fe3a5e24f3f491296a1c2062f771aa90221d735251e65ac755b",
+      "oldSha256": "b92a197f7cf6ee1ba4bc50038c4d7dd6ee822113023f63eebd4d5735cc42df2a",
+      "layoutComparison": {
+        "mae": 1.414882,
+        "correlation": 0.988383,
+        "changedFraction": 0.002893,
+        "halfEdgeCorrelations": [
+          0.983837,
+          0.985429
+        ],
+        "luminanceMAE": 1.404123
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "543": {
+      "spread": 543,
+      "image": "work/hansol-ink-hidden/screens/spread-0543.png",
+      "sha256": "db17cdde67d2b0f1e3ca2a2435b4d8f73ed4374e5b70efa57aa70f4f5eb7156e",
+      "oldSha256": "41adac1a2fea193a5e0cbec0162574026cecb8d9525b004fca9291b024192cb0",
+      "layoutComparison": {
+        "mae": 1.037263,
+        "correlation": 0.989261,
+        "changedFraction": 0.002605,
+        "halfEdgeCorrelations": [
+          0.985878,
+          0.986493
+        ],
+        "luminanceMAE": 1.026505
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "544": {
+      "spread": 544,
+      "image": "work/hansol-ink-hidden/screens/spread-0544.png",
+      "sha256": "eaa5f632da0a53989b701d27162f8ffa3ed9267834d6b86f526af41999e8f3e4",
+      "oldSha256": "57e7bd904644376da1825cfcb577e69cd3d789876b9a48da4b16cb5784c73a7f",
+      "layoutComparison": {
+        "mae": 0.668782,
+        "correlation": 0.99075,
+        "changedFraction": 0.00234,
+        "halfEdgeCorrelations": [
+          0.987066,
+          0.986768
+        ],
+        "luminanceMAE": 0.658024
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "545": {
+      "spread": 545,
+      "image": "work/hansol-ink-hidden/screens/spread-0545.png",
+      "sha256": "cab744e046cd0f747d3c25ab33b6bc7edb416538375026c4b3dcef755b52f5a6",
+      "oldSha256": "b3f82843e9c12eca67be25ea03114ac68659de731de8ac736876ac95fb183e34",
+      "layoutComparison": {
+        "mae": 1.308499,
+        "correlation": 0.989546,
+        "changedFraction": 0.002855,
+        "halfEdgeCorrelations": [
+          0.986684,
+          0.98538
+        ],
+        "luminanceMAE": 1.254697
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "546": {
+      "spread": 546,
+      "image": "work/hansol-ink-hidden/screens/spread-0546.png",
+      "sha256": "7f96161be84976494816217cb01066b2b065ea934705c8f18777e031a84a6c1d",
+      "oldSha256": "292898539a7272040945873fec90b2e8502cbe6086d8f87f66ec8f2e212300ef",
+      "layoutComparison": {
+        "mae": 1.111294,
+        "correlation": 0.989145,
+        "changedFraction": 0.00273,
+        "halfEdgeCorrelations": [
+          0.985719,
+          0.985701
+        ],
+        "luminanceMAE": 1.099336
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "547": {
+      "spread": 547,
+      "image": "work/hansol-ink-hidden/screens/spread-0547.png",
+      "sha256": "ff6238d5cd41e866d5f8362190e2ba002f2e5ebc363e5a8ff9fbfb1da1eb8818",
+      "oldSha256": "4f0fb2564fa68be8ae41f081782b3114764adbbfc162b82dc7e69d63c7bbba7c",
+      "layoutComparison": {
+        "mae": 1.327948,
+        "correlation": 0.989548,
+        "changedFraction": 0.002682,
+        "halfEdgeCorrelations": [
+          0.984384,
+          0.985277
+        ],
+        "luminanceMAE": 1.317189
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "548": {
+      "spread": 548,
+      "image": "work/hansol-ink-hidden/screens/spread-0548.png",
+      "sha256": "6fa3fe309694ade30ea609169288e2d94af9a17952912eba02038a85f3ab9bfb",
+      "oldSha256": "505bcc8890ea0c102e5bb2b56807930c4c9200410d9547d3e2f4e4e2533d1232",
+      "layoutComparison": {
+        "mae": 1.086039,
+        "correlation": 0.990518,
+        "changedFraction": 0.0025,
+        "halfEdgeCorrelations": [
+          0.986487,
+          0.986911
+        ],
+        "luminanceMAE": 1.075281
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "549": {
+      "spread": 549,
+      "image": "work/hansol-ink-hidden/screens/spread-0549.png",
+      "sha256": "d696c1a58052dcf20f08346159b6db9205319d2981db01edb3f08a734b2267d1",
+      "oldSha256": "1dc2b34a82f89e7046236b460ac66c501582d7873c3fc2fba308540da8227fef",
+      "layoutComparison": {
+        "mae": 1.081454,
+        "correlation": 0.989087,
+        "changedFraction": 0.002574,
+        "halfEdgeCorrelations": [
+          0.986017,
+          0.985599
+        ],
+        "luminanceMAE": 1.069497
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "550": {
+      "spread": 550,
+      "image": "work/hansol-ink-hidden/screens/spread-0550.png",
+      "sha256": "137aa20b02c7c0b597e7d592db9b49fa0ce004929fa5637964eda0a132c912f1",
+      "oldSha256": "8d8c699140808fa4c19f0fe180156ff4de503eda66915ddde3529e15d6e8ecb8",
+      "layoutComparison": {
+        "mae": 0.795438,
+        "correlation": 0.990752,
+        "changedFraction": 0.002247,
+        "halfEdgeCorrelations": [
+          0.986562,
+          0.98783
+        ],
+        "luminanceMAE": 0.78468
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "551": {
+      "spread": 551,
+      "image": "work/hansol-ink-hidden/screens/spread-0551.png",
+      "sha256": "e0f53baf6dd25b2cf03ab91c18541e689d451c906486218c9e7ae5de587f0e9d",
+      "oldSha256": "76741456db8feb58f5d17093f3dc5b9cf6578662f5702b74d358b2e6a25f7eff",
+      "layoutComparison": {
+        "mae": 1.293153,
+        "correlation": 0.989357,
+        "changedFraction": 0.002692,
+        "halfEdgeCorrelations": [
+          0.986256,
+          0.986507
+        ],
+        "luminanceMAE": 1.239361
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "552": {
+      "spread": 552,
+      "image": "work/hansol-ink-hidden/screens/spread-0552.png",
+      "sha256": "53eabd76426e3a8aa55724b8a3c3ca916cb106dbf770a6c92e435ec9e80fd4f4",
+      "oldSha256": "fb18c6fc0bddbe0d3824ca6f80bd82c44a6ff465ad9363d609eed8cd7d013ce4",
+      "layoutComparison": {
+        "mae": 0.937098,
+        "correlation": 0.988673,
+        "changedFraction": 0.002586,
+        "halfEdgeCorrelations": [
+          0.986611,
+          0.984673
+        ],
+        "luminanceMAE": 0.925156
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "553": {
+      "spread": 553,
+      "image": "work/hansol-ink-hidden/screens/spread-0553.png",
+      "sha256": "e8d6965f2b88d2bbb984fed2f5ab9cb133f6eb176edec5edf0b258cbf98f02be",
+      "oldSha256": "468fa9ac79c245723f93b9423d0d8acfec639181a7cc8ae6c223333a6b75eeb3",
+      "layoutComparison": {
+        "mae": 1.268542,
+        "correlation": 0.989307,
+        "changedFraction": 0.002807,
+        "halfEdgeCorrelations": [
+          0.987435,
+          0.984732
+        ],
+        "luminanceMAE": 1.257784
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "554": {
+      "spread": 554,
+      "image": "work/hansol-ink-hidden/screens/spread-0554.png",
+      "sha256": "c3eff6d2f7e59d99689edb62bd8a52abdf37eb628a4bc33a4c42de4cc26519c7",
+      "oldSha256": "e41c1764c99bf18f26a36a97bd2d43d282d434b6991573709849e022a4766a76",
+      "layoutComparison": {
+        "mae": 1.018296,
+        "correlation": 0.989566,
+        "changedFraction": 0.00258,
+        "halfEdgeCorrelations": [
+          0.985668,
+          0.985709
+        ],
+        "luminanceMAE": 1.006364
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "555": {
+      "spread": 555,
+      "image": "work/hansol-ink-hidden/screens/spread-0555.png",
+      "sha256": "6f7ed5d10a11880c317e68468290c280aeb29a79a4f67cd3de0ff48b4d19d095",
+      "oldSha256": "7fb45d99632032b5f2f19ab6ad598acdc0dbf04fe8562855e2ca8ffc6216ae88",
+      "layoutComparison": {
+        "mae": 1.054284,
+        "correlation": 0.988579,
+        "changedFraction": 0.002605,
+        "halfEdgeCorrelations": [
+          0.984201,
+          0.986403
+        ],
+        "luminanceMAE": 1.043526
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "556": {
+      "spread": 556,
+      "image": "work/hansol-ink-hidden/screens/spread-0556.png",
+      "sha256": "0a1b97f923f87b099df3dd1b23e5b944502b18d950f1c243ec234ced4d05ef60",
+      "oldSha256": "d0171cf9695f03eae9027930357d156f3d5ee9d29a843d636a63c821de810c78",
+      "layoutComparison": {
+        "mae": 1.022867,
+        "correlation": 0.99013,
+        "changedFraction": 0.002363,
+        "halfEdgeCorrelations": [
+          0.985653,
+          0.986153
+        ],
+        "luminanceMAE": 1.01211
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "557": {
+      "spread": 557,
+      "image": "work/hansol-ink-hidden/screens/spread-0557.png",
+      "sha256": "26ba36160a07d65b4bae156a285ccf7b599343cb7c1664e5f0a37352419e01ea",
+      "oldSha256": "4b32339e48d2d40fc971e3a407c3fc4f6d88fbfbb13958242b1e335949dd3344",
+      "layoutComparison": {
+        "mae": 1.33304,
+        "correlation": 0.989171,
+        "changedFraction": 0.002935,
+        "halfEdgeCorrelations": [
+          0.986614,
+          0.984825
+        ],
+        "luminanceMAE": 1.279235
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "558": {
+      "spread": 558,
+      "image": "work/hansol-ink-hidden/screens/spread-0558.png",
+      "sha256": "959718a0ad1077fd3c909cebc4b5ec30d88f6750194b0a27aa8d823439c222aa",
+      "oldSha256": "8b8dd06863441721037c3daa624d68977eb9bf353c86fdcae7d983c2921b0356",
+      "layoutComparison": {
+        "mae": 1.301013,
+        "correlation": 0.988773,
+        "changedFraction": 0.002644,
+        "halfEdgeCorrelations": [
+          0.984988,
+          0.98538
+        ],
+        "luminanceMAE": 1.290255
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "559": {
+      "spread": 559,
+      "image": "work/hansol-ink-hidden/screens/spread-0559.png",
+      "sha256": "a46703e3c627b862b1a9cca1bc751ffd7f75ff8bcae33734839ae0e2830cf3e7",
+      "oldSha256": "2cb5a9a139b0e50610dbd5cc1505d7610752759b66aae7b7742a58a8637429bf",
+      "layoutComparison": {
+        "mae": 1.304464,
+        "correlation": 0.988974,
+        "changedFraction": 0.002884,
+        "halfEdgeCorrelations": [
+          0.985462,
+          0.985055
+        ],
+        "luminanceMAE": 1.292554
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "560": {
+      "spread": 560,
+      "image": "work/hansol-ink-hidden/screens/spread-0560.png",
+      "sha256": "d4ccb6473e336aa335bf94e2c5c4fb108957ba0b896bc0867bbc0bf72fc5ceec",
+      "oldSha256": "1dc4a99a4f4b4904f2147e90062e4ca3d3acb5139aca0a9286578a8671a675b9",
+      "layoutComparison": {
+        "mae": 1.16633,
+        "correlation": 0.989237,
+        "changedFraction": 0.002708,
+        "halfEdgeCorrelations": [
+          0.986141,
+          0.985252
+        ],
+        "luminanceMAE": 1.155572
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "561": {
+      "spread": 561,
+      "image": "work/hansol-ink-hidden/screens/spread-0561.png",
+      "sha256": "5d7557b44fe394811d614de27e068bf7b497fa2440cbed99a5ad9e6a3c2fbbc8",
+      "oldSha256": "1ac8718dceb7e630a79b957362910bca9cc7d811e1f28f26a3ccc60b0e09e0f2",
+      "layoutComparison": {
+        "mae": 1.192683,
+        "correlation": 0.988661,
+        "changedFraction": 0.002721,
+        "halfEdgeCorrelations": [
+          0.984728,
+          0.985192
+        ],
+        "luminanceMAE": 1.180751
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "562": {
+      "spread": 562,
+      "image": "work/hansol-ink-hidden/screens/spread-0562.png",
+      "sha256": "f7f7e05613707fbefe27226e31a43a9bb4f5f353fa4b43863e4a002409764c7a",
+      "oldSha256": "d219f17fb20c27a396a5e87ed807f7c4b419709ec66ae8dcdcb261af139d4d1c",
+      "layoutComparison": {
+        "mae": 0.832705,
+        "correlation": 0.991228,
+        "changedFraction": 0.002318,
+        "halfEdgeCorrelations": [
+          0.986664,
+          0.986455
+        ],
+        "luminanceMAE": 0.821946
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "565": {
+      "spread": 565,
+      "image": "work/hansol-ink-hidden/screens/spread-0565.png",
+      "sha256": "a05fb7e5c4004b8cd1ab961d4045adfaf4c2568a1606376b89844f53392db4a8",
+      "oldSha256": "7d2c0f75795728ebf223acebd0bda56a05d6649f7c00e1e2972b249b1c917883",
+      "layoutComparison": {
+        "mae": 1.312002,
+        "correlation": 0.989903,
+        "changedFraction": 0.002503,
+        "halfEdgeCorrelations": [
+          0.985948,
+          0.985979
+        ],
+        "luminanceMAE": 1.257587
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "567": {
+      "spread": 567,
+      "image": "work/hansol-ink-hidden/screens/spread-0567.png",
+      "sha256": "eade002cc6fab7eef905b0a0c346378e74389cf2699549e768e3498237727428",
+      "oldSha256": "23e3fe94ece49585f3eae4b4c18b4a919f74296a5d1c88122ddc4261551a553e",
+      "layoutComparison": {
+        "mae": 1.284152,
+        "correlation": 0.98942,
+        "changedFraction": 0.002829,
+        "halfEdgeCorrelations": [
+          0.98596,
+          0.98523
+        ],
+        "luminanceMAE": 1.271558
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "568": {
+      "spread": 568,
+      "image": "work/hansol-ink-hidden/screens/spread-0568.png",
+      "sha256": "346f1390fa9a01cd78380efa54dccde6ce1084e91b2b20ac0cb2c9b69e597cf8",
+      "oldSha256": "13c3e82a709af42ffbfeb77ff6bec12dc898919e8f70673b9155654ce034a2f0",
+      "layoutComparison": {
+        "mae": 1.183312,
+        "correlation": 0.989491,
+        "changedFraction": 0.002685,
+        "halfEdgeCorrelations": [
+          0.986927,
+          0.984764
+        ],
+        "luminanceMAE": 1.171902
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "570": {
+      "spread": 570,
+      "image": "work/hansol-ink-hidden/screens/spread-0570.png",
+      "sha256": "20fff7f657715cea8f2fee2990c53ecaddf6596eb78c4a644ea9ca06a807335b",
+      "oldSha256": "1e167488b33d5c99b4774809dc1b8e9f42fbf939f007b671a277421698281b1c",
+      "layoutComparison": {
+        "mae": 0.59086,
+        "correlation": 0.9916,
+        "changedFraction": 0.002155,
+        "halfEdgeCorrelations": [
+          0.986468,
+          0.988368
+        ],
+        "luminanceMAE": 0.57945
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "572": {
+      "spread": 572,
+      "image": "work/hansol-ink-hidden/screens/spread-0572.png",
+      "sha256": "ca4f5ea9311e146353a3a2c5bf646da2cef7dca08506262a67ff66b24eb8c271",
+      "oldSha256": "491b8a58f4e994be6055feffe6bc38c36f168b5f4bf4ae0cf8d8f6dd9baef579",
+      "layoutComparison": {
+        "mae": 1.21104,
+        "correlation": 0.989071,
+        "changedFraction": 0.002663,
+        "halfEdgeCorrelations": [
+          0.985329,
+          0.985463
+        ],
+        "luminanceMAE": 1.198471
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "573": {
+      "spread": 573,
+      "image": "work/hansol-ink-hidden/screens/spread-0573.png",
+      "sha256": "173962fd287c14faf0ef63f77222b73787742be94f5b2dac87e040a3643dc9da",
+      "oldSha256": "a39e698036dbd82d456b6866435fe652e259bdee6d51294a4bfebdb48ed2fa53",
+      "layoutComparison": {
+        "mae": 1.216921,
+        "correlation": 0.988932,
+        "changedFraction": 0.002858,
+        "halfEdgeCorrelations": [
+          0.985111,
+          0.985805
+        ],
+        "luminanceMAE": 1.205511
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "574": {
+      "spread": 574,
+      "image": "work/hansol-ink-hidden/screens/spread-0574.png",
+      "sha256": "6785b20523bf70b38f7f7b1b727b58783db27484c3d5ec44e17a3a45c3ca4376",
+      "oldSha256": "0634578929b650b3c51e8c695e5290373b3de0fb1dd68fba3cdbd59580bdff57",
+      "layoutComparison": {
+        "mae": 1.279649,
+        "correlation": 0.989009,
+        "changedFraction": 0.002797,
+        "halfEdgeCorrelations": [
+          0.984432,
+          0.985198
+        ],
+        "luminanceMAE": 1.267025
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "575": {
+      "spread": 575,
+      "image": "work/hansol-ink-hidden/screens/spread-0575.png",
+      "sha256": "1394339e5cc896fc9519780dcfb2ae3148408bd04151a180457efda928358d35",
+      "oldSha256": "6397fe053686aeb45f6c8cf127dc8c3f922f2f6bf9e5a472a2b489adc44d323b",
+      "layoutComparison": {
+        "mae": 1.07452,
+        "correlation": 0.989403,
+        "changedFraction": 0.00265,
+        "halfEdgeCorrelations": [
+          0.985456,
+          0.986233
+        ],
+        "luminanceMAE": 1.06311
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "576": {
+      "spread": 576,
+      "image": "work/hansol-ink-hidden/screens/spread-0576.png",
+      "sha256": "58ebfb48cdb35946d28ecce4ecb5caa002722ab9964741bbf77bc5e836d8aebe",
+      "oldSha256": "e84ba3fede6c2a2bd76d4becdfce9fca3458a90127bac0cf6ff94be355853c31",
+      "layoutComparison": {
+        "mae": 1.089057,
+        "correlation": 0.989952,
+        "changedFraction": 0.002398,
+        "halfEdgeCorrelations": [
+          0.986549,
+          0.98633
+        ],
+        "luminanceMAE": 1.034215
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "577": {
+      "spread": 577,
+      "image": "work/hansol-ink-hidden/screens/spread-0577.png",
+      "sha256": "97a2920533a7155743dc1d90f1150e9bca2eb9e71aaec358f00eaa0c0bb66d68",
+      "oldSha256": "dbbb5bb8cf02ff253245cd69c0723d6e347fad70fa711ca359dd44ffb666e583",
+      "layoutComparison": {
+        "mae": 1.286429,
+        "correlation": 0.989023,
+        "changedFraction": 0.002861,
+        "halfEdgeCorrelations": [
+          0.986767,
+          0.984946
+        ],
+        "luminanceMAE": 1.275019
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "579": {
+      "spread": 579,
+      "image": "work/hansol-ink-hidden/screens/spread-0579.png",
+      "sha256": "d0c9d79ecd521f0b94b666a35c0c8b086237cad1312028b51ed720a2ac279140",
+      "oldSha256": "162beec8c5ce13893d1d9e40a517c2ff0a3df48719d92c1ccc55ea4c3eb53d75",
+      "layoutComparison": {
+        "mae": 1.105246,
+        "correlation": 0.990363,
+        "changedFraction": 0.002449,
+        "halfEdgeCorrelations": [
+          0.98636,
+          0.986329
+        ],
+        "luminanceMAE": 1.093836
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "580": {
+      "spread": 580,
+      "image": "work/hansol-ink-hidden/screens/spread-0580.png",
+      "sha256": "3bc530a7bd10aca82ce92987daefd8b4459f7ec2fdbc26dcbcef286dfb8d6efe",
+      "oldSha256": "3a09a5519ac73da9d95f26ddef04456d6ede4ccfa9340d2cc922f9c9f2aba7e0",
+      "layoutComparison": {
+        "mae": 1.035964,
+        "correlation": 0.989437,
+        "changedFraction": 0.002721,
+        "halfEdgeCorrelations": [
+          0.985168,
+          0.986131
+        ],
+        "luminanceMAE": 1.023341
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "581": {
+      "spread": 581,
+      "image": "work/hansol-ink-hidden/screens/spread-0581.png",
+      "sha256": "c3246f75cb6bce30da5f685fba160f881c8ff50950553531992c64ef086bf796",
+      "oldSha256": "a33b1db2e8a2530ef5b1a7e1948cf5f8952d9f7564dbc9e91d5e7c346a3edcbf",
+      "layoutComparison": {
+        "mae": 1.216397,
+        "correlation": 0.989632,
+        "changedFraction": 0.002896,
+        "halfEdgeCorrelations": [
+          0.985403,
+          0.986283
+        ],
+        "luminanceMAE": 1.204987
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "582": {
+      "spread": 582,
+      "image": "work/hansol-ink-hidden/screens/spread-0582.png",
+      "sha256": "d4aac1ba07b965b7426f2dbb6f5f32263f12b249697c2ab3c0dfe7d74c8c72e8",
+      "oldSha256": "397b84412ead3b264e944a0dda7e16cd908ba8c4d26be758a27166f8d28869a7",
+      "layoutComparison": {
+        "mae": 0.908292,
+        "correlation": 0.990747,
+        "changedFraction": 0.001474,
+        "halfEdgeCorrelations": [
+          0.987399,
+          0.986392
+        ],
+        "luminanceMAE": 0.855204
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "584": {
+      "spread": 584,
+      "image": "work/hansol-ink-hidden/screens/spread-0584.png",
+      "sha256": "c3509d89408082a5709916b04861b272b51873b9ae83d78929d147cb0d1441d6",
+      "oldSha256": "c6d0050e00cb5be12ef6860c0fcdeaa72d6aa8956d856607428356623f489cdd",
+      "layoutComparison": {
+        "mae": 1.113436,
+        "correlation": 0.989189,
+        "changedFraction": 0.002829,
+        "halfEdgeCorrelations": [
+          0.985512,
+          0.986051
+        ],
+        "luminanceMAE": 1.100709
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "585": {
+      "spread": 585,
+      "image": "work/hansol-ink-hidden/screens/spread-0585.png",
+      "sha256": "fff25981fed97e2c0e3792133b81e00202ce86fbab42780e37d541f61d21b752",
+      "oldSha256": "e20f264e98bb2413c0b10ab5659158e45f3cfe1f9a3047c25fd97d606a4e1540",
+      "layoutComparison": {
+        "mae": 1.066391,
+        "correlation": 0.989842,
+        "changedFraction": 0.002689,
+        "halfEdgeCorrelations": [
+          0.986133,
+          0.985514
+        ],
+        "luminanceMAE": 1.05498
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "587": {
+      "spread": 587,
+      "image": "work/hansol-ink-hidden/screens/spread-0587.png",
+      "sha256": "b762bd02fd869d87116a7cd2ca1fd79c83ca6784733baf40b5c128a0238384a2",
+      "oldSha256": "e3af4996b2bd6bcecb4df1673a587c7deb8132d7172581ac5a41c88b07778399",
+      "layoutComparison": {
+        "mae": 1.157458,
+        "correlation": 0.989276,
+        "changedFraction": 0.00282,
+        "halfEdgeCorrelations": [
+          0.985271,
+          0.984852
+        ],
+        "luminanceMAE": 1.146048
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "588": {
+      "spread": 588,
+      "image": "work/hansol-ink-hidden/screens/spread-0588.png",
+      "sha256": "cf66e6b2518e6f08657e15cc0755a90697f3ed3bf842eeaefe1db9de0a64176d",
+      "oldSha256": "03cea83ddd100da104947779ec9f2a48d1b2249a1f7efd1e023f9d05d5c44eae",
+      "layoutComparison": {
+        "mae": 0.931802,
+        "correlation": 0.990108,
+        "changedFraction": 0.002426,
+        "halfEdgeCorrelations": [
+          0.987435,
+          0.986613
+        ],
+        "luminanceMAE": 0.876645
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "589": {
+      "spread": 589,
+      "image": "work/hansol-ink-hidden/screens/spread-0589.png",
+      "sha256": "b3b8524ae2e2bd54f7041de8a970b6b7164ea8c523f0b35c287dd7ec9ec96a1c",
+      "oldSha256": "e5725c4671768f4d9437fdb2ffad3986b2b648ae14b408992ebb0db697735490",
+      "layoutComparison": {
+        "mae": 0.940858,
+        "correlation": 0.989707,
+        "changedFraction": 0.002574,
+        "halfEdgeCorrelations": [
+          0.987924,
+          0.985937
+        ],
+        "luminanceMAE": 0.928409
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "590": {
+      "spread": 590,
+      "image": "work/hansol-ink-hidden/screens/spread-0590.png",
+      "sha256": "cdaa5b35f4a3edc33551e709630eaea7efa336f88a2e36d6d033ba5b9667eac1",
+      "oldSha256": "babfee967ffd01c2533eba1ff76dc26f2624b3d5f3e83b98df09a2d50179a37c",
+      "layoutComparison": {
+        "mae": 0.993214,
+        "correlation": 0.98938,
+        "changedFraction": 0.002698,
+        "halfEdgeCorrelations": [
+          0.985747,
+          0.986593
+        ],
+        "luminanceMAE": 0.980493
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "592": {
+      "spread": 592,
+      "image": "work/hansol-ink-hidden/screens/spread-0592.png",
+      "sha256": "940ed8ec03e311a004b73313304d2dab9ce11399f7f85a3f9d5e6e40dde181ce",
+      "oldSha256": "be8e28a427d09a366be1bfce440be5c2a85b8ca26a401927dbb4c4fb56f72be3",
+      "layoutComparison": {
+        "mae": 1.084509,
+        "correlation": 0.989855,
+        "changedFraction": 0.002567,
+        "halfEdgeCorrelations": [
+          0.98614,
+          0.984946
+        ],
+        "luminanceMAE": 1.071936
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "593": {
+      "spread": 593,
+      "image": "work/hansol-ink-hidden/screens/spread-0593.png",
+      "sha256": "6f38116e4ccba37f8caf25664fca49f9fc0b35477ddc7ed3bf1e91e05207267c",
+      "oldSha256": "f95c5fa5add171c35d6b9a609580247e8ddbd3a495b8fc4daf05b9d075871148",
+      "layoutComparison": {
+        "mae": 1.219348,
+        "correlation": 0.988502,
+        "changedFraction": 0.002868,
+        "halfEdgeCorrelations": [
+          0.984798,
+          0.985621
+        ],
+        "luminanceMAE": 1.207937
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "594": {
+      "spread": 594,
+      "image": "work/hansol-ink-hidden/screens/spread-0594.png",
+      "sha256": "4e2c0bce0d05a9cb7c68f7cecf1397e49214e1a65cbf869c5905b17b21478a58",
+      "oldSha256": "65a7ceee6ed3bfdb53a6618f9e545a81e04c1c74980dc6a5c3f0e4415ddfc67c",
+      "layoutComparison": {
+        "mae": 0.66,
+        "correlation": 0.990878,
+        "changedFraction": 0.002129,
+        "halfEdgeCorrelations": [
+          0.986334,
+          0.98715
+        ],
+        "luminanceMAE": 0.64859
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "595": {
+      "spread": 595,
+      "image": "work/hansol-ink-hidden/screens/spread-0595.png",
+      "sha256": "fcaff8a5d7ea0bb15cda1b9688e7955490dd0ad4b9164ebc0bf4b612273bec34",
+      "oldSha256": "493a6b02ec4480dc9baa5b16c9354821f1b6a5ebb23ded4302c7879e0a579248",
+      "layoutComparison": {
+        "mae": 1.328858,
+        "correlation": 0.989366,
+        "changedFraction": 0.002756,
+        "halfEdgeCorrelations": [
+          0.985363,
+          0.985962
+        ],
+        "luminanceMAE": 1.274501
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "596": {
+      "spread": 596,
+      "image": "work/hansol-ink-hidden/screens/spread-0596.png",
+      "sha256": "872623b07bf7dc8de766dfd83d6b8920fab5b92bf699f290862d322356b77f09",
+      "oldSha256": "8a8faf53ed773b71cd563f8360acf611607b3e1375bba4f25013e8abdd35b891",
+      "layoutComparison": {
+        "mae": 1.064857,
+        "correlation": 0.990043,
+        "changedFraction": 0.002612,
+        "halfEdgeCorrelations": [
+          0.985959,
+          0.986198
+        ],
+        "luminanceMAE": 1.052158
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "597": {
+      "spread": 597,
+      "image": "work/hansol-ink-hidden/screens/spread-0597.png",
+      "sha256": "ad216f9c8292be970e0fd5788e224f804fcde1fdd6dcd083cc536945d8688041",
+      "oldSha256": "eca2e99a333a46b2725134e9c5cc8fedb88df7b22becfef9f20d00cf6fe35c0e",
+      "layoutComparison": {
+        "mae": 1.059341,
+        "correlation": 0.990322,
+        "changedFraction": 0.002605,
+        "halfEdgeCorrelations": [
+          0.986662,
+          0.986421
+        ],
+        "luminanceMAE": 1.047918
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "598": {
+      "spread": 598,
+      "image": "work/hansol-ink-hidden/screens/spread-0598.png",
+      "sha256": "715f2b5cd00f4452bba52833f700742a8a793c6d6cc336f5d7a235d0d5262669",
+      "oldSha256": "44efee2bbfb6dd05351d60086ff506868b36ab7b543a3b37cbfe58cd181f19b4",
+      "layoutComparison": {
+        "mae": 1.04484,
+        "correlation": 0.990073,
+        "changedFraction": 0.002474,
+        "halfEdgeCorrelations": [
+          0.986402,
+          0.985678
+        ],
+        "luminanceMAE": 1.032224
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "599": {
+      "spread": 599,
+      "image": "work/hansol-ink-hidden/screens/spread-0599.png",
+      "sha256": "5b25183d2a09cea0d2b7f5cba8820e9277d5f5ef73b0482bce984cc892c0345b",
+      "oldSha256": "5c91cbdf04d7ccba5baf3fe0840237204766c3a7e5fed43fe097f0e923d96df7",
+      "layoutComparison": {
+        "mae": 1.173233,
+        "correlation": 0.988974,
+        "changedFraction": 0.002903,
+        "halfEdgeCorrelations": [
+          0.986097,
+          0.984891
+        ],
+        "luminanceMAE": 1.161269
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "600": {
+      "spread": 600,
+      "image": "work/hansol-ink-hidden/screens/spread-0600.png",
+      "sha256": "bf61983d58e0f1a12019c9005db1f6f1bbac9de16020c04a05957c996c43b8e0",
+      "oldSha256": "9d7aa770b0770b8660778153df8a4c248ae2b48a89c3ad29d9f816123b30f3f9",
+      "layoutComparison": {
+        "mae": 1.118981,
+        "correlation": 0.989834,
+        "changedFraction": 0.002439,
+        "halfEdgeCorrelations": [
+          0.986489,
+          0.986623
+        ],
+        "luminanceMAE": 1.064617
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "604": {
+      "spread": 604,
+      "image": "work/hansol-ink-hidden/screens/spread-0604.png",
+      "sha256": "4985cad9bdd9779d9610577e4abe7a07505dec591212ee23b2d66f96cc7079cf",
+      "oldSha256": "1568dfe7210f726ea7dd1094b61b4aa81b80223338920e11748cc12495dab6db",
+      "layoutComparison": {
+        "mae": 1.18015,
+        "correlation": 0.98958,
+        "changedFraction": 0.002852,
+        "halfEdgeCorrelations": [
+          0.985928,
+          0.985929
+        ],
+        "luminanceMAE": 1.167534
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "605": {
+      "spread": 605,
+      "image": "work/hansol-ink-hidden/screens/spread-0605.png",
+      "sha256": "d6c01e74cec06fc0d02f99a48af5f5cddce1a2496fa73ea9b25dec3f529bc822",
+      "oldSha256": "4c9b72546ac48ea694c118ba394cc12971c41d6cf4d670992ea51bbd72f26c28",
+      "layoutComparison": {
+        "mae": 0.692765,
+        "correlation": 0.990681,
+        "changedFraction": 0.002401,
+        "halfEdgeCorrelations": [
+          0.986115,
+          0.987597
+        ],
+        "luminanceMAE": 0.681354
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "606": {
+      "spread": 606,
+      "image": "work/hansol-ink-hidden/screens/spread-0606.png",
+      "sha256": "dcecbfcdcc47ef17fd68ce8d60345ea75edd3d01c7a64deb07d6356f5d607675",
+      "oldSha256": "e7cf14f1297eb8645332f9b1c6cdcabc172a0b17b068a39d280bd595393f2e9f",
+      "layoutComparison": {
+        "mae": 1.318778,
+        "correlation": 0.988365,
+        "changedFraction": 0.002938,
+        "halfEdgeCorrelations": [
+          0.985369,
+          0.984292
+        ],
+        "luminanceMAE": 1.264229
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "607": {
+      "spread": 607,
+      "image": "work/hansol-ink-hidden/screens/spread-0607.png",
+      "sha256": "c1e8d4d9d4c47297873c8cde92bbe971cf9d5edc5b89da8d1dfcf1c336df6d91",
+      "oldSha256": "9794a1bc3f5fccb83ed0e7c2c5dbc295129dd7c37e671d1ec9d5741d1ef2c40e",
+      "layoutComparison": {
+        "mae": 1.284745,
+        "correlation": 0.988212,
+        "changedFraction": 0.003059,
+        "halfEdgeCorrelations": [
+          0.985013,
+          0.984701
+        ],
+        "luminanceMAE": 1.272156
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "608": {
+      "spread": 608,
+      "image": "work/hansol-ink-hidden/screens/spread-0608.png",
+      "sha256": "83e301d551a277f8b45ca7000e40a580b3b6697a785bdb208af6e8e254695405",
+      "oldSha256": "66939215a0ae672617b0935b5f2ba41f041428148f7e451876480015e6a2abd7",
+      "layoutComparison": {
+        "mae": 1.181931,
+        "correlation": 0.989939,
+        "changedFraction": 0.002554,
+        "halfEdgeCorrelations": [
+          0.985302,
+          0.986129
+        ],
+        "luminanceMAE": 1.170521
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "609": {
+      "spread": 609,
+      "image": "work/hansol-ink-hidden/screens/spread-0609.png",
+      "sha256": "48724545cdf799b4eea9a3186df94afec37454590f2cec1898e97dd801133165",
+      "oldSha256": "b814479cbe58497bcfac67f28f93e2fd3ded14bcfe536c093d79dece59e7c0a6",
+      "layoutComparison": {
+        "mae": 1.19882,
+        "correlation": 0.989687,
+        "changedFraction": 0.002663,
+        "halfEdgeCorrelations": [
+          0.984914,
+          0.985701
+        ],
+        "luminanceMAE": 1.18741
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "610": {
+      "spread": 610,
+      "image": "work/hansol-ink-hidden/screens/spread-0610.png",
+      "sha256": "8d4f8e5aabaab7abff7220bd6583e8d7aa5252d980e42ce410e5d93e1eb13a3d",
+      "oldSha256": "81ac0a6ba492f332bc8c8c8f833faf3485a58b1e9fcba2bd7a6b2e4045a9d590",
+      "layoutComparison": {
+        "mae": 1.150353,
+        "correlation": 0.989725,
+        "changedFraction": 0.002644,
+        "halfEdgeCorrelations": [
+          0.985949,
+          0.98654
+        ],
+        "luminanceMAE": 1.137737
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "612": {
+      "spread": 612,
+      "image": "work/hansol-ink-hidden/screens/spread-0612.png",
+      "sha256": "1055081ba9803d9a13407acbd269cd3fd7934332c68aba67a4c9c7092b28dd3f",
+      "oldSha256": "4334ec2eaa9b704a782c45fcfcb138006f23dae3effa242de72ce96965b0aedd",
+      "layoutComparison": {
+        "mae": 1.218217,
+        "correlation": 0.989585,
+        "changedFraction": 0.002644,
+        "halfEdgeCorrelations": [
+          0.985726,
+          0.985865
+        ],
+        "luminanceMAE": 1.164003
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "613": {
+      "spread": 613,
+      "image": "work/hansol-ink-hidden/screens/spread-0613.png",
+      "sha256": "30e8c5bfb640e0b757c99a07920abc2f97519de0f62dd7366f8ce3aa79807dde",
+      "oldSha256": "d6701d9aeb7b1fd20710a375e34546b3b9ceab04d2974b7d626de2c515f7635d",
+      "layoutComparison": {
+        "mae": 1.230425,
+        "correlation": 0.988768,
+        "changedFraction": 0.002679,
+        "halfEdgeCorrelations": [
+          0.985363,
+          0.985147
+        ],
+        "luminanceMAE": 1.217839
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "614": {
+      "spread": 614,
+      "image": "work/hansol-ink-hidden/screens/spread-0614.png",
+      "sha256": "c9f30f4254a52490ec3e76d6f15cbe40baedd154ef90a7365658b677c0020ae5",
+      "oldSha256": "7b701e4a9dca5ecff04453d672d096dc2d43c41b40e005d3c99afa747a0b28e3",
+      "layoutComparison": {
+        "mae": 1.281931,
+        "correlation": 0.989093,
+        "changedFraction": 0.002852,
+        "halfEdgeCorrelations": [
+          0.984983,
+          0.984879
+        ],
+        "luminanceMAE": 1.27052
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "615": {
+      "spread": 615,
+      "image": "work/hansol-ink-hidden/screens/spread-0615.png",
+      "sha256": "6f601e85f51db4c42f41a4c2ab6e72b06630a177c308f0cfa87a45f7b4462583",
+      "oldSha256": "64039158897d2d562c761a2bebbd60e4d4d91f436429cc1dd76733bf34ced9dd",
+      "layoutComparison": {
+        "mae": 1.167347,
+        "correlation": 0.989814,
+        "changedFraction": 0.002673,
+        "halfEdgeCorrelations": [
+          0.986223,
+          0.985749
+        ],
+        "luminanceMAE": 1.154731
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "616": {
+      "spread": 616,
+      "image": "work/hansol-ink-hidden/screens/spread-0616.png",
+      "sha256": "6c11096ad80c37a8e0c0bf9ac63da76a21acd572c8f9634dbaa5288e017e6435",
+      "oldSha256": "7b16e9292367ee18973f8db78efc4adcabae4e91e5f17d68cb513fe67bbf3e56",
+      "layoutComparison": {
+        "mae": 0.999126,
+        "correlation": 0.989917,
+        "changedFraction": 0.002669,
+        "halfEdgeCorrelations": [
+          0.985498,
+          0.98755
+        ],
+        "luminanceMAE": 0.987715
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    },
+    "617": {
+      "spread": 617,
+      "image": "work/hansol-ink-hidden/screens/spread-0617.png",
+      "sha256": "e59c51ee77d342cfd58b7b449d616e3511cf594ba20fab1aca67dfa5481a9e9b",
+      "oldSha256": "bd19544f81b4b46a261a2aa19ed3458234b1139a02fbb14defde9bc074c33a44",
+      "layoutComparison": {
+        "mae": 0.683841,
+        "correlation": 0.99154,
+        "changedFraction": 0.001349,
+        "halfEdgeCorrelations": [
+          0.986598,
+          0.989344
+        ],
+        "luminanceMAE": 0.678326
+      },
+      "basis": "reader-ink-hidden-not-pixel-erased"
+    }
+  },
+  "restoreRequired": {
+    "progressPercent": 84,
+    "twoPageLandscape": false,
+    "windowSize": [
+      1024,
+      800
+    ]
+  },
+  "status": "captured-needs-crop-audit",
+  "updatedAt": "2026-11-03T23:25:20+0900",
+  "lastError": null,
+  "currentSpread": 617,
+  "completed": 332,
+  "total": 332
+}

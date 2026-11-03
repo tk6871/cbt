@@ -1,0 +1,31 @@
+{
+  "1-25": {
+    "page": "1-25",
+    "sourceAsset": "assets/hvac-hansol-book/direct-pages/1-25-original.png",
+    "sourceSha256": "04845adefe2f85bf3d20d1f69369fb895060b88333e97c459a952b5582f2c98b",
+    "coordinateSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/direct-pages/upscaled-2x/1-25.webp",
+    "outputSha256": "da7375d90a9fe0c3494aa71e9acaa6dde08023263d1407a5f313e9cbf73fabec",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "tile": 256,
+    "native": "arm64",
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "inferenceSeconds": 9.338,
+    "totalSeconds": 13.336,
+    "fidelity": {
+      "colorMAE": 0.004141,
+      "luminanceCorrelation": 0.998637,
+      "edgeCorrelation": 0.998102
+    }
+  }
+}

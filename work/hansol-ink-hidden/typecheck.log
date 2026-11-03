@@ -1,0 +1,4 @@
+
+> industrial-cbt-modern-tools@1.0.0 typecheck
+> vue-tsc --noEmit
+

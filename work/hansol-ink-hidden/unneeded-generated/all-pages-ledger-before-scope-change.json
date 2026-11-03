@@ -1,0 +1,2018 @@
+{
+  "1-24-7-question": {
+    "key": "1-24-7-question",
+    "kind": "question",
+    "page": "1-24",
+    "oldAsset": "assets/hvac-hansol-book/questions/1-24-7.webp",
+    "oldSha256": "854f7f77a4710ee68fd7387af40953982a055f5bf6090980e428973dac2daec8",
+    "sourceSize": [
+      854,
+      375
+    ],
+    "outputSize": [
+      1708,
+      750
+    ],
+    "removedInkPixels": 273,
+    "spreads": [
+      21
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/1-24-7-question.png",
+    "sourceSha256": "61b9e53db5492f6adbb5374f721e7c45f4a092daafd58c4d45038b9fa59aa348",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/1-24-7.webp",
+    "outputSha256": "bc1897ab99dbf4e720a2a90b84c0804e691cd24dd899797749e0e9467286a04a",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 2.441,
+    "fidelity": {
+      "colorMAE": 0.012066,
+      "luminanceCorrelation": 0.992887,
+      "edgeCorrelation": 0.993196
+    }
+  },
+  "2-107-102-question": {
+    "key": "2-107-102-question",
+    "kind": "question",
+    "page": "2-107",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-107-102.webp",
+    "oldSha256": "01e4ced0863b1efa18cae9944df540bda1eb65413d5ba49a705d5e81f9f27bc6",
+    "sourceSize": [
+      556,
+      204
+    ],
+    "outputSize": [
+      1112,
+      408
+    ],
+    "removedInkPixels": 133,
+    "spreads": [
+      182
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-107-102-question.png",
+    "sourceSha256": "a4d2f4127ea56b2e00c162a60371be73097778e591a7c7a1fc418b8ff5262552",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-107-102.webp",
+    "outputSha256": "221cf00ae46a2eb3cbd415850fb6b836e29e2c6cfafe43e0f894c0eef66faf39",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.853,
+    "fidelity": {
+      "colorMAE": 0.013001,
+      "luminanceCorrelation": 0.988113,
+      "edgeCorrelation": 0.984187
+    }
+  },
+  "2-108-108-question": {
+    "key": "2-108-108-question",
+    "kind": "question",
+    "page": "2-108",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-108-108.webp",
+    "oldSha256": "128f50cd38a575073435686603e20385e12bc887df068001283fadb874c594b1",
+    "sourceSize": [
+      556,
+      241
+    ],
+    "outputSize": [
+      1112,
+      482
+    ],
+    "removedInkPixels": 152,
+    "spreads": [
+      183
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-108-108-question.png",
+    "sourceSha256": "98929a0b4d716600524af584fdbbe89f239b0ace16c4c1def2d8c3a43c6b9fb3",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-108-108.webp",
+    "outputSha256": "8c3d9e35b792979faef94c6be78b3eaaf47a4460ff02ee6bc129a638e396232c",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.933,
+    "fidelity": {
+      "colorMAE": 0.012069,
+      "luminanceCorrelation": 0.99099,
+      "edgeCorrelation": 0.988746
+    }
+  },
+  "2-127-1-question": {
+    "key": "2-127-1-question",
+    "kind": "question",
+    "page": "2-127",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-127-1.webp",
+    "oldSha256": "67849ee9449fea0920d7acb344a77f6a9ecf4089dc7cf03f3403b5c80fec8faf",
+    "sourceSize": [
+      556,
+      288
+    ],
+    "outputSize": [
+      1112,
+      576
+    ],
+    "removedInkPixels": 280,
+    "spreads": [
+      192
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-127-1-question.png",
+    "sourceSha256": "2793fe2fdb4fecef86bc9bf3bac90b410bb915d812ed2bf760ef783240c76543",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-127-1.webp",
+    "outputSha256": "39bf5e6149dd08243ae30dfb8a5db81fbc781038b642c6803ffa8bc61602a810",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.06,
+    "fidelity": {
+      "colorMAE": 0.00906,
+      "luminanceCorrelation": 0.991497,
+      "edgeCorrelation": 0.991271
+    }
+  },
+  "2-128-9-question": {
+    "key": "2-128-9-question",
+    "kind": "question",
+    "page": "2-128",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-128-9.webp",
+    "oldSha256": "76f9eab70bfeccea02719e2db845865f8296db9c9ecc116167e2883a13797318",
+    "sourceSize": [
+      556,
+      220
+    ],
+    "outputSize": [
+      1112,
+      440
+    ],
+    "removedInkPixels": 132,
+    "spreads": [
+      193
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-128-9-question.png",
+    "sourceSha256": "6bf220fd2349388eca44baed745d447ed2981e6f0fea589bf2a58ea4ac629c82",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-128-9.webp",
+    "outputSha256": "caa38ff10152ae93e33981c12939f67f3919e13e9cc27f1297077a6fd617950d",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.845,
+    "fidelity": {
+      "colorMAE": 0.01506,
+      "luminanceCorrelation": 0.981875,
+      "edgeCorrelation": 0.979413
+    }
+  },
+  "2-13-2-question": {
+    "key": "2-13-2-question",
+    "kind": "question",
+    "page": "2-13",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-13-2.webp",
+    "oldSha256": "6930b1eeeb63ad270bdf670cb78c92807fd062dffcbc80e58713a24ff537ef69",
+    "sourceSize": [
+      855,
+      151
+    ],
+    "outputSize": [
+      1710,
+      302
+    ],
+    "removedInkPixels": 1344,
+    "spreads": [
+      135
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-13-2-question.png",
+    "sourceSha256": "8ae7f1a8aecf8a141ee9c92bde2ed534ad40122f51e5690582915b0c37d552ff",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-13-2.webp",
+    "outputSha256": "90678bc1572fd5dea2998b974ec3c05e1cb1202db034f49be51144b5c459a1a9",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.177,
+    "fidelity": {
+      "colorMAE": 0.018896,
+      "luminanceCorrelation": 0.981816,
+      "edgeCorrelation": 0.97575
+    }
+  },
+  "2-142-2-question": {
+    "key": "2-142-2-question",
+    "kind": "question",
+    "page": "2-142",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-142-2.webp",
+    "oldSha256": "b8e36963b298d009d39241d487fc0ea1ade145a5e313227f71de622756f8cb6e",
+    "sourceSize": [
+      555,
+      326
+    ],
+    "outputSize": [
+      1110,
+      652
+    ],
+    "removedInkPixels": 215,
+    "spreads": [
+      200
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-142-2-question.png",
+    "sourceSha256": "d7596ebbe9a2e31b2f867f673146ec937bbc83cc3c188e8ba8da97c3e421c196",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-142-2.webp",
+    "outputSha256": "34e790e8b4d0e2f35c9a3ee2e4df8d98fc551fed94128d62c0f65690ceb9c7bc",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.176,
+    "fidelity": {
+      "colorMAE": 0.011744,
+      "luminanceCorrelation": 0.991915,
+      "edgeCorrelation": 0.991666
+    }
+  },
+  "2-151-1-question": {
+    "key": "2-151-1-question",
+    "kind": "question",
+    "page": "2-151",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-151-1.webp",
+    "oldSha256": "36c650dae8087dbc7595eb4e8595fa91cc55fb5fa47e440db647204eedf65510",
+    "sourceSize": [
+      855,
+      334
+    ],
+    "outputSize": [
+      1710,
+      668
+    ],
+    "removedInkPixels": 255,
+    "spreads": [
+      204
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-151-1-question.png",
+    "sourceSha256": "979f0cd75ef90ddb6c830f04215529147d1dcc124230c402d16363d122ca51e8",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-151-1.webp",
+    "outputSha256": "784cebd20892af0187653544bd927fd045d75d394586afe961b64c1cc8c84fc9",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 2.02,
+    "fidelity": {
+      "colorMAE": 0.014157,
+      "luminanceCorrelation": 0.987281,
+      "edgeCorrelation": 0.986781
+    }
+  },
+  "2-188-1-question": {
+    "key": "2-188-1-question",
+    "kind": "question",
+    "page": "2-188",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-188-1.webp",
+    "oldSha256": "3f054907a5b406841325d7dd52593337a26ca86089b52ab11f49842a15af963f",
+    "sourceSize": [
+      854,
+      375
+    ],
+    "outputSize": [
+      1708,
+      750
+    ],
+    "removedInkPixels": 220,
+    "spreads": [
+      223
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-188-1-question.png",
+    "sourceSha256": "be0b7ff38995089e442ba7b3b367502a2adc7bd06035da6630b3ab6b946f3102",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-188-1.webp",
+    "outputSha256": "f17ad76f5368443a8a3c67cb32a483cda84fef63d1b08b3e992a34c8c714b5f9",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 2.253,
+    "fidelity": {
+      "colorMAE": 0.013332,
+      "luminanceCorrelation": 0.98959,
+      "edgeCorrelation": 0.98901
+    }
+  },
+  "2-189-2-question": {
+    "key": "2-189-2-question",
+    "kind": "question",
+    "page": "2-189",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-189-2.webp",
+    "oldSha256": "6327af7c80497a973ba940d908393a5db7acb48726eeb5f1c81330b8a4133225",
+    "sourceSize": [
+      855,
+      376
+    ],
+    "outputSize": [
+      1710,
+      752
+    ],
+    "removedInkPixels": 238,
+    "spreads": [
+      223
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-189-2-question.png",
+    "sourceSha256": "60e95c2a40cacdec4528fe714cd54af2b74a67f4b5d3305144ca8ad5e10970a0",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-189-2.webp",
+    "outputSha256": "5af7aa768ac7e1903376c350cc624da1ea395ad7b5806f9d4a6d7eec1606dc91",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 2.262,
+    "fidelity": {
+      "colorMAE": 0.014212,
+      "luminanceCorrelation": 0.989421,
+      "edgeCorrelation": 0.988656
+    }
+  },
+  "2-19-7-question": {
+    "key": "2-19-7-question",
+    "kind": "question",
+    "page": "2-19",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-19-7.webp",
+    "oldSha256": "da9bfda5ca3c2e67f0d6e4bfdb183fa8ff6e304b5d2f3c9a9864919f0611a96a",
+    "sourceSize": [
+      553,
+      234
+    ],
+    "outputSize": [
+      1106,
+      468
+    ],
+    "removedInkPixels": 43,
+    "spreads": [
+      138
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-19-7-question.png",
+    "sourceSha256": "f73dd896fb6531b9d0d6b3828c41ee109d3ca82758fc91c3a6f23cb9cb1d5aa1",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-19-7.webp",
+    "outputSha256": "68499ea3ecacc87a515ad1cfd55569fb90106d33ec8db6920099f1226a26e700",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.894,
+    "fidelity": {
+      "colorMAE": 0.012881,
+      "luminanceCorrelation": 0.989546,
+      "edgeCorrelation": 0.987151
+    }
+  },
+  "2-19-8-question": {
+    "key": "2-19-8-question",
+    "kind": "question",
+    "page": "2-19",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-19-8.webp",
+    "oldSha256": "dbfc78a17d0d21abeb59db0bfa72b8c22ca9cc3a7e5e3b8cc219dceec8261846",
+    "sourceSize": [
+      558,
+      382
+    ],
+    "outputSize": [
+      1116,
+      764
+    ],
+    "removedInkPixels": 426,
+    "spreads": [
+      138
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-19-8-question.png",
+    "sourceSha256": "34f7888654cfdc0dce24be1c8904f537cee6a6f7a17e17bf817a64c5a3d0437f",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-19-8.webp",
+    "outputSha256": "fd5152d93a7945207f3f93c6cbd6f1609605a6e9185754f5099c28a3e0b7b1bf",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.38,
+    "fidelity": {
+      "colorMAE": 0.008917,
+      "luminanceCorrelation": 0.991957,
+      "edgeCorrelation": 0.991628
+    }
+  },
+  "2-190-1-question": {
+    "key": "2-190-1-question",
+    "kind": "question",
+    "page": "2-190",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-190-1.webp",
+    "oldSha256": "8b404a1c8310eabb462e899e427da9b0f3666b1827f50964b2e9b63fe6f08d6e",
+    "sourceSize": [
+      555,
+      529
+    ],
+    "outputSize": [
+      1110,
+      1058
+    ],
+    "removedInkPixels": 154,
+    "spreads": [
+      224
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-190-1-question.png",
+    "sourceSha256": "f49fbe67776b53bc69a728105bd6055df7a006566770a0e937198ce28733bdee",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-190-1.webp",
+    "outputSha256": "989ed58d7d500972bce4f937ebed390bd6675fcba2e1487d7ac61c74995c5941",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.714,
+    "fidelity": {
+      "colorMAE": 0.009283,
+      "luminanceCorrelation": 0.994584,
+      "edgeCorrelation": 0.993697
+    }
+  },
+  "2-190-3-question": {
+    "key": "2-190-3-question",
+    "kind": "question",
+    "page": "2-190",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-190-3.webp",
+    "oldSha256": "ce118f8c2b1f5a47efb46bef64c5c0021de7dbf4038623fc34e1a71ca22bdc75",
+    "sourceSize": [
+      556,
+      496
+    ],
+    "outputSize": [
+      1112,
+      992
+    ],
+    "removedInkPixels": 314,
+    "spreads": [
+      224
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-190-3-question.png",
+    "sourceSha256": "a09c70c3839513cea91b5f07817668c933da8279630c0511326d3ce650b8c14f",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-190-3.webp",
+    "outputSha256": "134fa2d7550e73f7ed45a642ad9ff801854deff7741c51a59ec4cd6c2c8f66da",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.603,
+    "fidelity": {
+      "colorMAE": 0.009859,
+      "luminanceCorrelation": 0.993697,
+      "edgeCorrelation": 0.992438
+    }
+  },
+  "2-191-5-question": {
+    "key": "2-191-5-question",
+    "kind": "question",
+    "page": "2-191",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-191-5.webp",
+    "oldSha256": "d42b2f00c7225acb794fecf358138d83b0744a96464c425dcc8d4f0aad11aa1a",
+    "sourceSize": [
+      556,
+      242
+    ],
+    "outputSize": [
+      1112,
+      484
+    ],
+    "removedInkPixels": 157,
+    "spreads": [
+      224
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-191-5-question.png",
+    "sourceSha256": "dd518640bd9cbec29ff5b83cc1f39ea9a832abf790376b38fcee8e6f05c58c36",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-191-5.webp",
+    "outputSha256": "4dff64a8756f6c5e9b900442a9c1265efdd05a172299df1caf2ca50e71e1754d",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.95,
+    "fidelity": {
+      "colorMAE": 0.014616,
+      "luminanceCorrelation": 0.985537,
+      "edgeCorrelation": 0.984094
+    }
+  },
+  "2-196-22-question": {
+    "key": "2-196-22-question",
+    "kind": "question",
+    "page": "2-196",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-196-22.webp",
+    "oldSha256": "496d006397bb58e9078f4815b0d25e9d9f043543b6abfd7a13fc815352f0d791",
+    "sourceSize": [
+      556,
+      245
+    ],
+    "outputSize": [
+      1112,
+      490
+    ],
+    "removedInkPixels": 145,
+    "spreads": [
+      227
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-196-22-question.png",
+    "sourceSha256": "9cecbaf9d23ee56e5710cf4495c1972b7f70d0fe2c5050cfaf4e4cd92e399d61",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-196-22.webp",
+    "outputSha256": "2bd0bb5630a946aee1f954602d833030ed6367d611365b85ed9b515b496a9206",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.941,
+    "fidelity": {
+      "colorMAE": 0.011143,
+      "luminanceCorrelation": 0.99114,
+      "edgeCorrelation": 0.989155
+    }
+  },
+  "2-213-114-question": {
+    "key": "2-213-114-question",
+    "kind": "question",
+    "page": "2-213",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-213-114.webp",
+    "oldSha256": "c41aca658389e7848d51871742b0e06dd827616e405a590ac9760ff5abdfe304",
+    "sourceSize": [
+      552,
+      325
+    ],
+    "outputSize": [
+      1104,
+      650
+    ],
+    "removedInkPixels": 65,
+    "spreads": [
+      235
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-213-114-question.png",
+    "sourceSha256": "a777ae0dca5c83197eba56926cc6acafa796cd78c81290457a3846e5bed58be2",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-213-114.webp",
+    "outputSha256": "9086b3f879d0965458edb9d78b6d8a9db7cc65ce91e9287008c1d2072f07d86c",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.179,
+    "fidelity": {
+      "colorMAE": 0.009207,
+      "luminanceCorrelation": 0.992001,
+      "edgeCorrelation": 0.99186
+    }
+  },
+  "2-27-1-question": {
+    "key": "2-27-1-question",
+    "kind": "question",
+    "page": "2-27",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-27-1.webp",
+    "oldSha256": "8758945d2a8cbcec8b5ebd1bafd6f29ad40202026b19526a042df7e0da23f4ce",
+    "sourceSize": [
+      853,
+      439
+    ],
+    "outputSize": [
+      1706,
+      878
+    ],
+    "removedInkPixels": 278,
+    "spreads": [
+      142
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-27-1-question.png",
+    "sourceSha256": "dc06d43034d69894f87c122556abcac618375495454864d9860fe2487dc8eb77",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-27-1.webp",
+    "outputSha256": "d816db9b84ba9458a7b3115246b8b5ba19fa05d12c575e1d4292c166e3862d88",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 2.536,
+    "fidelity": {
+      "colorMAE": 0.012279,
+      "luminanceCorrelation": 0.992203,
+      "edgeCorrelation": 0.991978
+    }
+  },
+  "2-33-10-question": {
+    "key": "2-33-10-question",
+    "kind": "question",
+    "page": "2-33",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-33-10.webp",
+    "oldSha256": "de2c27eb3efc927c585cbb34fa793c75f314499c21f8f2b20578b7d4897f0d4b",
+    "sourceSize": [
+      552,
+      214
+    ],
+    "outputSize": [
+      1104,
+      428
+    ],
+    "removedInkPixels": 402,
+    "spreads": [
+      145
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-33-10-question.png",
+    "sourceSha256": "0ecb3f462fc054cd97a35c554bbc055fd42374b1447c6d6ce64b4689356df041",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-33-10.webp",
+    "outputSha256": "60297ac88890dd56b82068f15dfd148e71f1c85cd5facc73d58ed13d2b8418f7",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.842,
+    "fidelity": {
+      "colorMAE": 0.012274,
+      "luminanceCorrelation": 0.986321,
+      "edgeCorrelation": 0.983597
+    }
+  },
+  "2-33-11-question": {
+    "key": "2-33-11-question",
+    "kind": "question",
+    "page": "2-33",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-33-11.webp",
+    "oldSha256": "648dc0dc281b52c89e31ae3fc1e4c8d48112b2ea60e36bed56c6a3a2dc6be249",
+    "sourceSize": [
+      552,
+      254
+    ],
+    "outputSize": [
+      1104,
+      508
+    ],
+    "removedInkPixels": 731,
+    "spreads": [
+      145
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-33-11-question.png",
+    "sourceSha256": "5c1cb2e3dbec7cfa92791a51e6b02a8e8b60c1c309e4a1a858ab234615fe1d30",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-33-11.webp",
+    "outputSha256": "113f62d85bda132517faccfa6f5dd43f298db3df1ceff8098ef366926bafc2c0",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.932,
+    "fidelity": {
+      "colorMAE": 0.008434,
+      "luminanceCorrelation": 0.989277,
+      "edgeCorrelation": 0.988244
+    }
+  },
+  "2-34-12-question": {
+    "key": "2-34-12-question",
+    "kind": "question",
+    "page": "2-34",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-34-12.webp",
+    "oldSha256": "ab41e1bc292ae583c9e1eb1a169e83572e9f923d6076f92396e7781d17f49772",
+    "sourceSize": [
+      555,
+      450
+    ],
+    "outputSize": [
+      1110,
+      900
+    ],
+    "removedInkPixels": 181,
+    "spreads": [
+      146
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-34-12-question.png",
+    "sourceSha256": "7b949530c206a68830f3407706987f5b68a14f19c7776be0f6e7c541f31227f6",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-34-12.webp",
+    "outputSha256": "8cdd65d22d7cd9e9d088858f5dc604f9cfce1927676114ce48ecb179e2ba5ff4",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.489,
+    "fidelity": {
+      "colorMAE": 0.007469,
+      "luminanceCorrelation": 0.993025,
+      "edgeCorrelation": 0.993048
+    }
+  },
+  "2-46-12-question": {
+    "key": "2-46-12-question",
+    "kind": "question",
+    "page": "2-46",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-46-12.webp",
+    "oldSha256": "84bf8a68a7d78ef16a453d2c4d8cb6f8883fecce05a3a5306cf9ff2f9c174d02",
+    "sourceSize": [
+      553,
+      453
+    ],
+    "outputSize": [
+      1106,
+      906
+    ],
+    "removedInkPixels": 23,
+    "spreads": [
+      152
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-46-12-question.png",
+    "sourceSha256": "735b79634a0801d3fe06b82e1823398137e8413f1e785922e41b2a9fe3345ee9",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-46-12.webp",
+    "outputSha256": "f200504be27e9a69a5938bd4cbea115ebe0fc75a254794e73c59c061d3c0d64f",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.489,
+    "fidelity": {
+      "colorMAE": 0.008689,
+      "luminanceCorrelation": 0.994196,
+      "edgeCorrelation": 0.993808
+    }
+  },
+  "2-46-14-question": {
+    "key": "2-46-14-question",
+    "kind": "question",
+    "page": "2-46",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-46-14.webp",
+    "oldSha256": "af357e70407a3890d283f9b8e686ade4d5627c116c900c26020aac2b897f47c4",
+    "sourceSize": [
+      556,
+      318
+    ],
+    "outputSize": [
+      1112,
+      636
+    ],
+    "removedInkPixels": 148,
+    "spreads": [
+      152
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-46-14-question.png",
+    "sourceSha256": "c7db321caa8fc7daeff7c1ab55fc13909ca9ef666bb71c80ef8829949ea837db",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-46-14.webp",
+    "outputSha256": "329738a333b71a7dbcad5df7b9bdfe3dff52fe6f1c458e13439e6d38f07b1eba",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.172,
+    "fidelity": {
+      "colorMAE": 0.014777,
+      "luminanceCorrelation": 0.993008,
+      "edgeCorrelation": 0.991925
+    }
+  },
+  "2-71-3-explanation": {
+    "key": "2-71-3-explanation",
+    "kind": "explanation",
+    "page": "2-71",
+    "oldAsset": "assets/hvac-hansol-book/explanations/2-71-3.webp",
+    "oldSha256": "47027d36fdd55e0dbdcb582e12a9c8bdd9b9ecbb053a5f5238b7cbfb4661b54e",
+    "sourceSize": [
+      852,
+      210
+    ],
+    "outputSize": [
+      1704,
+      420
+    ],
+    "removedInkPixels": 2052,
+    "spreads": [
+      164
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-71-3-explanation.png",
+    "sourceSha256": "16ce2b86b22cdb80f4a8c90c406b0478fdc012e551873b4160f3c082ead12fe2",
+    "asset": "assets/hvac-hansol-book/ink-hidden/explanations/2-71-3.webp",
+    "outputSha256": "3db311265906d1e608f8d2f9ec774aeba90062d2ea70ee4ba19001f36dfd1b47",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 1.118,
+    "fidelity": {
+      "colorMAE": 0.006587,
+      "luminanceCorrelation": 0.958247,
+      "edgeCorrelation": 0.956275
+    }
+  },
+  "2-87-4-question": {
+    "key": "2-87-4-question",
+    "kind": "question",
+    "page": "2-87",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-87-4.webp",
+    "oldSha256": "cd776a4482823028bd124a4d6d4aaf89051c680e7550aa744e71804b283205b8",
+    "sourceSize": [
+      552,
+      247
+    ],
+    "outputSize": [
+      1104,
+      494
+    ],
+    "removedInkPixels": 217,
+    "spreads": [
+      172
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-87-4-question.png",
+    "sourceSha256": "f602fef8ad1e662c6417ef8836a54fa953c272ff2e84b4ca0d5f82720a8a027c",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-87-4.webp",
+    "outputSha256": "256c0bd2587b11b1e7f8756ee95e529f227db58f457f33341b3d0860009dc182",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.968,
+    "fidelity": {
+      "colorMAE": 0.011535,
+      "luminanceCorrelation": 0.991522,
+      "edgeCorrelation": 0.989701
+    }
+  },
+  "2-89-14-question": {
+    "key": "2-89-14-question",
+    "kind": "question",
+    "page": "2-89",
+    "oldAsset": "assets/hvac-hansol-book/questions/2-89-14.webp",
+    "oldSha256": "3d9ffafc52f1fd845ddd57f13ccc4258c747723c1c36544359850696d73acfa1",
+    "sourceSize": [
+      552,
+      135
+    ],
+    "outputSize": [
+      1104,
+      270
+    ],
+    "removedInkPixels": 228,
+    "spreads": [
+      173
+    ],
+    "sourceAsset": "work/hansol-ink-hidden/original/2-89-14-question.png",
+    "sourceSha256": "3c5fc69a3f742ba7dd71213384fe706f4202afede0569290c8c4236f3074ae04",
+    "asset": "assets/hvac-hansol-book/ink-hidden/questions/2-89-14.webp",
+    "outputSha256": "f8471e69232ccc983a171ba41b5fb68557c97fbc34bdc516730d227594ba030b",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 0.645,
+    "fidelity": {
+      "colorMAE": 0.012153,
+      "luminanceCorrelation": 0.97896,
+      "edgeCorrelation": 0.964504
+    }
+  },
+  "page-1-25": {
+    "key": "page-1-25",
+    "kind": "page",
+    "page": "1-25",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-25-original.png",
+    "oldSha256": "04845adefe2f85bf3d20d1f69369fb895060b88333e97c459a952b5582f2c98b",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-25.png",
+    "sourceSha256": "12f0e70a03b86d0fb96216828c3028a14bea4811ad4ed42a9958ed999100ba5d",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-25.webp",
+    "removedInkPixels": 922,
+    "spreads": [
+      21
+    ],
+    "outputSha256": "c25a91eaa92a86bc6c493f100131496f1e324e80e59930949b98dd92e392a7a0",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.612,
+    "fidelity": {
+      "colorMAE": 0.003905,
+      "luminanceCorrelation": 0.998545,
+      "edgeCorrelation": 0.998054
+    }
+  },
+  "page-1-100": {
+    "key": "page-1-100",
+    "kind": "page",
+    "page": "1-100",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-100-original.png",
+    "oldSha256": "38ca8ee4db5020c20de3283ba20765959c2e2197e7a477108e7a681386c8f53d",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-100.png",
+    "sourceSha256": "5b2236a9cce725f23106386c4defa7d6da65effa14b1973c86b7890133a18a0e",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-100.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      59
+    ],
+    "outputSha256": "1140b07f0342f35ecf0c5c25e027e60cbe34933b9cb6502c50efdb5542f8b72c",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.51,
+    "fidelity": {
+      "colorMAE": 0.00397,
+      "luminanceCorrelation": 0.998576,
+      "edgeCorrelation": 0.998116
+    }
+  },
+  "page-1-103": {
+    "key": "page-1-103",
+    "kind": "page",
+    "page": "1-103",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-103-original.png",
+    "oldSha256": "b7b82cd2014adcdfddc090d34a19745d873eed54635f2a1b3ab675138e86bf7a",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-103.png",
+    "sourceSha256": "70f797dcd463eebf1f48af998d9937e78b5b9c4537d5e666d8f123c02dc4d9ca",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-103.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      60
+    ],
+    "outputSha256": "1d5ed103e124667cc1ad49b5e6d886a1430bb3f81180a69442b8c0c84b8350a5",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.64,
+    "fidelity": {
+      "colorMAE": 0.004019,
+      "luminanceCorrelation": 0.998493,
+      "edgeCorrelation": 0.997942
+    }
+  },
+  "page-1-105": {
+    "key": "page-1-105",
+    "kind": "page",
+    "page": "1-105",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-105-original.png",
+    "oldSha256": "a8b4130b7196864af5eaa4d668e9fdad12e9f576d72c519825dadbaf76c78d1b",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-105.png",
+    "sourceSha256": "0ad156e8efdac9827819cec52c20d8db71a1919f0de32aab18fe2483778aaa6e",
+    "sourceSize": [
+      1342,
+      1861
+    ],
+    "outputSize": [
+      2684,
+      3722
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-105.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      61
+    ],
+    "outputSha256": "d043b5a6971bb46082201ade65b18390a8f3526de58fbc54a3982c42aed37a77",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.433,
+    "fidelity": {
+      "colorMAE": 0.003684,
+      "luminanceCorrelation": 0.998528,
+      "edgeCorrelation": 0.998047
+    }
+  },
+  "page-1-106": {
+    "key": "page-1-106",
+    "kind": "page",
+    "page": "1-106",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-106-original.png",
+    "oldSha256": "0fe1810d40b9e081b113bd2de69c9f2b50d80f40ba4ae46dbd051b99c51750a6",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-106.png",
+    "sourceSha256": "6fb5f3babce82918b15f5d2a186083054beec2b7ff62417e85ee6396f268f217",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-106.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      62
+    ],
+    "outputSha256": "3ea6891cf4b5498a7e1b1a27a2b314ef01b2bee65ccc21f0c9e8951493058a03",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.303,
+    "fidelity": {
+      "colorMAE": 0.003887,
+      "luminanceCorrelation": 0.998459,
+      "edgeCorrelation": 0.997953
+    }
+  },
+  "page-1-112": {
+    "key": "page-1-112",
+    "kind": "page",
+    "page": "1-112",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-112-original.png",
+    "oldSha256": "b7edbc552f4e9ca3bbbe01f6c79ec3d82565bbd507fbdb9400c55cbf9ec1706c",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-112.png",
+    "sourceSha256": "5520f8652dbff96286501886e0386d5f1ef534a30e284322cc046144af2ef0c2",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-112.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      65
+    ],
+    "outputSha256": "346ed651ae4739eb79cc60111b22c9c3297a6447c0d25bdf1a2d9492a21a72c6",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.18,
+    "fidelity": {
+      "colorMAE": 0.004301,
+      "luminanceCorrelation": 0.998732,
+      "edgeCorrelation": 0.99833
+    }
+  },
+  "page-1-117": {
+    "key": "page-1-117",
+    "kind": "page",
+    "page": "1-117",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-117-original.png",
+    "oldSha256": "bc54b89a906445c97e71d27877189d4820ec0a571d4bcfc36c55014ebbacd65d",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-117.png",
+    "sourceSha256": "9598d648920153a0a58c341820d6ed788d3cbe4c3c82cf1036fae6ab19ba805d",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-117.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      67
+    ],
+    "outputSha256": "4ec8575bac8bf3f438407e160d97d40967172e2a5d3cc3d35c9dd177303fd541",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.143,
+    "fidelity": {
+      "colorMAE": 0.003773,
+      "luminanceCorrelation": 0.998358,
+      "edgeCorrelation": 0.997781
+    }
+  },
+  "page-1-119": {
+    "key": "page-1-119",
+    "kind": "page",
+    "page": "1-119",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-119-original.png",
+    "oldSha256": "e154271f83702a0ba22766c26537b08678ee199f471b7e512d418f843f3649df",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-119.png",
+    "sourceSha256": "b5f9854ee33818796a4b3ca3883def75b9574419588a1f8d6d4479a84aa466c5",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-119.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      68
+    ],
+    "outputSha256": "e11729c00c16fb1d653de66021bcedb335f1da730efa37b2718f3108662e5f45",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.09,
+    "fidelity": {
+      "colorMAE": 0.003905,
+      "luminanceCorrelation": 0.998584,
+      "edgeCorrelation": 0.998159
+    }
+  },
+  "page-1-135": {
+    "key": "page-1-135",
+    "kind": "page",
+    "page": "1-135",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-135-original.png",
+    "oldSha256": "7dacd7ad0a4016162ffaa5eb5874c957452863b391dbde9963112e6141473f5b",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-135.png",
+    "sourceSha256": "89d08b159c96d3e9fdd5ad4a59fdfac20763dc99794c0aa9afff398bd3ce08e3",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-135.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      76
+    ],
+    "outputSha256": "a9dddfcf6900e44cfbea32aa4044e3df3541d6944ffc3e78fb7c95257f6dff96",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.104,
+    "fidelity": {
+      "colorMAE": 0.003876,
+      "luminanceCorrelation": 0.998556,
+      "edgeCorrelation": 0.998068
+    }
+  },
+  "page-1-136": {
+    "key": "page-1-136",
+    "kind": "page",
+    "page": "1-136",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-136-original.png",
+    "oldSha256": "54bd96a4dfd2f1481a04d1d4aaeff05c65b5b409170395bc7c8d54f8f16e5061",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-136.png",
+    "sourceSha256": "a24dfed3f68341d54725a3b6af0093293d450ef97d01bc1f76d7f459fb84a3da",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-136.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      77
+    ],
+    "outputSha256": "7c33122164ef0d52db19f663c0d0d5426675d95c7ae1f8ab05e0d257cc9f3385",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.137,
+    "fidelity": {
+      "colorMAE": 0.003878,
+      "luminanceCorrelation": 0.998644,
+      "edgeCorrelation": 0.998297
+    }
+  },
+  "page-1-137": {
+    "key": "page-1-137",
+    "kind": "page",
+    "page": "1-137",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-137-original.png",
+    "oldSha256": "4a5f0497c5e7e503c594103cfc5907002d29732cc05b7dbd3ca4a3851ae698ae",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-137.png",
+    "sourceSha256": "3a3b05f9420cedea02c7d56d45593686ac2725762baeeaa1829a41c17411498b",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-137.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      77
+    ],
+    "outputSha256": "3675438e5f852090837d6426181507595f3952c9c7a1b88f4da8ed86137c3202",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 13.986,
+    "fidelity": {
+      "colorMAE": 0.003695,
+      "luminanceCorrelation": 0.998754,
+      "edgeCorrelation": 0.99841
+    }
+  },
+  "page-1-139": {
+    "key": "page-1-139",
+    "kind": "page",
+    "page": "1-139",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-139-original.png",
+    "oldSha256": "c932eae2c6fa2c4437d8c050fad0b34f15c51b540f7ef0d13f38841da31d746d",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-139.png",
+    "sourceSha256": "5f05034ceb42e44292f4514645966b4c19a8623bd4e4bcd245b9fecf2f89fd43",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-139.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      78
+    ],
+    "outputSha256": "71a0ac41244d405bfeeb32bb17ef256fcc90512f5fcdb03bf40d8311271681c8",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 13.986,
+    "fidelity": {
+      "colorMAE": 0.00402,
+      "luminanceCorrelation": 0.998723,
+      "edgeCorrelation": 0.998428
+    }
+  },
+  "page-1-141": {
+    "key": "page-1-141",
+    "kind": "page",
+    "page": "1-141",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-141-original.png",
+    "oldSha256": "b632fef6215235b002b9358127745e6092f84a5a1636e30cb32b0d0a49a4f96e",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-141.png",
+    "sourceSha256": "97742df5413c7f97fd830cdf7b935d8833364494cdb732a9a3475ce9eb3492bd",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-141.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      79
+    ],
+    "outputSha256": "11b701073192b5af32723a3fa1c9ec6ae5667ee557ad1c6c0c7a5c24cb08d3f8",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.183,
+    "fidelity": {
+      "colorMAE": 0.004127,
+      "luminanceCorrelation": 0.99852,
+      "edgeCorrelation": 0.998057
+    }
+  },
+  "page-1-143": {
+    "key": "page-1-143",
+    "kind": "page",
+    "page": "1-143",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-143-original.png",
+    "oldSha256": "705e37bcac93fa30f7008b0c6e2db0628cc2d54ab976c0d8e6b4e9559ad802de",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-143.png",
+    "sourceSha256": "dd62102f58f41cd5319a02ca92b006992fb342cec26d466ac9458d9a29ee1ef2",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-143.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      80
+    ],
+    "outputSha256": "cb1d1a1822a2d27be0475de2236e75f2722437981e749fbcc9867aca5279327f",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.324,
+    "fidelity": {
+      "colorMAE": 0.004349,
+      "luminanceCorrelation": 0.998609,
+      "edgeCorrelation": 0.998047
+    }
+  },
+  "page-1-153": {
+    "key": "page-1-153",
+    "kind": "page",
+    "page": "1-153",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-153-original.png",
+    "oldSha256": "42a8515e5b4eb54b1d5245d941d5383787c55a1488a5296a08fe80d16275b5a3",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-153.png",
+    "sourceSha256": "c977ca5b899e411a5733d0c157e11ead64ecc537245650ec8fef917cbc8af25f",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-153.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      85
+    ],
+    "outputSha256": "a02d98242a738217edb8fbec5bc4ebe69ab43a8dd44b433f91f8ca8b4bbf7e31",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.081,
+    "fidelity": {
+      "colorMAE": 0.00368,
+      "luminanceCorrelation": 0.998536,
+      "edgeCorrelation": 0.998014
+    }
+  },
+  "page-1-154": {
+    "key": "page-1-154",
+    "kind": "page",
+    "page": "1-154",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-154-original.png",
+    "oldSha256": "4d68f3077ddba27061d5448a343d71571748e650a00b0fe561c58abd838b8995",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-154.png",
+    "sourceSha256": "83c1d5f022bcf77fc52fcddbcb53aca696f521cf2f4e2f6ea3c300e53959c1e0",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-154.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      86
+    ],
+    "outputSha256": "f84b788fd3d7338efa7ac788d848c8217addf79fc8f49615757991c7a7aafb88",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.104,
+    "fidelity": {
+      "colorMAE": 0.00402,
+      "luminanceCorrelation": 0.998679,
+      "edgeCorrelation": 0.998262
+    }
+  },
+  "page-1-164": {
+    "key": "page-1-164",
+    "kind": "page",
+    "page": "1-164",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-164-original.png",
+    "oldSha256": "d4034b95bf6de0f4d704b319663b4864ea939cd049ad59282208a838d1b752e1",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-164.png",
+    "sourceSha256": "a1df8dbda2347956279a1f02a521bbf19528ba6557e6970a0ac4dde319674f18",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-164.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      91
+    ],
+    "outputSha256": "41c34911ea12f62dac9b11f519001b460b16adbe5608bc5c7a9187e464731cbc",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.122,
+    "fidelity": {
+      "colorMAE": 0.003702,
+      "luminanceCorrelation": 0.998536,
+      "edgeCorrelation": 0.998023
+    }
+  },
+  "page-1-165": {
+    "key": "page-1-165",
+    "kind": "page",
+    "page": "1-165",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-165-original.png",
+    "oldSha256": "0a63a75ae29a8be89eb86b8a82c7cfa8e20d63f36b66d141f1dc30ecfb5227f8",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-165.png",
+    "sourceSha256": "2ceb44716a574d2d37ba8d5ac5359922c043882f646c00242563f46425149c98",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-165.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      91
+    ],
+    "outputSha256": "de5b2b5742dd73f768976db7718babb15247cf351aad5d471810ef4c5b68dbaf",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.15,
+    "fidelity": {
+      "colorMAE": 0.003954,
+      "luminanceCorrelation": 0.998253,
+      "edgeCorrelation": 0.997599
+    }
+  },
+  "page-1-167": {
+    "key": "page-1-167",
+    "kind": "page",
+    "page": "1-167",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-167-original.png",
+    "oldSha256": "1b47b3f07fe16e305d00fd9eaf304566e2e8844d790ae5a019aa65a4d7bfa201",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-167.png",
+    "sourceSha256": "38bc128d8270bbbf8b9a408f57cfcead4b9ab562ec9d1c258da6040b1db38f9e",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-167.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      92
+    ],
+    "outputSha256": "446a492d9ef2454337633e46903c064dd6d7be8017120495f55fe744af69a04c",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.199,
+    "fidelity": {
+      "colorMAE": 0.003975,
+      "luminanceCorrelation": 0.998465,
+      "edgeCorrelation": 0.997951
+    }
+  },
+  "page-1-168": {
+    "key": "page-1-168",
+    "kind": "page",
+    "page": "1-168",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-168-original.png",
+    "oldSha256": "377cec4ba66504aa4404f8c3d6395d005ff8c5c9c0f0bbdf8b8680a98bb9f5f8",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-168.png",
+    "sourceSha256": "bf755667e74e245e324b1c10c68d180bb1240957e6495a22427de5b638d8f9bf",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-168.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      93
+    ],
+    "outputSha256": "7806844e38a48ac4e45b2ecaa93bbb39ec51efcd517d9df31b8e33e1ead1e23c",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.05,
+    "fidelity": {
+      "colorMAE": 0.003946,
+      "luminanceCorrelation": 0.998684,
+      "edgeCorrelation": 0.998344
+    }
+  },
+  "page-1-169": {
+    "key": "page-1-169",
+    "kind": "page",
+    "page": "1-169",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-169-original.png",
+    "oldSha256": "41d8f09360ccf989d89b95133b0532e8f3460e7e41148be601ebff3150d0fca3",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-169.png",
+    "sourceSha256": "e9a997190e07525e5ec371e4ff01e0e4fe7dfc8ec7d53d9c6a840d2eb805e050",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-169.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      93
+    ],
+    "outputSha256": "f33aec72bd0cc997cf294de0ee6b82eefdb4f5b8d4d67bafa436747b103649b9",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.206,
+    "fidelity": {
+      "colorMAE": 0.004434,
+      "luminanceCorrelation": 0.998868,
+      "edgeCorrelation": 0.998016
+    }
+  },
+  "page-1-170": {
+    "key": "page-1-170",
+    "kind": "page",
+    "page": "1-170",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-170-original.png",
+    "oldSha256": "9e9c58350acc211d02ef946e987c09852c68d4e2ee9352462f526aa7625e6d52",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-170.png",
+    "sourceSha256": "2e0745e3032e904931942ca7b4e29385042457980f1cd25b14d01c999a3a2f9b",
+    "sourceSize": [
+      1342,
+      1860
+    ],
+    "outputSize": [
+      2684,
+      3720
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-170.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      94
+    ],
+    "outputSha256": "4a95aa1db01f97680eb51f37c026e0d311557270f7b9716d18c7eb0ff22e936a",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.122,
+    "fidelity": {
+      "colorMAE": 0.003747,
+      "luminanceCorrelation": 0.998276,
+      "edgeCorrelation": 0.997654
+    }
+  },
+  "page-1-173": {
+    "key": "page-1-173",
+    "kind": "page",
+    "page": "1-173",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-173-original.png",
+    "oldSha256": "f15bf34c8d454ebc2fc2b2bbc80b77b078b3b146f6117bbfa50547542a152b87",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-173.png",
+    "sourceSha256": "7b51a1163880d9722e3ba12010e8bf00f9917d7ec826047b009e9d11fe46cdb6",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-173.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      95
+    ],
+    "outputSha256": "76b9ec588e5e46c3540b5a5b3e520ea6b0d5790cc0630a9a34885fb2b7c176a6",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.175,
+    "fidelity": {
+      "colorMAE": 0.003641,
+      "luminanceCorrelation": 0.998445,
+      "edgeCorrelation": 0.997951
+    }
+  },
+  "page-1-174": {
+    "key": "page-1-174",
+    "kind": "page",
+    "page": "1-174",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-174-original.png",
+    "oldSha256": "47f9fb9e18ea8b91cfeea6ce91f0403525ed738d8ff0a0e1b67bbdbfb84b483b",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-174.png",
+    "sourceSha256": "3ba8940e0f04a27d3855ba5c93ad2f9f619810043f148d02a6e6fb8d1563be49",
+    "sourceSize": [
+      1342,
+      1863
+    ],
+    "outputSize": [
+      2684,
+      3726
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-174.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      96
+    ],
+    "outputSha256": "311cf11e22e8bc8d9ef6aac15af51a2446b7c5a6e86b90d903604e4f0a51e917",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.112,
+    "fidelity": {
+      "colorMAE": 0.003646,
+      "luminanceCorrelation": 0.998476,
+      "edgeCorrelation": 0.99799
+    }
+  },
+  "page-1-175": {
+    "key": "page-1-175",
+    "kind": "page",
+    "page": "1-175",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-175-original.png",
+    "oldSha256": "d67b8c15bf1c159c0e578d9e5f5bd19a584cdc1a5cab587c642cd925cb903600",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-175.png",
+    "sourceSha256": "3067ae84843f71c77655d12750b4bb83b6c636b0c11804af30c0367e059769e4",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-175.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      96
+    ],
+    "outputSha256": "1601cb031204eedc3b09f2cbfa09088769774a7651ac9b34fca8ec6cb27b2b32",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.115,
+    "fidelity": {
+      "colorMAE": 0.004049,
+      "luminanceCorrelation": 0.998586,
+      "edgeCorrelation": 0.998218
+    }
+  },
+  "page-1-176": {
+    "key": "page-1-176",
+    "kind": "page",
+    "page": "1-176",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-176-original.png",
+    "oldSha256": "488c2033edb484450d1d1ee1766773f1f22c0b53fd4b49e7709eaa6948eefcfd",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-176.png",
+    "sourceSha256": "ba3e02d18d85d27e5fd1140d1f68e7d2cc4a4b89201f708d708885e68ba20b29",
+    "sourceSize": [
+      1342,
+      1860
+    ],
+    "outputSize": [
+      2684,
+      3720
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-176.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      97
+    ],
+    "outputSha256": "5a603254dd10d036d78bfde481f6cc3e5f8bc91111c492a673d2796cd1f3ab15",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 13.843,
+    "fidelity": {
+      "colorMAE": 0.003451,
+      "luminanceCorrelation": 0.998426,
+      "edgeCorrelation": 0.99809
+    }
+  },
+  "page-1-177": {
+    "key": "page-1-177",
+    "kind": "page",
+    "page": "1-177",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-177-original.png",
+    "oldSha256": "ccb114199a3044c1f54c2b9f9d49bf5f5d7ab98630ccbd2710092adc3ec417b0",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-177.png",
+    "sourceSha256": "9c6d26e7c32cc6b20ecf31d687f7f9018fef2083532d01216734ea4cd6649f08",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-177.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      97
+    ],
+    "outputSha256": "2ef0b07d773f9c006ca22c887f1ded29f441593d4d09a0fed4c7625e72d75d55",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.025,
+    "fidelity": {
+      "colorMAE": 0.003617,
+      "luminanceCorrelation": 0.998504,
+      "edgeCorrelation": 0.998104
+    }
+  },
+  "page-1-178": {
+    "key": "page-1-178",
+    "kind": "page",
+    "page": "1-178",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-178-original.png",
+    "oldSha256": "c6913880725090268b1a89eddfda3de11122c3c362569b90e378975a76da0d3c",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-178.png",
+    "sourceSha256": "5f134139b5564d0f913f7010dbce691d69372cbd4d0c606e797ea72fb731b250",
+    "sourceSize": [
+      1342,
+      1860
+    ],
+    "outputSize": [
+      2684,
+      3720
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-178.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      98
+    ],
+    "outputSha256": "0d6b43881610e8f67f384c4dc236f58705270fe0ad408f2f2e70ea49737309cb",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.207,
+    "fidelity": {
+      "colorMAE": 0.003636,
+      "luminanceCorrelation": 0.998462,
+      "edgeCorrelation": 0.997978
+    }
+  },
+  "page-1-179": {
+    "key": "page-1-179",
+    "kind": "page",
+    "page": "1-179",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-179-original.png",
+    "oldSha256": "6f25a369e118c7421415eeba9340e1e3ba22567f0ae8dbab06cbff5f1c851b63",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-179.png",
+    "sourceSha256": "f789cd9787244f53e2a0075bed78e1361e16256a535c818db4e2ae8f39104919",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-179.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      98
+    ],
+    "outputSha256": "ff908eed0222852b2f5879d677da30f9bb73c00a87fb30696b1461d0dd6fc443",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.26,
+    "fidelity": {
+      "colorMAE": 0.004228,
+      "luminanceCorrelation": 0.998546,
+      "edgeCorrelation": 0.998008
+    }
+  },
+  "page-1-180": {
+    "key": "page-1-180",
+    "kind": "page",
+    "page": "1-180",
+    "oldAsset": "assets/hvac-hansol-book/direct-pages/1-180-original.png",
+    "oldSha256": "d2837acb9563b09fd8d3fcb5fec21c71bf6069e18d41bbcd86e8031a91b2b50c",
+    "sourceAsset": "assets/hvac-hansol-book/ink-hidden/pages/1-180.png",
+    "sourceSha256": "b000ddae01d18b6ce98d4cb706c4b680f4c9bd9d2b700ab01a6e85752ee374ea",
+    "sourceSize": [
+      1342,
+      1862
+    ],
+    "outputSize": [
+      2684,
+      3724
+    ],
+    "asset": "assets/hvac-hansol-book/ink-hidden/upscaled-pages/1-180.webp",
+    "removedInkPixels": 0,
+    "spreads": [
+      99
+    ],
+    "outputSha256": "11e39edc246d90ac8fc43d5765e6e2c55c7e477dab6009f62c082aa295366ccd",
+    "model": "realesrgan-x4plus-anime",
+    "modelSha256": "fe01c269cfd10cdef8e018ab66ebe750cf79c7af4d1f9c16c737e1295229bacc",
+    "native": "arm64",
+    "tile": 256,
+    "threads": "1:1:1",
+    "pipeline": "4x -> 2x bicubic",
+    "encoding": "lossless-webp-method6",
+    "totalSeconds": 14.168,
+    "fidelity": {
+      "colorMAE": 0.003845,
+      "luminanceCorrelation": 0.998448,
+      "edgeCorrelation": 0.997947
+    }
+  }
+}

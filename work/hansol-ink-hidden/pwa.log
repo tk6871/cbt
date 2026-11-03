@@ -1,0 +1,5 @@
+
+> industrial-cbt-modern-tools@1.0.0 test:pwa
+> node tools/test-pwa-build.mjs
+
+PWA v629 audit passed: version sync, recovery safety, offline registration chunks, manual calculation expansion.

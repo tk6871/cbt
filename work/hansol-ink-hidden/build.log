@@ -1,0 +1,168 @@
+
+> industrial-cbt-modern-tools@1.0.0 build
+> vite build && node tools/sync-pwa-service-worker.mjs
+
+vite v7.3.6 building client environment for production...
+transforming...
+node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/regexes.js (70:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/util.js (330:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/.pnpm/zod@4.5.4/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 3746 modules transformed.
+rendering chunks...
+computing gzip size...
+modern/assets/search.worker-B9iHYp8F.js                                     0.75 kB
+modern/assets/KaTeX_Size3-Regular-CTq5MqoE.woff                             4.42 kB
+modern/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2                            4.93 kB
+modern/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2                            5.21 kB
+modern/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2                            5.47 kB
+modern/assets/KaTeX_Size4-Regular-BF-4gkZK.woff                             5.98 kB
+modern/assets/KaTeX_Size2-Regular-oD1tc_U0.woff                             6.19 kB
+modern/assets/KaTeX_Size1-Regular-C195tn64.woff                             6.50 kB
+modern/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2                      6.91 kB
+modern/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2                         6.91 kB
+modern/assets/KaTeX_Size3-Regular-DgpXs0kz.ttf                              7.59 kB
+modern/assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff                       7.66 kB
+modern/assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff                          7.72 kB
+modern/assets/KaTeX_Script-Regular-D3wIWfF6.woff2                           9.64 kB
+modern/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2                       10.34 kB
+modern/assets/KaTeX_Size4-Regular-DWFBv043.ttf                             10.36 kB
+modern/assets/KaTeX_Script-Regular-D5yQViql.woff                           10.59 kB
+modern/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2                         11.32 kB
+modern/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2                            11.35 kB
+modern/assets/KaTeX_Size2-Regular-B7gKUWhC.ttf                             11.51 kB
+modern/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2                        12.03 kB
+modern/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2                          12.22 kB
+modern/assets/KaTeX_Size1-Regular-Dbsnue_I.ttf                             12.23 kB
+modern/assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff                        12.32 kB
+modern/assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf                       12.34 kB
+modern/assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf                          12.37 kB
+modern/assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff                          13.21 kB
+modern/assets/KaTeX_Fraktur-Bold-BsDP51OF.woff                             13.30 kB
+modern/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2                      13.57 kB
+modern/assets/KaTeX_SansSerif-Italic-DN2j7dab.woff                         14.11 kB
+modern/assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff                           14.41 kB
+modern/assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff                       16.03 kB
+modern/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2                         16.40 kB
+modern/assets/KaTeX_Math-Italic-t53AETM-.woff2                             16.44 kB
+modern/assets/KaTeX_Script-Regular-C5JkGWo-.ttf                            16.65 kB
+modern/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2                         16.78 kB
+modern/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2                             16.99 kB
+modern/assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff                          18.67 kB
+modern/assets/KaTeX_Math-Italic-DA0__PXp.woff                              18.75 kB
+modern/assets/KaTeX_Main-BoldItalic-SpSLRI95.woff                          19.41 kB
+modern/assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf                         19.44 kB
+modern/assets/KaTeX_Fraktur-Regular-CB_wures.ttf                           19.57 kB
+modern/assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf                              19.58 kB
+modern/assets/KaTeX_Main-Italic-BMLOBm91.woff                              19.68 kB
+modern/assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf                          22.36 kB
+modern/assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf                            24.50 kB
+modern/assets/KaTeX_Main-Bold-Cx986IdX.woff2                               25.32 kB
+modern/assets/KaTeX_Main-Regular-B22Nviop.woff2                            26.27 kB
+modern/assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf                        27.56 kB
+modern/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2                             28.08 kB
+modern/assets/KaTeX_Main-Bold-Jm3AIy58.woff                                29.91 kB
+modern/assets/KaTeX_Main-Regular-Dr94JaBh.woff                             30.77 kB
+modern/assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf                           31.20 kB
+modern/assets/KaTeX_Math-Italic-flOr_0UB.ttf                               31.31 kB
+modern/assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf                           32.97 kB
+modern/assets/KaTeX_AMS-Regular-DMm9YOAa.woff                              33.52 kB
+modern/assets/KaTeX_Main-Italic-3WenGoN9.ttf                               33.58 kB
+modern/assets/KaTeX_Main-Bold-waoOVXN0.ttf                                 51.34 kB
+modern/assets/KaTeX_Main-Regular-ypZvNtVU.ttf                              53.58 kB
+modern/assets/KaTeX_AMS-Regular-DRggAlZN.ttf                               63.63 kB
+modern/assets/king-size-homer-DOPAnXmh.jpg                                132.58 kB
+modern/assets/pdf.worker.min-Dswkl-cV.mjs                               1,265.41 kB
+modern/assets/NanumGothic-Regular-xHXjSUfO.ttf                          2,054.74 kB
+modern/assets/NanumGothic-Bold-DvrrFc7E.ttf                             2,073.87 kB
+modern/assets/D2Coding-Regular-Bty_r14h.ttf                             4,190.70 kB
+modern/assets/D2Coding-Bold-Cyz1KEEb.ttf                                4,368.29 kB
+modern/PracticalFractionLines-v629.css                                      0.54 kB │ gzip:   0.25 kB
+modern/AdminOverviewCharts-v629.css                                         0.65 kB │ gzip:   0.31 kB
+modern/SyncRecoveryPanel-v629.css                                           0.73 kB │ gzip:   0.36 kB
+modern/PracticalCalculationLibrary-v629.css                                 1.13 kB │ gzip:   0.46 kB
+modern/OptionalFeatureBoundary-v629.css                                     1.15 kB │ gzip:   0.44 kB
+modern/PracticalSearchLibrary-v629.css                                      2.04 kB │ gzip:   0.61 kB
+modern/TextbookContents-v629.css                                            2.24 kB │ gzip:   0.80 kB
+modern/FormulaWorkbench-v629.css                                            2.68 kB │ gzip:   0.70 kB
+modern/SchoolSourcePrep-v629.css                                            2.70 kB │ gzip:   0.72 kB
+modern/CoolingMidterm-v629.css                                              4.59 kB │ gzip:   1.16 kB
+modern/ThemeStudio-v629.css                                                 5.99 kB │ gzip:   1.39 kB
+modern/StudySettings-v629.css                                               7.68 kB │ gzip:   1.84 kB
+modern/SchoolExamManager-v629.css                                           8.13 kB │ gzip:   1.71 kB
+modern/TextbookLibrary-v629.css                                             8.45 kB │ gzip:   1.89 kB
+modern/AdminIssueWorkspace-v629.css                                         8.71 kB │ gzip:   1.73 kB
+modern/admin.css                                                           18.41 kB │ gzip:   4.34 kB
+modern/TextbookPages-v629.css                                              21.39 kB │ gzip:   4.17 kB
+modern/MathFormula-v629.css                                                30.25 kB │ gzip:   8.06 kB
+modern/cbt.css                                                            357.35 kB │ gzip:  62.65 kB
+modern/admin.js                                                             0.12 kB │ gzip:   0.10 kB
+modern/chunks/MathFormula-v629.js                                           0.14 kB │ gzip:   0.14 kB
+modern/cbt.js                                                               0.20 kB │ gzip:   0.12 kB
+modern/chunks/rotate-ccw-v629.js                                            0.21 kB │ gzip:   0.19 kB
+modern/chunks/index-v6293.js                                                0.43 kB │ gzip:   0.28 kB
+modern/mobile.js                                                            0.49 kB │ gzip:   0.28 kB
+modern/chunks/index-v6294.js                                                0.63 kB │ gzip:   0.31 kB
+modern/chunks/PracticalFractionLines-v629.js                                0.78 kB │ gzip:   0.46 kB
+modern/chunks/web-v629.js                                                   0.98 kB │ gzip:   0.45 kB
+modern/chunks/nativeEnhancements-v629.js                                    1.00 kB │ gzip:   0.47 kB
+modern/chunks/preload-helper-v629.js                                        1.23 kB │ gzip:   0.71 kB
+modern/chunks/web-v6292.js                                                  1.29 kB │ gzip:   0.60 kB
+modern/chunks/createLucideIcon-v629.js                                      1.39 kB │ gzip:   0.78 kB
+modern/chunks/pwa-v629.js                                                   1.59 kB │ gzip:   0.85 kB
+modern/chunks/SyncRecoveryPanel-v629.js                                     2.47 kB │ gzip:   1.50 kB
+modern/chunks/PracticalCalculationLesson-v629.js                            3.30 kB │ gzip:   1.36 kB
+modern/visitor.js                                                           3.41 kB │ gzip:   1.70 kB
+modern/chunks/PracticalSearchLibrary-v629.js                                4.66 kB │ gzip:   2.21 kB
+modern/chunks/TextbookLibrary-v629.js                                       5.39 kB │ gzip:   2.67 kB
+modern/chunks/workbox-window.prod.es5-v629.js                               5.75 kB │ gzip:   2.36 kB
+modern/chunks/index-v6292.js                                                7.96 kB │ gzip:   3.51 kB
+modern/chunks/confetti.module-v629.js                                      10.68 kB │ gzip:   4.28 kB
+modern/chunks/PracticalCalculationLibrary-v629.js                          13.48 kB │ gzip:   5.59 kB
+modern/chunks/CloudSyncPanel-v629.js                                       14.35 kB │ gzip:   4.10 kB
+modern/chunks/ThemeStudio-v629.js                                          15.91 kB │ gzip:   5.99 kB
+modern/chunks/TextbookContents.vue_vue_type_style_index_0_lang-v629.js     16.65 kB │ gzip:   7.00 kB
+modern/chunks/PracticalTrainingTools-v629.js                               17.95 kB │ gzip:   7.19 kB
+modern/chunks/CoolingMidterm-v629.js                                       18.83 kB │ gzip:   6.86 kB
+modern/chunks/TextbookPages-v629.js                                        21.35 kB │ gzip:   8.12 kB
+modern/chunks/index-v6295.js                                               22.02 kB │ gzip:   6.98 kB
+modern/chunks/driver.js-v629.js                                            25.41 kB │ gzip:   7.31 kB
+modern/chunks/admin-v629.js                                                38.58 kB │ gzip:  13.16 kB
+modern/chunks/AdminIssueWorkspace-v629.js                                  39.87 kB │ gzip:  13.31 kB
+modern/chunks/StudySettings-v629.js                                        53.48 kB │ gzip:  17.33 kB
+modern/chunks/SchoolExamManager-v629.js                                    80.91 kB │ gzip:  25.32 kB
+modern/chunks/index-v629.js                                                83.53 kB │ gzip:  33.91 kB
+modern/chunks/import-wrapper-prod-v629.js                                  96.55 kB │ gzip:  32.48 kB
+modern/chunks/MathFormula.vue_vue_type_script_setup_true_lang-v629.js     261.31 kB │ gzip:  77.92 kB
+modern/chunks/OptionalFeatureBoundary-v629.js                             360.52 kB │ gzip: 111.06 kB
+modern/chunks/SchoolSourcePrep-v629.js                                    485.91 kB │ gzip: 145.59 kB
+modern/chunks/energy-textbook-search-v629.js                              486.90 kB │ gzip: 146.10 kB
+modern/chunks/AdminOverviewCharts-v629.js                                 550.20 kB │ gzip: 188.66 kB
+modern/chunks/qualificationStudyGuides-v629.js                            550.78 kB │ gzip: 119.50 kB
+modern/chunks/FormulaWorkbench-v629.js                                  2,700.62 kB │ gzip: 771.17 kB
+modern/chunks/main-v629.js                                              3,167.79 kB │ gzip: 631.31 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 8.61s
+
+PWA v1.3.0
+Building src/sw.ts service worker ("iife" format)...
+vite v7.3.6 building client environment for production...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+computing gzip size...
+modern/pwa-build/sw.js  2.74 kB │ gzip: 1.21 kB
+✓ built in 606ms
+PWA service worker v629 prepared: /Users/sh/Documents/GitHub/cbt/sw.js

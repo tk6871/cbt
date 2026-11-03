@@ -10,6 +10,15 @@
 - 최종 지시: 평소처럼 수정·검증·summary를 작성하고, **플러그인으로 커밋·Push가 가능하면 에이전트가 그 방식으로 마감한다.** 불가능하면 사용자가 처리한다. 앞선 ‘사용자만 커밋’ 메모보다 이 최신 허용이 우선한다. 플러그인의 생성 커밋+브랜치 반영은 원격 작업이므로 로컬 checkout/index는 자동 갱신되지 않는다. 다음 작업 전에 사용자가 로컬 동기화하며 기존 미커밋 변경을 삭제하지 않는다.
 - 이번v5.7.4 내용 커밋219c223c는 앞선 지시 변경 직전에 이미 생성됐다. 에이전트는 GitHub Desktop의Fetch만 요청했고 Push를 누르지 않았다. 이후 연결된 GitHub 플러그인으로 원격main이219c223c7890eec65ac0e6c29fe9be86f0ce6723인 것을 확인했다. 플러그인에커밋/브랜치갱신 기능은 있으나 마감 문서2개의blob 생성이 모두403 Resource not accessible by integration으로 거부됐다. 새blob·tree·commit·ref 갱신은 성공하지 않았으며 다른 경로로 우회하지 않았다. 이 문서/summary만 로컬 미커밋으로 남는다. 연결의 저장소 쓰기 권한이 해결되어야 플러그인 마감 가능하며 실제 사이트 배포 완료와는 별개다.
 
+<!-- hansol-direct-upscale-status:start -->
+### 2026-11-04 v5.8.1 — 필기 영향40개만 교체·로컬 완료
+
+- 눈 버튼으로 빨간 체크·검은 필기는 숨겨지고 인쇄 원문은 남음을 직접 확인했다. 정상332화면을 비교용 저장했다. 전체397쪽 재처리는 사용자 정정으로중단하고 필기 영향14쪽+26문제/풀이만 개선·교체했다. 영향 없는383쪽/기존 개선474장 유지. 불필요한 새 파일은work로 옮겨보존하며 배포하지 않는다.
+- 기존Mac Real-ESRGAN4배→2배bicubic·tile256·losslessWebP 사용. 이전 캡처/397PNG/500개 개선본/일반은행6+교재은행1/문제·정답·좌표 보존을 검사했다. 색삭제/인페인팅/새 설치·다운로드/보안변경/Git우회 없음.
+- 실제 성공: typecheck · text-publication · native-publication · unit-tests · build · pwa · changelog-identity · clean-image-browser-tests. 실물기기/Safari/실계정동기화/APK/실배포 미검사. 공개5.8.1·캐시629·Android설정629/5.8.1만 변경.
+- 풀이경계127·정답검증/채점화·전체개별대조·커밋/Push/배포는 남는다. 교보한쪽보기/필기숨김·창1024×800복원, 진도84%복귀미확인. 실제상태reader-restoration.json참조. 결과work/hansol-ink-hidden/result.json·summary docs/summary-2026-11-03-v581-ink-hidden.md.
+<!-- hansol-direct-upscale-status:end -->
+
 ### 2026-11-03 v5.8 — 수업 우선: 미대조 원문759위치 바로 보기
 
 - 사용자 최신 지시: 내일 수업 준비를 우선해 기존 CBT와의 개별 대조는 뒤로 미루고 미대조 위치를 교재 원문으로 먼저 채운다. 새 업스케일링·OCR·모델·다운로드·설치·공유 압축은 하지 않는다. Mac 기존 정상 열람 캡처를 재사용하며 기존 확대500장은 유지한다.
