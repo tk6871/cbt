@@ -1,10 +1,10 @@
 // Read-only audit. A missing literal reference is NOT proof an asset is unused:
 // question banks, CSS, saved sessions and external links can construct paths.
 import fs from 'node:fs';
-import { execFileSync } from 'node:child_process';
+import { readGitFileList } from './git-file-list.mjs';
 import { gzipSync } from 'node:zlib';
 
-const files = [...new Set(execFileSync('git', ['ls-files', '--cached', '--others', '--exclude-standard', '-z'], { encoding:'utf8' }).split('\0'))].filter(file => file && fs.existsSync(file));
+const files = [...await readGitFileList({ includeUntracked: true })].filter(file => fs.existsSync(file));
 const groups = {};
 for (const file of files) {
   const key = file.includes('/') ? file.split('/')[0] : '(root)';

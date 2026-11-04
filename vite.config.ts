@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
+import { zodCommentCompat } from './tools/zod-comment-compat.mjs';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
 const buildVersion = '633';
@@ -15,6 +16,7 @@ export default defineConfig({
     __CBT_BUILD_VERSION__: JSON.stringify(buildVersion),
   },
   plugins: [
+    zodCommentCompat(),
     vue(),
     VitePWA({
       strategies: 'injectManifest',

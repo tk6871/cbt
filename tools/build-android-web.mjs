@@ -1,9 +1,9 @@
 import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { basename, relative, resolve } from 'node:path';
-import { execFileSync } from 'node:child_process';
+import { readGitFileList } from './git-file-list.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-const trackedFiles = new Set(execFileSync('git', ['ls-files', '-z'], { cwd: root, encoding: 'utf8' }).split('\0'));
+const trackedFiles = await readGitFileList({ cwd: root });
 // Ignore untracked macOS/cloud conflict copies, not legitimate tracked assets.
 // A placeholder conflict copy can block Gradle's input hashing indefinitely.
 const bundleFilter = (source) => {
