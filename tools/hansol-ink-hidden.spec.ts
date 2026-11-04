@@ -47,6 +47,9 @@ test('깨끗한2배 쪽 표시·다크/라이트·기록 유지·연결 실패 �
  await card.locator('.direct-solution summary').click();await card.screenshot({path:'/private/tmp/hansol-ink-hidden-desktop.png'});
  await page.route(`**/${selected.asset}`,route=>route.abort());await chooseBookPage(page,'1-173');await chooseBookPage(page,'1-25');
  await expect(image).toHaveAttribute('src',selected.fallbackAsset);await expect(image).toHaveJSProperty('naturalWidth',textbookDirectPageMap.get('1-25')!.size[0]);
+ await expect(card.locator('.direct-status')).toContainText('원해상도 대체 표시');
+ await card.locator('.direct-full-page summary').click();await expect(card.locator('.direct-full-page img')).toHaveAttribute('src',selected.fallbackAsset);
+ await card.locator('.direct-full-page summary').click();
  await expect(card.getByRole('button',{name:'②',exact:true})).toHaveAttribute('aria-pressed','true');
  const after=await card.locator('.direct-viewport').first().boundingBox();expect(after!.height).toBeCloseTo(before!.height,0);
 });

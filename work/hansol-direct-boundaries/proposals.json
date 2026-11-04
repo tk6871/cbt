@@ -1,0 +1,4953 @@
+[
+  {
+    "index": 0,
+    "id": "hansol-direct-1-34-37",
+    "page": "1-34",
+    "number": 37,
+    "originalQuestionRect": [
+      671,
+      387,
+      671,
+      448
+    ],
+    "questionParts": [
+      {
+        "page": "1-34",
+        "rect": [
+          671,
+          387,
+          671,
+          266
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-34",
+        "rect": [
+          671,
+          656,
+          671,
+          75
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-35",
+      "column": 0
+    }
+  },
+  {
+    "index": 1,
+    "id": "hansol-direct-1-64-2",
+    "page": "1-64",
+    "number": 2,
+    "originalQuestionRect": [
+      0,
+      707,
+      671,
+      898
+    ],
+    "questionParts": [
+      {
+        "page": "1-64",
+        "rect": [
+          0,
+          707,
+          671,
+          204
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-64",
+        "rect": [
+          0,
+          914,
+          671,
+          86
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-64",
+      "column": 1
+    }
+  },
+  {
+    "index": 2,
+    "id": "hansol-direct-1-103-15",
+    "page": "1-103",
+    "number": 15,
+    "originalQuestionRect": [
+      0,
+      1545,
+      671,
+      170
+    ],
+    "questionParts": [
+      {
+        "page": "1-103",
+        "rect": [
+          0,
+          1545,
+          671,
+          170
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-103",
+        "rect": [
+          671,
+          179,
+          671,
+          103
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "1-103",
+      "column": 1
+    }
+  },
+  {
+    "index": 3,
+    "id": "hansol-direct-1-106-33",
+    "page": "1-106",
+    "number": 33,
+    "originalQuestionRect": [
+      0,
+      1277,
+      671,
+      438
+    ],
+    "questionParts": [
+      {
+        "page": "1-106",
+        "rect": [
+          0,
+          1277,
+          671,
+          438
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-106",
+        "rect": [
+          671,
+          179,
+          671,
+          168
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "1-106",
+      "column": 1
+    }
+  },
+  {
+    "index": 4,
+    "id": "hansol-direct-1-106-36",
+    "page": "1-106",
+    "number": 36,
+    "originalQuestionRect": [
+      671,
+      1477,
+      671,
+      238
+    ],
+    "questionParts": [
+      {
+        "page": "1-106",
+        "rect": [
+          671,
+          1477,
+          671,
+          238
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-107",
+        "rect": [
+          0,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "1-107",
+      "column": 0
+    }
+  },
+  {
+    "index": 5,
+    "id": "hansol-direct-1-112-68",
+    "page": "1-112",
+    "number": 68,
+    "originalQuestionRect": [
+      671,
+      847,
+      671,
+      577
+    ],
+    "questionParts": [
+      {
+        "page": "1-112",
+        "rect": [
+          671,
+          847,
+          671,
+          265
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-112",
+        "rect": [
+          671,
+          1115,
+          671,
+          162
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-113",
+      "column": 0
+    }
+  },
+  {
+    "index": 6,
+    "id": "hansol-direct-1-112-69",
+    "page": "1-112",
+    "number": 69,
+    "originalQuestionRect": [
+      671,
+      1415,
+      671,
+      300
+    ],
+    "questionParts": [
+      {
+        "page": "1-112",
+        "rect": [
+          671,
+          1415,
+          671,
+          300
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-113",
+        "rect": [
+          0,
+          179,
+          671,
+          196
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "1-113",
+      "column": 0
+    }
+  },
+  {
+    "index": 7,
+    "id": "hansol-direct-1-135-3",
+    "page": "1-135",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1511,
+      671,
+      204
+    ],
+    "questionParts": [
+      {
+        "page": "1-135",
+        "rect": [
+          0,
+          1511,
+          671,
+          204
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-135",
+        "rect": [
+          671,
+          207,
+          671,
+          38
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "1-135",
+      "column": 1
+    }
+  },
+  {
+    "index": 8,
+    "id": "hansol-direct-1-139-27",
+    "page": "1-139",
+    "number": 27,
+    "originalQuestionRect": [
+      671,
+      190,
+      671,
+      603
+    ],
+    "questionParts": [
+      {
+        "page": "1-139",
+        "rect": [
+          671,
+          190,
+          671,
+          301
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-139",
+        "rect": [
+          671,
+          494,
+          671,
+          154
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-140",
+      "column": 0
+    }
+  },
+  {
+    "index": 9,
+    "id": "hansol-direct-1-154-11",
+    "page": "1-154",
+    "number": 11,
+    "originalQuestionRect": [
+      0,
+      190,
+      671,
+      557
+    ],
+    "questionParts": [
+      {
+        "page": "1-154",
+        "rect": [
+          0,
+          190,
+          671,
+          259
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-154",
+        "rect": [
+          0,
+          452,
+          671,
+          194
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-154",
+      "column": 1
+    }
+  },
+  {
+    "index": 10,
+    "id": "hansol-direct-1-175-5",
+    "page": "1-175",
+    "number": 5,
+    "originalQuestionRect": [
+      671,
+      847,
+      671,
+      494
+    ],
+    "questionParts": [
+      {
+        "page": "1-175",
+        "rect": [
+          671,
+          847,
+          671,
+          183
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-175",
+        "rect": [
+          671,
+          1033,
+          671,
+          131
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-176",
+      "column": 0
+    }
+  },
+  {
+    "index": 11,
+    "id": "hansol-direct-1-180-68",
+    "page": "1-180",
+    "number": 68,
+    "originalQuestionRect": [
+      0,
+      1199,
+      671,
+      516
+    ],
+    "questionParts": [
+      {
+        "page": "1-180",
+        "rect": [
+          0,
+          1199,
+          671,
+          333
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-180",
+        "rect": [
+          0,
+          1535,
+          671,
+          115
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-180",
+      "column": 1
+    }
+  },
+  {
+    "index": 12,
+    "id": "hansol-direct-1-209-8",
+    "page": "1-209",
+    "number": 8,
+    "originalQuestionRect": [
+      671,
+      992,
+      671,
+      723
+    ],
+    "questionParts": [
+      {
+        "page": "1-209",
+        "rect": [
+          671,
+          992,
+          671,
+          421
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-209",
+        "rect": [
+          671,
+          1416,
+          671,
+          140
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-210",
+      "column": 0
+    }
+  },
+  {
+    "index": 13,
+    "id": "hansol-direct-1-211-6",
+    "page": "1-211",
+    "number": 6,
+    "originalQuestionRect": [
+      0,
+      1168,
+      671,
+      547
+    ],
+    "questionParts": [
+      {
+        "page": "1-211",
+        "rect": [
+          0,
+          1168,
+          671,
+          304
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-211",
+        "rect": [
+          0,
+          1475,
+          671,
+          234
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-211",
+      "column": 1
+    }
+  },
+  {
+    "index": 14,
+    "id": "hansol-direct-1-211-7",
+    "page": "1-211",
+    "number": 7,
+    "originalQuestionRect": [
+      671,
+      190,
+      671,
+      811
+    ],
+    "questionParts": [
+      {
+        "page": "1-211",
+        "rect": [
+          671,
+          190,
+          671,
+          224
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-211",
+        "rect": [
+          671,
+          417,
+          671,
+          171
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-212",
+      "column": 0
+    }
+  },
+  {
+    "index": 15,
+    "id": "hansol-direct-1-226-4",
+    "page": "1-226",
+    "number": 4,
+    "originalQuestionRect": [
+      0,
+      1022,
+      671,
+      693
+    ],
+    "questionParts": [
+      {
+        "page": "1-226",
+        "rect": [
+          0,
+          1022,
+          671,
+          270
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "1-226",
+        "rect": [
+          0,
+          1295,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "1-226",
+      "column": 1
+    }
+  },
+  {
+    "index": 16,
+    "id": "hansol-direct-2-60-6",
+    "page": "2-60",
+    "number": 6,
+    "originalQuestionRect": [
+      0,
+      1490,
+      671,
+      225
+    ],
+    "questionParts": [
+      {
+        "page": "2-60",
+        "rect": [
+          0,
+          1490,
+          671,
+          225
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "2-60",
+        "rect": [
+          671,
+          207,
+          671,
+          38
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "2-60",
+      "column": 1
+    }
+  },
+  {
+    "index": 17,
+    "id": "hansol-direct-2-61-2",
+    "page": "2-61",
+    "number": 2,
+    "originalQuestionRect": [
+      0,
+      776,
+      671,
+      439
+    ],
+    "questionParts": [
+      {
+        "page": "2-61",
+        "rect": [
+          0,
+          776,
+          671,
+          181
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "2-61",
+        "rect": [
+          0,
+          960,
+          671,
+          159
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "2-61",
+      "column": 1
+    }
+  },
+  {
+    "index": 18,
+    "id": "hansol-direct-2-115-2",
+    "page": "2-115",
+    "number": 2,
+    "originalQuestionRect": [
+      0,
+      449,
+      671,
+      1266
+    ],
+    "questionParts": [
+      {
+        "page": "2-115",
+        "rect": [
+          0,
+          449,
+          671,
+          342
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "2-115",
+        "rect": [
+          0,
+          794,
+          671,
+          385
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "2-115",
+      "column": 1
+    }
+  },
+  {
+    "index": 19,
+    "id": "hansol-direct-2-128-1",
+    "page": "2-128",
+    "number": 1,
+    "originalQuestionRect": [
+      671,
+      1385,
+      671,
+      330
+    ],
+    "questionParts": [
+      {
+        "page": "2-128",
+        "rect": [
+          671,
+          1385,
+          671,
+          330
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "2-129",
+        "rect": [
+          0,
+          179,
+          671,
+          232
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "2-129",
+      "column": 0
+    }
+  },
+  {
+    "index": 20,
+    "id": "hansol-direct-2-139-3",
+    "page": "2-139",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      379,
+      671,
+      530
+    ],
+    "questionParts": [
+      {
+        "page": "2-139",
+        "rect": [
+          0,
+          379,
+          671,
+          530
+        ]
+      }
+    ],
+    "solutionParts": [],
+    "proposal": "needs-review",
+    "nextColumn": {
+      "page": "2-139",
+      "column": 1
+    }
+  },
+  {
+    "index": 21,
+    "id": "hansol-direct-2-214-20",
+    "page": "2-214",
+    "number": 20,
+    "originalQuestionRect": [
+      671,
+      1411,
+      671,
+      304
+    ],
+    "questionParts": [
+      {
+        "page": "2-214",
+        "rect": [
+          671,
+          1411,
+          671,
+          304
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "2-215",
+        "rect": [
+          0,
+          179,
+          671,
+          396
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "2-215",
+      "column": 0
+    }
+  },
+  {
+    "index": 22,
+    "id": "hansol-direct-3-25-3",
+    "page": "3-25",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1473,
+      671,
+      242
+    ],
+    "questionParts": [
+      {
+        "page": "3-25",
+        "rect": [
+          0,
+          1473,
+          671,
+          242
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-25",
+        "rect": [
+          671,
+          207,
+          671,
+          38
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-25",
+      "column": 1
+    }
+  },
+  {
+    "index": 23,
+    "id": "hansol-direct-3-32-50",
+    "page": "3-32",
+    "number": 50,
+    "originalQuestionRect": [
+      0,
+      1516,
+      671,
+      199
+    ],
+    "questionParts": [
+      {
+        "page": "3-32",
+        "rect": [
+          0,
+          1516,
+          671,
+          199
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-32",
+        "rect": [
+          671,
+          179,
+          671,
+          265
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-32",
+      "column": 1
+    }
+  },
+  {
+    "index": 24,
+    "id": "hansol-direct-3-57-1",
+    "page": "3-57",
+    "number": 1,
+    "originalQuestionRect": [
+      0,
+      328,
+      671,
+      490
+    ],
+    "questionParts": [
+      {
+        "page": "3-57",
+        "rect": [
+          0,
+          328,
+          671,
+          231
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-57",
+        "rect": [
+          0,
+          562,
+          671,
+          87
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-57",
+      "column": 1
+    }
+  },
+  {
+    "index": 25,
+    "id": "hansol-direct-3-61-11",
+    "page": "3-61",
+    "number": 11,
+    "originalQuestionRect": [
+      0,
+      1415,
+      671,
+      300
+    ],
+    "questionParts": [
+      {
+        "page": "3-61",
+        "rect": [
+          0,
+          1415,
+          671,
+          300
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-61",
+        "rect": [
+          671,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-61",
+      "column": 1
+    }
+  },
+  {
+    "index": 26,
+    "id": "hansol-direct-3-65-45",
+    "page": "3-65",
+    "number": 45,
+    "originalQuestionRect": [
+      671,
+      1348,
+      671,
+      367
+    ],
+    "questionParts": [
+      {
+        "page": "3-65",
+        "rect": [
+          671,
+          1348,
+          671,
+          227
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-65",
+        "rect": [
+          671,
+          1578,
+          671,
+          77
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-66",
+      "column": 0
+    }
+  },
+  {
+    "index": 27,
+    "id": "hansol-direct-3-73-98",
+    "page": "3-73",
+    "number": 98,
+    "originalQuestionRect": [
+      671,
+      1319,
+      671,
+      396
+    ],
+    "questionParts": [
+      {
+        "page": "3-73",
+        "rect": [
+          671,
+          1319,
+          671,
+          192
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-73",
+        "rect": [
+          671,
+          1514,
+          671,
+          106
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-74",
+      "column": 0
+    }
+  },
+  {
+    "index": 28,
+    "id": "hansol-direct-3-102-3",
+    "page": "3-102",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1393,
+      671,
+      322
+    ],
+    "questionParts": [
+      {
+        "page": "3-102",
+        "rect": [
+          0,
+          1393,
+          671,
+          196
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-102",
+        "rect": [
+          0,
+          1592,
+          671,
+          135
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-102",
+      "column": 1
+    }
+  },
+  {
+    "index": 29,
+    "id": "hansol-direct-3-118-6",
+    "page": "3-118",
+    "number": 6,
+    "originalQuestionRect": [
+      671,
+      1319,
+      671,
+      396
+    ],
+    "questionParts": [
+      {
+        "page": "3-118",
+        "rect": [
+          671,
+          1319,
+          671,
+          396
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-119",
+        "rect": [
+          0,
+          179,
+          671,
+          74
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-119",
+      "column": 0
+    }
+  },
+  {
+    "index": 30,
+    "id": "hansol-direct-3-120-13",
+    "page": "3-120",
+    "number": 13,
+    "originalQuestionRect": [
+      0,
+      499,
+      671,
+      954
+    ],
+    "questionParts": [
+      {
+        "page": "3-120",
+        "rect": [
+          0,
+          499,
+          671,
+          164
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-120",
+        "rect": [
+          0,
+          666,
+          671,
+          114
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-120",
+      "column": 1
+    }
+  },
+  {
+    "index": 31,
+    "id": "hansol-direct-3-134-27",
+    "page": "3-134",
+    "number": 27,
+    "originalQuestionRect": [
+      0,
+      788,
+      671,
+      435
+    ],
+    "questionParts": [
+      {
+        "page": "3-134",
+        "rect": [
+          0,
+          788,
+          671,
+          184
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-134",
+        "rect": [
+          0,
+          975,
+          671,
+          106
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-134",
+      "column": 1
+    }
+  },
+  {
+    "index": 32,
+    "id": "hansol-direct-3-134-31",
+    "page": "3-134",
+    "number": 31,
+    "originalQuestionRect": [
+      671,
+      1206,
+      671,
+      509
+    ],
+    "questionParts": [
+      {
+        "page": "3-134",
+        "rect": [
+          671,
+          1206,
+          671,
+          509
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-135",
+        "rect": [
+          0,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-135",
+      "column": 0
+    }
+  },
+  {
+    "index": 33,
+    "id": "hansol-direct-3-135-6",
+    "page": "3-135",
+    "number": 6,
+    "originalQuestionRect": [
+      0,
+      880,
+      671,
+      552
+    ],
+    "questionParts": [
+      {
+        "page": "3-135",
+        "rect": [
+          0,
+          880,
+          671,
+          189
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-135",
+        "rect": [
+          0,
+          1072,
+          671,
+          261
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-135",
+      "column": 1
+    }
+  },
+  {
+    "index": 34,
+    "id": "hansol-direct-3-135-34",
+    "page": "3-135",
+    "number": 34,
+    "originalQuestionRect": [
+      0,
+      1423,
+      671,
+      292
+    ],
+    "questionParts": [
+      {
+        "page": "3-135",
+        "rect": [
+          0,
+          1423,
+          671,
+          292
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-135",
+        "rect": [
+          671,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-135",
+      "column": 1
+    }
+  },
+  {
+    "index": 35,
+    "id": "hansol-direct-3-145-23",
+    "page": "3-145",
+    "number": 23,
+    "originalQuestionRect": [
+      671,
+      1340,
+      671,
+      375
+    ],
+    "questionParts": [
+      {
+        "page": "3-145",
+        "rect": [
+          671,
+          1340,
+          671,
+          375
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-146",
+        "rect": [
+          0,
+          179,
+          671,
+          74
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-146",
+      "column": 0
+    }
+  },
+  {
+    "index": 36,
+    "id": "hansol-direct-3-146-25",
+    "page": "3-146",
+    "number": 25,
+    "originalQuestionRect": [
+      0,
+      1285,
+      671,
+      430
+    ],
+    "questionParts": [
+      {
+        "page": "3-146",
+        "rect": [
+          0,
+          1285,
+          671,
+          430
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-146",
+        "rect": [
+          671,
+          179,
+          671,
+          200
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-146",
+      "column": 1
+    }
+  },
+  {
+    "index": 37,
+    "id": "hansol-direct-3-159-4",
+    "page": "3-159",
+    "number": 4,
+    "originalQuestionRect": [
+      671,
+      324,
+      671,
+      561
+    ],
+    "questionParts": [
+      {
+        "page": "3-159",
+        "rect": [
+          671,
+          324,
+          671,
+          317
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-159",
+        "rect": [
+          671,
+          644,
+          671,
+          138
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-160",
+      "column": 0
+    }
+  },
+  {
+    "index": 38,
+    "id": "hansol-direct-3-164-1",
+    "page": "3-164",
+    "number": 1,
+    "originalQuestionRect": [
+      671,
+      817,
+      671,
+      898
+    ],
+    "questionParts": [
+      {
+        "page": "3-164",
+        "rect": [
+          671,
+          817,
+          671,
+          898
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-165",
+        "rect": [
+          0,
+          162,
+          671,
+          259
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-165",
+      "column": 0
+    }
+  },
+  {
+    "index": 39,
+    "id": "hansol-direct-3-169-13",
+    "page": "3-169",
+    "number": 13,
+    "originalQuestionRect": [
+      0,
+      190,
+      671,
+      1525
+    ],
+    "questionParts": [
+      {
+        "page": "3-169",
+        "rect": [
+          0,
+          190,
+          671,
+          475
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-169",
+        "rect": [
+          0,
+          668,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-169",
+      "column": 1
+    }
+  },
+  {
+    "index": 40,
+    "id": "hansol-direct-3-175-3",
+    "page": "3-175",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1461,
+      671,
+      254
+    ],
+    "questionParts": [
+      {
+        "page": "3-175",
+        "rect": [
+          0,
+          1461,
+          671,
+          185
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-175",
+        "rect": [
+          0,
+          1649,
+          671,
+          75
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-175",
+      "column": 1
+    }
+  },
+  {
+    "index": 41,
+    "id": "hansol-direct-3-207-2",
+    "page": "3-207",
+    "number": 2,
+    "originalQuestionRect": [
+      0,
+      1181,
+      671,
+      534
+    ],
+    "questionParts": [
+      {
+        "page": "3-207",
+        "rect": [
+          0,
+          1181,
+          671,
+          534
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-207",
+        "rect": [
+          671,
+          207,
+          671,
+          38
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-207",
+      "column": 1
+    }
+  },
+  {
+    "index": 42,
+    "id": "hansol-direct-3-207-3",
+    "page": "3-207",
+    "number": 3,
+    "originalQuestionRect": [
+      671,
+      804,
+      671,
+      381
+    ],
+    "questionParts": [
+      {
+        "page": "3-207",
+        "rect": [
+          671,
+          804,
+          671,
+          152
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-207",
+        "rect": [
+          671,
+          959,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-208",
+      "column": 0
+    }
+  },
+  {
+    "index": 43,
+    "id": "hansol-direct-3-208-2",
+    "page": "3-208",
+    "number": 2,
+    "originalQuestionRect": [
+      0,
+      1008,
+      671,
+      707
+    ],
+    "questionParts": [
+      {
+        "page": "3-208",
+        "rect": [
+          0,
+          1008,
+          671,
+          707
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-208",
+        "rect": [
+          671,
+          288,
+          671,
+          422
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "possibleQuestionContinuation": {
+      "page": "3-208",
+      "rect": [
+        671,
+        180,
+        671,
+        105
+      ]
+    },
+    "nextColumn": {
+      "page": "3-208",
+      "column": 1
+    }
+  },
+  {
+    "index": 44,
+    "id": "hansol-direct-3-209-6",
+    "page": "3-209",
+    "number": 6,
+    "originalQuestionRect": [
+      671,
+      190,
+      671,
+      1525
+    ],
+    "questionParts": [
+      {
+        "page": "3-209",
+        "rect": [
+          671,
+          190,
+          671,
+          268
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-209",
+        "rect": [
+          671,
+          461,
+          671,
+          978
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-210",
+      "column": 0
+    }
+  },
+  {
+    "index": 45,
+    "id": "hansol-direct-3-258-1",
+    "page": "3-258",
+    "number": 1,
+    "originalQuestionRect": [
+      0,
+      314,
+      671,
+      500
+    ],
+    "questionParts": [
+      {
+        "page": "3-258",
+        "rect": [
+          0,
+          314,
+          671,
+          222
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-258",
+        "rect": [
+          0,
+          539,
+          671,
+          132
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-258",
+      "column": 1
+    }
+  },
+  {
+    "index": 46,
+    "id": "hansol-direct-3-258-3",
+    "page": "3-258",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1281,
+      671,
+      434
+    ],
+    "questionParts": [
+      {
+        "page": "3-258",
+        "rect": [
+          0,
+          1281,
+          671,
+          217
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-258",
+        "rect": [
+          0,
+          1501,
+          671,
+          132
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-258",
+      "column": 1
+    }
+  },
+  {
+    "index": 47,
+    "id": "hansol-direct-3-259-6",
+    "page": "3-259",
+    "number": 6,
+    "originalQuestionRect": [
+      0,
+      194,
+      671,
+      612
+    ],
+    "questionParts": [
+      {
+        "page": "3-259",
+        "rect": [
+          0,
+          194,
+          671,
+          213
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-259",
+        "rect": [
+          0,
+          410,
+          671,
+          218
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-259",
+      "column": 1
+    }
+  },
+  {
+    "index": 48,
+    "id": "hansol-direct-3-265-37",
+    "page": "3-265",
+    "number": 37,
+    "originalQuestionRect": [
+      671,
+      646,
+      671,
+      431
+    ],
+    "questionParts": [
+      {
+        "page": "3-265",
+        "rect": [
+          671,
+          646,
+          671,
+          188
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-265",
+        "rect": [
+          671,
+          837,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-266",
+      "column": 0
+    }
+  },
+  {
+    "index": 49,
+    "id": "hansol-direct-3-266-3",
+    "page": "3-266",
+    "number": 3,
+    "originalQuestionRect": [
+      671,
+      776,
+      671,
+      502
+    ],
+    "questionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          671,
+          776,
+          671,
+          218
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          671,
+          997,
+          671,
+          207
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-267",
+      "column": 0
+    }
+  },
+  {
+    "index": 50,
+    "id": "hansol-direct-3-266-39",
+    "page": "3-266",
+    "number": 39,
+    "originalQuestionRect": [
+      0,
+      190,
+      671,
+      477
+    ],
+    "questionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          0,
+          190,
+          671,
+          153
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          0,
+          346,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-266",
+      "column": 1
+    }
+  },
+  {
+    "index": 51,
+    "id": "hansol-direct-3-266-40",
+    "page": "3-266",
+    "number": 40,
+    "originalQuestionRect": [
+      0,
+      658,
+      671,
+      548
+    ],
+    "questionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          0,
+          658,
+          671,
+          189
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-266",
+        "rect": [
+          0,
+          850,
+          671,
+          174
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-266",
+      "column": 1
+    }
+  },
+  {
+    "index": 52,
+    "id": "hansol-direct-3-267-2",
+    "page": "3-267",
+    "number": 2,
+    "originalQuestionRect": [
+      671,
+      227,
+      671,
+      761
+    ],
+    "questionParts": [
+      {
+        "page": "3-267",
+        "rect": [
+          671,
+          227,
+          671,
+          372
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-267",
+        "rect": [
+          671,
+          602,
+          671,
+          206
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-268",
+      "column": 0
+    }
+  },
+  {
+    "index": 53,
+    "id": "hansol-direct-3-267-46",
+    "page": "3-267",
+    "number": 46,
+    "originalQuestionRect": [
+      0,
+      716,
+      671,
+      495
+    ],
+    "questionParts": [
+      {
+        "page": "3-267",
+        "rect": [
+          0,
+          716,
+          671,
+          260
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-267",
+        "rect": [
+          0,
+          979,
+          671,
+          106
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-267",
+      "column": 1
+    }
+  },
+  {
+    "index": 54,
+    "id": "hansol-direct-3-268-55",
+    "page": "3-268",
+    "number": 55,
+    "originalQuestionRect": [
+      671,
+      1172,
+      671,
+      543
+    ],
+    "questionParts": [
+      {
+        "page": "3-268",
+        "rect": [
+          671,
+          1172,
+          671,
+          227
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-268",
+        "rect": [
+          671,
+          1402,
+          671,
+          232
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-269",
+      "column": 0
+    }
+  },
+  {
+    "index": 55,
+    "id": "hansol-direct-3-269-58",
+    "page": "3-269",
+    "number": 58,
+    "originalQuestionRect": [
+      671,
+      750,
+      671,
+      965
+    ],
+    "questionParts": [
+      {
+        "page": "3-269",
+        "rect": [
+          671,
+          750,
+          671,
+          380
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-269",
+        "rect": [
+          671,
+          1133,
+          671,
+          406
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-270",
+      "column": 0
+    }
+  },
+  {
+    "index": 56,
+    "id": "hansol-direct-3-270-59",
+    "page": "3-270",
+    "number": 59,
+    "originalQuestionRect": [
+      0,
+      190,
+      671,
+      832
+    ],
+    "questionParts": [
+      {
+        "page": "3-270",
+        "rect": [
+          0,
+          190,
+          671,
+          233
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-270",
+        "rect": [
+          0,
+          426,
+          671,
+          372
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-270",
+      "column": 1
+    }
+  },
+  {
+    "index": 57,
+    "id": "hansol-direct-3-281-9",
+    "page": "3-281",
+    "number": 9,
+    "originalQuestionRect": [
+      0,
+      1068,
+      671,
+      647
+    ],
+    "questionParts": [
+      {
+        "page": "3-281",
+        "rect": [
+          0,
+          1068,
+          671,
+          225
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-281",
+        "rect": [
+          0,
+          1296,
+          671,
+          240
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-281",
+      "column": 1
+    }
+  },
+  {
+    "index": 58,
+    "id": "hansol-direct-3-288-3",
+    "page": "3-288",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      159,
+      671,
+      1556
+    ],
+    "questionParts": [
+      {
+        "page": "3-288",
+        "rect": [
+          0,
+          159,
+          671,
+          1118
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-288",
+        "rect": [
+          0,
+          1280,
+          671,
+          226
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-288",
+      "column": 1
+    }
+  },
+  {
+    "index": 59,
+    "id": "hansol-direct-3-323-31",
+    "page": "3-323",
+    "number": 31,
+    "originalQuestionRect": [
+      0,
+      767,
+      671,
+      532
+    ],
+    "questionParts": [
+      {
+        "page": "3-323",
+        "rect": [
+          0,
+          767,
+          671,
+          191
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-323",
+        "rect": [
+          0,
+          961,
+          671,
+          236
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-323",
+      "column": 1
+    }
+  },
+  {
+    "index": 60,
+    "id": "hansol-direct-3-325-44",
+    "page": "3-325",
+    "number": 44,
+    "originalQuestionRect": [
+      671,
+      617,
+      671,
+      543
+    ],
+    "questionParts": [
+      {
+        "page": "3-325",
+        "rect": [
+          671,
+          617,
+          671,
+          190
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-325",
+        "rect": [
+          671,
+          810,
+          671,
+          209
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-326",
+      "column": 0
+    }
+  },
+  {
+    "index": 61,
+    "id": "hansol-direct-3-325-45",
+    "page": "3-325",
+    "number": 45,
+    "originalQuestionRect": [
+      671,
+      1151,
+      671,
+      564
+    ],
+    "questionParts": [
+      {
+        "page": "3-325",
+        "rect": [
+          671,
+          1151,
+          671,
+          192
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-325",
+        "rect": [
+          671,
+          1346,
+          671,
+          263
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-326",
+      "column": 0
+    }
+  },
+  {
+    "index": 62,
+    "id": "hansol-direct-3-326-47",
+    "page": "3-326",
+    "number": 47,
+    "originalQuestionRect": [
+      0,
+      742,
+      671,
+      540
+    ],
+    "questionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          0,
+          742,
+          671,
+          295
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          0,
+          1040,
+          671,
+          140
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-326",
+      "column": 1
+    }
+  },
+  {
+    "index": 63,
+    "id": "hansol-direct-3-326-48",
+    "page": "3-326",
+    "number": 48,
+    "originalQuestionRect": [
+      0,
+      1273,
+      671,
+      442
+    ],
+    "questionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          0,
+          1273,
+          671,
+          191
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          0,
+          1467,
+          671,
+          168
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-326",
+      "column": 1
+    }
+  },
+  {
+    "index": 64,
+    "id": "hansol-direct-3-326-49",
+    "page": "3-326",
+    "number": 49,
+    "originalQuestionRect": [
+      671,
+      190,
+      671,
+      624
+    ],
+    "questionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          671,
+          190,
+          671,
+          268
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-326",
+        "rect": [
+          671,
+          461,
+          671,
+          169
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-327",
+      "column": 0
+    }
+  },
+  {
+    "index": 65,
+    "id": "hansol-direct-3-328-56",
+    "page": "3-328",
+    "number": 56,
+    "originalQuestionRect": [
+      0,
+      583,
+      671,
+      494
+    ],
+    "questionParts": [
+      {
+        "page": "3-328",
+        "rect": [
+          0,
+          583,
+          671,
+          226
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-328",
+        "rect": [
+          0,
+          812,
+          671,
+          163
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-328",
+      "column": 1
+    }
+  },
+  {
+    "index": 66,
+    "id": "hansol-direct-3-332-76",
+    "page": "3-332",
+    "number": 76,
+    "originalQuestionRect": [
+      0,
+      801,
+      671,
+      477
+    ],
+    "questionParts": [
+      {
+        "page": "3-332",
+        "rect": [
+          0,
+          801,
+          671,
+          154
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-332",
+        "rect": [
+          0,
+          958,
+          671,
+          200
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-332",
+      "column": 1
+    }
+  },
+  {
+    "index": 67,
+    "id": "hansol-direct-3-332-79",
+    "page": "3-332",
+    "number": 79,
+    "originalQuestionRect": [
+      671,
+      1206,
+      671,
+      509
+    ],
+    "questionParts": [
+      {
+        "page": "3-332",
+        "rect": [
+          671,
+          1206,
+          671,
+          509
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-333",
+        "rect": [
+          0,
+          179,
+          671,
+          232
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "3-333",
+      "column": 0
+    }
+  },
+  {
+    "index": 68,
+    "id": "hansol-direct-3-336-1",
+    "page": "3-336",
+    "number": 1,
+    "originalQuestionRect": [
+      0,
+      418,
+      671,
+      1297
+    ],
+    "questionParts": [
+      {
+        "page": "3-336",
+        "rect": [
+          0,
+          418,
+          671,
+          71
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-336",
+        "rect": [
+          0,
+          492,
+          671,
+          819
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-336",
+      "column": 1
+    }
+  },
+  {
+    "index": 69,
+    "id": "hansol-direct-3-351-47",
+    "page": "3-351",
+    "number": 47,
+    "originalQuestionRect": [
+      0,
+      583,
+      671,
+      398
+    ],
+    "questionParts": [
+      {
+        "page": "3-351",
+        "rect": [
+          0,
+          583,
+          671,
+          188
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-351",
+        "rect": [
+          0,
+          774,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-351",
+      "column": 1
+    }
+  },
+  {
+    "index": 70,
+    "id": "hansol-direct-3-363-1",
+    "page": "3-363",
+    "number": 1,
+    "originalQuestionRect": [
+      0,
+      324,
+      671,
+      816
+    ],
+    "questionParts": [
+      {
+        "page": "3-363",
+        "rect": [
+          0,
+          324,
+          671,
+          190
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-363",
+        "rect": [
+          0,
+          517,
+          671,
+          401
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-363",
+      "column": 1
+    }
+  },
+  {
+    "index": 71,
+    "id": "hansol-direct-3-377-7",
+    "page": "3-377",
+    "number": 7,
+    "originalQuestionRect": [
+      0,
+      1018,
+      671,
+      697
+    ],
+    "questionParts": [
+      {
+        "page": "3-377",
+        "rect": [
+          0,
+          1018,
+          671,
+          434
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-377",
+        "rect": [
+          0,
+          1455,
+          671,
+          280
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-377",
+      "column": 1
+    }
+  },
+  {
+    "index": 72,
+    "id": "hansol-direct-3-377-9",
+    "page": "3-377",
+    "number": 9,
+    "originalQuestionRect": [
+      671,
+      951,
+      671,
+      764
+    ],
+    "questionParts": [
+      {
+        "page": "3-377",
+        "rect": [
+          671,
+          951,
+          671,
+          355
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-377",
+        "rect": [
+          671,
+          1309,
+          671,
+          309
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-378",
+      "column": 0
+    }
+  },
+  {
+    "index": 73,
+    "id": "hansol-direct-3-378-10",
+    "page": "3-378",
+    "number": 10,
+    "originalQuestionRect": [
+      0,
+      190,
+      671,
+      599
+    ],
+    "questionParts": [
+      {
+        "page": "3-378",
+        "rect": [
+          0,
+          190,
+          671,
+          356
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-378",
+        "rect": [
+          0,
+          549,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-378",
+      "column": 1
+    }
+  },
+  {
+    "index": 74,
+    "id": "hansol-direct-3-378-11",
+    "page": "3-378",
+    "number": 11,
+    "originalQuestionRect": [
+      0,
+      780,
+      671,
+      935
+    ],
+    "questionParts": [
+      {
+        "page": "3-378",
+        "rect": [
+          0,
+          780,
+          671,
+          142
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-378",
+        "rect": [
+          0,
+          925,
+          671,
+          102
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-378",
+      "column": 1
+    }
+  },
+  {
+    "index": 75,
+    "id": "hansol-direct-3-379-17",
+    "page": "3-379",
+    "number": 17,
+    "originalQuestionRect": [
+      671,
+      900,
+      671,
+      407
+    ],
+    "questionParts": [
+      {
+        "page": "3-379",
+        "rect": [
+          671,
+          900,
+          671,
+          253
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-379",
+        "rect": [
+          671,
+          1156,
+          671,
+          74
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-380",
+      "column": 0
+    }
+  },
+  {
+    "index": 76,
+    "id": "hansol-direct-3-380-21",
+    "page": "3-380",
+    "number": 21,
+    "originalQuestionRect": [
+      671,
+      190,
+      671,
+      761
+    ],
+    "questionParts": [
+      {
+        "page": "3-380",
+        "rect": [
+          671,
+          190,
+          671,
+          408
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-380",
+        "rect": [
+          671,
+          601,
+          671,
+          168
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-381",
+      "column": 0
+    }
+  },
+  {
+    "index": 77,
+    "id": "hansol-direct-3-381-29",
+    "page": "3-381",
+    "number": 29,
+    "originalQuestionRect": [
+      671,
+      1191,
+      671,
+      524
+    ],
+    "questionParts": [
+      {
+        "page": "3-381",
+        "rect": [
+          671,
+          1191,
+          671,
+          211
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "3-381",
+        "rect": [
+          671,
+          1405,
+          671,
+          181
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "3-382",
+      "column": 0
+    }
+  },
+  {
+    "index": 78,
+    "id": "hansol-direct-4-12-30",
+    "page": "4-12",
+    "number": 30,
+    "originalQuestionRect": [
+      671,
+      838,
+      671,
+      877
+    ],
+    "questionParts": [
+      {
+        "page": "4-12",
+        "rect": [
+          671,
+          838,
+          671,
+          437
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-12",
+        "rect": [
+          671,
+          1278,
+          671,
+          231
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-13",
+      "column": 0
+    }
+  },
+  {
+    "index": 79,
+    "id": "hansol-direct-4-20-1",
+    "page": "4-20",
+    "number": 1,
+    "originalQuestionRect": [
+      0,
+      403,
+      671,
+      603
+    ],
+    "questionParts": [
+      {
+        "page": "4-20",
+        "rect": [
+          0,
+          403,
+          671,
+          342
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-20",
+        "rect": [
+          0,
+          748,
+          671,
+          163
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-20",
+      "column": 1
+    }
+  },
+  {
+    "index": 80,
+    "id": "hansol-direct-4-23-18",
+    "page": "4-23",
+    "number": 18,
+    "originalQuestionRect": [
+      0,
+      1037,
+      671,
+      678
+    ],
+    "questionParts": [
+      {
+        "page": "4-23",
+        "rect": [
+          0,
+          1037,
+          671,
+          678
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-23",
+        "rect": [
+          671,
+          179,
+          671,
+          136
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-23",
+      "column": 1
+    }
+  },
+  {
+    "index": 81,
+    "id": "hansol-direct-4-33-3",
+    "page": "4-33",
+    "number": 3,
+    "originalQuestionRect": [
+      671,
+      1290,
+      671,
+      425
+    ],
+    "questionParts": [
+      {
+        "page": "4-33",
+        "rect": [
+          671,
+          1290,
+          671,
+          425
+        ]
+      }
+    ],
+    "solutionParts": [],
+    "proposal": "needs-review",
+    "nextColumn": {
+      "page": "4-34",
+      "column": 0
+    }
+  },
+  {
+    "index": 82,
+    "id": "hansol-direct-4-35-11",
+    "page": "4-35",
+    "number": 11,
+    "originalQuestionRect": [
+      0,
+      1256,
+      671,
+      459
+    ],
+    "questionParts": [
+      {
+        "page": "4-35",
+        "rect": [
+          0,
+          1256,
+          671,
+          95
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-35",
+        "rect": [
+          0,
+          1354,
+          671,
+          40
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-35",
+      "column": 1
+    }
+  },
+  {
+    "index": 83,
+    "id": "hansol-direct-4-36-17",
+    "page": "4-36",
+    "number": 17,
+    "originalQuestionRect": [
+      0,
+      1413,
+      671,
+      302
+    ],
+    "questionParts": [
+      {
+        "page": "4-36",
+        "rect": [
+          0,
+          1413,
+          671,
+          302
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-36",
+        "rect": [
+          671,
+          179,
+          671,
+          140
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-36",
+      "column": 1
+    }
+  },
+  {
+    "index": 84,
+    "id": "hansol-direct-4-51-9",
+    "page": "4-51",
+    "number": 9,
+    "originalQuestionRect": [
+      0,
+      1168,
+      671,
+      382
+    ],
+    "questionParts": [
+      {
+        "page": "4-51",
+        "rect": [
+          0,
+          1168,
+          671,
+          155
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-51",
+        "rect": [
+          0,
+          1326,
+          671,
+          130
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-51",
+      "column": 1
+    }
+  },
+  {
+    "index": 85,
+    "id": "hansol-direct-4-75-23",
+    "page": "4-75",
+    "number": 23,
+    "originalQuestionRect": [
+      0,
+      1427,
+      671,
+      288
+    ],
+    "questionParts": [
+      {
+        "page": "4-75",
+        "rect": [
+          0,
+          1427,
+          671,
+          288
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-75",
+        "rect": [
+          671,
+          179,
+          671,
+          375
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-75",
+      "column": 1
+    }
+  },
+  {
+    "index": 86,
+    "id": "hansol-direct-4-85-8",
+    "page": "4-85",
+    "number": 8,
+    "originalQuestionRect": [
+      671,
+      169,
+      671,
+      824
+    ],
+    "questionParts": [
+      {
+        "page": "4-85",
+        "rect": [
+          671,
+          169,
+          671,
+          588
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-85",
+        "rect": [
+          671,
+          760,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-86",
+      "column": 0
+    }
+  },
+  {
+    "index": 87,
+    "id": "hansol-direct-4-89-30",
+    "page": "4-89",
+    "number": 30,
+    "originalQuestionRect": [
+      671,
+      1236,
+      671,
+      479
+    ],
+    "questionParts": [
+      {
+        "page": "4-89",
+        "rect": [
+          671,
+          1236,
+          671,
+          268
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-89",
+        "rect": [
+          671,
+          1507,
+          671,
+          216
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-90",
+      "column": 0
+    }
+  },
+  {
+    "index": 88,
+    "id": "hansol-direct-4-91-39",
+    "page": "4-91",
+    "number": 39,
+    "originalQuestionRect": [
+      671,
+      1349,
+      671,
+      366
+    ],
+    "questionParts": [
+      {
+        "page": "4-91",
+        "rect": [
+          671,
+          1349,
+          671,
+          366
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-92",
+        "rect": [
+          0,
+          179,
+          671,
+          832
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-92",
+      "column": 0
+    }
+  },
+  {
+    "index": 89,
+    "id": "hansol-direct-4-95-60",
+    "page": "4-95",
+    "number": 60,
+    "originalQuestionRect": [
+      671,
+      1018,
+      671,
+      697
+    ],
+    "questionParts": [
+      {
+        "page": "4-95",
+        "rect": [
+          671,
+          1018,
+          671,
+          443
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-95",
+        "rect": [
+          671,
+          1464,
+          671,
+          232
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-96",
+      "column": 0
+    }
+  },
+  {
+    "index": 90,
+    "id": "hansol-direct-4-96-20",
+    "page": "4-96",
+    "number": 20,
+    "originalQuestionRect": [
+      671,
+      1068,
+      671,
+      647
+    ],
+    "questionParts": [
+      {
+        "page": "4-96",
+        "rect": [
+          671,
+          1068,
+          671,
+          256
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-96",
+        "rect": [
+          671,
+          1327,
+          671,
+          399
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-97",
+      "column": 0
+    }
+  },
+  {
+    "index": 91,
+    "id": "hansol-direct-4-100-25",
+    "page": "4-100",
+    "number": 25,
+    "originalQuestionRect": [
+      671,
+      1214,
+      671,
+      501
+    ],
+    "questionParts": [
+      {
+        "page": "4-100",
+        "rect": [
+          671,
+          1214,
+          671,
+          393
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-100",
+        "rect": [
+          671,
+          1610,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-101",
+      "column": 0
+    }
+  },
+  {
+    "index": 92,
+    "id": "hansol-direct-4-105-44",
+    "page": "4-105",
+    "number": 44,
+    "originalQuestionRect": [
+      0,
+      370,
+      671,
+      966
+    ],
+    "questionParts": [
+      {
+        "page": "4-105",
+        "rect": [
+          0,
+          370,
+          671,
+          609
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-105",
+        "rect": [
+          0,
+          982,
+          671,
+          263
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-105",
+      "column": 1
+    }
+  },
+  {
+    "index": 93,
+    "id": "hansol-direct-4-105-46",
+    "page": "4-105",
+    "number": 46,
+    "originalQuestionRect": [
+      671,
+      670,
+      671,
+      708
+    ],
+    "questionParts": [
+      {
+        "page": "4-105",
+        "rect": [
+          671,
+          670,
+          671,
+          475
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-105",
+        "rect": [
+          671,
+          1148,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-106",
+      "column": 0
+    }
+  },
+  {
+    "index": 94,
+    "id": "hansol-direct-4-122-6",
+    "page": "4-122",
+    "number": 6,
+    "originalQuestionRect": [
+      671,
+      1215,
+      671,
+      500
+    ],
+    "questionParts": [
+      {
+        "page": "4-122",
+        "rect": [
+          671,
+          1215,
+          671,
+          346
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-122",
+        "rect": [
+          671,
+          1564,
+          671,
+          137
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-123",
+      "column": 0
+    }
+  },
+  {
+    "index": 95,
+    "id": "hansol-direct-4-128-37",
+    "page": "4-128",
+    "number": 37,
+    "originalQuestionRect": [
+      671,
+      1409,
+      671,
+      306
+    ],
+    "questionParts": [
+      {
+        "page": "4-128",
+        "rect": [
+          671,
+          1409,
+          671,
+          306
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-129",
+        "rect": [
+          0,
+          179,
+          671,
+          395
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-129",
+      "column": 0
+    }
+  },
+  {
+    "index": 96,
+    "id": "hansol-direct-4-129-40",
+    "page": "4-129",
+    "number": 40,
+    "originalQuestionRect": [
+      671,
+      507,
+      671,
+      817
+    ],
+    "questionParts": [
+      {
+        "page": "4-129",
+        "rect": [
+          671,
+          507,
+          671,
+          259
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-129",
+        "rect": [
+          671,
+          769,
+          671,
+          363
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-130",
+      "column": 0
+    }
+  },
+  {
+    "index": 97,
+    "id": "hansol-direct-4-129-41",
+    "page": "4-129",
+    "number": 41,
+    "originalQuestionRect": [
+      671,
+      1317,
+      671,
+      398
+    ],
+    "questionParts": [
+      {
+        "page": "4-129",
+        "rect": [
+          671,
+          1317,
+          671,
+          398
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-130",
+        "rect": [
+          0,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-130",
+      "column": 0
+    }
+  },
+  {
+    "index": 98,
+    "id": "hansol-direct-4-130-46",
+    "page": "4-130",
+    "number": 46,
+    "originalQuestionRect": [
+      671,
+      1469,
+      671,
+      246
+    ],
+    "questionParts": [
+      {
+        "page": "4-130",
+        "rect": [
+          671,
+          1469,
+          671,
+          246
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-131",
+        "rect": [
+          0,
+          179,
+          671,
+          136
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-131",
+      "column": 0
+    }
+  },
+  {
+    "index": 99,
+    "id": "hansol-direct-4-138-25",
+    "page": "4-138",
+    "number": 25,
+    "originalQuestionRect": [
+      0,
+      1388,
+      671,
+      327
+    ],
+    "questionParts": [
+      {
+        "page": "4-138",
+        "rect": [
+          0,
+          1388,
+          671,
+          327
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-138",
+        "rect": [
+          671,
+          179,
+          671,
+          275
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-138",
+      "column": 1
+    }
+  },
+  {
+    "index": 100,
+    "id": "hansol-direct-4-139-30",
+    "page": "4-139",
+    "number": 30,
+    "originalQuestionRect": [
+      671,
+      169,
+      671,
+      1263
+    ],
+    "questionParts": [
+      {
+        "page": "4-139",
+        "rect": [
+          671,
+          169,
+          671,
+          593
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-139",
+        "rect": [
+          671,
+          765,
+          671,
+          573
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-140",
+      "column": 0
+    }
+  },
+  {
+    "index": 101,
+    "id": "hansol-direct-4-164-23",
+    "page": "4-164",
+    "number": 23,
+    "originalQuestionRect": [
+      0,
+      1189,
+      671,
+      526
+    ],
+    "questionParts": [
+      {
+        "page": "4-164",
+        "rect": [
+          0,
+          1189,
+          671,
+          526
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-164",
+        "rect": [
+          671,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-164",
+      "column": 1
+    }
+  },
+  {
+    "index": 102,
+    "id": "hansol-direct-4-170-52",
+    "page": "4-170",
+    "number": 52,
+    "originalQuestionRect": [
+      0,
+      169,
+      671,
+      540
+    ],
+    "questionParts": [
+      {
+        "page": "4-170",
+        "rect": [
+          0,
+          169,
+          671,
+          188
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-170",
+        "rect": [
+          0,
+          360,
+          671,
+          176
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-170",
+      "column": 1
+    }
+  },
+  {
+    "index": 103,
+    "id": "hansol-direct-4-179-41",
+    "page": "4-179",
+    "number": 41,
+    "originalQuestionRect": [
+      671,
+      1172,
+      671,
+      543
+    ],
+    "questionParts": [
+      {
+        "page": "4-179",
+        "rect": [
+          671,
+          1172,
+          671,
+          430
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-179",
+        "rect": [
+          671,
+          1605,
+          671,
+          73
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-180",
+      "column": 0
+    }
+  },
+  {
+    "index": 104,
+    "id": "hansol-direct-4-182-51",
+    "page": "4-182",
+    "number": 51,
+    "originalQuestionRect": [
+      0,
+      169,
+      671,
+      628
+    ],
+    "questionParts": [
+      {
+        "page": "4-182",
+        "rect": [
+          0,
+          169,
+          671,
+          232
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-182",
+        "rect": [
+          0,
+          404,
+          671,
+          326
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-182",
+      "column": 1
+    }
+  },
+  {
+    "index": 105,
+    "id": "hansol-direct-4-185-8",
+    "page": "4-185",
+    "number": 8,
+    "originalQuestionRect": [
+      0,
+      1352,
+      671,
+      363
+    ],
+    "questionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          0,
+          1352,
+          671,
+          363
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          671,
+          179,
+          671,
+          136
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-185",
+      "column": 1
+    }
+  },
+  {
+    "index": 106,
+    "id": "hansol-direct-4-185-10",
+    "page": "4-185",
+    "number": 10,
+    "originalQuestionRect": [
+      671,
+      942,
+      671,
+      773
+    ],
+    "questionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          671,
+          942,
+          671,
+          201
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          671,
+          1146,
+          671,
+          45
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-186",
+      "column": 0
+    }
+  },
+  {
+    "index": 107,
+    "id": "hansol-direct-4-185-17",
+    "page": "4-185",
+    "number": 17,
+    "originalQuestionRect": [
+      671,
+      473,
+      671,
+      478
+    ],
+    "questionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          671,
+          473,
+          671,
+          188
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-185",
+        "rect": [
+          671,
+          664,
+          671,
+          194
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-186",
+      "column": 0
+    }
+  },
+  {
+    "index": 108,
+    "id": "hansol-direct-4-189-29",
+    "page": "4-189",
+    "number": 29,
+    "originalQuestionRect": [
+      671,
+      1022,
+      671,
+      693
+    ],
+    "questionParts": [
+      {
+        "page": "4-189",
+        "rect": [
+          671,
+          1022,
+          671,
+          509
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-189",
+        "rect": [
+          671,
+          1534,
+          671,
+          166
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-190",
+      "column": 0
+    }
+  },
+  {
+    "index": 109,
+    "id": "hansol-direct-4-190-32",
+    "page": "4-190",
+    "number": 32,
+    "originalQuestionRect": [
+      0,
+      1302,
+      671,
+      413
+    ],
+    "questionParts": [
+      {
+        "page": "4-190",
+        "rect": [
+          0,
+          1302,
+          671,
+          413
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-190",
+        "rect": [
+          671,
+          179,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "4-190",
+      "column": 1
+    }
+  },
+  {
+    "index": 110,
+    "id": "hansol-direct-4-190-33",
+    "page": "4-190",
+    "number": 33,
+    "originalQuestionRect": [
+      671,
+      370,
+      671,
+      594
+    ],
+    "questionParts": [
+      {
+        "page": "4-190",
+        "rect": [
+          671,
+          370,
+          671,
+          327
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-190",
+        "rect": [
+          671,
+          700,
+          671,
+          171
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-191",
+      "column": 0
+    }
+  },
+  {
+    "index": 111,
+    "id": "hansol-direct-4-195-58",
+    "page": "4-195",
+    "number": 58,
+    "originalQuestionRect": [
+      0,
+      1285,
+      671,
+      430
+    ],
+    "questionParts": [
+      {
+        "page": "4-195",
+        "rect": [
+          0,
+          1285,
+          671,
+          220
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "4-195",
+        "rect": [
+          0,
+          1508,
+          671,
+          131
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "4-195",
+      "column": 1
+    }
+  },
+  {
+    "index": 112,
+    "id": "hansol-direct-5-9-27",
+    "page": "5-9",
+    "number": 27,
+    "originalQuestionRect": [
+      0,
+      600,
+      671,
+      368
+    ],
+    "questionParts": [
+      {
+        "page": "5-9",
+        "rect": [
+          0,
+          600,
+          671,
+          194
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-9",
+        "rect": [
+          0,
+          797,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-9",
+      "column": 1
+    }
+  },
+  {
+    "index": 113,
+    "id": "hansol-direct-5-20-23",
+    "page": "5-20",
+    "number": 23,
+    "originalQuestionRect": [
+      0,
+      169,
+      671,
+      1171
+    ],
+    "questionParts": [
+      {
+        "page": "5-20",
+        "rect": [
+          0,
+          169,
+          671,
+          807
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-20",
+        "rect": [
+          0,
+          979,
+          671,
+          105
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-20",
+      "column": 1
+    }
+  },
+  {
+    "index": 114,
+    "id": "hansol-direct-5-39-3",
+    "page": "5-39",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1369,
+      671,
+      346
+    ],
+    "questionParts": [
+      {
+        "page": "5-39",
+        "rect": [
+          0,
+          1369,
+          671,
+          346
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-39",
+        "rect": [
+          671,
+          321,
+          671,
+          134
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "possibleQuestionContinuation": {
+      "page": "5-39",
+      "rect": [
+        671,
+        180,
+        671,
+        138
+      ]
+    },
+    "nextColumn": {
+      "page": "5-39",
+      "column": 1
+    }
+  },
+  {
+    "index": 115,
+    "id": "hansol-direct-5-44-26",
+    "page": "5-44",
+    "number": 26,
+    "originalQuestionRect": [
+      0,
+      634,
+      671,
+      1081
+    ],
+    "questionParts": [
+      {
+        "page": "5-44",
+        "rect": [
+          0,
+          634,
+          671,
+          642
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-44",
+        "rect": [
+          0,
+          1279,
+          671,
+          437
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-44",
+      "column": 1
+    }
+  },
+  {
+    "index": 116,
+    "id": "hansol-direct-5-62-57",
+    "page": "5-62",
+    "number": 57,
+    "originalQuestionRect": [
+      671,
+      980,
+      671,
+      735
+    ],
+    "questionParts": [
+      {
+        "page": "5-62",
+        "rect": [
+          671,
+          980,
+          671,
+          368
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-62",
+        "rect": [
+          671,
+          1351,
+          671,
+          327
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-63",
+      "column": 0
+    }
+  },
+  {
+    "index": 117,
+    "id": "hansol-direct-5-69-32",
+    "page": "5-69",
+    "number": 32,
+    "originalQuestionRect": [
+      671,
+      169,
+      671,
+      1075
+    ],
+    "questionParts": [
+      {
+        "page": "5-69",
+        "rect": [
+          671,
+          169,
+          671,
+          533
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-69",
+        "rect": [
+          671,
+          705,
+          671,
+          196
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-70",
+      "column": 0
+    }
+  },
+  {
+    "index": 118,
+    "id": "hansol-direct-5-70-36",
+    "page": "5-70",
+    "number": 36,
+    "originalQuestionRect": [
+      0,
+      1361,
+      671,
+      354
+    ],
+    "questionParts": [
+      {
+        "page": "5-70",
+        "rect": [
+          0,
+          1361,
+          671,
+          354
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-70",
+        "rect": [
+          671,
+          179,
+          671,
+          136
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "5-70",
+      "column": 1
+    }
+  },
+  {
+    "index": 119,
+    "id": "hansol-direct-5-73-55",
+    "page": "5-73",
+    "number": 55,
+    "originalQuestionRect": [
+      671,
+      1424,
+      671,
+      291
+    ],
+    "questionParts": [
+      {
+        "page": "5-73",
+        "rect": [
+          671,
+          1424,
+          671,
+          291
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-74",
+        "rect": [
+          0,
+          179,
+          671,
+          213
+        ]
+      }
+    ],
+    "proposal": "next-column-or-page",
+    "nextColumn": {
+      "page": "5-74",
+      "column": 0
+    }
+  },
+  {
+    "index": 120,
+    "id": "hansol-direct-5-74-57",
+    "page": "5-74",
+    "number": 57,
+    "originalQuestionRect": [
+      0,
+      1227,
+      671,
+      488
+    ],
+    "questionParts": [
+      {
+        "page": "5-74",
+        "rect": [
+          0,
+          1227,
+          671,
+          191
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-74",
+        "rect": [
+          0,
+          1421,
+          671,
+          283
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-74",
+      "column": 1
+    }
+  },
+  {
+    "index": 121,
+    "id": "hansol-direct-5-75-3",
+    "page": "5-75",
+    "number": 3,
+    "originalQuestionRect": [
+      0,
+      1261,
+      671,
+      454
+    ],
+    "questionParts": [
+      {
+        "page": "5-75",
+        "rect": [
+          0,
+          1261,
+          671,
+          228
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-75",
+        "rect": [
+          0,
+          1492,
+          671,
+          169
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-75",
+      "column": 1
+    }
+  },
+  {
+    "index": 122,
+    "id": "hansol-direct-5-85-60",
+    "page": "5-85",
+    "number": 60,
+    "originalQuestionRect": [
+      0,
+      429,
+      671,
+      1286
+    ],
+    "questionParts": [
+      {
+        "page": "5-85",
+        "rect": [
+          0,
+          429,
+          671,
+          467
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-85",
+        "rect": [
+          0,
+          899,
+          671,
+          231
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-85",
+      "column": 1
+    }
+  },
+  {
+    "index": 123,
+    "id": "hansol-direct-5-90-26",
+    "page": "5-90",
+    "number": 26,
+    "originalQuestionRect": [
+      671,
+      1102,
+      671,
+      613
+    ],
+    "questionParts": [
+      {
+        "page": "5-90",
+        "rect": [
+          671,
+          1102,
+          671,
+          440
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-90",
+        "rect": [
+          671,
+          1545,
+          671,
+          168
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-91",
+      "column": 0
+    }
+  },
+  {
+    "index": 124,
+    "id": "hansol-direct-5-91-31",
+    "page": "5-91",
+    "number": 31,
+    "originalQuestionRect": [
+      671,
+      939,
+      671,
+      776
+    ],
+    "questionParts": [
+      {
+        "page": "5-91",
+        "rect": [
+          671,
+          939,
+          671,
+          594
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-91",
+        "rect": [
+          671,
+          1536,
+          671,
+          143
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-92",
+      "column": 0
+    }
+  },
+  {
+    "index": 125,
+    "id": "hansol-direct-5-99-7",
+    "page": "5-99",
+    "number": 7,
+    "originalQuestionRect": [
+      0,
+      470,
+      671,
+      778
+    ],
+    "questionParts": [
+      {
+        "page": "5-99",
+        "rect": [
+          0,
+          470,
+          671,
+          509
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-99",
+        "rect": [
+          0,
+          982,
+          671,
+          74
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-99",
+      "column": 1
+    }
+  },
+  {
+    "index": 126,
+    "id": "hansol-direct-5-107-54",
+    "page": "5-107",
+    "number": 54,
+    "originalQuestionRect": [
+      671,
+      662,
+      671,
+      795
+    ],
+    "questionParts": [
+      {
+        "page": "5-107",
+        "rect": [
+          671,
+          662,
+          671,
+          376
+        ]
+      }
+    ],
+    "solutionParts": [
+      {
+        "page": "5-107",
+        "rect": [
+          671,
+          1041,
+          671,
+          309
+        ]
+      }
+    ],
+    "proposal": "same-column",
+    "nextColumn": {
+      "page": "5-108",
+      "column": 0
+    }
+  }
+]

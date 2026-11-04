@@ -25,10 +25,10 @@ test('759원문·397원해상도 쪽·모든 영역·자가확인 분리',()=>{
   }
   expect(r.split).toBe(!!r.solutionRect);
  }
- const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(759);
+ const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(749);
  expect(direct.every(e=>e.sourceId===null&&!e.fingerprint&&!e.correction&&!e.reviewHold)).toBe(true);
  expect(textbookStudyItems([],direct)).toEqual([]);
- expect(textbookDirectSources.filter(r=>r.split)).toHaveLength(632);
+ expect(textbookDirectSources.filter(r=>r.split)).toHaveLength(749);
 });
 test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목차 복귀',async({page},info)=>{
  await page.addInitScript(()=>{
@@ -63,6 +63,9 @@ test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목
  await chooseBookPage(page,'1-173');await chooseBookPage(page,'1-168');
  await expect(choice).toHaveAttribute('aria-pressed','true');await choice.click();await expect(choice).toHaveAttribute('aria-pressed','false');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- const unseparated=data.locations.find((r:any)=>!r.split);await chooseBookPage(page,unseparated.page);
- await expect(page.locator(`[data-source-id="${unseparated.id}"] .direct-caution`)).toContainText('풀이가 함께');
+ const formerlyUnseparated=data.locations.find((r:any)=>!r.split);await chooseBookPage(page,formerlyUnseparated.page);
+ const repaired=page.locator(`[data-source-id="${formerlyUnseparated.id}"]`);
+ await expect(repaired.locator('.direct-caution')).toHaveCount(0);
+ await expect(repaired.locator('.direct-solution-parts')).toHaveCount(0);
+ await repaired.locator('.direct-solution summary').click();await expect(repaired.locator('.direct-solution-parts img')).toBeVisible();
 });

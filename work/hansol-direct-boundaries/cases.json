@@ -1,0 +1,2161 @@
+[
+  {
+    "id": "hansol-direct-1-34-37",
+    "page": "1-34",
+    "number": 37,
+    "column": 1,
+    "questionRect": [
+      671,
+      387,
+      671,
+      448
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-64-2",
+    "page": "1-64",
+    "number": 2,
+    "column": 0,
+    "questionRect": [
+      0,
+      707,
+      671,
+      898
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-103-15",
+    "page": "1-103",
+    "number": 15,
+    "column": 0,
+    "questionRect": [
+      0,
+      1545,
+      671,
+      170
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-106-33",
+    "page": "1-106",
+    "number": 33,
+    "column": 0,
+    "questionRect": [
+      0,
+      1277,
+      671,
+      438
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-106-36",
+    "page": "1-106",
+    "number": 36,
+    "column": 1,
+    "questionRect": [
+      671,
+      1477,
+      671,
+      238
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-112-68",
+    "page": "1-112",
+    "number": 68,
+    "column": 1,
+    "questionRect": [
+      671,
+      847,
+      671,
+      577
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-112-69",
+    "page": "1-112",
+    "number": 69,
+    "column": 1,
+    "questionRect": [
+      671,
+      1415,
+      671,
+      300
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-135-3",
+    "page": "1-135",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1511,
+      671,
+      204
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-139-27",
+    "page": "1-139",
+    "number": 27,
+    "column": 1,
+    "questionRect": [
+      671,
+      190,
+      671,
+      603
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-154-11",
+    "page": "1-154",
+    "number": 11,
+    "column": 0,
+    "questionRect": [
+      0,
+      190,
+      671,
+      557
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-175-5",
+    "page": "1-175",
+    "number": 5,
+    "column": 1,
+    "questionRect": [
+      671,
+      847,
+      671,
+      494
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-180-68",
+    "page": "1-180",
+    "number": 68,
+    "column": 0,
+    "questionRect": [
+      0,
+      1199,
+      671,
+      516
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-209-8",
+    "page": "1-209",
+    "number": 8,
+    "column": 1,
+    "questionRect": [
+      671,
+      992,
+      671,
+      723
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-211-6",
+    "page": "1-211",
+    "number": 6,
+    "column": 0,
+    "questionRect": [
+      0,
+      1168,
+      671,
+      547
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-211-7",
+    "page": "1-211",
+    "number": 7,
+    "column": 1,
+    "questionRect": [
+      671,
+      190,
+      671,
+      811
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-1-226-4",
+    "page": "1-226",
+    "number": 4,
+    "column": 0,
+    "questionRect": [
+      0,
+      1022,
+      671,
+      693
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-60-6",
+    "page": "2-60",
+    "number": 6,
+    "column": 0,
+    "questionRect": [
+      0,
+      1490,
+      671,
+      225
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-61-2",
+    "page": "2-61",
+    "number": 2,
+    "column": 0,
+    "questionRect": [
+      0,
+      776,
+      671,
+      439
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-115-2",
+    "page": "2-115",
+    "number": 2,
+    "column": 0,
+    "questionRect": [
+      0,
+      449,
+      671,
+      1266
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-128-1",
+    "page": "2-128",
+    "number": 1,
+    "column": 1,
+    "questionRect": [
+      671,
+      1385,
+      671,
+      330
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-139-3",
+    "page": "2-139",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      379,
+      671,
+      530
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-2-214-20",
+    "page": "2-214",
+    "number": 20,
+    "column": 1,
+    "questionRect": [
+      671,
+      1411,
+      671,
+      304
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-25-3",
+    "page": "3-25",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1473,
+      671,
+      242
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-32-50",
+    "page": "3-32",
+    "number": 50,
+    "column": 0,
+    "questionRect": [
+      0,
+      1516,
+      671,
+      199
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-57-1",
+    "page": "3-57",
+    "number": 1,
+    "column": 0,
+    "questionRect": [
+      0,
+      328,
+      671,
+      490
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-61-11",
+    "page": "3-61",
+    "number": 11,
+    "column": 0,
+    "questionRect": [
+      0,
+      1415,
+      671,
+      300
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-65-45",
+    "page": "3-65",
+    "number": 45,
+    "column": 1,
+    "questionRect": [
+      671,
+      1348,
+      671,
+      367
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-73-98",
+    "page": "3-73",
+    "number": 98,
+    "column": 1,
+    "questionRect": [
+      671,
+      1319,
+      671,
+      396
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-102-3",
+    "page": "3-102",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1393,
+      671,
+      322
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-118-6",
+    "page": "3-118",
+    "number": 6,
+    "column": 1,
+    "questionRect": [
+      671,
+      1319,
+      671,
+      396
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-120-13",
+    "page": "3-120",
+    "number": 13,
+    "column": 0,
+    "questionRect": [
+      0,
+      499,
+      671,
+      954
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-134-27",
+    "page": "3-134",
+    "number": 27,
+    "column": 0,
+    "questionRect": [
+      0,
+      788,
+      671,
+      435
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-134-31",
+    "page": "3-134",
+    "number": 31,
+    "column": 1,
+    "questionRect": [
+      671,
+      1206,
+      671,
+      509
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-135-6",
+    "page": "3-135",
+    "number": 6,
+    "column": 0,
+    "questionRect": [
+      0,
+      880,
+      671,
+      552
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-135-34",
+    "page": "3-135",
+    "number": 34,
+    "column": 0,
+    "questionRect": [
+      0,
+      1423,
+      671,
+      292
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-145-23",
+    "page": "3-145",
+    "number": 23,
+    "column": 1,
+    "questionRect": [
+      671,
+      1340,
+      671,
+      375
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-146-25",
+    "page": "3-146",
+    "number": 25,
+    "column": 0,
+    "questionRect": [
+      0,
+      1285,
+      671,
+      430
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-159-4",
+    "page": "3-159",
+    "number": 4,
+    "column": 1,
+    "questionRect": [
+      671,
+      324,
+      671,
+      561
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-164-1",
+    "page": "3-164",
+    "number": 1,
+    "column": 1,
+    "questionRect": [
+      671,
+      817,
+      671,
+      898
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-169-13",
+    "page": "3-169",
+    "number": 13,
+    "column": 0,
+    "questionRect": [
+      0,
+      190,
+      671,
+      1525
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-175-3",
+    "page": "3-175",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1461,
+      671,
+      254
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-207-2",
+    "page": "3-207",
+    "number": 2,
+    "column": 0,
+    "questionRect": [
+      0,
+      1181,
+      671,
+      534
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-207-3",
+    "page": "3-207",
+    "number": 3,
+    "column": 1,
+    "questionRect": [
+      671,
+      804,
+      671,
+      381
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-208-2",
+    "page": "3-208",
+    "number": 2,
+    "column": 0,
+    "questionRect": [
+      0,
+      1008,
+      671,
+      707
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-209-6",
+    "page": "3-209",
+    "number": 6,
+    "column": 1,
+    "questionRect": [
+      671,
+      190,
+      671,
+      1525
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-258-1",
+    "page": "3-258",
+    "number": 1,
+    "column": 0,
+    "questionRect": [
+      0,
+      314,
+      671,
+      500
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-258-3",
+    "page": "3-258",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1281,
+      671,
+      434
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-259-6",
+    "page": "3-259",
+    "number": 6,
+    "column": 0,
+    "questionRect": [
+      0,
+      194,
+      671,
+      612
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-265-37",
+    "page": "3-265",
+    "number": 37,
+    "column": 1,
+    "questionRect": [
+      671,
+      646,
+      671,
+      431
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-266-3",
+    "page": "3-266",
+    "number": 3,
+    "column": 1,
+    "questionRect": [
+      671,
+      776,
+      671,
+      502
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-266-39",
+    "page": "3-266",
+    "number": 39,
+    "column": 0,
+    "questionRect": [
+      0,
+      190,
+      671,
+      477
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-266-40",
+    "page": "3-266",
+    "number": 40,
+    "column": 0,
+    "questionRect": [
+      0,
+      658,
+      671,
+      548
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-267-2",
+    "page": "3-267",
+    "number": 2,
+    "column": 1,
+    "questionRect": [
+      671,
+      227,
+      671,
+      761
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-267-46",
+    "page": "3-267",
+    "number": 46,
+    "column": 0,
+    "questionRect": [
+      0,
+      716,
+      671,
+      495
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-268-55",
+    "page": "3-268",
+    "number": 55,
+    "column": 1,
+    "questionRect": [
+      671,
+      1172,
+      671,
+      543
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-269-58",
+    "page": "3-269",
+    "number": 58,
+    "column": 1,
+    "questionRect": [
+      671,
+      750,
+      671,
+      965
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-270-59",
+    "page": "3-270",
+    "number": 59,
+    "column": 0,
+    "questionRect": [
+      0,
+      190,
+      671,
+      832
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-281-9",
+    "page": "3-281",
+    "number": 9,
+    "column": 0,
+    "questionRect": [
+      0,
+      1068,
+      671,
+      647
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-288-3",
+    "page": "3-288",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      159,
+      671,
+      1556
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-323-31",
+    "page": "3-323",
+    "number": 31,
+    "column": 0,
+    "questionRect": [
+      0,
+      767,
+      671,
+      532
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-325-44",
+    "page": "3-325",
+    "number": 44,
+    "column": 1,
+    "questionRect": [
+      671,
+      617,
+      671,
+      543
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-325-45",
+    "page": "3-325",
+    "number": 45,
+    "column": 1,
+    "questionRect": [
+      671,
+      1151,
+      671,
+      564
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-326-47",
+    "page": "3-326",
+    "number": 47,
+    "column": 0,
+    "questionRect": [
+      0,
+      742,
+      671,
+      540
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-326-48",
+    "page": "3-326",
+    "number": 48,
+    "column": 0,
+    "questionRect": [
+      0,
+      1273,
+      671,
+      442
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-326-49",
+    "page": "3-326",
+    "number": 49,
+    "column": 1,
+    "questionRect": [
+      671,
+      190,
+      671,
+      624
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-328-56",
+    "page": "3-328",
+    "number": 56,
+    "column": 0,
+    "questionRect": [
+      0,
+      583,
+      671,
+      494
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-332-76",
+    "page": "3-332",
+    "number": 76,
+    "column": 0,
+    "questionRect": [
+      0,
+      801,
+      671,
+      477
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-332-79",
+    "page": "3-332",
+    "number": 79,
+    "column": 1,
+    "questionRect": [
+      671,
+      1206,
+      671,
+      509
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-336-1",
+    "page": "3-336",
+    "number": 1,
+    "column": 0,
+    "questionRect": [
+      0,
+      418,
+      671,
+      1297
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-351-47",
+    "page": "3-351",
+    "number": 47,
+    "column": 0,
+    "questionRect": [
+      0,
+      583,
+      671,
+      398
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-363-1",
+    "page": "3-363",
+    "number": 1,
+    "column": 0,
+    "questionRect": [
+      0,
+      324,
+      671,
+      816
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-377-7",
+    "page": "3-377",
+    "number": 7,
+    "column": 0,
+    "questionRect": [
+      0,
+      1018,
+      671,
+      697
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-377-9",
+    "page": "3-377",
+    "number": 9,
+    "column": 1,
+    "questionRect": [
+      671,
+      951,
+      671,
+      764
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-378-10",
+    "page": "3-378",
+    "number": 10,
+    "column": 0,
+    "questionRect": [
+      0,
+      190,
+      671,
+      599
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-378-11",
+    "page": "3-378",
+    "number": 11,
+    "column": 0,
+    "questionRect": [
+      0,
+      780,
+      671,
+      935
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-379-17",
+    "page": "3-379",
+    "number": 17,
+    "column": 1,
+    "questionRect": [
+      671,
+      900,
+      671,
+      407
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-380-21",
+    "page": "3-380",
+    "number": 21,
+    "column": 1,
+    "questionRect": [
+      671,
+      190,
+      671,
+      761
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-3-381-29",
+    "page": "3-381",
+    "number": 29,
+    "column": 1,
+    "questionRect": [
+      671,
+      1191,
+      671,
+      524
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-12-30",
+    "page": "4-12",
+    "number": 30,
+    "column": 1,
+    "questionRect": [
+      671,
+      838,
+      671,
+      877
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-20-1",
+    "page": "4-20",
+    "number": 1,
+    "column": 0,
+    "questionRect": [
+      0,
+      403,
+      671,
+      603
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-23-18",
+    "page": "4-23",
+    "number": 18,
+    "column": 0,
+    "questionRect": [
+      0,
+      1037,
+      671,
+      678
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-33-3",
+    "page": "4-33",
+    "number": 3,
+    "column": 1,
+    "questionRect": [
+      671,
+      1290,
+      671,
+      425
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-35-11",
+    "page": "4-35",
+    "number": 11,
+    "column": 0,
+    "questionRect": [
+      0,
+      1256,
+      671,
+      459
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-36-17",
+    "page": "4-36",
+    "number": 17,
+    "column": 0,
+    "questionRect": [
+      0,
+      1413,
+      671,
+      302
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-51-9",
+    "page": "4-51",
+    "number": 9,
+    "column": 0,
+    "questionRect": [
+      0,
+      1168,
+      671,
+      382
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-75-23",
+    "page": "4-75",
+    "number": 23,
+    "column": 0,
+    "questionRect": [
+      0,
+      1427,
+      671,
+      288
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-85-8",
+    "page": "4-85",
+    "number": 8,
+    "column": 1,
+    "questionRect": [
+      671,
+      169,
+      671,
+      824
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-89-30",
+    "page": "4-89",
+    "number": 30,
+    "column": 1,
+    "questionRect": [
+      671,
+      1236,
+      671,
+      479
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-91-39",
+    "page": "4-91",
+    "number": 39,
+    "column": 1,
+    "questionRect": [
+      671,
+      1349,
+      671,
+      366
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-95-60",
+    "page": "4-95",
+    "number": 60,
+    "column": 1,
+    "questionRect": [
+      671,
+      1018,
+      671,
+      697
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-96-20",
+    "page": "4-96",
+    "number": 20,
+    "column": 1,
+    "questionRect": [
+      671,
+      1068,
+      671,
+      647
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-100-25",
+    "page": "4-100",
+    "number": 25,
+    "column": 1,
+    "questionRect": [
+      671,
+      1214,
+      671,
+      501
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-105-44",
+    "page": "4-105",
+    "number": 44,
+    "column": 0,
+    "questionRect": [
+      0,
+      370,
+      671,
+      966
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-105-46",
+    "page": "4-105",
+    "number": 46,
+    "column": 1,
+    "questionRect": [
+      671,
+      670,
+      671,
+      708
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-122-6",
+    "page": "4-122",
+    "number": 6,
+    "column": 1,
+    "questionRect": [
+      671,
+      1215,
+      671,
+      500
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-128-37",
+    "page": "4-128",
+    "number": 37,
+    "column": 1,
+    "questionRect": [
+      671,
+      1409,
+      671,
+      306
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-129-40",
+    "page": "4-129",
+    "number": 40,
+    "column": 1,
+    "questionRect": [
+      671,
+      507,
+      671,
+      817
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-129-41",
+    "page": "4-129",
+    "number": 41,
+    "column": 1,
+    "questionRect": [
+      671,
+      1317,
+      671,
+      398
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-130-46",
+    "page": "4-130",
+    "number": 46,
+    "column": 1,
+    "questionRect": [
+      671,
+      1469,
+      671,
+      246
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-138-25",
+    "page": "4-138",
+    "number": 25,
+    "column": 0,
+    "questionRect": [
+      0,
+      1388,
+      671,
+      327
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-139-30",
+    "page": "4-139",
+    "number": 30,
+    "column": 1,
+    "questionRect": [
+      671,
+      169,
+      671,
+      1263
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-164-23",
+    "page": "4-164",
+    "number": 23,
+    "column": 0,
+    "questionRect": [
+      0,
+      1189,
+      671,
+      526
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-170-52",
+    "page": "4-170",
+    "number": 52,
+    "column": 0,
+    "questionRect": [
+      0,
+      169,
+      671,
+      540
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-179-41",
+    "page": "4-179",
+    "number": 41,
+    "column": 1,
+    "questionRect": [
+      671,
+      1172,
+      671,
+      543
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-182-51",
+    "page": "4-182",
+    "number": 51,
+    "column": 0,
+    "questionRect": [
+      0,
+      169,
+      671,
+      628
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-185-8",
+    "page": "4-185",
+    "number": 8,
+    "column": 0,
+    "questionRect": [
+      0,
+      1352,
+      671,
+      363
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-185-10",
+    "page": "4-185",
+    "number": 10,
+    "column": 1,
+    "questionRect": [
+      671,
+      942,
+      671,
+      773
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-185-17",
+    "page": "4-185",
+    "number": 17,
+    "column": 1,
+    "questionRect": [
+      671,
+      473,
+      671,
+      478
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-189-29",
+    "page": "4-189",
+    "number": 29,
+    "column": 1,
+    "questionRect": [
+      671,
+      1022,
+      671,
+      693
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-190-32",
+    "page": "4-190",
+    "number": 32,
+    "column": 0,
+    "questionRect": [
+      0,
+      1302,
+      671,
+      413
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-190-33",
+    "page": "4-190",
+    "number": 33,
+    "column": 1,
+    "questionRect": [
+      671,
+      370,
+      671,
+      594
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-4-195-58",
+    "page": "4-195",
+    "number": 58,
+    "column": 0,
+    "questionRect": [
+      0,
+      1285,
+      671,
+      430
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-9-27",
+    "page": "5-9",
+    "number": 27,
+    "column": 0,
+    "questionRect": [
+      0,
+      600,
+      671,
+      368
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-20-23",
+    "page": "5-20",
+    "number": 23,
+    "column": 0,
+    "questionRect": [
+      0,
+      169,
+      671,
+      1171
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-39-3",
+    "page": "5-39",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1369,
+      671,
+      346
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-44-26",
+    "page": "5-44",
+    "number": 26,
+    "column": 0,
+    "questionRect": [
+      0,
+      634,
+      671,
+      1081
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-62-57",
+    "page": "5-62",
+    "number": 57,
+    "column": 1,
+    "questionRect": [
+      671,
+      980,
+      671,
+      735
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-69-32",
+    "page": "5-69",
+    "number": 32,
+    "column": 1,
+    "questionRect": [
+      671,
+      169,
+      671,
+      1075
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-70-36",
+    "page": "5-70",
+    "number": 36,
+    "column": 0,
+    "questionRect": [
+      0,
+      1361,
+      671,
+      354
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-73-55",
+    "page": "5-73",
+    "number": 55,
+    "column": 1,
+    "questionRect": [
+      671,
+      1424,
+      671,
+      291
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-74-57",
+    "page": "5-74",
+    "number": 57,
+    "column": 0,
+    "questionRect": [
+      0,
+      1227,
+      671,
+      488
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-75-3",
+    "page": "5-75",
+    "number": 3,
+    "column": 0,
+    "questionRect": [
+      0,
+      1261,
+      671,
+      454
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-85-60",
+    "page": "5-85",
+    "number": 60,
+    "column": 0,
+    "questionRect": [
+      0,
+      429,
+      671,
+      1286
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-90-26",
+    "page": "5-90",
+    "number": 26,
+    "column": 1,
+    "questionRect": [
+      671,
+      1102,
+      671,
+      613
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-91-31",
+    "page": "5-91",
+    "number": 31,
+    "column": 1,
+    "questionRect": [
+      671,
+      939,
+      671,
+      776
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-99-7",
+    "page": "5-99",
+    "number": 7,
+    "column": 0,
+    "questionRect": [
+      0,
+      470,
+      671,
+      778
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  },
+  {
+    "id": "hansol-direct-5-107-54",
+    "page": "5-107",
+    "number": 54,
+    "column": 1,
+    "questionRect": [
+      671,
+      662,
+      671,
+      795
+    ],
+    "solutionRect": null,
+    "split": false,
+    "grading": "self-check-only",
+    "basis": "existing-normal-reader-original",
+    "review": "source-first-not-CBT-compared"
+  }
+]

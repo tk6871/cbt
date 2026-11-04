@@ -6,6 +6,7 @@ import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextb
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
+import directBoundaries from '../../data/hansol-book-direct-boundaries.json' with {type:'json'};
 import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
 import {resolveBookInkHidden} from './textbookInkHidden';
 export type TextbookKey = 'hansol' | 'energy';
@@ -14,9 +15,21 @@ export type TextbookCorrection = {text:string;choices:string[];answer?:number;no
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
 );
 export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; directSourceId?:string; correction?:TextbookCorrection };
-export type TextbookDirectSource=typeof directBook.locations[number];
+export type TextbookDirectPart={page:string;rect:number[];label?:string;asset?:string;size?:number[]};
+export type TextbookDirectSource=typeof directBook.locations[number] & {questionParts:TextbookDirectPart[];solutionParts:TextbookDirectPart[]};
 export type TextbookDirectPage=typeof directBook.pages[number];
-export const textbookDirectSources=directBook.locations;
+const boundaryReviews=new Map(directBoundaries.entries.map(r=>[r.id,r]));
+// Keep the original source index and storage IDs intact. Only individually
+// reviewed display boundaries/printed numbers are overlaid. False OCR anchors
+// are hidden from the reader, never removed from the original source archive.
+export const textbookDirectSources:TextbookDirectSource[]=directBook.locations.flatMap(r=>{
+ const candidate=boundaryReviews.get(r.id);
+ const fix=candidate&&!r.split&&candidate.originalQuestionRect.every((n,i)=>n===r.questionRect[i])?candidate:undefined;
+ if(fix&&fix.status!=='split')return [];
+ const questionParts:TextbookDirectPart[]=fix?.questionParts||[{page:r.page,rect:r.questionRect}];
+ const solutionParts:TextbookDirectPart[]=fix?.solutionParts||(r.solutionRect?[{page:r.page,rect:r.solutionRect}]:[]);
+ return [{...r,number:fix?.printedNumber??r.number,questionRect:questionParts[0]!.rect,split:solutionParts.length>0,questionParts,solutionParts}];
+});
 export const textbookDirectPageMap=new Map(directBook.pages.map(p=>[p.page,p]));
 export type TextbookDirectUpscale={page:string;sourceAsset:string;sourceSha256:string;coordinateSize:number[];outputSize:number[];asset:string;outputSha256:string;model:string;tile:number;native:string;pipeline:string};
 const directUpgrades=new Map((directUpscale.pages as TextbookDirectUpscale[]).map(p=>[p.page,p]));
@@ -36,7 +49,7 @@ export function textbookDirectImage(page:TextbookDirectPage){
  return {...resolveTextbookDirectImage(page,directUpgrades.get(page.page)),fallbackAsset:page.asset};
 }
 const existingPositions=new Set(links.entries.map(e=>`${e.book}:${e.page}:${e.number}`));
-const directEntries:TextbookEntry[]=directBook.locations.filter(r=>!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
+const directEntries:TextbookEntry[]=textbookDirectSources.filter(r=>!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
 // Source-first reading must not become an automatically graded question or
 // replace an already verified/held book location.
 export const textbookEntries: TextbookEntry[] = [...links.entries as TextbookEntry[],...directEntries];

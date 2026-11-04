@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-03T22:25:42.981Z",
+  "hashes": {
+    "data/hansol-book-direct.json": "a0f3ba9edcc063036aabdcfe66aaa860e01915152bcf9b37ef818695e46f21cf",
+    "data/hansol-book-ink-hidden.json": "ea95bbed373c172c9958a4eecfdb1c22923422bef39e3dddabffd93d5c696fd7",
+    "data/textbook-pages.json": "cbad5d6323f614cf6749562faa0877e367bf2844024a178158403e77849be5bb",
+    "data/hansol-book-native-audit.json": "72676e057dc3c6a2aaf2a41c9aa7f4cd575d3476c42018a5d7782314d90b1695",
+    "data/hvac.js": "ec4e84e705901c76eea7337b2ce377b8663c5aa76909b16509ada6936db822a1",
+    "data/hvac-hansol.js": "787e0debf32b7bbad793518d79963a97fd9e95b2398f1b358041de476939da5d",
+    "data/energy.js": "3f0331ce8b779715ea96c8c5a0b6e723b345b45c539265a1eb6317f037dd3577",
+    "data/energy-midterm.js": "5c0c1953885b07f06150ffab77b8f4dc61b87c39f2ce0d5e7c5e65beb8e3f4bd",
+    "data/energy-restored.js": "34597ea019e9d1b847c6e08c2f18949f4ee05351c3232b4e0883f6b33783ec1a",
+    "data/energy-textbook.js": "c9da9a0f1d3c9bd2408befe247ef58f56a59798f006e6a2baa3df74987315ba9",
+    "data/hvac-hansol-book.js": "482e583f5158be2247e7cd1eaad650331b70e0e4978b54a00dcfe64ca837d51f"
+  }
+}

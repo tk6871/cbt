@@ -1,0 +1,4132 @@
+{
+  "schemaVersion": 1,
+  "preservedFiles": {
+    "data/hansol-book-direct.json": "a0f3ba9edcc063036aabdcfe66aaa860e01915152bcf9b37ef818695e46f21cf",
+    "data/hansol-book-ink-hidden.json": "ea95bbed373c172c9958a4eecfdb1c22923422bef39e3dddabffd93d5c696fd7",
+    "data/textbook-pages.json": "cbad5d6323f614cf6749562faa0877e367bf2844024a178158403e77849be5bb",
+    "data/hansol-book-native-audit.json": "72676e057dc3c6a2aaf2a41c9aa7f4cd575d3476c42018a5d7782314d90b1695",
+    "data/hvac.js": "ec4e84e705901c76eea7337b2ce377b8663c5aa76909b16509ada6936db822a1",
+    "data/hvac-hansol.js": "787e0debf32b7bbad793518d79963a97fd9e95b2398f1b358041de476939da5d",
+    "data/energy.js": "3f0331ce8b779715ea96c8c5a0b6e723b345b45c539265a1eb6317f037dd3577",
+    "data/energy-midterm.js": "5c0c1953885b07f06150ffab77b8f4dc61b87c39f2ce0d5e7c5e65beb8e3f4bd",
+    "data/energy-restored.js": "34597ea019e9d1b847c6e08c2f18949f4ee05351c3232b4e0883f6b33783ec1a",
+    "data/energy-textbook.js": "c9da9a0f1d3c9bd2408befe247ef58f56a59798f006e6a2baa3df74987315ba9",
+    "data/hvac-hansol-book.js": "482e583f5158be2247e7cd1eaad650331b70e0e4978b54a00dcfe64ca837d51f"
+  },
+  "originalIndexSha256": "a0f3ba9edcc063036aabdcfe66aaa860e01915152bcf9b37ef818695e46f21cf",
+  "scope": "원래 미분리 127곳의 화면 영역 검수. 학술 정답 검증·자동채점이 아님.",
+  "entries": [
+    {
+      "id": "hansol-direct-1-34-37",
+      "originalQuestionRect": [
+        671,
+        387,
+        671,
+        448
+      ],
+      "status": "split",
+      "printedNumber": 37,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            387,
+            671,
+            266
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            656,
+            671,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-64-2",
+      "originalQuestionRect": [
+        0,
+        707,
+        671,
+        898
+      ],
+      "status": "not-question",
+      "reason": "설계조건 본문 제목과 표를 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-1-103-15",
+      "originalQuestionRect": [
+        0,
+        1545,
+        671,
+        170
+      ],
+      "status": "split",
+      "printedNumber": 15,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-103",
+          "rect": [
+            0,
+            1545,
+            671,
+            187
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-103",
+          "rect": [
+            671,
+            179,
+            671,
+            103
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-106-33",
+      "originalQuestionRect": [
+        0,
+        1277,
+        671,
+        438
+      ],
+      "status": "split",
+      "printedNumber": 33,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            0,
+            1277,
+            671,
+            455
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            671,
+            179,
+            671,
+            168
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-106-36",
+      "originalQuestionRect": [
+        671,
+        1477,
+        671,
+        238
+      ],
+      "status": "split",
+      "printedNumber": 36,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            671,
+            1477,
+            671,
+            255
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-107",
+          "rect": [
+            0,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-112-68",
+      "originalQuestionRect": [
+        671,
+        847,
+        671,
+        577
+      ],
+      "status": "split",
+      "printedNumber": 68,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            847,
+            671,
+            265
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            1115,
+            671,
+            162
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-112-69",
+      "originalQuestionRect": [
+        671,
+        1415,
+        671,
+        300
+      ],
+      "status": "split",
+      "printedNumber": 69,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            1415,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-113",
+          "rect": [
+            0,
+            179,
+            671,
+            196
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-135-3",
+      "originalQuestionRect": [
+        0,
+        1511,
+        671,
+        204
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "장 제목 테두리가 아닌 실제 AHU 풀이를 오른쪽 열에서 연결",
+      "questionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            0,
+            1511,
+            671,
+            221
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            671,
+            314,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-139-27",
+      "originalQuestionRect": [
+        671,
+        190,
+        671,
+        603
+      ],
+      "status": "split",
+      "printedNumber": 27,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-139",
+          "rect": [
+            671,
+            190,
+            671,
+            301
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-139",
+          "rect": [
+            671,
+            494,
+            671,
+            154
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-154-11",
+      "originalQuestionRect": [
+        0,
+        190,
+        671,
+        557
+      ],
+      "status": "split",
+      "printedNumber": 11,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-154",
+          "rect": [
+            0,
+            190,
+            671,
+            259
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-154",
+          "rect": [
+            0,
+            452,
+            671,
+            194
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-175-5",
+      "originalQuestionRect": [
+        671,
+        847,
+        671,
+        494
+      ],
+      "status": "split",
+      "printedNumber": 41,
+      "reason": "5.5kW를 번호로 오인식한 앞줄을 복구. 인쇄 41번",
+      "questionParts": [
+        {
+          "page": "1-175",
+          "rect": [
+            671,
+            809,
+            671,
+            221
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-175",
+          "rect": [
+            671,
+            1033,
+            671,
+            131
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-180-68",
+      "originalQuestionRect": [
+        0,
+        1199,
+        671,
+        516
+      ],
+      "status": "split",
+      "printedNumber": 68,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-180",
+          "rect": [
+            0,
+            1199,
+            671,
+            333
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-180",
+          "rect": [
+            0,
+            1535,
+            671,
+            115
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-209-8",
+      "originalQuestionRect": [
+        671,
+        992,
+        671,
+        723
+      ],
+      "status": "split",
+      "printedNumber": 8,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-209",
+          "rect": [
+            671,
+            992,
+            671,
+            421
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-209",
+          "rect": [
+            671,
+            1416,
+            671,
+            140
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-211-6",
+      "originalQuestionRect": [
+        0,
+        1168,
+        671,
+        547
+      ],
+      "status": "split",
+      "printedNumber": 6,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-211",
+          "rect": [
+            0,
+            1168,
+            671,
+            304
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-211",
+          "rect": [
+            0,
+            1475,
+            671,
+            234
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-211-7",
+      "originalQuestionRect": [
+        671,
+        190,
+        671,
+        811
+      ],
+      "status": "split",
+      "printedNumber": 7,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-211",
+          "rect": [
+            671,
+            190,
+            671,
+            224
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-211",
+          "rect": [
+            671,
+            417,
+            671,
+            171
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-226-4",
+      "originalQuestionRect": [
+        0,
+        1022,
+        671,
+        693
+      ],
+      "status": "split",
+      "printedNumber": 4,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "1-226",
+          "rect": [
+            0,
+            1022,
+            671,
+            270
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-226",
+          "rect": [
+            0,
+            1295,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-2-60-6",
+      "originalQuestionRect": [
+        0,
+        1490,
+        671,
+        225
+      ],
+      "status": "covered-question",
+      "reason": "6.84를 6번으로 오인식. 인쇄 03번은 기존 교재 연결에 이미 있음",
+      "printedNumber": 3
+    },
+    {
+      "id": "hansol-direct-2-61-2",
+      "originalQuestionRect": [
+        0,
+        776,
+        671,
+        439
+      ],
+      "status": "covered-question",
+      "reason": "2.2kW를 2번으로 오인식. 인쇄 06번은 기존 교재 연결에 이미 있음",
+      "printedNumber": 6
+    },
+    {
+      "id": "hansol-direct-2-115-2",
+      "originalQuestionRect": [
+        0,
+        449,
+        671,
+        1266
+      ],
+      "status": "not-question",
+      "reason": "컴파운드 압축기 설명표의 숫자를 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-2-128-1",
+      "originalQuestionRect": [
+        671,
+        1385,
+        671,
+        330
+      ],
+      "status": "covered-question",
+      "reason": "인쇄 09번의 번호 오인식. 기존 교재 연결에 이미 있음",
+      "printedNumber": 9
+    },
+    {
+      "id": "hansol-direct-2-139-3",
+      "originalQuestionRect": [
+        0,
+        379,
+        671,
+        530
+      ],
+      "status": "not-question",
+      "reason": "응축기 본문 표의 수식 번호를 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-2-214-20",
+      "originalQuestionRect": [
+        671,
+        1411,
+        671,
+        304
+      ],
+      "status": "covered-question",
+      "reason": "인쇄 120번의 번호 오인식. 기존 교재 연결에 이미 있음",
+      "printedNumber": 120
+    },
+    {
+      "id": "hansol-direct-3-25-3",
+      "originalQuestionRect": [
+        0,
+        1473,
+        671,
+        242
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "장 제목 테두리가 아닌 주철관 실제 풀이 연결",
+      "questionParts": [
+        {
+          "page": "3-25",
+          "rect": [
+            0,
+            1473,
+            671,
+            259
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-25",
+          "rect": [
+            671,
+            319,
+            671,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-32-50",
+      "originalQuestionRect": [
+        0,
+        1516,
+        671,
+        199
+      ],
+      "status": "split",
+      "printedNumber": 50,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-32",
+          "rect": [
+            0,
+            1516,
+            671,
+            216
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-32",
+          "rect": [
+            671,
+            179,
+            671,
+            265
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-57-1",
+      "originalQuestionRect": [
+        0,
+        328,
+        671,
+        490
+      ],
+      "status": "split",
+      "printedNumber": 1,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-57",
+          "rect": [
+            0,
+            328,
+            671,
+            231
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-57",
+          "rect": [
+            0,
+            562,
+            671,
+            87
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-61-11",
+      "originalQuestionRect": [
+        0,
+        1415,
+        671,
+        300
+      ],
+      "status": "split",
+      "printedNumber": 11,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-61",
+          "rect": [
+            0,
+            1415,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-61",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-65-45",
+      "originalQuestionRect": [
+        671,
+        1348,
+        671,
+        367
+      ],
+      "status": "split",
+      "printedNumber": 45,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-65",
+          "rect": [
+            671,
+            1348,
+            671,
+            227
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-65",
+          "rect": [
+            671,
+            1578,
+            671,
+            77
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-73-98",
+      "originalQuestionRect": [
+        671,
+        1319,
+        671,
+        396
+      ],
+      "status": "split",
+      "printedNumber": 98,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-73",
+          "rect": [
+            671,
+            1319,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-73",
+          "rect": [
+            671,
+            1514,
+            671,
+            106
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-102-3",
+      "originalQuestionRect": [
+        0,
+        1393,
+        671,
+        322
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-102",
+          "rect": [
+            0,
+            1393,
+            671,
+            196
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-102",
+          "rect": [
+            0,
+            1592,
+            671,
+            135
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-118-6",
+      "originalQuestionRect": [
+        671,
+        1319,
+        671,
+        396
+      ],
+      "status": "split",
+      "printedNumber": 6,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            671,
+            1319,
+            671,
+            413
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            179,
+            671,
+            74
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-120-13",
+      "originalQuestionRect": [
+        0,
+        499,
+        671,
+        954
+      ],
+      "status": "split",
+      "printedNumber": 13,
+      "reason": "강우량 조건표와 네 보기를 문제에 유지하고 설명만 분리",
+      "questionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            0,
+            499,
+            671,
+            593
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            0,
+            1095,
+            671,
+            140
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-134-27",
+      "originalQuestionRect": [
+        0,
+        788,
+        671,
+        435
+      ],
+      "status": "split",
+      "printedNumber": 27,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            788,
+            671,
+            184
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            975,
+            671,
+            106
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-134-31",
+      "originalQuestionRect": [
+        671,
+        1206,
+        671,
+        509
+      ],
+      "status": "split",
+      "printedNumber": 31,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            671,
+            1206,
+            671,
+            526
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-135-6",
+      "originalQuestionRect": [
+        0,
+        880,
+        671,
+        552
+      ],
+      "status": "split",
+      "printedNumber": 33,
+      "reason": "6.8을 번호로 오인식한 첫줄 복구. 인쇄 33번",
+      "questionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            841,
+            671,
+            228
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            1072,
+            671,
+            261
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-135-34",
+      "originalQuestionRect": [
+        0,
+        1423,
+        671,
+        292
+      ],
+      "status": "split",
+      "printedNumber": 34,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            1423,
+            671,
+            309
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-145-23",
+      "originalQuestionRect": [
+        671,
+        1340,
+        671,
+        375
+      ],
+      "status": "split",
+      "printedNumber": 23,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-145",
+          "rect": [
+            671,
+            1340,
+            671,
+            392
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            179,
+            671,
+            74
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-146-25",
+      "originalQuestionRect": [
+        0,
+        1285,
+        671,
+        430
+      ],
+      "status": "split",
+      "printedNumber": 25,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            1285,
+            671,
+            447
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            671,
+            179,
+            671,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-159-4",
+      "originalQuestionRect": [
+        671,
+        324,
+        671,
+        561
+      ],
+      "status": "split",
+      "printedNumber": 4,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            671,
+            324,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            671,
+            644,
+            671,
+            138
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-164-1",
+      "originalQuestionRect": [
+        671,
+        817,
+        671,
+        898
+      ],
+      "status": "not-question",
+      "reason": "냉매배관 설치 본문 표의 숫자를 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-3-169-13",
+      "originalQuestionRect": [
+        0,
+        190,
+        671,
+        1525
+      ],
+      "status": "split",
+      "printedNumber": 13,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-169",
+          "rect": [
+            0,
+            190,
+            671,
+            475
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-169",
+          "rect": [
+            0,
+            668,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-175-3",
+      "originalQuestionRect": [
+        0,
+        1461,
+        671,
+        254
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1461,
+            671,
+            185
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1649,
+            671,
+            75
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-207-2",
+      "originalQuestionRect": [
+        0,
+        1181,
+        671,
+        534
+      ],
+      "status": "split",
+      "printedNumber": 2,
+      "reason": "장 제목 테두리를 제외하고 거냥도 전체 포함",
+      "questionParts": [
+        {
+          "page": "3-207",
+          "rect": [
+            0,
+            1181,
+            671,
+            551
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-207",
+          "rect": [
+            671,
+            313,
+            671,
+            405
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-207-3",
+      "originalQuestionRect": [
+        671,
+        804,
+        671,
+        381
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "참조하는 2번 평면도를 문제 앞에 함께 표시",
+      "questionParts": [
+        {
+          "page": "3-207",
+          "rect": [
+            0,
+            1275,
+            671,
+            240
+          ],
+          "label": "2번 공통 그림"
+        },
+        {
+          "page": "3-207",
+          "rect": [
+            671,
+            804,
+            671,
+            152
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-207",
+          "rect": [
+            671,
+            959,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-208-2",
+      "originalQuestionRect": [
+        0,
+        1008,
+        671,
+        707
+      ],
+      "status": "split",
+      "printedNumber": 2,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-208",
+          "rect": [
+            0,
+            1008,
+            671,
+            724
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-208",
+          "rect": [
+            671,
+            288,
+            671,
+            422
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-209-6",
+      "originalQuestionRect": [
+        671,
+        190,
+        671,
+        1525
+      ],
+      "status": "split",
+      "printedNumber": 6,
+      "reason": "앞쪽 덕트 공통 조건과 평면도를 포함",
+      "questionParts": [
+        {
+          "page": "3-208",
+          "rect": [
+            671,
+            814,
+            671,
+            505
+          ],
+          "label": "앞쪽 공통 조건·그림"
+        },
+        {
+          "page": "3-209",
+          "rect": [
+            671,
+            190,
+            671,
+            268
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-209",
+          "rect": [
+            671,
+            461,
+            671,
+            978
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-258-1",
+      "originalQuestionRect": [
+        0,
+        314,
+        671,
+        500
+      ],
+      "status": "split",
+      "printedNumber": 1,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-258",
+          "rect": [
+            0,
+            314,
+            671,
+            222
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-258",
+          "rect": [
+            0,
+            539,
+            671,
+            132
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-258-3",
+      "originalQuestionRect": [
+        0,
+        1281,
+        671,
+        434
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-258",
+          "rect": [
+            0,
+            1281,
+            671,
+            217
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-258",
+          "rect": [
+            0,
+            1501,
+            671,
+            132
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-259-6",
+      "originalQuestionRect": [
+        0,
+        194,
+        671,
+        612
+      ],
+      "status": "split",
+      "printedNumber": 6,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-259",
+          "rect": [
+            0,
+            194,
+            671,
+            213
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-259",
+          "rect": [
+            0,
+            410,
+            671,
+            218
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-265-37",
+      "originalQuestionRect": [
+        671,
+        646,
+        671,
+        431
+      ],
+      "status": "split",
+      "printedNumber": 37,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-265",
+          "rect": [
+            671,
+            646,
+            671,
+            188
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-265",
+          "rect": [
+            671,
+            837,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-3",
+      "originalQuestionRect": [
+        671,
+        776,
+        671,
+        502
+      ],
+      "status": "split",
+      "printedNumber": 43,
+      "reason": "인쇄 번호 43 복구",
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            671,
+            776,
+            671,
+            218
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            671,
+            997,
+            671,
+            207
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-39",
+      "originalQuestionRect": [
+        0,
+        190,
+        671,
+        477
+      ],
+      "status": "split",
+      "printedNumber": 39,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            190,
+            671,
+            153
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            346,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-40",
+      "originalQuestionRect": [
+        0,
+        658,
+        671,
+        548
+      ],
+      "status": "split",
+      "printedNumber": 40,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            658,
+            671,
+            189
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            850,
+            671,
+            174
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-267-2",
+      "originalQuestionRect": [
+        671,
+        227,
+        671,
+        761
+      ],
+      "status": "split",
+      "printedNumber": 48,
+      "reason": "1:2 조건 첫줄과 인쇄 번호 48 복구",
+      "questionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            671,
+            190,
+            671,
+            409
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            671,
+            602,
+            671,
+            206
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-267-46",
+      "originalQuestionRect": [
+        0,
+        716,
+        671,
+        495
+      ],
+      "status": "split",
+      "printedNumber": 46,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            0,
+            716,
+            671,
+            260
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            0,
+            979,
+            671,
+            106
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-268-55",
+      "originalQuestionRect": [
+        671,
+        1172,
+        671,
+        543
+      ],
+      "status": "split",
+      "printedNumber": 55,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-268",
+          "rect": [
+            671,
+            1172,
+            671,
+            227
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-268",
+          "rect": [
+            671,
+            1402,
+            671,
+            232
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-269-58",
+      "originalQuestionRect": [
+        671,
+        750,
+        671,
+        965
+      ],
+      "status": "split",
+      "printedNumber": 58,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-269",
+          "rect": [
+            671,
+            750,
+            671,
+            380
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-269",
+          "rect": [
+            671,
+            1133,
+            671,
+            406
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-270-59",
+      "originalQuestionRect": [
+        0,
+        190,
+        671,
+        832
+      ],
+      "status": "split",
+      "printedNumber": 59,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-270",
+          "rect": [
+            0,
+            190,
+            671,
+            233
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-270",
+          "rect": [
+            0,
+            426,
+            671,
+            372
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-281-9",
+      "originalQuestionRect": [
+        0,
+        1068,
+        671,
+        647
+      ],
+      "status": "split",
+      "printedNumber": 9,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-281",
+          "rect": [
+            0,
+            1068,
+            671,
+            225
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-281",
+          "rect": [
+            0,
+            1296,
+            671,
+            240
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-288-3",
+      "originalQuestionRect": [
+        0,
+        159,
+        671,
+        1556
+      ],
+      "status": "not-question",
+      "reason": "직류기 정류작용 본문 제목을 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-3-323-31",
+      "originalQuestionRect": [
+        0,
+        767,
+        671,
+        532
+      ],
+      "status": "split",
+      "printedNumber": 31,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-323",
+          "rect": [
+            0,
+            767,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-323",
+          "rect": [
+            0,
+            961,
+            671,
+            236
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-325-44",
+      "originalQuestionRect": [
+        671,
+        617,
+        671,
+        543
+      ],
+      "status": "split",
+      "printedNumber": 44,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-325",
+          "rect": [
+            671,
+            617,
+            671,
+            190
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-325",
+          "rect": [
+            671,
+            810,
+            671,
+            209
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-325-45",
+      "originalQuestionRect": [
+        671,
+        1151,
+        671,
+        564
+      ],
+      "status": "split",
+      "printedNumber": 45,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-325",
+          "rect": [
+            671,
+            1151,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-325",
+          "rect": [
+            671,
+            1346,
+            671,
+            263
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-326-47",
+      "originalQuestionRect": [
+        0,
+        742,
+        671,
+        540
+      ],
+      "status": "split",
+      "printedNumber": 47,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            0,
+            742,
+            671,
+            295
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            0,
+            1040,
+            671,
+            140
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-326-48",
+      "originalQuestionRect": [
+        0,
+        1273,
+        671,
+        442
+      ],
+      "status": "split",
+      "printedNumber": 48,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            0,
+            1273,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            0,
+            1467,
+            671,
+            168
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-326-49",
+      "originalQuestionRect": [
+        671,
+        190,
+        671,
+        624
+      ],
+      "status": "split",
+      "printedNumber": 49,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            671,
+            190,
+            671,
+            268
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-326",
+          "rect": [
+            671,
+            461,
+            671,
+            169
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-328-56",
+      "originalQuestionRect": [
+        0,
+        583,
+        671,
+        494
+      ],
+      "status": "split",
+      "printedNumber": 56,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-328",
+          "rect": [
+            0,
+            583,
+            671,
+            226
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-328",
+          "rect": [
+            0,
+            812,
+            671,
+            163
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-332-76",
+      "originalQuestionRect": [
+        0,
+        801,
+        671,
+        477
+      ],
+      "status": "split",
+      "printedNumber": 76,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-332",
+          "rect": [
+            0,
+            801,
+            671,
+            154
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-332",
+          "rect": [
+            0,
+            958,
+            671,
+            200
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-332-79",
+      "originalQuestionRect": [
+        671,
+        1206,
+        671,
+        509
+      ],
+      "status": "split",
+      "printedNumber": 79,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-332",
+          "rect": [
+            671,
+            1206,
+            671,
+            526
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-333",
+          "rect": [
+            0,
+            179,
+            671,
+            232
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-336-1",
+      "originalQuestionRect": [
+        0,
+        418,
+        671,
+        1297
+      ],
+      "status": "not-question",
+      "reason": "제어계 구성 본문 제목을 문제번호로 오인식"
+    },
+    {
+      "id": "hansol-direct-3-351-47",
+      "originalQuestionRect": [
+        0,
+        583,
+        671,
+        398
+      ],
+      "status": "split",
+      "printedNumber": 47,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-351",
+          "rect": [
+            0,
+            583,
+            671,
+            188
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-351",
+          "rect": [
+            0,
+            774,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-363-1",
+      "originalQuestionRect": [
+        0,
+        324,
+        671,
+        816
+      ],
+      "status": "split",
+      "printedNumber": 1,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-363",
+          "rect": [
+            0,
+            324,
+            671,
+            190
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-363",
+          "rect": [
+            0,
+            517,
+            671,
+            401
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-377-7",
+      "originalQuestionRect": [
+        0,
+        1018,
+        671,
+        697
+      ],
+      "status": "split",
+      "printedNumber": 7,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-377",
+          "rect": [
+            0,
+            1018,
+            671,
+            434
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-377",
+          "rect": [
+            0,
+          1455,
+          671,
+          278
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-377-9",
+      "originalQuestionRect": [
+        671,
+        951,
+        671,
+        764
+      ],
+      "status": "split",
+      "printedNumber": 9,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-377",
+          "rect": [
+            671,
+            951,
+            671,
+            355
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-377",
+          "rect": [
+            671,
+            1309,
+            671,
+            309
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-378-10",
+      "originalQuestionRect": [
+        0,
+        190,
+        671,
+        599
+      ],
+      "status": "split",
+      "printedNumber": 10,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-378",
+          "rect": [
+            0,
+            190,
+            671,
+            356
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-378",
+          "rect": [
+            0,
+            549,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-378-11",
+      "originalQuestionRect": [
+        0,
+        780,
+        671,
+        935
+      ],
+      "status": "split",
+      "printedNumber": 11,
+      "reason": "NAND 진리표·네 보기는 문제에, 답 진리표만 풀이에 표시",
+      "questionParts": [
+        {
+          "page": "3-378",
+          "rect": [
+            0,
+            780,
+            671,
+            623
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-378",
+          "rect": [
+            0,
+            1411,
+            671,
+            264
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-379-17",
+      "originalQuestionRect": [
+        671,
+        900,
+        671,
+        407
+      ],
+      "status": "split",
+      "printedNumber": 17,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-379",
+          "rect": [
+            671,
+            900,
+            671,
+            253
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-379",
+          "rect": [
+            671,
+            1156,
+            671,
+            74
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-380-21",
+      "originalQuestionRect": [
+        671,
+        190,
+        671,
+        761
+      ],
+      "status": "split",
+      "printedNumber": 21,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-380",
+          "rect": [
+            671,
+            190,
+            671,
+            408
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-380",
+          "rect": [
+            671,
+            601,
+            671,
+            168
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-381-29",
+      "originalQuestionRect": [
+        671,
+        1191,
+        671,
+        524
+      ],
+      "status": "split",
+      "printedNumber": 29,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "3-381",
+          "rect": [
+            671,
+            1191,
+            671,
+            211
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-381",
+          "rect": [
+            671,
+            1405,
+            671,
+            181
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-12-30",
+      "originalQuestionRect": [
+        671,
+        838,
+        671,
+        877
+      ],
+      "status": "split",
+      "printedNumber": 30,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-12",
+          "rect": [
+            671,
+            838,
+            671,
+            437
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-12",
+          "rect": [
+            671,
+            1278,
+            671,
+            231
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-20-1",
+      "originalQuestionRect": [
+        0,
+        403,
+        671,
+        603
+      ],
+      "status": "split",
+      "printedNumber": 1,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-20",
+          "rect": [
+            0,
+            403,
+            671,
+            342
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-20",
+          "rect": [
+            0,
+            748,
+            671,
+            163
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-23-18",
+      "originalQuestionRect": [
+        0,
+        1037,
+        671,
+        678
+      ],
+      "status": "split",
+      "printedNumber": 18,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-23",
+          "rect": [
+            0,
+            1037,
+            671,
+            695
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-23",
+          "rect": [
+            671,
+            179,
+            671,
+            136
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-33-3",
+      "originalQuestionRect": [
+        671,
+        1290,
+        671,
+        425
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "쪽 하단 회색 풀이를 문제에서 분리",
+      "questionParts": [
+        {
+          "page": "4-33",
+          "rect": [
+            671,
+            1290,
+            671,
+            272
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-33",
+          "rect": [
+            671,
+            1565,
+            671,
+            167
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-35-11",
+      "originalQuestionRect": [
+        0,
+        1256,
+        671,
+        459
+      ],
+      "status": "split",
+      "printedNumber": 11,
+      "reason": "입출구 온도표·네 보기를 유지하고 다음 열 풀이 연결",
+      "questionParts": [
+        {
+          "page": "4-35",
+          "rect": [
+            0,
+            1256,
+            671,
+            371
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-35",
+          "rect": [
+            671,
+            179,
+            671,
+            473
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-36-17",
+      "originalQuestionRect": [
+        0,
+        1413,
+        671,
+        302
+      ],
+      "status": "split",
+      "printedNumber": 17,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-36",
+          "rect": [
+            0,
+            1413,
+            671,
+            319
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-36",
+          "rect": [
+            671,
+            179,
+            671,
+            140
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-51-9",
+      "originalQuestionRect": [
+        0,
+        1168,
+        671,
+        382
+      ],
+      "status": "split",
+      "printedNumber": 26,
+      "reason": "9.3을 번호로 오인식한 지문·재료표 전체 복구. 인쇄 26번",
+      "questionParts": [
+        {
+          "page": "4-51",
+          "rect": [
+            0,
+            791,
+            671,
+            532
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-51",
+          "rect": [
+            0,
+            1326,
+            671,
+            130
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-75-23",
+      "originalQuestionRect": [
+        0,
+        1427,
+        671,
+        288
+      ],
+      "status": "split",
+      "printedNumber": 23,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-75",
+          "rect": [
+            0,
+            1427,
+            671,
+            305
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-75",
+          "rect": [
+            671,
+            179,
+            671,
+            375
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-85-8",
+      "originalQuestionRect": [
+        671,
+        169,
+        671,
+        824
+      ],
+      "status": "split",
+      "printedNumber": 8,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-85",
+          "rect": [
+            671,
+            169,
+            671,
+            588
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-85",
+          "rect": [
+            671,
+            760,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-89-30",
+      "originalQuestionRect": [
+        671,
+        1236,
+        671,
+        479
+      ],
+      "status": "split",
+      "printedNumber": 30,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-89",
+          "rect": [
+            671,
+            1236,
+            671,
+            268
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-89",
+          "rect": [
+            671,
+            1507,
+            671,
+            216
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-91-39",
+      "originalQuestionRect": [
+        671,
+        1349,
+        671,
+        366
+      ],
+      "status": "split",
+      "printedNumber": 39,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-91",
+          "rect": [
+            671,
+            1349,
+            671,
+            383
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-92",
+          "rect": [
+            0,
+            179,
+            671,
+            832
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-95-60",
+      "originalQuestionRect": [
+        671,
+        1018,
+        671,
+        697
+      ],
+      "status": "split",
+      "printedNumber": 60,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-95",
+          "rect": [
+            671,
+            1018,
+            671,
+            443
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-95",
+          "rect": [
+            671,
+            1464,
+            671,
+            232
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-96-20",
+      "originalQuestionRect": [
+        671,
+        1068,
+        671,
+        647
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "20.42kW를 번호로 오인식한 첫줄과 인쇄 03번 복구",
+      "questionParts": [
+        {
+          "page": "4-96",
+          "rect": [
+            671,
+            1030,
+            671,
+            294
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-96",
+          "rect": [
+            671,
+            1327,
+            671,
+            399
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-100-25",
+      "originalQuestionRect": [
+        671,
+        1214,
+        671,
+        501
+      ],
+      "status": "split",
+      "printedNumber": 25,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-100",
+          "rect": [
+            671,
+            1214,
+            671,
+            393
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-100",
+          "rect": [
+            671,
+            1610,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-105-44",
+      "originalQuestionRect": [
+        0,
+        370,
+        671,
+        966
+      ],
+      "status": "split",
+      "printedNumber": 44,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-105",
+          "rect": [
+            0,
+            370,
+            671,
+            609
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-105",
+          "rect": [
+            0,
+            982,
+            671,
+            263
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-105-46",
+      "originalQuestionRect": [
+        671,
+        670,
+        671,
+        708
+      ],
+      "status": "split",
+      "printedNumber": 46,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-105",
+          "rect": [
+            671,
+            670,
+            671,
+            475
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-105",
+          "rect": [
+            671,
+            1148,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-122-6",
+      "originalQuestionRect": [
+        671,
+        1215,
+        671,
+        500
+      ],
+      "status": "split",
+      "printedNumber": 6,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-122",
+          "rect": [
+            671,
+            1215,
+            671,
+            346
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-122",
+          "rect": [
+            671,
+            1564,
+            671,
+            137
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-128-37",
+      "originalQuestionRect": [
+        671,
+        1409,
+        671,
+        306
+      ],
+      "status": "split",
+      "printedNumber": 37,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-128",
+          "rect": [
+            671,
+            1409,
+            671,
+            323
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-129",
+          "rect": [
+            0,
+            179,
+            671,
+            395
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-129-40",
+      "originalQuestionRect": [
+        671,
+        507,
+        671,
+        817
+      ],
+      "status": "split",
+      "printedNumber": 40,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-129",
+          "rect": [
+            671,
+            507,
+            671,
+            259
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-129",
+          "rect": [
+            671,
+            769,
+            671,
+            363
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-129-41",
+      "originalQuestionRect": [
+        671,
+        1317,
+        671,
+        398
+      ],
+      "status": "split",
+      "printedNumber": 41,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-129",
+          "rect": [
+            671,
+            1317,
+            671,
+            415
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-130",
+          "rect": [
+            0,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-130-46",
+      "originalQuestionRect": [
+        671,
+        1469,
+        671,
+        246
+      ],
+      "status": "split",
+      "printedNumber": 46,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-130",
+          "rect": [
+            671,
+            1469,
+            671,
+            263
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-131",
+          "rect": [
+            0,
+            179,
+            671,
+            136
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-138-25",
+      "originalQuestionRect": [
+        0,
+        1388,
+        671,
+        327
+      ],
+      "status": "split",
+      "printedNumber": 25,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-138",
+          "rect": [
+            0,
+            1388,
+            671,
+            344
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-138",
+          "rect": [
+            671,
+            179,
+            671,
+            275
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-139-30",
+      "originalQuestionRect": [
+        671,
+        169,
+        671,
+        1263
+      ],
+      "status": "split",
+      "printedNumber": 30,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-139",
+          "rect": [
+            671,
+            169,
+            671,
+            593
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-139",
+          "rect": [
+            671,
+            765,
+            671,
+            573
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-164-23",
+      "originalQuestionRect": [
+        0,
+        1189,
+        671,
+        526
+      ],
+      "status": "split",
+      "printedNumber": 23,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-164",
+          "rect": [
+            0,
+            1189,
+            671,
+            543
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-164",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-170-52",
+      "originalQuestionRect": [
+        0,
+        169,
+        671,
+        540
+      ],
+      "status": "split",
+      "printedNumber": 52,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-170",
+          "rect": [
+            0,
+            169,
+            671,
+            188
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-170",
+          "rect": [
+            0,
+            360,
+            671,
+            176
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-179-41",
+      "originalQuestionRect": [
+        671,
+        1172,
+        671,
+        543
+      ],
+      "status": "split",
+      "printedNumber": 41,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-179",
+          "rect": [
+            671,
+            1172,
+            671,
+            430
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-179",
+          "rect": [
+            671,
+            1605,
+            671,
+            73
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-182-51",
+      "originalQuestionRect": [
+        0,
+        169,
+        671,
+        628
+      ],
+      "status": "split",
+      "printedNumber": 51,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-182",
+          "rect": [
+            0,
+            169,
+            671,
+            232
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-182",
+          "rect": [
+            0,
+            404,
+            671,
+            326
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-185-8",
+      "originalQuestionRect": [
+        0,
+        1352,
+        671,
+        363
+      ],
+      "status": "split",
+      "printedNumber": 8,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            0,
+            1352,
+            671,
+            380
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            671,
+            179,
+            671,
+            136
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-185-10",
+      "originalQuestionRect": [
+        671,
+        942,
+        671,
+        773
+      ],
+      "status": "split",
+      "printedNumber": 10,
+      "reason": "조건표·장치도·네 보기를 보존하고 다음 쪽 풀이 연결",
+      "questionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            671,
+            942,
+            671,
+            790
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-186",
+          "rect": [
+            0,
+            179,
+            671,
+            261
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-185-17",
+      "originalQuestionRect": [
+        671,
+        473,
+        671,
+        478
+      ],
+      "status": "split",
+      "printedNumber": 9,
+      "reason": "17.5를 번호로 오인식한 첫줄과 인쇄 09번 복구",
+      "questionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            671,
+            403,
+            671,
+            258
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            671,
+            664,
+            671,
+            194
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-189-29",
+      "originalQuestionRect": [
+        671,
+        1022,
+        671,
+        693
+      ],
+      "status": "split",
+      "printedNumber": 29,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-189",
+          "rect": [
+            671,
+            1022,
+            671,
+            509
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-189",
+          "rect": [
+            671,
+            1534,
+            671,
+            166
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-190-32",
+      "originalQuestionRect": [
+        0,
+        1302,
+        671,
+        413
+      ],
+      "status": "split",
+      "printedNumber": 32,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            0,
+            1302,
+            671,
+            430
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-190-33",
+      "originalQuestionRect": [
+        671,
+        370,
+        671,
+        594
+      ],
+      "status": "split",
+      "printedNumber": 33,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            370,
+            671,
+            327
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            700,
+            671,
+            171
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-195-58",
+      "originalQuestionRect": [
+        0,
+        1285,
+        671,
+        430
+      ],
+      "status": "split",
+      "printedNumber": 58,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "4-195",
+          "rect": [
+            0,
+            1285,
+            671,
+            220
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-195",
+          "rect": [
+            0,
+            1508,
+            671,
+            131
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-9-27",
+      "originalQuestionRect": [
+        0,
+        600,
+        671,
+        368
+      ],
+      "status": "split",
+      "printedNumber": 27,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-9",
+          "rect": [
+            0,
+            600,
+            671,
+            194
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-9",
+          "rect": [
+            0,
+            797,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-20-23",
+      "originalQuestionRect": [
+        0,
+        169,
+        671,
+        1171
+      ],
+      "status": "split",
+      "printedNumber": 23,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-20",
+          "rect": [
+            0,
+            169,
+            671,
+            807
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-20",
+          "rect": [
+            0,
+            979,
+            671,
+            105
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-39-3",
+      "originalQuestionRect": [
+        0,
+        1369,
+        671,
+        346
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-39",
+          "rect": [
+            0,
+            1369,
+            671,
+            363
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-39",
+          "rect": [
+            671,
+            321,
+            671,
+            134
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-44-26",
+      "originalQuestionRect": [
+        0,
+        634,
+        671,
+        1081
+      ],
+      "status": "split",
+      "printedNumber": 26,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-44",
+          "rect": [
+            0,
+            634,
+            671,
+            642
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-44",
+          "rect": [
+            0,
+            1279,
+            671,
+            437
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-62-57",
+      "originalQuestionRect": [
+        671,
+        980,
+        671,
+        735
+      ],
+      "status": "split",
+      "printedNumber": 57,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-62",
+          "rect": [
+            671,
+            980,
+            671,
+            368
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-62",
+          "rect": [
+            671,
+            1351,
+            671,
+            327
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-69-32",
+      "originalQuestionRect": [
+        671,
+        169,
+        671,
+        1075
+      ],
+      "status": "split",
+      "printedNumber": 32,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-69",
+          "rect": [
+            671,
+            169,
+            671,
+            533
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-69",
+          "rect": [
+            671,
+            705,
+            671,
+            196
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-70-36",
+      "originalQuestionRect": [
+        0,
+        1361,
+        671,
+        354
+      ],
+      "status": "split",
+      "printedNumber": 36,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-70",
+          "rect": [
+            0,
+            1361,
+            671,
+            371
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-70",
+          "rect": [
+            671,
+            179,
+            671,
+            136
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-73-55",
+      "originalQuestionRect": [
+        671,
+        1424,
+        671,
+        291
+      ],
+      "status": "split",
+      "printedNumber": 55,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-73",
+          "rect": [
+            671,
+            1424,
+            671,
+            308
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-74",
+          "rect": [
+            0,
+            179,
+            671,
+            213
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-74-57",
+      "originalQuestionRect": [
+        0,
+        1227,
+        671,
+        488
+      ],
+      "status": "split",
+      "printedNumber": 57,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-74",
+          "rect": [
+            0,
+            1227,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-74",
+          "rect": [
+            0,
+            1421,
+            671,
+            283
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-75-3",
+      "originalQuestionRect": [
+        0,
+        1261,
+        671,
+        454
+      ],
+      "status": "split",
+      "printedNumber": 3,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-75",
+          "rect": [
+            0,
+            1261,
+            671,
+            228
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-75",
+          "rect": [
+            0,
+            1492,
+            671,
+            169
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-85-60",
+      "originalQuestionRect": [
+        0,
+        429,
+        671,
+        1286
+      ],
+      "status": "split",
+      "printedNumber": 60,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-85",
+          "rect": [
+            0,
+            429,
+            671,
+            467
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-85",
+          "rect": [
+            0,
+            899,
+            671,
+            231
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-90-26",
+      "originalQuestionRect": [
+        671,
+        1102,
+        671,
+        613
+      ],
+      "status": "split",
+      "printedNumber": 26,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-90",
+          "rect": [
+            671,
+            1102,
+            671,
+            440
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-90",
+          "rect": [
+            671,
+            1545,
+            671,
+            168
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-91-31",
+      "originalQuestionRect": [
+        671,
+        939,
+        671,
+        776
+      ],
+      "status": "split",
+      "printedNumber": 31,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-91",
+          "rect": [
+            671,
+            939,
+            671,
+            594
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-91",
+          "rect": [
+            671,
+            1536,
+            671,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-99-7",
+      "originalQuestionRect": [
+        0,
+        470,
+        671,
+        778
+      ],
+      "status": "split",
+      "printedNumber": 7,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-99",
+          "rect": [
+            0,
+            470,
+            671,
+            509
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-99",
+          "rect": [
+            0,
+            982,
+            671,
+            74
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-107-54",
+      "originalQuestionRect": [
+        671,
+        662,
+        671,
+        795
+      ],
+      "status": "split",
+      "printedNumber": 54,
+      "reason": "원문 지문·보기·인쇄 풀이를 직접 확인하여 경계 분리",
+      "questionParts": [
+        {
+          "page": "5-107",
+          "rect": [
+            671,
+            662,
+            671,
+            376
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-107",
+          "rect": [
+            671,
+            1041,
+            671,
+            309
+          ]
+        }
+      ]
+    }
+  ]
+}
