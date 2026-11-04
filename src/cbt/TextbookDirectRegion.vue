@@ -17,7 +17,7 @@ const style=computed(()=>{const r=props.part.rect;return {width:`${size.value[0]
  <div class="direct-region" :data-page="part.page" :data-rect="part.rect.join(',')">
   <small v-if="part.label" class="direct-part-label">{{part.label}} · {{part.page}}쪽</small>
   <figure class="direct-viewport textbook-explanation-image" :style="frame">
-   <img v-if="image" :src="asset" :style="style" :class="{'restored-image-original':original}" :width="size[0]" :height="size[1]" :alt="alt" loading="lazy" decoding="async" @error="imageError">
+   <img  v-if="image" :src="$problemImage(asset)" :style="style" :class="{'restored-image-original':original}" :width="size[0]" :height="size[1]" :alt="alt" loading="lazy" decoding="async" @error="imageError">
   </figure>
  </div>
 </template>

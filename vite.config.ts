@@ -6,7 +6,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { VitePWA } from 'vite-plugin-pwa';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '631';
+const buildVersion = '633';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -55,6 +55,7 @@ export default defineConfig({
         mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
       },
       output: {
+        manualChunks: (id) => id.endsWith('/data/problem-images-webp90.json') ? 'problem-image-index' : undefined,
         entryFileNames: '[name].js',
         chunkFileNames: `chunks/[name]-v${buildVersion}.js`,
         // Lazy Vue styles change their scoped selectors when the component changes.

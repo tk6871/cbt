@@ -33,7 +33,9 @@ await Promise.all(directories.map((directory) =>
   cp(resolve(root, directory), resolve(output, directory), { recursive: true, filter: bundleFilter })));
 await mkdir(resolve(output, 'assets'), { recursive: true });
 await cp(resolve(root, 'assets/icons'), resolve(output, 'assets/icons'), { recursive: true, filter: bundleFilter });
-await cp(resolve(root, 'assets/hvac/formula-samples'), resolve(output, 'assets/hvac/formula-samples'), { recursive: true, filter: bundleFilter });
+const imageReplacements=JSON.parse(await readFile(resolve(root,'data/problem-images-webp90.json'),'utf8')).mappings;
+await mkdir(resolve(output,'assets/problem-webp90'),{recursive:true});
+for(const [original,replacement] of Object.entries(imageReplacements))if(original.startsWith('assets/hvac/formula-samples/'))await cp(resolve(root,replacement),resolve(output,replacement));
 
 async function pointAssetsToPublishedSite(file) {
   const target = resolve(output, file);

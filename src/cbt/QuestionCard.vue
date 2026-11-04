@@ -559,11 +559,11 @@ onBeforeUnmount(() => {
         class="source-image-frame"
       >
         <div class="source-image-stage">
-          <img
+          <img 
             ref="sourceImageRef"
             class="source-question-image"
             :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]"
-            :src="item.question.sourceImage"
+            :src="$problemImage(item.question.sourceImage)"
             :width="item.question.sourceImageSize?.[0]"
             :height="item.question.sourceImageSize?.[1]"
             :alt="`${item.question.number}번 문제 원문`"
@@ -615,14 +615,14 @@ onBeforeUnmount(() => {
       <template v-else>
         <div class="compact-question-copy">
           <strong class="compact-question-number">{{ displayNumber || item.question.number }}.</strong>
-          <div class="question-text" v-html="displayedQuestionMarkup" />
+          <div  class="question-text" v-html="$problemImageHtml(displayedQuestionMarkup)" />
         </div>
-        <img
+        <img 
           v-for="image in item.question.images || []"
           :key="image"
           class="question-image"
           :class="restoredImageClass"
-          :src="image"
+          :src="$problemImage(image)"
           alt="문제 참고 그림"
           loading="lazy"
           decoding="async"
@@ -634,7 +634,7 @@ onBeforeUnmount(() => {
       <summary v-if="presentation==='book'">교재 표기 안내 · 원문 비교</summary>
       <p v-if="mode === 'learn'">{{item.question.bookCorrection.note}}</p>
       <p v-else>교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수 있습니다.</p>
-      <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img class="source-question-image" :class="restoredImageClass" :src="item.question.bookCorrection.originalImage" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
+      <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img  class="source-question-image" :class="restoredImageClass" :src="$problemImage(item.question.bookCorrection.originalImage)" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
     </component>
     <div v-if="!verifiedHotspots.length" class="choice-grid-shell">
       <div
@@ -660,8 +660,8 @@ onBeforeUnmount(() => {
         >
           <span class="choice-number">{{ circles[index] || index + 1 }}</span>
           <span v-if="!primaryImage || (answerLayout === 'inline' && hasReadableChoice(choice, index))" class="choice-copy">
-            <span v-html="displayedChoices[index]" />
-            <img v-for="image in choice.images || []" :key="image" :class="restoredImageClass" :src="image" alt="보기 그림" loading="lazy" decoding="async">
+            <span  v-html="$problemImageHtml(displayedChoices[index])" />
+            <img  v-for="image in choice.images || []" :key="image" :class="restoredImageClass" :src="$problemImage(image)" alt="보기 그림" loading="lazy" decoding="async">
           </span>
           <b v-if="mode === 'learn' && selected === index + 1">{{ correctSelected ? '정답' : '다시 확인' }}</b>
         </button>
@@ -669,7 +669,7 @@ onBeforeUnmount(() => {
       <div v-if="compactTextChoices" ref="choiceLayoutProbeRef" class="choice-grid compact-choice-grid choice-layout-probe" aria-hidden="true">
         <div v-for="(choice, index) in item.question.choices" :key="index" class="choice-button">
           <span class="choice-number">{{ circles[index] || index + 1 }}</span>
-          <span class="choice-copy"><span v-html="displayedChoices[index]" /></span>
+          <span class="choice-copy"><span  v-html="$problemImageHtml(displayedChoices[index])" /></span>
         </div>
       </div>
     </div>
@@ -733,7 +733,7 @@ onBeforeUnmount(() => {
       <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
       <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
       <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
-      <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
+      <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="$problemImage(explanationOrigin.url)" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">
         <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
           <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
@@ -781,7 +781,7 @@ onBeforeUnmount(() => {
             <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
             <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
             <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
-            <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="explanationOrigin.url" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
+            <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="$problemImage(explanationOrigin.url)" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
             <div class="explanation-extra-actions">
               <button v-if="beginnerCalculationAvailable" type="button" class="explanation-extra-toggle" :aria-expanded="beginnerCalculationOpen" @click="stopExplanationAutoClose(); beginnerCalculationOpen = !beginnerCalculationOpen">
                 <span>∑</span><strong>쉽게 풀어보기</strong><b>{{ beginnerCalculationOpen ? '−' : '＋' }}</b>
@@ -816,7 +816,7 @@ onBeforeUnmount(() => {
           <button type="button" aria-label="확대 이미지 닫기" @click="imageZoomOpen = false">×</button>
         </header>
         <div @click.self="imageZoomOpen = false">
-          <img :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]" :src="item.question.sourceImage" :alt="`${item.question.number}번 문제 원문 확대`">
+          <img  :class="[restoredImageClass, { 'hansol-source-image': hansolQuestion }]" :src="$problemImage(item.question.sourceImage)" :alt="`${item.question.number}번 문제 원문 확대`">
         </div>
       </div>
     </Teleport>

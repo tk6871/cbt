@@ -8,7 +8,7 @@ const failed = ref(false);
 <template>
   <details v-if="image" class="library-image-preview" @toggle="expanded = ($event.target as HTMLDetailsElement).open">
     <summary>문제 원문 미리보기 <small>이미지 지문</small></summary>
-    <img v-if="expanded && !failed" :src="image" :class="`restored-image-${imageTheme || 'auto'}`" alt="문제 원문 미리보기" decoding="async" @error="failed = true">
+    <img  v-if="expanded && !failed" :src="$problemImage(image)" :class="`restored-image-${imageTheme || 'auto'}`" alt="문제 원문 미리보기" decoding="async" @error="failed = true">
     <p v-if="failed" role="status">그림을 불러오지 못했습니다. <button type="button" @click="failed = false">다시 불러오기</button></p>
     <small>답안 선택·확대는 문제를 열어 이용하세요.</small>
   </details>

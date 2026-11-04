@@ -47,7 +47,7 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
 
 <template>
   <section class="practical-calculation-library">
-    <header><div><h3>필답형 계산문제 모아보기</h3><p>기호 읽기부터 숫자 대입·단위 약분까지. 복원문제와 연습문제를 함께 공부합니다.</p></div><a :href="practicalCalculationPdf" download>공식·풀이 PDF 받기 ↓</a></header>
+    <header><div><h3>필답형 계산문제 모아보기</h3><p>기호 읽기부터 숫자 대입·단위 약분까지. 복원문제와 연습문제를 함께 공부합니다.</p></div><a :href="$problemImage(practicalCalculationPdf)" download>공식·풀이 PDF 받기 ↓</a></header>
     <nav class="calculation-jumps" aria-label="계산 공부 바로가기"><button type="button" @click="formulaSection?.scrollIntoView({ block: 'start', behavior: 'smooth' })">공식 먼저 보기</button><button type="button" @click="problemSection?.scrollIntoView({ block: 'start', behavior: 'smooth' })">문제 {{ filtered.length }}개로 이동 ↓</button></nav>
     <section ref="formulaSection" class="formula-recall" aria-label="먼저 외울 한 줄 공식">
       <h4>먼저 외울 한 줄 공식</h4>
@@ -79,7 +79,7 @@ function selectFamily(value: 'all' | PracticalExamFamily) {
     <p class="calculation-scope-note">{{ scope === 'exam' ? '네 공식의 기본·응용 문제를 모았습니다. 얼음 가열·상태 변화처럼 두 공식을 함께 쓰는 문제는 두 유형에 모두 연결하되 한 번만 표시합니다.' : '기존 계산 분류에 공기조화의 혼합공기·전열 계산도 포함했습니다.' }} 전체 계산을 누르면 다른 계산문제도 볼 수 있습니다.</p>
     <ol class="practical-calculation-index"><li v-for="prompt in filtered" :key="prompt.id"><div><small>{{ calculationLesson(prompt)!.topic }} · {{ calculationLesson(prompt)!.kind === 'numeric' ? '수치 계산' : '공식 쓰기' }} · {{ practicalSourceLabel(prompt) }}</small><strong>{{ calculationLesson(prompt)!.title }}</strong><p>{{ prompt.question }}</p></div><button type="button" @click="start(true, prompt)">이 문제 공부 →</button></li></ol>
     <p v-if="!filtered.length">해당 조건의 문제가 없습니다. <button type="button" @click="selectFamily('all')">시험 우선 4공식으로 초기화</button></p>
-    <details><summary>공식 원리 참고 자료</summary><p>문항 수치와 조건은 기존 복원·연습 자료를 따릅니다. 기본 원리는 아래 자료와 대조했습니다. 문제에서 준 비열·밀도·환산값이 우선입니다.</p><a v-for="reference in practicalCalculationReferences" :key="reference.url" :href="reference.url" target="_blank" rel="noreferrer">{{ reference.title }} ↗ </a></details>
+    <details><summary>공식 원리 참고 자료</summary><p>문항 수치와 조건은 기존 복원·연습 자료를 따릅니다. 기본 원리는 아래 자료와 대조했습니다. 문제에서 준 비열·밀도·환산값이 우선입니다.</p><a v-for="reference in practicalCalculationReferences" :key="reference.url" :href="$problemImage(reference.url)" target="_blank" rel="noreferrer">{{ reference.title }} ↗ </a></details>
   </section>
 </template>
 

@@ -2,6 +2,7 @@ import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { createApp } from 'vue';
 import App from './App.vue';
+import {problemImage,problemImageHtml} from './problemImages';
 import 'open-props/easings.min.css';
 import 'open-props/durations.min.css';
 import 'driver.js/dist/driver.css';
@@ -53,6 +54,8 @@ if (nativeApp) {
 }
 
 const app = createApp(App);
+app.config.globalProperties.$problemImage=problemImage;
+app.config.globalProperties.$problemImageHtml=problemImageHtml;
 app.config.errorHandler = (error) => showRuntimeRecovery(error);
 window.addEventListener('unhandledrejection', (event) => showRuntimeRecovery(event.reason));
 app.mount('#next-app');

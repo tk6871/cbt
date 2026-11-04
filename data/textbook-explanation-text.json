@@ -1,0 +1,1265 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-04",
+  "basis": "기존 로컬 OCR 후보와 인쇄 풀이 영역을 개별 육안 대조. 줄바꿈·띄어쓰기만 정리하며 학술 정답 인증은 아님. 도표나 판독 불확실한 원문은 승인하지 않음.",
+  "entries": [
+    {
+      "id": "hansol-direct-1-34-37",
+      "blocks": [
+        {
+          "text": "습공기 성분(체적비): 질소 78%, 산소 21%, 기타 1%."
+        }
+      ],
+      "page": "1-34",
+      "number": 37,
+      "questionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            387,
+            671,
+            266
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            656,
+            671,
+            75
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-34-original.png",
+          "sha256": "7cd20c16f7f3d435f154379ed17e5b561766864d9612681b4c79cd968a03216c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-103-15",
+      "blocks": [
+        {
+          "text": "팬코일유닛 방식은 전수식으로, 냉수 또는 온수를 각 실에 있는 FCU에 공급하여 실내 공기를 조화시킨다."
+        }
+      ],
+      "page": "1-103",
+      "number": 15,
+      "questionParts": [
+        {
+          "page": "1-103",
+          "rect": [
+            0,
+            1545,
+            671,
+            187
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-103",
+          "rect": [
+            671,
+            179,
+            671,
+            103
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-103-original.png",
+          "sha256": "b7b82cd2014adcdfddc090d34a19745d873eed54635f2a1b3ab675138e86bf7a"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-106-36",
+      "blocks": [
+        {
+          "text": "압력손실은 배관의 지름이 크면 유속이 작아져서 적어진다."
+        }
+      ],
+      "page": "1-106",
+      "number": 36,
+      "questionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            671,
+            1477,
+            671,
+            255
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-107",
+          "rect": [
+            0,
+            0,
+            671,
+            105
+          ],
+          "asset": "assets/hvac-hansol-book/direct-continuations/1-107-0-179-671-105.png",
+          "size": [
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-continuations/1-107-0-179-671-105.png",
+          "sha256": "0599bcc710651c046b1bc96a53bd000b42f7f8de71d186ebfad0ed8ec60a3e90"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-135-3",
+      "blocks": [
+        {
+          "text": "보일러는 공조기에 온수를 공급하는 열원장치이다. 공조기는 에어필터, 냉각코일, 가열코일, 가습기, 팬(내장형), 댐퍼 등으로 구성된다."
+        }
+      ],
+      "page": "1-135",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            0,
+            1511,
+            671,
+            221
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            671,
+            314,
+            671,
+            137
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-135-original.png",
+          "sha256": "7dacd7ad0a4016162ffaa5eb5874c957452863b391dbde9963112e6141473f5b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-226-4",
+      "blocks": [
+        {
+          "text": "실내 공기질 유지기준 항목: 미세먼지 PM-10(μg/m³), 미세먼지 PM-2.5(μg/m³), 이산화탄소(ppm), 폼알데하이드(μg/m³), 총부유세균(CFU/m³), 일산화탄소(ppm)."
+        }
+      ],
+      "page": "1-226",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "1-226",
+          "rect": [
+            0,
+            1022,
+            671,
+            270
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-226",
+          "rect": [
+            0,
+            1295,
+            671,
+            137
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-226-original.png",
+          "sha256": "d84bbb6710ff19c488f0cc37cea70bc0e23254e3a602c1e097585e7d12610620"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-25-3",
+      "blocks": [
+        {
+          "text": "주철관은 내구력이 크나 외압이나 충격에는 약하다."
+        }
+      ],
+      "page": "3-25",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "3-25",
+          "rect": [
+            0,
+            1473,
+            671,
+            259
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-25",
+          "rect": [
+            671,
+            319,
+            671,
+            75
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-25-original.png",
+          "sha256": "b39a97bc88332b68fc8fd6141b543b837296dea5a0688d73d38b730203e8d8f3"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-61-11",
+      "blocks": [
+        {
+          "text": "경질염화비닐관은 매끄럽고 스케일 형성이 적어 관내 마찰손실이 적은 편이다."
+        }
+      ],
+      "page": "3-61",
+      "number": 11,
+      "questionParts": [
+        {
+          "page": "3-61",
+          "rect": [
+            0,
+            1415,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-61",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-61-original.png",
+          "sha256": "2ff591610506d37ff7280fd54f9628ebde1bb47a85ccc13ee63867507cebcfca"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-65-45",
+      "blocks": [
+        {
+          "text": "신축량 = 길이 × 선팽창계수 × 온도차."
+        },
+        {
+          "tex": "L\\alpha\\Delta t=10\\times6\\times10^{-6}\\times150=0.009\\,\\mathrm{m}=9\\,\\mathrm{mm}",
+          "label": "신축량은 10 곱하기 6 곱하기 10의 마이너스 6승 곱하기 150, 0.009미터 즉 9밀리미터"
+        }
+      ],
+      "page": "3-65",
+      "number": 45,
+      "questionParts": [
+        {
+          "page": "3-65",
+          "rect": [
+            671,
+            1348,
+            671,
+            227
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-65",
+          "rect": [
+            671,
+            1578,
+            671,
+            77
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-65-original.png",
+          "sha256": "218efbb09f21c96e52388f651b32c2d342357744d8375e98e073156f508a554b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-118-6",
+      "blocks": [
+        {
+          "text": "배수관은 하류 방향으로 갈수록 지름을 크게 한다."
+        }
+      ],
+      "page": "3-118",
+      "number": 6,
+      "questionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            671,
+            1319,
+            671,
+            413
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            179,
+            671,
+            74
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-119-original.png",
+          "sha256": "b3c7d886c1658721f81d0de17d1d8f47866d8755768f1c80ec47c731942fee7d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-134-31",
+      "blocks": [
+        {
+          "text": "증기배관에서 중력 환수식이며, 환수주관이 보일러 수면 위에 있으므로 건식 환수방식이다."
+        }
+      ],
+      "page": "3-134",
+      "number": 31,
+      "questionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            671,
+            1206,
+            671,
+            526
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-135-original.png",
+          "sha256": "b1032895c8e69cd9b6221d5e37145fba334d892f7fbd25e66bd04b31bd2198b8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-135-34",
+      "blocks": [
+        {
+          "text": "저압증기난방 보일러 주변 배관에 하트포드 이음을 사용하고, 방열기 주변 배관은 스위블 이음을 사용한다."
+        }
+      ],
+      "page": "3-135",
+      "number": 34,
+      "questionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            1423,
+            671,
+            309
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-135-original.png",
+          "sha256": "b1032895c8e69cd9b6221d5e37145fba334d892f7fbd25e66bd04b31bd2198b8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-146-25",
+      "blocks": [
+        {
+          "text": "직관 마찰저항은 1m당 50mmAq이다. 직관부는 160 × 50 = 8,000mmAq = 8mAq, 국부저항은 8 × 0.5 = 4mAq이다. 공조기 저항은 1대(4mAq)만 계산한다."
+        },
+        {
+          "tex": "H=8+4+4=16\\,\\mathrm{mAq}",
+          "label": "전체 마찰저항은 직관 8 더하기 국부 4 더하기 기기 4, 16미터 수주"
+        }
+      ],
+      "page": "3-146",
+      "number": 25,
+      "questionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            1285,
+            671,
+            447
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            671,
+            179,
+            671,
+            200
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-146-original.png",
+          "sha256": "e0dd35dbd9e799bc5e55b855dd09a1e2437bbff92312dca7774ef2e617ca5992"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-175-3",
+      "blocks": [
+        {
+          "text": "공기압축기에서 터보식은 동적형에 속한다."
+        }
+      ],
+      "page": "3-175",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1461,
+            671,
+            185
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1649,
+            671,
+            75
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-175-original.png",
+          "sha256": "c31de2d087c254045428bc6b21ca63f48da0c32a74186b9f7a0e2c245c149df5"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-3",
+      "blocks": [
+        {
+          "text": "역률은 유효전력을 피상전력으로 나눈 값이다."
+        },
+        {
+          "tex": "\\cos\\theta=\\frac{P}{S}=\\frac{P}{\\sqrt{P^2+Q^2}}",
+          "label": "역률 코사인 세타는 유효전력 P 나누기 피상전력 S, P 나누기 루트 P제곱 더하기 Q제곱"
+        }
+      ],
+      "page": "3-266",
+      "number": 43,
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            671,
+            776,
+            671,
+            218
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            671,
+            997,
+            671,
+            207
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "sha256": "3ff1ca62f94fbd9af4e40ec98bc07794545ec9a1a756f1ed330c3feff2c24d61"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-39",
+      "blocks": [
+        {
+          "text": "① VA: 피상전력 · ② W: 유효전력 · ③ Var: 무효전력 · ④ Wh: 유효전력량."
+        }
+      ],
+      "page": "3-266",
+      "number": 39,
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            190,
+            671,
+            153
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            346,
+            671,
+            137
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "sha256": "3ff1ca62f94fbd9af4e40ec98bc07794545ec9a1a756f1ed330c3feff2c24d61"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-266-40",
+      "blocks": [
+        {
+          "text": "cosθ = 0.8, V = 100V, I = 5A일 때, 무효전력은 다음과 같다."
+        },
+        {
+          "tex": "\\sin\\theta=\\sqrt{1-0.8^2}=0.6",
+          "label": "사인 세타는 루트 1 빼기 0.8제곱, 0.6"
+        },
+        {
+          "tex": "Q=VI\\sin\\theta=100\\times5\\times0.6=300\\,\\mathrm{Var}",
+          "label": "무효전력 Q는 100 곱하기 5 곱하기 0.6, 300바르"
+        }
+      ],
+      "page": "3-266",
+      "number": 40,
+      "questionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            658,
+            671,
+            189
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-266",
+          "rect": [
+            0,
+            850,
+            671,
+            174
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "sha256": "3ff1ca62f94fbd9af4e40ec98bc07794545ec9a1a756f1ed330c3feff2c24d61"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-267-46",
+      "blocks": [
+        {
+          "text": "문제의 내용은 휘스톤 브리지 회로에 대한 평형조건을 설명하고 있다."
+        }
+      ],
+      "page": "3-267",
+      "number": 46,
+      "questionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            0,
+            716,
+            671,
+            260
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-267",
+          "rect": [
+            0,
+            979,
+            671,
+            106
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "sha256": "59bf42503e26543c30c4e5cff5561a69f2b7e2337237711cf6a6c1760a9d31c0"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-328-56",
+      "blocks": [
+        {
+          "text": "농형 유도전동기의 Y–Δ 기동법은 기동전류와 기동토크를 전전압 기동에 비해 1/3로 감소시킨다."
+        },
+        {
+          "tex": "\\frac{1}{3}",
+          "label": "전전압 기동의 3분의 1"
+        }
+      ],
+      "page": "3-328",
+      "number": 56,
+      "questionParts": [
+        {
+          "page": "3-328",
+          "rect": [
+            0,
+            583,
+            671,
+            226
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-328",
+          "rect": [
+            0,
+            812,
+            671,
+            163
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-328-original.png",
+          "sha256": "5d060eaaa8f885118afddded8a52b4a059130c02507d6de3e93f2aca83c9578f"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-332-76",
+      "blocks": [
+        {
+          "text": "바리스터: 비직선적인 전압–전류 특성을 갖는 2단자 반도체 소자로, 불꽃 아크(서지) 소거용으로 이용된다."
+        },
+        {
+          "text": "서미스터: 열을 감지하는 감열 저항체 소자로, 온도보상용으로 이용된다."
+        }
+      ],
+      "page": "3-332",
+      "number": 76,
+      "questionParts": [
+        {
+          "page": "3-332",
+          "rect": [
+            0,
+            801,
+            671,
+            154
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-332",
+          "rect": [
+            0,
+            958,
+            671,
+            200
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-332-original.png",
+          "sha256": "3b1440bf0e5716346277dc0cbc4695827c8e5631f177c7cffbf1b73f5549ba77"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-351-47",
+      "blocks": [
+        {
+          "text": "추종제어는 제어량에 의한 분류 중 서보기구에 해당하는 값을 제어한다. 예: 비행기 추적레이더, 유도미사일."
+        }
+      ],
+      "page": "3-351",
+      "number": 47,
+      "questionParts": [
+        {
+          "page": "3-351",
+          "rect": [
+            0,
+            583,
+            671,
+            188
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-351",
+          "rect": [
+            0,
+            774,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-351-original.png",
+          "sha256": "8c3ee2742fa31cf4ce1ac56c6a98bf70efb3d5bc8bb4e555c8f688ebfdef346b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-100-25",
+      "blocks": [
+        {
+          "text": "② 냉매배관 완성 후 기밀시험과 누설시험으로 기밀상태를 확인하고, 진공방치시험과 진공건조한 후 냉매를 충전한다."
+        }
+      ],
+      "page": "4-100",
+      "number": 25,
+      "questionParts": [
+        {
+          "page": "4-100",
+          "rect": [
+            671,
+            1214,
+            671,
+            393
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-100",
+          "rect": [
+            671,
+            1610,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-100-original.png",
+          "sha256": "c306712546d972301400dc5d51ba2f0f02257323a94395fea5e400232e215e88"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-130-46",
+      "blocks": [
+        {
+          "text": "덕트 설계 시 정압법은 단위길이당 마찰손실을 일정하게 하는 것으로 등마찰법이라고도 하며, 덕트 구간의 정압을 계산하기 편리하다."
+        }
+      ],
+      "page": "4-130",
+      "number": 46,
+      "questionParts": [
+        {
+          "page": "4-130",
+          "rect": [
+            671,
+            1469,
+            671,
+            263
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-131",
+          "rect": [
+            0,
+            179,
+            671,
+            136
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-131-original.png",
+          "sha256": "01662132ab3caf0546729f6939546f129dc84b8094b148d9b610468ec8c0404d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-138-25",
+      "blocks": [
+        {
+          "text": "① 몰리에르 선도의 포화액선상 건도는 0이다. ② 액체 70%, 증기 30%인 냉매의 건도는 0.3이다. ④ 건도는 습증기 중의 건조포화증기 양을 말한다."
+        },
+        {
+          "text": "습증기 1kg 속에 건조포화증기가 x kg 들어 있을 때 x를 건도, (1−x)를 습도라 한다. 포화액의 건도는 0, 포화증기의 건도는 1이다."
+        }
+      ],
+      "page": "4-138",
+      "number": 25,
+      "questionParts": [
+        {
+          "page": "4-138",
+          "rect": [
+            0,
+            1388,
+            671,
+            344
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-138",
+          "rect": [
+            671,
+            179,
+            671,
+            275
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-138-original.png",
+          "sha256": "def380a9ea6e2d94e2497a5ee45d48d8e4edfe5dd9ed4e826620763909eb6942"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-164-23",
+      "blocks": [
+        {
+          "text": "④ 압축기 운전 중 흡입증기압력이 비정상적으로 저하하면 압축기는 과열운전이 된다."
+        }
+      ],
+      "page": "4-164",
+      "number": 23,
+      "questionParts": [
+        {
+          "page": "4-164",
+          "rect": [
+            0,
+            1189,
+            671,
+            543
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-164",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-164-original.png",
+          "sha256": "68d75120eaf701c82ee709b6c82e86a00d8d52bd4c68918636849f9e230251cf"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-185-8",
+      "blocks": [
+        {
+          "text": "관류보일러는 드럼 없이 수관으로 되어 있고 보유 수량이 적어 가열시간이 짧다. 부하변동에 대한 추종성이 좋아 중소형에 널리 사용되며, 증기발생기라고도 한다."
+        }
+      ],
+      "page": "4-185",
+      "number": 8,
+      "questionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            0,
+            1352,
+            671,
+            380
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-185",
+          "rect": [
+            671,
+            179,
+            671,
+            136
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-185-original.png",
+          "sha256": "b5813f92e87f3541f7718b287ba7a441d38b719158d7c0a0cab1e9cbd6be9ef6"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-190-32",
+      "blocks": [
+        {
+          "text": "개방형 냉각탑은 설치 완료 후에 만수시험 및 시운전을 하고 이상 유무를 확인한다."
+        }
+      ],
+      "page": "4-190",
+      "number": 32,
+      "questionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            0,
+            1302,
+            671,
+            430
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-190-original.png",
+          "sha256": "b129a7347e34153e3c7b62cb277a10582fcbe857fd5503d1ea11144211712ae2"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-190-33",
+      "blocks": [
+        {
+          "text": "흡수식 냉동기의 열평형: 재생기 가열량 + 증발기 흡수열량(냉동능력) = 응축기 방열량 + 흡수기 냉각열량."
+        },
+        {
+          "tex": "Q_G+Q_E=Q_C+Q_A",
+          "label": "재생기 QG 더하기 증발기 QE는 응축기 QC 더하기 흡수기 QA"
+        }
+      ],
+      "page": "4-190",
+      "number": 33,
+      "questionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            370,
+            671,
+            327
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-190",
+          "rect": [
+            671,
+            700,
+            671,
+            171
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-190-original.png",
+          "sha256": "b129a7347e34153e3c7b62cb277a10582fcbe857fd5503d1ea11144211712ae2"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-9-27",
+      "blocks": [
+        {
+          "text": "흡수식 냉동기에서 냉매가 물일 때 흡수제는 LiBr(리튬브로마이드)를 주로 사용한다."
+        }
+      ],
+      "page": "5-9",
+      "number": 27,
+      "questionParts": [
+        {
+          "page": "5-9",
+          "rect": [
+            0,
+            600,
+            671,
+            194
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-9",
+          "rect": [
+            0,
+            797,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/5-9-original.png",
+          "sha256": "2613d633ea5927de2bb0880b9e1e6bfc2c7e81495628251d749d9aa1518af2e0"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-90-26",
+      "blocks": [
+        {
+          "text": "액분리기(Accumulator)는 냉동부하의 변동이 심한 장치에 사용하여 압축기로의 liquid back을 방지한다. 냉매액이 압축기로 유입되는 것을 방지하기 위해 사용한다."
+        }
+      ],
+      "page": "5-90",
+      "number": 26,
+      "questionParts": [
+        {
+          "page": "5-90",
+          "rect": [
+            671,
+            1102,
+            671,
+            440
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-90",
+          "rect": [
+            671,
+            1545,
+            671,
+            168
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/5-90-original.png",
+          "sha256": "2f731f3d3223593dd963a51e110c65fb99f62c038c842d3f81824c96da38b353"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-5-99-7",
+      "blocks": [
+        {
+          "text": "냉각코일을 통과할 때 공기는 냉각·감습(OB)된다."
+        }
+      ],
+      "page": "5-99",
+      "number": 7,
+      "questionParts": [
+        {
+          "page": "5-99",
+          "rect": [
+            0,
+            470,
+            671,
+            509
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "5-99",
+          "rect": [
+            0,
+            982,
+            671,
+            74
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/5-99-original.png",
+          "sha256": "53f622a29d55d3a62cd5fa6b0081f4d7333c74e055f862ee603623c9dcc5d2e8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-182-51",
+      "blocks": [
+        {
+          "text": "변압기 병렬운전의 공통 조건: 극성이 같을 것, 정격전압과 권수비가 같을 것, %임피던스강하가 같을 것, 저항과 리액턴스의 비가 같을 것."
+        },
+        {
+          "text": "3상 변압기에만 적용되는 추가 조건: 위상각 변위가 같을 것, 상회전 방향이 같을 것."
+        }
+      ],
+      "page": "4-182",
+      "number": 51,
+      "questionParts": [
+        {
+          "page": "4-182",
+          "rect": [
+            0,
+            169,
+            671,
+            232
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-182",
+          "rect": [
+            0,
+            404,
+            671,
+            326
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-182-original.png",
+          "sha256": "3ae199b86d43a57619707b9a689c867f3c08b303b41472e609ca42f0267aeacc"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-4-129-41",
+      "blocks": [
+        {
+          "text": "저수탱크의 물을 양수펌프로 양수관을 통해 옥상탱크로 공급한 후, 급수관을 통해 수도꼭지로 공급된다."
+        }
+      ],
+      "page": "4-129",
+      "number": 41,
+      "questionParts": [
+        {
+          "page": "4-129",
+          "rect": [
+            671,
+            1317,
+            671,
+            415
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "4-130",
+          "rect": [
+            0,
+            179,
+            671,
+            105
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/4-130-original.png",
+          "sha256": "526a830f7bc0a49fb6a00db7d55b922cf25ccb8c30ae5401c6e7c4cf02668f85"
+        }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
+const displayImages=JSON.parse(fs.readFileSync('data/problem-images-webp90.json','utf8')).mappings;
 const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'energy-book-earlier.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
 const context = { window: {} };
 
@@ -43,7 +44,7 @@ function addImage(image, location) {
   if (!image || /^(?:https?:|data:)/i.test(image)) return;
   const clean = decodeURIComponent(String(image).split(/[?#]/)[0]).replace(/^\//, '');
   referencedImages.add(clean);
-  if (!fs.existsSync(path.join(root, clean))) missingImages.push({ location, image: clean });
+  if (!fs.existsSync(path.join(root, displayImages[clean]||clean))) missingImages.push({ location, image: clean });
 }
 
 function cleanImageReference(image) {

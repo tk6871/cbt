@@ -23,6 +23,8 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import {problemImage} from './problemImages';
+import {explanationDisplay, setExplanationDisplay} from './explanationDisplay';
 import QuestionLibraryPreview from './QuestionLibraryPreview.vue';
 import { pageItems } from './listPresentation';
 import { energyMidtermPractice, energyDefaultCalculationTopics, energyDefaultCalculationExcluded, restoreEnergyCalculationExcluded } from './energyMidtermPractice';
@@ -374,19 +376,10 @@ const platformUserAgent = navigator.userAgent || '';
 const isIosDevice = /iPad|iPhone|iPod/i.test(platformUserAgent)
   || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 const isAndroidDevice = /Android/i.test(platformUserAgent);
-const isIosInstallPreview = /^(?:127\.0\.0\.1|localhost)$/.test(location.hostname)
-  && new URLSearchParams(location.search).has('preview-ios-install');
-const isIosSafari = (isIosDevice && /Safari/i.test(platformUserAgent) && !/(CriOS|FxiOS|EdgiOS|OPiOS)/i.test(platformUserAgent))
-  || isIosInstallPreview;
-const isStandaloneWebApp = matchMedia('(display-mode: standalone)').matches
-  || Boolean((navigator as Navigator & { standalone?: boolean }).standalone);
 const showAndroidApkPopup = isAndroidDevice && !isNativeApp;
 const showAndroidApkPatchDownload = !isIosDevice;
 const androidApkPopupOpen = ref(false);
 const androidApkPopupSeenKey = 'unified-cbt-android-apk-popup-seen-v351';
-const showIosPwaPrompt = (isIosDevice && !isNativeApp && !isStandaloneWebApp) || isIosInstallPreview;
-const iosPwaInstallOpen = ref(false);
-const iosPwaPopupSeenKey = 'unified-cbt-ios-pwa-popup-seen-v351';
 const prefersReducedMotion = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const upscalePreviewKind = ref<UpscalePreviewKind | null>(null);
 const aiPromptOpen = ref(false);
@@ -3345,11 +3338,6 @@ function activateSessionItem(item: QuestionItem): void {
 }
 
 function handleSessionKeydown(event: KeyboardEvent): void {
-  if (event.key === 'Escape' && iosPwaInstallOpen.value) {
-    event.preventDefault();
-    iosPwaInstallOpen.value = false;
-    return;
-  }
   if (event.key === 'Escape' && androidApkPopupOpen.value) {
     event.preventDefault();
     androidApkPopupOpen.value = false;
@@ -3682,7 +3670,7 @@ function resolvedQuestionImageUrls(item: QuestionItem): string[] {
   ].filter((path): path is string => Boolean(path));
   return [...new Set(imagePaths)].map((path) => {
     try {
-      const url = new URL(path, imageBase);
+      const url = new URL(problemImage(path) || path, imageBase);
       url.searchParams.set('cbt_ai', `${currentVersion.value}-${Date.now().toString(36)}`);
       return url.href;
     } catch {
@@ -4588,16 +4576,6 @@ onMounted(async () => {
       androidApkPopupOpen.value = true;
     }
   }
-  if (showIosPwaPrompt) {
-    try {
-      if (sessionStorage.getItem(iosPwaPopupSeenKey) !== 'true') {
-        iosPwaInstallOpen.value = true;
-        sessionStorage.setItem(iosPwaPopupSeenKey, 'true');
-      }
-    } catch {
-      iosPwaInstallOpen.value = true;
-    }
-  }
   restartSunjaeRotation();
   motionMediaQuery = matchMedia('(prefers-reduced-motion: reduce)');
   motionPreferenceHandler = (event: MediaQueryListEvent) => { prefersReducedMotion.value = event.matches; };
@@ -4628,7 +4606,7 @@ const settingsValues = computed<SettingsValues>(() => ({
   theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
   visualStyle: visualStyle.value, display: displayPreference.value, dynamic: dynamicUiEnabled.value,
   solveLayout: solveLayoutMode.value, answerLayout: answerLayout.value, indicator: hotspotIndicator.value,
-  imageTheme: restoredImageTheme.value, experimental: experimentalFeaturesEnabled.value,
+  imageTheme: restoredImageTheme.value, explanationDisplay: explanationDisplay.value, experimental: experimentalFeaturesEnabled.value,
   judgment: questionJudgmentEnabled.value, rotation: sunjaeRotationSeconds.value,
 }));
 const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value)||textbookReaderOpen.value,
@@ -4647,6 +4625,7 @@ function changeSetting(change: SettingChange): void {
     case 'answerLayout': setAnswerLayout(change.value); break;
     case 'indicator': setHotspotIndicator(change.value); break;
     case 'imageTheme': setRestoredImageTheme(change.value); break;
+    case 'explanationDisplay': setExplanationDisplay(change.value); break;
     case 'experimental': setExperimentalFeatures(change.value); break;
     case 'judgment': setQuestionJudgmentEnabled(change.value); break;
     case 'rotation': setSunjaeRotationSeconds(change.value); break;
@@ -4719,44 +4698,44 @@ onBeforeUnmount(() => {
     <Teleport to="body" :disabled="!mobileMenuOpen">
     <aside v-if="!practicalSolving" :key="mobileMenuOpen ? 'mobile-open' : 'site-menu'" class="sidebar" :style="sidebarThemeStyle" :class="{ open: mobileMenuOpen }" @keydown.esc.stop="mobileMenuOpen = false">
       <button v-if="mobileMenuOpen" type="button" class="mobile-menu-close" aria-label="메뉴 닫기" @click="mobileMenuOpen = false">메뉴 닫기 ×</button>
-      <img v-if="visualStyle === 'simpsons'" class="sidebar-background-photo simpsons-sidebar-background-photo" v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsKingSizeImage" alt="">
-      <img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-sidebar-background-${currentSunjaeImage}`" class="sidebar-background-photo sunjae-sidebar-background-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt="">
+      <img  v-if="visualStyle === 'simpsons'" class="sidebar-background-photo simpsons-sidebar-background-photo" v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsKingSizeImage)" alt="">
+      <img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-sidebar-background-${currentSunjaeImage}`" class="sidebar-background-photo sunjae-sidebar-background-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="">
       <button class="brand" type="button" @click="openView('home')">
-        <span><img v-if="visualStyle === 'sunjae'" :key="`sunjae-brand-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt=""><img v-else-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsKingSizeImage" alt=""><template v-else>{{ isJewelry ? 'GEM' : 'CBT' }}</template></span>
+        <span><img  v-if="visualStyle === 'sunjae'" :key="`sunjae-brand-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt=""><img  v-else-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsKingSizeImage)" alt=""><template v-else>{{ isJewelry ? 'GEM' : 'CBT' }}</template></span>
         <div><strong>{{ spaceName }}</strong><small>{{ visualStyle === 'simpsons' ? 'SPRINGFIELD STUDY' : visualStyle === 'sunjae' ? 'LOVELY RUNNER STUDY' : isJewelry ? 'JEWELRY STUDY' : 'SMART STUDY' }}</small></div>
       </button>
       <figure v-if="visualStyle === 'simpsons'" class="theme-sidebar-feature simpsons-sidebar-feature">
-        <img v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsKingSizeImage" alt="꽃무늬 옷을 입은 킹 사이즈 호머 심슨">
+        <img  v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsKingSizeImage)" alt="꽃무늬 옷을 입은 킹 사이즈 호머 심슨">
         <figcaption><strong>KING-SIZE HOMER</strong><small>공부할 준비부터 하자!</small></figcaption>
       </figure>
       <figure v-else-if="visualStyle === 'sunjae'" class="theme-sidebar-feature sunjae-sidebar-feature">
         <Transition name="sunjae-photo-fade" mode="out-in">
-          <img :key="`sunjae-sidebar-${currentSunjaeImage}`" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt="선재 테마 메뉴의 류선재·변우석 사진">
+          <img  :key="`sunjae-sidebar-${currentSunjaeImage}`" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="선재 테마 메뉴의 류선재·변우석 사진">
         </Transition>
         <figcaption><strong>오늘도 나랑 같이 달릴래?</strong><small>{{ sunjaeRotationSeconds ? `${sunjaeRotationLabel(sunjaeRotationSeconds)}마다 내가 찾아올게` : '오늘은 이 모습으로 기다릴게' }}</small></figcaption>
       </figure>
       <nav>
-        <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
-        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차별 문제</button>
-        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="openView('school')"><span data-theme-symbol="✎"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(6)" alt=""><template v-else>✎</template></span>학교 시험 준비</button>
-        <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exercise" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(8)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-history-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>◴</template></span>학습 내역</button>
-        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
-        <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>문제 검색</button>
-        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(4)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
-        <button v-if="studyGuideAvailable" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▣</template></span>시험 자료실</button>
-        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" v-bind="responsiveImageAttrs(simpsonsBurnsImage, '64px')" @error="restoreOriginalImage" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>✦</template></span>합격 엔진</button>
-        <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(6)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>β</template></span>베타 학습 도구</button>
-        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" v-bind="responsiveImageAttrs(simpsonsThemeImage, '64px')" @error="restoreOriginalImage" :src="simpsonsThemeImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>▥</template></span>학습 분석</button>
-        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), '64px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(7)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>◷</template></span>패치노트</button>
+        <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>⌂</template></span>홈</button>
+        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▤</template></span>회차별 문제</button>
+        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="openView('school')"><span data-theme-symbol="✎"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><template v-else>✎</template></span>학교 시험 준비</button>
+        <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exercise" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(8))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-history-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>◴</template></span>학습 내역</button>
+        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
+        <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>⌕</template></span>문제 검색</button>
+        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
+        <button v-if="studyGuideAvailable" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▣</template></span>시험 자료실</button>
+        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" v-bind="responsiveImageAttrs(simpsonsBurnsImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>✦</template></span>합격 엔진</button>
+        <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>β</template></span>베타 학습 도구</button>
+        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" v-bind="responsiveImageAttrs(simpsonsThemeImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>▥</template></span>학습 분석</button>
+        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(7))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>◷</template></span>패치노트</button>
       </nav>
-      <a class="space-portal" :href="isJewelry ? 'index.html' : 'jewelry.html'">
+      <a class="space-portal" :href="$problemImage(isJewelry ? 'index.html' : 'jewelry.html')">
         <span>{{ isJewelry ? 'CBT' : '◇' }}</span>
         <div><strong>{{ isJewelry ? '산업기사 CBT' : '보석관' }}</strong><small>독립 학습 페이지로 이동</small></div>
         <b>›</b>
       </a>
       <div class="sidebar-foot">
-        <button type="button" @click="openCalculator"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(4)" alt=""><template v-else>▦</template></span>공학용 계산기</button>
-        <button type="button" :class="{ active: view === 'settings' }" @click="openView('settings')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsBurnsImage" alt=""><template v-else>⚙</template></span>전체 설정</button>
+        <button type="button" @click="openCalculator"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt=""><template v-else>▦</template></span>공학용 계산기</button>
+        <button type="button" :class="{ active: view === 'settings' }" @click="openView('settings')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><template v-else>⚙</template></span>전체 설정</button>
       </div>
     </aside>
     <button v-if="mobileMenuOpen" class="mobile-backdrop" aria-label="메뉴 닫기" @click="mobileMenuOpen = false" />
@@ -4797,7 +4776,7 @@ onBeforeUnmount(() => {
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
               <Transition name="sunjae-photo-fade" mode="out-in">
-                <img :key="`sunjae-stage-${currentSunjaeImage}`" class="sunjae-stage-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt="류선재·변우석 테마 메인 사진">
+                <img  :key="`sunjae-stage-${currentSunjaeImage}`" class="sunjae-stage-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="류선재·변우석 테마 메인 사진">
               </Transition>
               <div class="sunjae-stage-shade" />
               <div class="sunjae-stage-copy">
@@ -4807,8 +4786,8 @@ onBeforeUnmount(() => {
                 <div><button type="button" @click="startRangeLearning">나랑 바로 공부하기</button><button type="button" @click="openView('wrong')">틀린 문제 같이 보기</button></div>
               </div>
               <div class="sunjae-stage-polaroids" aria-hidden="true">
-                <figure><img v-bind="responsiveImageAttrs(sunjaeImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeImageAt(2)" alt=""><span>오늘도 네 편</span></figure>
-                <figure><img v-bind="responsiveImageAttrs(sunjaeImageAt(6), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeImageAt(6)" alt=""><span>끝까지 같이</span></figure>
+                <figure><img  v-bind="responsiveImageAttrs(sunjaeImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(2))" alt=""><span>오늘도 네 편</span></figure>
+                <figure><img  v-bind="responsiveImageAttrs(sunjaeImageAt(6), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(6))" alt=""><span>끝까지 같이</span></figure>
               </div>
               <div class="sunjae-stage-status"><span>오늘의 우리 기록</span><strong>{{ stats.answered.toLocaleString() }}문제</strong><small>정답률 {{ stats.accuracy }}% · 오답 {{ stats.wrong.toLocaleString() }}</small></div>
             </div>
@@ -4818,7 +4797,7 @@ onBeforeUnmount(() => {
                 <header><div><span>01 · PICK OUR COURSE</span><h2>오늘 나랑 어떤 종목 달릴래?</h2></div><p>사진을 넘기듯 골라봐. 고르면 내가 공부 범위를 바로 바꿔줄게.</p></header>
                 <div class="sunjae-album-track">
                   <button v-for="(catalog, catalogIndex) in catalogs" :key="catalog.key" type="button" :class="{ selected: selectedKey === catalog.key }" @click="selectQualification(catalog.key)">
-                    <img v-bind="responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeImageAt(catalogIndex + 1)" alt="">
+                    <img  v-bind="responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(catalogIndex + 1))" alt="">
                     <span>{{ selectedKey === catalog.key ? '우리 오늘 이거 하자' : '같이 골라볼래?' }}</span>
                     <strong>{{ catalog.name }}</strong>
                     <small>{{ catalog.roundCount ?? catalog.rounds.length }}회차 · {{ catalogDisplayQuestionCount(catalog).toLocaleString() }}문제</small>
@@ -4827,7 +4806,7 @@ onBeforeUnmount(() => {
               </section>
 
               <section class="sunjae-study-ticket">
-                <div class="sunjae-ticket-photo"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt="공부 계획을 함께 고르는 선재"><p><strong>범위는 내가 정리해둘게.</strong><span>너는 시작 버튼만 눌러. 나랑 끝까지 가자.</span></p></div>
+                <div class="sunjae-ticket-photo"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt="공부 계획을 함께 고르는 선재"><p><strong>범위는 내가 정리해둘게.</strong><span>너는 시작 버튼만 눌러. 나랑 끝까지 가자.</span></p></div>
                 <div class="sunjae-ticket-controls">
                   <header><span>02 · MAKE OUR PLAN</span><h2>우리 오늘 공부 약속</h2></header>
                   <div class="sunjae-ticket-presets"><button :class="{ active: quickPreset === 5 }" @click="applyPreset(5)">최근 5년</button><button :class="{ active: quickPreset === 10 }" @click="applyPreset(10)">최근 10년</button><button :class="{ active: quickPreset === 0 }" @click="applyPreset(0)">전체</button></div>
@@ -4844,18 +4823,18 @@ onBeforeUnmount(() => {
               <section class="sunjae-choose-together">
                 <header><span>03 · WHAT SHALL WE DO?</span><h2>오늘 나랑 뭐 할래?</h2><p>네가 고르면 바로 옆에서 같이 시작할게.</p></header>
                 <div>
-                  <button type="button" @click="startRangeLearning"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><span>천천히 같이 보자</span><strong>학습모드</strong><small>즉시 채점 · 쉬운 해설</small></button>
-                  <button type="button" @click="startRandomLearning60"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><span>오늘은 딱 60문제</span><strong>랜덤 60문제</strong><small>과목 균형 · 자동 이어하기</small></button>
-                  <button type="button" @click="startBalancedExam"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><span>내가 채점해줄게</span><strong>랜덤시험</strong><small>과목 균형 · OMR · 타이머</small></button>
-                  <button type="button" @click="openView('rounds')"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(2)" alt=""><span>원하는 날을 골라</span><strong>회차별 문제</strong><small>{{ yearFrom }}~{{ yearTo }}년</small></button>
-                  <button type="button" @click="openView('wrong')"><img v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(3)" alt=""><span>이번엔 같이 맞히자</span><strong>오답만 보기</strong><small>{{ stats.wrong.toLocaleString() }}문제 기다리는 중</small></button>
+                  <button type="button" @click="startRangeLearning"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><span>천천히 같이 보자</span><strong>학습모드</strong><small>즉시 채점 · 쉬운 해설</small></button>
+                  <button type="button" @click="startRandomLearning60"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><span>오늘은 딱 60문제</span><strong>랜덤 60문제</strong><small>과목 균형 · 자동 이어하기</small></button>
+                  <button type="button" @click="startBalancedExam"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><span>내가 채점해줄게</span><strong>랜덤시험</strong><small>과목 균형 · OMR · 타이머</small></button>
+                  <button type="button" @click="openView('rounds')"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><span>원하는 날을 골라</span><strong>회차별 문제</strong><small>{{ yearFrom }}~{{ yearTo }}년</small></button>
+                  <button type="button" @click="openView('wrong')"><img  v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><span>이번엔 같이 맞히자</span><strong>오답만 보기</strong><small>{{ stats.wrong.toLocaleString() }}문제 기다리는 중</small></button>
                 </div>
               </section>
 
               <section class="sunjae-memory-wall">
                 <div><span>04 · OUR RECORD</span><h2>우리 같이 달린 만큼</h2><p>오늘도 여기까지 온 거, 내가 다 기억하고 있어.</p><div class="progress-track"><i :style="{ width: `${stats.coverage}%` }" /></div><strong>{{ stats.coverage }}%</strong></div>
                 <dl><div><dt>전체</dt><dd>{{ stats.total.toLocaleString() }}</dd></div><div><dt>푼 문제</dt><dd>{{ stats.answered.toLocaleString() }}</dd></div><div><dt>맞힌 문제</dt><dd>{{ stats.correct.toLocaleString() }}</dd></div><div><dt>북마크</dt><dd>{{ stats.bookmarks.toLocaleString() }}</dd></div></dl>
-                <img v-bind="responsiveImageAttrs(sunjaeImageAt(8), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeImageAt(8)" alt="학습 기록 옆의 변우석 사진">
+                <img  v-bind="responsiveImageAttrs(sunjaeImageAt(8), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(8))" alt="학습 기록 옆의 변우석 사진">
               </section>
 
               <section class="sunjae-release-note" :class="{ ready: updateAvailable }"><span>{{ updateAvailable ? '새 소식이 왔어' : `지금은 v${currentVersion} 최신이야` }}</span><strong>{{ updateAvailable ? '내가 새 화면을 준비했어. 같이 보러 갈래?' : '업데이트도 내가 확인해둘게.' }}</strong><div><button v-if="updateAvailable" @click="applyUpdate">새 버전 적용</button><button v-else :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '업데이트 확인' }}</button><button @click="openView('updates')">우리 기록 보기</button></div></section>
@@ -4874,19 +4853,19 @@ onBeforeUnmount(() => {
             </div>
             <div class="simpsons-hero-gallery">
               <figure class="simpsons-hero-primary">
-                <img v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" fetchpriority="high">
+                <img  v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" fetchpriority="high">
               </figure>
               <figure class="simpsons-hero-secondary">
-                <img v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsKingSizeImage" alt="꽃무늬 옷을 입은 뚱뚱한 호머 심슨 본편 장면" loading="lazy" decoding="async">
+                <img  v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsKingSizeImage)" alt="꽃무늬 옷을 입은 뚱뚱한 호머 심슨 본편 장면" loading="lazy" decoding="async">
                 <figcaption>일단 공부부터 시작!</figcaption>
               </figure>
               <div class="simpsons-scene-stack" aria-label="웃긴 심슨 본편 장면 모음">
-                <figure v-for="(image, index) in simpsonsHeroScenes" :key="image"><img :src="image" :alt="`심슨 본편의 웃긴 장면 ${index + 1}`" loading="lazy" decoding="async"></figure>
+                <figure v-for="(image, index) in simpsonsHeroScenes" :key="image"><img  :src="$problemImage(image)" :alt="`심슨 본편의 웃긴 장면 ${index + 1}`" loading="lazy" decoding="async"></figure>
               </div>
             </div>
           </section>
           <section v-else-if="visualStyle === 'sunjae'" class="sunjae-home-hero">
-            <img v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="currentSunjaeImage" alt="선재 업고 튀어 류선재 단독 장면">
+            <img  v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="선재 업고 튀어 류선재 단독 장면">
             <div class="sunjae-hero-copy"><span>LOVELY RUNNER STUDY MODE · ☂</span><h1>오늘도 나랑<br><em>같이 달릴래?</em></h1><p>동적 UI를 켜면 선재 전용 팬페이지 배치와 채점 연출을 볼 수 있어.</p><div class="sunjae-hero-actions"><button type="button" @click="openView('rounds')">나랑 회차 풀기 →</button><button type="button" @click="settingsOpen = true">동적 UI 설정</button></div></div>
           </section>
           <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
@@ -4911,8 +4890,8 @@ onBeforeUnmount(() => {
                 :class="[qualificationMeta[catalog.key]?.className, { selected: selectedKey === catalog.key }]"
                 @click="selectQualification(catalog.key)"
               >
-                <img v-if="visualStyle === 'sunjae'" class="sunjae-card-photo" v-bind="responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeImageAt(catalogIndex + 1)" alt="">
-                <img v-else-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-card-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(catalogIndex), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(catalogIndex)" alt="">
+                <img  v-if="visualStyle === 'sunjae'" class="sunjae-card-photo" v-bind="responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(catalogIndex + 1))" alt="">
+                <img  v-else-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-card-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(catalogIndex), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(catalogIndex))" alt="">
                 <span class="qualification-icon">{{ qualificationMeta[catalog.key]?.icon }}</span>
                 <span class="qualification-copy">
                   <strong>{{ catalog.name }}</strong>
@@ -4931,7 +4910,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
-            <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(4)" alt="공부 계획을 확인하는 닥터 닉">
+            <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
               <div><span>STUDY SETUP</span><h2>연도와 출제 체계를 정하세요</h2></div>
               <div class="preset-buttons">
@@ -4998,11 +4977,11 @@ onBeforeUnmount(() => {
 
             <div class="start-actions">
               <button class="learning-start" type="button" @click="startRangeLearning">
-                <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(1)" alt="">
+                <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt="">
                 <span>차근차근 익히기</span><strong>선택 범위 학습모드</strong><small>한 화면 {{ preferredPageSize }}문제 · 즉시 채점 · 쉬운 해설</small>
               </button>
               <button class="random-learning-start" type="button" @click="startRandomLearning60">
-                <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(8)" alt="">
+                <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(8))" alt="">
                 <span>연도 범위에서 골고루</span><strong>랜덤 60문제 학습</strong><small>{{ selectedKey === 'hvac' && includeHansolInRandom ? '일반 공조 + 한솔 후보' : (officialRule?.scoring === 'total-only' ? `공식 ${officialExamQuestionCount}문제 구성` : '과목 균형') }} · 즉시 채점 · 자동 이어하기</small>
               </button>
               <section v-if="selectedKey === 'hvac'" class="prediction-start-card">
@@ -5019,18 +4998,18 @@ onBeforeUnmount(() => {
                 <p>출제를 보장하는 공식 예상문제가 아니라, 8월 22일 제보와 저장소의 반복 출제 개념을 우선한 시험 직전 훈련입니다.</p>
               </section>
               <button class="exam-start" type="button" @click="startBalancedExam">
-                <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(5)" alt="">
+                <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt="">
                 <span>실제 시험처럼</span><strong>{{ officialRule?.scoring === 'total-only' ? '공식 구성 랜덤시험' : '과목 균형 랜덤시험' }}</strong><small>{{ officialRule?.scoring === 'total-only' ? `${officialExamQuestionCount}문제` : '과목별 20문제' }}{{ selectedKey === 'hvac' && includeHansolInRandom ? ' · 한솔 후보 포함' : '' }} · OMR · 타이머</small>
               </button>
               <button class="round-start" type="button" @click="openView('rounds')">
-                <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(7)" alt="">
+                <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-action-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(7))" alt="">
                 <span>연도 순서대로</span><strong>회차별 기출문제</strong><small>{{ yearFrom }}~{{ yearTo }}년 목록 보기</small>
               </button>
             </div>
           </section>
 
           <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="progress-panel">
-            <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-progress-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(6)" alt="심슨 가족의 운동 장면">
+            <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-progress-photo" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt="심슨 가족의 운동 장면">
             <div>
               <span>현재 종목 학습률</span>
               <strong>{{ stats.coverage }}%</strong>
@@ -5045,7 +5024,7 @@ onBeforeUnmount(() => {
           </section>
 
           <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
-            <img v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsBurnsImage" alt="손가락을 맞댄 번즈">
+            <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt="손가락을 맞댄 번즈">
             <div class="home-release-icon">{{ updateAvailable ? '↻' : '✓' }}</div>
             <div>
               <span>{{ updateAvailable ? 'NEW VERSION READY' : 'LATEST VERSION' }}</span>
@@ -5103,8 +5082,7 @@ onBeforeUnmount(() => {
               <p>{{ energySourceMode === 'textbook' ? '교재에 실린 원문 문제·보기·정답·해설로 풉니다.' : '이전에 사용하던 CBT 문제 목록과 문제·해설 방식 그대로 풉니다.' }} 선택은 새 풀이에만 적용하며, 풀던 문제와 기존 기록은 유지됩니다.</p>
             </fieldset>
             <p>출처를 고른 다음 아래 모음 또는 1~20번 주제로 풀면 됩니다. 현재 출처 {{ energyMidtermQuestionCount }}문제 중 계산 설정을 반영한 {{ energyMidtermEligibleQuestions.length }}문제가 선택됩니다. 오답·점수는 일반 기출과 분리됩니다.</p>
-            <p class="energy-topic-note">같은 질문·같은 정답은 최신 회차만 출제하고 ‘나왔던 회차’를 표시합니다. 계산 수치·정답 내용이 다른 문제는 유지합니다. <a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">통합 전 원문 비교 ↗</a></p>
-            <details class="energy-topic-note"><summary>분류 결과 확인만 하기</summary><p>문제 구성을 바꾸지 않는 별도 검토 화면입니다. 기존179문제와20개 주제 관련 추가 후보를 구분합니다.</p><a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 분류 검토표 열기 ↗</a></details>
+            <p class="energy-topic-note">같은 질문·같은 정답은 최신 회차만 출제하고 ‘나왔던 회차’를 표시합니다. 계산 수치·정답 내용이 다른 문제는 유지합니다.</p>
             <div class="energy-midterm-priority-grid energy-midterm-main-groups">
               <article>
                 <h2>시험범위에 맞는 문제 <span>{{ energyMidtermDirectCount }}문제</span></h2>
@@ -5336,7 +5314,7 @@ onBeforeUnmount(() => {
               <div class="formula-render-grid">
                 <article v-for="sample in formulaRenderSamples" :key="sample.title">
                   <h3>{{ sample.title }}</h3>
-                  <img v-if="sample.sourceImage" class="formula-source-image restored-image-original" :src="sample.sourceImage" alt="PP-FormulaNet으로 인식한 공조 원문 수식">
+                  <img  v-if="sample.sourceImage" class="formula-source-image restored-image-original" :src="$problemImage(sample.sourceImage)" alt="PP-FormulaNet으로 인식한 공조 원문 수식">
                   <section><span>{{ sample.sourceImage ? 'PP-FormulaNet-plus-M 인식 LaTeX' : '기존 텍스트' }}</span><p>{{ sample.plain }}</p></section>
                   <section class="is-katex"><span>KaTeX</span><MathFormula :tex="sample.tex" :label="`${sample.title} 수식`" /></section>
                 </article>
@@ -5430,7 +5408,7 @@ onBeforeUnmount(() => {
             <div class="practical-exam-facts">
               <span><b>12문제</b> 실제 필답 구성</span><span><b>90분</b> 공식 시험시간</span><span><b>60점</b> 필답 배점</span><span><b>40점</b> 동관 작업</span>
             </div>
-            <div class="practical-source-links"><a v-for="source in practicalSources" :key="source.href" :href="source.href" target="_blank" rel="noreferrer">{{ source.label }} ↗</a></div>
+            <div class="practical-source-links"><a v-for="source in practicalSources" :key="source.href" :href="$problemImage(source.href)" target="_blank" rel="noreferrer">{{ source.label }} ↗</a></div>
             <div class="practical-progress-board">
               <div><span>학습 완료</span><strong>{{ practicalMasteredCount }}</strong><small>/ {{ practicalPrompts.length }}</small></div>
               <div><span>부분 정답</span><strong>{{ practicalPartialCount }}</strong><small>문제</small></div>
@@ -5534,7 +5512,7 @@ onBeforeUnmount(() => {
               </div>
             </details>
             <template v-if="!practicalLibraryOpen || practicalSessionActive">
-            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><article><h4>{{ practicalAbsoluteTemperatureExample.title }}</h4><p>{{ practicalAbsoluteTemperatureExample.text }}</p><PracticalFractionLines :rows="practicalAbsoluteTemperatureExample.fractions" /></article><a :href="practicalCalculationPdf" download>같은 내용 PDF 받기 ↓</a></details>
+            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><article><h4>{{ practicalAbsoluteTemperatureExample.title }}</h4><p>{{ practicalAbsoluteTemperatureExample.text }}</p><PracticalFractionLines :rows="practicalAbsoluteTemperatureExample.fractions" /></article><a :href="$problemImage(practicalCalculationPdf)" download>같은 내용 PDF 받기 ↓</a></details>
             <div class="practical-cbt-toolbar">
               <button type="button" class="practical-toolbar-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 목록</button>
               <span>{{ practicalPagedPrompts.filter(p => practicalProgress[p.id]?.grade).length }} / {{ practicalPagedPrompts.length }} 채점</span>
@@ -5557,7 +5535,7 @@ onBeforeUnmount(() => {
                 <div v-if="prompt.images?.length" class="practical-prompt-images">
                   <PracticalProblemImage v-for="(image, imageIndex) in prompt.images" :key="image" :src="image" :max-height="prompt.imageMaxHeight" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림 ${imageIndex + 1}`" />
                 </div>
-                <a v-if="!practicalExamLocked && prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="prompt.sourceUrl" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
+                <a v-if="!practicalExamLocked && prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="$problemImage(prompt.sourceUrl)" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
                 </div><div class="practical-response-body">
                 <div v-if="practicalStudyMode !== 'memorize'" class="practical-answer-actions">
                   <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '풀이 닫기' : '정답·풀이 보기' }}</button>
@@ -5569,7 +5547,7 @@ onBeforeUnmount(() => {
                   <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
                   <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
                   <PracticalCalculationLesson v-if="calculationLesson(practicalSourcePrompt(prompt))" :lesson="calculationLesson(practicalSourcePrompt(prompt))!" />
-                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="image" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
+                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img  v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="$problemImage(image)" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
                   <details v-if="prompt.keyPoints?.length" class="practical-key-points"><summary>채점 핵심어</summary><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></details>
                   <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
                     <span>내 답과 비교해 채점</span>
@@ -5577,7 +5555,7 @@ onBeforeUnmount(() => {
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
                     <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'review' }" @click="markPracticalPrompt(prompt.id, 'review')">↻ 다시 보기</button>
                   </div>
-                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="prompt.sourceUrl" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
+                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="$problemImage(prompt.sourceUrl)" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
                 </div>
                 <details v-if="practicalStudyMode === 'type'" class="practical-draft" :open="!practicalDraftClosedIds.includes(prompt.id)" @toggle="($event.target as HTMLDetailsElement).open ? practicalDraftClosedIds = practicalDraftClosedIds.filter(id => id !== prompt.id) : (!practicalDraftClosedIds.includes(prompt.id) && practicalDraftClosedIds.push(prompt.id))">
                   <summary>답안 직접 입력 · 접기/펼치기{{ practicalDrafts[prompt.id] ? ' · 작성 답안 있음' : '' }}</summary>
@@ -5874,10 +5852,7 @@ onBeforeUnmount(() => {
             <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
             <p>v5.8.4 에너지 원문73문제: 설정 → 답안 배치 → 이미지 직접 선택으로①②③④와 보기 내용을 눌러 답합니다. 여러 줄 보기·분수도 한 박스로 표시하고, 체크 마커 또는 영역 색상을 고를 수 있습니다. 기존 답안 버튼 설정·179문제·풀이 기록은 유지합니다.</p>
             <p>v5.8.5 중간고사: 에너지의 같은 질문·정답은 최신 회차로 정리해154문제를 출제하며 계산 수치·정답이 다른 변형은 유지합니다. 기본 계산 체크는2번·6번, ‘계산 문제만 보기’에서는22개 전체 원문을 확인합니다. 냉동도 같은 문장·정답은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 기존 기록과 일반 기출은 보존합니다.</p>
-            <p>v5.8.6 냉동 전체 범위 중복 검토: 원문1180개를 대상으로 표현이 다른 반복도 추가 확인하여 일반758문제·안전43문제로 정리했습니다. 수치·단위·질문 대상이 다른 변형과 원문·등록 정답 충돌은 통합하지 않습니다. <a href="docs/cooling-midterm-duplicate-review-2026-10-12.html" target="_blank" rel="noopener">검수 대장 ↗</a>에서 승인178묶음·주의8쌍·전체 문항과 미확정 후보를 확인합니다. 원본과 이전 답안은 보존합니다.</p>
             <p>v5.8.6 에너지 계산 기본값 정정: 6번 상당증발량·11번 스케줄번호만 기본On입니다. 랜덤20은 각1개를 계산으로 뽑고 전체·주제별 새 풀이에도 적용합니다. ‘기본6번·11번’으로 언제든 복원하며 개별 선택과 이어풀기 기록은 유지합니다.</p>
-            <p>통합 전 중복 검토: 기존179문제의76후보는 <a href="docs/energy-duplicate-review-2026-10-11.html" target="_blank" rel="noopener">원문 나란히 비교 화면 ↗</a>에 보존합니다. 반복13쌍·변형55쌍·다른 문제8쌍의 이유와 기존 메모를 확인할 수 있습니다.</p>
-            <p>분류 확인 화면: <a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">냉동 목차 검토 ↗</a> · <a href="docs/energy-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">에너지 검토 전용 ↗</a>. 에너지 실제 출제 구성은 이번 분류 검토로 바꾸지 않았습니다.</p>
             <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
             <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
             <p>v5.6: 2018~2020년 공개 원문의 사진90개와15개 회로·평면도 선택 답안 설명을 보강했습니다. 정답이 인쇄된2개 사진은 답안에만 표시하며, 공개 원문192문항은 문제 아래 ‘원문 동작 영상 보기’로 해당 장면을 열 수 있습니다. 2023년1회2번의 다른 보기 그림은 원문 동작에 맞춰 제어부를 재작성했습니다. 책95개 대응·기존 기록·원본은 유지하며, 전체312문항의 정답 검증 완료를 뜻하지 않습니다.</p>
@@ -5903,7 +5878,7 @@ onBeforeUnmount(() => {
               </div>
             </div>
             <figure>
-              <img v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsThemeImage" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" loading="lazy" decoding="async">
+              <img  v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" loading="lazy" decoding="async">
             </figure>
           </section>
 
@@ -5933,7 +5908,7 @@ onBeforeUnmount(() => {
                 @click="upscalePreviewKind = 'original'"
               >
                 <div><span>BEFORE</span><strong>원본</strong><small>{{ upscaleComparison.originalSize }}</small></div>
-                <figure><img :src="upscaleComparison.original" :alt="`${upscaleComparison.subject} 업스케일링 전 원본`"></figure>
+                <figure><img  :src="$problemImage(upscaleComparison.original)" :alt="`${upscaleComparison.subject} 업스케일링 전 원본`"></figure>
                 <b>눌러서 크게 보기 ⌕</b>
               </button>
               <button
@@ -5943,7 +5918,7 @@ onBeforeUnmount(() => {
                 @click="upscalePreviewKind = 'improved'"
               >
                 <div><span>AFTER</span><strong>업스케일링 후</strong><small>{{ upscaleComparison.improvedSize }}</small></div>
-                <figure><img :src="upscaleComparison.improved" :alt="`${upscaleComparison.subject} 업스케일링 후`"></figure>
+                <figure><img  :src="$problemImage(upscaleComparison.improved)" :alt="`${upscaleComparison.subject} 업스케일링 후`"></figure>
                 <b>눌러서 크게 보기 ⌕</b>
               </button>
             </div>
@@ -5960,11 +5935,11 @@ onBeforeUnmount(() => {
             </header>
             <div class="restored-dark-preview-grid">
               <button type="button" class="restored-dark-preview original" :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')">
-                <figure><img :src="restoredDarkPreviewImage" alt="원본 흰색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
+                <figure><img  :src="$problemImage(restoredDarkPreviewImage)" alt="원본 흰색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
                 <strong>항상 원본</strong><small>흰 문제지 그대로</small>
               </button>
               <button type="button" class="restored-dark-preview comfort" :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')">
-                <figure><img :src="restoredDarkPreviewImage" alt="눈부심을 줄인 남색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
+                <figure><img  :src="$problemImage(restoredDarkPreviewImage)" alt="눈부심을 줄인 남색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
                 <strong>눈부심 완화</strong><small>추천 · 짙은 남색</small>
               </button>
             </div>
@@ -5986,7 +5961,7 @@ onBeforeUnmount(() => {
                 <button type="button" aria-label="확대 이미지 닫기" @click="upscalePreviewKind = null">×</button>
               </header>
               <div @click.self="upscalePreviewKind = null">
-                <img :src="upscalePreview.src" :alt="`${upscalePreview.title} 확대`">
+                <img  :src="$problemImage(upscalePreview.src)" :alt="`${upscalePreview.title} 확대`">
               </div>
             </div>
           </Teleport>
@@ -6119,17 +6094,9 @@ onBeforeUnmount(() => {
               <strong id="patch-apk-download-title">휴대폰·태블릿용 정식 APK</strong>
               <small>Android 7.0 이상 · 약 8MB · 최신 버전으로 교체 설치할 수 있습니다.</small>
             </div>
-            <a :href="androidApkUrl" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 받기">정식 APK 받기 <b aria-hidden="true">↓</b></a>
+            <a :href="$problemImage(androidApkUrl)" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 받기">정식 APK 받기 <b aria-hidden="true">↓</b></a>
           </section>
-          <section v-if="showIosPwaPrompt" class="patch-apk-download ios-pwa-patch" aria-labelledby="ios-pwa-patch-title">
-            <div class="ios-pwa-app-mark" aria-hidden="true">CBT</div>
-            <div>
-              <span>IPHONE · IPAD 무료</span>
-              <strong id="ios-pwa-patch-title">7일 만료 없는 홈 화면 앱</strong>
-              <small>Safari에서 한 번 설치하면 주소창 없이 실행되고 웹 업데이트가 자동 적용됩니다.</small>
-            </div>
-            <button type="button" @click="iosPwaInstallOpen = true">설치 방법 보기</button>
-          </section>
+          
           <div class="patch-timeline">
             <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
               <div class="patch-version"><span>v{{ entry.version }}</span><small>{{ entry.date }}</small></div>
@@ -6149,9 +6116,7 @@ onBeforeUnmount(() => {
     <button v-if="showAndroidApkPopup" type="button" class="android-apk-floating-trigger" aria-label="Android 앱 다운로드 안내 열기" @click="androidApkPopupOpen = true">
       <span>ANDROID</span><strong>앱 받기</strong>
     </button>
-    <button v-if="showIosPwaPrompt" type="button" class="ios-pwa-floating-trigger" aria-label="iPhone 앱 설치 안내 열기" @click="iosPwaInstallOpen = true">
-      <span>IPHONE · IPAD</span><strong>무료 앱 설치</strong>
-    </button>
+    
     <Transition name="modal-fade">
       <div v-if="showAndroidApkPopup && androidApkPopupOpen" class="android-apk-popup-backdrop" @click.self="androidApkPopupOpen = false">
         <section class="android-apk-popup" role="dialog" aria-modal="true" aria-labelledby="android-apk-popup-title">
@@ -6169,40 +6134,19 @@ onBeforeUnmount(() => {
           <small>Android 7.0 이상 · 약 8MB</small>
           <div class="android-apk-popup-actions">
             <button type="button" @click="androidApkPopupOpen = false">나중에</button>
-            <a :href="androidApkUrl" target="_blank" rel="noopener" @click="androidApkPopupOpen = false">정식 APK 다운로드 <b aria-hidden="true">↓</b></a>
+            <a :href="$problemImage(androidApkUrl)" target="_blank" rel="noopener" @click="androidApkPopupOpen = false">정식 APK 다운로드 <b aria-hidden="true">↓</b></a>
           </div>
         </section>
       </div>
     </Transition>
-    <Transition name="modal-fade">
-      <div v-if="showIosPwaPrompt && iosPwaInstallOpen" class="android-apk-popup-backdrop" @click.self="iosPwaInstallOpen = false">
-        <section class="android-apk-popup ios-pwa-popup" role="dialog" aria-modal="true" aria-labelledby="ios-pwa-popup-title">
-          <button type="button" class="android-apk-popup-close" aria-label="iPhone 앱 설치 안내 닫기" @click="iosPwaInstallOpen = false">×</button>
-          <div class="ios-pwa-app-mark" aria-hidden="true">CBT</div>
-          <span>완전 무료 · 7일 만료 없음</span>
-          <h2 id="ios-pwa-popup-title">홈 화면에 CBT 앱 설치</h2>
-          <p v-if="isIosSafari">Safari에서 아래 순서대로 한 번만 설정하면 주소창 없이 앱처럼 실행됩니다.</p>
-          <p v-else class="ios-pwa-browser-warning"><strong>먼저 Safari로 이 홈페이지를 열어주세요.</strong><br>현재 브라우저에서는 설치 메뉴의 위치가 다르거나 보이지 않을 수 있습니다.</p>
-          <ol class="ios-pwa-steps">
-            <li><b>1</b><span>Safari 아래쪽의 <strong>공유</strong> <i aria-hidden="true">□↑</i> 버튼 누르기</span></li>
-            <li><b>2</b><span>메뉴를 내려 <strong>홈 화면에 추가</strong> 선택하기</span></li>
-            <li><b>3</b><span><strong>웹 앱으로 열기</strong>를 켠 뒤 <strong>추가</strong> 누르기</span></li>
-          </ol>
-          <small>설치 후에는 이 안내가 표시되지 않으며 홈페이지 업데이트도 자동으로 적용됩니다.</small>
-          <div class="android-apk-popup-actions ios-pwa-popup-actions">
-            <button type="button" @click="iosPwaInstallOpen = false">나중에</button>
-            <button type="button" class="ios-pwa-ready" @click="iosPwaInstallOpen = false">설치 방법 확인</button>
-          </div>
-        </section>
-      </div>
-    </Transition>
+    
     <nav v-if="!practicalSolving" class="mobile-tabbar" :inert="mobileMenuOpen">
-      <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(0)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>⌂</template></span>홈</button>
-      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(1)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▤</template></span>회차</button>
-      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(2)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(2)" alt=""><template v-else>!</template></span>오답</button>
-      <button :class="{ active: view === 'search' }" @click="openView('search')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(3)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-search-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(3)" alt=""><template v-else>⌕</template></span>검색</button>
-      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsBurnsImage" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(0)" alt=""><template v-else>✦</template></span>합격</button>
-      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="simpsonsFunnyImageAt(5)" alt=""><img v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaePortraitImageAt(1)" alt=""><template v-else>▥</template></span>통계</button>
+      <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>⌂</template></span>홈</button>
+      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▤</template></span>회차</button>
+      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>!</template></span>오답</button>
+      <button :class="{ active: view === 'search' }" @click="openView('search')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-search-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>⌕</template></span>검색</button>
+      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>✦</template></span>합격</button>
+      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▥</template></span>통계</button>
     </nav>
     <nav v-if="!practicalSolving" class="native-app-tabbar" aria-label="Android 앱 메뉴" :inert="mobileMenuOpen">
       <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
@@ -6460,16 +6404,16 @@ onBeforeUnmount(() => {
       <div v-if="examResult" class="result-backdrop">
         <section class="result-card" :class="{ 'sunjae-result-card': visualStyle === 'sunjae', 'sunjae-result-revealed': visualStyle === 'sunjae' && sunjaeResultPhase === 'reveal' }">
         <div v-if="visualStyle === 'sunjae' && sunjaeResultPhase === 'grading'" class="sunjae-grading-stage">
-          <div class="sunjae-grading-photo"><img v-bind="responsiveImageAttrs(sunjaeGradingImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeGradingImage" alt="답안을 채점하는 변우석"><i /><i /><i /></div>
+          <div class="sunjae-grading-photo"><img  v-bind="responsiveImageAttrs(sunjaeGradingImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeGradingImage)" alt="답안을 채점하는 변우석"><i /><i /><i /></div>
           <div class="sunjae-grading-copy"><span>선재가 채점 중 ···</span><strong>잠깐만, 내가 하나씩 볼게.</strong><p>네가 끝까지 푼 답안이니까 더 꼼꼼하게 확인하고 있어.</p><div><i /><i /><i /><i /><i /></div></div>
         </div>
         <template v-else>
         <div v-if="visualStyle === 'simpsons'" class="simpsons-result-message">
-          <img :src="examResult.score >= 60 ? simpsonsKingSizeImage : simpsonsThemeImage" :alt="examResult.score >= 60 ? '꽃무늬 옷을 입은 뚱뚱한 호머' : '호머와 바트'">
+          <img  :src="$problemImage(examResult.score >= 60 ? simpsonsKingSizeImage : simpsonsThemeImage)" :alt="examResult.score >= 60 ? '꽃무늬 옷을 입은 뚱뚱한 호머' : '호머와 바트'">
           <p><strong>{{ examResult.score >= 60 ? '오늘은 목 조르기 면제!' : '호머가 오기 전에 오답 복습!' }}</strong><span>{{ examResult.score >= 60 ? '바트도 놀랄 만큼 잘 풀었습니다.' : '이번 회차 오답만 다시 풀면 점수가 금방 올라갑니다.' }}</span></p>
         </div>
         <div v-if="visualStyle === 'sunjae'" class="sunjae-result-message" :class="{ praise: examResult.score >= 60 }">
-          <img v-bind="responsiveImageAttrs(sunjaeResultImage(examResult.score), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="sunjaeResultImage(examResult.score)" :alt="examResult.score >= 60 ? '점수를 칭찬하는 선재·변우석' : '다음 학습을 응원하는 선재·변우석'">
+          <img  v-bind="responsiveImageAttrs(sunjaeResultImage(examResult.score), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeResultImage(examResult.score))" :alt="examResult.score >= 60 ? '점수를 칭찬하는 선재·변우석' : '다음 학습을 응원하는 선재·변우석'">
           <p><strong>{{ sunjaeResultTitle(examResult.score) }}</strong><span>{{ sunjaeResultDetail(examResult.score) }}</span></p>
         </div>
         <span>{{ session.mode === 'exam' ? (examResult.passed ? 'PASS' : 'REVIEW') : 'LEARNING RESULT' }}</span>
@@ -6479,7 +6423,7 @@ onBeforeUnmount(() => {
         <p class="result-criteria">
           <span>{{ examResult.official ? 'Q-Net 필기 기준' : '기준 확인 필요' }}</span>
           <strong>{{ examResult.criteria }}</strong>
-          <a v-if="examResult.source" :href="examResult.source" target="_blank" rel="noopener">공식 기준 보기</a>
+          <a v-if="examResult.source" :href="$problemImage(examResult.source)" target="_blank" rel="noopener">공식 기준 보기</a>
         </p>
         <div class="subject-results">
           <div v-for="row in examResult.subjectRows" :key="row.subject">

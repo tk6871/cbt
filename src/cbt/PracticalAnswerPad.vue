@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref, shallowRef, watch } from 'vue';
 import { getStroke } from 'perfect-freehand';
+import {problemImage} from './problemImages';
 
 type PadPoint = { x: number; y: number; pressure?: number };
 type PadStroke = { tool: 'pen' | 'eraser'; points: PadPoint[]; pressureSensitive?: boolean };
@@ -329,7 +330,7 @@ function prepareOverlay(): void {
   if (!source) return;
   const image = new Image();
   image.onload = render;
-  image.src = source;
+  image.src = problemImage(source) || source;
   overlayImage = image;
 }
 
@@ -443,7 +444,7 @@ onBeforeUnmount(() => {
     <div class="practical-photo-answer">
       <label><span>📷 종이에 쓴 답안 가져오기</span><input type="file" accept="image/*" capture="environment" @change="importPhoto"></label>
       <button v-if="photoAnswer" type="button" @click="closePhoto">사진 닫기</button>
-      <img v-if="photoAnswer" :src="photoAnswer" alt="촬영하거나 가져온 필답형 답안">
+      <img  v-if="photoAnswer" :src="$problemImage(photoAnswer)" alt="촬영하거나 가져온 필답형 답안">
       <small>사진은 서버로 전송하지 않으며 현재 화면에서 비교할 때만 사용합니다.</small>
     </div>
   </section>

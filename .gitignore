@@ -60,3 +60,5 @@ playwright-report/
 tmp/pdfs/
 __pycache__/
 work/private-notes/
+work/textbook-explanation-text/
+work/problem-webp90/

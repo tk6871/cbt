@@ -3,6 +3,9 @@ import { resolve } from 'node:path';
 import { runInNewContext } from 'node:vm';
 
 const root = resolve(import.meta.dirname, '..');
+// These local cloud-conflict copies are excluded by the repository's existing
+// .gitignore. Do not mistake an unreferenced copy for a deployed build artifact.
+const localConflictCopy = (name) => / [2-9]\.[^/]+$/.test(name);
 const read = (path) => readFile(resolve(root, path), 'utf8');
 const [viteConfig, worker, workerSource, recovery, index, jewelry, packageJson, questionCard] = await Promise.all([
   read('vite.config.ts'),
@@ -57,6 +60,7 @@ if (!learnerCss.includes('.app-frame') || !adminCss.includes('.admin-page') || l
   throw new Error('학습/관리 CSS 진입점이 뒤바뀌었거나 누락됐습니다.');
 }
 for (const file of await readdir(resolve(root, 'modern'))) {
+  if (localConflictCopy(file)) continue;
   if (file.endsWith('.css') && !['cbt.css', 'admin.css'].includes(file) && !file.endsWith(`-v${version}.css`)) {
     throw new Error(`분리 CSS가 버전 없는 주소를 사용합니다: ${file}`);
   }
@@ -87,6 +91,7 @@ workerEvents.get('install')({ waitUntil: promise => { installation = promise; } 
 await installation;
 await access(resolve(root, `modern/chunks/main-v${version}.js`));
 for (const file of await readdir(resolve(root, 'modern/chunks'))) {
+  if (localConflictCopy(file)) continue;
   if (!file.endsWith('.js')) continue;
   const source = await read(`modern/chunks/${file}`);
   for (const match of source.matchAll(/\.\.\/([^"']+\.css)/g)) {

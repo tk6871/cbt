@@ -134,7 +134,7 @@ onBeforeUnmount(() => {
       <input ref="fileInput" type="file" accept="image/jpeg,image/png,image/webp,application/pdf,.pdf" hidden @change="chooseFile">
     </div>
     <div v-if="pdfPageCount > 1" class="school-pdf-pages"><button type="button" :disabled="pdfPage <= 1 || busy" @click="pdfPage -= 1; renderPdfPage()">이전 쪽</button><label><input v-model.number="pdfPage" type="number" min="1" :max="pdfPageCount" @change="renderPdfPage"> / {{ pdfPageCount }}쪽</label><button type="button" :disabled="pdfPage >= pdfPageCount || busy" @click="pdfPage += 1; renderPdfPage()">다음 쪽</button></div>
-    <div v-if="sourceUrl" ref="cropContainer" class="school-crop-stage"><img ref="imageElement" :src="sourceUrl" alt="자를 학교 시험 자료"></div>
+    <div v-if="sourceUrl" ref="cropContainer" class="school-crop-stage"><img  ref="imageElement" :src="$problemImage(sourceUrl)" alt="자를 학교 시험 자료"></div>
     <div v-else class="school-source-empty"><FileImage :size="34" /><strong>원본 파일은 서버로 전송되지 않습니다</strong><small>현재 기기 안에서만 열고 자릅니다.</small></div>
     <p aria-live="polite">{{ message }}</p>
   </section>

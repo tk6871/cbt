@@ -13,5 +13,5 @@ const markup = computed(() => katex.renderToString(props.tex, {
 </script>
 
 <template>
-  <div class="math-formula" :aria-label="label" v-html="markup" />
+  <div  class="math-formula" :aria-label="label" v-html="$problemImageHtml(markup)" />
 </template>

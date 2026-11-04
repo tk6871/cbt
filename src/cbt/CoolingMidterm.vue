@@ -109,9 +109,9 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       <p>목차·전체·오답의 새 풀이는 선택한 문제 배치를 따릅니다. 랜덤은 아래 별도 옵션으로 배치만 바꿀 수 있습니다. 이어풀기·같은 문제 다시 풀기는 저장된 순서를 유지합니다.</p>
       <label class="check"><input v-model="bookOnly" type="checkbox">교재 본문에서 연결 확인된 문제만 풀기</label>
       <p>{{ bookOnly ? '켜짐: 본문 문제와 지문·보기·등록 정답을 대조한 원문만 선택합니다.' : '꺼짐: 기존 중간고사 전체 목록입니다.' }} 기존 오답·진행 중 풀이·기록은 그대로 보관합니다.</p>
-      <p>대조 {{ coolingBookReview.locations }}위치 중 연결 확인 {{ coolingBookReview.confirmed }}위치 · 추가 확인 {{ coolingBookReview.pending }}위치. 교재 전체 수록 완료를 뜻하지 않습니다. <a href="docs/cooling-book-review-2026-10-14.html" target="_blank" rel="noopener">교재 대조 목록 ↗</a></p>
+      <p>대조 {{ coolingBookReview.locations }}위치 중 연결 확인 {{ coolingBookReview.confirmed }}위치 · 추가 확인 {{ coolingBookReview.pending }}위치. 교재 전체 수록 완료를 뜻하지 않습니다.</p>
     </div>
-    <p v-if="tab !== 'history'" class="topic-warning">같은 질문·조건·정답 내용은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 수치·단위·질문 대상·정답이 다르거나 그림 동일성이 불확실한 문제는 유지합니다. <a href="docs/cooling-midterm-duplicate-review-2026-10-12.html" target="_blank" rel="noopener">전체 범위 중복 검수 결과 ↗</a>에서 통합 이유·원문 차이를 확인할 수 있습니다.</p>
+    <p v-if="tab !== 'history'" class="topic-warning">같은 질문·조건·정답 내용은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 수치·단위·질문 대상·정답이 다르거나 그림 동일성이 불확실한 문제는 유지합니다.</p>
     <p v-if="error" role="alert">{{ error }} <button type="button" @click="emit('retry')">다시 불러오기</button></p>
     <p v-else-if="loading" role="status">공조·한솔 문제를 불러오는 중입니다…</p>
     <template v-if="tab === 'topics' || tab === 'sections'">
@@ -187,7 +187,6 @@ function latestResult(group: TopicGroup): ExamRecord | undefined {
       </div>
     </details>
     <details class="classification-help"><summary>시험 범위·목차 분류 안내</summary>
-      <p><a href="docs/cooling-midterm-classification-review-2026-10-08.html" target="_blank" rel="noopener">목차 분류 검토표 열기 ↗</a></p>
       <p>2006년3회~2016년은 기존 공조, 2017~2023년3회는 한솔 공조를 사용합니다. 교재 본문의 핵심·실전·예제를 대조하며 맨 뒤 회차별 기출 부록은 제외합니다. 안전관리·법규는 계속 별도입니다. 미연결 예제·수치 변형·정답 차이는 확인 목록에 남기며 기존 자료를 임의 변경하지 않습니다.</p>
       <p>보내주신 교재의6개 장과 세부 목차를 반영했습니다. 본문에서 묻는 원리·운전·부품을 우선하고 모호한 문항은 보기·원문 그림을 추가 확인했습니다. 목차 배치가 교재에 실제 수록됐다는 뜻은 아닙니다. ‘분류 미확인’ {{ topicCount('분류 미확인') }}문제는 판정이 어려울 때 별도 유지됩니다.</p>
       <p>원래 문제 그림·정답·해설과 기존 기록은 유지됩니다. 완전히 같은 문항은 한 번만 출제하지만 다른 그림의 유사문제까지 모두 같은 문제로 판정한 것은 아닙니다.</p>

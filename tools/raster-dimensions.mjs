@@ -1,7 +1,8 @@
 // Read existing raster headers only; never decode/recompress or alter assets.
 import fs from 'node:fs';
+import {sourceAssetPath} from './source-asset-path.mjs';
 export function rasterDimensions(path){
- const b=fs.readFileSync(path);
+ const b=fs.readFileSync(sourceAssetPath(path));
  if(b.length>=24&&b.toString('hex',0,8)==='89504e470d0a1a0a')return [b.readUInt32BE(16),b.readUInt32BE(20)];
  if(b.length>=10&&/^GIF8[79]a$/.test(b.toString('ascii',0,6)))return [b.readUInt16LE(6),b.readUInt16LE(8)];
  if(b.length>=12&&b.toString('ascii',0,4)==='RIFF'&&b.toString('ascii',8,12)==='WEBP'){

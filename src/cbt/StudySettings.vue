@@ -12,7 +12,7 @@ const body = ref<HTMLElement>();
 const categories = [
  {key:'display',label:'기기·동적 UI'}, {key:'experimental',label:'학습 도구'},
  {key:'solveLayout',label:'문제풀이 화면'}, {key:'visualStyle',label:'테마·글씨'},
- {key:'answerLayout',label:'답안 선택'}, {key:'data',label:'기록·동기화'},
+ {key:'answerLayout',label:'답안 선택'}, {key:'explanationDisplay',label:'해설 표시'}, {key:'data',label:'기록·동기화'},
 ];
 async function jump(key: string) {
  query.value = '';

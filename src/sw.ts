@@ -11,15 +11,15 @@ const CORE = [
   `./data/catalog-index.js?${versionQuery}`, `./data/catalog-bootstrap.js?${versionQuery}`,
   './data/jewelry.js?v=255', './data/changelog.js?v=255', `./data/changelog-vue.js?${versionQuery}`,
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
-  './admin.html', './cloud-config.js?v=200', './관리자_방문기록_설정방법.txt',
+  './admin.html', './cloud-config.js?v=200',
   `./modern/cbt.css?${versionQuery}`, `./modern/cbt.js?${versionQuery}`, `./modern/mobile.js?${versionQuery}`, './modern/visitor.js?v=255',
   `./modern/chunks/import-wrapper-prod-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/index-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/preload-helper-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/web-v${__CBT_BUILD_VERSION__}.js`,
-  `./modern/chunks/OptionalFeatureBoundary-v${__CBT_BUILD_VERSION__}.js`,
+  `./modern/chunks/problemImages-v${__CBT_BUILD_VERSION__}.js`,
   `./modern/chunks/pwa-v${__CBT_BUILD_VERSION__}.js`, `./modern/chunks/workbox-window.prod.es5-v${__CBT_BUILD_VERSION__}.js`,
-  ...['main', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SyncRecoveryPanel', 'SchoolExamManager', 'CoolingMidterm', 'PracticalTrainingTools', 'rotate-ccw']
+  ...['main', 'problem-image-index', 'createLucideIcon', 'StudySettings', 'ThemeStudio', 'CloudSyncPanel', 'SyncRecoveryPanel', 'SchoolExamManager', 'CoolingMidterm', 'PracticalTrainingTools', 'rotate-ccw']
     .map((name) => `./modern/chunks/${name}-v${__CBT_BUILD_VERSION__}.js`),
-  ...['OptionalFeatureBoundary', 'StudySettings', 'ThemeStudio', 'SyncRecoveryPanel', 'CoolingMidterm']
+  ...['problemImages', 'StudySettings', 'ThemeStudio', 'SyncRecoveryPanel', 'CoolingMidterm']
     .map((name) => `./modern/${name}-v${__CBT_BUILD_VERSION__}.css`),
   `./modern/chunks/index-v${__CBT_BUILD_VERSION__}2.js`,
   // sync-pwa-service-worker.mjs resolves the actual content-hashed worker.

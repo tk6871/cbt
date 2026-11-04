@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';import vm from 'node:vm';import crypto from 'node:crypto';
-import {textbookEntries,textbookStudyItems} from '../src/cbt/textbookPages';
+import {textbookEntries,textbookStudyItems,textbookAssetUrl} from '../src/cbt/textbookPages';
 import {chooseBookPage,enterBookReader} from './textbook-reader-test-helpers';
 import {rasterDimensions} from './raster-dimensions.mjs';
 import {validateBookImagePipeline} from './hansol-book-image-validation.mjs';
@@ -13,7 +13,7 @@ test('직접 검토한 교재 문제·예제·원래 해상도/기존 업스케�
  const w:any={window:{}};vm.runInNewContext(fs.readFileSync('data/hvac-hansol-book.js','utf8'),w);const bank=w.window.CBT_DATA_HVAC_HANSOL_BOOK;
  const items=bank.rounds.flatMap((round:any)=>round.questions.map((question:any)=>({id:`${round.id}:${question.number}`,round,question,subject:question._subject})));
  expect(items).toHaveLength(review.filter((r:any)=>r.kind==='mcq').length);const copies=textbookStudyItems(items);expect(copies).toHaveLength(items.length);
- for(const item of copies){expect(item.question.sourceImage).toMatch(/^assets\/hvac-hansol-book\/questions\//);expect(item.question.explanationImages).toHaveLength(1);expect(item.question.choices).toHaveLength(4);expect(item.question.answerHotspots).toHaveLength(4);const hs=item.question.answerHotspots!;
+ for(const item of copies){const original=items.find((i:any)=>item.id.endsWith(`::${i.id}`))!;expect(original).toBeTruthy();expect(item.question.sourceImage).toBe(textbookAssetUrl(original.question.sourceImage));expect(item.question.explanationImages).toHaveLength(1);expect(item.question.choices).toHaveLength(4);expect(item.question.answerHotspots).toHaveLength(4);const hs=item.question.answerHotspots!;
   for(const h of hs){expect(h.segments).toHaveLength(1);expect(h.x).toBeGreaterThanOrEqual(0);expect(h.y).toBeGreaterThanOrEqual(0);expect(h.x+h.width).toBeLessThanOrEqual(100);expect(h.y+h.height).toBeLessThanOrEqual(100);}
   for(let i=0;i<4;i++)for(let j=i+1;j<4;j++){const a=hs[i],b=hs[j];expect(Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y))).toBe(0);}
  }

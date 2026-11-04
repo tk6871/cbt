@@ -1,3 +1,4 @@
+import {problemImage} from '../cbt/problemImages';
 export function adminViewLabel(value: string | null): string {
   const key = (value || '').replace(/^next-/, '');
   const labels: Record<string, string> = {
@@ -15,7 +16,7 @@ export function issueImageUrl(value: string | null | undefined): string | undefi
   if (!value) return undefined;
   const path = value.replace(/^\.\//, '');
   if (!path.startsWith('assets/') || path.split('/').includes('..') || /[\\?#]/.test(path)) return undefined;
-  return `./${path}`;
+  return problemImage(`./${path}`);
 }
 
 export function issueTypeLabel(value: string): string {

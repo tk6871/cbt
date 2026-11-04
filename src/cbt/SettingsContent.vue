@@ -17,6 +17,7 @@ const solveLayoutMode = computed(() => props.values.solveLayout);
 const answerLayout = computed(() => props.values.answerLayout);
 const hotspotIndicator = computed(() => props.values.indicator);
 const restoredImageTheme = computed(() => props.values.imageTheme);
+const explanationDisplay = computed(() => props.values.explanationDisplay);
 const experimentalFeaturesEnabled = computed(() => props.values.experimental);
 const questionJudgmentEnabled = computed(() => props.values.judgment);
 const sunjaeRotationSeconds = computed(() => props.values.rotation);
@@ -132,6 +133,13 @@ function sunjaeRotationLabel(seconds: number) { return !seconds ? '끔' : second
           <div class="restored-image-options">
             <button :class="{ active: restoredImageTheme === 'auto' }" :aria-pressed="restoredImageTheme === 'auto'" @click="setRestoredImageTheme('auto')"><strong>◐ 눈부심 완화</strong><small>추천 · 짙은 남색</small></button>
             <button :class="{ active: restoredImageTheme === 'original' }" :aria-pressed="restoredImageTheme === 'original'" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
+          </div>
+        </section>
+        <section class="setting-group" data-setting="explanationDisplay" v-show="matches('explanationDisplay')"><span>해설 표시 방식</span>
+          <p class="setting-description">{{settingsHelp.explanationDisplay}}</p>
+          <div class="restored-image-options">
+            <button :class="{active:explanationDisplay==='text'}" :aria-pressed="explanationDisplay==='text'" @click="change('explanationDisplay','text')"><strong>확인된 텍스트 우선</strong><small>기본 · 수식은 분수로 표시</small></button>
+            <button :class="{active:explanationDisplay==='image'}" :aria-pressed="explanationDisplay==='image'" @click="change('explanationDisplay','image')"><strong>원문 이미지</strong><small>이전 방식 그대로</small></button>
           </div>
         </section>
         <section class="setting-group standard-solving-setting" data-setting="answerLayout" v-show="matches('answerLayout')"><span>답안 선택 방식</span>

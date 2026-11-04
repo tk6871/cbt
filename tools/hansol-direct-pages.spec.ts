@@ -67,5 +67,7 @@ test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목
  const repaired=page.locator(`[data-source-id="${formerlyUnseparated.id}"]`);
  await expect(repaired.locator('.direct-caution')).toHaveCount(0);
  await expect(repaired.locator('.direct-solution-parts')).toHaveCount(0);
- await repaired.locator('.direct-solution summary').click();await expect(repaired.locator('.direct-solution-parts img')).toBeVisible();
+ await repaired.locator('.direct-solution>summary').click();
+ await expect(repaired.locator('.direct-explanation-text')).toContainText('질소 78%');
+ await repaired.locator('.direct-solution-original>summary').click();await expect(repaired.locator('.direct-solution-parts img')).toBeVisible();
 });
