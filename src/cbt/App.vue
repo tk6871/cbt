@@ -5809,8 +5809,8 @@ onBeforeUnmount(() => {
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.8.2</span><h2>문제는 그대로, 풀이만 펼쳐 보기</h2></div><p>한솔 원문 미분리127곳을 직접 확인했습니다. 실제117문제는 조건표·보기와 풀이를 나누고 다른 열·쪽의 해설과 공통 그림을 연결했습니다. 본문 오인식6곳과 번호 오인식 중복4곳을 목록에서 제외해 자가확인 원문은749위치입니다. 원본759위치와 기존 CBT·해설·기록·화질 개선본은 보존합니다. 다크·라이트·원본 보기와 기기 내 선택 저장을 지원하며, 이번 경계 검수는 전체 정답 검증·자동채점 완료를 뜻하지 않습니다.</p></header>
-            <p>같은 지문·보기 순서·정답이 확인된 에너지 문제는 기존 COMCBT 등록 해설을 먼저 표시합니다. 교재 원문 해설 이미지 보기로 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 한솔의 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하고 기존 CBT 원본과 기록은 유지합니다. 책 내부 정답표·풀이 불일치나 복수정답은 보류 사유를 표시하며, CBT 시험 중 정답을 포함한 대조 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
+            <header><div><span>NEW · v{{currentVersion}}</span><h2>문제는 그대로, 풀이만 펼쳐 보기</h2></div><p>교재 원문에서 실제 문제와 풀이를 나누고 다른 열·쪽의 해설과 공통 그림을 연결했습니다. 본문 오인식과 번호 오인식 중복은 목록에서 제외하되 원본·기록·화질 개선본은 보존합니다. 다크·라이트·원본 보기와 기기 내 선택 저장을 지원하며, 화면 경계 검수는 전체 정답 검증·자동채점 완료와 구분합니다.</p></header>
+            <p>같은 지문·보기 순서·정답이 확인된 문제는 기존 등록 해설을 먼저 표시합니다. 원문 해설을 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하며 내부 불일치나 복수정답은 보류 사유를 표시합니다. CBT 시험 중 정답을 포함한 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
             <p>교재 선택 화면에서는 사이트 메뉴를 그대로 사용합니다. 문제를 펼친 뒤에는 ‘목차·쪽 선택’과 인쇄 쪽번호를 눌러 이동할 수 있습니다. 연결 현황과 긴 안내는 필요한 경우에만 별도 탭에서 확인하세요.</p>
             <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
           </section>
@@ -5843,7 +5843,7 @@ onBeforeUnmount(() => {
               <button type="button" @click="searchBookmarksOnly = true; openView('search')"><b>★</b><strong>즐겨찾기만 보기</strong><span>검색어 없이 저장한 문제만 모아보기</span></button>
               <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>제출 버튼 체험</strong><span>학습 결과 · 시험 제출을 하단에서 바로</span></button>
             </div>
-            <footer><strong>한솔·공조 해설 보강</strong><span>쉬운 핵심 해설을 먼저 읽고, 확인된 COMCBT 동일 문제 해설은 아래에서 함께 볼 수 있습니다.</span></footer>
+            <footer><strong>문제 해설 보강</strong><span>쉬운 핵심 해설을 먼저 읽고, 동일 문항으로 확인된 다른 해설은 아래에서 함께 볼 수 있습니다.</span></footer>
           </section>
 
           <section v-if="!isJewelry" class="feature-practical-lab">

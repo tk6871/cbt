@@ -15,7 +15,7 @@
     "audit:answer-segments": "node tools/audit-hvac-answer-segments.mjs",
     "audit:answer-pixels": "node tools/audit-hvac-answer-pixels.mjs",
     "link:hvac-explanations": "node tools/link-hvac-additional-explanations.mjs",
-    "build": "vite build && node tools/sync-pwa-service-worker.mjs",
+    "build": "node tools/search-visibility-policy.mjs --write && vite build && node tools/sync-pwa-service-worker.mjs",
     "analyze": "vite build",
     "build:android:web": "npm run build && node tools/build-android-web.mjs",
     "android:sync": "npm run build:android:web && cap sync android",
@@ -30,6 +30,7 @@
     "test:gem-target-exam": "node tools/test-gem-target-exam.mjs",
     "test:hotspot-editor": "node tools/test-hvac-hotspot-editor.mjs",
     "test:pwa": "node tools/test-pwa-build.mjs",
+    "test:search-policy": "node tools/test-search-visibility.mjs",
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {

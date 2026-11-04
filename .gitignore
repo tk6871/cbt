@@ -59,3 +59,4 @@ test-results/
 playwright-report/
 tmp/pdfs/
 __pycache__/
+work/private-notes/
