@@ -46,7 +46,7 @@ const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue')
 const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
 const TextbookLibrary = defineAsyncComponent(() => import('./TextbookLibrary.vue'));
 import {saveBookSelection,type BookSelection} from './textbookReaderState';
-import { textbookStudyItems, textbookSourceKeys, loadTextbookSupplement, bookForStudyId, type TextbookKey } from './textbookPages';
+import { textbookSourceKeys, bookForStudyId, type TextbookKey } from './textbookRoutes';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
 import { orderCoolingSimilar } from './coolingSimilarOrder';
@@ -543,7 +543,16 @@ const allItems = computed(() => [
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
 const textbookSupplement = ref<QuestionItem[]>([]);
-const textbookItems = computed(() => textbookStudyItems([...allItems.value,...textbookSupplement.value]));
+type TextbookModule = typeof import('./textbookPages');
+const textbookModule = ref<TextbookModule>();
+let textbookImport: Promise<TextbookModule> | undefined;
+function loadTextbookModule(): Promise<TextbookModule> {
+  return textbookImport ??= import('./textbookPages').then(module => {
+    textbookModule.value = module;
+    return module;
+  }).catch(error => { textbookImport = undefined; throw error; });
+}
+const textbookItems = computed(() => textbookModule.value?.textbookStudyItems([...allItems.value,...textbookSupplement.value]) ?? []);
 const textbookAnswers = computed<Record<string,number>>(() => {
  const state=studyStore.progress?.textbookPageAnswersV1;
  return state && typeof state==='object' && !Array.isArray(state) ? state as Record<string,number> : {};
@@ -2198,8 +2207,9 @@ async function loadCoolingMidterm(): Promise<void> {
 async function loadTextbookPages():Promise<void> {
  const revision=++textbookLoadRevision;
  textbookLoading.value=true;textbookError.value='';
- try{const book=textbookKey.value;await loadQuestionSources(textbookSourceKeys(book));
-  const supplement=await loadTextbookSupplement(book);
+ try{const book=textbookKey.value;
+  const [module]=await Promise.all([loadTextbookModule(),loadQuestionSources(textbookSourceKeys(book))]);
+  const supplement=await module.loadTextbookSupplement(book);
   if(revision===textbookLoadRevision&&textbookKey.value===book)textbookSupplement.value=supplement;}
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
@@ -2272,7 +2282,11 @@ function isMidtermCalculation(item: QuestionItem): boolean {
 
 async function ensureItemSources(ids: string[]): Promise<void> {
   const savedBooks=[...new Set(ids.map(bookForStudyId).filter((book):book is TextbookKey=>!!book))];
-  if(savedBooks.length)textbookSupplement.value=(await Promise.all(savedBooks.map(loadTextbookSupplement))).flat();
+  if(savedBooks.length){
+    const module=await loadTextbookModule();
+    const supplements=(await Promise.all(savedBooks.map(module.loadTextbookSupplement))).flat();
+    textbookSupplement.value=[...new Map([...textbookSupplement.value,...supplements].map(item=>[item.id,item])).values()];
+  }
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
@@ -2281,6 +2295,11 @@ async function ensureItemSources(ids: string[]): Promise<void> {
     ...(ids.some(id=>id.startsWith('school-energy-')) ? ['energy-midterm'] : []),
     ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
 }
+
+watch(() => view.value === 'wrong' ? recentExamRecords.value : null, records => {
+  const ids = records?.flatMap(record => record.wrongAnswers?.map(wrong => wrong.id) || []).filter(id => bookForStudyId(id)) || [];
+  if (ids.length) void ensureItemSources(ids).catch(() => showToast('교재 오답을 불러오지 못했습니다. 연결을 확인해 주세요.'));
+});
 
 async function startSchoolQuestionSet(payload: { id: string; mode: StudyMode }): Promise<void> {
   const set = schoolExamData.value.questionSets?.find(item => item.id === payload.id);
@@ -3202,7 +3221,12 @@ function startCalculationLearning(limit?: number): void {
   beginSession('learn', `${resultLabel} · ${subjectLabel} · ${roundLabel}`, selected, {}, { calculationMode: true });
 }
 
-function replayHistoryRecord(record: ExamRecord): void {
+async function replayHistoryRecord(record: ExamRecord): Promise<void> {
+  const bookIds = [...(record.itemIds || []), ...Object.keys(record.answers || {})].filter(id => bookForStudyId(id));
+  if (bookIds.length) {
+    try { await ensureItemSources(bookIds); }
+    catch { showToast('교재 풀이 기록의 문제를 불러오지 못했습니다. 다시 시도해 주세요.'); return; }
+  }
   let items = (record.itemIds || []).map((id) => itemMap.value.get(id)).filter((item): item is QuestionItem => Boolean(item));
   if (!items.length && record.roundId) {
     const round = selectedCatalog.value.rounds.find((item) => item.id === record.roundId);

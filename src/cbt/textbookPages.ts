@@ -9,7 +9,8 @@ import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
 import directBoundaries from '../../data/hansol-book-direct-boundaries.json' with {type:'json'};
 import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
 import {resolveBookInkHidden} from './textbookInkHidden';
-export type TextbookKey = 'hansol' | 'energy';
+import type { TextbookKey } from './textbookRoutes';
+export { bookForStudyId, textbookSourceKeys, type TextbookKey } from './textbookRoutes';
 export type TextbookCorrection = {text:string;choices:string[];answer?:number;note:string;sourceImage?:string|null;explanation?:string} & (
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
@@ -68,7 +69,6 @@ export function textbookReferencePage(book:TextbookKey,page:string):string|undef
  if(book!=='energy')return;
  return ({'394':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.','489':'앞 문제의 이어지는 해설과 정답표가 있는 쪽입니다. 새로 풀 문제는 없습니다.','520':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.','599':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.'} as Record<string,string>)[normalizeBookPage(page)];
 }
-export const textbookSourceKeys = (book: TextbookKey) => book === 'hansol' ? ['hvac','hvac-hansol'] : ['energy','energy-midterm'];
 // Book-only scans must not duplicate the existing ordinary exam rounds or
 // expand a midterm selection. Load them only for the book reader/resume.
 const supplementLoads:Partial<Record<TextbookKey,Promise<QuestionItem[]>>>={};
@@ -96,9 +96,6 @@ export function textbookStudyId(e:TextbookEntry):string {return `book-study::${e
 // Same source question can have book-specific changed values/answers. Keep
 // those variants when combining pages, instead of deduplicating by source ID.
 export function textbookSelectionKey(e:TextbookEntry):string {return JSON.stringify([e.sourceId,e.correction?.text,e.correction?.choices,e.correction?.answer]);}
-export function bookForStudyId(id:string):TextbookKey|undefined {
- const m=/^book-study::(hansol|energy)::/.exec(id);return m?.[1] as TextbookKey|undefined;
-}
 export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=textbookEntries):QuestionItem[]{
  const map=new Map(items.map(i=>[i.id,i]));
  return entries.flatMap(e=>{

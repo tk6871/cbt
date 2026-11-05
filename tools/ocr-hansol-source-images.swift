@@ -10,7 +10,7 @@ let inputs = try JSONSerialization.jsonObject(with: Data(contentsOf: URL(fileURL
 let output = URL(fileURLWithPath: args[1])
 try FileManager.default.createDirectory(at: output, withIntermediateDirectories: true)
 for (index, row) in inputs.enumerated() {
-  try autoreleasepool {
+  do { try autoreleasepool {
     let path = row["path"]!, id = row["id"]!
     let digest = SHA256.hash(data: try Data(contentsOf: URL(fileURLWithPath: path))).map { String(format: "%02x", $0) }.joined()
     let destination = output.appendingPathComponent(id.replacingOccurrences(of: ":", with: "--") + ".json")
@@ -29,6 +29,8 @@ for (index, row) in inputs.enumerated() {
     }
     let result: [String: Any] = ["id": id, "path": path, "sha256": digest, "rows": rows, "purpose": "private-comparison-only"]
     try JSONSerialization.data(withJSONObject: result, options: [.sortedKeys]).write(to: destination, options: .atomic)
+  }} catch {
+    fputs("OCR failed for \(row["id"] ?? "unknown"): \(error)\n", stderr)
   }
   if index % 25 == 0 || index + 1 == inputs.count { print("Source OCR \(index+1)/\(inputs.count)"); fflush(stdout) }
 }

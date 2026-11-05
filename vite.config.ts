@@ -7,7 +7,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { zodCommentCompat } from './tools/zod-comment-compat.mjs';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '634';
+const buildVersion = '635';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({
@@ -43,6 +43,7 @@ export default defineConfig({
   ],
   build: {
     outDir: 'modern',
+    manifest: 'pwa-build-manifest.json',
     emptyOutDir: true,
     sourcemap: false,
     cssCodeSplit: true,
@@ -57,7 +58,7 @@ export default defineConfig({
         mobile: resolve(projectRoot, 'src/cbt/mobile.ts')
       },
       output: {
-        manualChunks: (id) => id.endsWith('/data/problem-images-webp90.json') ? 'problem-image-index' : undefined,
+        manualChunks: (id) => id.endsWith('/data/problem-image-index.json') ? 'problem-image-index' : undefined,
         entryFileNames: '[name].js',
         chunkFileNames: `chunks/[name]-v${buildVersion}.js`,
         // Lazy Vue styles change their scoped selectors when the component changes.
