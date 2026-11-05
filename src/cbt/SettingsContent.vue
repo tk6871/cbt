@@ -135,10 +135,11 @@ function sunjaeRotationLabel(seconds: number) { return !seconds ? '끔' : second
             <button :class="{ active: restoredImageTheme === 'original' }" :aria-pressed="restoredImageTheme === 'original'" @click="setRestoredImageTheme('original')"><strong>□ 항상 원본</strong><small>흰 문제지 유지</small></button>
           </div>
         </section>
-        <section class="setting-group" data-setting="explanationDisplay" v-show="matches('explanationDisplay')"><span>해설 표시 방식</span>
+        <section class="setting-group" data-setting="explanationDisplay" v-show="matches('explanationDisplay')"><span>문제·해설 표시 방식</span>
           <p class="setting-description">{{settingsHelp.explanationDisplay}}</p>
           <div class="restored-image-options">
             <button :class="{active:explanationDisplay==='text'}" :aria-pressed="explanationDisplay==='text'" @click="change('explanationDisplay','text')"><strong>확인된 텍스트 우선</strong><small>기본 · 수식은 분수로 표시</small></button>
+            <button :class="{active:explanationDisplay==='ocr'}" :aria-pressed="explanationDisplay==='ocr'" @click="change('explanationDisplay','ocr')"><strong>OCR 텍스트 · 임시</strong><small>에너지 교재 · 오타 시 이미지로 복귀</small></button>
             <button :class="{active:explanationDisplay==='image'}" :aria-pressed="explanationDisplay==='image'" @click="change('explanationDisplay','image')"><strong>원문 이미지</strong><small>이전 방식 그대로</small></button>
           </div>
         </section>

@@ -1,9 +1,9 @@
 import {readonly, ref} from 'vue';
 
-export type ExplanationDisplay = 'text' | 'image';
+export type ExplanationDisplay = 'text' | 'image' | 'ocr';
 export const explanationDisplayKey = 'cbt-explanation-display-v1';
 function load(): ExplanationDisplay {
-  try { return localStorage.getItem(explanationDisplayKey) === 'image' ? 'image' : 'text'; }
+  try { const value=localStorage.getItem(explanationDisplayKey); return value === 'image' || value === 'ocr' ? value : 'text'; }
   catch { return 'text'; }
 }
 const preference = ref<ExplanationDisplay>(load());

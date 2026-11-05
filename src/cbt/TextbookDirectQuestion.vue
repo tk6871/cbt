@@ -8,7 +8,7 @@ import {textbookExplanationText} from './textbookExplanationText';
 import {textbookAssetUrl,textbookDirectImage,type TextbookDirectSource,type TextbookDirectPage} from './textbookPages';
 const props=defineProps<{source:TextbookDirectSource;page:TextbookDirectPage;original:boolean}>();
 const chosen=ref(0),storageFailed=ref(false),fullOpen=ref(false),answerOpen=ref(false),upscaleFailed=ref(false),originalOpen=ref(false);
-const textExplanation=computed(()=>explanationDisplay.value==='text'?textbookExplanationText(props.source):undefined);
+const textExplanation=computed(()=>explanationDisplay.value!=='image'?textbookExplanationText(props.source):undefined);
 const storageKey=computed(()=>`cbt-book-direct-choice-v1::${props.source.id}`);
 watch(storageKey,key=>{try{const n=Number(localStorage.getItem(key));chosen.value=n>=1&&n<=4?n:0;}catch{chosen.value=0;}fullOpen.value=false;answerOpen.value=false;originalOpen.value=false;upscaleFailed.value=false;},{immediate:true});
 function choose(n:number){chosen.value=chosen.value===n?0:n;try{if(chosen.value)localStorage.setItem(storageKey.value,String(chosen.value));else localStorage.removeItem(storageKey.value);storageFailed.value=false;}catch{storageFailed.value=true;}}

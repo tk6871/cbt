@@ -7,6 +7,7 @@ import { calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem 
 import { submitQuestionIssue, type QuestionIssueType } from './cloudSync';
 import type { QuestionItem, StudyMode } from './types';
 import ExplanationFigures from './ExplanationFigures.vue';
+import {useImageTranscription,escapeTranscription} from './imageTranscription';
 
 const props = defineProps<{
   item: QuestionItem;
@@ -42,7 +43,11 @@ defineEmits<{
   updateStudyNote: [note: string];
 }>();
 
-const primaryImage = computed(() => isImagePrimary(props.item));
+const {entry:sourceTranscription,pending:transcriptionPending}=useImageTranscription(computed(()=>props.item.question.sourceImage));
+const sourceImageOverride=ref(false);
+watch(()=>props.item.id,()=>sourceImageOverride.value=false);
+const transcribedQuestion=computed(()=>!sourceImageOverride.value?sourceTranscription.value?.question:undefined);
+const primaryImage = computed(() => isImagePrimary(props.item)&&!transcribedQuestion.value);
 const hansolQuestion = computed(() => props.item.round.qualificationKey === 'hvac-hansol');
 const fieldReportQuestion = computed(() => props.item.round.kind === 'field-report-practice');
 const restoredQuestion = computed(() =>
@@ -62,7 +67,7 @@ const calculationNumberOrigins = computed(() => {
   });
   return [...new Set([...guideOrigins, ...commonOrigins])];
 });
-const verifiedHotspots = computed(() => props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
+const verifiedHotspots = computed(() => primaryImage.value&&props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
 const unifiedHotspots = computed(() => unifiedAnswerHotspots(verifiedHotspots.value));
 const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
 const selectedAreaHighlightStyles = computed(() => {
@@ -211,6 +216,7 @@ function leadingChoiceMarkerPattern(index: number): RegExp {
 }
 
 const displayedQuestionMarkup = computed(() => {
+  if(transcribedQuestion.value)return escapeTranscription(transcribedQuestion.value.stem);
   const source = props.item.question.html || props.item.question.text || '';
   return String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
 });
@@ -218,6 +224,7 @@ const embeddedChoiceMarkers = computed(() => props.item.question.choices.length 
   && props.item.question.choices.every((choice, index) => leadingChoiceMarkerPattern(index)
     .test(String(choice.html || choice.text || ''))));
 const displayedChoices = computed(() => props.item.question.choices.map((choice, index) => {
+  if(transcribedQuestion.value)return escapeTranscription(transcribedQuestion.value.choices[index]||'');
   const source = String(choice.html || choice.text || `${index + 1}번`);
   return embeddedChoiceMarkers.value ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
 }));
@@ -553,9 +560,14 @@ onBeforeUnmount(() => {
       <footer><small>{{ issueReportDetails.length }}/1500자 · 관리자 확인용으로만 저장됩니다.</small><button type="submit" :disabled="issueReportSending">{{ issueReportSending ? '저장 중…' : '이상 문제 저장' }}</button></footer>
     </form>
 
+    <div v-if="sourceTranscription?.question" class="question-transcription-control">
+      <small>{{transcribedQuestion?(sourceTranscription.status==='reviewed'?'원문 대조 텍스트':'OCR 임시 텍스트 · 오타 가능'):'원문 이미지'}}</small>
+      <button type="button" @click="sourceImageOverride=!sourceImageOverride">{{transcribedQuestion?'이미지로 보기':'텍스트로 보기'}}</button>
+    </div>
     <div class="question-content" :class="{ 'source-image-content': primaryImage }">
+      <p v-if="transcriptionPending" role="status">텍스트 확인 중…</p>
       <div
-        v-if="primaryImage && item.question.sourceImage"
+        v-else-if="primaryImage && item.question.sourceImage"
         class="source-image-frame"
       >
         <div class="source-image-stage">
@@ -636,7 +648,7 @@ onBeforeUnmount(() => {
       <p v-else>교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수 있습니다.</p>
       <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img  class="source-question-image" :class="restoredImageClass" :src="$problemImage(item.question.bookCorrection.originalImage)" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
     </component>
-    <div v-if="!verifiedHotspots.length" class="choice-grid-shell">
+    <div v-if="!transcriptionPending && !verifiedHotspots.length" class="choice-grid-shell">
       <div
         class="choice-grid"
         :class="{
