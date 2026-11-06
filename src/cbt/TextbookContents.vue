@@ -2,7 +2,7 @@
 import {computed,ref,shallowRef,watch,onBeforeUnmount} from 'vue';
 import type {QuestionItem} from './types';
 import {textbookEntries,textbookStudyId,type TextbookKey} from './textbookPages';
-import {bookContents,contentsRows,searchContents,contentsExamples,type ContentsRow} from './textbookContents';
+import {bookContents,contentsRows,addContentsQuestionText,searchContents,contentsExamples,type ContentsRow} from './textbookContents';
 import BookContentsBranch from './BookContentsBranch.vue';
 const props=defineProps<{book:TextbookKey;items:QuestionItem[];selected:string}>();
 const emit=defineEmits<{select:[row:ContentsRow]}>();
@@ -12,7 +12,8 @@ async function loadIndex(){const current=++revision;indexError.value=false;if(pr
  try{const data=await import('../../data/energy-textbook-search.json');if(current===revision)ocr.value=data.default.texts;}
  catch{if(current===revision)indexError.value=true;}finally{if(current===revision)indexLoading.value=false;}
 }
-watch(()=>props.book,()=>{query.value='';debounced.value='';indexLoading.value=false;void loadIndex();},{immediate:true});
+watch(()=>props.book,()=>{revision++;query.value='';debounced.value='';indexLoading.value=false;indexError.value=false;if(timer)clearTimeout(timer);});
+watch(debounced,value=>{if(value.trim())void loadIndex();});
 watch(query,value=>{if(timer)clearTimeout(timer);timer=setTimeout(()=>{debounced.value=value;limit.value=20;},180);});
 onBeforeUnmount(()=>{revision++;if(timer)clearTimeout(timer);});
 const itemMap=computed(()=>new Map(props.items.map(item=>[item.id,item])));
@@ -22,9 +23,10 @@ const text=computed(()=>{
   const q=item.question;result[e.sourceId]=[q.text,q.ocrText,...q.choices.map(c=>c.text||c.html),result[e.sourceId]].filter(Boolean).join(' ');
  }return result;
 });
-const rows=computed(()=>contentsRows(bookContents[props.book],textbookEntries,text.value));
+const rows=computed(()=>contentsRows(bookContents[props.book],textbookEntries));
+const searchableRows=computed(()=>addContentsQuestionText(rows.value,text.value));
 const counts=computed(()=>Object.fromEntries(rows.value.map(row=>[row.node.id,{ready:new Set(row.entries.filter(e=>itemMap.value.has(textbookStudyId(e))).map(e=>e.sourceId)).size,direct:row.entries.filter(e=>e.directSourceId).length,pending:row.entries.filter(e=>!e.directSourceId&&!itemMap.value.has(textbookStudyId(e))).length,examples:contentsExamples(row.node).length}])));
-const results=computed(()=>searchContents(rows.value,debounced.value));
+const results=computed(()=>debounced.value.trim()?searchContents(searchableRows.value,debounced.value):[]);
 function select(id:string){const row=rows.value.find(r=>r.node.id===id);if(row?.node.from)emit('select',row);}
 </script>
 <template>

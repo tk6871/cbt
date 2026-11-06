@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import {bookContents,contentsRows,searchContents,contentsEntries} from '../src/cbt/textbookContents';
+import {bookContents,contentsRows,searchContents,contentsEntries,addContentsQuestionText} from '../src/cbt/textbookContents';
 import {textbookEntries} from '../src/cbt/textbookPages';
 import energyIndex from '../data/energy-textbook-search.json' with {type:'json'};
 import {openBookNavigator,enterBookReader} from './textbook-reader-test-helpers';
@@ -10,6 +10,7 @@ test('실제 장절 경계 · 부분/순서/붙여쓰기/가벼운 오타 검색
  const context:any={window:{}};for(const k of ['hvac','hvac-hansol'])vm.runInNewContext(fs.readFileSync(`data/${k}.js`,'utf8'),context);
  const text=Object.fromEntries(Object.values(context.window).flatMap((b:any)=>b.rounds.flatMap((r:any)=>r.questions.map((q:any)=>[`${r.id}:${q.number}`,[q.text,q.ocrText,...q.choices.map((c:any)=>c.text)].join(' ')]))));
  const rows=contentsRows(bookContents.hansol,textbookEntries,text);
+ expect(addContentsQuestionText(contentsRows(bookContents.hansol,textbookEntries),text).map(r=>r.text)).toEqual(rows.map(r=>r.text));
  expect(new Set(rows.map(r=>r.node.id)).size).toBe(rows.length);
  const core=rows.find(r=>r.node.id==='hansol-2-1-2-core')!;
  expect(core.node.from).toBe('2-32');expect(core.node.to).toBe('2-36');

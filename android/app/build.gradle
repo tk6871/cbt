@@ -7,8 +7,8 @@ android {
         applicationId "com.tk6871.cbt"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 635
-        versionName "6.0"
+        versionCode 636
+        versionName "6.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -34,6 +34,17 @@ android {
                 signingConfig signingConfigs.release
             }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    // Local signing stages generated web files away from cloud-sync conflict
+    // copies. CI uses the normal source directories when no override is set.
+    def localReleaseSources = System.getenv('CBT_ANDROID_LOCAL_RELEASE_SOURCES')
+    if (localReleaseSources) {
+        sourceSets {
+            main {
+                assets.srcDirs = [file("${localReleaseSources}/assets")]
+                res.srcDirs = [file("${localReleaseSources}/res")]
+            }
         }
     }
 }

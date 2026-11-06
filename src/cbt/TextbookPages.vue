@@ -17,10 +17,12 @@ watch(auditSearch,()=>auditLimit.value=80);
 async function openAuditPage(page:string){choose(page);closeNavigator();await scrollToSheet();}
 const contentsId=ref(''),contentsLabel=ref('');const contentsWrap=ref<HTMLElement|null>(null),pageResult=ref<HTMLElement|null>(null);
 const navigator=ref<HTMLDialogElement|null>(null),navigatorTrigger=ref<HTMLButtonElement|null>(null);
+const navigatorVisited=ref(false);
 const navigatorTab=ref<'contents'|'pages'|'info'>('contents'),draftFrom=ref(''),draftTo=ref('');
 function validPage(value:string){const page=normalizeBookPage(value);return props.book==='hansol'?/^[1-9]\d*-[1-9]\d*$/.test(page):/^[1-9]\d*$/.test(page)&&Number(page)<=645;}
 const draftInvalid=computed(()=>!validPage(draftFrom.value)||!!normalizeBookPage(draftTo.value)&&(!validPage(draftTo.value)||compareBookPages(normalizeBookPage(draftFrom.value),normalizeBookPage(draftTo.value))>0));
 function openNavigator(tab:'contents'|'pages'|'info'='contents'){
+ navigatorVisited.value=true;
  navigatorTab.value=tab;draftFrom.value=from.value;draftTo.value=to.value;
  navigator.value?.showModal();
 }
@@ -91,7 +93,7 @@ const pageColumns=computed(()=>{
    <div ref="pageResult" class="book-page-result" aria-live="polite"><div><h2>{{contentsLabel||`${start}쪽${end?` ~ ${end}쪽`:''}`}}</h2><p><strong>{{matched.length}}문제</strong><template v-if="directCount"> · 교재 원문 {{directCount}}개</template><template v-if="end"> · 범위 {{start}}~{{end}}쪽 · 아래는 {{start}}쪽</template><template v-if="pending"> · 대조 중 {{pending}}위치</template></p></div>
     <div class="book-play"><button :disabled="!matched.length||invalid" @click="play('learn')">범위를 모아 일반 학습</button><button :disabled="!matched.length||invalid" @click="play('exam')">범위를 모아 CBT 시험</button></div>
    </div>
-   <p v-if="directCount" class="reader-page-note direct-reading-notice">대조를 기다리던 위치는 교재 원문으로 먼저 수록했습니다. ①~④로 내 답안을 기록하고 접힌 교재 풀이·정답표를 확인하세요. 자가확인 원문은 일반 학습·CBT 점수에 합산하지 않습니다. 선택은 이 기기에 저장됩니다.</p>
+   <p v-if="directCount" class="reader-page-note direct-reading-notice">교재 원문은 ①~④로 답을 고를 수 있습니다. ‘정답표 대조 완료’ 문항은 바로 채점되고, ‘자가확인’은 풀이·인쇄 정답표에서 확인하세요. 선택은 이 기기에 저장되고 일반 학습·CBT 점수에는 합산하지 않습니다.</p>
    <div v-if="referencePage||!locations.length||examples.length||pending" class="reader-page-note">
     <p v-if="referencePage">{{referencePage}}</p>
     <p v-else-if="!locations.length&&!examples.length">{{audit?'이 쪽은 전체 화면 자동 대조에 포함되었지만, 확정 연결된 문항은 아직 없습니다.':'이 쪽은 아직 문제 연결을 확인하지 않았습니다.'}} 교재에 문제가 없다는 뜻은 아닙니다.</p>
@@ -125,8 +127,8 @@ const pageColumns=computed(()=>{
     <header class="navigator-header"><div><small>CONTENTS</small><h2 id="book-navigator-title">어디부터 풀까요?</h2><p>목차를 펼치거나 책에 적힌 쪽번호로 이동하세요.</p></div><button type="button" aria-label="목차·쪽 선택 닫기" @click="closeNavigator">×</button></header>
     <div class="book-tabs" aria-label="교재 선택"><button v-for="(name,key) in textbookNames" :key="key" :aria-pressed="book===key" @click="emit('book',key)">{{name}}</button></div>
     <nav class="navigator-tabs" aria-label="교재 탐색 방식"><button :aria-pressed="navigatorTab==='contents'" @click="navigatorTab='contents'">교재 목차</button><button :aria-pressed="navigatorTab==='pages'" @click="navigatorTab='pages';draftFrom=from;draftTo=to">쪽번호 이동</button><button :aria-pressed="navigatorTab==='info'" @click="navigatorTab='info'">연결 현황·안내</button></nav>
-    <div v-show="navigatorTab==='contents'" ref="contentsWrap" class="navigator-contents"><TextbookContents :book="book" :items="items" :selected="contentsId" @select="selectContents" /></div>
-    <section v-show="navigatorTab==='pages'" class="navigator-page-panel">
+    <div v-if="navigatorVisited" v-show="navigatorTab==='contents'" ref="contentsWrap" class="navigator-contents"><TextbookContents :book="book" :items="items" :selected="contentsId" @select="selectContents" /></div>
+    <section v-if="navigatorVisited" v-show="navigatorTab==='pages'" class="navigator-page-panel">
      <h3>책에 인쇄된 쪽번호</h3><p>한솔의 <b>4-10</b>은 4~10쪽 범위가 아닌 한 페이지입니다.</p>
      <form class="page-picker" @submit.prevent="applyPages">
       <label>시작 쪽<input v-model="draftFrom" :list="`book-pages-${book}`" :placeholder="book==='hansol'?'예: 4-10':'예: 442'" autocomplete="off"></label>
@@ -136,7 +138,7 @@ const pageColumns=computed(()=>{
      </form><p v-if="draftInvalid" role="status">책의 쪽번호를 입력하세요. 끝 쪽을 입력한다면 시작 쪽보다 뒤여야 합니다.</p>
      <details><summary>등록된 쪽에서 고르기 · {{pages.length}}쪽</summary><div class="registered-book-pages"><button v-for="page in pages" :key="page" :aria-pressed="selectedPages.includes(page)" @click="selectPage(page)">{{page}}</button></div></details>
     </section>
-    <section v-show="navigatorTab==='info'" class="navigator-info">
+    <section v-if="navigatorVisited" v-show="navigatorTab==='info'" class="navigator-info">
      <p v-if="audit" class="book-page-audit">{{start}}쪽 · 자동 인식 후보 {{audit.detectedPositions}}위치. 최종 문제 수나 개별 검토 완료를 뜻하지 않습니다.</p>
   <details v-if="book==='hansol'" class="book-comparison-summary">
    <summary>전체 자동 대조 현황 · {{textbookAuditPages.length}}쪽</summary>

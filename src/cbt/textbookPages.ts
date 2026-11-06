@@ -86,7 +86,8 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
 export function normalizeBookPage(value: string): string {
  return value.normalize('NFKC').trim().replace(/쪽|페이지|\s/g,'').replace(/[–—−]/g,'-').replace(/^p\.?/i,'');
 }
-export function compareBookPages(a:string,b:string):number {return a.localeCompare(b,'ko',{numeric:true});}
+const bookPageCollator=new Intl.Collator('ko',{numeric:true});
+export function compareBookPages(a:string,b:string):number {return bookPageCollator.compare(a,b);}
 export function adjacentBookPage(book:TextbookKey,page:string,delta:number):string|undefined {
  const m=(book==='hansol'?/^(\d+)-(\d+)$/:/^(\d+)$/).exec(normalizeBookPage(page));if(!m)return;
  const n=Number(m.at(-1))+delta;if(n<1||book==='energy'&&n>645)return;

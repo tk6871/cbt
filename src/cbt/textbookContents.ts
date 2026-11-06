@@ -91,7 +91,7 @@ export function contentsExamples(node:BookContentsNode):typeof textbookWorkedExa
 }
 export type ContentsRow={node:BookContentsNode;path:string[];entries:TextbookEntry[];text:string;terms:string[]};
 const normalize=(s:string)=>s.normalize('NFKC').toLowerCase().replace(/<[^>]*>/g,' ').replace(/[^\p{L}\p{N}]/gu,'');
-export function contentsRows(nodes:BookContentsNode[],entries:TextbookEntry[],questionText:Record<string,string>):ContentsRow[]{
+export function contentsRows(nodes:BookContentsNode[],entries:TextbookEntry[],questionText:Record<string,string>={}):ContentsRow[]{
  const rows:ContentsRow[]=[];
  function walk(node:BookContentsNode,path:string[],inherited:string[]){
   const loc=contentsEntries(node,entries);const words=[...inherited,...(node.keywords||[])];
@@ -99,6 +99,9 @@ export function contentsRows(nodes:BookContentsNode[],entries:TextbookEntry[],qu
   rows.push({node,path,entries:loc,text:normalize([...titles,...words,...new Set(loc.map(e=>questionText[e.sourceId||'']||''))].join(' ')),terms:[...titles,...words].flatMap(s=>s.split(/[\s·()／/]+/)).map(normalize).filter(Boolean)});
   node.children?.forEach(child=>walk(child,titles,words));
  }nodes.forEach(node=>walk(node,[],[]));return rows;
+}
+export function addContentsQuestionText(rows:ContentsRow[],questionText:Record<string,string>):ContentsRow[]{
+ return rows.map(row=>({...row,text:row.text+normalize([...new Set(row.entries.map(e=>questionText[e.sourceId||'']||''))].join(' '))}));
 }
 function near(a:string,b:string):boolean{
  if(a.length<3||Math.abs(a.length-b.length)>1)return false;

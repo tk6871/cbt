@@ -543,6 +543,7 @@ const allItems = computed(() => [
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
 const textbookSupplement = ref<QuestionItem[]>([]);
+const textbooksReady = new Set<TextbookKey>();
 type TextbookModule = typeof import('./textbookPages');
 const textbookModule = ref<TextbookModule>();
 let textbookImport: Promise<TextbookModule> | undefined;
@@ -2205,12 +2206,19 @@ async function loadCoolingMidterm(): Promise<void> {
 }
 
 async function loadTextbookPages():Promise<void> {
+ const book=textbookKey.value;
  const revision=++textbookLoadRevision;
+ if(textbooksReady.has(book)){textbookLoading.value=false;textbookError.value='';return;}
  textbookLoading.value=true;textbookError.value='';
- try{const book=textbookKey.value;
-  const [module]=await Promise.all([loadTextbookModule(),loadQuestionSources(textbookSourceKeys(book))]);
-  const supplement=await module.loadTextbookSupplement(book);
-  if(revision===textbookLoadRevision&&textbookKey.value===book)textbookSupplement.value=supplement;}
+ try{
+  const [supplement]=await Promise.all([
+   loadTextbookModule().then(module=>module.loadTextbookSupplement(book)),
+   loadQuestionSources(textbookSourceKeys(book)),
+  ]);
+  const combined=new Map([...textbookSupplement.value,...supplement].map(item=>[item.id,item]));
+  if(combined.size!==textbookSupplement.value.length)textbookSupplement.value=[...combined.values()];
+  textbooksReady.add(book);
+ }
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
 }

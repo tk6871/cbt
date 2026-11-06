@@ -17,7 +17,12 @@ buildscript {
 
 apply from: "variables.gradle"
 
+def localReleaseSources = System.getenv('CBT_ANDROID_LOCAL_RELEASE_SOURCES')
 allprojects {
+    if (localReleaseSources) {
+        def moduleFolder = path == ':' ? 'root' : path.substring(1).replace(':', '/')
+        layout.buildDirectory.set(new File(localReleaseSources, "builds/${moduleFolder}"))
+    }
     repositories {
         google()
         mavenCentral()

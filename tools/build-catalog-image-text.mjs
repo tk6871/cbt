@@ -4,7 +4,12 @@ const directory='work/private-notes/image-text';
 const output='data/image-text';
 const read=path=>JSON.parse(fs.readFileSync(path,'utf8'));
 const inputs=read(`${directory}/catalog-inputs.json`);
-const reviewed={...read('tools/image-text-reviewed.json').entries,...read('tools/image-text-catalog-reviewed.json').entries};
+const priority=read('tools/image-text-priority-reviewed.json');
+const reviewed={...read('tools/image-text-reviewed.json').entries,...read('tools/image-text-catalog-reviewed.json').entries,
+ ...Object.fromEntries(Object.entries(priority.entries).map(([path,entry])=>[path,{...entry,basis:priority.basis}]))};
+// Misread exponents and unit glyphs observed in the priority review. Leave
+// unverified cases on the original instead of guessing a corrected unit.
+const brokenUnit=/(?:\d\s*(?:cm|mm|m)\s*[?'′]|\d\s*(?:cm|mm|m)[23](?!\d)|kgf\s*\/\s*(?:cai|cm3)\b|\b(?:kd|k)\s*\/\s*kg\b)/i;
 const visual=/그림|선도|도표|회로|다음\s*표|표에서|그래프|계산|공식|수식|관계식|방정식|(?:나타내는|옳은|틀린|맞는)\s*식(?:은|을|이|으로)|[=√∫∑≤≥]|[a-z\d)]\s*\+\s*[a-z\d(]|\d\s*[/×÷^]\s*\d|몇\s*(?:k[WJgP]|Pa|W|kg|℃|m\b)/i;
 const families=new Map(),confirmed={},stats={},reviewRows=[];
 const check=process.argv.includes('--check');
@@ -30,10 +35,11 @@ for(const input of inputs){
  const rows=raw?.rows||[];
  const text=rows.map(r=>r.text).join('\n').replace(/^\s*해설\s*\n/,'').trim();
  const confidence=rows.reduce((n,r)=>n+r.score,0)/Math.max(1,rows.length);
- const manual=reviewed[input.original];
+ const manual=reviewed[input.original], imageOnly=priority.imageOnly[input.original];
  if(manual&&manual.sha256!==sha)throw new Error(`Reviewed source changed: ${input.original}`);
+ if(imageOnly&&(imageOnly!==sha||manual))throw new Error(`Invalid image-only decision: ${input.original}`);
  const question=manual?.question||(input.kind==='question'?parseQuestion(text,input.number):undefined);
- const reason=manual?'reviewed':!raw||!ink?'missing':input.figure||visual.test(text)?'visual':confidence<.81||text.length<12?'confidence':
+ const reason=manual?'reviewed':imageOnly?'reviewed-image':!raw||!ink?'missing':input.figure||visual.test(text)?'visual':brokenUnit.test(text)?'unit-glyph':confidence<.81||text.length<12?'confidence':
   ink.ink<24||ink.outside>Math.max(14,ink.ink*.035)||ink.maxLine>Math.max(12,ink.width*.06)?'unrecognized-ink':input.kind==='question'&&!question?'choice-order':'provisional';
  const bank=stats[input.bank]??={questions:0,explanations:0,eligibleQuestions:0,eligibleExplanations:0,reasons:{}};
  bank[input.kind==='question'?'questions':'explanations']++;

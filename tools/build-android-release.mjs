@@ -1,7 +1,9 @@
 import { existsSync } from 'node:fs';
-import { copyFile, mkdir, readFile } from 'node:fs/promises';
+import { copyFile, cp, mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
-import { resolve } from 'node:path';
+import { tmpdir } from 'node:os';
+import { basename, dirname, join, relative, resolve } from 'node:path';
+import { readGitFileList } from './git-file-list.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const androidRoot = resolve(root, 'android');
@@ -42,34 +44,55 @@ const env = {
   ANDROID_KEY_ALIAS: properties.keyAlias,
   ANDROID_KEY_PASSWORD: properties.keyPassword,
 };
-const build = spawnSync(gradle, ['assembleRelease'], { cwd: androidRoot, env, stdio: 'inherit' });
-if (build.status !== 0) process.exit(build.status ?? 1);
-
 const buildGradle = await readFile(resolve(androidRoot, 'app/build.gradle'), 'utf8');
 const version = buildGradle.match(/versionName\s+["']([^"']+)["']/)?.[1];
 if (!version) {
   console.error('Android versionName을 찾지 못했습니다.');
   process.exit(1);
 }
-
-const source = resolve(androidRoot, 'app/build/outputs/apk/release/app-release.apk');
-const outputDirectory = resolve(root, 'dist');
-const output = resolve(outputDirectory, `industrial-cbt-v${version}.apk`);
-await mkdir(outputDirectory, { recursive: true });
-await copyFile(source, output);
-
 const sdkRoot = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT;
 const localProperties = resolve(androidRoot, 'local.properties');
 const configuredSdk = existsSync(localProperties)
   ? (await readFile(localProperties, 'utf8')).match(/^sdk\.dir=(.+)$/m)?.[1]?.replace(/\\\\/g, '\\')
   : '';
 const apksigner = resolve(sdkRoot || configuredSdk || '', 'build-tools/36.0.0/apksigner');
-if (apksigner && existsSync(apksigner)) {
-  const verify = spawnSync(apksigner, ['verify', '--verbose', '--print-certs', output], {
-    env: { ...process.env, JAVA_HOME: javaHome },
-    stdio: 'inherit',
+const outputDirectory = resolve(root, 'dist');
+const output = resolve(outputDirectory, `industrial-cbt-v${version}.apk`);
+const tracked = await readGitFileList({ cwd: root });
+const webAssets = resolve(androidRoot, 'app/src/main/assets/public');
+const staging = await mkdtemp(join(tmpdir(), 'cbt-android-release-'));
+try {
+  // An iCloud copy can appear *after* Cap sync and block Gradle on a
+  // dataless file or introduce an invalid res filename. Keep legitimate
+  // numbered paths without a canonical sibling and never remove originals.
+  const filter = (source) => {
+    const name = basename(source);
+    if (name === '.DS_Store') return false;
+    const sibling = name.replace(/ (?:[2-9]|[1-9]\d+)(?=\.[^./]+$)/, '');
+    return sibling === name || tracked.has(relative(root, source)) ||
+      tracked.has(relative(webAssets, source)) || !existsSync(join(dirname(source), sibling));
+  };
+  for (const dir of ['assets', 'res']) {
+    await cp(resolve(androidRoot, 'app/src/main', dir), join(staging, dir), { recursive: true, filter });
+  }
+  const build = spawnSync(gradle, ['--project-cache-dir', join(staging, 'project-cache'), 'assembleRelease'], {
+    cwd: androidRoot, env: { ...env, CBT_ANDROID_LOCAL_RELEASE_SOURCES: staging }, stdio: 'inherit',
   });
-  if (verify.status !== 0) process.exit(verify.status ?? 1);
+  if (build.status !== 0) {
+    process.exitCode = build.status ?? 1;
+  } else {
+    const source = resolve(staging, 'builds/app/outputs/apk/release/app-release.apk');
+    const verification = existsSync(apksigner)
+      ? spawnSync(apksigner, ['verify', '--verbose', '--print-certs', source], { env, stdio: 'inherit' })
+      : undefined;
+    if (verification && verification.status !== 0) {
+      process.exitCode = verification.status ?? 1;
+    } else {
+      await mkdir(outputDirectory, { recursive: true });
+      await copyFile(source, output);
+      console.log(`서명된 Android APK: ${output}`);
+    }
+  }
+} finally {
+  await rm(staging, { recursive: true, force: true });
 }
-
-console.log(`서명된 Android APK: ${output}`);

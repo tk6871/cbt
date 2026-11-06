@@ -8,9 +8,13 @@ test.use({serviceWorkers:'block'});
 test('전사 원문 해시 전수·임시/확인 구분·수식 원문 보존',({},info)=>{
  test.skip(info.project.name!=='desktop','파일 전수 검사는 한 번만 실행합니다.');
  const entries={...confirmed,...Object.assign({},...families.map(family=>JSON.parse(fs.readFileSync(`data/image-text/${family}.json`,'utf8'))))} as Record<string,ImageTranscription>;
- expect(Object.keys(entries)).toHaveLength(1976);
- expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(13);
+ expect(Object.keys(entries)).toHaveLength(1956);
+ expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(35);
  expect(entries['assets/energy-restored/questions/2022-4-8.webp']).toBeUndefined();
+ expect(entries['assets/hvac-hansol/questions/2020_4/13.webp']).toBeUndefined();
+ expect(entries['assets/textbook-corrections/hansol-4-186-13.png']).toBeUndefined();
+ expect(entries['assets/energy-restored/questions/2024-1-36.webp']?.question?.choices[1]).toContain('kgf/cm²');
+ expect(entries['assets/hvac/assets/questions/2025_1/18.jpg']?.question?.choices).toEqual(['42.42 kJ/kg','38.64 kJ/kg','36.12 kJ/kg','32.96 kJ/kg']);
  for(const [original,e] of Object.entries(entries)){
   expect(crypto.createHash('sha256').update(fs.readFileSync(e.asset)).digest('hex')).toBe(e.sha256);
   expect(allowedTranscription(e,original,'image')).toBeUndefined();
