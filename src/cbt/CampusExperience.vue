@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 import * as T from 'three';
-import { loadCampusCharacters } from './campusCharacters';
+import { loadCampusCharacters, type CampusPerson } from './campusCharacters';
 
 defineProps<{ subject: string }>();
 const emit = defineEmits<{ close: []; study: [] }>();
@@ -13,7 +13,11 @@ const moving = ref(false);
 const quiet = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const low = ref(matchMedia('(pointer: coarse)').matches);
 const characterStatus = ref('캐릭터 불러오는 중…');
-let disposeCharacters: (() => void) | undefined;
+let characters: ReturnType<typeof loadCampusCharacters> | undefined;
+let characterGroup: T.Group;
+const nearby = ref<CampusPerson>();
+const conversation = ref<CampusPerson>();
+let renderedAt = 0;
 let renderer: T.WebGLRenderer | undefined;
 let scene: T.Scene;
 let camera: T.PerspectiveCamera;
@@ -23,7 +27,7 @@ let observer: ResizeObserver | undefined;
 let yaw = 0;
 let pitch = 0;
 let last = 0;
-let drag: { id: number; x: number; y: number } | undefined;
+let drag: { id: number; x: number; y: number; moved: boolean } | undefined;
 let route: T.Vector3[] = [];
 let destination: '정문' | '복도' | '강의실' = '정문';
 const keys = new Set<string>();
@@ -66,7 +70,7 @@ function build() {
   sun.shadow.normalBias = .035;
   const cream = material('#e7e0cf'), teal = material('#315957'), wood = material('#af8054'), dark = material('#243d3b');
   const floor = material('#c9c7b9'), grass = material('#809784'), line = material('#b4b6aa');
-  const windowMat = material('#c5e7ed', { metalness: .1, roughness: .12 });
+  const windowMat = material('#b6dfeb', { metalness: .1, roughness: .12, transparent: true, opacity: .3, depthWrite: false });
   const brass = material('#bd955e', { metalness: .65, roughness: .35 });
   const paper = material('#fff6de');
   box(100, .2, 100, 0, -.2, 0, grass);
@@ -77,15 +81,26 @@ function build() {
   box(12.2, .025, 11.7, 9.25, .075, -5, parquet);
   for (let x = 3.2; x < 15.3; x += .35) box(.008, .004, 11.7, x, .09, -5, line);
   // A real opening connects the courtyard, corridor and classroom.
-  box(12, 6, .45, -8, 3, 12, cream); box(12, 6, .45, 8, 3, 12, cream);
+  for (const side of [-1, 1]) {
+    box(12, 1.35, .45, side*8, .675, 12, cream);
+    box(12, 2.6, .45, side*8, 4.7, 12, cream);
+    for (const x of [2,5,9,14]) box(.24, 2.1, .5, side*x, 2.4, 12, cream);
+    for (let x=2.3; x<14; x+=.45) box(.06, 1.3, .18, side*x, 4.9, 12.3, wood);
+  }
   box(4, 2.5, .45, 0, 4.75, 12, cream);
   box(29, .35, 2, 0, 6.1, 12, teal);
-  label('CBT  /  LEARNING CAMPUS', 0, 4.75, 12.25, 8);
+  label('LEARNING CAMPUS', 0, 4.65, 12.4, 5.2);
+  box(7,.18,4,0,3.55,13.5,wood);
+  for(const x of [-3.2,3.2])box(.14,3.5,.14,x,1.75,15,brass);
+  for(let x=-3;x<=3;x+=.4)box(.04,.08,3.8,x,3.43,13.5,paper);
   for (const x of [-11, -7, 7, 11]) box(2.6, 2.1, .1, x, 2.5, 12.26, windowMat);
   box(.25, 4, 28, -3, 2, -2, cream);
   box(.25, 4, 17, 3, 2, 4.5, cream); box(.25, 4, 10, 3, 2, -11, cream);
   box(.25, 1, 2, 3, 3.5, -5, cream); box(6, 4, .25, 0, 2, -16, cream);
-  box(.25, 4, 12, 15.5, 2, -5, cream); box(12.5, 4, .25, 9.25, 2, -11, cream);
+  box(.25, 1.4, 12, 15.5, .7, -5, cream);
+  box(.25, .65, 12, 15.5, 3.75, -5, cream);
+  for(const z of [-11,-9.3,-6.7,-5.3,-2.7,-1.3,1])box(.25,2,.16,15.5,2.4,z,cream);
+  box(12.5, 4, .25, 9.25, 2, -11, cream);
   box(12.5, 4, .25, 9.25, 2, 1, cream);
   // Coffered ceilings, timber wall panels and framed glazing add human scale.
   box(6, .12, 28, 0, 4.1, -2, paper);
@@ -136,9 +151,17 @@ function build() {
     box(2, .15, .65, x * .8, .5, z - 2, wood);
     for (const dx of [-.7, .7]) box(.12, .5, .5, x * .8 + dx, .25, z - 2, dark);
   }
+  for(const z of [-9,-3,3]) {
+    box(1.5,.6,2.4,18,.3,z,cream);
+    for(const dz of [-.7,0,.7]) {
+      const geometry=new T.SphereGeometry(.65,16,12);disposables.add(geometry);
+      const shrub=new T.Mesh(geometry,material('#719b78'));shrub.position.set(18,1,z+dz);scene.add(shrub);
+    }
+  }
 }
 function go(target: typeof destination) {
   if (!camera || error.value) return;
+  conversation.value = undefined;
   keys.clear(); destination = target;
   const start: T.Vector3[] = camera.position.x > 3 ? [v(4.8, -5), v(0, -5)] : [v(0, Math.min(24, camera.position.z))];
   route = [...start, ...(target === '정문' ? [v(0, 24)] : target === '복도' ? [v(0, 5)] : [v(0, -5), v(4.8, -5), v(4.8, -.3)])];
@@ -155,6 +178,8 @@ function walkable(x: number, z: number) {
 function tick(now: number) {
   frame = 0;
   if (!renderer || document.hidden || error.value) return;
+  if (now - renderedAt < 1000 / 30) { wake(); return; }
+  renderedAt = now;
   const dt = Math.min((now - last) / 1000, .05); last = now;
   if (route.length) {
     const delta = route[0].clone().sub(camera.position);
@@ -178,8 +203,10 @@ function tick(now: number) {
   const doorTarget = camera.position.distanceTo(v(3, -5)) < 5 || route.length > 0 || camera.position.x > 3 ? -Math.PI / 2 : 0;
   door.rotation.y += (doorTarget - door.rotation.y) * Math.min(1, dt * 5);
   camera.rotation.set(pitch, yaw, 0, 'YXZ');
+  const animate = characters?.update(now / 1000, camera.position, low.value, quiet.value, conversation.value?.id);
+  nearby.value = characters?.nearest(camera.position);
   renderer.render(scene, camera);
-  if (route.length || keys.size || Math.abs(doorTarget - door.rotation.y) > .001) wake();
+  if (animate || route.length || keys.size || Math.abs(doorTarget - door.rotation.y) > .001) wake();
 }
 function wake() { if (!frame && renderer && !document.hidden) frame = requestAnimationFrame(tick); }
 function resize() {
@@ -191,17 +218,33 @@ function resize() {
 }
 function down(e: PointerEvent) {
   if (e.button !== 0) return;
-  route = []; moving.value = false; drag = { id: e.pointerId, x: e.clientX, y: e.clientY };
+  route = []; moving.value = false; drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
   host.value?.setPointerCapture(e.pointerId); host.value?.focus();
 }
 function move(e: PointerEvent) {
   if (!drag || drag.id !== e.pointerId) return;
+  if (Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>2) drag.moved=true;
   yaw -= (e.clientX - drag.x) * .004; pitch = T.MathUtils.clamp(pitch - (e.clientY - drag.y) * .004, -.8, .8);
   drag.x = e.clientX; drag.y = e.clientY; wake();
 }
-function release() { drag = undefined; }
+function release(e: PointerEvent) {
+  if (e.type === 'pointerup' && drag && !drag.moved && characterGroup && nearby.value && host.value) {
+    const rect=host.value.getBoundingClientRect(), ray=new T.Raycaster();
+    ray.setFromCamera(new T.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);
+    const hit=ray.intersectObject(characterGroup,true)[0];
+    if(hit?.object.userData.personId===nearby.value.id)interact();
+  }
+  drag = undefined;
+}
+function interact() {
+  if (!nearby.value) return;
+  keys.clear(); route=[]; moving.value=false; conversation.value=nearby.value;
+  characters?.greet(nearby.value.id,performance.now()/1000); wake();
+  void nextTick(()=>root.value?.querySelector<HTMLButtonElement>('.campus-conversation button')?.focus());
+}
+function dismissConversation() { conversation.value=undefined; host.value?.focus(); wake(); }
 function key(e: KeyboardEvent) {
-  if (e.key === 'Escape') { emit('close'); return; }
+  if (e.key === 'Escape') { if(conversation.value)dismissConversation();else emit('close'); return; }
   if (e.key === 'Tab') {
     const nodes = Array.from(root.value?.querySelectorAll<HTMLElement>('button:not(:disabled), input, [tabindex="0"]') || []);
     const first = nodes[0], end = nodes[nodes.length - 1];
@@ -210,11 +253,12 @@ function key(e: KeyboardEvent) {
     return;
   }
   if (e.target instanceof HTMLElement && e.target.closest('button,input,select')) return;
+  if (conversation.value) return;
   const k = e.key.toLowerCase();
   if (['w','a','s','d','arrowup','arrowdown','arrowleft','arrowright'].includes(k)) {
     e.preventDefault(); route = []; moving.value = false; keys.add(k); wake();
   }
-  if (k === 'e' && zone.value === '강의실') emit('study');
+  if (k === 'e' && nearby.value) { e.preventDefault(); interact(); }
 }
 function keyup(e: KeyboardEvent) { keys.delete(e.key.toLowerCase()); }
 function pause() { keys.clear(); drag = undefined; if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else { last = performance.now(); wake(); } }
@@ -226,15 +270,15 @@ onMounted(async () => {
     renderer = new T.WebGLRenderer({ antialias: true, powerPreference: 'low-power' });
     renderer.outputColorSpace = T.SRGBColorSpace; renderer.toneMapping = T.ACESFilmicToneMapping; renderer.shadowMap.type = T.PCFSoftShadowMap;
     build(); host.value!.appendChild(renderer.domElement);
-    const characters = new T.Group(); scene.add(characters);
-    disposeCharacters = loadCampusCharacters(characters, () => { characterStatus.value = ''; wake(); }, () => { characterStatus.value = '캐릭터를 불러오지 못했어요. 이동과 공부는 이용할 수 있습니다.'; });
+    characterGroup = new T.Group(); scene.add(characterGroup);
+    characters = loadCampusCharacters(characterGroup, () => { characterStatus.value = ''; wake(); }, () => { characterStatus.value = '캐릭터를 불러오지 못했어요. 이동과 공부는 이용할 수 있습니다.'; });
     renderer.domElement.addEventListener('webglcontextlost', contextLost);
     observer = new ResizeObserver(resize); observer.observe(host.value!); last = performance.now(); resize();
   } catch { error.value = '이 기기에서는 3D 화면을 열 수 없어요. 기존 CBT는 그대로 이용할 수 있습니다.'; }
 });
 onBeforeUnmount(() => {
   cancelAnimationFrame(frame); observer?.disconnect(); keys.clear();
-  disposeCharacters?.();
+  characters?.dispose();
   window.removeEventListener('keyup', keyup); window.removeEventListener('blur', pause); document.removeEventListener('visibilitychange', pause);
   renderer?.domElement.removeEventListener('webglcontextlost', contextLost);
   disposables.forEach(item => item.dispose()); renderer?.dispose(); renderer?.forceContextLoss();
@@ -251,6 +295,11 @@ onBeforeUnmount(() => {
       <label class="campus-quality"><input v-model="low" type="checkbox" @change="resize"> 절전</label>
     </header>
     <p v-if="characterStatus" class="character-status" role="status">{{ characterStatus }}</p>
+    <button v-if="nearby && !conversation && !error" class="campus-person-action" @click="interact">{{ nearby.name }} · 대화하기 <kbd>E</kbd></button>
+    <section v-if="conversation && !error" class="campus-conversation" aria-label="캠퍼스 인물 대화">
+      <small>{{ conversation.role }}</small><h2>{{ conversation.name }}</h2><p>{{ conversation.message }}</p>
+      <div><button @click="dismissConversation">대화 닫기</button><button @click="go(conversation.destination)">강의실 방향 안내</button><button class="campus-primary" @click="emit('study')">공부 시작</button></div>
+    </section>
     <div v-if="error" class="campus-error" role="alert"><h2>잠시 교실 밖으로</h2><p>{{ error }}</p><button @click="emit('close')">기존 CBT로 돌아가기</button></div>
     <aside v-else class="campus-guide">
       <span class="campus-eyebrow">{{ zone === '정문' ? 'WELCOME / 01' : zone === '복도' ? 'EXPLORE / 02' : 'FOCUS / 03' }}</span>
@@ -263,7 +312,7 @@ onBeforeUnmount(() => {
       <nav aria-label="캠퍼스 목적지">
         <button v-for="(name, i) in (['정문', '복도', '강의실'] as const)" :key="name" :disabled="!!error" :aria-current="zone === name ? 'location' : undefined" @click="go(name)"><small>0{{ i + 1 }}</small>{{ name }}</button>
       </nav>
-      <div class="campus-help"><span>드래그로 둘러보기 · 방향키 / WASD 이동 · ESC 나가기</span><label><input v-model="quiet" type="checkbox"> 이동 애니메이션 줄이기</label></div>
+      <div class="campus-help"><span>드래그로 둘러보기 · 방향키 / WASD 이동 · E 대화</span><label><input v-model="quiet" type="checkbox" @change="wake"> 이동 애니메이션 줄이기</label></div>
       <button class="campus-shortcut" @click="emit('study')">걷지 않고 바로 공부 →</button>
       <span class="campus-status" role="status">{{ moving ? `${destination}로 이동 중` : `현재 위치: ${zone}` }}</span>
     </footer>
@@ -273,6 +322,9 @@ onBeforeUnmount(() => {
 <style scoped>
 .campus h1{word-break:keep-all}.campus input{accent-color:#214e49}
 .character-status{position:absolute;top:84px;right:24px;background:#fffdf3e8;padding:10px 16px;border-radius:12px;font-size:12px;max-width:260px}
+.campus .campus-person-action{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);background:#173e3bed;color:white;white-space:nowrap}.campus-person-action kbd{margin-left:12px;border:1px solid #fff7;padding:2px 6px;border-radius:5px}
+.campus-conversation{position:absolute;z-index:3;left:50%;bottom:120px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));box-sizing:border-box;background:#fffaf1f5;padding:24px;border:1px solid #d6c19d;border-radius:18px;box-shadow:0 12px 50px #12252b33}.campus-conversation h2{margin:6px 0}.campus-conversation p{line-height:1.7}.campus-conversation>div{display:flex;gap:8px;flex-wrap:wrap}.campus-conversation small{color:#6a745d}
+@media(max-width:700px){.campus .campus-person-action{bottom:195px;max-width:95%;font-size:13px}.campus-conversation{bottom:130px;padding:18px;max-height:60vh;overflow:auto}}
 .campus{position:fixed;inset:0;z-index:10000;background:#d9e4df;color:#173e3b;font-family:system-ui,sans-serif;isolation:isolate}
 .campus-scene{position:absolute;inset:0;touch-action:none;outline:none}.campus-scene:focus-visible{outline:3px solid #bc6e29;outline-offset:-4px}.campus-scene :deep(canvas){display:block}
 .campus button{font:inherit;cursor:pointer;min-height:44px;border:1px solid #31595740;border-radius:8px;padding:12px 18px;background:#fffaf1;color:#173e3b}.campus button:focus-visible,.campus input:focus-visible{outline:3px solid #c5762b;outline-offset:4px}.campus button:disabled{opacity:.6;cursor:wait}

@@ -30,6 +30,18 @@ test('캠퍼스 지연 로딩 · 공간 이동 · 기존 화면 복귀', async (
   await expect(campus.locator('canvas')).toBeVisible();
   await expect(campus.locator('.campus-error')).toHaveCount(0);
   await expect(campus.locator('.character-status')).toHaveCount(0, { timeout: 30000 });
+  if (info.project.name === 'desktop') {
+    const still = await campus.locator('canvas').screenshot();
+    await page.waitForTimeout(350);
+    expect((await campus.locator('canvas').screenshot()).equals(still)).toBe(false);
+  }
+  await expect(campus.getByRole('button', { name: /서윤 · 대화하기/ })).toBeVisible();
+  await campus.locator('.campus-scene').focus();
+  await page.keyboard.press('e');
+  await expect(campus.getByRole('region', { name: '캠퍼스 인물 대화' })).toContainText('캠퍼스 안내');
+  await page.keyboard.press('Escape');
+  await expect(campus.getByRole('region', { name: '캠퍼스 인물 대화' })).toHaveCount(0);
+  await expect(campus).toBeVisible();
   await page.screenshot({ path: `/private/tmp/campus-${info.project.name}-entrance.png` });
   await campus.getByRole('button', { name: '캠퍼스 들어가기 →' }).click();
   await expect(campus.locator('.campus-status')).toHaveText('현재 위치: 복도', { timeout: 20000 });
@@ -79,6 +91,7 @@ test('4K · 키보드 이동 · 드래그 · 컨텍스트 손실 복귀', async 
   await page.waitForTimeout(500);
   await page.keyboard.up('w');
   expect((await host.screenshot()).equals(before)).toBe(false);
+  await page.keyboard.down('ArrowRight'); await page.waitForTimeout(350); await page.keyboard.up('ArrowRight');
   await page.mouse.move(2000, 1000); await page.mouse.down();
   await page.mouse.move(2150, 1020, { steps: 8 }); await page.mouse.up();
   await page.screenshot({ path: '/private/tmp/campus-4k.png' });
