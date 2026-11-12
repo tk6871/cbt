@@ -4850,6 +4850,7 @@ onBeforeUnmount(() => {
 
       <div class="page-content">
         <p v-if="selectedKey === 'maintenance-engineer' && !session" class="qualification-scope-notice" role="note">설비보전기사 수록 범위: 2006~2022년 공개 기출 27회차. 2022년 4과목과 이전 5과목을 구분합니다. 2025년부터 개편된 현행 과목과는 다르며, 최신 시험 준비 시 출제기준을 함께 확인하세요.</p>
+        <p v-if="selectedKey === 'safety-engineer' && !session" class="qualification-scope-notice" role="note">산업안전기사 2018~2022년 구 6과목 기출. 현행 모의시험이 아니며, 법령 문항의 답은 출제 당시 기준일 수 있습니다. <a href="https://safetygwajang.com/?audience=jobseeker" target="_blank" rel="noopener noreferrer">회차 자료: 안전과장</a></p>
         <div v-if="appHydrating && dynamicUiEnabled" class="dashboard-skeleton" aria-label="학습 화면을 준비하는 중">
           <i class="skeleton-title" /><i /><i /><i /><i class="skeleton-wide" />
         </div>

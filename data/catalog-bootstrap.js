@@ -8,7 +8,7 @@
     displayPreference = localStorage.getItem(DISPLAY_KEY) || "auto";
     qualification = localStorage.getItem(QUALIFICATION_KEY) || "hvac";
   } catch (error) {}
-  if (allowed.indexOf(qualification) < 0) qualification = "hvac";
+  if (allowed.indexOf(qualification) < 0 && qualification !== "safety-engineer") qualification = "hvac";
 
   var nativeApp = document.documentElement.dataset.nativeApp === "true";
   var touchLayout = nativeApp

@@ -7,7 +7,7 @@ const displayImages=JSON.parse(fs.readFileSync('data/problem-images-webp90.json'
 const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'energy-book-earlier.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
 const context = { window: {} };
 
-for (const file of dataFiles) {
+for (const file of [...dataFiles, 'safety-engineer.js']) {
   const source = fs.readFileSync(path.join(root, 'data', file), 'utf8');
   vm.runInNewContext(source, context, { filename: file });
 }
@@ -16,6 +16,7 @@ const catalogs = [
   context.window.CBT_DATA_HVAC,
   context.window.CBT_DATA_HANSOL_HVAC,
   context.window.CBT_DATA_SAFETY,
+  context.window.CBT_DATA_SAFETY_ENGINEER,
   context.window.CBT_DATA_ENERGY,
   context.window.CBT_DATA_ENERGY_RESTORED,
   context.window.CBT_DATA_ENERGY_BOOK_EARLIER,

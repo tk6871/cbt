@@ -17,4 +17,11 @@ test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로
   await expect(page.getByRole('heading', { name: '산업안전산업기사 기출문제' })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('heading', { name: '산업안전산업기사 기출문제' })).toBeVisible();
+  await page.getByLabel('현재 화면의 자격증 종목').selectOption('safety-engineer');
+  await expect(page.getByRole('heading', { name: '산업안전기사 기출문제' })).toBeVisible();
+  await expect(page.locator('.round-card')).toHaveCount(14);
+  const latest = page.locator('.round-card').first();
+  await expect(latest).toContainText('120문제');
+  await latest.getByRole('button', { name: '학습모드', exact: true }).click();
+  await expect(page.getByText(/매슬로우.*욕구단계/).first()).toBeVisible();
 });

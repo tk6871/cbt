@@ -12,7 +12,7 @@ import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextb
 const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
 
 const primaryKeys = [
-  'hvac', 'hvac-hansol', 'safety', 'energy', 'energy-midterm', 'maintenance',
+  'hvac', 'hvac-hansol', 'safety', 'safety-engineer', 'energy', 'energy-midterm', 'maintenance',
   'electric-craftsman', 'gas-craftsman', 'hazardous-craftsman',
   'information-engineer', 'forklift-craftsman', 'maintenance-engineer',
 ];
@@ -125,6 +125,7 @@ export function loadCatalogs(): Catalog[] {
     window.CBT_DATA_HVAC,
     window.CBT_DATA_HANSOL_HVAC,
     window.CBT_DATA_SAFETY,
+    window.CBT_DATA_SAFETY_ENGINEER,
     window.CBT_DATA_ENERGY,
     window.CBT_DATA_ENERGY_MIDTERM,
     window.CBT_DATA_MAINTENANCE,
