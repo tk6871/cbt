@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue';
 import * as T from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { VRMUtils } from '@pixiv/three-vrm';
+import CampusPrivatePanel from './CampusPrivatePanel.vue';
+import { validateCampusGlb } from './campusGlb';
 import { loadCampusCharacters, type CampusPerson } from './campusCharacters';
+import { advanceCampusStory, campusStoryChoices, campusStoryLine, freshStory, readCampusStory, saveCampusStory, type StoryChoice } from './campusStory';
 
 defineProps<{ subject: string }>();
 const emit = defineEmits<{ close: []; study: [] }>();
@@ -13,10 +18,42 @@ const moving = ref(false);
 const quiet = ref(matchMedia('(prefers-reduced-motion: reduce)').matches);
 const low = ref(matchMedia('(pointer: coarse)').matches);
 const characterStatus = ref('캐릭터 불러오는 중…');
+let privateModel: T.Group | undefined;
+let privateRevision = 0;
+function clearPrivateModel() {
+  privateRevision++;
+  if (privateModel) { scene?.remove(privateModel); VRMUtils.deepDispose(privateModel); privateModel = undefined; }
+  wake();
+}
+async function previewPrivateModel(bytes: ArrayBuffer) {
+  clearPrivateModel(); const current = privateRevision;
+  try {
+    validateCampusGlb(bytes);
+    const asset = await new GLTFLoader().parseAsync(bytes, '');
+    if (current !== privateRevision || !renderer) { VRMUtils.deepDispose(asset.scene); return; }
+    const model = asset.scene, bounds = new T.Box3().setFromObject(model);
+    const height = bounds.getSize(new T.Vector3()).y;
+    if (!Number.isFinite(height) || height <= 0) { VRMUtils.deepDispose(model); throw new Error('모델 크기를 확인할 수 없어요.'); }
+    model.scale.multiplyScalar(1.45 / height); model.updateMatrixWorld(true);
+    const actual = new T.Box3().setFromObject(model), center = actual.getCenter(new T.Vector3());
+    model.position.add(new T.Vector3(-3 - center.x, .1 - actual.min.y, 23 - center.z));
+    scene.add(model); privateModel = model; characterStatus.value = '비공개 모델 적용 · 정문 왼쪽'; wake();
+  } catch (e) { if (current === privateRevision) characterStatus.value = e instanceof Error ? e.message : '모델 표시 실패'; }
+}
 let characters: ReturnType<typeof loadCampusCharacters> | undefined;
 let characterGroup: T.Group;
 const nearby = ref<CampusPerson>();
 const conversation = ref<CampusPerson>();
+const story = ref(readCampusStory());
+const storySaved = ref(true);
+const relationship = computed(() => conversation.value ? story.value[conversation.value.id] || freshStory() : freshStory());
+function chooseStory(choice: StoryChoice) {
+  if (!conversation.value) return;
+  const id = conversation.value.id;
+  story.value = { ...story.value, [id]: advanceCampusStory(relationship.value, choice) };
+  storySaved.value = saveCampusStory(story.value);
+  characters?.greet(id,performance.now()/1000); wake();
+}
 let renderedAt = 0;
 let renderer: T.WebGLRenderer | undefined;
 let scene: T.Scene;
@@ -277,6 +314,7 @@ onMounted(async () => {
   } catch { error.value = '이 기기에서는 3D 화면을 열 수 없어요. 기존 CBT는 그대로 이용할 수 있습니다.'; }
 });
 onBeforeUnmount(() => {
+  clearPrivateModel();
   cancelAnimationFrame(frame); observer?.disconnect(); keys.clear();
   characters?.dispose();
   window.removeEventListener('keyup', keyup); window.removeEventListener('blur', pause); document.removeEventListener('visibilitychange', pause);
@@ -295,9 +333,15 @@ onBeforeUnmount(() => {
       <label class="campus-quality"><input v-model="low" type="checkbox" @change="resize"> 절전</label>
     </header>
     <p v-if="characterStatus" class="character-status" role="status">{{ characterStatus }}</p>
+    <CampusPrivatePanel @preview="previewPrivateModel" @clear="clearPrivateModel" />
     <button v-if="nearby && !conversation && !error" class="campus-person-action" @click="interact">{{ nearby.name }} · 대화하기 <kbd>E</kbd></button>
     <section v-if="conversation && !error" class="campus-conversation" aria-label="캠퍼스 인물 대화">
-      <small>{{ conversation.role }}</small><h2>{{ conversation.name }}</h2><p>{{ conversation.message }}</p>
+      <small>{{ conversation.role }} · 성인 캠퍼스 이야기</small><h2>{{ conversation.name }} <span class="campus-affinity" :aria-label="`친밀도 ${relationship.affinity} / 3`">{{ '♥'.repeat(relationship.affinity) }}{{ '♡'.repeat(3-relationship.affinity) }}</span></h2>
+      <p>{{ campusStoryLine(conversation.id, relationship) }}</p>
+      <div class="campus-story-choices"><button v-for="choice in campusStoryChoices(relationship)" :key="choice.id" @click="chooseStory(choice.id)">{{ choice.text }}</button></div>
+      <p class="campus-story-note">가상 이야기 · 이 기기에만 저장 · 학습 점수와 별개</p>
+      <p v-if="!storySaved" role="status">저장 공간이 부족해 이번 진행은 창을 닫으면 사라질 수 있어요.</p>
+      <details><summary>강의실 안내</summary><p>{{ conversation.message }}</p></details>
       <div><button @click="dismissConversation">대화 닫기</button><button @click="go(conversation.destination)">강의실 방향 안내</button><button class="campus-primary" @click="emit('study')">공부 시작</button></div>
     </section>
     <div v-if="error" class="campus-error" role="alert"><h2>잠시 교실 밖으로</h2><p>{{ error }}</p><button @click="emit('close')">기존 CBT로 돌아가기</button></div>
@@ -315,6 +359,7 @@ onBeforeUnmount(() => {
       <div class="campus-help"><span>드래그로 둘러보기 · 방향키 / WASD 이동 · E 대화</span><label><input v-model="quiet" type="checkbox" @change="wake"> 이동 애니메이션 줄이기</label></div>
       <button class="campus-shortcut" @click="emit('study')">걷지 않고 바로 공부 →</button>
       <span class="campus-status" role="status">{{ moving ? `${destination}로 이동 중` : `현재 위치: ${zone}` }}</span>
+      <a href="assets/campus/ATTRIBUTION.md" target="_blank" rel="noopener noreferrer" style="color:inherit;font-size:12px">캐릭터 제작자·라이선스</a>
     </footer>
   </section>
 </template>
@@ -324,6 +369,7 @@ onBeforeUnmount(() => {
 .character-status{position:absolute;top:84px;right:24px;background:#fffdf3e8;padding:10px 16px;border-radius:12px;font-size:12px;max-width:260px}
 .campus .campus-person-action{position:absolute;left:50%;bottom:120px;transform:translateX(-50%);background:#173e3bed;color:white;white-space:nowrap}.campus-person-action kbd{margin-left:12px;border:1px solid #fff7;padding:2px 6px;border-radius:5px}
 .campus-conversation{position:absolute;z-index:3;left:50%;bottom:120px;transform:translateX(-50%);width:min(560px,calc(100% - 32px));box-sizing:border-box;background:#fffaf1f5;padding:24px;border:1px solid #d6c19d;border-radius:18px;box-shadow:0 12px 50px #12252b33}.campus-conversation h2{margin:6px 0}.campus-conversation p{line-height:1.7}.campus-conversation>div{display:flex;gap:8px;flex-wrap:wrap}.campus-conversation small{color:#6a745d}
+.campus-affinity{font-size:16px;color:#a75568;float:right}.campus-story-choices{margin:12px 0}.campus .campus-story-choices button{width:100%;text-align:left;background:#e9eee5}.campus-story-note{font-size:11px;color:#657066}.campus-conversation details{margin:12px 0}.campus-conversation{max-height:calc(100dvh - 220px);overflow:auto}
 @media(max-width:700px){.campus .campus-person-action{bottom:195px;max-width:95%;font-size:13px}.campus-conversation{bottom:130px;padding:18px;max-height:60vh;overflow:auto}}
 .campus{position:fixed;inset:0;z-index:10000;background:#d9e4df;color:#173e3b;font-family:system-ui,sans-serif;isolation:isolate}
 .campus-scene{position:absolute;inset:0;touch-action:none;outline:none}.campus-scene:focus-visible{outline:3px solid #bc6e29;outline-offset:-4px}.campus-scene :deep(canvas){display:block}

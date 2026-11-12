@@ -19,6 +19,7 @@ node_modules/
 telerik-license.txt
 devextreme-license.js
 supabase/*.local.sql
+supabase/.temp/
 tools/realesrgan/
 samples/upscale/
 work/hvac-restored-upscaled/

@@ -303,6 +303,12 @@ const learningSessionStorageKey = `unified-cbt-learning-session-${spaceScope}`;
 const learningSessionProgressKey = 'activeLearningSessionV1';
 const savedQualification = localStorage.getItem(qualificationStorageKey);
 const selectedKey = ref(catalogs.some((item) => item.key === savedQualification) ? savedQualification! : catalogs[0]?.key || '');
+const isRegularQualification = (key: string) => key !== SCHOOL_EXAM_CATALOG_KEY && key !== 'energy-midterm';
+const regularQualificationStorageKey = `${qualificationStorageKey}-last-regular`;
+const savedRegularQualification = localStorage.getItem(regularQualificationStorageKey);
+let lastRegularQualification = isRegularQualification(selectedKey.value) ? selectedKey.value
+  : catalogs.find(item => item.key === savedRegularQualification && isRegularQualification(item.key))?.key
+    || catalogs.find(item => isRegularQualification(item.key))?.key || '';
 const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE === 'mobile' || window.CBT_DISPLAY_PREFERENCE === 'desktop'
   ? window.CBT_DISPLAY_PREFERENCE : 'auto');
 const resolvedDisplayMode = window.CBT_DISPLAY_MODE || 'desktop';
@@ -2162,6 +2168,16 @@ function setDefaultYears(yearsBack = 10): void {
 function configureQualification(key: string): void {
   textbookReaderOpen.value = false;
   textbookPagesOpen.value = false;
+  const current = ownHistoryState();
+  if (current?.view === 'rounds' && (current.textbookCollection || current.textbookRoom)) {
+    history.replaceState(viewHistoryState('rounds'), '', location.href);
+  }
+  if (isRegularQualification(key)) {
+    lastRegularQualification = key;
+    localStorage.setItem(regularQualificationStorageKey, key);
+  } else if (lastRegularQualification) {
+    localStorage.setItem(regularQualificationStorageKey, lastRegularQualification);
+  }
   const target = catalogs.find((catalog) => catalog.key === key);
   if (target?.isPlaceholder) {
     localStorage.setItem(qualificationStorageKey, key);
@@ -2179,6 +2195,13 @@ function configureQualification(key: string): void {
   setDefaultYears(key === GEM_APPRAISER_TARGET_KEY ? 0 : quickPreset.value);
   if (searchQuery.value.length >= 2) requestSearch();
   void refreshExamHistory();
+}
+
+function openRegularRounds(): void {
+  const key = isRegularQualification(selectedKey.value) ? selectedKey.value : lastRegularQualification;
+  if (!key) return;
+  configureQualification(key);
+  openView('rounds');
 }
 
 function selectQualification(key: string): void {
@@ -5114,10 +5137,11 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'rounds'">
-          <nav v-if="!isJewelry" class="rounds-collection" aria-label="학교 시험 문제 모음">
+          <nav v-if="!isJewelry" class="rounds-collection" aria-label="회차별 문제 모음">
+            <button type="button" :class="{ active: roundsCollection === 'regular' && isRegularQualification(selectedKey) }" @click="openRegularRounds">자격증 기출</button>
             <button :class="{ active: roundsCollection === 'textbook' }" @click="openTextbookPages">교재 페이지별</button>
             <button :class="{ active: roundsCollection === 'cooling' }" @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
-            <button :class="{ active: selectedKey === 'energy-midterm' }" @click="configureQualification('energy-midterm'); openView('rounds')">에너지설비 중간고사</button>
+            <button :class="{ active: roundsCollection === 'regular' && selectedKey === 'energy-midterm' }" @click="configureQualification('energy-midterm'); openView('rounds')">에너지설비 중간고사</button>
           </nav>
           <template v-if="roundsCollection === 'textbook' && !isJewelry">
             <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>

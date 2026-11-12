@@ -50,6 +50,8 @@ worker.addEventListener('activate', (event) => {
 
 worker.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  // Account-authorized files must never use the offline cache or HTML fallback.
+  if (event.request.headers.has('authorization')) return;
   event.respondWith((async (): Promise<Response> => {
     const request = event.request;
     const url = new URL(request.url);

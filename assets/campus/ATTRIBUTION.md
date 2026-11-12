@@ -1,5 +1,11 @@
 # Campus model
 
+Office lady — MadCatD, CC BY 4.0.
+
+- Source: https://sketchfab.com/3d-models/office-lady-df458f315d0e4578af6a24014f8bccb6
+- License: https://creativecommons.org/licenses/by/4.0/
+- Downloaded the creator's 1K GLB on 2026-11-12. Mesh simplified from 726,959 to 89,983 triangles; textures preserved. Display scale/position and a simple seat are added. This is a static seated model, not a newly rigged or animated character. No endorsement implied.
+
 Victoria Rubin — pixiv VRoid Studio beta sample 4, CC0.
 
 - Official terms: https://vroid.pixiv.help/hc/en-us/articles/360014900233

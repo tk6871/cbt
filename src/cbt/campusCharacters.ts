@@ -35,7 +35,7 @@ type Actor = { info:Placement; root:Group; bones:Map<string,{node:Object3D; rest
 /** Shared geometry/textures, independent skeletons and clothing materials. */
 export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>void) {
   const controller=new AbortController(), timeout=window.setTimeout(()=>controller.abort(),30000);
-  const templates:VRM[]=[], actors:Actor[]=[], ownedMaterials=new Set<Material>();
+  const templates:VRM[]=[], staticModels:Group[]=[], actors:Actor[]=[], ownedMaterials=new Set<Material>();
   const propGeometry=new BoxGeometry(1,1,1);
   let disposed=false;
   const loader=new GLTFLoader(); loader.register(parser=>new VRMLoaderPlugin(parser));
@@ -78,7 +78,7 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
           object.material=Array.isArray(object.material)?object.material.map(tint):tint(object.material);
         });
         if(['read','write'].includes(info.action)) {
-          const book=prop(root,'#344c65',[.32,.035,.23],[0,1.02,.24]); prop(book,'#f5eddb',[.92,.5,.94],[0,.55,0]);
+          const book=prop(root,'#344c65',[.32,.035,.23],[0,info.id==='writer'||info.id==='study-a'?1.18:1.02,.24]); prop(book,'#f5eddb',[.92,.5,.94],[0,.55,0]);
         }
         if(info.action==='teach')prop(root,'#263a55',[.23,.32,.03],[-.25,1,.08]);
         const actor={info,root,bones,phase:actors.length*.83,gestureUntil:0};
@@ -89,11 +89,28 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
         }
         if(info.id==='writer'||info.id==='study-a') {
           root.position.y=-.34;
-          rotate(actor,'leftUpperLeg',-1.3);rotate(actor,'rightUpperLeg',-1.3);
-          rotate(actor,'leftLowerLeg',1.3);rotate(actor,'rightLowerLeg',1.3);
+          rotate(actor,'leftUpperLeg',1.3);rotate(actor,'rightUpperLeg',1.3);
+          rotate(actor,'leftLowerLeg',-1.3);rotate(actor,'rightLowerLeg',-1.3);
         }
       }
     }
+    const response = await fetch(new URL('assets/campus/models/office-lady.glb', document.baseURI), { signal: controller.signal });
+    if (!response.ok) throw new Error('Guest model unavailable');
+    const guest = (await loader.parseAsync(await response.arrayBuffer(), '')).scene;
+    if (disposed) { VRMUtils.deepDispose(guest); return; }
+    staticModels.push(guest);
+    const bounds = new Box3().setFromObject(guest), scale = 1.45 / bounds.getSize(new Vector3()).y;
+    guest.scale.multiplyScalar(scale); guest.updateMatrixWorld(true);
+    const fitted = new Box3().setFromObject(guest), center = fitted.getCenter(new Vector3());
+    guest.position.set(-center.x, -fitted.min.y, -center.z);
+    const root = new Group(); root.position.set(-1.8, .1, 19); root.add(guest); parent.add(root);
+    guest.traverse(object => { object.userData.personId = 'guest-lecturer'; });
+    const info:Placement = { id:'guest-lecturer',name:'유나',role:'성인 초청 강사 · 휴식 중',message:'잠깐 쉬었다가 함께 공부해 볼까요? 강의실은 정문 안쪽이에요.',destination:'강의실',file:'office-lady',x:-1.8,z:19,angle:0,tint:'#ffffff',action:'talk' };
+    root.userData.personId = info.id;
+    prop(root, '#315957', [.5,.055,.42], [0,.53,-.2]);
+    for (const x of [-.19,.19]) for (const z of [-.34,-.06])
+      prop(root, '#243d3b', [.035,.5,.035], [x,.25,z]);
+    actors.push({ info, root, bones:new Map(), phase:0, gestureUntil:0 });
     changed();
   })().catch(()=>{if(!disposed)failed();}).finally(()=>window.clearTimeout(timeout));
   function rotate(actor:Actor,name:string,x=0,y=0,z=0) {
@@ -129,6 +146,7 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
       for(const actor of actors)actor.root.traverse(object=>{if(object instanceof SkinnedMesh)object.skeleton.dispose();});
       ownedMaterials.forEach(material=>material.dispose());propGeometry.dispose();
       for(const template of templates)VRMUtils.deepDispose(template.scene);
+      for(const model of staticModels)VRMUtils.deepDispose(model);
       parent.clear();actors.length=0;
     },
   };

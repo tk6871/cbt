@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { advanceCampusStory, freshStory } from '../src/cbt/campusStory';
 test.use({ serviceWorkers: 'block' });
 test.beforeEach(async ({ page }) => {
   await page.addLocatorHandler(page.locator('.pwa-error-notice'), async () => {
@@ -75,6 +76,31 @@ test('WebGL 불가 시 기본 CBT로 안전 복귀', async ({ page }) => {
   await expect(page.getByRole('alert')).toContainText('이 기기에서는 3D 화면을 열 수 없어요');
   await page.getByRole('button', { name: '기존 CBT로 돌아가기', exact: true }).click();
   await expect(page.locator('.campus')).toHaveCount(0);
+});
+
+test('성인 캠퍼스 이야기 · 분기와 진행 복원', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', '상태 저장은 PC에서 검사');
+  let state=freshStory();
+  expect(advanceCampusStory(state,'date')).toEqual(state);
+  for(const choice of ['hello','study','coffee'] as const)state=advanceCampusStory(state,choice);
+  expect(advanceCampusStory(state,'friend').ending).toBe('friend');
+  await page.goto('/?safe=1');
+  await page.getByRole('button',{name:/3D 캠퍼스 체험/}).click();
+  const campus=page.locator('.campus');
+  await expect(campus.locator('canvas')).toBeVisible();
+  await expect(campus.locator('.character-status')).toHaveCount(0,{timeout:30000});
+  const records=await page.evaluate(()=>localStorage.getItem('unified-industrial-cbt-v1'));
+  await campus.getByRole('button',{name:/서윤 · 대화하기/}).click();
+  for(const name of ['반가워요. 잠깐 이야기해요.','다음 문제를 같이 생각해 볼까요?','잠깐 쉬면서 커피 한 잔 할래요?','다음엔 둘이 산책하는 데이트 어때요?'])await campus.getByRole('button',{name,exact:true}).click();
+  await expect(campus.locator('.campus-conversation')).toContainText('첫 데이트 이야기 완료');
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('cbt-campus-story-v1')||'{}').guide.ending)).toBe('date');
+  expect(await page.evaluate(()=>localStorage.getItem('unified-industrial-cbt-v1'))).toEqual(records);
+  await page.reload();
+  await page.getByRole('button',{name:/3D 캠퍼스 체험/}).click();
+  await expect(campus.locator('canvas')).toBeVisible();
+  await expect(campus.locator('.character-status')).toHaveCount(0,{timeout:30000});
+  await campus.getByRole('button',{name:/서윤 · 대화하기/}).click();
+  await expect(campus.locator('.campus-conversation')).toContainText('첫 데이트 이야기 완료');
 });
 
 test('4K · 키보드 이동 · 드래그 · 컨텍스트 손실 복귀', async ({ page }, info) => {
