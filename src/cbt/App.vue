@@ -2165,6 +2165,34 @@ function setDefaultYears(yearsBack = 10): void {
   yearFrom.value = yearsBack === 0 ? Math.min(...years) : Math.max(Math.min(...years), latest - yearsBack + 1);
 }
 
+const pendingQualification = ref('');
+const qualificationLoadError = ref('');
+let qualificationRequest = 0;
+
+async function switchQualification(key: string): Promise<boolean> {
+  const request = ++qualificationRequest;
+  const origin = view.value;
+  pendingQualification.value = key;
+  qualificationLoadError.value = '';
+  try {
+    const target = catalogs.find(catalog => catalog.key === key);
+    if (target?.isPlaceholder || (key === 'energy' && !window.CBT_DATA_ENERGY_RESTORED)
+      || (key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)) {
+      await loadQuestionSources([key]);
+    }
+    if (request !== qualificationRequest || view.value !== origin) return false;
+    configureQualification(key);
+    return true;
+  } catch {
+    if (request === qualificationRequest && view.value === origin) {
+      qualificationLoadError.value = '종목 자료를 불러오지 못했습니다. 같은 종목을 다시 선택해 주세요.';
+    }
+    return false;
+  } finally {
+    if (request === qualificationRequest) pendingQualification.value = '';
+  }
+}
+
 function configureQualification(key: string): void {
   textbookReaderOpen.value = false;
   textbookPagesOpen.value = false;
@@ -2177,12 +2205,6 @@ function configureQualification(key: string): void {
     localStorage.setItem(regularQualificationStorageKey, key);
   } else if (lastRegularQualification) {
     localStorage.setItem(regularQualificationStorageKey, lastRegularQualification);
-  }
-  const target = catalogs.find((catalog) => catalog.key === key);
-  if (target?.isPlaceholder) {
-    localStorage.setItem(qualificationStorageKey, key);
-    location.reload();
-    return;
   }
   selectedKey.value = key;
   localStorage.setItem(qualificationStorageKey, key);
@@ -2197,21 +2219,28 @@ function configureQualification(key: string): void {
   void refreshExamHistory();
 }
 
-function openRegularRounds(): void {
+async function openRegularRounds(): Promise<void> {
   const key = isRegularQualification(selectedKey.value) ? selectedKey.value : lastRegularQualification;
   if (!key) return;
-  configureQualification(key);
-  openView('rounds');
+  await openQualificationRounds(key);
 }
 
-function selectQualification(key: string): void {
-  configureQualification(key);
+async function openQualificationRounds(key: string): Promise<void> {
+  if (await switchQualification(key)) openView('rounds');
+}
+
+async function selectQualification(key: string): Promise<void> {
+  if (!(await switchQualification(key))) return;
   openView(key === SCHOOL_EXAM_CATALOG_KEY ? 'school' : 'rounds');
 }
 
-function updateQualificationFromSetup(event: Event): void {
-  const key = (event.target as HTMLSelectElement).value;
-  configureQualification(key);
+async function updateQualificationFromSetup(event: Event): Promise<void> {
+  const select = event.target as HTMLSelectElement;
+  const key = select.value;
+  if (!(await switchQualification(key))) {
+    if (!pendingQualification.value) select.value = selectedKey.value;
+    return;
+  }
   if (key === SCHOOL_EXAM_CATALOG_KEY) openView('school');
   else if (view.value === 'school') openView('rounds');
 }
@@ -2270,6 +2299,7 @@ async function loadTextbookPages():Promise<void> {
  finally{if(revision===textbookLoadRevision)textbookLoading.value=false;}
 }
 function openTextbookPages():void {
+ qualificationRequest++;pendingQualification.value='';qualificationLoadError.value='';
  textbookPagesOpen.value=true;openView('rounds');
  textbookReaderOpen.value=false;
  history.replaceState(viewHistoryState('rounds'),'',location.href);
@@ -2834,10 +2864,10 @@ function startHvacFieldReportPractice(): void {
   );
 }
 
-function openHvacPracticalGuide(): void {
+async function openHvacPracticalGuide(): Promise<void> {
+  if (!(await switchQualification('hvac'))) return;
   practicalGuideSection.value = 'practice';
   if (!practicalSessionActive.value) practicalLibraryOpen.value = true;
-  configureQualification('hvac');
   openView('guide');
   window.setTimeout(() => document.querySelector('.practical-study-room')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 180);
 }
@@ -4835,7 +4865,7 @@ onBeforeUnmount(() => {
           <strong>{{ viewTitle }}</strong>
           <label class="topbar-qualification">
             <span>종목</span>
-            <select :value="selectedKey" aria-label="현재 화면의 자격증 종목" @change="updateQualificationFromSetup">
+            <select :value="pendingQualification || selectedKey" aria-label="현재 화면의 자격증 종목" @change="updateQualificationFromSetup">
               <option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option>
             </select>
           </label>
@@ -4847,6 +4877,8 @@ onBeforeUnmount(() => {
           <button v-if="view !== 'settings'" type="button" aria-label="설정 열기" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
+      <p v-if="pendingQualification" role="status">선택한 종목의 자료를 불러오는 중…</p>
+      <p v-if="qualificationLoadError" role="alert">{{ qualificationLoadError }}</p>
 
       <div class="page-content">
         <p v-if="selectedKey === 'maintenance-engineer' && !session" class="qualification-scope-notice" role="note">설비보전기사 수록 범위: 2006~2022년 공개 기출 27회차. 2022년 4과목과 이전 5과목을 구분합니다. 2025년부터 개편된 현행 과목과는 다르며, 최신 시험 준비 시 출제기준을 함께 확인하세요.</p>
@@ -5141,8 +5173,8 @@ onBeforeUnmount(() => {
           <nav v-if="!isJewelry" class="rounds-collection" aria-label="회차별 문제 모음">
             <button type="button" :class="{ active: roundsCollection === 'regular' && isRegularQualification(selectedKey) }" @click="openRegularRounds">자격증 기출</button>
             <button :class="{ active: roundsCollection === 'textbook' }" @click="openTextbookPages">교재 페이지별</button>
-            <button :class="{ active: roundsCollection === 'cooling' }" @click="configureQualification(SCHOOL_EXAM_CATALOG_KEY); openView('rounds')">냉동공학 중간고사</button>
-            <button :class="{ active: roundsCollection === 'regular' && selectedKey === 'energy-midterm' }" @click="configureQualification('energy-midterm'); openView('rounds')">에너지설비 중간고사</button>
+            <button :class="{ active: roundsCollection === 'cooling' }" @click="openQualificationRounds(SCHOOL_EXAM_CATALOG_KEY)">냉동공학 중간고사</button>
+            <button :class="{ active: roundsCollection === 'regular' && selectedKey === 'energy-midterm' }" @click="openQualificationRounds('energy-midterm')">에너지설비 중간고사</button>
           </nav>
           <template v-if="roundsCollection === 'textbook' && !isJewelry">
             <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>
@@ -5886,7 +5918,7 @@ onBeforeUnmount(() => {
           <section class="feature-layout-lab settings-feature-guide">
             <header><div><span>NEW · v5.4</span><h2>에너지관리산업기사 교재 복원 13회차</h2></div><p>회차별 문제에서 에너지관리산업기사를 고르면 2021~2025년 복원문제 1,040개를 추가로 풀 수 있습니다. 문제·보기를 교재 이미지로 표시하고 정답표와 원문 해설을 연결했습니다.</p></header>
             <p>설정 → 답안 선택 방식 → 이미지 직접 선택에서 보기 번호와 내용을 누릅니다. 체크 마커·영역 강조, 다크·라이트·원본 표시를 비교하세요. 해설이 없는3문항은 보충 설명으로 구분합니다. 기존 기출과 중간고사 기록은 유지하며 기사 추가자료는 산업기사 목록에서 제외했습니다.</p>
-            <button type="button" @click="configureQualification('energy'); openView('rounds')">에너지 회차별 문제 열기 →</button>
+            <button type="button" @click="openQualificationRounds('energy')">에너지 회차별 문제 열기 →</button>
           </section>
 
           <section class="feature-layout-lab settings-feature-guide">
