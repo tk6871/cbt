@@ -23,6 +23,7 @@ import {
   yearsFor,
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
+import RoundsLoading from './RoundsLoading.vue';
 import {problemImage} from './problemImages';
 import {explanationDisplay, setExplanationDisplay} from './explanationDisplay';
 import QuestionLibraryPreview from './QuestionLibraryPreview.vue';
@@ -2166,6 +2167,7 @@ function setDefaultYears(yearsBack = 10): void {
 }
 
 const pendingQualification = ref('');
+const qualificationLoadPercent = ref(0);
 const qualificationLoadError = ref('');
 let qualificationRequest = 0;
 
@@ -2173,6 +2175,7 @@ async function switchQualification(key: string): Promise<boolean> {
   const request = ++qualificationRequest;
   const origin = view.value;
   pendingQualification.value = key;
+  qualificationLoadPercent.value = 0;
   qualificationLoadError.value = '';
   try {
     const target = catalogs.find(catalog => catalog.key === key);
@@ -2181,7 +2184,11 @@ async function switchQualification(key: string): Promise<boolean> {
       await loadQuestionSources([key]);
     }
     if (request !== qualificationRequest || view.value !== origin) return false;
+    qualificationLoadPercent.value = 50;
     configureQualification(key);
+    await nextTick();
+    if (request !== qualificationRequest || view.value !== origin) return false;
+    qualificationLoadPercent.value = 100;
     return true;
   } catch {
     if (request === qualificationRequest && view.value === origin) {
@@ -4877,7 +4884,7 @@ onBeforeUnmount(() => {
           <button v-if="view !== 'settings'" type="button" aria-label="설정 열기" @click="settingsOpen = true">⚙ <span>설정</span></button>
         </div>
       </header>
-      <p v-if="pendingQualification" role="status">선택한 종목의 자료를 불러오는 중…</p>
+      <RoundsLoading v-if="pendingQualification" :percent="qualificationLoadPercent" />
       <p v-if="qualificationLoadError" role="alert">{{ qualificationLoadError }}</p>
 
       <div class="page-content">

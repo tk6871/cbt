@@ -7,6 +7,13 @@ test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로
     await notice.getByRole('button', { name: '나중에', exact: true }).click();
   });
   await page.goto('/?safe=1');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  let releaseSafety!: () => void;
+  const safetyGate = new Promise<void>(resolve => { releaseSafety = resolve; });
+  await page.route('**/data/safety.js?*', async route => {
+    await safetyGate;
+    await route.continue();
+  }, { times: 1 });
   const documentNavigations: string[] = [];
   page.on('request', request => {
     if (request.isNavigationRequest() && request.frame() === page.mainFrame()) documentNavigations.push(request.url());
@@ -14,8 +21,13 @@ test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await page.getByRole('button', { name: '교재 페이지별', exact: true }).click();
   await page.getByLabel('현재 화면의 자격증 종목').selectOption('safety');
+  const progress = page.getByRole('progressbar', { name: '회차 준비 진행률' });
+  await expect(progress).toBeVisible();
+  await expect(progress).toHaveAttribute('value', '0');
+  releaseSafety();
   await expect(page.getByRole('heading', { name: '산업안전산업기사 기출문제' })).toBeVisible();
   await expect(page.locator('.round-card').first()).toBeVisible();
+  await expect(progress).toHaveCount(0);
   await page.getByRole('button', { name: '에너지설비 중간고사', exact: true }).click();
   await expect(page.getByRole('heading', { name: '에너지설비 중간고사', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '자격증 기출', exact: true }).click();

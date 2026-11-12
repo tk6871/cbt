@@ -68,7 +68,7 @@ worker.addEventListener('fetch', (event) => {
         return response;
       } catch {
         return (await caches.match(request, { ignoreSearch: true }))
-          || (await caches.match('./index.html'))
+          || (request.mode === 'navigate' ? await caches.match('./index.html') : undefined)
           || Response.error();
       }
     }
@@ -80,7 +80,7 @@ worker.addEventListener('fetch', (event) => {
       if (response.ok && sameOrigin) void (await caches.open(CACHE)).put(request, response.clone());
       return response;
     } catch {
-      return (await caches.match('./index.html')) || Response.error();
+      return (request.mode === 'navigate' ? await caches.match('./index.html') : undefined) || Response.error();
     }
   })());
 });
