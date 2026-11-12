@@ -33,7 +33,7 @@ const cast:Placement[]=rows.map(([id,name,file,x,z,angle,tint,action])=>({id,nam
 type Actor = { info:Placement; root:Group; bones:Map<string,{node:Object3D; rest:Quaternion}>; phase:number; gestureUntil:number };
 
 /** Shared geometry/textures, independent skeletons and clothing materials. */
-export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>void) {
+export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>void, render:()=>void) {
   const controller=new AbortController(), timeout=window.setTimeout(()=>controller.abort(),30000);
   const templates:VRM[]=[], staticModels:Group[]=[], actors:Actor[]=[], ownedMaterials=new Set<Material>();
   const propGeometry=new BoxGeometry(1,1,1);
@@ -43,7 +43,7 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
     const material=new MeshStandardMaterial({color,roughness:.8}); ownedMaterials.add(material);
     const mesh=new Mesh(propGeometry,material); mesh.scale.set(...scale); mesh.position.set(...position); root.add(mesh); return mesh;
   }
-  void(async()=>{
+  async function loadRegular() {
     for(const file of ['victoria','student','lecturer']) {
       const response=await fetch(new URL(`assets/campus/models/${file}.vrm`,document.baseURI),{signal:controller.signal});
       if(!response.ok)throw new Error(`Avatar HTTP ${response.status}`);
@@ -93,7 +93,10 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
           rotate(actor,'leftLowerLeg',-1.3);rotate(actor,'rightLowerLeg',-1.3);
         }
       }
+      render();
     }
+  }
+  async function loadGuest() {
     const response = await fetch(new URL('assets/campus/models/office-lady.glb', document.baseURI), { signal: controller.signal });
     if (!response.ok) throw new Error('Guest model unavailable');
     const guest = (await loader.parseAsync(await response.arrayBuffer(), '')).scene;
@@ -111,8 +114,12 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
     for (const x of [-.19,.19]) for (const z of [-.34,-.06])
       prop(root, '#243d3b', [.035,.5,.035], [x,.25,z]);
     actors.push({ info, root, bones:new Map(), phase:0, gestureUntil:0 });
-    changed();
-  })().catch(()=>{if(!disposed)failed();}).finally(()=>window.clearTimeout(timeout));
+    render();
+  }
+  void Promise.allSettled([loadGuest(),loadRegular()]).then(results=>{
+    if(disposed)return;
+    if(results.some(result=>result.status==='rejected'))failed();else changed();
+  }).finally(()=>window.clearTimeout(timeout));
   function rotate(actor:Actor,name:string,x=0,y=0,z=0) {
     const bone=actor.bones.get(name);if(!bone)return;
     bone.node.quaternion.copy(bone.rest);bone.node.rotateX(x);bone.node.rotateY(y);bone.node.rotateZ(z);

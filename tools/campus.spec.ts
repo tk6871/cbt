@@ -103,6 +103,33 @@ test('성인 캠퍼스 이야기 · 분기와 진행 복원', async ({ page }, i
   await expect(campus.locator('.campus-conversation')).toContainText('첫 데이트 이야기 완료');
 });
 
+test('유나 InkJS · 다른 에셋 실패와 무관하게 대화 · 저장과 두 결말', async ({ page }, info) => {
+  test.skip(info.project.name !== 'desktop', 'PC 키보드 접근 검사');
+  await page.route('**/assets/campus/models/victoria.vrm', route => route.abort());
+  await page.goto('/?safe=1');
+  await page.getByRole('button',{name:/3D 캠퍼스 체험/}).click();
+  const campus=page.locator('.campus');
+  await expect(campus.locator('.character-status')).toContainText('일부 캐릭터',{timeout:30000});
+  const host=campus.locator('.campus-scene');
+  const talk=campus.getByRole('button',{name:/유나 · 대화하기/});
+  await host.focus();
+  await page.keyboard.down('w');
+  try { await expect(talk).toBeVisible({timeout:10000}); } finally { await page.keyboard.up('w'); }
+  await talk.click();
+  const novel=campus.locator('.campus-novel');
+  await novel.getByRole('button',{name:/강의에서 기억/}).click();
+  await novel.getByRole('button',{name:/한 문제씩 설명/}).click();
+  await campus.getByRole('button',{name:'대화 닫기',exact:true}).click();
+  await talk.click();
+  await novel.getByRole('button',{name:/같이 가자고/}).click();
+  await novel.getByRole('button',{name:/데이트로/}).click();
+  await expect(novel).toContainText('데이트 엔딩');
+  await novel.getByRole('button',{name:/처음부터/}).click();
+  await novel.getByRole('button',{name:/쉬는 날엔/}).click();
+  await novel.getByRole('button',{name:/카페 추천만/}).click();
+  await expect(novel).toContainText('스터디 친구 엔딩');
+});
+
 test('4K · 키보드 이동 · 드래그 · 컨텍스트 손실 복귀', async ({ page }, info) => {
   test.skip(info.project.name !== 'desktop', 'PC 4K 조작 검사');
   await page.setViewportSize({ width: 3840, height: 2160 });

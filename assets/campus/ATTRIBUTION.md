@@ -1,5 +1,7 @@
 # Campus model
 
+The Yuna dialogue route uses [InkJS](https://github.com/y-lohse/inkjs) v2.4.0 under the [MIT license](INKJS-LICENSE.md). The dialogue script is original to this project.
+
 Office lady — MadCatD, CC BY 4.0.
 
 - Source: https://sketchfab.com/3d-models/office-lady-df458f315d0e4578af6a24014f8bccb6

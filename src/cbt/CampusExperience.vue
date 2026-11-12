@@ -4,6 +4,7 @@ import * as T from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { VRMUtils } from '@pixiv/three-vrm';
 import CampusPrivatePanel from './CampusPrivatePanel.vue';
+import CampusNovel from './CampusNovel.vue';
 import { validateCampusGlb } from './campusGlb';
 import { loadCampusCharacters, type CampusPerson } from './campusCharacters';
 import { advanceCampusStory, campusStoryChoices, campusStoryLine, freshStory, readCampusStory, saveCampusStory, type StoryChoice } from './campusStory';
@@ -308,7 +309,7 @@ onMounted(async () => {
     renderer.outputColorSpace = T.SRGBColorSpace; renderer.toneMapping = T.ACESFilmicToneMapping; renderer.shadowMap.type = T.PCFSoftShadowMap;
     build(); host.value!.appendChild(renderer.domElement);
     characterGroup = new T.Group(); scene.add(characterGroup);
-    characters = loadCampusCharacters(characterGroup, () => { characterStatus.value = ''; wake(); }, () => { characterStatus.value = '캐릭터를 불러오지 못했어요. 이동과 공부는 이용할 수 있습니다.'; });
+    characters = loadCampusCharacters(characterGroup, () => { characterStatus.value = ''; wake(); }, () => { characterStatus.value = '일부 캐릭터를 불러오지 못했어요. 이동과 공부는 이용할 수 있습니다.'; }, wake);
     renderer.domElement.addEventListener('webglcontextlost', contextLost);
     observer = new ResizeObserver(resize); observer.observe(host.value!); last = performance.now(); resize();
   } catch { error.value = '이 기기에서는 3D 화면을 열 수 없어요. 기존 CBT는 그대로 이용할 수 있습니다.'; }
@@ -336,11 +337,14 @@ onBeforeUnmount(() => {
     <CampusPrivatePanel @preview="previewPrivateModel" @clear="clearPrivateModel" />
     <button v-if="nearby && !conversation && !error" class="campus-person-action" @click="interact">{{ nearby.name }} · 대화하기 <kbd>E</kbd></button>
     <section v-if="conversation && !error" class="campus-conversation" aria-label="캠퍼스 인물 대화">
-      <small>{{ conversation.role }} · 성인 캠퍼스 이야기</small><h2>{{ conversation.name }} <span class="campus-affinity" :aria-label="`친밀도 ${relationship.affinity} / 3`">{{ '♥'.repeat(relationship.affinity) }}{{ '♡'.repeat(3-relationship.affinity) }}</span></h2>
+      <small>{{ conversation.role }} · 성인 캠퍼스 이야기</small><h2>{{ conversation.name }} <span v-if="conversation.id !== 'guest-lecturer'" class="campus-affinity" :aria-label="`친밀도 ${relationship.affinity} / 3`">{{ '♥'.repeat(relationship.affinity) }}{{ '♡'.repeat(3-relationship.affinity) }}</span></h2>
+      <CampusNovel v-if="conversation.id === 'guest-lecturer'" />
+      <template v-else>
       <p>{{ campusStoryLine(conversation.id, relationship) }}</p>
       <div class="campus-story-choices"><button v-for="choice in campusStoryChoices(relationship)" :key="choice.id" @click="chooseStory(choice.id)">{{ choice.text }}</button></div>
       <p class="campus-story-note">가상 이야기 · 이 기기에만 저장 · 학습 점수와 별개</p>
       <p v-if="!storySaved" role="status">저장 공간이 부족해 이번 진행은 창을 닫으면 사라질 수 있어요.</p>
+      </template>
       <details><summary>강의실 안내</summary><p>{{ conversation.message }}</p></details>
       <div><button @click="dismissConversation">대화 닫기</button><button @click="go(conversation.destination)">강의실 방향 안내</button><button class="campus-primary" @click="emit('study')">공부 시작</button></div>
     </section>
