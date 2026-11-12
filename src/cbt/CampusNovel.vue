@@ -2,8 +2,10 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import type { Story } from 'inkjs';
 import route from './yuna-route.json';
+import teacherRoute from './teacher-route.json';
 
-const key = 'cbt-campus-ink-yuna-v1';
+const props = defineProps<{ person: 'guest-lecturer' | 'teacher' }>();
+const key = props.person === 'teacher' ? 'cbt-campus-ink-teacher-v1' : 'cbt-campus-ink-yuna-v1';
 const lines = ref('');
 const choices = ref<{ index: number; text: string }[]>([]);
 const failed = ref(false);
@@ -41,7 +43,7 @@ onMounted(async () => {
   try {
     const { Story } = await import('inkjs');
     if (disposed) return;
-    createStory = () => new Story(route);
+    createStory = () => new Story(props.person === 'teacher' ? teacherRoute : route);
     story = createStory();
     try {
       const stored = JSON.parse(localStorage.getItem(key) || 'null');
@@ -57,7 +59,7 @@ onMounted(async () => {
 
 <template>
   <div class="campus-novel">
-    <small>유나의 이야기 · 정문에서</small>
+    <small>{{ person === 'teacher' ? '윤 강사의 이야기 · 강의가 끝나고' : '유나의 이야기 · 정문에서' }}</small>
     <p v-if="failed" role="status">이야기를 읽지 못했어요. 대화를 닫았다가 다시 열어 주세요.</p>
     <p v-else-if="!ready" role="status">이야기를 불러오는 중…</p>
     <template v-else>

@@ -2,6 +2,25 @@
 
 The Yuna dialogue route uses [InkJS](https://github.com/y-lohse/inkjs) v2.4.0 under the [MIT license](INKJS-LICENSE.md). The dialogue script is original to this project.
 
+Vita (terrace-vita.vrm) — pixiv VRoid Studio beta sample 3, CC0.
+
+- Official terms: https://vroid.pixiv.help/hc/en-us/articles/360014900113
+- Original model mirror: https://github.com/madjin/vrm-samples/blob/master/vroid/beta/Vita.vrm
+- Original geometry and textures are unchanged; runtime pose and scale are adjusted.
+
+Sendagaya Shibu (school-uniform.vrm) — pixiv VRoid Studio beta sample 1, CC0.
+
+- Official terms: https://vroid.pixiv.help/hc/en-us/articles/360012381793
+- Original model mirror: https://github.com/madjin/vrm-samples/blob/master/vroid/beta/Sendagaya_Shibu.vrm
+- Embedded license verified as CC0. Original geometry and textures are unchanged; runtime pose and scale are adjusted. The student role is limited to campus guidance.
+- Festival outfit uses the official [Darkness Shibu variant](https://github.com/madjin/vrm-samples/blob/master/vroid/beta/Darkness_Shibu.vrm) (CC0), including its original outfit mesh, makeup and hair color.
+
+Sakurada Fumiriya (school-blazer.vrm) — pixiv VRoid Studio beta sample, CC0.
+
+- Official terms: https://vroid.pixiv.help/hc/en-us/articles/360014788554
+- Original model mirror: https://github.com/madjin/vrm-samples/blob/master/vroid/beta/Sakurada_Fumiriya.vrm
+- Embedded license verified as CC0. Original geometry and textures are unchanged; runtime pose, scale and a book prop are added.
+
 Office lady — MadCatD, CC BY 4.0.
 
 - Source: https://sketchfab.com/3d-models/office-lady-df458f315d0e4578af6a24014f8bccb6
