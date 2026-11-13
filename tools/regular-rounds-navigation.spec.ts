@@ -3,10 +3,24 @@ import { test, expect } from '@playwright/test';
 test.use({ serviceWorkers: 'block' });
 
 test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로 복귀', async ({ page }) => {
+  await page.addInitScript(() => {
+    if (sessionStorage.getItem('legacy-home-test')) return;
+    sessionStorage.setItem('legacy-home-test', '1');
+    localStorage.setItem('cbt-campus-story-v1', '{}');
+    localStorage.setItem('cbt-campus-view', 'map');
+    localStorage.setItem('cbt-test-unrelated', 'keep');
+  });
   await page.addLocatorHandler(page.locator('.pwa-error-notice'), async notice => {
     await notice.getByRole('button', { name: '나중에', exact: true }).click();
   });
   await page.goto('/?safe=1');
+  await expect(page.locator('.app-frame')).toBeVisible();
+  await expect(page.getByRole('button', { name: /3D 캠퍼스 체험/ })).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => [
+    localStorage.getItem('cbt-campus-story-v1'),
+    localStorage.getItem('cbt-campus-view'),
+    localStorage.getItem('cbt-test-unrelated'),
+  ])).toEqual([null, null, 'keep']);
   await page.emulateMedia({ reducedMotion: 'reduce' });
   let releaseSafety!: () => void;
   const safetyGate = new Promise<void>(resolve => { releaseSafety = resolve; });

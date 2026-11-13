@@ -443,36 +443,6 @@ export async function signOutFromSync(): Promise<void> {
   await client?.auth.signOut();
 }
 
-export type CampusPrivateAsset = { path: string; title: string; author: string; source: string; license: string };
-export async function listCampusPrivateAssets(): Promise<CampusPrivateAsset[] | null> {
-  if (!client || !session) return null;
-  const { data: member, error } = await client.from('campus_preview_members').select('user_id').eq('user_id', session.user.id).maybeSingle();
-  if (error || !member) return null;
-  const result = await client.from('campus_preview_assets').select('path,title,author,source,license').order('created_at', { ascending: false });
-  if (result.error) throw new Error('비공개 모델 목록을 불러오지 못했어요.');
-  return result.data;
-}
-export async function downloadCampusPrivateAsset(path: string): Promise<ArrayBuffer> {
-  if (!client || !session || !path.startsWith(`${session.user.id}/`)) throw new Error('테스트 계정으로 로그인해 주세요.');
-  const owner = session.user.id;
-  const { data, error } = await client.storage.from('campus-private').download(path);
-  if (error || !data || session?.user.id !== owner) throw new Error('모델 접근 권한 또는 연결을 확인해 주세요.');
-  return data.arrayBuffer();
-}
-export async function uploadCampusPrivateAsset(file: File, info: Omit<CampusPrivateAsset, 'path'>): Promise<void> {
-  if (!client || !session) throw new Error('먼저 로그인해 주세요.');
-  if (file.size > 50 * 1024 * 1024) throw new Error('50MB 이하 GLB 파일만 사용할 수 있어요.');
-  const { validateCampusGlb } = await import('./campusGlb');
-  validateCampusGlb(await file.arrayBuffer());
-  const owner = session.user.id;
-  const path = `${owner}/${crypto.randomUUID()}.glb`;
-  const result = await client.storage.from('campus-private').upload(path, file, { contentType: 'model/gltf-binary', cacheControl: '0', upsert: false });
-  if (result.error) throw new Error('비공개 업로드 실패: 권한·50MB 제한을 확인해 주세요.');
-  if (session?.user.id !== owner) throw new Error('계정이 변경되어 등록을 중단했어요.');
-  const saved = await client.from('campus_preview_assets').insert({ ...info, path, user_id: owner });
-  if (saved.error) throw new Error('파일은 비공개 보관됐지만 목록 등록에 실패했어요. 관리자 확인이 필요합니다.');
-}
-
 export async function findSyncId(recoveryCode: string): Promise<AccountFunctionResult> {
   return accountFunction({ action: 'find-id', recoveryCode });
 }

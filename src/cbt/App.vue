@@ -6,7 +6,7 @@ import { animate, stagger } from 'motion';
 import { visibleMotionTargets } from './viewMotion';
 import { pluginExperiences } from './pluginExperiences';
 import { responsiveImageAttrs, restoreOriginalImage } from './responsiveImages';
-import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, shallowRef, watch } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import {
   GEM_APPRAISER_TARGET_KEY,
   ensureCatalogLoaded,
@@ -46,30 +46,6 @@ const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
 const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
 const TextbookLibrary = defineAsyncComponent(() => import('./TextbookLibrary.vue'));
-const campusOpen = ref(false);
-const campusComponent = shallowRef<typeof import('./CampusExperience.vue')['default']>();
-const campusLoadError = ref(false);
-let campusReturnFocus: HTMLElement | null = null;
-async function loadCampus() {
-  campusLoadError.value = false;
-  try { campusComponent.value = (await import('./CampusExperience.vue')).default; }
-  catch { campusLoadError.value = true; }
-}
-function openCampus() {
-  campusReturnFocus = document.activeElement as HTMLElement | null;
-  campusOpen.value = true;
-  history.pushState({ ...history.state, campus: true }, '', location.href);
-  void nextTick(() => document.querySelector<HTMLButtonElement>('.campus-loading button')?.focus());
-  void loadCampus();
-}
-function closeCampus() {
-  if (history.state?.campus) history.back();
-  else campusOpen.value = false;
-}
-function campusStudy() {
-  campusOpen.value = false;
-  openView('rounds', { replace: true });
-}
 import {saveBookSelection,type BookSelection} from './textbookReaderState';
 import { textbookSourceKeys, bookForStudyId, type TextbookKey } from './textbookRoutes';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
@@ -2724,12 +2700,6 @@ function deactivateSession(preserveForForward = false): void {
 }
 
 function handleBrowserHistory(event: PopStateEvent): void {
-  if (event.state?.campus) { campusOpen.value = true; void loadCampus(); return; }
-  if (campusOpen.value) {
-    campusOpen.value = false;
-    void nextTick(() => campusReturnFocus?.focus());
-    return;
-  }
   const target = ownHistoryState(event.state);
   if (!target) return;
   textbookReaderOpen.value=target.view==='rounds'&&!!target.textbookRoom;
@@ -4609,7 +4579,6 @@ function closeNativeOverlays(): boolean {
 }
 
 async function handleNativeBackButton(): Promise<void> {
-  if (campusOpen.value) { closeCampus(); return; }
   if (closeNativeOverlays()) return;
   if(textbookReaderOpen.value&&!session.value){
     const picker=document.querySelector<HTMLDialogElement>('#textbook-navigator');
@@ -4671,6 +4640,11 @@ watch([guideLoaded, practicalSessionActive, practicalSessionFinished], ([loaded,
 });
 
 onMounted(async () => {
+  try {
+    for (const key of ['view', 'mouse-look', 'school-outfit', 'teacher-style', 'story-v1', 'ink-teacher-v1', 'ink-yuna-v1']) {
+      localStorage.removeItem(`cbt-campus-${key}`);
+    }
+  } catch { /* local storage may be disabled */ }
   window.addEventListener('cbt:update-available', handleUpdateAvailable);
   window.addEventListener('cbt:pwa-error', handlePwaRegistrationError);
   window.addEventListener('cbt:pwa-ready', handlePwaReady);
@@ -4805,7 +4779,6 @@ onBeforeUnmount(() => {
   <div
     v-if="!session && !textbookReaderOpen"
     class="app-frame"
-    :inert="campusOpen"
     :style="themeBackdropStyle"
     :class="{
       'practical-solving': practicalSolving,
@@ -4899,7 +4872,6 @@ onBeforeUnmount(() => {
           <template #account><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요." /></template>
         </StudySettings>
         <template v-else-if="view === 'home'">
-          <button v-if="!isJewelry" type="button" class="campus-launch" @click="openCampus"><span>◇</span><strong>3D 캠퍼스 체험</strong><small>캠퍼스에서 강의실로 · 기존 화면은 그대로</small><span>↗</span></button>
 
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
@@ -6609,14 +6581,14 @@ onBeforeUnmount(() => {
   </div>
 
   <Transition name="toast">
-    <aside v-if="updateAvailable && !session && !practicalSolving && !textbookReaderOpen && !campusOpen" class="update-notice">
+    <aside v-if="updateAvailable && !session && !practicalSolving && !textbookReaderOpen" class="update-notice">
       <div><span>NEW VERSION</span><strong>새로운 CBT 업데이트가 준비됐습니다</strong><small>버튼을 누르면 최신 화면과 패치노트가 적용됩니다.</small></div>
       <button type="button" @click="applyUpdate">업데이트 적용</button>
     </aside>
   </Transition>
 
   <Transition name="toast">
-    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving && !textbookReaderOpen && !campusOpen" class="update-notice pwa-error-notice">
+    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving && !textbookReaderOpen" class="update-notice pwa-error-notice">
       <div><span>PWA RECOVERY</span><strong>업데이트 연결을 자동으로 복구할 수 있습니다</strong><small>학습 기록·오답·로그인은 보존하고 서비스워커와 CBT 캐시만 다시 설정합니다.</small></div>
       <div class="pwa-error-actions">
         <button type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>
@@ -6631,7 +6603,7 @@ onBeforeUnmount(() => {
 
   <Teleport to="body">
     <div
-      v-if="visualTransitionPhase && !campusOpen"
+      v-if="visualTransitionPhase"
       class="visual-style-motion"
       :class="[`motion-${visualTransitionPhase}`, `motion-to-${visualTransitionTarget}`]"
       aria-hidden="true"
@@ -6641,16 +6613,4 @@ onBeforeUnmount(() => {
       <span>화면을 옮기는 중</span>
     </div>
   </Teleport>
-  <Teleport to="body">
-    <component :is="campusComponent" v-if="campusOpen && campusComponent" :subject="selectedCatalog.name" @close="closeCampus" @study="campusStudy" />
-    <div v-else-if="campusOpen" class="campus-loading" role="dialog" aria-modal="true" aria-label="캠퍼스 준비" @keydown.esc="closeCampus">
-      <p>{{ campusLoadError ? '캠퍼스를 불러오지 못했습니다. 인터넷 연결을 확인해주세요.' : '캠퍼스 문을 여는 중…' }}</p>
-      <button v-if="campusLoadError" @click="loadCampus">다시 시도</button>
-      <button autofocus @click="closeCampus">기존 CBT로 돌아가기</button>
-    </div>
-  </Teleport>
 </template>
-
-<style>
-.campus-launch{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:16px 20px;margin:0 0 20px;border:1px solid #60908466;border-radius:12px;background:linear-gradient(110deg,#214e49,#163633);color:#fff8e9;cursor:pointer;font:inherit}.campus-launch>span:first-child{font-size:24px;color:#e0b781}.campus-launch small{font-size:12px;color:#ccdcd5}.campus-launch>span:last-child{margin-left:auto}.campus-launch:focus-visible{outline:3px solid #e0b781;outline-offset:3px}.campus-loading{position:fixed;inset:0;z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:#173e3b;color:white}.campus-loading button{padding:14px;border-radius:8px;background:#fff8e9;color:#173e3b}@media(max-width:600px){.campus-launch{flex-wrap:wrap;gap:8px}.campus-launch small{width:100%;order:4}}
-</style>
