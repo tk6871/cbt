@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { advanceCampusStory, freshStory } from '../src/cbt/campusStory';
 import { makePreviewWalker } from '../src/cbt/campusPreviewWalk';
-import { Bone, Group } from 'three';
+import { campusReactionAt, campusReactionWave } from '../src/cbt/campusReaction';
+import { Bone, Group, Vector3 } from 'three';
 test.use({ serviceWorkers: 'block' });
 test.beforeEach(async ({ page }) => {
   await page.route('**/work/private-notes/campus-assets/shiho-campus.glb', route => route.fulfill({status:404}));
@@ -37,6 +38,28 @@ test('캐릭터 보조 동작은 머리카락과 몸통에 적용되고 T자 자
   walker.update(.05, false, 'tpose');
   expect(hair.quaternion.equals(hairRest)).toBe(true);
   expect(spine.quaternion.equals(spineRest)).toBe(true);
+});
+test('맞은 위치를 구분하고 해당 관절에만 반동을 더함', () => {
+  const model = new Group();
+  const bone = (name:string,x:number,y:number) => {
+    const joint = new Bone(); joint.name='DEF-'+name; joint.position.set(x,y,0); model.add(joint); return joint;
+  };
+  const head=bone('Head',0,1.7), spine=bone('Spine',0,1.1), arm=bone('Left arm',.35,1.4), wrist=bone('Left wrist',.7,1.3);
+  bone('Right arm',-.35,1.4); bone('Right wrist',-.7,1.3);
+  bone('Left leg',.15,.8); bone('Right leg',-.15,.8); bone('Left knee',.15,.4); bone('Right knee',-.15,.4);
+  expect(campusReactionAt(new Vector3(.58,1.36,0),[['spine',spine],['head',head],['leftArm',arm,wrist]])).toBe('leftArm');
+  expect(campusReactionAt(new Vector3(0,1.71,.04),[['spine',spine],['head',head],['leftArm',arm,wrist]])).toBe('head');
+  const walker=makePreviewWalker(model,{x:0,z:0,yaw:0})!;
+  walker.update(0,false,'idle');
+  const hit=wrist.getWorldPosition(new Vector3());
+  walker.update(.05,false,'idle');
+  const normal=arm.quaternion.clone();
+  walker.react(hit);
+  walker.update(.05,false,'idle');
+  expect(arm.quaternion.angleTo(normal)).toBeGreaterThan(.05);
+  walker.update(.5,false,'idle');
+  expect(arm.quaternion.angleTo(normal)).toBeLessThan(.0001);
+  expect(campusReactionWave(0)).toBe(0);
 });
 test('교복 학생 모델 로드 및 캠퍼스 안내', async ({ page }, info) => {
   test.skip(info.project.name !== 'desktop', '키보드 이동 검증');
@@ -95,15 +118,29 @@ test('캠퍼스 시점 전환과 목적지 이동', async ({ page }, info) => {
   await expect(campus.getByRole('button', { name: /1인칭 보기/ })).toHaveAttribute('aria-pressed', 'false');
   if (info.project.name === 'desktop') {
     await expect(campus.locator('.character-status')).toHaveCount(0, { timeout: 30000 });
-    await expect(campus.getByLabel('마우스로 둘러보기')).toBeChecked();
+    const hoverLook = campus.getByLabel('드래그 없이 시점 이동');
+    await expect(hoverLook).not.toBeChecked();
     const view = () => page.screenshot({ clip:{ x:520,y:280,width:440,height:260 } });
     await page.mouse.move(700, 430);
     const before = await view();
+    await page.mouse.move(750, 430, { steps: 5 });
+    expect((await view()).equals(before)).toBe(true);
+    await page.mouse.down();
+    await page.mouse.move(754, 430, { steps: 4 });
+    await page.mouse.up();
+    expect((await view()).equals(before)).toBe(true);
+    await page.mouse.down();
     await page.mouse.move(875, 430, { steps: 8 });
+    await page.mouse.up();
     await expect.poll(async () => (await view()).equals(before)).toBe(false);
     const turned = await view();
     await campus.getByRole('button', { name: '시선 정면' }).click();
     await expect.poll(async () => (await view()).equals(turned)).toBe(false);
+    await hoverLook.check();
+    const reset = await view();
+    await page.mouse.move(700,430);
+    await page.mouse.move(870,430,{steps:8});
+    await expect.poll(async () => (await view()).equals(reset)).toBe(false);
   }
 });
 

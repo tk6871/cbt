@@ -2,6 +2,7 @@ import { Box3, BoxGeometry, Color, Group, Material, Mesh, MeshStandardMaterial, 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import { VRMLoaderPlugin, VRMUtils, type VRM } from '@pixiv/three-vrm';
+import { campusReactionAt, campusReactionDuration, campusReactionWave, type CampusReaction, type ReactionAnchor } from './campusReaction';
 
 type Action = 'welcome' | 'talk' | 'read' | 'teach' | 'walk';
 export type CampusPerson = { id:string; name:string; role:string; message:string; destination:'복도'|'강의실'; guidanceOnly?:boolean };
@@ -32,7 +33,11 @@ const cast:Placement[]=rows.map(([id,name,file,x,z,angle,tint,action])=>({
   message:id==='terrace-guide'?'이곳은 정원 열람 테라스예요. 책을 읽거나 오늘 풀 기출문제를 골라 보세요.':messages[action],
   destination:id==='guide'||id==='school-guide'?'복도':'강의실',
 }));
-type Actor = { info:Placement; root:Group; bones:Map<string,{node:Object3D; rest:Quaternion}>; phase:number; gestureUntil:number };
+type Actor = { info:Placement; root:Group; bones:Map<string,{node:Object3D; rest:Quaternion}>; phase:number; gestureUntil:number; impact?: { until:number; part:CampusReaction } };
+const reactionBones:Record<CampusReaction, readonly [string,string?]> = {
+  head:['head'], spine:['spine','chest'], leftArm:['leftUpperArm','leftHand'], rightArm:['rightUpperArm','rightHand'],
+  leftLeg:['leftUpperLeg','leftFoot'], rightLeg:['rightUpperLeg','rightFoot'],
+};
 export type TeacherStyle = 'lecture' | 'garden';
 export type SchoolOutfit = 'uniform' | 'festival';
 const uniformPlacement=cast.find(person=>person.id==='school-guide')!;
@@ -69,7 +74,7 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
         const model=clone(template.scene); model.scale.multiplyScalar(scale); model.position.y-=bounds.min.y*scale;
         const root=new Group(); root.position.set(info.x,.09,info.z); root.rotation.y=info.angle; root.userData.personId=info.id; root.visible=isOutfitActive(info); root.add(model); parent.add(root);
         const bones:Actor['bones']=new Map();
-        for(const name of ['head','spine','leftUpperArm','rightUpperArm','leftLowerArm','rightLowerArm','leftUpperLeg','rightUpperLeg','leftLowerLeg','rightLowerLeg'] as const) {
+        for(const name of ['head','spine','chest','leftUpperArm','rightUpperArm','leftLowerArm','rightLowerArm','leftHand','rightHand','leftUpperLeg','rightUpperLeg','leftLowerLeg','rightLowerLeg','leftFoot','rightFoot'] as const) {
           const original=template.humanoid.getRawBoneNode(name), node=original&&model.getObjectByName(original.name);
           if(node)bones.set(name,{node,rest:node.quaternion.clone()});
         }
@@ -149,9 +154,15 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
     bone.node.quaternion.copy(bone.rest);bone.node.rotateX(x);bone.node.rotateY(y);bone.node.rotateZ(z);
   }
   return {
-    react(id:string,time:number) {
+    react(id:string,time:number,point?:Vector3) {
       const actor=actors.find(a=>a.info.id===id&&isOutfitActive(a.info));
-      if(actor) actor.root.userData.bumpUntil=time+.38;
+      if(!actor) return;
+      const anchors:ReactionAnchor[]=[];
+      if(point) for(const part of Object.keys(reactionBones) as CampusReaction[]) {
+        const [first,last]=reactionBones[part], start=actor.bones.get(first)?.node;
+        if(start) anchors.push([part,start,last ? actor.bones.get(last)?.node : undefined]);
+      }
+      actor.impact={until:time+campusReactionDuration,part:point ? campusReactionAt(point,anchors) : 'spine'};
     },
     contact(x:number,z:number) {
       return actors.find(a=>a.root.visible&&Math.hypot(x-a.root.position.x,z-a.root.position.z)<.56)?.info.id;
@@ -174,8 +185,9 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
       let animate=false;
       sorted.forEach(({actor,distance},index)=>{
         actor.root.visible=distance<(low?18:38);
-        const impact = Math.max(0, Number(actor.root.userData.bumpUntil || 0)-time);
-        actor.root.rotation.z = quiet ? 0 : .32 * impact * Math.sin(impact * 43);
+        const wave = !quiet && actor.impact ? campusReactionWave(actor.impact.until-time) : 0;
+        const impactBone = actor.impact && actor.bones.get(reactionBones[actor.impact.part][0]);
+        actor.root.rotation.z = impactBone ? 0 : .10 * wave;
         if(!actor.root.visible||quiet||index>=(low?4:8)||distance>20)return;
         animate=true; const t=time+actor.phase,action=actor.info.action,greeting=actor.info.id===talking||time<actor.gestureUntil;
         rotate(actor,'head',Math.sin(t*1.3)*.035,Math.sin(t*.7)*.12);rotate(actor,'spine',0,0,Math.sin(t)*.015);
@@ -188,6 +200,11 @@ export function loadCampusCharacters(parent:Group, changed:()=>void, failed:()=>
           rotate(actor,'leftUpperLeg');rotate(actor,'rightUpperLeg');
           if(greeting||['talk','teach','welcome'].includes(action)){rotate(actor,'rightUpperArm',-.2,0,-.3);rotate(actor,'rightLowerArm',-.8+Math.sin(t*2)*.12);}
           if(action==='read'){rotate(actor,'head',.18);rotate(actor,'leftUpperArm',-.45);rotate(actor,'rightUpperArm',-.45);rotate(actor,'leftLowerArm',-1.1);rotate(actor,'rightLowerArm',-1.1);}
+        }
+        if(impactBone && wave) {
+          if(actor.impact?.part === 'head') impactBone.node.rotateY(.20*wave);
+          else if(actor.impact?.part === 'spine') impactBone.node.rotateZ(.14*wave);
+          else impactBone.node.rotateX(.23*wave);
         }
       });
       return animate;

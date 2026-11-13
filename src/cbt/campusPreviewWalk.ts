@@ -1,4 +1,5 @@
 import { Bone, Group, Quaternion, Vector3 } from 'three';
+import { campusReactionAt, campusReactionDuration, campusReactionWave, type CampusReaction, type ReactionAnchor } from './campusReaction';
 
 export const previewPoseLabels = { walk:'산책', idle:'편하게 서기', tpose:'T자 자세' } as const;
 export type PreviewPose = keyof typeof previewPoseLabels;
@@ -16,6 +17,13 @@ export function makePreviewWalker(model: Group, station = {x:20.2,z:19.5,yaw:-.8
   const axisY = new Vector3(0,1,0), facingX = new Vector3(), facingZ = new Vector3();
   const accents = ['defspine','defhead','defleftwrist','defrightwrist']
     .map(name => rig.get(name));
+  const [spine,head,leftWrist,rightWrist] = accents;
+  const anchors: ReactionAnchor[] = [
+    ['leftArm',leftArm,leftWrist], ['rightArm',rightArm,rightWrist],
+    ['leftLeg',leftLeg,leftKnee], ['rightLeg',rightLeg,rightKnee],
+  ];
+  if (head) anchors.unshift(['head',head]);
+  if (spine) anchors.unshift(['spine',spine,rig.get('defchest')]);
   const hair = Array.from(rig).filter(([name,bone]) => /hair|cattail/.test(name) &&
     bone.parent && !/hair|cattail/i.test(bone.parent.name)).slice(0,14).map(([,bone])=>bone);
   const posedBones = [...new Set([...joints, ...accents, ...hair].filter((bone): bone is Bone => Boolean(bone?.parent)))];
@@ -32,10 +40,11 @@ export function makePreviewWalker(model: Group, station = {x:20.2,z:19.5,yaw:-.8
   let elapsed = 0;
   let detailTime = 0;
   let impact = 0;
+  let impactPart: CampusReaction = 'spine';
   function update(dt: number, quiet: boolean, pose: PreviewPose | 'seat' = 'walk') {
     const moving = pose === 'walk' && !quiet;
     if (!quiet && pose !== 'tpose') detailTime += dt;
-    impact = quiet ? 0 : Math.max(0,impact-dt*3.4);
+    impact = quiet || pose === 'tpose' ? 0 : Math.max(0,impact-dt);
     if (moving) elapsed += dt;
     const path = elapsed * .46, stride = moving ? Math.sin(elapsed * 6) : 0;
     if (pose === 'walk') pivot.position.set(20 + 1.32 * Math.sin(path), Math.abs(stride)*.018, 21.8 + 1.05 * Math.cos(path));
@@ -57,18 +66,21 @@ export function makePreviewWalker(model: Group, station = {x:20.2,z:19.5,yaw:-.8
     }
     if (!quiet) {
       const sway = Math.sin(detailTime * 1.45);
-      const [spine,head,leftWrist,rightWrist] = accents;
-      const recoil = impact * .12 * Math.sin(impact * 15);
-      if (spine?.parent) bend(spine,facingZ,.012*sway + .025*stride + recoil);
-      if (head?.parent) bend(head,axisY,.04*Math.sin(detailTime*.8)-.02*stride);
+      const recoil = campusReactionWave(impact) * .21;
+      if (spine?.parent) bend(spine,facingZ,.012*sway + .025*stride + (impactPart === 'spine' ? recoil : 0));
+      if (head?.parent) bend(head,axisY,.04*Math.sin(detailTime*.8)-.02*stride + (impactPart === 'head' ? recoil : 0));
+      if (impactPart === 'leftArm') bend(leftArm,facingX,recoil);
+      if (impactPart === 'rightArm') bend(rightArm,facingX,recoil);
+      if (impactPart === 'leftLeg') bend(leftKnee,facingX,recoil);
+      if (impactPart === 'rightLeg') bend(rightKnee,facingX,recoil);
       if (leftWrist?.parent) bend(leftWrist,facingX,.035*sway + .045*stride);
       if (rightWrist?.parent) bend(rightWrist,facingX,-.035*sway - .045*stride);
       hair.forEach((bone,i)=>{
-        bend(bone,facingZ,.027*Math.sin(detailTime*2.1+i*.28)+.045*stride+recoil*.7);
+        bend(bone,facingZ,.027*Math.sin(detailTime*2.1+i*.28)+.045*stride+(impactPart === 'head' ? recoil*.7 : 0));
         bend(bone,facingX,.02*Math.sin(detailTime*1.6+i*.35));
       });
     }
     return !quiet;
   }
-  return { pivot, update, react(){ impact=1; } };
+  return { pivot, update, react(point?: Vector3){ impactPart = point ? campusReactionAt(point,anchors) : 'spine'; impact=campusReactionDuration; } };
 }

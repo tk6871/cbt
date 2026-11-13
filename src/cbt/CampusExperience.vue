@@ -30,10 +30,10 @@ const placeCopy: Record<Place, {label:string; title:string; description:string}>
 const error = ref('');
 const moving = ref(false);
 const overview = ref(false);
-const mouseLook = ref(true);
+const mouseLook = ref(false);
 let hoverPoint: { x:number; y:number } | undefined;
 try { overview.value = localStorage.getItem('cbt-campus-view') === 'map'; } catch { /* optional */ }
-try { mouseLook.value = localStorage.getItem('cbt-campus-mouse-look') !== 'drag'; } catch { /* optional */ }
+try { mouseLook.value = localStorage.getItem('cbt-campus-mouse-look') === 'hover'; } catch { /* optional */ }
 function resetHover() { hoverPoint = undefined; }
 function saveMouseLook() {
   resetHover();
@@ -256,7 +256,7 @@ let observer: ResizeObserver | undefined;
 let yaw = 0;
 let pitch = 0;
 let last = 0;
-let drag: { id: number; x: number; y: number; moved: boolean } | undefined;
+let drag: { id: number; x: number; y: number; startX:number; startY:number; moved: boolean } | undefined;
 let route: T.Vector3[] = [];
 let destination: Place = '정문';
 const keys = new Set<string>();
@@ -568,10 +568,16 @@ function resize() {
   mapCamera.left = -10 * camera.aspect; mapCamera.right = 10 * camera.aspect; mapCamera.updateProjectionMatrix(); wake();
 }
 function down(e: PointerEvent) {
-  if (e.button !== 0) return;
+  if (e.button !== 0 || !e.isPrimary || conversation.value || error.value) return;
   resetHover();
-  route = []; moving.value = false; drag = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
-  host.value?.setPointerCapture(e.pointerId); host.value?.focus();
+  route = []; moving.value = false;
+  drag = { id:e.pointerId, x:e.clientX, y:e.clientY, startX:e.clientX, startY:e.clientY, moved:false };
+  host.value?.setPointerCapture(e.pointerId); host.value?.focus({preventScroll:true});
+}
+function turnView(dx:number,dy:number,speed:number) {
+  yaw -= dx*speed;
+  pitch = T.MathUtils.clamp(pitch - dy*speed, -.8, .8);
+  wake();
 }
 function move(e: PointerEvent) {
   if (!drag) {
@@ -579,34 +585,43 @@ function move(e: PointerEvent) {
       resetHover(); return;
     }
     if (hoverPoint) {
-      yaw -= (e.clientX - hoverPoint.x) * .004;
-      pitch = T.MathUtils.clamp(pitch - (e.clientY - hoverPoint.y) * .004, -.8, .8);
-      wake();
+      turnView(e.clientX-hoverPoint.x,e.clientY-hoverPoint.y,.0018);
     }
     hoverPoint = { x:e.clientX, y:e.clientY };
     return;
   }
   if (drag.id !== e.pointerId) return;
-  if (Math.abs(e.clientX-drag.x)+Math.abs(e.clientY-drag.y)>2) drag.moved=true;
-  if (!overview.value) {
-    yaw -= (e.clientX - drag.x) * .004; pitch = T.MathUtils.clamp(pitch - (e.clientY - drag.y) * .004, -.8, .8);
+  if (!drag.moved) {
+    const dx=e.clientX-drag.startX, dy=e.clientY-drag.startY;
+    const distance=Math.hypot(dx,dy), threshold=e.pointerType === 'touch' ? 10 : 6;
+    if(distance<=threshold) return;
+    drag.x=drag.startX+dx*threshold/distance;
+    drag.y=drag.startY+dy*threshold/distance;
+    drag.moved=true;
   }
-  drag.x = e.clientX; drag.y = e.clientY; wake();
+  if (!overview.value) turnView(e.clientX-drag.x,e.clientY-drag.y,e.pointerType === 'touch' ? .0035 : .0028);
+  drag.x = e.clientX; drag.y = e.clientY;
 }
 function release(e: PointerEvent) {
-  if (e.type === 'pointerup' && drag && !drag.moved && characterGroup && host.value) {
+  if (!drag || drag.id !== e.pointerId) return;
+  const tap=!drag.moved && Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY)<=(e.pointerType === 'touch' ? 10 : 6);
+  drag=undefined;
+  if (e.type === 'pointerup' && tap && !quiet.value && characterGroup && host.value) {
     const rect=host.value.getBoundingClientRect(), ray=new T.Raycaster();
     ray.setFromCamera(new T.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),overview.value ? mapCamera : camera);
-    const hit=ray.intersectObjects([characterGroup,...localCompanions.map(a=>a.pivot)],true)[0];
-    const person=hit?.object.userData.personId;
-    if(person && person===nearby.value?.id){
-      characters?.react(person,performance.now()/1000); interact();
-    } else if(hit){
-      const companion=localCompanions.find(a=>a.pivot.getObjectById(hit.object.id));
-      if(companion && camera.position.distanceTo(companion.pivot.position)<3.5){companion.react();wake();}
-    }
+    const privateActors=[...localCompanions,...(privateWalker && !playAsShiho.value ? [privateWalker] : [])];
+    const visible = (object:T.Object3D) => {
+      for(let node:T.Object3D|null=object;node;node=node.parent) if(!node.visible) return false;
+      return true;
+    };
+    // The first visible surface wins, so clicks don't reach characters through walls or desks.
+    const hit=ray.intersectObjects(scene.children,true).find(item=>visible(item.object)&&item.object!==mapMarker);
+    if(!hit || Math.hypot(camera.position.x-hit.point.x,camera.position.z-hit.point.z)>5) return;
+    const person=hit.object.userData.personId;
+    if(person) characters?.react(person,performance.now()/1000,hit.point);
+    else privateActors.find(actor=>actor.pivot.getObjectById(hit.object.id))?.react(hit.point);
+    wake();
   }
-  drag = undefined;
 }
 function interact() {
   if (!nearby.value) return;
@@ -683,7 +698,7 @@ onBeforeUnmount(() => {
       <button type="button" :aria-pressed="overview" @click="toggleView">{{ overview ? '위에서 보기' : '1인칭 보기' }} <kbd>V</kbd></button>
       <button v-if="!overview" type="button" @click="resetHeading">시선 정면</button>
       <button v-if="!overview" type="button" :aria-pressed="jumping" @click="jump">점프 <kbd>Space</kbd></button>
-      <label v-if="!overview" class="campus-mouse-look"><input v-model="mouseLook" type="checkbox" @change="saveMouseLook"> 마우스로 둘러보기</label>
+      <label v-if="!overview" class="campus-mouse-look"><input v-model="mouseLook" type="checkbox" @change="saveMouseLook"> 드래그 없이 시점 이동</label>
     </div>
     <div v-if="!error && !conversation" class="campus-touch-move" role="group" aria-label="화면 방향키">
       <button v-for="[keyName, arrow, label] in directions" :key="keyName" type="button" :data-direction="keyName" :aria-label="label"
@@ -738,7 +753,7 @@ onBeforeUnmount(() => {
       <nav aria-label="캠퍼스 목적지">
         <button v-for="(name, i) in places" :key="name" :disabled="!!error" :aria-current="zone === name ? 'location' : undefined" @click="go(name)"><small>0{{ i + 1 }}</small>{{ name }}</button>
       </nav>
-      <div class="campus-help"><span>{{ mouseLook ? '마우스로 둘러보기' : '드래그로 둘러보기' }} · 방향키 / WASD 이동 · E 대화</span><label><input v-model="quiet" type="checkbox" @change="wake"> 이동 애니메이션 줄이기</label></div>
+      <div class="campus-help"><span>{{ mouseLook ? '포인터로 둘러보기' : '드래그로 둘러보기' }} · 방향키 / WASD 이동 · E 대화</span><label><input v-model="quiet" type="checkbox" @change="wake"> 이동 애니메이션 줄이기</label></div>
       <button class="campus-shortcut" @click="emit('study')">걷지 않고 바로 공부 →</button>
       <span class="campus-status" role="status">{{ moving ? `${destination}로 이동 중` : `현재 위치: ${zone}` }}</span>
       <a href="assets/campus/ATTRIBUTION.md" target="_blank" rel="noopener noreferrer" style="color:inherit;font-size:12px">캐릭터 제작자·라이선스</a>
