@@ -65,3 +65,65 @@ test('settings can switch home and image failure leaves navigation usable', asyn
   await page.screenshot({ path: testInfo.outputPath('lounge-light-fallback.png'), fullPage: true });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1)).toBe(true);
 });
+
+test('room names stay readable, unboxed and keyboard accessible at responsive widths', async ({ page }, testInfo) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: '학습 라운지 둘러보기 ↗' }).click();
+  const lounge = page.getByRole('region', { name: '학습 라운지' });
+  await expect.poll(() => lounge.locator('img').evaluate((el: HTMLImageElement) => el.naturalWidth)).toBeGreaterThan(0);
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  const widths = testInfo.project.name === 'desktop' ? [3840, 1920, 1440, 1024] : testInfo.project.name === 'tablet' ? [820, 768] : [393, 320];
+  for (const width of widths) {
+    await page.setViewportSize({ width, height: width === 3840 ? 2160 : 1000 });
+    const rooms = lounge.getByRole('navigation', { name: '라운지 공간 선택' }).getByRole('button');
+    await expect(rooms).toHaveText(['시험장', '복습 데스크', '자료실']);
+    const image = await lounge.locator('img').boundingBox();
+    expect(image).not.toBeNull();
+    const bounds = [];
+    for (const button of await rooms.all()) {
+      const box = (await button.boundingBox())!;
+      bounds.push(box);
+      expect(box.width).toBeGreaterThanOrEqual(44);
+      expect(box.height).toBeGreaterThanOrEqual(44);
+      expect(box.x).toBeGreaterThanOrEqual(image!.x);
+      expect(box.x + box.width).toBeLessThanOrEqual(image!.x + image!.width + 1);
+      if (width <= 640) expect(box.y).toBeGreaterThanOrEqual(image!.y + image!.height);
+      else {
+        expect(box.y).toBeGreaterThan(image!.y);
+        expect(box.y + box.height).toBeLessThan(image!.y + image!.height);
+      }
+      await button.hover();
+      await button.click();
+      await expect(button).toHaveAttribute('aria-pressed', 'true');
+      await expect(lounge.locator('.lounge-room-intro h2')).toHaveText((await button.innerText()).trim());
+      const decoration = await button.evaluate(el => {
+        const css = getComputedStyle(el);
+        return { background: css.backgroundColor, border: css.borderTopWidth, shadow: css.boxShadow, underline: getComputedStyle(el.querySelector('strong')!).textDecorationLine };
+      });
+      expect(decoration).toEqual({ background: 'rgba(0, 0, 0, 0)', border: '0px', shadow: 'none', underline: 'underline' });
+    }
+    for (let i = 1; i < bounds.length; i++) {
+      const a = bounds[i - 1], b = bounds[i];
+      expect(a.x + a.width <= b.x || a.y + a.height <= b.y).toBe(true);
+    }
+    // Enter through real keyboard navigation and activate the next space.
+    await rooms.nth(0).focus();
+    await page.keyboard.press('Tab');
+    await expect(rooms.nth(1)).toBeFocused();
+    expect(await rooms.nth(1).evaluate(el => { const s = getComputedStyle(el); return s.outlineStyle !== 'none' && parseFloat(s.outlineWidth) >= 2; })).toBe(true);
+    await page.keyboard.press('Enter');
+    await expect(rooms.nth(1)).toHaveAttribute('aria-pressed', 'true');
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+    await page.screenshot({ path: testInfo.outputPath(`lounge-keyboard-${width}.png`), fullPage: true });
+    await rooms.nth(1).evaluate(el => (el as HTMLElement).blur());
+    await page.mouse.move(0, 0);
+    await page.screenshot({ path: testInfo.outputPath(`lounge-text-${width}.png`), fullPage: true });
+    if (width === widths[0]) {
+      await page.locator('.topbar').getByRole('button', { name: /라이트 모드/ }).click();
+      await expect(rooms.nth(1)).toHaveAttribute('aria-pressed', 'true');
+      await expect(lounge.locator('.lounge-heading h1')).toHaveCSS('color', 'rgb(16, 36, 63)');
+      await page.screenshot({ path: testInfo.outputPath(`lounge-light-${width}.png`), fullPage: true, animations: 'disabled' });
+      await page.locator('.topbar').getByRole('button', { name: /다크 모드/ }).click();
+    }
+  }
+});

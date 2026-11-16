@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.1',scope:'industrial',date:'2026.11.16',title:'학습 라운지 공간 이름 정리',summary:'사진 위 공간 이름을 글씨만 보이게 정리했습니다.',tags:['홈','가독성'],changes:['시험장·복습 데스크·자료실의 배경 박스와 장식을 없애고 밑줄로 선택한 공간을 표시합니다.','휴대폰에서는 사진 아래 넓은 텍스트 행으로 공간을 선택합니다. 키보드 포커스와 기존 학습 이동은 유지합니다.']},
     {version:'6.2',scope:'industrial',date:'2026.11.13',title:'선택형 학습 라운지',summary:'공간을 선택해 공부를 시작하는 새로운 홈을 추가했습니다.',tags:['홈','선택 설정'],changes:['기존 홈이 기본이며 홈 버튼과 설정에서 학습 라운지로 전환할 수 있습니다.','시험장·복습 데스크·자료실에서 기존 공부 기능으로 이동합니다. 문제풀이와 학습 기록은 그대로 유지합니다.','휴대폰에서는 큰 세로 버튼으로 공간을 고릅니다.']},
     {version:'6.1.2',scope:'industrial',date:'2026.11.13',title:'홈 화면 정리',summary:'선택형 체험을 정리했습니다.',tags:['홈'],changes:['기출 풀이, 학습 기록, 회차 로딩 표시는 유지합니다.']},
     {version:'6.1',scope:'industrial',date:'2026.11.10',title:'회차별 문제 진입 개선',summary:'종목 전환, 자료 로딩 안내, 자격증 기출 진입을 개선했습니다.',tags:['회차별 문제','종목 전환'],changes:['회차별 문제에서 종목을 바꿔도 전체 화면을 새로고침하지 않습니다.','자료 준비 단계와 진행 막대를 표시합니다.','자격증 기출 탭을 복구하고 산업안전기사 기출 14회차를 추가했습니다.']},
@@ -2778,8 +2779,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2';
+  changelog.versions.industrial = '6.2.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2';
+  changelog.currentVersion = '6.2.1';
   window.CBT_CHANGELOG = changelog;
 })();
