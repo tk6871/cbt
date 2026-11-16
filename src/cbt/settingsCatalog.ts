@@ -1,4 +1,5 @@
 export interface SettingsValues {
+  homeLayout: 'classic' | 'lounge';
   theme: 'system' | 'light' | 'dark';
   fontScale: number;
   fontFamily: 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
@@ -31,6 +32,7 @@ export const settingsCategories: Array<{ id: SettingsCategory; label: string }> 
   { id: 'solving', label: '문제풀이' }, { id: 'tools', label: '학습 도구' }, { id: 'data', label: '기록·동기화' },
 ];
 export const settingsHelp: Record<keyof SettingsValues, string> = {
+  homeLayout: '기존 홈이 기본입니다. 학습 라운지는 공간을 눌러 공부 메뉴를 고르는 선택형 홈입니다. 문제풀이 화면과 학습 기록은 그대로 유지하며 이 기기에만 저장합니다.',
   theme: '기기 설정은 운영체제의 밝기 모드를 따라갑니다. 사진 속 문제의 밝기는 문제풀이 → 문제 이미지 다크 표시에서 따로 바꿀 수 있습니다.',
   fontScale: '글씨가 작은 FHD 반쪽 창이나 큰 모니터에서는 120~130%부터 비교해 보세요. 사진에 인쇄된 글자는 글꼴 설정으로 바뀌지 않으므로 문제의 크게보기를 이용하세요.',
   answerLayout: '기존 번호 버튼은 사진 아래에서 1~4번을 고릅니다. 이미지 직접 선택은 좌표가 준비된 문제의 보기를 바로 누릅니다. 답안 문구는 추출된 보기 내용을 버튼으로 표시합니다. 지원하지 않는 문제는 번호 버튼을 사용합니다.',
@@ -47,6 +49,7 @@ export const settingsHelp: Record<keyof SettingsValues, string> = {
   judgment: '베타 학습 도구를 유지하면서 내 판단·메모 입력란만 숨길 수 있습니다. 킵·즐겨찾기·답안 선택과는 별개입니다.',
 };
 export const settingGroups: SettingGroup[] = [
+  { key: 'homeLayout', title: '홈 화면', category: 'appearance', quick: true, description: '기존 홈 또는 공간형 학습 라운지를 선택합니다.', options: [{ value: 'classic', label: '기존 홈' }, { value: 'lounge', label: '학습 라운지' }] },
   { key: 'theme', title: '밝기', category: 'appearance', quick: true, description: '화면의 밝고 어두운 색상을 고릅니다.', options: [{ value: 'system', label: '기기 설정' }, { value: 'light', label: '라이트' }, { value: 'dark', label: '다크' }] },
   { key: 'fontScale', title: '문자 크기', category: 'appearance', quick: true, description: '문제·답안·해설에 적용됩니다. 큰 모니터에서도 직접 조절하세요.', options: [.8, 1, 1.2, 1.3, 1.4, 1.6].map(value => ({ value, label: `${Math.round(value * 100)}%${value === 1 ? ' · 기본' : ''}` })) },
   { key: 'answerLayout', title: '답안 선택 방식', category: 'solving', quick: true, description: '복원 이미지 문제의 답안을 누르는 방법입니다.', options: [{ value: 'classic', label: '기존 번호 버튼' }, { value: 'hotspot', label: '이미지 직접 선택' }, { value: 'inline', label: '답안 문구' }] },

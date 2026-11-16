@@ -24,6 +24,7 @@ import {
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
 import RoundsLoading from './RoundsLoading.vue';
+const StudyLounge = defineAsyncComponent(() => import('./StudyLounge.vue'));
 import {problemImage} from './problemImages';
 import {explanationDisplay, setExplanationDisplay} from './explanationDisplay';
 import QuestionLibraryPreview from './QuestionLibraryPreview.vue';
@@ -294,6 +295,18 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
+const homeLayout = ref<'classic' | 'lounge'>((() => {
+  try { return localStorage.getItem('unified-cbt-home-layout') === 'lounge' ? 'lounge' : 'classic'; } catch { return 'classic'; }
+})());
+function setHomeLayout(value: 'classic' | 'lounge'): void {
+  homeLayout.value = value;
+  try { localStorage.setItem('unified-cbt-home-layout', value); } catch { /* The current screen still works without storage. */ }
+}
+function navigateLounge(destination: string): void {
+  if (destination === 'random') { setHomeLayout('classic'); return; }
+  if (destination === 'textbook') { openTextbookPages(); return; }
+  if (['rounds', 'history', 'wrong', 'guide', 'calculation'].includes(destination)) openView(destination as ViewName);
+}
 const textbookPagesOpen = ref(false);
 const textbookReaderOpen = ref(false);
 const textbookKey = ref<TextbookKey>(localStorage.getItem('cbt-textbook-selected')==='energy'?'energy':'hansol');
@@ -4700,6 +4713,7 @@ onMounted(async () => {
 });
 
 const settingsValues = computed<SettingsValues>(() => ({
+  homeLayout: homeLayout.value,
   theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
   visualStyle: visualStyle.value, display: displayPreference.value, dynamic: dynamicUiEnabled.value,
   solveLayout: solveLayoutMode.value, answerLayout: answerLayout.value, indicator: hotspotIndicator.value,
@@ -4712,6 +4726,7 @@ const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeAp
 }));
 function changeSetting(change: SettingChange): void {
   switch (change.key) {
+    case 'homeLayout': setHomeLayout(change.value); break;
     case 'theme': theme.value = change.value; applyTheme(change.value); break;
     case 'fontScale': setFontScale(change.value); break;
     case 'fontFamily': setFontFamilyPreference(change.value); break;
@@ -4867,11 +4882,14 @@ onBeforeUnmount(() => {
           <i class="skeleton-title" /><i /><i /><i /><i class="skeleton-wide" />
         </div>
         <Transition v-else :name="viewTransitionName" mode="out-in" @after-enter="animateViewDetails(view)">
-          <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
+          <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home' && homeLayout === 'classic', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' && homeLayout === 'classic' }">
         <StudySettings v-if="view === 'settings'" mode="page" :values="settingsValues" :context="settingsContext" @change="changeSetting" @action="settingsAction">
           <template #account><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요." /></template>
         </StudySettings>
         <template v-else-if="view === 'home'">
+          <StudyLounge v-if="homeLayout === 'lounge'" :qualification="selectedCatalog.name" :answered="stats.answered" :wrong="stats.wrong" :motion="dynamicUiEnabled" @navigate="navigateLounge" @exit="setHomeLayout('classic')" />
+          <template v-else>
+          <div class="lounge-home-entry"><button type="button" @click="setHomeLayout('lounge')">학습 라운지 둘러보기 ↗</button><small>공간형 홈 · 언제든 기존 홈으로 돌아올 수 있어요</small></div>
 
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
             <div class="sunjae-fan-stage">
@@ -5139,6 +5157,7 @@ onBeforeUnmount(() => {
           </section>
         </template>
 
+        </template>
         <template v-else-if="view === 'school'">
           <button type="button" class="primary-button" @click="openTextbookPages">▤ 교재 페이지별로 풀기 · 한솔 공조 / 에너지</button>
           <section v-if="savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY && !coolingSavedSession" class="resume-learning-card">

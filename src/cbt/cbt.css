@@ -3639,3 +3639,7 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
 .question-transcription-control{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:5px 0 10px;color:var(--muted)}
 .question-transcription-control small{font-size:.78rem}
 .question-transcription-control button{font:inherit;min-height:36px;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);color:var(--text);cursor:pointer}
+.lounge-home-entry { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:10px; margin:0 0 20px; }
+.lounge-home-entry button { padding:12px 18px; border:1px solid #a78146; border-radius:6px; background:#1c2935; color:#f0d09c; font:inherit; cursor:pointer; }
+.lounge-home-entry button:focus-visible { outline:3px solid #bd8d40; outline-offset:3px; }
+.lounge-home-entry small { color:var(--muted); font-size:12px; }

@@ -47,6 +47,13 @@ const matchesData = computed(() => !needle.value || '기록 동기화 로그인 
 function sunjaeRotationLabel(seconds: number) { return !seconds ? '끔' : seconds < 60 ? seconds + '초' : seconds / 60 + '분'; }
 </script>
 <template><div class="legacy-settings-content">
+        <section class="setting-group" data-setting="homeLayout" v-show="matches('homeLayout')"><span>홈 화면</span>
+          <p class="setting-description">기존 홈이 기본입니다. 학습 라운지를 켜면 공간에서 메뉴를 고릅니다. 문제풀이·기록은 그대로 유지됩니다.</p>
+          <div class="display-mode-options">
+            <button type="button" :class="{ active: values.homeLayout === 'classic' }" :aria-pressed="values.homeLayout === 'classic'" @click="change('homeLayout', 'classic')"><strong>기존 홈</strong><small>익숙한 종목·학습 메뉴</small></button>
+            <button type="button" :class="{ active: values.homeLayout === 'lounge' }" :aria-pressed="values.homeLayout === 'lounge'" @click="change('homeLayout', 'lounge')"><strong>학습 라운지</strong><small>공간형 메뉴 · 선택 기능</small></button>
+          </div>
+        </section>
 
         <section class="setting-group display-mode-setting" data-setting="display" v-show="matches('display')"><span>기기 화면 모드</span>
           <p class="setting-description">자동은 휴대폰·태블릿에서 경량 화면을 사용합니다. 모드를 바꾸면 현재 기록을 저장한 뒤 화면만 다시 엽니다.</p>

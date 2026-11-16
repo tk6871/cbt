@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2',scope:'industrial',date:'2026.11.13',title:'선택형 학습 라운지',summary:'공간을 선택해 공부를 시작하는 새로운 홈을 추가했습니다.',tags:['홈','선택 설정'],changes:['기존 홈이 기본이며 홈 버튼과 설정에서 학습 라운지로 전환할 수 있습니다.','시험장·복습 데스크·자료실에서 기존 공부 기능으로 이동합니다. 문제풀이와 학습 기록은 그대로 유지합니다.','휴대폰에서는 큰 세로 버튼으로 공간을 고릅니다.']},
     {version:'6.1.2',scope:'industrial',date:'2026.11.13',title:'홈 화면 정리',summary:'선택형 체험을 정리했습니다.',tags:['홈'],changes:['기출 풀이, 학습 기록, 회차 로딩 표시는 유지합니다.']},
     {version:'6.1',scope:'industrial',date:'2026.11.10',title:'회차별 문제 진입 개선',summary:'종목 전환, 자료 로딩 안내, 자격증 기출 진입을 개선했습니다.',tags:['회차별 문제','종목 전환'],changes:['회차별 문제에서 종목을 바꿔도 전체 화면을 새로고침하지 않습니다.','자료 준비 단계와 진행 막대를 표시합니다.','자격증 기출 탭을 복구하고 산업안전기사 기출 14회차를 추가했습니다.']},
     {version:'6.0.1',scope:'industrial',date:'2026.11.06',title:'OCR 단위 검수와 교재 풀이 개선',summary:'원문을 대조한 문제·해설을 보강하고 교재 문제를 더 빠르게 펼칩니다.',tags:['OCR 검수','교재 채점','모바일'],changes:['수치·단위·부정 표현을 중심으로 문제·해설 24개를 원문과 대조했습니다. 22개는 확인된 텍스트로 제공하고, 불확실한 단위 표기는 원문 이미지를 유지합니다.','인쇄 정답표를 확인한 교재 원문 15문제는 교재 화면에서 바로 채점합니다. 일반 학습·CBT 점수는 바꾸지 않습니다.','교재 목차의 문제 검색 자료는 검색할 때 준비합니다. 이미 불러온 문제 자료를 재사용하며, 문제 이미지·수식 기능은 그대로입니다.']},
@@ -2777,8 +2778,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.1.2';
+  changelog.versions.industrial = '6.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.1.2';
+  changelog.currentVersion = '6.2';
   window.CBT_CHANGELOG = changelog;
 })();
