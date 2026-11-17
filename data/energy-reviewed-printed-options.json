@@ -1,0 +1,92 @@
+{
+  "assets/energy-restored/questions/2021-2-70.webp": [
+    {
+      "choice": 1,
+      "x": 12.135,
+      "y": 70.588,
+      "width": 44.944,
+      "height": 13.122
+    },
+    {
+      "choice": 2,
+      "x": 57.303,
+      "y": 71.041,
+      "width": 42.472,
+      "height": 13.122
+    },
+    {
+      "choice": 3,
+      "x": 12.135,
+      "y": 84.163,
+      "width": 44.944,
+      "height": 15.385
+    },
+    {
+      "choice": 4,
+      "x": 57.303,
+      "y": 84.615,
+      "width": 42.472,
+      "height": 14.932
+    }
+  ],
+  "assets/energy-restored/questions/2022-1-70.webp": [
+    {
+      "choice": 1,
+      "x": 10.369,
+      "y": 63.333,
+      "width": 89.401,
+      "height": 7.222
+    },
+    {
+      "choice": 2,
+      "x": 10.369,
+      "y": 70.833,
+      "width": 89.401,
+      "height": 6.944
+    },
+    {
+      "choice": 3,
+      "x": 10.369,
+      "y": 78.056,
+      "width": 89.401,
+      "height": 7.222
+    },
+    {
+      "choice": 4,
+      "x": 10.369,
+      "y": 85.556,
+      "width": 89.401,
+      "height": 10
+    }
+  ],
+  "assets/energy-book-earlier/questions/2020-1·2통합-16.webp": [
+    {
+      "choice": 1,
+      "x": 12.135,
+      "y": 58.025,
+      "width": 42.022,
+      "height": 14.815
+    },
+    {
+      "choice": 2,
+      "x": 54.382,
+      "y": 58.436,
+      "width": 45.393,
+      "height": 14.815
+    },
+    {
+      "choice": 3,
+      "x": 12.135,
+      "y": 82.716,
+      "width": 42.022,
+      "height": 14.815
+    },
+    {
+      "choice": 4,
+      "x": 54.382,
+      "y": 82.716,
+      "width": 45.393,
+      "height": 14.815
+    }
+  ]
+}

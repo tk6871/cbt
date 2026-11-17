@@ -7,9 +7,16 @@ import { reviewedHansolHotspots } from './reviewedHansolHotspots';
 import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with { type: 'json' };
 import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' with { type: 'json' };
 import type { AnswerHotspot } from './types';
+import reviewedEnergyChoices from '../../data/energy-reviewed-printed-options.json' with { type: 'json' };
 import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
 
 const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
+
+const reviewedEnergyByImage: Record<string, AnswerHotspot[]> = reviewedEnergyChoices;
+export function withReviewedEnergyChoices(question: Question): Question {
+  const choices = reviewedEnergyByImage[question.sourceImage || ''];
+  return choices ? { ...question, answerHotspots: choices } : question;
+}
 
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'safety-engineer', 'energy', 'energy-midterm', 'maintenance',
@@ -77,7 +84,7 @@ function prepareCatalog(source: Catalog): Catalog {
             ...withEnergyTextbookComcbt(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
             answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
           }))
-        : source.key==='energy' ? round.questions.map(q=>withEnergyTextbookComcbt(q,`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
+        : source.key==='energy' ? round.questions.map(q=>withEnergyTextbookComcbt(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
   }));
   const result = { ...source, rounds };
   preparedCatalogs.set(original, { book, energy, result });

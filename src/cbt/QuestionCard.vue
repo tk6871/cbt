@@ -67,7 +67,7 @@ const calculationNumberOrigins = computed(() => {
   });
   return [...new Set([...guideOrigins, ...commonOrigins])];
 });
-const verifiedHotspots = computed(() => primaryImage.value&&props.imageAnswerMode === 'hotspot' ? props.item.question.answerHotspots || [] : []);
+const verifiedHotspots = computed(() => primaryImage.value && (props.imageAnswerMode === 'hotspot' || props.presentation === 'book') ? props.item.question.answerHotspots || [] : []);
 const unifiedHotspots = computed(() => unifiedAnswerHotspots(verifiedHotspots.value));
 const answerHighlightStyles = ref<Record<number, Record<string, string>>>({});
 const selectedAreaHighlightStyles = computed(() => {
@@ -591,6 +591,7 @@ onBeforeUnmount(() => {
             :class="choiceClass(hotspot.choice - 1)"
             :style="hotspotStyle(hotspot)"
             :aria-label="`이미지에서 ${hotspot.choice}번 선택`"
+            :aria-pressed="selected === hotspot.choice"
             @click="$emit('choose', hotspot.choice)"
           ></button>
           <span
@@ -648,7 +649,7 @@ onBeforeUnmount(() => {
       <p v-else>교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수 있습니다.</p>
       <details v-if="mode === 'learn' && item.question.bookCorrection.originalImage"><summary>수정 전 CBT 원본 비교</summary><img  class="source-question-image" :class="restoredImageClass" :src="$problemImage(item.question.bookCorrection.originalImage)" alt="수정 전 CBT 원본 · 교재 정정본과 비교용" loading="lazy"></details>
     </component>
-    <div v-if="!transcriptionPending && !verifiedHotspots.length" class="choice-grid-shell">
+    <div v-if="!transcriptionPending && (!verifiedHotspots.length || imageAnswerMode !== 'hotspot')" class="choice-grid-shell">
       <div
         class="choice-grid"
         :class="{

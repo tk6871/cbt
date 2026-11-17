@@ -73,6 +73,12 @@ export function unifiedAnswerHotspots(hotspots: AnswerHotspot[]): AnswerHotspot[
     }
   }
 
+  // A single printed row can span three or four columns. A two-column split
+  // would move some targets outside the measured text. Keep the measured
+  // rectangles in that case.
+  if (boxes.some(box => box.width <= 0 || box.height <= 0)) {
+    return hotspots.map(unifiedAnswerHotspot);
+  }
   return boxes;
 }
 

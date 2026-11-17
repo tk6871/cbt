@@ -17,6 +17,11 @@ test('127경계 개별검토·117분리/10오인식 구분·기존632영역과 �
  const map=new Map(textbookDirectSources.map(r=>[r.id,r]));expect(map.size).toBe(749);
  for(const row of old.locations){
   const current=map.get(row.id);
+  if(row.id==='hansol-direct-1-119-4' || row.id==='hansol-direct-3-194-3'){
+    expect(current!.number).toBe(row.page==='1-119'?109:125);
+    expect(current!.questionRect).toEqual(row.page==='1-119'?[671,798,671,271]:[671,1365,671,222]);
+    continue;
+  }
   if(row.split){expect(current).toBeTruthy();expect(current!.questionRect).toEqual(row.questionRect);expect(current!.solutionRect).toEqual(row.solutionRect);expect(current!.number).toBe(row.number);}
   else{const decision=published.entries.find((r:any)=>r.id===row.id);expect(decision.originalQuestionRect).toEqual(row.questionRect);expect(!!current).toBe(decision.status==='split');}
  }

@@ -1,7 +1,7 @@
 import links from '../../data/textbook-pages.json' with { type: 'json' };
 import { coolingBookFingerprint } from './coolingBookScope';
 import type { QuestionItem, AnswerHotspot } from './types';
-import {questionId,subjectFor} from './catalog';
+import {questionId,subjectFor,withReviewedEnergyChoices} from './catalog';
 import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
@@ -23,7 +23,19 @@ const boundaryReviews=new Map(directBoundaries.entries.map(r=>[r.id,r]));
 // Keep the original source index and storage IDs intact. Only individually
 // reviewed display boundaries/printed numbers are overlaid. False OCR anchors
 // are hidden from the reader, never removed from the original source archive.
-export const textbookDirectSources:TextbookDirectSource[]=directBook.locations.flatMap(r=>{
+// These crops started at a circled option in the preceding exercise. The
+// complete problem on each page is 109 or 125. Keep the original storage ID.
+const printedPageCorrections: Record<string, { number: number; question: number[]; solution: number[] }> = {
+ 'hansol-direct-1-119-4': { number: 109, question: [671, 798, 671, 271], solution: [671, 1070, 671, 112] },
+ 'hansol-direct-3-194-3': { number: 125, question: [671, 1365, 671, 222], solution: [671, 1588, 671, 102] },
+};
+export const textbookDirectSources:TextbookDirectSource[]=directBook.locations.flatMap<TextbookDirectSource>(r=>{
+ const printed = printedPageCorrections[r.id];
+ if (printed) {
+  const questionParts = [{page:r.page, rect:printed.question}];
+  const solutionParts = [{page:r.page, rect:printed.solution}];
+  return [{...r, number:printed.number, questionRect:printed.question, solutionRect:printed.solution, split:true, questionParts, solutionParts}];
+ }
  const candidate=boundaryReviews.get(r.id);
  const fix=candidate&&!r.split&&candidate.originalQuestionRect.every((n,i)=>n===r.questionRect[i])?candidate:undefined;
  if(fix&&fix.status!=='split')return [];
@@ -105,7 +117,7 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
   if(!original||coolingBookFingerprint(original.question)!==e.fingerprint)return [];
   const roundId=`textbook-${e.book}-${e.page}`;
   const location=`${textbookNames[e.book as TextbookKey]} ${e.page}쪽 · ${e.number}번`;
-  const enhanced=e.book==='energy'?withEnergyTextbookComcbt(original.question,e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
+  const enhanced=e.book==='energy'?withEnergyTextbookComcbt(withReviewedEnergyChoices(original.question),e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
   const correction=e.correction;
   const textCorrection=correction?.presentation==='text'?correction:undefined;
   const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
