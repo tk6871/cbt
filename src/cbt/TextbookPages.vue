@@ -3,6 +3,8 @@ import { computed, ref, watch, nextTick } from 'vue';
 import type { QuestionItem, StudyMode } from './types';
 import QuestionCard from './QuestionCard.vue';
 import TextbookDirectQuestion from './TextbookDirectQuestion.vue';
+import MathFormula from './MathFormula.vue';
+import TranscribedFigure from './TranscribedFigure.vue';
 import {isImagePrimary} from './catalog';
 import TextbookContents from './TextbookContents.vue';
 import type {ContentsRow} from './textbookContents';
@@ -105,7 +107,10 @@ const pageColumns=computed(()=>{
     <article v-for="example in examples" :key="example.id" class="book-worked-example">
      <h2>교재 원문 · {{example.title}}</h2><p>{{example.note}}</p>
      <figure class="textbook-explanation-image"><figcaption>교재 {{example.pages[0]}}쪽 · 문제</figcaption><img  :class="{'restored-image-original':restoredImageTheme==='original'}" :src="$problemImage(textbookAssetUrl(example.question))" :width="example.questionSize[0]" :height="example.questionSize[1]" :alt="`${example.title} 원문 문제`" loading="lazy"></figure>
-     <details><summary>풀이와 답 보기 · 교재 {{example.pages.at(-1)}}쪽</summary><p><strong>답 {{example.answer}}</strong></p><p>{{example.explanation}}</p><figure class="textbook-explanation-image"><figcaption>교재 원문 풀이·정답</figcaption><img  :class="{'restored-image-original':restoredImageTheme==='original'}" :src="$problemImage(textbookAssetUrl(example.solution))" :width="example.solutionSize[0]" :height="example.solutionSize[1]" :alt="`${example.title} 원문 풀이·정답`" loading="lazy"></figure></details>
+     <details><summary>풀이와 답 보기 · 교재 {{example.pages.at(-1)}}쪽</summary><p><strong>답 {{example.answer}}</strong></p><p>{{example.explanation}}</p>
+      <MathFormula v-if="example.explanationFormula" v-bind="example.explanationFormula" />
+      <TranscribedFigure v-if="example.explanationTranscribed" :source="textbookAssetUrl(example.solution)" :image-class="restoredImageTheme==='original'?'restored-image-original':undefined" />
+      <figure v-else class="textbook-explanation-image"><figcaption>교재 원문 풀이·정답</figcaption><img  :class="{'restored-image-original':restoredImageTheme==='original'}" :src="$problemImage(textbookAssetUrl(example.solution))" :width="example.solutionSize[0]" :height="example.solutionSize[1]" :alt="`${example.title} 원문 풀이·정답`" loading="lazy"></figure></details>
     </article>
     <div v-if="locations.length" class="book-sheet-columns">
      <div v-for="(column,index) in pageColumns" :key="index" class="book-sheet-column">

@@ -680,3 +680,32 @@ test('산업안전 지게차 모멘트 경계값과 분수', async ({page}, info
  await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
  await explanation.screenshot({path:info.outputPath('forklift-moment.png')});
 });
+
+test('교재 단열압축 예제의 교정 수식·인쇄 전사·원본 복귀', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-73');
+ const example=page.locator('.book-worked-example').filter({has:page.getByRole('heading',{name:/가역단열변화/})});
+ await example.locator('summary').click();
+ await expect(example.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect(example).toContainText('595.94');
+ const figure=example.locator('.transcription-figure');
+ await expect(figure.locator('.transcription-text')).toContainText('308.67 K');
+ await figure.getByRole('button',{name:'이미지로 보기',exact:true}).click();
+ await figure.locator('img').evaluate((img:HTMLImageElement)=>img.decode());
+ await figure.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+ await expect(figure.locator('.transcription-text')).toContainText('−78.71 kJ');
+ await example.screenshot({path:info.outputPath('adiabatic-worked-example.png')});
+});
+
+test('교재 얼음 가열 보기의 숫자 재대조', async ({page}) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-87');
+ const example=page.locator('.book-worked-example').filter({hasText:'100℃증기'});
+ await example.locator('summary').click();
+ await expect(example.locator('details strong')).toContainText('보기 ③ 30,306 kJ');
+ await expect(example).toContainText('첫 계산은 −10 ℃');
+});

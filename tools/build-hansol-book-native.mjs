@@ -23,6 +23,8 @@ for(const r of review.rows){
   const id=`hansol-book-example-${key}`;entry.workedExampleId=id;
   if(String(r.answer).includes('정답표'))Object.assign(entry,{reviewHold:true,pendingReason:r.note});
   const example={id,book:'hansol',pages:[r.page],number:r.number,title:r.text,kind:'worked-example',question:ims.question.asset,questionSize:ims.question.outputSize,solution:ims.explanation.asset,solutionSize:ims.explanation.outputSize,answer:r.answer,note:r.note||'객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.',explanation:r.explanation,images:ims};
+  if (r.explanationTranscribed) example.explanationTranscribed = true;
+  if (r.explanationFormula) example.explanationFormula = r.explanationFormula;
   const old=examples.entries.findIndex(e=>e.id===id);if(old>=0)examples.entries[old]=example;else examples.entries.push(example);
  }else{
   assert.ok([1,2,3,4].includes(r.answer));assert.equal(r.choices.length,4);assert.equal(r.choiceRects.length,4);

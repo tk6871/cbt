@@ -122,6 +122,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "p_{abs}=0.101325\\frac{750-100}{760}\\approx0.087\\ \\mathrm{MPa}"
       }
     },
     {
@@ -181,6 +186,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\dot Q=\\frac{50(4.2\\times15+333.5)}{3600}=5.507\\ \\mathrm{kW}"
       }
     },
     {
@@ -204,7 +214,7 @@
       ],
       "answer": "(1)0.6kg/s (2)40.95kW (3)121.8kW (4)2.344",
       "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
-      "explanation": "순환량=96÷(395−235)=0.6kg/s. 축동력=0.6×(438−395)÷(0.7×0.9)=40.95kW. 응축부하=0.6×(438−235)=121.8kW. 실제COP=96÷40.95≈2.344입니다.",
+      "explanation": "순환량은 0.6 kg/s, 실제 축동력은 40.95 kW, 축동력 기준 COP는 2.344다. 교재의 응축부하 121.8 kW는 그림의 이론 토출점 438 kJ/kg으로 계산한 값이다. 같은 압축효율 0.7을 실제 냉매의 엔탈피 상승에 적용하고 외부 열손실을 무시하면 실제 토출은 456.43 kJ/kg, 응축부하는 약 132.86 kW다. 축의 기계손실까지 모두 냉매에 전달된다고 가정할 근거는 없다.",
       "images": {
         "question": {
           "sourceSha256": "6ca33a84d36b7cd6922bb8a4546ffba68296e962a34ed73c39f752e0a800082d",
@@ -240,6 +250,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\dot Q_{H,actual}=0.6\\left(395+\\frac{438-395}{0.7}-235\\right)\\approx132.86\\ \\mathrm{kW}"
       }
     },
     {
@@ -299,6 +314,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\dot m=\\frac{250\\times0.7}{3600\\times0.43}\\approx0.113\\ \\mathrm{kg/s}"
       }
     },
     {
@@ -358,6 +378,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "COP=\\frac{COP_L COP_H}{COP_L+COP_H+1}\\approx0.98"
       }
     },
     {
@@ -379,9 +404,9 @@
         1048,
         772
       ],
-      "answer": "10kg기준30306kJ; 원문 정답표③와 보기3036kJ는 불일치",
-      "note": "지문은 질량10kg이지만 보기③3036kJ·정답표③가 풀이의30306kJ와 맞지 않습니다. 자동채점·CBT에서는 제외하고 원문과 보강 설명을 함께 제공합니다.",
-      "explanation": "일반적인 융해잠열333.6kJ/kg와 물 비열4.2kJ/(kg·K)를 쓰면10×[2.1×10+333.6+4.2×100+2256]=30306kJ입니다. 얼음을0℃로 데우기·녹이기·물을100℃로 데우기·증발시키기의 열을 더합니다. 교재 풀이 마지막 문장의−15℃도 지문−10℃와 다릅니다.",
+      "answer": "정답표 ③ · 보기 ③ 30,306 kJ",
+      "note": "문제지 보기 ③은 30,306 kJ다. 인쇄 풀이 마지막 문장에만 시작온도가 −15 ℃로 적혔고, 지문과 실제 계산은 −10 ℃다.",
+      "explanation": "얼음 가열 210 kJ, 융해 3,336 kJ, 물 가열 4,200 kJ, 증발 22,560 kJ를 더하면 30,306 kJ로 문제지의 ③과 일치한다. 풀이 마지막 문장의 −15 ℃는 지문의 −10 ℃와 다르고, 실제 첫 계산은 −10 ℃를 사용했다.",
       "images": {
         "question": {
           "sourceSha256": "b4363a3ee7b22341389478608b98449d0867a9d65ecf1e44a2fc549258541ca7",
@@ -417,7 +442,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-2-73-5",
@@ -440,7 +466,7 @@
       ],
       "answer": "가열량·절대일·공업일436.97kJ,엔트로피변화0.924kJ/K",
       "note": "객관식 보기가 없는 교재 본문 풀이 예제입니다. 객관식 시험에서는 제외합니다.",
-      "explanation": "가열량=절대일=공업일=2×0.287×(273+200)×ln(1÷0.2)≈436.97kJ.엔트로피변화=2×0.287×ln(1÷0.2)≈0.924kJ/K입니다. 등온 이상기체에서는 내부에너지 변화가0이어서 받은 열과 한 일이 같습니다.",
+      "explanation": "마찰이 없는 가역 등온팽창으로 해석한다. 이상기체의 내부에너지 변화는 0이므로 받은 열은 기체가 한 일과 같다. 473 K를 쓰면 약 436.97 kJ이고, 전체 엔트로피 변화는 +0.924 kJ/K다. 압력 두 값만으로 임의의 비가역 과정에서의 일을 결정할 수는 없다.",
       "images": {
         "question": {
           "sourceSha256": "8b3fc52374411bb81bc205ce26b61a734a78f6b585dd7c9833f07325a950360c",
@@ -476,6 +502,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "W=mRT\\ln\\frac{p_1}{p_2},\\qquad \\Delta S=mR\\ln\\frac{p_1}{p_2}"
       }
     },
     {
@@ -535,6 +566,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "T_2=293\\left(\\frac{1.2}{0.1}\\right)^{0.4/1.4}\\approx595.94\\ \\mathrm K"
       }
     },
     {
@@ -594,7 +630,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-2-81-5",
@@ -653,6 +690,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "h_1+\\frac{w_1^2}{2}=h_2+\\frac{w_2^2}{2}"
       }
     },
     {
@@ -712,7 +754,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-2-140-3",
@@ -771,6 +814,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "K_r=\\frac1{1/3+4(1/9+0.15)}\\approx0.726\\ \\mathrm{kW/(m^2 K)}"
       }
     },
     {
@@ -830,6 +878,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "A=\\frac{11.85}{0.020\\times12.53}\\approx47.29\\ \\mathrm{m^2}"
       }
     },
     {
@@ -889,7 +942,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-1-108-43",
@@ -912,7 +966,7 @@
       ],
       "answer": "정답표② / 식의 면적A 누락",
       "note": "교재 수식의 단위·면적 표시를 재확인해야 하는 검토용 원문입니다. 자동 채점·객관식 출제에서 제외합니다.",
-      "explanation": "Rt의 명칭은②열통과저항이며K=1/Rt입니다. 다만 교재는 총손실열량Ht를 구하는 식에서 면적A가 누락되어 있고,kJ/h와 저항의 단위 기준도 그대로는 맞지 않습니다. 식 전체를 정확한 계산식으로 외우지 않도록 원문과 주의사항을 함께 보존합니다.",
+      "explanation": "② 열통과저항이다. 인쇄된 저항의 단위는 면적 기준이므로 온도차를 이 저항으로 나누면 단위면적당 열유속이다. 총 열손실률은 면적 A까지 곱하고, W 값을 kJ/h로 쓸 때에는 3.6을 곱한다.",
       "images": {
         "question": {
           "sourceSha256": "e8c083315132ed06bf9bcb162f1bce9d4ca40547c0a9659bf3d3997c4c2fb713",
@@ -948,6 +1002,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\dot Q=\\frac{A(T_r-T_o)}{R_t}"
       }
     },
     {
@@ -1007,6 +1066,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\frac V{0.5\\ \\mathrm h}=\\frac{2V}{1\\ \\mathrm h}"
       }
     },
     {
@@ -1030,7 +1094,7 @@
       ],
       "answer": "정답표① / 보기·풀이 재확인 필요",
       "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
-      "explanation": "정답표는①이지만 해설은U트랩의 가옥트랩 용도만 설명하고,S/P트랩의 수평·수직 연결 설명도 다시 확인해야 합니다. 정답을 추정해 자동 채점하지 않습니다.",
+      "explanation": "인쇄 해설은 U트랩이 수평 주관 끝에서 하수 가스의 역류를 막는다고 적어 보기 ①을 부정하지 않는다. 통상 S트랩 출구는 바닥 쪽으로, P트랩 출구는 벽 쪽으로 이어진다. 이 기준으로는 ②와 ③의 연결 방향이 모두 뒤바뀌므로 인쇄 정답표 ①만을 유일한 답으로 삼기 어렵다.",
       "images": {
         "question": {
           "sourceSha256": "b21910a3cbdcff645789a41acc6e1caa4b77e6f596bd971d3132e8357ad0a916",
@@ -1066,7 +1130,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-3-241-3",
@@ -1089,7 +1154,7 @@
       ],
       "answer": "정답표③ / 풀이④",
       "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
-      "explanation": "정답표는③이나 본문 풀이에는①②③은 안전조치,④는 보건조치라고 적혀 있습니다. 인쇄 불일치를 그대로 알리고 자동 채점에서 제외합니다.",
+      "explanation": "산업안전보건법 제38조제1항은 기계·설비, 위험물질, 전기·열 등 에너지로 인한 위험에 안전조치를 요구한다. 보기 ④의 방사선·소음 등 건강장해는 제39조의 보건조치다. 조문과 인쇄 풀이는 ④를 가리키지만 교재에 기록된 정답표는 ③이다.",
       "images": {
         "question": {
           "sourceSha256": "dc7cbe02f88f05269c0d05b54330c265f002794590a025f14d865c7ca7e80254",
@@ -1125,7 +1190,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-3-348-27",
@@ -1184,7 +1250,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-4-87-22",
@@ -1243,6 +1310,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\Delta S=10(0.221)\\ln\\frac{11}{5}\\approx1.74\\ \\mathrm{kJ/K}"
       }
     },
     {
@@ -1302,7 +1374,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-1-165-8",
@@ -1325,7 +1398,7 @@
       ],
       "answer": "정답표③ / 풀이상④",
       "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
-      "explanation": "풀이식 ΔP=λ(l/d)(V²/2g)γ와 설명은 속도의 제곱에 비례하고 중력가속도2배에는 반비례한다고 적혀 있습니다. 따라서 틀린 보기는④지만 정답표는③입니다. 원문 불일치로 자동 채점을 제외합니다.",
+      "explanation": "원문의 식에서 γ는 공기의 단위중량 ρg다. 대입하면 압력손실은 λ(L/D)ρV²/2로 정리되어 g가 소거된다. ③의 속도 제곱은 맞고, ④처럼 압력손실이 2g에 비례하지 않는다. 교재에서 2g가 분모에 나타나는 수두식과 압력단위의 손실을 구별해야 한다. 저장된 인쇄 정답표는 ③이다.",
       "images": {
         "question": {
           "sourceSha256": "76f6c19a9afefb77505a2490cc134e4359cd9af07f0aad06bd30bf6eee4f36d9",
@@ -1361,6 +1434,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\Delta p=\\lambda\\frac L D\\frac{V^2}{2g}\\gamma=\\lambda\\frac L D\\frac{\\rho V^2}{2}"
       }
     },
     {
@@ -1420,7 +1498,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-2-221-2",
@@ -1479,6 +1558,11 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
+      },
+      "explanationTranscribed": true,
+      "explanationFormula": {
+        "label": "계산식",
+        "tex": "\\dot Q=1050+\\frac{200\\times18\\times3640\\times15}{24\\times3600}=3325\\ \\mathrm W"
       }
     },
     {
@@ -1538,7 +1622,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     },
     {
       "id": "hansol-book-example-3-133-20",
@@ -1597,7 +1682,8 @@
           "native": "arm64",
           "pipeline": "4x -> 2x bicubic"
         }
-      }
+      },
+      "explanationTranscribed": true
     }
   ]
 }

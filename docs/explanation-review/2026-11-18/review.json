@@ -88884,6 +88884,4153 @@
       "resolution": "저장 답은 ①이다. 메탄이 주성분인 도시가스는 같은 온도·압력에서 공기보다 밀도가 낮아 누출되면 위쪽에 모일 수 있다. 이 가스를 빼는 환기구를 가능한 한 낮게 두라는 설명은 맞지 않는다. 실제 설치기준은 공급 가스의 종류와 보일러 조건에 따라 확인해야 한다.",
       "changeReason": "개념·장치 작동 원리·적용 조건",
       "reviewedSupplement": true
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:21",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 21,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "CoolProp 7",
+      "finding": "CoolProp 7",
+      "basis": "CoolProp 7.2.0 Water.json STATES.critical.p 독립 조회: 22064000.0 Pa. MPa로 나누면 약 22.064.",
+      "evidence": [
+        "671-water"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/021.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/021.jpg",
+          "displayAsset": "assets/problem-webp90/25919f687fbdf0e851e7235b3246b039.webp",
+          "sha256": "4cc05072f777952fed180b3e1322bfe89e2a6691a39798db2320d594a5fdc93e"
+        }
+      ],
+      "resolution": "물의 액체와 증기가 구별되지 않게 되는 임계점의 압력은 약 22.064 MPa이다. 100 kPa는 대기압에 가까운 값이므로 보기 중 ③ 22 MPa가 가장 가깝다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:22",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 22,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "1 kg 고정질량, T₂=300",
+      "finding": "1 kg 고정질량, T₂=300",
+      "basis": "1 kg 고정질량, T₂=300.15×7^(0.4/1.4). cᵥ=0.287/0.4. 압축일 약 160 kJ.",
+      "evidence": [
+        "649-process",
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/022.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/022.jpg",
+          "displayAsset": "assets/problem-webp90/f98e9b68b8b97cd785b21892755d0c3d.webp",
+          "sha256": "181ea6c2ea96cb7135071e1f29c37503741d753ef0624c27a7de1887b384ccd2"
+        }
+      ],
+      "resolution": "고정된 1 kg이 가역 단열압축되므로 들어간 일은 내부에너지 증가량과 같다. 압력비 7로 나중 온도를 먼저 구하고, 정적비열을 곱하면 ② 약 160 kJ다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:23",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 23,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "일=∫P dV=상수×∫V^(−n)dV",
+      "finding": "일=∫P dV=상수×∫V^(−n)dV",
+      "basis": "일=∫P dV=상수×∫V^(−n)dV. n=1은 로그식이라는 조건 추가.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/023.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/023.jpg",
+          "displayAsset": "assets/problem-webp90/a19ae493d62744bb33a14aacd64c985c.webp",
+          "sha256": "7b90e539570b08b1221e45cd03390e2e6f8b776a40568296a825385dff3e4ca1"
+        }
+      ],
+      "resolution": "닫힌계가 외부에 하는 경계일은 압력을 체적에 대해 적분한 값이다. 폴리트로픽 과정에서 지수 n이 1이 아니면 ②다. n=1이면 이 분수식을 쓸 수 없어 로그식이 된다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:24",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 24,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "포화액·증기의 질량분율 0",
+      "finding": "포화액·증기의 질량분율 0",
+      "basis": "포화액·증기의 질량분율 0.3/0.7. u=h−pv에서 p=1,000 kPa. 직접 계산 2037.07 kJ/kg.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/024.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/024.jpg",
+          "displayAsset": "assets/problem-webp90/6f2698738403602d3ec4fbeb17373c11.webp",
+          "sha256": "ac150930978498367e1efce0c4c846ff89a8281d08cfc5901b683b8b79f2f3ea"
+        }
+      ],
+      "resolution": "건도 0.7은 질량의 70%가 증기라는 뜻이다. 엔탈피와 비체적을 각각 액체 30%, 증기 70%로 가중평균한 뒤 압력과 비체적의 곱을 엔탈피에서 빼면 ① 2037.1 kJ/kg이다. 압력은 1,000 kPa로 환산해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:25",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 25,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "0 ℃ 물 1000 kg의 응고잠열을 24 h 동안 제거하는 능력",
+      "finding": "0 ℃ 물 1000 kg의 응고잠열을 24 h 동안 제거하는 능력",
+      "basis": "0 ℃ 물 1000 kg의 응고잠열을 24 h 동안 제거하는 능력. 질량톤 기준과 시간당 열량 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/025.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/025.jpg",
+          "displayAsset": "assets/problem-webp90/9b557fdd2df4539ca1549bb80ccba4b5.webp",
+          "sha256": "b73a7dabfd738b85130ea2fe522f16c6b7e36ea333debcf042f9e85636d906e1"
+        }
+      ],
+      "resolution": "③ 냉동톤이다. 여기서는 0 ℃ 물 1,000 kg을 하루 동안 같은 온도의 얼음으로 만드는 열 제거 능력을 뜻한다. 물을 식히는 현열이 아니라 응고잠열을 시간으로 나눈 단위다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:26",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 26,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "이상기체 같은 질량이므로 최고/최저 압력비=(1773",
+      "finding": "이상기체 같은 질량이므로 최고/최저 압력비=(1773",
+      "basis": "이상기체 같은 질량이므로 최고/최저 압력비=(1773.15/288.15)×5. 약 3077 kPa.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/026.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/026.jpg",
+          "displayAsset": "assets/problem-webp90/101dafad69e1402bab7d9b6886ecc634.webp",
+          "sha256": "0906309166eea356b440c93cf5fb106130ef2c01774c159c5bf70b9af08530db"
+        }
+      ],
+      "resolution": "최저온도·최저압력은 압축 시작점, 최고온도·최고압력은 정적 가열 직후다. 최고온도일 때 체적은 처음의 1/5이다. 두 상태의 절대온도비와 체적비를 함께 적용하면 ① 약 3,080 kPa다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:27",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 27,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "이상기체 R=pv/T",
+      "finding": "이상기체 R=pv/T",
+      "basis": "이상기체 R=pv/T. 350×0.449/303.15=0.5184 kJ/(kg·K).",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/027.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/027.jpg",
+          "displayAsset": "assets/problem-webp90/d4f21325444b95078d2e137daa2deaff.webp",
+          "sha256": "bb16d8a5c05e86da10f18c9f230cdd4542fbe1f2be6278496de78946544073fe"
+        }
+      ],
+      "resolution": "섭씨 30 ℃를 절대온도 303.15 K로 바꾼다. 압력에 비체적을 곱하면 kPa·m³/kg, 즉 kJ/kg이므로 온도로 나눈 결과는 ③ 약 0.518 kJ/(kg·K)다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:28",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 28,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "일정 비열 이상 단순 브레이턴 η=1−rₚ^−((k−1)/k)",
+      "finding": "일정 비열 이상 단순 브레이턴 η=1−rₚ^−((k−1)/k)",
+      "basis": "일정 비열 이상 단순 브레이턴 η=1−rₚ^−((k−1)/k). 같은 압력비에서 k 감소는 효율 저하. ②·③의 개별 온도 조작은 고정 조건에 따라 독립적인 효율 향상 조건이 아님.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/028.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/028.jpg",
+          "displayAsset": "assets/problem-webp90/a524b150b707e81ee5136ee6b10efdba.webp",
+          "sha256": "13ad4d65a922c67fd133cffbc0bc3b2ab0bbc4bc75b6e2b5d82a5e9e5cda8ebe"
+        }
+      ],
+      "resolution": "저장 답 ①은 단순 이상 브레이턴 사이클에서 확인할 수 있다. 압력비가 같을 때 비열비를 낮추면 이론 열효율도 낮아진다. 다만 보기 ②·③의 온도 변화는 압력비 등 무엇을 일정하게 두는지에 따라 의미가 달라진다. 그 온도만 바꾸면 언제나 효율이 높아진다고 볼 수 없어 단일 오답의 출제 조건을 확인해야 한다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:29",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 29,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "정압 보일러 가열과 응축기 정압 방열, 이상 펌프·터빈의 단열과정",
+      "finding": "정압 보일러 가열과 응축기 정압 방열, 이상 펌프·터빈의 단열과정",
+      "basis": "정압 보일러 가열과 응축기 정압 방열, 이상 펌프·터빈의 단열과정.",
+      "evidence": [
+        "649-turbine",
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/029.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/029.jpg",
+          "displayAsset": "assets/problem-webp90/226f8462046a941b86c4608d9f55517a.webp",
+          "sha256": "de4bc049651f232a38b97a9c09e542f4d13e5e435812a52e73050055da9fb4bf"
+        }
+      ],
+      "resolution": "③이다. 펌프가 물을 단열 압축하고 보일러가 일정 압력에서 열을 공급한다. 이어 터빈에서 단열 팽창하여 일을 얻고 응축기에서 일정 압력으로 열을 방출한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:30",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 30,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "열역학 제1법칙은 에너지수지·보존",
+      "finding": "열역학 제1법칙은 에너지수지·보존",
+      "basis": "열역학 제1법칙은 에너지수지·보존. 나머지는 절대영도 도달, 열효율 제한, 열평형 추이성.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/030.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/030.jpg",
+          "displayAsset": "assets/problem-webp90/6997ca2f66ce60bd72e0a9acedb1b07b.webp",
+          "sha256": "772023fdf39f6ad789c35cf4f36421535916c43c8e288702fa85c90f9a277641"
+        }
+      ],
+      "resolution": "③ 에너지 보존이다. 열과 일로 에너지가 계의 경계를 드나들 수 있어 계 자체의 에너지는 변할 수 있다. 계와 주위 전체를 합하면 에너지가 새로 생기거나 사라지지 않는다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:31",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 31,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "같은 흡입온도·압력비에서 이상기체 단열압축 토출온도는 k가 클수록 높아짐",
+      "finding": "같은 흡입온도·압력비에서 이상기체 단열압축 토출온도는 k가 클수록 높아짐",
+      "basis": "같은 흡입온도·압력비에서 이상기체 단열압축 토출온도는 k가 클수록 높아짐.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/031.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/031.jpg",
+          "displayAsset": "assets/problem-webp90/86cef025097f0d4c9358ff51346adffe.webp",
+          "sha256": "a8ccb26d06285b84d135e04f8aeed6b77a91e640e173570994e345ee1a6fcde0"
+        }
+      ],
+      "resolution": "④가 틀리다. 같은 압력비로 압축할 때 비열비가 크면 토출온도가 더 높아질 수 있다. 높은 토출온도는 압축기와 윤활유에 부담이므로 비열비가 큰 것이 일반적인 냉매의 장점은 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:32",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 32,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "30 MJ/h=8",
+      "finding": "30 MJ/h=8",
+      "basis": "30 MJ/h=8.333 kW. 냉동 COP=흡열/입력. 8.333/4.3=1.938 kW.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/032.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/032.jpg",
+          "displayAsset": "assets/problem-webp90/778592053e38095902d918be29ca6e8b.webp",
+          "sha256": "4541968deee39b2a376966c0fc6adaaccb692b8f26e3659b5d23375400159e38"
+        }
+      ],
+      "resolution": "성능계수 4.3은 입력 일의 4.3배만큼 저온부에서 열을 흡수한다는 뜻이다. 1시간에 흡수한 30 MJ를 초당 kJ로 바꾼 뒤 4.3으로 나누면 ② 약 1.94 kW다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:33",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 33,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "단열 강체의 총내부에너지 보존",
+      "finding": "단열 강체의 총내부에너지 보존",
+      "basis": "단열 강체의 총내부에너지 보존. 일정 cᵥ 가정에서 ΣpᵢVᵢ=p𝒇ΣVᵢ. 두 체적비 2:1.",
+      "evidence": [
+        "649-first",
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/033.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/033.jpg",
+          "displayAsset": "assets/problem-webp90/1f4ff26825069aa484d9678162c5de7d.webp",
+          "sha256": "5702d7dca55aaf470a4d06aec117126bbcd30575428df499c4d319f9307d6db8"
+        }
+      ],
+      "resolution": "두 탱크 전체는 단열이고 부피도 고정되어 총내부에너지가 보존된다. 같은 이상기체에 일정 비열을 쓰면 압력에 체적을 곱한 값의 합이 보존된다. 큰 탱크의 압력이 더 높으므로 단순 평균 150 kPa보다 높은 ④ 약 167 kPa다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:34",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 34,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "주장 효율 0",
+      "finding": "주장 효율 0",
+      "basis": "주장 효율 0.20, 카르노 상한 1−283.15/353.15≈0.1982. 반올림으로 둘을 같다고 보지 않음.",
+      "evidence": [
+        "652-carnot"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/034.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/034.jpg",
+          "displayAsset": "assets/problem-webp90/5e85ce38124c3f065c03505284512bb0.webp",
+          "sha256": "180033e9b39c5f047f30bef391ff084353c1db94e416baf1137572c9f577eb58"
+        }
+      ],
+      "resolution": "열 100 kJ에서 일 20 kJ를 얻으면 효율이 20%다. 그런데 80 ℃와 10 ℃ 사이에서 가능한 최대 효율은 약 19.82%이다. 이 상한을 넘으므로 ③ 열역학 제2법칙에 위배된다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:35",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 35,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "다른 조건이 같을 때 복수기 압력 증가→포화온도 증가·터빈 팽창범위 감소",
+      "finding": "다른 조건이 같을 때 복수기 압력 증가→포화온도 증가·터빈 팽창범위 감소",
+      "basis": "다른 조건이 같을 때 복수기 압력 증가→포화온도 증가·터빈 팽창범위 감소.",
+      "evidence": [
+        "649-turbine",
+        "652-carnot"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/035.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/035.jpg",
+          "displayAsset": "assets/problem-webp90/9a83738ae378c246b08b2b8ac725354d.webp",
+          "sha256": "ef528e285efed1461dd46f8e6037d802fe2a44f70f9229ad1ba711a55c81751a"
+        }
+      ],
+      "resolution": "①이다. 복수기 압력을 올리면 증기가 더 높은 온도에서 응축되고 터빈에서 팽창할 수 있는 압력 범위도 줄어든다. 보통 랭킨 사이클의 효율 향상을 위해 기대하는 변화와 반대다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:36",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 36,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "메탄 몰질량 약 16",
+      "finding": "메탄 몰질량 약 16",
+      "basis": "메탄 몰질량 약 16.04 kg/kmol. 8.314/16.04=0.5183.",
+      "evidence": [
+        "650-gases"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/036.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/036.jpg",
+          "displayAsset": "assets/problem-webp90/c549f2f4132f6e24a6cb06f51818f603.webp",
+          "sha256": "d2f7b20887e2156b53dc2e67f8ba65f7fdc93fcb4ad45400bb7e18633f021798"
+        }
+      ],
+      "resolution": "질량 기준 기체상수는 보편기체상수를 해당 기체의 몰질량으로 나눈 값이다. 메탄은 약 16.04 kg/kmol이므로 ④ 0.52 kJ/(kg·K)에 가깝다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:37",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 37,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "R=1",
+      "finding": "R=1",
+      "basis": "R=1.735(1.299−1). 등온 팽창이므로 mR ln(300/100)=85.488 kJ/K.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/037.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/037.jpg",
+          "displayAsset": "assets/problem-webp90/c22f7b6b831a8859967f3616b57760b2.webp",
+          "sha256": "4ff0a6b121670b0af0f028d12d3e353277af949877e8cd0192d49a38c7916f8d"
+        }
+      ],
+      "resolution": "등온에서 압력이 떨어지므로 기체가 팽창하며 엔트로피는 증가한다. 정적비열과 비열비로 기체상수를 구하고 압력비의 자연로그를 쓰면 ③ 약 85.5 kJ/K다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:38",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 38,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "정압 팽창일 300×(0",
+      "finding": "정압 팽창일 300×(0",
+      "basis": "정압 팽창일 300×(0.4−0.2)=60 kJ. ΔU 20을 더해 80.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/038.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/038.jpg",
+          "displayAsset": "assets/problem-webp90/73573fadbe9b231ced90aa2bc2b3aa5a.webp",
+          "sha256": "d34888fd0f9323d4a4483970aec3b90dd85dee15c3615b7a86b3f12d38040b08"
+        }
+      ],
+      "resolution": "기체가 외부에 한 경계일은 300 kPa×0.2 m³=60 kJ다. 내부에너지도 20 kJ 증가했으므로 두 몫을 더한 ② 80 kJ의 열을 받아야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:39",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 39,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "P–V 원도 A에서 체적 감소·압력 증가로 E에 도달",
+      "finding": "P–V 원도 A에서 체적 감소·압력 증가로 E에 도달",
+      "basis": "P–V 원도 A에서 체적 감소·압력 증가로 E에 도달. 이어 E→C 수직 하강, 같은 부피에서 냉각.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/039.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/039.jpg",
+          "displayAsset": "assets/problem-webp90/e8e990a9c3b552ba182bfcaeaa0887c4.webp",
+          "sha256": "17aa314fb015fb027dd3db885e539721aa5642110231fe43d39bb883b35c16e7"
+        }
+      ],
+      "resolution": "④ A→E→C다. 가역 단열 압축에서는 부피가 줄고 압력이 상승한다. 그다음 정적 냉각에서는 부피를 유지한 채 압력이 내려가므로 선도에서 E에서 C로 수직으로 내려온다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:40",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 40,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "가역단열식 T₂/T₁=(P₂/P₁)^((k−1)/k)",
+      "finding": "가역단열식 T₂/T₁=(P₂/P₁)^((k−1)/k)",
+      "basis": "가역단열식 T₂/T₁=(P₂/P₁)^((k−1)/k). ④는 1−k로 부호 반대.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/040.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/040.jpg",
+          "displayAsset": "assets/problem-webp90/4439a23b2f90e5689dc6b2eedf6541b7.webp",
+          "sha256": "5364930bb6db76a77870eafe83a8d98bd1e7e976fe348b365cb7f772adc10af8"
+        }
+      ],
+      "resolution": "④가 틀리다. 이상기체를 가역 단열압축하면 압력과 절대온도가 함께 올라간다. 압력비를 나중/처음으로 쓸 때 지수의 분자는 k−1이어야 한다. 보기에서는 부호를 반대로 적었다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:41",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 41,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "도압관이 길고 가늘수록 유체저항과 전달 지연이 커질 수 있으므로 압력원 가까이에 설치한다는 보기 검토",
+      "finding": "도압관이 길고 가늘수록 유체저항과 전달 지연이 커질 수 있으므로 압력원 가까이에 설치한다는 보기 검토",
+      "basis": "도압관이 길고 가늘수록 유체저항과 전달 지연이 커질 수 있으므로 압력원 가까이에 설치한다는 보기 검토.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/041.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/041.jpg",
+          "displayAsset": "assets/problem-webp90/f6f331168aaaca1a2edbcf2954f10d29.webp",
+          "sha256": "e442ddb7fe03c255fa8a025c5ac9ccd546cd7b3af01a5f060af70ac437557733"
+        }
+      ],
+      "resolution": "③이다. 링밸런스 압력계는 두 압력의 차이로 링이 기울 때의 평형을 이용한다. 미세한 압력 차를 전달하는 도압관이 불필요하게 길면 응답이 늦고 응축수 등에도 영향을 받기 쉬워 압력원 가까이에 설치한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:42",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 42,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "지문의 빠른 응답·외란에 대한 안정화 의도는 미분동작",
+      "finding": "지문의 빠른 응답·외란에 대한 안정화 의도는 미분동작",
+      "basis": "지문의 빠른 응답·외란에 대한 안정화 의도는 미분동작. 두 그래프만으로 제어동작을 유일하게 식별할 수 없고 미분 이득·필터 영향 있음.",
+      "evidence": [
+        "652-pid"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/042.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/042.jpg",
+          "displayAsset": "assets/problem-webp90/039cdb2e578cdc7af8f9ef3fa2a48006.webp",
+          "sha256": "6b87c554bcf9e62ca71b50631bdb8d02e5803a8b3214fb4e099b4a5f86ba5fe4"
+        }
+      ],
+      "resolution": "④ D동작이 출제 의도다. 미분동작은 편차의 변화 속도에 반응해 급변하는 움직임을 감쇠시키는 데 쓸 수 있다. 이득과 필터 조정에 따라 결과가 달라지므로 원도의 응답곡선 모양 하나만으로 제어기의 종류를 확정할 수는 없다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:43",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 43,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원문 ③은 단자와 보상도선을 서로 다른 극성으로 연결하고 열팽창을 보상한다고 표현",
+      "finding": "원문 ③은 단자와 보상도선을 서로 다른 극성으로 연결하고 열팽창을 보상한다고 표현",
+      "basis": "원문 ③은 단자와 보상도선을 서로 다른 극성으로 연결하고 열팽창을 보상한다고 표현. 열전대 출력은 열기전력.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/043.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/043.jpg",
+          "displayAsset": "assets/problem-webp90/d70b0425a73c17328f24f211d2343f70.webp",
+          "sha256": "472dea5b94873d9f04f757f6fac08c68d7603e73f10d0e074193e7593098fa19"
+        }
+      ],
+      "resolution": "③이 틀리다. 열전대와 해당 형식의 보상도선은 표시된 같은 극성끼리 연결해야 한다. 극성을 뒤바꾸면 온도차에 따른 열기전력 신호에 오류가 생긴다. 이 연결의 목적은 감온부의 열팽창 보상이 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:44",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 44,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "산업용 저항온도계의 통상적인 측온용 금속인 Pt·Ni·Cu와 Cr을 원도 네 보기에서 구분",
+      "finding": "산업용 저항온도계의 통상적인 측온용 금속인 Pt·Ni·Cu와 Cr을 원도 네 보기에서 구분",
+      "basis": "산업용 저항온도계의 통상적인 측온용 금속인 Pt·Ni·Cu와 Cr을 원도 네 보기에서 구분.",
+      "evidence": [
+        "671-rtd"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/044.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/044.jpg",
+          "displayAsset": "assets/problem-webp90/8264fec7d3619092717f9325e577768a.webp",
+          "sha256": "2135352d519f34f08fd2318592f8cf718f1cf74c0e246cf41da70f4f856aa2c3"
+        }
+      ],
+      "resolution": "④ Cr이다. 이 문제는 산업용 금속 측온저항체에 통상 사용하는 재료를 묻는다. Pt·Ni·Cu는 온도와 전기저항의 관계를 이용하는 대표 재료다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:45",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 45,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "용적식은 일정 부피 공간이 채워지고 비워지는 횟수를 적산",
+      "finding": "용적식은 일정 부피 공간이 채워지고 비워지는 횟수를 적산",
+      "basis": "용적식은 일정 부피 공간이 채워지고 비워지는 횟수를 적산. 다른 보기의 차압·가변면적·속도 측정과 비교.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/045.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/045.jpg",
+          "displayAsset": "assets/problem-webp90/6567bd2f5bc78c07b15f505263de670d.webp",
+          "sha256": "532bb377a352e041186d65de88bdee3f0e96a1787eb1ade5f924743a8e4539d1"
+        }
+      ],
+      "resolution": "② 습식가스미터다. 회전하는 드럼의 계량실이 일정한 양의 가스를 차례로 받아 내보낸다. 그 횟수를 세어 통과 부피를 얻으므로 용적식이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:46",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 46,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "네 보기 중 철/콘스탄탄 조합은 J형",
+      "finding": "네 보기 중 철/콘스탄탄 조합은 J형",
+      "basis": "네 보기 중 철/콘스탄탄 조합은 J형. R·S와 K형의 음극 재료 구분. 출제 온도 범위를 전체 규격 범위로 일반화하지 않음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/046.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/046.jpg",
+          "displayAsset": "assets/problem-webp90/6fb23d96efe3572f1a58a7dc4943be80.webp",
+          "sha256": "9fa7b4b0f030e6332d4d85fbb2d95efbb85c3d6ebd35dbc67e997467bf8173a7"
+        }
+      ],
+      "resolution": "① J형이다. J형은 철을 양극, 콘스탄탄을 음극으로 쓰는 열전대다. 제시 온도보다 음극 재료가 이 보기들을 가르는 단서다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:47",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 47,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "측정 전류에 의한 P=I²R의 발열을 비교",
+      "finding": "측정 전류에 의한 P=I²R의 발열을 비교",
+      "basis": "측정 전류에 의한 P=I²R의 발열을 비교. 네 보기 중 저항을 읽는 접촉식 센서.",
+      "evidence": [
+        "m42344"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/047.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/047.jpg",
+          "displayAsset": "assets/problem-webp90/3528cd3dcf6931b2f0191261b4467dae.webp",
+          "sha256": "818a74120ca03ab3435766b1d63526b6ab65d95580c60f29d74875d05f702ae6"
+        }
+      ],
+      "resolution": "③ 서미스터 온도계다. 저항을 읽으려고 흘리는 전류도 센서에서 줄열을 낸다. 측정 전류가 지나치게 크면 센서 자체 온도가 올라 측정 대상보다 높게 읽힐 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:48",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 48,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시료 50 mL 기준 순차 감소 6",
+      "finding": "시료 50 mL 기준 순차 감소 6",
+      "basis": "시료 50 mL 기준 순차 감소 6.0,2.2,0.4 mL. 부피백분율 각각 12,4.4,0.8.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/048.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/048.jpg",
+          "displayAsset": "assets/problem-webp90/b40346ef54b037925f43b621b1bcf87b.webp",
+          "sha256": "fe0297245211ff584bdda0b7070d90c7dcc54106a701f6cd313ffd506b3fbd23"
+        }
+      ],
+      "resolution": "각 기체는 해당 흡수 단계를 지나면서 줄어든 부피에 해당한다. CO₂는 50−44=6 mL, O₂는 44−41.8=2.2 mL, CO는 41.8−41.4=0.4 mL다. 각각 최초 시료 50 mL로 나눈 ② 12%, 4.4%, 0.8%다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:49",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 49,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고온에서 산소 이온을 전도하는 지르코니아 고체전해질과 원문 산화물 선택지 대조",
+      "finding": "고온에서 산소 이온을 전도하는 지르코니아 고체전해질과 원문 산화물 선택지 대조",
+      "basis": "고온에서 산소 이온을 전도하는 지르코니아 고체전해질과 원문 산화물 선택지 대조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/049.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/049.jpg",
+          "displayAsset": "assets/problem-webp90/8c5b7195415d22be479c4b57185da455.webp",
+          "sha256": "27492e888158a2ec309d1ba2772dd2e2b817ad7a92884f4632874440a3747724"
+        }
+      ],
+      "resolution": "④ ZrO₂(지르코니아)다. 가열한 안정화 지르코니아 고체전해질 양쪽의 산소 분압이 다르면 기전력이 생긴다. 이 신호로 산소 농도를 구한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:50",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 50,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 ④의 소리와 229792458이라는 수를 각각 확인",
+      "finding": "원도 ④의 소리와 229792458이라는 수를 각각 확인",
+      "basis": "원도 ④의 소리와 229792458이라는 수를 각각 확인. SI 광속 299792458 m/s.",
+      "evidence": [
+        "671-c"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/050.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/050.jpg",
+          "displayAsset": "assets/problem-webp90/c967bbf6a3d83f9052abcaad68369a0c.webp",
+          "sha256": "2ec561f0cb2bbb20e8a7bef172ef2d14a3ddab46ad8fde6442fc36e332fdf20c"
+        }
+      ],
+      "resolution": "④가 틀리다. 미터는 진공에서 빛의 속도를 정확히 299,792,458 m/s로 고정해 정의한다. 빛이 1/299,792,458초 동안 진행하는 거리가 1 m이고, 소리는 진공을 통과할 수 없다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:51",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 51,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "원본의 히스테리시스 차와 ① 내부 기어 마모를 읽었으나 특정 오벌 유량계에서 백래시·내부누설과 히스테리시스를 구분하는 제작사 자료 미확보",
+      "finding": "원본의 히스테리시스 차와 ① 내부 기어 마모를 읽었으나 특정 오벌 유량계에서 백래시·내부누설과 히스테리시스를 구분하는 제작사 자료 미확보",
+      "basis": "원본의 히스테리시스 차와 ① 내부 기어 마모를 읽었으나 특정 오벌 유량계에서 백래시·내부누설과 히스테리시스를 구분하는 제작사 자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/051.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/051.jpg",
+          "displayAsset": "assets/problem-webp90/5675a01b98d1161fa13a4c34b2186308.webp",
+          "sha256": "316468bf68f1a263d2a9d61410d6e80c1d40f1edad5c0e10dcedc7bd77f5c2d1"
+        }
+      ],
+      "resolution": "원본의 히스테리시스 차와 ① 내부 기어 마모를 읽었으나 특정 오벌 유량계에서 백래시·내부누설과 히스테리시스를 구분하는 제작사 자료 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:52",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 52,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "압전저항은 변형에 따른 전기저항 변화라는 지문과 네 계기 검토",
+      "finding": "압전저항은 변형에 따른 전기저항 변화라는 지문과 네 계기 검토",
+      "basis": "압전저항은 변형에 따른 전기저항 변화라는 지문과 네 계기 검토. 스트레인게이지의 저항 변화를 측정.",
+      "evidence": [
+        "m42344"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/052.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/052.jpg",
+          "displayAsset": "assets/problem-webp90/98c375388e3bfdaf2243a8230d0cfd05.webp",
+          "sha256": "23fa4f3a56faadb6eb61b8167f9332cde82ba7fc3e3364051220746e77804902"
+        }
+      ],
+      "resolution": "④ 스트레인게이지식이다. 압력을 받은 막이 변형되면 붙어 있는 게이지의 저항도 변한다. 이 변화를 전기 신호로 읽는다. 압력을 받아 전하 자체를 만드는 압전효과와 구별한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:53",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 53,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "CO₂의 몰질량 44는 공기 약 29보다 크다",
+      "finding": "CO₂의 몰질량 44는 공기 약 29보다 크다",
+      "basis": "CO₂의 몰질량 44는 공기 약 29보다 크다. 수소 등 타 기체도 밀도에 영향. 조성 모르는 혼합물의 밀도만으로 CO₂ 농도 결정 불가.",
+      "evidence": [
+        "650-air",
+        "650-gases"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/053.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/053.jpg",
+          "displayAsset": "assets/problem-webp90/9831d0bb3bb1c706921458b1bbeb5d15.webp",
+          "sha256": "bd3304cc44b4de9fbf77939533e0bb4a62edf14c52060c7ba192a3666b8d6e4e"
+        }
+      ],
+      "resolution": "③ CO₂가 일반적인 연소가스 분석에서 의도한 성분이다. CO₂가 공기보다 무거워 다른 성분이 비슷하게 유지되면 CO₂ 농도 변화가 혼합가스의 밀도에 반영된다. 다른 성분도 크게 변하는 혼합물에서는 밀도만으로 CO₂를 특정할 수 없다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:54",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 54,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "B=1000 G=0",
+      "finding": "B=1000 G=0",
+      "basis": "B=1000 G=0.1 T, d=0.04 m, Q=0.003 m³/s. Bdv=9.55 mV. 액체 비중은 체적유량을 쓸 때 불필요.",
+      "evidence": [
+        "659-os-m42392"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/054.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/054.jpg",
+          "displayAsset": "assets/problem-webp90/1c84f9941d67c365a2b957b5961ee8af.webp",
+          "sha256": "15a000dd92a8184089683387f1109d97e12210b639424e87b3571edd64e55ba5"
+        }
+      ],
+      "resolution": "관 단면적으로 체적유량을 나누면 평균 유속이 약 2.39 m/s다. 자기장 0.1 T와 전극 간격 0.04 m를 곱해 구한 유도전압은 약 0.00955 V여서 ③ 9.5 mV다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:55",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 55,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "압력차 Δp=ρgΔh",
+      "finding": "압력차 Δp=ρgΔh",
+      "basis": "압력차 Δp=ρgΔh. 경사각 θ가 작을 때 같은 Δh에 대해 관을 따라 읽는 길이 Δh/sinθ가 길어짐.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/055.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/055.jpg",
+          "displayAsset": "assets/problem-webp90/6dbe05db1e2f879760d880277862896a.webp",
+          "sha256": "7208d0e8078fd7ba31f077690714a44ba921be6bf8d64870f1da2e2cd603875c"
+        }
+      ],
+      "resolution": "②다. 액주가 수직으로 올라간 높이는 작아도, 기울어진 관을 따라 이동한 길이는 더 길다. 그래서 미세한 압력 차를 넓은 눈금에서 읽을 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:56",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 56,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "비례항은 Kp×(설정값−측정값)이며 측정값이나 설정값 단독이 아님",
+      "finding": "비례항은 Kp×(설정값−측정값)이며 측정값이나 설정값 단독이 아님",
+      "basis": "비례항은 Kp×(설정값−측정값)이며 측정값이나 설정값 단독이 아님.",
+      "evidence": [
+        "652-pid"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/056.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/056.jpg",
+          "displayAsset": "assets/problem-webp90/8e7835f0a615c33336e2695a3cf16b21.webp",
+          "sha256": "8cacc17000f8a4d287e7f3ed5dd08de91c3c5c556a6213d1f7dd151fea7b1e25"
+        }
+      ],
+      "resolution": "②다. 비례동작은 목표값과 측정값의 차이인 편차가 클수록 조작량의 변화를 크게 한다. 목표값 자체나 외란만을 비례 입력으로 쓰는 방식이 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:57",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 57,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고정상과 이동상 사이의 성분별 상호작용 차이→유출 순서 차이",
+      "finding": "고정상과 이동상 사이의 성분별 상호작용 차이→유출 순서 차이",
+      "basis": "고정상과 이동상 사이의 성분별 상호작용 차이→유출 순서 차이. 화학 흡수법과 비교.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/057.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/057.jpg",
+          "displayAsset": "assets/problem-webp90/9beb3487e5bbf8fc868a64b8ac3f7cd5.webp",
+          "sha256": "79d1b1221b8d47451df2e6f8569cac70442863e43381c3503b5202fe76d37510"
+        }
+      ],
+      "resolution": "② 기체크로마토그래피다. 운반 기체가 시료를 분리관으로 운반하면 성분마다 고정상에 머무는 시간이 달라 서로 다른 시점에 나온다. 검출기는 그 신호를 나누어 읽는다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:58",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 58,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "고온도도 설비·유체 종류에 따라 과열 인터록이 될 수 있다",
+      "finding": "고온도도 설비·유체 종류에 따라 과열 인터록이 될 수 있다",
+      "basis": "고온도도 설비·유체 종류에 따라 과열 인터록이 될 수 있다. 원본 표식과 저장 답 외에 어떤 보일러 형식의 분류표인지 확인할 자료 부족.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/058.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/058.jpg",
+          "displayAsset": "assets/problem-webp90/a6807ff3634eef887767b09a005e438b.webp",
+          "sha256": "a69697a4919e1eb42e66a5370e9e5bb1ceaf80dc0a0b7f24bab8f7e116f72ce1"
+        }
+      ],
+      "resolution": "고온도도 설비·유체 종류에 따라 과열 인터록이 될 수 있다. 원본 표식과 저장 답 외에 어떤 보일러 형식의 분류표인지 확인할 자료 부족.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:59",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 59,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "고전적인 시감식 광학고온계의 개인오차·측정범위와 다른 비접촉식 계기의 정밀도 조건이 없어 “가장 정밀”을 일반화할 근거 부족",
+      "finding": "고전적인 시감식 광학고온계의 개인오차·측정범위와 다른 비접촉식 계기의 정밀도 조건이 없어 “가장 정밀”을 일반화할 근거 부족",
+      "basis": "고전적인 시감식 광학고온계의 개인오차·측정범위와 다른 비접촉식 계기의 정밀도 조건이 없어 “가장 정밀”을 일반화할 근거 부족.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/059.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/059.jpg",
+          "displayAsset": "assets/problem-webp90/13e8b83af80b841ef55ce0c66fb23590.webp",
+          "sha256": "eeb9c8493017936d577fcb1c9ec196cc721d60cb0c9b8907ae2cd26c0c4b3854"
+        }
+      ],
+      "resolution": "고전적인 시감식 광학고온계의 개인오차·측정범위와 다른 비접촉식 계기의 정밀도 조건이 없어 “가장 정밀”을 일반화할 근거 부족.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:60",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 60,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "석영(SiO₂) 보호관의 내열충격성과 취성, 일반 산 및 알칼리 부식의 차이",
+      "finding": "석영(SiO₂) 보호관의 내열충격성과 취성, 일반 산 및 알칼리 부식의 차이",
+      "basis": "석영(SiO₂) 보호관의 내열충격성과 취성, 일반 산 및 알칼리 부식의 차이. 불산 예외 명시.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/060.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/060.jpg",
+          "displayAsset": "assets/problem-webp90/45d6acbf97e69e2f5db0d71c6abdf19b.webp",
+          "sha256": "17861c7cf491a7de02afd56c2145affb69213a319d87176a32c953ce9a7e1fe4"
+        }
+      ],
+      "resolution": "③이 틀리다. 석영 유리는 열팽창이 작아 열충격에 비교적 강하고 일반적인 산에 잘 견디지만, 불산은 예외다. 강한 알칼리에는 침식될 수 있고 깨지기 쉬워 기계적 충격에는 주의한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:61",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 61,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "원문 표의 전열면적 10 m² 이하·초과를 확인했으나 2022년 보일러 설치검사기준의 해당 호칭지름 표를 미확보",
+      "finding": "원문 표의 전열면적 10 m² 이하·초과를 확인했으나 2022년 보일러 설치검사기준의 해당 호칭지름 표를 미확보",
+      "basis": "원문 표의 전열면적 10 m² 이하·초과를 확인했으나 2022년 보일러 설치검사기준의 해당 호칭지름 표를 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/061.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/061.jpg",
+          "displayAsset": "assets/problem-webp90/c43741eafb8f6d89419e9d1bc40e44c4.webp",
+          "sha256": "e01890440ebc02b8d331d260c24857ea33f059b940177cb4d4063a78eb2b96d3"
+        }
+      ],
+      "resolution": "원문 표의 전열면적 10 m² 이하·초과를 확인했으나 2022년 보일러 설치검사기준의 해당 호칭지름 표를 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:62",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 62,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시행령 제20조제2·3항 공공·민간 연료 및 열 기준과 전력 단위를 각각 대조",
+      "finding": "시행령 제20조제2·3항 공공·민간 연료 및 열 기준과 전력 단위를 각각 대조",
+      "basis": "시행령 제20조제2·3항 공공·민간 연료 및 열 기준과 전력 단위를 각각 대조. 2026.05.28 시행본.",
+      "evidence": [
+        "671-enord"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/062.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/062.jpg",
+          "displayAsset": "assets/problem-webp90/277006bca05203cbf45551948ae6a711.webp",
+          "sha256": "152ac5b6ee16d4d1f67e440e55a1e02e70f7e5fdc4b66bdb25fe3d3bd1e4b027"
+        }
+      ],
+      "resolution": "공공사업주관자의 연료 및 열 사용 기준은 연간 2,500 석유환산톤 이상이므로 ①이다. 보기의 5,000은 민간사업주관자에 관한 수치다. 대조한 2026년 5월 시행령 제20조는 전력 사용시설에는 별도의 kWh 기준을 둔다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:63",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 63,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "산업기사와 기능사의 보일러 조종 범위를 2022년 검사용기기관리자 자격별 별표로 확인해야 함",
+      "finding": "산업기사와 기능사의 보일러 조종 범위를 2022년 검사용기기관리자 자격별 별표로 확인해야 함",
+      "basis": "산업기사와 기능사의 보일러 조종 범위를 2022년 검사용기기관리자 자격별 별표로 확인해야 함. 시행규칙 본문에는 별표 참조만 있고 해당 행 미확보.",
+      "evidence": [
+        "671-enreg"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/063.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/063.jpg",
+          "displayAsset": "assets/problem-webp90/894a559cd223f632714de2afae324dd4.webp",
+          "sha256": "5de970ec624135473c3b1b01603558b09f58d76c138d6f7c31f25ce6b38f73a7"
+        }
+      ],
+      "resolution": "산업기사와 기능사의 보일러 조종 범위를 2022년 검사용기기관리자 자격별 별표로 확인해야 함. 시행규칙 본문에는 별표 참조만 있고 해당 행 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:64",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 64,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "터널가마의 연속 운전·열회수와 이송 및 송풍에 필요한 동력 구분",
+      "finding": "터널가마의 연속 운전·열회수와 이송 및 송풍에 필요한 동력 구분",
+      "basis": "터널가마의 연속 운전·열회수와 이송 및 송풍에 필요한 동력 구분. ④ 연료 제한과 전력소비 일반화.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/064.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/064.jpg",
+          "displayAsset": "assets/problem-webp90/99907484b2e9f4c5edae39000ab3f29b.webp",
+          "sha256": "9ac8fd3ae7a312e3c8a0166e697134ae4b7e84bc7dbeb651e3d5a9797c2c1e94"
+        }
+      ],
+      "resolution": "④가 부적절하다. 터널가마는 제품이 예열·소성·냉각 구역을 연속해서 이동하므로 열회수와 온도 관리에 유리하다. 이송과 송풍 등에는 동력이 필요하며, 사용할 수 있는 연료와 전력소비는 설계에 따라 달라진다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:65",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 65,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "네 보기에서 점토질 단열재의 1300~1500 ℃와 내스폴링성을 확인했으나 제품 등급별 사용온도·열충격 자료 미확보",
+      "finding": "네 보기에서 점토질 단열재의 1300~1500 ℃와 내스폴링성을 확인했으나 제품 등급별 사용온도·열충격 자료 미확보",
+      "basis": "네 보기에서 점토질 단열재의 1300~1500 ℃와 내스폴링성을 확인했으나 제품 등급별 사용온도·열충격 자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/065.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/065.jpg",
+          "displayAsset": "assets/problem-webp90/882277081905a9e36208e454d5dd9b5d.webp",
+          "sha256": "9bec04fa9e2c0ff687d76d153d6b2fb69aa023f5ba16dc9e4f20a59b7491bbb5"
+        }
+      ],
+      "resolution": "네 보기에서 점토질 단열재의 1300~1500 ℃와 내스폴링성을 확인했으나 제품 등급별 사용온도·열충격 자료 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:66",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 66,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "법 제31조제1항 사업자의 신고와 제2항 시·도지사의 통보기한이 서로 다름",
+      "finding": "법 제31조제1항 사업자의 신고와 제2항 시·도지사의 통보기한이 서로 다름",
+      "basis": "법 제31조제1항 사업자의 신고와 제2항 시·도지사의 통보기한이 서로 다름. 2026.03.03 시행본.",
+      "evidence": [
+        "671-enlaw"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/066.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/066.jpg",
+          "displayAsset": "assets/problem-webp90/1a073d2c09e844c818dfff253369873e.webp",
+          "sha256": "52b2c2042d13c230fafcdf0ab5d4dc00b1d157e527c1a40e92bdeba23c65ecc2"
+        }
+      ],
+      "resolution": "② 1월 31일까지다. 에너지사용기자재 현황 등은 사업자가 사업장 소재지의 관할 시·도지사에게 신고한다. 확인한 2026년 3월 시행법에서 2월 말일은 그 신고를 받은 시·도지사가 장관에게 통보하는 기한이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:67",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 67,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "원도 ③의 “디스크 형상에 따라 앵글밸브·Y형밸브”도 글로브 밸브 몸체 형상/유로와 디스크 형상 혼동",
+      "finding": "원도 ③의 “디스크 형상에 따라 앵글밸브·Y형밸브”도 글로브 밸브 몸체 형상/유로와 디스크 형상 혼동",
+      "basis": "원도 ③의 “디스크 형상에 따라 앵글밸브·Y형밸브”도 글로브 밸브 몸체 형상/유로와 디스크 형상 혼동. ④는 압력차×면적에 따른 작용력과 충돌.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/067.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/067.jpg",
+          "displayAsset": "assets/problem-webp90/6df126cfa8e8ae8f205a940a1eb751a8.webp",
+          "sha256": "c4b7cc547ed719bcb36f52fb4a627e82b3ba4b933f9dcda1fc41ecf855fab153"
+        }
+      ],
+      "resolution": "저장 답 ④에서 고압·대구경일수록 조작력이 작다는 설명은 맞지 않는다. 디스크에 걸리는 힘은 압력차와 유효면적의 영향을 받는다. 그런데 ③도 앵글형·Y형을 디스크 형상으로 분류한다. 이는 보통 몸체의 유로 형상을 가리키므로 원 문제의 단일 정답을 재확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:68",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 68,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "에너지법 시행령 제15조제3항 3년, 추가 간이조사 가능",
+      "finding": "에너지법 시행령 제15조제3항 3년, 추가 간이조사 가능",
+      "basis": "에너지법 시행령 제15조제3항 3년, 추가 간이조사 가능. 2026.01.02 시행본.",
+      "evidence": [
+        "671-enactord"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/068.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/068.jpg",
+          "displayAsset": "assets/problem-webp90/94f6e101536b157133198c3ae1480f26.webp",
+          "sha256": "07f4486bc48f81c3a1b27527c319ac2d90ddf69700ca4d3b2bf7b9f05847810f"
+        }
+      ],
+      "resolution": "② 3년이다. 확인한 2026년 시행령 제15조제3항은 에너지 총조사를 3년마다 실시하도록 하고 필요하면 간이조사를 할 수 있게 한다. 질문은 간이조사를 제외한 주기를 묻는다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:69",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 69,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "현장 성형하는 부정형 내화물은 축조 전에 벽돌로 소성할 필요가 없지만 시공 후 건조·승온은 필요",
+      "finding": "현장 성형하는 부정형 내화물은 축조 전에 벽돌로 소성할 필요가 없지만 시공 후 건조·승온은 필요",
+      "basis": "현장 성형하는 부정형 내화물은 축조 전에 벽돌로 소성할 필요가 없지만 시공 후 건조·승온은 필요. 박리 내성은 조건에 따라 다름.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/069.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/069.jpg",
+          "displayAsset": "assets/problem-webp90/a13bb6b11a66917f870e82249b0eb913.webp",
+          "sha256": "ae5ac1cbc82aaee6212d04cfc61f55bd5f03ad79ddc0d5318885b334cc9998ba"
+        }
+      ],
+      "resolution": "④가 캐스터블 내화물의 일반적인 특징과 거리가 멀다. 미리 구운 벽돌을 쌓는 대신 현장에서 성형해 줄눈을 줄일 수 있다. 다만 배합·시공·건조 조건에 따라 실제 박리나 손상이 생길 수 있으므로 열충격에 항상 안전하다는 뜻은 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:70",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 70,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "보냉은 복사·전도 등으로 유입되는 열을 줄이는 것",
+      "finding": "보냉은 복사·전도 등으로 유입되는 열을 줄이는 것",
+      "basis": "보냉은 복사·전도 등으로 유입되는 열을 줄이는 것. 복사열 투과 저항이 없어야 한다는 방향은 반대.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/070.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/070.jpg",
+          "displayAsset": "assets/problem-webp90/76a030e3d89eafd08bef868f24e2ffa1.webp",
+          "sha256": "2013ba15527630e3e4796b4463d85624a745fb0378f780c66ff581633f81a66a"
+        }
+      ],
+      "resolution": "④가 틀리다. 보냉재의 목적은 외부의 열이 저온부로 들어오는 것을 줄이는 데 있다. 열전도율과 흡수성이 낮은 것이 유리하며, 복사열이 그대로 통과하는 성질은 원하는 조건이 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:71",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 71,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "브레이스도 배관에서 횡하중을 지지하는 설계가 있어 기능명만으로 횡방향 이동제한 여부를 단정하기 어려움",
+      "finding": "브레이스도 배관에서 횡하중을 지지하는 설계가 있어 기능명만으로 횡방향 이동제한 여부를 단정하기 어려움",
+      "basis": "브레이스도 배관에서 횡하중을 지지하는 설계가 있어 기능명만으로 횡방향 이동제한 여부를 단정하기 어려움. 출제 당시 지지장치 분류 원표 확인 필요.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/071.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/071.jpg",
+          "displayAsset": "assets/problem-webp90/e3b97e5edbf864414f6e3398190a2272.webp",
+          "sha256": "a3771444c5306514b198165649bbdb57c7738bd80c2f7918be52513fc3ea4ed2"
+        }
+      ],
+      "resolution": "브레이스도 배관에서 횡하중을 지지하는 설계가 있어 기능명만으로 횡방향 이동제한 여부를 단정하기 어려움. 출제 당시 지지장치 분류 원표 확인 필요.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:72",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 72,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시행령 개선명령 조항은 에너지관리지도 결과 10% 이상 및 투자 경제성 모두 요구",
+      "finding": "시행령 개선명령 조항은 에너지관리지도 결과 10% 이상 및 투자 경제성 모두 요구",
+      "basis": "시행령 개선명령 조항은 에너지관리지도 결과 10% 이상 및 투자 경제성 모두 요구. 보기 ②는 필요조건만 표기. 2026.05.28 시행본.",
+      "evidence": [
+        "671-enord"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/072.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/072.jpg",
+          "displayAsset": "assets/problem-webp90/5a3ca590a0bb64d5fd0ccf0fb6fcf4e0.webp",
+          "sha256": "7b936f2b09b97d68886f7deb85eb9c9c33ce72b8e3032cedfe442480aa26eef9"
+        }
+      ],
+      "resolution": "보기 중 관련 조건은 ②다. 확인한 2026년 5월 시행령은 에너지관리지도 결과 10% 이상의 효율 개선이 기대되고 그 투자에 경제성이 있다고 인정되는 경우를 정한다. 10%라는 수치 하나만으로 개선명령의 요건이 모두 갖춰지는 것은 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:73",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 73,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시행규칙 제5조제1~4호에 이행 주체·방법·시기",
+      "finding": "시행규칙 제5조제1~4호에 이행 주체·방법·시기",
+      "basis": "시행규칙 제5조제1~4호에 이행 주체·방법·시기. 이행 장소는 없음. 2026.05.28 시행본.",
+      "evidence": [
+        "671-enreg"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/073.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/073.jpg",
+          "displayAsset": "assets/problem-webp90/38c26ef713a6ab34b1270e9f902edddf.webp",
+          "sha256": "6201381f3c7271d00bd5a7621f6a1bd76d0086600e5e0ba0175a2941784a4efe"
+        }
+      ],
+      "resolution": "③ 이행 장소다. 조치 내용 자체를 제외하면 누가 조치할지, 어떤 방법을 쓸지, 언제 이행할지가 이행계획에 포함된다. 확인한 2026년 5월 시행규칙 제5조의 열거와 일치한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:74",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 74,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "도염식요는 한 차례 제품을 쌓아 소성·냉각 후 꺼내는 전통적인 가마의 운전주기를 기준으로 함",
+      "finding": "도염식요는 한 차례 제품을 쌓아 소성·냉각 후 꺼내는 전통적인 가마의 운전주기를 기준으로 함",
+      "basis": "도염식요는 한 차례 제품을 쌓아 소성·냉각 후 꺼내는 전통적인 가마의 운전주기를 기준으로 함.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/074.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/074.jpg",
+          "displayAsset": "assets/problem-webp90/21308002c5839b1604ac635ac971104a.webp",
+          "sha256": "f7c6a92955161719f9dbcb8126099da29b975fc2112698e923824a407b1f3346"
+        }
+      ],
+      "resolution": "① 불연속식이다. 전통적인 도염식 가마는 한 번 장입한 제품을 가열·소성하고 냉각한 뒤 꺼낸다. 제품이 가마를 끊임없이 통과하는 터널가마와 운전주기가 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:75",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 75,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "법 제7조제2항제10호 “대통령령으로 정하는 사항”",
+      "finding": "법 제7조제2항제10호 “대통령령으로 정하는 사항”",
+      "basis": "법 제7조제2항제10호 “대통령령으로 정하는 사항”. 배급·비축/저장·양도/양수 제한은 같은 항 열거. 2026.03.03 시행본.",
+      "evidence": [
+        "671-enlaw"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/075.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/075.jpg",
+          "displayAsset": "assets/problem-webp90/44efe6da2dea7acccbaf60b4d1475472.webp",
+          "sha256": "6f99c44ec17966f32e4cd594b4db29b402bb7f9e9c6aac8289d631c7ddf529a9"
+        }
+      ],
+      "resolution": "④가 틀리다. 확인한 2026년 3월 시행법 제7조제2항은 그 밖의 수급안정 조치를 대통령령으로 정하도록 한다. 보기처럼 부령에 위임한다는 문구가 잘못이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:76",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 76,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시행규칙 제9조 제1항 문구를 확인",
+      "finding": "시행규칙 제9조 제1항 문구를 확인",
+      "basis": "시행규칙 제9조 제1항 문구를 확인. 90일, 2018.09.18 최종 개정 표시.",
+      "evidence": [
+        "671-enreg"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/076.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/076.jpg",
+          "displayAsset": "assets/problem-webp90/9f409a33f503d1a6bab9d334c266e142.webp",
+          "sha256": "09fe5c637576a4439948f84fc39e197a117f1eb4aa1d19331b4a1562e58782ae"
+        }
+      ],
+      "resolution": "④ 90일 이내다. 효율관리시험기관의 측정 결과를 통보받은 날부터 계산한다. 확인한 2026년 5월 시행규칙에서 이 신고는 출고 또는 통관 전에 모델별로 해야 하며, 해당 항의 마지막 개정 표시는 2018년 9월이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:77",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 77,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "시행령 제14조제3항 원칙 7일 이전, 긴급시 전일까지 공고",
+      "finding": "시행령 제14조제3항 원칙 7일 이전, 긴급시 전일까지 공고",
+      "basis": "시행령 제14조제3항 원칙 7일 이전, 긴급시 전일까지 공고. 2026.05.28 시행본.",
+      "evidence": [
+        "671-enord"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/077.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/077.jpg",
+          "displayAsset": "assets/problem-webp90/2ff2a45410f26afcc6ac3fa95b4c0308.webp",
+          "sha256": "0fda224a35f009d31f1ef732afe66a3514891accbb5c697641085a16a38f44e7"
+        }
+      ],
+      "resolution": "① 7일이다. 확인한 2026년 5월 시행령 제14조제3항의 원칙은 제한조치를 하기 7일 이전에 내용을 예고하는 것이다. 긴급히 제한할 필요가 있으면 전일까지 공고할 수 있다는 예외도 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:78",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 78,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "법 제31조제3항제1~5호의 전력공사·가스공사·지역난방공사와 가스안전공사의 차이",
+      "finding": "법 제31조제3항제1~5호의 전력공사·가스공사·지역난방공사와 가스안전공사의 차이",
+      "basis": "법 제31조제3항제1~5호의 전력공사·가스공사·지역난방공사와 가스안전공사의 차이. 2026.03.03 시행본.",
+      "evidence": [
+        "671-enlaw"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/078.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/078.jpg",
+          "displayAsset": "assets/problem-webp90/7f7b188fcb7f829f574b894695d22e56.webp",
+          "sha256": "a54f4af2a9b7118294a50cd4b192615835a845d378b295950635f6efcb73c09c"
+        }
+      ],
+      "resolution": "③ 한국가스안전공사다. 문제는 안전검사 기관을 묻는 것이 아니라 사업자에게 공급한 에너지의 양을 확인할 대상을 묻는다. 확인한 2026년 3월 시행법의 열거에는 한국전력공사·한국가스공사·한국지역난방공사가 들어 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:79",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 79,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "폴리우레탄 유기 고분자, 진주암 계열 펄라이트·세라믹·규산칼슘 무기질 대조",
+      "finding": "폴리우레탄 유기 고분자, 진주암 계열 펄라이트·세라믹·규산칼슘 무기질 대조",
+      "basis": "폴리우레탄 유기 고분자, 진주암 계열 펄라이트·세라믹·규산칼슘 무기질 대조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/079.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/079.jpg",
+          "displayAsset": "assets/problem-webp90/bba734e52d2474a58c136efa63e41477.webp",
+          "sha256": "99e09a615fb85b0b6e6f473026ad931526b6193f5852fda696a000f098a2a8c5"
+        }
+      ],
+      "resolution": "① 우레탄폼이다. 유기 고분자인 폴리우레탄을 발포해 만든다. 나머지 세 재료는 광물·세라믹·무기염 계열의 단열재다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:80",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 80,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고로에서 철광석을 환원하여 선철 생산",
+      "finding": "고로에서 철광석을 환원하여 선철 생산",
+      "basis": "고로에서 철광석을 환원하여 선철 생산. 전로·평로·전기로 제강 공정과 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/080.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/080.jpg",
+          "displayAsset": "assets/problem-webp90/3ff1c9baf559195c5ce5d5182659261f.webp",
+          "sha256": "1eba7e21c5c7061e51410ab5bd5795e1f5c3857dfae53020b76150c3c9934253"
+        }
+      ],
+      "resolution": "① 고로다. 고로는 철광석을 환원해 선철을 만드는 제선 설비다. 선철이나 철스크랩 등의 성분을 조정하여 강을 만드는 제강로와 공정 목적이 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:81",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 81,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "Na형 수지의 이온교환과 가열·증류·여과의 물리적 작용을 네 보기에서 구분",
+      "finding": "Na형 수지의 이온교환과 가열·증류·여과의 물리적 작용을 네 보기에서 구분",
+      "basis": "Na형 수지의 이온교환과 가열·증류·여과의 물리적 작용을 네 보기에서 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/081.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/081.jpg",
+          "displayAsset": "assets/problem-webp90/5ec9266aede88b67365a34abe9dc91fa.webp",
+          "sha256": "af45998690505ddeddd822bf9b362eb735a88f26b29d483f06bd9d35d2d0bca8"
+        }
+      ],
+      "resolution": "① 이온교환법이다. 수지에 붙어 있는 이온과 물속 이온이 서로 바뀌는 화학적 작용을 이용한다. 여과처럼 체의 구멍 크기로 입자를 거르는 방법과 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:82",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 82,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 A·B·C 두께 모두 5 cm, 온도강하 각각 200,250,300 K",
+      "finding": "원도 A·B·C 두께 모두 5 cm, 온도강하 각각 200,250,300 K",
+      "basis": "원도 A·B·C 두께 모두 5 cm, 온도강하 각각 200,250,300 K. 같은 열유속에서 k는 기울기 절댓값에 반비례.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/082.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/082.jpg",
+          "displayAsset": "assets/problem-webp90/976ed5c2553c9f04bd0f79d459cc52cd.webp",
+          "sha256": "c05f71d27e139b88e0b66314bb46dfa8fb1dacbd77bfa4ced2fef1bb6159ea7b"
+        }
+      ],
+      "resolution": "정상상태에서 같은 면적의 세 층을 지나는 열유속은 같다. 세 판의 두께도 같아 같은 열을 전달하는 데 가장 큰 온도 차가 필요한 층이 가장 열을 잘 전달하지 못한다. 온도강하가 300 ℃로 가장 큰 ③ C다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:83",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 83,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증기 압력계 연결부 사이폰은 응축수로 고온 증기가 계기 탄성체에 직접 닿는 것을 방지",
+      "finding": "증기 압력계 연결부 사이폰은 응축수로 고온 증기가 계기 탄성체에 직접 닿는 것을 방지",
+      "basis": "증기 압력계 연결부 사이폰은 응축수로 고온 증기가 계기 탄성체에 직접 닿는 것을 방지.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/083.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/083.jpg",
+          "displayAsset": "assets/problem-webp90/edccdc99853b80d6ddbbd9257a08dc4e.webp",
+          "sha256": "8596545cfd6d36b661cae7df5a140b300253f369b305d3dd73d2bf7741c65f8b"
+        }
+      ],
+      "resolution": "③ 압력계다. 증기 배관과 압력계 사이에 구부러진 사이폰관을 두면 그 안에 응축수가 머문다. 압력은 전달하면서 고온 증기가 계기에 직접 닿는 것을 줄인다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:84",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 84,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원형 단면 A=πD²/4, Q=AV, D(m)에서 mm로 1000배",
+      "finding": "원형 단면 A=πD²/4, Q=AV, D(m)에서 mm로 1000배",
+      "basis": "원형 단면 A=πD²/4, Q=AV, D(m)에서 mm로 1000배. 1000√(4/π)=1128.38.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/084.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/084.jpg",
+          "displayAsset": "assets/problem-webp90/f26e86162941e4687fa911a873f80d02.webp",
+          "sha256": "692209b443d35d4ce6c99b716263795a491269de9af6a2914b2e7b9566d6ac5d"
+        }
+      ],
+      "resolution": "유량을 유속으로 나눈 값이 관 단면적이다. 원의 면적식에서 지름을 풀면 m 단위 지름을 얻고, 1,000을 곱해 mm로 바꾼다. 계수 1,128에는 이미 π가 들어 있어 ①이다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:85",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 85,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "지름이 큰 동체는 같은 내압에서 원주응력이 커짐",
+      "finding": "지름이 큰 동체는 같은 내압에서 원주응력이 커짐",
+      "basis": "지름이 큰 동체는 같은 내압에서 원주응력이 커짐. 고압·대용량에 적합하다는 ① 비교.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/085.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/085.jpg",
+          "displayAsset": "assets/problem-webp90/661daccb033c030fd711ceeadfbb60a8.webp",
+          "sha256": "4af7e2a225d59b8faaa55b27f607542ff4f671dbee3ee3fa0e9ece9102673f6e"
+        }
+      ],
+      "resolution": "①이 틀리다. 원통보일러의 큰 동체는 같은 두께와 압력에서 지름이 작은 관보다 큰 원주응력을 받는다. 고압·대용량에는 물을 여러 가는 관으로 나누어 가열하는 수관식이 일반적으로 유리하다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:86",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 86,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "양단 닫힌 얇은 원통의 종단면·횡단면 힘평형",
+      "finding": "양단 닫힌 얇은 원통의 종단면·횡단면 힘평형",
+      "basis": "양단 닫힌 얇은 원통의 종단면·횡단면 힘평형. 원주응력 pD/(2t), 축응력 pD/(4t).",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/086.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/086.jpg",
+          "displayAsset": "assets/problem-webp90/445e234631fcec4c66a7cc2a127f066c.webp",
+          "sha256": "77d7b13bd97c9051faeaf690ad74c4d4c177c5dab254a6bc33e96f7a06871fb7"
+        }
+      ],
+      "resolution": "① 2배다. 내부 압력이 얇은 원통을 길이 방향으로 벌리는 힘과 끝마개를 미는 힘을 각각 평형시키면 원주응력이 축응력보다 두 배 크다. 끝이 닫혀 있고 막응력이 지배적인 원통을 가정한다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:87",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 87,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "상표명 다우섬이 DOWTHERM 계열을 뜻하는지와 해당 열매체의 제조사 원자료 대조가 필요",
+      "finding": "상표명 다우섬이 DOWTHERM 계열을 뜻하는지와 해당 열매체의 제조사 원자료 대조가 필요",
+      "basis": "상표명 다우섬이 DOWTHERM 계열을 뜻하는지와 해당 열매체의 제조사 원자료 대조가 필요.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/087.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/087.jpg",
+          "displayAsset": "assets/problem-webp90/4e6fea94975ab96844683608ce9e1cd1.webp",
+          "sha256": "4d6105ea73ad1309579db5b47c88e005f1a419508963b7d8eee04718a6aaa8b2"
+        }
+      ],
+      "resolution": "상표명 다우섬이 DOWTHERM 계열을 뜻하는지와 해당 열매체의 제조사 원자료 대조가 필요.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:88",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 88,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "체크밸브는 급수 역류 방지용",
+      "finding": "체크밸브는 급수 역류 방지용",
+      "basis": "체크밸브는 급수 역류 방지용. 노내 이상압·보일러 과압·수위 이상에 직접 대응하는 세 보기와 기능 구분.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/088.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/088.jpg",
+          "displayAsset": "assets/problem-webp90/dc55c0e78861bffdc53d7d3273c46d44.webp",
+          "sha256": "a94fb1468e279a8a7d0a8d08d6a36dd6fb6cc13622941293140f0b0b603491bb"
+        }
+      ],
+      "resolution": "③ 체크밸브다. 급수가 한 방향으로 흐르도록 해 역류를 막는다. 다른 보기는 노내의 이상압력을 완화하거나 보일러 과압을 방지하거나 이상 수위를 알리는 데 직접 쓰인다. 체크밸브도 설비 안전에는 중요하다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:89",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 89,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "pH 6은 약산성",
+      "finding": "pH 6은 약산성",
+      "basis": "pH 6은 약산성. 강제 보일러 설비 만수보존에서 산소·산성 부식을 방지하는 목적과 충돌. 장치별 약품수치를 일반화하지 않음.",
+      "evidence": [
+        "657-ph"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/089.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/089.jpg",
+          "displayAsset": "assets/problem-webp90/7c0999a71d564404ca2adf863df533d8.webp",
+          "sha256": "a3a625bd059e5c4731b0f897191428c7770458b5957ecacc6856f4ad65c2d02b"
+        }
+      ],
+      "resolution": "④가 틀리다. 만수보존은 보일러를 적절히 처리한 물로 채우고 공기의 유입과 부식을 줄이는 방법이다. pH 6은 약산성이므로 강재 보일러의 보존수 기준으로 일률 적용할 수 없다. 구체적인 수질조건은 재질과 보존 절차에 따른다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:90",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 90,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "Darcy–Weisbach에서 f 일정, Δp=f(L/D)ρV²/2",
+      "finding": "Darcy–Weisbach에서 f 일정, Δp=f(L/D)ρV²/2",
+      "basis": "Darcy–Weisbach에서 f 일정, Δp=f(L/D)ρV²/2. 원문 ③ 길이와 반비례라고 함.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/090.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/090.jpg",
+          "displayAsset": "assets/problem-webp90/22af5a57ca5b94678fb07170a1826158.webp",
+          "sha256": "cce669312ab80e8a0e455bcbbf95f811cad91b74526140c5dd4bb62f183b7b6a"
+        }
+      ],
+      "resolution": "③이 틀리다. 같은 지름·유속·마찰계수라면 관이 길수록 마찰이 누적되므로 압력손실은 길이에 비례한다. 지름에 반비례한다는 관계도 이 식에서 유속을 일정하게 놓고 비교할 때의 설명이다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:91",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 91,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "원도 ③ 히드라진과 다른 보기를 확인",
+      "finding": "원도 ③ 히드라진과 다른 보기를 확인",
+      "basis": "원도 ③ 히드라진과 다른 보기를 확인. 고압계통 수처리제의 현재 사용 제한·재질별 수화학 지침을 직접 확인할 독립 자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/091.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/091.jpg",
+          "displayAsset": "assets/problem-webp90/abb20586c0a6393efe40dffb13502320.webp",
+          "sha256": "d75cda7b0ceb966ac73ab2156142fc875f890b2d661db224d2e1dfb62d2b634f"
+        }
+      ],
+      "resolution": "원도 ③ 히드라진과 다른 보기를 확인. 고압계통 수처리제의 현재 사용 제한·재질별 수화학 지침을 직접 확인할 독립 자료 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:92",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 92,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증기 인젝터의 에너지원은 구동 증기",
+      "finding": "증기 인젝터의 에너지원은 구동 증기",
+      "basis": "증기 인젝터의 에너지원은 구동 증기. 전동기/별도 기계축 동력 불필요와 에너지소비 없음 구별.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/092.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/092.jpg",
+          "displayAsset": "assets/problem-webp90/58ee2cc95925da4d789ebf1500a7c3a1.webp",
+          "sha256": "034ca58ce37a105f0a15f76b46fb998c68cff4a8b8c3f9fed336946df0465014"
+        }
+      ],
+      "resolution": "④가 틀리다. 인젝터는 구동 증기가 물에 운동량을 전달해 급수하는 장치이므로 별도의 전동기나 기계식 펌프 동력이 필요하지 않다. 작동에 에너지가 전혀 들지 않는다는 뜻은 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:93",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 93,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "주철은 압축에 비해 인장·충격에 취약",
+      "finding": "주철은 압축에 비해 인장·충격에 취약",
+      "basis": "주철은 압축에 비해 인장·충격에 취약. 형상 복잡한 주조·분할 설치와 구분.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/093.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/093.jpg",
+          "displayAsset": "assets/problem-webp90/c0374bd627bfef7af585e84b7756658b.webp",
+          "sha256": "260d5cb4213c94e0343db996099efb920f3d62a5cbe83df4325a63d15185c6b2"
+        }
+      ],
+      "resolution": "②가 부적절하다. 일반 주철은 취성이 커 충격을 받으면 잘 깨지고 인장하중에도 불리하다. 복잡한 형상을 주조하거나 절을 나누어 반입·조립하기 쉬운 특성과 구별한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:94",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 94,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "프라이밍·포밍은 증기 흐름에 물이 딸려가는 현상",
+      "finding": "프라이밍·포밍은 증기 흐름에 물이 딸려가는 현상",
+      "basis": "프라이밍·포밍은 증기 흐름에 물이 딸려가는 현상. 안전밸브를 이용한 급감압은 오히려 기포와 비말을 증가시킬 수 있음.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/094.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/094.jpg",
+          "displayAsset": "assets/problem-webp90/a505286c32bf03b445e17c2079119693.webp",
+          "sha256": "80e98b08e2a120f7c969eae3daaca560a6fee74997d1eb4ff70828efb8627c41"
+        }
+      ],
+      "resolution": "①이 틀리다. 프라이밍·포밍이 생겼을 때 안전밸브를 전개해 압력을 갑자기 내리면 보일러수가 급히 끓고 물방울이 더 딸려 나갈 수 있다. 안전밸브를 일반 압력조절용으로 쓰는 것은 적절하지 않다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:95",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 95,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "원도 ① “수지의 성분과 Na형의 양이온과 결합”은 Ca²⁺·Mg²⁺가 수지에 포착되고 Na⁺가 물로 방출되는 원리를 명확히 표현하지 못함",
+      "finding": "원도 ① “수지의 성분과 Na형의 양이온과 결합”은 Ca²⁺·Mg²⁺가 수지에 포착되고 Na⁺가 물로 방출되는 원리를 명확히 표현하지 못함",
+      "basis": "원도 ① “수지의 성분과 Na형의 양이온과 결합”은 Ca²⁺·Mg²⁺가 수지에 포착되고 Na⁺가 물로 방출되는 원리를 명확히 표현하지 못함.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/095.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/095.jpg",
+          "displayAsset": "assets/problem-webp90/248047dee4a01d4ecee33ecea24dbbe3.webp",
+          "sha256": "d54d855a5af727cc78cea2f29df4254a2088b8ce4d32ec7261f10e06c1582856"
+        }
+      ],
+      "resolution": "Na형 수지의 교환 자리에는 처음에 Na⁺가 있다. 물속 Ca²⁺ 또는 Mg²⁺가 그 자리에 결합하면 전하에 맞춰 Na⁺ 두 개가 물로 나온다. 저장 답 ①은 이 방식을 가리킨 것으로 보이지만 실제로 수지에 새로 결합하는 이온을 분명하게 적지 않아 원 보기 확인이 필요하다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:96",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 96,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도와 지문의 내경 60 mm에 벽두께 4 mm 두 번 더해 외경 68 mm",
+      "finding": "원도와 지문의 내경 60 mm에 벽두께 4 mm 두 번 더해 외경 68 mm",
+      "basis": "원도와 지문의 내경 60 mm에 벽두께 4 mm 두 번 더해 외경 68 mm. π×0.068×2.2×100=46.998 m².",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/096.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/096.jpg",
+          "displayAsset": "assets/problem-webp90/78eff997f7241dae6d6c0b9e6cc233f8.webp",
+          "sha256": "d6e7513018e29a5c21d868f305b01b95cd3886575f8211bf781fd9b1ab7bcc5c"
+        }
+      ],
+      "resolution": "수관에서 고온 가스와 맞닿는 바깥면의 면적을 구한다. 외경은 내경 60 mm에 양쪽 벽 두께를 더한 68 mm이고, 관 한 개의 옆면적은 외주에 길이를 곱한 값이다. 100개의 면적을 더하면 ② 약 47 m²다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:97",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 97,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "통상적인 복사식은 부하 증가에 따른 증기 유량 증가 대비 열흡수 증가가 작아 출구온도가 낮아지는 경향",
+      "finding": "통상적인 복사식은 부하 증가에 따른 증기 유량 증가 대비 열흡수 증가가 작아 출구온도가 낮아지는 경향",
+      "basis": "통상적인 복사식은 부하 증가에 따른 증기 유량 증가 대비 열흡수 증가가 작아 출구온도가 낮아지는 경향. 대류식과 혼합하는 이유.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/097.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/097.jpg",
+          "displayAsset": "assets/problem-webp90/946bba26278db2df43b90920d5be1295.webp",
+          "sha256": "3c0d02caca22f3766cf597b31547099f5d8d755301e607d37d57e66653b82e1e"
+        }
+      ],
+      "resolution": "③이 틀리다. 일반적인 복사 과열기에서는 부하가 올라 증기 유량이 늘어도 복사 흡열량은 그만큼 비례해서 늘지 않아 출구 증기온도가 낮아지는 경향이 있다. 대류 과열기와 함께 쓰면 두 온도 특성을 상쇄할 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:98",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 98,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원주응력식에 이음효율 η=0",
+      "finding": "원주응력식에 이음효율 η=0",
+      "basis": "원주응력식에 이음효율 η=0.75 적용. p=.3 N/mm²,D=5000 mm,t=10 mm. 100 N/mm².",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/098.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/098.jpg",
+          "displayAsset": "assets/problem-webp90/eda0b2b9866035e4cadc147c773d79a5.webp",
+          "sha256": "3217a7d5b24106f42e5acb08cf0c9f41d331ae3f55b510b52f0533cf6ce49797"
+        }
+      ],
+      "resolution": "지름을 5,000 mm로, 압력을 0.3 N/mm²로 통일한다. 이음 효율은 75를 그대로 넣지 않고 0.75로 쓴다. 얇은 원통에서 이음을 고려한 원주방향 인장응력은 ② 100 N/mm²다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:99",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 99,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "물계통에서 용존 산소·CO₂·pH는 부식환경에 직접 관여",
+      "finding": "물계통에서 용존 산소·CO₂·pH는 부식환경에 직접 관여",
+      "basis": "물계통에서 용존 산소·CO₂·pH는 부식환경에 직접 관여. 실리카는 대표적인 침전·스케일 원인.",
+      "evidence": [
+        "657-ph"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/099.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/099.jpg",
+          "displayAsset": "assets/problem-webp90/297f355bf8e1b0a19b5dd7257bba84dc.webp",
+          "sha256": "0163d5779bb53f33b47c2c64f7b4c8e2289f3f9745abae44f054b3cb945b175d"
+        }
+      ],
+      "resolution": "④ 실리카가 가장 거리가 멀다. 용존 산소와 탄산가스, pH는 금속의 전기화학적 부식 환경에 직접 영향을 준다. 실리카 문제는 주로 침전과 스케일 형성으로 나타난다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-engineer-engineer-20220424:100",
+      "catalog": "energy-engineer",
+      "file": "data/energy-engineer.js",
+      "round": "energy-engineer-engineer-20220424",
+      "number": 100,
+      "location": "에너지관리기사 2022년 2회 필기시험 · 추가 자료",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "모리슨형 파형노통 원문의 D=950 mm, p=1",
+      "finding": "모리슨형 파형노통 원문의 D=950 mm, p=1",
+      "basis": "모리슨형 파형노통 원문의 D=950 mm, p=1.1 MPa, 평형부 230 mm 미만, C=1100 확인. 2022년 적용 강도산식·최소두께 보정 및 반올림 규격 원문 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/energy/assets/engineer-2022/100.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/engineer-2022/100.jpg",
+          "displayAsset": "assets/problem-webp90/16227a541374c583ae09842b34ec8b25.webp",
+          "sha256": "78154da9ed59e3649b98178651924d58858a14f5a74d4f64a4b97832326cab17"
+        }
+      ],
+      "resolution": "모리슨형 파형노통 원문의 D=950 mm, p=1.1 MPa, 평형부 230 mm 미만, C=1100 확인. 2022년 적용 강도산식·최소두께 보정 및 반올림 규격 원문 미확보.",
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:1",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 1,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "가운데단 종류·높이의 호칭과 각 단의 표기를 독립 확인할 라디에이터 도면 표준 원표가 없어 보류",
+      "finding": "가운데단 종류·높이의 호칭과 각 단의 표기를 독립 확인할 라디에이터 도면 표준 원표가 없어 보류",
+      "basis": "가운데단 종류·높이의 호칭과 각 단의 표기를 독립 확인할 라디에이터 도면 표준 원표가 없어 보류.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "가운데단 종류·높이의 호칭과 각 단의 표기를 독립 확인할 라디에이터 도면 표준 원표가 없어 보류.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:2",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 2,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "동일 기하·기체밀도·효율의 상사 운전점에서 Q∝N, Δp∝N², P∝N³",
+      "finding": "동일 기하·기체밀도·효율의 상사 운전점에서 Q∝N, Δp∝N², P∝N³",
+      "basis": "동일 기하·기체밀도·효율의 상사 운전점에서 Q∝N, Δp∝N², P∝N³. 같은 계통의 조절 상태가 다르면 그대로 배수 적용 불가.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "같은 송풍기가 같은 밀도의 공기를 옮기고 서로 대응하는 운전점에서 작동한다고 본다. 회전수가 두 배면 풍량은 2배, 압력은 4배다. 동력은 풍량과 압력의 곱에 비례하므로 효율이 같다면 8배가 되어 ②다. 유사 기출: 2015년 3월 2번, 2016년 3월 8번, 2021년 2회 10번, 2024년 3회 8번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:3",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 3,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "기하학적으로 닮은 팬에서 같은 회전수·밀도",
+      "finding": "기하학적으로 닮은 팬에서 같은 회전수·밀도",
+      "basis": "기하학적으로 닮은 팬에서 같은 회전수·밀도. 단면적 D², 끝속도 D, 풍량 D³, 압력 D², 동력 D⁵.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "같은 회전수에서 날개 끝 속도는 지름 D에 비례한다. 닮은 송풍기의 통과 면적은 D²에 비례하므로 풍량은 D³, 압력은 끝 속도의 제곱인 D²에 비례한다. 같은 밀도와 효율의 대응 운전점에서는 동력이 풍량과 압력의 곱에 비례해 D⁵가 된다. 따라서 ③이다. 유사 기출: 2016년 3월 8번, 2022년 1회 3번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:4",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 4,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "CoolProp 7",
+      "finding": "CoolProp 7",
+      "basis": "CoolProp 7.2.0 R21 INFO.FORMULA: C1Cl2F1H1. 할로카본 번호 021과 원자수 대조.",
+      "evidence": [
+        "671-fluid-R21"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① CHCl₂F다. 포화 할로카본 번호 021에서 첫 자리 0에 1을 더하면 탄소 1개, 둘째 자리 2에서 1을 빼면 수소 1개, 끝자리 1은 불소 1개다. 탄소의 남은 두 결합을 염소 2개가 채운다. 유사 기출: 2011년 3월 28번, 2019년 8월 26번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:5",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 5,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "CoolProp 7",
+      "finding": "CoolProp 7",
+      "basis": "CoolProp 7.2.0 HEOS, PropsSI(T,P,101325,Q,0,fluid). 정상비점 R22 −40.81 ℃, R14 −128.05 ℃, 에틸렌 −103.77 ℃, 메탄 −161.48 ℃. 냉매 선정에는 목표 증발온도와 운전압력 필요.",
+      "evidence": [
+        "671-fluid-R22",
+        "671-fluid-R14",
+        "671-fluid-Ethylene",
+        "671-fluid-Methane"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "초저온용 저온단을 비교하면 ① R-22의 정상비점은 약 −40.8 ℃로, R-14(−128.1 ℃), 에틸렌(−103.8 ℃), 메탄(−161.5 ℃)보다 훨씬 높다. 같은 극저온에서 증발시키려면 훨씬 낮은 압력이 필요해 이 보기 중 불리하다. 실제 냉매 선정은 목표 증발온도와 허용 압력에 따라 달라진다. 유사 기출: 2014년 3월 28번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:6",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 6,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "기존 설명은 광유와 합성유를 구분하지 않고 냉매명만으로 혼화성을 일반화",
+      "finding": "기존 설명은 광유와 합성유를 구분하지 않고 냉매명만으로 혼화성을 일반화",
+      "basis": "기존 설명은 광유와 합성유를 구분하지 않고 냉매명만으로 혼화성을 일반화. 냉매·유종·온도별 완전 혼화 범위의 원표 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "저장 답 ②는 전통적인 광유계 냉동기유와 R-12의 조합을 기준으로 읽는다. 냉매와 기름의 혼화성은 유종과 온도에 따라 달라진다. 특정 냉매가 모든 기름과 모든 온도에서 똑같이 섞인다고 단정할 수 없다. 유사 기출: 2012년 3월 34번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:7",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 7,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원 제보 대신 재구성했다는 1차 출처 표시 유지",
+      "finding": "원 제보 대신 재구성했다는 1차 출처 표시 유지",
+      "basis": "원 제보 대신 재구성했다는 1차 출처 표시 유지. 단상 브라인 순환과 물의 잠열축열 구분.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "원 제보 대신 재구성했다는 1차 출처 표시 유지. 단상 브라인 순환과 물의 잠열축열 구분.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:8",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 8,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "아연도금층의 부식 억제 및 판금 가공 확인",
+      "finding": "아연도금층의 부식 억제 및 판금 가공 확인",
+      "basis": "아연도금층의 부식 억제 및 판금 가공 확인. 재료 사용률이 가장 높다는 주장에 지역·용도 조건이 있어 독립 설계편람의 근거를 확보할 때까지 보류.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "아연도금층의 부식 억제 및 판금 가공 확인. 재료 사용률이 가장 높다는 주장에 지역·용도 조건이 있어 독립 설계편람의 근거를 확보할 때까지 보류.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:9",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 9,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "캐비테이션은 국부 정압이 해당 온도의 증기압 이하가 되면 기포 발생",
+      "finding": "캐비테이션은 국부 정압이 해당 온도의 증기압 이하가 되면 기포 발생",
+      "basis": "캐비테이션은 국부 정압이 해당 온도의 증기압 이하가 되면 기포 발생. 펌프 회전수 상승은 일반 방지책이 아님. 네 보기에서 흡입손실 증감 대조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "캐비테이션은 국부 정압이 해당 온도의 증기압 이하가 되면 기포 발생. 펌프 회전수 상승은 일반 방지책이 아님. 네 보기에서 흡입손실 증감 대조.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:10",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 10,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "제시한 설비의 입자·미생물 오염 관리 목적을 VAV 풍량제어, 제습, 항온항습 목적과 구분",
+      "finding": "제시한 설비의 입자·미생물 오염 관리 목적을 VAV 풍량제어, 제습, 항온항습 목적과 구분",
+      "basis": "제시한 설비의 입자·미생물 오염 관리 목적을 VAV 풍량제어, 제습, 항온항습 목적과 구분. 바이러스를 살아 있는 세포로 묘사하지 않도록 수정.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 바이오 클린룸이다. 공기 중 입자와 미생물 오염을 관리해 공정 또는 환자를 보호하는 공간이다. 온도·습도나 풍량만 조절해서는 이 문제에서 요구한 오염 관리 기능을 충족할 수 없다. 유사 기출: 2002년 3월 9번, 2019년 3월 17번, 2022년 2회 8번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:11",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 11,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "활성탄 흡착·HEPA 입자포집을 구분",
+      "finding": "활성탄 흡착·HEPA 입자포집을 구분",
+      "basis": "활성탄 흡착·HEPA 입자포집을 구분. 일반 활성탄이 모든 유해가스를 제거한다는 오해 방지.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "①이다. 활성탄은 넓은 내부 표면에 흡착되는 냄새 성분과 일부 가스상 오염물질을 제거한다. 제거 성능은 가스 종류와 활성탄 종류, 사용 상태에 따라 다르다. HEPA 필터는 주로 입자를 포집하는 장치다. 유사 기출: 2013년 3월 5번, 2013년 8월 7번, 2022년 1회 8번, 2026년 2회 13번.",
+      "origin": "자체 제작 비공식 제보 훈련",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:12",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 12,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "공급 부족인 증발기에서 증발압력 하강·출구 과열도 증가 경향",
+      "finding": "공급 부족인 증발기에서 증발압력 하강·출구 과열도 증가 경향",
+      "basis": "공급 부족인 증발기에서 증발압력 하강·출구 과열도 증가 경향. 보기 ①, 과잉공급과 구분.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "공급 부족인 증발기에서 증발압력 하강·출구 과열도 증가 경향. 보기 ①, 과잉공급과 구분.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hvac-field-report-2026-08-22:13",
+      "catalog": "hvac",
+      "file": "src/cbt/hvacFieldReportPractice.ts",
+      "round": "hvac-field-report-2026-08-22",
+      "number": 13,
+      "location": "2026년 8월 22일 비공식 실전 복원 훈련",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "질량·부피 고정 상태에서 p/T 일정",
+      "finding": "질량·부피 고정 상태에서 p/T 일정",
+      "basis": "질량·부피 고정 상태에서 p/T 일정. 절대온도 기준 가열시 압력 상승.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "질량·부피 고정 상태에서 p/T 일정. 절대온도 기준 가열시 압력 상승.",
+      "origin": "자체 제작 비공식 제보 훈련"
+    },
+    {
+      "id": "hansol-book-example-2-11-1",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 1,
+      "location": "공조 교재 2-11쪽 1번",
+      "contentExamined": true,
+      "answerBefore": "0.087MPa",
+      "answerAfter": "0.087MPa",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-11-1.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-11-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-11-1.webp",
+          "displayAsset": "assets/problem-webp90/6ba008047d71bbc73902511a5970cf46.webp",
+          "sha256": "01b43c9a3bc4bdd70a03cf38c6358860befa0ee034925dad64b6cf78635d5403"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-11-1.webp",
+          "displayAsset": "assets/problem-webp90/0c066af37030b9f2dc327fc9cc2708ff.webp",
+          "sha256": "02649965e311ebbc75b058f1aa82dc15426d84d73965dbfa49f3cb47f65e23e6"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "원본 10 cmHgV=100 mmHg, 현지 대기압 750, (750−100)×0",
+      "finding": "원본 10 cmHgV=100 mmHg, 현지 대기압 750, (750−100)×0.101325/760=0.08666 MPa.",
+      "basis": "원본 10 cmHgV=100 mmHg, 현지 대기압 750, (750−100)×0.101325/760=0.08666 MPa.",
+      "evidence": [
+        "649-process"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "절대압력=0.101325×(750−100)÷760≈0.087MPa입니다.10cmHg를100mmHg로 바꾸고 현장 대기압750에서 뺍니다.760은 현장압이 아니라 표준대기압의 환산 기준입니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-13-2",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 2,
+      "location": "공조 교재 2-13쪽 2번",
+      "contentExamined": true,
+      "answerBefore": "1.43냉동톤",
+      "answerAfter": "1.43냉동톤",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-13-2.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-13-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-13-2.webp",
+          "displayAsset": "assets/problem-webp90/c87910b9868bc3e978700f6e5f66c270.webp",
+          "sha256": "f13e436a6a519e8e0bc2e4f9ec770b92fafb42b093bbbd87e30ab99de9a0bf83"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-13-2.webp",
+          "displayAsset": "assets/problem-webp90/49edd4c5584996f4a65af8978a2c6b37.webp",
+          "sha256": "fc1b9935d995d261dceac48728dc0821737499c54c601c4ebe7a8d61b8ffdf85"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "50 kg/h에 현열 63 및 응고잠열 333",
+      "finding": "50 kg/h에 현열 63 및 응고잠열 333.5 kJ/kg 합산. 5.50694 kW / 3.86 = 1.4267 RT.",
+      "basis": "50 kg/h에 현열 63 및 응고잠열 333.5 kJ/kg 합산. 5.50694 kW / 3.86 = 1.4267 RT.",
+      "evidence": [
+        "649-first"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "냉동능력=50×(4.2×15+333.5)÷3600÷3.86≈1.43냉동톤입니다. 물을15℃에서0℃로 식히는 열과0℃에서 얼리는 잠열을 더합니다. 매시 열량을3600으로 나눠kW로 바꾸고3.86으로 나누면 냉동톤입니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-51-1",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 1,
+      "location": "공조 교재 2-51쪽 1번",
+      "contentExamined": true,
+      "answerBefore": "(1)0.6kg/s (2)40.95kW (3)121.8kW (4)2.344",
+      "answerAfter": "(1)0.6kg/s (2)40.95kW (3)121.8kW (4)2.344",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-51-1.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-51-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-51-1.webp",
+          "displayAsset": "assets/problem-webp90/640914d7d2e7a4373bbb261812cf32af.webp",
+          "sha256": "81e3e8d679f836f3fab49708fc8d2ce3598f72d09c977a2658b3293e80d7353e"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-51-1.webp",
+          "displayAsset": "assets/problem-webp90/28d8cc1ab25f81f0077a9028afc20167.webp",
+          "sha256": "9dd94b48b7f02865a5f4730e3c6917f6966edcf0f26cd527e64a68332776a2b6"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "인쇄 3번은 이론 토출점 438을 써서 121",
+      "finding": "인쇄 3번은 이론 토출점 438을 써서 121.8 kW. 같은 압축효율 0.7로 실제 토출을 계산하면 456.43 kJ/kg으로 132.86 kW이며 기계손실 전달 여부는 별개.",
+      "basis": "인쇄 3번은 이론 토출점 438을 써서 121.8 kW. 같은 압축효율 0.7로 실제 토출을 계산하면 456.43 kJ/kg으로 132.86 kW이며 기계손실 전달 여부는 별개.",
+      "evidence": [
+        "649-first",
+        "654-compress"
+      ],
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "resolution": "순환량은 0.6 kg/s, 실제 축동력은 40.95 kW, 축동력 기준 COP는 2.344다. 교재의 응축부하 121.8 kW는 그림의 이론 토출점 438 kJ/kg으로 계산한 값이다. 같은 압축효율 0.7을 실제 냉매의 엔탈피 상승에 적용하고 외부 열손실을 무시하면 실제 토출은 456.43 kJ/kg, 응축부하는 약 132.86 kW다. 축의 기계손실까지 모두 냉매에 전달된다고 가정할 근거는 없다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-52-2",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 2,
+      "location": "공조 교재 2-52쪽 2번",
+      "contentExamined": true,
+      "answerBefore": "(1)1110kJ/kg (2)0.113kg/s (3)3.63",
+      "answerAfter": "(1)1110kJ/kg (2)0.113kg/s (3)3.63",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-52-2.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-52-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-52-2.webp",
+          "displayAsset": "assets/problem-webp90/6e7bee9b91e1d818e9b4122fbdf33b31.webp",
+          "sha256": "5c079ba2cb9e5a4866ac829c226cfc6b7551710957a713af04486e19d4ca5a01"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-52-2.webp",
+          "displayAsset": "assets/problem-webp90/92d754ffe47af024d0d0e9227200551f.webp",
+          "sha256": "2a2280ff0609b4910d1294055554a47cebe8e90dd8f3968a317d3191be2bbfd2"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "압축효율과 기계효율은 이상 토출엔탈피를 쓰는 원도 계산에서 한 번씩만 적용",
+      "finding": "압축효율과 기계효율은 이상 토출엔탈피를 쓰는 원도 계산에서 한 번씩만 적용. 1110/(1670−1450)×0.8×0.9=3.633.",
+      "basis": "압축효율과 기계효율은 이상 토출엔탈피를 쓰는 원도 계산에서 한 번씩만 적용. 1110/(1670−1450)×0.8×0.9=3.633.",
+      "evidence": [
+        "649-first",
+        "654-compress"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "냉동효과=1450−340=1110kJ/kg. 순환량=250×0.7÷(0.43×3600)≈0.113kg/s. 실제COP=1110÷(1670−1450)×0.8×0.9≈3.63입니다. 체적효율은 실제 유입 냉매량에,압축·기계효율은 실제동력에 관계합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-57-3",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 3,
+      "location": "공조 교재 2-57쪽 3번",
+      "contentExamined": true,
+      "answerBefore": "COP0.98,저온측136.28kg/h,고온측125.74kg/h",
+      "answerAfter": "COP0.98,저온측136.28kg/h,고온측125.74kg/h",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-57-3.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-57-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-57-3.webp",
+          "displayAsset": "assets/problem-webp90/698dac7c7d553edbc8db104b2752ce90.webp",
+          "sha256": "29cdfabdc51ad1934ed6a1d52e5b88ebc039e32b66389a35cba87b1c8f7a7f68"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-57-3.webp",
+          "displayAsset": "assets/problem-webp90/3f8455905ecf401345fb53c67e325904.webp",
+          "sha256": "0abef2598f7f8f7c4c3e351744a549e4f6297bd3894a4abd57c46a314c4939ef"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "원도 6개 엔탈피, 캐스케이드 응축부하=상부 증발부하로 두 유량비 확인",
+      "finding": "원도 6개 엔탈피, 캐스케이드 응축부하=상부 증발부하로 두 유량비 확인. 저온 COP 2.58, 고온 2.19, 합성 0.98.",
+      "basis": "원도 6개 엔탈피, 캐스케이드 응축부하=상부 증발부하로 두 유량비 확인. 저온 COP 2.58, 고온 2.19, 합성 0.98.",
+      "evidence": [
+        "649-first",
+        "654-compress"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "저온COP=(476.58−374.61)÷(516.13−476.58)≈2.58,고온COP=(604.46−451.08)÷(674.36−604.46)≈2.19입니다. 종합COP=2.58×2.19÷(2.58+2.19+1)≈0.98. 저온순환량=3.86×3600÷(476.58−374.61)≈136.28kg/h,고온순환량=136.28×(516.13−374.61)÷(604.46−451.08)≈125.74kg/h입니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-87-6",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 6,
+      "location": "공조 교재 2-87쪽 6번",
+      "contentExamined": true,
+      "answerBefore": "10kg기준30306kJ; 원문 정답표③와 보기3036kJ는 불일치",
+      "answerAfter": "정답표 ③ · 보기 ③ 30,306 kJ",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-87-6.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-87-6.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-87-6.webp",
+          "displayAsset": "assets/problem-webp90/37c56df135ebe5ef2831c25b6a396d6d.webp",
+          "sha256": "eed217dc3eb4642f68301363e44367b468e6bff11cc8f0d88327a7f180f3977b"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-87-6.webp",
+          "displayAsset": "assets/problem-webp90/2c032b58a4a8ced968a884bba64b198d.webp",
+          "sha256": "64537f364bf3c8ac2d02bb4035ba3618389fff3cc406d2d7c7c5b20257a9698a"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "인쇄 지문 −10 ℃, ③ 30306 kJ를 직접 확대 대조",
+      "finding": "인쇄 지문 −10 ℃, ③ 30306 kJ를 직접 확대 대조. 210+3336+4200+22560=30306. 종전 앱 메모는 보기를 3036으로 잘못 읽었음.",
+      "basis": "인쇄 지문 −10 ℃, ③ 30306 kJ를 직접 확대 대조. 210+3336+4200+22560=30306. 종전 앱 메모는 보기를 3036으로 잘못 읽었음.",
+      "evidence": [
+        "649-first"
+      ],
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "resolution": "얼음 가열 210 kJ, 융해 3,336 kJ, 물 가열 4,200 kJ, 증발 22,560 kJ를 더하면 30,306 kJ로 문제지의 ③과 일치한다. 풀이 마지막 문장의 −15 ℃는 지문의 −10 ℃와 다르고, 실제 첫 계산은 −10 ℃를 사용했다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독",
+      "answerCaptionCorrection": "기존 답의 번호·값을 보존하고 인쇄 보기 오독(3036)을 교정"
+    },
+    {
+      "id": "hansol-book-example-2-73-5",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 5,
+      "location": "공조 교재 2-73쪽 5번",
+      "contentExamined": true,
+      "answerBefore": "가열량·절대일·공업일436.97kJ,엔트로피변화0.924kJ/K",
+      "answerAfter": "가열량·절대일·공업일436.97kJ,엔트로피변화0.924kJ/K",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-73-5.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-73-5.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-73-5.webp",
+          "displayAsset": "assets/problem-webp90/c15981a5b846a99ad791434444b36fed.webp",
+          "sha256": "0fc2a2829864ca940a536e68627bc895280f160c2288b454211f4cb29bb228cf"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-73-5.webp",
+          "displayAsset": "assets/problem-webp90/47607dfd1355c58f7eb1aaa2af6a2aec.webp",
+          "sha256": "67e9df8b957e38a2ea7af65635c0689c1ddafb5e8e2244308c091431a3eb2a7f"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "mRT ln(5)=436",
+      "finding": "mRT ln(5)=436.97 kJ(473 K 근사), mR ln(5)=0.92382 kJ/K. 일의 경로 의존성을 구별.",
+      "basis": "mRT ln(5)=436.97 kJ(473 K 근사), mR ln(5)=0.92382 kJ/K. 일의 경로 의존성을 구별.",
+      "evidence": [
+        "649-process"
+      ],
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "resolution": "마찰이 없는 가역 등온팽창으로 해석한다. 이상기체의 내부에너지 변화는 0이므로 받은 열은 기체가 한 일과 같다. 473 K를 쓰면 약 436.97 kJ이고, 전체 엔트로피 변화는 +0.924 kJ/K다. 압력 두 값만으로 임의의 비가역 과정에서의 일을 결정할 수는 없다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-73-6",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 6,
+      "location": "공조 교재 2-73쪽 6번",
+      "contentExamined": true,
+      "answerBefore": "가열량0,엔트로피변화0,절대일 약−1086.81kJ,공업일 약−1521.53kJ(기체가 한 일 기준)",
+      "answerAfter": "가열량0,엔트로피변화0,절대일 약−1086.81kJ,공업일 약−1521.53kJ(기체가 한 일 기준)",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-73-6.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-73-6.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-73-6.webp",
+          "displayAsset": "assets/problem-webp90/c08f5d1e3bae66fb1826c26ab7901def.webp",
+          "sha256": "aba5e029ac76294435def9974dd48aada3c22b09bb7389488f5b312a8e3f920e"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-73-6.webp",
+          "displayAsset": "assets/problem-webp90/3a64e70d743e22b7010045b315d0a852.webp",
+          "sha256": "d91caaacf1b647dbe88ded84f2f1d57e7fc55ba0b1ec962766e3109ec08db05d"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "인쇄 원문의 308",
+      "finding": "인쇄 원문의 308.67 K·−56.22·−78.71을 실제로 읽어 대조. 293×12^(2/7)=595.94 K이므로 앱의 기존 교정값 유지.",
+      "basis": "인쇄 원문의 308.67 K·−56.22·−78.71을 실제로 읽어 대조. 293×12^(2/7)=595.94 K이므로 앱의 기존 교정값 유지.",
+      "evidence": [
+        "649-process"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "T₂=293×(1.2÷0.1)^((1.4−1)÷1.4)≈595.94K입니다. 열 출입과 엔트로피변화는0.기체가 한 절대일=5×0.287÷0.4×(293−595.94)≈−1086.81kJ,공업일=1.4×(−1086.81)≈−1521.53kJ입니다. 압축에 필요한 투입일의 크기로 쓰면 각각 양수입니다. 교재의308.67K는 압력비12를 넣은 계산과 일치하지 않습니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-79-2",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 2,
+      "location": "공조 교재 2-79쪽 2번",
+      "contentExamined": true,
+      "answerBefore": "내부에너지 증가10kJ,비내부에너지 증가50kJ/kg",
+      "answerAfter": "내부에너지 증가10kJ,비내부에너지 증가50kJ/kg",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-79-2.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-79-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-79-2.webp",
+          "displayAsset": "assets/problem-webp90/cddedea2a45c3dd93a2d9d59d93c26d7.webp",
+          "sha256": "5e8b3d7022ee01d488c6416ab253a79060988729574950ca7f7c3d6bf322d089"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-79-2.webp",
+          "displayAsset": "assets/problem-webp90/a0dee2f94d87edc105b36d1802350401.webp",
+          "sha256": "2a3188d2f6d09eb6ce175117bb3d8049bc710aa63919455133e08f5845443b84"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "닫힌계가 한 일 −12 kJ, 받은 열 −2 kJ",
+      "finding": "닫힌계가 한 일 −12 kJ, 받은 열 −2 kJ. −2−(−12)=10 kJ, 단위질량당 50 kJ/kg.",
+      "basis": "닫힌계가 한 일 −12 kJ, 받은 열 −2 kJ. −2−(−12)=10 kJ, 단위질량당 50 kJ/kg.",
+      "evidence": [
+        "649-first"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "들어온 압축일12000N·m=12kJ에서 밖으로 나간 열2kJ를 빼면 내부에너지 증가는10kJ입니다. 질량1kg당 증가량은10÷0.2=50kJ/kg입니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-81-5",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 5,
+      "location": "공조 교재 2-81쪽 5번",
+      "contentExamined": true,
+      "answerBefore": "출구유속w₂=√[w₁²+2(h₁−h₂)](h단위J/kg)",
+      "answerAfter": "출구유속w₂=√[w₁²+2(h₁−h₂)](h단위J/kg)",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-81-5.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-81-5.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-81-5.webp",
+          "displayAsset": "assets/problem-webp90/6a55cf88ae7f8df927a14a4bc66cb05c.webp",
+          "sha256": "b837a1b828545457a06023081535c11d2b28b7b5d6a5bd7816808325923e1de5"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-81-5.webp",
+          "displayAsset": "assets/problem-webp90/ecae819ced4d7c13db586576033b21c7.webp",
+          "sha256": "47d851362f024c8387393daaee1d09d96c237ece375f58e5cc356d9974bbf4c0"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "단열 정상류, 외부 축일·높이 차 무시시 비엔탈피 감소와 유속 증가",
+      "finding": "단열 정상류, 외부 축일·높이 차 무시시 비엔탈피 감소와 유속 증가. J/kg와 m²/s² 동치.",
+      "basis": "단열 정상류, 외부 축일·높이 차 무시시 비엔탈피 감소와 유속 증가. J/kg와 m²/s² 동치.",
+      "evidence": [
+        "649-first",
+        "649-turbine"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "입구의 엔탈피가 줄어든 만큼 운동에너지가 늘어납니다. 열·축일·위치에너지 변화를 무시하면w₂=√[w₁²+2(h₁−h₂)]입니다. 엔탈피가kJ/kg이면1000을 곱해J/kg으로 맞춰야 유속이m/s가 됩니다. 그림에 숫자가 없어 일반식으로 답합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-81-6",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 6,
+      "location": "공조 교재 2-81쪽 6번",
+      "contentExamined": true,
+      "answerBefore": "49MW",
+      "answerAfter": "49MW",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-81-6.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-81-6.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-81-6.webp",
+          "displayAsset": "assets/problem-webp90/20ecc9669648192d6c6c500143296bf7.webp",
+          "sha256": "84595a3e0922cf3b00930afbb121220f3ce8657c3ab9919d1f9fe4b3fbeab526"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-81-6.webp",
+          "displayAsset": "assets/problem-webp90/6c66b8f5dc33807e89142f3ab39acbb9.webp",
+          "sha256": "43976f48f43469c8f7eea66e0c069c4d57ec8198734b8c8e10ff2ec099151ccb"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "50×10³ kg/s×9",
+      "finding": "50×10³ kg/s×9.8 m/s²×100 m=49 MW. 양쪽 자유수면 속도 무시·손실 없는 한계.",
+      "basis": "50×10³ kg/s×9.8 m/s²×100 m=49 MW. 양쪽 자유수면 속도 무시·손실 없는 한계.",
+      "evidence": [
+        "649-first"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "발생동력=질량유량×중력가속도×낙차=50000×9.8×100=49000000W=49MW입니다.1MW는100만W입니다. 입출구 압력이 같고 속도 차이도 무시하므로 높이 차이의 에너지만 사용합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-140-3",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 3,
+      "location": "공조 교재 2-140쪽 3번",
+      "contentExamined": true,
+      "answerBefore": "열관류율0.726kW/(m²·K),응축부하145.2kW",
+      "answerAfter": "열관류율0.726kW/(m²·K),응축부하145.2kW",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-140-3.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-140-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-140-3.webp",
+          "displayAsset": "assets/problem-webp90/008fb215d75f4522be899b4bc7eccbd0.webp",
+          "sha256": "1c97076b5cf3f0d3783477afcae10703ab44182f6de97a813bab241f3df56161"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-140-3.webp",
+          "displayAsset": "assets/problem-webp90/a94fe377088b58440130e066772446d4.webp",
+          "sha256": "56b58ffadd69e615407c1648c8ec857589912b03e547d1381f720b742364b09f"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "면적기준 일치: R 외면=1/3+4(1/9+0",
+      "finding": "면적기준 일치: R 외면=1/3+4(1/9+0.15); K=0.725806, Q=145.16 kW.",
+      "basis": "면적기준 일치: R 외면=1/3+4(1/9+0.15); K=0.725806, Q=145.16 kW.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "면적비40÷10=4입니다. 냉매측면적기준열관류율K=1÷[1÷3+4×(1÷9+0.15)]≈0.726kW/(m²·K).응축부하=K×40×5≈145.2kW입니다. 서로다른면적기준의저항을같은기준으로맞추려고면적비를곱합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-140-4",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 4,
+      "location": "공조 교재 2-140쪽 4번",
+      "contentExamined": true,
+      "answerBefore": "응축부하11.85kW,출구공기29.94℃,평균온도차12.53℃,전열면적47.29m²",
+      "answerAfter": "응축부하11.85kW,출구공기29.94℃,평균온도차12.53℃,전열면적47.29m²",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-140-4.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-140-4.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-140-4.webp",
+          "displayAsset": "assets/problem-webp90/5213c11b94526131ce8546955047aab4.webp",
+          "sha256": "b0014beba1bfe6d325b3a3dcfe21930d6b61a1fe87e9412801d7b3cb7baad67a"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-140-4.webp",
+          "displayAsset": "assets/problem-webp90/4f7522ea5f52441e22fbe93c365393ed.webp",
+          "sha256": "e8c75296be3c9afae3f225edc6e1fba1a96e187aa2a7a310f7d01d32cceb4d8c"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "질량유량 0",
+      "finding": "질량유량 0.060×엔탈피차 197.5=11.85 kW. 지문 산술평균 지시. 공기 출구 29.94, 평균차 12.53 K, 면적 47.29 m².",
+      "basis": "질량유량 0.060×엔탈피차 197.5=11.85 kW. 지문 산술평균 지시. 공기 출구 29.94, 평균차 12.53 K, 면적 47.29 m².",
+      "evidence": [
+        "649-first",
+        "650-conduction"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "부하=0.060×(446.5−249)=11.85kW.공기출구=25+11.85÷(1.2×2×1)=29.94℃.산술평균온도차=[(40−25)+(40−29.94)]÷2=12.53℃.면적=11.85÷(0.020×12.53)=47.29m²입니다. 문제에서산술평균을지정하므로대수평균식으로바꾸지않습니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-1-182-83",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 83,
+      "location": "공조 교재 1-182쪽 83번",
+      "contentExamined": true,
+      "answerBefore": "정답표④ / 보기②도 확인 필요",
+      "answerAfter": "정답표④ / 보기②도 확인 필요",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/1-182-83.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-182-83.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/1-182-83.webp",
+          "displayAsset": "assets/problem-webp90/c784e3bc8cdde716858938e3504c2715.webp",
+          "sha256": "43a077c2d41660540464a2dd8d432adc21a52078a69531c43c2d54466ffccde4"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/1-182-83.webp",
+          "displayAsset": "assets/problem-webp90/a44af03d80793ada0ffd219636cc6348.webp",
+          "sha256": "415072cd2a32818749e5485ca497bda3d78bf4e0ef2550419a29eeb79c50a5c4"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "④의 큰 압력변동과 ②의 낮은 효율 모두 장점과 반대",
+      "finding": "④의 큰 압력변동과 ②의 낮은 효율 모두 장점과 반대. 보유수량이 큰 동체의 열용량과 부하응답을 대조.",
+      "basis": "④의 큰 압력변동과 ②의 낮은 효율 모두 장점과 반대. 보유수량이 큰 동체의 열용량과 부하응답을 대조.",
+      "evidence": [
+        "650-steam"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "정답표는④이며 해설은 보유수량이 많아 압력변동이 작다고 설명합니다. 다만②효율이 낮다는 표현도 장점이라고 보기 어려워 단일정답 문제로 강제 채점하지 않습니다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-1-108-43",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 43,
+      "location": "공조 교재 1-108쪽 43번",
+      "contentExamined": true,
+      "answerBefore": "정답표② / 식의 면적A 누락",
+      "answerAfter": "정답표② / 식의 면적A 누락",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/1-108-43.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-108-43.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/1-108-43.webp",
+          "displayAsset": "assets/problem-webp90/da6dad91ed9bd314c3f9877d81ea3992.webp",
+          "sha256": "599a44a35862e43ec021efb26869d23b66008c31ea7a4cc52fe6fef389856270"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/1-108-43.webp",
+          "displayAsset": "assets/problem-webp90/6f8f5a33b88be6b0eb9df281999a504a.webp",
+          "sha256": "be705727d84ed0b1529df216f1a5579d87f043ca2718be12d4d7c308b3f44d30"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "원도에 A를 정의하지만 Hₜ 식에 A가 보이지 않음",
+      "finding": "원도에 A를 정의하지만 Hₜ 식에 A가 보이지 않음. R 면적 기준 m²·K/W이면 ΔT/R은 열유속. 총열량률에는 면적 필요.",
+      "basis": "원도에 A를 정의하지만 Hₜ 식에 A가 보이지 않음. R 면적 기준 m²·K/W이면 ΔT/R은 열유속. 총열량률에는 면적 필요.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "resolution": "② 열통과저항이다. 인쇄된 저항의 단위는 면적 기준이므로 온도차를 이 저항으로 나누면 단위면적당 열유속이다. 총 열손실률은 면적 A까지 곱하고, W 값을 kJ/h로 쓸 때에는 3.6을 곱한다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-3-92-22",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 22,
+      "location": "공조 교재 3-92쪽 22번",
+      "contentExamined": true,
+      "answerBefore": "교재 복수정답②·③",
+      "answerAfter": "교재 복수정답②·③",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/3-92-22.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/3-92-22.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/3-92-22.webp",
+          "displayAsset": "assets/problem-webp90/2e5a0232a6caf1205e49f9bc8d430496.webp",
+          "sha256": "3669e37d970fb2188c5277a2ec6830c1dc7b007b1b1dda8cbebb89a9b6914126"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/3-92-22.webp",
+          "displayAsset": "assets/problem-webp90/23c672559d32dbee36169facd9737c3c.webp",
+          "sha256": "2d5b88e4896f8f99f3b4240ddbc17725633444d96804f0b8bf0e2eeb9607198c"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "V/0",
+      "finding": "V/0.5 h=2V/1 h. 두 유량 동일함을 독립 계산. 모든 건물의 설계기준으로 일반화하지 않음.",
+      "basis": "V/0.5 h=2V/1 h. 두 유량 동일함을 독립 계산. 모든 건물의 설계기준으로 일반화하지 않음.",
+      "evidence": [],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "30분에V만큼 양수하는②와1시간에2V만큼 양수하는③는 같은 용량입니다. 인쇄 정답표도②·③이므로 단일정답으로 강제 채점하지 않습니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-3-186-69",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 69,
+      "location": "공조 교재 3-186쪽 69번",
+      "contentExamined": true,
+      "answerBefore": "정답표① / 보기·풀이 재확인 필요",
+      "answerAfter": "정답표① / 보기·풀이 재확인 필요",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/3-186-69.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/3-186-69.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/3-186-69.webp",
+          "displayAsset": "assets/problem-webp90/d175bab3d6b9b866f3900e80efedeeda.webp",
+          "sha256": "50c2c6044170804fd96794c52e898a578de7bc69f24d7dc6f279c5d9b1c4e659"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/3-186-69.webp",
+          "displayAsset": "assets/problem-webp90/066f71d362b795ece0bce219b158db46.webp",
+          "sha256": "ec3eb41dd753bee521755c04544f21c78856934db40e2930fce48085174d9b5b"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "S트랩은 수직 방향, P트랩은 수평 방향 배출",
+      "finding": "S트랩은 수직 방향, P트랩은 수평 방향 배출. 원본 ②와 ③이 각각 반대로 연결. 원문 U 설명은 ①과 충돌하지 않음.",
+      "basis": "S트랩은 수직 방향, P트랩은 수평 방향 배출. 원본 ②와 ③이 각각 반대로 연결. 원문 U 설명은 ①과 충돌하지 않음.",
+      "evidence": [],
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "resolution": "인쇄 해설은 U트랩이 수평 주관 끝에서 하수 가스의 역류를 막는다고 적어 보기 ①을 부정하지 않는다. 통상 S트랩 출구는 바닥 쪽으로, P트랩 출구는 벽 쪽으로 이어진다. 이 기준으로는 ②와 ③의 연결 방향이 모두 뒤바뀌므로 인쇄 정답표 ①만을 유일한 답으로 삼기 어렵다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-3-241-3",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 3,
+      "location": "공조 교재 3-241쪽 3번",
+      "contentExamined": true,
+      "answerBefore": "정답표③ / 풀이④",
+      "answerAfter": "정답표③ / 풀이④",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/3-241-3.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/3-241-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/3-241-3.webp",
+          "displayAsset": "assets/problem-webp90/38aebe94565bb898a74f35a9c504b8f9.webp",
+          "sha256": "70c63c0c28c9b393728f5d5e8105ae934a5a41ad03ff7556dd00dd3539e84059"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/3-241-3.webp",
+          "displayAsset": "assets/problem-webp90/f9ad48db29043a6e807d82369daaddf8.webp",
+          "sha256": "8f22c6b13b4887da6f4a5b7ee6a730da870a317e27b2a136e6366948cc341686"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "산업안전보건법 제38조제1항 1~3호와 제39조제1항제2호를 대조",
+      "finding": "산업안전보건법 제38조제1항 1~3호와 제39조제1항제2호를 대조. 안전조치 ①②③, 물리적 인자의 보건조치 ④. 인쇄 정답표와 분리.",
+      "basis": "산업안전보건법 제38조제1항 1~3호와 제39조제1항제2호를 대조. 안전조치 ①②③, 물리적 인자의 보건조치 ④. 인쇄 정답표와 분리.",
+      "evidence": [
+        "659-oshlaw"
+      ],
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "resolution": "산업안전보건법 제38조제1항은 기계·설비, 위험물질, 전기·열 등 에너지로 인한 위험에 안전조치를 요구한다. 보기 ④의 방사선·소음 등 건강장해는 제39조의 보건조치다. 조문과 인쇄 풀이는 ④를 가리키지만 교재에 기록된 정답표는 ③이다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-3-348-27",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 27,
+      "location": "공조 교재 3-348쪽 27번",
+      "contentExamined": true,
+      "answerBefore": "정답표① / 풀이③",
+      "answerAfter": "정답표① / 풀이③",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/3-348-27.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/3-348-27.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/3-348-27.webp",
+          "displayAsset": "assets/problem-webp90/f956e20c88e5241a8a91d9adfc06b55e.webp",
+          "sha256": "e908f5d97abeede303cf15e2791eda3c23b87986d6c9fb80d4d201ae227d5906"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/3-348-27.webp",
+          "displayAsset": "assets/problem-webp90/028d240b80b83ea8580608ca57e9f0f7.webp",
+          "sha256": "c292d76f7b347628fd3de3606e12d35491d99d58f59a330303a8eab5ab898202"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "③ 전문지식·기술 필요는 운영 부담",
+      "finding": "③ 전문지식·기술 필요는 운영 부담. 고장·외란을 피드백으로 보정하는 장점과 구분. 다른 보기의 생산효과는 조건에 따라 다름.",
+      "basis": "③ 전문지식·기술 필요는 운영 부담. 고장·외란을 피드백으로 보정하는 장점과 구분. 다른 보기의 생산효과는 조건에 따라 다름.",
+      "evidence": [
+        "652-pid"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "원문 풀이가 고도의 지식·기술이 필요한③을 단점으로 설명하지만 정답표는①입니다. 둘을 구분해 원문을 보존하고 자동 채점하지 않습니다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-4-87-22",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 22,
+      "location": "공조 교재 4-87쪽 22번",
+      "contentExamined": true,
+      "answerBefore": "정답표② / 지문 비열 불일치",
+      "answerAfter": "정답표② / 지문 비열 불일치",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/4-87-22.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/4-87-22.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/4-87-22.webp",
+          "displayAsset": "assets/problem-webp90/f1b7a0aea70c5ebceb2db8afa526ed37.webp",
+          "sha256": "291f89eeade768f61d2123612cc6dcdb2087ddb1b4c11f375082dc4ed2b84738"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/4-87-22.webp",
+          "displayAsset": "assets/problem-webp90/b48262cbca45fd07c93012bc74019eed.webp",
+          "sha256": "19b1fc765bbbc8538aa3d0398a10eca8ed73bae01bc9559fd92adb6a94514131"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "V₂/V₁=11/5, 정압이므로 T비와 같음",
+      "finding": "V₂/V₁=11/5, 정압이므로 T비와 같음. 10×0.221×ln2.2=1.7425 kJ/K, 인쇄 풀이의 0.93이면 7.3327.",
+      "basis": "V₂/V₁=11/5, 정압이므로 T비와 같음. 10×0.221×ln2.2=1.7425 kJ/K, 인쇄 풀이의 0.93이면 7.3327.",
+      "evidence": [
+        "649-process"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "지문값 그대로면10×0.221×ln(11/5)≈1.74kJ/K로 보기와 다릅니다. 책 풀이와 정답②7.33은0.93을 사용합니다.0.221kcal를kJ로 환산하면 약0.925지만 지문의kJ표기와 충돌하므로 추정해 바꾸지 않습니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-1-70-2",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 2,
+      "location": "공조 교재 1-70쪽 2번",
+      "contentExamined": true,
+      "answerBefore": "정답표② / 풀이상①",
+      "answerAfter": "정답표② / 풀이상①",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/1-70-2.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-70-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/1-70-2.webp",
+          "displayAsset": "assets/problem-webp90/73527ebc25dd7393e4627cf07c304141.webp",
+          "sha256": "3286b8579a8c95612ec8d07ce81062752e59932981517ab26bf7e4e0b0d25f03"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/1-70-2.webp",
+          "displayAsset": "assets/problem-webp90/8c931587127147beef6be918a4395fbb.webp",
+          "sha256": "f7599b18cb034ca758b5bcc13c68a18a8486229568ba7eb14a7d7658277bf838"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "실내 열수지와 열원기기의 선택 구분",
+      "finding": "실내 열수지와 열원기기의 선택 구분. 공조 현지 시험지 hvac-20211:2의 실제 인쇄 보기 네 개와 비교했고 해당 판본의 ①과 내용 대조.",
+      "basis": "실내 열수지와 열원기기의 선택 구분. 공조 현지 시험지 hvac-20211:2의 실제 인쇄 보기 네 개와 비교했고 해당 판본의 ①과 내용 대조.",
+      "evidence": [
+        "hvac-20211:2"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "본문 풀이는 벽체 재료·면적·실내외온도차·인체·기구발열을 부하조건으로 나열하므로 열원방식①을 가리키지만 정답표는②입니다. 이 불일치는 보류하고 자동 채점하지 않습니다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-1-165-8",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 8,
+      "location": "공조 교재 1-165쪽 8번",
+      "contentExamined": true,
+      "answerBefore": "정답표③ / 풀이상④",
+      "answerAfter": "정답표③ / 풀이상④",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/1-165-8.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-165-8.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/1-165-8.webp",
+          "displayAsset": "assets/problem-webp90/8e0743095d055fac4786646489e6f0e0.webp",
+          "sha256": "371abed8bc94ea51db86d911907def376771e70c4eda768f38b14959c6dd4184"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/1-165-8.webp",
+          "displayAsset": "assets/problem-webp90/2f6f8f464e41a4aa6fcd698f96dcff30.webp",
+          "sha256": "0729da419171cc6ab71f2e8054fe959dd8dc3be6eb18db6f3e431ed143383ece"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "γ=ρg이므로 압력손실에서 g는 소거",
+      "finding": "γ=ρg이므로 압력손실에서 g는 소거. 주어진 네 보기 ④의 2g에 비례 주장은 틀림. 정답표는 ③이라는 기존 별도 표시 유지.",
+      "basis": "γ=ρg이므로 압력손실에서 g는 소거. 주어진 네 보기 ④의 2g에 비례 주장은 틀림. 정답표는 ③이라는 기존 별도 표시 유지.",
+      "evidence": [],
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "resolution": "원문의 식에서 γ는 공기의 단위중량 ρg다. 대입하면 압력손실은 λ(L/D)ρV²/2로 정리되어 g가 소거된다. ③의 속도 제곱은 맞고, ④처럼 압력손실이 2g에 비례하지 않는다. 교재에서 2g가 분모에 나타나는 수두식과 압력단위의 손실을 구별해야 한다. 저장된 인쇄 정답표는 ③이다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-221-1",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 1,
+      "location": "공조 교재 2-221쪽 1번",
+      "contentExamined": true,
+      "answerBefore": "2,888,000kJ",
+      "answerAfter": "2,888,000kJ",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-221-1.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-221-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-221-1.webp",
+          "displayAsset": "assets/problem-webp90/2fd8c6b51b665f7377fd9c24f957d03f.webp",
+          "sha256": "19616ed5a8482330032febdf390f8c17c21aa9fd63b0674c6b18abfb36eed50d"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-221-1.webp",
+          "displayAsset": "assets/problem-webp90/b5d0e680d9d47eda78e76be1d8f97df8.webp",
+          "sha256": "2fd21b40b433c93f2692d8daf144bef894dda6cada5b738856ba192fe0e4c085"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "10,000 kg×(2",
+      "finding": "10,000 kg×(2.85×20+200+1.59×20)=2,888,000 kJ. 동결 전후 현열과 동결잠열 구분.",
+      "basis": "10,000 kg×(2.85×20+200+1.59×20)=2,888,000 kJ. 동결 전후 현열과 동결잠열 구분.",
+      "evidence": [
+        "649-first"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "열량=10000×[2.85×(19−(−1))+200+1.59×((−1)−(−21))]=2888000kJ입니다. 동결점 전·후의 온도차와 상태변화 잠열을 더합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-2-221-2",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 2,
+      "location": "공조 교재 2-221쪽 2번",
+      "contentExamined": true,
+      "answerBefore": "3,325W",
+      "answerAfter": "3,325W",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-221-2.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-221-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/2-221-2.webp",
+          "displayAsset": "assets/problem-webp90/01caaaccc775a0197b4727abca9157a4.webp",
+          "sha256": "8ecb7e9a0e650410b7c2d86f70a3c9fe8f56dac764dfb091f80f70cafa51de51"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-221-2.webp",
+          "displayAsset": "assets/problem-webp90/9848efaf3f6902e10d745d8b1317b181.webp",
+          "sha256": "d2e3b912275d03b7f5eb2009c35d2104f4a7e989d160cb0cb018daebabb32715"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "academicVerified": true,
+      "changed": true,
+      "errorType": "전달 1050 W, 사과 200×18 kg×3",
+      "finding": "전달 1050 W, 사과 200×18 kg×3.64 kJ/kgK×15 K/24 h=2275 W. 사과 초기온도는 문제에 명시되지 않고 원문 풀이에서 15 ℃로 가정.",
+      "basis": "전달 1050 W, 사과 200×18 kg×3.64 kJ/kgK×15 K/24 h=2275 W. 사과 초기온도는 문제에 명시되지 않고 원문 풀이에서 15 ℃로 가정.",
+      "evidence": [
+        "649-first",
+        "650-conduction"
+      ],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "필요능력=0.35×200×15+200×18×3.64×15×1000÷(24×3600)=3325W입니다. 벽을 통해 들어오는 열과 사과에서 빼는 열을 합칩니다. 문제 풀이가 가정한 사과 초기온도15℃를 사용합니다.",
+      "transcription": "부분 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-1-116-89",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 89,
+      "location": "공조 교재 1-116쪽 89번",
+      "contentExamined": true,
+      "answerBefore": "정답표④ / 지문·보기 내용 불일치",
+      "answerAfter": "정답표④ / 지문·보기 내용 불일치",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/1-116-89.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-116-89.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/1-116-89.webp",
+          "displayAsset": "assets/problem-webp90/5039827edc60419925bdfad51862befc.webp",
+          "sha256": "e0f5622fb1ddc3c5dd41414bd54cfef78c32fd98a6000aa9edbcfed44bca5a7a"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/1-116-89.webp",
+          "displayAsset": "assets/problem-webp90/2c2e46a8b628d0c0d0798c3d2c30147f.webp",
+          "sha256": "da5808078e6a7b79fdbfcc5e0c14dd5c9920b983b1cc44cfb2dfca2f2e6c4d2a"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "본문 보기 모두 설비 부품이며 침입외기에 의한 열손실의 직접 분류가 아님",
+      "finding": "본문 보기 모두 설비 부품이며 침입외기에 의한 열손실의 직접 분류가 아님. 원도 정답표 이미지는 번호와 답만 표기.",
+      "basis": "본문 보기 모두 설비 부품이며 침입외기에 의한 열손실의 직접 분류가 아님. 원도 정답표 이미지는 번호와 답만 표기.",
+      "evidence": [],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "침입외기 부하는 외기가 들어오면서 생기는 현열·잠열 부하입니다. 이 원문은 질문과 네 보기의 대응이 불명확하므로 기존 CBT의 다른 보기를 임의로 붙이지 않습니다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "hansol-book-example-3-133-20",
+      "file": "data/textbook-worked-examples.json",
+      "catalog": "hvac",
+      "round": "worked-example",
+      "number": 20,
+      "location": "공조 교재 3-133쪽 20번",
+      "contentExamined": true,
+      "answerBefore": "정답표② / 지문과 풀이①",
+      "answerAfter": "정답표② / 지문과 풀이①",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/3-133-20.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/3-133-20.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/questions/3-133-20.webp",
+          "displayAsset": "assets/problem-webp90/8628c44307eef9c2f43e460fe3f70885.webp",
+          "sha256": "020ea77d2610802951b66fd86e867419f531a891c17aed1dee6f2bfaab37a136"
+        },
+        {
+          "original": "assets/hvac-hansol-book/explanations/3-133-20.webp",
+          "displayAsset": "assets/problem-webp90/db51f67237080f606b56d5019e69fe1b.webp",
+          "sha256": "9e16c7ea5fa1abb07c925712e7a8b14c3bb35a6e6b63dcb5325944ae54e0c375"
+        }
+      ],
+      "status": "정답 자체 확인 필요",
+      "academicVerified": false,
+      "changed": true,
+      "errorType": "진공이 과도할 때 공기를 유입하는 기능은 ①",
+      "finding": "진공이 과도할 때 공기를 유입하는 기능은 ①. 정답표에 기록된 ②는 증기 소음기. 인쇄 풀이와 교재 정답표의 모순.",
+      "basis": "진공이 과도할 때 공기를 유입하는 기능은 ①. 정답표에 기록된 ②는 증기 소음기. 인쇄 풀이와 교재 정답표의 모순.",
+      "evidence": [],
+      "changeReason": "이미지 원문 텍스트 전환",
+      "resolution": "진공이 너무 커졌을 때 공기를 넣어 진공도를 낮추는 기기는①버큠 브레이커입니다. 원문 풀이도 이를 설명하지만 인쇄 정답표20번은②로 되어 있으므로 서로 구분합니다.",
+      "transcription": "전체 전사·대조 완료",
+      "transcriptionTool": "원본 직접 판독"
     }
   ],
   "sources": [
@@ -91948,6 +96095,102 @@
       "sha256": "bc43be55e66a5aa8e217e56b09e337864579a9485a6d69730b124fb743315edb",
       "section": "MNE-Python 1.8.0, _fiff/pick.py 157~185행, EEG/EOG/EMG와 FIFFV_GALVANIC_CH의 GSR 구분.",
       "opened": true
+    },
+    {
+      "id": "671-water",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/Water.json",
+      "date": "2026-11-19",
+      "sha256": "f2004885fabb3f46a4210b4ef80511410408d597c868d1c7b48d78b22a7151aa",
+      "section": "Water.json, STATES.critical.p=22064000 Pa, T=647.096 K."
+    },
+    {
+      "id": "671-c",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/v1.15.3/scipy/constants/_codata.py",
+      "section": "SciPy 1.15.3 scipy.constants._codata, speed of light in vacuum=299792458 m/s exact.",
+      "sha256": "7c885919630218b192c0edeb9cd983122b00375ac62f090d6d29707590e9a304"
+    },
+    {
+      "id": "671-rtd",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/adafruit/Adafruit_CircuitPython_MAX31865/main/adafruit_max31865.py",
+      "section": "Adafruit CircuitPython MAX31865 소스, platinum RTD 및 bias·read_rtd, 저항-온도 계산.",
+      "sha256": "b0fa657b6fbdab4acf127a0d3e8d31d4af2ac6436857daf4509e65ca6efdd7c4"
+    },
+    {
+      "id": "671-enreg",
+      "date": "2026-11-19",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%B6%80%EB%A0%B9/%EC%97%90%EB%84%88%EC%A7%80%EC%9D%B4%EC%9A%A9%20%ED%95%A9%EB%A6%AC%ED%99%94%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99.md",
+      "sha256": "77ed386b3ef258434960939b7c8cfa8de80fcf2e5a86f19f760c21ba8e6bbfcd",
+      "section": "제5조 이행계획, 제9조 효율관리기자재 신고. 2026.05.28 시행."
+    },
+    {
+      "id": "671-enord",
+      "date": "2026-11-19",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%8C%80%ED%86%B5%EB%A0%B9%EB%A0%B9/%EC%97%90%EB%84%88%EC%A7%80%EC%9D%B4%EC%9A%A9%20%ED%95%A9%EB%A6%AC%ED%99%94%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9.md",
+      "sha256": "8c7447f6302032b0c4fb2fe2aa03d343e7d9537a7199d55ab8fd45ab50ddff9b",
+      "section": "제14조제3항 7일·긴급시 전일, 제20조제2항 2500 toe, 제40조 개선명령 요건. 2026.05.28 시행."
+    },
+    {
+      "id": "671-enlaw",
+      "date": "2026-11-19",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%B2%95%EB%A5%A0/%EC%97%90%EB%84%88%EC%A7%80%EC%9D%B4%EC%9A%A9%20%ED%95%A9%EB%A6%AC%ED%99%94%EB%B2%95.md",
+      "sha256": "84d9f5c498b4ee51970d0a40533f59d39d807bfcdf45ba8ff7f18c82940c5cd2",
+      "section": "제7조제2항제10호 대통령령, 제31조 1월 31일 신고 및 자료 요청 대상. 2026.03.03 시행."
+    },
+    {
+      "id": "671-enactord",
+      "date": "2026-11-19",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%8C%80%ED%86%B5%EB%A0%B9%EB%A0%B9/%EC%97%90%EB%84%88%EC%A7%80%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9.md",
+      "sha256": "1bc2ffa5579b74329ffb3ae6257d95febc9c2c880b5dcacf9d3519458a46fd5c",
+      "section": "제15조제3항 총조사 3년. 2026.01.02 시행."
+    },
+    {
+      "id": "671-fluid-R22",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/R22.json",
+      "sha256": "c2597bcd2dcc9571753d00722d9197878701b2f35a85094944f87db59d5a3b47",
+      "section": "CoolProp 7.2.0 R22 fluid JSON: INFO.FORMULA 및 EOS Kamei-IJT-1995. 독립 계산에 사용한 유체모델."
+    },
+    {
+      "id": "671-fluid-R14",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/R14.json",
+      "sha256": "19113783079497c94f4550f887f2ffce142aca4a1f0f9f0da3816a0ab01a07c7",
+      "section": "CoolProp 7.2.0 R14 fluid JSON: INFO.FORMULA 및 EOS Platzer-BOOK-1990. 독립 계산에 사용한 유체모델."
+    },
+    {
+      "id": "671-fluid-Ethylene",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/Ethylene.json",
+      "sha256": "e1c5052b25054f06deed42d479caebafb2c4a614b7d899f69e5dbbaa35deed3e",
+      "section": "CoolProp 7.2.0 Ethylene fluid JSON: INFO.FORMULA 및 EOS Smukala-JPCRD-2000. 독립 계산에 사용한 유체모델."
+    },
+    {
+      "id": "671-fluid-Methane",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/Methane.json",
+      "sha256": "5cb01cbafb6da28da358f3fd1c0985be39c99cb9aef8b872ff2b5807a6a79dff",
+      "section": "CoolProp 7.2.0 Methane fluid JSON: INFO.FORMULA 및 EOS Setzmann-JPCRD-1991. 독립 계산에 사용한 유체모델."
+    },
+    {
+      "id": "671-fluid-R21",
+      "opened": true,
+      "date": "2026-11-19",
+      "url": "https://raw.githubusercontent.com/CoolProp/CoolProp/v7.2.0/dev/fluids/R21.json",
+      "sha256": "36a92beed311d6b72bd92d8e9f0772d8df850cb2a56f60f5753912d3bc342b3a",
+      "section": "CoolProp 7.2.0 R21 fluid JSON: INFO.FORMULA 및 EOS Platzer-BOOK-1990. 독립 계산에 사용한 유체모델."
     }
   ],
   "automaticAnswerCandidates": [
@@ -92221,28 +96464,31 @@
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
     "scope": "inventory.json scope.groups의 next는 저장소 수록순 첫 미검토 ID. COMCBT 원문 및 에너지 교재 제외. 원래 없던 해설을 자체 작성한 경우 포함. 보류·정답 확인은 records와 answer-confirmation.md 참조.",
-    "energyEngineer": "data/energy-engineer.js energy-engineer-engineer-20220424:21~40 (열역학).",
+    "energyEngineer": "2022.04.24 A형 전 100개 대조. 정답·근거 보류 항목은 상태별 목록 참조.",
     "hvacLocal": "data/hvac.js hvac-20211:21~40.",
     "supplementedTextbook": "data/energy-restored.js 3개 모두 판독. 2022년 4회 66번은 출제 당시 도시가스 설비기준 원문 재확인.",
     "hvacBook": "data/hvac-hansol.js hvac-hansol-2017-1:1부터. 직접 수록 224개는 판정 완료.",
     "safety": "data/safety-engineer.js safety-engineer-20210515:1~20, 이후 회차 이어서. 2021.08.14 회차는 전 120개에 판정 있음.",
-    "other": "자체 보충 해설을 작성한 에너지·공조 기출과 나머지 종목은 inventory.json scope.groups 각 next부터, 중복 판정 ID 제외."
+    "other": "자체 보충 해설을 작성한 에너지·공조 기출과 나머지 종목은 inventory.json scope.groups 각 next부터, 중복 판정 ID 제외.",
+    "fieldReport": "src/cbt/hvacFieldReportPractice.ts 13개 모두 판정.",
+    "workedExamples": "공조 교재 예제 26개 모두 전사 및 판정. 정답 확인 9개는 원본 보기를 보존했다.",
+    "energy": "data/energy.js energy-industrial-20050320:1부터 자체 작성 해설을 포함해 검토."
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 2848,
-    "contentCompleted": 2165,
-    "contentCompletedChanged": 1970,
-    "contentCompletedUnchanged": 195,
-    "evidenceHold": 520,
-    "answerNeedsConfirmation": 163,
-    "automaticOnly": 46156,
-    "changedQuestionIds": 2244,
-    "imageTranscribed": 371,
-    "imageFullyTranscribed": 105,
-    "imagePartiallyTranscribed": 266,
-    "imageCompared": 371,
-    "imageAcademicCompleted": 305,
+    "contentExamined": 2967,
+    "contentCompleted": 2259,
+    "contentCompletedChanged": 2060,
+    "contentCompletedUnchanged": 199,
+    "evidenceHold": 533,
+    "answerNeedsConfirmation": 175,
+    "automaticOnly": 46037,
+    "changedQuestionIds": 2347,
+    "imageTranscribed": 397,
+    "imageFullyTranscribed": 113,
+    "imagePartiallyTranscribed": 284,
+    "imageCompared": 397,
+    "imageAcademicCompleted": 322,
     "questionImagesConverted": 95,
     "questionImagesCompared": 95,
     "questionImageAcademicCompleted": 90
@@ -93120,7 +97366,7 @@
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 373,
+      "count": 395,
       "findings": {
         "423": 1,
         "4186": 1,
@@ -93452,11 +97698,33 @@
         "메탄 1 mol 완전연소에서 생성수 2 mol": 1,
         "연료 내 질소가 없으므로 배기가스 중 N₂ 79 부피는 모두 공기에서 유래": 1,
         "수소 4 kg에 대한 화학량론 산소 32 kg": 1,
-        "S 1/32 kmol→SO₂ 1/32 kmol, 공기 동반 N₂ 79/21배": 1
+        "S 1/32 kmol→SO₂ 1/32 kmol, 공기 동반 N₂ 79/21배": 1,
+        "1 kg 고정질량, T₂=300": 1,
+        "일=∫P dV=상수×∫V^(−n)dV": 1,
+        "이상기체 같은 질량이므로 최고/최저 압력비=(1773": 1,
+        "이상기체 R=pv/T": 1,
+        "일정 비열 이상 단순 브레이턴 η=1−rₚ^−((k−1)/k)": 1,
+        "30 MJ/h=8": 1,
+        "단열 강체의 총내부에너지 보존": 1,
+        "주장 효율 0": 1,
+        "메탄 몰질량 약 16": 1,
+        "R=1": 1,
+        "가역단열식 T₂/T₁=(P₂/P₁)^((k−1)/k)": 1,
+        "시료 50 mL 기준 순차 감소 6": 1,
+        "B=1000 G=0": 1,
+        "원도 A·B·C 두께 모두 5 cm, 온도강하 각각 200,250,300 K": 1,
+        "원형 단면 A=πD²/4, Q=AV, D(m)에서 mm로 1000배": 1,
+        "양단 닫힌 얇은 원통의 종단면·횡단면 힘평형": 1,
+        "Darcy–Weisbach에서 f 일정, Δp=f(L/D)ρV²/2": 1,
+        "원주응력식에 이음효율 η=0": 1,
+        "인쇄 3번은 이론 토출점 438을 써서 121": 1,
+        "mRT ln(5)=436": 1,
+        "원도에 A를 정의하지만 Hₜ 식에 A가 보이지 않음": 1,
+        "γ=ρg이므로 압력손실에서 g는 소거": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 721,
+      "count": 783,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -94021,7 +98289,7 @@
         "Q̇=UAΔT에서 같은 면적·온도차에 U가 작을수록 단열이 좋음": 1,
         "모세관 통과량은 양단압·지름·길이 등에 의존": 1,
         "켈빈·플랑크 진술은 하나의 열원에서 받은 열을 전부 일로 바꾸는 순환기관의 부재": 1,
-        "CoolProp 7": 1,
+        "CoolProp 7": 4,
         "같은 냉매 수증기 분압에서 농후·저온 LiBr 수용액의 물 평형증기압이 낮아져 흡수 구동력 증가": 1,
         "고체전해질식 산소 분석은 기준측과 시료측 산소분압 차가 만드는 전기 신호를 측정": 1,
         "응축수는 유로를 막거나 수용성 측정성분을 제거할 수 있어 배출·온도 관리가 측정 목적과 관련": 1,
@@ -94067,11 +98335,70 @@
         "단위 부피와 단위 질량 기준 차이": 1,
         "고체연료에 공기를 이용하는 발생로가스와 수증기를 쓰는 수성가스 구분": 1,
         "교재 504쪽 네 열손실 항목과 Babcock & Wilcox의 굴뚝 가스 손실 Fig": 1,
-        "교재 517쪽은 가스배출 환기구를 낮게라는 보기": 1
+        "교재 517쪽은 가스배출 환기구를 낮게라는 보기": 1,
+        "포화액·증기의 질량분율 0": 1,
+        "0 ℃ 물 1000 kg의 응고잠열을 24 h 동안 제거하는 능력": 1,
+        "정압 보일러 가열과 응축기 정압 방열, 이상 펌프·터빈의 단열과정": 1,
+        "열역학 제1법칙은 에너지수지·보존": 1,
+        "같은 흡입온도·압력비에서 이상기체 단열압축 토출온도는 k가 클수록 높아짐": 1,
+        "다른 조건이 같을 때 복수기 압력 증가→포화온도 증가·터빈 팽창범위 감소": 1,
+        "정압 팽창일 300×(0": 1,
+        "P–V 원도 A에서 체적 감소·압력 증가로 E에 도달": 1,
+        "도압관이 길고 가늘수록 유체저항과 전달 지연이 커질 수 있으므로 압력원 가까이에 설치한다는 보기 검토": 1,
+        "지문의 빠른 응답·외란에 대한 안정화 의도는 미분동작": 1,
+        "원문 ③은 단자와 보상도선을 서로 다른 극성으로 연결하고 열팽창을 보상한다고 표현": 1,
+        "산업용 저항온도계의 통상적인 측온용 금속인 Pt·Ni·Cu와 Cr을 원도 네 보기에서 구분": 1,
+        "용적식은 일정 부피 공간이 채워지고 비워지는 횟수를 적산": 1,
+        "네 보기 중 철/콘스탄탄 조합은 J형": 1,
+        "측정 전류에 의한 P=I²R의 발열을 비교": 1,
+        "고온에서 산소 이온을 전도하는 지르코니아 고체전해질과 원문 산화물 선택지 대조": 1,
+        "원도 ④의 소리와 229792458이라는 수를 각각 확인": 1,
+        "압전저항은 변형에 따른 전기저항 변화라는 지문과 네 계기 검토": 1,
+        "CO₂의 몰질량 44는 공기 약 29보다 크다": 1,
+        "압력차 Δp=ρgΔh": 1,
+        "비례항은 Kp×(설정값−측정값)이며 측정값이나 설정값 단독이 아님": 1,
+        "고정상과 이동상 사이의 성분별 상호작용 차이→유출 순서 차이": 1,
+        "석영(SiO₂) 보호관의 내열충격성과 취성, 일반 산 및 알칼리 부식의 차이": 1,
+        "시행령 제20조제2·3항 공공·민간 연료 및 열 기준과 전력 단위를 각각 대조": 1,
+        "터널가마의 연속 운전·열회수와 이송 및 송풍에 필요한 동력 구분": 1,
+        "법 제31조제1항 사업자의 신고와 제2항 시·도지사의 통보기한이 서로 다름": 1,
+        "원도 ③의 “디스크 형상에 따라 앵글밸브·Y형밸브”도 글로브 밸브 몸체 형상/유로와 디스크 형상 혼동": 1,
+        "에너지법 시행령 제15조제3항 3년, 추가 간이조사 가능": 1,
+        "현장 성형하는 부정형 내화물은 축조 전에 벽돌로 소성할 필요가 없지만 시공 후 건조·승온은 필요": 1,
+        "보냉은 복사·전도 등으로 유입되는 열을 줄이는 것": 1,
+        "시행령 개선명령 조항은 에너지관리지도 결과 10% 이상 및 투자 경제성 모두 요구": 1,
+        "시행규칙 제5조제1~4호에 이행 주체·방법·시기": 1,
+        "도염식요는 한 차례 제품을 쌓아 소성·냉각 후 꺼내는 전통적인 가마의 운전주기를 기준으로 함": 1,
+        "법 제7조제2항제10호 “대통령령으로 정하는 사항”": 1,
+        "시행규칙 제9조 제1항 문구를 확인": 1,
+        "시행령 제14조제3항 원칙 7일 이전, 긴급시 전일까지 공고": 1,
+        "법 제31조제3항제1~5호의 전력공사·가스공사·지역난방공사와 가스안전공사의 차이": 1,
+        "폴리우레탄 유기 고분자, 진주암 계열 펄라이트·세라믹·규산칼슘 무기질 대조": 1,
+        "고로에서 철광석을 환원하여 선철 생산": 1,
+        "Na형 수지의 이온교환과 가열·증류·여과의 물리적 작용을 네 보기에서 구분": 1,
+        "증기 압력계 연결부 사이폰은 응축수로 고온 증기가 계기 탄성체에 직접 닿는 것을 방지": 1,
+        "지름이 큰 동체는 같은 내압에서 원주응력이 커짐": 1,
+        "체크밸브는 급수 역류 방지용": 1,
+        "pH 6은 약산성": 1,
+        "증기 인젝터의 에너지원은 구동 증기": 1,
+        "주철은 압축에 비해 인장·충격에 취약": 1,
+        "프라이밍·포밍은 증기 흐름에 물이 딸려가는 현상": 1,
+        "원도 ① “수지의 성분과 Na형의 양이온과 결합”은 Ca²⁺·Mg²⁺가 수지에 포착되고 Na⁺가 물로 방출되는 원리를 명확히 표현하지 못함": 1,
+        "원도와 지문의 내경 60 mm에 벽두께 4 mm 두 번 더해 외경 68 mm": 1,
+        "통상적인 복사식은 부하 증가에 따른 증기 유량 증가 대비 열흡수 증가가 작아 출구온도가 낮아지는 경향": 1,
+        "물계통에서 용존 산소·CO₂·pH는 부식환경에 직접 관여": 1,
+        "동일 기하·기체밀도·효율의 상사 운전점에서 Q∝N, Δp∝N², P∝N³": 1,
+        "기하학적으로 닮은 팬에서 같은 회전수·밀도": 1,
+        "기존 설명은 광유와 합성유를 구분하지 않고 냉매명만으로 혼화성을 일반화": 1,
+        "제시한 설비의 입자·미생물 오염 관리 목적을 VAV 풍량제어, 제습, 항온항습 목적과 구분": 1,
+        "활성탄 흡착·HEPA 입자포집을 구분": 1,
+        "인쇄 지문 −10 ℃, ③ 30306 kJ를 직접 확대 대조": 1,
+        "S트랩은 수직 방향, P트랩은 수평 방향 배출": 1,
+        "산업안전보건법 제38조제1항 1~3호와 제39조제1항제2호를 대조": 1
       }
     },
     "이미지 원문 텍스트 전환": {
-      "count": 106,
+      "count": 125,
       "findings": {
         "바이패스 팩터의 정의": 1,
         "덕트 정압계의 판독": 1,
@@ -94178,7 +98505,26 @@
         "급탕·환수의 밀도차와 수두 원도·양방향 추가 해설": 1,
         "농형 시동법의 세 판본과 회전자 구조": 1,
         "실내 열수지의 외피 열전달·기기발열·설정온도와 부하 처리 열원의 형식을 네 보기에서 구분": 1,
-        "고전 유효온도와 흑구온도를 쓰는 수정유효온도를 구별": 1
+        "고전 유효온도와 흑구온도를 쓰는 수정유효온도를 구별": 1,
+        "원본 10 cmHgV=100 mmHg, 현지 대기압 750, (750−100)×0": 1,
+        "50 kg/h에 현열 63 및 응고잠열 333": 1,
+        "압축효율과 기계효율은 이상 토출엔탈피를 쓰는 원도 계산에서 한 번씩만 적용": 1,
+        "원도 6개 엔탈피, 캐스케이드 응축부하=상부 증발부하로 두 유량비 확인": 1,
+        "인쇄 원문의 308": 1,
+        "닫힌계가 한 일 −12 kJ, 받은 열 −2 kJ": 1,
+        "단열 정상류, 외부 축일·높이 차 무시시 비엔탈피 감소와 유속 증가": 1,
+        "50×10³ kg/s×9": 1,
+        "면적기준 일치: R 외면=1/3+4(1/9+0": 1,
+        "질량유량 0": 1,
+        "④의 큰 압력변동과 ②의 낮은 효율 모두 장점과 반대": 1,
+        "V/0": 1,
+        "③ 전문지식·기술 필요는 운영 부담": 1,
+        "V₂/V₁=11/5, 정압이므로 T비와 같음": 1,
+        "실내 열수지와 열원기기의 선택 구분": 1,
+        "10,000 kg×(2": 1,
+        "전달 1050 W, 사과 200×18 kg×3": 1,
+        "본문 보기 모두 설비 부품이며 침입외기에 의한 열손실의 직접 분류가 아님": 1,
+        "진공이 과도할 때 공기를 유입하는 기능은 ①": 1
       }
     }
   },
@@ -94460,8 +98806,8 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 2177,
-    "rawFractionDisplays": 206,
+    "examined": 2296,
+    "rawFractionDisplays": 224,
     "remainingBankBlanks": 1384,
     "units": [
       {
@@ -97413,18 +101759,200 @@
           "energy-industrial-restored-2022-4:65",
           "energy-industrial-restored-2022-4:66"
         ]
+      },
+      {
+        "unit": "에너지관리기사 2022년 2회 A형 열역학 21~40번 사용자 제공 시험 원도와 가답안 재계산",
+        "statuses": {
+          "내용 검토 완료·수정함": 19,
+          "정답 자체 확인 필요": 1
+        },
+        "changed": 20,
+        "ids": [
+          "energy-engineer-engineer-20220424:21",
+          "energy-engineer-engineer-20220424:22",
+          "energy-engineer-engineer-20220424:23",
+          "energy-engineer-engineer-20220424:24",
+          "energy-engineer-engineer-20220424:25",
+          "energy-engineer-engineer-20220424:26",
+          "energy-engineer-engineer-20220424:27",
+          "energy-engineer-engineer-20220424:28",
+          "energy-engineer-engineer-20220424:29",
+          "energy-engineer-engineer-20220424:30",
+          "energy-engineer-engineer-20220424:31",
+          "energy-engineer-engineer-20220424:32",
+          "energy-engineer-engineer-20220424:33",
+          "energy-engineer-engineer-20220424:34",
+          "energy-engineer-engineer-20220424:35",
+          "energy-engineer-engineer-20220424:36",
+          "energy-engineer-engineer-20220424:37",
+          "energy-engineer-engineer-20220424:38",
+          "energy-engineer-engineer-20220424:39",
+          "energy-engineer-engineer-20220424:40"
+        ]
+      },
+      {
+        "unit": "에너지관리기사 2022년 2회 A형 계측방법 41~60번 사용자 제공 시험 원도와 가답안 대조",
+        "statuses": {
+          "내용 검토 완료·수정함": 17,
+          "근거 부족으로 보류": 3
+        },
+        "changed": 17,
+        "ids": [
+          "energy-engineer-engineer-20220424:41",
+          "energy-engineer-engineer-20220424:42",
+          "energy-engineer-engineer-20220424:43",
+          "energy-engineer-engineer-20220424:44",
+          "energy-engineer-engineer-20220424:45",
+          "energy-engineer-engineer-20220424:46",
+          "energy-engineer-engineer-20220424:47",
+          "energy-engineer-engineer-20220424:48",
+          "energy-engineer-engineer-20220424:49",
+          "energy-engineer-engineer-20220424:50",
+          "energy-engineer-engineer-20220424:51",
+          "energy-engineer-engineer-20220424:52",
+          "energy-engineer-engineer-20220424:53",
+          "energy-engineer-engineer-20220424:54",
+          "energy-engineer-engineer-20220424:55",
+          "energy-engineer-engineer-20220424:56",
+          "energy-engineer-engineer-20220424:57",
+          "energy-engineer-engineer-20220424:58",
+          "energy-engineer-engineer-20220424:59",
+          "energy-engineer-engineer-20220424:60"
+        ]
+      },
+      {
+        "unit": "에너지관리기사 2022년 2회 A형 열설비재료·관계법규 61~80번 검토",
+        "statuses": {
+          "근거 부족으로 보류": 4,
+          "내용 검토 완료·수정함": 15,
+          "정답 자체 확인 필요": 1
+        },
+        "changed": 16,
+        "ids": [
+          "energy-engineer-engineer-20220424:61",
+          "energy-engineer-engineer-20220424:62",
+          "energy-engineer-engineer-20220424:63",
+          "energy-engineer-engineer-20220424:64",
+          "energy-engineer-engineer-20220424:65",
+          "energy-engineer-engineer-20220424:66",
+          "energy-engineer-engineer-20220424:67",
+          "energy-engineer-engineer-20220424:68",
+          "energy-engineer-engineer-20220424:69",
+          "energy-engineer-engineer-20220424:70",
+          "energy-engineer-engineer-20220424:71",
+          "energy-engineer-engineer-20220424:72",
+          "energy-engineer-engineer-20220424:73",
+          "energy-engineer-engineer-20220424:74",
+          "energy-engineer-engineer-20220424:75",
+          "energy-engineer-engineer-20220424:76",
+          "energy-engineer-engineer-20220424:77",
+          "energy-engineer-engineer-20220424:78",
+          "energy-engineer-engineer-20220424:79",
+          "energy-engineer-engineer-20220424:80"
+        ]
+      },
+      {
+        "unit": "에너지관리기사 2022년 2회 A형 열설비설계 81~100번 시험 원도 대조. 전 100개 판정 기록.",
+        "statuses": {
+          "내용 검토 완료·수정함": 16,
+          "근거 부족으로 보류": 3,
+          "정답 자체 확인 필요": 1
+        },
+        "changed": 17,
+        "ids": [
+          "energy-engineer-engineer-20220424:81",
+          "energy-engineer-engineer-20220424:82",
+          "energy-engineer-engineer-20220424:83",
+          "energy-engineer-engineer-20220424:84",
+          "energy-engineer-engineer-20220424:85",
+          "energy-engineer-engineer-20220424:86",
+          "energy-engineer-engineer-20220424:87",
+          "energy-engineer-engineer-20220424:88",
+          "energy-engineer-engineer-20220424:89",
+          "energy-engineer-engineer-20220424:90",
+          "energy-engineer-engineer-20220424:91",
+          "energy-engineer-engineer-20220424:92",
+          "energy-engineer-engineer-20220424:93",
+          "energy-engineer-engineer-20220424:94",
+          "energy-engineer-engineer-20220424:95",
+          "energy-engineer-engineer-20220424:96",
+          "energy-engineer-engineer-20220424:97",
+          "energy-engineer-engineer-20220424:98",
+          "energy-engineer-engineer-20220424:99",
+          "energy-engineer-engineer-20220424:100"
+        ]
+      },
+      {
+        "unit": "현장 키워드로 자체 제작한 공조 2026.08.22 비공식 실전 복원 훈련 1~13번 전 문항",
+        "statuses": {
+          "근거 부족으로 보류": 3,
+          "내용 검토 완료·수정함": 6,
+          "내용 검토 완료·수정 없음": 4
+        },
+        "changed": 7,
+        "ids": [
+          "hvac-field-report-2026-08-22:1",
+          "hvac-field-report-2026-08-22:2",
+          "hvac-field-report-2026-08-22:3",
+          "hvac-field-report-2026-08-22:4",
+          "hvac-field-report-2026-08-22:5",
+          "hvac-field-report-2026-08-22:6",
+          "hvac-field-report-2026-08-22:7",
+          "hvac-field-report-2026-08-22:8",
+          "hvac-field-report-2026-08-22:9",
+          "hvac-field-report-2026-08-22:10",
+          "hvac-field-report-2026-08-22:11",
+          "hvac-field-report-2026-08-22:12",
+          "hvac-field-report-2026-08-22:13"
+        ]
+      },
+      {
+        "unit": "공조 교재 본문 예제·정답 충돌 자료 26개 모두 문제·풀이 원본 직접 대조 및 원문 전사",
+        "statuses": {
+          "내용 검토 완료·수정함": 17,
+          "정답 자체 확인 필요": 9
+        },
+        "changed": 26,
+        "ids": [
+          "hansol-book-example-2-11-1",
+          "hansol-book-example-2-13-2",
+          "hansol-book-example-2-51-1",
+          "hansol-book-example-2-52-2",
+          "hansol-book-example-2-57-3",
+          "hansol-book-example-2-87-6",
+          "hansol-book-example-2-73-5",
+          "hansol-book-example-2-73-6",
+          "hansol-book-example-2-79-2",
+          "hansol-book-example-2-81-5",
+          "hansol-book-example-2-81-6",
+          "hansol-book-example-2-140-3",
+          "hansol-book-example-2-140-4",
+          "hansol-book-example-1-182-83",
+          "hansol-book-example-1-108-43",
+          "hansol-book-example-3-92-22",
+          "hansol-book-example-3-186-69",
+          "hansol-book-example-3-241-3",
+          "hansol-book-example-3-348-27",
+          "hansol-book-example-4-87-22",
+          "hansol-book-example-1-70-2",
+          "hansol-book-example-1-165-8",
+          "hansol-book-example-2-221-1",
+          "hansol-book-example-2-221-2",
+          "hansol-book-example-1-116-89",
+          "hansol-book-example-3-133-20"
+        ]
       }
     ],
     "reasons": {
       "지문·정답·자료 대조에 남은 불확실성": 123,
-      "공식·계산·기호·단위·반올림": 268,
-      "개념·장치 작동 원리·적용 조건": 462,
+      "공식·계산·기호·단위·반올림": 290,
+      "개념·장치 작동 원리·적용 조건": 524,
       "부정형·보기 비교·표 적용 범위": 14,
       "문제와 무관한 설명": 128,
       "해설 미등록": 601,
-      "이미지 원문 텍스트 전환": 106
+      "이미지 원문 텍스트 전환": 125
     },
-    "changed": 1702,
+    "changed": 1805,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",

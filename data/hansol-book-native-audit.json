@@ -1643,7 +1643,7 @@
       "fingerprint": null,
       "workedExampleId": "hansol-book-example-2-87-6",
       "reviewHold": true,
-      "pendingReason": "지문은 질량10kg이지만 보기③3036kJ·정답표③가 풀이의30306kJ와 맞지 않습니다. 자동채점·CBT에서는 제외하고 원문과 보강 설명을 함께 제공합니다."
+      "pendingReason": "문제지 보기 ③은 30,306 kJ다. 인쇄 풀이 마지막 문장에만 시작온도가 −15 ℃로 적혔고, 지문과 실제 계산은 −10 ℃다."
     },
     {
       "book": "hansol",

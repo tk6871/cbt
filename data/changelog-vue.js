@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.29',scope:'industrial',date:'2026.11.19',title:'에너지기사·공조 교재 해설',summary:'공조 예제 26개의 인쇄 해설을 텍스트로 읽을 수 있습니다.',tags:['교재','계산'],changes:['단열압축과 물의 상태변화 계산에서 인쇄 풀이와 검산 결과를 함께 볼 수 있습니다.','에너지기사 A형과 공조 복원훈련의 해설을 보완했습니다.']},
     {version:'6.2.28',scope:'industrial',date:'2026.11.19',title:'산업안전·에너지·공조 원문 해설',summary:'산업안전기사 72문항에 해설을 추가했습니다.',tags:['기출','계산','안전'],changes:['공조 4문항의 지문과 보기를 텍스트로 읽을 수 있습니다.','순환수량, 지게차 안정거리 등의 분수 계산과 원문 대조 결과를 담았습니다.']},
     {version:'6.2.27',scope:'industrial',date:'2026.11.19',title:'가스 응급처치와 에너지·공조 계산 해설',summary:'가스 노출 7문항의 옛 보기와 실제 응급처치를 구분했습니다.',tags:['기출','계산','안전'],changes:['두 회차의 열교환·계측·회로 해설을 대조하고 근거와 다른 답을 표시했습니다.']},
     {version:'6.2.26',scope:'industrial',date:'2026.11.19',title:'에너지·공조 계산 교정과 전기·설비 해설',summary:'혼합온도·회로·동체 두께를 재계산하고 정답과 다른 결과를 표시했습니다.',tags:['기출','계산','교재'],changes:['전기·지게차·설비보전 159문항에 해설을 추가하고 공조 교재 원도 두 문항을 텍스트로도 제공합니다.']},
@@ -2806,8 +2807,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.28';
+  changelog.versions.industrial = '6.2.29';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.28';
+  changelog.currentVersion = '6.2.29';
   window.CBT_CHANGELOG = changelog;
 })();

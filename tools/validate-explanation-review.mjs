@@ -5,6 +5,9 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
+const {transformSync} = require(require.resolve('esbuild', {paths:[require.resolve('vite')]}));
 const dir='docs/explanation-review/2026-11-18';
 const review=JSON.parse(fs.readFileSync(dir+'/review.json'));
 const inventory=JSON.parse(fs.readFileSync(dir+'/inventory.json'));
@@ -150,9 +153,68 @@ const statusCounts = {
  '정답 자체 확인 필요': 'answerNeedsConfirmation',
 };
 const knownEvidence = new Set([...review.sources, ...review.records].map(entry => entry.id));
+// These authored practice questions load from a TypeScript module outside the JS banks.
+const fieldFile = 'src/cbt/hvacFieldReportPractice.ts';
+async function fieldRound(source) {
+ const {code} = transformSync(source, {loader:'ts', format:'esm'});
+ return (await import('data:text/javascript;base64,' + Buffer.from(code).toString('base64'))).hvacFieldReportRound;
+}
+const previousFieldRound = await fieldRound(original(fieldFile));
+const currentFieldRound = await fieldRound(fs.readFileSync(fieldFile,'utf8'));
+const fieldAnswers = new Map();
+const fieldChanges = [];
+assert.equal(currentFieldRound.questions.length, previousFieldRound.questions.length);
+for (const [i, q] of currentFieldRound.questions.entries()) {
+ const id = currentFieldRound.id + ':' + q.number;
+ fieldAnswers.set(id,q.answer);
+ if (q.explanation === previousFieldRound.questions[i].explanation) continue;
+ assert.equal(recordsById.get(id)?.resolution,q.explanation,id);
+ assert.ok(reviewedIds.has(id),id);
+ previousFieldRound.questions[i].explanation=q.explanation;
+ fieldChanges.push(id);
+}
+assert.deepEqual(currentFieldRound,previousFieldRound,'Practice question, choices, keys or order changed');
+const exampleFile = 'data/textbook-worked-examples.json';
+const oldExamples = JSON.parse(original(exampleFile)).entries;
+const currentExamples = JSON.parse(fs.readFileSync(exampleFile)).entries;
+const exampleAnswers = new Map();
+const exampleChanges = [];
+const nativeExamples = new Map(JSON.parse(fs.readFileSync('tools/hansol-book-native-review.json')).rows
+ .filter(row=>row.kind==='worked-example').map(row=>[row.page+':'+row.number,row]));
+assert.equal(currentExamples.length,oldExamples.length);
+for (const [index, example] of currentExamples.entries()) {
+ const before=oldExamples[index];
+ const record=recordsById.get(example.id);
+ exampleAnswers.set(example.id,example.answer);
+ if (!record) { assert.deepEqual(example,before); continue; }
+ const native=nativeExamples.get(example.pages[0]+':'+example.number);
+ assert.ok(native);
+ assert.equal(record.answerBefore,before.answer,example.id);
+ if(record.answerCaptionCorrection) {
+  assert.equal(native.note,example.note);
+  assert.equal(native.answer,example.answer);
+  before.answer=example.answer;
+  before.note=example.note;
+ }
+ assert.equal(record.resolution,example.explanation);
+ assert.equal(native.explanation,example.explanation);
+ before.explanation=example.explanation;
+ if (example.explanationTranscribed) {
+  assert.equal(native.explanationTranscribed,true);
+  assert.equal(newConfirmed[example.solution]?.kind,'explanation');
+  before.explanationTranscribed=true;
+ }
+ if (example.explanationFormula) {
+  assert.deepEqual(example.explanationFormula,native.explanationFormula);
+  assert.ok(katex.renderToString(example.explanationFormula.tex,{throwOnError:true}).includes('<mfrac>'),example.id);
+  before.explanationFormula=example.explanationFormula;
+ }
+ assert.deepEqual(example,before,'Worked example media, order or original fields changed: '+example.id);
+ if(record.changed) exampleChanges.push(example.id);
+}
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer, 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -165,7 +227,7 @@ assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
 assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
-const affectedIds=new Set(changedBankIds);
+const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges]);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';
 const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));
