@@ -209,3 +209,22 @@ test('버드의 경상 20건 환산 분수와 참고 회차', async ({page}, inf
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:12'])).toBe(3);
   await explanation.screenshot({path:info.outputPath('bird-ratio.png')});
 });
+
+test('펌프 출구압력의 두 해석·저장 답과 이의제기 보존', async ({page}, info) => {
+  await prepare(page, 'energy');
+  await page.locator('#round-card-energy-industrial-20020310').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('33');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'996.016'});
+  await card.locator('.choice-button').nth(1).click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('−0.0954 kJ/kg');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('4.92 kJ/kg');
+  await expect(explanation.locator('.math-formula .mfrac')).toBeVisible();
+  const archived = card.locator('details').filter({has:page.locator('summary', {hasText:'저장된 COMCBT 이의제기와 관리자 답변'})});
+  await archived.locator('summary').click();
+  await expect(archived).toContainText('문제지 사진원본 확인해 봤는데 5kpa가 맞습니다');
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20020310:33'])).toBe(2);
+  await archived.locator('summary').click();
+  await explanation.screenshot({path:info.outputPath('pump-dispute.png')});
+});

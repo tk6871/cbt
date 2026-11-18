@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.10',scope:'industrial',date:'2026.11.18',title:'에너지 2002년 3월 기출 해설',summary:'17~80번을 검토해 이번 회차 80문항의 판단 근거를 기록했습니다.',tags:['에너지','해설'],changes:['교축밸브의 온도, 노즐의 유출속도, 습증기 건도를 지문과 그림에 맞게 설명합니다.','펌프 압력, 엔트로피 변화, 온도 제어의 지문과 정답 간 충돌을 구분해 표시합니다.']},
     {version:'6.2.9',scope:'industrial',date:'2026.11.18',title:'산업안전기사 2022년 4월 해설',summary:'빈 해설 12개에 해당 문항의 풀이와 참고 기출을 추가했습니다.',tags:['산업안전기사','기출 해설'],changes:['경상 20건을 버드의 분포에 대입해 위험순간 1,200건을 구하는 비율식을 추가했습니다.','사고예방 대책의 선정과 적용, 물적 직접원인, 휴먼에러의 구별을 보기와 연결했습니다.']},
     {version:'6.2.8',scope:'industrial',date:'2026.11.18',title:'에너지 기출 계산 해설',summary:'에너지관리산업기사 2002년 3월 회차의 앞 16문항을 검토했습니다.',tags:['에너지','계산'],changes:['연료비, 이론 공기량, 통풍력, 연료 소비량, 최대 이산화탄소 농도에 분수 대입식을 넣었습니다.','석탄 공업분석, 고위·저위발열량, 폭넓게 사용된 일반론을 해당 문항에 맞춰 보완했습니다.']},
     {version:'6.2.7',scope:'industrial',date:'2026.11.18',title:'열역학과 급수처리 해설',summary:'교재 23문항과 연결된 기출 5문항에 원문과 대조한 풀이를 반영했습니다.',tags:['에너지','교재'],changes:['터빈 출력의 질량유량 단위와 등압 팽창일의 계산을 보완했습니다.','폭기와 탈기를 구분하고 503쪽 탈산소 반응식의 질소 누락을 교정했습니다.','해설 이미지 23개와 동일 문제 5개를 글자로 읽을 수 있습니다.']},
@@ -2787,8 +2788,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.9';
+  changelog.versions.industrial = '6.2.10';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.9';
+  changelog.currentVersion = '6.2.10';
   window.CBT_CHANGELOG = changelog;
 })();

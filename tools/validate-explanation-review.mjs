@@ -83,11 +83,29 @@ for(const [id,link] of Object.entries(links)){
 assert.equal(new Set(review.records.map(r=>r.id)).size,review.records.length);
 assert.equal(review.counts.contentExamined,review.records.length);
 assert.equal(review.counts.reviewUnits,review.counts.automaticOnly+review.records.length);
+const statusCounts = {
+ '내용 검토 완료·수정함': 'contentCompletedChanged',
+ '내용 검토 완료·수정 없음': 'contentCompletedUnchanged',
+ '근거 부족으로 보류': 'evidenceHold',
+ '정답 자체 확인 필요': 'answerNeedsConfirmation',
+};
+const knownEvidence = new Set([...review.sources, ...review.records].map(entry => entry.id));
+for (const record of review.records) {
+ assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer, 'Stored answer differs from ledger: ' + record.id);
+ for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
+}
+for (const [status, field] of Object.entries(statusCounts)) {
+ assert.equal(review.counts[field], review.records.filter(record => record.status === status).length, status);
+}
+assert.equal(review.counts.contentCompleted, review.counts.contentCompletedChanged + review.counts.contentCompletedUnchanged);
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
 const affectedIds=new Set(changedBankIds);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
-const energyReviewed=JSON.parse(fs.readFileSync('data/energy-reviewed-explanations.json'));
-assert.equal(Object.keys(energyReviewed).length,review.energyDustBatch.reviewedDisplayEntries + review.energyHeatWaterBatch.reviewedDisplayEntries + review.energy20020310Batch.reviewedDisplayEntries);
+const energyReviewFile = 'data/energy-reviewed-explanations.json';
+const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));
+const expectedDisplays = review.records.filter(record => record.reviewedExplanationFile === energyReviewFile);
+assert.deepEqual(Object.keys(energyReviewed).sort(), expectedDisplays.map(record => record.id).sort());
 for(const [id,entry] of Object.entries(energyReviewed)){
  const question=bankById.get(id);
  assert.ok(question&&reviewedIds.has(id), 'Unrecorded display change: '+id);

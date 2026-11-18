@@ -499,7 +499,8 @@
       "sourceAssets": [],
       "errorType": "물성값을 계산 결과로 오인",
       "basis": "Conduction, slab equation",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/1/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/1/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:2",
@@ -525,7 +526,8 @@
       "sourceAssets": [],
       "errorType": "이론공기량과 실제 혼합 구별",
       "basis": "Air Required for Combustion, 식 (10) 다음의 practical air supply",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/2/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/2/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:3",
@@ -551,7 +553,8 @@
       "sourceAssets": [],
       "errorType": "공업분석·원소분석 구별",
       "basis": "Proximate Analysis 및 The Determination of Heating Values of Fuels",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/3/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/3/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:1",
@@ -594,7 +597,8 @@
       ],
       "errorType": "압력손실·집진효율 인과 혼동",
       "basisPage": "2018년 2회 · 원문 1번 · 교재 336쪽",
-      "matchedSource": "energy-industrial-20180428:1"
+      "matchedSource": "energy-industrial-20180428:1",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:2",
@@ -635,7 +639,8 @@
         }
       ],
       "errorType": "분리 원리 보완",
-      "basisPage": "2018년 2회 · 원문 2번 · 교재 336쪽"
+      "basisPage": "2018년 2회 · 원문 2번 · 교재 336쪽",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-4:3",
@@ -678,7 +683,8 @@
       ],
       "errorType": "비교 대상과 원리 보완",
       "basisPage": "2018년 4회 · 원문 3번 · 교재 350쪽",
-      "matchedSource": "energy-industrial-20180915:3"
+      "matchedSource": "energy-industrial-20180915:3",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "hazardous-craftsman-2004-4:54",
@@ -1704,7 +1710,8 @@
       "finding": "압력손실·집진효율 인과 혼동",
       "resolution": "전기 집진기는 입자를 대전시킨 뒤 전기장으로 집진극에 모은다. 기체 전체를 촘촘한 여과재로 통과시킬 필요가 없어 보통 압력손실이 작다. 따라서 ‘압력손실이 크다’는 ④가 틀리다. 낮은 압력손실과 높은 포집효율은 서로 다른 특성이다.",
       "errorType": "압력손실·집진효율 인과 혼동",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3083/1/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/1/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20180915:3",
@@ -1730,7 +1737,8 @@
       "finding": "비교 대상과 원리 보완",
       "resolution": "이 문항의 네 보기 중 여과식은 먼지가 섞인 기체를 여과재에 통과시켜 입자를 붙잡는다. 교재의 대표 성능표에서 백필터의 집진율은 90~99%로, 보기의 중력식·관성력식·원심력식보다 높은 범위에 놓인다. 따라서 ③이다. 실제 효율은 입경과 운전 조건에 따라 달라진다.",
       "errorType": "비교 대상과 원리 보완",
-      "storedSource": "https://www.comcbt.com/cbt/problem/10515/3/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/10515/3/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2019-2:9",
@@ -1777,7 +1785,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20190427:9",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20190427:9",
@@ -1844,7 +1853,8 @@
       ],
       "basisPage": "2022년 1회 · 원문 2번 · 교재 474쪽",
       "transcriptionTool": "원본 직접 판독",
-      "tableRetained": false
+      "tableRetained": false,
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2022-2:72",
@@ -1885,7 +1895,8 @@
       ],
       "basisPage": "2022년 2회 · 원문 72번 · 교재 502쪽",
       "transcriptionTool": "원본 직접 판독",
-      "tableRetained": false
+      "tableRetained": false,
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2023-1:26",
@@ -1932,7 +1943,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20190427:9",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2023-4:29",
@@ -1974,7 +1986,8 @@
       ],
       "basisPage": "2023년 4회 · 원문 29번 · 교재 559쪽",
       "transcriptionTool": "원본 직접 판독",
-      "tableRetained": true
+      "tableRetained": true,
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2024-2:34",
@@ -2016,7 +2029,8 @@
       ],
       "basisPage": "2024년 2회 · 원문 34번 · 교재 591쪽",
       "transcriptionTool": "원본 직접 판독",
-      "tableRetained": true
+      "tableRetained": true,
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2025-3:15",
@@ -2063,7 +2077,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20170507:11",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20170507:11",
@@ -2136,7 +2151,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20170923:17",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20170923:17",
@@ -2162,7 +2178,8 @@
       "finding": "부정형 문항의 결론 교정",
       "resolution": "찾아야 하는 것은 건식이 아닌 방식이다. ④ 벤튜리 스크러버는 세정액과 분진을 접촉시키는 습식이므로 이 문항의 정답이다. 백필터식은 여과재를 쓰고 사이클론식·멀티클론식은 회전 흐름을 이용한다.",
       "errorType": "부정형 문항의 결론 교정",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3081/17/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3081/17/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:5",
@@ -2201,7 +2218,8 @@
       "errorType": "열·일 부호와 열량 명칭",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:7",
@@ -2241,7 +2259,8 @@
       "errorType": "제1법칙과 제3법칙의 구별",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2019-1:1",
@@ -2287,7 +2306,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20190303:1",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20190303:1",
@@ -2315,7 +2335,8 @@
       "errorType": "제1법칙과 제3법칙의 구별",
       "changed": true,
       "academicVerified": true,
-      "storedSource": "https://www.comcbt.com/cbt/problem/9683/1/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/9683/1/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2019-2:19",
@@ -2361,7 +2382,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20190427:19",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20190427:19",
@@ -2389,7 +2411,8 @@
       "errorType": "제1법칙과 제3법칙의 구별",
       "changed": true,
       "academicVerified": true,
-      "storedSource": "https://www.comcbt.com/cbt/problem/10283/19/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/19/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2020-1-2통합:18",
@@ -2429,7 +2452,8 @@
       "errorType": "이상기체·등온 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2021-1:1",
@@ -2469,7 +2493,8 @@
       "errorType": "에너지 보존과 열기관 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2021-1:10",
@@ -2509,7 +2534,8 @@
       "errorType": "등압 팽창일과 단위",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2021-1:14",
@@ -2549,7 +2575,8 @@
       "errorType": "제1법칙과 제3법칙의 구별",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2022-1:1",
@@ -2588,7 +2615,8 @@
       "errorType": "열·일 부호와 경로",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2022-1:13",
@@ -2628,7 +2656,8 @@
       "errorType": "이상기체·등온 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2023-4:3",
@@ -2668,7 +2697,8 @@
       "errorType": "질량과 질량유량·터빈 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2024-1:14",
@@ -2708,7 +2738,8 @@
       "errorType": "열과 일의 전환 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2025-2:6",
@@ -2748,7 +2779,8 @@
       "errorType": "질량과 질량유량·터빈 조건",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2025-3:17",
@@ -2788,7 +2820,8 @@
       "errorType": "기체상수 질량 기준·등압 팽창일",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:9",
@@ -2827,7 +2860,8 @@
       "errorType": "용존기체와 금속 처리 구별",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-2:75",
@@ -2873,7 +2907,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20180428:75",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20180428:75",
@@ -2901,7 +2936,8 @@
       "errorType": "철 산화·고액분리",
       "changed": true,
       "academicVerified": true,
-      "storedSource": "https://www.comcbt.com/cbt/problem/3083/75/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/75/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2018-4:66",
@@ -2940,7 +2976,8 @@
       "errorType": "기체 처리 범위와 공통 대상",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2019-1:74",
@@ -2979,7 +3016,8 @@
       "errorType": "용존산소와 금속 부식",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2019-2:68",
@@ -3025,7 +3063,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20190427:68",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20190427:68",
@@ -3053,7 +3092,8 @@
       "errorType": "폭기와 탈기의 구별",
       "changed": true,
       "academicVerified": true,
-      "storedSource": "https://www.comcbt.com/cbt/problem/10283/68/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/68/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2021-2:65",
@@ -3093,7 +3133,8 @@
       "errorType": "폭기와 탈기의 구별",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2022-2:63",
@@ -3132,7 +3173,8 @@
       "errorType": "국부전지와 부식 형태",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2022-2:75",
@@ -3171,7 +3213,8 @@
       "errorType": "반응식 원자 보존·물리적 탈기",
       "changed": true,
       "academicVerified": true,
-      "transcriptionTool": "원본 직접 판독"
+      "transcriptionTool": "원본 직접 판독",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "school-energy-textbook-2023-1:45",
@@ -3218,7 +3261,8 @@
         "status": "전체 전사·대조 완료",
         "matchedTextSourceId": "energy-industrial-20170923:73",
         "imagesPreserved": true
-      }
+      },
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20170923:73",
@@ -3247,7 +3291,8 @@
       "errorType": "기체 방출과 금속 산화 구별",
       "changed": true,
       "academicVerified": true,
-      "storedSource": "https://www.comcbt.com/cbt/problem/3081/73/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3081/73/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:4",
@@ -3323,7 +3368,8 @@
       ],
       "basis": "Blast Furnace Gas Burners, 공기 및 가스 공급량의 독립 조절 설명",
       "resolution": "기체연료는 배관의 유량을 조절할 수 있고 연소용 공기 공급량도 따로 조절할 수 있다. 연료가 기체라는 이유로 효율이 낮고 연소 제어가 어렵다고 단정한 ③이 잘못이다. 실제 효율은 공기와 연료의 혼합 등 운전 조건에 따라 달라진다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/6/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/6/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:7",
@@ -3349,7 +3395,8 @@
       ],
       "basis": "Table 36, Anthracite 및 Peat. 가연분 기준 탄종별 고정탄소·휘발분 비교.",
       "resolution": "여기서 연료비는 가격이 아니라 고정탄소의 질량을 휘발분의 질량으로 나눈 값이다. 무연탄은 탄화도가 높아 고정탄소의 비율이 크고 휘발분이 적으므로 보기 중 이 비가 가장 크다. 따라서 ④ 무연탄이다. 식의 FC는 고정탄소, VM은 휘발분이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/7/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/7/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:8",
@@ -3376,7 +3423,8 @@
       ],
       "basis": "산소 원자수지. 1 kg 연료당 0.8/12 + 0.15/4 − 0.05/32 = 0.102604 kmol O₂. 0 °C·1 atm 기준 22.414 m³/kmol, 공기 산소 21 mol%.",
       "resolution": "연료 1 kg을 기준으로 탄소 0.80 kg에 필요한 산소는 0.80/12 kmol, 수소 0.15 kg에는 0.15/4 kmol이다. 연료 안의 산소 0.05 kg에 해당하는 0.05/32 kmol을 빼면 약 0.1026 kmol O₂가 필요하다. 표준부피로 바꾸고 공기의 산소 부피분율 0.21로 나누면 ① 10.95 Nm³/kg이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/8/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/8/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:9",
@@ -3403,7 +3451,8 @@
       ],
       "basis": "HHV_modified_Dulong, B&W 식 (18)과 higher/lower 구별. 30,353.75 kJ/kg ÷ 4.184 ≈ 7,255 kcal/kg에서 수분 보정 약 292 kcal/kg.",
       "resolution": "원소 조성으로 고위발열량을 먼저 추정한다. 질량 백분율을 쓰는 수정 뒬롱식에 대입하면 338×72 + 1428×(5.3 − 8.9/8) + 95×0.4 ≈ 30,354 kJ/kg, 약 7,255 kcal/kg이다. 연료 1 kg당 생성수와 원래 수분은 9×0.053 + 0.009 = 0.486 kg이다. 물 1 kg당 약 600 kcal를 빼면 저위발열량은 약 6,960 kcal/kg이므로 ③ 약 7,000이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/9/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/9/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:10",
@@ -3453,7 +3502,8 @@
       ],
       "basis": "Draft Formula, 식 (24). 표준 배기가스 밀도를 운전 온도로 보정한 후 같은 높이의 기체 기둥 압력차 검산.",
       "resolution": "1.2 kg/m³는 배기가스가 0 °C일 때의 값이다. 압력이 같으면 밀도는 절대온도에 반비례하므로 130 °C의 밀도는 1.2×273/403 ≈ 0.813 kg/m³이다. 높이 50 m에서 밀도 차에 의한 통풍압은 g×50×(1.05−0.813) Pa이다. 1 mmH₂O ≈ 9.81 Pa이므로 약 11.85 mmH₂O이고 가장 가까운 보기는 ② 11.9이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/11/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/11/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:12",
@@ -3479,7 +3529,8 @@
       ],
       "basis": "Equivalent Evaporation from and at 212 °F, 잠열 970.4 Btu/lb ≈ 539 kcal/kg. 지문 효율과 비중 0.96으로 질량·체적 검산.",
       "resolution": "기준 증발량은 100 °C 물을 같은 온도의 포화증기로 만드는 양으로 환산한 값이다. 이때 잠열은 약 539 kcal/kg이므로 유효열량은 5,000×539 kcal/h이다. 이를 효율 0.88과 저위발열량 9,700 kcal/kg으로 나누면 연료 약 316 kg/h가 필요하다. 비중 0.96에 해당하는 밀도 약 0.96 kg/L로 나누면 약 329 L/h, ④ 330 L/h이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/12/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/12/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:13",
@@ -3505,7 +3556,8 @@
       ],
       "basis": "Flue Gas Analysis, Orsat와 Hempel 기구에 같은 가스 시료를 넣어 가스 성분을 확인하는 항목.",
       "resolution": "이 문제는 액체연료의 인화점을 재는 기구와 가스 시료의 성분을 분석하는 기구를 구별한다. 헴펠 장치는 가스 분석에 쓰인다. 따라서 인화점 측정기와 관계없는 보기는 ④이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/13/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/13/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:14",
@@ -3557,7 +3609,8 @@
       ],
       "basis": "LHV_from_HHV의 수분량 항. 수소 2 kg에서 물 18 kg 생성. 보기의 600은 kcal/kg 물 단위의 근삿값.",
       "resolution": "H와 W를 연료 1 kg당 수소와 수분의 질량(kg)으로 쓰면, 수소 1 kg이 연소해 물 약 9 kg을 만든다. 생성수와 원래 수분의 합은 9H + W이다. 저위발열량에 그 물의 응축열을 더해야 고위발열량이 되므로 보기의 근사 잠열을 쓰면 Hₕ = Hℓ + 600×(9H + W), ④이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/15/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/15/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "energy-industrial-20020310:16",
@@ -3584,7 +3637,8 @@
       ],
       "basis": "Flue gas composition and excess air. 완전연소·건조 기준·공기 중 CO₂ 무시. 건조 가스 100부에 O₂ 6부면 잉여 공기가 100×6/21부. 이를 제외하고 CO₂ 12부를 재계산.",
       "resolution": "완전연소한 건조 연도가스에 남은 O₂가 과잉공기에서 왔다고 본다. 시료 100부에 O₂가 6부이면 과잉공기의 비율은 6/21이다. 과잉공기를 제외해도 CO₂의 양은 같으므로, 측정 농도 12%를 남은 비율 1 − 6/21로 나눈다. 이론 최대 CO₂ 농도는 ① 16.8%이다.",
-      "storedSource": "https://www.comcbt.com/cbt/problem/3062/16/"
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/16/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
     },
     {
       "id": "safety-engineer-20220424:3",
@@ -4035,6 +4089,1776 @@
         "safety-engineer-20210515:37",
         "safety-engineer-20190427:33"
       ]
+    },
+    {
+      "id": "energy-industrial-20020310:17",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 17,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "습연소가스와 공기량 혼동",
+      "finding": "습연소가스와 공기량 혼동",
+      "resolution": "11 kg은 11/44 = 0.25 kmol의 프로판이다. 프로판 1 kmol당 CO₂ 3 kmol과 수증기 4 kmol이 생기고 이론공기에 따라온 질소 5×79/21 kmol도 남는다. 습가스이므로 물을 포함한다. 표준부피는 0.25×(3+4+5×79/21)×22.4 ≈ 144.5 Nm³로 ④이다. 수증기도 기체로 환산한 계산 부피다.",
+      "basis": "완전연소 원자수지. C₃H₈ + 5O₂ → 3CO₂ + 4H₂O. 0.25 kmol 연료 기준, 공기 중 N₂/O₂ = 79/21.",
+      "evidence": [
+        "650-air",
+        "650-gases",
+        "650-calorific"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/17/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:18",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 18,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "댐퍼 유량 조절과 누설 구별",
+      "finding": "댐퍼 유량 조절과 누설 구별",
+      "resolution": "댐퍼는 유로 안에서 날개의 위치나 개도를 바꾸어 흐름과 통풍량을 조절한다. 배치에 따라 다른 유로로 보내거나 닫아 흐름을 차단할 수도 있다. 덕트 틈이나 이음부에서 가스가 밖으로 새는 것을 막는 일은 기밀 시공의 역할이므로 ④를 고른다.",
+      "basis": "Steam, Its Generation and Use, boiler damper regulation 및 flue arrangements. 유로 내 제어와 외부 누설을 구분.",
+      "evidence": [
+        "650-steam"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/18/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:19",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 19,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "errorType": "연돌 밀도차 자연통풍",
+      "finding": "연돌 밀도차 자연통풍",
+      "resolution": "밀도차가 압력차를 만들어 자연통풍이 된다는 기존 설명이 ④와 일치한다.",
+      "basis": "Draft Formula (24), 외기·연도가스 기둥의 밀도차.",
+      "evidence": [
+        "650-steam"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/19/"
+    },
+    {
+      "id": "energy-industrial-20020310:20",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 20,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "프로판 이론공기량 대입",
+      "finding": "프로판 이론공기량 대입",
+      "resolution": "C₃H₈ + 5O₂ → 3CO₂ + 4H₂O이므로 같은 기준에서 프로판 1 Nm³에 산소 5 Nm³가 필요하다. 공기의 21%가 산소이므로 이론공기량은 5/0.21 ≈ 23.81 Nm³, ③이다.",
+      "basis": "몰비와 같은 상태의 기체 부피비. 공기 산소 21 mol%.",
+      "evidence": [
+        "650-air",
+        "650-gases",
+        "650-calorific"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/20/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:21",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 21,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "열·일과 보존량 구별",
+      "finding": "열·일과 보존량 구별",
+      "resolution": "에너지 보존을 계에 적용하면 받은 열에서 계가 한 일을 뺀 만큼 내부에너지가 변한다. 열과 일은 에너지가 계의 경계를 넘는 방식이다. 따라서 ②이다. 열이 스스로 흐르는 방향은 제2법칙의 내용이다.",
+      "basis": "OpenStax, The First Law of Thermodynamics 및 순환 열기관.",
+      "evidence": [
+        "649-first",
+        "649-engine"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/21/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:22",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 22,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "강체 용기·압력차·표준밀도",
+      "finding": "강체 용기·압력차·표준밀도",
+      "resolution": "밀폐된 강체 용기라 팽창일이 없고 공급열은 Q = m cᵥ ΔT이다. 이상기체식에서 부피와 질량이 일정하면 압력의 증가량으로 mΔT를 구할 수 있다. 기준 상태 273.15 K·1 atm과 압력차 1 kgf/cm² = 98.07 kPa를 적용하면 Q ≈ 0.17×1.29×20×273.15×98.07/101.325 ≈ 1,160 kcal이다. 가장 가까운 보기는 ④ 1,158 kcal다. 같은 압력 기준으로 잰 두 값의 차만 쓰므로 게이지압의 대기압 항은 상쇄된다.",
+      "basis": "정적 밀폐 이상기체 mΔT = ρₙVTₙΔp/pₙ. ρₙ=1.29 kg/Nm³, pₙ=101.325 kPa, Δp=98.0665 kPa, V=20 m³. Q≈1159.5 kcal.",
+      "evidence": [
+        "649-first",
+        "649-process",
+        "652-units"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/22/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:23",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 23,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "비기체상수와 보편기체상수 구별",
+      "finding": "비기체상수와 보편기체상수 구별",
+      "resolution": "질량 1 kg을 기준으로 하는 기체상수는 보편기체상수를 몰질량으로 나눈 값이다. N₂와 CO는 약 28, CO₂는 44, CH₄는 16 kg/kmol이다. 분모가 가장 큰 ③ CO₂가 가장 작은 비기체상수를 갖는다.",
+      "basis": "비기체상수 R = Rᵤ/M, N₂·CO·CO₂·CH₄의 몰질량 28·28·44·16 비교.",
+      "evidence": [
+        "652-nozzle",
+        "650-gases"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/23/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:24",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 24,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "빙점·절대온도 눈금 대입",
+      "finding": "빙점·절대온도 눈금 대입",
+      "resolution": "1 atm에서 순수한 물의 빙점은 0 °C, 즉 273.15 K이다. 랭킨과 켈빈은 절대영도가 같지만 1 K가 1.8 °R에 해당한다. 따라서 273.15×9/5 = 491.67 °R로 ④이다.",
+      "basis": "Rankine 한 눈금은 5/9 K. 273.15 × 9/5 = 491.67.",
+      "evidence": [
+        "652-units",
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/24/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:25",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 25,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "열·일과 보존량 구별",
+      "finding": "열·일과 보존량 구별",
+      "resolution": "시스템이 열을 받거나 일을 하면 그만큼 에너지 수지가 달라진다. 들어오고 나가는 에너지와 내부에너지 변화를 연결한 것이 제1법칙이므로 ④ 시스템의 에너지 보존이다. 반응속도나 반응방향은 이 수지만으로 정해지지 않는다.",
+      "basis": "The First Law of Thermodynamics에서 보존되는 양과 전달 방식을 분리.",
+      "evidence": [
+        "649-first"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/25/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:26",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 26,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "미터마력·열량률 환산",
+      "finding": "미터마력·열량률 환산",
+      "resolution": "PS는 미터마력으로 1 PS = 75 kgf·m/s ≈ 735.5 W이다. 1시간 동안의 에너지를 kcal로 환산하면 1 PS는 약 632 kcal/h이다. 보기의 근사 환산계수를 쓰면 45×632 = 28,440 kcal/h, ③이다.",
+      "basis": "Pint metric_horsepower = 75 kgf·m/s. 1 PS ≈ 632 kcal/h, 문제의 환산 관례; 정밀 상수값과 보기 근사 구분.",
+      "evidence": [
+        "652-units",
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/26/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:27",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 27,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "errorType": "지문이 가리키는 수식 누락",
+      "finding": "지문이 가리키는 수식 누락",
+      "resolution": "지문에는 ‘다음 식’이라고만 적혀 있고 식 자체가 표시되지 않는다. 유동일은 단위질량당 p v로 나타내지만 이 문항의 원래 식과 일치하는지는 원본 확인이 필요하다. 등록 답은 ①이다.",
+      "basis": "저장 지문·HTML·보기 및 이미지 레지스트리에서 해당 식을 확인할 수 없었다. 2002.03.10 27번 원본 식 필요.",
+      "evidence": [],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/27/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:28",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 28,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "비열의 적용 조건",
+      "finding": "비열의 적용 조건",
+      "resolution": "안정한 단일상 유체에서는 정압비열이 정적비열보다 작아지지 않는다. 특히 이상기체라면 cₚ − cᵥ = R이고 R > 0이다. 그러므로 정압비열이 정적비열보다 작을 수도 있다고 한 ④가 틀리다.",
+      "basis": "Cp_minus_Cv 식과 안정한 단일상 유체의 등온 압축률 양수. 이상기체 cₚ−cᵥ=R.",
+      "evidence": [
+        "652-td",
+        "652-ig"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/28/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:29",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 29,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "errorType": "h–s 선도 범위 확인 필요",
+      "finding": "h–s 선도 범위 확인 필요",
+      "resolution": "h–s 선도의 두 축은 비엔탈피 h와 비엔트로피 s이다. 포화수의 h를 직접 읽으려면 포화액 경계가 해당 선도의 표시 범위에 있어야 한다. 등록 답은 ①이지만, 사용한 선도 원본이 없어 그 경계가 어디까지 그려졌는지는 확인이 필요하다.",
+      "basis": "어떤 h–s 선도를 기준으로 한 것인지 도판·표시 범위 부재. 특정 판본의 포화액선 포함 여부 확인 필요.",
+      "evidence": [],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/29/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:30",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 30,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "실린더 총체적과 행정체적 구분",
+      "finding": "실린더 총체적과 행정체적 구분",
+      "resolution": "압축비는 피스톤이 하사점에 있을 때의 최대 체적을 상사점에 있을 때의 최소 체적으로 나눈 값이다. 최대 체적은 행정체적과 격간체적의 합이고 최소 체적은 격간체적이다. 따라서 여기서 실린더체적을 전체 체적으로 쓴 ②이다.",
+      "basis": "Cantera IC Engine, V_oT = V_H/(epsilon−1), 압축비 정의를 역산.",
+      "evidence": [
+        "652-engine"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/30/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:31",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 31,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "교축밸브에 무관한 전기기기 설명",
+      "finding": "교축밸브에 무관한 전기기기 설명",
+      "resolution": "그림에서 공기는 80 °C·200 kPa로 들어가 100 kPa로 나온다. 정상 단열 교축에서 축일이 없고 입출구의 운동·위치에너지 변화를 무시하면 h₁ = h₂이다. 이상기체의 비엔탈피는 온도만으로 정해지므로 압력이 떨어져도 출구 온도는 입구와 같은 ③ 80 °C이다.",
+      "basis": "원본 그림 입구 80 °C·200 kPa, 출구 100 kPa. 정상 단열 무축일 에너지수지 및 이상기체 h(T).",
+      "evidence": [
+        "652-valve",
+        "652-ig",
+        "649-first"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "sourceAssets": [
+        {
+          "original": "assets/energy/comcbt-restored/20020310/images/em20020310m31.gif",
+          "displayAsset": "assets/problem-webp90/0b6fea5f842bc0d82574a01de2d1efd1.webp",
+          "sha256": "c82f024cb037e674a6c2d47670945a5a0635121d9af0375e9b0572d66a8dba93"
+        }
+      ],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/31/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:32",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 32,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "노즐 에너지수지·공학단위계",
+      "finding": "노즐 에너지수지·공학단위계",
+      "resolution": "단열 노즐에서 외부 축일과 높이차, 입구 속도를 무시하면 줄어든 비엔탈피가 출구의 단위질량당 운동에너지로 바뀐다. SI에서는 h를 J/kg으로 놓아 V²/2 = h₁ − h₂이다. 보기처럼 i를 kcal/kg, J를 열의 일당량(kgf·m/kcal)으로 쓰면 속도는 √[2gJ(i₁ − i₂)]이다. 엔탈피의 차 전체가 근호 안에 있는 ③이다.",
+      "basis": "네 보기 수식 픽셀 대조. Cantera isentropic_units.py v = sqrt(2(h₀−h)), 공학단위계 열의 일당량 J.",
+      "evidence": [
+        "652-nozzle",
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/questions/3062/em20020310m32b1.png",
+          "displayAsset": "assets/problem-webp90/56dc2ebe5770ca3b95a201813c32534f.webp",
+          "sha256": "adc56dbce1efcaf76b5dec76aeb81eb01493a585e771f11cee65793e57cebad4"
+        },
+        {
+          "original": "assets/energy/assets/questions/3062/em20020310m32b2.png",
+          "displayAsset": "assets/problem-webp90/5488c8e3859115b67e61a465a31bda0f.webp",
+          "sha256": "b8cc276bbcffe351a4b1e5e38b4fffe2cc162ca291b95489ef6a6baeaf1449ba"
+        },
+        {
+          "original": "assets/energy/assets/questions/3062/em20020310m32b3.png",
+          "displayAsset": "assets/problem-webp90/757a4fee9ae20d84b875d23cb727d06d.webp",
+          "sha256": "b71468aae8f2c29ba9ae50bc28695bf59d57320cd2960766b90024fcf7abcd4b"
+        },
+        {
+          "original": "assets/energy/assets/questions/3062/em20020310m32b4.png",
+          "displayAsset": "assets/problem-webp90/5f9edf7004716c279829806b2df52a92.webp",
+          "sha256": "4a73598db815ddc0a661d746b6fbcfedb81101c619f89115765e3493a62d5990"
+        }
+      ],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/32/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:33",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 33,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "errorType": "펌프 출구압력과 정답 충돌",
+      "finding": "펌프 출구압력과 정답 충돌",
+      "resolution": "밀도가 일정하면 단위질량당 펌프 입력일은 (출구압력 − 입구압력)/밀도이다. 지문 그대로라면 (5 − 100)/996.016 ≈ −0.0954 kJ/kg이어서 양의 압축일을 주는 보기가 없다. 이의제기의 5,000 kPa를 쓰면 (5000 − 100)/996.016 ≈ 4.92 kJ/kg으로 ②가 된다. 관리자 원문 확인 답변과 이의제기가 충돌해 공식 문제·정답 확인이 필요하다.",
+      "basis": "비압축성 가역 단열 정상 펌프의 단위질량당 입력일 w = ∫v dp. 실제 지문과 저장 COMCBT 이의제기·관리자 답변·보기 별도 대조.",
+      "evidence": [
+        "652-si",
+        "649-first"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/33/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:34",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 34,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "errorType": "엔트로피 전달·상태변화·생성 구별",
+      "finding": "엔트로피 전달·상태변화·생성 구별",
+      "resolution": "보일러의 흡열을 양, 응축기의 방열을 음으로 두고 주어진 평균온도를 열교환 경계온도로 쓰면, 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 ≈ −1.09 kJ/(kg·K)로 ③이다. 한 주기를 돈 작동유체 자체의 엔트로피 변화는 0이다. 보기의 단위도 단위질량당 값이므로 지문의 ‘변화율’이 무엇을 뜻하는지 출제 원문 확인이 필요하다.",
+      "basis": "질량당 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 = −1.08688 kJ/(kg·K). 한 주기의 상태 변화 0, 일정한 온도의 두 열원과 교환 가정하에 생성량 양수.",
+      "evidence": [
+        "649-engine",
+        "652-carnot"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/34/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:35",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 35,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "이상기체 비열과 팽창일",
+      "finding": "이상기체 비열과 팽창일",
+      "resolution": "이상기체를 같은 온도만큼 가열하면 내부에너지 증가량은 같다. 정압에서는 기체가 팽창하며 외부에 하는 일도 충당해야 하므로 같은 온도 변화에 더 많은 열이 필요하다. cₚ − cᵥ = R > 0이어서 ④ 정적비열이 더 작다.",
+      "basis": "Cantera IdealGasPhase::cv_mole = cp_mole − GasConstant.",
+      "evidence": [
+        "652-ig",
+        "649-process"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/35/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:36",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 36,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "열의 일당량과 역수 구별",
+      "finding": "열의 일당량과 역수 구별",
+      "resolution": "열의 일당량은 1 kcal에 해당하는 일을 kgf·m로 나타낸 값이다. 1 kcal ≈ 4,184 J, 1 kgf·m ≈ 9.81 J이므로 4,184/9.81 ≈ 427 kgf·m/kcal이다. 따라서 ②이며 1/427은 그 역수이다.",
+      "basis": "1 kcal = 4184 J; 1 kgf·m = 9.80665 J, 몫 약 426.65.",
+      "evidence": [
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/36/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:37",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 37,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "카르노 선도 좌표 구별",
+      "finding": "카르노 선도 좌표 구별",
+      "resolution": "카르노 사이클은 두 가역 등온과정과 두 가역 단열과정으로 이루어진다. P–V 선도에서는 네 과정이 곡선을 따라 이어진다. 직사각형이 되는 선도는 등온선과 등엔트로피선이 수평·수직인 T–s 선도이므로 ③이 틀리다.",
+      "basis": "OpenStax, Carnot cycle PV path, reversible isotherms and adiabats.",
+      "evidence": [
+        "652-carnot"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/37/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:38",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 38,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "강체 용기에서 비체적 보존·건도",
+      "finding": "강체 용기에서 비체적 보존·건도",
+      "resolution": "밀폐된 강체 용기는 질량과 체적이 모두 일정하므로 냉각 전후의 비체적이 같다. 250 °C에서 v = (1−0.30)×0.001251 + 0.30×0.05013 = 0.0159147 m³/kg이다. 100 °C 물성으로 x = (v − v_f)/(v_g − v_f)를 계산하면 0.008895이다. 백분율로는 약 0.89%이므로 ②이다.",
+      "basis": "건도는 증기 질량/전체 질량. 지정 물성으로 0.7×0.001251 + 0.3×0.05013 = 0.0159147 m³/kg. 최종 x=0.008894725.",
+      "evidence": [
+        "nist-quality"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/38/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:39",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 39,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "정압 팽창일·kcal와 kJ 환산",
+      "finding": "정압 팽창일·kcal와 kJ 환산",
+      "resolution": "문제의 압력을 팽창일 계산에 쓰는 압력 2 kgf/cm²로 해석하면 약 196.1 kPa이다. 기체가 한 일은 W = 196.1×(0.7−0.5) ≈ 39.2 kJ이다. 내부에너지 증가량 25 kcal를 약 104.7 kJ로 바꿔 더하면 Q ≈ 143.9 kJ, ④이다.",
+      "basis": "2 kgf/cm² = 196.133 kPa, ΔV = 0.2 m³. Q = 25×4.1868 + 196.133×0.2 ≈ 143.90 kJ.",
+      "evidence": [
+        "649-first",
+        "649-process",
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/39/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:40",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 40,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "이상기체 내부에너지와 등적 열량 조건",
+      "finding": "이상기체 내부에너지와 등적 열량 조건",
+      "resolution": "양과 조성이 일정한 이상기체의 내부에너지는 온도로 정해진다. 정적비열을 일정하게 보면 단위질량당 변화는 Δu = cᵥΔT이므로 ②가 타당하다. 열량 Q까지 내부에너지 변화와 같으려면 닫힌계에서 순일이 0이어야 한다. 대표적인 경우가 강체 용기에서 다른 일도 없는 가열이다.",
+      "basis": "고정 조성 이상기체, Δu=∫cᵥdT. Q=ΔU에는 일 없음 등의 조건이 추가로 필요.",
+      "evidence": [
+        "649-first",
+        "649-process",
+        "652-ig"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/40/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:41",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 41,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "PI 계단응답 판독",
+      "finding": "PI 계단응답 판독",
+      "resolution": "입력이 계단 모양으로 바뀔 때 그림의 출력은 먼저 수직으로 뛰고, 그 뒤 직선으로 계속 증가한다. 처음 점프는 현재 편차에 비례하는 P동작, 일정 편차를 시간에 따라 누적하는 부분은 I동작이다. 두 특성이 함께 있으므로 ② 비례-적분동작이다.",
+      "basis": "계단 직후의 수직 점프와 그 뒤 일정 기울기의 상승을 원본 그래프에서 확인.",
+      "evidence": [
+        "652-pid"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "sourceAssets": [
+        {
+          "original": "assets/energy/comcbt-restored/20020310/images/em20020310m41.gif",
+          "displayAsset": "assets/problem-webp90/9afe604f111f203cb2251872a66881f2.webp",
+          "sha256": "d48e81d664b09622ff03c3e39dc2e6405f4ab87eca0aec244ba67a5d1c096e90"
+        }
+      ],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/41/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:42",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 42,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "무관한 CO 위험 설명·분석 순서",
+      "finding": "무관한 CO 위험 설명·분석 순서",
+      "resolution": "오르자트 분석은 각 성분을 차례로 흡수시킨 뒤 줄어든 가스 부피로 함량을 읽는다. 먼저 CO₂, 다음 O₂, 마지막으로 CO를 측정하므로 ②이다. 앞 단계의 성분이 남아 뒤 단계의 부피 감소에 섞이지 않도록 순서를 지킨다.",
+      "basis": "Orsat Apparatus for Flue Gas Analysis 및 저장된 가스기능사 2015년 4회 43번. 참고 회차의 순서는 ①, 이 문항은 ②.",
+      "evidence": [
+        "650-steam",
+        "gas-craftsman-2015-4:43"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/42/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:43",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 43,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "errorType": "영구 압력손실과 계측 차압",
+      "finding": "영구 압력손실과 계측 차압",
+      "resolution": "기존 해설이 영구 손실을 명시하고 오리피스 > 플로노즐 > 벤투리관의 ①과 일치.",
+      "basis": "orifice·venturi pressure loss 및 기출 원문의 세 형식 비교. 같은 조건에서 입출구의 영구 손실을 비교했다.",
+      "evidence": [
+        "652-fluid",
+        "energy-industrial-20190303:37"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/43/"
+    },
+    {
+      "id": "energy-industrial-20020310:44",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 44,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "무조건 시료 냉각하는 설명",
+      "finding": "무조건 시료 냉각하는 설명",
+      "resolution": "시료가 식어 수증기가 응축되면 물에 녹는 성분도 함께 빠져 실제 농도와 다른 값이 나올 수 있다. 성분과 분석기 조건에 맞게 온도와 수분을 관리해야 하므로 ‘될 수 있는 대로 낮춘다’는 ①이 부적절하다.",
+      "basis": "기체 용해도 및 시료 보존 원리. 응축·용해로 시료 조성이 변하는 경우를 구분.",
+      "evidence": [
+        "649-gas"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/44/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:45",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 45,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "비례이득과 비례대 정의",
+      "finding": "비례이득과 비례대 정의",
+      "resolution": "비례대는 제어기 출력을 전 범위인 100%만큼 바꾸는 데 필요한 입력 편차의 범위다. 입출력을 각각 범위의 백분율로 표시할 때 이득이 4이면 100/4 = 25%의 편차로 충분하다. 따라서 ②이다.",
+      "basis": "정규화 출력 변화(%) = Kp × 편차 변화(%). 전 출력범위 100%에서 편차를 역산.",
+      "evidence": [
+        "652-pid"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/45/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:46",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 46,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "게이지압과 현지 대기압",
+      "finding": "게이지압과 현지 대기압",
+      "resolution": "10 atg는 기술기압 단위의 게이지압이다. 절대압을 구할 때는 현지 대기압을 더한다. 750 mmHg ≈ (750/760)×1.0332 = 1.02 kgf/cm²이므로 절대압은 10 + 1.02 = 11.02 kgf/cm², ①이다.",
+      "basis": "750/760 atm × 101.325/98.0665 = 1.01965 kgf/cm². 압력계의 10 atg에 합산.",
+      "evidence": [
+        "652-si",
+        "652-units"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/46/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:47",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 47,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "유량계 운전범위 자료 필요",
+      "finding": "유량계 운전범위 자료 필요",
+      "resolution": "화면 해설 유지. 등록 답은 ② 플로노즐이다. 해당 조건에서 이것이 가장 알맞다고 판단한 출제 비교표를 확인할 때까지 적용 한계를 단정하지 않는다.",
+      "basis": "플로노즐의 형상과 차압식 측정은 확인. 네 형식을 고온·고압·고속에서 비교한 적용 기준 또는 제조사 자료 미확보.",
+      "evidence": [
+        "652-fluid"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/47/"
+    },
+    {
+      "id": "energy-industrial-20020310:48",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 48,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "errorType": "정도 등급 비교표 없음",
+      "finding": "정도 등급 비교표 없음",
+      "resolution": "등록 답은 ①이다. 부르동관이 압력에 따라 펴지는 원리만으로 모든 전기식 계기보다 정확도가 낮다고 결론낼 수 없다. 계기별 정확도 등급이나 이 문제의 비교 기준을 확인해야 한다.",
+      "basis": "액주식·분동식 1차 표준의 원리는 확인. 네 압력계의 범위·등급·교정상태를 통일한 당시 비교표는 미확보.",
+      "evidence": [
+        "gas-craftsman-2013-5:35"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/48/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:49",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 49,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "유량계에 무관한 윤활유 설명",
+      "finding": "유량계에 무관한 윤활유 설명",
+      "resolution": "이 문제의 피스톤형은 유량에 따라 피스톤 위치와 유체가 지나는 면적이 변하는 방식이다. 따라서 ③ 면적식 유량계다. 피스톤이 한 번에 일정 체적을 밀어내고 횟수를 세는 용적식과는 측정 원리가 다르다.",
+      "basis": "가스기능사 2016년 2회 38번 원문은 ② 면적식. 피스톤식 면적계와 왕복피스톤 용적계를 구별.",
+      "evidence": [
+        "gas-craftsman-2016-2:38"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/49/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:50",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 50,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "열전대 측온 범위",
+      "finding": "열전대 측온 범위",
+      "resolution": "CA(크로멜–알루멜)는 K형 열전대다. K형의 표준 기전력 표는 1,372 °C까지여서 1,600 °C를 포함하는 ④의 전체 온도범위는 적당하지 않다. 실제 연속 사용 한계는 보호관·선경 등에 따라 더 낮을 수 있다.",
+      "basis": "저장 CA 재질 설명과 Type K 기준 기전력 표의 상한 1372 °C 대조. 설치용 권장온도는 별도.",
+      "evidence": [
+        "652-typek",
+        "energy-industrial-20180428:28"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/50/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:51",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 51,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "미압계의 구체적 범위 미확인",
+      "finding": "미압계의 구체적 범위 미확인",
+      "resolution": "화면 해설 유지. 캡슐식은 두 격막을 맞붙인 탄성 요소의 변형으로 작은 압력차를 읽는다. 등록 답 ①과 원리는 부합하지만, 지문의 수치 범위가 어느 형식에 해당하는지 확정할 당시 비교표가 필요하다.",
+      "basis": "캡슐은 격막 두 개를 결합한 탄성 요소임을 확인. 10~1500 mmH₂O와 보기별 사용범위의 당시 표가 없음.",
+      "evidence": [
+        "gas-craftsman-2002-4:39"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/51/"
+    },
+    {
+      "id": "energy-industrial-20020310:52",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 52,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "수위제어 형식 명칭 확인 필요",
+      "finding": "수위제어 형식 명칭 확인 필요",
+      "resolution": "화면 해설 유지. 등록 답 ③ 유지. 전극에서 전기 신호가 나타난다는 사실과 ‘전압식’이라는 장치 분류를 혼동하지 않도록 출제 원전을 확인한다.",
+      "basis": "플로트·전극식의 수위 검출은 확인할 수 있으나 당시 교재의 열팽창식·전압식 구분표 미확보.",
+      "evidence": [],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/52/"
+    },
+    {
+      "id": "energy-industrial-20020310:53",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 53,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "지르코니아 성분과 측정 원리",
+      "finding": "지르코니아 성분과 측정 원리",
+      "resolution": "연소가스의 산소를 측정하는 세라믹식에서 쓰는 전해질은 지르코니아, 즉 산화지르코늄이다. 고온에서 산소 이온이 이동할 수 있는 세라믹이므로 금속 Zr가 아니라 산화물 ② ZrO₂를 고른다.",
+      "basis": "저장 비교 기출의 세라믹 산소계와 재료 이름. Zr과 ZrO₂의 차이.",
+      "evidence": [
+        "energy-industrial-20160306:28"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/53/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:54",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 54,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "errorType": "제어량과 조작량의 답 충돌",
+      "finding": "제어량과 조작량의 답 충돌",
+      "resolution": "일정하게 유지하려는 값인 제어량은 ④ 노내 온도이다. 온도 편차를 줄이려고 조절기가 바꾸는 ③ 중유 유량은 조작량이다. 저장 답은 ③이어서 지문의 ‘제어량’과 충돌한다. 당시 공식 지문이 조작량을 물었는지 확인이 필요하다.",
+      "basis": "지문과 원문 보기 네 개 대조. 목표 온도가 제어출력이고 연료 유량이 조작입력인 폐루프와 비교.",
+      "evidence": [
+        "652-pid",
+        "652-loop"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/54/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:55",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 55,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "액주계 점성과 응답속도",
+      "finding": "액주계 점성과 응답속도",
+      "resolution": "액주가 압력 변화에 따라 움직여 새 높이에서 평형을 이루어야 한다. 점성이 너무 크면 흐름 저항이 커서 지시가 늦어진다. 그러므로 압력 측정용 액체의 바람직한 성질을 ‘점성이 클 것’이라 한 ①이 틀리다.",
+      "basis": "압력차 Δp=ρgΔh와 이동 중 점성 저항 비교. 점성은 최종 정수압차가 아니라 평형에 도달하는 응답을 늦춘다.",
+      "evidence": [
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/55/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:56",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 56,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "서모컬러와 내화도 시험 구별",
+      "finding": "서모컬러와 내화도 시험 구별",
+      "resolution": "서모컬러는 표면에 붙이거나 칠한 표시재의 색 변화로 온도를 확인한다. 내화물의 내화도를 비교할 때 쓰는 것은 표준 콘이 일정 가열 조건에서 휘는 정도이다. 따라서 서모컬러와 내화도 측정을 연결한 ①이 틀리다.",
+      "basis": "참고 기출의 접촉식 서모컬러와 Binns의 변형하는 pyrometric cones 대조.",
+      "evidence": [
+        "gas-craftsman-2005-5:37",
+        "652-pot"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/56/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:57",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 57,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "공기압 신호 단위 환산",
+      "finding": "공기압 신호 단위 환산",
+      "resolution": "계장용 공기압 신호는 통상 약 20~100 kPa이다. 1 kgf/cm²가 약 98 kPa이므로 보기 단위로는 약 0.2~1.0 kgf/cm², ④이다. 신호의 최솟값도 압력 0보다 높다.",
+      "basis": "공기압 신호 20~100 kPa와 1 kgf/cm² = 98.0665 kPa 확인.",
+      "evidence": [
+        "energy-industrial-20200822:29",
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/57/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:58",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 58,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "충전용 기체 목록 미확보",
+      "finding": "충전용 기체 목록 미확보",
+      "resolution": "화면 해설 유지. 등록 답 ② 유지. 펜탄·에틸에테르를 포함한 보기와 기체 충전 매체를 구분하되 프레온이라는 총칭만으로 특정 냉매의 상태를 단정하지 않는다.",
+      "basis": "모든 물질의 기준 온도·압력과 실제 기체식 온도계 충전 매체에 관한 제조사 자료를 확보하지 못함.",
+      "evidence": [],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/58/"
+    },
+    {
+      "id": "energy-industrial-20020310:59",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 59,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "주·종속 제어루프 역할",
+      "finding": "주·종속 제어루프 역할",
+      "resolution": "주 조절기의 출력이 종속 조절기의 설정값이 되고 종속 루프가 더 빠르게 내부 변화를 바로잡는 방식이 ② 캐스케이드 제어다. 단순히 시간에 맞춰 미리 정한 목표값을 바꾸는 프로그램제어와 구별된다.",
+      "basis": "python-control nested inner/outer feedback 구조. 종속 제어기의 설정값과 외란 경로.",
+      "evidence": [
+        "652-loop"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/59/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:60",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 60,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "화씨 영점·눈금 환산",
+      "finding": "화씨 영점·눈금 환산",
+      "resolution": "화씨값에서 32를 먼저 빼고 섭씨와 화씨의 눈금 비 5/9를 곱한다. (−200−32)×5/9 = −128.888…이므로 소수 첫째 자리로 반올림하면 ① −128.9 °C이다.",
+      "basis": "SciPy convert_temperature와 (−200−32)×5/9 독립 대입.",
+      "evidence": [
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/60/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:61",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 61,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "도염식 가마와 전기 발열체 구별",
+      "finding": "도염식 가마와 전기 발열체 구별",
+      "resolution": "이 도염식 단요에서는 버너의 불꽃과 뜨거운 가스가 가마 안을 돌아 바닥 쪽 흡입구와 연도로 빠져나간다. 화교·흡입구·연도는 이 흐름과 관계가 있다. 전기 저항 가열에 쓰는 발열체는 이 연소식 구조와 가장 거리가 멀어 ④이다.",
+      "basis": "다른 회차의 도염식 가마 구조 지문. 버너 앞 화교, 바닥 흡입구와 연도 연결 확인.",
+      "evidence": [
+        "energy-industrial-20180915:53"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/61/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:62",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 62,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "단열재 물성 비교 조건 없음",
+      "finding": "단열재 물성 비교 조건 없음",
+      "resolution": "화면 해설 유지. 같은 두께와 온도차에서 단열재 자체의 열전도율이 작을수록 단열 효과가 크다. 등록 답은 ②이나 네 재료의 열전도율은 제품 밀도와 사용 온도 등에 따라 달라져 출제 기준표 확인이 필요하다.",
+      "basis": "같은 두께에서 열저항 L/k 비교. 네 재료의 밀도·평균온도·상태를 맞춘 출제 물성표 미확보.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/62/"
+    },
+    {
+      "id": "energy-industrial-20020310:63",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 63,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "부식과 스케일 구별",
+      "finding": "부식과 스케일 구별",
+      "resolution": "용존산소는 강재의 전기화학적 부식에 관여하고 부적절한 산성도나 농축된 알칼리도 강재 손상의 원인이 될 수 있다. 교재식 분류에서 실리카의 대표 장해는 전열면에 생기는 스케일이므로, 직접적인 강재 부식 원인을 묻는 보기에서는 ③을 고른다.",
+      "basis": "저장 2019년 급수 문제에서 실리카의 대표 장해는 스케일로 분류. 계통의 부적절한 pH·용존산소에 의한 강재 손상과 구분.",
+      "evidence": [
+        "649-rust",
+        "energy-industrial-20190921:49"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/63/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:64",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 64,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "보온재 겉보기 밀도 기준 없음",
+      "finding": "보온재 겉보기 밀도 기준 없음",
+      "resolution": "화면 해설 유지. 등록 답 ① 유지. 다공성 보온재의 비중을 비교할 때는 재료 자체의 밀도와 기공을 포함한 겉보기 밀도를 구분해야 한다.",
+      "basis": "우레탄폼 발포율·우모펠트 압축도 등 시료 조건이 없는 네 재료의 대표값 원표 필요.",
+      "evidence": [],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/64/"
+    },
+    {
+      "id": "energy-industrial-20020310:65",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 65,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "부하율과 증발계수 혼동",
+      "finding": "부하율과 증발계수 혼동",
+      "resolution": "전열면 단위 면적당 증발량은 부하가 커지면 늘 수 있고, 증기와 함께 물방울이 딸려가는 프라이밍도 일어나기 쉽다. 증발계수는 급수와 발생 증기의 엔탈피 차를 기준 증발잠열로 나눈 환산계수다. 부하가 늘었다는 사실만으로 그 값이 커진다고 한 ③이 틀리다.",
+      "basis": "Equivalent Evaporation, Factor of Evaporation 및 priming 절.",
+      "evidence": [
+        "650-steam",
+        "energy-industrial-20200606:23"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/65/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:66",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 66,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "경도와 P알칼리도의 구별",
+      "finding": "경도와 P알칼리도의 구별",
+      "resolution": "P알칼리도는 물을 페놀프탈레인 종말점까지 산으로 적정해 얻는 산 중화능이다. 칼슘·마그네슘 이온에 주로 좌우되는 지표는 경도다. 둘 다 CaCO₃ 환산 단위로 표시할 수 있지만 측정 대상이 다르므로 ④가 틀리다.",
+      "basis": "Alkalinity and causticity, 산 적정 원리와 hardness 구별. 지시약 조합·모든 수질에 대한 단일 종말점 수치로 일반화하지 않음.",
+      "evidence": [
+        "650-steam"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/66/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:67",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 67,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "원통 후프응력·압력 및 길이 단위",
+      "finding": "원통 후프응력·압력 및 길이 단위",
+      "resolution": "문제의 얇은 원통 동체 식에서 압력에 필요한 두께는 pD/(2ση)이다. 단위를 맞추면 p = 10 kgf/cm² = 0.10 kgf/mm², D = 1,000 mm이다. 0.10×1000/(2×9×0.80) = 6.94 mm에 부식여유 1 mm를 더해 ② 7.94 mm이다. 이는 주어진 문제 조건으로 계산한 값이다.",
+      "basis": "얇은 원통의 반원 자유물체 수지 pDL = 2σtLη. 부식여유 1 mm, 10/100 kgf/mm²로 단위 변환.",
+      "evidence": [
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/67/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:68",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 68,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "염기성 슬래그와 내화물 분류",
+      "finding": "염기성 슬래그와 내화물 분류",
+      "resolution": "마그네시아 내화물의 주성분 MgO는 염기성 산화물이다. 염기성 슬래그와 접촉하는 곳에서는 산성인 규석질과의 반응을 피할 수 있는 염기성 내화물이 적합하므로 ③이다.",
+      "basis": "산성의 SiO₂와 MgO계 소성대 내화물 구별. 이 보기의 주성분과 산·염기 분류로 판단.",
+      "evidence": [
+        "energy-industrial-20160306:48",
+        "energy-industrial-20170507:41"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/68/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:69",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 69,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "단열성 원료 분류 자료 미확보",
+      "finding": "단열성 원료 분류 자료 미확보",
+      "resolution": "화면 해설 유지. 등록 답은 ② 규석이다. 이름이 비슷한 규조토와 구별해야 한다. 출제 원문의 단열성 원료 분류표를 확인할 때까지 재료 전체에 대해 용도를 단정하지 않는다.",
+      "basis": "다공성 규조토와 치밀한 규석은 같은 재료가 아님. 네 원료를 나란히 분류한 출제 자료 미확보.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/69/"
+    },
+    {
+      "id": "energy-industrial-20020310:70",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 70,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "나사 최대효율·마찰각 유도",
+      "finding": "나사 최대효율·마찰각 유도",
+      "resolution": "리드각을 λ, 마찰각을 ρ라 두면 일반적인 사각나사의 상승 효율은 tanλ/tan(λ+ρ)이다. 이를 (sin(2λ+ρ)−sinρ)/(sin(2λ+ρ)+sinρ)로 바꾸면 sin(2λ+ρ)가 1일 때 최대다. 이때 λ = 45°−ρ/2이고 효율은 tan²(45°−ρ/2)이므로 ③이다.",
+      "basis": "사각나사 양정의 빗면 힘평형 η = tanλ/tan(λ+ρ). tanρ=μ, 최댓값은 2λ+ρ=90°.",
+      "evidence": [
+        "652-si"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/70/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:71",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 71,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "통상적인 주철관 이음과 특수 용접 범위",
+      "finding": "통상적인 주철관 이음과 특수 용접 범위",
+      "resolution": "화면 해설 유지. 등록 답 ④ 유지. 통상적인 주철 배관 이음과 특수 보수 용접의 가능 여부는 별개이므로 모든 주철에 용접이 불가능하다고 단정할 근거는 없다.",
+      "basis": "기계적·소켓 접합은 확인. 네 보기 중 플랜지·용접을 비교한 해당 관종 및 당시 배관용 규격 근거 추가 필요.",
+      "evidence": [
+        "gas-craftsman-2004-2:39"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/71/"
+    },
+    {
+      "id": "energy-industrial-20020310:72",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 72,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "요로 분류의 기준",
+      "finding": "요로 분류의 기준",
+      "resolution": "‘소결’은 원료 입자를 가열해 결합시키는 공정의 목적이다. 따라서 사용 목적에 따라 붙인 이름은 ③ 소결요로다. 도염식은 화염의 흐름, 연속은 조업 방식, 중유는 사용하는 연료를 나타낸다.",
+      "basis": "참고 문제의 연속식·불연속식은 조업방식 구분. 네 보기 낱말의 분류 기준 직접 대조.",
+      "evidence": [
+        "energy-industrial-20170305:46"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/72/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:73",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 73,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "급가열 시 열팽창 차이",
+      "finding": "급가열 시 열팽창 차이",
+      "resolution": "급격하게 압력을 올리는 동안 가열된 부분과 아직 차가운 부분 사이에 온도차가 커질 수 있다. 금속과 내화벽돌이 고르게 팽창하지 못하면 열응력과 균열 위험이 생기므로 ②가 해당한다.",
+      "basis": "Babcock & Wilcox boiler design, sudden application of heat and excessive strains.",
+      "evidence": [
+        "650-steam"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/73/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:74",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 74,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "물리적 탈기와 약제 반응 구분",
+      "finding": "물리적 탈기와 약제 반응 구분",
+      "resolution": "③에서는 분압을 낮추거나 물을 가열해 녹아 있던 기체가 빠져나오게 한다. 산소와 약제를 반응시키는 화학적 탈산소와 달리 물리적 탈기이므로, 화학적 방법과 관계없는 보기는 ③이다.",
+      "basis": "대응하는 교재 503쪽 원문·보기와 대조. 선지 ③은 분압·온도에 따른 기체 용해도 변화.",
+      "evidence": [
+        "649-gas",
+        "school-energy-textbook-2022-2:75"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/74/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:75",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 75,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "가마의 가열 능력 비교 조건",
+      "finding": "가마의 가열 능력 비교 조건",
+      "resolution": "화면 해설 유지. 등록 답 ②에서 터널가마가 연속 조업하는 형식임은 확인된다. 연속 생산량과 순간 가열능력의 기준은 다를 수 있어, 출제표의 능력 정의를 확보한 뒤 비교해야 한다.",
+      "basis": "터널식의 연속 조업은 확인. 동일 소성실 용적에서 네 종류의 순간 가열량·시간당 처리량을 비교한 자료 없음.",
+      "evidence": [
+        "energy-industrial-20170305:46"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/75/"
+    },
+    {
+      "id": "energy-industrial-20020310:76",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 76,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "산성 내화물 대표 산화물 유형",
+      "finding": "산성 내화물 대표 산화물 유형",
+      "resolution": "산성 내화물의 대표 성분은 실리카(SiO₂)다. 화학식에서 Si를 일반 기호 R로 나타내면 한 원자에 산소 두 원자가 결합한 RO₂형이므로 ③이다.",
+      "basis": "2016년 3월 기출에서는 SiO₂가 ①이지만 여기서는 일반식 RO₂가 ③.",
+      "evidence": [
+        "energy-industrial-20160306:48"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/76/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:77",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 77,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "벽 단위 면적·시간 적분",
+      "finding": "벽 단위 면적·시간 적분",
+      "resolution": "벽 두께는 200 mm = 0.20 m, 양면 온도차는 400−50 = 350 °C이다. 단위 면적당 열손실률은 3.3×350/0.20 = 5,775 kcal/(m²·h)이다. 10시간을 곱하면 ③ 57,750 kcal/m²가 된다.",
+      "basis": "평판 정상 1차원 전도 q/A=kΔT/L. 200 mm=0.20 m, 350 °C 온도차, 10 h.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/77/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:78",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 78,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "가마 온도 분포의 비교 기준",
+      "finding": "가마 온도 분포의 비교 기준",
+      "resolution": "화면 해설 유지. 등록 답은 ④ 도염식이다. 가스가 가마 안을 돌아 아래쪽으로 내려가는 구조는 확인되지만, 실제 온도 분포를 비교할 때는 가스 배분과 제품 배치도 고려해야 한다.",
+      "basis": "바닥 흡입구를 통한 도염식 흐름은 확인. 네 형식의 온도 균일도를 비교한 동일 조건 자료 미확보.",
+      "evidence": [
+        "energy-industrial-20180915:53"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/78/"
+    },
+    {
+      "id": "energy-industrial-20020310:79",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 79,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "errorType": "흡습성과 단열 성능",
+      "finding": "흡습성과 단열 성능",
+      "resolution": "다공성 보온재는 기공 속 공기의 낮은 열전도율을 이용한다. 물을 잘 흡수해 기공의 공기가 물로 바뀌면 전도에 의한 열손실이 커질 수 있다. 따라서 ‘흡습성이 높을 것’이라는 ④는 바람직한 선정 조건이 아니다.",
+      "basis": "전도 장의 공기·물 열전도율 비교. 기공 속 공기를 물이 대체하는 경우를 판단.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/79/",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json"
+    },
+    {
+      "id": "energy-industrial-20020310:80",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20020310",
+      "number": 80,
+      "location": "에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "errorType": "내화벽돌 선정표 미확보",
+      "finding": "내화벽돌 선정표 미확보",
+      "resolution": "화면 해설 유지. 등록 답 ① 납석 벽돌 유지. 1,100 °C라는 온도 하나로 네 벽돌 중 가장 타당한 재료를 확정할 수 있는 당시 선정표가 필요하다.",
+      "basis": "설명된 사용온도 외 분위기·내화도·하중·출제 당시 교재 범위가 불명확. 일반 가마 내화벽돌 자료만으로 보기 간 선택 곤란.",
+      "evidence": [
+        "652-pot"
+      ],
+      "questionImage": null,
+      "explanationImages": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "sourceAssets": [],
+      "storedSource": "https://www.comcbt.com/cbt/problem/3062/80/"
     }
   ],
   "sources": [
@@ -4882,6 +6706,334 @@
         "choices",
         "answer"
       ]
+    },
+    {
+      "id": "652-units",
+      "url": "https://raw.githubusercontent.com/hgrecco/pint/master/pint/default_en.txt",
+      "section": "degree_Rankine, metric_horsepower, standard atmosphere, force_kilogram",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "5eb5d618172a8af47d01398f9642490216452bd410ed08ca5bdd311b856ecf7b"
+    },
+    {
+      "id": "652-si",
+      "url": "https://raw.githubusercontent.com/scipy/scipy/main/scipy/constants/_constants.py",
+      "section": "calorie_th, calorie_IT, standard gravity g and kilogram_force; convert_temperature Rankine",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "b7e429e271ce693676701f71f0e84b705d2a1267197be19685e5ca70339d59ae"
+    },
+    {
+      "id": "652-ig",
+      "url": "https://raw.githubusercontent.com/Cantera/cantera/main/src/thermo/IdealGasPhase.cpp",
+      "section": "IdealGasPhase::cv_mole = cp_mole − GasConstant; volume/temperature dependence and molecular weight",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "66e9a4e66775d2c5340f6a5d11c4dd9db44ac10829dccf5b10ded83ee5c69239"
+    },
+    {
+      "id": "652-nozzle",
+      "url": "https://raw.githubusercontent.com/Cantera/cantera/main/samples/python/thermo/isentropic_units.py",
+      "section": "isentropic(), stagnation enthalpy and v = sqrt(2(h0−h)), specific gas constant from molecular weight",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "a2a45fd4201d2592739347e9e5cf62ce388e57bd61c6509bcbdd758675accf81"
+    },
+    {
+      "id": "652-engine",
+      "url": "https://raw.githubusercontent.com/Cantera/cantera/main/samples/python/reactors/ic_engine.py",
+      "section": "epsilon compression ratio, clearance volume V_oT = V_H/(epsilon−1)",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "43acf803aa5e4589bb1e718a480cbcc7db4558e49cdb97bb5b7ff67d928a68bb"
+    },
+    {
+      "id": "652-valve",
+      "url": "https://raw.githubusercontent.com/IDAES/idaes-pse/main/docs/reference_guides/model_libraries/generic/unit_models/valve.rst",
+      "section": "Generic adiabatic valve model, pressure changer, control-volume energy balance",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "eed89ef35ff78408286c6ee07b3ee10c9e004147568d8b451a6cd2ecb0f66c9e"
+    },
+    {
+      "id": "652-carnot",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42235/index.cnxml",
+      "section": "Carnot’s Perfect Heat Engine, Figure PV graph: two isotherms and two adiabats; absolute temperatures",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "0f5fb432e19e3a34b345e66c0b1f9b10a026e0343a78ae2e322ec1816d7d03fb"
+    },
+    {
+      "id": "652-td",
+      "url": "https://raw.githubusercontent.com/CalebBell/chemicals/master/chemicals/utils.py",
+      "section": "Cp_minus_Cv: −T(∂P/∂T at V)²/(∂P/∂V at T) for stable gas",
+      "opened": true,
+      "date": "2026-11-18",
+      "sha256": "cad67c9628b026a426ea5e55b35d017580a9829c8f0abaf59f6428ca4b1309c5"
+    },
+    {
+      "id": "652-pid",
+      "url": "https://raw.githubusercontent.com/m-lundberg/simple-pid/master/simple_pid/pid.py",
+      "section": "PID.__call__, proportional = Kp × error, integral += Ki × error × dt; controlled input and setpoint",
+      "date": "2026-11-18",
+      "opened": true,
+      "sha256": "bb3873468dc505b939f9c5ce1f1effb15d95faf86c199beab618d68253e46911"
+    },
+    {
+      "id": "652-fluid",
+      "url": "https://raw.githubusercontent.com/CalebBell/fluids/master/fluids/flow_meter.py",
+      "section": "dP_orifice, dP_venturi_tube, C_long_radius_nozzle. 영구 압력손실과 계측 차압을 구분.",
+      "date": "2026-11-18",
+      "opened": true,
+      "sha256": "ddb7f3cad90126ce0749908dcc4629168e6bd3c9355d1f53bcaf3ac5a5ef7224"
+    },
+    {
+      "id": "652-loop",
+      "url": "https://raw.githubusercontent.com/python-control/python-control/main/examples/pvtol-nested.py",
+      "section": "Nested control: inner loop and outer loop, plant output and actuator input are distinct.",
+      "date": "2026-11-18",
+      "opened": true,
+      "sha256": "203a27bf720ff1d6272c6706ee5dc3b63e3a7ffb36128bff5d76872c34fd5883"
+    },
+    {
+      "id": "652-pot",
+      "url": "https://raw.githubusercontent.com/GITenberg/The-Potter-s-CraftA-Practical-Guide-for-the-Studio-and-Workshop_40411/master/40411-8.txt",
+      "section": "Charles F. Binns, The Potter’s Craft: firing, pyrometric cones, note N (heat test).",
+      "date": "2026-11-18",
+      "opened": true,
+      "sha256": "99d6b39f210ef370ee5df11ed3753f00865d2df5bd9c6e73d880626e01119c5b"
+    },
+    {
+      "id": "652-typek",
+      "url": "https://files.pythonhosted.org/packages/f9/38/4baa55697a347878f540ac1189e70ae40f8878dc400d526232c6ab779d6a/thermocouples_reference-0.20.tar.gz",
+      "section": "thermocouples_reference/source_NIST.py, NIST ITS-90 Type K reference functions −270 to 1372 °C. Hash of extracted member.",
+      "date": "2026-11-18",
+      "opened": true,
+      "sha256": "627b4ad65f673ca2f16475dcb413469d41cd31437b1daf26e263c96e3e4913a0"
+    },
+    {
+      "id": "gas-craftsman-2015-4:43",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2015-4:43 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "2edc71eced9acf5ce602b9b40e656ee93dbb4416dcd308c5f7c8c0bd68d1b156"
+    },
+    {
+      "id": "energy-industrial-20190303:37",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20190303:37 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "4bccadfbe66a1cf2222eb902b16bb49b14792e3bd265744ef04af913ffdda9b0"
+    },
+    {
+      "id": "gas-craftsman-2013-5:35",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2013-5:35 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "f28023bcf45784bfd19e9419b7166a62f996be406cbd16fd1ed7ba24c0fa3b1e"
+    },
+    {
+      "id": "gas-craftsman-2016-2:38",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2016-2:38 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "4ac8901aa40e5936e2a15370514f5a874229eb7a80b4009dff6a4079ca679993"
+    },
+    {
+      "id": "energy-industrial-20180428:28",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20180428:28 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "dfa6103230cd245c059b62698e1893314fa4ceada0ea40598d45399badb5b669"
+    },
+    {
+      "id": "gas-craftsman-2002-4:39",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2002-4:39 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "e81d780c3d9dbfcc3ec05670658698597e821fd657c277460696472bad0a3290"
+    },
+    {
+      "id": "energy-industrial-20160306:28",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20160306:28 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "71630f5722f37757b06db00bbe04a756985cb057c529bc8f130b98b2641d98d1"
+    },
+    {
+      "id": "gas-craftsman-2005-5:37",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2005-5:37 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "a0815ad1c3fd7d2c1b42ce6f4f457cfd778a84c7357574c52ea38233f58c4164"
+    },
+    {
+      "id": "energy-industrial-20200822:29",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20200822:29 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "a9176e8928b575f64a880c4c166bd2310ef304521d5cf6b7e2885e15548bf8ee"
+    },
+    {
+      "id": "energy-industrial-20180915:53",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20180915:53 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "5a6fc9fbf4ab11e5d6321581e25cae7d36302da90260fa7c1851354fe9e3544c"
+    },
+    {
+      "id": "energy-industrial-20190921:49",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20190921:49 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "ebda7c38c5af23095c9abf35d10503e410578bfb3bcca09efce8879098b48cfc"
+    },
+    {
+      "id": "energy-industrial-20200606:23",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20200606:23 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "718bf8bb591bff0a9f13229f2528db339bee16db2eb5f9a7f0cb5c2de9c1199c"
+    },
+    {
+      "id": "energy-industrial-20160306:48",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20160306:48 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "ccf44fe56c6e30b778495d0e1113e57bf780fb2508f7f69b06620c54480f136d"
+    },
+    {
+      "id": "energy-industrial-20170507:41",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20170507:41 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "cb7d4e9a8ed4450a94d1b0f5a95ef901029c64ebb4d1154424f22f17d8df3a43"
+    },
+    {
+      "id": "gas-craftsman-2004-2:39",
+      "file": "data/gas-craftsman.js",
+      "section": "gas-craftsman-2004-2:39 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "a8c4eeed5cb4e01898e8e1be74c16c5f1810517d7dcba2c157687cc3b0c8fa67"
+    },
+    {
+      "id": "energy-industrial-20170305:46",
+      "file": "data/energy.js",
+      "section": "energy-industrial-20170305:46 저장 기출 지문·네 보기·정답과 이용자 설명 대조",
+      "date": "2026-11-18",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ],
+      "sha256": "7af2cefcb335fbd8c4933026878fcac0395fbf5ef5c468fad116da8dc6064037"
     }
   ],
   "automaticAnswerCandidates": [
@@ -5136,7 +7288,7 @@
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
     "energyTextbook": "data/energy-textbook.js school-energy-topic-4 표시 1~15번, 첫 문항 school-energy-textbook-2018-2:13 (2018년 2회 · 원문 13번 · 교재 338쪽).",
-    "energyRegular": "data/energy.js energy-industrial-20020310:17부터 :80까지. :1 물성표, :4 당시 탱크 기준, :10 기종별 점화시퀀스 근거 별도 확인.",
+    "energyRegular": "data/energy.js energy-industrial-20020526:1~80. 2002.03.10은 전체 80개 판독·상태 기록. 기존 보류와 정답 확인 후보는 해당 ID별 재개.",
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
     "otherSubjects": "automaticAnswerCandidates의 나머지18건은 단순 후보. 에너지·공조 작업을 이어간 뒤 확대.",
@@ -5144,14 +7296,14 @@
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 135,
-    "contentCompleted": 122,
-    "contentCompletedChanged": 113,
-    "contentCompletedUnchanged": 9,
-    "evidenceHold": 12,
-    "answerNeedsConfirmation": 1,
-    "automaticOnly": 48869,
-    "changedQuestionIds": 115,
+    "contentExamined": 199,
+    "contentCompleted": 169,
+    "contentCompletedChanged": 158,
+    "contentCompletedUnchanged": 11,
+    "evidenceHold": 26,
+    "answerNeedsConfirmation": 4,
+    "automaticOnly": 48805,
+    "changedQuestionIds": 166,
     "imageTranscribed": 34,
     "imageFullyTranscribed": 12,
     "imagePartiallyTranscribed": 22,
@@ -5245,5 +7397,163 @@
     "comparedExamItems": 1,
     "withFraction": 1,
     "stillWithoutBankExplanation": 1629
+  },
+  "energy20020310SecondBatch": {
+    "range": [
+      17,
+      40
+    ],
+    "new": 24,
+    "completeChanged": 19,
+    "completeUnchanged": 1,
+    "held": [
+      27,
+      29
+    ],
+    "answerCheck": [
+      33,
+      34
+    ],
+    "reviewedDisplayEntries": 23,
+    "fractionDisplays": 10
+  },
+  "energy20020310ThirdBatch": {
+    "range": [
+      41,
+      80
+    ],
+    "new": 40,
+    "completeChanged": 26,
+    "completeUnchanged": 1,
+    "evidenceHold": 12,
+    "answerCheck": 1,
+    "reviewedDisplayEntries": 28,
+    "fractionDisplays": 5
+  },
+  "changeReasons": {
+    "해설 미등록": {
+      "count": 51,
+      "findings": {
+        "누락 해설 작성": 51
+      }
+    },
+    "지문·정답·자료 대조에 남은 불확실성": {
+      "count": 7,
+      "findings": {
+        "지문이 가리키는 수식 누락": 1,
+        "h–s 선도 범위 확인 필요": 1,
+        "정도 등급 비교표 없음": 1,
+        "펌프 출구압력과 정답 충돌": 1,
+        "엔트로피 전달·상태변화·생성 구별": 1,
+        "제어량과 조작량의 답 충돌": 1,
+        "물성값을 계산 결과로 오인": 1
+      }
+    },
+    "문제와 무관한 설명": {
+      "count": 6,
+      "findings": {
+        "문제 무관 일반론": 2,
+        "무관한 CO 설명·건조 배기가스 희석 보정": 1,
+        "교축밸브에 무관한 전기기기 설명": 1,
+        "무관한 CO 위험 설명·분석 순서": 1,
+        "유량계에 무관한 윤활유 설명": 1
+      }
+    },
+    "부정형·보기 비교·표 적용 범위": {
+      "count": 7,
+      "findings": {
+        "비교 대상과 원리 보완": 2,
+        "부정형 문항의 결론 교정": 2,
+        "보기 상대 비교 보완": 1,
+        "표의 대표 효율과 적용 범위 보완": 1,
+        "표의 상한 비교와 조건 보완": 1
+      }
+    },
+    "공식·계산·기호·단위·반올림": {
+      "count": 38,
+      "findings": {
+        "계산식·상사법칙": 5,
+        "단위·조건·근거 부족": 2,
+        "종합효율 기준과 반올림 보완": 1,
+        "질량과 질량유량·터빈 조건": 2,
+        "열·일 부호와 열량 명칭": 1,
+        "등압 팽창일과 단위": 1,
+        "기체상수 질량 기준·등압 팽창일": 1,
+        "연료비 정의 누락": 1,
+        "질량분율에서 표준 공기부피로 환산": 1,
+        "저위발열량 대입·수분 보정": 1,
+        "절대온도로 밀도 환산·수주 단위": 1,
+        "상당증발량·효율·비중 환산": 1,
+        "응축수량과 잠열 계수 의미": 1,
+        "습연소가스와 공기량 혼동": 1,
+        "프로판 이론공기량 대입": 1,
+        "강체 용기·압력차·표준밀도": 1,
+        "비기체상수와 보편기체상수 구별": 1,
+        "빙점·절대온도 눈금 대입": 1,
+        "미터마력·열량률 환산": 1,
+        "실린더 총체적과 행정체적 구분": 1,
+        "노즐 에너지수지·공학단위계": 1,
+        "열의 일당량과 역수 구별": 1,
+        "강체 용기에서 비체적 보존·건도": 1,
+        "정압 팽창일·kcal와 kJ 환산": 1,
+        "비례이득과 비례대 정의": 1,
+        "게이지압과 현지 대기압": 1,
+        "공기압 신호 단위 환산": 1,
+        "화씨 영점·눈금 환산": 1,
+        "원통 후프응력·압력 및 길이 단위": 1,
+        "나사 최대효율·마찰각 유도": 1,
+        "벽 단위 면적·시간 적분": 1,
+        "반응식 원자 보존·물리적 탈기": 1
+      }
+    },
+    "개념·장치 작동 원리·적용 조건": {
+      "count": 57,
+      "findings": {
+        "PI 계단응답 판독": 1,
+        "건식·습식 작동 원리 보완": 2,
+        "경도와 P알칼리도의 구별": 1,
+        "공업분석·원소분석 구별": 1,
+        "국부전지와 부식 형태": 1,
+        "급가열 시 열팽창 차이": 1,
+        "기체 방출과 금속 산화 구별": 2,
+        "기체 처리 범위와 공통 대상": 1,
+        "댐퍼 유량 조절과 누설 구별": 1,
+        "도염식 가마와 전기 발열체 구별": 1,
+        "무조건 시료 냉각하는 설명": 1,
+        "물리적 탈기와 약제 반응 구분": 1,
+        "부식과 스케일 구별": 1,
+        "부하율과 증발계수 혼동": 1,
+        "분리 원리 보완": 1,
+        "비열의 적용 조건": 1,
+        "산성 내화물 대표 산화물 유형": 1,
+        "서모컬러와 내화도 시험 구별": 1,
+        "압력손실·집진효율 인과 혼동": 2,
+        "액적 포집 원리 보완": 1,
+        "액주계 점성과 응답속도": 1,
+        "에너지 보존과 열기관 조건": 1,
+        "연료 제어에 대한 일반화": 1,
+        "열·일 부호와 경로": 1,
+        "열·일과 보존량 구별": 2,
+        "열과 일의 전환 조건": 1,
+        "열전대 측온 범위": 1,
+        "염기성 슬래그와 내화물 분류": 1,
+        "요로 분류의 기준": 1,
+        "용존기체와 금속 처리 구별": 1,
+        "용존산소와 금속 부식": 1,
+        "이론공기량과 실제 혼합 구별": 1,
+        "이상기체 내부에너지와 등적 열량 조건": 1,
+        "이상기체 비열과 팽창일": 1,
+        "이상기체·등온 조건": 2,
+        "작동 원인·조건 일반화": 1,
+        "제1법칙과 제3법칙의 구별": 6,
+        "주·종속 제어루프 역할": 1,
+        "지르코니아 성분과 측정 원리": 1,
+        "철 산화·고액분리": 2,
+        "측정 대상 구별": 1,
+        "카르노 선도 좌표 구별": 1,
+        "폭기와 탈기의 구별": 3,
+        "흡습성과 단열 성능": 1
+      }
+    }
   }
 }
