@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.8',scope:'industrial',date:'2026.11.18',title:'에너지 기출 계산 해설',summary:'에너지관리산업기사 2002년 3월 회차의 앞 16문항을 검토했습니다.',tags:['에너지','계산'],changes:['연료비, 이론 공기량, 통풍력, 연료 소비량, 최대 이산화탄소 농도에 분수 대입식을 넣었습니다.','석탄 공업분석, 고위·저위발열량, 폭넓게 사용된 일반론을 해당 문항에 맞춰 보완했습니다.']},
     {version:'6.2.7',scope:'industrial',date:'2026.11.18',title:'열역학과 급수처리 해설',summary:'교재 23문항과 연결된 기출 5문항에 원문과 대조한 풀이를 반영했습니다.',tags:['에너지','교재'],changes:['터빈 출력의 질량유량 단위와 등압 팽창일의 계산을 보완했습니다.','폭기와 탈기를 구분하고 503쪽 탈산소 반응식의 질소 누락을 교정했습니다.','해설 이미지 23개와 동일 문제 5개를 글자로 읽을 수 있습니다.']},
     {version:'6.2.6',scope:'industrial',date:'2026.11.18',title:'집진장치 단원 해설',summary:'에너지 교재 집진장치 11문항의 풀이와 근거를 보완했습니다.',tags:['에너지','집진장치'],changes:['474쪽 종합 집진율을 분수식으로 풀고 반올림한 보기까지 확인할 수 있습니다.','교재 해설 이미지 8개에 대조 텍스트를 추가하고 동일 문제 4개를 글자로 표시합니다.','연결된 이용자 해설과 교정 풀이의 출처를 구분합니다.']},
     {version:'6.2.5',scope:'industrial',date:'2026.11.18',title:'산업안전기사 해설과 분수식',summary:'해설이 비어 있던 산업안전기사 39문항에 풀이를 추가했습니다.',tags:['해설','계산'],changes:['산업안전기사 19문항과 공조 9문항의 풀이에서 분자와 분모를 위아래로 읽을 수 있습니다.','저장된 COMCBT 이용자 해설을 참고한 7문항에는 참고한 회차와 번호를 표시합니다.']},
@@ -2785,8 +2786,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.7';
+  changelog.versions.industrial = '6.2.8';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.7';
+  changelog.currentVersion = '6.2.8';
   window.CBT_CHANGELOG = changelog;
 })();

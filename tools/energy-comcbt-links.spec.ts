@@ -44,6 +44,9 @@ test('원본 해설·정답 fingerprint와 566개 연결을 유지한 집진장�
   expect(updated.explanation,id).toBe(entry.text);
   expect(updated.explanationImages,id).toEqual(q.explanationImages);
   expect(updated.answer,id).toBe(q.answer);
+  if (q.explanationType === 'ai-reference') {
+   expect(updated.additionalExplanations?.some(section => section.source === q.source && section.text === q.explanation),id).toBe(false);
+  }
   expect(energyExplanation({...q,text:q.text+'조건 변경'},id).explanation,id).toBe(q.explanation);
  }
  for(const [id,link] of Object.entries(matches.links)){

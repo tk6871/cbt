@@ -173,3 +173,20 @@ test('급수처리 원문 반응식과 교정식·답안 저장', async ({page},
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
   await explanation.screenshot({path:info.outputPath('boiler-water.png')});
 });
+
+test('2002년 연도가스 CO₂ 보정 분수와 답안 저장', async ({page}, info) => {
+  await prepare(page, 'energy');
+  await page.locator('#round-card-energy-industrial-20020310').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('16');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'연도가스를 분석'});
+  await card.locator('.choice-button').first().click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('16.8%');
+  const formula = explanation.locator('.math-formula');
+  await expect(formula.locator('.katex-html .mfrac')).toBeVisible();
+  await expect(formula).toHaveAttribute('aria-label', /16.8퍼센트/);
+  expect(await formula.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20020310:16'])).toBe(1);
+  await explanation.screenshot({path:info.outputPath('flue-gas.png')});
+});

@@ -42,7 +42,8 @@ export function energyExplanation(question: Question, id: string, source?: Quest
   ? source.additionalExplanations?.find(section => section.source === source.source)?.text
   : linked.explanation;
  const sections = [...(linked.additionalExplanations || [])];
- if (original && linked.source?.startsWith('https://www.comcbt.com/cbt/problem/')
+ const generated = linked.explanationType === 'ai-reference' || linked.explanationProvenance === 'concise-answer-guide';
+ if (!generated && original && linked.source?.startsWith('https://www.comcbt.com/cbt/problem/')
    && !sections.some(section => section.source === linked.source && section.text === original)) {
   sections.push({label:entry.originalLabel || inherited?.originalLabel || '기존 COMCBT 이용자 해설', source:linked.source, text:original});
  }

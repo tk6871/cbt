@@ -218,5 +218,85 @@
     "fingerprint": "6c1ae591d2dd8c5",
     "text": "원수와 공기를 접촉시키는 ② 기폭법(폭기법)이다. 자유 CO₂는 기체로 빠져나오고 철·망간은 수질과 산화 조건에 따라 불용성 입자를 만들어 후단에서 걸러 낸다. 세 성분이 같은 방식으로 제거되는 것은 아니다.",
     "basis": "에너지관리산업기사 필기 기출문제 2017년 09월 23일 (4회) (정답, 해설) 원문·보기·정답 대조. Solubility, USGS PHREEQC Example 9, WaterTAP iron_and_manganese_removal_zo.py."
+  },
+  "energy-industrial-20020310:1": {
+    "fingerprint": "4a062e335a9d5ce5",
+    "text": "이 문항은 석탄 열전도율의 대략적인 범위를 묻는다. 평판 전도식에서 열전도율은 물성값이다. 지문에는 전열량·면적·두께·온도차의 측정값이 없어 이 식으로 보기의 값을 계산할 수 없다. 등록 답은 ②이며, 출제 원전의 물성표는 확인이 필요하다.",
+    "basis": "Conduction, slab equation"
+  },
+  "energy-industrial-20020310:2": {
+    "fingerprint": "fad57dd6c9175615",
+    "text": "이론공기량은 연료와 산소가 빠짐없이 반응한다고 가정한 최소량이다. 실제 연소실에서는 연료와 공기가 완전히 섞이지 않는 부분이 생긴다. 그래서 이론량만 공급하면 완전연소에 충분하다고 본 ④가 잘못이다.",
+    "basis": "Air Required for Combustion, 식 (10) 다음의 practical air supply"
+  },
+  "energy-industrial-20020310:3": {
+    "fingerprint": "3d2b5177ac7ad864",
+    "text": "석탄 공업분석은 수분·휘발분·회분·고정탄소의 비율을 구한다. 질소 함량은 연료에 들어 있는 원소의 조성을 조사하는 원소분석 항목이다. 따라서 ③ 질소분을 고른다.",
+    "basis": "Proximate Analysis 및 The Determination of Heating Values of Fuels"
+  },
+  "energy-industrial-20020310:6": {
+    "fingerprint": "80cecd9a08fbc2ac",
+    "text": "기체연료는 배관의 유량을 조절할 수 있고 연소용 공기 공급량도 따로 조절할 수 있다. 연료가 기체라는 이유로 효율이 낮고 연소 제어가 어렵다고 단정한 ③이 잘못이다. 실제 효율은 공기와 연료의 혼합 등 운전 조건에 따라 달라진다.",
+    "basis": "Blast Furnace Gas Burners, 공기 및 가스 공급량의 독립 조절 설명"
+  },
+  "energy-industrial-20020310:7": {
+    "fingerprint": "9cda44a46ba268d7",
+    "text": "여기서 연료비는 가격이 아니라 고정탄소의 질량을 휘발분의 질량으로 나눈 값이다. 무연탄은 탄화도가 높아 고정탄소의 비율이 크고 휘발분이 적으므로 보기 중 이 비가 가장 크다. 따라서 ④ 무연탄이다. 식의 FC는 고정탄소, VM은 휘발분이다.",
+    "basis": "Table 36, Anthracite 및 Peat. 가연분 기준 탄종별 고정탄소·휘발분 비교.",
+    "formula": {
+      "tex": "R_f=\\frac{m_{\\mathrm{FC}}}{m_{\\mathrm{VM}}}",
+      "label": "연료비는 고정탄소 질량 나누기 휘발분 질량"
+    }
+  },
+  "energy-industrial-20020310:8": {
+    "fingerprint": "ff2bdcf9d04d9ca8",
+    "text": "연료 1 kg을 기준으로 탄소 0.80 kg에 필요한 산소는 0.80/12 kmol, 수소 0.15 kg에는 0.15/4 kmol이다. 연료 안의 산소 0.05 kg에 해당하는 0.05/32 kmol을 빼면 약 0.1026 kmol O₂가 필요하다. 표준부피로 바꾸고 공기의 산소 부피분율 0.21로 나누면 ① 10.95 Nm³/kg이다.",
+    "basis": "산소 원자수지. 1 kg 연료당 0.8/12 + 0.15/4 − 0.05/32 = 0.102604 kmol O₂. 0 °C·1 atm 기준 22.414 m³/kmol, 공기 산소 21 mol%.",
+    "formula": {
+      "tex": "V_{a,0}=\\frac{0.1026\\times22.414}{0.21}\\approx10.95\\;\\mathrm{Nm^3/kg}",
+      "label": "표준 산소 부피를 0.21로 나누면 연료 1킬로그램당 표준 공기 10.95세제곱미터"
+    }
+  },
+  "energy-industrial-20020310:9": {
+    "fingerprint": "db0a88941e769438",
+    "text": "원소 조성으로 고위발열량을 먼저 추정한다. 질량 백분율을 쓰는 수정 뒬롱식에 대입하면 338×72 + 1428×(5.3 − 8.9/8) + 95×0.4 ≈ 30,354 kJ/kg, 약 7,255 kcal/kg이다. 연료 1 kg당 생성수와 원래 수분은 9×0.053 + 0.009 = 0.486 kg이다. 물 1 kg당 약 600 kcal를 빼면 저위발열량은 약 6,960 kcal/kg이므로 ③ 약 7,000이다.",
+    "basis": "HHV_modified_Dulong, B&W 식 (18)과 higher/lower 구별. 30,353.75 kJ/kg ÷ 4.184 ≈ 7,255 kcal/kg에서 수분 보정 약 292 kcal/kg."
+  },
+  "energy-industrial-20020310:11": {
+    "fingerprint": "adf5d5bb6f99d5b9",
+    "text": "1.2 kg/m³는 배기가스가 0 °C일 때의 값이다. 압력이 같으면 밀도는 절대온도에 반비례하므로 130 °C의 밀도는 1.2×273/403 ≈ 0.813 kg/m³이다. 높이 50 m에서 밀도 차에 의한 통풍압은 g×50×(1.05−0.813) Pa이다. 1 mmH₂O ≈ 9.81 Pa이므로 약 11.85 mmH₂O이고 가장 가까운 보기는 ② 11.9이다.",
+    "basis": "Draft Formula, 식 (24). 표준 배기가스 밀도를 운전 온도로 보정한 후 같은 높이의 기체 기둥 압력차 검산.",
+    "formula": {
+      "tex": "\\rho_g=1.2\\times\\frac{273}{403}\\approx0.813\\;\\mathrm{kg/m^3}",
+      "label": "섭씨 130도에서 배기가스 밀도는 약 0.813킬로그램 매 세제곱미터"
+    }
+  },
+  "energy-industrial-20020310:12": {
+    "fingerprint": "73b91fd5a3751c43",
+    "text": "기준 증발량은 100 °C 물을 같은 온도의 포화증기로 만드는 양으로 환산한 값이다. 이때 잠열은 약 539 kcal/kg이므로 유효열량은 5,000×539 kcal/h이다. 이를 효율 0.88과 저위발열량 9,700 kcal/kg으로 나누면 연료 약 316 kg/h가 필요하다. 비중 0.96에 해당하는 밀도 약 0.96 kg/L로 나누면 약 329 L/h, ④ 330 L/h이다.",
+    "basis": "Equivalent Evaporation from and at 212 °F, 잠열 970.4 Btu/lb ≈ 539 kcal/kg. 지문 효율과 비중 0.96으로 질량·체적 검산.",
+    "formula": {
+      "tex": "\\dot V_f=\\frac{5000\\times539}{0.88\\times9700\\times0.96}\\approx329\\;\\mathrm{L/h}",
+      "label": "유효 열량을 효율과 발열량과 밀도로 나누면 시간당 약 329리터"
+    }
+  },
+  "energy-industrial-20020310:13": {
+    "fingerprint": "51b6e1a92326d7d3",
+    "text": "이 문제는 액체연료의 인화점을 재는 기구와 가스 시료의 성분을 분석하는 기구를 구별한다. 헴펠 장치는 가스 분석에 쓰인다. 따라서 인화점 측정기와 관계없는 보기는 ④이다.",
+    "basis": "Flue Gas Analysis, Orsat와 Hempel 기구에 같은 가스 시료를 넣어 가스 성분을 확인하는 항목."
+  },
+  "energy-industrial-20020310:15": {
+    "fingerprint": "3f7a86791cc1a54a",
+    "text": "H와 W를 연료 1 kg당 수소와 수분의 질량(kg)으로 쓰면, 수소 1 kg이 연소해 물 약 9 kg을 만든다. 생성수와 원래 수분의 합은 9H + W이다. 저위발열량에 그 물의 응축열을 더해야 고위발열량이 되므로 보기의 근사 잠열을 쓰면 Hₕ = Hℓ + 600×(9H + W), ④이다.",
+    "basis": "LHV_from_HHV의 수분량 항. 수소 2 kg에서 물 18 kg 생성. 보기의 600은 kcal/kg 물 단위의 근삿값."
+  },
+  "energy-industrial-20020310:16": {
+    "fingerprint": "bb6fe25582b36e19",
+    "text": "완전연소한 건조 연도가스에 남은 O₂가 과잉공기에서 왔다고 본다. 시료 100부에 O₂가 6부이면 과잉공기의 비율은 6/21이다. 과잉공기를 제외해도 CO₂의 양은 같으므로, 측정 농도 12%를 남은 비율 1 − 6/21로 나눈다. 이론 최대 CO₂ 농도는 ① 16.8%이다.",
+    "basis": "Flue gas composition and excess air. 완전연소·건조 기준·공기 중 CO₂ 무시. 건조 가스 100부에 O₂ 6부면 잉여 공기가 100×6/21부. 이를 제외하고 CO₂ 12부를 재계산.",
+    "formula": {
+      "tex": "(\\mathrm{CO_2})_{\\max}=12\\%\\times\\frac{21}{21-6}=16.8\\%",
+      "label": "이산화탄소 12퍼센트에 21 나누기 15를 곱하면 최대 16.8퍼센트"
+    }
   }
 }
