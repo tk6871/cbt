@@ -72,7 +72,7 @@ for(const {explanationFormula:{tex,label}} of fractions){
  assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);
 }
 const withoutExplanation=[...bankById.values()].filter(q=>!q.explanation&&!q.explanationHtml&&!q.explanationImages?.length);
-assert.equal(withoutExplanation.length,review.safety20220424Batch.stillWithoutBankExplanation);
+assert.equal(withoutExplanation.length,review.safety20220424SecondBatch.withoutBankExplanation);
 assert.equal(bankQuestions,inventory.counts.bankQuestions);
 for(const row of review.records)for(const a of row.sourceAssets)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(a.displayAsset)).digest('hex'),a.sha256,`Reviewed pixels changed: ${a.original}`);
 const oldConfirmed=JSON.parse(original('data/image-text/confirmed.json')),newConfirmed=JSON.parse(fs.readFileSync('data/image-text/confirmed.json'));

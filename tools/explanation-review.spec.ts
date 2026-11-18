@@ -269,3 +269,34 @@ test('한솔 1-225쪽 유효흡입수두 원문·분수·보기',async({page},in
   await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
   await box.screenshot({path:info.outputPath('hansol-suction-head.png')});
 });
+
+test('2002년 5월 CO₂ 가열량의 이의제기와 분수식', async ({page}, info) => {
+  await prepare(page, 'energy');
+  await page.locator('#round-card-energy-industrial-20020526').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('10');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'평균분자 열용량'});
+  await card.locator('.choice-button').nth(2).click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('1,382 kcal');
+  await expect(explanation.locator('.math-formula .mfrac')).toBeVisible();
+  const archived = explanation.locator('details').filter({hasText:'저장된 COMCBT 이의제기와 관리자 답변'});
+  await archived.locator('summary').click();
+  await expect(archived).toContainText('1381.818');
+  await archived.locator('summary').click();
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20020526:10'])).toBe(3);
+  await explanation.evaluate(box => box.scrollIntoView({block:'center', behavior:'instant'}));
+  await explanation.screenshot({path:info.outputPath('co2-heat.png')});
+});
+
+test('산업안전기사 최소 컷셋 두 조합과 원본 도식', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20220424').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('28');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'Fussell'});
+  await expect(card.locator('img[src^="data:image/svg+xml"]').first()).toBeVisible();
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('{1, 2}와 {1, 3}');
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:28'])).toBe(2);
+});

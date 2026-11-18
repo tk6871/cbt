@@ -352,5 +352,41 @@
     "explanation": "상황을 잘못 이해해 처음부터 맞지 않는 목표나 계획을 세운 경우는 ② 착오(mistake)다. 올바르게 계획했지만 행동이 빗나간 실수(slip), 해야 할 일을 잊은 건망증(lapse), 규칙을 알면서 어긴 위반(violation)과 구별한다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "저장된 참고 기출 대조. 2008.07.27 37번, 2021.05.15 37번, 2019.04.27 33번. 2008년의 대응 지문에서 착오는 ①이다. 2021년 실수와 2019년 위반의 대비 기출을 확인. 저장 AI 해설은 이용자 작성 근거로 쓰지 않았다."
+  },
+  "safety-engineer-20220424:24": {
+    "questionSHA256": "d4751601f98a1c3a5885611f052c01de7e8ef3c7784e920af7cc26d1d51666c4",
+    "explanation": "욕조곡선의 초기에 고장률이 높은 이유 중 하나는 제작·조립 과정의 결함이 운전 초기에 드러나기 때문이다. 디버깅은 이 결함을 찾아 바로잡아 고장률이 안정된 구간에 이르도록 하는 과정이므로 ①이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2019년 24번의 디버깅·번인과 2015년 51번의 고장률 감소·일정·증가 구간을 대조했다."
+  },
+  "safety-engineer-20220424:26": {
+    "questionSHA256": "30b4c391133b9fa25ff40b5cde80c7cd4ae95b3c99e227677dd164bff85a30e4",
+    "explanation": "인간공학에서는 사람의 신체 치수·힘·지각 능력과 한계를 고려해 작업과 기계를 설계한다. ②는 이 방향을 뒤집어 사람이 기계에 맞춰야 한다고 하므로 틀리다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2013.06.02 39번의 직접 목적과 저장된 이용자 설명을 이번 네 보기와 대조했다."
+  },
+  "safety-engineer-20220424:27": {
+    "questionSHA256": "ff3b0fc0e4fe397f194507737d18aafff56f591475b1cdb4369ee924c96525ab",
+    "explanation": "HAZOP의 가이드워드는 설계 의도에서 어떻게 벗어나는지 나타낸다. Other than은 의도했던 것과 전혀 다른 것으로 대체되는 경우다. 이를 단순한 환경 요인이라고 한 ③이 틀리다. More/Less는 양의 변화, Part of와 As well as는 의도한 성질의 누락과 추가를 가리킨다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2002.03.10 31번의 유인어 표에서 Other than의 완전한 대체 및 Part of의 일부만 실현되는 뜻을 대조했다."
+  },
+  "safety-engineer-20220424:28": {
+    "questionSHA256": "20b2fdf62d3d68dbf7c549e9e20165bfdbc7efbaf35697aa418915bc24abd329",
+    "explanation": "그림에서 M은 사건 2와 3의 OR이고, T는 사건 1과 M의 AND다. 따라서 T는 1과 2가 함께 발생하거나 1과 3이 함께 발생하면 성립한다. 어느 쌍도 한 사건을 빼면 충분하지 않으므로 {1, 2}와 {1, 3}은 모두 최소 컷셋이다. 현재 그림은 보기 ①과 ②를 모두 지지하며 등록 답은 ②다. 공식 도판과 정답 확인이 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "저장된 지문 내 SVG를 실제 렌더링하고 상하 게이트의 이름과 연결선을 대조했다. T = 1 AND (2 OR 3)."
+  },
+  "safety-engineer-20220424:29": {
+    "questionSHA256": "cbc6591b058d96ac4708b9b43d0dd70b99e35c9d1ba0881434fbed02ca8b2283",
+    "explanation": "이 경보 설계 지침에서는 멀리 보낼 신호에 높은 주파수보다 낮은 주파수를 사용한다. 참고 기출은 300 m 이상에서 1,000 Hz 이하를 기준으로 약 800 Hz를 고른다. 따라서 1,000 Hz를 초과하라고 한 ④가 지침과 반대다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2013.08.18 39번의 300 m 조건·800 Hz 보기와 1,000 Hz 이하 이용자 설명을 대조했다."
+  },
+  "safety-engineer-20220424:30": {
+    "questionSHA256": "8088736d1154a18035a5ff4c1e933d263f83fa1694fab570e657d26f9fa63f28",
+    "explanation": "④ 통상사상은 정상적인 작업이나 기계 운전 중에도 일어날 것으로 기대되는 사건이다. 그 사건이 다른 조건과 겹치면 재해 경로의 요소가 될 수 있다. 더 이상 분해하지 않는 원인을 뜻하는 기본사상과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2014.05.25 38번에서 네 기호의 원본을 확인했다. 해당 문항에서는 집 모양 ③이 통상사상, 여기서는 용어 보기 ④이다."
   }
 }
