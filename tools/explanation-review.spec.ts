@@ -649,3 +649,34 @@ test('암모니아 응급처치 안내와 과거 보기·저장 답 유지', asy
   await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['gas-craftsman-2014-5:20'])).toBe(4);
   await explanation.screenshot({path:info.outputPath('ammonia-first-aid.png')});
 });
+
+test('공조 자료 냉수코일 원본 전환 및 분수 계산', async ({page}, info) => {
+ await prepare(page, 'hvac');
+ await page.locator('#round-card-hvac-20211').getByRole('button', {name:'학습모드', exact:true}).click();
+ const card = page.locator('.question-card').first();
+ await expect(card.locator('.question-text')).toContainText('83740');
+ await expect(card.locator('button.choice-button')).toHaveCount(4);
+ await card.locator('button.choice-button').nth(1).click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('66.5 L/min');
+ await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
+ await explanation.screenshot({path:info.outputPath('coil-flow-rate.png')});
+ const toggle = card.locator('.question-transcription-control');
+ await toggle.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+ await card.locator('.source-question-image').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20211:1'])).toBe(2);
+});
+
+test('산업안전 지게차 모멘트 경계값과 분수', async ({page}, info) => {
+ await prepare(page, 'safety-engineer');
+ await page.locator('#round-card-safety-engineer-20210814').getByRole('button', {name:'학습모드', exact:true}).click();
+ await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('45');
+ await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+ const card = page.locator('.question-card').filter({hasText:'화물중량이 200kgf'});
+ await card.locator('button.choice-button').nth(1).click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('0.5 m를 넘어야');
+ await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
+ await explanation.screenshot({path:info.outputPath('forklift-moment.png')});
+});

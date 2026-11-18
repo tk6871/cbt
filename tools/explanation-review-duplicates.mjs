@@ -4,6 +4,7 @@ import vm from 'node:vm';
 import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 
+import {questionExclusion} from './explanation-review-scope.mjs';
 import { choiceMatch, isAnswerNoticeOnly } from './review-choice-matching.mjs';
 
 const {values, positionals} = parseArgs({allowPositionals:true, options:{
@@ -24,7 +25,7 @@ const pendingNotices = new Set();
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const isExplanation = key => key.toLowerCase().includes('explanation');
 const ledger = JSON.parse(fs.readFileSync('docs/explanation-review/2026-11-18/review.json'));
-const statuses = new Map(ledger.records.map(row => [row.id, row.status]));
+const records = new Map(ledger.records.map(row => [row.id, row]));
 const groups = new Map();
 let compared = 0;
 
@@ -37,6 +38,8 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
   for (const bank of Object.values(context.window).flat()) {
     for (const round of bank?.rounds || []) {
       for (const q of round.questions) {
+        const id = (q._originRoundId || round.id) + ':' + (q._originalNumber || q.number);
+        if (questionExclusion(bank, round, q, records.get(id))) continue;
         // External overlays, pictures and scanned material require their own comparison.
         if (!byChoice && (!q.text?.trim() || q.sourceImage || q.images?.length || q.explanationImages?.length ||
             q.choices.some(c => c.images?.length) || /<img\b|data:image\//i.test(JSON.stringify(q)))) continue;
@@ -46,11 +49,10 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
         if (byChoice && !match) continue;
         const groupKey = byChoice ? digest(match.signature) : bank.key + ':' + digest(fields.filter(([k]) => !isExplanation(k)));
         const explanation = digest(fields.filter(([k]) => isExplanation(k)));
-        const id = (q._originRoundId || round.id) + ':' + (q._originalNumber || q.number);
-        if (noticesOnly && !statuses.has(id) && isAnswerNoticeOnly(q)) pendingNotices.add(id);
+        if (noticesOnly && !records.has(id) && isAnswerNoticeOnly(q)) pendingNotices.add(id);
         if (values.packet) packetRows.set(id, q);
         if (!groups.has(groupKey)) groups.set(groupKey, []);
-        groups.get(groupKey).push({ id, file, round: round.id, number: q.number, ...(match && { positions: match.positions, correct: match.correct, answer: q.answer }), explanation, status: statuses.get(id) || null });
+        groups.get(groupKey).push({ id, file, round: round.id, number: q.number, ...(match && { positions: match.positions, correct: match.correct, answer: q.answer }), explanation, status: records.get(id)?.status || null });
         compared++;
       }
     }

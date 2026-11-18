@@ -12,6 +12,8 @@ const baseline=review.baseline;
 const original=file=>execFileSync('git',['show',`${baseline}:${file}`],{encoding:'utf8',maxBuffer:40e6});
 const parse=source=>{const ctx={window:{}};vm.runInNewContext(source,ctx);return structuredClone(Object.values(ctx.window).flatMap(v=>Array.isArray(v)?v:[v]));};
 const reviewedIds=new Set(review.records.filter(r=>r.changed).map(r=>r.id));
+const recordsById = new Map(review.records.map(row => [row.id,row]));
+const supplementSource = fs.readFileSync('tools/stage-energy-restored-full.py', 'utf8');
 const primaryReviews=new Map(review.records.filter(r=>r.primarySourceReviewed).map(r=>[r.id,r]));
 const noticeReviews=new Map(review.records.filter(r=>r.reviewedAnswerNotice).map(r=>[r.id,r]));
 const correctedLinks = new Map(review.records.filter(row => row.additionalCorrection).map(row => [row.id, row.additionalCorrection]));
@@ -63,6 +65,20 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   const r=after[ci].rounds[ri];for(let qi=0;qi<r.questions.length;qi++){
    const q=r.questions[qi],b=before[ci].rounds[ri].questions[qi],id=`${q._originRoundId||r.id}:${q._originalNumber||q.number}`;
    assert.ok(!bankById.has(id),`Duplicate ID ${id}`);bankById.set(id,q);bankQuestions++;
+   const reviewRow = recordsById.get(id);
+   if (reviewRow?.originalItem) {
+    const item = reviewRow.originalItem;
+    assert.equal(item.file, file, id);
+    assert.equal(item.round, r.id, id);
+    assert.equal(item.number, q.number, id);
+    const bytes = JSON.stringify(item.fields.map(key => q[key]));
+    assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), item.sha256, id);
+   }
+   if (reviewRow?.reviewedSupplement) {
+    assert.equal(q.explanation, reviewRow.resolution, id);
+    assert.equal(q.explanationProvenance, 'printed-question-and-answer-supplement', id);
+    assert.ok(supplementSource.includes(q.explanation), id);
+   }
    const correction = correctedLinks.get(id);
    if (correction) {
     const prior = b.additionalExplanations.find(item => item.source === correction.source);

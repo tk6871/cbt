@@ -8,8 +8,9 @@ test.use({serviceWorkers:'block'});
 test('전사 원문 해시 전수·임시/확인 구분·수식 원문 보존',({},info)=>{
  test.skip(info.project.name!=='desktop','파일 전수 검사는 한 번만 실행합니다.');
  const entries={...confirmed,...Object.assign({},...families.map(family=>JSON.parse(fs.readFileSync(`data/image-text/${family}.json`,'utf8'))))} as Record<string,ImageTranscription>;
- expect(Object.keys(entries)).toHaveLength(2305);
- expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(497);
+ expect(Object.keys(entries)).toHaveLength(2309);
+ expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(501);
+ expect(entries['assets/hvac/assets/questions/2021_1/04.jpg'].question?.choices).toEqual(['0','0.5','1','∞']);
  expect(entries['assets/hvac-hansol/questions/2025_2/47.webp'].question?.choices[1]).toBe('112.5mmAq');
  expect(entries['assets/hvac-hansol/questions/2018_3/69.webp'].question?.choices[3]).toBe('2차저항법');
  expect(entries['assets/energy-restored/questions/2022-4-8.webp']).toBeUndefined();
