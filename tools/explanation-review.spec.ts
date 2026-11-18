@@ -621,5 +621,31 @@ test('급탕 순환수두 원문 두 판본의 분수와 답안 유지', async (
  await control.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
  await expect(card.locator('.choice-button.selected')).toContainText('112.5');
  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['hvac-hansol-2025-2:47'])).toBe(2);
+ const formula = card.locator('.explanation-box .math-formula').filter({has:page.locator('.mfrac')}).first();
+ const endVisible = await formula.evaluate(el => {
+   const end = el.scrollWidth - el.clientWidth;
+   el.scrollLeft = end;
+   return Math.abs(el.scrollLeft - end) <= 1;
+ });
+ expect(endVisible).toBe(true);
  await card.screenshot({path:info.outputPath('circulation-head-text.png')});
+});
+
+test('암모니아 응급처치 안내와 과거 보기·저장 답 유지', async ({page}, info) => {
+  await prepare(page, 'gas-craftsman');
+  await page.locator('#round-card-gas-craftsman-2014-5').getByRole('button', {name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('20');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'암모니아 취급 시 피부에'});
+  const historicalAnswer = card.locator('.choice-button').nth(3);
+  await expect(historicalAnswer).toContainText('붕산수');
+  await historicalAnswer.click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation).toContainText('최소 15분간 씻고 바로 진료');
+  await expect(explanation).toContainText('붕산수를 바르는 단계는 이 지침에 없다');
+  const archived = explanation.locator('.source-explanation-details').filter({hasText:'등록된 이용자 해설과 이의제기'});
+  await archived.locator('summary').click();
+  await expect(archived.locator('p')).toContainText('다량의 물로 세척');
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['gas-craftsman-2014-5:20'])).toBe(4);
+  await explanation.screenshot({path:info.outputPath('ammonia-first-aid.png')});
 });

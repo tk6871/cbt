@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.27',scope:'industrial',date:'2026.11.19',title:'가스 응급처치와 에너지·공조 계산 해설',summary:'가스 노출 7문항의 옛 보기와 실제 응급처치를 구분했습니다.',tags:['기출','계산','안전'],changes:['두 회차의 열교환·계측·회로 해설을 대조하고 근거와 다른 답을 표시했습니다.']},
     {version:'6.2.26',scope:'industrial',date:'2026.11.19',title:'에너지·공조 계산 교정과 전기·설비 해설',summary:'혼합온도·회로·동체 두께를 재계산하고 정답과 다른 결과를 표시했습니다.',tags:['기출','계산','교재'],changes:['전기·지게차·설비보전 159문항에 해설을 추가하고 공조 교재 원도 두 문항을 텍스트로도 제공합니다.']},
     {version:'6.2.25',scope:'industrial',date:'2026.11.19',title:'산업안전 3월 기출 해설',summary:'신뢰도·조도·전기에너지의 계산과 작업안전 기준을 보완했습니다.',tags:['산업안전','기출해설'],changes:['복수 오답이 의심되는 보기와 당시 기준을 더 확인할 문항에 근거를 표시합니다.']},
     {version:'6.2.24',scope:'industrial',date:'2026.11.18',title:'정보처리 기출과 열역학·공조 해설',summary:'정답 안내만 있던 정보처리 문제와 서로 다른 보기가 연결된 공조 기출을 보완했습니다.',tags:['정보처리','에너지','공조'],changes:['스케줄링의 분수, 냉매 보기 차이, 비가역 과정의 엔트로피 변화를 확인할 수 있습니다.']},
@@ -2804,8 +2805,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.26';
+  changelog.versions.industrial = '6.2.27';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.26';
+  changelog.currentVersion = '6.2.27';
   window.CBT_CHANGELOG = changelog;
 })();
