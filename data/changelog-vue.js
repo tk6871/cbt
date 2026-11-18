@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.24',scope:'industrial',date:'2026.11.18',title:'정보처리 기출과 열역학·공조 해설',summary:'정답 안내만 있던 정보처리 문제와 서로 다른 보기가 연결된 공조 기출을 보완했습니다.',tags:['정보처리','에너지','공조'],changes:['스케줄링의 분수, 냉매 보기 차이, 비가역 과정의 엔트로피 변화를 확인할 수 있습니다.']},
     {version:'6.2.23',scope:'industrial',date:'2026.11.18',title:'산업안전 기출 표와 보호장치 해설',summary:'전기·화학·건설안전 기출의 빈 해설과 여러 회차의 반복 문제를 보완했습니다.',tags:['산업안전','공조'],changes:['감전방지·계측장치 기준의 적용 조건과 표 계산을 볼 수 있습니다.']},
     {version:'6.2.22',scope:'industrial',date:'2026.11.18',title:'연소·냉동·제어 기출 해설 교정',summary:'열량과 유량의 단위를 맞추고 원래 그림에서 제어식을 다시 읽었습니다.',tags:['에너지','공조'],changes:['보기와 계산이 일치하지 않는 문항에는 확인할 내용을 표시합니다.']},
     {version:'6.2.21',scope:'industrial',date:'2026.11.18',title:'공조 교재 원문과 냉매 물성 대조',summary:'냉동·열역학·공기조화·전기 문항의 원본을 대조했습니다.',tags:['공조','교재'],changes:['냉매 비교 온도와 단위, 냉동능력·압축일·열량의 계산식을 보완했습니다.','교재 해설 이미지 144개에서 판독한 내용을 텍스트로 볼 수 있습니다.']},
@@ -2801,8 +2802,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.23';
+  changelog.versions.industrial = '6.2.24';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.23';
+  changelog.currentVersion = '6.2.24';
   window.CBT_CHANGELOG = changelog;
 })();

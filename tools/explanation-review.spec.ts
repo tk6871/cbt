@@ -558,3 +558,32 @@ test('산업안전 원표와 순위 이의 확인', async ({page},info)=>{
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:97'])).toBe(4);
  await box.screenshot({path:info.outputPath('safety-table.png')});
 });
+
+test('정보처리 HRN 분수와 답안 저장',async({page},info)=>{
+ await prepare(page,'information-engineer');
+ await page.locator('#round-card-information-engineer-2006-2').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('60');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'Highest Response'});
+ await card.locator('.choice-button').nth(1).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('서비스시간을 S');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['information-engineer-2006-2:60'])).toBe(2);
+ await box.screenshot({path:info.outputPath('hrn-priority.png')});
+});
+
+test('포화액과 포화증기가 다른 공조 두 판본',async({page},info)=>{
+ await prepare(page,'hvac');
+ await page.locator('#round-card-hvac-20030525').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('32');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'단위열량을 공급할때'});
+ await card.locator('.choice-button').nth(2).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('④의 포화증기');
+ const details=box.locator('.source-explanation-details').filter({hasText:'공조 추가 해설'});
+ await details.locator('summary').click();
+ await expect(details).toContainText('교재에는 포화액');
+ await box.screenshot({path:info.outputPath('saturated-vapor-options.png')});
+});

@@ -104,6 +104,8 @@ def apply_reviewed_answer_notices(catalog: dict) -> None:
                 raise ValueError(f"원문 변경으로 해설 재검토 필요: {row['id']}")
             q.update(explanation=row["resolution"], explanationBasis=row["basis"],
                      explanationProvenance="manual-reviewed")
+            if row.get("reviewedFormula"):
+                q["explanationFormula"] = row["reviewedFormula"]
 
 
 def reuse_exact_duplicate_explanations(catalog: dict) -> int:

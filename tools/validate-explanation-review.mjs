@@ -50,6 +50,7 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
    const actual=after.find(c=>c.key===catalog.key).rounds.find(r=>r.id===round.id).questions.find(item=>item.number===q.number);
    assert.equal(actual.explanation,primary.resolution);
    assert.equal(actual.explanationBasis,primary.basis);
+   if (primary.reviewedFormula) assert.deepEqual(actual.explanationFormula, primary.reviewedFormula, id);
   }
   if(!formulaDisplayIds.has(id))continue;
   assert.equal(q.explanationFormula,undefined);
