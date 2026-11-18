@@ -210,5 +210,112 @@
       "result": "success"
     },
     "publicSite": "proxy CONNECT 403; 직접 응답 본문 미확인"
+  },
+  "v647": {
+    "base": "d6a9ff03c4df768e23c9c8ff522ea6b6e789dbd2",
+    "auditQuestions": {
+      "questions": 46590,
+      "structuralErrors": 0,
+      "answerNumberCandidates": 19
+    },
+    "auditExplanations": {
+      "questions": 44270,
+      "errors": 0,
+      "safetyEngineerIncluded": false
+    },
+    "fullBankVerification": {
+      "bankQuestions": 47284,
+      "imageReferences": 13214,
+      "reviewedFractions": 28,
+      "withoutExplanation": 1641,
+      "protectedQuestionFields": "unchanged including IDs/order/answers/choices/images/hotspots",
+      "changedBankIds": [
+        "hvac-hansol-book-1-182:79",
+        "hvac-hansol-2020-4:35",
+        "hvac-hansol-2022-3:33",
+        "hvac-hansol-2025-3:25",
+        "hvac-20030831:12",
+        "hvac-20140302:67",
+        "hvac-20150531:36",
+        "hvac-20211:52",
+        "hvac-20213:2",
+        "hvac-20222:33",
+        "safety-engineer-20220424:1",
+        "safety-engineer-20220424:6",
+        "safety-engineer-20220424:23",
+        "safety-engineer-20220424:31",
+        "safety-engineer-20220424:34",
+        "safety-engineer-20220424:49",
+        "safety-engineer-20220424:57",
+        "safety-engineer-20220424:61",
+        "safety-engineer-20220424:71",
+        "safety-engineer-20220424:90",
+        "safety-engineer-20220305:16",
+        "safety-engineer-20220305:82",
+        "safety-engineer-20210814:14",
+        "safety-engineer-20210814:19",
+        "safety-engineer-20210814:49",
+        "safety-engineer-20210515:15",
+        "safety-engineer-20210515:30",
+        "safety-engineer-20210307:107",
+        "safety-engineer-20200926:17",
+        "safety-engineer-20200822:8",
+        "safety-engineer-20200822:85",
+        "safety-engineer-20200606:4",
+        "safety-engineer-20190804:6",
+        "safety-engineer-20190804:37",
+        "safety-engineer-20190804:38",
+        "safety-engineer-20190427:1",
+        "safety-engineer-20190427:6",
+        "safety-engineer-20190427:12",
+        "safety-engineer-20190427:23",
+        "safety-engineer-20190303:36",
+        "safety-engineer-20180819:17",
+        "safety-engineer-20180819:40",
+        "safety-engineer-20180819:59",
+        "safety-engineer-20180819:86",
+        "safety-engineer-20180428:4",
+        "safety-engineer-20180428:11",
+        "safety-engineer-20180428:45",
+        "safety-engineer-20180428:82",
+        "safety-engineer-20180304:55"
+      ],
+      "transcriptionsAdded": 7,
+      "transcriptionsByKind": {
+        "question": 4,
+        "explanation": 3
+      },
+      "dynamicLinksValidated": 566,
+      "manualContentCompleted": 54,
+      "manualExamined": 62
+    },
+    "otherPassed": [
+      "typecheck",
+      "build (existing large-chunk warning)",
+      "test:pwa v647",
+      "audit:hvac-learning",
+      "audit:hansol",
+      "git diff --cached --check on source and data"
+    ],
+    "browser": {
+      "spec": "tools/explanation-review.spec.ts",
+      "projects": [
+        "desktop",
+        "iphone-14-pro",
+        "tablet"
+      ],
+      "passed": 24,
+      "visuallyInspected": "Desktop and iPhone emulation, 2022-04-24 no.23. Korean text, fraction bar, values, units and line wrap.",
+      "runs": [
+        "7 scenarios × 3 profiles",
+        "COMCBT attribution and reordered answer × 3 profiles"
+      ]
+    },
+    "existingFailures": [
+      "test:search-policy: CHANGELOG.md named source",
+      "textbook-text-correction.test.mjs: missing original 2018_2/12.webp (4/5 passed); explanation-source-index.test.mjs 2/2 passed"
+    ],
+    "network": "Live COMCBT and original bank import endpoint blocked by proxy. Verified archived COMCBT entries locally and imported fields against their reviewed fingerprints.",
+    "generatedDiffNote": "Full staged whitespace check flags one literal space/tab inside a bundled dependency in modern/chunks/problemImages-v647.js:12. Same template-literal bytes in v646; retained reproducible build output."
   }
 }

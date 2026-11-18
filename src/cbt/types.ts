@@ -32,6 +32,7 @@ export type Question = {
   hint?: string;
   explanation?: string;
   explanationHtml?: string;
+  explanationFormula?: { tex: string; label: string };
   explanationImages?: string[];
   originalExplanationImagesFolded?: boolean;
   imageOnly?: boolean;

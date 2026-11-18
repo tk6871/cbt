@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { hotspotStyle, unifiedAnswerHotspots } from './answerHotspotGeometry';
 import { isImagePrimary } from './catalog';
 import { explanationSource } from './explanationSource';
@@ -8,6 +8,8 @@ import { submitQuestionIssue, type QuestionIssueType } from './cloudSync';
 import type { QuestionItem, StudyMode } from './types';
 import ExplanationFigures from './ExplanationFigures.vue';
 import {useImageTranscription,escapeTranscription} from './imageTranscription';
+
+const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
 
 const props = defineProps<{
   item: QuestionItem;
@@ -745,6 +747,7 @@ onBeforeUnmount(() => {
       </div>
       <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
       <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+      <MathFormula v-if="item.question.explanationFormula" v-bind="item.question.explanationFormula" />
       <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
       <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="$problemImage(explanationOrigin.url)" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
       <div class="explanation-extra-actions">
@@ -793,6 +796,7 @@ onBeforeUnmount(() => {
             </div>
             <p v-if="primaryExplanationText" class="explanation-copy beginner-primary-explanation"><strong>{{ item.question.explanationProvenance === 'comcbt-matched-textbook' ? 'COMCBT 해설' : '쉬운 핵심' }}</strong>{{ primaryExplanationText }}</p>
             <p v-else-if="!item.question.explanationImages?.length" class="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
+            <MathFormula v-if="item.question.explanationFormula" v-bind="item.question.explanationFormula" />
             <ExplanationFigures :images="item.question.explanationImages" :folded="item.question.originalExplanationImagesFolded" :image-class="restoredImageClass" @interact="stopExplanationAutoClose" />
             <details class="explanation-source-note" @click="stopExplanationAutoClose"><summary>{{ explanationOrigin.label }}</summary><p>{{ explanationOrigin.detail }}</p><a v-if="explanationOrigin.url" :href="$problemImage(explanationOrigin.url)" target="_blank" rel="noopener noreferrer">문제 출처 열기 ↗</a></details>
             <div class="explanation-extra-actions">

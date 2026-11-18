@@ -30,7 +30,8 @@
       "resolution": "N₂=800×1.8/1.5=960 rpm. H₂/H₁=(N₂/N₁)², P₂/P₁=(N₂/N₁)³. 지름 일정·상사 운전·효율 조건 명시.",
       "errorType": "계산식·상사법칙",
       "changed": true,
-      "sourceAssets": []
+      "sourceAssets": [],
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20222:33",
@@ -70,7 +71,8 @@
         "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
         "changed": true,
         "imagesPreserved": true
-      }
+      },
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-hansol-2020-4:35",
@@ -110,7 +112,8 @@
         "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
         "changed": true,
         "imagesPreserved": true
-      }
+      },
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-hansol-2022-3:33",
@@ -150,7 +153,8 @@
         "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
         "changed": true,
         "imagesPreserved": true
-      }
+      },
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-hansol-2025-3:25",
@@ -190,7 +194,8 @@
         "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
         "changed": true,
         "imagesPreserved": true
-      }
+      },
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20030831:12",
@@ -215,7 +220,8 @@
       "resolution": "에너지 유입=유출에서 유도. c_w를 포함하고 kcal계에서만 수치 1이 됨을 명시. 저장 정답① 유지.",
       "errorType": "단위·조건·근거 부족",
       "changed": true,
-      "sourceAssets": []
+      "sourceAssets": [],
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20213:2",
@@ -246,7 +252,8 @@
           "displayAsset": "assets/problem-webp90/397b243d34bc1d953fafde712138685e.webp",
           "sha256": "e9226dfdeca50b7f6f902b11433211a06c1562a239719694297f5af1ce0d8a99"
         }
-      ]
+      ],
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20140302:67",
@@ -270,7 +277,8 @@
       "resolution": "각 가지 I=V/120, 총전류4V/120→합성30Ω. 복원 문제의 충분한 주 해설은 유지하고 추가 해설만 수정.",
       "errorType": "문제 무관 일반론",
       "changed": true,
-      "sourceAssets": []
+      "sourceAssets": [],
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20211:52",
@@ -300,7 +308,8 @@
           "displayAsset": "assets/problem-webp90/8cf216e9ec0c3d3785a6c58b9539dcef.webp",
           "sha256": "98a0e020bfc74bd0af99b4363bfda0b2f0a56da1680b62a0820800dd6c0eeeb7"
         }
-      ]
+      ],
+      "formulaDisplay": "기존 검산 결과를 LaTeX 분수로 표시"
     },
     {
       "id": "hvac-20020908:36",
@@ -666,6 +675,985 @@
       "resolution": "공식 당시 문제·정답 및 화학 근거 확보 전 정답 변경 금지. 원문·보기·답·해설 유지.",
       "changed": false,
       "sourceAssets": []
+    },
+    {
+      "id": "safety-engineer-20220424:1",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 1,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "evidence": [
+        "m82225",
+        "verify-safety-engineer-20220424:1"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210814:14",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210814",
+      "number": 14,
+      "location": "산업안전기사 · 2021년 8월 14일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "evidence": [
+        "m82225",
+        "verify-safety-engineer-20210814:14"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20200822:8",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20200822",
+      "number": 8,
+      "location": "산업안전기사 · 2020년 8월 22일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "evidence": [
+        "m82225",
+        "verify-safety-engineer-20200822:8"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180428:11",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180428",
+      "number": 11,
+      "location": "산업안전기사 · 2018년 4월 28일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "evidence": [
+        "m82225",
+        "verify-safety-engineer-20180428:11"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190427:6",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190427",
+      "number": 6,
+      "location": "산업안전기사 · 2019년 4월 27일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "evidence": [
+        "m82225",
+        "verify-safety-engineer-20190427:6"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:23",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 23,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "6×(60−13⅓)+1.5×13⅓=300 kcal.",
+      "evidence": [
+        "verify-safety-engineer-20220424:23"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190804:38",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190804",
+      "number": 38,
+      "location": "산업안전기사 · 2019년 8월 4일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "6.5×336+1.5×144=2400=5×480 kcal.",
+      "evidence": [
+        "verify-safety-engineer-20190804:38"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190303:36",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190303",
+      "number": 36,
+      "location": "산업안전기사 · 2019년 3월 3일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "18/(18+2)=0.9. 지문에 제시된 MTBF 정의 적용.",
+      "evidence": [
+        "verify-safety-engineer-20190303:36"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190804:6",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190804",
+      "number": 6,
+      "location": "산업안전기사 · 2019년 8월 4일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "80×1,000,000/(1,000×48×52×0.97)=33.04256.",
+      "evidence": [
+        "verify-safety-engineer-20190804:6"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190427:1",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190427",
+      "number": 1,
+      "location": "산업안전기사 · 2019년 4월 27일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "45/2.4=18.75. 원문 제시 환산식; 1,000×2,400/1,000,000=2.4.",
+      "evidence": [
+        "verify-safety-engineer-20190427:1"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210814:19",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210814",
+      "number": 19,
+      "location": "산업안전기사 · 2021년 8월 14일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "0.4×(1000×2400)/1000=960일.",
+      "evidence": [
+        "verify-safety-engineer-20210814:19"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210515:15",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210515",
+      "number": 15,
+      "location": "산업안전기사 · 2021년 5월 15일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "1.15×100000/1000=115일. 원문이 가정한 평생 근로시간 사용.",
+      "evidence": [
+        "verify-safety-engineer-20210515:15"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180819:17",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180819",
+      "number": 17,
+      "location": "산업안전기사 · 2018년 8월 19일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "10×2400000/1000000=24건.",
+      "evidence": [
+        "verify-safety-engineer-20180819:17"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190427:12",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190427",
+      "number": 12,
+      "location": "산업안전기사 · 2019년 4월 27일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "해당 지문의 제시식에서 분자 단위가 일, 분모 단위가 시간임을 확인. 2일/1000시간×1000=2.",
+      "evidence": [
+        "verify-safety-engineer-20190427:12"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180428:4",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180428",
+      "number": 4,
+      "location": "산업안전기사 · 2018년 4월 28일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "해당 지문의 제시식에서 분자 단위가 일, 분모 단위가 시간임을 확인. 2일/1000시간×1000=2.",
+      "evidence": [
+        "verify-safety-engineer-20180428:4"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20200606:4",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20200606",
+      "number": 4,
+      "location": "산업안전기사 · 2020년 6월 6일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "10×2.4=24. 실제 연간 근로시간이 다르면 환산계수도 달라짐.",
+      "evidence": [
+        "verify-safety-engineer-20200606:4"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:49",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 49,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "250/4=62.5; 역산 62.5×4=250. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "evidence": [
+        "verify-safety-engineer-20220424:49"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180819:59",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180819",
+      "number": 59,
+      "location": "산업안전기사 · 2018년 8월 19일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "250/4=62.5; 역산 62.5×4=250. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "evidence": [
+        "verify-safety-engineer-20180819:59"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210307:107",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210307",
+      "number": 107,
+      "location": "산업안전기사 · 2021년 3월 7일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "2000/4=500; 역산 500×4=2000. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "evidence": [
+        "verify-safety-engineer-20210307:107"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180304:55",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180304",
+      "number": 55,
+      "location": "산업안전기사 · 2018년 3월 4일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "350/4=87.5; 역산 87.5×4=350. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "evidence": [
+        "verify-safety-engineer-20180304:55"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210814:49",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210814",
+      "number": 49,
+      "location": "산업안전기사 · 2021년 8월 14일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "420 MPa/140 MPa=3. 허용응력×3=420 MPa.",
+      "evidence": [
+        "verify-safety-engineer-20210814:49"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:57",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 57,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "3/(2 cos 27.5°)=1.69107 kN. 수평 성분은 상쇄.",
+      "evidence": [
+        "m42075",
+        "verify-safety-engineer-20220424:57"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180428:45",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180428",
+      "number": 45,
+      "location": "산업안전기사 · 2018년 4월 28일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "T−1000=100×2 뉴턴.",
+      "evidence": [
+        "m42073",
+        "verify-safety-engineer-20180428:45"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:61",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 61,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "90/(10+1+20)=2.90323 mA.",
+      "evidence": [
+        "m42344",
+        "m42356",
+        "verify-safety-engineer-20220424:61"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:71",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 71,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "문제의 아크 출력 모델로 25×300=7500 W; 7.5/(7.5+4)=0.652174.",
+      "evidence": [
+        "m42714",
+        "verify-safety-engineer-20220424:71"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:90",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 90,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "Q=k A ΔT t/d=0.037×1×20×1/0.2=3.7 kcal.",
+      "evidence": [
+        "m42228",
+        "verify-safety-engineer-20220424:90"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:34",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 34,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "독립 지수수명에서 k개 모두 t시간 생존할 확률 exp(−kλt), 평균 대기시간 1/(kλ). 무기억성으로 단계별 합산.",
+      "evidence": [
+        "verify-safety-engineer-20220424:34"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190427:23",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190427",
+      "number": 23,
+      "location": "산업안전기사 · 2019년 4월 27일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "독립 지수수명에서 k개 모두 t시간 생존할 확률 exp(−kλt), 평균 대기시간 1/(kλ). 무기억성으로 단계별 합산.",
+      "evidence": [
+        "verify-safety-engineer-20190427:23"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20190804:37",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20190804",
+      "number": 37,
+      "location": "산업안전기사 · 2019년 8월 4일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "독립사건의 교집합 확률 0.6×0.9=0.54.",
+      "evidence": [
+        "verify-safety-engineer-20190804:37"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180819:40",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180819",
+      "number": 40,
+      "location": "산업안전기사 · 2018년 8월 19일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "1−(1−0.40)(1−0.95)=0.97.",
+      "evidence": [
+        "verify-safety-engineer-20180819:40"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:31",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 31,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "A=0과 1을 각각 네 보기에 대입. 보수와의 OR만 우변 불일치.",
+      "evidence": [
+        "verify-safety-engineer-20220424:31"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20210515:30",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20210515",
+      "number": 30,
+      "location": "산업안전기사 · 2021년 5월 15일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "일정 위험률 λ=−R′(t)/R(t), R(0)=1을 적분하면 R(t)=e^(−λt).",
+      "evidence": [
+        "verify-safety-engineer-20210515:30"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220305:82",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220305",
+      "number": 82,
+      "location": "산업안전기사 · 2022년 3월 5일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "두 대상 지문의 화재 종류, 네 보기와 저장③ 일치. 2018-04-28 82번 지문의 급수 분류표로 교차 확인.",
+      "evidence": [
+        "safety-20080511:78",
+        "verify-safety-engineer-20220305:82"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180428:82",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180428",
+      "number": 82,
+      "location": "산업안전기사 · 2018년 4월 28일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "두 대상 지문의 화재 종류, 네 보기와 저장③ 일치. 2018-04-28 82번 지문의 급수 분류표로 교차 확인.",
+      "evidence": [
+        "safety-20080511:78",
+        "verify-safety-engineer-20180428:82"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20200822:85",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20200822",
+      "number": 85,
+      "location": "산업안전기사 · 2020년 8월 22일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "네 보기 A/B/C/D, B급 저장② 일치. 2018-04-28 82번 원문 표의 유류 분류와 대조.",
+      "evidence": [
+        "safety-20180428:74",
+        "verify-safety-engineer-20200822:85"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20180819:86",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20180819",
+      "number": 86,
+      "location": "산업안전기사 · 2018년 8월 19일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "네 보기 A/B/C/D, B급 저장② 일치. 2018-04-28 82번 원문 표의 유류 분류와 대조.",
+      "evidence": [
+        "safety-20180428:74",
+        "verify-safety-engineer-20180819:86"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20200926:17",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20200926",
+      "number": 17,
+      "location": "산업안전기사 · 2020년 9월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "빈도 내림차순과 대상 보기①을 확인. 시간에 따른 추이를 관찰하는 관리도와 구별.",
+      "evidence": [
+        "safety-20100307:7",
+        "verify-safety-engineer-20200926:17"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:6",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 6,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "동일 문항 연결이 아닌 개념 참조. 비교 자료의 관리도·파레토도 정의와 대상 ①의 조건을 대조.",
+      "evidence": [
+        "safety-20100307:7",
+        "verify-safety-engineer-20220424:6"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220305:16",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220305",
+      "number": 16,
+      "location": "산업안전기사 · 2022년 3월 5일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "저장 COMCBT 두 회차의 모방은 각각 ②·③. 대상 보기에서는 모방이 ①임을 원문과 직접 대조.",
+      "evidence": [
+        "safety-20110612:6",
+        "safety-20170826:8",
+        "verify-safety-engineer-20220305:16"
+      ],
+      "changed": true,
+      "errorType": "누락 해설 작성"
+    },
+    {
+      "id": "safety-engineer-20220424:2",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 2,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "해설 미등록. 강도율 계산에 필요한 장해등급별 표준손실일수 표가 지문에 없음.",
+      "resolution": "2022년 출제 당시 2급·10급의 환산 표준일수 근거 확보 후 재계산.",
+      "evidence": [
+        "verify-safety-engineer-20220424:2"
+      ],
+      "changed": false,
+      "errorType": "환산 기준 미확인"
     }
   ],
   "sources": [
@@ -743,6 +1731,337 @@
       ],
       "opened": true,
       "limits": "인쇄 해설 자체는 독립 학술 근거로 간주하지 않음. 전사 대조 근거만."
+    },
+    {
+      "id": "m82225",
+      "date": "2026-11-18",
+      "section": "Motivation",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-psychology/main/modules/m82225/index.cnxml",
+      "opened": true,
+      "sha256": "c440522b8438f6ba621657dfaaecf7c76503dcc045e17a3d2df8e55ec14f0375"
+    },
+    {
+      "id": "m42344",
+      "date": "2026-11-18",
+      "section": "Ohm’s Law: Resistance and Simple Circuits",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42344/index.cnxml",
+      "opened": true,
+      "sha256": "0ce58fd6776bc13632b16c5761aa45ee721b2349af94a8c24c90e73ffa0ab6e6"
+    },
+    {
+      "id": "m42356",
+      "date": "2026-11-18",
+      "section": "Resistors in Series and Parallel",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42356/index.cnxml",
+      "opened": true,
+      "sha256": "aa8c67d0cdbabe895cec4076dbd1995317b91a0a4b8ad7e76f9d4d0399bbefb5"
+    },
+    {
+      "id": "m42714",
+      "date": "2026-11-18",
+      "section": "Electric Power and Energy",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42714/index.cnxml",
+      "opened": true,
+      "sha256": "6816482fe7100892687b3fae9c1ce1596c2cb365978e2186051685e3b48d1b5d"
+    },
+    {
+      "id": "m42073",
+      "date": "2026-11-18",
+      "section": "Newton’s Second Law of Motion: Concept of a System",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42073/index.cnxml",
+      "opened": true,
+      "sha256": "c19c7900338f6142df551f86f4961a218530230286ea003457444abc89e69440"
+    },
+    {
+      "id": "m42075",
+      "date": "2026-11-18",
+      "section": "Normal, Tension, and Other Examples of Forces",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42075/index.cnxml",
+      "opened": true,
+      "sha256": "1b87d50308bfb15c35691deca9e8f0e589af41b760ba23c21d2c16e12e4bcfbf"
+    },
+    {
+      "id": "m42228",
+      "date": "2026-11-18",
+      "section": "Conduction",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42228/index.cnxml",
+      "opened": true,
+      "sha256": "2a275d75021359e9844cad3fc7fb23202f4634986c3ebfed6b2124a801a6eafd"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:1",
+      "date": "2026-11-18",
+      "section": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210814:14",
+      "date": "2026-11-18",
+      "section": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20200822:8",
+      "date": "2026-11-18",
+      "section": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180428:11",
+      "date": "2026-11-18",
+      "section": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190427:6",
+      "date": "2026-11-18",
+      "section": "OpenStax Psychology 2e, Motivation의 욕구 위계 순서·각 단계의 뜻을 대상 보기와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:23",
+      "date": "2026-11-18",
+      "section": "6×(60−13⅓)+1.5×13⅓=300 kcal.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190804:38",
+      "date": "2026-11-18",
+      "section": "6.5×336+1.5×144=2400=5×480 kcal.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190303:36",
+      "date": "2026-11-18",
+      "section": "18/(18+2)=0.9. 지문에 제시된 MTBF 정의 적용.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190804:6",
+      "date": "2026-11-18",
+      "section": "80×1,000,000/(1,000×48×52×0.97)=33.04256.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190427:1",
+      "date": "2026-11-18",
+      "section": "45/2.4=18.75. 원문 제시 환산식; 1,000×2,400/1,000,000=2.4.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210814:19",
+      "date": "2026-11-18",
+      "section": "0.4×(1000×2400)/1000=960일.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210515:15",
+      "date": "2026-11-18",
+      "section": "1.15×100000/1000=115일. 원문이 가정한 평생 근로시간 사용.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180819:17",
+      "date": "2026-11-18",
+      "section": "10×2400000/1000000=24건.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190427:12",
+      "date": "2026-11-18",
+      "section": "해당 지문의 제시식에서 분자 단위가 일, 분모 단위가 시간임을 확인. 2일/1000시간×1000=2.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180428:4",
+      "date": "2026-11-18",
+      "section": "해당 지문의 제시식에서 분자 단위가 일, 분모 단위가 시간임을 확인. 2일/1000시간×1000=2.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20200606:4",
+      "date": "2026-11-18",
+      "section": "10×2.4=24. 실제 연간 근로시간이 다르면 환산계수도 달라짐.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:49",
+      "date": "2026-11-18",
+      "section": "250/4=62.5; 역산 62.5×4=250. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180819:59",
+      "date": "2026-11-18",
+      "section": "250/4=62.5; 역산 62.5×4=250. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210307:107",
+      "date": "2026-11-18",
+      "section": "2000/4=500; 역산 500×4=2000. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180304:55",
+      "date": "2026-11-18",
+      "section": "350/4=87.5; 역산 87.5×4=350. 제공 지문의 인장강도 기준 안전율 정의는 2018-08-19 59번의 제시식과도 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210814:49",
+      "date": "2026-11-18",
+      "section": "420 MPa/140 MPa=3. 허용응력×3=420 MPa.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:57",
+      "date": "2026-11-18",
+      "section": "3/(2 cos 27.5°)=1.69107 kN. 수평 성분은 상쇄.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180428:45",
+      "date": "2026-11-18",
+      "section": "T−1000=100×2 뉴턴.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:61",
+      "date": "2026-11-18",
+      "section": "90/(10+1+20)=2.90323 mA.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:71",
+      "date": "2026-11-18",
+      "section": "문제의 아크 출력 모델로 25×300=7500 W; 7.5/(7.5+4)=0.652174.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:90",
+      "date": "2026-11-18",
+      "section": "Q=k A ΔT t/d=0.037×1×20×1/0.2=3.7 kcal.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:34",
+      "date": "2026-11-18",
+      "section": "독립 지수수명에서 k개 모두 t시간 생존할 확률 exp(−kλt), 평균 대기시간 1/(kλ). 무기억성으로 단계별 합산.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190427:23",
+      "date": "2026-11-18",
+      "section": "독립 지수수명에서 k개 모두 t시간 생존할 확률 exp(−kλt), 평균 대기시간 1/(kλ). 무기억성으로 단계별 합산.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20190804:37",
+      "date": "2026-11-18",
+      "section": "독립사건의 교집합 확률 0.6×0.9=0.54.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180819:40",
+      "date": "2026-11-18",
+      "section": "1−(1−0.40)(1−0.95)=0.97.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:31",
+      "date": "2026-11-18",
+      "section": "A=0과 1을 각각 네 보기에 대입. 보수와의 OR만 우변 불일치.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20210515:30",
+      "date": "2026-11-18",
+      "section": "일정 위험률 λ=−R′(t)/R(t), R(0)=1을 적분하면 R(t)=e^(−λt).",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "safety-20080511:78",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20080511:78 지문·네 보기·정답 및 저장된 COMCBT 이용자 해설",
+      "sha256": "4671b20f83729f09e65f00f77c35d97b402dd01e21ee2ab0977b577307ef91ce"
+    },
+    {
+      "id": "verify-safety-engineer-20220305:82",
+      "date": "2026-11-18",
+      "section": "두 대상 지문의 화재 종류, 네 보기와 저장③ 일치. 2018-04-28 82번 지문의 급수 분류표로 교차 확인.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180428:82",
+      "date": "2026-11-18",
+      "section": "두 대상 지문의 화재 종류, 네 보기와 저장③ 일치. 2018-04-28 82번 지문의 급수 분류표로 교차 확인.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "safety-20180428:74",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20180428:74 지문·네 보기·정답 및 저장된 COMCBT 이용자 해설",
+      "sha256": "741b297b2367d0a7cfa6713def41d2203a780cd596e12715b0f8a2f2b3a865fe"
+    },
+    {
+      "id": "verify-safety-engineer-20200822:85",
+      "date": "2026-11-18",
+      "section": "네 보기 A/B/C/D, B급 저장② 일치. 2018-04-28 82번 원문 표의 유류 분류와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20180819:86",
+      "date": "2026-11-18",
+      "section": "네 보기 A/B/C/D, B급 저장② 일치. 2018-04-28 82번 원문 표의 유류 분류와 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "safety-20100307:7",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20100307:7 지문·네 보기·정답 및 저장된 COMCBT 이용자 해설",
+      "sha256": "3aa7b863d9db2d72518d07cde0ff0bb4ddde5e66a849dca8a976809e6f3abc83"
+    },
+    {
+      "id": "verify-safety-engineer-20200926:17",
+      "date": "2026-11-18",
+      "section": "빈도 내림차순과 대상 보기①을 확인. 시간에 따른 추이를 관찰하는 관리도와 구별.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:6",
+      "date": "2026-11-18",
+      "section": "동일 문항 연결이 아닌 개념 참조. 비교 자료의 관리도·파레토도 정의와 대상 ①의 조건을 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "safety-20110612:6",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20110612:6 지문·네 보기·정답 및 저장된 COMCBT 이용자 해설",
+      "sha256": "6987e576687991c850984adfd32f872c254bf42fa2aa01ff53ad8de520e9405d"
+    },
+    {
+      "id": "safety-20170826:8",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20170826:8 지문·네 보기·정답 및 저장된 COMCBT 이용자 해설",
+      "sha256": "464300814f8df73662b1d28666e62683fe30f8493a29810bee9104afbd9ad45a"
+    },
+    {
+      "id": "verify-safety-engineer-20220305:16",
+      "date": "2026-11-18",
+      "section": "저장 COMCBT 두 회차의 모방은 각각 ②·③. 대상 보기에서는 모방이 ①임을 원문과 직접 대조.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "verify-safety-engineer-20220424:2",
+      "date": "2026-11-18",
+      "section": "원문 표의 500명·2400시간/인·2급 3명·10급 5명·휴업 1500일 및 300/365 환산 조건 확인.",
+      "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
     }
   ],
   "automaticAnswerCandidates": [
@@ -1000,18 +2319,19 @@
     "energyRegular": "data/energy.js energy-industrial-20020310:1~3 보류 재개 후 :4~80. 회차 전체 미완료.",
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
-    "otherSubjects": "automaticAnswerCandidates의 나머지18건은 단순 후보. 에너지·공조 작업을 이어간 뒤 확대."
+    "otherSubjects": "automaticAnswerCandidates의 나머지18건은 단순 후보. 에너지·공조 작업을 이어간 뒤 확대.",
+    "missingExplanations": "data/safety-engineer.js safety-engineer-20220424:2 보류(당시 장해등급별 표), :3부터 번호순. records의 완료 ID 건너뛰기."
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 22,
-    "contentCompleted": 15,
-    "contentCompletedChanged": 10,
+    "contentExamined": 62,
+    "contentCompleted": 54,
+    "contentCompletedChanged": 49,
     "contentCompletedUnchanged": 5,
-    "evidenceHold": 6,
+    "evidenceHold": 7,
     "answerNeedsConfirmation": 1,
-    "automaticOnly": 48982,
-    "changedQuestionIds": 13,
+    "automaticOnly": 48942,
+    "changedQuestionIds": 52,
     "imageTranscribed": 3,
     "imageFullyTranscribed": 1,
     "imagePartiallyTranscribed": 2,
@@ -1029,5 +2349,12 @@
     "priorPagesRun": "https://github.com/tk6871/cbt/actions/runs/44217368349",
     "priorDeployment": "success",
     "publicSite": "프록시 CONNECT 403으로 직접 확인 불가"
+  },
+  "missingExplanationBatch": {
+    "authored": 39,
+    "basedOnSavedComcbt": 7,
+    "withFraction": 19,
+    "previouslyReviewedFractionDisplays": 9,
+    "stillWithoutBankExplanation": 1641
   }
 }

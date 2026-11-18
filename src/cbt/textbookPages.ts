@@ -120,7 +120,7 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
   const enhanced=e.book==='energy'?withEnergyTextbookComcbt(withReviewedEnergyChoices(original.question),e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
   const correction=e.correction;
   const textCorrection=correction?.presentation==='text'?correction:undefined;
-  const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
+  const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{explanationFormula:undefined,text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
    images:textCorrection?textCorrection.images.map(path=>textbookAssetUrl(path)):enhanced.images,
    choices:correction.choices.map((text,index)=>({text,html:'',images:(textCorrection?.choiceImages[index]||[]).map(path=>textbookAssetUrl(path))})),bookCorrection:{note:correction.note,originalImage:correction.sourceImage?textbookAssetUrl(correction.sourceImage):undefined}}:{}),sourceImageSize:textCorrection?undefined:e.imageSize||enhanced.sourceImageSize,number:e.number,_originRoundId:roundId,_originalNumber:e.number,
    _subject:original.subject,sourcePage:location};

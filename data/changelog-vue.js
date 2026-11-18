@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.5',scope:'industrial',date:'2026.11.18',title:'산업안전기사 해설과 분수식',summary:'해설이 비어 있던 산업안전기사 39문항에 풀이를 추가했습니다.',tags:['해설','계산'],changes:['산업안전기사 19문항과 공조 9문항의 풀이에서 분자와 분모를 위아래로 읽을 수 있습니다.','저장된 COMCBT 이용자 해설을 참고한 7문항에는 참고한 회차와 번호를 표시합니다.']},
     {version:'6.2.4',scope:'industrial',date:'2026.11.18',title:'동일 문제의 텍스트 표시',summary:'원문과 같은 내용을 확인한 펌프 문제 4건을 글자로 읽을 수 있습니다.',tags:['원문 대조','텍스트'],changes:['지문·수치·보기 순서·정답을 개별 대조한 4건에 기존 텍스트를 연결했습니다.','이미지로 보기로 원문을 다시 볼 수 있으며, 선택한 답과 학습 기록은 그대로 유지합니다.']} ,
     {version:'6.2.3',scope:'industrial',date:'2026.11.18',title:'일부 문제 해설 교정',summary:'직접 검토한 계산·작동 해설을 보완하고 일부 이미지 해설을 글자로 제공합니다.',tags:['해설','원문 대조'],changes:['계산식·단위 조건·열교환 작동 이유를 교정하고 연결된 추가 해설에도 반영했습니다.','이미지 해설 3건에 원문 대조 텍스트를 추가했습니다. 이 중 2건은 핵심 부분만 옮겼으며 원본은 그대로 볼 수 있습니다.','전체 문항의 내용 검토를 완료한 것은 아닙니다.']} ,
     {version:'6.2.2',scope:'industrial',date:'2026.11.17',title:'교재 이미지에서 답 고르기',summary:'한솔 공조와 에너지설비 교재의 인쇄된 보기를 눌러 답을 기록할 수 있습니다.',tags:['교재','문제풀이'],changes:['한솔 공조 교재 원문 749문항에 보기 선택 영역을 추가했습니다.','에너지설비 교재 414·471·486쪽에서 누른 번호와 저장되는 답이 일치하도록 보기 위치를 바로잡았습니다.']},
@@ -2782,8 +2783,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.4';
+  changelog.versions.industrial = '6.2.5';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.4';
+  changelog.currentVersion = '6.2.5';
   window.CBT_CHANGELOG = changelog;
 })();

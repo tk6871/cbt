@@ -1,4 +1,6 @@
 import fs from 'node:fs';
+import katex from 'katex';
+import {applySafetyEngineerExplanations} from './safety-engineer-explanations.mjs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
@@ -10,6 +12,7 @@ const baseline=review.baseline;
 const original=file=>execFileSync('git',['show',`${baseline}:${file}`],{encoding:'utf8',maxBuffer:40e6});
 const parse=source=>{const ctx={window:{}};vm.runInNewContext(source,ctx);return structuredClone(Object.values(ctx.window).flatMap(v=>Array.isArray(v)?v:[v]));};
 const reviewedIds=new Set(review.records.filter(r=>r.changed).map(r=>r.id));
+const formulaDisplayIds=new Set(review.records.filter(r=>r.formulaDisplay).map(r=>r.id));
 assert.equal(fs.readFileSync('data/problem-images-webp90.json','utf8'),original('data/problem-images-webp90.json'),'Source/display mapping changed');
 const maps=JSON.parse(fs.readFileSync('data/problem-images-webp90.json')).mappings;
 let bankQuestions=0,imageReferences=0,changedBankIds=[];
@@ -23,7 +26,21 @@ function protectedBank(catalogs){return catalogs.map(c=>({...c,rounds:c.rounds.m
 })}))}));}
 for(const file of new Set(inventory.summary.map(b=>b.file))){
  const before=parse(original(file)),after=parse(fs.readFileSync(file,'utf8'));
- assert.deepEqual(protectedBank(after),protectedBank(before),`Protected question data changed: ${file}`);
+ const expected=structuredClone(before);
+ if(file==='data/safety-engineer.js'){
+  applySafetyEngineerExplanations(expected[0].rounds);
+  // Compare complete source and generated bank, including prose and provenance.
+  assert.deepEqual(after,expected,'Safety explanations differ from the reviewed import');
+ }
+ for(const catalog of expected)for(const round of catalog.rounds)for(const q of round.questions){
+  const id=round.id+':'+q.number;
+  if(!formulaDisplayIds.has(id))continue;
+  assert.equal(q.explanationFormula,undefined);
+  const entry=after.find(c=>c.key===catalog.key).rounds.find(r=>r.id===round.id).questions.find(item=>item.number===q.number);
+  assert.ok(entry.explanationFormula,'Missing reviewed fraction: '+id);
+  q.explanationFormula=entry.explanationFormula;
+ }
+ assert.deepEqual(protectedBank(after),protectedBank(expected),`Protected question data changed: ${file}`);
  for(let ci=0;ci<after.length;ci++)for(let ri=0;ri<after[ci].rounds.length;ri++){
   const r=after[ci].rounds[ri];for(let qi=0;qi<r.questions.length;qi++){
    const q=r.questions[qi],b=before[ci].rounds[ri].questions[qi],id=`${q._originRoundId||r.id}:${q._originalNumber||q.number}`;
@@ -34,6 +51,14 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   }
  }
 }
+const fractions=[...bankById.values()].filter(q=>q.explanationFormula);
+assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays);
+for(const {explanationFormula:{tex,label}} of fractions){
+ assert.ok(label.trim());
+ assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);
+}
+const withoutExplanation=[...bankById.values()].filter(q=>!q.explanation&&!q.explanationHtml&&!q.explanationImages?.length);
+assert.equal(withoutExplanation.length,review.missingExplanationBatch.stillWithoutBankExplanation);
 assert.equal(bankQuestions,inventory.counts.bankQuestions);
 for(const row of review.records)for(const a of row.sourceAssets)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(a.displayAsset)).digest('hex'),a.sha256,`Reviewed pixels changed: ${a.original}`);
 const oldConfirmed=JSON.parse(original('data/image-text/confirmed.json')),newConfirmed=JSON.parse(fs.readFileSync('data/image-text/confirmed.json'));
@@ -56,5 +81,5 @@ const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed
 const affectedIds=new Set(changedBankIds);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={bankQuestions,imageReferences,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={bankQuestions,imageReferences,reviewedFractions:fractions.length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));

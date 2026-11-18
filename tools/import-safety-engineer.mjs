@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { writeFileSync } from 'node:fs';
 import katex from 'katex';
+import {applySafetyEngineerExplanations} from './safety-engineer-explanations.mjs';
 
 const base = 'https://safetygwajang.com/data/';
 const key = 'safety-engineer', name = '산업안전기사';
@@ -44,5 +45,6 @@ for (const entry of index) {
   rounds.push({id:key+'-'+date, qualificationKey:key, qualification:name, shortQualification:name, kind:key, date, sortKey:date, year:Number(date.slice(0,4)), title:`${name} · ${entry.date} 기출문제`, subjects:data.subjects.map(s=>s.name), questions});
 }
 assert.equal(new Set(rounds.map(r=>r.id)).size, rounds.length);
+applySafetyEngineerExplanations(rounds);
 writeFileSync('data/safety-engineer.js', 'window.CBT_DATA_SAFETY_ENGINEER='+JSON.stringify({key,name,shortName:name,rounds})+';\n');
 console.log(`${rounds.length} rounds, ${rounds.reduce((a,r)=>a+r.questions.length,0)} questions`);

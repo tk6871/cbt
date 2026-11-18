@@ -81,3 +81,37 @@ for(const [key,round,number] of [
   if(round==='hvac-hansol-2025-3')await card.screenshot({path:info.outputPath('matched-question-text.png')});
  });
 }
+
+test('산업안전기사 휴식시간 풀이의 분수·답안 저장', async ({page}, info) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20220424').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('23');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'A작업의 평균에너지소비량'});
+  await card.locator('.choice-button').nth(3).click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation).toContainText('6(60−R)+1.5R=300');
+  const formula = explanation.locator('.math-formula');
+  await expect(formula.locator('.katex-html .mfrac')).toBeVisible();
+  await expect(formula.locator('math mfrac')).toHaveCount(1);
+  await expect(formula).toHaveAttribute('aria-label', /13.3분/);
+  expect(await formula.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['safety-engineer-20220424:23'])).toBe(4);
+  await explanation.screenshot({path:info.outputPath('rest-time-fraction.png')});
+});
+
+test('COMCBT 참고 회차와 재배열된 정답 보기', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20220305').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('16');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'사회행동의 기본 형태가 아닌 것은'});
+  const first = card.locator('.choice-button').first();
+  await expect(first).toContainText('모방');
+  await first.click();
+  const source = card.locator('.explanation-source-note');
+  await source.locator('summary').click();
+  await expect(source.locator('p')).toContainText('2011.06.12 6번');
+  await expect(source.locator('p')).toContainText('2017.08.26 8번');
+  await expect(card.locator('.beginner-primary-explanation')).toContainText('①');
+});
