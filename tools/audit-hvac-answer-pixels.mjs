@@ -5,6 +5,28 @@ import path from 'node:path';
 
 const root = process.cwd();
 
+const displayAssets = JSON.parse(fs.readFileSync(path.join(root, 'data/problem-images-webp90.json'))).mappings;
+
+// Preserve the original basenames used for matching bitmap results to answer boxes.
+function decodeGroup(images, outputDirectory) {
+  const sources = images.map(image => path.join(root, image));
+  if (fs.existsSync('/usr/bin/sips') && sources.every(file => fs.existsSync(file))) {
+    execFileSync('/usr/bin/sips', ['-s', 'format', 'bmp', ...sources, '--out', outputDirectory]);
+    return;
+  }
+  const files = images.map((image, index) => ({
+    source: fs.existsSync(sources[index]) ? sources[index] : path.join(root, displayAssets[image] || image),
+    bitmap: path.join(outputDirectory, path.parse(image).name + '.bmp'),
+  }));
+  execFileSync('python3', ['-c', [
+    'import json, sys',
+    'from PIL import Image',
+    'for item in json.load(sys.stdin):',
+    '    with Image.open(item["source"]) as image:',
+    '        image.convert("RGB").save(item["bitmap"], format="BMP")',
+  ].join('\n')], {input: JSON.stringify(files)});
+}
+
 function readObject(file) {
   const source = fs.readFileSync(file, 'utf8');
   const start = source.indexOf('= {', source.indexOf('export const')) + 2;
@@ -246,10 +268,7 @@ try {
     groupIndex += 1;
     const outputDirectory = path.join(temporaryRoot, String(groupIndex));
     fs.mkdirSync(outputDirectory);
-    const sourceFiles = groupImages.map((image) => path.join(root, image));
-    execFileSync('/usr/bin/sips', ['-s', 'format', 'bmp', ...sourceFiles, '--out', outputDirectory], {
-      stdio: ['ignore', 'ignore', 'ignore'],
-    });
+    decodeGroup(groupImages, outputDirectory);
 
     for (const image of groupImages) {
       const bitmapFile = path.join(outputDirectory, `${path.basename(image, path.extname(image))}.bmp`);

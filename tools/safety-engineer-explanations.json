@@ -448,5 +448,275 @@
     "explanation": "TWI의 기본 과정은 일을 가르치는 Job Instruction, 작업방법을 개선하는 Job Methods, 현장 인간관계를 다루는 Job Relations다. 이 셋과 구별되는 ④ Job Standardization Training이 답이다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "두 별도 기출에서 제외 보기가 달라도 JI·JM·JR 세 교육명이 공통. 이 문항은 ④ Job Standardization Training의 포함 여부를 물음."
+  },
+  "safety-engineer-20220424:42": {
+    "questionSHA256": "6c8d3d8568df178e9f3dbcfda317df688abd8aebdd8e6feea3e480ac34caeffa",
+    "explanation": "④가 잘못이다. 로봇 교시 등 작업 중 이상을 발견하면 작업자나 감시자가 즉시 운전을 정지시키는 조치를 해야 한다. 보고 후 지시를 기다리며 작업을 계속하면 그동안 위험이 남는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제222조제1~3호. ④의 지시 대기와 실제 즉시 정지 의무 비교. 제223조 울타리 예외는 2022.10 이후 변경되어 출제 문구에 소급하지 않음."
+  },
+  "safety-engineer-20220424:43": {
+    "questionSHA256": "1698386ecb68c85b8850cd5cab35b341aeb4b41a4b93a0dd42fed9998b3b38cd",
+    "explanation": "③이 틀리다. 절삭력이 큰 작업에서는 바이스에 일감을 충분히 깊게 물려 지지해야 한다. 짧게 물리면 고정된 부분이 작아져 가공 중 일감이 들리거나 빠질 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "다른 회차 2021.08.14 50번의 ④와 직접 대조. 고정 깊이가 부족하면 절삭력이 작용할 때 공작물이 들리거나 빠질 수 있음."
+  },
+  "safety-engineer-20220424:44": {
+    "questionSHA256": "c9c8471c09a19db23ec2284509b76ce407e40cb1736b8d6b6966a000af0110e5",
+    "explanation": "①의 20%는 하역 시 전후 안정도 기준과 다르다. 최대하중으로 포크를 가장 높이 올렸을 때의 시험 기울기는 4%이고 최대하중 5톤 이상은 3.5%다. ③도 확인이 필요하다. 전후 주행 시험의 18%는 기준부하 상태인데 이 보기에는 기준무부하 상태로 적혀 있다. 저장된 답은 ①이며 단일 정답 성립 여부는 공식 문제지로 확인해야 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "건설기계 안전기준에 관한 규칙 제22조제1항제1·2호, 제2항. 두 항 모두 2018.06.01 개정 표시. 규정의 하중상태와 경사 방향을 보기별로 대조."
+  },
+  "safety-engineer-20220424:45": {
+    "questionSHA256": "257e8a6a8618465760140b187d05adcbf51cc040a77c9b9efc1bca1ad2569ba2",
+    "explanation": "둘 이상 설치하면 한 개는 최고사용압력 이하에서 작동해야 한다. 다른 장치의 작동압력 상한이 최고사용압력의 1.05배이므로 ②다. 모든 장치를 1.05배에 설정해도 된다는 뜻은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116조제1항 단서. 제2항 압력계 교정주기와 구별. 2025.12 시행 사본의 제1항 문언과 대조, 제2항 개정 이력만 별도 표시."
+  },
+  "safety-engineer-20220424:47": {
+    "questionSHA256": "d0b726da23ae906f3f681faf333bb0e56c8c16b7d39b12f3d38a8ee2f05ba691",
+    "explanation": "① 칩 브레이커다. 공구 날 근처에서 발생한 칩을 굽혀 짧게 끊어지도록 한다. 회전이 멈춘 뒤 흩어진 칩을 쓸어 내는 도구와 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "칩을 끊는 시점(절삭 중)과 수거 시점을 구별. 2015.03.08 산업기사 45번의 칩 처리 문제와 대조."
+  },
+  "safety-engineer-20220424:48": {
+    "questionSHA256": "fd754f42306f90b93eaf21de0f785e384b754d7e56996ecb2de77665781efec1",
+    "explanation": "확인한 시행령에서 연삭기 덮개는 제77조의 자율안전확인 대상이다. 압력용기의 안전밸브와 파열판, 방폭구조 전기기계·기구 및 부품은 제74조 안전인증 목록에 있다. 이 구분에서 질문에 해당하는 것은 ①이다. 확인한 판본은 2026년 공포본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "시행령 제74조제1항제2호 라·마·사목 및 제77조제1항제2호 라목. 수록본은 2026.03.24 공포판이므로 2022년 시행령 판본 대조는 보류."
+  },
+  "safety-engineer-20220424:50": {
+    "questionSHA256": "26472a339f51167630e6790e75424799962c7f9fb787b8686a390c0608568033",
+    "explanation": "제512조의 강렬한 소음작업 목록에는 100 dB·2시간, 110 dB·30분, 115 dB·15분이 있다. ④의 120 dB·7분은 이 목록에 없다. 표의 시간 감소 패턴을 연장해 법정 항목을 만들 수 없다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제512조제2호 다·마·바목 및 제3호의 충격소음 구별. 법정 목록과 보기 네 개를 직접 대조."
+  },
+  "safety-engineer-20220424:52": {
+    "questionSHA256": "90d791125c0ef382718a385299355996345a1cea41d8b515c15201b6b52f04b7",
+    "explanation": "작업 시작 전에는 연삭숫돌을 1분 이상 시험운전하고 이상 여부를 확인한다. ④가 맞다. 숫돌을 교체한 뒤에는 3분 이상이므로 ③의 2분으로는 부족하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제122조제2항 본문. ③의 2분은 교체 후 3분에 미달, ④의 1분은 시작 전 기준."
+  },
+  "safety-engineer-20220424:53": {
+    "questionSHA256": "6e1f139209dbed6b02d85b5b70009c824b1487e10760e67af1a4e4e616308db3",
+    "explanation": "그림에서 회전하는 톱날 하나의 날끝이 신체에 닿으면 베이거나 잘릴 수 있다. 따라서 ③ 절단점이다. 두 회전체 사이로 빨려 들어가는 물림점과는 형상이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "내장 SVG의 화살표·톱날·축과 4개 보기 직접 확인. 두 회전체 사이 틈 없음. 규칙 제101조 톱날접촉예방장치와 비교."
+  },
+  "safety-engineer-20220424:54": {
+    "questionSHA256": "1f3a3b54c94eb0fce1315e918732f4bd47c12081b5df89471223c8b348c01657",
+    "explanation": "①은 훅 등이 지나치게 감겨 올라가는 것을 막고, ②는 과부하를 제한하며, ③은 비상시에 기계를 멈춘다. ④ 자동보수장치는 여기에 해당하는 크레인 방호장치가 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제134조제1항 2019.04.19까지 개정 표시, 크레인 포함. 권과방지·과부하방지·비상정지와 보기 ④ 대조."
+  },
+  "safety-engineer-20220424:59": {
+    "questionSHA256": "181906045c7a253356c73738a5fc0cf68ae83bd7f0693462ae132ec78d1bce00",
+    "explanation": "③ 위치제한형이다. 예를 들어 위험점에서 떨어진 두 조작부를 양손으로 동시에 눌러야 하면, 기계가 작동할 때 손이 위험구역 밖에 있게 된다. 덮개로 막거나 접근을 감지해 정지하는 방식과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "29 CFR §1910.217의 two-hand control 동시 조작 조건을 위치제한 방식의 예로 사용. 보기 ① 덮개와 ④ 접근 감지 구분."
+  },
+  "safety-engineer-20220424:60": {
+    "questionSHA256": "8ebd64f03f1f2793b51fa94479a5a8cdcd84038edc684011b4e34327b3728cff",
+    "explanation": "②는 배기통의 단면적을 바닥면적의 1/16 이상으로 하고, 옥상으로 돌출된 개구부를 창이나 출입구에서 1.5 m 이상 떨어뜨린다는 두 조건을 모두 충족한다. 벽은 불연성 재료여야 하며 옥외 개구부의 이격거리도 최솟값이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제287조제1·3·4호와 제286조제3항. ② 면적 하한·거리 하한을 모두 만족. 다른 보기의 가연성·철판 두께 및 이격 방향 대조."
+  },
+  "safety-engineer-20220305:44": {
+    "questionSHA256": "091f86490dd55ee9bcbfc2868f142088c4749f40973c8eedfb958c8634ecafa0",
+    "explanation": "④의 목적이 반대다. 칩 브레이커를 사용하면 길게 이어지는 칩이 굽어 짧게 끊어진다. 긴 칩이 공작물이나 공구 주위에 감기는 위험을 줄인다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "선반과 플레이너 모두 절삭 중 칩을 짧게 끊는 공구 효과와 보기 ④의 길게 한다는 표현 비교."
+  },
+  "safety-engineer-20220305:53": {
+    "questionSHA256": "06726243278c0d47a843773fc5fb2eb6573d8f4b97c5544189a0e322a23828e4",
+    "explanation": "① 납이다. 압력방출장치가 설정압력에서 작동하는지 검사한 뒤 납으로 봉인한다. 여기서 묻는 재료는 조정 후 봉인에 쓰는 재료다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116조제2항에서 검사 후 봉인 재료 확인. 2025년 변경된 부처 명칭을 출제연도로 소급하지 않음."
+  },
+  "safety-engineer-20220305:56": {
+    "questionSHA256": "ed08be80ee205619994d6ed4917ef7c606ec64aa2f5a16a0c048f31f03fb3ad8",
+    "explanation": "① 언로드밸브다. 보일러에는 과압을 방출하는 장치, 버너를 차단하는 압력제한스위치, 수위를 감시·조절하는 장치를 둔다. 언로드밸브는 이 구분에서 보일러의 방호장치에 해당하지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116~119조. 압력방출, 연소차단, 수위조절은 보일러 조항에 열거."
+  },
+  "safety-engineer-20210814:41": {
+    "questionSHA256": "9ccb6c372e47768596926480a7fc53e4fd00ba53a2ab69259abbcf3baa46e51f",
+    "explanation": "①이 해당하지 않는다. 강렬한 소음작업은 90 dB 이상·1일 8시간부터 별도로 열거한다. 85 dB는 1일 8시간 기준의 일반 소음작업 정의에 나오는 값이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제512조제1·2호. 85 dB, 90 dB의 서로 다른 분류와 시간 확인."
+  },
+  "safety-engineer-20210814:47": {
+    "questionSHA256": "d80c8789e0cc8b16fe5727c9de27a22c76ebb8560532edf3db3bfcdd062cb82b",
+    "explanation": "길이에 비해 가는 일감은 절삭력이 작용하면 휘거나 진동하기 쉽다. 절삭 부근이나 중간을 추가로 지지하는 ③ 방진구를 쓴다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "지문이 요구하는 것은 긴 축 중간의 횡방향 지지. 칩·척·비산 보호 목적과 구별."
+  },
+  "safety-engineer-20210814:50": {
+    "questionSHA256": "f7f6e5dbb6fbbff377a513875da83953c68839a81381e34e5378e4beaa3e9528",
+    "explanation": "③이 틀리다. 밀링 커터가 회전할 때 느슨한 면장갑이 날에 걸리면 손까지 끌려갈 수 있다. 규칙은 날이나 공작물에 말려들 위험을 방지하도록 요구한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제95조 회전체에 말려들 우려가 없는 장갑. 면장갑 무조건 착용과 비교."
+  },
+  "safety-engineer-20210814:54": {
+    "questionSHA256": "3c406a277a9009dca67eedefdf85b92ff6bcb699ae4ed193d94ef26009bbaba3",
+    "explanation": "② 아웃트리거다. 장비가 넘어지지 않도록 지면을 지지하는 장치다. 다른 세 보기는 보일러 압력이나 수위를 감시·제어한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제119조와 ①·③·④ 대조. 아웃트리거는 지지 폭을 넓히는 장치."
+  },
+  "safety-engineer-20210515:41": {
+    "questionSHA256": "1e9f2f68b60fef1902e9a137286ec913f0dbf433faa2d8ba5b4bd353049a4fbc",
+    "explanation": "② 고저수위 조절장치다. 이상 수위를 검출하면 경보로 알리고 자동으로 급수하거나 단수해 수위를 조절한다. 압력방출장치는 수위 대신 압력을 제한한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제118조. 위험 수위 감시와 경보 및 자동 급·단수 기능이 모두 지문과 일치."
+  },
+  "safety-engineer-20210515:46": {
+    "questionSHA256": "2f71d05bc4821683231622d521f17a769c619b61888244c9d9be037c54626ac2",
+    "explanation": "두 개 중 하나는 최고사용압력 이하에서 먼저 작동해야 한다. 나머지 장치에 허용되는 상한이 최고사용압력의 1.05배이므로 ③이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116조제1항 단서. 보기 ③ 1.05와 조건 확인."
+  },
+  "safety-engineer-20210515:47": {
+    "questionSHA256": "4a127c23b793a36adeed7598e2d46ee393aa0f01a2cc6c7d6209042d821a22b6",
+    "explanation": "③ 압력제한스위치다. 압력이 설정값에 도달하면 버너의 연소를 차단해 추가 압력 상승을 막는다. 압력을 외부로 배출하는 밸브와 작동 방법이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제117조. 설정 범위와 버너 연소 차단을 압력방출 기능과 구별."
+  },
+  "safety-engineer-20210307:51": {
+    "questionSHA256": "5d86b98ba8053dfddd53fb23747a295467be1539dd8674b447838d85bee8dbd6",
+    "explanation": "① 해지장치다. 훅에서 줄걸이가 빠지는 것을 막는 부품이며, 보일러의 압력 방출·연소 차단·수위 조절과는 기능이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제119조가 열거한 세 보일러 장치와 훅 해지장치 비교."
+  },
+  "safety-engineer-20200926:44": {
+    "questionSHA256": "ca6783a0474745e94e30aeb47cfb95c78a504b9b44471ca08c4f4b129f48a85c",
+    "explanation": "④다. 제285조에서 127 kPa는 대기압을 기준으로 한 게이지압의 상한이다. ①의 옥외 개구부 이격거리는 1 m가 아니라 1.5 m 이상이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제285조 127 kPa 초과 금지 및 제286조제3항의 1.5m, 제289조 발생기 5m·발생기실 3m 대조."
+  },
+  "safety-engineer-20200926:58": {
+    "questionSHA256": "52283e7136c2e20d93acd04bec9566e1f93bb2e1ef37adfce55e77394a9f3220",
+    "explanation": "③의 ‘매 7년’은 확인한 규칙과 다르다. 제116조제2항은 원칙적으로 매년 1회 이상 설정압력에서의 작동을 검사하도록 하고, 요건을 충족한 평가 우수 사업장에만 4년 주기 예외를 둔다. 확인한 조문은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제116조제2항 2025.12 시행 사본에 일반 매년, 해당 평가 우수 사업장 4년. 출제시점 2020년 조문 사본은 별도 확인 필요."
+  },
+  "safety-engineer-20200822:55": {
+    "questionSHA256": "7e20745c6dcad206d764451e9a896c44cbe86d3957e1acfd2874a55c08614fa0",
+    "explanation": "④가 잘못이다. 바이트 끝을 길게 내밀면 절삭력이 작용하는 지레팔이 길어져 휨과 떨림이 커진다. 작업에 필요한 범위 안에서 돌출을 짧게 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "외팔보에서 같은 절삭력일 때 돌출길이가 길수록 고정부 굽힘모멘트 증가. 긴 칩 제거와 구별."
+  },
+  "safety-engineer-20200822:57": {
+    "questionSHA256": "cfe4d9bfc950d081cbb2c9c9920d83aeba1079d18063bc795a4194ff250ab6fb",
+    "explanation": "④ 압력제한스위치다. 설정압력에 도달하면 버너의 연소를 차단해 더 이상 열을 공급하지 않도록 한다. 고저수위 조절장치는 수위를 감시한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제117조 최고사용압력·상용압력 사이의 설정. 같은 방호장치의 다른 정답 위치 확인."
+  },
+  "safety-engineer-20200606:46": {
+    "questionSHA256": "c1648d84c30d669833a22cf7f87ed6f766b6f711260975d45ecdab7d0163c907",
+    "explanation": "④가 틀리다. 회전 커터에 면장갑의 섬유나 헐거운 부분이 걸리면 손이 말려들 수 있다. 절삭 중 손으로 가공면이나 칩을 만지는 행동도 피해야 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제95조 장갑 재질 및 끼임 위험과 전제 없는 ④ 비교."
+  },
+  "safety-engineer-20200606:49": {
+    "questionSHA256": "3015e3972284884dfd9f04c560ecc87cdf938dc664fae8de9ab42062f6f4db8b",
+    "explanation": "④ 칩 브레이커다. 절삭날 근처에서 칩이 굽어 짧게 끊어지도록 한다. 커버와 보안경은 칩이 작업자에게 닿는 것을 막는 보호수단이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "칩 파단 기능과 비산을 가리는 커버·보안경을 보기별 대조."
+  },
+  "safety-engineer-20190804:50": {
+    "questionSHA256": "9780f8f161e6b6550554d02936f130472c75cef3687631e336d29f089429dad8",
+    "explanation": "① 압력방호판이다. 제119조에서 보일러의 폭발사고 방지를 위해 유지·관리하도록 든 것은 압력방출장치, 압력제한스위치, 고저수위 조절장치, 화염 검출기 등이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제119조 열거된 화염 검출기·압력방출장치·고저수위 조절장치와 ① 압력방호판 비교."
+  },
+  "safety-engineer-20190804:55": {
+    "questionSHA256": "1ebadfcb4dc1d20a5f0b3d08ba4e964924be0d9071f2b65f09434d5ea77e4acc",
+    "explanation": "①이 잘못이다. 칩 브레이커는 절삭하면서 생기는 긴 칩을 끊는 공구 형상이다. 쌓여 있는 칩을 치우는 도구가 아니며, 칩을 치울 때는 회전을 멈춘 뒤 브러시 등을 쓴다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "절삭 중 칩 브레이커로 잔류 칩을 제거한다는 ①과 2015.03.08 산업기사 45번 교차 대조."
+  },
+  "safety-engineer-20190804:56": {
+    "questionSHA256": "0d756c09832fe7ef9c600d4cde2bea6ebf772863dcd7ccc5082f8d5733f2b845",
+    "explanation": "화기를 사용하는 설비에서 발생기실까지는 3 m를 초과해야 한다. 옥외에 설치한 경우 개구부는 다른 건축물에서 1.5 m 이상 떨어뜨린다. 빈칸은 A=3 m, B=1.5 m인 ③이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제286조제2·3항. 원문 HTML에 A=화기사용설비, B=옥외 개구부와 다른 건축물로 표시. 초과/이상도 각각 확인."
+  },
+  "safety-engineer-20190303:45": {
+    "questionSHA256": "ceff2ee3e1bc5f4a100f7513ba78418c8e97e19a0ada5e3e76933e6d1ccaf345",
+    "explanation": "② 납이다. 검사한 압력방출장치를 해당 설정대로 사용하도록 봉인한다. 밸브 몸체나 압력계의 재질을 묻는 문제가 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제116조제2항. ② 납 확인. 2019년 시험판의 기관 관할명은 다루지 않음."
+  },
+  "safety-engineer-20180819:49": {
+    "questionSHA256": "98c7005e3016111bf7646a58c54adb5853d3812bfb97c96264b32d5fe033d498",
+    "explanation": "③ 칩 브레이커다. 바이트에서 나오는 칩을 굽혀 짧게 끊어지도록 해 긴 칩의 감김을 줄인다. 심압대와 주축대는 공작물의 지지·회전 기능을 맡는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "바이트 기능을 심압대·주축대의 지지 기능과 대조."
+  },
+  "safety-engineer-20180819:53": {
+    "questionSHA256": "e82d163ce09facb173ebcfdcad93cc1f9040096728de66fc91aad7e0c715daa9",
+    "explanation": "①의 8년은 확인한 2025년 12월 시행 규칙과 다르다. 제116조제2항 단서의 평가 우수 사업장은 요건을 충족할 때 4년마다 1회 이상 검사할 수 있다. 2018년 출제 당시의 정확한 문언은 별도 확인 대상이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116조제2항. 2018년과 2025년 사이 개정 표시가 있어 8년 주장과 현행 계열 4년을 구별하고 당시 판본을 보류."
+  },
+  "safety-engineer-20180428:51": {
+    "questionSHA256": "e9b62327d4699fbe4180fd23c6682f9b2cc80942f55bed572314d0e2be077330",
+    "explanation": "첫 장치는 최고사용압력 이하에서, 다른 장치는 그 압력의 1.05배 이하에서 작동하게 한다. 두 번째 장치의 상한을 물으므로 ②다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제116조제1항 단서. 1.03·1.05·1.2·1.5의 서로 다른 배수를 비교."
+  },
+  "safety-engineer-20180428:52": {
+    "questionSHA256": "49a021a4260472526f355115526925c3337549db736926ddeef5b9ac1e53eb73",
+    "explanation": "②가 잘못이다. 회전 중인 커터 가까이 측정기나 손을 넣으면 말리거나 날과 접촉할 수 있다. 치수는 절삭을 멈추고 커터의 회전이 정지한 다음 측정한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "커터와 공작물 사이로 측정도구·손이 들어가는 시점 비교. 2022.04.24 43번 ②."
+  },
+  "safety-engineer-20180428:54": {
+    "questionSHA256": "9292e68c11db32274b458e7bdfed3ee76bd2f71f026c91c099900452f30b3504",
+    "explanation": "① 과부하방지장치다. 양중기 등의 정격하중 초과를 막는 장치다. ②·③·④는 압력과 수위를 감시·제어해 보일러 사고를 예방한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제119조와 제134조의 목록 비교. 열거된 세 항목과 과부하방지장치 구별."
+  },
+  "safety-engineer-20180304:50": {
+    "questionSHA256": "c29e48c9802b8f6d3c40ded29f01890172425ff93fff4d34234b206f39d8d98c",
+    "explanation": "① 칩 브레이커다. 칩이 생기는 지점에서 곡률을 크게 해 연속된 칩을 짧게 끊는다. 칩 받침은 이미 나온 칩을 받고, 실드는 비산물을 가리는 역할이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2022.04.24 47번과 지문과 보기 명칭 대조, 이 문항도 ①이 칩 브레이커."
+  },
+  "safety-engineer-20180304:59": {
+    "questionSHA256": "ef91c436ddeae370ee2c540da3149dddbd4c22ae38bb86a7af0c5a7ff7e69d56",
+    "explanation": "③이 잘못이다. 커터가 컬럼에서 멀수록 절삭력이 작용하는 지레팔이 길어져 처짐이나 떨림이 커진다. 간섭이 없는 범위에서 지지부 가까이에 설치한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "커터를 컬럼에서 멀게 두면 지지점에서 절삭력 작용점까지 거리가 증가. 필요한 길이만 쓰는 원리와 대조."
+  },
+  "safety-engineer-20200822:33": {
+    "questionSHA256": "030baf38528b13b3dce7a539c6ddc198c09ff0f88778f9f16b5a95128897ecfc",
+    "explanation": "④다. 강렬한 소음작업의 첫 항목은 90 dB 이상의 소음이 하루 8시간 이상 발생하는 경우다. 85 dB·8시간은 별도의 소음작업 정의다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제512조제2호 가목. 85/90 dB·4/8시간의 네 조합 직접 비교."
+  },
+  "safety-engineer-20200606:57": {
+    "questionSHA256": "a8fb06291699cd14050a8ac68226ddf6e9cbf17e3ea0bf193e51aa7c3fe1d522",
+    "explanation": "③ 덮개다. 지름 5 cm 이상의 연삭숫돌이 회전하며 근로자에게 위험을 줄 수 있을 때 해당 부위를 덮어 접촉 위험을 줄인다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제122조제1항에 명시된 지름 5 cm 이상·근로자에게 위험 조건 대조."
+  },
+  "safety-engineer-20190427:52": {
+    "questionSHA256": "7c4c094f2464bdacdc4d1d5b8ebc9678060026dea15486fb1fb15085d3ca2200",
+    "explanation": "한 바퀴 동안 숫돌 표면은 원둘레 π×0.2 m만큼 이동한다. 분당 300회전이므로 원주속도는 약 188.5 m/min, ④다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "단위 변환 지름 200 mm=0.2 m. π×0.2×300=188.49556 m/min."
+  },
+  "safety-engineer-20190427:58": {
+    "questionSHA256": "0273704e5a32110a0f7ad37848e41c352f732fdfee0df5528933f7b08989c473",
+    "explanation": "① 5 cm 이상이다. 회전 중인 숫돌이 근로자에게 위험을 미칠 우려가 있을 때 적용되는 덮개 설치 기준이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제122조제1항 기준 5 cm와 ①~④ 네 값을 대조."
+  },
+  "safety-engineer-20190303:47": {
+    "questionSHA256": "425586d65ae561453ffa1aa52dbfd4caacfd69cb2f60221c14c28aa85dede6f9",
+    "explanation": "①이 틀리다. 작업을 시작하기 전에는 1분 이상, 새 숫돌로 교체한 뒤에는 3분 이상 시험운전해야 한다. 교체한 경우에도 1분만 돌리면 된다는 설명은 맞지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제122조제2·4·5항. 일상 작업 전과 교체 후를 같은 1분으로 묶은 ①이 틀림."
   }
 }

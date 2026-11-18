@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.19',scope:'industrial',date:'2026.11.18',title:'공조·에너지 단위와 산업안전 기출 보완',summary:'노벽 두께·절대압력·교류전력과 지게차 시험 하중을 원문 조건별로 대조했습니다.',tags:['에너지','공조','산업안전'],changes:['공조 교재의 원문 해설과 교정 내용을 분리했습니다.','산업안전기사의 기계 안전 및 보일러 문항에 해설을 추가했습니다.']},
     {version:'6.2.18',scope:'industrial',date:'2026.11.18',title:'냉각열량 계산과 교재 원문 대조',summary:'공조 코일·압력제어·냉각수와 에너지 기출의 계산 조건을 보완했습니다.',tags:['공조','에너지'],changes:['판본별 보기와 코일 표면온도 조건을 각각 반영했습니다.','공조 교재의 해설 11개를 원문과 대조해 텍스트로 표시합니다.']},
     {version:'6.2.17',scope:'industrial',date:'2026.11.18',title:'공조·에너지 기출 및 교재 계산 교정',summary:'사무실 도면의 열손실과 냉동·전기 계산 과정을 보완했습니다.',tags:['공조','에너지','산업안전'],changes:['공조 교재 해설 15개의 원문 일부를 텍스트로 확인할 수 있습니다.','산업안전기사 소음 크기와 와이어로프에 해설을 추가했습니다.']},
     {version:'6.2.16',scope:'industrial',date:'2026.11.18',title:'반복 기출과 교재 온도 환산 교정',summary:'공조·에너지 계산과 제어 해설을 교정하고 정보처리·산업안전 10문항에 해설을 추가했습니다.',tags:['공조','에너지','정보처리'],changes:['응축기 대수평균온도차를 분수식으로 표시합니다.','식품 동결 문제의 인쇄 온도와 환산값을 구분했습니다.']},
@@ -2796,8 +2797,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.18';
+  changelog.versions.industrial = '6.2.19';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.18';
+  changelog.currentVersion = '6.2.19';
   window.CBT_CHANGELOG = changelog;
 })();

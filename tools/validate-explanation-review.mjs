@@ -105,6 +105,16 @@ for(const [p,e] of Object.entries(oldConfirmed))assert.deepEqual(newConfirmed[p]
 for(const [p,e] of Object.entries(newConfirmed)){
  assert.equal(e.asset,maps[p]||p);assert.equal(crypto.createHash('sha256').update(fs.readFileSync(e.asset)).digest('hex'),e.sha256);
 }
+const readerVariants = JSON.parse(fs.readFileSync('data/image-text/book-reader-variants.json'));
+const readerImages = JSON.parse(fs.readFileSync('data/hansol-book-ink-hidden.json')).assets;
+for (const [path, variant] of Object.entries(readerVariants)) {
+ const originalEntry = newConfirmed[variant.original];
+ assert.equal(originalEntry?.status, 'reviewed');
+ assert.ok(readerImages.some(row => row.oldAsset === variant.original && row.asset === path), path);
+ assert.equal(variant.asset, maps[path] || path);
+ assert.ok(review.records.some(row => row.questionImage === variant.original && row.sourceAssets.some(
+  asset => asset.original === path && asset.displayAsset === variant.asset && asset.sha256 === variant.sha256)), path);
+}
 const manual=JSON.parse(fs.readFileSync('tools/image-text-catalog-reviewed.json')).entries;
 for(const [p,e] of Object.entries(newConfirmed))if(!oldConfirmed[p]){assert.equal(manual[p].text||'',e.text);assert.equal(manual[p].sha256,e.sha256);if(e.kind==='question')assert.deepEqual(manual[p].question,e.question);}
 const links=JSON.parse(fs.readFileSync('data/energy-textbook-comcbt-links.json')).links;

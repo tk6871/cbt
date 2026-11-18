@@ -402,3 +402,37 @@ test('교재 냉각수 열수지와 인쇄 결론', async ({page}, info) => {
  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
  await box.screenshot({path:info.outputPath('water-heat-balance.png')});
 });
+
+test('노벽 두께 22 mm 원문과 외표면 온도 검산', async ({page}, info) => {
+ await prepare(page,'energy');
+ await page.locator('#round-card-energy-industrial-20030525').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('66');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({has:page.locator('.question-text').filter({hasText:'내벽의 내화벽돌 두께'})});
+ await card.locator('.choice-button').nth(3).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('140.4 ℃');
+ await expect(box).toContainText('두께를 22 cm로 넣었을 때');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20030525:66'])).toBe(4);
+ await box.screenshot({path:info.outputPath('wall-thickness.png')});
+});
+
+test('냉동 교재 절대압력과 두 단의 압축비', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-196');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 22번',exact:true})}).locator('.question-card');
+ await expect(card.locator('.question-text')).toContainText('100mmHg');
+ await card.locator('.choice-button').nth(3).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('0.0880 MPa');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.original-textbook-explanation').getByRole('figure');
+ await expect(figure.getByRole('paragraph')).toContainText('1.601325');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await box.screenshot({path:info.outputPath('two-stage-pressure.png')});
+});

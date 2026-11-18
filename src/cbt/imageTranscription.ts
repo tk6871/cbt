@@ -2,6 +2,7 @@ import { computed, shallowReactive, watch, type ComputedRef } from 'vue';
 import { explanationDisplay } from './explanationDisplay';
 import { problemImage } from './problemImages';
 import confirmed from '../../data/image-text/confirmed.json' with {type:'json'};
+import readerVariants from '../../data/image-text/book-reader-variants.json' with {type:'json'};
 import families from '../../data/image-text/families.json' with {type:'json'};
 
 export interface ImageTranscription {
@@ -10,7 +11,13 @@ export interface ImageTranscription {
   question?: { stem: string; choices: string[] }; basis?: string;
 }
 declare const __CBT_BUILD_VERSION__: string;
-const verified: Record<string, ImageTranscription> = confirmed as unknown as Record<string, ImageTranscription>;
+const verified: Record<string, ImageTranscription> = {...confirmed} as unknown as Record<string, ImageTranscription>;
+for (const [path, variant] of Object.entries(readerVariants)) {
+  const original = verified[variant.original];
+  if (original?.status === 'reviewed') {
+    verified[path] = {...original, asset: variant.asset, sha256: variant.sha256};
+  }
+}
 const supported = new Set(families);
 const entries = shallowReactive(new Map<string,Record<string,ImageTranscription>>());
 const pendingFamilies = shallowReactive(new Set<string>());
