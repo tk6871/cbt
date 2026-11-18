@@ -153,3 +153,23 @@ test('636쪽 동일 문제 텍스트·습식 정답·원본 선택 영역',async
   await card.locator('.question-transcription-control').getByRole('button',{name:'이미지로 보기'}).click();
   await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
 });
+
+test('급수처리 원문 반응식과 교정식·답안 저장', async ({page}, info) => {
+  await prepare(page, 'energy-midterm');
+  await page.locator('#round-card-school-energy-topic-3').getByRole('button', {name:'학습모드', exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:'2022년 2회 · 원문 75번'})});
+  const jump = page.getByRole('spinbutton', {name:'이동할 문제 번호'});
+  const last = Number(await jump.getAttribute('max'));
+  await jump.fill(String(last));
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  await card.locator('.image-answer-hotspot').nth(2).click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('N₂H₄ + O₂ → N₂ + 2H₂O');
+  await expect(explanation.locator('.transcription-text')).toContainText('N₂H₄ + O₂ → 2H₂O');
+  await explanation.getByRole('button',{name:'이미지로 보기',exact:true}).click();
+  await explanation.locator('.textbook-explanation-image img').evaluate((img:HTMLImageElement)=>img.decode());
+  await explanation.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['school-energy-textbook-2022-2:75'])).toBe(3);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  await explanation.screenshot({path:info.outputPath('boiler-water.png')});
+});

@@ -78,5 +78,145 @@
     "text": "찾아야 하는 것은 건식이 아닌 방식이다. ④ 벤튜리 스크러버는 세정액과 분진을 접촉시키는 습식이므로 이 문항의 정답이다. 백필터식은 여과재를 쓰고 사이클론식·멀티클론식은 회전 흐름을 이용한다.",
     "basis": "저장된 COMCBT 원문 및 2025년 3회 · 원문 33번 · 교재 636쪽의 지문·네 보기·해설 이미지 대조. 40 CFR §63.9652의 습식 포집 원리.",
     "originalLabel": "기존 COMCBT 이용자 해설 · 마지막 오답 표기 교정"
+  },
+  "school-energy-textbook-2018-2:5": {
+    "fingerprint": "3366d75e85dcc4fa",
+    "text": "기체가 받은 열을 +Q, 기체가 외부에 한 일을 +W로 둔다. 받은 40 kJ 중 30 kJ가 일로 나갔으므로 ΔU = Q − W = 40 − 30 = +10 kJ이다. 양의 변화는 내부에너지가 증가했다는 뜻이어서 ①이다. 여기서 Q는 계로 전달된 열량이다.",
+    "basis": "2018년 2회 · 원문 5번 · 교재 337쪽 원문·보기·정답 대조. The First Law of Thermodynamics."
+  },
+  "school-energy-textbook-2018-2:7": {
+    "fingerprint": "9b2b6f1a9734d3c2",
+    "text": "제1법칙은 계의 에너지 수지를 나타낸다. 열이 들어오거나 계가 일을 하면 내부에너지가 그만큼 달라진다. 따라서 ① 시스템의 에너지 보존이다. 교재의 제3법칙 설명에서 혼동하기 쉬운 점은 순수한 완전결정의 엔트로피 기준이 0 K에서 0이라는 것이다.",
+    "basis": "2018년 2회 · 원문 7번 · 교재 337쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "school-energy-textbook-2019-1:1": {
+    "fingerprint": "7a2db2e3ce57179f",
+    "text": "에너지는 열이나 일로 계의 경계를 넘어도 보존된다. 이 수지를 나타내는 법칙은 ② 제1법칙이다. 교재에 함께 나온 제3법칙은 순수한 완전결정이 0 K에서 갖는 엔트로피의 기준에 관한 법칙이다.",
+    "basis": "2019년 1회 · 원문 1번 · 교재 365쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "energy-industrial-20190303:1": {
+    "fingerprint": "330dc3f80d168dbf",
+    "text": "에너지는 열이나 일로 계의 경계를 넘어도 보존된다. 이 수지를 나타내는 법칙은 ② 제1법칙이다. 교재에 함께 나온 제3법칙은 순수한 완전결정이 0 K에서 갖는 엔트로피의 기준에 관한 법칙이다.",
+    "basis": "에너지관리산업기사 필기 기출문제 2019년 03월 03일 (1회) (정답, 해설) 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "school-energy-textbook-2019-2:19": {
+    "fingerprint": "b883a1d1dbc4b305",
+    "text": "계가 받은 열에서 외부에 한 일을 빼면 계의 내부에너지 변화가 된다. 이는 에너지 보존을 열역학에 적용한 것이므로 ④ 제1법칙이다. 보기 ①의 제3법칙은 순수한 완전결정의 0 K 엔트로피를 다룬다.",
+    "basis": "2019년 2회 · 원문 19번 · 교재 383쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "energy-industrial-20190427:19": {
+    "fingerprint": "8eaa924cf6212a81",
+    "text": "계가 받은 열에서 외부에 한 일을 빼면 계의 내부에너지 변화가 된다. 이는 에너지 보존을 열역학에 적용한 것이므로 ④ 제1법칙이다. 보기 ①의 제3법칙은 순수한 완전결정의 0 K 엔트로피를 다룬다.",
+    "basis": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설) 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "school-energy-textbook-2020-1-2통합:18": {
+    "fingerprint": "4a4657b6c09df0e3",
+    "text": "양과 조성이 일정한 이상기체의 내부에너지는 온도만으로 정해진다. 등온이면 온도가 변하지 않아 ④ ΔU = 0이다. 예를 들어 등온팽창 때 기체가 일을 해도 같은 양의 열을 받으면 온도는 일정하다. 따라서 열과 일이 각각 0이어야 하는 것은 아니다.",
+    "basis": "2020년 1·2통합회 · 원문 18번 · 교재 414쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The First Law of Thermodynamics and Some Simple Processes."
+  },
+  "school-energy-textbook-2021-1:1": {
+    "fingerprint": "b463f06bce0aa17a",
+    "text": "계가 받은 열과 한 일은 에너지 수지에 함께 들어간다. 그 보존 관계를 말한 ①이 제1법칙이다. ②의 자연스러운 열 이동 방향과 ④가 가리키는 단일 열원 순환 열기관의 변환 한계는 제2법칙에서 다룬다.",
+    "basis": "2021년 1회 · 원문 1번 · 교재 442쪽 원문·보기·정답 대조. The First Law of Thermodynamics, Introduction to the Second Law of Thermodynamics."
+  },
+  "school-energy-textbook-2021-1:10": {
+    "fingerprint": "37cbf2611addefc9",
+    "text": "체적이 0.5에서 0.7 m³로 증가하므로 기체가 외부에 한 일은 W = pΔV = 200 × (0.7 − 0.5) = 40 kJ이다. 1 kPa·m³ = 1 kJ이고 내부에너지도 25 kJ 늘었다. 공급열은 두 몫을 더한 Q = 25 + 40 = 65 kJ로 ④이다.",
+    "basis": "2021년 1회 · 원문 10번 · 교재 443쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The First Law of Thermodynamics and Some Simple Processes."
+  },
+  "school-energy-textbook-2021-1:14": {
+    "fingerprint": "ecba37bb4a1e7f47",
+    "text": "계로 들어온 열과 계가 한 일의 차이가 내부에너지 변화와 같다는 것이 제1법칙이다. 이 회차에서는 에너지 보존이 ②에 있다. 반응속도나 반응이 진행되는 방향은 이 에너지 수지만으로 정해지지 않는다.",
+    "basis": "2021년 1회 · 원문 14번 · 교재 444쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The Second and Third Laws of Thermodynamics."
+  },
+  "school-energy-textbook-2022-1:1": {
+    "fingerprint": "c04a58613dac6b2f",
+    "text": "열과 일은 계의 경계를 통해 에너지가 전달되는 두 방식이다. 계가 열을 받으면 Q > 0, 내보내면 Q < 0이다. 계가 한 일을 양으로 정하면 팽창일은 양, 압축일은 음이 될 수 있다. 두 양 모두 경로에 따라 달라지며, 항상 양수라는 ②가 틀리다.",
+    "basis": "2022년 1회 · 원문 1번 · 교재 474쪽 원문·보기·정답 대조. The First Law of Thermodynamics."
+  },
+  "school-energy-textbook-2022-1:13": {
+    "fingerprint": "dffcdb51e58f2cfb",
+    "text": "교재가 전제한 이상기체가 가역 팽창하며 외부에 양의 일을 한다고 보자. 단열이면 Q = 0이라서 ΔU = −W < 0이다. 등온이면 이상기체의 내부에너지는 일정해 ΔU = 0이다. 따라서 감소량이 큰 쪽은 ④ 단열팽창이다. 등온에서 ΔU = 0이라는 결론에는 이상기체 조건이 필요하다.",
+    "basis": "2022년 1회 · 원문 13번 · 교재 476쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The First Law of Thermodynamics and Some Simple Processes."
+  },
+  "school-energy-textbook-2023-4:3": {
+    "fingerprint": "e4cb115ce57ed3b7",
+    "text": "터빈을 통과하는 유체는 내부에너지와 유동일을 함께 운반하므로 비엔탈피 h를 쓴다. 정상·단열 운전에서 운동·위치에너지 변화를 무시하면 축출력은 질량유량 × (입구 비엔탈피 − 출구 비엔탈피)이다. 문제의 m은 kg/s 단위의 질량유량이고, kg/s × kJ/kg = kW이므로 ④ m(h₁ − h₂)이다.",
+    "basis": "2023년 4회 · 원문 3번 · 교재 553쪽 원문·보기·정답 대조. The First Law of Thermodynamics, IDAES steam turbine model."
+  },
+  "school-energy-textbook-2024-1:14": {
+    "fingerprint": "7dc63f99e08147fb",
+    "text": "열과 일은 모두 에너지 전달 방식이어서 한쪽이 다른 쪽으로 전환될 때도 에너지 총량은 보존된다. 이 관계가 ② 제1법칙이다. 단일 열원에서 받은 열을 순환 과정으로 모두 일로 바꿀 수 있는지는 제2법칙의 제한을 받는다.",
+    "basis": "2024년 1회 · 원문 14번 · 교재 572쪽 원문·보기·정답 대조. The First Law of Thermodynamics, Introduction to the Second Law of Thermodynamics."
+  },
+  "school-energy-textbook-2025-2:6": {
+    "fingerprint": "f433af17d041414b",
+    "text": "출력은 단위시간당 일이다. 정상·단열 터빈에서 속도와 높이 변화가 작으면 증기 1 kg이 내는 일은 실제 입출구의 비엔탈피 차 h₁ − h₂이다. 여기에 초당 통과하는 증기의 질량 m [kg/s]를 곱해야 kJ/s, 곧 kW가 된다. 따라서 ④ m(h₁ − h₂)이다.",
+    "basis": "2025년 2회 · 원문 6번 · 교재 616쪽 원문·보기·정답 대조. The First Law of Thermodynamics, IDAES steam turbine model."
+  },
+  "school-energy-textbook-2025-3:17": {
+    "fingerprint": "5a04d5a7b4d75157",
+    "text": "기체가 한 일은 W = p(V₂ − V₁) = 200 × (0.6 − 0.4) = 40 kJ이다. 체적 전체를 사용했고 1 kPa·m³ = 1 kJ이다. 내부에너지가 80 kJ 증가했으므로 공급열은 Q = 80 + 40 = 120 kJ, ④이다. 질량당 기체상수 R을 써서 전체 일을 나타내려면 mR(T₂ − T₁)로 질량도 곱해야 한다.",
+    "basis": "2025년 3회 · 원문 17번 · 교재 633쪽 원문·보기·정답 대조. The First Law of Thermodynamics, The First Law of Thermodynamics and Some Simple Processes."
+  },
+  "school-energy-textbook-2018-2:9": {
+    "fingerprint": "b36a9b3aaab09a22",
+    "text": "물에 녹아 있는 O₂와 CO₂를 물 밖으로 분리하는 조작은 ③ 탈기법이다. 가열하거나 기체 쪽 분압을 낮추면 기체가 물에서 빠져나오기 쉬워진다. 원문의 폭기 대상에 함께 적힌 철·망간은 용존기체가 아니다.",
+    "basis": "2018년 2회 · 원문 9번 · 교재 337쪽 원문·보기·정답 대조. Solubility."
+  },
+  "school-energy-textbook-2018-2:75": {
+    "fingerprint": "43ea008f34bf41d4",
+    "text": "철염 때문에 생기는 장해를 줄이려면 이 보기에서는 ① 폭기법을 고른다. 물을 공기와 접촉시켜 용존 2가 철의 산화를 촉진하고, 생긴 불용성 입자는 침전이나 여과로 분리한다. 철이 공기 중으로 날아가는 것은 아니다. 교재에서는 폭기법을 기폭법이라고도 쓴다.",
+    "basis": "2018년 2회 · 원문 75번 · 교재 348쪽 원문·보기·정답 대조. USGS PHREEQC Example 9, WaterTAP iron_and_manganese_removal_zo.py."
+  },
+  "energy-industrial-20180428:75": {
+    "fingerprint": "4b06175c32ba5d1a",
+    "text": "철염 때문에 생기는 장해를 줄이려면 이 보기에서는 ① 폭기법을 고른다. 물을 공기와 접촉시켜 용존 2가 철의 산화를 촉진하고, 생긴 불용성 입자는 침전이나 여과로 분리한다. 철이 공기 중으로 날아가는 것은 아니다. 교재에서는 폭기법을 기폭법이라고도 쓴다.",
+    "basis": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설) 원문·보기·정답 대조. USGS PHREEQC Example 9, WaterTAP iron_and_manganese_removal_zo.py."
+  },
+  "school-energy-textbook-2018-4:66": {
+    "fingerprint": "202510a62ec0ed5e",
+    "text": "교재 표의 두 열에 모두 적힌 기체는 CO₂, 즉 ③ 탄산가스다. 물속 자유 CO₂는 공기와 접촉해 기체 쪽으로 빠져나올 수 있고, 탈기에서도 제거 대상이다. 표는 이 시험에서 비교하는 대표 대상을 나타낸다.",
+    "basis": "2018년 4회 · 원문 66번 · 교재 361쪽 원문·보기·정답 대조. Solubility."
+  },
+  "school-energy-textbook-2019-1:74": {
+    "fingerprint": "1671cb0c5682ff89",
+    "text": "철 표면의 한 부분에서 철이 전자를 잃고 녹아 나오며 다른 부분에서는 물속 산소가 전자를 받는다. 이런 전기화학 반응이 강재의 부식을 일으키므로 ② 강판·강관의 부식이 해당한다.",
+    "basis": "2019년 1회 · 원문 74번 · 교재 377쪽 원문·보기·정답 대조. Corrosion."
+  },
+  "school-energy-textbook-2019-2:68": {
+    "fingerprint": "f75a2ea00387cda2",
+    "text": "일반 공기를 이용하는 폭기는 물을 공기와 접촉시킨다. 물속의 과잉 CO₂나 H₂S는 빠져나올 수 있고, 철은 산화시킨 뒤 고형물을 분리할 수 있다. 공기 중 산소를 공급하는 이 공정의 통상적인 제거 대상에 해당하지 않는 보기는 ③ 산소다.",
+    "basis": "2019년 2회 · 원문 68번 · 교재 391쪽 원문·보기·정답 대조. Solubility, USGS PHREEQC Example 9."
+  },
+  "energy-industrial-20190427:68": {
+    "fingerprint": "38323f8dae1be9c8",
+    "text": "일반 공기를 이용하는 폭기는 물을 공기와 접촉시킨다. 물속의 과잉 CO₂나 H₂S는 빠져나올 수 있고, 철은 산화시킨 뒤 고형물을 분리할 수 있다. 공기 중 산소를 공급하는 이 공정의 통상적인 제거 대상에 해당하지 않는 보기는 ③ 산소다.",
+    "basis": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설) 원문·보기·정답 대조. Solubility, USGS PHREEQC Example 9."
+  },
+  "school-energy-textbook-2021-2:65": {
+    "fingerprint": "7ce8786406cbdeb2",
+    "text": "보기 중 CO₂는 물에서 기체로 빠져나올 수 있고, 철과 망간은 조건에 맞게 산화한 뒤 여과할 수 있다. 공기와 접촉시켜 처리하는 폭기에서 용존산소 제거는 주목적이 아니다. 따라서 ① O₂이다.",
+    "basis": "2021년 2회 · 원문 65번 · 교재 470쪽 원문·보기·정답 대조. Solubility, WaterTAP iron_and_manganese_removal_zo.py."
+  },
+  "school-energy-textbook-2022-2:63": {
+    "fingerprint": "26dcaec15c22f72d",
+    "text": "철이 산화되는 작은 영역에 금속 손실이 집중되면 표면에 국부적인 구멍이 깊어진다. 용존산소가 관여하는 국부전지와 이런 손상 형태를 연결하면 ④ 점식(pitting)이다. ③의 grooving은 홈 모양의 부식을 뜻한다.",
+    "basis": "2022년 2회 · 원문 63번 · 교재 501쪽 원문·보기·정답 대조. Corrosion."
+  },
+  "school-energy-textbook-2022-2:75": {
+    "fingerprint": "f7226a3eed5b78fe",
+    "text": "기체 분압과 온도에 따라 용존기체가 물에서 빠져나오는 ③은 물리적 탈기이다. 화학적 탈산소에서는 약제가 산소와 반응한다. 원문 반응식에는 질소 생성물이 빠졌다. N₂H₄ + O₂ → N₂ + 2H₂O로 써야 양쪽의 N·H·O 원자 수가 각각 2·4·2로 같다.",
+    "basis": "2022년 2회 · 원문 75번 · 교재 503쪽 원문·보기·정답 대조. Solubility."
+  },
+  "school-energy-textbook-2023-1:45": {
+    "fingerprint": "c4efa8e60390c80d",
+    "text": "원수와 공기를 접촉시키는 ② 기폭법(폭기법)이다. 자유 CO₂는 기체로 빠져나오고 철·망간은 수질과 산화 조건에 따라 불용성 입자를 만들어 후단에서 걸러 낸다. 세 성분이 같은 방식으로 제거되는 것은 아니다.",
+    "basis": "2023년 1회 · 원문 45번 · 교재 529쪽 원문·보기·정답 대조. Solubility, USGS PHREEQC Example 9, WaterTAP iron_and_manganese_removal_zo.py."
+  },
+  "energy-industrial-20170923:73": {
+    "fingerprint": "6c1ae591d2dd8c5",
+    "text": "원수와 공기를 접촉시키는 ② 기폭법(폭기법)이다. 자유 CO₂는 기체로 빠져나오고 철·망간은 수질과 산화 조건에 따라 불용성 입자를 만들어 후단에서 걸러 낸다. 세 성분이 같은 방식으로 제거되는 것은 아니다.",
+    "basis": "에너지관리산업기사 필기 기출문제 2017년 09월 23일 (4회) (정답, 해설) 원문·보기·정답 대조. Solubility, USGS PHREEQC Example 9, WaterTAP iron_and_manganese_removal_zo.py."
   }
 }

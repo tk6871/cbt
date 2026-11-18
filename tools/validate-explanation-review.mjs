@@ -81,7 +81,7 @@ const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed
 const affectedIds=new Set(changedBankIds);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewed=JSON.parse(fs.readFileSync('data/energy-reviewed-explanations.json'));
-assert.equal(Object.keys(energyReviewed).length,review.energyDustBatch.reviewedDisplayEntries);
+assert.equal(Object.keys(energyReviewed).length,review.energyDustBatch.reviewedDisplayEntries + review.energyHeatWaterBatch.reviewedDisplayEntries);
 for(const [id,entry] of Object.entries(energyReviewed)){
  const question=bankById.get(id);
  assert.ok(question&&reviewedIds.has(id), 'Unrecorded display change: '+id);

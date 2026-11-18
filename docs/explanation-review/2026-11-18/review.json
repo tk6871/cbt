@@ -2148,6 +2148,1091 @@
       "resolution": "찾아야 하는 것은 건식이 아닌 방식이다. ④ 벤튜리 스크러버는 세정액과 분진을 접촉시키는 습식이므로 이 문항의 정답이다. 백필터식은 여과재를 쓰고 사이클론식·멀티클론식은 회전 흐름을 이용한다.",
       "errorType": "부정형 문항의 결론 교정",
       "storedSource": "https://www.comcbt.com/cbt/problem/3081/17/"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:5",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 1,
+      "location": "2018년 2회 · 원문 5번 · 교재 337쪽",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-5.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-5.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-5.webp",
+          "displayAsset": "assets/problem-webp90/2ee8ded5fa4a647ee0ca3a1b96778231.webp",
+          "sha256": "fc4c93204497a2fcaaa19b744029e82d7a045f6e0c84a6898162daa5797669f1"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-5.webp",
+          "displayAsset": "assets/problem-webp90/4b802008376893c9fdd633ad47622121.webp",
+          "sha256": "4fdcc15dad957f58ba8f0f6f5b78c7cceb6489a359f1101f586f1b1701801a45"
+        }
+      ],
+      "evidence": [
+        "649-first"
+      ],
+      "finding": "열·일 부호와 열량 명칭",
+      "resolution": "기체가 받은 열을 +Q, 기체가 외부에 한 일을 +W로 둔다. 받은 40 kJ 중 30 kJ가 일로 나갔으므로 ΔU = Q − W = 40 − 30 = +10 kJ이다. 양의 변화는 내부에너지가 증가했다는 뜻이어서 ①이다. 여기서 Q는 계로 전달된 열량이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "열·일 부호와 열량 명칭",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:7",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 2,
+      "location": "2018년 2회 · 원문 7번 · 교재 337쪽",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-7.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-7.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-7.webp",
+          "displayAsset": "assets/problem-webp90/40dd366f849d87c01bcb06edfdf1f07f.webp",
+          "sha256": "24dd428c407c9aeff7216acd3dbc4caa8a45e800677ced92d5f04c37c8b27332"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-7.webp",
+          "displayAsset": "assets/problem-webp90/9d69fb101f76f3bce2c3c73261d3f2d5.webp",
+          "sha256": "db803c100ba7c7e262661fc26c39d213cea25e8b11a16f2a34e42941bdb2a24f"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-third"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별",
+      "resolution": "제1법칙은 계의 에너지 수지를 나타낸다. 열이 들어오거나 계가 일을 하면 내부에너지가 그만큼 달라진다. 따라서 ① 시스템의 에너지 보존이다. 교재의 제3법칙 설명에서 혼동하기 쉬운 점은 순수한 완전결정의 엔트로피 기준이 0 K에서 0이라는 것이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2019-1:1",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 3,
+      "location": "2019년 1회 · 원문 1번 · 교재 365쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-1-1.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-1-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-1-1.webp",
+          "displayAsset": "assets/problem-webp90/9d8a88b3dc5b15f3bfa83c85548bcf40.webp",
+          "sha256": "9a2bdfdc728c58918b0cfd1423b4b14b97b70488e24304a13ed2d06ec441fc9a"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-1-1.webp",
+          "displayAsset": "assets/problem-webp90/280eba63a47b75a53cceca6de24bc937.webp",
+          "sha256": "3e5927a9a3a2f6e08082711812ff81d5fb7bf0a4ccf623ec14382bdb31f36441"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-third"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별",
+      "resolution": "에너지는 열이나 일로 계의 경계를 넘어도 보존된다. 이 수지를 나타내는 법칙은 ② 제1법칙이다. 교재에 함께 나온 제3법칙은 순수한 완전결정이 0 K에서 갖는 엔트로피의 기준에 관한 법칙이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "matchedSource": "energy-industrial-20190303:1",
+      "transcriptionTool": "원본 직접 판독",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190303:1",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190303:1",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190303",
+      "number": 1,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 03월 03일 (1회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "649-first",
+        "649-third",
+        "school-energy-textbook-2019-1:1"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별 · 보존된 이용자 댓글과 개별 대조",
+      "resolution": "에너지는 열이나 일로 계의 경계를 넘어도 보존된다. 이 수지를 나타내는 법칙은 ② 제1법칙이다. 교재에 함께 나온 제3법칙은 순수한 완전결정이 0 K에서 갖는 엔트로피의 기준에 관한 법칙이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "storedSource": "https://www.comcbt.com/cbt/problem/9683/1/"
+    },
+    {
+      "id": "school-energy-textbook-2019-2:19",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 4,
+      "location": "2019년 2회 · 원문 19번 · 교재 383쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-2-19.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-2-19.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-2-19.webp",
+          "displayAsset": "assets/problem-webp90/429f040e331af390d5bbdd52eff3c835.webp",
+          "sha256": "eb202cb86f236a5a9137adbfb2cac9484cc010bc298380583ead7dba684fbaba"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-2-19.webp",
+          "displayAsset": "assets/problem-webp90/ea44cfb15ce6ea3fa7a3fb20c44cc462.webp",
+          "sha256": "6781f625267b191d042aa652a43b15288a9bde07aadc7263a4bf859f9a711eb1"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-third"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별",
+      "resolution": "계가 받은 열에서 외부에 한 일을 빼면 계의 내부에너지 변화가 된다. 이는 에너지 보존을 열역학에 적용한 것이므로 ④ 제1법칙이다. 보기 ①의 제3법칙은 순수한 완전결정의 0 K 엔트로피를 다룬다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "matchedSource": "energy-industrial-20190427:19",
+      "transcriptionTool": "원본 직접 판독",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:19",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190427:19",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190427",
+      "number": 19,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "649-first",
+        "649-third",
+        "school-energy-textbook-2019-2:19"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별 · 보존된 이용자 댓글과 개별 대조",
+      "resolution": "계가 받은 열에서 외부에 한 일을 빼면 계의 내부에너지 변화가 된다. 이는 에너지 보존을 열역학에 적용한 것이므로 ④ 제1법칙이다. 보기 ①의 제3법칙은 순수한 완전결정의 0 K 엔트로피를 다룬다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/19/"
+    },
+    {
+      "id": "school-energy-textbook-2020-1-2통합:18",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 5,
+      "location": "2020년 1·2통합회 · 원문 18번 · 교재 414쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2020-1·2통합-18.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2020-1·2통합-18.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2020-1·2통합-18.webp",
+          "displayAsset": "assets/problem-webp90/11612c725bbbd2bd9521ca3693f334a1.webp",
+          "sha256": "0971139894e51e6ea0d34ee46f618eed244994e06605b39fde2a4769cc6aca82"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2020-1·2통합-18.webp",
+          "displayAsset": "assets/problem-webp90/5111ee181123dca0adc4e0b92ee26c8f.webp",
+          "sha256": "89bccdfdb5e0dfcd5fa86b4591664aab63ed41108b3e086b7f219924906315f9"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-process"
+      ],
+      "finding": "이상기체·등온 조건",
+      "resolution": "양과 조성이 일정한 이상기체의 내부에너지는 온도만으로 정해진다. 등온이면 온도가 변하지 않아 ④ ΔU = 0이다. 예를 들어 등온팽창 때 기체가 일을 해도 같은 양의 열을 받으면 온도는 일정하다. 따라서 열과 일이 각각 0이어야 하는 것은 아니다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "이상기체·등온 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2021-1:1",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 6,
+      "location": "2021년 1회 · 원문 1번 · 교재 442쪽",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-1-1.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-1-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-1-1.webp",
+          "displayAsset": "assets/problem-webp90/714e2550140ff0a861dc8ed1871eaea0.webp",
+          "sha256": "0bf7fa07c111dce96fde5d969fbf1be91e0eed1fe50a45ef8f8d61d70ab00da1"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-1-1.webp",
+          "displayAsset": "assets/problem-webp90/b270f76527ba0d52f43ac5262d371b4b.webp",
+          "sha256": "a5d476c94f14e5878ee5a11388282c4d04bc4ce4cb8bca6041f941c5291a8611"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-engine"
+      ],
+      "finding": "에너지 보존과 열기관 조건",
+      "resolution": "계가 받은 열과 한 일은 에너지 수지에 함께 들어간다. 그 보존 관계를 말한 ①이 제1법칙이다. ②의 자연스러운 열 이동 방향과 ④가 가리키는 단일 열원 순환 열기관의 변환 한계는 제2법칙에서 다룬다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "에너지 보존과 열기관 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2021-1:10",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 7,
+      "location": "2021년 1회 · 원문 10번 · 교재 443쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-1-10.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-1-10.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-1-10.webp",
+          "displayAsset": "assets/problem-webp90/e139c74116de1b60446ce145693a9e7a.webp",
+          "sha256": "f3e39957f9552133b9e9b5e1c08fd5680a9b4897cd4d82e70dd9f35724425cd7"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-1-10.webp",
+          "displayAsset": "assets/problem-webp90/3d88a074258b1eb8115854794602b47a.webp",
+          "sha256": "55b18cefca38a533d0601c713f85c9247ea4fb436546e3c80d98644439ef2498"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-process"
+      ],
+      "finding": "등압 팽창일과 단위",
+      "resolution": "체적이 0.5에서 0.7 m³로 증가하므로 기체가 외부에 한 일은 W = pΔV = 200 × (0.7 − 0.5) = 40 kJ이다. 1 kPa·m³ = 1 kJ이고 내부에너지도 25 kJ 늘었다. 공급열은 두 몫을 더한 Q = 25 + 40 = 65 kJ로 ④이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "등압 팽창일과 단위",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2021-1:14",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 8,
+      "location": "2021년 1회 · 원문 14번 · 교재 444쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-1-14.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-1-14.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-1-14.webp",
+          "displayAsset": "assets/problem-webp90/d5e6d7283e2dc7e95570ae7ee636e33c.webp",
+          "sha256": "5d1d21c5dcd2bbbf3a466ef71051675739676198a17b94df67bf85cbe0b9506d"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-1-14.webp",
+          "displayAsset": "assets/problem-webp90/99599bc34c4f0f928eb237e2c32e0881.webp",
+          "sha256": "5c4799ea8b2816c973e2a472093a512124d2de5c9c175c3b54aabcb49f9fc91b"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-third"
+      ],
+      "finding": "제1법칙과 제3법칙의 구별",
+      "resolution": "계로 들어온 열과 계가 한 일의 차이가 내부에너지 변화와 같다는 것이 제1법칙이다. 이 회차에서는 에너지 보존이 ②에 있다. 반응속도나 반응이 진행되는 방향은 이 에너지 수지만으로 정해지지 않는다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "제1법칙과 제3법칙의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-1:1",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 9,
+      "location": "2022년 1회 · 원문 1번 · 교재 474쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-1-1.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-1-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-1-1.webp",
+          "displayAsset": "assets/problem-webp90/841f8c04a0b9a5aa59009891578537cf.webp",
+          "sha256": "37a8c1d580f8e53e04664ab5f127c84049ed96a88a42a2ccad59330cee16bcfb"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-1-1.webp",
+          "displayAsset": "assets/problem-webp90/a35e58176bdebc0b97f7c6922ab3f1ca.webp",
+          "sha256": "70ac922ceb1f306adfd6909964705bf73b0521b88db7c6f0bb9e636694d15c0e"
+        }
+      ],
+      "evidence": [
+        "649-first"
+      ],
+      "finding": "열·일 부호와 경로",
+      "resolution": "열과 일은 계의 경계를 통해 에너지가 전달되는 두 방식이다. 계가 열을 받으면 Q > 0, 내보내면 Q < 0이다. 계가 한 일을 양으로 정하면 팽창일은 양, 압축일은 음이 될 수 있다. 두 양 모두 경로에 따라 달라지며, 항상 양수라는 ②가 틀리다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "열·일 부호와 경로",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-1:13",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 10,
+      "location": "2022년 1회 · 원문 13번 · 교재 476쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-1-13.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-1-13.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-1-13.webp",
+          "displayAsset": "assets/problem-webp90/f31e95a9e661e29230caa78fc8f3f280.webp",
+          "sha256": "6cb77e7c158b8a39067e43332ab10d774a946cb0fb110d50d6ba3c37276b98e9"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-1-13.webp",
+          "displayAsset": "assets/problem-webp90/fa5ed741bc0942089341dc83b8f6b123.webp",
+          "sha256": "df943200ab94a2ff2dce4037a33db4cd93210dc6adf79cfd93225f77f5dd1a73"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-process"
+      ],
+      "finding": "이상기체·등온 조건",
+      "resolution": "교재가 전제한 이상기체가 가역 팽창하며 외부에 양의 일을 한다고 보자. 단열이면 Q = 0이라서 ΔU = −W < 0이다. 등온이면 이상기체의 내부에너지는 일정해 ΔU = 0이다. 따라서 감소량이 큰 쪽은 ④ 단열팽창이다. 등온에서 ΔU = 0이라는 결론에는 이상기체 조건이 필요하다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "이상기체·등온 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2023-4:3",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 11,
+      "location": "2023년 4회 · 원문 3번 · 교재 553쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-4-3.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-4-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-4-3.webp",
+          "displayAsset": "assets/problem-webp90/d7fc7908eefafb9a6c24b1c6c7862f9c.webp",
+          "sha256": "6e2a318bfd6317019810e8ae9aa80f041fcac0148883cc340afa5aeac62ecc47"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-4-3.webp",
+          "displayAsset": "assets/problem-webp90/36317d0d5a83df8e443fe335c60f58d0.webp",
+          "sha256": "4073da5f8eb350222b56f72c3cdc4963a98b6585bf80c1618a51448915249d12"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-turbine"
+      ],
+      "finding": "질량과 질량유량·터빈 조건",
+      "resolution": "터빈을 통과하는 유체는 내부에너지와 유동일을 함께 운반하므로 비엔탈피 h를 쓴다. 정상·단열 운전에서 운동·위치에너지 변화를 무시하면 축출력은 질량유량 × (입구 비엔탈피 − 출구 비엔탈피)이다. 문제의 m은 kg/s 단위의 질량유량이고, kg/s × kJ/kg = kW이므로 ④ m(h₁ − h₂)이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "질량과 질량유량·터빈 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2024-1:14",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 12,
+      "location": "2024년 1회 · 원문 14번 · 교재 572쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-1-14.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-1-14.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-1-14.webp",
+          "displayAsset": "assets/problem-webp90/178e1a74ed0ac08bcd9ecff85a76f202.webp",
+          "sha256": "31f1b38fd64695e1ab2eda26bad416148ad78ae5d09f09d802e6dfebbfaf21e4"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-1-14.webp",
+          "displayAsset": "assets/problem-webp90/f74f1007a7dbc4d9fa25ffaf943710a9.webp",
+          "sha256": "5b703007a2dd05003e947eaefc532a42adb6a910c4f1a59c12b4a9f817f2a722"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-engine"
+      ],
+      "finding": "열과 일의 전환 조건",
+      "resolution": "열과 일은 모두 에너지 전달 방식이어서 한쪽이 다른 쪽으로 전환될 때도 에너지 총량은 보존된다. 이 관계가 ② 제1법칙이다. 단일 열원에서 받은 열을 순환 과정으로 모두 일로 바꿀 수 있는지는 제2법칙의 제한을 받는다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "열과 일의 전환 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-2:6",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 13,
+      "location": "2025년 2회 · 원문 6번 · 교재 616쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-2-6.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-2-6.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-2-6.webp",
+          "displayAsset": "assets/problem-webp90/c0fc05ba7126ced13f86a90f44546140.webp",
+          "sha256": "6de33fc5c64d75a527797ff94df7e60dee275fc80b2e0e71c6a44d2e7d611cff"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-2-6.webp",
+          "displayAsset": "assets/problem-webp90/cd7f2e685fc4e0d51ce8b1c0b210217c.webp",
+          "sha256": "e9a8c4fc23db2883f81bce1af69b06ec39879bc3e18cfa68fd88e50baf23988b"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-turbine"
+      ],
+      "finding": "질량과 질량유량·터빈 조건",
+      "resolution": "출력은 단위시간당 일이다. 정상·단열 터빈에서 속도와 높이 변화가 작으면 증기 1 kg이 내는 일은 실제 입출구의 비엔탈피 차 h₁ − h₂이다. 여기에 초당 통과하는 증기의 질량 m [kg/s]를 곱해야 kJ/s, 곧 kW가 된다. 따라서 ④ m(h₁ − h₂)이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "질량과 질량유량·터빈 조건",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-3:17",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-2",
+      "number": 14,
+      "location": "2025년 3회 · 원문 17번 · 교재 633쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-17.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-17.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-17.webp",
+          "displayAsset": "assets/problem-webp90/fafb4cd30271481b4580c9a53e7a5729.webp",
+          "sha256": "75a05fb7576ca3404c2e487caa3916fe8cba6b8dbbb48cc7758a7446df987bdf"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-17.webp",
+          "displayAsset": "assets/problem-webp90/d5a321481198729b651f1dc13fc6858d.webp",
+          "sha256": "be1fa187ccba71a7e56f64ea718ec28a03a320ee9ad95a9f79deb17fc3bc5d12"
+        }
+      ],
+      "evidence": [
+        "649-first",
+        "649-process"
+      ],
+      "finding": "기체상수 질량 기준·등압 팽창일",
+      "resolution": "기체가 한 일은 W = p(V₂ − V₁) = 200 × (0.6 − 0.4) = 40 kJ이다. 체적 전체를 사용했고 1 kPa·m³ = 1 kJ이다. 내부에너지가 80 kJ 증가했으므로 공급열은 Q = 80 + 40 = 120 kJ, ④이다. 질량당 기체상수 R을 써서 전체 일을 나타내려면 mR(T₂ − T₁)로 질량도 곱해야 한다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "기체상수 질량 기준·등압 팽창일",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:9",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 1,
+      "location": "2018년 2회 · 원문 9번 · 교재 337쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-9.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-9.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-9.webp",
+          "displayAsset": "assets/problem-webp90/0fd2ebd33f54934235fb740d65974d52.webp",
+          "sha256": "845f2e44c047e46cdbe7c8fceb329dfbb855a0674b6028aacf9de39ef561ad98"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-9.webp",
+          "displayAsset": "assets/problem-webp90/2cbb304efa00b704359a178c47294307.webp",
+          "sha256": "348024591658aa016d7d02af70b4f8cb498d0555fa59c3c79cbad891b4638e5b"
+        }
+      ],
+      "evidence": [
+        "649-gas"
+      ],
+      "finding": "용존기체와 금속 처리 구별",
+      "resolution": "물에 녹아 있는 O₂와 CO₂를 물 밖으로 분리하는 조작은 ③ 탈기법이다. 가열하거나 기체 쪽 분압을 낮추면 기체가 물에서 빠져나오기 쉬워진다. 원문의 폭기 대상에 함께 적힌 철·망간은 용존기체가 아니다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "용존기체와 금속 처리 구별",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:75",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 2,
+      "location": "2018년 2회 · 원문 75번 · 교재 348쪽",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-75.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-75.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-75.webp",
+          "displayAsset": "assets/problem-webp90/bb84aa3017e4b7aa6d59aa3147aa25ba.webp",
+          "sha256": "55cc791c48d99427f7ad890aefc9f14f01646fdf8e84dd0c235d5457bf458f82"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-75.webp",
+          "displayAsset": "assets/problem-webp90/ecf11ac790d0ae64e5405831811ed163.webp",
+          "sha256": "43ca7b1664c53f59e51f054882930b23e744cb4589f779571571cda5c7cc2754"
+        }
+      ],
+      "evidence": [
+        "649-iron",
+        "649-metal"
+      ],
+      "finding": "철 산화·고액분리",
+      "resolution": "철염 때문에 생기는 장해를 줄이려면 이 보기에서는 ① 폭기법을 고른다. 물을 공기와 접촉시켜 용존 2가 철의 산화를 촉진하고, 생긴 불용성 입자는 침전이나 여과로 분리한다. 철이 공기 중으로 날아가는 것은 아니다. 교재에서는 폭기법을 기폭법이라고도 쓴다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "철 산화·고액분리",
+      "changed": true,
+      "academicVerified": true,
+      "matchedSource": "energy-industrial-20180428:75",
+      "transcriptionTool": "원본 직접 판독",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180428:75",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180428:75",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 75,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "649-iron",
+        "649-metal",
+        "school-energy-textbook-2018-2:75"
+      ],
+      "finding": "철 산화·고액분리 · 보존된 이용자 댓글과 개별 대조",
+      "resolution": "철염 때문에 생기는 장해를 줄이려면 이 보기에서는 ① 폭기법을 고른다. 물을 공기와 접촉시켜 용존 2가 철의 산화를 촉진하고, 생긴 불용성 입자는 침전이나 여과로 분리한다. 철이 공기 중으로 날아가는 것은 아니다. 교재에서는 폭기법을 기폭법이라고도 쓴다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "철 산화·고액분리",
+      "changed": true,
+      "academicVerified": true,
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/75/"
+    },
+    {
+      "id": "school-energy-textbook-2018-4:66",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 3,
+      "location": "2018년 4회 · 원문 66번 · 교재 361쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-4-66.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-4-66.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-4-66.webp",
+          "displayAsset": "assets/problem-webp90/278099f60c5828598957187473dfde79.webp",
+          "sha256": "85f0e7999078b594e621b49166e72fa5b599e481e1e051288e10edd27df16f1a"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-4-66.webp",
+          "displayAsset": "assets/problem-webp90/2c3eab0ce46317ee4d0250172158bb5f.webp",
+          "sha256": "0d01d988d0dc5a8e126614a927b421a9ef41a58381a5c8b7c0bfea68a7cb8afb"
+        }
+      ],
+      "evidence": [
+        "649-gas"
+      ],
+      "finding": "기체 처리 범위와 공통 대상",
+      "resolution": "교재 표의 두 열에 모두 적힌 기체는 CO₂, 즉 ③ 탄산가스다. 물속 자유 CO₂는 공기와 접촉해 기체 쪽으로 빠져나올 수 있고, 탈기에서도 제거 대상이다. 표는 이 시험에서 비교하는 대표 대상을 나타낸다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "기체 처리 범위와 공통 대상",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2019-1:74",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 4,
+      "location": "2019년 1회 · 원문 74번 · 교재 377쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-1-74.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-1-74.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-1-74.webp",
+          "displayAsset": "assets/problem-webp90/ed0c5008dd42f2776d13183bc8964a41.webp",
+          "sha256": "b329fe0ab6fd88d6f1f0ee69cdbb014e94b4f9441690d831a0ac190fb7773010"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-1-74.webp",
+          "displayAsset": "assets/problem-webp90/418058c66591a02d7dbd699013fbbb81.webp",
+          "sha256": "fb470fe400cc06a687383ae1f6d36812e7ef3e3195150871558101c1092d62e6"
+        }
+      ],
+      "evidence": [
+        "649-rust"
+      ],
+      "finding": "용존산소와 금속 부식",
+      "resolution": "철 표면의 한 부분에서 철이 전자를 잃고 녹아 나오며 다른 부분에서는 물속 산소가 전자를 받는다. 이런 전기화학 반응이 강재의 부식을 일으키므로 ② 강판·강관의 부식이 해당한다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "용존산소와 금속 부식",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2019-2:68",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 5,
+      "location": "2019년 2회 · 원문 68번 · 교재 391쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-2-68.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-2-68.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-2-68.webp",
+          "displayAsset": "assets/problem-webp90/b02182ce333e07643a551ac5fafbf4bf.webp",
+          "sha256": "96493510ad1b0fc129f6d74e9852a0579607ef7cccc75112213791191c43372f"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-2-68.webp",
+          "displayAsset": "assets/problem-webp90/1201e779adf9f3a1d0f14f911f440a61.webp",
+          "sha256": "0687a1afee637c97f2f37c96eede0bc7fa78dc03e90c70316238401323628850"
+        }
+      ],
+      "evidence": [
+        "649-gas",
+        "649-iron"
+      ],
+      "finding": "폭기와 탈기의 구별",
+      "resolution": "일반 공기를 이용하는 폭기는 물을 공기와 접촉시킨다. 물속의 과잉 CO₂나 H₂S는 빠져나올 수 있고, 철은 산화시킨 뒤 고형물을 분리할 수 있다. 공기 중 산소를 공급하는 이 공정의 통상적인 제거 대상에 해당하지 않는 보기는 ③ 산소다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "폭기와 탈기의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "matchedSource": "energy-industrial-20190427:68",
+      "transcriptionTool": "원본 직접 판독",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:68",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190427:68",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190427",
+      "number": 68,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "649-gas",
+        "649-iron",
+        "school-energy-textbook-2019-2:68"
+      ],
+      "finding": "폭기와 탈기의 구별 · 보존된 이용자 댓글과 개별 대조",
+      "resolution": "일반 공기를 이용하는 폭기는 물을 공기와 접촉시킨다. 물속의 과잉 CO₂나 H₂S는 빠져나올 수 있고, 철은 산화시킨 뒤 고형물을 분리할 수 있다. 공기 중 산소를 공급하는 이 공정의 통상적인 제거 대상에 해당하지 않는 보기는 ③ 산소다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "폭기와 탈기의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/68/"
+    },
+    {
+      "id": "school-energy-textbook-2021-2:65",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 6,
+      "location": "2021년 2회 · 원문 65번 · 교재 470쪽",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-2-65.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-2-65.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-2-65.webp",
+          "displayAsset": "assets/problem-webp90/c23fad8299f288178680ab815df5229d.webp",
+          "sha256": "5fb7c83350fe5e75e57309d6310cd3a3df30b5730435f2617f4edf82445420ba"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-2-65.webp",
+          "displayAsset": "assets/problem-webp90/8cef38c362994d9eff4e91466b4f85c2.webp",
+          "sha256": "213b8c9c29e612e60a6abda4a1b0f46ae0329616f3d38c9070c42915039b8acd"
+        }
+      ],
+      "evidence": [
+        "649-gas",
+        "649-metal"
+      ],
+      "finding": "폭기와 탈기의 구별",
+      "resolution": "보기 중 CO₂는 물에서 기체로 빠져나올 수 있고, 철과 망간은 조건에 맞게 산화한 뒤 여과할 수 있다. 공기와 접촉시켜 처리하는 폭기에서 용존산소 제거는 주목적이 아니다. 따라서 ① O₂이다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "폭기와 탈기의 구별",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-2:63",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 7,
+      "location": "2022년 2회 · 원문 63번 · 교재 501쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-2-63.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-2-63.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-2-63.webp",
+          "displayAsset": "assets/problem-webp90/1b1219b578c0fc7f60b1c425ad9be6f3.webp",
+          "sha256": "b15f661ae155c3c1301e9a83d7faeb16a61a35828c2bf611ca4244e9a66bc773"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-2-63.webp",
+          "displayAsset": "assets/problem-webp90/107583a1b852a193b4069cee05d6e5aa.webp",
+          "sha256": "b513970d05ea7476187b5c1fef7171812a02c6ea5f8350783ff7eb4fc3bcc6f5"
+        }
+      ],
+      "evidence": [
+        "649-rust"
+      ],
+      "finding": "국부전지와 부식 형태",
+      "resolution": "철이 산화되는 작은 영역에 금속 손실이 집중되면 표면에 국부적인 구멍이 깊어진다. 용존산소가 관여하는 국부전지와 이런 손상 형태를 연결하면 ④ 점식(pitting)이다. ③의 grooving은 홈 모양의 부식을 뜻한다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "국부전지와 부식 형태",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-2:75",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 8,
+      "location": "2022년 2회 · 원문 75번 · 교재 503쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-2-75.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-2-75.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-2-75.webp",
+          "displayAsset": "assets/problem-webp90/7b031750e45c36c91f6cedbedb81a34f.webp",
+          "sha256": "06f467ad4777492d7092f51947f86a1c166e1f9a1b5637014a88cd624fde37cb"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-2-75.webp",
+          "displayAsset": "assets/problem-webp90/4112d75182e4f9e36d72870698ced13a.webp",
+          "sha256": "a6c329df765c5cdf78d5ae5ff622592e5bc691da4df36ad01765c9698f3d0dc7"
+        }
+      ],
+      "evidence": [
+        "649-gas"
+      ],
+      "finding": "반응식 원자 보존·물리적 탈기",
+      "resolution": "기체 분압과 온도에 따라 용존기체가 물에서 빠져나오는 ③은 물리적 탈기이다. 화학적 탈산소에서는 약제가 산소와 반응한다. 원문 반응식에는 질소 생성물이 빠졌다. N₂H₄ + O₂ → N₂ + 2H₂O로 써야 양쪽의 N·H·O 원자 수가 각각 2·4·2로 같다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "반응식 원자 보존·물리적 탈기",
+      "changed": true,
+      "academicVerified": true,
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2023-1:45",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-3",
+      "number": 9,
+      "location": "2023년 1회 · 원문 45번 · 교재 529쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-1-45.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-1-45.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-1-45.webp",
+          "displayAsset": "assets/problem-webp90/8116de1583ef30c5048f73e5802eeb51.webp",
+          "sha256": "6e9de75efa7e8ac18bd945ce61dc66b7e40491be0835a2b8c0c120d265666669"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-1-45.webp",
+          "displayAsset": "assets/problem-webp90/558670d2d6a442f09d9f05314f137778.webp",
+          "sha256": "ff6faba33b6f34b204648b35fc304574fcc8b8fb2bbd99a4464e6cfb0a474c2b"
+        }
+      ],
+      "evidence": [
+        "649-gas",
+        "649-iron",
+        "649-metal"
+      ],
+      "finding": "기체 방출과 금속 산화 구별",
+      "resolution": "원수와 공기를 접촉시키는 ② 기폭법(폭기법)이다. 자유 CO₂는 기체로 빠져나오고 철·망간은 수질과 산화 조건에 따라 불용성 입자를 만들어 후단에서 걸러 낸다. 세 성분이 같은 방식으로 제거되는 것은 아니다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "기체 방출과 금속 산화 구별",
+      "changed": true,
+      "academicVerified": true,
+      "matchedSource": "energy-industrial-20170923:73",
+      "transcriptionTool": "원본 직접 판독",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20170923:73",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20170923:73",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20170923",
+      "number": 73,
+      "location": "에너지관리산업기사 필기 기출문제 2017년 09월 23일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "649-gas",
+        "649-iron",
+        "649-metal",
+        "school-energy-textbook-2023-1:45"
+      ],
+      "finding": "기체 방출과 금속 산화 구별 · 보존된 이용자 댓글과 개별 대조",
+      "resolution": "원수와 공기를 접촉시키는 ② 기폭법(폭기법)이다. 자유 CO₂는 기체로 빠져나오고 철·망간은 수질과 산화 조건에 따라 불용성 입자를 만들어 후단에서 걸러 낸다. 세 성분이 같은 방식으로 제거되는 것은 아니다.",
+      "status": "내용 검토 완료·수정함",
+      "errorType": "기체 방출과 금속 산화 구별",
+      "changed": true,
+      "academicVerified": true,
+      "storedSource": "https://www.comcbt.com/cbt/problem/3081/73/"
     }
   ],
   "sources": [
@@ -2605,6 +3690,78 @@
           "sha256": "0cdf267a2eb86ea6a36ebe8c0c3d2130f037601de73fc8dbec275d83d53d9a28"
         }
       ]
+    },
+    {
+      "id": "649-first",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42232/index.cnxml",
+      "section": "The First Law of Thermodynamics · Heat Q and Work W, Summary of Terms",
+      "sha256": "2d3804716a236c8e5d8daa3fc0513afc1bcfe09e86bfb364b222a6feaf45cd17"
+    },
+    {
+      "id": "649-process",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42233/index.cnxml",
+      "section": "The First Law of Thermodynamics and Some Simple Processes · PV diagrams, ideal-gas isothermal and adiabatic processes",
+      "sha256": "238c7afe357cf7e0e8a6fa5645c39aec6aaafcb52c71513395ad6c79975f6978"
+    },
+    {
+      "id": "649-engine",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42234/index.cnxml",
+      "section": "Introduction to the Second Law of Thermodynamics · Heat Engines, cyclical processes",
+      "sha256": "111486d376d434c92a39193e73be4b41d88307d8ddba5b25c43beed4e142ed77"
+    },
+    {
+      "id": "649-third",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-chemistry-bundle/main/modules/m68818/index.cnxml",
+      "section": "The Second and Third Laws of Thermodynamics · The Third Law of Thermodynamics, pure perfect crystal at 0 K",
+      "sha256": "9254a7ba684cd6ffa064b6271ceacf98349221097d2188f42589c81031e484ff"
+    },
+    {
+      "id": "649-gas",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-chemistry-bundle/main/modules/m68782/index.cnxml",
+      "section": "Solubility · Solubility of Gases, Effects of Temperature and Pressure, Henry’s law",
+      "sha256": "d8ff8a59cfc122f8d07281a586d0f53176b335f8465a683b54db890dba15a531"
+    },
+    {
+      "id": "649-rust",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-chemistry-bundle/main/modules/m68826/index.cnxml",
+      "section": "Corrosion · corrosion of iron, anodic dissolution and cathodic oxygen reduction",
+      "sha256": "f2ecab9e371167c9d93eadfa2dc3eac6c73dcf9546ec54d1b1537e7ab7928f28"
+    },
+    {
+      "id": "649-turbine",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/IDAES/idaes-pse/main/docs/reference_guides/model_libraries/power_generation/unit_models/turbine.rst",
+      "section": "IDAES steam turbine model · Constraints, control volume energy balance and actual outlet enthalpy",
+      "sha256": "808cc029d08b931182c374a1bbb5cabdad65ded11287913f1192b69a6c1dc7b0"
+    },
+    {
+      "id": "649-metal",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/watertap-org/watertap/main/watertap/unit_models/zero_order/iron_and_manganese_removal_zo.py",
+      "section": "WaterTAP iron_and_manganese_removal_zo.py · air flow rate constraint and air blower, backwash and dual media filter",
+      "sha256": "434e010b324eed6254d5ae7c1d6c2533f8bd6ff573145974a8217fbf590582c1"
+    },
+    {
+      "id": "649-iron",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/usgs-coupled/phreeqc3/master/examples/ex9",
+      "section": "USGS PHREEQC Example 9 · kinetics of ferrous oxidation, Fe(II)/Fe(III), dissolved oxygen and pH",
+      "sha256": "f945fc3cb4d84f4e30ca21d95bf054dcca7e195ed0516ef0b8d003530b00e98b"
     }
   ],
   "automaticAnswerCandidates": [
@@ -2858,7 +4015,7 @@
   ],
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
-    "energyTextbook": "data/energy-textbook.js school-energy-topic-2 표시1번, school-energy-textbook-2018-2:5 (337쪽)부터 1~14번. 직전 단원 11개 중 10개 내용 완료, 336쪽 원문 1번 설계 한계 근거 보류.",
+    "energyTextbook": "data/energy-textbook.js school-energy-topic-4 표시 1~15번, 첫 문항 school-energy-textbook-2018-2:13 (2018년 2회 · 원문 13번 · 교재 338쪽).",
     "energyRegular": "data/energy.js energy-industrial-20020310:1~3 보류 재개 후 :4~80. 회차 전체 미완료.",
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
@@ -2867,22 +4024,22 @@
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 75,
-    "contentCompleted": 69,
-    "contentCompletedChanged": 62,
+    "contentExamined": 103,
+    "contentCompleted": 97,
+    "contentCompletedChanged": 90,
     "contentCompletedUnchanged": 7,
     "evidenceHold": 5,
     "answerNeedsConfirmation": 1,
-    "automaticOnly": 48929,
-    "changedQuestionIds": 63,
-    "imageTranscribed": 11,
-    "imageFullyTranscribed": 6,
-    "imagePartiallyTranscribed": 5,
-    "imageCompared": 11,
-    "imageAcademicCompleted": 10,
-    "questionImagesConverted": 8,
-    "questionImagesCompared": 8,
-    "questionImageAcademicCompleted": 8
+    "automaticOnly": 48901,
+    "changedQuestionIds": 91,
+    "imageTranscribed": 34,
+    "imageFullyTranscribed": 12,
+    "imagePartiallyTranscribed": 22,
+    "imageCompared": 34,
+    "imageAcademicCompleted": 33,
+    "questionImagesConverted": 13,
+    "questionImagesCompared": 13,
+    "questionImageAcademicCompleted": 13
   },
   "followup": {
     "date": "2026-11-18",
@@ -2915,5 +4072,26 @@
     "matchedQuestionTranscriptions": 4,
     "fractionDisplays": 1,
     "reviewedDisplayEntries": 14
+  },
+  "energyHeatWaterBatch": {
+    "bookItems": 23,
+    "linkedOriginalItems": 5,
+    "reviewedDisplayEntries": 28,
+    "explanationTranscriptions": 23,
+    "full": 6,
+    "partial": 17,
+    "matchedQuestionTranscriptions": 5,
+    "chapters": [
+      {
+        "round": "school-energy-topic-2",
+        "complete": 14,
+        "hold": 0
+      },
+      {
+        "round": "school-energy-topic-3",
+        "complete": 9,
+        "hold": 0
+      }
+    ]
   }
 }
