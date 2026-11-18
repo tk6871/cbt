@@ -2440,5 +2440,127 @@
     "explanation": "① HSI는 열스트레스 지수다. dB는 음압 등의 레벨, phon은 음량레벨, sone은 사람이 지각한 음량을 나타낼 때 쓰인다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "기준 문제 ②에서 이 판본 ①로 이동. phon·sone과 열스트레스 지수의 측정 대상 구별. 지문·보기·저장 답 대조: 1번 HSI."
+  },
+  "safety-engineer-20200926:23": {
+    "questionSHA256": "705734ef40d951887b1a304787f4fbadaaeeeb6e8b0c42deb56dce290644ada9",
+    "explanation": "②다. 1,000 Hz 순음에서는 음량레벨(phon)과 음압레벨(dB SPL)의 수치가 같다. 이 범위에서 지각 음량이 두 배가 되면 약 10 phon 증가하므로 네 배는 20 phon 증가해 60에서 80 dB가 된다. 음의 세기가 네 배라는 뜻과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "1kHz 기준 60 phon. 40 phon 이상에서 sone 두 배마다 10 phon 증가. 네 배는 20 phon, 기준에서 80 dB. 지문·보기·저장 답 대조: 2번 80dB."
+  },
+  "safety-engineer-20180428:34": {
+    "questionSHA256": "705734ef40d951887b1a304787f4fbadaaeeeb6e8b0c42deb56dce290644ada9",
+    "explanation": "②다. 1,000 Hz 순음에서는 음량레벨(phon)과 음압레벨(dB SPL)의 수치가 같다. 이 범위에서 지각 음량이 두 배가 되면 약 10 phon 증가하므로 네 배는 20 phon 증가해 60에서 80 dB가 된다. 음의 세기가 네 배라는 뜻과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "1kHz 기준 60 phon. 40 phon 이상에서 sone 두 배마다 10 phon 증가. 네 배는 20 phon, 기준에서 80 dB. 지문·보기·저장 답 대조: 2번 80dB."
+  },
+  "safety-engineer-20200926:65": {
+    "questionSHA256": "4150914b9f6f771cf19cf7570ad0c46a94e57f9affb30734f8f4ed63e11407c6",
+    "explanation": "④ 전력퓨즈는 과전류에 의해 녹아 회로를 차단한다. 누전차단기는 영상변류기 등으로 누설에 따른 전류 불평형을 검출해 차단기구를 동작시키므로 일반적인 누전 검출 구성과 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "영상변류기는 선로 전류합의 불평형, 검출회로와 트립기구·접점으로 누전 차단. 지문·보기·저장 답 대조: 4번 전력퓨즈."
+  },
+  "safety-engineer-20180428:73": {
+    "questionSHA256": "4150914b9f6f771cf19cf7570ad0c46a94e57f9affb30734f8f4ed63e11407c6",
+    "explanation": "④ 전력퓨즈는 과전류에 의해 녹아 회로를 차단한다. 누전차단기는 영상변류기 등으로 누설에 따른 전류 불평형을 검출해 차단기구를 동작시키므로 일반적인 누전 검출 구성과 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "영상변류기는 선로 전류합의 불평형, 검출회로와 트립기구·접점으로 누전 차단. 지문·보기·저장 답 대조: 4번 전력퓨즈."
+  },
+  "safety-engineer-20210307:106": {
+    "questionSHA256": "848732e615d755bc68cb68dbe70fc3538b7c12014099145acf00705dcae71442",
+    "explanation": "②이다. 식생구멍공은 비탈면에 식물이 자랄 자리를 만들어 뿌리와 식생으로 표면을 보호하는 방법이다. 블록·돌쌓기·콘크리트 격자처럼 구조물을 설치하는 분류와 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "구조물 지지·피복과 식물 뿌리·표면보호를 이용하는 식생공 구분. 지문·보기·저장 답 대조: 2번 식생구멍공."
+  },
+  "safety-engineer-20180428:120": {
+    "questionSHA256": "13658b172deb2540188971c317098c2d1f72ea085e740ee0aa4fd8b85dfa4b62",
+    "explanation": "①이다. 식생구멍공은 비탈면에 식물이 자랄 자리를 만들어 뿌리와 식생으로 표면을 보호하는 방법이다. 블록·돌쌓기·콘크리트 격자처럼 구조물을 설치하는 분류와 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "구조물 지지·피복과 식물 뿌리·표면보호를 이용하는 식생공 구분. 지문·보기·저장 답 대조: 1번 식생구멍공."
+  },
+  "safety-engineer-20210307:120": {
+    "questionSHA256": "e9be787eb6b831d71e27a27d40a8ff3239563217c306e9b73898cb8d31ff331e",
+    "explanation": "①다. 안전보건규칙 제98조제1항은 해당 기계의 최대제한속도가 시속 10 km 이하인 경우를 별도의 작업장 제한속도 지정 대상에서 제외한다. 현장 여건에 관계없이 이 속도로 운전해도 된다는 뜻은 아니다. 대조한 규칙은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제98조제1항 최대제한속도 10 km/h 이하 제외. 주행속도 자체를 일률 허용하는 규정 아님. 지문·보기·저장 답 대조: 1번 최대 제한 속도가 10km/h 이하."
+  },
+  "safety-engineer-20180304:103": {
+    "questionSHA256": "e9be787eb6b831d71e27a27d40a8ff3239563217c306e9b73898cb8d31ff331e",
+    "explanation": "①다. 안전보건규칙 제98조제1항은 해당 기계의 최대제한속도가 시속 10 km 이하인 경우를 별도의 작업장 제한속도 지정 대상에서 제외한다. 현장 여건에 관계없이 이 속도로 운전해도 된다는 뜻은 아니다. 대조한 규칙은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제98조제1항 최대제한속도 10 km/h 이하 제외. 주행속도 자체를 일률 허용하는 규정 아님. 지문·보기·저장 답 대조: 1번 최대 제한 속도가 10km/h 이하."
+  },
+  "safety-engineer-20210307:24": {
+    "questionSHA256": "49475d45802da302d6e9cf6d244b93282f636fa52b1ec9c4d1a2d56c4e1a02ae",
+    "explanation": "③가 틀리다. 일정한 고장률을 가정하면 평균 고장간격은 고장률에 반비례한다. 예를 들어 시간당 고장 건수가 두 배면 평균 고장간격은 절반이 된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "일정 고장률인 모형의 평균 고장간격은 1/λ. 단위가 시간의 역수. 지문·보기·저장 답 대조: 3번 수리가 가능한 시스템의 평균 수명(MTBF)은 평균 고장률(λ)과 정비례 관계가 성립한다..",
+    "explanationFormula": {
+      "tex": "\\mathrm{MTBF}=\\frac{1}{\\lambda}",
+      "label": "일정 고장률인 모형의 평균 고장간격은 1/λ"
+    }
+  },
+  "safety-engineer-20180428:36": {
+    "questionSHA256": "f2b33ceabad0ca57f9a4d07684814c3da1173b89c5b83daca8acf7d19a016e72",
+    "explanation": "③가 틀리다. 일정한 고장률을 가정하면 평균 고장간격은 고장률에 반비례한다. 예를 들어 시간당 고장 건수가 두 배면 평균 고장간격은 절반이 된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "일정 고장률인 모형의 평균 고장간격은 1/λ. 단위가 시간의 역수. 지문·보기·저장 답 대조: 3번 수리가 가능한 시스템의 평균수명(MTBF)은 평균 고장률(λ)과 정비례관계가 성립한다..",
+    "explanationFormula": {
+      "tex": "\\mathrm{MTBF}=\\frac{1}{\\lambda}",
+      "label": "일정 고장률인 모형의 평균 고장간격은 1/λ"
+    }
+  },
+  "safety-engineer-20210307:28": {
+    "questionSHA256": "27c1efeb1a4846b57d39206a484efdd11ff8990ffbc16bd93dcfcd499dd354aa",
+    "explanation": "①가 원칙과 다르다. 작업 목적상 합쳐도 안전하고 다루기 쉬운 기능은 한 공구에 결합하면 공구를 바꿔 쥐는 불필요한 동작을 줄일 수 있다. 어떤 기능이든 무조건 분리하라는 원칙은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "불필요한 도구 변경·동작을 줄이는 경제 원칙. 기능 통합이 적합할 때 사용. 지문·보기·저장 답 대조: 1번 공구의 기능을 각각 분리하여 사용하도록 한다.."
+  },
+  "safety-engineer-20180304:29": {
+    "questionSHA256": "27c1efeb1a4846b57d39206a484efdd11ff8990ffbc16bd93dcfcd499dd354aa",
+    "explanation": "①가 원칙과 다르다. 작업 목적상 합쳐도 안전하고 다루기 쉬운 기능은 한 공구에 결합하면 공구를 바꿔 쥐는 불필요한 동작을 줄일 수 있다. 어떤 기능이든 무조건 분리하라는 원칙은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "불필요한 도구 변경·동작을 줄이는 경제 원칙. 기능 통합이 적합할 때 사용. 지문·보기·저장 답 대조: 1번 공구의 기능을 각각 분리하여 사용하도록 한다.."
+  },
+  "safety-engineer-20210307:89": {
+    "questionSHA256": "79cc870a1fdacc7b5a9a2b64692fc9ed9f4be07fe2b3f011a92163995176c4c7",
+    "explanation": "① 공비증류다. 문제에서 제3성분을 넣는 목적은 물이 함께 빠져나갈 수 있는 공비혼합물을 형성해 에탄올-물 자체의 공비 제한을 넘는 것이다. 단순히 증류 압력을 바꾸는 방식과 구별된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제3성분이 물과 휘발성 공비혼합물을 형성해 제거하는 공비증류와 상대 휘발도 변화가 핵심인 추출증류 구분. 지문·보기·저장 답 대조: 1번 공비증류."
+  },
+  "safety-engineer-20180428:89": {
+    "questionSHA256": "79cc870a1fdacc7b5a9a2b64692fc9ed9f4be07fe2b3f011a92163995176c4c7",
+    "explanation": "① 공비증류다. 문제에서 제3성분을 넣는 목적은 물이 함께 빠져나갈 수 있는 공비혼합물을 형성해 에탄올-물 자체의 공비 제한을 넘는 것이다. 단순히 증류 압력을 바꾸는 방식과 구별된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제3성분이 물과 휘발성 공비혼합물을 형성해 제거하는 공비증류와 상대 휘발도 변화가 핵심인 추출증류 구분. 지문·보기·저장 답 대조: 1번 공비증류."
+  },
+  "safety-engineer-20180428:83": {
+    "questionSHA256": "0ebfb96197c300e07267a7a3b2533af42bf1c827c0863f5ea146b04889842cd5",
+    "explanation": "①이다. 대조한 안전보건규칙 제261조제1항의 펌프 항목은 토출측에 차단밸브가 있는 정변위 펌프다. 모든 펌프를 똑같이 열거한 규정은 아니며 실제 설비의 과압 검토는 별도로 필요하다. 대조한 규칙은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "안전보건규칙 제261조제1항은 정변위펌프 등 지정, 원심펌프를 이 이름으로 열거하지 않음. 지문·보기·저장 답 대조: 1번 원심펌프."
+  },
+  "safety-engineer-20180428:119": {
+    "questionSHA256": "b9a52b0be6c2b6c41b786b8d523dffdc8275d14d40c1dc60d30d9dcf695be97f",
+    "explanation": "①이 일반적인 취급·운반 원칙에 맞지 않는다. 작업장 여건과 안전이 허용하는 범위에서 경로를 단순하고 짧게 설계하면 이동거리와 방향전환에 드는 작업을 줄일 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "운반거리와 이동 행정 최소화. 직선 경로는 조건 같을 때 짧고 방향 전환 감소. 지문·보기·저장 답 대조: 1번 곡선 운반을 할 것."
+  },
+  "safety-engineer-20190804:53": {
+    "questionSHA256": "3888c65f4f74170ad12341250fa26b82c98c6a2f2956929785e29f39394d91b4",
+    "explanation": "대조한 안전보건규칙은 훅의 입구 간격이 제조사 제품사양서의 기준보다 10% 이상 벌어졌으면 폐기하도록 한다. 따라서 ④ 10%다. 기준은 사용 중 임의로 측정한 이전 값이 아니라 제조사 사양이다. 대조한 규칙은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제96조의 훅 입구 폐기 기준은 제조사 사양서 대비 10% 이상. 출제일의 조문은 별도. 지문·보기·저장 답 대조: 4번 10."
+  },
+  "safety-engineer-20180819:81": {
+    "questionSHA256": "47714105ce383a7642ddfd19a4e425dab5fcc773131ab08b781391b76fc2d5de",
+    "explanation": "①이다. 대조한 안전보건규칙 제269조제1항 본문은 해당 설비에서 증기나 가스를 대기로 방출할 때 외부 화염의 유입을 막기 위해 설비 상단에 화염방지기를 설치하도록 한다. 예외는 통기관의 방지 기능 등 별도 조건을 따른다. 대조한 규칙은 2025년 12월 시행본이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제269조제1항의 화염방지기 위치 및 개정 예외와 구분. 지문·보기·저장 답 대조: 1번 설비의 상단."
+  },
+  "safety-engineer-20190427:85": {
+    "questionSHA256": "462f48b15e9d54184af4c9a2cac183ec3ad252d6dbbf253e05d371acb9348fe4",
+    "explanation": "③가 잘못된 설명이다. 퍼지는 설비 내부의 분위기를 안전하게 치환하는 작업이므로 물질과 설비에 맞는 절차와 확인이 필요하다. 무조건 가장 빠르게 다량을 공급하도록 정하는 것은 안전 기준이 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "퍼지 유량을 조건 없이 최대로 높이는 것은 일반 산업안전 원칙이 아니며 설비 허용조건·검증 절차를 따름. 지문·보기·저장 답 대조: 3번 퍼지용 가스를 가능한 한 빠른 속도로 단시간에 다량 송입한다.."
   }
 }

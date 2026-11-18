@@ -10,11 +10,14 @@ import { choiceMatch, isAnswerNoticeOnly } from './review-choice-matching.mjs';
 const {values, positionals} = parseArgs({allowPositionals:true, options:{
   'match-choices': {type:'boolean'},
   'answer-notices': {type:'boolean'},
+  'reference-excluded': {type:'boolean'},
   packet: {type:'string'},
   limit: {type:'string', default:'20'},
 }});
 const byChoice = values['match-choices'];
 const noticesOnly = values['answer-notices'];
+const includeReferences = values['reference-excluded'];
+if (includeReferences && !byChoice) throw Error('--reference-excluded requires --match-choices.');
 if (noticesOnly && !byChoice) throw Error('--answer-notices requires --match-choices.');
 const [output] = positionals;
 const limit = Number(values.limit);
@@ -28,6 +31,7 @@ const ledger = JSON.parse(fs.readFileSync('docs/explanation-review/2026-11-18/re
 const records = new Map(ledger.records.map(row => [row.id, row]));
 const groups = new Map();
 let compared = 0;
+let referencesCompared = 0;
 
 for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).sort()) {
   const file = 'data/' + name;
@@ -39,7 +43,8 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
     for (const round of bank?.rounds || []) {
       for (const q of round.questions) {
         const id = (q._originRoundId || round.id) + ':' + (q._originalNumber || q.number);
-        if (questionExclusion(bank, round, q, records.get(id))) continue;
+        const referenceOnly = questionExclusion(bank, round, q, records.get(id));
+        if (referenceOnly && !includeReferences) continue;
         // External overlays, pictures and scanned material require their own comparison.
         if (!byChoice && (!q.text?.trim() || q.sourceImage || q.images?.length || q.explanationImages?.length ||
             q.choices.some(c => c.images?.length) || /<img\b|data:image\//i.test(JSON.stringify(q)))) continue;
@@ -49,26 +54,28 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
         if (byChoice && !match) continue;
         const groupKey = byChoice ? digest(match.signature) : bank.key + ':' + digest(fields.filter(([k]) => !isExplanation(k)));
         const explanation = digest(fields.filter(([k]) => isExplanation(k)));
-        if (noticesOnly && !records.has(id) && isAnswerNoticeOnly(q)) pendingNotices.add(id);
+        if (noticesOnly && !referenceOnly && !records.has(id) && isAnswerNoticeOnly(q)) pendingNotices.add(id);
         if (values.packet) packetRows.set(id, q);
         if (!groups.has(groupKey)) groups.set(groupKey, []);
-        groups.get(groupKey).push({ id, file, round: round.id, number: q.number, ...(match && { positions: match.positions, correct: match.correct, answer: q.answer }), explanation, status: records.get(id)?.status || null });
-        compared++;
+        groups.get(groupKey).push({ id, file, ...(referenceOnly && {referenceOnly}), round: round.id, number: q.number, ...(match && { positions: match.positions, correct: match.correct, answer: q.answer }), explanation, status: records.get(id)?.status || null });
+        if (referenceOnly) referencesCompared++;
+        else compared++;
       }
     }
   }
 }
 
 const queue = [...groups.values()].filter(rows => noticesOnly ? rows.some(row => pendingNotices.has(row.id)) :
-  rows.length > 1 && rows.some(row => !row.status));
+  rows.length > 1 && rows.some(row => !row.status && !row.referenceOnly));
 queue.sort((a, b) => b.length - a.length || a[0].id.localeCompare(b[0].id));
 const summary = {
   textRowsCompared: compared,
+  ...(includeReferences && {excludedTextReferencesCompared:referencesCompared}),
   ...(noticesOnly && {unreviewedTextAnswerNotices:pendingNotices.size, singletonPackets:queue.filter(group => group.length === 1).length}),
   groupsWithUnreviewedMembers: queue.length,
   distinctStoredExplanationGroups: queue.filter(group => new Set(group.map(row => row.explanation)).size > 1).length,
   members: queue.reduce((count, group) => count + group.length, 0),
-  unreviewedMembers: queue.flat().filter(row => !row.status).length,
+  unreviewedMembers: queue.flat().filter(row => !row.status && !row.referenceOnly).length,
 };
 if (byChoice) {
   summary.reorderedGroups = queue.filter(rows => new Set(rows.map(row => row.positions.join())).size > 1).length;
@@ -88,9 +95,9 @@ if (values.packet) {
       const existing = list.findIndex(item => JSON.stringify(item) === JSON.stringify(value));
       return existing < 0 ? list.push(value)-1 : existing;
     };
-    const members = rows.map(({id,file,answer,positions,correct,status}) => {
+    const members = rows.map(({id,file,answer,positions,correct,status,referenceOnly}) => {
       const q=packetRows.get(id), record=records.get(id);
-      return {id,file,status,answer,positions,correct, ...(noticesOnly && {pendingAnswerNotice:pendingNotices.has(id)}),
+      return {id,file,status,answer,positions,correct, ...(referenceOnly && {referenceOnly}), ...(noticesOnly && {pendingAnswerNotice:pendingNotices.has(id)}),
         stem:index(stems,[q.text,q.html,q.hint]),
         context:index(contexts,Object.fromEntries(Object.entries(q).filter(([k])=>
           !['text','html','hint','choices','answer','number','source','sourcePage','problemUrl'].includes(k) && !isExplanation(k)))),

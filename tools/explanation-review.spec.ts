@@ -736,3 +736,16 @@ test('산업안전기사 산소소비량의 질소수지와 분수', async ({pag
  await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
  await explanation.screenshot({path:info.outputPath('oxygen-consumption.png')});
 });
+
+test('지게차 무게중심과 전도축 정답 재확인 안내', async ({page}) => {
+ await prepare(page, 'safety');
+ await page.locator('#round-card-safety-20020811').getByRole('button', {name:'학습모드', exact:true}).click();
+ await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('55');
+ await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+ const card = page.locator('.question-card').filter({hasText:'앞바퀴 중심'});
+ await card.locator('button.choice-button').nth(1).click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('안정삼각형 안');
+ await expect(explanation).toContainText('앞바퀴 접지선');
+ await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
