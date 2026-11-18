@@ -555,11 +555,12 @@
         "assets/energy-textbook/explanations/2018-2-1.webp"
       ],
       "status": "근거 부족으로 보류",
-      "finding": "이미지 해설을 읽고 지문·네 보기·저장 답과 대조함. 독립 기술자료와의 학술 대조는 미완료.",
+      "finding": "압력손실·집진효율 인과 혼동. 정답④ 및 장치 원리는 확인. 원문 설계 한계(농도 단위·온도·습도)의 일반화는 별도 근거 부족.",
       "evidence": [
-        "local-energy-336"
+        "cfr-boiler-collector",
+        "comparison-table-559-591"
       ],
-      "resolution": "기존 전사 필드에 원문 대조 텍스트를 추가. 원문 이미지·경로·보기·정답 보존.",
+      "resolution": "전기 집진기는 입자를 대전시킨 뒤 전기장으로 집진극에 모은다. 기체 전체를 촘촘한 여과재로 통과시킬 필요가 없어 보통 압력손실이 작다. 따라서 ‘압력손실이 크다’는 ④가 틀리다. 낮은 압력손실과 높은 포집효율은 서로 다른 특성이다.",
       "changed": true,
       "transcriptionTool": "직접 판독; OCR 미사용",
       "academicVerified": false,
@@ -575,7 +576,10 @@
           "displayAsset": "assets/problem-webp90/fa7ddb3fc681f0d1c1cbd18d19d73aec.webp",
           "sha256": "04651c37e74af65eb089a51144afb53adf267ab98868632c31a7675ebbfcead8"
         }
-      ]
+      ],
+      "errorType": "압력손실·집진효율 인과 혼동",
+      "basisPage": "2018년 2회 · 원문 1번 · 교재 336쪽",
+      "matchedSource": "energy-industrial-20180428:1"
     },
     {
       "id": "school-energy-textbook-2018-2:2",
@@ -593,15 +597,15 @@
       "explanationImages": [
         "assets/energy-textbook/explanations/2018-2-2.webp"
       ],
-      "status": "근거 부족으로 보류",
-      "finding": "이미지 해설을 읽고 지문·네 보기·저장 답과 대조함. 독립 기술자료와의 학술 대조는 미완료.",
+      "status": "내용 검토 완료·수정함",
+      "finding": "분리 원리 보완",
       "evidence": [
-        "local-energy-336"
+        "openstax-circular-motion"
       ],
-      "resolution": "기존 전사 필드에 원문 대조 텍스트를 추가. 원문 이미지·경로·보기·정답 보존.",
+      "resolution": "사이클론 안에서 기체가 소용돌이를 만들면, 입자는 관성 때문에 기체처럼 급히 방향을 바꾸지 못하고 바깥 벽 쪽으로 분리된다. 이런 회전 흐름을 이용하는 장치를 원심력식으로 분류하므로 ③이다.",
       "changed": true,
       "transcriptionTool": "직접 판독; OCR 미사용",
-      "academicVerified": false,
+      "academicVerified": true,
       "tableRetained": true,
       "sourceAssets": [
         {
@@ -614,7 +618,9 @@
           "displayAsset": "assets/problem-webp90/eaf65f6376471aae4865ba08d171a887.webp",
           "sha256": "04f95e54055ff4fdf3e83c220b964d0c7c73c30e49ea85a37af24aa245261095"
         }
-      ]
+      ],
+      "errorType": "분리 원리 보완",
+      "basisPage": "2018년 2회 · 원문 2번 · 교재 336쪽"
     },
     {
       "id": "school-energy-textbook-2018-4:3",
@@ -632,15 +638,16 @@
       "explanationImages": [
         "assets/energy-textbook/explanations/2018-4-3.webp"
       ],
-      "status": "근거 부족으로 보류",
-      "finding": "이미지 해설을 읽고 지문·네 보기·저장 답과 대조함. 독립 기술자료와의 학술 대조는 미완료.",
+      "status": "내용 검토 완료·수정함",
+      "finding": "비교 대상과 원리 보완",
       "evidence": [
-        "local-energy-350"
+        "cfr-boiler-collector",
+        "comparison-table-559-591"
       ],
-      "resolution": "기존 전사 필드에 원문 대조 텍스트를 추가. 원문 이미지·경로·보기·정답 보존.",
+      "resolution": "이 문항의 네 보기 중 여과식은 먼지가 섞인 기체를 여과재에 통과시켜 입자를 붙잡는다. 교재의 대표 성능표에서 백필터의 집진율은 90~99%로, 보기의 중력식·관성력식·원심력식보다 높은 범위에 놓인다. 따라서 ③이다. 실제 효율은 입경과 운전 조건에 따라 달라진다.",
       "changed": true,
       "transcriptionTool": "직접 판독; OCR 미사용",
-      "academicVerified": false,
+      "academicVerified": true,
       "tableRetained": false,
       "sourceAssets": [
         {
@@ -653,7 +660,10 @@
           "displayAsset": "assets/problem-webp90/567410fd359fff0777f218cd601e0142.webp",
           "sha256": "506d5650f951f888f0d270f61593bd7369dcc2081dd20e2ae0f99b905bcb5a04"
         }
-      ]
+      ],
+      "errorType": "비교 대상과 원리 보완",
+      "basisPage": "2018년 4회 · 원문 3번 · 교재 350쪽",
+      "matchedSource": "energy-industrial-20180915:3"
     },
     {
       "id": "hazardous-craftsman-2004-4:54",
@@ -1654,6 +1664,490 @@
       ],
       "changed": false,
       "errorType": "환산 기준 미확인"
+    },
+    {
+      "id": "energy-industrial-20180428:1",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 1,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "evidence": [
+        "cfr-boiler-collector",
+        "school-energy-textbook-2018-2:1"
+      ],
+      "finding": "압력손실·집진효율 인과 혼동",
+      "resolution": "전기 집진기는 입자를 대전시킨 뒤 전기장으로 집진극에 모은다. 기체 전체를 촘촘한 여과재로 통과시킬 필요가 없어 보통 압력손실이 작다. 따라서 ‘압력손실이 크다’는 ④가 틀리다. 낮은 압력손실과 높은 포집효율은 서로 다른 특성이다.",
+      "errorType": "압력손실·집진효율 인과 혼동",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/1/"
+    },
+    {
+      "id": "energy-industrial-20180915:3",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180915",
+      "number": 3,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 09월 15일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "evidence": [
+        "cfr-boiler-collector",
+        "school-energy-textbook-2018-4:3"
+      ],
+      "finding": "비교 대상과 원리 보완",
+      "resolution": "이 문항의 네 보기 중 여과식은 먼지가 섞인 기체를 여과재에 통과시켜 입자를 붙잡는다. 교재의 대표 성능표에서 백필터의 집진율은 90~99%로, 보기의 중력식·관성력식·원심력식보다 높은 범위에 놓인다. 따라서 ③이다. 실제 효율은 입경과 운전 조건에 따라 달라진다.",
+      "errorType": "비교 대상과 원리 보완",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10515/3/"
+    },
+    {
+      "id": "school-energy-textbook-2019-2:9",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 4,
+      "location": "2019년 2회 · 원문 9번 · 교재 381쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-2-9.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-2-9.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-2-9.webp",
+          "displayAsset": "assets/problem-webp90/0f2a3d7e90aede3b7944661eca6ac9ef.webp",
+          "sha256": "ed6343e19f610bcc875ab5de4e9b4a0fd5e6abcbeb6f06e27b24d227c0c879a5"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-2-9.webp",
+          "displayAsset": "assets/problem-webp90/3a7368e5b44807044627ed23de795ab3.webp",
+          "sha256": "6b74e717409292ad909e3814a7141574baaf97fa598865c318a5268f414ac6ee"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "건식·습식 작동 원리 보완",
+      "resolution": "③ 벤튜리 스크러버는 세정액의 액적에 입자를 포집하는 습식이다. 백 필터는 여과재로, 일반 사이클론과 멀티클론은 회전 흐름으로 먼지를 분리한다. 이 세 보기는 교재에서 건식으로 분류한다.",
+      "changed": true,
+      "errorType": "건식·습식 작동 원리 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-venturi"
+      ],
+      "basisPage": "2019년 2회 · 원문 9번 · 교재 381쪽",
+      "matchedSource": "energy-industrial-20190427:9",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": true,
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:9",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190427:9",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190427",
+      "number": 9,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "evidence": [
+        "cfr-venturi",
+        "school-energy-textbook-2019-2:9"
+      ],
+      "finding": "등록된 분류·작동 설명이 문항과 일치",
+      "resolution": "대응 지문·보기·정답·원문 이용자 해설을 대조해 기존 해설 유지.",
+      "errorType": "해당 없음",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/9/"
+    },
+    {
+      "id": "school-energy-textbook-2022-1:2",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 5,
+      "location": "2022년 1회 · 원문 2번 · 교재 474쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-1-2.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-1-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-1-2.webp",
+          "displayAsset": "assets/problem-webp90/64cac3e2b2f15ea4114eb34006e074c0.webp",
+          "sha256": "772220a305cba73a7fdca77e5ba7eb100bf62dc4cd139dbb500c9f59c1ee2027"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-1-2.webp",
+          "displayAsset": "assets/problem-webp90/0f553d9d0950089664a7f598797da1dd.webp",
+          "sha256": "f527823c708a1965d343e1f70258a4cad20d07f33138ec2f8a060f40f9ee636f"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "종합효율 기준과 반올림 보완",
+      "resolution": "두 장치를 하나로 묶으면 처음 농도는 95, 마지막 농도는 0.5 g/Nm³이다. 같은 표준상태로 환산한 가스의 부피유량이 입구와 출구에서 같다고 보면, 처음 들어온 먼지 중 제거된 비율이 종합 집진율이다. 중간 농도 10은 개별 장치 효율을 구할 때 쓰인다. 계산값 99.473684…%를 보기처럼 소수 첫째 자리로 반올림하면 ④ 99.5%다.",
+      "changed": true,
+      "errorType": "종합효율 기준과 반올림 보완",
+      "academicVerified": true,
+      "evidence": [
+        "dust-balance"
+      ],
+      "basisPage": "2022년 1회 · 원문 2번 · 교재 474쪽",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": false
+    },
+    {
+      "id": "school-energy-textbook-2022-2:72",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 6,
+      "location": "2022년 2회 · 원문 72번 · 교재 502쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-2-72.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-2-72.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-2-72.webp",
+          "displayAsset": "assets/problem-webp90/36270287f731e9cf3b7c6d4afb78ad09.webp",
+          "sha256": "b1410dcdd56b260b730800c3d664a79aee207e9fce82ed8de3dbf287a8d1a233"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-2-72.webp",
+          "displayAsset": "assets/problem-webp90/880c6e9d2296d58b1343bb0563fbc839.webp",
+          "sha256": "7e50885f8dd126c86fe520cf99f48baad7c12b918230ab382eda97aa58915b58"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "보기 상대 비교 보완",
+      "resolution": "이 문제는 분진 포집 방식의 선정과 가장 거리가 먼 항목을 묻는다. 연료와 연소방법은 발생하는 먼지의 성상·양에, 입자의 크기는 어느 방식으로 포집할 수 있는지에 관계한다. 이에 비해 배기가스의 O₂ 농도는 연소 상태를 판단하는 지표이므로 이 보기에서는 ②가 가장 거리가 멀다.",
+      "changed": true,
+      "errorType": "보기 상대 비교 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-boiler-collector"
+      ],
+      "basisPage": "2022년 2회 · 원문 72번 · 교재 502쪽",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": false
+    },
+    {
+      "id": "school-energy-textbook-2023-1:26",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 7,
+      "location": "2023년 1회 · 원문 26번 · 교재 526쪽",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-1-26.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-1-26.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-1-26.webp",
+          "displayAsset": "assets/problem-webp90/9080f9bcc3f456587e136d476a6c45f3.webp",
+          "sha256": "9673e4823af8124b2cea7929f15da1a23d189e79b6a1a25b9d8e23cf0f30eddd"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-1-26.webp",
+          "displayAsset": "assets/problem-webp90/90a8a79cf72aec6eb764a036fee18f17.webp",
+          "sha256": "bc68382a1a63df3cd237740647abb46a9ff24ab84b4a94f217dfd62b24418516"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "건식·습식 작동 원리 보완",
+      "resolution": "③ 벤튜리 스크러버는 세정액의 액적에 입자를 포집하는 습식이다. 백 필터는 여과재로, 일반 사이클론과 멀티클론은 회전 흐름으로 먼지를 분리한다. 이 세 보기는 교재에서 건식으로 분류한다.",
+      "changed": true,
+      "errorType": "건식·습식 작동 원리 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-venturi"
+      ],
+      "basisPage": "2023년 1회 · 원문 26번 · 교재 526쪽",
+      "matchedSource": "energy-industrial-20190427:9",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": true,
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:9",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "school-energy-textbook-2023-4:29",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 8,
+      "location": "2023년 4회 · 원문 29번 · 교재 559쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-4-29.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-4-29.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-4-29.webp",
+          "displayAsset": "assets/problem-webp90/6a7408bc07d5e55f8ad30c8e2d9051ac.webp",
+          "sha256": "572e286a82f7512b378bb728f0918b536cfe17210bba491a57845d18a89f6449"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-4-29.webp",
+          "displayAsset": "assets/problem-webp90/28d7e346caea2f5fd925d6c7ab1a596b.webp",
+          "sha256": "65b3cd3a993873a0a99f8ee7cace1eeb1a4cda91af084b6959a949072d0b1c31"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "표의 대표 효율과 적용 범위 보완",
+      "resolution": "교재 표에서 보기의 집진율 상한은 중력식 60%, 사이클론을 포함한 원심력식 95%, 세정식 95%, 전기식 99.9%다. 이 비교 기준에서 가장 높은 것은 ④ 전기식이다. 표의 범위는 일부 겹치므로 어느 운전 조건에서나 같은 순서가 되는 것은 아니다.",
+      "changed": true,
+      "errorType": "표의 대표 효율과 적용 범위 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-boiler-collector",
+        "comparison-table-559-591"
+      ],
+      "basisPage": "2023년 4회 · 원문 29번 · 교재 559쪽",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": true
+    },
+    {
+      "id": "school-energy-textbook-2024-2:34",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 9,
+      "location": "2024년 2회 · 원문 34번 · 교재 591쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-2-34.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-2-34.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-2-34.webp",
+          "displayAsset": "assets/problem-webp90/c072a2d56756ef0ef8a161a9013c7326.webp",
+          "sha256": "6baeee196742efcf500205c9878e910938de7b8efc5ce0a147b8f91226aabc8c"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-2-34.webp",
+          "displayAsset": "assets/problem-webp90/b2fbe5d352b28cbc2298b8fa4af26be2.webp",
+          "sha256": "0cdf267a2eb86ea6a36ebe8c0c3d2130f037601de73fc8dbec275d83d53d9a28"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "표의 상한 비교와 조건 보완",
+      "resolution": "이 문항은 교재 표에 적힌 대표 집진율을 비교한다. 여과식은 90~99%, 전기식은 90~99.9%로 하한은 같지만 전기식의 상한이 더 높다. 원심력식·세정식의 상한은 각각 95%이므로 표에서 고를 답은 ④ 전기식이다.",
+      "changed": true,
+      "errorType": "표의 상한 비교와 조건 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-boiler-collector",
+        "comparison-table-559-591"
+      ],
+      "basisPage": "2024년 2회 · 원문 34번 · 교재 591쪽",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": true
+    },
+    {
+      "id": "school-energy-textbook-2025-3:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 10,
+      "location": "2025년 3회 · 원문 15번 · 교재 632쪽",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-15.webp",
+          "displayAsset": "assets/problem-webp90/b9ab9b76c4fe0db88d2c14a393181920.webp",
+          "sha256": "30c93d35b75172f3025202bb4e07af9941f254260b2acb4c4451361c93cd8d5e"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-15.webp",
+          "displayAsset": "assets/problem-webp90/faac20e1b2b1e906943ddea0dd00e472.webp",
+          "sha256": "ead738d3c2d76f4d5a9c700995a6b536a1a9c9f50fe38b11a529c32950821753"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "액적 포집 원리 보완",
+      "resolution": "액막 또는 액방울이 포집 매체라는 점이 단서다. 기체 속 입자가 액체에 부딪히거나 접촉해 붙으면 기류에서 분리된다. 그러므로 이 장치는 ② 세정식이다.",
+      "changed": true,
+      "errorType": "액적 포집 원리 보완",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-venturi"
+      ],
+      "basisPage": "2025년 3회 · 원문 15번 · 교재 632쪽",
+      "matchedSource": "energy-industrial-20170507:11",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": false,
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20170507:11",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20170507:11",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20170507",
+      "number": 11,
+      "location": "에너지관리산업기사 필기 기출문제 2017년 05월 07일 (2회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "evidence": [
+        "cfr-venturi",
+        "school-energy-textbook-2025-3:15"
+      ],
+      "finding": "등록된 분류·작동 설명이 문항과 일치",
+      "resolution": "대응 지문·보기·정답·원문 이용자 해설을 대조해 기존 해설 유지.",
+      "errorType": "해당 없음",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3080/11/"
+    },
+    {
+      "id": "school-energy-textbook-2025-3:33",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-1",
+      "number": 11,
+      "location": "2025년 3회 · 원문 33번 · 교재 636쪽",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-33.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-33.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-33.webp",
+          "displayAsset": "assets/problem-webp90/9d6a181c040fda49ea813b764b503e3c.webp",
+          "sha256": "4ff4a10052665025f9534ebfe2f67de71550f2832bae2b8b8de8d6a39c982a10"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-33.webp",
+          "displayAsset": "assets/problem-webp90/a5a93f10b880fca770c459bd818193b6.webp",
+          "sha256": "e2093b88d2ae023ca84d023837ea3ebe084dc0e210aded04c72ee7a0cbb1fca3"
+        }
+      ],
+      "status": "내용 검토 완료·수정함",
+      "finding": "부정형 문항의 결론 교정",
+      "resolution": "찾아야 하는 것은 건식이 아닌 방식이다. ④ 벤튜리 스크러버는 세정액과 분진을 접촉시키는 습식이므로 이 문항의 정답이다. 백필터식은 여과재를 쓰고 사이클론식·멀티클론식은 회전 흐름을 이용한다.",
+      "changed": true,
+      "errorType": "부정형 문항의 결론 교정",
+      "academicVerified": true,
+      "evidence": [
+        "cfr-venturi"
+      ],
+      "basisPage": "2025년 3회 · 원문 33번 · 교재 636쪽",
+      "matchedSource": "energy-industrial-20170923:17",
+      "transcriptionTool": "원본 직접 판독",
+      "tableRetained": true,
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20170923:17",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20170923:17",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20170923",
+      "number": 17,
+      "location": "에너지관리산업기사 필기 기출문제 2017년 09월 23일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "evidence": [
+        "cfr-venturi",
+        "school-energy-textbook-2025-3:33"
+      ],
+      "finding": "부정형 문항의 결론 교정",
+      "resolution": "찾아야 하는 것은 건식이 아닌 방식이다. ④ 벤튜리 스크러버는 세정액과 분진을 접촉시키는 습식이므로 이 문항의 정답이다. 백필터식은 여과재를 쓰고 사이클론식·멀티클론식은 회전 흐름을 이용한다.",
+      "errorType": "부정형 문항의 결론 교정",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3081/17/"
     }
   ],
   "sources": [
@@ -2062,6 +2556,55 @@
       "date": "2026-11-18",
       "section": "원문 표의 500명·2400시간/인·2급 3명·10급 5명·휴업 1500일 및 300/365 환산 조건 확인.",
       "method": "저장 지문·조건·보기 전부 대조 및 독립 유도 또는 검산"
+    },
+    {
+      "id": "cfr-boiler-collector",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/Lawsnipe/ecfr/master/ecfr/title-40-Protection-Environment/chapter-I-Environmental-Protection-Agency/subchapter-C-Air-Programs/part-63-National-Emission-Standards-Hazardous-Air-Pollutants-Source-Categories/subpart-DDDDD-National-Emission-Standards-Hazardous-Air-Pollutants-Major-Sources-Industrial-Commercial-Institutional-Boilers-Process-Heaters/subjectgroup-ECFR54017517a806e59-Other-Requirements-Information/section-63.7575.md",
+      "sha256": "a3c873c0cba788fdd864c733aa9f1f1c77abf738dfb75cc725dcf69fb58b04e4",
+      "section": "40 CFR §63.7575 — Electrostatic precipitator (ESP), Fabric filter, Wet scrubber",
+      "scope": "장치의 물리적 원리·용어 대조. 미국 규정은 역사 자료의 공개 미러이며 국내 출제 법규나 집진율 보증 기준으로 인용하지 않음."
+    },
+    {
+      "id": "cfr-venturi",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/Lawsnipe/ecfr/master/ecfr/title-40-Protection-Environment/chapter-I-Environmental-Protection-Agency/subchapter-C-Air-Programs/part-63-National-Emission-Standards-Hazardous-Air-Pollutants-Source-Categories/subpart-RRRRR-National-Emission-Standards-Hazardous-Air-Pollutants-Taconite-Iron-Ore-Processing/subjectgroup-ECFR713f9fff1ae615a-Other-Requirements-Information/section-63.9652.md",
+      "sha256": "5344dad75ec524c3ccb99e3209dfb31ef7d8e33a4a54bf0ce9248d17da9ca6e9",
+      "section": "40 CFR §63.9652 — Wet scrubber. 액적 충돌·차단 등의 포집 원리 및 venturi scrubber 분류.",
+      "scope": "장치의 물리적 원리·용어 대조. 미국 규정은 역사 자료의 공개 미러이며 국내 출제 법규나 집진율 보증 기준으로 인용하지 않음."
+    },
+    {
+      "id": "openstax-circular-motion",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42084/index.cnxml",
+      "sha256": "09896a7991ef45b1cd9958b318e4d8c4c35b0f202c9c7bb53c4ff4ff6b9eb9c0",
+      "section": "College Physics 2e, Centripetal Acceleration — 속도 방향 변화와 중심을 향하는 가속도",
+      "scope": "원운동의 역학"
+    },
+    {
+      "id": "dust-balance",
+      "date": "2026-11-18",
+      "section": "교재 474쪽의 동일 기준 가스농도에서 입출구 분진 질량수지. 전체 제거율=1−0.5/95. 직렬 통과율의 곱 (10/95)(0.5/10)=0.5/95로 교차 검산. 원문의 99.473은 절삭 표기로 보존."
+    },
+    {
+      "id": "comparison-table-559-591",
+      "date": "2026-11-18",
+      "section": "교재 559쪽과 591쪽의 집진율 표 열·행 확인. 보기 간 대표 범위 상한의 비교에 한정. 시설의 보증 효율 수치로 미사용.",
+      "images": [
+        {
+          "original": "assets/energy-textbook/explanations/2023-4-29.webp",
+          "displayAsset": "assets/problem-webp90/28d7e346caea2f5fd925d6c7ab1a596b.webp",
+          "sha256": "65b3cd3a993873a0a99f8ee7cace1eeb1a4cda91af084b6959a949072d0b1c31"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-2-34.webp",
+          "displayAsset": "assets/problem-webp90/b2fbe5d352b28cbc2298b8fa4af26be2.webp",
+          "sha256": "0cdf267a2eb86ea6a36ebe8c0c3d2130f037601de73fc8dbec275d83d53d9a28"
+        }
+      ]
     }
   ],
   "automaticAnswerCandidates": [
@@ -2315,7 +2858,7 @@
   ],
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
-    "energyTextbook": "data/energy-textbook.js school-energy-topic-1 number4 / school-energy-textbook-2019-2:9, 교재381쪽. 집진장치 11개 중1~3 전사만 완료·학술 보류,4~11 미검토.",
+    "energyTextbook": "data/energy-textbook.js school-energy-topic-2 표시1번, school-energy-textbook-2018-2:5 (337쪽)부터 1~14번. 직전 단원 11개 중 10개 내용 완료, 336쪽 원문 1번 설계 한계 근거 보류.",
     "energyRegular": "data/energy.js energy-industrial-20020310:1~3 보류 재개 후 :4~80. 회차 전체 미완료.",
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
@@ -2324,22 +2867,22 @@
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 62,
-    "contentCompleted": 54,
-    "contentCompletedChanged": 49,
-    "contentCompletedUnchanged": 5,
-    "evidenceHold": 7,
+    "contentExamined": 75,
+    "contentCompleted": 69,
+    "contentCompletedChanged": 62,
+    "contentCompletedUnchanged": 7,
+    "evidenceHold": 5,
     "answerNeedsConfirmation": 1,
-    "automaticOnly": 48942,
-    "changedQuestionIds": 52,
-    "imageTranscribed": 3,
-    "imageFullyTranscribed": 1,
-    "imagePartiallyTranscribed": 2,
-    "imageCompared": 3,
-    "imageAcademicCompleted": 0,
-    "questionImagesConverted": 4,
-    "questionImagesCompared": 4,
-    "questionImageAcademicCompleted": 4
+    "automaticOnly": 48929,
+    "changedQuestionIds": 63,
+    "imageTranscribed": 11,
+    "imageFullyTranscribed": 6,
+    "imagePartiallyTranscribed": 5,
+    "imageCompared": 11,
+    "imageAcademicCompleted": 10,
+    "questionImagesConverted": 8,
+    "questionImagesCompared": 8,
+    "questionImageAcademicCompleted": 8
   },
   "followup": {
     "date": "2026-11-18",
@@ -2356,5 +2899,21 @@
     "withFraction": 19,
     "previouslyReviewedFractionDisplays": 9,
     "stillWithoutBankExplanation": 1641
+  },
+  "energyDustBatch": {
+    "bookItems": 11,
+    "linkedOriginalItems": 5,
+    "distinctNewlyExamined": 13,
+    "previouslyExamined": 3,
+    "bookCompleted": 10,
+    "bookHold": 1,
+    "linkedOriginalsChanged": 3,
+    "linkedOriginalsUnchanged": 2,
+    "explanationTranscriptions": 8,
+    "full": 5,
+    "partial": 3,
+    "matchedQuestionTranscriptions": 4,
+    "fractionDisplays": 1,
+    "reviewedDisplayEntries": 14
   }
 }

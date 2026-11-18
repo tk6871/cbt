@@ -80,6 +80,16 @@ assert.equal(review.counts.reviewUnits,review.counts.automaticOnly+review.record
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
 const affectedIds=new Set(changedBankIds);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
+const energyReviewed=JSON.parse(fs.readFileSync('data/energy-reviewed-explanations.json'));
+assert.equal(Object.keys(energyReviewed).length,review.energyDustBatch.reviewedDisplayEntries);
+for(const [id,entry] of Object.entries(energyReviewed)){
+ const question=bankById.get(id);
+ assert.ok(question&&reviewedIds.has(id), 'Unrecorded display change: '+id);
+ assert.equal(fingerprint(question),entry.fingerprint, 'Reviewed energy source changed: '+id);
+ assert.ok(entry.text.trim()&&entry.basis.trim());
+ if(entry.formula)assert.ok(katex.renderToString(entry.formula.tex,{throwOnError:true}).includes('<mfrac>'));
+ affectedIds.add(id);
+}
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={bankQuestions,imageReferences,reviewedFractions:fractions.length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));

@@ -8,7 +8,7 @@ import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with
 import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' with { type: 'json' };
 import type { AnswerHotspot } from './types';
 import reviewedEnergyChoices from '../../data/energy-reviewed-printed-options.json' with { type: 'json' };
-import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
+import {energyTextbookComcbtSource,energyExplanation} from './energyTextbookExplanation';
 
 const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
 
@@ -81,10 +81,10 @@ function prepareCatalog(source: Catalog): Catalog {
       ? round.questions.map(question=>({...question,answerHotspots:reviewedHansolHotspots[question.sourceImage||'']||question.answerHotspots}))
       : source.key === 'energy-midterm'
         ? round.questions.map((question) => ({
-            ...withEnergyTextbookComcbt(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
+            ...energyExplanation(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
             answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
           }))
-        : source.key==='energy' ? round.questions.map(q=>withEnergyTextbookComcbt(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
+        : source.key==='energy' ? round.questions.map(q=>energyExplanation(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
   }));
   const result = { ...source, rounds };
   preparedCatalogs.set(original, { book, energy, result });

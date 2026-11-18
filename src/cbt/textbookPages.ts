@@ -2,7 +2,7 @@ import links from '../../data/textbook-pages.json' with { type: 'json' };
 import { coolingBookFingerprint } from './coolingBookScope';
 import type { QuestionItem, AnswerHotspot } from './types';
 import {questionId,subjectFor,withReviewedEnergyChoices} from './catalog';
-import {energyTextbookComcbtSource,withEnergyTextbookComcbt} from './energyTextbookExplanation';
+import {energyTextbookComcbtSource,energyExplanation} from './energyTextbookExplanation';
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
@@ -117,7 +117,7 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
   if(!original||coolingBookFingerprint(original.question)!==e.fingerprint)return [];
   const roundId=`textbook-${e.book}-${e.page}`;
   const location=`${textbookNames[e.book as TextbookKey]} ${e.page}쪽 · ${e.number}번`;
-  const enhanced=e.book==='energy'?withEnergyTextbookComcbt(withReviewedEnergyChoices(original.question),e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
+  const enhanced=e.book==='energy'?energyExplanation(withReviewedEnergyChoices(original.question),e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
   const correction=e.correction;
   const textCorrection=correction?.presentation==='text'?correction:undefined;
   const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{explanationFormula:undefined,text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,

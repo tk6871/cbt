@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.6',scope:'industrial',date:'2026.11.18',title:'집진장치 단원 해설',summary:'에너지 교재 집진장치 11문항의 풀이와 근거를 보완했습니다.',tags:['에너지','집진장치'],changes:['474쪽 종합 집진율을 분수식으로 풀고 반올림한 보기까지 확인할 수 있습니다.','교재 해설 이미지 8개에 대조 텍스트를 추가하고 동일 문제 4개를 글자로 표시합니다.','연결된 이용자 해설과 교정 풀이의 출처를 구분합니다.']},
     {version:'6.2.5',scope:'industrial',date:'2026.11.18',title:'산업안전기사 해설과 분수식',summary:'해설이 비어 있던 산업안전기사 39문항에 풀이를 추가했습니다.',tags:['해설','계산'],changes:['산업안전기사 19문항과 공조 9문항의 풀이에서 분자와 분모를 위아래로 읽을 수 있습니다.','저장된 COMCBT 이용자 해설을 참고한 7문항에는 참고한 회차와 번호를 표시합니다.']},
     {version:'6.2.4',scope:'industrial',date:'2026.11.18',title:'동일 문제의 텍스트 표시',summary:'원문과 같은 내용을 확인한 펌프 문제 4건을 글자로 읽을 수 있습니다.',tags:['원문 대조','텍스트'],changes:['지문·수치·보기 순서·정답을 개별 대조한 4건에 기존 텍스트를 연결했습니다.','이미지로 보기로 원문을 다시 볼 수 있으며, 선택한 답과 학습 기록은 그대로 유지합니다.']} ,
     {version:'6.2.3',scope:'industrial',date:'2026.11.18',title:'일부 문제 해설 교정',summary:'직접 검토한 계산·작동 해설을 보완하고 일부 이미지 해설을 글자로 제공합니다.',tags:['해설','원문 대조'],changes:['계산식·단위 조건·열교환 작동 이유를 교정하고 연결된 추가 해설에도 반영했습니다.','이미지 해설 3건에 원문 대조 텍스트를 추가했습니다. 이 중 2건은 핵심 부분만 옮겼으며 원본은 그대로 볼 수 있습니다.','전체 문항의 내용 검토를 완료한 것은 아닙니다.']} ,
@@ -2783,8 +2784,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.5';
+  changelog.versions.industrial = '6.2.6';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.5';
+  changelog.currentVersion = '6.2.6';
   window.CBT_CHANGELOG = changelog;
 })();

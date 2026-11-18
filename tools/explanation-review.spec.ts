@@ -115,3 +115,41 @@ test('COMCBT 참고 회차와 재배열된 정답 보기', async ({page}) => {
   await expect(source.locator('p')).toContainText('2017.08.26 8번');
   await expect(card.locator('.beginner-primary-explanation')).toContainText('①');
 });
+
+async function openDustQuestion(page:Page,position:number) {
+  await prepare(page,'energy-midterm');
+  const round=page.locator('#round-card-school-energy-topic-1');
+  await round.getByRole('checkbox',{name:/계산 문제 포함/}).check();
+  await round.getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill(String(position));
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+}
+
+test('474쪽 종합 집진율 대입식·인쇄값·답안 저장', async ({page}, info) => {
+  await openDustQuestion(page,4);
+  const card = page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:'2022년 1회 · 원문 2번'})});
+  await card.locator('.image-answer-hotspot').nth(3).click();
+  await expect(card.locator('.beginner-primary-explanation')).toContainText('④ 99.5%');
+  const formula=card.locator('.explanation-box .math-formula');
+  await expect(formula.locator('.katex-html .mfrac')).toBeVisible();
+  await expect(formula).toHaveAttribute('aria-label', /99.5퍼센트/);
+  await expect(card.locator('.transcription-text')).toContainText('99.473[%]');
+  await card.getByRole('button',{name:'이미지로 보기',exact:true}).click();
+  await card.locator('.textbook-explanation-image img').evaluate((img:HTMLImageElement)=>img.decode());
+  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+  await card.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  expect(await formula.evaluate(el=>el.scrollWidth<=el.clientWidth+1)).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['school-energy-textbook-2022-1:2'])).toBe(4);
+  const box=card.locator('.explanation-box');
+  await box.evaluate(el=>el.scrollIntoView({block:'center',behavior:'instant'}));
+  await box.screenshot({path:info.outputPath('dust-efficiency.png')});
+});
+test('636쪽 동일 문제 텍스트·습식 정답·원본 선택 영역',async({page})=>{
+  await openDustQuestion(page,8);
+  const card=page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:'2025년 3회 · 원문 33번'})});
+  await expect(card.locator('.choice-copy').nth(3)).toHaveText('벤튜리스크러버식');
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.beginner-primary-explanation')).toContainText('습식이므로 이 문항의 정답');
+  await card.locator('.question-transcription-control').getByRole('button',{name:'이미지로 보기'}).click();
+  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+});

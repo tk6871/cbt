@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
 import matches from '../data/energy-textbook-comcbt-links.json' with {type:'json'};
-import {withEnergyTextbookComcbt} from '../src/cbt/energyTextbookExplanation';
+import editorial from '../data/energy-reviewed-explanations.json' with {type:'json'};
+import {energyExplanation,withEnergyTextbookComcbt} from '../src/cbt/energyTextbookExplanation';
 import {explanationSource} from '../src/cbt/explanationSource';
 import type {Question} from '../src/cbt/types';
 
@@ -31,6 +32,32 @@ test('동일 문항만 실제 COMCBT 해설 우선 · 원문/기존 설명 보�
   expect(withEnergyTextbookComcbt({...q,text:q.text+'조건 변경'},id,source).explanationProvenance).toBe(q.explanationProvenance);
   expect(withEnergyTextbookComcbt(q,id,{...source,explanationType:'ai-reference'})).toBe(q);
   expect(withEnergyTextbookComcbt(q,id,{...source,source:'https://example.org'})).toBe(q);
+ }
+ expect(JSON.stringify([...map])).toBe(before);
+});
+
+test('원본 해설·정답 fingerprint와 566개 연결을 유지한 집진장치 해설 표시',()=>{
+ const map=banks(), before=JSON.stringify([...map]);
+ for(const [id,entry] of Object.entries(editorial)){
+  const q=map.get(id)!;
+  const updated=energyExplanation(q,id);
+  expect(updated.explanation,id).toBe(entry.text);
+  expect(updated.explanationImages,id).toEqual(q.explanationImages);
+  expect(updated.answer,id).toBe(q.answer);
+  expect(energyExplanation({...q,text:q.text+'조건 변경'},id).explanation,id).toBe(q.explanation);
+ }
+ for(const [id,link] of Object.entries(matches.links)){
+  const target=map.get(id)!, source=map.get(link.sourceId)!;
+  const old=withEnergyTextbookComcbt(target,id,source);
+  const result=energyExplanation(target,id,source);
+  if(id in editorial || link.sourceId in editorial){
+   expect(result.explanationProvenance,id).toBe('energy-content-reviewed');
+   expect(result.additionalExplanations?.some(e=>e.text===source.explanation),id).toBe(true);
+   expect(energyExplanation(result,id,source)).toBe(result);
+   // The direct reader passes a prepared source. It must still expose the archived user text.
+   const prepared=energyExplanation(source,link.sourceId);
+   expect(energyExplanation(target,id,prepared).additionalExplanations?.some(e=>e.text===source.explanation),id).toBe(true);
+  } else expect(result,id).toEqual(old);
  }
  expect(JSON.stringify([...map])).toBe(before);
 });
