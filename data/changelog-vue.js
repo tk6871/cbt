@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.34',scope:'industrial',date:'2026.11.19',title:'공조 원문과 에너지 계산 해설 교정',summary:'습증기 건도와 분수 계산을 다시 확인했습니다.',tags:['공조','실기'],changes:['공조 원본 이미지 10개의 지문과 보기를 텍스트로도 제공합니다.','같은 부피에서 압력을 올릴 때 건도가 달라지는 두 사례를 구분했습니다.']},
     {version:'6.2.33',scope:'industrial',date:'2026.11.19',title:'공조 실기와 자체 보충 해설 교정',summary:'두 단의 압축비와 혼합냉매 과열·과냉도 기준을 명확히 했습니다.',tags:['공조','실기'],changes:['배관 높이와 중력의 방향이 맞지 않는 설명을 교정했습니다.','보기 순서가 다른 시험 문제의 보충 해설을 대조했습니다.']},
     {version:'6.2.32',scope:'industrial',date:'2026.11.19',title:'설비보전·산업안전 해설 교정',summary:'장치 작동 원리와 적용 조건을 보완했습니다.',tags:['보전','안전'],changes:['지게차의 전도축과 합성 무게중심을 구분했습니다.','다른 문제의 설명이 붙어 있던 문항과 빈 해설을 보완했습니다.']},
     {version:'6.2.31',scope:'industrial',date:'2026.11.19',title:'산업안전기사 공란 해설 보완',summary:'산소소비량·고장확률·소음 등 계산 해설을 보완했습니다.',tags:['안전','냉동','계산'],changes:['열펌프를 물펌프로 설명한 문항과 냉동기유의 역할을 교정했습니다.','도판이나 시험 당시 규격을 확인해야 하는 경우 문항별 기록에 표시했습니다.']},
@@ -2811,8 +2812,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.33';
+  changelog.versions.industrial = '6.2.34';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.33';
+  changelog.currentVersion = '6.2.34';
   window.CBT_CHANGELOG = changelog;
 })();

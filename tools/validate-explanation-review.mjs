@@ -211,6 +211,11 @@ for (const [index,prompt] of currentPractical.entries()) {
  }
  assert.deepEqual(prompt,{...previous,explanation:prompt.explanation},'Practical fields changed: '+prompt.id);
 }
+const practicalImages=new Set(currentPractical.flatMap(prompt=>
+ [prompt.image,...prompt.images||[],...prompt.answerImages||[]].filter(Boolean)));
+for (const asset of practicalImages) {
+ assert.ok(fs.statSync(maps[asset]||asset).isFile(),'Missing practical image: '+asset);
+}
 const exampleFile = 'data/textbook-worked-examples.json';
 const oldExamples = JSON.parse(original(exampleFile)).entries;
 const currentExamples = JSON.parse(fs.readFileSync(exampleFile)).entries;
@@ -294,5 +299,5 @@ for (const record of disputeRecords) {
  affectedIds.add(record.id);
 }
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));
