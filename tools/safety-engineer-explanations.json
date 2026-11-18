@@ -388,5 +388,41 @@
     "explanation": "④ 통상사상은 정상적인 작업이나 기계 운전 중에도 일어날 것으로 기대되는 사건이다. 그 사건이 다른 조건과 겹치면 재해 경로의 요소가 될 수 있다. 더 이상 분해하지 않는 원인을 뜻하는 기본사상과 구별한다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "2014.05.25 38번에서 네 기호의 원본을 확인했다. 해당 문항에서는 집 모양 ③이 통상사상, 여기서는 용어 보기 ④이다."
+  },
+  "safety-engineer-20220424:32": {
+    "questionSHA256": "eda303c292d8b8eef2c5df04acb908054ccda8f2a872ac2fddab91b5f5dff2b6",
+    "explanation": "OWAS에서는 허리·팔·다리의 자세를 각각 구분하고 취급하는 하중 또는 힘을 함께 기록해 작업 자세의 부담을 평가한다. 따라서 ㄱ~ㄹ이 모두 포함된 ④다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "지문 HTML의 ㄱ~ㄹ 순서와 OWAS 표 구현의 네 축을 대조."
+  },
+  "safety-engineer-20220424:33": {
+    "questionSHA256": "23e591eb8c8e01d08400e81dc3a2d5df6100bf16bb6f93c4e4c1fb36bba57d95",
+    "explanation": "정밀 조립은 작업물이 손이 닿는 범위에 있고 몸통과 팔을 안정적으로 지지할 때 작은 동작을 제어하기 쉽다. 보기 중 좌식에 가장 적합한 작업은 ①이다. 잦은 이동이나 넓은 범위로 손을 뻗는 일은 앉은 자세의 이점이 작다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2012.03.04 22번의 정밀작업과 작업대 보기 대조."
+  },
+  "safety-engineer-20220424:35": {
+    "questionSHA256": "ad4155813ca0746799fc756a0bcefe2ed11b4dee719b6d0fc7746100aeb1f822",
+    "explanation": "④에서 동력원을 기계라고 한 부분이 틀리다. 수동 시스템에서는 사람이 조작과 동력 공급을 맡고 도구는 힘을 전달한다. 전기 드릴은 모터가 동력을 내고 사람이 방향과 작동을 제어하므로 반자동의 예다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2009.05.10 37번 인간이 동력원인 수동체계와 대조."
+  },
+  "safety-engineer-20220424:36": {
+    "questionSHA256": "4e133eaacb7d57f0f2ad71d25fe7e554d8bd6929c4fb7587c06daa29f8941a1a",
+    "explanation": "양식 양립성은 정보를 받는 감각 방식과 응답 방식의 조합이 자연스러운지를 말한다. 소리로 제시한 자극에 말로 응답하는 ③이 해당한다. 제어장치와 표시장치의 위치 배열은 공간 양립성이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2018.08.19 33번에서 청각 자극·음성 응답이 뜻하는 용어를 묻는 역방향 문항 대조."
+  },
+  "safety-engineer-20220424:37": {
+    "questionSHA256": "bfa95591fda7231a83a95af12fc4b23d93db7c346bbab5ffcb3e2fa7d2b4715f",
+    "explanation": "지문은 유해·위험요인 파악부터 위험의 추정·결정, 감소대책의 수립과 실행까지 전 과정을 설명한다. 따라서 ② 위험성 평가다. 다른 세 보기는 그 과정의 일부 단계만 가리킨다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2022.04.24 37번 HTML에 제시된 정의와 네 보기의 포함관계 대조. 해당 시기 지문의 용어를 설명."
+  },
+  "safety-engineer-20220424:38": {
+    "questionSHA256": "84059e4b5724bb68e85764f681b1a20b5c4125141871e0e56f91097cc324a805",
+    "explanation": "일사가 있는 옥외에서는 WBGT에 자연습구·흑구·건구 온도를 각각 70%·20%·10% 반영한다. 0.7×20 + 0.2×18 + 0.1×30 = 14 + 3.6 + 3 = 20.6 °C이므로 ①이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "pythermalcomfort wbgt의 일사 있음 분기와 원문 온도 세 개를 대입해 재계산."
   }
 }

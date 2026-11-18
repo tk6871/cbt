@@ -72,7 +72,7 @@ for(const {explanationFormula:{tex,label}} of fractions){
  assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);
 }
 const withoutExplanation=[...bankById.values()].filter(q=>!q.explanation&&!q.explanationHtml&&!q.explanationImages?.length);
-assert.equal(withoutExplanation.length,review.safety20220424SecondBatch.withoutBankExplanation);
+assert.equal(withoutExplanation.length,review.energyChapters12To20.remainingBankBlanks);
 assert.equal(bankQuestions,inventory.counts.bankQuestions);
 for(const row of review.records)for(const a of row.sourceAssets)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(a.displayAsset)).digest('hex'),a.sha256,`Reviewed pixels changed: ${a.original}`);
 const oldConfirmed=JSON.parse(original('data/image-text/confirmed.json')),newConfirmed=JSON.parse(fs.readFileSync('data/image-text/confirmed.json'));
@@ -108,6 +108,11 @@ for (const [status, field] of Object.entries(statusCounts)) {
 }
 assert.equal(review.counts.contentCompleted, review.counts.contentCompletedChanged + review.counts.contentCompletedUnchanged);
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
+const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length;
+assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
+assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
+assert.equal(review.counts.imageCompared, explanationTranscriptions);
+assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
 const affectedIds=new Set(changedBankIds);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';

@@ -232,6 +232,7 @@ test('펌프 출구압력의 두 해석·저장 답과 이의제기 보존', asy
 
 for (const sample of [
   {title:'623쪽 증발계수의 무차원 분수와 인쇄 단위',round:'school-energy-topic-6',id:'school-energy-textbook-2025-2:45',source:'2025년 2회 · 원문 45번',result:'단위가 남지 않는다',printed:'1.185 (kJ/kg)',screenshot:'evaporation-factor.png'},
+  {title:'340쪽 흡수 가스 체적분율 원문·분수',round:'school-energy-topic-13',id:'school-energy-textbook-2018-2:26',source:'2018년 2회 · 원문 26번',result:'16.4%',printed:'16.4[%]',screenshot:'orsat-volume.png'},
   {title:'344쪽 스케줄 번호의 응력 단위·전사·분수',round:'school-energy-topic-11',id:'school-energy-textbook-2018-2:53',source:'2018년 2회 · 원문 53번',result:'72 kgf/cm²',printed:'72[kgf/cm²]',screenshot:'pipe-schedule.png'},
 ]) test(sample.title, async ({page}, info) => {
   await prepare(page,'energy-midterm');
