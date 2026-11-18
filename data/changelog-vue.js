@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.23',scope:'industrial',date:'2026.11.18',title:'산업안전 기출 표와 보호장치 해설',summary:'전기·화학·건설안전 기출의 빈 해설과 여러 회차의 반복 문제를 보완했습니다.',tags:['산업안전','공조'],changes:['감전방지·계측장치 기준의 적용 조건과 표 계산을 볼 수 있습니다.']},
     {version:'6.2.22',scope:'industrial',date:'2026.11.18',title:'연소·냉동·제어 기출 해설 교정',summary:'열량과 유량의 단위를 맞추고 원래 그림에서 제어식을 다시 읽었습니다.',tags:['에너지','공조'],changes:['보기와 계산이 일치하지 않는 문항에는 확인할 내용을 표시합니다.']},
     {version:'6.2.21',scope:'industrial',date:'2026.11.18',title:'공조 교재 원문과 냉매 물성 대조',summary:'냉동·열역학·공기조화·전기 문항의 원본을 대조했습니다.',tags:['공조','교재'],changes:['냉매 비교 온도와 단위, 냉동능력·압축일·열량의 계산식을 보완했습니다.','교재 해설 이미지 144개에서 판독한 내용을 텍스트로 볼 수 있습니다.']},
     {version:'6.2.20',scope:'industrial',date:'2026.11.18',title:'병렬 회로 역률과 냉동 계산 교정',summary:'서로 다른 해설이 등록된 문항에서 교정 근거와 기존 의견을 함께 볼 수 있습니다.',tags:['공조','전기'],changes:['냉매 순환량·전열면적·브라인 출구온도를 분수식으로 표시합니다.','공조 교재 12개 해설에 원문과 대조한 텍스트를 추가했습니다.']},
@@ -2800,8 +2801,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.22';
+  changelog.versions.industrial = '6.2.23';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.22';
+  changelog.currentVersion = '6.2.23';
   window.CBT_CHANGELOG = changelog;
 })();

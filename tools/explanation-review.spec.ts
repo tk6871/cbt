@@ -543,3 +543,18 @@ test('조작량 미분 그림과 적분동작 교정', async ({page}, info) => {
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20030316:69'])).toBe(3);
  await box.screenshot({path:info.outputPath('integral-control.png')});
 });
+
+test('산업안전 원표와 순위 이의 확인', async ({page},info)=>{
+ await prepare(page,'safety-engineer');
+ await page.locator('#round-card-safety-engineer-20220424').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('97');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'다음 표의 가스'});
+ await expect(card.locator('table')).toContainText('75.0');
+ await card.locator('.choice-button').nth(3).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('③ C–D–A–B');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:97'])).toBe(4);
+ await box.screenshot({path:info.outputPath('safety-table.png')});
+});

@@ -718,5 +718,265 @@
     "explanation": "①이 틀리다. 작업을 시작하기 전에는 1분 이상, 새 숫돌로 교체한 뒤에는 3분 이상 시험운전해야 한다. 교체한 경우에도 1분만 돌리면 된다는 설명은 맞지 않는다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "규칙 제122조제2·4·5항. 일상 작업 전과 교체 후를 같은 1분으로 묶은 ①이 틀림."
+  },
+  "safety-engineer-20220424:63": {
+    "questionSHA256": "ade45e5456d22c696875b98294e1870c6340a86e2c0391444916b2b91bd2f715",
+    "explanation": "도체의 전기저항에 의한 손실은 보통 줄열로 나타난다. 단락·지락 부위나 차단기의 접점 사이에서 절연이 깨져 기체를 통해 전류가 흐르는 아크와는 발생 원리가 다르므로 ④다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "전선에서 연속적으로 일어나는 저항 발열과 접점 개방·절연 파괴에 따른 기체 방전을 구분."
+  },
+  "safety-engineer-20220424:64": {
+    "questionSHA256": "d4d19feda74868e8cd86c6c34432dab5615666a6a62503c0c94258f9426ce709",
+    "explanation": "①이 틀리다. 액체가 배관을 흐를 때 발생하는 유동대전을 줄이려고 유속을 일부러 높이지는 않는다. 접지와 적합한 도전성 재료는 쌓인 전하가 빠져나갈 경로를 제공한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제325조제1항의 접지·도전성 재료·가습과 비교. 보기 ①의 유속 증가를 예방 원리로 제시한 방향이 잘못. 수치 제한을 단정하지 않음."
+  },
+  "safety-engineer-20220424:67": {
+    "questionSHA256": "d790e4796766739bc11bc366a75349187647748873f78dcdc708a7d9a5544742",
+    "explanation": "①이 부적절하다. 두 물체가 빨리 떨어지면 접촉 중 생긴 전하가 되돌아가거나 새어 나갈 시간이 짧아져 대전이 커질 수 있다. 실제 크기는 재료와 표면 상태, 습도에 따라 달라진다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "정전기 전하 분리와 누설 시간에 비추어 빠른 분리가 대전을 항상 줄인다는 ①이 부당. ③·④도 표면과 재료 의존."
+  },
+  "safety-engineer-20220424:68": {
+    "questionSHA256": "3418f651e300b097c0ff5807dd5dc6cf5c8be96c53696530a83d0b95ba945cd4",
+    "explanation": "④ 검전기다. 정전 작업을 시작하기 전에 작업할 부분에 전압이 남아 있는지 확인하는 기구다. 회로를 여닫는 개폐기나 퓨즈에는 이 검전 기능을 맡기지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제319조제2항제5호의 검전기, 충전 유무 확인."
+  },
+  "safety-engineer-20220424:69": {
+    "questionSHA256": "661f27058c48313cebc8f1392a6cc2002540b6de46c32de84028e5933ff2d00f",
+    "explanation": "③이 틀리다. 피뢰기는 서지전류를 흘려보내면서 보호기기에 남는 전압을 그 절연이 견딜 수 있는 범위로 제한한다. 따라서 제한전압이 높을수록 보호에 유리한 것은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제한전압은 서지 방전 중 보호 설비에 나타나는 전압. 보호 대상 절연내력 이하로 제한해야 함."
+  },
+  "safety-engineer-20220424:70": {
+    "questionSHA256": "52b60cf81a5a104c5bf50c223fbe61be8c6ac60342b6d8ed676ab95f083ef392",
+    "explanation": "③이 틀리다. 같은 토양에서 접지극의 유효 크기를 지나치게 작게 하면 전류가 대지로 퍼져 나가기 어려워진다. 서로 충분히 떨어진 접지극을 병렬로 설치하거나 토양 저항률을 낮추면 접지저항을 줄일 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "대지와 접촉하는 전극 크기 감소가 확산 저항을 낮추지 않음. 같은 토양·형상에서 비교."
+  },
+  "safety-engineer-20220424:72": {
+    "questionSHA256": "737df2195978cb5a70d8c74c4d78b837089be66d3bb5175267da39f97818fb44",
+    "explanation": "같은 길이의 아크에서 전류가 증가해 방전 경로가 뜨거워지고 전도성이 좋아지면, 아크를 유지하는 데 필요한 전압은 내려갈 수 있다. 그림에서 이런 음의 미분저항 구간을 보이는 것은 오른쪽으로 갈수록 내려가는 ③이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "내장 SVG 4곡선과 가로 I·세로 V의 기울기를 실제 화면으로 대조. ③만 하강. 아크의 대표적인 정적 하강 구간."
+  },
+  "safety-engineer-20220424:74": {
+    "questionSHA256": "58cc3255c07c88007057b68c54dc5ec973b3e9a1c09de65cd4f83b63543b02c3",
+    "explanation": "④다. 규칙은 절연대 위 등 감전 위험이 없는 장소를 예외로 둔다. 단순히 절연대라는 이름만으로 예외가 되지는 않는다. 나머지 보기는 도전성이 높은 장소, 대지전압 150 V 초과 휴대기기, 임시배선 장소에 해당한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제304조제1항제1·3·4호, 제3항제2호. 두 항 모두 마지막 개정 표시 2021.11.19로 출제 전."
+  },
+  "safety-engineer-20220424:75": {
+    "questionSHA256": "9f5927fa2b13356a0c23a43ed842b81d30b541e516b00ea9de2f274c20ac0ad2",
+    "explanation": "② 트래킹이다. 오염되고 젖은 절연물 표면에 누설전류와 작은 방전이 반복되면서 탄화된 길이 생기면, 그 길로 전류가 더 쉽게 흐르고 결국 절연이 파괴될 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "짧은 text 필드 외에 html 설명 단락의 습기·먼지, 미소 방전, 탄화 도전로를 확인."
+  },
+  "safety-engineer-20220424:77": {
+    "questionSHA256": "5a49090aac0378a5198e2eecaa5331f57112d3b4e396f78880e2bdadab4ff9dc",
+    "explanation": "문제 식에 1초를 넣으면 전류는 165 mA, 즉 0.165 A다. 저항에서 생기는 줄열은 약 13.61 J다. 주어진 환산값으로 나누면 약 3.25 cal이고 보기 중 가장 가까운 것은 ④ 3.27 cal다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "원문 HTML 수식 I=165/√t mA 및 4.184 J/cal 확인. 0.165²×500×1=13.6125 J=3.2535 cal. 가장 가까운 것은 ④.",
+    "explanationFormula": {
+      "tex": "Q=\\frac{I^2Rt}{4.184}=\\frac{(0.165)^2\\times500\\times1}{4.184}\\approx3.25\\ \\mathrm{cal}",
+      "label": "원문 HTML 수식 I=165/√t mA 및 4"
+    }
+  },
+  "safety-engineer-20220424:78": {
+    "questionSHA256": "f137434661d27ac06ee5e56b113c7e9ef7165f7db04ec1bb69648216f1525276",
+    "explanation": "제303조에서 설치할 때 살피도록 한 것은 전기적 용량과 기계적 강도, 사용 장소의 환경, 방호수단의 적정성이다. ② 시간 가동률은 이 세 가지 설치 고려사항에 들어 있지 않다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제303조제1항제1~3호. 조문 개정 표시 2021.05.28. 네 보기에서 명시 사항 비교."
+  },
+  "safety-engineer-20220424:79": {
+    "questionSHA256": "90ac1ed7590a86b55b24b3563d627c9b382f0178ed76dc97676eb6e8849a226d",
+    "explanation": "③이 틀리다. 전원을 끊은 다음에는 다른 사람이 잘못 투입하지 않도록 차단장치를 잠그고 통전금지 표지를 붙여 둔다. 작업 전에 그 표지를 제거하면 정전 작업 중임을 알릴 수 없다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제319조제2항제3~6호. 잠금장치와 꼬리표를 함께 부착하도록 하는 작업 전 절차."
+  },
+  "safety-engineer-20220424:80": {
+    "questionSHA256": "28fe994f572e8b5bdf355d5119361d719a50a7c9d55ef347d9f788b0f3d94655",
+    "explanation": "① 드라이클리닝설비는 인화성 유기용제를 사용하는 경우 용제 증기와 정전기 방전이 함께 화재 위험을 만들 수 있다. 규칙도 이런 설비를 정전기 방지조치 대상으로 명시한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제325조제1항제6호. 인화성 유기용제를 사용하는 드라이클리닝설비의 정전기 방지."
+  },
+  "safety-engineer-20220424:81": {
+    "questionSHA256": "1b84a3c0a4ad05c0e54b225c49729c0cd29441c49eea21370e5feb329adce484",
+    "explanation": "④다. 규칙이 열거한 것은 열을 방출하는 발열반응 장치다. 분리장치, 반응폭주로 위험물질이 생길 우려가 있는 설비 및 가열로·가열기도 포함된다. 흡열반응이라는 이유만으로는 여기에 해당하지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제273조제1·2·4·6호 열거 비교. 발열반응과 흡열반응의 표현을 구별."
+  },
+  "safety-engineer-20220424:84": {
+    "questionSHA256": "9d79be6f74b1f4d1970c92a8f9c7df922fd9e5016c6885e9be51c9a7d84c7350",
+    "explanation": "③ 이산화탄소다. 고압가스 안전관리법 시행규칙의 독성가스 열거에는 나머지 세 물질이 들어간다. 이 분류에서도 이산화탄소가 안전하다는 뜻은 아니다. 밀폐공간의 고농도 이산화탄소는 심각한 위해를 일으킬 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "고압가스 안전관리법 시행규칙 제2조제1항제2호 산화에틸렌·시안화수소·황화수소 열거. CO₂ 고농도 노출도 위험."
+  },
+  "safety-engineer-20220424:85": {
+    "questionSHA256": "89f3d0d613f0d797fae6ed2d3208c644a208338d42f992ea3ac66db4d46b1642",
+    "explanation": "① 불활성화는 폭발성 분위기가 형성되는 것을 예방하는 방법이다. 나머지 보기는 폭발이 시작된 뒤 그 진행을 억제하거나 압력·피해 범위를 제한하는 방호 대책으로 분류된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "발생 전 예방과 발생 후 압력·화염 피해 제한이라는 질문의 분류 기준."
+  },
+  "safety-engineer-20220424:87": {
+    "questionSHA256": "4c3544422a79a1bc702b3da6138e01b36c50806e60706b8c1c6c4bc689dab662",
+    "explanation": "일반적인 분진 폭연에서는 압력 변화가 아직 타지 않은 쪽으로 화염면보다 먼저 전달될 수 있다. ③이다. 공중에 떠 있는 고체 입자는 불완전하게 탈 수 있으므로 가스중독 위험이 작다고 단정할 수도 없다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "통상의 분진 폭연에서 압력 교란과 화염면의 전달 구분. 모든 분진·모든 폭발의 속도로 확대하지 않음."
+  },
+  "safety-engineer-20220424:89": {
+    "questionSHA256": "47714105ce383a7642ddfd19a4e425dab5fcc773131ab08b781391b76fc2d5de",
+    "explanation": "확인한 규칙 제269조제1항 본문의 위치는 ① 설비 상단이다. 증기나 가스를 대기로 내보내는 곳에서 외부 화염이 안으로 들어오는 것을 막기 위한 위치다. 이 조항에는 시험 뒤인 2022년 10월 개정 표시가 있어 당시 예외의 세부 범위는 별도 확인이 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제269조제1항 본문. 확인본은 2025.12.01 시행으로 출제 뒤인 2022.10.18 개정 표시. 당시 예외까지 동일한지 보류."
+  },
+  "safety-engineer-20220424:92": {
+    "questionSHA256": "92c9de0721a004893a4fc7a65a119b71f933f335f0fe9ca464deba6f0daa89d7",
+    "explanation": "① 인화점이다. 규정된 시험 조건에서 액면 위에 불을 붙일 만큼의 증기가 처음 형성되는 최저 온도를 말한다. 불꽃 없이 저절로 불이 붙는 발화온도나 액체가 끓는 비등점과 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제시된 액면 위 증기 농도, 순간 점화에 충분한 최저 온도, 지속 연소 또는 무점화원 발화와 구분."
+  },
+  "safety-engineer-20220424:93": {
+    "questionSHA256": "e8c6d2fb4cefc744a087f63d49e9e9c0717ce53e59c4ddafda2031cb944fc754",
+    "explanation": "①이 부적절하다. 탄화칼슘은 물과 반응해 인화성 가스를 발생시키므로 물속에 보관하면 위험하다. 수분 접촉을 피해야 하는 물질이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "수분과 반응하는 탄화칼슘의 보관 안전성. 물속 보관이 안전하다는 오해 교정."
+  },
+  "safety-engineer-20220424:94": {
+    "questionSHA256": "495f5c48ee71fc1cbae9c7140102483abc6fa38fe7ffd384d8d867087fb1f7f4",
+    "explanation": "②다. 기초볼트와 도장, 외부 단열재는 운전 중에도 바깥에서 상태를 살필 수 있다. 내부 전열면의 부착 상태를 직접 확인하는 일은 설비를 안전하게 정지하고 개방하는 정기점검에 가깝다. 성능 저하로 오염을 간접 추정하는 것과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "육안 외부 점검과 전열면의 내부 부착물을 개방 후 직접 확인하는 점검 구별."
+  },
+  "safety-engineer-20220424:95": {
+    "questionSHA256": "ec85a963ea4fbaad66a49f066db428c5d72988fd3d90365e7fc5f387c845217d",
+    "explanation": "① 탑형 반응기는 용기의 구조와 형상을 나타낸다. 연속식·회분식·반회분식은 원료를 넣고 제품을 빼는 시점으로 구분한 운전 방식이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "탑형은 용기 형상. 연속·회분·반회분은 물질 투입·배출 운전 방식."
+  },
+  "safety-engineer-20220424:97": {
+    "questionSHA256": "9eca7abecbcb7f558a2521b67b41ae85a2eab87ca640cb53f3869712d07f52e5",
+    "explanation": "화면에 제시된 식과 표를 그대로 계산하면 지표는 A 17.75, B 약 3.13, C 34.2, D 31.4다. 큰 값부터 읽으면 ③ C–D–A–B인데 저장 답은 ④로 A와 B의 순서가 바뀌어 있다. 출제 원표와 공식 답안을 확인해야 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "지문 HTML 원표 A(4.0,75.0), B(3.0,12.4), C(1.25,44.0), D(2.5,81.0)의 무차원 비를 검산. 정렬은 ③ C–D–A–B로 ④ 저장 답과 충돌.",
+    "explanationFormula": {
+      "tex": "H=\\frac{U-L}{L}",
+      "label": "지문 HTML 원표 A(4"
+    }
+  },
+  "safety-engineer-20220424:98": {
+    "questionSHA256": "34594d8ea433126bcdb5dd7beaf17ea582fbb2cee913a9db807c2bc6b66f56f9",
+    "explanation": "주어진 반응물인 알루미늄과 물에는 탄소가 없다. 따라서 탄소를 포함한 이산화탄소·메탄·에탄은 이 반응만으로 생길 수 없고, 물에 있던 수소 원소가 기체로 나오는 ② 수소가 맞다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "반응 전후 원소 보존. 보기에 있는 탄소 함유 기체의 탄소 공급원이 없음."
+  },
+  "safety-engineer-20220424:100": {
+    "questionSHA256": "6f8e99b90baadb667af78f4abd63204528cf6dc8b70fc08d304829223ef8af60",
+    "explanation": "③ 과잉 충전이다. 내벽 부식·재료 피로·용접 불량은 용기 자체가 견딜 수 있는 압력을 떨어뜨린다. 과잉 충전은 압력이 지나치게 올라갈 수 있는 별도의 사고 원인이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "내압력은 용기가 견디는 능력. 벽 부식·피로·용접 결함은 내력 저하, 과잉충전은 작용 하중 증가."
+  },
+  "safety-engineer-20220424:101": {
+    "questionSHA256": "284ff14cbd8e4a00c0559d05a14b3f976955dd4eaa5cfeb5877dd64214818d66",
+    "explanation": "확인한 규칙에서 파이프 서포트의 높이 기준은 3.5 m 초과다. 이때 높이 2 m 이내마다 두 방향의 수평연결재를 둔다. 따라서 4.5 m 초과라고 해 3.5~4.5 m 구간을 빠뜨린 ①이 문제다. 2022년 당시 조문 원본은 별도 확인이 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제332조제1호다목(2025년 확인본). 3.5 m 초과, 2방향, 2 m 이내. 당시 동바리 조항의 편제와 별개로 표시."
+  },
+  "safety-engineer-20220424:102": {
+    "questionSHA256": "0333cb17748e75914ebd1813cc3b32472b548fb016ea463f0bc811e0f4f297c6",
+    "explanation": "①이 틀리다. 작업대를 올리고 내리는 와이어로프나 체인은 끊어져 작업대가 떨어지지 않는 구조여야 하고, 이 조항에서 요구하는 안전율은 5 이상이다. 보기의 3은 그 기준에 미달한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제186조제1항제1·4·6호. 2023.11.14 개정 표시는 이동 관련 제3항에 붙어 있음. 로프·체인의 안전율과 정격하중 표시 구분."
+  },
+  "safety-engineer-20220424:103": {
+    "questionSHA256": "888d17cd45a8f93bda5091cd1be9491d2e27d4f0bddb338ec61bbaf9e9207c50",
+    "explanation": "건설공사 유해위험방지계획서는 해당 공사의 착공 전날까지 제출하므로 ③이다. 여기서 착공은 계획서 대상 시설물·구조물 공사의 시작을 가리키며 대지 정리나 가설사무소 설치 등 준비기간은 제외한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "산업안전보건법 시행규칙 제42조제3항. 기계 설치 대상 작업의 15일 전과 건설공사 착공 전날의 기한 구별."
+  },
+  "safety-engineer-20220424:106": {
+    "questionSHA256": "2737a2f03556aeebf0160e8dcfcc0cf896a84d9afe2288420426763808fce568",
+    "explanation": "①의 차단장치는 현장에서 해머를 운전하는 사람이 쉽게 조작할 수 있어야 한다. “작업관리자”가 조작하기 쉬운 위치라고 바꾸면 이 요건을 충족한다고 볼 수 없다. 확인본의 공기호스 관련 문구와 시험 당시의 증기호스 표현 차이는 남겨 둔다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제217조제1항제2호의 주체는 해머 운전자. 2022년 문제는 “증기나 공기”, 확인본은 공기호스 표현."
+  },
+  "safety-engineer-20220424:107": {
+    "questionSHA256": "e9d04c05a94ab1b423ec8abbccd34a2cadc10dac7bb297e3574e6de04489d6e3",
+    "explanation": "확인본 시행령에서 냉동·냉장 창고시설의 설비공사 및 단열공사 기준은 연면적 5,000 m² 이상이다. ②가 제시한 3,000 m²와 다르다. 건축물 자체의 건설공사와 창고의 설비·단열공사는 구분한다. 2022년판 문구는 별도 확인 대상이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "산업안전보건법 시행령 제42조제3항제2호 및 제3호. 확인본은 2026년 공포 자료. 2022년 별도 판본 미확보."
+  },
+  "safety-engineer-20220424:108": {
+    "questionSHA256": "86134f7ba140aba7767b67a0fc570976d329b25047157e031ff63984ecd41964",
+    "explanation": "④ 호이스트 스위치는 권상·권하 등 운전 명령을 주는 조작기다. 과도한 감김이나 정격 초과를 막는 권과방지·과부하방지 장치, 비상 때 정지시키는 장치와 역할이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제134조제1항 방호장치. 마지막 개정 표시 2019.04.19. 운전 스위치와 위험 한계 차단장치의 기능 구별."
+  },
+  "safety-engineer-20220424:109": {
+    "questionSHA256": "2c932bf4163366c0d0eb559e15dc9343b29e326787421702931275319d350e82",
+    "explanation": "②가 틀리다. 이동식비계 작업발판의 최대적재하중은 250 kg을 넘지 않게 해야 한다. 보기의 400 kg을 상한으로 적용하면 이 기준을 초과하는 적재까지 허용하게 된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제68조제1·3·4·5호. 수평 유지·난간·사다리와 이동식비계 발판 최대적재하중 250 kg 대조."
+  },
+  "safety-engineer-20220424:110": {
+    "questionSHA256": "192d667da837fe82bc01d1a66ae93109c078933a324b4d34c74d5832b96b88e0",
+    "explanation": "①의 가파른 경사, ② 높은 성토, ③ 건설기계 하중은 사면을 밀어내거나 지반에 가하는 하중을 키울 수 있다. 이들과 달리 토사 중량 자체가 감소하는 ④는 여기서 묻는 일반적인 붕괴 유발 요인과 거리가 멀다. 사면 하부를 깎는 등 형상이 변하는 경우와는 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "사면의 활동력과 상재하중 구별. 동일 형상에서 흙 무게 감소 자체를 일반적인 추가 하중으로 볼 수 없음."
+  },
+  "safety-engineer-20220424:111": {
+    "questionSHA256": "433f287013e54323ad6f404240f8f0a127f5811d3d9866201e3d79b6b3fbb3eb",
+    "explanation": "확인한 제154조제2항은 순간풍속이 초당 35 m를 초과할 바람이 예상될 때 지하 설치를 제외한 건설용 리프트에 붕괴 방지 조치를 하도록 한다. 숫자는 ③이다. 조항의 개정 표시가 시험 뒤인 2022년 10월이므로 당시 예외 범위까지 같았는지는 보류한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제154조제2항 확인본 35 m/s 초과. 2022.10.18 개정 표시가 응시일 뒤여서 당시 문구·예외 동일성 보류."
+  },
+  "safety-engineer-20220424:112": {
+    "questionSHA256": "7a44cbf321e685a2b2564a8376ef302512fd1430d1a7149ba589b7d64bac9b17",
+    "explanation": "③ 턴버클은 주로 인장재의 길이와 장력을 조절하는 이음철물이다. 토사를 직접 막는 흙막이판, 이를 지지하는 말뚝과 하중을 전달하는 띠장은 흙막이 지보공의 대표 부재다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제345~346조의 흙막이판·말뚝·띠장 등의 예와 인장재 장력 조절용 턴버클 비교."
+  },
+  "safety-engineer-20220424:113": {
+    "questionSHA256": "8f8e6414c6c0915a320d159800ff122473d8e8e124c00dc362ba1f2fdbcdb67b",
+    "explanation": "③이 부적절하다. 가설구조물은 현장에서 조립·해체하는 경우가 많아 접합부의 오차와 지지 상태를 확인해야 한다. 임시로 사용하는 구조라는 이유만으로 조립 정밀도가 높다고 전제할 수 없다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "간단한 접합과 임시 지지라는 조건으로 정밀도가 자동 확보된다는 명제는 성립하지 않음."
+  },
+  "safety-engineer-20220424:114": {
+    "questionSHA256": "4d32660a4b8609c7e36c9f7ba11aebc6b91c9f38bb5cb39acc0efde911c5afa1",
+    "explanation": "확인본의 제24조는 사다리식 통로 길이가 10 m 이상이면 5 m 이내마다 계단참을 두도록 한다. ③의 7 m가 다르다. 건설공사의 비계다리에 적용하는 계단참 간격과 혼동하기 쉽다. 2022년판 조문은 추가 확인이 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제24조제1항제8호 확인본. 길이 10 m 이상이면 5 m 이내마다 계단참. 2024.06.28 개정 표시로 과거 판본 보류."
+  },
+  "safety-engineer-20220424:115": {
+    "questionSHA256": "9adbc0161ea862ddda8f3ae6b7b5a82e43f685da9727a2fee55f32043844a8f0",
+    "explanation": "②가 틀리다. 가설통로의 경사가 15°를 초과하면 미끄러지지 않는 구조로 해야 한다. 25°까지 기다리는 조건이 아니다. 일반적인 경사 상한 30°는 이 미끄럼 방지 조건과 별개의 기준이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제23조제2·3·5·6호. 일반 경사 상한 30도와 미끄럼 방지 구조의 시작 조건 15도 초과를 구분."
+  },
+  "safety-engineer-20220424:119": {
+    "questionSHA256": "24d4c265f36e8cdad2a75632ad39d3a77b4cf8f816a1c4d40dee64ab1151a195",
+    "explanation": "① 수평연결재는 동바리의 옆 흔들림과 변형을 줄이는 부재다. 깔목으로 하중을 분산하거나 기초를 보강하는 것은 받침부가 지반으로 내려앉는 현상을 직접 막는 조치다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 동바리 조립 시의 안전조치. 받침부 지지면 확보와 수평연결재의 횡변위 억제 구분."
+  },
+  "safety-engineer-20220424:120": {
+    "questionSHA256": "1b3c52f730c5bb4e1773981e4e7301755b30ffc4e640c42b95b04733dfd4c3a0",
+    "explanation": "④가 틀리다. 일반 와이어로프에서 한 꼬임의 끊어진 소선 수 기준은 필러선을 제외해 10% 이상이다. 7%는 공칭지름의 감소에 붙는 값이고, 이 경우에는 7%를 초과하면 사용하지 않는다. 비자전로프의 소선 손상은 별도 기준으로 판단한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제63조제1항제1호나·다목, 2021.11.19 개정 표시. 일반 로프 소선 수 10% 이상과 공칭지름 감소 7% 초과, 비자전로프 예외 구별."
+  },
+  "safety-engineer-20190427:76": {
+    "questionSHA256": "3418f651e300b097c0ff5807dd5dc6cf5c8be96c53696530a83d0b95ba945cd4",
+    "explanation": "④ 검전기다. 정전 작업을 시작하기 전에 작업할 부분에 전압이 남아 있는지 확인하는 기구다. 회로를 여닫는 개폐기나 퓨즈에는 이 검전 기능을 맡기지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "저압 및 고압용 검전기, 검전 및 차단 기능 구별。 규칙 제319조제2항제5호의 검전기, 충전 유무 확인."
+  },
+  "safety-engineer-20180819:88": {
+    "questionSHA256": "e8c6d2fb4cefc744a087f63d49e9e9c0717ce53e59c4ddafda2031cb944fc754",
+    "explanation": "①이 부적절하다. 탄화칼슘은 물과 반응해 인화성 가스를 발생시키므로 물속에 보관하면 위험하다. 수분 접촉을 피해야 하는 물질이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "탄화칼슘은 수분과 반응하므로 물속 보관 부적절。 수분과 반응하는 탄화칼슘의 보관 안전성. 물속 보관이 안전하다는 오해 교정."
   }
 }
