@@ -587,3 +587,17 @@ test('포화액과 포화증기가 다른 공조 두 판본',async({page},info)=
  await expect(details).toContainText('교재에는 포화액');
  await box.screenshot({path:info.outputPath('saturated-vapor-options.png')});
 });
+
+test('산업안전 점광원 거리비 분수와 답안 기록', async ({page}, info) => {
+ await prepare(page, 'safety-engineer');
+ await page.locator('#round-card-safety-engineer-20220305').getByRole('button', {name:'학습모드', exact:true}).click();
+ await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('31');
+ await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+ const card = page.locator('.question-card').filter({hasText:'반사경 없이'});
+ await card.locator('.choice-button').nth(1).click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('675 lx');
+ await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['safety-engineer-20220305:31'])).toBe(2);
+ await explanation.screenshot({path:info.outputPath('point-source-illuminance.png')});
+});

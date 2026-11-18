@@ -90,5 +90,12 @@
     "text": "아세트알데히드를 산화하면 아세트산, 환원하면 에탄올이 된다. 보기 ③은 두 생성물을 거꾸로 적었으므로 틀린 설명이다. 그런데 저장 답은 ④이고 등록 이의제기와 관리자 답변도 충돌한다. 공식 문제지와 답안을 확인할 때까지 저장 답은 유지한다.",
     "basis": "OpenStax Organic Chemistry, Oxidation of Aldehydes and Ketones 및 Alcohols from Carbonyl Compounds: Reduction. 아세트알데히드 산화·환원 생성물과 ③의 반대 방향 확인. 공식 채점표 미확보.",
     "originalSha256": "3932bd51a03241e6bfe43111f17a72e916956fa9ce1f37ac8718e627d13e8e66"
+  },
+  "maintenance-engineer-2008-4:60": {
+    "fingerprint": "5a90c6e7a990d9d6",
+    "source": "https://www.comcbt.com/cbt/problem/1967/60/",
+    "text": "마찰식 브레이크는 필요한 제동토크를 내고 마찰열을 견뎌야 한다. 마찰계수·접촉면 크기·발열은 이 조건에 직접 관계한다. 보기 중 브레이크 자체의 중량 ③가 직접적인 용량 결정 인자에서 가장 멀다.",
+    "basis": "브레이크 자체 중량과 보기 순서·이의신청 확인. Modelica Rotational.Components.Brake, 최대 수직력·마찰계수·형상 계수와 lossPower 확인. 접촉면 허용 압력·열부하와 전체 중량 구별. 이 판본은 중량이 ③이고 발열이 ④. 원문 독자 의견은 보존.",
+    "originalSha256": "03a16a6e1688ee837cf0586935d41cfc5d8f559849ab2d8455e1c774ce421292"
   }
 }
