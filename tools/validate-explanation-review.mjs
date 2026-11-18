@@ -14,6 +14,7 @@ const parse=source=>{const ctx={window:{}};vm.runInNewContext(source,ctx);return
 const reviewedIds=new Set(review.records.filter(r=>r.changed).map(r=>r.id));
 const primaryReviews=new Map(review.records.filter(r=>r.primarySourceReviewed).map(r=>[r.id,r]));
 const noticeReviews=new Map(review.records.filter(r=>r.reviewedAnswerNotice).map(r=>[r.id,r]));
+const correctedLinks = new Map(review.records.filter(row => row.additionalCorrection).map(row => [row.id, row.additionalCorrection]));
 const formulaDisplayIds=new Set(review.records.filter(r=>r.formulaDisplay).map(r=>r.id));
 assert.equal(fs.readFileSync('data/problem-images-webp90.json','utf8'),original('data/problem-images-webp90.json'),'Source/display mapping changed');
 const maps=JSON.parse(fs.readFileSync('data/problem-images-webp90.json')).mappings;
@@ -61,6 +62,14 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   const r=after[ci].rounds[ri];for(let qi=0;qi<r.questions.length;qi++){
    const q=r.questions[qi],b=before[ci].rounds[ri].questions[qi],id=`${q._originRoundId||r.id}:${q._originalNumber||q.number}`;
    assert.ok(!bankById.has(id),`Duplicate ID ${id}`);bankById.set(id,q);bankQuestions++;
+   const correction = correctedLinks.get(id);
+   if (correction) {
+    const prior = b.additionalExplanations.find(item => item.source === correction.source);
+    const display = q.additionalExplanations.find(item => item.source === correction.source);
+    assert.ok(prior && display, 'Missing reviewed additional explanation: ' + id);
+    assert.equal(crypto.createHash('sha256').update(prior.text).digest('hex'), correction.originalSha256, id);
+    assert.deepEqual(display, {...prior, text: correction.text}, 'Additional explanation or source changed: ' + id);
+   }
    assert.ok(Array.isArray(q.choices)&&q.choices.length===4,`Choice count ${id}`);assert.ok(q.answer>=1&&q.answer<=4,`Answer range ${id}`);
    for(const p of [q.sourceImage,...q.images||[],...q.explanationImages||[],...q.choices.flatMap(c=>c.images||[])])imageExists(p);
    if(JSON.stringify(q)!==JSON.stringify(b)){assert.ok(reviewedIds.has(id),`Unrecorded change ${id}`);changedBankIds.push(id);}

@@ -442,5 +442,11 @@
     "explanation": "여러 가닥의 소선을 꼬아 스트랜드를 만들고, 여러 스트랜드를 심강 둘레에 꼬아 와이어로프를 만든다. ① 클립은 로프 끝을 고정하는 별도 부속품이다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "29 CFR 1910.184(b), strand laid rope에서 여러 소선과 스트랜드가 심을 둘러싼 구조를 확인."
+  },
+  "safety-engineer-20180304:1": {
+    "questionSHA256": "f17f196056555932ceb7efa11118c68d1de2182b23df63700fed7e03ae431b91",
+    "explanation": "TWI의 기본 과정은 일을 가르치는 Job Instruction, 작업방법을 개선하는 Job Methods, 현장 인간관계를 다루는 Job Relations다. 이 셋과 구별되는 ④ Job Standardization Training이 답이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "두 별도 기출에서 제외 보기가 달라도 JI·JM·JR 세 교육명이 공통. 이 문항은 ④ Job Standardization Training의 포함 여부를 물음."
   }
 }

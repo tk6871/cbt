@@ -105,7 +105,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
     : key === 'energy' ? [key, 'energy-restored'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=659`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=660`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };
