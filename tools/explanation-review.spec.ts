@@ -513,3 +513,33 @@ test('교재 코일 자기 에너지의 분수와 전사된 전류', async ({pag
  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
  await box.screenshot({path:info.outputPath('coil-energy.png')});
 });
+
+test('메탄 이론공기량과 저장 답안 분리', async ({page}, info) => {
+ await prepare(page,'energy');
+ await page.locator('#round-card-energy-industrial-20030831').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('6');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({has:page.locator('.question-text').filter({hasText:'메탄'})}).filter({hasText:'27.2'}).first();
+ await card.locator('.choice-button').nth(3).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('건조공기 약 17.2 kg');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20030831:6'])).toBe(4);
+ await box.screenshot({path:info.outputPath('methane-air.png')});
+});
+
+test('조작량 미분 그림과 적분동작 교정', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.locator('#round-card-hvac-20030316').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('69');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({has:page.locator('.question-text').filter({hasText:'조작신호'})});
+ await card.locator('.choice-button').nth(3).click();
+ await expect(card).toContainText('다른 보기를 선택해 보세요');
+ await card.locator('.choice-button').nth(2).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('④ I동작');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20030316:69'])).toBe(3);
+ await box.screenshot({path:info.outputPath('integral-control.png')});
+});
