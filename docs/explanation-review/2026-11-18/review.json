@@ -5859,6 +5859,1750 @@
       "originalCompared": false,
       "sourceAssets": [],
       "storedSource": "https://www.comcbt.com/cbt/problem/3062/80/"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:13",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 1,
+      "location": "2018년 2회 · 원문 13번 · 교재 338쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-13.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-13.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-13.webp",
+          "displayAsset": "assets/problem-webp90/923573edd98a1283aee7e503c0edec80.webp",
+          "sha256": "e01a42fe3d077ea1a812bd95d48762a085e4656b5a3ebeeb294133afae9c3c0c"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-13.webp",
+          "displayAsset": "assets/problem-webp90/b727d80e5a471d89219eccc515e80df7.webp",
+          "sha256": "7c2ea10b17a3a4480043b82c42e9669cdcb2c81ca93d1eddb5b7791bb08de7a6"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "기체 연료의 저장 설비와 배출 조건",
+      "errorType": "기체 연료의 저장 설비와 배출 조건",
+      "resolution": "③이다. 같은 양의 연료를 기체로 저장하면 큰 부피가 필요하다. 압축하면 압력을 견디는 용기가, 천연가스를 액화하면 낮은 온도를 유지할 저장 설비가 필요하다. 연소할 때 회분이 적다는 성질은 저장 비용과 별개다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180428:13",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180428:13",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180428:13",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 13,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "653-lng",
+        "652-ig",
+        "school-energy-textbook-2018-2:13"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "기체 연료의 저장 설비와 배출 조건",
+      "errorType": "기체 연료의 저장 설비와 배출 조건",
+      "resolution": "③이다. 같은 양의 연료를 기체로 저장하면 큰 부피가 필요하다. 압축하면 압력을 견디는 용기가, 천연가스를 액화하면 낮은 온도를 유지할 저장 설비가 필요하다. 연소할 때 회분이 적다는 성질은 저장 비용과 별개다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/13/"
+    },
+    {
+      "id": "school-energy-textbook-2018-4:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 2,
+      "location": "2018년 4회 · 원문 15번 · 교재 352쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-4-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-4-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-4-15.webp",
+          "displayAsset": "assets/problem-webp90/9e101c0066a27e3fad8c743725593257.webp",
+          "sha256": "69804aa170cfd048f0e3d8840ab39a48586d0ab806744ab024756fd36e7d37b0"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-4-15.webp",
+          "displayAsset": "assets/problem-webp90/684fb10f29b32684acd1691cd8a351d7.webp",
+          "sha256": "5dfeb054b36d33dee27513f8ccc442810fcb4b78b7c85e8fff12be59ee8efdf7"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+      "finding": "공기비와 연소량 조절 구별",
+      "errorType": "공기비와 연소량 조절 구별",
+      "resolution": "공기비는 실제 공급한 공기량을 그 연료량에 필요한 이론 공기량으로 나눈 값이다. 가스와 공기의 공급량을 따로 조절할 수 있는 버너에서는 이 비율도 바꿀 수 있으므로 ①이 틀리다. 화력만 달라졌다고 공기비도 달라졌다고 판단할 수는 없다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-4:16",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 3,
+      "location": "2018년 4회 · 원문 16번 · 교재 352쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-4-16.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-4-16.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-4-16.webp",
+          "displayAsset": "assets/problem-webp90/3eb8eb914afa74e5684ab8b37fa352f7.webp",
+          "sha256": "1c11040e3ed49767cca981840c070ea387f1dbd0b62a8500b88bc3cf5e3a736c"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-4-16.webp",
+          "displayAsset": "assets/problem-webp90/61188c3c131a60ceac044b1e4a5178fc.webp",
+          "sha256": "ff5782ab7ba0851808bcc4a33720693efebf79ced420e1dbaaca38792de301f8"
+        }
+      ],
+      "evidence": [
+        "650-steam",
+        "653-solid"
+      ],
+      "basis": "40 CFR §63.10042 Stoker, Pulverized coal boiler, Fluidized bed combustion. Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+      "finding": "고체 연소 방식과 예혼합의 차이",
+      "errorType": "고체 연소 방식과 예혼합의 차이",
+      "resolution": "화격자는 연료를 받쳐 태우고, 미분탄 연소는 가루 석탄을 공기에 실어 태운다. 유동층은 위로 흐르는 기체가 층의 입자를 움직이게 한다. ④ 예혼합연소는 대표적으로 기체 연료와 공기를 화염에 도달하기 전에 섞는 방식이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180915:16",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180915:16",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180915:16",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180915",
+      "number": 16,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 09월 15일 (4회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "653-solid",
+        "school-energy-textbook-2018-4:16"
+      ],
+      "basis": "40 CFR §63.10042 Stoker, Pulverized coal boiler, Fluidized bed combustion. Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "고체 연소 방식과 예혼합의 차이",
+      "errorType": "고체 연소 방식과 예혼합의 차이",
+      "resolution": "화격자는 연료를 받쳐 태우고, 미분탄 연소는 가루 석탄을 공기에 실어 태운다. 유동층은 위로 흐르는 기체가 층의 입자를 움직이게 한다. ④ 예혼합연소는 대표적으로 기체 연료와 공기를 화염에 도달하기 전에 섞는 방식이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10515/16/"
+    },
+    {
+      "id": "school-energy-textbook-2019-2:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 4,
+      "location": "2019년 2회 · 원문 15번 · 교재 382쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-2-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-2-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-2-15.webp",
+          "displayAsset": "assets/problem-webp90/d52fa3d5a9dcc93699e59febcec1de65.webp",
+          "sha256": "2b72305b07574753688d87e51873a6d4e4915068b0ba0ba74dc1a3c3fa7d85f8"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-2-15.webp",
+          "displayAsset": "assets/problem-webp90/dc17daea2fb5c2a65c23cb1d9ecaf9f4.webp",
+          "sha256": "c38f39949356229e7b22d862fd68badfab552f81e77c19a7d99f3d6c901abf26"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점.",
+      "finding": "액체연료의 완전연소 조건",
+      "errorType": "액체연료의 완전연소 조건",
+      "resolution": "액체연료는 버너에서 미세한 액적으로 분무하면 표면적이 커져 증발하고 공기와 섞이기 쉽다. 석탄 덩어리를 태울 때보다 완전연소시키기 어렵다는 ③이 틀리다. 분무와 공기 공급이 불충분하면 액체연료도 매연을 낼 수 있다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20190427:15",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:15",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190427:15",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190427",
+      "number": 15,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2019-2:15"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "액체연료의 완전연소 조건",
+      "errorType": "액체연료의 완전연소 조건",
+      "resolution": "액체연료는 버너에서 미세한 액적으로 분무하면 표면적이 커져 증발하고 공기와 섞이기 쉽다. 석탄 덩어리를 태울 때보다 완전연소시키기 어렵다는 ③이 틀리다. 분무와 공기 공급이 불충분하면 액체연료도 매연을 낼 수 있다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/15/"
+    },
+    {
+      "id": "school-energy-textbook-2019-4:2",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 5,
+      "location": "2019년 4회 · 원문 2번 · 교재 395쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-4-2.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-4-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-4-2.webp",
+          "displayAsset": "assets/problem-webp90/f7e4ac7d70fae9cacfa614253d7ec9ac.webp",
+          "sha256": "af01c251dfa2d58ee923e7eb841c3028ac455de4f5ad8abf465af88fb203824d"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-4-2.webp",
+          "displayAsset": "assets/problem-webp90/f592d0221098f81bb93ff2e7d53e8e30.webp",
+          "sha256": "bfa8132fc8497ce011c590392e9fc058340eca08d6b8f251ec270bf85d584712"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점.",
+      "finding": "액체연료의 인화 위험",
+      "errorType": "액체연료의 인화 위험",
+      "resolution": "③이 틀리다. 액체연료에서 나온 가연성 증기가 공기와 섞이면 점화원에 의해 불이 붙을 수 있다. 탱크에 저장하거나 배관으로 옮기기 편하다는 점이 이 위험을 없애지는 않는다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2020-1-2통합:10",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 6,
+      "location": "2020년 1·2통합회 · 원문 10번 · 교재 413쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2020-1·2통합-10.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2020-1·2통합-10.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2020-1·2통합-10.webp",
+          "displayAsset": "assets/problem-webp90/dc4ecb2ba0cf540112d3890ed1867218.webp",
+          "sha256": "4ea22fb6a3a59e4c16b556dcbc877f51cdd206ca749b6ab78eb8a1fd61a970d9"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2020-1·2통합-10.webp",
+          "displayAsset": "assets/problem-webp90/688a827c1e6856119dba286b44a875d5.webp",
+          "sha256": "7f912ea4c632ee7af8651bb184ca50f7b43ab56b4c8875c3fade79e364594be5"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "누출 위험과 기체 저장 조건",
+      "errorType": "누출 위험과 기체 저장 조건",
+      "resolution": "④가 틀리다. 같은 양이라도 기체 상태에서는 차지하는 부피가 크고, 압축·액화 방식에는 전용 설비가 필요하다. 또 새어 나온 가연성 가스가 공기와 섞이면 화재 위험이 있어 취급에 주의해야 한다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20200606:10",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20200606:10",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20200606:10",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20200606",
+      "number": 10,
+      "location": "에너지관리산업기사 필기 기출문제 2020년 06월 06일 (1·2회 통합) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "653-lng",
+        "652-ig",
+        "school-energy-textbook-2020-1-2통합:10"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "누출 위험과 기체 저장 조건",
+      "errorType": "누출 위험과 기체 저장 조건",
+      "resolution": "④가 틀리다. 같은 양이라도 기체 상태에서는 차지하는 부피가 크고, 압축·액화 방식에는 전용 설비가 필요하다. 또 새어 나온 가연성 가스가 공기와 섞이면 화재 위험이 있어 취급에 주의해야 한다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/13770/10/"
+    },
+    {
+      "id": "school-energy-textbook-2020-3:4",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 7,
+      "location": "2020년 3회 · 원문 4번 · 교재 427쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2020-3-4.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2020-3-4.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2020-3-4.webp",
+          "displayAsset": "assets/problem-webp90/077b613b0031d752add473d8d951c134.webp",
+          "sha256": "2345f773fdd77db26210e4d4c81bf3f53d43f9fd4afd9d4bf9ea48263f4a36b7"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2020-3-4.webp",
+          "displayAsset": "assets/problem-webp90/8d61d7dc31e90567affec1716a384958.webp",
+          "sha256": "97321f50195f298e687b1984cf6b78cb7c4e010197a9b4784d54d109601ee295"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "배관 수송과 저장의 구별",
+      "errorType": "배관 수송과 저장의 구별",
+      "resolution": "배관이 설치된 곳에서는 가스를 연속 공급할 수 있지만, 같은 양을 저장할 때에는 큰 부피 또는 압축·액화 설비가 필요하다. 저장과 운송이 모두 쉽다는 ①은 기체 연료의 일반적 장점으로 보기 어렵다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20200822:4"
+    },
+    {
+      "id": "energy-industrial-20200822:4",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20200822",
+      "number": 4,
+      "location": "에너지관리산업기사 필기 기출문제 2020년 08월 22일 (3회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "653-lng",
+        "652-ig",
+        "school-energy-textbook-2020-3:4"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "배관 수송과 저장의 구별",
+      "errorType": "배관 수송과 저장의 구별",
+      "resolution": "배관이 설치된 곳에서는 가스를 연속 공급할 수 있지만, 같은 양을 저장할 때에는 큰 부피 또는 압축·액화 설비가 필요하다. 저장과 운송이 모두 쉽다는 ①은 기체 연료의 일반적 장점으로 보기 어렵다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/13757/4/"
+    },
+    {
+      "id": "school-energy-textbook-2021-2:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 8,
+      "location": "2021년 2회 · 원문 15번 · 교재 461쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-2-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-2-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-2-15.webp",
+          "displayAsset": "assets/problem-webp90/edbe28eac5a008ddcf9728930d6c7440.webp",
+          "sha256": "9fb5eb51f726b0c7dca82d621ddc5c761be43db9846a6014f466f425c0ca2aa8"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-2-15.webp",
+          "displayAsset": "assets/problem-webp90/ceee3ff00431d997f027d201d9af4923.webp",
+          "sha256": "6760ecc39c4360df89550401f1e2760f3919b38c469d4ed3e639a8cb8d4f6061"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+      "finding": "연소 제어와 관리상 어려움 구별",
+      "errorType": "연소 제어와 관리상 어려움 구별",
+      "resolution": "문제는 관리상 문제점으로 잘못 든 보기를 묻는다. 가스 유량을 조절하고 공급 공기를 맞출 수 있으므로 연소 제어가 어렵다는 ③이 맞지 않는다. 저장 설비와 누출 관리는 연소 제어와 다른 문제다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-4:9",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 9,
+      "location": "2022년 4회 · 원문 9번 · 교재 506쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-4-9.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-4-9.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-4-9.webp",
+          "displayAsset": "assets/problem-webp90/a5e55dbcbf6ca1c41c904c1cdba6a945.webp",
+          "sha256": "971974b5ca588cea6f7c7ee65599d6149536712604020bcf591acafa6d58c445"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-4-9.webp",
+          "displayAsset": "assets/problem-webp90/b95e075f9e2ded061ce9162dc145d33a.webp",
+          "sha256": "7265047bbfcae8615d21b8cd5ef822e63f8c95284592ca773899af3f357f3cbc"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Ultimate Analysis, 표의 석탄 원소 조성과 황·회분의 구별.",
+      "finding": "고체 연료의 주성분과 황의 역할",
+      "errorType": "고체 연료의 주성분과 황의 역할",
+      "resolution": "이 문항이 대표 예로 삼는 석탄은 탄소가 주된 가연성 원소이므로 ④이다. 황도 산소와 반응해 열을 낼 수 있지만 보통 주성분은 아니다. 회분은 연소 후 남는 무기 잔류물이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2023-1:2",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 10,
+      "location": "2023년 1회 · 원문 2번 · 교재 521쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-1-2.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-1-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-1-2.webp",
+          "displayAsset": "assets/problem-webp90/d58c35bfdfb6612c12f357d1b26a8c42.webp",
+          "sha256": "71a8471b56dcee440e28fa61983756536a7ea88a26a79a6aeb9ef6e20fde76ed"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-1-2.webp",
+          "displayAsset": "assets/problem-webp90/8794065ac7a280071aa8a03ef8630d96.webp",
+          "sha256": "9e2145bd7c3ee80ce56fe67b2d00e2c4859ddf506b1a48961a0d281160293198"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "기체 저장과 잔류물 구별",
+      "errorType": "기체 저장과 잔류물 구별",
+      "resolution": "①이다. 기체는 일정 질량을 상온·상압에서 보관할 때 큰 공간을 차지한다. 액화천연가스를 보관할 때도 전용 탱크가 필요하다. 연소 후 남는 고형물이 적다는 성질로 저장의 용이성을 판단할 수 없다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20200822:4"
+    },
+    {
+      "id": "school-energy-textbook-2023-4:17",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 11,
+      "location": "2023년 4회 · 원문 17번 · 교재 556쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2023-4-17.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2023-4-17.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2023-4-17.webp",
+          "displayAsset": "assets/problem-webp90/b391ba0d25d34299b2e3cf586c049c19.webp",
+          "sha256": "34302fffef091c7ba7d48f216f05082c743535603dc2bb34632368b49fa88c75"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2023-4-17.webp",
+          "displayAsset": "assets/problem-webp90/50561943c1964e448ba59a8e982ffee9.webp",
+          "sha256": "d8c2dd411f0c0a9144d9d7b7c1bc7a85da003764d0086ecd4a73b81b02215bd3"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+      "finding": "공기비와 연소량 조절 구별",
+      "errorType": "공기비와 연소량 조절 구별",
+      "resolution": "연료 공급량을 고정해도 공기 유량을 바꾸면 실제 공기량과 이론 공기량의 비가 달라진다. 공기와 가스 공급을 조절하는 버너가 있으므로 공기비 제어가 불가능하다는 ①이 틀리다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180915:15",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180915:15",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180915:15",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180915",
+      "number": 15,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 09월 15일 (4회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2023-4:17"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "공기비와 연소량 조절 구별",
+      "errorType": "공기비와 연소량 조절 구별",
+      "resolution": "연료 공급량을 고정해도 공기 유량을 바꾸면 실제 공기량과 이론 공기량의 비가 달라진다. 공기와 가스 공급을 조절하는 버너가 있으므로 공기비 제어가 불가능하다는 ①이 틀리다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10515/15/"
+    },
+    {
+      "id": "school-energy-textbook-2024-1:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 12,
+      "location": "2024년 1회 · 원문 15번 · 교재 572쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-1-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-1-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-1-15.webp",
+          "displayAsset": "assets/problem-webp90/0dd01ff2c295639260dea172a52ee705.webp",
+          "sha256": "83b07ee3cd12f5dca15c0be4d8afce1b345b93f42d086ef2781071f6d3bd2ea7"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-1-15.webp",
+          "displayAsset": "assets/problem-webp90/b7c4f093a10aeac30e602e82d6f82362.webp",
+          "sha256": "7a0a03fc94b60a2910dd194490885214eff995d3e97274d6d71cee200a546687"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+      "finding": "공기비와 연소량 조절 구별",
+      "errorType": "공기비와 연소량 조절 구별",
+      "resolution": "가스버너에서는 연료 유량에 맞추어 공기 유량을 조절할 수 있다. 이때 실제 공급 공기량과 이론 공기량의 비가 공기비다. 따라서 제어가 불가능하다는 ①이 틀리다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180915:15",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180915:15",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "school-energy-textbook-2024-2:8",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 13,
+      "location": "2024년 2회 · 원문 8번 · 교재 586쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-2-8.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-2-8.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-2-8.webp",
+          "displayAsset": "assets/problem-webp90/2c53d512056213741f16c6eeb4f28812.webp",
+          "sha256": "e40ea65398466cd726e79460ce4108061ce9cdbffd2873b205c570e7ab6de563"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-2-8.webp",
+          "displayAsset": "assets/problem-webp90/c0001c17cbabfcb138f1571a62379975.webp",
+          "sha256": "b57c9ce716c4b66922987238227a67f8d4f680413a007e74801560e1e9ea1a18"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "기체의 저장 부피와 설비",
+      "errorType": "기체의 저장 부피와 설비",
+      "resolution": "①이 가장 거리가 멀다. 기체를 대기압 부근에서 보관하면 같은 질량의 액체보다 큰 공간이 필요하다. 부피를 줄이기 위해 압축하거나 액화하면 그 조건에 맞는 저장 설비도 필요하다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-2:15",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 14,
+      "location": "2025년 2회 · 원문 15번 · 교재 618쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-2-15.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-2-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-2-15.webp",
+          "displayAsset": "assets/problem-webp90/e2f0b700b3c7d78e16292f2309a471c8.webp",
+          "sha256": "a38da242ac8a39a8222e2b33830d2794ce8d1c98bd6a7b0f579630ba82ddfc7c"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-2-15.webp",
+          "displayAsset": "assets/problem-webp90/ce409ee0f4e2e8daf1046c77a47c704c.webp",
+          "sha256": "c3924ed9392dfb4edefe67c91907c9352890b9247ddd5b27033d565dd60dfa93"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Ultimate Analysis, 표의 석탄 원소 조성과 황·회분의 구별.",
+      "finding": "고체 연료의 주성분과 황의 역할",
+      "errorType": "고체 연료의 주성분과 황의 역할",
+      "resolution": "보기 네 원소 중 석탄에서 질량의 큰 부분을 차지하고 연소열에 주로 기여하는 것은 ④ 탄소다. 질소가 연료에 들어 있거나 황이 연소할 수 있다는 사실과 주성분인지는 구별한다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-3:2",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-4",
+      "number": 15,
+      "location": "2025년 3회 · 원문 2번 · 교재 630쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-2.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-2.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-2.webp",
+          "displayAsset": "assets/problem-webp90/c72c4c966b83c9957f220c933c0c24d0.webp",
+          "sha256": "d0f5618afe380ebe5b05ac50117dcceb6a480a5134121118fb7ac4f4fb315e25"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-2.webp",
+          "displayAsset": "assets/problem-webp90/93f27f9242783a26ae234a94f8a8e295.webp",
+          "sha256": "31e6845ad5825d6a697a76a7ae9c2c54b58786f5aec0a160981d604c10624b7c"
+        }
+      ],
+      "evidence": [
+        "653-lng",
+        "652-ig"
+      ],
+      "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+      "finding": "기체 저장과 공급량 제어 구별",
+      "errorType": "기체 저장과 공급량 제어 구별",
+      "resolution": "연료 유량을 밸브로 조절하는 것과 연료를 비축하는 것은 다르다. 기체 상태로 비축하려면 부피가 크거나 압력 용기가 필요하고, 액화 저장에도 전용 설비가 든다. 일반적인 장점에 해당하지 않는 것은 ①이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20200822:4"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:20",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-5",
+      "number": 1,
+      "location": "2018년 2회 · 원문 20번 · 교재 339쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-20.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-20.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-20.webp",
+          "displayAsset": "assets/problem-webp90/b04378baa03a1e5594e593e69af7be37.webp",
+          "sha256": "a58f592914bbf6e5f1ba9149727c515908fa1e6e1b77f0e8a9e76d4475d69adb"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-20.webp",
+          "displayAsset": "assets/problem-webp90/5e772aeb1efac099c57b293fe76144f2.webp",
+          "sha256": "35884ae16fd845e9800caeba6537df41e28c2bb2866977d99fe1fa6404f616de"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교.",
+      "finding": "단위 연료 기준의 연소온도",
+      "errorType": "단위 연료 기준의 연소온도",
+      "resolution": "연료를 두 배로 잡아도 조성·공기비·입구 온도가 같으면 방출열과 가열할 연소가스량이 함께 두 배가 된다. 따라서 이론 온도는 계산 기준으로 잡은 연료의 중량만으로 달라지지 않는다. 네 보기 중 ④가 가장 거리가 멀다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180428:20",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180428:20",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180428:20",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 20,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2018-2:20"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교. 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "단위 연료 기준의 연소온도",
+      "errorType": "단위 연료 기준의 연소온도",
+      "resolution": "연료를 두 배로 잡아도 조성·공기비·입구 온도가 같으면 방출열과 가열할 연소가스량이 함께 두 배가 된다. 따라서 이론 온도는 계산 기준으로 잡은 연료의 중량만으로 달라지지 않는다. 네 보기 중 ④가 가장 거리가 멀다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/20/"
+    },
+    {
+      "id": "school-energy-textbook-2020-3:8",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-5",
+      "number": 2,
+      "location": "2020년 3회 · 원문 8번 · 교재 428쪽",
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "기존 전체 전사 원본 재대조·유지",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2020-3-8.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2020-3-8.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2020-3-8.webp",
+          "displayAsset": "assets/problem-webp90/36709bf20772701ba34b8c40434c8d64.webp",
+          "sha256": "dbd2a5f87d0d2e8be7f090933335b680364c9824b6d865eb61ac4b89d8de81e9"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2020-3-8.webp",
+          "displayAsset": "assets/problem-webp90/1088068180d4dd4990440ddf490d65db.webp",
+          "sha256": "4c973b925d3e2c989e0fb8e94cd794a5cdb626e16aa9af5b0a5e47d6a7a834f7"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교.",
+      "finding": "과잉 공기와 불완전연소의 조건 · 냉각 정도가 빠진 지문. 당시 해석을 확정할 원출제기관 자료 필요.",
+      "errorType": "과잉 공기와 불완전연소의 조건",
+      "resolution": "같은 연료가 완전연소할 때 공기를 더 보내면 CO₂가 희석되고, 더 많은 가스를 가열해야 하므로 연소실 온도는 내려가며 배기가스 손실은 커진다. 통상적인 과잉 공기로 산소 부족이 생기는 것은 아니므로 출제 의도는 ④다. 다만 공기가 지나쳐 화염을 크게 냉각하면 CO가 남을 수 있으므로 ④를 모든 운전조건에 적용할 수는 없다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-1:12",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-5",
+      "number": 3,
+      "location": "2022년 1회 · 원문 12번 · 교재 476쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-1-12.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-1-12.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-1-12.webp",
+          "displayAsset": "assets/problem-webp90/2d07e64a2611ab433e1a8332a9540a16.webp",
+          "sha256": "524bf086ffad8d43c76bf180813ab762a4ea0f3c5610c7d3c53853e666c139a2"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-1-12.webp",
+          "displayAsset": "assets/problem-webp90/4bb3db5ae0262acd6176e6b0b500c08b.webp",
+          "sha256": "2a3daf3e44054300b7dd4fde9bb4a39f734a421142d782d5df17864ce2e54dcf"
+        }
+      ],
+      "evidence": [
+        "650-steam",
+        "649-first"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교. 단위 연료의 열수지 Hₗ = Gᵣ Cₚ (t − t₀).",
+      "finding": "이론 화염온도의 기준 온도와 평균 비열",
+      "errorType": "이론 화염온도의 기준 온도와 평균 비열",
+      "resolution": "연소생성물 속 수분이 증기로 남는 조건에서는 저위발열량 Hₗ을 쓴다. 열손실과 해리를 무시하고 평균 정압비열을 쓰면 온도 상승은 Hₗ/(GᵣCₚ)이다. 기준온도를 0 °C로 잡은 보기에서는 ①이다. 다른 기준온도를 쓰면 이 상승분을 기준온도에 더한다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:8",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 1,
+      "location": "2018년 2회 · 원문 8번 · 교재 337쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-8.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-8.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-8.webp",
+          "displayAsset": "assets/problem-webp90/60f82eece1a5c4ffbc8f26cff8ee6152.webp",
+          "sha256": "daa919a2c26b1dc690ed27c288bc3dabc961b2015171ba1d89c276da91531fc2"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-8.webp",
+          "displayAsset": "assets/problem-webp90/4eec8116592b9c1a0a0b5d049fa6a39a.webp",
+          "sha256": "dba4bfe07c0456cf911d097210fa44bbab75864cb1920a40724e1e4740a8a53a"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "보일러마력 환산값과 인쇄 대입 불일치",
+      "errorType": "보일러마력 환산값과 인쇄 대입 불일치",
+      "resolution": "1 보일러마력은 기준 상태에서 시간당 약 15.65 kg을 증발시키는 능력이다. 86마력의 상당증발량은 1,345.9 kg/h이다. 이를 기준 증발잠열 2,256 kJ/kg과 곱하면 유효열량이고, 효율 0.72와 연료 100 kg/h로 나누면 42.17 MJ/kg이다. 가장 가까운 보기는 ③ 42.18이다. 인쇄식의 15.6을 그대로 쓰면 42.04 MJ/kg이므로 인쇄된 중간 결과와 일치하지 않는다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180428:8"
+    },
+    {
+      "id": "energy-industrial-20180428:8",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 8,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2018-2:8"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4). 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "상당증발량과 반올림 구별",
+      "errorType": "상당증발량과 반올림 구별",
+      "resolution": "보일러마력을 기준 증발량으로 바꾸면 86 × 15.65 = 1,345.9 kg/h이다. 잠열 2,256 kJ/kg을 적용하면 연료의 저위발열량은 42.1715 MJ/kg이고, 539 × 4.186 kJ/kg을 적용하면 42.1763 MJ/kg이다. 두 경우 모두 가장 가까운 보기는 ③ 42.18이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/8/"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:22",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 2,
+      "location": "2018년 2회 · 원문 22번 · 교재 339쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-22.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-22.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-22.webp",
+          "displayAsset": "assets/problem-webp90/15f8f98479d576beefa7c57a37737aa9.webp",
+          "sha256": "503f64376bfbf8f334c198f5307272b9a082ee96be66fb050f3e59242653d593"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-22.webp",
+          "displayAsset": "assets/problem-webp90/a19f3fcfaaf6940bbe448fb277132d09.webp",
+          "sha256": "96e7c21b3fedae19450fde0282a671bfe155f60b2634ba69b41c55d038167298"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "상당증발량 공식의 단위·부호",
+      "errorType": "상당증발량 공식의 단위·부호",
+      "resolution": "급수가 증기로 바뀌며 받은 열은 시간당 Gₐ(h₂−h₁) kJ이다. 이를 기준 증발잠열 2,256 kJ/kg으로 나누면 같은 열로 증발시킬 수 있는 물의 kg/h가 된다. 따라서 ②이다. 539는 엔탈피를 kcal/kg으로 쓸 때의 분모다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2018-2:57",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 3,
+      "location": "2018년 2회 · 원문 57번 · 교재 345쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-2-57.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-2-57.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-2-57.webp",
+          "displayAsset": "assets/problem-webp90/cdfc43f2f802e0b0e58cb4692cdce4c6.webp",
+          "sha256": "d1cc5c0946fe4961385bc3bf502646e0f043bc016edae8547f707bfab4895502"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-2-57.webp",
+          "displayAsset": "assets/problem-webp90/2dbcf1248a2921051efda0e0dfbb6af7.webp",
+          "sha256": "c0603e1ba699e3ece5e7dc26401fe85dfb33d04e06375fc7032bbe096174b84c"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "급수와 증기 엔탈피 차 검산",
+      "errorType": "급수와 증기 엔탈피 차 검산",
+      "resolution": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180428:57",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20180428:57",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20180428:57",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20180428",
+      "number": 57,
+      "location": "에너지관리산업기사 필기 기출문제 2018년 04월 28일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2018-2:57"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4). 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "급수와 증기 엔탈피 차 검산",
+      "errorType": "급수와 증기 엔탈피 차 검산",
+      "resolution": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/3083/57/"
+    },
+    {
+      "id": "school-energy-textbook-2018-4:33",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 4,
+      "location": "2018년 4회 · 원문 33번 · 교재 355쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2018-4-33.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2018-4-33.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2018-4-33.webp",
+          "displayAsset": "assets/problem-webp90/67911ad1c7510cf7f19165fd40da677d.webp",
+          "sha256": "66dc3e4c0b5b941b1325e904ea8c899f3ac2dd4e6eb4bd18728222d078879198"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2018-4-33.webp",
+          "displayAsset": "assets/problem-webp90/ef7ddd203abbf76b8284eb7479fa153a.webp",
+          "sha256": "7111cbfb9f4c01fa5ae5d4d5134be7ca2187746156b14beb1c39ef2de62e1e44"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+      "finding": "보일러마력의 기준 상태와 질량유량",
+      "errorType": "보일러마력의 기준 상태와 질량유량",
+      "resolution": "1 보일러마력은 기준 대기압에서 100 °C 포화수를 같은 온도의 건포화증기로 시간당 34.5 lb만큼 바꾸는 능력이다. kg으로 환산하면 34.5 × 0.45359237 ≈ 15.65 kg/h이므로 ①이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2019-1:33",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 5,
+      "location": "2019년 1회 · 원문 33번 · 교재 370쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-1-33.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-1-33.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-1-33.webp",
+          "displayAsset": "assets/problem-webp90/e8fa1972c20c768cc443bb947946b25e.webp",
+          "sha256": "7e770ba6632722e4779610b05bc0e9ad386c2017aab6613b4bce6f777c40531b"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-1-33.webp",
+          "displayAsset": "assets/problem-webp90/360d041d2b2d2ae8d8e4e4123115254d.webp",
+          "sha256": "a38a561e3ece4ebe56e02480be142311b79fab116a0e21b386b8f58509c69ec6"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "증발계수의 급수 기준과 무차원성",
+      "errorType": "증발계수의 급수 기준과 무차원성",
+      "resolution": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20190303:33"
+    },
+    {
+      "id": "energy-industrial-20190303:33",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190303",
+      "number": 33,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 03월 03일 (1회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2019-1:33"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4). 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "증발계수의 급수 기준과 무차원성",
+      "errorType": "증발계수의 급수 기준과 무차원성",
+      "resolution": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/9683/33/"
+    },
+    {
+      "id": "school-energy-textbook-2019-2:25",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 6,
+      "location": "2019년 2회 · 원문 25번 · 교재 384쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2019-2-25.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2019-2-25.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2019-2-25.webp",
+          "displayAsset": "assets/problem-webp90/4f819dff28729553e7ed048c55f1a9db.webp",
+          "sha256": "fa7588d2aa62a2ba06159188de2babcd1b7f19d39a64779494ebeb58de855f7a"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2019-2-25.webp",
+          "displayAsset": "assets/problem-webp90/205deeccb9cb6771f95fcbc300470a40.webp",
+          "sha256": "bd6a437f560d31aa0788e72f745bfb3702998072f8bb22afd629f1e300d7f384"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "실제·상당 증발량 역산",
+      "errorType": "실제·상당 증발량 역산",
+      "resolution": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20190427:25",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "matchedTextSourceId": "energy-industrial-20190427:25",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "energy-industrial-20190427:25",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20190427",
+      "number": 25,
+      "location": "에너지관리산업기사 필기 기출문제 2019년 04월 27일 (2회) (정답, 해설)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "evidence": [
+        "650-steam",
+        "school-energy-textbook-2019-2:25"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4). 저장 COMCBT 지문·보기·이용자 댓글 개별 대조.",
+      "finding": "실제·상당 증발량 역산",
+      "errorType": "실제·상당 증발량 역산",
+      "resolution": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "storedSource": "https://www.comcbt.com/cbt/problem/10283/25/"
+    },
+    {
+      "id": "school-energy-textbook-2020-3:25",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 7,
+      "location": "2020년 3회 · 원문 25번 · 교재 431쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2020-3-25.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2020-3-25.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2020-3-25.webp",
+          "displayAsset": "assets/problem-webp90/ba2bb9e206e659724a9de9b498686d93.webp",
+          "sha256": "d246d322131db6fbdf90ce282f156927c8fc00fbc8658ab751475afc326aacaa"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2020-3-25.webp",
+          "displayAsset": "assets/problem-webp90/d63d7a3157f03bf539717d2b149167d5.webp",
+          "sha256": "449c40b1284a53f54d3a1126f8c0ed091bd98bd344892fc07e5a30022ba56574"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "표준 상태로 환산한 증발 능력",
+      "errorType": "표준 상태로 환산한 증발 능력",
+      "resolution": "서로 다른 급수온도와 증기 조건에서 운전하는 보일러를 비교하려면 공통 기준이 필요하다. 같은 열로 100 °C의 포화수를 같은 온도의 건포화증기로 시간당 몇 kg 바꿀 수 있는지 나타낸 값이 ① 상당증발량이다. 최고사용압력은 압력 한계를 나타낸다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2021-2:62",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 8,
+      "location": "2021년 2회 · 원문 62번 · 교재 469쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2021-2-62.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2021-2-62.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2021-2-62.webp",
+          "displayAsset": "assets/problem-webp90/3e310b9a61565daa044da597196fb80c.webp",
+          "sha256": "d3c49e49fe1fdde47237442a62804cf6e1ed822e99949f573a4e7a864474d16a"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2021-2-62.webp",
+          "displayAsset": "assets/problem-webp90/83738ae922f7be7260b859c691d25364.webp",
+          "sha256": "9c746094d18669557e01048b49dbe04f2fea8e593a8727c31ee892d41dca52da"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "엔탈피 차와 상당증발량 검산",
+      "errorType": "엔탈피 차와 상당증발량 검산",
+      "resolution": "급수와 발생증기의 엔탈피 차는 725−25 = 700 kcal/kg이다. 시간당 10,000 kg에 가한 열 7,000,000 kcal/h를 기준 잠열 539 kcal/kg으로 나누면 약 12,987 kg/h이다. ②를 고른다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2022-1:24",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 9,
+      "location": "2022년 1회 · 원문 24번 · 교재 478쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2022-1-24.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2022-1-24.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2022-1-24.webp",
+          "displayAsset": "assets/problem-webp90/e428717d20e996cbbec0f9420a0aaa85.webp",
+          "sha256": "7b437c2c3d413fca3bfae325847ebb79005112debe5c474fc8928ae3a45f2aaf"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2022-1-24.webp",
+          "displayAsset": "assets/problem-webp90/5d752d9bb1c20488aede9372a4a65228.webp",
+          "sha256": "4aa901528b2ac53ab4f8b64b331142277b6b7f1d5c88495d433a1e1da32539ac"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "기준 잠열과 엔탈피 단위 일치",
+      "errorType": "기준 잠열과 엔탈피 단위 일치",
+      "resolution": "증기와 급수의 엔탈피 차에 실제 증발량을 곱한 값은 시간당 유효열량이다. 엔탈피가 kJ/kg이므로 분모에도 같은 단위의 기준 잠열 약 2,256을 쓴다. h₂−h₁이 양수가 되는 ②가 맞다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2024-1:59",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 10,
+      "location": "2024년 1회 · 원문 59번 · 교재 580쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-1-59.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-1-59.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-1-59.webp",
+          "displayAsset": "assets/problem-webp90/664f9311f0858da353c1f370b2f37b27.webp",
+          "sha256": "a8c87421767182256413f35807bd971ac62ebd791b7b3b13e1ec9011e815abee"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-1-59.webp",
+          "displayAsset": "assets/problem-webp90/07cfb560546d2bfe373ca3fc30960fda.webp",
+          "sha256": "a6f6943a4c380dcb597df3556478cf25d9d8c20d6a1ecbe10e7be915d5439c18"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "kcal와 kJ 기준 잠열 구별",
+      "errorType": "kcal와 kJ 기준 잠열 구별",
+      "resolution": "분모 539는 kcal/kg, 2,256은 kJ/kg 단위의 기준 증발잠열이다. 이 지문은 h₁·h₂를 kJ/kg으로 주므로 2,256을 쓰고 급수에서 증기로 증가한 양 h₂−h₁을 취한다. 따라서 ②이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2024-2:50",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 11,
+      "location": "2024년 2회 · 원문 50번 · 교재 593쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2024-2-50.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2024-2-50.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2024-2-50.webp",
+          "displayAsset": "assets/problem-webp90/5e7381b777628579972e935b4208ccb7.webp",
+          "sha256": "0878a92da790f21f2c934f6c3292c496d876a1f7462e7518b77ea35629225017"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2024-2-50.webp",
+          "displayAsset": "assets/problem-webp90/4b76e62e6977798745163c64de416a6e.webp",
+          "sha256": "7441cc4a8741e943f6bccfe40ecd5bf83cbbfef189d14a80c339565e1965da0c"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+      "finding": "물 처리량과 상당증발량 구별",
+      "errorType": "물 처리량과 상당증발량 구별",
+      "resolution": "보일러마력은 일정량의 물을 단순히 처리하는 능력이 아니다. 1마력은 기준 대기압에서 100 °C 포화수 약 15.65 kg을 한 시간에 같은 온도의 건포화증기로 바꾸는 능력이다. 이 조건을 상당증발량으로 표현한 ④이다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-2:20",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 12,
+      "location": "2025년 2회 · 원문 20번 · 교재 618쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-2-20.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-2-20.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-2-20.webp",
+          "displayAsset": "assets/problem-webp90/0f595397603771d6d9c656d0ba45b791.webp",
+          "sha256": "2b5cb24b2899c46ced33b859e60de658a474a3c394e270a0402550772c35d862"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-2-20.webp",
+          "displayAsset": "assets/problem-webp90/f93d1c629d343789e35319bcba6995be.webp",
+          "sha256": "a090b87524d1705fbb6938efa47c8b728ee736b1b7914132a286b042efa14944"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "보일러마력 환산값과 인쇄 대입 불일치",
+      "errorType": "보일러마력 환산값과 인쇄 대입 불일치",
+      "resolution": "86 보일러마력이 이미 기준 증발량을 나타내므로 주어진 급수 온도로 열을 한 번 더 보정할 필요가 없다. 시간당 유효열량은 86 × 15.65 × 2,256 kJ이고, 연료가 공급한 열의 72%에 해당한다. 연료 1 kg당 약 42.17 MJ로 가장 가까운 값은 ③이다. 인쇄 대입값 15.6과 인쇄 계산값 42171.533 kJ/kg은 서로 일치하지 않는다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독",
+      "matchedSource": "energy-industrial-20180428:8"
+    },
+    {
+      "id": "school-energy-textbook-2025-2:45",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 13,
+      "location": "2025년 2회 · 원문 45번 · 교재 623쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-2-45.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-2-45.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-2-45.webp",
+          "displayAsset": "assets/problem-webp90/69209b5751d8842e333610f2bb2d194e.webp",
+          "sha256": "fcb212481ce3c4255b98cd323b9fb4e557822049dd7678f2ee981e4dc530c80a"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-2-45.webp",
+          "displayAsset": "assets/problem-webp90/d6c829cd1bdddc41d668591015d50376.webp",
+          "sha256": "55f7c202577793efe783f372c1edfca64c5c7755390e7ec6fbd7cce35a2c8c86"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "증발계수에 붙은 kJ/kg 단위 교정",
+      "errorType": "증발계수에 붙은 kJ/kg 단위 교정",
+      "resolution": "증기와 급수의 엔탈피 차는 2,800−125 = 2,675 kJ/kg이다. 이를 문제의 기준 잠열 2,256.9 kJ/kg으로 나누면 약 1.185이고 한 자리로 반올림하면 ② 1.2이다. 두 값의 단위가 같아 증발계수에는 단위가 남지 않는다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-3:52",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 14,
+      "location": "2025년 3회 · 원문 52번 · 교재 639쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-52.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-52.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-52.webp",
+          "displayAsset": "assets/problem-webp90/5ab865afd3abe252ff52dd76c862528a.webp",
+          "sha256": "6e77c01bd2ce7aa6fe26f69eb282d4a69efb892a0b679ae6cbc897f6b6e241f7"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-52.webp",
+          "displayAsset": "assets/problem-webp90/ee26c32207bdf6bdda972273c9330edf.webp",
+          "sha256": "915404fb6410810b9ad7f2ebe718897a28725fc9ecb345f9472f105ce45d18de"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+      "finding": "보일러마력의 시간 기준",
+      "errorType": "보일러마력의 시간 기준",
+      "resolution": "문제에서 한 시간을 기준으로 했으므로, 1 보일러마력의 상당증발량 약 15.65 kg/h에 1 h를 곱한 15.65 kg이 답이다. 보기 ③이다. 실제 증기 상태가 바뀌면 같은 마력에서도 실제 증발량은 달라질 수 있다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
+    },
+    {
+      "id": "school-energy-textbook-2025-3:53",
+      "catalog": "energy-textbook",
+      "file": "data/energy-textbook.js",
+      "round": "school-energy-topic-6",
+      "number": 15,
+      "location": "2025년 3회 · 원문 53번 · 교재 639쪽",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "핵심 부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/energy-textbook/questions/2025-3-53.webp",
+      "explanationImages": [
+        "assets/energy-textbook/explanations/2025-3-53.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/energy-textbook/questions/2025-3-53.webp",
+          "displayAsset": "assets/problem-webp90/0aa8c955dbf7992637efeda7d7ebc14a.webp",
+          "sha256": "cb5a510239a165aa4326183e7fc245b1581b6103da5d433beb7a623b2f310cd3"
+        },
+        {
+          "original": "assets/energy-textbook/explanations/2025-3-53.webp",
+          "displayAsset": "assets/problem-webp90/5436e1af93eda73e3d23ef0666796590.webp",
+          "sha256": "cf4699b7e5b1c1b0be8bc0e63af018d3d6ba826967e17ecd7c5d3448898de099"
+        }
+      ],
+      "evidence": [
+        "650-steam"
+      ],
+      "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+      "finding": "상당증발량과 실제 증발량의 관계",
+      "errorType": "상당증발량과 실제 증발량의 관계",
+      "resolution": "증발계수는 물 1 kg을 실제 조건의 증기로 만드는 데 드는 열을 기준 증발잠열로 나눈 비율이다. 이를 실제 증발량(kg/h)에 곱하면 기준 조건에서의 증발량인 ① 상당증발량(kg/h)을 얻는다.",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "transcriptionTool": "원본 직접 판독"
     }
   ],
   "sources": [
@@ -7034,6 +8778,22 @@
         "explanation"
       ],
       "sha256": "7af2cefcb335fbd8c4933026878fcac0395fbf5ef5c468fad116da8dc6064037"
+    },
+    {
+      "id": "653-lng",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/Lawsnipe/ecfr/master/ecfr/title-49-Transportation/subtitle-B-Other-Regulations-Relating-Transportation/chapter-I-Pipeline-Hazardous-Materials-Safety-Administration-Department-Transportation/subchapter-D-Pipeline-Safety/part-193-Liquefied-Natural-Gas-Facilities-Federal-Safety-Standards/subpart-A-General/section-193.2007.md",
+      "section": "49 CFR §193.2007 (public mirror), LNG, container, LNG facility, storage tank and design pressure. 설비 정의만 확인.",
+      "sha256": "55a53ec9cf8078c479cd9d5703d4e9d7aa7e214b3e9db760c6664641a0e88b8c"
+    },
+    {
+      "id": "653-solid",
+      "date": "2026-11-18",
+      "opened": true,
+      "url": "https://raw.githubusercontent.com/Lawsnipe/ecfr/master/ecfr/title-40-Protection-Environment/chapter-I-Environmental-Protection-Agency/subchapter-C-Air-Programs/part-63-National-Emission-Standards-Hazardous-Air-Pollutants-Source-Categories/subpart-UUUUU-National-Emission-Standards-Hazardous-Air-Pollutants-Coal-OilFired-Electric-Utility-Steam-Generating-Units/subjectgroup-ECFRa89b8b3960eee2f-Other-Requirements-Information/section-63.10042.md",
+      "section": "40 CFR §63.10042 (public mirror), Fluidized bed combustion, Pulverized coal boiler and Stoker.",
+      "sha256": "1e4a2087f100e85861286e8f4b2fd9d642eab406b5235a3bdc9b5e004a0dfc93"
     }
   ],
   "automaticAnswerCandidates": [
@@ -7287,7 +9047,7 @@
   ],
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
-    "energyTextbook": "data/energy-textbook.js school-energy-topic-4 표시 1~15번, 첫 문항 school-energy-textbook-2018-2:13 (2018년 2회 · 원문 13번 · 교재 338쪽).",
+    "energyTextbook": "data/energy-textbook.js school-energy-topic-7 표시 1~4번, 첫 문항 school-energy-textbook-2018-4:26 (2018년 4회 · 원문 26번 · 교재 354쪽).",
     "energyRegular": "data/energy.js energy-industrial-20020526:1~80. 2002.03.10은 전체 80개 판독·상태 기록. 기존 보류와 정답 확인 후보는 해당 ID별 재개.",
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
@@ -7296,22 +9056,22 @@
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 199,
-    "contentCompleted": 169,
-    "contentCompletedChanged": 158,
+    "contentExamined": 243,
+    "contentCompleted": 212,
+    "contentCompletedChanged": 201,
     "contentCompletedUnchanged": 11,
-    "evidenceHold": 26,
+    "evidenceHold": 27,
     "answerNeedsConfirmation": 4,
-    "automaticOnly": 48805,
-    "changedQuestionIds": 166,
-    "imageTranscribed": 34,
-    "imageFullyTranscribed": 12,
-    "imagePartiallyTranscribed": 22,
-    "imageCompared": 34,
-    "imageAcademicCompleted": 33,
-    "questionImagesConverted": 13,
-    "questionImagesCompared": 13,
-    "questionImageAcademicCompleted": 13
+    "automaticOnly": 48761,
+    "changedQuestionIds": 210,
+    "imageTranscribed": 66,
+    "imageFullyTranscribed": 15,
+    "imagePartiallyTranscribed": 51,
+    "imageCompared": 66,
+    "imageAcademicCompleted": 65,
+    "questionImagesConverted": 22,
+    "questionImagesCompared": 22,
+    "questionImageAcademicCompleted": 22
   },
   "followup": {
     "date": "2026-11-18",
@@ -7470,7 +9230,7 @@
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 38,
+      "count": 58,
       "findings": {
         "계산식·상사법칙": 5,
         "단위·조건·근거 부족": 2,
@@ -7503,11 +9263,27 @@
         "원통 후프응력·압력 및 길이 단위": 1,
         "나사 최대효율·마찰각 유도": 1,
         "벽 단위 면적·시간 적분": 1,
-        "반응식 원자 보존·물리적 탈기": 1
+        "반응식 원자 보존·물리적 탈기": 1,
+        "이론 화염온도의 기준 온도와 평균 비열": 1,
+        "보일러마력 환산값과 인쇄 대입 불일치": 2,
+        "상당증발량과 반올림 구별": 1,
+        "상당증발량 공식의 단위·부호": 1,
+        "급수와 증기 엔탈피 차 검산": 2,
+        "보일러마력의 기준 상태와 질량유량": 1,
+        "증발계수의 급수 기준과 무차원성": 2,
+        "실제·상당 증발량 역산": 2,
+        "표준 상태로 환산한 증발 능력": 1,
+        "엔탈피 차와 상당증발량 검산": 1,
+        "기준 잠열과 엔탈피 단위 일치": 1,
+        "kcal와 kJ 기준 잠열 구별": 1,
+        "물 처리량과 상당증발량 구별": 1,
+        "증발계수에 붙은 kJ/kg 단위 교정": 1,
+        "보일러마력의 시간 기준": 1,
+        "상당증발량과 실제 증발량의 관계": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 57,
+      "count": 81,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -7552,8 +9328,40 @@
         "측정 대상 구별": 1,
         "카르노 선도 좌표 구별": 1,
         "폭기와 탈기의 구별": 3,
-        "흡습성과 단열 성능": 1
+        "흡습성과 단열 성능": 1,
+        "기체 연료의 저장 설비와 배출 조건": 2,
+        "공기비와 연소량 조절 구별": 4,
+        "고체 연소 방식과 예혼합의 차이": 2,
+        "액체연료의 완전연소 조건": 2,
+        "액체연료의 인화 위험": 1,
+        "누출 위험과 기체 저장 조건": 2,
+        "배관 수송과 저장의 구별": 2,
+        "연소 제어와 관리상 어려움 구별": 1,
+        "고체 연료의 주성분과 황의 역할": 2,
+        "기체 저장과 잔류물 구별": 1,
+        "기체의 저장 부피와 설비": 1,
+        "기체 저장과 공급량 제어 구별": 1,
+        "단위 연료 기준의 연소온도": 2,
+        "과잉 공기와 불완전연소의 조건": 1
       }
     }
+  },
+  "energyFuelTemperatureEvaporationBatch": {
+    "chapters": {
+      "school-energy-topic-4": 15,
+      "school-energy-topic-5": 3,
+      "school-energy-topic-6": 15
+    },
+    "bookItems": 33,
+    "linkedUniqueItems": 11,
+    "changed": 44,
+    "contentCompleted": 43,
+    "evidenceHold": [
+      "school-energy-textbook-2020-3:8"
+    ],
+    "explanationTranscribed": 32,
+    "priorTranscriptionRechecked": 1,
+    "questionImagesConverted": 9,
+    "newFractions": 16
   }
 }

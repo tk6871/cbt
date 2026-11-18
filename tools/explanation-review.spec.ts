@@ -228,3 +228,28 @@ test('펌프 출구압력의 두 해석·저장 답과 이의제기 보존', asy
   await archived.locator('summary').click();
   await explanation.screenshot({path:info.outputPath('pump-dispute.png')});
 });
+
+test('623쪽 증발계수의 무차원 분수와 인쇄 단위', async ({page}, info) => {
+  await prepare(page,'energy-midterm');
+  const round = page.locator('#round-card-school-energy-topic-6');
+  await round.getByRole('checkbox',{name:/계산 문제 포함/}).check();
+  await round.getByRole('button',{name:'학습모드',exact:true}).click();
+  const jump = page.getByRole('spinbutton',{name:'이동할 문제 번호'});
+  await expect(jump).toBeVisible();
+  const questionId = 'school-energy-textbook-2025-2:45';
+  const findPosition = () => page.evaluate(id => {
+    const session = JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}');
+    return (session.itemIds || []).indexOf(id) + 1;
+  }, questionId);
+  await expect.poll(findPosition).toBeGreaterThan(0);
+  await jump.fill(String(await findPosition()));
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:'2025년 2회 · 원문 45번'})});
+  await card.locator('.image-answer-hotspot').nth(1).click();
+  const box = card.locator('.explanation-box');
+  await expect(box.locator('.beginner-primary-explanation')).toContainText('단위가 남지 않는다');
+  await expect(box.locator('.katex mfrac').first()).toBeAttached();
+  await expect(box.locator('.transcription-text')).toContainText('1.185 (kJ/kg)');
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['school-energy-textbook-2025-2:45'])).toBe(2);
+  await box.screenshot({path:info.outputPath('evaporation-factor.png')});
+});

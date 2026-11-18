@@ -614,5 +614,289 @@
     "fingerprint": "4aa4c35a37097247",
     "text": "다공성 보온재는 기공 속 공기의 낮은 열전도율을 이용한다. 물을 잘 흡수해 기공의 공기가 물로 바뀌면 전도에 의한 열손실이 커질 수 있다. 따라서 ‘흡습성이 높을 것’이라는 ④는 바람직한 선정 조건이 아니다.",
     "basis": "전도 장의 공기·물 열전도율 비교. 기공 속 공기를 물이 대체하는 경우를 판단."
+  },
+  "school-energy-textbook-2018-2:13": {
+    "fingerprint": "6f54c8dc3207c4bb",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "③이다. 같은 양의 연료를 기체로 저장하면 큰 부피가 필요하다. 압축하면 압력을 견디는 용기가, 천연가스를 액화하면 낮은 온도를 유지할 저장 설비가 필요하다. 연소할 때 회분이 적다는 성질은 저장 비용과 별개다."
+  },
+  "energy-industrial-20180428:13": {
+    "fingerprint": "38da46312ad57fe8",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "③이다. 같은 양의 연료를 기체로 저장하면 큰 부피가 필요하다. 압축하면 압력을 견디는 용기가, 천연가스를 액화하면 낮은 온도를 유지할 저장 설비가 필요하다. 연소할 때 회분이 적다는 성질은 저장 비용과 별개다."
+  },
+  "school-energy-textbook-2018-4:15": {
+    "fingerprint": "743d590704240b69",
+    "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "공기비는 실제 공급한 공기량을 그 연료량에 필요한 이론 공기량으로 나눈 값이다. 가스와 공기의 공급량을 따로 조절할 수 있는 버너에서는 이 비율도 바꿀 수 있으므로 ①이 틀리다. 화력만 달라졌다고 공기비도 달라졌다고 판단할 수는 없다."
+  },
+  "school-energy-textbook-2018-4:16": {
+    "fingerprint": "284aaaa54550d6f8",
+    "basis": "40 CFR §63.10042 Stoker, Pulverized coal boiler, Fluidized bed combustion. Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "화격자는 연료를 받쳐 태우고, 미분탄 연소는 가루 석탄을 공기에 실어 태운다. 유동층은 위로 흐르는 기체가 층의 입자를 움직이게 한다. ④ 예혼합연소는 대표적으로 기체 연료와 공기를 화염에 도달하기 전에 섞는 방식이다."
+  },
+  "energy-industrial-20180915:16": {
+    "fingerprint": "b982dab3e70ccb87",
+    "basis": "40 CFR §63.10042 Stoker, Pulverized coal boiler, Fluidized bed combustion. Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "화격자는 연료를 받쳐 태우고, 미분탄 연소는 가루 석탄을 공기에 실어 태운다. 유동층은 위로 흐르는 기체가 층의 입자를 움직이게 한다. ④ 예혼합연소는 대표적으로 기체 연료와 공기를 화염에 도달하기 전에 섞는 방식이다."
+  },
+  "school-energy-textbook-2019-2:15": {
+    "fingerprint": "9f04dc751d2ef3cf",
+    "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점.",
+    "text": "액체연료는 버너에서 미세한 액적으로 분무하면 표면적이 커져 증발하고 공기와 섞이기 쉽다. 석탄 덩어리를 태울 때보다 완전연소시키기 어렵다는 ③이 틀리다. 분무와 공기 공급이 불충분하면 액체연료도 매연을 낼 수 있다."
+  },
+  "energy-industrial-20190427:15": {
+    "fingerprint": "1f72f14887d0365e",
+    "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점.",
+    "text": "액체연료는 버너에서 미세한 액적으로 분무하면 표면적이 커져 증발하고 공기와 섞이기 쉽다. 석탄 덩어리를 태울 때보다 완전연소시키기 어렵다는 ③이 틀리다. 분무와 공기 공급이 불충분하면 액체연료도 매연을 낼 수 있다."
+  },
+  "school-energy-textbook-2019-4:2": {
+    "fingerprint": "2b6f4bebf9188895",
+    "basis": "Babcock & Wilcox, Steam, Advantages and Disadvantages of Oil 및 Burning Oil Fuel, 연료 분무·공기 접촉·인화점.",
+    "text": "③이 틀리다. 액체연료에서 나온 가연성 증기가 공기와 섞이면 점화원에 의해 불이 붙을 수 있다. 탱크에 저장하거나 배관으로 옮기기 편하다는 점이 이 위험을 없애지는 않는다."
+  },
+  "school-energy-textbook-2020-1-2통합:10": {
+    "fingerprint": "afceb7109aac2f0c",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "④가 틀리다. 같은 양이라도 기체 상태에서는 차지하는 부피가 크고, 압축·액화 방식에는 전용 설비가 필요하다. 또 새어 나온 가연성 가스가 공기와 섞이면 화재 위험이 있어 취급에 주의해야 한다."
+  },
+  "energy-industrial-20200606:10": {
+    "fingerprint": "bc9486c117e9951b",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "④가 틀리다. 같은 양이라도 기체 상태에서는 차지하는 부피가 크고, 압축·액화 방식에는 전용 설비가 필요하다. 또 새어 나온 가연성 가스가 공기와 섞이면 화재 위험이 있어 취급에 주의해야 한다."
+  },
+  "school-energy-textbook-2020-3:4": {
+    "fingerprint": "8b2c568b6bf52683",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "배관이 설치된 곳에서는 가스를 연속 공급할 수 있지만, 같은 양을 저장할 때에는 큰 부피 또는 압축·액화 설비가 필요하다. 저장과 운송이 모두 쉽다는 ①은 기체 연료의 일반적 장점으로 보기 어렵다."
+  },
+  "energy-industrial-20200822:4": {
+    "fingerprint": "ad5216abfd62fc0",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "배관이 설치된 곳에서는 가스를 연속 공급할 수 있지만, 같은 양을 저장할 때에는 큰 부피 또는 압축·액화 설비가 필요하다. 저장과 운송이 모두 쉽다는 ①은 기체 연료의 일반적 장점으로 보기 어렵다."
+  },
+  "school-energy-textbook-2021-2:15": {
+    "fingerprint": "2b10c2af2ef47ab",
+    "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "문제는 관리상 문제점으로 잘못 든 보기를 묻는다. 가스 유량을 조절하고 공급 공기를 맞출 수 있으므로 연소 제어가 어렵다는 ③이 맞지 않는다. 저장 설비와 누출 관리는 연소 제어와 다른 문제다."
+  },
+  "school-energy-textbook-2022-4:9": {
+    "fingerprint": "aff900856d63676a",
+    "basis": "Babcock & Wilcox, Steam, Ultimate Analysis, 표의 석탄 원소 조성과 황·회분의 구별.",
+    "text": "이 문항이 대표 예로 삼는 석탄은 탄소가 주된 가연성 원소이므로 ④이다. 황도 산소와 반응해 열을 낼 수 있지만 보통 주성분은 아니다. 회분은 연소 후 남는 무기 잔류물이다."
+  },
+  "school-energy-textbook-2023-1:2": {
+    "fingerprint": "d29c3bbb3ec4cba9",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "①이다. 기체는 일정 질량을 상온·상압에서 보관할 때 큰 공간을 차지한다. 액화천연가스를 보관할 때도 전용 탱크가 필요하다. 연소 후 남는 고형물이 적다는 성질로 저장의 용이성을 판단할 수 없다."
+  },
+  "school-energy-textbook-2023-4:17": {
+    "fingerprint": "2979ea2e5908aac5",
+    "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "연료 공급량을 고정해도 공기 유량을 바꾸면 실제 공기량과 이론 공기량의 비가 달라진다. 공기와 가스 공급을 조절하는 버너가 있으므로 공기비 제어가 불가능하다는 ①이 틀리다."
+  },
+  "energy-industrial-20180915:15": {
+    "fingerprint": "2e7f73af4d82a7f4",
+    "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "연료 공급량을 고정해도 공기 유량을 바꾸면 실제 공기량과 이론 공기량의 비가 달라진다. 공기와 가스 공급을 조절하는 버너가 있으므로 공기비 제어가 불가능하다는 ①이 틀리다."
+  },
+  "school-energy-textbook-2024-1:15": {
+    "fingerprint": "1d7b4e4f3789a1c3",
+    "basis": "Babcock & Wilcox, Steam, Blast Furnace Gas, 두 형식의 버너에서 공기와 가스의 공급을 각각 조절하는 문단.",
+    "text": "가스버너에서는 연료 유량에 맞추어 공기 유량을 조절할 수 있다. 이때 실제 공급 공기량과 이론 공기량의 비가 공기비다. 따라서 제어가 불가능하다는 ①이 틀리다."
+  },
+  "school-energy-textbook-2024-2:8": {
+    "fingerprint": "d191f3f1b50f73d3",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "①이 가장 거리가 멀다. 기체를 대기압 부근에서 보관하면 같은 질량의 액체보다 큰 공간이 필요하다. 부피를 줄이기 위해 압축하거나 액화하면 그 조건에 맞는 저장 설비도 필요하다."
+  },
+  "school-energy-textbook-2025-2:15": {
+    "fingerprint": "40f0f2004fd9f606",
+    "basis": "Babcock & Wilcox, Steam, Ultimate Analysis, 표의 석탄 원소 조성과 황·회분의 구별.",
+    "text": "보기 네 원소 중 석탄에서 질량의 큰 부분을 차지하고 연소열에 주로 기여하는 것은 ④ 탄소다. 질소가 연료에 들어 있거나 황이 연소할 수 있다는 사실과 주성분인지는 구별한다."
+  },
+  "school-energy-textbook-2025-3:2": {
+    "fingerprint": "b43fc7df453f5ae5",
+    "basis": "49 CFR §193.2007 LNG facility·storage tank. 기체 상태방정식에서 일정 온도·압력의 부피는 물질량에 비례한다.",
+    "text": "연료 유량을 밸브로 조절하는 것과 연료를 비축하는 것은 다르다. 기체 상태로 비축하려면 부피가 크거나 압력 용기가 필요하고, 액화 저장에도 전용 설비가 든다. 일반적인 장점에 해당하지 않는 것은 ①이다."
+  },
+  "school-energy-textbook-2018-2:20": {
+    "fingerprint": "de882399c29c006d",
+    "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교.",
+    "text": "연료를 두 배로 잡아도 조성·공기비·입구 온도가 같으면 방출열과 가열할 연소가스량이 함께 두 배가 된다. 따라서 이론 온도는 계산 기준으로 잡은 연료의 중량만으로 달라지지 않는다. 네 보기 중 ④가 가장 거리가 멀다."
+  },
+  "energy-industrial-20180428:20": {
+    "fingerprint": "8e1281fc80c3d915",
+    "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교.",
+    "text": "연료를 두 배로 잡아도 조성·공기비·입구 온도가 같으면 방출열과 가열할 연소가스량이 함께 두 배가 된다. 따라서 이론 온도는 계산 기준으로 잡은 연료의 중량만으로 달라지지 않는다. 네 보기 중 ④가 가장 거리가 멀다."
+  },
+  "school-energy-textbook-2020-3:8": {
+    "fingerprint": "8abebcc5924323a9",
+    "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교.",
+    "text": "같은 연료가 완전연소할 때 공기를 더 보내면 CO₂가 희석되고, 더 많은 가스를 가열해야 하므로 연소실 온도는 내려가며 배기가스 손실은 커진다. 통상적인 과잉 공기로 산소 부족이 생기는 것은 아니므로 출제 의도는 ④다. 다만 공기가 지나쳐 화염을 크게 냉각하면 CO가 남을 수 있으므로 ④를 모든 운전조건에 적용할 수는 없다."
+  },
+  "school-energy-textbook-2022-1:12": {
+    "fingerprint": "ca06578c562d8876",
+    "basis": "Babcock & Wilcox, Steam, Combustion, 과잉 공기에 의한 희석·배기가스 손실과 과도한 냉각, CO₂ 체적분율 비교. 단위 연료의 열수지 Hₗ = Gᵣ Cₚ (t − t₀).",
+    "text": "연소생성물 속 수분이 증기로 남는 조건에서는 저위발열량 Hₗ을 쓴다. 열손실과 해리를 무시하고 평균 정압비열을 쓰면 온도 상승은 Hₗ/(GᵣCₚ)이다. 기준온도를 0 °C로 잡은 보기에서는 ①이다. 다른 기준온도를 쓰면 이 상승분을 기준온도에 더한다.",
+    "formula": {
+      "tex": "t-t_0=\\frac{H_l}{G_r C_p}",
+      "label": "연소생성물 속 수분이 증기로 남는 조건에서는 저위발열량 Hₗ을 쓴다. 열손실과 해리를 무시하고 평균 정압비열을 쓰면 온도 상승은 Hₗ/(GᵣCₚ)이다. 기준온도를 0 °C로 잡은 보기에서는 ①이다. 다른 기준온도를 쓰면 이 상승분을 기준온도에 더한다."
+    }
+  },
+  "school-energy-textbook-2018-2:8": {
+    "fingerprint": "f0674a5f3eeae5c2",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "1 보일러마력은 기준 상태에서 시간당 약 15.65 kg을 증발시키는 능력이다. 86마력의 상당증발량은 1,345.9 kg/h이다. 이를 기준 증발잠열 2,256 kJ/kg과 곱하면 유효열량이고, 효율 0.72와 연료 100 kg/h로 나누면 42.17 MJ/kg이다. 가장 가까운 보기는 ③ 42.18이다. 인쇄식의 15.6을 그대로 쓰면 42.04 MJ/kg이므로 인쇄된 중간 결과와 일치하지 않는다.",
+    "formula": {
+      "tex": "H_l=\\frac{86\\times15.65\\times2256}{100\\times0.72\\times1000}\\approx42.17\\;\\mathrm{MJ/kg}",
+      "label": "1 보일러마력은 기준 상태에서 시간당 약 15.65 kg을 증발시키는 능력이다. 86마력의 상당증발량은 1,345.9 kg/h이다. 이를 기준 증발잠열 2,256 kJ/kg과 곱하면 유효열량이고, 효율 0.72와 연료 100 kg/h로 나누면 42.17 MJ/kg이다. 가장 가까운 보기는 ③ 42.18이다. 인쇄식의 15.6을 그대로 쓰면 42.04 MJ/kg이므로 인쇄된 중간 결과와 일치하지 않는다."
+    }
+  },
+  "energy-industrial-20180428:8": {
+    "fingerprint": "fc477df963008af0",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "보일러마력을 기준 증발량으로 바꾸면 86 × 15.65 = 1,345.9 kg/h이다. 잠열 2,256 kJ/kg을 적용하면 연료의 저위발열량은 42.1715 MJ/kg이고, 539 × 4.186 kJ/kg을 적용하면 42.1763 MJ/kg이다. 두 경우 모두 가장 가까운 보기는 ③ 42.18이다.",
+    "formula": {
+      "tex": "H_l=\\frac{86\\times15.65\\times2256}{100\\times0.72\\times1000}\\approx42.17\\;\\mathrm{MJ/kg}",
+      "label": "보일러마력을 기준 증발량으로 바꾸면 86 × 15.65 = 1,345.9 kg/h이다. 잠열 2,256 kJ/kg을 적용하면 연료의 저위발열량은 42.1715 MJ/kg이고, 539 × 4.186 kJ/kg을 적용하면 42.1763 MJ/kg이다. 두 경우 모두 가장 가까운 보기는 ③ 42.18이다."
+    }
+  },
+  "school-energy-textbook-2018-2:22": {
+    "fingerprint": "2c91be5c9cbfdecd",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "급수가 증기로 바뀌며 받은 열은 시간당 Gₐ(h₂−h₁) kJ이다. 이를 기준 증발잠열 2,256 kJ/kg으로 나누면 같은 열로 증발시킬 수 있는 물의 kg/h가 된다. 따라서 ②이다. 539는 엔탈피를 kcal/kg으로 쓸 때의 분모다.",
+    "formula": {
+      "tex": "G_e=\\frac{G_a(h_2-h_1)}{2256}",
+      "label": "급수가 증기로 바뀌며 받은 열은 시간당 Gₐ(h₂−h₁) kJ이다. 이를 기준 증발잠열 2,256 kJ/kg으로 나누면 같은 열로 증발시킬 수 있는 물의 kg/h가 된다. 따라서 ②이다. 539는 엔탈피를 kcal/kg으로 쓸 때의 분모다."
+    }
+  },
+  "school-energy-textbook-2018-2:57": {
+    "fingerprint": "3e59822bf20a8fd5",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다.",
+    "formula": {
+      "tex": "G_e=\\frac{2000(600-30)}{539}\\approx2115.03\\;\\mathrm{kg/h}",
+      "label": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다."
+    }
+  },
+  "energy-industrial-20180428:57": {
+    "fingerprint": "a51118e3a858ca11",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다.",
+    "formula": {
+      "tex": "G_e=\\frac{2000(600-30)}{539}\\approx2115.03\\;\\mathrm{kg/h}",
+      "label": "증기 1 kg을 만드는 데 더한 열은 600−30 = 570 kcal이다. 실제 증발량 2,000 kg/h에 곱하고 기준 증발잠열 539 kcal/kg으로 나누면 2,115.03 kg/h가 된다. 따라서 ②이다."
+    }
+  },
+  "school-energy-textbook-2018-4:33": {
+    "fingerprint": "f0d47334b6a5d0f8",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+    "text": "1 보일러마력은 기준 대기압에서 100 °C 포화수를 같은 온도의 건포화증기로 시간당 34.5 lb만큼 바꾸는 능력이다. kg으로 환산하면 34.5 × 0.45359237 ≈ 15.65 kg/h이므로 ①이다."
+  },
+  "school-energy-textbook-2019-1:33": {
+    "fingerprint": "1f8cbbae650d282b",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다.",
+    "formula": {
+      "tex": "f=\\frac{h^{\\prime\\prime}-h}{539}",
+      "label": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다."
+    }
+  },
+  "energy-industrial-20190303:33": {
+    "fingerprint": "b3cee9ba6cc4cb2b",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다.",
+    "formula": {
+      "tex": "f=\\frac{h^{\\prime\\prime}-h}{539}",
+      "label": "실제 물 1 kg에 가한 열은 발생증기 엔탈피 h″에서 들어온 급수 엔탈피 h를 뺀 값이다. 이를 기준 잠열 539 kcal/kg으로 나눈 증발계수는 단위가 상쇄되는 비율이다. ②이다. 분자의 급수가 반드시 포화수일 필요는 없다."
+    }
+  },
+  "school-energy-textbook-2019-2:25": {
+    "fingerprint": "529189c847d827b8",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다.",
+    "formula": {
+      "tex": "G_a=\\frac{539\\times300}{730-30}=231\\;\\mathrm{kg/h}",
+      "label": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다."
+    }
+  },
+  "energy-industrial-20190427:25": {
+    "fingerprint": "92220b308f00dd0",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다.",
+    "formula": {
+      "tex": "G_a=\\frac{539\\times300}{730-30}=231\\;\\mathrm{kg/h}",
+      "label": "상당증발량 300 kg/h에 해당하는 열은 300 × 539 kcal/h이다. 급수 엔탈피는 물의 비열을 약 1 kcal/(kg·°C), 0 °C를 기준으로 하여 약 30 kcal/kg이다. 매 kg당 필요한 열 730−30으로 나누면 실제 증발량은 231.0 kg/h, ③이다."
+    }
+  },
+  "school-energy-textbook-2020-3:25": {
+    "fingerprint": "4cc1e5d027d059c4",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "서로 다른 급수온도와 증기 조건에서 운전하는 보일러를 비교하려면 공통 기준이 필요하다. 같은 열로 100 °C의 포화수를 같은 온도의 건포화증기로 시간당 몇 kg 바꿀 수 있는지 나타낸 값이 ① 상당증발량이다. 최고사용압력은 압력 한계를 나타낸다."
+  },
+  "school-energy-textbook-2021-2:62": {
+    "fingerprint": "e6a84769909ad1b9",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "급수와 발생증기의 엔탈피 차는 725−25 = 700 kcal/kg이다. 시간당 10,000 kg에 가한 열 7,000,000 kcal/h를 기준 잠열 539 kcal/kg으로 나누면 약 12,987 kg/h이다. ②를 고른다.",
+    "formula": {
+      "tex": "G_e=\\frac{10000(725-25)}{539}\\approx12987\\;\\mathrm{kg/h}",
+      "label": "급수와 발생증기의 엔탈피 차는 725−25 = 700 kcal/kg이다. 시간당 10,000 kg에 가한 열 7,000,000 kcal/h를 기준 잠열 539 kcal/kg으로 나누면 약 12,987 kg/h이다. ②를 고른다."
+    }
+  },
+  "school-energy-textbook-2022-1:24": {
+    "fingerprint": "fa7867cc73e308e7",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "증기와 급수의 엔탈피 차에 실제 증발량을 곱한 값은 시간당 유효열량이다. 엔탈피가 kJ/kg이므로 분모에도 같은 단위의 기준 잠열 약 2,256을 쓴다. h₂−h₁이 양수가 되는 ②가 맞다.",
+    "formula": {
+      "tex": "G_e=\\frac{G_a(h_2-h_1)}{2256}",
+      "label": "증기와 급수의 엔탈피 차에 실제 증발량을 곱한 값은 시간당 유효열량이다. 엔탈피가 kJ/kg이므로 분모에도 같은 단위의 기준 잠열 약 2,256을 쓴다. h₂−h₁이 양수가 되는 ②가 맞다."
+    }
+  },
+  "school-energy-textbook-2024-1:59": {
+    "fingerprint": "d263a6e775c6e02f",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "분모 539는 kcal/kg, 2,256은 kJ/kg 단위의 기준 증발잠열이다. 이 지문은 h₁·h₂를 kJ/kg으로 주므로 2,256을 쓰고 급수에서 증기로 증가한 양 h₂−h₁을 취한다. 따라서 ②이다.",
+    "formula": {
+      "tex": "G_e=\\frac{G(h_2-h_1)}{2256}",
+      "label": "분모 539는 kcal/kg, 2,256은 kJ/kg 단위의 기준 증발잠열이다. 이 지문은 h₁·h₂를 kJ/kg으로 주므로 2,256을 쓰고 급수에서 증기로 증가한 양 h₂−h₁을 취한다. 따라서 ②이다."
+    }
+  },
+  "school-energy-textbook-2024-2:50": {
+    "fingerprint": "62b27565d363e205",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+    "text": "보일러마력은 일정량의 물을 단순히 처리하는 능력이 아니다. 1마력은 기준 대기압에서 100 °C 포화수 약 15.65 kg을 한 시간에 같은 온도의 건포화증기로 바꾸는 능력이다. 이 조건을 상당증발량으로 표현한 ④이다."
+  },
+  "school-energy-textbook-2025-2:20": {
+    "fingerprint": "f626a0c13571499a",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h. Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "86 보일러마력이 이미 기준 증발량을 나타내므로 주어진 급수 온도로 열을 한 번 더 보정할 필요가 없다. 시간당 유효열량은 86 × 15.65 × 2,256 kJ이고, 연료가 공급한 열의 72%에 해당한다. 연료 1 kg당 약 42.17 MJ로 가장 가까운 값은 ③이다. 인쇄 대입값 15.6과 인쇄 계산값 42171.533 kJ/kg은 서로 일치하지 않는다.",
+    "formula": {
+      "tex": "H_l=\\frac{86\\times15.65\\times2256}{100\\times0.72\\times1000}\\approx42.17\\;\\mathrm{MJ/kg}",
+      "label": "86 보일러마력이 이미 기준 증발량을 나타내므로 주어진 급수 온도로 열을 한 번 더 보정할 필요가 없다. 시간당 유효열량은 86 × 15.65 × 2,256 kJ이고, 연료가 공급한 열의 72%에 해당한다. 연료 1 kg당 약 42.17 MJ로 가장 가까운 값은 ③이다. 인쇄 대입값 15.6과 인쇄 계산값 42171.533 kJ/kg은 서로 일치하지 않는다."
+    }
+  },
+  "school-energy-textbook-2025-2:45": {
+    "fingerprint": "27f6e4c7a4ba6e2b",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "증기와 급수의 엔탈피 차는 2,800−125 = 2,675 kJ/kg이다. 이를 문제의 기준 잠열 2,256.9 kJ/kg으로 나누면 약 1.185이고 한 자리로 반올림하면 ② 1.2이다. 두 값의 단위가 같아 증발계수에는 단위가 남지 않는다.",
+    "formula": {
+      "tex": "f=\\frac{2800-125}{2256.9}\\approx1.185",
+      "label": "증기와 급수의 엔탈피 차는 2,800−125 = 2,675 kJ/kg이다. 이를 문제의 기준 잠열 2,256.9 kJ/kg으로 나누면 약 1.185이고 한 자리로 반올림하면 ② 1.2이다. 두 값의 단위가 같아 증발계수에는 단위가 남지 않는다."
+    }
+  },
+  "school-energy-textbook-2025-3:52": {
+    "fingerprint": "b2abace3b09f8ba6",
+    "basis": "Babcock & Wilcox, Steam, Boiler Horse Power, 34.5 lb/h from and at 212 °F. 34.5 × 0.45359237 = 15.64894 kg/h.",
+    "text": "문제에서 한 시간을 기준으로 했으므로, 1 보일러마력의 상당증발량 약 15.65 kg/h에 1 h를 곱한 15.65 kg이 답이다. 보기 ③이다. 실제 증기 상태가 바뀌면 같은 마력에서도 실제 증발량은 달라질 수 있다."
+  },
+  "school-energy-textbook-2025-3:53": {
+    "fingerprint": "562b8b8212b46fee",
+    "basis": "Babcock & Wilcox, Steam, Equivalent Evaporation, from and at 212 °F 및 계산 예 (1167.82/970.4).",
+    "text": "증발계수는 물 1 kg을 실제 조건의 증기로 만드는 데 드는 열을 기준 증발잠열로 나눈 비율이다. 이를 실제 증발량(kg/h)에 곱하면 기준 조건에서의 증발량인 ① 상당증발량(kg/h)을 얻는다.",
+    "formula": {
+      "tex": "G_e=G_a\\frac{h_2-h_1}{539}",
+      "label": "증발계수는 물 1 kg을 실제 조건의 증기로 만드는 데 드는 열을 기준 증발잠열로 나눈 비율이다. 이를 실제 증발량(kg/h)에 곱하면 기준 조건에서의 증발량인 ① 상당증발량(kg/h)을 얻는다."
+    }
   }
 }

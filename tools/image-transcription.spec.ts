@@ -8,8 +8,8 @@ test.use({serviceWorkers:'block'});
 test('전사 원문 해시 전수·임시/확인 구분·수식 원문 보존',({},info)=>{
  test.skip(info.project.name!=='desktop','파일 전수 검사는 한 번만 실행합니다.');
  const entries={...confirmed,...Object.assign({},...families.map(family=>JSON.parse(fs.readFileSync(`data/image-text/${family}.json`,'utf8'))))} as Record<string,ImageTranscription>;
- expect(Object.keys(entries)).toHaveLength(1999);
- expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(82);
+ expect(Object.keys(entries)).toHaveLength(2035);
+ expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(123);
  expect(entries['assets/energy-restored/questions/2022-4-8.webp']).toBeUndefined();
  expect(entries['assets/hvac-hansol/questions/2020_4/13.webp']).toBeUndefined();
  expect(entries['assets/textbook-corrections/hansol-4-186-13.png']).toBeUndefined();
@@ -72,7 +72,7 @@ test('문제·해설 OCR/이미지 전환·같은 선택 유지·설정 저장·
   await expect(card.locator('.question-text')).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  }
- await card.screenshot({path:'/private/tmp/cbt-image-text-energy.png'});
+ await card.screenshot({path:info.outputPath('cbt-image-text-energy.png')});
  await page.reload();
  expect(await page.evaluate(()=>localStorage.getItem('cbt-explanation-display-v1'))).toBe('ocr');
  expect(errors).toEqual([]);
@@ -103,7 +103,7 @@ test('공조 임시 OCR·원문 복귀·교재 데이터 첫 화면 분리',asyn
  await expect(card.locator('.source-question-image')).toHaveAttribute('src',/assets\/problem-webp90\//);
  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- await card.screenshot({path:`/private/tmp/cbt-v60-ocr-${info.project.name}.png`});
+ await card.screenshot({path:info.outputPath('cbt-v60-ocr.png')});
 });
 
 test('OCR 파일을 받지 못하면 원문을 풀 수 있음',async({page},info)=>{
