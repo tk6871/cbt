@@ -31,6 +31,7 @@ for(const r of review.rows){
   const hotspots=r.choiceRects.map(([a,b,c,d],i)=>{assert.ok(x<=a&&c<=x1&&y<=b&&d<=y1);const region={x:(a-x)/w*100,y:(b-y)/h*100,width:(c-a)/w*100,height:(d-b)/h*100};return {choice:i+1,...region,segments:[region]};});
   const subject=r.page.startsWith('1-')?'공기조화설비':r.page.startsWith('2-')?'냉동냉장설비':r.page.startsWith('3-')?'공조냉동 설치·운영':'교재 모의고사';
   const roundId=`hvac-hansol-book-${r.page}`,q={number:r.number,text:r.text,html:'',ocrText:r.text,images:[],sourceImage:ims.question.asset,sourceImageSize:ims.question.outputSize,imageOnly:true,choices:r.choices.map(text=>({text,html:'',images:[]})),answer:r.answer,answerHotspots:hotspots,explanation:r.explanation,explanationHtml:'',explanationImages:[ims.explanation.asset],originalExplanationImagesFolded:true,explanationType:'editorial-supplement',explanationProvenance:'book-original-reviewed',explanationBasis:'교재 지문·네 보기·정답을 직접 읽어 정리한 설명입니다. 교재 원문 풀이 이미지는 따로 보존합니다.',bookVerified:true,_subject:subject,source:'한솔 공조 교재',sourcePage:`한솔 공조 교재 ${r.page}쪽 ${r.number}번`};
+  if(r.explanationFormula)q.explanationFormula=r.explanationFormula;
   if(!rounds.has(roundId))rounds.set(roundId,{id:roundId,year:0,session:'교재',qualificationKey:'hvac-hansol',title:`한솔 공조 교재 ${r.page}쪽`,subjects:[subject],kind:'textbook-pages',questions:[]});
   rounds.get(roundId).questions.push(q);Object.assign(entry,{sourceId:`${roundId}:${r.number}`,fingerprint:textbookSourceFingerprint(q),imageSize:ims.question.outputSize});
  }

@@ -1,4 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
+import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 async function prepare(page:Page,key:string){
  await page.addInitScript(key=>{
@@ -252,4 +253,19 @@ test('623쪽 증발계수의 무차원 분수와 인쇄 단위', async ({page}, 
   await expect(box.locator('.transcription-text')).toContainText('1.185 (kJ/kg)');
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['school-energy-textbook-2025-2:45'])).toBe(2);
   await box.screenshot({path:info.outputPath('evaporation-factor.png')});
+});
+
+test('한솔 1-225쪽 유효흡입수두 원문·분수·보기',async({page},info)=>{
+  await prepare(page,'hvac');
+  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+  await enterBookReader(page);
+  await chooseBookPage(page,'1-225');
+  const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 1번',exact:true})}).locator('.question-card');
+  await card.locator('.image-answer-hotspot').nth(1).click();
+  const box=card.locator('.explanation-box');
+  await expect(box).toContainText('10.98 mAq');
+  await expect(box).toContainText('10.97 mAq');
+  await expect(box.locator('.math-formula .mfrac')).toBeVisible();
+  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+  await box.screenshot({path:info.outputPath('hansol-suction-head.png')});
 });

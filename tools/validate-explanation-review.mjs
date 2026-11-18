@@ -51,6 +51,14 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   }
  }
 }
+const hansolRows=JSON.parse(fs.readFileSync('tools/hansol-book-native-review.json')).rows;
+for(const id of review.hvacHansolBookFirst20Rounds.correctedIds){
+ const q=bankById.get(id);
+ const row=hansolRows.find(row=>`hvac-hansol-book-${row.page}:${row.number}`===id);
+ assert.ok(row&&q,'Missing Hansol source: '+id);
+ assert.equal(q.explanation,row.explanation,'Hansol explanation differs from source: '+id);
+ assert.deepEqual(q.explanationFormula,row.explanationFormula,'Hansol fraction differs from source: '+id);
+}
 for (const source of review.sources.filter(item => item.digestFields)) {
  const question = bankById.get(source.id);
  assert.ok(question, 'Missing reference question: ' + source.id);
@@ -58,7 +66,7 @@ for (const source of review.sources.filter(item => item.digestFields)) {
  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), source.sha256, 'Review reference changed: ' + source.id);
 }
 const fractions=[...bankById.values()].filter(q=>q.explanationFormula);
-assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction);
+assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction+review.hvacHansolBookFirst20Rounds.withFraction);
 for(const {explanationFormula:{tex,label}} of fractions){
  assert.ok(label.trim());
  assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);

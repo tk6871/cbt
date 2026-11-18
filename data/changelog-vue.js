@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.12',scope:'industrial',date:'2026.11.18',title:'공조 교재 도표와 계산 해설',summary:'한솔 공조 교재 25문항의 문제·해설 이미지를 대조했습니다.',tags:['공조','교재'],changes:['펌프 유효흡입수두의 중간 반올림과 습공기선도의 습기량 첨자를 교정했습니다.','접촉비와 바이패스비, 덕트 전압, 가역 열펌프 성적계수를 원본 도표와 함께 설명합니다.']},
     {version:'6.2.11',scope:'industrial',date:'2026.11.18',title:'에너지 교재 연료·상당증발량 해설',summary:'교재 33문항과 연결 기출 11문항의 해설을 확인했습니다.',tags:['에너지','교재'],changes:['보일러마력 환산과 증발계수를 분수로 설명하고 인쇄된 대입값·단위와 교정 내용을 구분합니다.','과잉 공기로 인한 온도 저하와 연소 조건을 구분합니다.']},
     {version:'6.2.10',scope:'industrial',date:'2026.11.18',title:'에너지 2002년 3월 기출 해설',summary:'17~80번을 검토해 이번 회차 80문항의 판단 근거를 기록했습니다.',tags:['에너지','해설'],changes:['교축밸브의 온도, 노즐의 유출속도, 습증기 건도를 지문과 그림에 맞게 설명합니다.','펌프 압력, 엔트로피 변화, 온도 제어의 지문과 정답 간 충돌을 구분해 표시합니다.']},
     {version:'6.2.9',scope:'industrial',date:'2026.11.18',title:'산업안전기사 2022년 4월 해설',summary:'빈 해설 12개에 해당 문항의 풀이와 참고 기출을 추가했습니다.',tags:['산업안전기사','기출 해설'],changes:['경상 20건을 버드의 분포에 대입해 위험순간 1,200건을 구하는 비율식을 추가했습니다.','사고예방 대책의 선정과 적용, 물적 직접원인, 휴먼에러의 구별을 보기와 연결했습니다.']},
@@ -2789,8 +2790,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.11';
+  changelog.versions.industrial = '6.2.12';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.11';
+  changelog.currentVersion = '6.2.12';
   window.CBT_CHANGELOG = changelog;
 })();
