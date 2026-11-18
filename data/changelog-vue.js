@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.14',scope:'industrial',date:'2026.11.18',title:'보일러 제어·배관과 에너지 기출 해설',summary:'교재 5개 단원과 관련 기출을 대조하고 압력·응력 단위와 연소 제어 조건을 설명했습니다.',tags:['에너지','교재'],changes:['교재 해설 20개에 원문 발췌를, 같은 문제 11개에 직접 대조한 지문·보기 텍스트를 추가했습니다.','회차마다 달라지는 정답 보기와 카르노 효율 계산을 확인했습니다.']},
     {version:'6.2.13',scope:'industrial',date:'2026.11.18',title:'에너지관리산업기사 2002년 5월 해설',summary:'80문항을 대조하고 56개에 계산·조건 또는 원문 확인 사유를 반영했습니다.',tags:['에너지','분수식'],changes:['CO₂ 가열량과 배기가스 산소 농도를 독립적으로 계산해 저장된 이의제기와 함께 볼 수 있습니다.','부호·단위·압력손실·엔트로피를 재검토하고 22개 분수식을 추가했습니다.','산업안전기사 빈 해설 6개를 작성하고 28번의 최소 컷셋 두 가지를 표시합니다.']},
     {version:'6.2.12',scope:'industrial',date:'2026.11.18',title:'공조 교재 도표와 계산 해설',summary:'한솔 공조 교재 25문항의 문제·해설 이미지를 대조했습니다.',tags:['공조','교재'],changes:['펌프 유효흡입수두의 중간 반올림과 습공기선도의 습기량 첨자를 교정했습니다.','접촉비와 바이패스비, 덕트 전압, 가역 열펌프 성적계수를 원본 도표와 함께 설명합니다.']},
     {version:'6.2.11',scope:'industrial',date:'2026.11.18',title:'에너지 교재 연료·상당증발량 해설',summary:'교재 33문항과 연결 기출 11문항의 해설을 확인했습니다.',tags:['에너지','교재'],changes:['보일러마력 환산과 증발계수를 분수로 설명하고 인쇄된 대입값·단위와 교정 내용을 구분합니다.','과잉 공기로 인한 온도 저하와 연소 조건을 구분합니다.']},
@@ -2791,8 +2792,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.13';
+  changelog.versions.industrial = '6.2.14';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.13';
+  changelog.currentVersion = '6.2.14';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -230,14 +230,17 @@ test('펌프 출구압력의 두 해석·저장 답과 이의제기 보존', asy
   await explanation.screenshot({path:info.outputPath('pump-dispute.png')});
 });
 
-test('623쪽 증발계수의 무차원 분수와 인쇄 단위', async ({page}, info) => {
+for (const sample of [
+  {title:'623쪽 증발계수의 무차원 분수와 인쇄 단위',round:'school-energy-topic-6',id:'school-energy-textbook-2025-2:45',source:'2025년 2회 · 원문 45번',result:'단위가 남지 않는다',printed:'1.185 (kJ/kg)',screenshot:'evaporation-factor.png'},
+  {title:'344쪽 스케줄 번호의 응력 단위·전사·분수',round:'school-energy-topic-11',id:'school-energy-textbook-2018-2:53',source:'2018년 2회 · 원문 53번',result:'72 kgf/cm²',printed:'72[kgf/cm²]',screenshot:'pipe-schedule.png'},
+]) test(sample.title, async ({page}, info) => {
   await prepare(page,'energy-midterm');
-  const round = page.locator('#round-card-school-energy-topic-6');
+  const round = page.locator('#round-card-'+sample.round);
   await round.getByRole('checkbox',{name:/계산 문제 포함/}).check();
   await round.getByRole('button',{name:'학습모드',exact:true}).click();
   const jump = page.getByRole('spinbutton',{name:'이동할 문제 번호'});
   await expect(jump).toBeVisible();
-  const questionId = 'school-energy-textbook-2025-2:45';
+  const questionId = sample.id;
   const findPosition = () => page.evaluate(id => {
     const session = JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}');
     return (session.itemIds || []).indexOf(id) + 1;
@@ -245,14 +248,15 @@ test('623쪽 증발계수의 무차원 분수와 인쇄 단위', async ({page}, 
   await expect.poll(findPosition).toBeGreaterThan(0);
   await jump.fill(String(await findPosition()));
   await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
-  const card = page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:'2025년 2회 · 원문 45번'})});
+  const card = page.locator('.question-card').filter({has:page.locator('.school-source-chip').filter({hasText:sample.source})});
   await card.locator('.image-answer-hotspot').nth(1).click();
   const box = card.locator('.explanation-box');
-  await expect(box.locator('.beginner-primary-explanation')).toContainText('단위가 남지 않는다');
+  await expect(box.locator('.beginner-primary-explanation')).toContainText(sample.result);
   await expect(box.locator('.katex mfrac').first()).toBeAttached();
-  await expect(box.locator('.transcription-text')).toContainText('1.185 (kJ/kg)');
-  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['school-energy-textbook-2025-2:45'])).toBe(2);
-  await box.screenshot({path:info.outputPath('evaporation-factor.png')});
+  await expect(box.locator('.transcription-text')).toContainText(sample.printed);
+  await expect.poll(()=>page.evaluate(id=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.[id],sample.id)).toBe(2);
+  await box.evaluate(el => el.scrollIntoView({block:'center',behavior:'instant'}));
+  await box.screenshot({path:info.outputPath(sample.screenshot)});
 });
 
 test('한솔 1-225쪽 유효흡입수두 원문·분수·보기',async({page},info)=>{
