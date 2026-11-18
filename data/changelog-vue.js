@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.3',scope:'industrial',date:'2026.11.18',title:'일부 문제 해설 교정',summary:'직접 검토한 계산·작동 해설을 보완하고 일부 이미지 해설을 글자로 제공합니다.',tags:['해설','원문 대조'],changes:['계산식·단위 조건·열교환 작동 이유를 교정하고 연결된 추가 해설에도 반영했습니다.','이미지 해설 3건에 원문 대조 텍스트를 추가했습니다. 이 중 2건은 핵심 부분만 옮겼으며 원본은 그대로 볼 수 있습니다.','전체 문항의 내용 검토를 완료한 것은 아닙니다.']} ,
     {version:'6.2.2',scope:'industrial',date:'2026.11.17',title:'교재 이미지에서 답 고르기',summary:'한솔 공조와 에너지설비 교재의 인쇄된 보기를 눌러 답을 기록할 수 있습니다.',tags:['교재','문제풀이'],changes:['한솔 공조 교재 원문 749문항에 보기 선택 영역을 추가했습니다.','에너지설비 교재 414·471·486쪽에서 누른 번호와 저장되는 답이 일치하도록 보기 위치를 바로잡았습니다.']},
     {version:'6.2.1',scope:'industrial',date:'2026.11.16',title:'학습 라운지 공간 이름 정리',summary:'사진 위 공간 이름을 글씨만 보이게 정리했습니다.',tags:['홈','가독성'],changes:['시험장·복습 데스크·자료실의 배경 박스와 장식을 없애고 밑줄로 선택한 공간을 표시합니다.','휴대폰에서는 사진 아래 넓은 텍스트 행으로 공간을 선택합니다. 키보드 포커스와 기존 학습 이동은 유지합니다.']},
     {version:'6.2',scope:'industrial',date:'2026.11.13',title:'선택형 학습 라운지',summary:'공간을 선택해 공부를 시작하는 새로운 홈을 추가했습니다.',tags:['홈','선택 설정'],changes:['기존 홈이 기본이며 홈 버튼과 설정에서 학습 라운지로 전환할 수 있습니다.','시험장·복습 데스크·자료실에서 기존 공부 기능으로 이동합니다. 문제풀이와 학습 기록은 그대로 유지합니다.','휴대폰에서는 큰 세로 버튼으로 공간을 고릅니다.']},
@@ -2780,8 +2781,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.2';
+  changelog.versions.industrial = '6.2.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.2';
+  changelog.currentVersion = '6.2.3';
   window.CBT_CHANGELOG = changelog;
 })();

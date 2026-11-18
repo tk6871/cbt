@@ -1,0 +1,752 @@
+[
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20030831:12",
+    "question": {
+      "number": 12,
+      "text": "에어와셔에서 공기의 입· 출구 엔탈피를 i1 ,i2 , 입출구 수온을 tw1 , tw2 라 할 때 수공기비(L/G)를 나타낸 것은? (단, L : 수량 , G : 공기량)",
+      "html": "에어와셔에서 공기의 입· 출구 엔탈피를 i1 ,i2 , 입출구 수온을 tw1 , tw2 라 할 때 수공기비(L/G)를 나타낸 것은? (단, L : 수량 , G : 공기량)",
+      "images": [],
+      "sourceImage": null,
+      "choices": [
+        {
+          "text": "L/G = (i1 - i2)/(tw2 - tw1)",
+          "html": "L/G = (i1 - i2)/(tw2 - tw1)",
+          "images": []
+        },
+        {
+          "text": "L/G = (tw2 - tw1)/(i1 - i2)",
+          "html": "L/G = (tw2 - tw1)/(i1 - i2)",
+          "images": []
+        },
+        {
+          "text": "L/G = (tw1 - tw2)(i1 - i2)",
+          "html": "L/G = (tw1 - tw2)(i1 - i2)",
+          "images": []
+        },
+        {
+          "text": "L/G = (i1 - i2)(tw2 - tw1)",
+          "html": "L/G = (i1 - i2)(tw2 - tw1)",
+          "images": []
+        }
+      ],
+      "answer": 1,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "습공기선도에서는 건구·습구온도, 상대습도, 절대습도, 엔탈피와 수증기분압의 관계를 읽습니다. 가열·냉각·가습·제습 과정에서 어느 값이 일정한지 먼저 판단해야 합니다. 따라서 정답은 ① ‘L/G = (i1 - i2)/(tw2 - tw1)’입니다.",
+      "explanationHtml": "습공기선도에서는 건구·습구온도, 상대습도, 절대습도, 엔탈피와 수증기분압의 관계를 읽습니다. 가열·냉각·가습·제습 과정에서 어느 값이 일정한지 먼저 판단해야 합니다. 따라서 정답은 ① ‘L/G = (i1 - i2)/(tw2 - tw1)’입니다.",
+      "source": "comcbt.com",
+      "explanationType": "ai-reference",
+      "explanationConfidence": "medium",
+      "explanationProvenance": "local-beginner-authored",
+      "additionalExplanations": [
+        {
+          "label": "공조 복원 추가 해설",
+          "source": "공조 복원 · 2021년 3회 2번",
+          "text": "수공기비 L/G는 물이 잃은 열량과 공기가 얻은 열량이 같다는 열수지에서 구합니다. 따라서 L/G=(i₁-i₂)/(tᴡ₂-tᴡ₁)가 되어 정답은 ①입니다."
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20140302:67",
+    "question": {
+      "number": 67,
+      "text": "120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?",
+      "html": "120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?",
+      "images": [],
+      "sourceImage": null,
+      "choices": [
+        {
+          "text": "직렬접속",
+          "html": "직렬접속",
+          "images": []
+        },
+        {
+          "text": "병렬접속",
+          "html": "병렬접속",
+          "images": []
+        },
+        {
+          "text": "직병렬접속",
+          "html": "직병렬접속",
+          "images": []
+        },
+        {
+          "text": "병직렬접속",
+          "html": "병직렬접속",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "전기회로는 전압 V, 전류 I, 저항 R의 관계 V=IR을 기본으로 봅니다. 전력은 직류·저항회로에서 P=VI=I²R=V²/R로 서로 바꿔 계산할 수 있습니다. 따라서 정답은 ② ‘병렬접속’입니다.",
+      "explanationHtml": "전기회로는 전압 V, 전류 I, 저항 R의 관계 V=IR을 기본으로 봅니다. 전력은 직류·저항회로에서 P=VI=I²R=V²/R로 서로 바꿔 계산할 수 있습니다. 따라서 정답은 ② ‘병렬접속’입니다.",
+      "source": "comcbt.com",
+      "explanationType": "ai-reference",
+      "explanationConfidence": "medium",
+      "explanationProvenance": "local-beginner-authored",
+      "additionalExplanations": [
+        {
+          "label": "공조 복원 추가 해설",
+          "source": "공조 복원 · 2021년 1회 52번",
+          "text": "같은 저항을 병렬로 연결할수록 전체 저항은 작아집니다. 120Ω 저항 4개를 모두 병렬로 연결하면 합성저항은 120÷4=30Ω으로 가장 작으므로 정답은 ②입니다."
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20150531:36",
+    "question": {
+      "number": 36,
+      "text": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m3/min인 경우 펌프의 토출량을 1.8m3/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "html": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m3/min인 경우 펌프의 토출량을 1.8m3/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "images": [],
+      "sourceImage": null,
+      "choices": [
+        {
+          "text": "850rpm",
+          "html": "850rpm",
+          "images": []
+        },
+        {
+          "text": "960rpm",
+          "html": "960rpm",
+          "images": []
+        },
+        {
+          "text": "1025rpm",
+          "html": "1025rpm",
+          "images": []
+        },
+        {
+          "text": "1365rpm",
+          "html": "1365rpm",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "Q2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n[해설작성자 : 벡스]\n\n1.8/1.5*80=96\n[해설작성자 : 포항폴리텍 특수용접반 박건욱]\n\n펌프의 상사법칙\n펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다\n(N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3\n\n여기서 구하라 하는곳은 나중 회전수인 N2\n주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800\n따라서 (N2/N1)=(Q2/Q1) 식 사용\nN2=N1*(Q2/Q1)=800*(1.8/1.5)=960\n[해설작성자 : 로또좀줘라]",
+      "explanationHtml": "",
+      "source": "comcbt.com",
+      "additionalExplanations": [
+        {
+          "label": "공조 복원 추가 해설",
+          "source": "공조 복원 · 2022년 2회 33번",
+          "text": "같은 펌프에서는 토출량이 회전수에 비례합니다. N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다."
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20211:52",
+    "question": {
+      "number": 52,
+      "text": "120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?",
+      "html": "120Ω의 저항 4개를 접속하여 가장 작은 저항값을 얻기 위한 회로 접속법은 어느 것인가?",
+      "images": [
+        "assets/hvac/diagram-images/2021_1/52.jpg"
+      ],
+      "sourceImage": "assets/hvac/assets/questions/2021_1/52.jpg",
+      "choices": [
+        {
+          "text": "직렬접속",
+          "html": "직렬접속",
+          "images": []
+        },
+        {
+          "text": "병렬접속",
+          "html": "병렬접속",
+          "images": []
+        },
+        {
+          "text": "직병렬접속",
+          "html": "직병렬접속",
+          "images": []
+        },
+        {
+          "text": "병직렬접속",
+          "html": "병직렬접속",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "같은 저항을 병렬로 연결할수록 전체 저항은 작아집니다. 120Ω 저항 4개를 모두 병렬로 연결하면 합성저항은 120÷4=30Ω으로 가장 작으므로 정답은 ②입니다.",
+      "explanationHtml": "같은 저항을 병렬로 연결할수록 전체 저항은 작아집니다.<br>120Ω 저항 4개를 모두 병렬로 연결하면 합성저항은 120÷4=30Ω으로 가장 작으므로 정답은 ②입니다.",
+      "source": "local-source",
+      "explanationType": "ai-reference",
+      "explanationConfidence": "high",
+      "explanationProvenance": "manual",
+      "correctionSource": "2021년 1회 배포 PDF 대조",
+      "additionalExplanations": [
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2014년 2014.03.02 67번",
+          "text": "전기회로는 전압 V, 전류 I, 저항 R의 관계 V=IR을 기본으로 봅니다. 전력은 직류·저항회로에서 P=VI=I²R=V²/R로 서로 바꿔 계산할 수 있습니다. 따라서 정답은 ② ‘병렬접속’입니다."
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20213:2",
+    "question": {
+      "number": 2,
+      "text": "에어와셔에서 공기의 입·출구 엔탈피를 i₁, i₂, 입·출구 수온을 tw₁, tw₂라 할 때 수공기비(L/G)를 나타낸 것은? (단, L: 수량, G: 공기량)",
+      "html": "에어와셔에서 공기의 입·출구 엔탈피를 i₁, i₂, 입·출구 수온을 tw₁, tw₂라 할 때 수공기비(L/G)를 나타낸 것은? (단, L: 수량, G: 공기량)",
+      "images": [],
+      "sourceImage": "assets/hvac/assets/questions/2021_3/02.jpg",
+      "choices": [
+        {
+          "text": "L/G = (i₁-i₂)/(tw₂-tw₁)",
+          "html": "L/G = (i₁-i₂)/(tw₂-tw₁)",
+          "images": []
+        },
+        {
+          "text": "L/G = (tw₂-tw₁)/(i₁-i₂)",
+          "html": "L/G = (tw₂-tw₁)/(i₁-i₂)",
+          "images": []
+        },
+        {
+          "text": "L/G = (tw₁-tw₂)·(i₁-i₂)",
+          "html": "L/G = (tw₁-tw₂)·(i₁-i₂)",
+          "images": []
+        },
+        {
+          "text": "L/G = (i₁-i₂)·(tw₂-tw₁)",
+          "html": "L/G = (i₁-i₂)·(tw₂-tw₁)",
+          "images": []
+        }
+      ],
+      "answer": 1,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "수공기비 L/G는 물이 잃은 열량과 공기가 얻은 열량이 같다는 열수지에서 구합니다. 따라서 L/G=(i₁-i₂)/(tᴡ₂-tᴡ₁)가 되어 정답은 ①입니다.",
+      "explanationHtml": "수공기비 L/G는 물이 잃은 열량과 공기가 얻은 열량이 같다는 열수지에서 구합니다.<br>따라서 L/G=(i₁-i₂)/(t<sub>w2</sub>-t<sub>w1</sub>)가 되어 정답은 ①입니다.",
+      "source": "local-source",
+      "explanationType": "ai-reference",
+      "explanationConfidence": "high",
+      "explanationProvenance": "manual",
+      "correctionSource": "2021년 3회 배포 PDF 대조",
+      "additionalExplanations": [
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2003년 2003.08.31 12번",
+          "text": "습공기선도에서는 건구·습구온도, 상대습도, 절대습도, 엔탈피와 수증기분압의 관계를 읽습니다. 가열·냉각·가습·제습 과정에서 어느 값이 일정한지 먼저 판단해야 합니다. 따라서 정답은 ① ‘L/G = (i1 - i2)/(tw2 - tw1)’입니다."
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac.js",
+    "id": "hvac-20222:33",
+    "question": {
+      "number": 33,
+      "text": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m³/min인 경우 펌프의 토출량을 1.8m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "html": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m³/min인 경우 펌프의 토출량을 1.8m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "images": [],
+      "sourceImage": "assets/hvac/assets/questions/2022_2/33.jpg",
+      "choices": [
+        {
+          "text": "850rpm",
+          "html": "850rpm",
+          "images": []
+        },
+        {
+          "text": "960rpm",
+          "html": "960rpm",
+          "images": []
+        },
+        {
+          "text": "1025rpm",
+          "html": "1025rpm",
+          "images": []
+        },
+        {
+          "text": "1365rpm",
+          "html": "1365rpm",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerRate": null,
+      "hint": "",
+      "explanation": "같은 펌프에서는 토출량이 회전수에 비례합니다. N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.\n\n[COMCBT 동일 문제 추가 해설]\nQ2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n[해설작성자 : 벡스]\n\n1.8/1.5*80=96\n[해설작성자 : 포항폴리텍 특수용접반 박건욱]\n\n펌프의 상사법칙\n펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다\n(N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3\n\n여기서 구하라 하는곳은 나중 회전수인 N2\n주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800\n따라서 (N2/N1)=(Q2/Q1) 식 사용\nN2=N1*(Q2/Q1)=800*(1.8/1.5)=960\n[해설작성자 : 로또좀줘라]",
+      "explanationHtml": "같은 펌프에서는 토출량이 회전수에 비례합니다.<br>N₂=800×(1.8÷1.5)=960rpm이므로 정답은 ②입니다.",
+      "source": "local-source",
+      "explanationType": "ai-reference",
+      "explanationConfidence": "high",
+      "explanationProvenance": "manual",
+      "correctionSource": "2022년 2회 배포 PDF 대조 및 원문 이미지 복원",
+      "additionalExplanations": [
+        {
+          "label": "한솔 공조 추가 해설",
+          "source": "한솔 공조 · 2020년 4회 35번",
+          "text": "Q2=(N2/N1)*Q1 1.8=(N2/800)*1.5 N2=91.8*800)/1.5 =960rpm 1.8/1.5*80=96 펌프의 상사법칙 따라서 정답은 ② ‘960rpm’입니다."
+        },
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2015년 2015.05.31 36번",
+          "text": "Q2=(N2/N1)*Q1 1.8=(N2/800)*1.5 N2=91.8*800)/1.5 =960rpm [해설작성자 : 벡스] 1.8/1.5*80=96 [해설작성자 : 포항폴리텍 특수용접반 박건욱] 펌프의 상사법칙 펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다 (N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3 여기서 구하라 하는곳은 나중 회전수인 N2 주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800 따라서 (N2/N1)=(Q2/Q1) 식 사용 N2=N1*(Q2/Q1)=800*(1.8/1.5)=960 [해설작성자 : 로또좀줘라]"
+        }
+      ],
+      "explanationSupplementSource": "hvac-hansol-2020-4:35"
+    }
+  },
+  {
+    "file": "data/hvac-hansol.js",
+    "id": "hvac-hansol-2020-4:35",
+    "question": {
+      "number": 35,
+      "text": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m/min인 경우 펌프의 토출량을 1.8m/min으로 하기 위하여 회 전수를 얼마로 변화하면 되는가?",
+      "html": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m/min인 경우 펌프의 토출량을 1.8m/min으로 하기 위하여 회 전수를 얼마로 변화하면 되는가?",
+      "images": [],
+      "sourceImage": "assets/hvac-hansol/questions/2020_4/35.webp",
+      "choices": [
+        {
+          "text": "850rpm",
+          "html": "850rpm",
+          "images": []
+        },
+        {
+          "text": "960rpm",
+          "html": "960rpm",
+          "images": []
+        },
+        {
+          "text": "1025rpm",
+          "html": "1025rpm",
+          "images": []
+        },
+        {
+          "text": "1365rpm",
+          "html": "1365rpm",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerHotspots": [
+        {
+          "choice": 1,
+          "x": 1.98,
+          "y": 62.05,
+          "width": 19.87,
+          "height": 12.36,
+          "segments": [
+            {
+              "x": 1.98,
+              "y": 62.05,
+              "width": 19.87,
+              "height": 12.36
+            }
+          ]
+        },
+        {
+          "choice": 2,
+          "x": 46.41,
+          "y": 62.05,
+          "width": 19.87,
+          "height": 12.36,
+          "segments": [
+            {
+              "x": 46.41,
+              "y": 62.05,
+              "width": 19.87,
+              "height": 12.36
+            }
+          ]
+        },
+        {
+          "choice": 3,
+          "x": 1.98,
+          "y": 80.71,
+          "width": 22.05,
+          "height": 12.36,
+          "segments": [
+            {
+              "x": 1.98,
+              "y": 80.71,
+              "width": 22.05,
+              "height": 12.36
+            }
+          ]
+        },
+        {
+          "choice": 4,
+          "x": 46.41,
+          "y": 80.71,
+          "width": 22.05,
+          "height": 12.36,
+          "segments": [
+            {
+              "x": 46.41,
+              "y": 80.71,
+              "width": 22.05,
+              "height": 12.36
+            }
+          ]
+        }
+      ],
+      "answerRate": null,
+      "hint": "",
+      "explanation": "Q2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n1.8/1.5*80=96\n펌프의 상사법칙\n따라서 정답은 ② ‘960rpm’입니다.\n\n[COMCBT 동일 문제 추가 해설]\nQ2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n[해설작성자 : 벡스]\n\n1.8/1.5*80=96\n[해설작성자 : 포항폴리텍 특수용접반 박건욱]\n\n펌프의 상사법칙\n펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다\n(N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3\n\n여기서 구하라 하는곳은 나중 회전수인 N2\n주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800\n따라서 (N2/N1)=(Q2/Q1) 식 사용\nN2=N1*(Q2/Q1)=800*(1.8/1.5)=960\n[해설작성자 : 로또좀줘라]",
+      "explanationHtml": "",
+      "imageOnly": true,
+      "source": "한솔아카데미 제공 PDF",
+      "explanationProvenance": "hvac-20150531:36",
+      "explanationMatchScore": 0.9595,
+      "additionalExplanations": [
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2015년 2015.05.31 36번",
+          "text": "Q2=(N2/N1)*Q1 1.8=(N2/800)*1.5 N2=91.8*800)/1.5 =960rpm [해설작성자 : 벡스] 1.8/1.5*80=96 [해설작성자 : 포항폴리텍 특수용접반 박건욱] 펌프의 상사법칙 펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다 (N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3 여기서 구하라 하는곳은 나중 회전수인 N2 주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800 따라서 (N2/N1)=(Q2/Q1) 식 사용 N2=N1*(Q2/Q1)=800*(1.8/1.5)=960 [해설작성자 : 로또좀줘라]"
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac-hansol.js",
+    "id": "hvac-hansol-2022-3:33",
+    "question": {
+      "number": 33,
+      "text": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m /min인 경우 펌프의 토출량을 1.8m/min으로 하기 위 하여 회전수를 얼마로 변화하면 되는가?",
+      "html": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m /min인 경우 펌프의 토출량을 1.8m/min으로 하기 위 하여 회전수를 얼마로 변화하면 되는가?",
+      "images": [],
+      "sourceImage": "assets/hvac-hansol/questions/2022_3/33.webp",
+      "choices": [
+        {
+          "text": "850rpm",
+          "html": "850rpm",
+          "images": []
+        },
+        {
+          "text": "960rpm",
+          "html": "960rpm",
+          "images": []
+        },
+        {
+          "text": "1025rpm",
+          "html": "1025rpm",
+          "images": []
+        },
+        {
+          "text": "1365rpm",
+          "html": "1365rpm",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerHotspots": [
+        {
+          "choice": 1,
+          "x": 2.09,
+          "y": 62.17,
+          "width": 19.74,
+          "height": 12.28,
+          "segments": [
+            {
+              "x": 2.09,
+              "y": 62.17,
+              "width": 19.74,
+              "height": 12.28
+            }
+          ]
+        },
+        {
+          "choice": 2,
+          "x": 46.52,
+          "y": 62.17,
+          "width": 19.74,
+          "height": 12.28,
+          "segments": [
+            {
+              "x": 46.52,
+              "y": 62.17,
+              "width": 19.74,
+              "height": 12.28
+            }
+          ]
+        },
+        {
+          "choice": 3,
+          "x": 2.09,
+          "y": 80.56,
+          "width": 21.79,
+          "height": 12.28,
+          "segments": [
+            {
+              "x": 2.09,
+              "y": 80.56,
+              "width": 21.79,
+              "height": 12.28
+            }
+          ]
+        },
+        {
+          "choice": 4,
+          "x": 46.52,
+          "y": 80.56,
+          "width": 21.79,
+          "height": 12.28,
+          "segments": [
+            {
+              "x": 46.52,
+              "y": 80.56,
+              "width": 21.79,
+              "height": 12.28
+            }
+          ]
+        }
+      ],
+      "answerRate": null,
+      "hint": "",
+      "explanation": "Q2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n1.8/1.5*80=96\n펌프의 상사법칙\n따라서 정답은 ② ‘960rpm’입니다.\n\n[COMCBT 동일 문제 추가 해설]\nQ2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n[해설작성자 : 벡스]\n\n1.8/1.5*80=96\n[해설작성자 : 포항폴리텍 특수용접반 박건욱]\n\n펌프의 상사법칙\n펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다\n(N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3\n\n여기서 구하라 하는곳은 나중 회전수인 N2\n주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800\n따라서 (N2/N1)=(Q2/Q1) 식 사용\nN2=N1*(Q2/Q1)=800*(1.8/1.5)=960\n[해설작성자 : 로또좀줘라]",
+      "explanationHtml": "",
+      "imageOnly": true,
+      "source": "한솔아카데미 제공 PDF",
+      "explanationProvenance": "hvac-20150531:36",
+      "explanationMatchScore": 0.9595,
+      "additionalExplanations": [
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2015년 2015.05.31 36번",
+          "text": "Q2=(N2/N1)*Q1 1.8=(N2/800)*1.5 N2=91.8*800)/1.5 =960rpm [해설작성자 : 벡스] 1.8/1.5*80=96 [해설작성자 : 포항폴리텍 특수용접반 박건욱] 펌프의 상사법칙 펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다 (N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3 여기서 구하라 하는곳은 나중 회전수인 N2 주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800 따라서 (N2/N1)=(Q2/Q1) 식 사용 N2=N1*(Q2/Q1)=800*(1.8/1.5)=960 [해설작성자 : 로또좀줘라]"
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac-hansol.js",
+    "id": "hvac-hansol-2025-3:25",
+    "question": {
+      "number": 25,
+      "text": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m/min 인 경우 펌프의 토출량을 1.8m/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "html": "12kW 펌프의 회전수가 800rpm, 토출량 1.5m/min 인 경우 펌프의 토출량을 1.8m/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+      "images": [],
+      "sourceImage": "assets/hvac-hansol/questions/2025_3/25.webp",
+      "choices": [
+        {
+          "text": "850rpm",
+          "html": "850rpm",
+          "images": []
+        },
+        {
+          "text": "960rpm",
+          "html": "960rpm",
+          "images": []
+        },
+        {
+          "text": "1025rpm",
+          "html": "1025rpm",
+          "images": []
+        },
+        {
+          "text": "1365rpm",
+          "html": "1365rpm",
+          "images": []
+        }
+      ],
+      "answer": 2,
+      "answerHotspots": [
+        {
+          "choice": 1,
+          "x": 2.07,
+          "y": 62.88,
+          "width": 19.71,
+          "height": 12.32,
+          "segments": [
+            {
+              "x": 2.07,
+              "y": 62.88,
+              "width": 19.71,
+              "height": 12.32
+            }
+          ]
+        },
+        {
+          "choice": 2,
+          "x": 46.44,
+          "y": 62.88,
+          "width": 19.71,
+          "height": 12.32,
+          "segments": [
+            {
+              "x": 46.44,
+              "y": 62.88,
+              "width": 19.71,
+              "height": 12.32
+            }
+          ]
+        },
+        {
+          "choice": 3,
+          "x": 2.07,
+          "y": 81.23,
+          "width": 21.75,
+          "height": 12.32,
+          "segments": [
+            {
+              "x": 2.07,
+              "y": 81.23,
+              "width": 21.75,
+              "height": 12.32
+            }
+          ]
+        },
+        {
+          "choice": 4,
+          "x": 46.44,
+          "y": 81.23,
+          "width": 21.75,
+          "height": 12.32,
+          "segments": [
+            {
+              "x": 46.44,
+              "y": 81.23,
+              "width": 21.75,
+              "height": 12.32
+            }
+          ]
+        }
+      ],
+      "answerRate": null,
+      "hint": "",
+      "explanation": "Q2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n1.8/1.5*80=96\n펌프의 상사법칙\n따라서 정답은 ② ‘960rpm’입니다.\n\n[COMCBT 동일 문제 추가 해설]\nQ2=(N2/N1)*Q1\n1.8=(N2/800)*1.5\nN2=91.8*800)/1.5\n=960rpm\n[해설작성자 : 벡스]\n\n1.8/1.5*80=96\n[해설작성자 : 포항폴리텍 특수용접반 박건욱]\n\n펌프의 상사법칙\n펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다\n(N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3\n\n여기서 구하라 하는곳은 나중 회전수인 N2\n주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800\n따라서 (N2/N1)=(Q2/Q1) 식 사용\nN2=N1*(Q2/Q1)=800*(1.8/1.5)=960\n[해설작성자 : 로또좀줘라]",
+      "explanationHtml": "",
+      "imageOnly": true,
+      "source": "한솔아카데미 제공 PDF",
+      "explanationProvenance": "hvac-20150531:36",
+      "explanationMatchScore": 0.9595,
+      "additionalExplanations": [
+        {
+          "label": "COMCBT 추가 해설",
+          "source": "COMCBT · 2015년 2015.05.31 36번",
+          "text": "Q2=(N2/N1)*Q1 1.8=(N2/800)*1.5 N2=91.8*800)/1.5 =960rpm [해설작성자 : 벡스] 1.8/1.5*80=96 [해설작성자 : 포항폴리텍 특수용접반 박건욱] 펌프의 상사법칙 펌프의 회전수는 유량에 정비례하고 양정에 제곱하고 축동력에 세제곱한다 (N2/N1)=(Q2/Q1)=(H2/H1)^2=(L2/L1)^3 여기서 구하라 하는곳은 나중 회전수인 N2 주어진것은 펌프의 토출량인 Q1=1.5,Q2=1.8,N1=800 따라서 (N2/N1)=(Q2/Q1) 식 사용 N2=N1*(Q2/Q1)=800*(1.8/1.5)=960 [해설작성자 : 로또좀줘라]"
+        }
+      ]
+    }
+  },
+  {
+    "file": "data/hvac-hansol-book.js",
+    "id": "hvac-hansol-book-1-182:79",
+    "question": {
+      "number": 79,
+      "text": "전열 교환기의 이용 시 주의사항으로 옳지 않은 것은?",
+      "html": "",
+      "ocrText": "전열 교환기의 이용 시 주의사항으로 옳지 않은 것은?",
+      "images": [],
+      "sourceImage": "assets/hvac-hansol-book/questions/1-182-79.webp",
+      "sourceImageSize": [
+        1110,
+        686
+      ],
+      "imageOnly": true,
+      "choices": [
+        {
+          "text": "배기량은 외기량의40% 이상",
+          "html": "",
+          "images": []
+        },
+        {
+          "text": "주방배기는 배열회수에 사용하지 않음",
+          "html": "",
+          "images": []
+        },
+        {
+          "text": "로터 구동모터와 급배기팬 인터록",
+          "html": "",
+          "images": []
+        },
+        {
+          "text": "중간기 외기냉방에도 열교환 덕트 구성",
+          "html": "",
+          "images": []
+        }
+      ],
+      "answer": 4,
+      "answerHotspots": [
+        {
+          "choice": 1,
+          "x": 1.4414414414414414,
+          "y": 28.57142857142857,
+          "width": 98.37837837837839,
+          "height": 11.661807580174926,
+          "segments": [
+            {
+              "x": 1.4414414414414414,
+              "y": 28.57142857142857,
+              "width": 98.37837837837839,
+              "height": 11.661807580174926
+            }
+          ]
+        },
+        {
+          "choice": 2,
+          "x": 1.4414414414414414,
+          "y": 40.816326530612244,
+          "width": 98.37837837837839,
+          "height": 22.448979591836736,
+          "segments": [
+            {
+              "x": 1.4414414414414414,
+              "y": 40.816326530612244,
+              "width": 98.37837837837839,
+              "height": 22.448979591836736
+            }
+          ]
+        },
+        {
+          "choice": 3,
+          "x": 1.4414414414414414,
+          "y": 63.84839650145773,
+          "width": 98.37837837837839,
+          "height": 22.740524781341108,
+          "segments": [
+            {
+              "x": 1.4414414414414414,
+              "y": 63.84839650145773,
+              "width": 98.37837837837839,
+              "height": 22.740524781341108
+            }
+          ]
+        },
+        {
+          "choice": 4,
+          "x": 1.4414414414414414,
+          "y": 87.17201166180757,
+          "width": 98.37837837837839,
+          "height": 11.9533527696793,
+          "segments": [
+            {
+              "x": 1.4414414414414414,
+              "y": 87.17201166180757,
+              "width": 98.37837837837839,
+              "height": 11.9533527696793
+            }
+          ]
+        }
+      ],
+      "explanation": "중간기 외기냉방에는 실내외 엔탈피차가 작아 열회수의 이득이 적으므로 열교환부를 우회하는 바이패스 덕트를 이용합니다. 항상 열교환 덕트로 통과시킨다는④가 틀립니다.",
+      "explanationHtml": "",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/1-182-79.webp"
+      ],
+      "originalExplanationImagesFolded": true,
+      "explanationType": "editorial-supplement",
+      "explanationProvenance": "book-original-reviewed",
+      "explanationBasis": "교재 지문·네 보기·정답을 직접 읽어 정리한 설명입니다. 교재 원문 풀이 이미지는 따로 보존합니다.",
+      "bookVerified": true,
+      "_subject": "공기조화설비",
+      "source": "한솔 공조 교재",
+      "sourcePage": "한솔 공조 교재 1-182쪽 79번"
+    }
+  }
+]

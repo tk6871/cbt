@@ -22,9 +22,9 @@
   window.CBT_DISPLAY_PREFERENCE = displayPreference;
   window.CBT_LOADED_QUALIFICATION = qualification;
 
-  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=590"];
-  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=590");
-  if (qualification === "energy") scripts.push("data/energy-restored.js?v=619");
+  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=645"];
+  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=645");
+  if (qualification === "energy") scripts.push("data/energy-restored.js?v=645");
   document.write(scripts.map(function (src) {
     return '<script src="' + src + '"></script>';
   }).join(""));

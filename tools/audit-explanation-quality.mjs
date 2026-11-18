@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs';
+import { buildNamedHvacSourceIndex } from './explanation-source-index.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,7 +32,7 @@ function readCatalog(filename) {
 }
 
 function plain(value = '') {
-  return String(value).replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  return String(value).normalize('NFKC').replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
 function normalized(value = '') {
@@ -65,16 +66,6 @@ function correctChoice(question) {
   return plain(choice.text || choice.html || '');
 }
 
-function sourceKind(catalog, round) {
-  if (catalog.key === 'hvac-hansol') return '한솔 공조';
-  return Number(round.year) >= 2021 ? '공조 복원' : 'COMCBT';
-}
-
-function sourceDescription(catalog, round, question) {
-  const session = String(round.session || '').replace(/^.*?:\s*/, '');
-  return `${sourceKind(catalog, round)} · ${round.year}년 ${session || round.title} ${question.number}번`;
-}
-
 function sourceMatches(target, source, answerThreshold = 0.9) {
   const targetAnswer = correctChoice(target.question);
   const sourceAnswer = correctChoice(source.question);
@@ -95,7 +86,7 @@ const sourceRows = parsedCatalogs.flatMap(({ catalog }) => (catalog.rounds || []
   round,
   question,
 }))));
-const sourceByDescription = new Map(sourceRows.map((row) => [sourceDescription(row.catalog, row.round, row.question), row]));
+const sourceByDescription = buildNamedHvacSourceIndex(sourceRows);
 const sourceById = new Map(sourceRows.map((row) => [`${row.round.id}:${row.question.number}`, row]));
 
 for (const { filename, catalog } of parsedCatalogs) {

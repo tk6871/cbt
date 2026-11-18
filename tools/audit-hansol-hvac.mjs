@@ -3,6 +3,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const root = process.cwd();
+// Follow the same preserved source-path → display-asset mapping as the app.
+const displayImages = JSON.parse(fs.readFileSync(path.join(root, 'data/problem-images-webp90.json'), 'utf8')).mappings;
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'data/hvac-hansol.js'), 'utf8'), context, {
   filename: 'data/hvac-hansol.js',
@@ -104,7 +106,7 @@ for (const round of catalog?.rounds || []) {
     } else {
       const clean = String(question.sourceImage).replace(/^\//, '');
       images.add(clean);
-      if (!fs.existsSync(path.join(root, clean))) errors.push(`${location}: 이미지 파일 누락 ${clean}`);
+      if (!fs.existsSync(path.join(root, displayImages[clean] || clean))) errors.push(`${location}: 이미지 파일 누락 ${clean}`);
     }
     if (question.explanationProvenance === 'hansol-answer-only') answerOnlyExplanations += 1;
     else if (question.explanationProvenance === 'hansol-beginner-authored') {
