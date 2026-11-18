@@ -709,3 +709,17 @@ test('교재 얼음 가열 보기의 숫자 재대조', async ({page}) => {
  await expect(example.locator('details strong')).toContainText('보기 ③ 30,306 kJ');
  await expect(example).toContainText('첫 계산은 −10 ℃');
 });
+
+test('공조 급수 도면 하단 분기의 관경 계산', async ({page}, info) => {
+ await prepare(page, 'hvac');
+ await page.locator('#round-card-hvac-20211').getByRole('button', {name:'학습모드', exact:true}).click();
+ await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('47');
+ await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+ const card = page.locator('.question-card').filter({has:page.getByRole('img', {name:'47번 문제 원문', exact:true})});
+ await card.locator('.image-answer-hotspot').nth(3).click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('대변기 세 개');
+ await expect(explanation).toContainText('2.4개분');
+ await expect(explanation).toContainText('④ 40A');
+ await explanation.screenshot({path:info.outputPath('supply-branch-calculation.png')});
+});

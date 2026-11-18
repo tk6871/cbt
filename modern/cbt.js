@@ -1,1 +1,1 @@
-import"./chunks/preload-helper-v671.js";import"./chunks/main-v671.js";import"./chunks/problemImages-v671.js";import"./chunks/import-wrapper-prod-v671.js";import"./chunks/index-v6712.js";import"./chunks/problem-image-index-v671.js";
+import"./chunks/preload-helper-v672.js";import"./chunks/main-v672.js";import"./chunks/problemImages-v672.js";import"./chunks/import-wrapper-prod-v672.js";import"./chunks/index-v6722.js";import"./chunks/problem-image-index-v672.js";
