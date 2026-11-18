@@ -723,3 +723,16 @@ test('공조 급수 도면 하단 분기의 관경 계산', async ({page}, info)
  await expect(explanation).toContainText('④ 40A');
  await explanation.screenshot({path:info.outputPath('supply-branch-calculation.png')});
 });
+
+test('산업안전기사 산소소비량의 질소수지와 분수', async ({page}, info) => {
+ await prepare(page, 'safety-engineer');
+ await page.locator('#round-card-safety-engineer-20210515').getByRole('button', {name:'학습모드', exact:true}).click();
+ await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('36');
+ await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+ const card = page.locator('.question-card').filter({hasText:'5분간의 산소소비량'});
+ await card.locator('button.choice-button').first().click();
+ const explanation = card.locator('.explanation-box');
+ await expect(explanation).toContainText('0.948 L/min');
+ await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
+ await explanation.screenshot({path:info.outputPath('oxygen-consumption.png')});
+});
