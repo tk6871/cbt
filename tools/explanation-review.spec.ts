@@ -601,3 +601,25 @@ test('산업안전 점광원 거리비 분수와 답안 기록', async ({page}, 
  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['safety-engineer-20220305:31'])).toBe(2);
  await explanation.screenshot({path:info.outputPath('point-source-illuminance.png')});
 });
+
+test('급탕 순환수두 원문 두 판본의 분수와 답안 유지', async ({page}, info) => {
+ await prepare(page,'hvac-hansol');
+ await page.locator('#round-card-hvac-hansol-2025-2').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('47');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const rendered = page.locator('.question-card').filter({has:page.locator('.question-text').filter({hasText:'0.96876'})});
+ await expect(rendered.locator('.question-text')).toContainText('0.98001');
+ const index = await rendered.evaluate(el => Array.from(document.querySelectorAll('.question-card')).indexOf(el));
+ const card = page.locator('.question-card').nth(index);
+ await card.locator('.choice-button').nth(1).click();
+ await expect(card.locator('.explanation-box')).toContainText('11.25 kg/m³');
+ await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+ const control = card.locator('.question-transcription-control');
+ await control.getByRole('button',{name:'이미지로 보기',exact:true}).click();
+ await card.locator('.source-question-image').evaluate((img:HTMLImageElement) => img.decode());
+ await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+ await control.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+ await expect(card.locator('.choice-button.selected')).toContainText('112.5');
+ await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').answers?.['hvac-hansol-2025-2:47'])).toBe(2);
+ await card.screenshot({path:info.outputPath('circulation-head-text.png')});
+});

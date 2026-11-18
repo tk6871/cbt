@@ -4,19 +4,23 @@ import vm from 'node:vm';
 import { createHash } from 'node:crypto';
 import { parseArgs } from 'node:util';
 
-import { choiceMatch } from './review-choice-matching.mjs';
+import { choiceMatch, isAnswerNoticeOnly } from './review-choice-matching.mjs';
 
 const {values, positionals} = parseArgs({allowPositionals:true, options:{
   'match-choices': {type:'boolean'},
+  'answer-notices': {type:'boolean'},
   packet: {type:'string'},
   limit: {type:'string', default:'20'},
 }});
 const byChoice = values['match-choices'];
+const noticesOnly = values['answer-notices'];
+if (noticesOnly && !byChoice) throw Error('--answer-notices requires --match-choices.');
 const [output] = positionals;
 const limit = Number(values.limit);
 if (values.packet && (!byChoice || !Number.isSafeInteger(limit) || limit < 1 || values.packet === output))
   throw Error('Use --match-choices --packet FILE --limit POSITIVE_INTEGER, with separate output paths.');
 const packetRows = new Map();
+const pendingNotices = new Set();
 const digest = value => createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const isExplanation = key => key.toLowerCase().includes('explanation');
 const ledger = JSON.parse(fs.readFileSync('docs/explanation-review/2026-11-18/review.json'));
@@ -43,6 +47,7 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
         const groupKey = byChoice ? digest(match.signature) : bank.key + ':' + digest(fields.filter(([k]) => !isExplanation(k)));
         const explanation = digest(fields.filter(([k]) => isExplanation(k)));
         const id = (q._originRoundId || round.id) + ':' + (q._originalNumber || q.number);
+        if (noticesOnly && !statuses.has(id) && isAnswerNoticeOnly(q)) pendingNotices.add(id);
         if (values.packet) packetRows.set(id, q);
         if (!groups.has(groupKey)) groups.set(groupKey, []);
         groups.get(groupKey).push({ id, file, round: round.id, number: q.number, ...(match && { positions: match.positions, correct: match.correct, answer: q.answer }), explanation, status: statuses.get(id) || null });
@@ -52,10 +57,12 @@ for (const name of fs.readdirSync('data').filter(name => name.endsWith('.js')).s
   }
 }
 
-const queue = [...groups.values()].filter(rows => rows.length > 1 && rows.some(row => !row.status));
+const queue = [...groups.values()].filter(rows => noticesOnly ? rows.some(row => pendingNotices.has(row.id)) :
+  rows.length > 1 && rows.some(row => !row.status));
 queue.sort((a, b) => b.length - a.length || a[0].id.localeCompare(b[0].id));
 const summary = {
   textRowsCompared: compared,
+  ...(noticesOnly && {unreviewedTextAnswerNotices:pendingNotices.size, singletonPackets:queue.filter(group => group.length === 1).length}),
   groupsWithUnreviewedMembers: queue.length,
   distinctStoredExplanationGroups: queue.filter(group => new Set(group.map(row => row.explanation)).size > 1).length,
   members: queue.reduce((count, group) => count + group.length, 0),
@@ -81,7 +88,7 @@ if (values.packet) {
     };
     const members = rows.map(({id,file,answer,positions,correct,status}) => {
       const q=packetRows.get(id), record=records.get(id);
-      return {id,file,status,answer,positions,correct,
+      return {id,file,status,answer,positions,correct, ...(noticesOnly && {pendingAnswerNotice:pendingNotices.has(id)}),
         stem:index(stems,[q.text,q.html,q.hint]),
         context:index(contexts,Object.fromEntries(Object.entries(q).filter(([k])=>
           !['text','html','hint','choices','answer','number','source','sourcePage','problemUrl'].includes(k) && !isExplanation(k)))),

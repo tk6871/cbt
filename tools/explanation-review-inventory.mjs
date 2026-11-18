@@ -1,3 +1,4 @@
+import {isAnswerNoticeOnly} from './review-choice-matching.mjs';
 // Inventory source banks by discovered assignments, not an audit's file whitelist.
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -27,7 +28,7 @@ try {
      const id=`${q._originRoundId||r.id}:${q._originalNumber||q.number}`;
      if(ids.has(id))throw Error('Duplicate storage ID: '+id);ids.add(id);
      const text=!!(q.explanation||q.explanationHtml),image=!!q.explanationImages?.length,additional=q.additionalExplanations?.length||0;
-     if(q.explanation === 'COMCBT 공개 시험 화면에서 정답은 '+q.answer+'번으로 확인됩니다. 등록된 상세 해설은 없습니다.' && !q.explanationHtml && !q.explanationFormula && !image && !additional){
+     if(isAnswerNoticeOnly(q)){
       noticeIds.add(id);bank.answerNoticeOnly++;
      }
      round.questionRows.push([id,q.number,+text,+image,additional]);bank.questions++;bank.text+=+text;bank.image+=+image;bank.additional+=additional;

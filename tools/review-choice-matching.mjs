@@ -15,6 +15,11 @@ function content(text, html) {
   return [plain, formatted && formatted !== plain ? formatted : ''];
 }
 
+export function isAnswerNoticeOnly(q) {
+  return q.explanation === `COMCBT 공개 시험 화면에서 정답은 ${q.answer}번으로 확인됩니다. 등록된 상세 해설은 없습니다.` &&
+    !q.explanationHtml && !q.explanationFormula && !q.explanationImages?.length && !q.additionalExplanations?.length;
+}
+
 export function choiceMatch(q) {
   if (!q.text?.trim() || q.choices?.length !== 4 || !Number.isInteger(q.answer) ||
       q.answer < 1 || q.answer > 4 || q.imageOnly || q.sourceImage || q.answerHotspots?.length ||

@@ -102,3 +102,35 @@
 - `safety-engineer-20220305:35` (data/safety-engineer.js, 산업안전기사 · 2022년 3월 5일 기출문제) — ②의 전문성 불필요와 ③의 적은 시간·비용이 모두 의심. 여러 분야의 공정·운전 지식을 요하는 HAZOP에서 단일 답 단정 곤란.
 - `safety-engineer-20220305:84` (data/safety-engineer.js, 산업안전기사 · 2022년 3월 5일 기출문제) — HTML 표의 네 조성비와 각 하한·상한을 독립 계산. 3.7124~13.1866으로 ①에 가장 가깝지만 소수 둘째 자리 반올림 3.71~13.19와 보기 값이 다름.
 - `safety-engineer-20220305:90` (data/safety-engineer.js, 산업안전기사 · 2022년 3월 5일 기출문제) — 반응 중간체의 축적·불안정성이 반응기 안전설계에 직접 영향을 줄 수 있음. ④를 항상 제외하는 근거 없음.
+- `forklift-craftsman-2007-5:41` (data/forklift-craftsman.js, 2007년 5회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4964/) — 압력제어 밸브에는 릴리프·감압·시퀀스 등이 있음. 특정 밸브와 회로 미지정.
+- `forklift-craftsman-2006-1:41` (data/forklift-craftsman.js, 2006년 1회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4957/) — 압력제어 밸브에는 릴리프·감압·시퀀스 등이 있음. 특정 밸브와 회로 미지정.
+- `forklift-craftsman-2004-5:37` (data/forklift-craftsman.js, 2004년 5회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4952/) — 압력제어 밸브에는 릴리프·감압·시퀀스 등이 있음. 특정 밸브와 회로 미지정.
+- `forklift-craftsman-2006-2:40` (data/forklift-craftsman.js, 2006년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4958/) — ④ 과부족이 글자 그대로는 과다·부족 모두 포함. 저장 ②와 중복되어 인쇄 오자 가능.
+- `forklift-craftsman-2004-4:37` (data/forklift-craftsman.js, 2004년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4951/) — ④ 과부족이 글자 그대로는 과다·부족 모두 포함. 저장 ②와 중복되어 인쇄 오자 가능.
+- `forklift-craftsman-2010-4:60` (data/forklift-craftsman.js, 2010년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4975/) — 전압만 무관하다는 ②와 달리 전압은 요인. 전선 굵기도 이격거리의 일률적 기준이 아니어서 ③ 역시 불확실.
+- `forklift-craftsman-2008-2:59` (data/forklift-craftsman.js, 2008년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/4966/) — 전압만 무관하다는 ②와 달리 전압은 요인. 전선 굵기도 이격거리의 일률적 기준이 아니어서 ③ 역시 불확실.
+- `maintenance-engineer-2010-4:92` (data/maintenance-engineer.js, 2010년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1969/) — 공기는 연료가 되지 않지만 산화를 지지하고 공압 상태도 온도 영향을 받음. 보기 ③의 민감도 기준 없음.
+- `maintenance-engineer-2007-4:83` (data/maintenance-engineer.js, 2007년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1966/) — 공기는 연료가 되지 않지만 산화를 지지하고 공압 상태도 온도 영향을 받음. 보기 ③의 민감도 기준 없음.
+- `maintenance-engineer-2011-4:55` (data/maintenance-engineer.js, 2011년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1970/) — 키홈은 단면 형상 변화로 응력집중 가능. 마모·정렬 불량·하중 세부 조건 없이 파단원인에서 배제할 수 없음.
+- `maintenance-engineer-2007-4:49` (data/maintenance-engineer.js, 2007년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1966/) — 키홈은 단면 형상 변화로 응력집중 가능. 마모·정렬 불량·하중 세부 조건 없이 파단원인에서 배제할 수 없음.
+- `maintenance-engineer-2019-2:51` (data/maintenance-engineer.js, 2019년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/10260/) — PTFE와 흑연 모두 자기윤활성 및 여러 유체에서의 내화학성. 적용 온도·분위기 없이는 고유 식별 불충분.
+- `maintenance-engineer-2014-4:41` (data/maintenance-engineer.js, 2014년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1974/) — PTFE와 흑연 모두 자기윤활성 및 여러 유체에서의 내화학성. 적용 온도·분위기 없이는 고유 식별 불충분.
+- `maintenance-engineer-2021-2:100` (data/maintenance-engineer.js, 2021년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/14642/) — 제어량이 연속이라는 조건과 실제 제어기에서 신호를 연속/이산으로 표현하는 방식은 독립.
+- `maintenance-engineer-2018-2:82` (data/maintenance-engineer.js, 2018년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1980/) — 제어량이 연속이라는 조건과 실제 제어기에서 신호를 연속/이산으로 표현하는 방식은 독립.
+- `energy-industrial-20040905:13` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 탄소·수소·황 산소 소요량에서 연료 내 산소를 뺀 뒤 0.232로 나누면 황 항 양수, 산소 항 음수. ④에 영(0) 인쇄.
+- `energy-industrial-20040905:20` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 1몰 건가스 기준 유입 O₂=0.83×21/79. 산소 원자수지에서 생성수 약 0.111몰이나 앱에는 b를 정의할 반응식 자체가 없다.
+- `hvac-20030831:10` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 직접·간접은 실내 열전달 방식이나 히트펌프는 열원 분류. 기존 수격 설명은 무관.
+- `hvac-20030831:14` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 온풍난방 효율은 열원·덕트 손실에 따라 다름. ③ 자격 불필요와 ④ 설치 장소 무제한도 조건 없는 일반화.
+- `hvac-20030831:18` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 원도에서 O→B는 왼쪽 아래, O→C는 수평 왼쪽. 결로가 있는 습코일과 이슬점 이상인 건코일의 경로를 구분. 그림만으로 표면온도는 알 수 없음.
+- `energy-industrial-20040905:22` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 지문 HTML에서 ①은 등적 (∂P/∂T)V로 명시. 임계 등온선의 변곡 조건은 (∂P/∂v)T=0이며 다른 미분. ③도 틀림.
+- `energy-industrial-20040905:29` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 습증기의 초기 건도와 압축 최종 압력에 따라 압축 후에도 두 상 영역에 있을 수 있음. 저장 ③의 과열 단정 과도.
+- `energy-industrial-20040905:30` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 포화액선과 포화증기선이 만나는 것은 특정 임계온도·임계압력. ②의 “임의 압력하”가 부정확.
+- `energy-industrial-20040905:31` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 보기 HTML의 지수는 모두 양수. 이상기체 가역단열에서 T/P^((k−1)/k)=상수. ④의 곱은 지수가 반대.
+- `energy-industrial-20040905:69` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — ④ 현탁고형물은 여과로 구분되는 고형물이라 진술 자체는 사실. ②는 탄산염경도를 전체 Ca·Mg 지수로 설명해 총경도와 혼동.
+- `energy-industrial-20040905:76` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 10 kgf/cm²=0.1 kgf/mm², 내압에 필요한 두께 0.1×5000/(2×40×0.95)=6.579 mm. 부식여유 1 mm 더하면 7.579 mm. 보기 ②는 여유 제외.
+- `energy-industrial-20040905:77` (data/energy.js, 에너지관리산업기사 필기 기출문제 2004년 09월 05일 (4회) (정답, 해설)) — 현재 문항의 text·html·images에 “다음 식”이 없으므로 빈칸 위치와 기호를 특정할 수 없음.
+- `hvac-20030831:21` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 흡수식은 열 구동이나 운전비는 열원 단가·부분부하 등에 의존하고 정격 초과 수요만으로 위험 단정 불가. 여러 보기 조건 누락.
+- `hvac-20030831:24` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 과열로 냉동효과와 압축일이 모두 변함. 냉매 종류와 과열 위치(증발기 내·흡입관)가 없어 COP 최대상태를 단정 불가.
+- `hvac-20030831:39` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 브라인 입출구의 차 10 K는 평균 브라인온도가 아님. 10−4=6으로 계산한 기존 공식은 서로 다른 종류의 값의 뺄셈.
+- `hvac-20030831:79` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 임피던스 크기 220/4.4=50 Ω. R=50cos(π/4)=35.3553 Ω로 보기 없음. 저장 답 ② 25 Ω.
+- `hvac-20030831:80` (data/hvac.js, 공조냉동기계산업기사 : 2003년 08월 31일 기출문제) — 서보기구 조작부에서 영구자석 동기전동기를 사용하는 사례가 있음. 보기 “동기전동기”만으로 배제 불가.
