@@ -339,3 +339,34 @@ test('한솔 동결매체 교재 온도 원문과 환산 교정', async ({page},
  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
  await box.screenshot({path:info.outputPath('cryogenic-book.png')});
 });
+test('코일 바이패스의 혼합 온도와 분수 표시', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.locator('#round-card-hvac-20020310').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('7');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'Bypass Factor'});
+ await card.locator('.choice-button').nth(1).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('혼합공기 ③(28 ℃)');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('coil-bypass.png')});
+});
+test('쇠고기 교재 인쇄 소수점과 교정 해설', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-272');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 2번',exact:true})}).locator('.question-card');
+ await expect(card.locator('.question-text')).toContainText('지방이 없는 부분');
+ await card.locator('.choice-button').nth(2).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('328.88 kJ');
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.original-textbook-explanation').getByRole('figure');
+ await expect(figure.getByRole('paragraph')).toContainText('71.5+234.5+22.8=328.88');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('beef-heat.png')});
+});

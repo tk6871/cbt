@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.17',scope:'industrial',date:'2026.11.18',title:'공조·에너지 기출 및 교재 계산 교정',summary:'사무실 도면의 열손실과 냉동·전기 계산 과정을 보완했습니다.',tags:['공조','에너지','산업안전'],changes:['공조 교재 해설 15개의 원문 일부를 텍스트로 확인할 수 있습니다.','산업안전기사 소음 크기와 와이어로프에 해설을 추가했습니다.']},
     {version:'6.2.16',scope:'industrial',date:'2026.11.18',title:'반복 기출과 교재 온도 환산 교정',summary:'공조·에너지 계산과 제어 해설을 교정하고 정보처리·산업안전 10문항에 해설을 추가했습니다.',tags:['공조','에너지','정보처리'],changes:['응축기 대수평균온도차를 분수식으로 표시합니다.','식품 동결 문제의 인쇄 온도와 환산값을 구분했습니다.']},
     {version:'6.2.15',scope:'industrial',date:'2026.11.18',title:'가스 분석·증기 배관·수처리 해설',summary:'에너지 교재 9개 단원과 연결 기출을 검토하고 산업안전기사 6문항에 해설을 추가했습니다.',tags:['에너지','산업안전','원문 대조'],changes:['가스 흡수량과 공기비를 분수식으로 표시하고 공조 기출의 역률·증기트랩 해설을 교정했습니다.','인쇄 원문과 교정 해설을 함께 제공하고 기준이나 정답이 불확실한 경우 확인 사유를 적었습니다.']},
     {version:'6.2.14',scope:'industrial',date:'2026.11.18',title:'보일러 제어·배관과 에너지 기출 해설',summary:'교재 5개 단원과 관련 기출을 대조하고 압력·응력 단위와 연소 제어 조건을 설명했습니다.',tags:['에너지','교재'],changes:['교재 해설 20개에 원문 발췌를, 같은 문제 11개에 직접 대조한 지문·보기 텍스트를 추가했습니다.','회차마다 달라지는 정답 보기와 카르노 효율 계산을 확인했습니다.']},
@@ -2794,8 +2795,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.16';
+  changelog.versions.industrial = '6.2.17';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.16';
+  changelog.currentVersion = '6.2.17';
   window.CBT_CHANGELOG = changelog;
 })();
