@@ -1,3 +1,4 @@
+import {withDisputedExplanations} from './disputedExplanations';
 import type { Catalog, CurriculumScope, Question, QuestionItem, Round } from './types';
 import { hvacAnswerHotspots } from './generatedHvacHotspots';
 import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
@@ -84,7 +85,7 @@ function prepareCatalog(source: Catalog): Catalog {
             ...energyExplanation(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
             answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
           }))
-        : source.key==='energy' ? round.questions.map(q=>energyExplanation(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : round.questions,
+        : source.key==='energy' ? round.questions.map(q=>energyExplanation(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : withDisputedExplanations(round),
   }));
   const result = { ...source, rounds };
   preparedCatalogs.set(original, { book, energy, result });
@@ -105,7 +106,7 @@ export function ensureCatalogLoaded(key: string): Promise<Catalog> {
     : key === 'energy' ? [key, 'energy-restored'] : [key];
   const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=661`, document.baseURI).href;
+    script.src = new URL(`data/${file}.js?v=662`, document.baseURI).href;
     script.onload = () => {
       resolve();
     };

@@ -702,10 +702,17 @@
       "explanationImages": [],
       "status": "정답 자체 확인 필요",
       "finding": "틀린 설명을 고르는 아세트알데히드 문항: 저장 답④, 보기③은 산화·환원 생성물을 반대로 적음. 등록 이의제기와 관리자 답변 충돌.",
-      "evidence": [],
-      "resolution": "공식 당시 문제·정답 및 화학 근거 확보 전 정답 변경 금지. 원문·보기·답·해설 유지.",
-      "changed": false,
-      "sourceAssets": []
+      "evidence": [
+        "659-org-m00214",
+        "659-org-m00203"
+      ],
+      "resolution": "아세트알데히드를 산화하면 아세트산, 환원하면 에탄올이 된다. 보기 ③은 두 생성물을 거꾸로 적었으므로 틀린 설명이다. 그런데 저장 답은 ④이고 등록 이의제기와 관리자 답변도 충돌한다. 공식 문제지와 답안을 확인할 때까지 저장 답은 유지한다.",
+      "changed": true,
+      "sourceAssets": [],
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "basis": "OpenStax Organic Chemistry, Oxidation of Aldehydes and Ketones 및 Alcohols from Carbonyl Compounds: Reduction. 아세트알데히드 산화·환원 생성물과 ③의 반대 방향 확인. 공식 채점표 미확보.",
+      "academicVerified": false,
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성"
     },
     {
       "id": "safety-engineer-20220424:1",
@@ -39599,6 +39606,1003 @@
       "resolution": "④ 동기전동기를 서보 조작부에 사용할 수 없다고 일반화할 수 없다. 영구자석 동기전동기도 위치·속도 피드백으로 서보 구동할 수 있다. 보기 ①의 교류 서보전동기와 ④가 배타적인 분류인지 출제 당시 교재와 답안을 확인해야 한다.",
       "changeReason": "지문·정답·자료 대조에 남은 불확실성",
       "primarySourceReviewed": true
+    },
+    {
+      "id": "maintenance-engineer-2021-2:17",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2021-2",
+      "number": 17,
+      "location": "2021년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/14642/",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "주파수비와 진동 차단·공진 혼동",
+      "finding": "주파수비와 진동 차단·공진 혼동",
+      "basis": "그림 R=f/fₙ을 직접 판독. 단자유도 등가계 전달률의 분모 (1−r²)²과 감쇠항을 확인. r=1은 공진 부근, √2 경계, 10이 네 값 중 최저 전달률.",
+      "evidence": [
+        "659-damp"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/maintenance-engineer/comcbt/20210515/images/de20210515m17m1.png",
+          "displayAsset": "assets/problem-webp90/994e2556e94531e1df34c171ac79cc80.webp",
+          "sha256": "ec49876cf51c6368676e4f7672813f111a3df19fb6dd99cb16a520426d57a4d4"
+        }
+      ],
+      "resolution": "그림의 r은 강제진동 주파수를 고유진동수로 나눈 값이다. 보통의 단자유도 방진 모형에서 r=1 부근은 공진으로 진동이 커지고, √2를 넘으면 전달률이 1보다 작아진다. 같은 감쇠 조건에서 보기 중 r=10이 전달률이 가장 낮아 정답은 ④다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "maintenance-engineer-2020-3:23",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2020-3",
+      "number": 23,
+      "location": "2020년 3회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/13671/",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "치공구 관리의 계획·설계 단계 경계",
+      "finding": "치공구 관리의 계획·설계 단계 경계",
+      "basis": "③ 설계·표준화를 계획 단계에 포함하는지 분리하는지 저장 원문에서 상반된 분류가 제시된다. 관리자가 번호를 확인했다는 글만 있고 분류 근거인 출제 교재/공식 정답 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 설계·표준화를 계획 단계에 포함하는지 분리하는지 저장 원문에서 상반된 분류가 제시된다. 관리자가 번호를 확인했다는 글만 있고 분류 근거인 출제 교재/공식 정답 미확보."
+    },
+    {
+      "id": "maintenance-engineer-2019-2:46",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2019-2",
+      "number": 46,
+      "location": "2019년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/10260/",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "유니파이 보통나사와 가는나사 기호",
+      "finding": "유니파이 보통나사와 가는나사 기호",
+      "basis": "BOSL2 screws.scad 규격 선택표: coarse=UNC, fine=UNF. 보기 ②의 대소문자 표기와 원문 대조.",
+      "evidence": [
+        "659-bolt2"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "유니파이 나사에서 보통 피치 계열은 UNC이고 가는 피치 계열은 UNF다. 따라서 보기 ② UNC가 맞다. 두 표기 모두 유니파이 나사이지만 마지막 글자가 피치 계열을 구별한다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "maintenance-engineer-2018-4:94",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2018-4",
+      "number": 94,
+      "location": "2018년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1981/",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고장 사이 평균시간과 첫 고장까지의 시간",
+      "finding": "고장 사이 평균시간과 첫 고장까지의 시간",
+      "basis": "Reliability_testing.reliability_test_planner는 MTBF를 Mean Time Between Failures로 정의. 수리 가능 시스템에서 반복 고장 사이를 묻는 지문.",
+      "evidence": [
+        "659-mtbf2"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "고장과 다음 고장 사이의 평균시간은 ① MTBF다. MTTF는 고장까지의 평균시간이고 MTTR은 수리·복구에 걸린 평균시간이다. 문제의 “고장 사이”가 구별 기준이다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "maintenance-engineer-2017-2:86",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2017-2",
+      "number": 86,
+      "location": "2017년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1979/",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "스테핑 모터의 각도 증분과 보기 부정어",
+      "finding": "스테핑 모터의 각도 증분과 보기 부정어",
+      "basis": "Arduino Stepper 문서와 step 함수의 회전당 스텝수 확인. ④의 실제 글자는 ‘있다’. ②·③의 관성·공진에 관한 절대 진술과 비교.",
+      "evidence": [
+        "659-stepmanual"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "스테핑 모터는 한 스텝에 정해진 각도만큼 회전하므로 탈조하지 않는 운전 범위에서 펄스 수로 회전각을 정할 수 있다. 보기 중 ①이 이에 해당한다. ③처럼 공진 문제가 없다고 볼 수는 없다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "maintenance-engineer-2015-4:54",
+      "catalog": "maintenance-engineer",
+      "file": "data/maintenance-engineer.js",
+      "round": "maintenance-engineer-2015-4",
+      "number": 54,
+      "location": "2015년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/1976/",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "제동 용량을 정하는 마찰력·발열과 자체 중량",
+      "finding": "제동 용량을 정하는 마찰력·발열과 자체 중량",
+      "basis": "Modelica Rotational.Components.Brake, 최대 수직력·마찰계수·형상 계수와 lossPower 확인. 접촉면 허용 압력·열부하와 전체 중량 구별.",
+      "evidence": [
+        "659-brake"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "마찰식 브레이크는 필요한 제동토크를 내고 마찰열을 견뎌야 한다. 마찰계수·접촉면 크기·발열은 이 조건에 직접 관계한다. 보기 중 브레이크 자체의 중량 ④가 직접적인 용량 결정 인자에서 가장 멀다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "electric-craftsman-2012-4:36",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2012-4",
+      "number": 36,
+      "location": "2012년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5235/",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "보호계전기 배선 시험 항목과 점검 단계",
+      "finding": "보호계전기 배선 시험 항목과 점검 단계",
+      "basis": "② 단자 나사 조임은 외관·기계 점검, ④ 직류전압 시험은 대상 회로와 시험 절차에 따라 달라짐. 출제 당시 계전기 시험 절차표 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 단자 나사 조임은 외관·기계 점검, ④ 직류전압 시험은 대상 회로와 시험 절차에 따라 달라짐. 출제 당시 계전기 시험 절차표 미확보."
+    },
+    {
+      "id": "electric-craftsman-2011-4:42",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2011-4",
+      "number": 42,
+      "location": "2011년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5231/",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "저압 옥내배선의 케이블 지지점 간격",
+      "finding": "저압 옥내배선의 케이블 지지점 간격",
+      "basis": "조영재 아랫면·옆면이라는 조건에서 ④ 2 m와 이의제기 값을 대조. 2011년 전기설비기술기준 판단기준 해당 판본 미확보. 현대 KEC를 소급하지 않음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "조영재 아랫면·옆면이라는 조건에서 ④ 2 m와 이의제기 값을 대조. 2011년 전기설비기술기준 판단기준 해당 판본 미확보. 현대 KEC를 소급하지 않음."
+    },
+    {
+      "id": "electric-craftsman-2010-5:2",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2010-5",
+      "number": 2,
+      "location": "2010년 5회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5228/",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "운동기전력과 전동기 힘의 방향 구별",
+      "finding": "운동기전력과 전동기 힘의 방향 구별",
+      "basis": "OpenStax Motional Emf, 움직이는 도체의 양전하에 작용하는 qv×B와 유도전압 극성. Biot–Savart는 전류가 만드는 자계.",
+      "evidence": [
+        "659-os-m42400"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "자기장 안에서 도체가 움직여 생기는 유도기전력의 방향은 ② 플레밍의 오른손 법칙으로 찾는다. 왼손 법칙은 전류가 흐르는 도체가 자기장에서 받는 힘의 방향에 쓴다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "electric-craftsman-2007-2:18",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2007-2",
+      "number": 18,
+      "location": "2007년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5214/",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "배율기와 분류기의 접속방식",
+      "finding": "배율기와 분류기의 접속방식",
+      "basis": "이미지의 문장은 ‘배율기는 (①)의 측정범위를 넓히기 위한 … 회로에 (②)로 접속’이다. 전압계에 직렬저항을 넣는 방식과 보기③ 대조.",
+      "evidence": [
+        "659-os-m42359"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/electric-craftsman/comcbt/20070401/images/jo20070401m18.gif",
+          "displayAsset": "assets/problem-webp90/0f510a3df16271ae6c4353ccbf31cf28.webp",
+          "sha256": "ba4c3f2bb3fa509790a1fd277335dd50e0c6e7d7ab3601105936ddf97a5aad3b"
+        }
+      ],
+      "resolution": "전압계에 큰 저항을 직렬로 넣으면 측정 전압의 일부만 계기에 걸려 더 큰 전압까지 읽을 수 있다. 이 저항이 배율기다. 따라서 빈칸은 ‘전압계, 직렬’인 ③이다. 전류계 범위를 넓히는 분류기는 병렬로 연결한다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "electric-craftsman-2007-1:28",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2007-1",
+      "number": 28,
+      "location": "2007년 1회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5213/",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "3상 변압기의 병렬운전에서 위상변위",
+      "finding": "3상 변압기의 병렬운전에서 위상변위",
+      "basis": "Dy1 벡터그룹과 같은 극성·상순서를 전제한 Y-Y/Δ-Δ 영시각군의 선간전압 위상 비교. 단순 결선명만 같은 경우에도 세부 결선 확인 필요.",
+      "evidence": [
+        "659-xf"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "통상적인 같은 극성·상순서 조건에서 Δ-Δ와 Y-Y는 선간전압의 위상변위가 0°인 결선으로 만들 수 있다. Δ-Y는 30°의 홀수배 위상변위가 생기므로 Δ-Δ와 그대로 병렬 연결할 수 없다. 해당 조합은 ②다. 실제로는 양측의 벡터그룹까지 맞춰야 한다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "electric-craftsman-2002-2:9",
+      "catalog": "electric-craftsman",
+      "file": "data/electric-craftsman.js",
+      "round": "electric-craftsman-2002-2",
+      "number": 9,
+      "location": "2002년 2회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5195/",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "병렬 RC의 역률과 직렬 임피던스식 혼동",
+      "finding": "병렬 RC의 역률과 직렬 임피던스식 혼동",
+      "basis": "회로도에서 R과 C는 병렬. ①~④ 분자·근호 직접 판독. I_R=V/R, |I_C|=V/Xc. 실전류/전체 전류로 유도.",
+      "evidence": [
+        "659-os-m42431"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/electric-craftsman/comcbt/20020407/images/jo20020407m9.gif",
+          "displayAsset": "assets/problem-webp90/3aed12787e745ba7d8a59e70f5a83dcb.webp",
+          "sha256": "cd55b6c968380eb3bb0a3884b04ee1ed1e6dc00dcb542075c24fe892623cc94d"
+        },
+        {
+          "original": "assets/electric-craftsman/comcbt/20020407/images/jo20020407m9b1.gif",
+          "displayAsset": "assets/problem-webp90/ca2c0cb1df184dfd6ddf63bd5b1f8be8.webp",
+          "sha256": "cd923270acedf9b4643c2d91aed7672ae22b736d5a6d76005d2a445aa59ea61a"
+        },
+        {
+          "original": "assets/electric-craftsman/comcbt/20020407/images/jo20020407m9b2.gif",
+          "displayAsset": "assets/problem-webp90/63c084577dd44fa6247ee25d419b67e1.webp",
+          "sha256": "f06cd32e1b67ada5466f64e6b4b200f268444f63a9de8a1aa6e7067e03e4b18e"
+        },
+        {
+          "original": "assets/electric-craftsman/comcbt/20020407/images/jo20020407m9b3.gif",
+          "displayAsset": "assets/problem-webp90/a8cadc838b2cb2b80d3bf9fd15053cb0.webp",
+          "sha256": "66dc87f2ae2b672d096a2fff5ffb491489be9e98c6af786ded1bec5a9886d726"
+        },
+        {
+          "original": "assets/electric-craftsman/comcbt/20020407/images/jo20020407m9b4.gif",
+          "displayAsset": "assets/problem-webp90/583fbca215df61ec2c72619cbae0d4bd.webp",
+          "sha256": "5cb219bf88d0dfb6fab4793e2d0d4b17766da48851e4f077116241a6ed67a5f9"
+        }
+      ],
+      "resolution": "그림은 병렬 RC다. 저항 전류 V/R은 전압과 동상이고 용량성 전류 V/Xc는 90° 앞선다. 역률은 동상 성분을 전체 전류 크기로 나눈 값이므로 분자가 Xc인 ①이다. 분자에 R을 둔 ②는 직렬 RC에서 나오는 꼴이다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "공식·계산·기호·단위·반올림"
+    },
+    {
+      "id": "gas-craftsman-2011-1:55",
+      "catalog": "gas-craftsman",
+      "file": "data/gas-craftsman.js",
+      "round": "gas-craftsman-2011-1",
+      "number": 55,
+      "location": "2011년 1회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/6324/",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "고압고무호스와 측도관 조정기 이음쇠 재질",
+      "finding": "고압고무호스와 측도관 조정기 이음쇠 재질",
+      "basis": "저장 본문에 서로 다른 두 부품의 단조용·쾌삭 황동 주장이 함께 있다. 해당 2011년 KGS 부품 규격표나 제조사 원도 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "저장 본문에 서로 다른 두 부품의 단조용·쾌삭 황동 주장이 함께 있다. 해당 2011년 KGS 부품 규격표나 제조사 원도 미확보."
+    },
+    {
+      "id": "gas-craftsman-2010-4:19",
+      "catalog": "gas-craftsman",
+      "file": "data/gas-craftsman.js",
+      "round": "gas-craftsman-2010-4",
+      "number": 19,
+      "location": "2010년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/6322/",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "수소 용기밸브의 나사 방향과 출제 당시 표지 규정",
+      "finding": "수소 용기밸브의 나사 방향과 출제 당시 표지 규정",
+      "basis": "정답 ② 오른나사와 함께 순도·도색·식별 문자를 배타적 보기로 제시함. 2010년 용기·밸브 기준과 검사규격의 판본이 없어 다른 보기까지 확정할 수 없다.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "정답 ② 오른나사와 함께 순도·도색·식별 문자를 배타적 보기로 제시함. 2010년 용기·밸브 기준과 검사규격의 판본이 없어 다른 보기까지 확정할 수 없다."
+    },
+    {
+      "id": "gas-craftsman-2009-4:28",
+      "catalog": "gas-craftsman",
+      "file": "data/gas-craftsman.js",
+      "round": "gas-craftsman-2009-4",
+      "number": 28,
+      "location": "2009년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/6318/",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "2005년 LPG 용기의 최초 재검사와 경과조치",
+      "finding": "2005년 LPG 용기의 최초 재검사와 경과조치",
+      "basis": "2009년 출제. 47 L 용접용기의 당시 별표·제조연월·경과조치를 한꺼번에 확인해야 한다. 수집한 2025년 이후 판의 주기를 소급하지 않음.",
+      "evidence": [
+        "659-gasreg"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "2009년 출제. 47 L 용접용기의 당시 별표·제조연월·경과조치를 한꺼번에 확인해야 한다. 수집한 2025년 이후 판의 주기를 소급하지 않음."
+    },
+    {
+      "id": "hazardous-craftsman-2012-5:36",
+      "catalog": "hazardous-craftsman",
+      "file": "data/hazardous-craftsman.js",
+      "round": "hazardous-craftsman-2012-5",
+      "number": 36,
+      "location": "2012년 5회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5616/",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "횡형 탱크의 내용적과 공간용적 공제",
+      "finding": "횡형 탱크의 내용적과 공간용적 공제",
+      "basis": "원도 반지름 5 m, 원통부 15 m, 양측 3 m. 등록 풀이의 괄호 오류. 적용 근사식에서 내용적 π×25×[15+(3+3)/3]≈1335.18이므로 90%=1201.66. 2012년 세부 산정고시 미확보.",
+      "evidence": [
+        "659-hazreg"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hazardous-craftsman/comcbt/20121020/images/jy20121020m36.gif",
+          "displayAsset": "assets/problem-webp90/8f0e0da0976839f4525d8bbb2bb603fc.webp",
+          "sha256": "6dfa64540fdea91998666a88df5769a851ad6b4b0f38310039545c43ff74ad20"
+        }
+      ],
+      "resolution": "그림에서 5 m는 지름이 아닌 반지름이다. 등록 풀이가 전제한 횡형 탱크 근사식의 양 끝 보정항은 (3+3)/3이다. 이 방식으로 계산한 내용적 약 1,335.2 m³에서 공간용적 10%를 빼면 약 1,201.7 m³로 ④와 일치한다. 이 근사식이 적용되는 2012년 고시와 경판 형상은 추가 확인이 필요하다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "공식·계산·기호·단위·반올림"
+    },
+    {
+      "id": "hazardous-craftsman-2005-4:25",
+      "catalog": "hazardous-craftsman",
+      "file": "data/hazardous-craftsman.js",
+      "round": "hazardous-craftsman-2005-4",
+      "number": 25,
+      "location": "2005년 4회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5587/",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "정답 자체 확인 필요",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "화학식에서 구조를 단정한 저장 보기",
+      "finding": "화학식에서 구조를 단정한 저장 보기",
+      "basis": "두 번째 식은 분자식만 제시해 결합 방식이 드러나지 않음. 등록 신고와 출제자의 물질 표기가 일치하는지 당시 공식 문제·답에 대한 확인 필요.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "두 번째 식은 분자식만 제시해 결합 방식이 드러나지 않음. 등록 신고와 출제자의 물질 표기가 일치하는지 당시 공식 문제·답에 대한 확인 필요."
+    },
+    {
+      "id": "hazardous-craftsman-2005-1:29",
+      "catalog": "hazardous-craftsman",
+      "file": "data/hazardous-craftsman.js",
+      "round": "hazardous-craftsman-2005-1",
+      "number": 29,
+      "location": "2005년 1회 COMCBT 공개 기출 · https://www.comcbt.com/cbt/exam/5585/",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "황과 인의 화합물과 단체·혼합물 구분",
+      "finding": "황과 인의 화합물과 단체·혼합물 구분",
+      "basis": "지문의 황화린은 한 원소의 단체나 두 원소의 물리적 혼합물이 아니다. 보기③은 황화물의 여러 조성을 포괄하는 명칭으로 읽어야 한다.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "황과 인이 화학적으로 결합한 물질은 단체나 단순 혼합물이 아니다. 이 문항의 ‘황화린’은 인과 황의 조성이 다른 여러 화합물을 가리키는 이름이므로 ③이다. 한 가지 순물질의 화학식이 임의로 변한다는 뜻은 아니다.",
+      "reviewedExplanationFile": "data/disputed-question-explanations.json",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-hansol-book-2-128:9",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-128",
+      "number": 9,
+      "location": "한솔 공조 교재 2-128쪽 · 한솔 공조 교재 2-128쪽 9번",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "교재 2-128쪽 9번 원문 및 작동 조건",
+      "finding": "교재 2-128쪽 9번 원문 및 작동 조건",
+      "basis": "지문은 회전식 일반, 교재는 발정제어만 전제한 압축기. 해당 기종의 용량제어 방식으로 적용 범위를 좁힘. 기종별 독립 자료 보류.",
+      "evidence": [],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-128-9.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-128-9.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-128-9.webp",
+          "displayAsset": "assets/problem-webp90/27b4d4c74d917bd1116d8177a7e3a381.webp",
+          "sha256": "41d2b0ce0f8358316069953938b84317f30aafb4fe86231e3e7f5a0c64f88fe7"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-128-9.webp",
+          "displayAsset": "assets/problem-webp90/b7bb039444458bd9a497cad837774fb3.webp",
+          "sha256": "94d57cb7f7600c13fbd5d5ef2586ff6c2dc8b24132ee57c4ab719a3405bb0764"
+        }
+      ],
+      "resolution": "교재가 전제한 일정 속도·고정 용적의 회전식 압축기는 기동과 정지로 용량을 조절하므로 ①이 출제 의도다. 여기서 발정은 기동·정지를 뜻한다. 운전 속도를 바꿀 수 있는 기종까지 같은 제약을 적용할 수는 없다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-hansol-book-2-128:8",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-128",
+      "number": 8,
+      "location": "한솔 공조 교재 2-128쪽 · 한솔 공조 교재 2-128쪽 8번",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-128쪽 8번 원문 및 작동 조건",
+      "finding": "교재 2-128쪽 8번 원문 및 작동 조건",
+      "basis": "누설 시 고압가스 역류와 재압축으로 같은 유효 냉동량당 압축일 증가. 전체 전력은 운전점 영향을 받아 구분.",
+      "evidence": [
+        "659-Reciprocating"
+      ],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-128-8.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-128-8.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-128-8.webp",
+          "displayAsset": "assets/problem-webp90/15b6edb93df42f78c716b677d62f3296.webp",
+          "sha256": "062b47ca30c726544c5a3fd774c0938089432c04911ba0314ddfc274caed18e3"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-128-8.webp",
+          "displayAsset": "assets/problem-webp90/6575e6556f08674bedf296a3680fd96d.webp",
+          "sha256": "e85b9b256845978d2ea31ca65256cb935179042762bc7ff91badbf83f6a7b18a"
+        }
+      ],
+      "resolution": "토출밸브가 새면 고압 냉매가 실린더로 돌아와 다시 압축된다. 그만큼 새로 흡입해 보내는 냉매가 줄고, 같은 냉동량을 얻는 데 필요한 일이 늘어난다. 상자 속 설명 ②와 ③을 짝지은 답안 ②다. 실제 전동기 입력의 변화량은 운전 조건에 따라 달라진다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-hansol-book-2-158:3",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-158",
+      "number": 3,
+      "location": "한솔 공조 교재 2-158쪽 · 한솔 공조 교재 2-158쪽 3번",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-158쪽 3번 원문 및 작동 조건",
+      "finding": "교재 2-158쪽 3번 원문 및 작동 조건",
+      "basis": "냉매펌프에 의한 액 재순환과 증발면 습윤을 건식·단순 만액식 등 보기와 비교. 문제의 저온 대용량 용도.",
+      "evidence": [],
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-158-3.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-158-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-158-3.webp",
+          "displayAsset": "assets/problem-webp90/c2e6753da25504e6de30c341eb693de3.webp",
+          "sha256": "2754120ba2d9ae1ac5da9d50396e2beab294a7efa6e75acf7288b0c6643b9884"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-158-3.webp",
+          "displayAsset": "assets/problem-webp90/607e37fcbea8bc4d8ebac9740d656392.webp",
+          "sha256": "7aa8fa11bc203b8349286922c36268d80471be5403872c1f4afd14122fd7b9bc"
+        }
+      ],
+      "resolution": "액순환식은 펌프로 냉매액을 강제 순환시켜 전열이 좋아 대용량 저온·급속동결에 사용하므로④입니다.",
+      "changeReason": "이미지 원문 텍스트 전환"
+    },
+    {
+      "id": "hvac-hansol-book-2-158:5",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-158",
+      "number": 5,
+      "location": "한솔 공조 교재 2-158쪽 · 한솔 공조 교재 2-158쪽 5번",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-158쪽 5번 원문 및 작동 조건",
+      "finding": "교재 2-158쪽 5번 원문 및 작동 조건",
+      "basis": "같은 전열면적·전열계수와 입구 조건에서 유동 배치 비교. 한쪽이 등온 상변화하는 이상적인 극한에서는 성능 순서가 엄격하지 않음.",
+      "evidence": [
+        "650-conduction",
+        "659-ht-exchanger"
+      ],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-158-5.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-158-5.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-158-5.webp",
+          "displayAsset": "assets/problem-webp90/b927483d1c3278817af83563bde091e8.webp",
+          "sha256": "85d120c6eef067b2291e42a43663b357da2b6c0591600547c5ffc2a535319a76"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-158-5.webp",
+          "displayAsset": "assets/problem-webp90/07f577edaac8b6db360bd1bea8a5b4ca.webp",
+          "sha256": "8fc8f7b5187b7846dfbee5bb3b7518db0b440d21e06ca04544d3cdbdf6a447bb"
+        }
+      ],
+      "resolution": "③이 틀리다. 같은 입구 조건과 전열 능력에서 두 유체가 모두 온도 변화를 겪으면 평행류는 출구 쪽 온도차가 빨리 줄어든다. 교재는 이 조건에서 향류·직교류·평행류를 비교한다. 냉매가 전 구간에서 일정한 온도로 증발하면 흐름 방향만으로 같은 성능 차이가 생긴다고 볼 수 없다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-hansol-book-2-160:12",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-160",
+      "number": 12,
+      "location": "한솔 공조 교재 2-160쪽 · 한솔 공조 교재 2-160쪽 12번",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-160쪽 12번 원문 및 작동 조건",
+      "finding": "교재 2-160쪽 12번 원문 및 작동 조건",
+      "basis": "물 밀도 약 1 kg/L, 물 6000 kg/h × 4.2 × 6 =151200 kJ/h. 이를 냉동효과 168 kJ/kg으로 나눠 ③.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-160-12.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-160-12.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-160-12.webp",
+          "displayAsset": "assets/problem-webp90/f0c171f7c5b9b29b551c8535d6c2bf45.webp",
+          "sha256": "73faab2c68f3e175c333b08e9eb3ca14a809bc45d2f9c0adf368ee62b2391f2c"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-160-12.webp",
+          "displayAsset": "assets/problem-webp90/53e98fc59d8f5e3ac01a86a77a4f3c27.webp",
+          "sha256": "ca3d3bc4dabbecc7301aa7926d7b2c6c8a2501095fbe43ce006d3161bfb071dc"
+        }
+      ],
+      "resolution": "물 100 L/min은 약 6,000 kg/h다. 물에서 제거하는 열량은 시간당 6,000×4.2×6=151,200 kJ다. 냉매 1 kg이 168 kJ를 흡수하므로 필요한 냉매는 ③ 900 kg/h다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "formulaDisplay": true
+    },
+    {
+      "id": "hvac-hansol-book-2-160:13",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-160",
+      "number": 13,
+      "location": "한솔 공조 교재 2-160쪽 · 한솔 공조 교재 2-160쪽 13번",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-160쪽 13번 원문 및 작동 조건",
+      "finding": "교재 2-160쪽 13번 원문 및 작동 조건",
+      "basis": "지정 환산을 사용해 70.2 kW=252720 kJ/h, 1260으로 나눠 200.57. ① 200 근사값.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-160-13.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-160-13.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-160-13.webp",
+          "displayAsset": "assets/problem-webp90/a1062c75e9890f6519a32a7607ecdb43.webp",
+          "sha256": "84493219a3e32e63555c79e5c14b77b93828d79890c1c09c7f5717a9ede39ef2"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-160-13.webp",
+          "displayAsset": "assets/problem-webp90/d23a9870b06e0a37bafc48da90cf8c0f.webp",
+          "sha256": "409e03f88ea7fc31cc4518c4d515a88e5c7ff3140b8e8e767937a817be8dbfa1"
+        }
+      ],
+      "resolution": "문제에서 준 환산값으로 18 RT는 70.2 kW다. 1 kW는 1 kJ/s이므로 시간당 냉동량은 252,720 kJ다. 이를 냉매 1 kg당 1,260 kJ로 나누면 200.57 kg/h로 ①이 가장 가깝다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "formulaDisplay": true
+    },
+    {
+      "id": "hvac-hansol-book-2-160:14",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-160",
+      "number": 14,
+      "location": "한솔 공조 교재 2-160쪽 · 한솔 공조 교재 2-160쪽 14번",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-160쪽 14번 원문 및 작동 조건",
+      "finding": "교재 2-160쪽 14번 원문 및 작동 조건",
+      "basis": "5.25 kW ÷ (0.814 kW/(m²·K) × 6 K)=1.07494 m². kJ/h와 W 변환 확인.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-160-14.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-160-14.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-160-14.webp",
+          "displayAsset": "assets/problem-webp90/324379f76657567f06d0fa189d97958a.webp",
+          "sha256": "98a8e51bda28f39b4ce929fd8384e54bd089c3c06eefd2a725e7d132b32008e4"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-160-14.webp",
+          "displayAsset": "assets/problem-webp90/73ab09c489c1df58df508b21985aef7c.webp",
+          "sha256": "8b99d4fbdcda6527a0ea17dff4e4682488133ace4007fe3da9435e9309ff6752"
+        }
+      ],
+      "resolution": "18,900 kJ/h는 5,250 W다. 전열면 1 m²가 전달하는 열은 주어진 평균 온도차에서 814×6=4,884 W다. 따라서 필요한 전열면적은 ① 약 1.07 m²다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "formulaDisplay": true
+    },
+    {
+      "id": "hvac-hansol-book-2-160:15",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-160",
+      "number": 15,
+      "location": "한솔 공조 교재 2-160쪽 · 한솔 공조 교재 2-160쪽 15번",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-160쪽 15번 원문 및 작동 조건",
+      "finding": "교재 2-160쪽 15번 원문 및 작동 조건",
+      "basis": "냉동부하 193 kW, 질량유량 10.5833 kg/s, 온도 하강 6.584 K. 원문 입구온도 부호·② 재대조.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-160-15.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-160-15.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-160-15.webp",
+          "displayAsset": "assets/problem-webp90/d9a2aaf3e7b557722775e642f008e642.webp",
+          "sha256": "402d7f951fd1484a9f9e0791a7513919448e50c233d3052f8aa280d05008009f"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-160-15.webp",
+          "displayAsset": "assets/problem-webp90/f71c6e8209f8e5ea9e88651529665bde.webp",
+          "sha256": "29261b6bb26def2397f0d107bdb69fd0aa23ac262bf73e2bb2d2b2beaed50ee2"
+        }
+      ],
+      "resolution": "브라인 밀도는 약 1,270 kg/m³이고 질량유량은 0.5×1,270/60=10.58 kg/s다. 50 RT의 냉동능력은 주어진 환산값으로 193 kW다. 브라인은 약 6.58 ℃ 냉각되므로 출구는 ② −21.6 ℃다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "formulaDisplay": true
+    },
+    {
+      "id": "hvac-hansol-book-2-167:1",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-167",
+      "number": 1,
+      "location": "한솔 공조 교재 2-167쪽 · 한솔 공조 교재 2-167쪽 1번",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "교재 2-167쪽 1번 원문 및 작동 조건",
+      "finding": "교재 2-167쪽 1번 원문 및 작동 조건",
+      "basis": "③은 증발기 입구라고 했지만 감온통의 측정 위치는 출구. ②의 가스충전 방식에 대한 기동 특성과 리퀴드백 방지까지 확인할 자료 부족.",
+      "evidence": [],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-167-1.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-167-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-167-1.webp",
+          "displayAsset": "assets/problem-webp90/e8fceecee3408cda0716be06ae1bde9c.webp",
+          "sha256": "3684df0985a605ae17709420080f1e3efe4d00ad60fddbdf78cce0f1fafa5ab8"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-167-1.webp",
+          "displayAsset": "assets/problem-webp90/06c2818c0a261d4e862bb7cbf1541958.webp",
+          "sha256": "dfa51b8bd1cef34ebb5ea70180a783da6e3566b92a5654e6216a9dbd90179fae"
+        }
+      ],
+      "resolution": "②가 맞습니다. 캐필러리는 소용량·부하변동이 작은 장치,외부균압형은 출구 과열도,④는 전자팽창밸브 설명입니다.",
+      "changeReason": "이미지 원문 텍스트 전환"
+    },
+    {
+      "id": "hvac-hansol-book-2-168:4",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-168",
+      "number": 4,
+      "location": "한솔 공조 교재 2-168쪽 · 한솔 공조 교재 2-168쪽 4번",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "교재 2-168쪽 4번 원문 및 작동 조건",
+      "finding": "교재 2-168쪽 4번 원문 및 작동 조건",
+      "basis": "② 응축온도가 바뀌면 같은 냉매에서 응축압력이 달라짐. 밸브 압력강하는 용량에 영향. “관계가 없는” 표현과 기술적 한계.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "전체 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-168-4.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-168-4.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-168-4.webp",
+          "displayAsset": "assets/problem-webp90/631c656283710ca88fdc2b2fcc75f9d4.webp",
+          "sha256": "738cb55e901a3c19abb915e68f53cdd2bc62edfa72d87b58dbaad8947e232d93"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-168-4.webp",
+          "displayAsset": "assets/problem-webp90/a3fe3bb85ee18b48a12be78e5245787b.webp",
+          "sha256": "ae8611edd72134e957167cedd10bb48774f62f40293ffceebf2477b7d0cb77d0"
+        }
+      ],
+      "resolution": "교재에 열거된 세 항목은 냉동능력, 냉매 종류, 증발기의 형식·크기이므로 교재 답은 ②다. 다만 실제 밸브 용량은 밸브 전후 압력차의 영향을 받는다. 응축온도에 대응하는 고압측 압력이 달라지므로 “응축온도와 관계가 없다”는 표현을 일반적인 선정 원칙으로 쓰기는 어렵다.",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성"
+    },
+    {
+      "id": "hvac-hansol-book-2-178:3",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-178",
+      "number": 3,
+      "location": "한솔 공조 교재 2-178쪽 · 한솔 공조 교재 2-178쪽 3번",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "교재 2-178쪽 3번 원문 및 작동 조건",
+      "finding": "교재 2-178쪽 3번 원문 및 작동 조건",
+      "basis": "흡입배관에서 액분리기가 압축기로 액이 유입되는 일을 방지한다. ㄴ의 증발기 내 액 교란 방지까지 지지하는 독립 자료 없음.",
+      "evidence": [],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-178-3.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-178-3.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-178-3.webp",
+          "displayAsset": "assets/problem-webp90/e71e88e5eea8de4feb4787bc3e322cf8.webp",
+          "sha256": "0af78c1ff74933f61dd73d2ebc1ae33ec8c64d45a7f1c1ef541ce82dcd1665c1"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-178-3.webp",
+          "displayAsset": "assets/problem-webp90/5432fc3e76bcbc72df975e0b4a9cf6c7.webp",
+          "sha256": "5007ce4061ce9fc4ff5cc7aa1c0a3a35f84c8c80ed0de0b8dfa91d91302c1f93"
+        }
+      ],
+      "resolution": "ㄱ처럼 액분리기는 증발기와 압축기 사이의 흡입관에 설치해 액냉매가 압축기로 넘어가는 것을 줄인다. ㄷ처럼 부하 변동이 큰 장치에서 배제하는 것이 아니며 ㄹ은 보호 대상을 증발기라고 적었다. 교재 답은 ㄱ·ㄴ을 묶은 ①이지만, ㄴ의 “기동 시 증발기 내 액의 교란 방지”까지 이 장치의 기능으로 보는 근거는 더 확인해야 한다.",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성"
+    },
+    {
+      "id": "hvac-hansol-book-2-188:1",
+      "catalog": "hvac-hansol-book",
+      "file": "data/hvac-hansol-book.js",
+      "round": "hvac-hansol-book-2-188",
+      "number": 1,
+      "location": "한솔 공조 교재 2-188쪽 · 한솔 공조 교재 2-188쪽 1번",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "교재 2-188쪽 1번 원문 및 작동 조건",
+      "finding": "교재 2-188쪽 1번 원문 및 작동 조건",
+      "basis": "① 흡입압력 상승 시 닫힘, ② 증발압력 하한 보호, ③ 과열도 상승 시 열림. ④의 냉각탑 병용 불가 단정과 응축압력에 따른 수량조절 작용 비교.",
+      "evidence": [
+        "hvac-hansol-book-2-213:113"
+      ],
+      "transcription": "부분 전사·대조 완료",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol-book/questions/2-188-1.webp",
+      "explanationImages": [
+        "assets/hvac-hansol-book/explanations/2-188-1.webp"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/explanations/2-188-1.webp",
+          "displayAsset": "assets/problem-webp90/a9b119ed51eb982778ab689e6f5dd639.webp",
+          "sha256": "df64e6a72a70a1b237eadbea57caeec7d7aa1360ad3acebbf803de66b5961230"
+        },
+        {
+          "original": "assets/hvac-hansol-book/questions/2-188-1.webp",
+          "displayAsset": "assets/problem-webp90/4826f45027ba56fff7ccc625bc2a0e1b.webp",
+          "sha256": "35f4c25586fb9f29acf4f6a2400308d17843b0c5b382b7c248f53d7c6053d16a"
+        }
+      ],
+      "resolution": "냉각수조정밸브는 냉각탑을 이용하는 응축기에도 사용할 수 있으므로④가 틀립니다.",
+      "changeReason": "이미지 원문 텍스트 전환"
     }
   ],
   "sources": [
@@ -41942,6 +42946,102 @@
       "date": "2026-11-18",
       "opened": true,
       "section": "Modelica SMPM_CurrentSource, 영구자석 동기전동기의 전류 구동 모델."
+    },
+    {
+      "id": "659-damp",
+      "url": "https://raw.githubusercontent.com/vibrationtoolbox/vibration_toolbox/master/vibration_toolbox/sdof.py",
+      "sha256": "a85bbab402887d9c4e48832da24943e18085b03ae480cefe0eb303009b0adb46",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "Vibration Toolbox sdof.transmissibility, 식 2.71의 Displacement Transmissibility Ratio."
+    },
+    {
+      "id": "659-bolt2",
+      "url": "https://raw.githubusercontent.com/BelfrySCAD/BOSL2/master/screws.scad",
+      "sha256": "70595f5278cd8571ffebb667c28e1b5c040891dcf0f1e59225b751987b711f99",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "BOSL2 screws.scad 61~62행, Unified thread pitch notation: coarse/UNC, fine/UNF."
+    },
+    {
+      "id": "659-mtbf2",
+      "url": "https://raw.githubusercontent.com/MatthewReid854/reliability/master/reliability/Reliability_testing.py",
+      "sha256": "38e7879cdc848b3f0cad354524f38794d0f50358cbfe09b1f22decc153dc8fae",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "Reliability 라이브러리 Reliability_testing.py, reliability_test_planner의 Mean Time Between Failures 정의."
+    },
+    {
+      "id": "659-stepmanual",
+      "url": "https://raw.githubusercontent.com/arduino-libraries/Stepper/master/docs/api.md",
+      "sha256": "2df1a2dc002ee8b48c0fb6a03ffa117979da15833f40339d1bca0ec12ddf169b",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "Arduino Stepper documentation, steps per revolution / step(steps_to_move)."
+    },
+    {
+      "id": "659-brake",
+      "url": "https://raw.githubusercontent.com/modelica/ModelicaStandardLibrary/master/Modelica/Mechanics/Rotational/Components/Brake.mo",
+      "sha256": "e54b2032b9760234dadf063bfb9549df3af7a834a02827e4c4122b338316b677",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "Modelica Mechanics.Rotational.Components.Brake, normal force, friction torque 및 lossPower."
+    },
+    {
+      "id": "659-os-m42400",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-college-physics-bundle/main/modules/m42400/index.cnxml",
+      "sha256": "6eae94282f4ed0c852b5d1368e56dd5b915561d45b306a3568bf625dd6664ae1",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "OpenStax College Physics, Motional Emf, 도체 운동·자기장과 전하의 자기력에 의한 극성."
+    },
+    {
+      "id": "659-xf",
+      "url": "https://raw.githubusercontent.com/modelica/ModelicaStandardLibrary/master/Modelica/Electrical/Machines/BasicMachines/Transformers/Dy/Dy01.mo",
+      "sha256": "ca7ddc9dc22b589288decc565bbc52cdcbf5f60f5fcc083cad026bd7afff4390",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "Modelica Transformers.Dy.Dy01, VectorGroup=\"Dy01\" 및 1차 delta/2차 star 결선."
+    },
+    {
+      "id": "659-gasreg",
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%B6%80%EB%A0%B9/%EA%B3%A0%EC%95%95%EA%B0%80%EC%8A%A4%20%EC%95%88%EC%A0%84%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99.md",
+      "sha256": "782f547452a69a2b83d274f03887e6ce94a2b8c61ad29d338cb0b814107b19b4",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "고압가스 안전관리법 시행규칙 법제처 자료 사본, 재검사 및 별표 참조. 2005/2009년 판본이 아님."
+    },
+    {
+      "id": "659-hazreg",
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/30f5649a26f152011953c26c401422bfd4ff433f/%EB%B6%80%EB%A0%B9/%EC%9C%84%ED%97%98%EB%AC%BC%EC%95%88%EC%A0%84%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EA%B7%9C%EC%B9%99.md",
+      "sha256": "abe8f6a4f8b4b8f928d0c4bffb89372c7d11035fd4764111be96c08226713538",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "위험물안전관리법 시행규칙 제5조제1·2항. 용량은 내용적에서 공간용적을 뺀 값이며 구체적인 내용적 계산방법은 별도 고시."
+    },
+    {
+      "id": "659-org-m00214",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-organic-chemistry/main/modules/m00214/index.cnxml",
+      "sha256": "d417ad98ff7bf11fbfc8b63e76c2621ac5d572b77818e2a4ce964342c422e50f",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "OpenStax Organic Chemistry, Oxidation of Aldehydes and Ketones. aldehyde → carboxylic acid."
+    },
+    {
+      "id": "659-org-m00203",
+      "url": "https://raw.githubusercontent.com/openstax/osbooks-organic-chemistry/main/modules/m00203/index.cnxml",
+      "sha256": "f650244129a5b337fba24785cc4b931c4c818a308953ebfce3cdfa67c5e41b41",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "OpenStax Organic Chemistry, Alcohols from Carbonyl Compounds: Reduction. aldehyde → primary alcohol."
+    },
+    {
+      "id": "659-ht-exchanger",
+      "url": "https://raw.githubusercontent.com/CalebBell/ht/master/ht/hx.py",
+      "sha256": "ec3d6a9d296328b2754efe250a3019d3ccba03efc04bf613e730a52720d7ca5c",
+      "date": "2026-11-18",
+      "opened": true,
+      "section": "ht.hx.effectiveness_from_NTU, 평행류·직교류·향류와 Cr=0 상변화 극한, 112~180·359행."
     }
   ],
   "automaticAnswerCandidates": [
@@ -41956,7 +43056,8 @@
         "r=3",
         "r=10"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] r이 1에 가까울수록 진동차단효과가 높고 루트2에서 가장낮고 3~6은 낮고 6이상은 보통의 차단효과를 내기때문에 답은 1번입니다. [해설작성자 : 내가짱] [추가 오류 신고] 내가짱 님 말씀처럼 저도 그렇게 알고 있구요 제가 공부한 책의 출판사는 (주)시대고시기획 입니다. [해설작성자 : 설보기] [오류신고 반론] r = 외부 진동 주파수 / 시스템 고유 주파수 r 값 - 진동 차단 효과 1.4 이하 - 진동 증폭 1.4 ~ 3 - 무시할 정도 3 ~ 6 - 낮음 6 ~ 10 - 보통 10 이상 - 높음 (일진사 설비보전기사 필기총정리) [오류신고 반론] 2016년 4회차에 출제된 문제이다. r값이 높을수록 진동 차단효과가 크다고 이해하는 것이 좋다. [해설작성자 : comcbt.com 이용자] [오류신고 반론] 위의 문제는 출제자가 약간 꼬아서 출제한 문제로 보이며, 핵심은 고유진동주파수 fn을 구하라는 문제로 해석된다. 따라서 기본식 r = f/fn 에서 이항연산을 통해 고유진동주파수 fn을 구하면 fn = f/r가 되겠다. 그러므로 분모(r)의 값이 가장 커야 fn 값이 가장 작아지므로 보기의 r = 10 이 정답이라고 할수 있겠다. [해설작성자 : ket(주)] [오류신고 반론] 25win-q 21년 2회차에는 답 4번으로 되어있는데 문제의 조건이 부족하여 정확하게 파악하기 어렵다. 이러한 문제는 수정되어 출제될 수 있으며, 동일한 문제로 출제되는 경우 확정된 답을 선택한다. 로 나와있네요. [해설작성자 : geun]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] r이 1에 가까울수록 진동차단효과가 높고 루트2에서 가장낮고 3~6은 낮고 6이상은 보통의 차단효과를 내기때문에 답은 1번입니다. [해설작성자 : 내가짱] [추가 오류 신고] 내가짱 님 말씀처럼 저도 그렇게 알고 있구요 제가 공부한 책의 출판사는 (주)시대고시기획 입니다. [해설작성자 : 설보기] [오류신고 반론] r = 외부 진동 주파수 / 시스템 고유 주파수 r 값 - 진동 차단 효과 1.4 이하 - 진동 증폭 1.4 ~ 3 - 무시할 정도 3 ~ 6 - 낮음 6 ~ 10 - 보통 10 이상 - 높음 (일진사 설비보전기사 필기총정리) [오류신고 반론] 2016년 4회차에 출제된 문제이다. r값이 높을수록 진동 차단효과가 크다고 이해하는 것이 좋다. [해설작성자 : comcbt.com 이용자] [오류신고 반론] 위의 문제는 출제자가 약간 꼬아서 출제한 문제로 보이며, 핵심은 고유진동주파수 fn을 구하라는 문제로 해석된다. 따라서 기본식 r = f/fn 에서 이항연산을 통해 고유진동주파수 fn을 구하면 fn = f/r가 되겠다. 그러므로 분모(r)의 값이 가장 커야 fn 값이 가장 작아지므로 보기의 r = 10 이 정답이라고 할수 있겠다. [해설작성자 : ket(주)] [오류신고 반론] 25win-q 21년 2회차에는 답 4번으로 되어있는데 문제의 조건이 부족하여 정확하게 파악하기 어렵다. 이러한 문제는 수정되어 출제될 수 있으며, 동일한 문제로 출제되는 경우 확정된 답을 선택한다. 로 나와있네요. [해설작성자 : geun]",
+      "reviewId": "maintenance-engineer-2021-2:17"
     },
     {
       "location": "maintenance-engineer/maintenance-engineer-2020-3/23",
@@ -41969,7 +43070,8 @@
         "공구의 설계 및 표준화",
         "공구의 보관과 대출"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 치공구 관리기능 (1) 계획단계 : 공구의 연구시험 (공구가 만들어지기 전에 어떻게 만들 것인가에 대한 계획) (2) 설계단계 : 공구의 설계, 표준화 (3) 보전단계 : 공구의 제작, 수리, 검사, 보관, 공급, 연삭 문제가 좀 이상.. [해설작성자 : 복수혈전] [추가 오류 신고] 정답 1번입니다. [해설작성자 : 무앙킹] [관리자 입니다. 문제지 사진원본 확인해 봤는데 정답은 3번이네요. 관련 규정이 개정 되었을 경우 개정된 법령집 내용 및 링크 삽입부탁 드립니다. 그외 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 치공구 관리기능 (1) 계획단계 : 공구의 연구시험 (공구가 만들어지기 전에 어떻게 만들 것인가에 대한 계획) (2) 설계단계 : 공구의 설계, 표준화 (3) 보전단계 : 공구의 제작, 수리, 검사, 보관, 공급, 연삭 문제가 좀 이상.. [해설작성자 : 복수혈전] [추가 오류 신고] 정답 1번입니다. [해설작성자 : 무앙킹] [관리자 입니다. 문제지 사진원본 확인해 봤는데 정답은 3번이네요. 관련 규정이 개정 되었을 경우 개정된 법령집 내용 및 링크 삽입부탁 드립니다. 그외 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]",
+      "reviewId": "maintenance-engineer-2020-3:23"
     },
     {
       "location": "maintenance-engineer/maintenance-engineer-2019-2/46",
@@ -41982,7 +43084,8 @@
         "ctc",
         "ctg"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 유니파이 unf 이며 정답은 1번 입니다 [해설작성자 : 민유] [오류신고 반론] 유니파이 보통 나사 unc 입니다. 정답 2번 유니파이 가는 나사가 unf 입니다. [해설작성자 : 솔린] [관리자 입니다. 위 솔린님의 말씀이 맞습니다. 검색을 통하여 확인하였습니다. 오류신고 자제 부탁 드립니다.] unc : 유니파이 보통 나사 unf : 유니파이 가는 나사 ctc : 박강 전선관 나사 ctg : 후강 전선관 나사 [해설작성자 : 치키챠~] f = fine (미세, 다듬어진..) c = coarse (거친, 조잡한..) [해설작성자 : 초이스 기술검사 최소장]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 유니파이 unf 이며 정답은 1번 입니다 [해설작성자 : 민유] [오류신고 반론] 유니파이 보통 나사 unc 입니다. 정답 2번 유니파이 가는 나사가 unf 입니다. [해설작성자 : 솔린] [관리자 입니다. 위 솔린님의 말씀이 맞습니다. 검색을 통하여 확인하였습니다. 오류신고 자제 부탁 드립니다.] unc : 유니파이 보통 나사 unf : 유니파이 가는 나사 ctc : 박강 전선관 나사 ctg : 후강 전선관 나사 [해설작성자 : 치키챠~] f = fine (미세, 다듬어진..) c = coarse (거친, 조잡한..) [해설작성자 : 초이스 기술검사 최소장]",
+      "reviewId": "maintenance-engineer-2019-2:46"
     },
     {
       "location": "maintenance-engineer/maintenance-engineer-2018-4/94",
@@ -41995,7 +43098,8 @@
         "mttf",
         "mttr"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답은 3번입니다. mtbf : 평균고장발생간격, 시스템과 제품이 고장난 시간에서 다음 고장까지의 시간 mttf : 고장날 때 까지 평균 기대 시간, 고장을 수리(복구)한 이후부터 다음 고장까지의 시간 [해설작성자 : comcbt.com 이용자] [오류신고 반론] 1.mtbf - mean time between failure 평균 고장 시간 간격 2.mtbm - mean time between maintenance 평균 보수 시간 3.mttf - mean time to failure 평균 고장 시간 4.mttr - mean time to repair 평균 수리 시간 [해설작성자 : 학생] [추가 오류 신고] 3.mttf - mean time to failure 평균 고장 시간 답은 3번입니다. [해설작성자 : 전남폴 발전설비과] [오류신고 반론] 고장과 고장사이의 평균시간입니다. 말장난한거에요 고장과 고장사이는 간격이니까 평균 고장 시간 간격이 답이죠 문제 잘 보세요. [해설작성자 : 설비보전 잼민이] [오류신고 반론] 책에는 1번으로 답으로 나와있습니다. win-q 2021년 설비보전기사(필기) [해설작성자 : 선생] [오류신고 반론] 위에 2분 스스로 답을 말씀하시고 틀린 답을 말하시네요 고장과 고장사이이니 1번입니다 [해설작성자 : comcbt.com 이용자]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답은 3번입니다. mtbf : 평균고장발생간격, 시스템과 제품이 고장난 시간에서 다음 고장까지의 시간 mttf : 고장날 때 까지 평균 기대 시간, 고장을 수리(복구)한 이후부터 다음 고장까지의 시간 [해설작성자 : comcbt.com 이용자] [오류신고 반론] 1.mtbf - mean time between failure 평균 고장 시간 간격 2.mtbm - mean time between maintenance 평균 보수 시간 3.mttf - mean time to failure 평균 고장 시간 4.mttr - mean time to repair 평균 수리 시간 [해설작성자 : 학생] [추가 오류 신고] 3.mttf - mean time to failure 평균 고장 시간 답은 3번입니다. [해설작성자 : 전남폴 발전설비과] [오류신고 반론] 고장과 고장사이의 평균시간입니다. 말장난한거에요 고장과 고장사이는 간격이니까 평균 고장 시간 간격이 답이죠 문제 잘 보세요. [해설작성자 : 설비보전 잼민이] [오류신고 반론] 책에는 1번으로 답으로 나와있습니다. win-q 2021년 설비보전기사(필기) [해설작성자 : 선생] [오류신고 반론] 위에 2분 스스로 답을 말씀하시고 틀린 답을 말하시네요 고장과 고장사이이니 1번입니다 [해설작성자 : comcbt.com 이용자]",
+      "reviewId": "maintenance-engineer-2018-4:94"
     },
     {
       "location": "maintenance-engineer/maintenance-engineer-2017-2/86",
@@ -42008,7 +43112,8 @@
         "진동 및 공진의 문제가 없다.",
         "대용량의 기기를 만들 수 있다."
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 4번이 대용량의 기기를 만들수 없다 이고 이문제의 답은 4번입니다. 스태핑 모터의 특징 1. 진동 및 공진의 문제가 있다 2. 관성이 큰 부하에 부적합하다 3. 대용량의 기기를 만들 수 없다 [관리자 입니다. 문제지 원본 사진 확인결과 문제 보기 4번은 있다가 맞습니다.] [오류신고 반론] 올바른 답을 찾는 문제이기에 답은 1번이 맞습니다. 2, 3, 4번의 내용이 스태핑모터의 특징을 반대로 설명하고 있습니다. [해설작성자 : comcbt.com 이용자] [추가 오류 신고] 정답은 4번이 맞는거 같습니다 책의내용에서도 대용량의 기기를 만들수 없다 이고 설명에서도 스테핑모터는 대용량의 기기를 만들수없다로 되어있어용 [해설작성자 : 나도공부중] [오류신고 반론] 특징이 대용량의 기기를 만들수 없다 이고 보기에는 있다 라고 되어 있습니다. 특징으로 옳은걸 찾는 것이니 4번은 답이 아니죠. [해설작성자 : 문제좀 읽자] [오류신고 반론] 답은 1번이 맞습니다. 특징으로 옳은것을 찾으라는데. 문제와 보기를 제대로 읽고 신중하게 오류 신고를 했으면 합니다. [해설작성자 : ket(주)]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 4번이 대용량의 기기를 만들수 없다 이고 이문제의 답은 4번입니다. 스태핑 모터의 특징 1. 진동 및 공진의 문제가 있다 2. 관성이 큰 부하에 부적합하다 3. 대용량의 기기를 만들 수 없다 [관리자 입니다. 문제지 원본 사진 확인결과 문제 보기 4번은 있다가 맞습니다.] [오류신고 반론] 올바른 답을 찾는 문제이기에 답은 1번이 맞습니다. 2, 3, 4번의 내용이 스태핑모터의 특징을 반대로 설명하고 있습니다. [해설작성자 : comcbt.com 이용자] [추가 오류 신고] 정답은 4번이 맞는거 같습니다 책의내용에서도 대용량의 기기를 만들수 없다 이고 설명에서도 스테핑모터는 대용량의 기기를 만들수없다로 되어있어용 [해설작성자 : 나도공부중] [오류신고 반론] 특징이 대용량의 기기를 만들수 없다 이고 보기에는 있다 라고 되어 있습니다. 특징으로 옳은걸 찾는 것이니 4번은 답이 아니죠. [해설작성자 : 문제좀 읽자] [오류신고 반론] 답은 1번이 맞습니다. 특징으로 옳은것을 찾으라는데. 문제와 보기를 제대로 읽고 신중하게 오류 신고를 했으면 합니다. [해설작성자 : ket(주)]",
+      "reviewId": "maintenance-engineer-2017-2:86"
     },
     {
       "location": "maintenance-engineer/maintenance-engineer-2015-4/54",
@@ -42021,7 +43126,8 @@
         "접촉면의 크기",
         "브레이크의 중량"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 책에는 4발열이 정답으로 되어있습니다 확인바랍니다 [해설작성자 : 합격합시다] [관리자 입니다. 정답 확인결과 이상 없습니다. 브레이크 중량이 무거우면 브레이크 더 잘걸리는 건가요? 상식적으로 저는 이해가 잘 안가네요... 저는 정답이 3번 같은데요...] [오류신고 반론] 정답 3번 브레이크 중량이고 책에 찾아보니깐 3번이라고 되어있네요 [해설작성자 : 설비마스터] [해설작성자 : comcbt.com 이용자] [오류신고 반론] 정답 3번 맞습니다 교재:일진사 [해설작성자 : comcbt.com 이용자]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 책에는 4발열이 정답으로 되어있습니다 확인바랍니다 [해설작성자 : 합격합시다] [관리자 입니다. 정답 확인결과 이상 없습니다. 브레이크 중량이 무거우면 브레이크 더 잘걸리는 건가요? 상식적으로 저는 이해가 잘 안가네요... 저는 정답이 3번 같은데요...] [오류신고 반론] 정답 3번 브레이크 중량이고 책에 찾아보니깐 3번이라고 되어있네요 [해설작성자 : 설비마스터] [해설작성자 : comcbt.com 이용자] [오류신고 반론] 정답 3번 맞습니다 교재:일진사 [해설작성자 : comcbt.com 이용자]",
+      "reviewId": "maintenance-engineer-2015-4:54"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2012-4/36",
@@ -42034,7 +43140,8 @@
         "회로의 배선이 정확하게 결선 되었는지 확인한다.",
         "입력 배선 검사는 직류 전압으로 시험한다."
       ],
-      "explanation": "배선시험이기 때문에 배선과 관련이 없는 2번의 단자 및 나사조임 확인이 오답임. [해설작성자 : 현재] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답은 1번입니다 .. 교류에서는 반주기마다 방향이 변화하므로 극성 ( + , - ) 가 없습니다. [해설작성자 : 송진영] [오류신고 반론] 보호계전기에서는 극성이 상관없습니다 [해설작성자 : 포철공고에이스] [오류신고 반론] 보호계전기에서는 극성이 상관없는걸로 알고있습니다.. 확실히 아시는분 없나요..! [해설작성자 : 태루기] [추가 오류 신고] 교류에서는 반주기마다 방향이 변화하므로 극성(+,-)이 없다. 출처 : 성안당 +답 1번 [해설작성자 : 경상공고생] [오류신고 반론] 출판사명: 시대고시기획 정답: 2번 해설: 보호계전기 배선 시험으로는 전압의 종류, 직류시 극성, 배선의 연결상태 등을 시험하고, 나사 조임 등은 배선시험과 무관하다. [해설작성자 : 2021년 12월 16일] [오류신고 반론] 보호계전기의 배선 시험에서 사용되는 전압의 종류(직류,교류)를 확인하고 이에 따라 극성을 고려하여(교류일 경우 무관) 결선을 한다. 각부 나사 조임 상태 점검은 배선시험과는 거리가 있다. win-q 전기기능사책 해설에는 이렇게 써있네요 [해설작성자 : ㅎㅎㅎㅎㅎㅎ]"
+      "explanation": "배선시험이기 때문에 배선과 관련이 없는 2번의 단자 및 나사조임 확인이 오답임. [해설작성자 : 현재] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답은 1번입니다 .. 교류에서는 반주기마다 방향이 변화하므로 극성 ( + , - ) 가 없습니다. [해설작성자 : 송진영] [오류신고 반론] 보호계전기에서는 극성이 상관없습니다 [해설작성자 : 포철공고에이스] [오류신고 반론] 보호계전기에서는 극성이 상관없는걸로 알고있습니다.. 확실히 아시는분 없나요..! [해설작성자 : 태루기] [추가 오류 신고] 교류에서는 반주기마다 방향이 변화하므로 극성(+,-)이 없다. 출처 : 성안당 +답 1번 [해설작성자 : 경상공고생] [오류신고 반론] 출판사명: 시대고시기획 정답: 2번 해설: 보호계전기 배선 시험으로는 전압의 종류, 직류시 극성, 배선의 연결상태 등을 시험하고, 나사 조임 등은 배선시험과 무관하다. [해설작성자 : 2021년 12월 16일] [오류신고 반론] 보호계전기의 배선 시험에서 사용되는 전압의 종류(직류,교류)를 확인하고 이에 따라 극성을 고려하여(교류일 경우 무관) 결선을 한다. 각부 나사 조임 상태 점검은 배선시험과는 거리가 있다. win-q 전기기능사책 해설에는 이렇게 써있네요 [해설작성자 : ㅎㅎㅎㅎㅎㅎ]",
+      "reviewId": "electric-craftsman-2012-4:36"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2011-4/42",
@@ -42047,7 +43154,8 @@
         "1.5",
         "2"
       ],
-      "explanation": "케이블 공사시, 조영재면에 따라 시설하는 경우(내선규정 제2275절) 케이블을 조영재의 옆면, 아래면 시설시 지지점간 거리는 2m 이하, 수직으로 시설시 6m이하 새들 또는 스텝플로 지지. 캡타이어 케이블 공사시, 조영재의 옆면 아래면 시설시 1m이하마다 새들 또는 스템플로 지지. [해설작성자 : 도우밍] 케이블 지지점 간의 거리는 조영재의 수직방향으로 시설할 경우 : 2[m] 이하 (단, 캡타이어 케이블 1[m]) 조영재의 수평방향으로 시설할 경우 : 1[m] 이하 출처 - 전기기술이론1 영남검정연구회 p294 (5번) 문항 참조 전기설비 기술기준 213조에 의하면 전선을 조영재의 아랫면 또는 옆면에 따라 붙이는 경우에는 전선의 지지점간의 거리를 케이블은 2m (사람이 접촉할 우려가 있는 곳에서 수직으로 붙이는 경우에는 6m) 이하 캡타이어 케이블은 1m 이하로 하고 또한 그 피복을 손상하지 아니하도록 붙일 것. 이라고 되어 있습니다. 도우밍님이 하신 내용도 약간 부족한게 있었습니다. [해설작성자 : 해설이 틀려서 작성함 필기 또 떨어지면 우짜지] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 정답은 4번이라고 나와 있는데 답은 2번 입니다. 교육기관에서 교육을 받고 있는데 어느 수업듣는 분이 교수님께 이 문제에 대해 교수님 답이 틀린 거 아니냐고 물어봐서 답을 주셨는데 사람이 접촉할 우려가 없는 이런말이 문제에 나와있다면 수직 6m,수평 2m가 맞는데 문제에 그런말 자체가 안나와 있다면 수직 2m, 수평 1m가 맞다고 합니다 그러니 답은 2번 1m가 맞다고 합니다. 4번의 2m는 틀린 거라고 알려주셨습니다 교수님의 답을 듣고 정답이 잘못된 거 같아 제보합니다. [추가 오류 신고] 학교선생님이 1m라고하십니다 [해설작성자 : 허민균] [오류신고 반론] 하면, 측면 수평배선시 1m인데 수평배선이라는 말이 안나왔으니 2m 아닌가요?? [해설작성자 : 합격하자] [추가 오류 신고] 1m가 답인거 같습니다. [해설작성자 : 합격하고싶다] [추가 오류 신고] 합격하자 님, 그렇게 치면 수직배선 이라는 말도 나오지 않았습니다. 그리고 조영재의 아랫면 또는 옆면 이라고 써있으니 수평과 수직 둘 다 말하는게 아닐까요? [해설작성자 : 문제 잘 읽으세요] [오류신고 반론] 케이블 공사 - 케이블의 지지 (가) 케이블을 조영재 측면 또는 하면에 따라 지지할 경우 지지 점간 거리는 2m 이하로 하면서 클리트, 새들, 스테이플 등을 이용하여 지지한다. (단 케이블을 수직으로 설치하면서 사람이 접촉할 우려가 없는 장소에는 6m 이하로 할 수 있다.) (나) 단면적 10mm^2이하 케이블을 노출장소에서 조영재에 따라 시설할 경우 지지 점간 거리는 다음사항에 의한다. - 조영재 측면 또는 하면에 수평방향으로 시설하는것 : 1m이하 - 사람이 접촉할 우려가 있는 곳 : 1m이하 - 케이블 상호 및 박스, 기구와의 접속개소 : 접속개소에서 0.3m이하 - 기타의 장소 : 2m이하 문제에서는 단면적 10mm^2이하 케이블이라는 말이 안나와있으므로 (가)에 해당하는 2m이하가 정답입니다. 문제집- 20년최신판 전기기능사 필기 최근7년간 기출문제 참고. [해설작성자 : 가자고오] [오류신고 반론] 전선을 조영재의 아랫면 또는 옆면에 따라 붙이는 경우에는 전선의 지지점간의 거리를 케이블은 2[m](사람이 접촉할 우려가 없는 곳에서 수직으로 붙이는 경우에는 6[m])이하 캡타이어 케이블은 1[m]이하로 하고 또한 그 피복을 손상하지 아니하도록 붙일것 그래서 정답은 4번 2m 이다 어떤 교수고 선생님께서 잘 못알고 가르치셨네요 [해설작성자 : 삐삐]"
+      "explanation": "케이블 공사시, 조영재면에 따라 시설하는 경우(내선규정 제2275절) 케이블을 조영재의 옆면, 아래면 시설시 지지점간 거리는 2m 이하, 수직으로 시설시 6m이하 새들 또는 스텝플로 지지. 캡타이어 케이블 공사시, 조영재의 옆면 아래면 시설시 1m이하마다 새들 또는 스템플로 지지. [해설작성자 : 도우밍] 케이블 지지점 간의 거리는 조영재의 수직방향으로 시설할 경우 : 2[m] 이하 (단, 캡타이어 케이블 1[m]) 조영재의 수평방향으로 시설할 경우 : 1[m] 이하 출처 - 전기기술이론1 영남검정연구회 p294 (5번) 문항 참조 전기설비 기술기준 213조에 의하면 전선을 조영재의 아랫면 또는 옆면에 따라 붙이는 경우에는 전선의 지지점간의 거리를 케이블은 2m (사람이 접촉할 우려가 있는 곳에서 수직으로 붙이는 경우에는 6m) 이하 캡타이어 케이블은 1m 이하로 하고 또한 그 피복을 손상하지 아니하도록 붙일 것. 이라고 되어 있습니다. 도우밍님이 하신 내용도 약간 부족한게 있었습니다. [해설작성자 : 해설이 틀려서 작성함 필기 또 떨어지면 우짜지] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 정답은 4번이라고 나와 있는데 답은 2번 입니다. 교육기관에서 교육을 받고 있는데 어느 수업듣는 분이 교수님께 이 문제에 대해 교수님 답이 틀린 거 아니냐고 물어봐서 답을 주셨는데 사람이 접촉할 우려가 없는 이런말이 문제에 나와있다면 수직 6m,수평 2m가 맞는데 문제에 그런말 자체가 안나와 있다면 수직 2m, 수평 1m가 맞다고 합니다 그러니 답은 2번 1m가 맞다고 합니다. 4번의 2m는 틀린 거라고 알려주셨습니다 교수님의 답을 듣고 정답이 잘못된 거 같아 제보합니다. [추가 오류 신고] 학교선생님이 1m라고하십니다 [해설작성자 : 허민균] [오류신고 반론] 하면, 측면 수평배선시 1m인데 수평배선이라는 말이 안나왔으니 2m 아닌가요?? [해설작성자 : 합격하자] [추가 오류 신고] 1m가 답인거 같습니다. [해설작성자 : 합격하고싶다] [추가 오류 신고] 합격하자 님, 그렇게 치면 수직배선 이라는 말도 나오지 않았습니다. 그리고 조영재의 아랫면 또는 옆면 이라고 써있으니 수평과 수직 둘 다 말하는게 아닐까요? [해설작성자 : 문제 잘 읽으세요] [오류신고 반론] 케이블 공사 - 케이블의 지지 (가) 케이블을 조영재 측면 또는 하면에 따라 지지할 경우 지지 점간 거리는 2m 이하로 하면서 클리트, 새들, 스테이플 등을 이용하여 지지한다. (단 케이블을 수직으로 설치하면서 사람이 접촉할 우려가 없는 장소에는 6m 이하로 할 수 있다.) (나) 단면적 10mm^2이하 케이블을 노출장소에서 조영재에 따라 시설할 경우 지지 점간 거리는 다음사항에 의한다. - 조영재 측면 또는 하면에 수평방향으로 시설하는것 : 1m이하 - 사람이 접촉할 우려가 있는 곳 : 1m이하 - 케이블 상호 및 박스, 기구와의 접속개소 : 접속개소에서 0.3m이하 - 기타의 장소 : 2m이하 문제에서는 단면적 10mm^2이하 케이블이라는 말이 안나와있으므로 (가)에 해당하는 2m이하가 정답입니다. 문제집- 20년최신판 전기기능사 필기 최근7년간 기출문제 참고. [해설작성자 : 가자고오] [오류신고 반론] 전선을 조영재의 아랫면 또는 옆면에 따라 붙이는 경우에는 전선의 지지점간의 거리를 케이블은 2[m](사람이 접촉할 우려가 없는 곳에서 수직으로 붙이는 경우에는 6[m])이하 캡타이어 케이블은 1[m]이하로 하고 또한 그 피복을 손상하지 아니하도록 붙일것 그래서 정답은 4번 2m 이다 어떤 교수고 선생님께서 잘 못알고 가르치셨네요 [해설작성자 : 삐삐]",
+      "reviewId": "electric-craftsman-2011-4:42"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2010-5/2",
@@ -42060,7 +43168,8 @@
         "플레밍의 왼손 법칙",
         "비오-사바르의 법칙"
       ],
-      "explanation": "렌츠의 법칙은 전자기 유도의 방향에 관한법칙이고 플레밍의 왼손법칙은 전자기력의 방향에 관한법칙 플레밍의 오른손법칙은 기전력의 방향에 관한 법칙 비오-사바르의 법칙은 자기장의 세기에 관한 법칙입니다 렌츠의 법칙이 기전력의 방향이 맞긴 하지만 렌츠의 법칙은 \"시변자속에 의해 유기\"되는 기전력의 방향을 설명한 법칙입니다. 문제에서 말하는 기전력은 \"도체가 운동하는 경우\" 의 유도 기전력을 알고자 하기 때문에 도체가 운동에 의한 전자 유도로 생기는 기전력을 알아내는 방법인 플레밍의 오른손 법칙을 쓰기 때문에 답은 4번 맞습니다 [해설작성자 : 하하 네이버 형님들은 뭐든지 알고있지] 전동기 - 플레밍의 왼손법칙 전동기는 전기를 넣어서 계자나 전기자를 돌려 부하를 움직일때 쓰죠? 그래서 도체가 움직이는 힘의 방향을 알아보는데 씁니다. 발전기 - 플레밍의 오른손법칙 발전기는 도체가 움직여 전기를 만들어서 내보내는게 목적이죠? 그래서 기전력의 방향을 알아보는데 씁니다. [해설작성자 : 고숲]"
+      "explanation": "렌츠의 법칙은 전자기 유도의 방향에 관한법칙이고 플레밍의 왼손법칙은 전자기력의 방향에 관한법칙 플레밍의 오른손법칙은 기전력의 방향에 관한 법칙 비오-사바르의 법칙은 자기장의 세기에 관한 법칙입니다 렌츠의 법칙이 기전력의 방향이 맞긴 하지만 렌츠의 법칙은 \"시변자속에 의해 유기\"되는 기전력의 방향을 설명한 법칙입니다. 문제에서 말하는 기전력은 \"도체가 운동하는 경우\" 의 유도 기전력을 알고자 하기 때문에 도체가 운동에 의한 전자 유도로 생기는 기전력을 알아내는 방법인 플레밍의 오른손 법칙을 쓰기 때문에 답은 4번 맞습니다 [해설작성자 : 하하 네이버 형님들은 뭐든지 알고있지] 전동기 - 플레밍의 왼손법칙 전동기는 전기를 넣어서 계자나 전기자를 돌려 부하를 움직일때 쓰죠? 그래서 도체가 움직이는 힘의 방향을 알아보는데 씁니다. 발전기 - 플레밍의 오른손법칙 발전기는 도체가 움직여 전기를 만들어서 내보내는게 목적이죠? 그래서 기전력의 방향을 알아보는데 씁니다. [해설작성자 : 고숲]",
+      "reviewId": "electric-craftsman-2010-5:2"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2007-2/18",
@@ -42073,7 +43182,8 @@
         "① 전압계, ② 직렬",
         "① 전류계, ② 직렬"
       ],
-      "explanation": "전압 배율 직렬 / 전류 분류 병렬 [해설작성자 : 설명충] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 전압계는 병렬로 연결해야 합니다. 왜냐하면, 병렬일때 부하와의 전압이 같게 걸리므로 측정이 가능합니다. 문제오류 입니다. 답은 1번입니다. ※추가설명 전류측정 - 분류기 ( 직렬일 경우 전류는 일치 하므로 분류기는 직렬로 연결해야 함.) [해설작성자 : 동일공고 파이널 ㅇㅇㅈ] [오류신고 반론] 배율기는 전압계와 직렬로 접속입니다. 회로에는 전압계를 병렬로 연결하니 배율기도 병렬로 연결해야겠죠 회로와는 병렬 전압계와는 직렬 [해설작성자 : 휴지] [추가 오류 신고] 배율기는 전압계에 병렬로 연결하지 않나요? [해설작성자 : comcbt.com 이용자] [오류신고 반론] 전압계에 배율기 직렬연결 하는거 맞습니다^_^ 전류계에 분류기는 병렬연결이구요 [해설작성자 : 솔로데뷔해줘] [추가 오류 신고] 배율기가 전압계의 측정 범위를 확대하기 위해 \"전압계\"와 직렬 접속이고 전압계는 측정 대상과 병렬 연결인데 문제에서는 측정 대상이 회로이니 병렬연결 인데 문제 오류 맞는거 같습니다. [해설작성자 : 시설공단] [추가 오류 신고] 1. 전압계는 병렬로 접속하고 전류계는 직렬로 접속한다. 2. 분류기는 전류계의 측정범위를 넓히기 위해 전류계와 병렬로 접속하는 저항기이다. 3. 배율기는 전압계의 측정범의를 넓히기 위해 전압계에 직렬로 접속하는 저항기이다. [정리] 1. 전압계는 회로와 병렬 2. 배율기는 전압계와 직렬 [결론] 회로도 상 배율기와 전압계는 동일 선상에 있으니 회로와 병렬이 맞다고 봅니다. 지문에서 {것으로서, \"회로\"와 (②)로 접속하는 저항기를 말한다.} 라고 했는데 회로가 아닌 {것으로서, (①)에 (②)로 접속하는 저항기를 말한다.} 라고 해야 3번이 정답입니다. [해설작성자 : 지나가던 전기공부하는 행인] [오류신고 반론] 배율기 = 전압계와 직렬 연결 전압계 = 회로에 병렬 연결 분류기 = 전류계와 병렬 연결 전류계 = 회로에 직렬 연결 정답 문제없어요~!! 헷갈리기 쉬운 문제이니 잘 읽어보고 한번에 합격합시다~^^ [해설작성자 : 불곰탱이]"
+      "explanation": "전압 배율 직렬 / 전류 분류 병렬 [해설작성자 : 설명충] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 전압계는 병렬로 연결해야 합니다. 왜냐하면, 병렬일때 부하와의 전압이 같게 걸리므로 측정이 가능합니다. 문제오류 입니다. 답은 1번입니다. ※추가설명 전류측정 - 분류기 ( 직렬일 경우 전류는 일치 하므로 분류기는 직렬로 연결해야 함.) [해설작성자 : 동일공고 파이널 ㅇㅇㅈ] [오류신고 반론] 배율기는 전압계와 직렬로 접속입니다. 회로에는 전압계를 병렬로 연결하니 배율기도 병렬로 연결해야겠죠 회로와는 병렬 전압계와는 직렬 [해설작성자 : 휴지] [추가 오류 신고] 배율기는 전압계에 병렬로 연결하지 않나요? [해설작성자 : comcbt.com 이용자] [오류신고 반론] 전압계에 배율기 직렬연결 하는거 맞습니다^_^ 전류계에 분류기는 병렬연결이구요 [해설작성자 : 솔로데뷔해줘] [추가 오류 신고] 배율기가 전압계의 측정 범위를 확대하기 위해 \"전압계\"와 직렬 접속이고 전압계는 측정 대상과 병렬 연결인데 문제에서는 측정 대상이 회로이니 병렬연결 인데 문제 오류 맞는거 같습니다. [해설작성자 : 시설공단] [추가 오류 신고] 1. 전압계는 병렬로 접속하고 전류계는 직렬로 접속한다. 2. 분류기는 전류계의 측정범위를 넓히기 위해 전류계와 병렬로 접속하는 저항기이다. 3. 배율기는 전압계의 측정범의를 넓히기 위해 전압계에 직렬로 접속하는 저항기이다. [정리] 1. 전압계는 회로와 병렬 2. 배율기는 전압계와 직렬 [결론] 회로도 상 배율기와 전압계는 동일 선상에 있으니 회로와 병렬이 맞다고 봅니다. 지문에서 {것으로서, \"회로\"와 (②)로 접속하는 저항기를 말한다.} 라고 했는데 회로가 아닌 {것으로서, (①)에 (②)로 접속하는 저항기를 말한다.} 라고 해야 3번이 정답입니다. [해설작성자 : 지나가던 전기공부하는 행인] [오류신고 반론] 배율기 = 전압계와 직렬 연결 전압계 = 회로에 병렬 연결 분류기 = 전류계와 병렬 연결 전류계 = 회로에 직렬 연결 정답 문제없어요~!! 헷갈리기 쉬운 문제이니 잘 읽어보고 한번에 합격합시다~^^ [해설작성자 : 불곰탱이]",
+      "reviewId": "electric-craftsman-2007-2:18"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2007-1/28",
@@ -42086,7 +43196,8 @@
         "δ-y 와 δ-y",
         "δ-δ 와 δ-δ"
       ],
-      "explanation": "외우실때 δ랑y가 홀수인 것을 고르시면 됩니다. [해설작성자 : 전기과 빠쌰] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 2번이 정답이라고 하고있는데요 사실 정답이 없습니다. 3강 변압기 병렬운전이 불가능한 결선조합은 δ-y와y-δ인데 선택지에는 정답이 없습니다. [해설작성자 : comcbt.com 이용자] [추가 오류 신고] 답은 3번입니다 아직도 수정이 안되서 말씀드립니다."
+      "explanation": "외우실때 δ랑y가 홀수인 것을 고르시면 됩니다. [해설작성자 : 전기과 빠쌰] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 2번이 정답이라고 하고있는데요 사실 정답이 없습니다. 3강 변압기 병렬운전이 불가능한 결선조합은 δ-y와y-δ인데 선택지에는 정답이 없습니다. [해설작성자 : comcbt.com 이용자] [추가 오류 신고] 답은 3번입니다 아직도 수정이 안되서 말씀드립니다.",
+      "reviewId": "electric-craftsman-2007-1:28"
     },
     {
       "location": "electric-craftsman/electric-craftsman-2002-2/9",
@@ -42099,7 +43210,8 @@
         "",
         ""
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답 2번이다 역률은 피상전력에 대한 유효전력의 비율이므로 z/r 이므로 답은 2번이 된다. [해설작성자 : cjm] [오류신고 반론] 병렬회로이므로 1번이 정답입니다. [해설작성자 : lucielar] [오류신고 반론] 직렬일때 r/z고요 병렬일때 x/z입니다 [해설작성자 : ^^]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 답 2번이다 역률은 피상전력에 대한 유효전력의 비율이므로 z/r 이므로 답은 2번이 된다. [해설작성자 : cjm] [오류신고 반론] 병렬회로이므로 1번이 정답입니다. [해설작성자 : lucielar] [오류신고 반론] 직렬일때 r/z고요 병렬일때 x/z입니다 [해설작성자 : ^^]",
+      "reviewId": "electric-craftsman-2002-2:9"
     },
     {
       "location": "gas-craftsman/gas-craftsman-2011-1/55",
@@ -42112,7 +43224,8 @@
         "스테인리스 스틸",
         "아연 합금"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 조정기 연결부 이음쇠의 재료는 쾌삭황동을 사용한다. 답2번입니다. [해설작성자 : 오리] [오류신고 반론] 1번 단조용 황동 :고압고무호스에 사용하는 조정기 연결부 이음쇠 재료 출처:예문사 가스기능사 10일완성 [해설작성자 : 처음처럼] [오류신고 반론] 고압고무호스에 사용하는 부품의재료 *조정기 연결부 이음쇠:단조용 황동 *압력조정기 직결식 측도관의 조정기 연결부 이음쇠:쾌삭 황동 [해설작성자 : 책과상상]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 조정기 연결부 이음쇠의 재료는 쾌삭황동을 사용한다. 답2번입니다. [해설작성자 : 오리] [오류신고 반론] 1번 단조용 황동 :고압고무호스에 사용하는 조정기 연결부 이음쇠 재료 출처:예문사 가스기능사 10일완성 [해설작성자 : 처음처럼] [오류신고 반론] 고압고무호스에 사용하는 부품의재료 *조정기 연결부 이음쇠:단조용 황동 *압력조정기 직결식 측도관의 조정기 연결부 이음쇠:쾌삭 황동 [해설작성자 : 책과상상]",
+      "reviewId": "gas-craftsman-2011-1:55"
     },
     {
       "location": "gas-craftsman/gas-craftsman-2010-4/19",
@@ -42125,7 +43238,8 @@
         "수소 가스는 피로카롤 시약을 사용한 오르자트법에 의한 시험법에서 순도가 98.5% 이상이어야 한다.",
         "공업용 용기 도색은 주황색이고, “연”자 표시는 백색이다."
       ],
-      "explanation": "가연성가스 = 왼나사 (암모니아, 브롬화메탄 제외) [해설작성자 : 트리님] 답은 1번입니다. 어떤가스든 안전밸브 병용사용은 안합니다. 2번 가연성 가스 밸브 상부의 “개폐용 용기밸브”는 오른나사가 맞구요. 가연성 가스 “충전구” 나사가 왼나사입니다. [해설작성자 : 합격기원]"
+      "explanation": "가연성가스 = 왼나사 (암모니아, 브롬화메탄 제외) [해설작성자 : 트리님] 답은 1번입니다. 어떤가스든 안전밸브 병용사용은 안합니다. 2번 가연성 가스 밸브 상부의 “개폐용 용기밸브”는 오른나사가 맞구요. 가연성 가스 “충전구” 나사가 왼나사입니다. [해설작성자 : 합격기원]",
+      "reviewId": "gas-craftsman-2010-4:19"
     },
     {
       "location": "gas-craftsman/gas-craftsman-2009-4/28",
@@ -42138,7 +43252,8 @@
         "2009년 2월",
         "2010년 2월"
       ],
-      "explanation": "용접용기 액화석유가스 500l이상은 5년마다,2년(15-20까지),1년(20년이상) 용접용기 액화석유가스 500l미만은 5년마다 [해설작성자 : 나이스] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 용접용기 4년마다 [해설작성자 : ㅁㅁㅁ] [추가 오류 신고] 이거 답 4번 입니다 답 수정 해주세요 [해설작성자 : 책보고 찾음] [오류신고 반론] lpg의 경우 조건이 3개입니다 500l이상, 500l미만, 50l미만으로 내용적 47l는 50l미만으로 4년입니다. 정답은3번이 맞습니다. [해설작성자 : 춘춘춘] [추가 오류 신고] 시중에 판매되는 책에는 다 4번이라고 되어있습니다. 4번으로 수정해주세요 [해설작성자 : #@!] [관리자 입니다. 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]"
+      "explanation": "용접용기 액화석유가스 500l이상은 5년마다,2년(15-20까지),1년(20년이상) 용접용기 액화석유가스 500l미만은 5년마다 [해설작성자 : 나이스] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 용접용기 4년마다 [해설작성자 : ㅁㅁㅁ] [추가 오류 신고] 이거 답 4번 입니다 답 수정 해주세요 [해설작성자 : 책보고 찾음] [오류신고 반론] lpg의 경우 조건이 3개입니다 500l이상, 500l미만, 50l미만으로 내용적 47l는 50l미만으로 4년입니다. 정답은3번이 맞습니다. [해설작성자 : 춘춘춘] [추가 오류 신고] 시중에 판매되는 책에는 다 4번이라고 되어있습니다. 4번으로 수정해주세요 [해설작성자 : #@!] [관리자 입니다. 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]",
+      "reviewId": "gas-craftsman-2009-4:28"
     },
     {
       "location": "hazardous-craftsman/hazardous-craftsman-2012-5/36",
@@ -42151,7 +43266,8 @@
         "1268.4",
         "1201.7"
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 답2번입니다 [해설작성자 : 민재] [오류신고 반론] 곱하기 0.9하면 맞습니다. [해설작성자 : 민재보다 잘남] [추가 해설] 2번은 에서 공간용적을 빼야죠 [해설작성자 : 뭐] [오류신고 반론] 내용적 = π x r^2 x ( l + l1 + l2 / 3) r=5m ,l=15m, l1=3m, l2=3m 단, 공간용적은 내용적의 10/100이다 << 0.9 탱크용량 = π x 5^2 x (15 + 3+3/3)x0.9 = 1201.65919 [해설작성자 : guess]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 답2번입니다 [해설작성자 : 민재] [오류신고 반론] 곱하기 0.9하면 맞습니다. [해설작성자 : 민재보다 잘남] [추가 해설] 2번은 에서 공간용적을 빼야죠 [해설작성자 : 뭐] [오류신고 반론] 내용적 = π x r^2 x ( l + l1 + l2 / 3) r=5m ,l=15m, l1=3m, l2=3m 단, 공간용적은 내용적의 10/100이다 << 0.9 탱크용량 = π x 5^2 x (15 + 3+3/3)x0.9 = 1201.65919 [해설작성자 : guess]",
+      "reviewId": "hazardous-craftsman-2012-5:36"
     },
     {
       "location": "hazardous-craftsman/hazardous-craftsman-2005-4/25",
@@ -42164,7 +43280,8 @@
         "무색 또는 담황색 액체로서 방향이 있다.",
         "모두 알코올에 녹는다."
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 정답4번임 모두 알코올에 녹는다 트리니트로페놀c6h2(no2)3oh c2h5no3(질산에틸) 정답이 틀림 [해설작성자 : 박원표] [추가 오류 신고] 질산에틸은 니트로화합물이 아닌 질산에스테류 입니당 따라서 1번이 아닌 4번이 정답인 것 같습니다. [해설작성자 : comcbt.com 이용자] [관리자 입니다. 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. [오류 신고 내용] 정답4번임 모두 알코올에 녹는다 트리니트로페놀c6h2(no2)3oh c2h5no3(질산에틸) 정답이 틀림 [해설작성자 : 박원표] [추가 오류 신고] 질산에틸은 니트로화합물이 아닌 질산에스테류 입니당 따라서 1번이 아닌 4번이 정답인 것 같습니다. [해설작성자 : comcbt.com 이용자] [관리자 입니다. 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]",
+      "reviewId": "hazardous-craftsman-2005-4:25"
     },
     {
       "location": "hazardous-craftsman/hazardous-craftsman-2005-1/29",
@@ -42177,7 +43294,8 @@
         "황화린은 여러가지 화학식을 갖는다.",
         "황화린은 물질분류 기준에서 단체에 속한다."
       ],
-      "explanation": "1. 황과 적린의 결합 2. 고체 3. 삼황화린 오황화린 칠황화린 [해설작성자 : 소방사 21살 위험물 한번에 합격] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 황화린는 황(s) 과 인(p) 의 혼합물입니다 그렇기 때문에 정답은 1번입니다 황과 적린이 결합되면 전혀 다른 물질이 나옵니다 3번도 형태의 3종류 삼황화린 p4s3 오황화린 p2s5 칠황화린 p4s7 황화린 자체가 여러가지 화학식을 가지는건 아니기 때문에 틀린 답입니다 [해설작성자 : 내꿈은기능사] [오류신고 반론] 오류신고에 대한 반박입니다. 황화린은 황과인의 '혼합물'이 아닌 화학적 결합한 '화합물'으로 보는게 맞습니다. 3번에 대한것도 그 3가지 전부를 황화린이라고 칭하니 여러개의 화학식을 가진다고 보는것도 문제풀이 개념으로는 맞다고 봅니다. [해설작성자 : 라면엔단무지]"
+      "explanation": "1. 황과 적린의 결합 2. 고체 3. 삼황화린 오황화린 칠황화린 [해설작성자 : 소방사 21살 위험물 한번에 합격] 아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] 황화린는 황(s) 과 인(p) 의 혼합물입니다 그렇기 때문에 정답은 1번입니다 황과 적린이 결합되면 전혀 다른 물질이 나옵니다 3번도 형태의 3종류 삼황화린 p4s3 오황화린 p2s5 칠황화린 p4s7 황화린 자체가 여러가지 화학식을 가지는건 아니기 때문에 틀린 답입니다 [해설작성자 : 내꿈은기능사] [오류신고 반론] 오류신고에 대한 반박입니다. 황화린은 황과인의 '혼합물'이 아닌 화학적 결합한 '화합물'으로 보는게 맞습니다. 3번에 대한것도 그 3가지 전부를 황화린이라고 칭하니 여러개의 화학식을 가진다고 보는것도 문제풀이 개념으로는 맞다고 봅니다. [해설작성자 : 라면엔단무지]",
+      "reviewId": "hazardous-craftsman-2005-1:29"
     },
     {
       "location": "hazardous-craftsman/hazardous-craftsman-2004-4/54",
@@ -42190,34 +43308,35 @@
         "산화되면 에탄올, 환원되면 아세트산이 된다.",
         "환원성을 이용하여 은거울반응과 페엘링반응을 한다."
       ],
-      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] [오류 신고] 산화되면 아세트산, 환원되면 에탄올입니다. 따라서 정답은 3번입니다. [해설작성자 : comcbt.com 이용자] [관리자 입니다. 문제지 사진원본 확인해 봤는데 정답은 4번이네요. 관련 규정이 개정 되었을 경우 개정된 법령집 내용 및 링크 삽입부탁 드립니다. 그외 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]"
+      "explanation": "아래와 같은 오류 신고가 있었습니다. 여러분들의 많은 의견 부탁 드립니다. 추후 여러분들의 의견을 반영하여 정답을 수정하도록 하겠습니다. 참고로 정답 변경은 오류 신고 5회 이상일 경우 수정합니다. [오류 신고 내용] [오류 신고] 산화되면 아세트산, 환원되면 에탄올입니다. 따라서 정답은 3번입니다. [해설작성자 : comcbt.com 이용자] [관리자 입니다. 문제지 사진원본 확인해 봤는데 정답은 4번이네요. 관련 규정이 개정 되었을 경우 개정된 법령집 내용 및 링크 삽입부탁 드립니다. 그외 다른 문제집 확인 가능한분 계시면 확인 부탁 드립니다. 신고시 출판사명까지 기제 부탁 드립니다.]",
+      "reviewId": "hazardous-craftsman-2004-4:54"
     }
   ],
   "automaticCandidateMeaning": "19건은 등록 해설의 정답 번호를 기계적으로 탐지한 후보. 한 건(아세트알데히드)만 이번에 직접 읽고 정답 자체 확인 필요로 분류; 나머지는 자동검사만 완료. 확정 정답 오류 수가 아니다.",
   "next": {
     "energyTextbook": "data/energy-textbook.js 20단원 191개 전체 판독. 보류·정답 확인은 records에서 energy-textbook 상태별 재개.",
     "energyRegular": "data/energy.js energy-industrial-20030831:1부터",
-    "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-2-128:9부터 앱 순서대로",
+    "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-2-189:2부터 앱 순서대로",
     "hvacRegular": "data/hvac.js hvac-20030316:1부터",
-    "otherSubjects": "automaticAnswerCandidates의 나머지18건은 단순 후보. 에너지·공조 작업을 이어간 뒤 확대.",
+    "otherSubjects": "정답·해설 의심 19개 후보는 모두 직접 대조. 각 후보의 reviewId로 기록과 보류 사유를 확인한다.",
     "missingExplanations": "data/safety-engineer.js safety-engineer-20220424:62부터",
     "choiceMatches": "data/hvac.js의 급기·배기 환기 묶음 hvac-20040307:12, hvac-20120826:11, hvac-20160821:15. --match-choices로 미검토 구성원이 있는 묶음을 재생성."
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 1261,
-    "contentCompleted": 986,
-    "contentCompletedChanged": 865,
+    "contentExamined": 1291,
+    "contentCompleted": 1004,
+    "contentCompletedChanged": 883,
     "contentCompletedUnchanged": 121,
-    "evidenceHold": 219,
-    "answerNeedsConfirmation": 56,
-    "automaticOnly": 47743,
-    "changedQuestionIds": 972,
-    "imageTranscribed": 215,
-    "imageFullyTranscribed": 37,
-    "imagePartiallyTranscribed": 178,
-    "imageCompared": 215,
-    "imageAcademicCompleted": 185,
+    "evidenceHold": 228,
+    "answerNeedsConfirmation": 59,
+    "automaticOnly": 47713,
+    "changedQuestionIds": 996,
+    "imageTranscribed": 227,
+    "imageFullyTranscribed": 42,
+    "imagePartiallyTranscribed": 185,
+    "imageCompared": 227,
+    "imageAcademicCompleted": 193,
     "questionImagesConverted": 82,
     "questionImagesCompared": 82,
     "questionImageAcademicCompleted": 77
@@ -42397,7 +43516,7 @@
       }
     },
     "지문·정답·자료 대조에 남은 불확실성": {
-      "count": 84,
+      "count": 87,
       "findings": {
         "지문이 가리키는 수식 누락": 1,
         "h–s 선도 범위 확인 필요": 1,
@@ -42462,7 +43581,10 @@
         "얇은 원통 이음부 압력의 mm²·cm² 환산": 1,
         "스트레이너의 보호 대상과 게이트밸브 스로틀링": 1,
         "순수 인덕터의 주파수·위상과 실효값 비의 분자": 1,
-        "서보용 전동기와 동기전동기의 포함 관계": 1
+        "서보용 전동기와 동기전동기의 포함 관계": 1,
+        "틀린 설명을 고르는 아세트알데히드 문항: 저장 답④, 보기③은 산화·환원 생성물을 반대로 적음. 등록 이의제기와 관리자 답변 충돌.": 1,
+        "교재 2-168쪽 4번 원문 및 작동 조건": 1,
+        "교재 2-178쪽 3번 원문 및 작동 조건": 1
       }
     },
     "문제와 무관한 설명": {
@@ -42558,7 +43680,7 @@
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 225,
+      "count": 231,
       "findings": {
         "계산식·상사법칙": 5,
         "단위·조건·근거 부족": 2,
@@ -42742,11 +43864,17 @@
         "RL 직렬 임피던스·실효전압과 유효전력": 1,
         "변압기 %임피던스 단락전류": 1,
         "직렬·병렬 저항의 분기 전류": 1,
-        "직렬 축전기 절연 파괴 순서": 1
+        "직렬 축전기 절연 파괴 순서": 1,
+        "병렬 RC의 역률과 직렬 임피던스식 혼동": 1,
+        "횡형 탱크의 내용적과 공간용적 공제": 1,
+        "교재 2-160쪽 12번 원문 및 작동 조건": 1,
+        "교재 2-160쪽 13번 원문 및 작동 조건": 1,
+        "교재 2-160쪽 14번 원문 및 작동 조건": 1,
+        "교재 2-160쪽 15번 원문 및 작동 조건": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 412,
+      "count": 424,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -43050,11 +44178,23 @@
         "변하는 목표값을 따르는 제어와 정치제어": 1,
         "제어요소가 받는 신호와 출력 조작량": 1,
         "주파수 변화와 누설리액턴스 방향": 1,
-        "신호흐름선도에서 분기 경로 이득의 합": 1
+        "신호흐름선도에서 분기 경로 이득의 합": 1,
+        "주파수비와 진동 차단·공진 혼동": 1,
+        "유니파이 보통나사와 가는나사 기호": 1,
+        "고장 사이 평균시간과 첫 고장까지의 시간": 1,
+        "스테핑 모터의 각도 증분과 보기 부정어": 1,
+        "제동 용량을 정하는 마찰력·발열과 자체 중량": 1,
+        "운동기전력과 전동기 힘의 방향 구별": 1,
+        "배율기와 분류기의 접속방식": 1,
+        "3상 변압기의 병렬운전에서 위상변위": 1,
+        "황과 인의 화합물과 단체·혼합물 구분": 1,
+        "교재 2-128쪽 9번 원문 및 작동 조건": 1,
+        "교재 2-128쪽 8번 원문 및 작동 조건": 1,
+        "교재 2-158쪽 5번 원문 및 작동 조건": 1
       }
     },
     "이미지 원문 텍스트 전환": {
-      "count": 21,
+      "count": 24,
       "findings": {
         "바이패스 팩터의 정의": 1,
         "덕트 정압계의 판독": 1,
@@ -43076,7 +44216,10 @@
         "교재 2-190쪽 4번 원문 및 작동 조건": 1,
         "교재 2-191쪽 5번 원문 및 작동 조건": 1,
         "교재 2-191쪽 7번 원문 및 작동 조건": 1,
-        "교재 2-200쪽 43번 원문 및 작동 조건": 1
+        "교재 2-200쪽 43번 원문 및 작동 조건": 1,
+        "교재 2-158쪽 3번 원문 및 작동 조건": 1,
+        "교재 2-167쪽 1번 원문 및 작동 조건": 1,
+        "교재 2-188쪽 1번 원문 및 작동 조건": 1
       }
     }
   },
@@ -43358,8 +44501,8 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 590,
-    "rawFractionDisplays": 58,
+    "examined": 620,
+    "rawFractionDisplays": 62,
     "remainingBankBlanks": 1568,
     "units": [
       {
@@ -44142,18 +45285,70 @@
           "hvac-20020908:78",
           "hvac-20020908:80"
         ]
+      },
+      {
+        "unit": "자동감사 정답·해설 후보 19건 원문 대조. 신규 18 ID, 기존 위험물 2004년 4회 54번은 독립 자료로 재대조해 표시 수정(중복 집계 제외).",
+        "statuses": {
+          "내용 검토 완료·수정함": 10,
+          "근거 부족으로 보류": 6,
+          "정답 자체 확인 필요": 2
+        },
+        "changed": 11,
+        "ids": [
+          "maintenance-engineer-2021-2:17",
+          "maintenance-engineer-2020-3:23",
+          "maintenance-engineer-2019-2:46",
+          "maintenance-engineer-2018-4:94",
+          "maintenance-engineer-2017-2:86",
+          "maintenance-engineer-2015-4:54",
+          "electric-craftsman-2012-4:36",
+          "electric-craftsman-2011-4:42",
+          "electric-craftsman-2010-5:2",
+          "electric-craftsman-2007-2:18",
+          "electric-craftsman-2007-1:28",
+          "electric-craftsman-2002-2:9",
+          "gas-craftsman-2011-1:55",
+          "gas-craftsman-2010-4:19",
+          "gas-craftsman-2009-4:28",
+          "hazardous-craftsman-2012-5:36",
+          "hazardous-craftsman-2005-4:25",
+          "hazardous-craftsman-2005-1:29"
+        ]
+      },
+      {
+        "unit": "공조 교재 2-128·158·160·167·168·178·188쪽의 12개",
+        "statuses": {
+          "근거 부족으로 보류": 3,
+          "내용 검토 완료·수정함": 8,
+          "정답 자체 확인 필요": 1
+        },
+        "changed": 12,
+        "ids": [
+          "hvac-hansol-book-2-128:9",
+          "hvac-hansol-book-2-128:8",
+          "hvac-hansol-book-2-158:3",
+          "hvac-hansol-book-2-158:5",
+          "hvac-hansol-book-2-160:12",
+          "hvac-hansol-book-2-160:13",
+          "hvac-hansol-book-2-160:14",
+          "hvac-hansol-book-2-160:15",
+          "hvac-hansol-book-2-167:1",
+          "hvac-hansol-book-2-168:4",
+          "hvac-hansol-book-2-178:3",
+          "hvac-hansol-book-2-188:1"
+        ]
       }
     ],
     "reasons": {
-      "지문·정답·자료 대조에 남은 불확실성": 35,
-      "공식·계산·기호·단위·반올림": 120,
-      "개념·장치 작동 원리·적용 조건": 153,
+      "지문·정답·자료 대조에 남은 불확실성": 38,
+      "공식·계산·기호·단위·반올림": 126,
+      "개념·장치 작동 원리·적용 조건": 165,
       "부정형·보기 비교·표 적용 범위": 11,
       "문제와 무관한 설명": 42,
       "해설 미등록": 48,
-      "이미지 원문 텍스트 전환": 21
+      "이미지 원문 텍스트 전환": 24
     },
-    "changed": 430,
+    "changed": 454,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",
@@ -44171,7 +45366,16 @@
       "hvac-hansol-book-2-191:6",
       "hvac-hansol-book-2-193:5",
       "hvac-hansol-book-2-194:10",
-      "hvac-hansol-book-2-196:22"
+      "hvac-hansol-book-2-196:22",
+      "hvac-hansol-book-2-128:9",
+      "hvac-hansol-book-2-128:8",
+      "hvac-hansol-book-2-158:5",
+      "hvac-hansol-book-2-160:12",
+      "hvac-hansol-book-2-160:13",
+      "hvac-hansol-book-2-160:14",
+      "hvac-hansol-book-2-160:15",
+      "hvac-hansol-book-2-168:4",
+      "hvac-hansol-book-2-178:3"
     ]
   }
 }

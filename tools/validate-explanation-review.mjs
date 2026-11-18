@@ -162,6 +162,21 @@ for(const [id,entry] of Object.entries(energyReviewed)){
  if(entry.formula)assert.ok(katex.renderToString(entry.formula.tex,{throwOnError:true}).includes('<mfrac>'));
  affectedIds.add(id);
 }
+const disputeFile = 'data/disputed-question-explanations.json';
+const disputes = JSON.parse(fs.readFileSync(disputeFile));
+const disputeRecords = review.records.filter(row => row.reviewedExplanationFile === disputeFile);
+assert.deepEqual(Object.keys(disputes).sort(), disputeRecords.map(row => row.id).sort());
+for (const record of disputeRecords) {
+ const entry = disputes[record.id];
+ const q = bankById.get(record.id);
+ assert.equal(entry.fingerprint, fingerprint(q), record.id);
+ assert.equal(entry.source, q.source);
+ assert.equal(entry.originalSha256, crypto.createHash('sha256').update(q.explanation).digest('hex'), record.id);
+ assert.equal(entry.text, record.resolution);
+ assert.equal(entry.basis, record.basis);
+ if (entry.formula) assert.ok(katex.renderToString(entry.formula.tex, {throwOnError:true}).includes('<mfrac>'));
+ affectedIds.add(record.id);
+}
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));

@@ -49,6 +49,10 @@ try {
  const summary=banks.map(({rounds,...b})=>({...b,rounds:rounds.length}));
  const sum=k=>summary.reduce((n,b)=>n+b[k],0);
  const counts={bankQuestions:ids.size,bankTextRows:sum('text'),bankAnswerNoticeOnly:noticeIds.size,bankImageRows:sum('image'),bankAdditionalBlocks:sum('additional'),bankLegacyEmbeddedAdditionalRows:sum('legacyEmbeddedAdditional'),practical:derived.practical.length,fieldReport:derived.fieldReport.length,direct:derived.direct.length,workedExamples:derived.workedExamples.length,correctedBookVariants:corrections.length,correctedBookExplanationTexts:corrections.filter(e=>e.correction.explanation).length,linkedBookPositions:rt.textbookEntries.length,energyDynamicExplanationLinks:Object.keys(JSON.parse(fs.readFileSync('data/energy-textbook-comcbt-links.json')).links).length};
+ const disputeIds=Object.keys(JSON.parse(fs.readFileSync('data/disputed-question-explanations.json')));
+ counts.disputeExplanationOverlays=disputeIds.length;
+ derived.disputeExplanationOverlays=disputeIds;
+
  counts.originalReviewUnits=counts.bankQuestions+counts.practical+counts.fieldReport+counts.direct+counts.workedExamples;
  counts.reviewUnitsIncludingVariants=counts.originalReviewUnits+counts.correctedBookVariants;
  const output={schemaVersion:1,counts,summary,rowSchema:{bank:['storageId','printedNumber','hasText','hasImage','additionalBlockCount'],practical:['id','group','year','session','number','hasExplanation'],fieldReport:['id','number','hasExplanation'],direct:['id','page','number','solutionPartCount'],correctedBookVariants:['book','page','number','sourceId','hasOwnExplanation','reviewHold'],workedExamples:['id','pages','title']},banks,derived};

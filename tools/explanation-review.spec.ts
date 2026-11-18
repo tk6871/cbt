@@ -436,3 +436,39 @@ test('냉동 교재 절대압력과 두 단의 압축비', async ({page}, info) 
  await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
  await box.screenshot({path:info.outputPath('two-stage-pressure.png')});
 });
+
+test('병렬 RC 역률 교정과 등록 이의제기 보존', async ({page}, info) => {
+ await prepare(page,'electric-craftsman');
+ await page.locator('#round-card-electric-craftsman-2002-2').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('9');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'단자에서 본 역률값'});
+ await card.locator('.choice-button').first().click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('그림은 병렬 RC다');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ const original=box.locator('.source-explanation-details').filter({hasText:'등록된 이용자 해설과 이의제기'});
+ await original.locator('summary').click();
+ await expect(original.locator('p')).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['electric-craftsman-2002-2:9'])).toBe(1);
+ await box.screenshot({path:info.outputPath('parallel-rc.png')});
+});
+
+test('교재 브라인 유량과 음수 출구온도', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-160');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 15번',exact:true})}).locator('.question-card');
+ await card.locator('.image-answer-hotspot').nth(1).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('−21.6 ℃');
+ await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.original-textbook-explanation').getByRole('figure');
+ await expect(figure.getByRole('paragraph')).toContainText('냉동부하[kW]');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('brine-balance.png')});
+});
