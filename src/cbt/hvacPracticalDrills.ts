@@ -7,7 +7,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-01', group: 'drill', category: 'cycle', difficulty: 'basic', points: 5,
     question: '증기압축 냉동사이클의 냉매 흐름을 증발기부터 순서대로 쓰고, 각 장치에서 냉매가 받는 변화를 짧게 설명하세요.',
     answer: '증발기(열 흡수·증발) → 압축기(압력·온도 상승) → 응축기(열 방출·응축) → 팽창장치(감압) → 증발기',
-    explanation: '냉매는 증발기에서 실내 열을 가져오고, 압축기에서 고온·고압이 됩니다. 응축기에서 열을 밖으로 버려 액체가 된 뒤 팽창장치에서 압력이 낮아져 다시 열을 흡수할 준비를 합니다.',
+    explanation: '증발기는 냉각할 공기·물·브라인 등에서 열을 받아 냉매를 증발시킵니다. 압축기는 증기의 압력과 온도를 높이고, 응축기는 열을 방출해 냉매를 액화합니다. 팽창장치에서 압력이 낮아진 냉매가 증발기로 돌아갑니다.',
     keyPoints: ['증발기→압축기→응축기→팽창장치 순서', '증발기는 열 흡수', '응축기는 열 방출', '팽창장치는 감압'], sourceNote,
   },
   {
@@ -21,7 +21,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-03', group: 'drill', category: 'cycle', difficulty: 'standard', points: 5,
     question: '냉동능력과 압축기 일이 같을 때 냉동 COP보다 히트펌프 난방 COP가 1만큼 큰 이유를 설명하세요.',
     answer: '응축기 방열량은 증발기에서 흡수한 열과 압축기 일을 합한 값이므로 COP난방=(냉동능력+압축기 일)/압축기 일=COP냉동+1입니다.',
-    explanation: '난방에서는 압축기에 넣은 전기에너지도 실내로 버리는 열에 포함됩니다. 그래서 같은 사이클이면 난방 COP가 냉동 COP보다 정확히 1 큽니다.',
+    explanation: '같은 정상상태 냉동사이클에서 응축기 방열량은 증발기 흡열량과 압축기에 전달된 일의 합입니다. 양변을 같은 압축기 일로 나누면 난방 COP=냉동 COP+1입니다. 모터·배관 손실이나 보조 팬 전력까지 다르게 포함한 장비 표시값에는 이 등식이 그대로 적용되지 않을 수 있습니다.',
     keyPoints: ['응축기 열량=냉동능력+압축기 일', 'COP난방=COP냉동+1'], sourceNote,
   },
   {
@@ -35,14 +35,14 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-05', group: 'drill', category: 'cycle', difficulty: 'standard', points: 5,
     question: '과열도와 과냉도의 뜻을 각각 쓰고, 두 값을 확인하는 이유를 설명하세요.',
     answer: '과열도는 흡입증기온도-증발포화온도, 과냉도는 응축포화온도-액관온도입니다. 증발기 냉매 공급 상태와 응축된 액냉매의 안정성을 판단합니다.',
-    explanation: '과열도는 증발기에서 냉매가 모두 증발한 뒤 더 데워진 정도이고, 과냉도는 응축된 액체가 더 식은 정도입니다. 둘을 함께 보면 부족충전·과충전·팽창밸브 이상을 구별하는 데 도움이 됩니다.',
+    explanation: '흡입관의 과열도는 같은 지점 압력에 해당하는 포화증기 온도와 비교하고, 액관의 과냉도는 그 지점의 포화액 온도와 비교합니다. 온도 활주가 있는 혼합냉매에서는 각각 이슬점과 기포점을 사용합니다. 두 값은 풍량·부하 등 다른 측정값과 함께 해석합니다.',
     keyPoints: ['과열도=흡입온도-증발포화온도', '과냉도=응축포화온도-액관온도', '냉매 상태 진단'], sourceNote,
   },
   {
     id: 'hvac-practical-drill-06', group: 'drill', category: 'cycle', difficulty: 'standard', points: 5,
     question: '사방밸브가 있는 공기열원 히트펌프에서 냉방과 난방 때 실내 열교환기의 역할을 각각 쓰세요.',
     answer: '냉방 때 실내 열교환기는 증발기, 난방 때는 응축기 역할을 합니다.',
-    explanation: '사방밸브가 냉매 흐름을 반대로 바꿉니다. 냉방 때는 실내 열을 흡수하고, 난방 때는 실내로 열을 방출합니다.',
+    explanation: '사방밸브는 압축기의 토출·흡입 배관이 연결되는 열교환기를 바꿉니다. 냉방 때 실내 코일은 저압측에서 열을 흡수하는 증발기이고, 난방 때는 고압측에서 열을 내놓는 응축기입니다. 압축기 자체의 흡입·토출 방향은 같습니다.',
     keyPoints: ['냉방=실내 증발기', '난방=실내 응축기', '사방밸브가 흐름 전환'], sourceNote,
   },
   {
@@ -63,7 +63,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-09', group: 'drill', category: 'calculation', difficulty: 'standard', points: 5,
     question: '흡입 엔탈피 400 kJ/kg, 토출 엔탈피 450 kJ/kg, 팽창밸브 입구 엔탈피 250 kJ/kg일 때 냉동 COP를 구하세요.',
     answer: '냉동효과=400-250=150 kJ/kg, 압축일=450-400=50 kJ/kg, COP=150÷50=3',
-    explanation: '증발기에서 얻은 열을 압축기에 넣은 일로 나눕니다. 엔탈피 단위가 같으므로 그대로 빼고 나누면 됩니다.',
+    explanation: '팽창밸브의 열교환과 축일을 무시하면 교축 전후 엔탈피가 같아 증발기 입구도 250 kJ/kg입니다. 냉매 1 kg의 냉동효과는 400−250=150 kJ, 압축일은 450−400=50 kJ이므로 COP는 150÷50=3입니다.',
     keyPoints: ['냉동효과 150', '압축일 50', 'COP 3'], sourceNote,
   },
   {
@@ -91,7 +91,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-13', group: 'drill', category: 'calculation', difficulty: 'advanced', points: 5,
     question: '증발압력 0.2 MPa, 응축압력 1.8 MPa인 2단 압축장치의 이상적인 중간압력을 구하세요.',
     answer: 'Pm=√(Pe×Pc)=√(0.2×1.8)=√0.36=0.6 MPa',
-    explanation: '두 단의 압축비를 같게 나누는 이상적인 중간압력은 두 압력의 기하평균입니다.',
+    explanation: '두 단의 압축비를 같게 놓을 때는 절대압을 사용합니다. 주어진 두 값을 절대압으로 해석하면 두 압력비가 모두 3이 되도록 중간압력을 0.6 MPa(절대압)로 둡니다. 계기압을 주는 문제라면 먼저 대기압을 더해야 합니다.',
     keyPoints: ['Pm=√(PePc)', '√0.36', '0.6 MPa'], sourceNote,
   },
   {
@@ -119,7 +119,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-17', group: 'drill', category: 'operation', difficulty: 'advanced', points: 5,
     question: '불응축가스가 냉매 회로에 들어갔을 때 나타나는 대표 증상과 조치 방향을 쓰세요.',
     answer: '응축압력과 토출온도가 높아지고 소비동력이 증가합니다. 냉매를 안전하게 회수한 뒤 진공·누설 점검을 하고 규정량을 재충전합니다.',
-    explanation: '공기 같은 불응축가스는 응축기에서 액체가 되지 않고 공간을 차지해 압력을 올립니다. 냉매를 대기로 방출하지 말고 회수장비를 사용해야 합니다.',
+    explanation: '응축기 안에 공기가 섞이면 압력계에는 냉매 분압과 공기 분압을 더한 전체 압력이 나타납니다. 같은 응축온도에서도 고압이 높아질 수 있고 열교환도 방해받습니다. 증상만으로 단정하지 않고, 냉매를 대기로 내보내지 않는 회수 절차를 따릅니다.',
     keyPoints: ['응축압력 상승', '토출온도·동력 증가', '냉매 회수', '진공 후 재충전'], sourceNote,
   },
   {
@@ -140,7 +140,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-20', group: 'drill', category: 'operation', difficulty: 'advanced', points: 5,
     question: '펌프다운 운전의 목적과 일반적인 정지 순서를 설명하세요.',
     answer: '정지 때 증발기와 흡입배관의 냉매를 고압측 수액기에 모아 액냉매 이동을 줄입니다. 온도조절기가 액관 전자밸브를 닫고, 압축기가 계속 운전하다 저압스위치가 작동해 정지합니다.',
-    explanation: '압축기를 먼저 꺼 버리는 방식이 아닙니다. 냉매 공급을 먼저 끊고 압축기가 저압측 냉매를 빨아들인 뒤 저압스위치가 압축기를 멈춥니다.',
+    explanation: '액관 전자밸브와 저압스위치를 갖춘 자동 펌프다운 회로를 가정합니다. 냉각 요구가 끝나면 전자밸브가 닫혀 새 냉매 공급이 끊기고, 압축기는 저압측 증기를 계속 흡입합니다. 흡입압력이 설정값 아래로 내려가면 저압스위치가 압축기를 멈춥니다.',
     keyPoints: ['저압측 냉매를 수액기에 모음', '전자밸브 닫힘', '압축기 운전 지속', '저압스위치 정지'], sourceNote,
   },
   {
@@ -154,14 +154,14 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-22', group: 'drill', category: 'piping', difficulty: 'standard', points: 5,
     question: '흡입배관 수직 상승부 아래에 오일트랩을 설치하는 이유를 쓰세요.',
     answer: '저부하 때 고인 냉동기유를 모았다가 냉매가스 속도가 올라갈 때 함께 끌어올려 압축기로 회수하기 위해서입니다.',
-    explanation: '흡입가스 속도가 느리면 기름이 수직관을 올라가지 못합니다. 트랩에 모인 기름을 한꺼번에 밀어 올려 압축기 윤활유 부족을 예방합니다.',
+    explanation: '흡입 입상관에서는 위로 흐르는 냉매가스가 오일을 운반합니다. 가스 유속이 부족하면 오일이 하부에 머물 수 있습니다. 트랩은 필요한 오일이 되돌아가도록 설계하는 부품이며, 많은 기름이 한꺼번에 압축기로 들어가는 것은 피해야 합니다. 관경과 트랩 필요 여부는 장비의 배관 기준을 따릅니다.',
     keyPoints: ['기름을 모음', '상승관 오일 회수', '압축기 윤활 유지'], sourceNote,
   },
   {
     id: 'hvac-practical-drill-23', group: 'drill', category: 'piping', difficulty: 'standard', points: 5,
     question: '액관에 필터드라이어와 사이트글라스를 설치하는 목적을 각각 쓰세요.',
     answer: '필터드라이어는 수분·산·이물질을 제거하고, 사이트글라스는 액냉매 상태와 수분 지시 상태를 확인합니다.',
-    explanation: '필터드라이어는 회로를 청소하는 장치이고 사이트글라스는 상태를 보는 창입니다. 기포가 보인다고 무조건 냉매 부족으로 단정하지는 않습니다.',
+    explanation: '필터드라이어의 필터는 고형 이물질을, 건조제는 수분을 잡습니다. 산 흡착 성능은 충전재에 따라 다릅니다. 사이트글라스는 액관을 관찰하는 창이며 수분 지시제가 있는 형식은 색으로 수분 상태도 확인합니다. 기포만으로 부족 충전을 확정하지 않습니다.',
     keyPoints: ['필터드라이어=수분·이물 제거', '사이트글라스=액 상태 확인', '기포만으로 단정 금지'], sourceNote,
   },
   {
@@ -182,7 +182,7 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-26', group: 'drill', category: 'piping', difficulty: 'advanced', points: 5,
     question: '압축기가 응축기보다 높은 곳에 있을 때 토출배관에 오일트랩이 필요한 이유를 설명하세요.',
     answer: '정지 중 응축된 냉매와 냉동기유가 압축기 쪽으로 역류하는 것을 줄이고, 운전 중 오일 회수가 원활하도록 하기 위해서입니다.',
-    explanation: '높이 차가 있으면 중력 때문에 액과 기름이 낮은 쪽으로 흐릅니다. 배관의 기울기·트랩·역류 방지 구조로 압축기 액압축과 오일 문제를 줄입니다.',
+    explanation: '압축기가 응축기보다 높고 배관이 그쪽으로 계속 내려가면 정지 중 액체는 중력으로 낮은 응축기 쪽으로 흐릅니다. 이 높이 관계만으로 응축기의 액체가 높은 압축기로 되돌아간다고 설명할 수 없습니다. 국부적인 상승구간·관 기울기와 제조사의 배관도를 알아야 트랩의 필요성과 위치를 판단할 수 있습니다.',
     keyPoints: ['정지 중 역류 방지', '액냉매의 압축기 유입 방지', '오일 회수'], sourceNote,
   },
   {
@@ -217,14 +217,14 @@ export const hvacPracticalDrills: PracticalPrompt[] = [
     id: 'hvac-practical-drill-31', group: 'drill', category: 'air', difficulty: 'advanced', points: 5,
     question: '코일 바이패스 팩터가 작다는 뜻과 출구공기 상태에 미치는 영향을 설명하세요.',
     answer: '코일을 충분히 접촉하지 않고 통과하는 공기 비율이 작다는 뜻이며, 출구공기 상태가 코일의 장치노점온도에 더 가까워집니다.',
-    explanation: '바이패스 팩터가 0에 가까우면 거의 모든 공기가 코일과 충분히 열교환합니다. 따라서 냉각·제습 효과가 커집니다.',
+    explanation: '바이패스 팩터는 입구 상태의 공기와 장치노점 상태까지 처리된 공기가 섞인다고 보는 등가 모델의 비율입니다. 액적이나 실제 우회 통로의 공기량을 직접 잰 값은 아닙니다. 입구 상태와 장치노점을 각각 고정해 비교하면, 값이 작을수록 출구 상태가 장치노점에 가까워집니다.',
     keyPoints: ['우회 공기 비율이 작음', '출구가 장치노점에 가까움', '냉각·제습 효과 증가'], sourceNote,
   },
   {
     id: 'hvac-practical-drill-32', group: 'drill', category: 'safety', difficulty: 'basic', points: 5,
     question: '냉매를 대기 중으로 방출하지 않고 회수해야 하는 이유를 두 가지 쓰세요.',
     answer: '온실효과·오존층 영향 등 환경 피해를 줄이고, 작업자의 질식·동상·화재 위험 및 관련 법규 위반을 막기 위해서입니다.',
-    explanation: '냉매 종류마다 위험은 다르지만 밀폐공간에서 산소를 밀어내거나 액냉매가 피부에 닿아 동상을 일으킬 수 있습니다. 회수용기와 회수장비를 사용합니다.',
+    explanation: '냉매마다 환경 영향이 다릅니다. CFC·HCFC 계열은 오존층을 손상시킬 수 있고, 일부 다른 냉매도 대기 중에서 온실효과를 냅니다. 누설 시에는 냉매 종류와 장소에 따라 질식·동상·화재 위험도 있습니다. 회수하여 방출과 작업자 노출을 줄입니다.',
     keyPoints: ['환경 보호', '작업자 안전', '회수장비·회수용기 사용'], sourceNote,
   },
   {

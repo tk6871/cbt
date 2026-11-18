@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import katex from 'katex';
 import {applySafetyEngineerExplanations} from './safety-engineer-explanations.mjs';
 import vm from 'node:vm';
@@ -7,7 +8,7 @@ import crypto from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 const require = createRequire(import.meta.url);
-const {transformSync} = require(require.resolve('esbuild', {paths:[require.resolve('vite')]}));
+const {build,transformSync} = require(require.resolve('esbuild', {paths:[require.resolve('vite')]}));
 const dir='docs/explanation-review/2026-11-18';
 const review=JSON.parse(fs.readFileSync(dir+'/review.json'));
 const inventory=JSON.parse(fs.readFileSync(dir+'/inventory.json'));
@@ -174,6 +175,42 @@ for (const [i, q] of currentFieldRound.questions.entries()) {
  fieldChanges.push(id);
 }
 assert.deepEqual(currentFieldRound,previousFieldRound,'Practice question, choices, keys or order changed');
+// Compare the practical prompts as loaded by the app, including authored TypeScript and JSON inputs.
+async function practicalPrompts(atBaseline) {
+ const result = await build({
+  stdin: {contents: "export {practicalPrompts} from './src/cbt/qualificationStudyGuides'", resolveDir: process.cwd()},
+  bundle:true, write:false, format:'esm', platform:'node',
+  plugins: atBaseline ? [{
+   name:'baseline-practical-sources',
+   setup(builder) {
+    builder.onLoad({filter:/\.(?:ts|json)$/}, ({path: filename}) => ({
+     contents:original(path.relative(process.cwd(),filename)), loader:filename.endsWith('.json')?'json':'ts',
+     resolveDir:path.dirname(filename),
+    }));
+   },
+  }] : [],
+ });
+ const moduleUrl='data:text/javascript;base64,'+Buffer.from(result.outputFiles[0].contents).toString('base64');
+ return (await import(moduleUrl)).practicalPrompts;
+}
+const [oldPractical,currentPractical] = await Promise.all([practicalPrompts(true),practicalPrompts(false)]);
+assert.deepEqual(currentPractical.map(p=>p.id),oldPractical.map(p=>p.id),'Practical IDs or order changed');
+const practicalAnswers=new Map();
+const practicalChanges=[];
+for (const [index,prompt] of currentPractical.entries()) {
+ const previous=oldPractical[index], record=recordsById.get(prompt.id);
+ practicalAnswers.set(prompt.id,prompt.answer);
+ if (record) {
+  const digest=crypto.createHash('sha256').update(JSON.stringify([prompt.question,prompt.answer,prompt.keyPoints??null])).digest('hex');
+  assert.equal(record.practicalQuestionDigest,digest,prompt.id);
+  assert.equal(record.resolution,prompt.explanation,prompt.id);
+ }
+ if (prompt.explanation!==previous.explanation) {
+  assert.ok(record?.changed,prompt.id);
+  practicalChanges.push(prompt.id);
+ }
+ assert.deepEqual(prompt,{...previous,explanation:prompt.explanation},'Practical fields changed: '+prompt.id);
+}
 const exampleFile = 'data/textbook-worked-examples.json';
 const oldExamples = JSON.parse(original(exampleFile)).entries;
 const currentExamples = JSON.parse(fs.readFileSync(exampleFile)).entries;
@@ -214,7 +251,7 @@ for (const [index, example] of currentExamples.entries()) {
 }
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -227,7 +264,7 @@ assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
 assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
-const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges]);
+const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges]);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';
 const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));

@@ -749,3 +749,15 @@ test('지게차 무게중심과 전도축 정답 재확인 안내', async ({page
  await expect(explanation).toContainText('앞바퀴 접지선');
  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('인양각과 줄당 장력의 분수식', async ({page}) => {
+ await prepare(page,'safety');
+ await page.locator('#round-card-safety-20040905').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('44');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'로프에 가장 힘이 작게'});
+ await card.locator('button.choice-button').first().click();
+ const explanation=card.locator('.explanation-box');
+ await expect(explanation).toContainText('두 줄 사이의 끼인각');
+ await expect(explanation.locator('.katex-html .mfrac').first()).toBeVisible();
+});
