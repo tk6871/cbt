@@ -135,5 +135,80 @@
       "raw.githubusercontent.com"
     ],
     "note": "실제로 열어 읽은 GitHub 공식 NIST/EnergyPlus 자료만 sources에 기록. 차단된 제조사 자료를 근거로 사용하지 않음. 네트워크 설정 초안 저장은 현재 런타임 적용 또는 배포 확인과 다름."
+  },
+  "followup": {
+    "request": "같은 문제의 기존 텍스트를 이미지 대신 표시",
+    "version": "6.2.4",
+    "cache": 646,
+    "questionImageConversions": 4,
+    "uniqueQuestionIdsChangedStill": 13,
+    "contentExaminedStill": 22,
+    "registryTotal": 1963,
+    "confirmedRegistryTotal": 42,
+    "preservation": {
+      "bankQuestions": 47284,
+      "imageReferences": 13214,
+      "protectedQuestionFields": "unchanged including IDs/order/answers/choices/images/hotspots",
+      "changedBankIds": [
+        "hvac-hansol-book-1-182:79",
+        "hvac-hansol-2020-4:35",
+        "hvac-hansol-2022-3:33",
+        "hvac-hansol-2025-3:25",
+        "hvac-20030831:12",
+        "hvac-20140302:67",
+        "hvac-20150531:36",
+        "hvac-20211:52",
+        "hvac-20213:2",
+        "hvac-20222:33"
+      ],
+      "transcriptionsAdded": 7,
+      "transcriptionsByKind": {
+        "question": 4,
+        "explanation": 3
+      },
+      "dynamicLinksValidated": 566,
+      "manualContentCompleted": 15,
+      "manualExamined": 22
+    },
+    "checks": [
+      {
+        "command": "npm run typecheck",
+        "result": "passed"
+      },
+      {
+        "command": "npm run build",
+        "result": "passed",
+        "note": "기존 큰청크 경고 유지"
+      },
+      {
+        "command": "npm run test:pwa",
+        "result": "passed",
+        "version": 646
+      },
+      {
+        "command": "npm run audit:questions",
+        "result": "passed, 19 automatic answer candidates unchanged"
+      },
+      {
+        "command": "npm run audit:explanations",
+        "result": "passed, errorCount 0"
+      },
+      {
+        "command": "playwright test explanation-review.spec.ts --project=desktop --project=iphone-14-pro (system Chromium config)",
+        "result": "12 passed",
+        "note": "기존 수정/해설 전사4 + 이번 같은 문제4건×PC/모바일8. 각보기순서·수치·이미지복귀·선택유지·기존ID 답안저장 확인."
+      },
+      {
+        "command": "playwright test image-transcription.spec.ts --project=desktop --grep 전사 원문 해시",
+        "result": "1 passed",
+        "note": "1963전사·확인42개 전체 해시/표시정책 검사"
+      }
+    ],
+    "priorDeployment": {
+      "commit": "e427fe69040d3f456b3807c2eea918b490c02413",
+      "pagesRun": "https://github.com/tk6871/cbt/actions/runs/44217368349",
+      "result": "success"
+    },
+    "publicSite": "proxy CONNECT 403; 직접 응답 본문 미확인"
   }
 }

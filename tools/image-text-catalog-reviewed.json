@@ -125,6 +125,58 @@
       "sha256": "506d5650f951f888f0d270f61593bd7369dcc2081dd20e2ae0f99b905bcb5a04",
       "text": "건식 집진장치 중 가장 효율이 좋은 것: 여과식 집진장치(백필터).\n건식 집진장치 종류\n• 중력식\n• 관성력식\n• 원심력식: 사이클론식, 멀티클론식\n• 여과식: 백필터",
       "basis": "2026-11-18 원문 이미지 직접 대조. 전체 전사. 전사 정확성과 학술 내용 검증은 별개이며 독립 기술자료 검증은 보류. 이미지·경로 보존. docs/explanation-review/2026-11-18/review.json"
+    },
+    "assets/hvac/assets/questions/2022_2/33.jpg": {
+      "sha256": "2376da6b1053a3c1a56165bc2f68df038773f98bf51334b5825df19c2704d717",
+      "question": {
+        "stem": "12 kW 펌프의 회전수가 800 rpm, 토출량 1.5 m³/min인 경우 펌프의 토출량을 1.8 m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+        "choices": [
+          "850 rpm",
+          "960 rpm",
+          "1025 rpm",
+          "1365 rpm"
+        ]
+      },
+      "basis": "2026-11-18 hvac-20222:33 원문 이미지 직접 대조. 기존 텍스트 문항 hvac-20150531:36과 지문·12kW/800rpm/1.5→1.8m³/min·보기4개 순서·정답② 대응을 개별 확인. 단위 첨자·띄어쓰기만 정리. 문제 ID·보기·정답·원본·답안 영역 보존. docs/explanation-review/2026-11-18/review.json"
+    },
+    "assets/hvac-hansol/questions/2020_4/35.webp": {
+      "sha256": "9c7eab3d444090caa7d027cd999bdf1b0f1e245069e358eb5c5c60a0ddf46515",
+      "question": {
+        "stem": "12 kW 펌프의 회전수가 800 rpm, 토출량 1.5 m³/min인 경우 펌프의 토출량을 1.8 m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+        "choices": [
+          "850 rpm",
+          "960 rpm",
+          "1025 rpm",
+          "1365 rpm"
+        ]
+      },
+      "basis": "2026-11-18 hvac-hansol-2020-4:35 원문 이미지 직접 대조. 기존 텍스트 문항 hvac-20150531:36과 지문·12kW/800rpm/1.5→1.8m³/min·보기4개 순서·정답② 대응을 개별 확인. 단위 첨자·띄어쓰기만 정리. 문제 ID·보기·정답·원본·답안 영역 보존. docs/explanation-review/2026-11-18/review.json"
+    },
+    "assets/hvac-hansol/questions/2022_3/33.webp": {
+      "sha256": "8b32937d260b41a7ebf2b532f7eec4b282260a2e347adba72e9dbb3aba67544a",
+      "question": {
+        "stem": "12 kW 펌프의 회전수가 800 rpm, 토출량 1.5 m³/min인 경우 펌프의 토출량을 1.8 m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+        "choices": [
+          "850 rpm",
+          "960 rpm",
+          "1025 rpm",
+          "1365 rpm"
+        ]
+      },
+      "basis": "2026-11-18 hvac-hansol-2022-3:33 원문 이미지 직접 대조. 기존 텍스트 문항 hvac-20150531:36과 지문·12kW/800rpm/1.5→1.8m³/min·보기4개 순서·정답② 대응을 개별 확인. 단위 첨자·띄어쓰기만 정리. 문제 ID·보기·정답·원본·답안 영역 보존. docs/explanation-review/2026-11-18/review.json"
+    },
+    "assets/hvac-hansol/questions/2025_3/25.webp": {
+      "sha256": "53aea035c8944a87e31b9385e37083a0b3a09928e2453bb69ad3e86e3e478870",
+      "question": {
+        "stem": "12 kW 펌프의 회전수가 800 rpm, 토출량 1.5 m³/min인 경우 펌프의 토출량을 1.8 m³/min으로 하기 위하여 회전수를 얼마로 변화하면 되는가?",
+        "choices": [
+          "850 rpm",
+          "960 rpm",
+          "1025 rpm",
+          "1365 rpm"
+        ]
+      },
+      "basis": "2026-11-18 hvac-hansol-2025-3:25 원문 이미지 직접 대조. 기존 텍스트 문항 hvac-20150531:36과 지문·12kW/800rpm/1.5→1.8m³/min·보기4개 순서·정답② 대응을 개별 확인. 단위 첨자·띄어쓰기만 정리. 문제 ID·보기·정답·원본·답안 영역 보존. docs/explanation-review/2026-11-18/review.json"
     }
   }
 }

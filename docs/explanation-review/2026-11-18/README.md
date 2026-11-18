@@ -2,6 +2,16 @@
 
 기준: 최신 main `2de1845259a411c6cb7009e1ed451873c333ba56`. 새 브랜치 없이 main에서 작업. 사용자 작업트리 변경 없음으로 시작. 전체 전수 내용 검토 완료가 아니다.
 
+## 후속 요청: 같은 문제를 텍스트로 표시 (v6.2.4 / 캐시646)
+
+이미 지문·네 보기·정답·원본을 읽고 내용 검토까지 완료한 펌프4문항에 기존 텍스트를 연결했다. 대상은 `hvac-20222:33`, `hvac-hansol-2020-4:35`, `hvac-hansol-2022-3:33`, `hvac-hansol-2025-3:25`다. 텍스트 출처는 `hvac-20150531:36`이며 수치·단위·보기 순서·정답②를 각 이미지와 다시 대조했다. 기존 확인 전사 필드를 사용하여 기본 ‘확인된 텍스트 우선’에서 글자로 표시하고 원문으로 전환할 수 있다. 이미지/문항 데이터/선택영역을 덮어쓰지 않았다. 유사도만으로 다른 문항을 자동 변환하지 않았다.
+
+이4건은 앞의13수정ID·22검토ID에 이미 포함되어 있어 내용 검토 수를 추가하지 않았다. 해설 이미지 전사3건과 별도로 **문제 이미지 텍스트 전환4건**이다. 전사 레지스트리는 전체1963개·확인42개가 되었다. `tools/image-text-catalog-reviewed.json` 입력과 `data/image-text/confirmed.json` 출력을 함께 보존했다.
+
+v646 타입·빌드·PWA·문항/해설 감사·보호필드 검증 통과. PC·iPhone14Pro모사12건(기존4+이번4문항×2화면8), 전사 전체 해시 검사1건 통과. 각 텍스트 보기 선택 → 이미지 원문 복귀 → 같은 선택 유지 → 텍스트 복귀와 기존 ID의 답안 저장을 확인했다. 원본/미검토 경로의 검증 기준은 낮추지 않았다.
+
+앞선 해설 수정 커밋 [e427fe69](https://github.com/tk6871/cbt/commit/e427fe69040d3f456b3807c2eea918b490c02413)는 [Pages배포](https://github.com/tk6871/cbt/actions/runs/44217368349) 성공을 확인했다. 공개 사이트 직접 접속은 프록시 CONNECT403으로 확인 불가. 이 후속 변경의 배포 결과는 최종 응답에서 구분한다.
+
 ## 집계와 원본 구분
 
 - 발견한 `window.CBT_DATA_*` 은행 전체: **47,284문항** / 22카탈로그 / 803저장 회차. `catalog-index.js` 표시 수치나 기존 감사 파일 목록만으로 집계하지 않았다. ID는 앱의 `_originRoundId || round.id` + `_originalNumber || number` 규칙. 이 은행들 사이 ID 중복은 0개. 같은 문제 내용의 다른 회차는 별도 저장 ID이므로 따로 센다.
@@ -88,4 +98,4 @@
 4. **공조 회차** `data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.`
 5. 그 뒤 다른 종목과 자동 후보19개로 확대한다.
 
-재현: `node tools/explanation-review-inventory.mjs /tmp/cbt-inventory.json`, `node tools/validate-explanation-review.mjs`, 기존 npm 검사. 브라우저 검사는 `tools/explanation-review.spec.ts`; 이 Linux에서는 저장소 설정의 Chrome 채널 대신 시스템 Chromium `/usr/bin/chromium`을 지정하는 외부 설정으로 실행했다. 수정한 UI 테스트를 포함한 소스는 커밋하고 테스트 스크린샷은 현재 환경 `/workspace/.cloud-setup/review-test-results/`에 보존했다.
+재현: `node tools/explanation-review-inventory.mjs /tmp/cbt-inventory.json`, `node tools/validate-explanation-review.mjs`, 기존 npm 검사. 브라우저 검사는 `tools/explanation-review.spec.ts`; 이 Linux에서는 저장소 설정의 Chrome 채널 대신 시스템 Chromium `/usr/bin/chromium`을 지정하는 외부 설정으로 실행했다. 수정한 UI 테스트를 포함한 소스는 커밋하고 후속 텍스트 표시의 PC·모바일 사례 스크린샷은 현재 환경 `/workspace/.cloud-setup/review-evidence/`에 보존했다.

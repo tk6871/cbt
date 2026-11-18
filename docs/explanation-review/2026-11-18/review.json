@@ -62,7 +62,15 @@
           "displayAsset": "assets/problem-webp90/69af33ee61415d5f84a32b335c42c806.webp",
           "sha256": "2376da6b1053a3c1a56165bc2f68df038773f98bf51334b5825df19c2704d717"
         }
-      ]
+      ],
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "original": "assets/hvac/assets/questions/2022_2/33.jpg",
+        "textSourceId": "hvac-20150531:36",
+        "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
+        "changed": true,
+        "imagesPreserved": true
+      }
     },
     {
       "id": "hvac-hansol-2020-4:35",
@@ -94,7 +102,15 @@
           "displayAsset": "assets/problem-webp90/b6f23fb1bac62bc952f175e475b00f60.webp",
           "sha256": "9c7eab3d444090caa7d027cd999bdf1b0f1e245069e358eb5c5c60a0ddf46515"
         }
-      ]
+      ],
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "original": "assets/hvac-hansol/questions/2020_4/35.webp",
+        "textSourceId": "hvac-20150531:36",
+        "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
+        "changed": true,
+        "imagesPreserved": true
+      }
     },
     {
       "id": "hvac-hansol-2022-3:33",
@@ -126,7 +142,15 @@
           "displayAsset": "assets/problem-webp90/535c2a33a7f9471360cccaf09ec64ab7.webp",
           "sha256": "8b32937d260b41a7ebf2b532f7eec4b282260a2e347adba72e9dbb3aba67544a"
         }
-      ]
+      ],
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "original": "assets/hvac-hansol/questions/2022_3/33.webp",
+        "textSourceId": "hvac-20150531:36",
+        "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
+        "changed": true,
+        "imagesPreserved": true
+      }
     },
     {
       "id": "hvac-hansol-2025-3:25",
@@ -158,7 +182,15 @@
           "displayAsset": "assets/problem-webp90/71ad4d64afa849385a310bfd2332bed8.webp",
           "sha256": "53aea035c8944a87e31b9385e37083a0b3a09928e2453bb69ad3e86e3e478870"
         }
-      ]
+      ],
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "original": "assets/hvac-hansol/questions/2025_3/25.webp",
+        "textSourceId": "hvac-20150531:36",
+        "correspondence": "지문·수치·단위·보기4개 순서·답② 직접 대조",
+        "changed": true,
+        "imagesPreserved": true
+      }
     },
     {
       "id": "hvac-20030831:12",
@@ -984,6 +1016,18 @@
     "imageFullyTranscribed": 1,
     "imagePartiallyTranscribed": 2,
     "imageCompared": 3,
-    "imageAcademicCompleted": 0
+    "imageAcademicCompleted": 0,
+    "questionImagesConverted": 4,
+    "questionImagesCompared": 4,
+    "questionImageAcademicCompleted": 4
+  },
+  "followup": {
+    "date": "2026-11-18",
+    "request": "문제가 같으면 기존 텍스트로도 대체",
+    "scope": "이미 읽고 같은 조건과 보기 순서를 확인한 펌프4문항만. 포괄적 유사도 기반 전환 없음.",
+    "priorCommit": "e427fe69040d3f456b3807c2eea918b490c02413",
+    "priorPagesRun": "https://github.com/tk6871/cbt/actions/runs/44217368349",
+    "priorDeployment": "success",
+    "publicSite": "프록시 CONNECT 403으로 직접 확인 불가"
   }
 }

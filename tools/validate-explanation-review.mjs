@@ -42,7 +42,7 @@ for(const [p,e] of Object.entries(newConfirmed)){
  assert.equal(e.asset,maps[p]||p);assert.equal(crypto.createHash('sha256').update(fs.readFileSync(e.asset)).digest('hex'),e.sha256);
 }
 const manual=JSON.parse(fs.readFileSync('tools/image-text-catalog-reviewed.json')).entries;
-for(const [p,e] of Object.entries(newConfirmed))if(!oldConfirmed[p]){assert.equal(manual[p].text,e.text);assert.equal(manual[p].sha256,e.sha256);}
+for(const [p,e] of Object.entries(newConfirmed))if(!oldConfirmed[p]){assert.equal(manual[p].text||'',e.text);assert.equal(manual[p].sha256,e.sha256);if(e.kind==='question')assert.deepEqual(manual[p].question,e.question);}
 const links=JSON.parse(fs.readFileSync('data/energy-textbook-comcbt-links.json')).links;
 const fingerprint=q=>{let h=14695981039346656037n;const text=JSON.stringify([q.text||'',q.html||'',q.ocrText||'',q.choices.map(c=>[c.text||'',c.html||'',c.images||[]]),q.answer,q.images||[],q.sourceImage||'']);for(const ch of text){h^=BigInt(ch.codePointAt(0));h=BigInt.asUintN(64,h*1099511628211n);}return h.toString(16);};
 for(const [id,link] of Object.entries(links)){
@@ -52,6 +52,9 @@ for(const [id,link] of Object.entries(links)){
 assert.equal(new Set(review.records.map(r=>r.id)).size,review.records.length);
 assert.equal(review.counts.contentExamined,review.records.length);
 assert.equal(review.counts.reviewUnits,review.counts.automaticOnly+review.records.length);
-assert.equal(review.counts.changedQuestionIds,changedBankIds.length+Object.keys(newConfirmed).length-Object.keys(oldConfirmed).length);
-const result={bankQuestions,imageReferences,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:Object.keys(newConfirmed).length-Object.keys(oldConfirmed).length,dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
+const affectedIds=new Set(changedBankIds);
+for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
+assert.equal(review.counts.changedQuestionIds,affectedIds.size);
+const result={bankQuestions,imageReferences,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));
