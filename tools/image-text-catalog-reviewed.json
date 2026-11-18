@@ -2311,6 +2311,817 @@
       "sha256": "df64e6a72a70a1b237eadbea57caeec7d7aa1360ad3acebbf803de66b5961230",
       "basis": "한솔 공조 교재 2-188쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
       "text": "【원문 해설 부분 전사】\n④ 냉각수조정변은 냉각탑을 이용하는 응축기에도 사용할 수 있다."
+    },
+    "assets/hvac-hansol-book/explanations/2-189-2.webp": {
+      "sha256": "e26a3f9215d83e1a057e299e7dd7701372b3fdc05be99892260ee4c67e09fd58",
+      "basis": "한솔 공조 교재 2-189쪽 2번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n압축기 흡입압력과 유압과의 차압에 의해서 작동한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-115-1.webp": {
+      "sha256": "050ecfbf321e2848ca8c3e12a5db05af9798868fbb290d7ec55a6d1d1c23ef13",
+      "basis": "한솔 공조 교재 2-115쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n② 압축기의 토출변에서 냉매의 누설이 있으면 토출가스온도는 상승하나 토출압력은 상승하지 않는다."
+    },
+    "assets/hvac-hansol-book/explanations/2-121-2.webp": {
+      "sha256": "5e389167a6312e083cc615fae5cf664996752d2d3ff89584ecf0875e4f85a143",
+      "basis": "한솔 공조 교재 2-121쪽 2번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "②의 경우 회전식 압축기나 스크롤 압축기는 용적식 압축기이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-125-3.webp": {
+      "sha256": "b3ab3e57f9085d78d8d44f70a2f0a988a21bae5e6965f6fbbee0f74e27b9acb9",
+      "basis": "한솔 공조 교재 2-125쪽 3번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n언로드법은 왕복동 압축기의 용량제어 방법이다."
+    },
+    "assets/hvac-hansol-book/questions/2-125-3.webp": {
+      "sha256": "81ec5cd1cdc0cebd43986c6ff311403a875a426639b2df8fa4d1f82117a8a90d",
+      "basis": "한솔 공조 교재 2-125쪽 3번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "원심식 압축기의 용량제어 방법이 아닌 것은?",
+        "choices": [
+          "회전수 제어",
+          "흡입 베인 제어",
+          "언로드법",
+          "바이패스법"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-126-4.webp": {
+      "sha256": "e2279d82240d98918d66ad07d8fd67495dc3c301e27992f84af496eaef42488b",
+      "basis": "한솔 공조 교재 2-126쪽 4번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④의 경우 체적효율이 크면 냉매순환량이 증대하여 냉동능력은 증가한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-127-1.webp": {
+      "sha256": "a220418b89c32c98b2c2b00d92081854be79c5416c3433a3794d76e854237903",
+      "basis": "한솔 공조 교재 2-127쪽 1번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "축봉장치(Shaft seal system)\n개방형 압축기에서 크랭크축이 크랭크 케이스를 관통하고 있는 구조이므로 관통하는 곳에서 냉매나 오일의 누설 및 공기침입을 방지하기 위하여 사용되는 장치이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-130-17.webp": {
+      "sha256": "d3f519c3e01b44e491e8b7511a9676c50baf7e5fd62eb32ccb5bdbd463cabcae",
+      "basis": "한솔 공조 교재 2-130쪽 17번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nP₁ : 고압측(응축) 절대압력[kPa·a]\n=1.2×10³+100=1300 kPa"
+    },
+    "assets/hvac-hansol-book/explanations/2-131-20.webp": {
+      "sha256": "b077be97e50707162f4200849dc9908e312f8961812b19c2f92fa456a3b6242a",
+      "basis": "한솔 공조 교재 2-131쪽 20번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "냉동능력\nR=Q₂=G×q=V(m³/s)×η×q/v=V(m³/min)×η×q/(60×v)"
+    },
+    "assets/hvac-hansol-book/explanations/2-137-1.webp": {
+      "sha256": "763142697118cdf6fbb6de6996b825bffe88b5b824e59237ecb10f8434ead33a",
+      "basis": "한솔 공조 교재 2-137쪽 1번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "③의 경우 Eliminator는 물의 비산을 방지하는 것으로 공기의 청정도와는 관계가 없다."
+    },
+    "assets/hvac-hansol-book/explanations/2-137-2.webp": {
+      "sha256": "ab66d00003ef9f986f61570b6a3331efc5d1c1595e89eb3811e24138d8583c6b",
+      "basis": "한솔 공조 교재 2-137쪽 2번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "② 증발식 응축기는 물의 증발잠열을 이용하는 것으로 공기 중의 습도에 큰 영향을 받고 습도가 높으면 증발하기 어렵게 되어 응축온도가 높아진다."
+    },
+    "assets/hvac-hansol-book/explanations/2-141-5.webp": {
+      "sha256": "d66c4925e26e29ee8bb603f3f05647a19401fd5e772055348e9c2f5624347cc0",
+      "basis": "한솔 공조 교재 2-141쪽 5번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n②의 경우 증발온도가 저하하면 냉동능력은 저하하지만 응축압력의 상승은 일어나지 않는다."
+    },
+    "assets/hvac-hansol-book/explanations/2-142-2.webp": {
+      "sha256": "914c9dfcc3495c1fcc417fc64eee68275b5a95e5b1058dfaa3def6c7cfae18cc",
+      "basis": "한솔 공조 교재 2-142쪽 2번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nㄷ 전열이 양호하고, 설치면적이 비교적 적다.\nㄹ 과부하 운전이 곤란하고 냉각관의 부식이 잘 된다."
+    },
+    "assets/hvac-hansol-book/explanations/2-143-5.webp": {
+      "sha256": "b4b7917bc823e183fccb64fd92315c31e580d620a42ff81bd9f4d80a64d615b1",
+      "basis": "한솔 공조 교재 2-143쪽 5번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "수냉식은 공랭식보다 전열 효과가 크다."
+    },
+    "assets/hvac-hansol-book/explanations/2-144-11.webp": {
+      "sha256": "c376cc68e40240ca4649b472dfd89fcede91cb868b23fec9dddc03bad7796db6",
+      "basis": "한솔 공조 교재 2-144쪽 11번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "응축기 방열량 Q₁\nQ₁=Q₂+W=1×3.86+1=4.86\n여기서, Q₂ : 냉동능력[kW]\nW : 압축일(소요동력)[kW]"
+    },
+    "assets/hvac-hansol-book/questions/2-144-11.webp": {
+      "sha256": "523810c7e5f0648026724b8bfd3952eb7686c12fb9a67df630b89ce9eb9460e4",
+      "basis": "한솔 공조 교재 2-144쪽 11번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "냉동 능력 1RT이며, 압축할 때 1kW의 동력이 소요되는 냉동장치가 있다. 응축기에서 방출량은 몇 kW인가? (단, 1RT=3.86kW이다)",
+        "choices": [
+          "2.64",
+          "3.32",
+          "4.86",
+          "5.78"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-144-12.webp": {
+      "sha256": "8a370e1379a5e2127f9ad8e0de154c088897ef04e4a69dd73b556c1867e17a8c",
+      "basis": "한솔 공조 교재 2-144쪽 12번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "응축기 방열량 Q₁\nQ₁=Q₂+W=3×3.9+3.7=15.4\n여기서, Q₂ : 냉동능력[kW]\nW : 압축일(소요동력)[kW]"
+    },
+    "assets/hvac-hansol-book/questions/2-144-12.webp": {
+      "sha256": "0cee98fd9fa44624c6dbcdf2772d794bd1db5b4efc968c02b7e62e7bdbb3d4f2",
+      "basis": "한솔 공조 교재 2-144쪽 12번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "어떤 냉동장치의 냉동능력이 3RT이고 이때의 압축기 소요 동력이 3.7kW이었다면 응축기에서 제거하여야 할 열량은 약 몇 kW인가? (단, 1RT=3.9kW이다)",
+        "choices": [
+          "7.5",
+          "9.8",
+          "12.3",
+          "15.4"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-145-16.webp": {
+      "sha256": "82391548507927c87e0322a42c809dcf4084769d2b03c6b88daad33318338723",
+      "basis": "한솔 공조 교재 2-145쪽 16번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n응축기 방열량 Q₁\nQ₁=mc(tw₂−tw₁)=Q₂+W에서"
+    },
+    "assets/hvac-hansol-book/explanations/2-145-17.webp": {
+      "sha256": "5ae02ae800128495b6d23d7f6c86c0b1e03a05c6ddce24c28e6cdf44e267150b",
+      "basis": "한솔 공조 교재 2-145쪽 17번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n여기서, C : 방열계수(Q₁/Q₂)"
+    },
+    "assets/hvac-hansol-book/explanations/2-146-19.webp": {
+      "sha256": "0e219c1cdc560cadb76e2cbfd9b2492b90a47d80f5aefb1a010a061abafa3e36",
+      "basis": "한솔 공조 교재 2-146쪽 19번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "q=KAΔtₘ에서\nA=q/(KΔtₘ)=116.3×1000/[570(40−(32+37)/2)]=37.1 m²"
+    },
+    "assets/hvac-hansol-book/explanations/2-151-1.webp": {
+      "sha256": "e8e9b85dcc6fa9ccb07033f2114b77f34622b37f445cc768cd3990bd6682017e",
+      "basis": "한솔 공조 교재 2-151쪽 1번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "④의 경우 증발기의 표면에 서리가 많이 쌓이면 열관류율이 적게 되어 증발온도가 저하되어 소비동력이 증가한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-155-2.webp": {
+      "sha256": "9d314916124a67f701bd1e636e112f0d1b7b9f67ea1660c9afc420db4ade9baf",
+      "basis": "한솔 공조 교재 2-155쪽 2번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "③ 살수식 제상운전에는 송풍기를 정지한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-104-90.webp": {
+      "sha256": "9588d2873cf93773f3d13d9520e77d66a9184a906bdd38bb9f8e57fac9bbc211",
+      "basis": "한솔 공조 교재 2-104쪽 90번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n냉동능력=1512000/3600=420 kW\n냉동톤(RT)=420/3.86=108.81 RT"
+    },
+    "assets/hvac-hansol-book/explanations/2-104-91.webp": {
+      "sha256": "7738fc7fe1fb4ff6a8f65d785b78007aee2518c6850b311ddee2a9a4ea72e24a",
+      "basis": "한솔 공조 교재 2-104쪽 91번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n압축일 W=80×0.735=58.8 [kW]"
+    },
+    "assets/hvac-hansol-book/explanations/2-106-100.webp": {
+      "sha256": "e55ec23684e77afb15427878cc0069fea315db1f83487249b5c557185b86c852",
+      "basis": "한솔 공조 교재 2-106쪽 100번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 팽창밸브에서는 냉매액의 압력, 온도가 저하하고 엔탈피가 변하지 않는다."
+    },
+    "assets/hvac-hansol-book/explanations/2-107-101.webp": {
+      "sha256": "70ee8c7dc8ef89fed5f79c7044095a9db046c9d8def6261477fea4656c1cdacf",
+      "basis": "한솔 공조 교재 2-107쪽 101번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ n=0일 때 정압변화"
+    },
+    "assets/hvac-hansol-book/explanations/2-107-102.webp": {
+      "sha256": "d2dc1e26edb9fb47e1f1656e4982270ba26832b56fb8c242b4b89bfb3cc0972f",
+      "basis": "한솔 공조 교재 2-107쪽 102번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "등온과정\n열량 ΔQ=P₁v₁ ln(P₁/P₂)=(20×10⁵)×(10×10⁻³)×ln(20/1)\n≒60000 [J]=60 [kJ]"
+    },
+    "assets/hvac-hansol-book/explanations/2-108-105.webp": {
+      "sha256": "3c2dd9cba0cc0012e91cf0466605a9759a1a7e882d4eac2c60fae261e3f571ed",
+      "basis": "한솔 공조 교재 2-108쪽 105번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n③ du=CᵥdT에서 dT=0이면 du=0로 내부에너지의 변화도 없다."
+    },
+    "assets/hvac-hansol-book/explanations/2-108-106.webp": {
+      "sha256": "870269747c75d36beb8f89a8c20c02089472224d1c7474eb43ad25c5d3e76f32",
+      "basis": "한솔 공조 교재 2-108쪽 106번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n여기서, − 부호는 외부에서 받은 일을 의미한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-108-107.webp": {
+      "sha256": "81e4b6da3327c41b4f7ed0e1cdb0e39847316fc7d30807414afe9464f9e7283a",
+      "basis": "한솔 공조 교재 2-108쪽 107번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "밀폐계의 일 = 면적 12ab1\n개방계의 일 = 면적 12cd1"
+    },
+    "assets/hvac-hansol-book/explanations/2-108-108.webp": {
+      "sha256": "1153979a5aaabdf66ac3110f8c180ad5aaa9368e451ef6abb20b97c0b6f84a1e",
+      "basis": "한솔 공조 교재 2-108쪽 108번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n(2) 내부에너지 증가량\nΔU=mCᵥ(T₂−T₁)=3×0.72×(462−283)=386.64 [kJ]"
+    },
+    "assets/hvac-hansol-book/explanations/2-109-109.webp": {
+      "sha256": "c6036d897e710fb2f308e063068804efb3ecf5f50cefbf2d22d4c32936ddb4e2",
+      "basis": "한솔 공조 교재 2-109쪽 109번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "엔탈피 = 내부에너지 + 유동일(외부에너지)\n엔탈피 = 물질이 갖는 전(全)에너지"
+    },
+    "assets/hvac-hansol-book/explanations/2-109-110.webp": {
+      "sha256": "34e89cafef4a625c1eb863e0ca5f11eaacbd09834267826c99f0a8f27603b88c",
+      "basis": "한솔 공조 교재 2-109쪽 110번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "④ dh=du+d(P·v)=du+Pdv+vdP=dq+vdP"
+    },
+    "assets/hvac-hansol-book/explanations/2-109-112.webp": {
+      "sha256": "d29cf75dbd0f18efc5c727e8cfe67f84558b810c6453c5bca3a3c02d70785dd5",
+      "basis": "한솔 공조 교재 2-109쪽 112번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "엔트로피 변화\nΔs₁₂=mCₚ ln(T₂/T₁)=10×4.2×ln[(273+100)/(273+0)]≒13.1"
+    },
+    "assets/hvac-hansol-book/explanations/2-109-114.webp": {
+      "sha256": "cd3bbf5024d2c431f85f93e5e690d1eb345326c21c2bb7d1daa9c14283b408a8",
+      "basis": "한솔 공조 교재 2-109쪽 114번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n오토 사이클 → 복합 사이클 → 디젤 사이클 이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-110-115.webp": {
+      "sha256": "6f5ae7830d5c843c71643fc18c60c9a8e1ebffa8ee634cd769b63c94c5e3ea1b",
+      "basis": "한솔 공조 교재 2-110쪽 115번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nη=1−(273+25)/(273+300)≒48%"
+    },
+    "assets/hvac-hansol-book/questions/2-110-115.webp": {
+      "sha256": "282b6a0fc1486d715a120a237f8bf418a80e5a0b9fd8a7afeeff670e4f49cca3",
+      "basis": "한솔 공조 교재 2-110쪽 115번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "카르노 사이클의 기관에서 25℃와 300℃ 사이에서 작동하는 열기관의 열효율은?",
+        "choices": [
+          "약 42%",
+          "약 48%",
+          "약 52%",
+          "약 58%"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-110-116.webp": {
+      "sha256": "63862a4bbd7774a56b0c1773cd47a209bbd076075438d0f4c1561b4660f3ce6b",
+      "basis": "한솔 공조 교재 2-110쪽 116번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n단열유동\nw₂=√(2Δh)=√(2×494×10³)=994 [m/s]"
+    },
+    "assets/hvac-hansol-book/explanations/2-98-63.webp": {
+      "sha256": "675f5b3b52c64255da0fa3e31208d9a53968e6923174c418a548293aff884f39",
+      "basis": "한솔 공조 교재 2-98쪽 63번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 팽창밸브 직전온도 = 25℃(과냉각도 5℃)"
+    },
+    "assets/hvac-hansol-book/explanations/2-99-69.webp": {
+      "sha256": "75685db2377dbd5d633e64225c0419a6dfb63183b0d3c1f10a9745c096f85392",
+      "basis": "한솔 공조 교재 2-99쪽 69번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n① 습압축(압축기 입구 b에서 습증기 상태이다)"
+    },
+    "assets/hvac-hansol-book/explanations/2-99-70.webp": {
+      "sha256": "e20fb49939540f9583e6221b68ac931fdba87f08dc1942b3f4d69b893b770e0e",
+      "basis": "한솔 공조 교재 2-99쪽 70번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n건도(증기로 된 냉매의 양)=증기량/습증기량=(F−G)/(A−G)"
+    },
+    "assets/hvac-hansol-book/explanations/2-100-72.webp": {
+      "sha256": "51eaea8a207f521a69e6219829c01e4d23ca262de746056bb9904399a2a93ebb",
+      "basis": "한솔 공조 교재 2-100쪽 72번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n전 냉매순환량\nG=G₁+G₂=0.1+0.044=0.144 kg/s=518.4 kg/h"
+    },
+    "assets/hvac-hansol-book/explanations/2-100-73.webp": {
+      "sha256": "a702826731bd41207edf3f6083383c8e5de6f9fe17bf93f79434d54857384e16",
+      "basis": "한솔 공조 교재 2-100쪽 73번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n증발기 출구 냉매증기 엔탈피\nh′₁=h₁−(h₂−h₃)\n=569.1−(443.1−436.8)=562.8"
+    },
+    "assets/hvac-hansol-book/explanations/2-101-75.webp": {
+      "sha256": "2e8bd4491894f127a92ec397b2c506ae9d67b17ed6ec4536417d458ebbd2a8d8",
+      "basis": "한솔 공조 교재 2-101쪽 75번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "성적계수 COP\nCOP=q₂/w=(135−106)/(141−135)≒4.8"
+    },
+    "assets/hvac-hansol-book/explanations/2-101-79.webp": {
+      "sha256": "325df4db8b57c53a0eb7d9c42533081efda2b145be143c43c634341a8182471a",
+      "basis": "한솔 공조 교재 2-101쪽 79번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "가역 냉동사이클 성적계수 COP\nCOP=T₂/(T₁−T₂)=(273−5)/[(273+20)−(273−5)]=10.72"
+    },
+    "assets/hvac-hansol-book/questions/2-101-79.webp": {
+      "sha256": "b0cfd6821e15bb05a4b3783851ff275465d7da2d25eb24b2a1cefdabb3be4d65",
+      "basis": "한솔 공조 교재 2-101쪽 79번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "가역 냉동기의 냉동능력이 100RT이며, −5℃와 +20℃ 사이에서 작동하고 있다. 이 냉동기의 성적 계수는 얼마인가?",
+        "choices": [
+          "10.7",
+          "11.7",
+          "13.4",
+          "12.4"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-102-81.webp": {
+      "sha256": "e7237940215897670135a6594271167e853b82ce4703aa0a7d2ac15c774ba66e",
+      "basis": "한솔 공조 교재 2-102쪽 81번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n(2) 가역 히트펌프의 성적계수 eᴴ\neᴴ=eᶜ+1=3.77+1=4.77"
+    },
+    "assets/hvac-hansol-book/explanations/2-102-82.webp": {
+      "sha256": "0b7e97095c51d674952c41fdbbea05d855b2c658aa37c0bc5f09f310acd3ec5c",
+      "basis": "한솔 공조 교재 2-102쪽 82번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n실제 성적계수 COP\nCOP=냉동능력/압축일=Q₂/W=G×q₂/W"
+    },
+    "assets/hvac-hansol-book/explanations/2-102-83.webp": {
+      "sha256": "36d776be1fc928ec3545c541d16bbbf46e12be0a4dba56aec4e9bcbba68d97e9",
+      "basis": "한솔 공조 교재 2-102쪽 83번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "실제 성적계수 COP\nCOP=Q₂/W=5.9/(2×0.735)=4"
+    },
+    "assets/hvac-hansol-book/explanations/2-87-1.webp": {
+      "sha256": "b732feb441224033342a788b48955c4b48e1a4dc66cd9ae69005281a35ea8206",
+      "basis": "한솔 공조 교재 2-87쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n0.5 atm=380 mmHg=5.166 mAq=5,166 mmAq=50,663 Pa"
+    },
+    "assets/hvac-hansol-book/questions/2-87-1.webp": {
+      "sha256": "c85c82c3150b5f8609870417a59942d65222dd7df88d2fdcb35f83950ce141ac",
+      "basis": "한솔 공조 교재 2-87쪽 1번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "다음 압력 중 크기가 다른 것은?",
+        "choices": [
+          "0.5 atm",
+          "380 mmHg",
+          "5,166 mmAq",
+          "30,663 Pa"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/2-87-2.webp": {
+      "sha256": "7f21f540c71bc15917ab623631b3853cb12d0b630d2c22db53fd1ff0810297ab",
+      "basis": "한솔 공조 교재 2-87쪽 2번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n절대압력 = 대기압 − 진공압력\n=750−100=650 mmHg"
+    },
+    "assets/hvac-hansol-book/explanations/2-87-3.webp": {
+      "sha256": "92fa1842b9b832281e00237762b810517368558378f5c9b3fec670f24444209d",
+      "basis": "한솔 공조 교재 2-87쪽 3번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n표준상태에서 101.3 kPa=760 mmHg이고\n진공압 300 mmHg=절대압 460 mmHg(760−300=460)"
+    },
+    "assets/hvac-hansol-book/explanations/2-87-4.webp": {
+      "sha256": "84ca2df2d039d5594bb0aab0788fc2ba61f6a9d6837db66177547391bc6a8127",
+      "basis": "한솔 공조 교재 2-87쪽 4번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "탱크밑면에 작용하는 압력 = 증기압 + 액주의 압력\n=0.3×10³+9.8×5=349 [kPa]"
+    },
+    "assets/hvac-hansol-book/explanations/2-89-12.webp": {
+      "sha256": "bceedbb574daf3621dd964463804c271ceb0ecfa31d72bf7cf06a1e05aff953c",
+      "basis": "한솔 공조 교재 2-89쪽 12번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n액체질소 1kg은 대기압 하에서 −196℃에서 증발하면서 약 200kJ의 잠열을 주위에서 빼앗아 간다."
+    },
+    "assets/hvac-hansol-book/explanations/2-89-14.webp": {
+      "sha256": "b6f16bc45aca15d1c2e4e0cf205a51a27b67e9b1e9f03580f2b9e9dd1754694a",
+      "basis": "한솔 공조 교재 2-89쪽 14번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n드라이아이스는 고체로 된 이산화탄소이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-89-15.webp": {
+      "sha256": "45f4d8d2e5b9bb06dbbd9be661cfbf30c7ea1468c4bd9442c39fac28adc69787",
+      "basis": "한솔 공조 교재 2-89쪽 15번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "제철공장에서의 철판냉각은 상온보다 아주 높은 온도에서의 냉각이므로 냉동을 이용하는 영역으로 볼 때 거리가 멀다고 할 수 있다."
+    },
+    "assets/hvac-hansol-book/explanations/2-93-36.webp": {
+      "sha256": "1c3836c76834e034878848820add242edb8e692e4849a31bfa6982a59f0e4870",
+      "basis": "한솔 공조 교재 2-93쪽 36번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "−15℃에서의 증발잠열\nㄱ NH₃ : 1,312 kJ/kg\nㄴ R-22 : 216 kJ/kg\nㄷ R-114 : 144 kJ/kg"
+    },
+    "assets/hvac-hansol-book/explanations/2-93-37.webp": {
+      "sha256": "fd2c63e817a1092baad5c4d928daa998c286a768e22afe92775a8e45cf12f50f",
+      "basis": "한솔 공조 교재 2-93쪽 37번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n동부착현상은 냉매 속에 수소(H)가 많을수록 일어나기 쉽다."
+    },
+    "assets/hvac-hansol-book/explanations/2-94-40.webp": {
+      "sha256": "56b52ee953d3ce3d0a9c52b3158528ce15a894809be90694eaf3fc94c358dba6",
+      "basis": "한솔 공조 교재 2-94쪽 40번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n정상-청색, 소량누설-녹색, 다량누설-자색, 과량누설-꺼지다."
+    },
+    "assets/hvac-hansol-book/explanations/2-94-44.webp": {
+      "sha256": "d094ae09b9e3077ff4f76c1ec93d6260bbbc55a0e961f9b06d4a981b27fda63f",
+      "basis": "한솔 공조 교재 2-94쪽 44번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n① R-500 → CCl₂F₂+CH₃CHF₂ (R-12 + R-152)"
+    },
+    "assets/hvac-hansol-book/explanations/2-95-45.webp": {
+      "sha256": "e355c846ddf6aed442d6ec20571e340a7d8e674aebcf142b3c5ba8e6ee0f40ec",
+      "basis": "한솔 공조 교재 2-95쪽 45번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n독성 순위"
+    },
+    "assets/hvac-hansol-book/explanations/2-95-50.webp": {
+      "sha256": "3c8ef0cfed7023d5a184a82c2dbce00789a60e6ebfab762273b1999a7f62b458",
+      "basis": "한솔 공조 교재 2-95쪽 50번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "염화칼슘 : −55℃"
+    },
+    "assets/hvac-hansol-book/explanations/2-60-5.webp": {
+      "sha256": "77d784b02cbccdee0c1d3a958bd7c743199a92a4022afd077e521c14bcd44f3a",
+      "basis": "한솔 공조 교재 2-60쪽 5번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n③ 성적계수 COP=q₂/w=(622−450)/(660−622)=4.53"
+    },
+    "assets/hvac-hansol-book/explanations/2-60-1.webp": {
+      "sha256": "d48a0d68a359d2016231a6324cc4ec6b21a6b67aa0db101a006b6dd019a795d9",
+      "basis": "한솔 공조 교재 2-60쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n(2) 가역 히트펌프의 성적계수 eᴴ\neᴴ=eᶜ+1=2.73+1=3.73"
+    },
+    "assets/hvac-hansol-book/explanations/2-61-9.webp": {
+      "sha256": "da8227e7eca02011a66bdbe5e586e42e73dcdafe824d448bd814dea29a1a8380",
+      "basis": "한솔 공조 교재 2-61쪽 9번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n냉동능력 RT\nRT=Vₐ×ηᵥ×q₂/(v×3.86)에서"
+    },
+    "assets/hvac-hansol-book/explanations/2-61-6.webp": {
+      "sha256": "d59f969c7253aa12b2fb1e05412b363964554813c7be494433a8a9efa91a1456",
+      "basis": "한솔 공조 교재 2-61쪽 6번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "실제 성적계수 COP\nCOP=Q₂(냉동능력)/W(실제압축일)=mCΔt/W=[(10/60)×3.35×10]/2.2=2.54"
+    },
+    "assets/hvac-hansol-book/explanations/2-61-7.webp": {
+      "sha256": "14335a6a3f3b1823f662e71ae18b1df36a005bf122e502457d54a959efaabf51",
+      "basis": "한솔 공조 교재 2-61쪽 7번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "실제 성적계수\nCOP=(q₂/w)(ηc×ηm)=(630−475)/(664−630)×0.8×0.85=3.1"
+    },
+    "assets/hvac-hansol-book/explanations/2-61-8.webp": {
+      "sha256": "b144f28cb57860872239922c8227ed8b148d69040cb65472be889590c7ef1531",
+      "basis": "한솔 공조 교재 2-61쪽 8번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n② COP=T₂/(T₁−T₂)=(273+0)/[(273+30)−(273+0)]=9.1"
+    },
+    "assets/hvac-hansol-book/explanations/2-62-11.webp": {
+      "sha256": "489ea1917e0d977bfadee9985d1da998c2b31980e4c92b58f9a4580cab3afed6",
+      "basis": "한솔 공조 교재 2-62쪽 11번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n이때 각각 냉매순환량(저단, 고단)을 곱하여 구한다."
+    },
+    "assets/hvac-hansol-book/explanations/2-62-12.webp": {
+      "sha256": "cd16021d2ffb3755e29a600868b62695b78014f4673c146baa0e90d98ff507b8",
+      "basis": "한솔 공조 교재 2-62쪽 12번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n① 냉동효과 증대(플래시 가스 발생량 감소)"
+    },
+    "assets/hvac-hansol-book/explanations/2-79-1.webp": {
+      "sha256": "22d1ec568bba6f47cddab2e0263f551587e8ea68d53dae47a4eb4b220ca53154",
+      "basis": "한솔 공조 교재 2-79쪽 1번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "①은 열역학 제2법칙, ②는 열역학 제3법칙, ③은 열역학 제1법칙"
+    },
+    "assets/hvac-hansol-book/explanations/2-80-3.webp": {
+      "sha256": "dff1aeda676301c16c5f33c61df415355f22662cba2322b5cd5d811261b60b38",
+      "basis": "한솔 공조 교재 2-80쪽 3번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nW₁₂=500×(0.7−0.2)=250 [kJ]"
+    },
+    "assets/hvac-hansol-book/explanations/2-80-4.webp": {
+      "sha256": "84f2c94eac76c3a338743b7653fe3774fa5768ca1b59d37c33863dd352fc6627",
+      "basis": "한솔 공조 교재 2-80쪽 4번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nW₁₂=∫₀.₁⁰.³(5−15V)dV\n=0.4 kJ=400 J"
+    },
+    "assets/hvac-hansol-book/explanations/2-83-7.webp": {
+      "sha256": "c05482bf1a3ccf0b233d69a3224e775efa6bc3d68117a4bfe3b2f7117d3a4fbf",
+      "basis": "한솔 공조 교재 2-83쪽 7번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "정적과정에서의 엔트로피 변화\nΔS=mCᵥ ln(T₂/T₁)=5×0.717×ln[(273+50)/(273+15)]=0.411"
+    },
+    "assets/hvac-hansol-book/explanations/2-83-8.webp": {
+      "sha256": "f1c409d00e04e40032d8e6d183a8f00bbbd70dcc61f5633332d59a6ac6b302c7",
+      "basis": "한솔 공조 교재 2-83쪽 8번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nds=dq/T=dh/T=5.238 dT/T (정압이면 dq=dh)"
+    },
+    "assets/hvac-hansol-book/explanations/2-85-7.webp": {
+      "sha256": "dad792e0376fbf9d122aaaf009900dcb36e9be8d7075bd480b2063d52353dbce",
+      "basis": "한솔 공조 교재 2-85쪽 7번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "정적과정에서의 엔트로피 변화\nΔS=mCᵥ ln(T₂/T₁)=5×0.717×ln[(273+50)/(273+15)]=0.411"
+    },
+    "assets/hvac-hansol-book/explanations/2-86-12.webp": {
+      "sha256": "c833664e6071d880981e300652863cbe794a238ea41d7ee46200dcdb131a12af",
+      "basis": "한솔 공조 교재 2-86쪽 12번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nw₂=√(2Δh)=√(2×440.8×10³)=938.9 m/s"
+    },
+    "assets/hvac-hansol-book/explanations/2-66-1.webp": {
+      "sha256": "a8f2812a897c9cb396c95ca45f07ffd98dd9c36d97b33de591a4db1763573f4a",
+      "basis": "한솔 공조 교재 2-66쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n일과 열은 경로 함수이므로 열역학적 상태량이 아니다."
+    },
+    "assets/hvac-hansol-book/explanations/2-69-2.webp": {
+      "sha256": "96423c540056d49698123a100f5b78b50d20ed0b8fcc488e929e0e5a66c51f76",
+      "basis": "한솔 공조 교재 2-69쪽 2번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 공기는 실제기체이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-71-3.webp": {
+      "sha256": "8863c28248e5b6c39d99d9db198c5964dadd1273a75b929553f19e4451b6da24",
+      "basis": "한솔 공조 교재 2-71쪽 3번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nR=209.5−159.6=49.9 J/kg·K"
+    },
+    "assets/hvac-hansol-book/explanations/2-71-4.webp": {
+      "sha256": "b1d271fee55679374b12ef7fefc9a1b98582d56d4b136934e9eb80dc932094a9",
+      "basis": "한솔 공조 교재 2-71쪽 4번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nR=Cₚ−Cᵥ=0.912−0.653=0.259 kJ/kgK"
+    },
+    "assets/hvac-hansol-book/explanations/2-75-5.webp": {
+      "sha256": "837e1110adef1ce589ac9a6564f905246b1b433db7f8d3645156a6b14588ad60",
+      "basis": "한솔 공조 교재 2-75쪽 5번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n③ 온도 ΔT=상승 또는 하강\n④ 압력 ΔP=상승 또는 하강"
+    },
+    "assets/hvac-hansol-book/explanations/2-30-3.webp": {
+      "sha256": "ad22f5d408be376d124927e0d05780186e16122e7b0a9ab928ac899dc1bdbcba",
+      "basis": "한솔 공조 교재 2-30쪽 3번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n공정점이 낮은 순서\n염화칼슘 < 염화마그네슘 < 염화나트륨"
+    },
+    "assets/hvac-hansol-book/explanations/2-33-10.webp": {
+      "sha256": "1a71cae8934d829a8c68a78ea781c5049777bf136f796d30e25818825d3ccae9",
+      "basis": "한솔 공조 교재 2-33쪽 10번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n각 물질의 비열비 K\n① 공기(K=1.4)\n② R-12(K=1.136)\n③ R-22(K=1.184)\n④ NH₃(K=1.313)"
+    },
+    "assets/hvac-hansol-book/explanations/2-34-12.webp": {
+      "sha256": "8fe16fca2323db6097d7939ea64f42207ebfd49283703f2330214c6d5a6e095a",
+      "basis": "한솔 공조 교재 2-34쪽 12번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "R-12냉매의 특성을 나타낸다."
+    },
+    "assets/hvac-hansol-book/explanations/2-35-19.webp": {
+      "sha256": "6604cd3402a302cd0652725a2824b851f71c15f99c52b27f90487953f8a6dfd6",
+      "basis": "한솔 공조 교재 2-35쪽 19번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 무기질 브라인 : 염화칼슘(CaCl₂), 염화나트륨(NaCl), 염화마그네슘(MgCl₂)"
+    },
+    "assets/hvac-hansol-book/explanations/2-35-22.webp": {
+      "sha256": "bca058c03eef938cc67726f04810fca31d9bbb79bd9b0b7887869a87b69c304b",
+      "basis": "한솔 공조 교재 2-35쪽 22번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n암모니아냉매는 광유(윤활유)와 용해하기 어렵다."
+    },
+    "assets/hvac-hansol-book/explanations/2-36-23.webp": {
+      "sha256": "2b8f09f2a85fdee64eff2eaea8c8ff8e464c635c12089432ae5af9ff4c7ed67b",
+      "basis": "한솔 공조 교재 2-36쪽 23번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n오일여과기가 막혔을 경우"
+    },
+    "assets/hvac-hansol-book/explanations/2-46-12.webp": {
+      "sha256": "b4db17d14af4d122c675ad7ccb8ae6483727e52344bf6b771d3c0254bf75c4c7",
+      "basis": "한솔 공조 교재 2-46쪽 12번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "건조도(증기로 된 냉매의 양)=(A−C)/(B−C)\n습도(액체 상태의 냉매의 양)=(B−A)/(B−C)"
+    },
+    "assets/hvac-hansol-book/explanations/2-46-14.webp": {
+      "sha256": "28fcef1a3562c0e9d5575ef60c065868285be9b486ab667240a9baab87066177",
+      "basis": "한솔 공조 교재 2-46쪽 14번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n습도(액체상태의 냉매의 량)=포화액/냉매순환량=(2000−410)/(2000−216)"
+    },
+    "assets/hvac-hansol-book/explanations/2-47-15.webp": {
+      "sha256": "2831ce2c9d1441817d4dfb37298f69617b0a5cad129b83626ae712411074d94a",
+      "basis": "한솔 공조 교재 2-47쪽 15번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n여기서 Q₂ : 냉동능력[kJ/h]\nG : 냉매순환량[kg/h], q₂ : 냉동효과[kJ/kg]"
+    },
+    "assets/hvac-hansol-book/explanations/2-47-17.webp": {
+      "sha256": "e104e86a600190bbf4cc57c6e2c6cbf4496965f7e497de3f1e400b664ea2b36b",
+      "basis": "한솔 공조 교재 2-47쪽 17번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "성적계수 COP\nCOP=q₂/w=(397.12−133.84)/(453−397.12)=4.71"
+    },
+    "assets/hvac-hansol-book/explanations/2-47-18.webp": {
+      "sha256": "a64b3dd888adce12169a77f776c17238641ac5f9809ce049a1f1417b7b10a6ff",
+      "basis": "한솔 공조 교재 2-47쪽 18번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "가역냉동 사이클 성적계수 COP\nCOP=T₂/(T₁−T₂)=(273−10)/[(273+32)−(273−10)]=6.26"
+    },
+    "assets/hvac-hansol-book/explanations/1-15-3.webp": {
+      "sha256": "e96563d26f9ac87c73a8f62712f91d9fe887150ac992716a847f84a260c6dd36",
+      "basis": "한솔 공조 교재 1-15쪽 3번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "공기조화의 4요소는 온도, 습도, 기류(순환), 청정도이다."
+    },
+    "assets/hvac-hansol-book/explanations/1-24-6.webp": {
+      "sha256": "156c369cc378bcc113cc79530d66dd9cf2dd0f03ebfa3e9a1fa45fb0ce05a25b",
+      "basis": "한솔 공조 교재 1-24쪽 6번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "현열비=현열/전열=(h₃−h₁)/(h₂−h₁)"
+    },
+    "assets/hvac-hansol-book/explanations/1-24-7.webp": {
+      "sha256": "0153085b179f2eb440d128a2523874b73169da1cfbd2c999c6dfc25829296a55",
+      "basis": "한솔 공조 교재 1-24쪽 7번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "q=mΔh=(Q/v)(Δh)=(1500/0.815)(32−24)=14724 kJ/h"
+    },
+    "assets/hvac-hansol-book/explanations/2-18-3.webp": {
+      "sha256": "6cac37261141d34ee174a216779bae679d013417343116f3ffa2797c02ba30e6",
+      "basis": "한솔 공조 교재 2-18쪽 3번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "1 mAq=9.8 kPa=73.56 mmHg=9800 Pa\n0.98 N/cm²=9.8 kN/m²=9.8 kPa=1 mAq"
+    },
+    "assets/hvac-hansol-book/explanations/2-19-6.webp": {
+      "sha256": "9740a87a41b2ca093f1e6ebcce6614c56371995f20944173570077a88532790a",
+      "basis": "한솔 공조 교재 2-19쪽 6번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nq=333.6+420+2256≒3010 [kJ]"
+    },
+    "assets/hvac-hansol-book/explanations/2-19-7.webp": {
+      "sha256": "accd536d63b71efc80da0c93f5f6a63fd32fcc19bebc0f6c7743ebab0b37cf4f",
+      "basis": "한솔 공조 교재 2-19쪽 7번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n증기 x(kg)이 잃은 열량 = 물이 1ton이 얻은 열량"
+    },
+    "assets/hvac-hansol-book/explanations/2-19-8.webp": {
+      "sha256": "c9c1779fdbbff353c3d314c987f2a053c316cc1338dcf96e69b5f71d3ee0a563",
+      "basis": "한솔 공조 교재 2-19쪽 8번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n표준(한국, 일본) 냉동톤 : 0℃의 물 1톤을 24시간 동안에 0℃의 얼음으로 만드는 데 필요한 냉동능력으로 1RT=3.86kW이다."
+    },
+    "assets/hvac-hansol-book/explanations/2-21-16.webp": {
+      "sha256": "351d1a56c9ae486dc2f902bc3897d87973c60acd0d8bc5dfb98f564a40c02e75",
+      "basis": "한솔 공조 교재 2-21쪽 16번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nㄱ 저단 압축기의 토출가스 과열도를 낮춘다.\nㄴ 고압 냉매액을 과냉시켜 냉동효과를 증대시킨다."
+    },
+    "assets/hvac-hansol-book/explanations/2-27-1.webp": {
+      "sha256": "55448a19e09827266e359d92cab2f8980863a4f9484c407405bdbda96343f439",
+      "basis": "한솔 공조 교재 2-27쪽 1번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 장치 내에 공기가 침입하면 전열작용을 방해하고 온도가 높게 되어 압력은 공기의 분압 이상으로 높아진다."
+    },
+    "assets/hvac-hansol-book/explanations/2-27-2.webp": {
+      "sha256": "e27634a89175ea2f9e4e5d608ac7cdeb76956f5a56e990092bb3c5c731dbb466",
+      "basis": "한솔 공조 교재 2-27쪽 2번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n그래서 냉매가 증발하면 오일이 증발기내에 고이게 되므로 유 회수 장치나 오일이 고이지 않는 구조로 해야 한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-62-24.webp": {
+      "sha256": "3f05b39f939a0ce3560c2bbff66a9034e8a71b5c7577ec3e2fce5c5fc6de4693",
+      "basis": "한솔 공조 교재 4-62쪽 24번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n그리고 압력시험의 압력은 모두 게이지압력으로 한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-77-30.webp": {
+      "sha256": "a8b525022e7fdcaf570792463a18e48b43e3a5366c5f7cd7315c22a2546d37a2",
+      "basis": "한솔 공조 교재 4-77쪽 30번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n진공상태에서는 미량의 누설도 판정할 수 있으나 누설 장소를 특정 할 수는 없다."
+    },
+    "assets/hvac-hansol-book/explanations/4-77-31.webp": {
+      "sha256": "b2f4a94639fc8aa3a022932055b6c54b4f12075441e8d696bf2e1269c030b6e9",
+      "basis": "한솔 공조 교재 4-77쪽 31번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n더욱 불응축가스의 분압 상당분이 더해져 응축압력이 상승한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-78-36.webp": {
+      "sha256": "aeba9e9c3037b1c4be9aa9bcd6950acfc2fbe6ba4d842f7ad77901cf9adca863",
+      "basis": "한솔 공조 교재 4-78쪽 36번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "고온재생기 압력 스위치는 고온재생기의 냉매 증기 압력이 설정치 이상이 되면 작동하여 용기를 보호한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-85-5.webp": {
+      "sha256": "c4b93bed6a3193c6569e4f75fd86112bfeee9ae4992deff4c8729fc4a80c0609",
+      "basis": "한솔 공조 교재 4-85쪽 5번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "에로핀 중 감아 붙인 핀이 주름진 것을 링클핀, 주름이 없는 평면상의 경우 스무드 핀 이라고 한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-89-27.webp": {
+      "sha256": "2a91682b3bef48018ccdc72d3caf8e215e48eed57d03ea4f8bcf26948653ea6e",
+      "basis": "한솔 공조 교재 4-89쪽 27번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n또한 개방형압축기의 샤프트 실에 오염된 오일이 들어가면 실면을 손상시켜 냉매누설을 일으킬 수 있다."
+    },
+    "assets/hvac-hansol-book/explanations/4-102-32.webp": {
+      "sha256": "d00511508a2d5b857d1e5eade141b33604f442993c7589b19cae070a1265e957",
+      "basis": "한솔 공조 교재 4-102쪽 32번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "③ 흡입배관의 도중에 큰 U 트랩이 있으면 운전정지 중에 응축된 냉매액이나 오일이 모여, 압축기 시동 시 액복귀 현상이 발생할 수 있다."
+    },
+    "assets/hvac-hansol-book/explanations/4-152-25.webp": {
+      "sha256": "a4e3d38cc5e14f8f3c368194fff767c32930f188bd714f6ef1d80125bd334211",
+      "basis": "한솔 공조 교재 4-152쪽 25번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n암모니아는 가연성으로"
+    },
+    "assets/hvac-hansol-book/explanations/4-153-28.webp": {
+      "sha256": "3b003a3c35dbda7901aa1005b1445def5d751f61cdec6f3d47490cc0c11a824a",
+      "basis": "한솔 공조 교재 4-153쪽 28번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n④ 냉매를 과충전하면 고압의 상승 등의 폐해가 발생하므로 규정량 이상을 충전해서는 안된다."
+    },
+    "assets/hvac-hansol-book/explanations/4-164-25.webp": {
+      "sha256": "42ba05bd49043a187fae1de835d0c7d783a7189754c5a25fc7f3108679094800",
+      "basis": "한솔 공조 교재 4-164쪽 25번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "쿨링랜지는 냉각탑 기능과 관련된 사항이다."
+    },
+    "assets/hvac-hansol-book/explanations/3-25-5.webp": {
+      "sha256": "cc229f452230d934c57a42d3e5034ea44b37ebdd050750fbf069bcce4b0b0926",
+      "basis": "한솔 공조 교재 3-25쪽 5번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "강관은 많은 장점과 부식에 약한 단점을 갖고 있어서 도복장 강관을 이용한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-143-8.webp": {
+      "sha256": "7ec8fbea88677bf0572610d1deed3512f5cfc48ce5a87bce8be874b589640ec2",
+      "basis": "한솔 공조 교재 3-143쪽 8번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n따라서 냉각탑에서 배출되는 습한 공기는 냉각탑에 다시 유입되지 않도록 냉각탑 외부로 방출시킨다."
+    },
+    "assets/hvac-hansol-book/explanations/1-240-10.webp": {
+      "sha256": "3bdcb5f98492f6e340ecdf1658f4432b1ab5a66879cd9d1e673587dd090ac6d3",
+      "basis": "한솔 공조 교재 1-240쪽 10번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n압력유지등 전문적인 기술이 필요하여 일반적으로 이용하지는 않는 편이다."
+    },
+    "assets/hvac-hansol-book/explanations/1-240-9.webp": {
+      "sha256": "b3bf1d436f6c9fc075c5e11c2d3e30b1c62d8688cd8fb3db54dd07e50fb08240",
+      "basis": "한솔 공조 교재 1-240쪽 9번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n적절히 배출시켜야 한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-89-6.webp": {
+      "sha256": "f28b118c1b1c8d4170d36c15a38cba5e1d97f9068cfaaac79c3c2378e2f27c8e",
+      "basis": "한솔 공조 교재 3-89쪽 6번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\nPL=100+20+30=150 kPa (실양정 10m=100 kPa)"
+    },
+    "assets/hvac-hansol-book/explanations/3-121-22.webp": {
+      "sha256": "c51ea0f155a9c3aec1fbcaa07aae6e072dc1dad7ec8f3f7c5dcf77b82b39b144",
+      "basis": "한솔 공조 교재 3-121쪽 22번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "그리스 트랩은 용적형 트랩으로 동식물성 기름기를 제거하는 저집기이다."
+    },
+    "assets/hvac-hansol-book/explanations/3-130-4.webp": {
+      "sha256": "d7cb24f66d171f142cf6bb82c385f1fefae234fa060c141e1905546e44d484fd",
+      "basis": "한솔 공조 교재 3-130쪽 4번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n보일러출력 = 난방부하+급탕부하+배관손실부하\n=(104.6+49)×(1+0.2)=184.3 kW"
+    },
+    "assets/hvac-hansol-book/explanations/3-145-20.webp": {
+      "sha256": "71b474fdc7c6a25de861b9b468132ff9163912d1ff47dad2efa7585829d1a2d0",
+      "basis": "한솔 공조 교재 3-145쪽 20번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n수평배관에서 글로브 밸브를 설치할때는 응축수가 통과하도록 밸브축을 수평으로 설치한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-177-8.webp": {
+      "sha256": "a4971e65baded7c26de0480d86b6e0df857622699d821751c5fc626f7928f25f",
+      "basis": "한솔 공조 교재 3-177쪽 8번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "고가탱크방식(옥상탱크방식)은 지하의 저수조와 옥상탱크를 거쳐 급수되기 때문에 수질 오염가능성이 크다."
+    },
+    "assets/hvac-hansol-book/explanations/3-178-17.webp": {
+      "sha256": "2e6a2f4819b487b3ecc4cf9fa44a9c28f69f4a2113f59a5b7c1c60e3cad903f9",
+      "basis": "한솔 공조 교재 3-178쪽 17번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n워터 해머 어레스터(워터해머쿠션)는 수충격 흡수기로 수격작용을 방지하며"
+    },
+    "assets/hvac-hansol-book/explanations/3-207-4.webp": {
+      "sha256": "bae718b97e26869ddc756f52baff1cced6a43986aaa8cb749100c834e64141eb",
+      "basis": "한솔 공조 교재 3-207쪽 4번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "③ 체크밸브, ⑤ 유니언, ⑥ 레듀서, ⑦ 글로브밸브"
+    },
+    "assets/hvac-hansol-book/explanations/4-16-47.webp": {
+      "sha256": "99078ff2f944b124d7bed056c4717979c7158d6666e0792b1235fd480001169a",
+      "basis": "한솔 공조 교재 4-16쪽 47번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "질소가스봉입법은 질소가스를 보일러내에 주입하여 압력을 60kPa 정도 유지하는 것으로서 효과는 좋으나 작업기법이나 압력유지등 전문적인 기술이 필요하여 일반적으로 이용하지는 않는편이다."
+    },
+    "assets/hvac-hansol-book/explanations/4-157-48.webp": {
+      "sha256": "12e08c17bdb0537efb4ac11ae7b3a10e13287cdbb2f1b868d7569505adfc0c9d",
+      "basis": "한솔 공조 교재 4-157쪽 48번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "③ 체크밸브, ⑤ 유니언, ⑥ 레듀서, ⑦ 글로브밸브"
+    },
+    "assets/hvac-hansol-book/explanations/1-184-96.webp": {
+      "sha256": "c36a5f1a05ab5aba4a330bee846013f486068525b5799a283866d7b8569ff13c",
+      "basis": "한솔 공조 교재 1-184쪽 96번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "보일러 본체는 보일러 3대 구성요소(본체, 부속장치, 연소장치)에 속하며 부속장치는 아니다."
+    },
+    "assets/hvac-hansol-book/explanations/1-239-3.webp": {
+      "sha256": "74449e15324f10db29d40ef5c55edd4717dd6dec7f8127fd04c0351c442c0eb6",
+      "basis": "한솔 공조 교재 1-239쪽 3번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "공동연도인 경우 가동하지 않는 타 보일러의 배기가스 댐퍼가 닫혀있는지 확인한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-43-50.webp": {
+      "sha256": "40bde578222dd2e0245780f720b8ba3e6239ed72f3c7d05f26ed71b86143afaf",
+      "basis": "한솔 공조 교재 4-43쪽 50번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "증발압력, 응축압력의 정상여부 점검은 냉동기 점검항목이다."
+    },
+    "assets/hvac-hansol-book/explanations/4-97-4.webp": {
+      "sha256": "87595c9e35a0fe546269e4cd372240b2bf35e952590db632ce9b0d52109a22e5",
+      "basis": "한솔 공조 교재 4-97쪽 4번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "공동연도인 경우 가동하지 않는 타 보일러의 배기가스 댐퍼가 닫혀있는지 확인한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-104-43.webp": {
+      "sha256": "26b1354ad2fa360328a38de04bf2146c4cdc5d4991406c8a5b0b43c134569379",
+      "basis": "한솔 공조 교재 4-104쪽 43번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n적절히 배출시켜야 한다."
+    },
+    "assets/hvac-hansol-book/explanations/1-164-4.webp": {
+      "sha256": "1f8414e8b3b1546e33370b69a109c76eac603c660bf82157e41af345c7b988e5",
+      "basis": "한솔 공조 교재 1-164쪽 4번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "파이버 글라스 덕트는 내압 50mmAq 이하에서 사용한다."
+    },
+    "assets/hvac-hansol-book/explanations/1-226-3.webp": {
+      "sha256": "5da12425463d5f3c9a88779f2109b9bb2667d048709c2e23cb12750a4ff29382",
+      "basis": "한솔 공조 교재 1-226쪽 3번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "외기냉방은 외기조건이 실내조건보다 온도가 낮을 때 사용하므로 중간기(봄, 가을)에 적용한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-221-4.webp": {
+      "sha256": "eda637336171226df8c770e2e770198195a4536ead31880914e67eb9a4a55c4f",
+      "basis": "한솔 공조 교재 3-221쪽 4번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "외기냉방은 외기조건이 실내조건보다 온도가 낮을 때 사용하므로 중간기(봄, 가을)에 적용한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-67-47.webp": {
+      "sha256": "d1374904a9fed358b4bfea693ca32921cd3e716b636e28c50bd36f989e5a7780",
+      "basis": "한솔 공조 교재 4-67쪽 47번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "외기냉방은 외기조건이 실내조건보다 온도가 낮을 때 사용하므로 중간기(봄, 가을)에 적용한다."
+    },
+    "assets/hvac-hansol-book/explanations/4-193-47.webp": {
+      "sha256": "9f65e416ca04d6d1c3836a7bc6d9fcc32ead7670bfb5bcbec28122b0612277d8",
+      "basis": "한솔 공조 교재 4-193쪽 47번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "외기냉방은 외기조건이 실내조건보다 온도가 낮을 때 사용하므로 중간기(봄, 가을)에 적용한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-221-2.webp": {
+      "sha256": "3e8febda1bc108b9cec26ef2d693c7215c7c5beb1c170deac4c19e47f5784028",
+      "basis": "한솔 공조 교재 3-221쪽 2번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "분기부에는 원칙적으로 분기밸브를 설치할 것"
+    },
+    "assets/hvac-hansol-book/explanations/4-42-47.webp": {
+      "sha256": "3e8febda1bc108b9cec26ef2d693c7215c7c5beb1c170deac4c19e47f5784028",
+      "basis": "한솔 공조 교재 4-42쪽 47번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "분기부에는 원칙적으로 분기밸브를 설치할 것"
+    },
+    "assets/hvac-hansol-book/explanations/4-180-43.webp": {
+      "sha256": "7c1eafc512cdfa698ff883ee9e9705e2870d13459629a11b63907d41045fefd1",
+      "basis": "한솔 공조 교재 4-180쪽 43번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "분기부에는 원칙적으로 분기밸브를 설치할 것"
+    },
+    "assets/hvac-hansol-book/explanations/4-135-8.webp": {
+      "sha256": "ec8745a5379ac8cfe552d17f594642ef8acef4fa044f54bf3988dccc5f687485",
+      "basis": "한솔 공조 교재 4-135쪽 8번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "변풍량 단일덕트 방식은 동시사용률을 고려하여 설비용량이 작아진다."
+    },
+    "assets/hvac-hansol-book/explanations/4-161-8.webp": {
+      "sha256": "e2eb9ee45e8f7e7afc455655a7c8688c261d5d7e64ff833d76cb56c9eb57d9fd",
+      "basis": "한솔 공조 교재 4-161쪽 8번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "분기 덕트 내의 풍량 제어용으로는 주로 스플릿 댐퍼를 사용한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-262-20.webp": {
+      "sha256": "bc27f9fc367408bf46d2de4abc1037509cf482dbf2e92158d8f05209a46f4b8c",
+      "basis": "한솔 공조 교재 3-262쪽 20번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "W=(1/2)LI² [J] 식에서\nL=100 [mH], I=5 [A]일 때\n∴ W=(1/2)LI²=(1/2)×100×10⁻³×5²=1.25 [J]"
+    },
+    "assets/hvac-hansol-book/questions/3-262-20.webp": {
+      "sha256": "e9bd7db5ddcb91e5878014cd3ee84803eb764fdbd85bdee0fb8b3c2454385c2f",
+      "basis": "한솔 공조 교재 3-262쪽 20번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "question": {
+        "stem": "자기 인덕턴스 100[mH]의 코일에 5[A]의 전류가 흘렀을 때 코일에 저장되는 에너지는 몇 [J]인가?",
+        "choices": [
+          "1.25",
+          "2.5",
+          "5.0",
+          "12.05"
+        ]
+      }
+    },
+    "assets/hvac-hansol-book/explanations/3-327-51.webp": {
+      "sha256": "9ec9d0331177a250c0cf09f223ed93ccd3df497a9ca749f466fb9d8ca005bb35",
+      "basis": "한솔 공조 교재 3-327쪽 51번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n(2) 2차 저항을 크게 하면 슬립이 증가하고 기동토크도 증가한다."
+    },
+    "assets/hvac-hansol-book/explanations/3-328-58.webp": {
+      "sha256": "64b864d0292cca424f3827908d8aca25de36af1ee1457c1ecded00f6d7b184a5",
+      "basis": "한솔 공조 교재 3-328쪽 58번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n농형 유도전동기\n주파수제어법\n전압제어법\n극수변환법"
+    },
+    "assets/hvac-hansol-book/explanations/3-365-9.webp": {
+      "sha256": "c0c05b9e60cbda8e5def3eaec443ab1421a32dd43f4a87d2f26f2bbf79515a06",
+      "basis": "한솔 공조 교재 3-365쪽 9번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n측온저항은 온도를 임피던스로 변환하는 요소이다."
+    },
+    "assets/hvac-hansol-book/explanations/4-17-53.webp": {
+      "sha256": "19e3c93df6e83b7ff1aa00f4aca851980c78f673d3670257d5d3eea6347de510",
+      "basis": "한솔 공조 교재 4-17쪽 53번 원본 직접 대조. 부분 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "【원문 해설 부분 전사】\n측온저항은 온도를 임피던스로 변환하는 요소이다."
+    },
+    "assets/hvac-hansol-book/explanations/3-379-15.webp": {
+      "sha256": "efb1a1e01b3508d3a93b8e89337b75faf159b5e18ab90eb5214f45eb3a96727a",
+      "basis": "한솔 공조 교재 3-379쪽 15번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "논리식=x(ȳ+z̄)+x̄y"
+    },
+    "assets/hvac-hansol-book/explanations/1-28-22.webp": {
+      "sha256": "40fe48ed3bb53549f3affd8aeeb7b0fed3586cee6d741f1ee22766299e3eb2cd",
+      "basis": "한솔 공조 교재 1-28쪽 22번 원본 직접 대조. 전체 전사. 원문 보존 및 교정 해설 별도 표시. 2026-11-18.",
+      "text": "냉방과정 현열비=현열/전열=(h꜀−h₂)/(h₁−h₂)"
     }
   }
 }

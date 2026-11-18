@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.21',scope:'industrial',date:'2026.11.18',title:'공조 교재 원문과 냉매 물성 대조',summary:'냉동·열역학·공기조화·전기 문항의 원본을 대조했습니다.',tags:['공조','교재'],changes:['냉매 비교 온도와 단위, 냉동능력·압축일·열량의 계산식을 보완했습니다.','교재 해설 이미지 144개에서 판독한 내용을 텍스트로 볼 수 있습니다.']},
     {version:'6.2.20',scope:'industrial',date:'2026.11.18',title:'병렬 회로 역률과 냉동 계산 교정',summary:'서로 다른 해설이 등록된 문항에서 교정 근거와 기존 의견을 함께 볼 수 있습니다.',tags:['공조','전기'],changes:['냉매 순환량·전열면적·브라인 출구온도를 분수식으로 표시합니다.','공조 교재 12개 해설에 원문과 대조한 텍스트를 추가했습니다.']},
     {version:'6.2.19',scope:'industrial',date:'2026.11.18',title:'공조·에너지 단위와 산업안전 기출 보완',summary:'노벽 두께·절대압력·교류전력과 지게차 시험 하중을 원문 조건별로 대조했습니다.',tags:['에너지','공조','산업안전'],changes:['공조 교재의 원문 해설과 교정 내용을 분리했습니다.','산업안전기사의 기계 안전 및 보일러 문항에 해설을 추가했습니다.']},
     {version:'6.2.18',scope:'industrial',date:'2026.11.18',title:'냉각열량 계산과 교재 원문 대조',summary:'공조 코일·압력제어·냉각수와 에너지 기출의 계산 조건을 보완했습니다.',tags:['공조','에너지'],changes:['판본별 보기와 코일 표면온도 조건을 각각 반영했습니다.','공조 교재의 해설 11개를 원문과 대조해 텍스트로 표시합니다.']},
@@ -2798,8 +2799,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.20';
+  changelog.versions.industrial = '6.2.21';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.20';
+  changelog.currentVersion = '6.2.21';
   window.CBT_CHANGELOG = changelog;
 })();

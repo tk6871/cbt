@@ -112,7 +112,7 @@ for (const [path, variant] of Object.entries(readerVariants)) {
  assert.equal(originalEntry?.status, 'reviewed');
  assert.ok(readerImages.some(row => row.oldAsset === variant.original && row.asset === path), path);
  assert.equal(variant.asset, maps[path] || path);
- assert.ok(review.records.some(row => row.questionImage === variant.original && row.sourceAssets.some(
+ assert.ok(review.records.some(row => (originalEntry.kind === 'question' ? row.questionImage === variant.original : row.explanationImages?.includes(variant.original)) && row.sourceAssets.some(
   asset => asset.original === path && asset.displayAsset === variant.asset && asset.sha256 === variant.sha256)), path);
 }
 const manual=JSON.parse(fs.readFileSync('tools/image-text-catalog-reviewed.json')).entries;

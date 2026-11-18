@@ -8,5 +8,10 @@
     "original": "assets/hvac-hansol-book/questions/2-196-22.webp",
     "asset": "assets/problem-webp90/5ede95b7eae2b8cb3500030b6ab6321f.webp",
     "sha256": "9cc8c485699dd6f2111f8a634e96c87e2ef3f94f6940cb5225c3aa236046a6af"
+  },
+  "assets/hvac-hansol-book/ink-hidden/explanations/2-71-3.webp": {
+    "original": "assets/hvac-hansol-book/explanations/2-71-3.webp",
+    "asset": "assets/problem-webp90/31e8f1b21a20bdc8204eb43fc88bf192.webp",
+    "sha256": "1dac89e3f26cbc1b6b1bfcbbbc6925198ebb1c5b2e58e4d694712d531cbd4c36"
   }
 }

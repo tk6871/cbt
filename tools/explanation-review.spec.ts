@@ -472,3 +472,44 @@ test('교재 브라인 유량과 음수 출구온도', async ({page}, info) => {
  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
  await box.screenshot({path:info.outputPath('brine-balance.png')});
 });
+
+test('냉매 잠열 원본의 비교 온도와 교정값', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-93');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 36번',exact:true})}).locator('.question-card');
+ await card.locator('.image-answer-hotspot').nth(1).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('비교 온도는 −15 ℃');
+ await expect(box).toContainText('약 142 kJ/kg');
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.original-textbook-explanation').getByRole('figure');
+ await expect(figure.getByRole('paragraph')).toContainText('R-114 : 144 kJ/kg');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('refrigerant-properties.png')});
+});
+
+test('교재 코일 자기 에너지의 분수와 전사된 전류', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'3-262');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 20번',exact:true})}).locator('.question-card');
+ await expect(card.locator('.question-text')).toContainText('5[A]');
+ await card.locator('.choice-button').first().click();
+ const box=card.locator('.explanation-box');
+ const fractions=box.locator('.katex-html .mfrac');
+ await expect(fractions).toHaveCount(2);
+ await expect(fractions.first()).toBeVisible();
+ await expect(fractions.last()).toBeVisible();
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.original-textbook-explanation').getByRole('figure');
+ await expect(figure.getByRole('paragraph')).toContainText('1.25 [J]');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('coil-energy.png')});
+});
