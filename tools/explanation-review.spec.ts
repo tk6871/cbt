@@ -190,3 +190,22 @@ test('2002년 연도가스 CO₂ 보정 분수와 답안 저장', async ({page},
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['energy-industrial-20020310:16'])).toBe(1);
   await explanation.screenshot({path:info.outputPath('flue-gas.png')});
 });
+
+test('버드의 경상 20건 환산 분수와 참고 회차', async ({page}, info) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20220424').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('12');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'버드(Bird)의 재해분포'});
+  await card.locator('.choice-button').nth(2).click();
+  const explanation = card.locator('.explanation-box');
+  await expect(explanation.locator('.beginner-primary-explanation')).toContainText('1,200건');
+  const formula = explanation.locator('.math-formula');
+  await expect(formula.locator('.katex-html .mfrac')).toBeVisible();
+  await expect(formula).toHaveAttribute('aria-label', /1200건/);
+  await card.locator('.explanation-source-note summary').click();
+  await expect(card.locator('.explanation-source-note p')).toContainText('2013.06.02 13번');
+  expect(await formula.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:12'])).toBe(3);
+  await explanation.screenshot({path:info.outputPath('bird-ratio.png')});
+});

@@ -3585,6 +3585,456 @@
       "basis": "Flue gas composition and excess air. 완전연소·건조 기준·공기 중 CO₂ 무시. 건조 가스 100부에 O₂ 6부면 잉여 공기가 100×6/21부. 이를 제외하고 CO₂ 12부를 재계산.",
       "resolution": "완전연소한 건조 연도가스에 남은 O₂가 과잉공기에서 왔다고 본다. 시료 100부에 O₂가 6부이면 과잉공기의 비율은 6/21이다. 과잉공기를 제외해도 CO₂의 양은 같으므로, 측정 농도 12%를 남은 비율 1 − 6/21로 나눈다. 이론 최대 CO₂ 농도는 ① 16.8%이다.",
       "storedSource": "https://www.comcbt.com/cbt/problem/3062/16/"
+    },
+    {
+      "id": "safety-engineer-20220424:3",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 3,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "2022-04-24 시행 보호구 자율안전확인 고시 표시사항 별표·원문이 필요하다. ㄱ 모델명/형식·ㄴ 제조번호/제조연월·ㄷ 자율안전확인 번호·ㄹ 제조자명 원문 확인 후 판단.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:4",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 4,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 문제는 사례연구법을 묻고 이용자 설명이 역할연기법과 사례연구를 구분한다.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20150531:5"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:5",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 5,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "2022-04-24 전로·평로 작업의 방열두건 차광도 범위가 있는 보호구 안전인증 고시 별표가 필요하다.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:7",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 7,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "2022-04-24 산업안전보건법 안전보건관리규정 작성 조항 확인 필요. HTML 보기 ㄱ 관리조직·ㄴ 감독 및 감시·ㄷ 교육·ㄹ 작업장 관리·ㅁ 사고 조사/대책을 대조할 당시 원문 미확보.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:8",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 8,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 문제의 제외 보기는 생략행위다. 동일한 정답 번호를 옮기지 않고 이번 네 보기와 배경 목록을 대조했다.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20170305:1"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:9",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 9,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 기출 2018년 13번의 4단계 예시와 2010년 20번의 선정·적용 순서를 대조했다.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20180304:13",
+        "safety-20100725:20"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:10",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 10,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "손실우연과 원인계기의 구분. 적용 예시는 별도로 작성.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20110320:15",
+        "safety-20120826:13"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:11",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 11,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "동종업종 재해율 배수와 사업장 규모·직업성 질병자 수가 있는 2022-04-24 당시 산업안전보건법·시행규칙의 진단 및 개선계획 요건을 확인해야 한다.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:12",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 12,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "경상 10과 위험순간 600의 범주를 대조. 20×600/10=1200을 독립 검산.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20130602:13",
+        "safety-20060305:19"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:13",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 13,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "거푸집 동바리와 비계 교육 항목을 구분하는 2022-04-24 시행규칙 특별교육 별표 원문 필요.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:14",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 14,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "네 안전보건표지 도형을 비교할 2022-04-24 당시 시행규칙 별표 그림이 필요하다. 원문 은행에는 네 표지 이름만 있다.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:15",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 15,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "다른 학습이론의 단계와 혼합하지 않고 이 시험에서 명시한 분류와 순서만 설명.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20170507:9"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:16",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 16,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 기출의 제외 보기는 Job Support 또는 정책수립이므로 이번 보기에서 직접 선택.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20100725:12",
+        "safety-20190804:9"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:17",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 17,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 기출 자체는 E의 예를 묻고, 두 원문 해설에서 B/P/E의 뜻을 대조.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20160306:19",
+        "safety-20190804:14"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:18",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 18,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 기출은 물적 원인이 ④, 대상은 ①. 기술적 원인 대신 정신적 원인이 있는 보기 차이도 확인.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20160306:2"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:19",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 19,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "근거 부족으로 보류",
+      "finding": "출제 당시 법령·별표 원문 미확보",
+      "resolution": "전체·국소 배기장치 점검에 관한 2022-04-24 안전관리자·보건관리자 업무 분장 조항 확인 필요.",
+      "changed": false,
+      "errorType": "출제 당시 기준 확인 필요",
+      "evidence": []
+    },
+    {
+      "id": "safety-engineer-20220424:20",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 20,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "대상 지문은 권한 근거의 비공식성, 참고 기출은 사회적 간격에 대한 부정형.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20180304:5"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:21",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 21,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "참고 2011년 24번은 네 보기 구성 동일, 2010년 38번은 상세 정보가 적은 단계의 목적을 설명.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20110821:24",
+        "safety-20100307:38"
+      ]
+    },
+    {
+      "id": "safety-engineer-20220424:22",
+      "catalog": "safety-engineer",
+      "file": "data/safety-engineer.js",
+      "round": "safety-engineer-20220424",
+      "number": 22,
+      "location": "산업안전기사 · 2022년 4월 24일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "status": "내용 검토 완료·수정함",
+      "finding": "해설 미등록",
+      "resolution": "2008년의 대응 지문에서 착오는 ①이다. 2021년 실수와 2019년 위반의 대비 기출을 확인. 저장 AI 해설은 이용자 작성 근거로 쓰지 않았다.",
+      "changed": true,
+      "errorType": "누락 해설 작성",
+      "evidence": [
+        "safety-20080727:37",
+        "safety-engineer-20210515:37",
+        "safety-engineer-20190427:33"
+      ]
     }
   ],
   "sources": [
@@ -4154,6 +4604,284 @@
       "date": "2026-11-18",
       "section": "OpenStax College Physics 2e, Conduction: heat transfer rate through a slab, thermal conductivity as a material property.",
       "sha256": "2a275d75021359e9844cad3fc7fb23202f4634986c3ebfed6b2124a801a6eafd"
+    },
+    {
+      "id": "safety-20150531:5",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20150531:5 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "5231f9bb9ed6c9a589575ce9c1b493ef3b4ae8a8f90987d39bb96ef014c93166",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20170305:1",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20170305:1 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "54eb168fe18d252bac9ff09c98ff9512637bae6aa0bbed579768bf152383c27c",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20180304:13",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20180304:13 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "f599080c09a9843a1966949d039f050be03692ede60a1a367739ac868a4ff4bd",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20100725:20",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20100725:20 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "75ea737a5b4515da559b59a56a2bf1b54c886c0956a1561f48a5a7e434775370",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20110320:15",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20110320:15 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "8a76095ad45ec671b9121aaa72a7dfe7ba26decc5402098c952f75f5fff818f8",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20120826:13",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20120826:13 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "1330c36c65d9bf1724283354e2ca70cb9ca36e749a1afc63cd2a1f85b46e50f4",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20130602:13",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20130602:13 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "402c39d7eed91dde3b269a2e774c83f32f8010e49e39f3cd81675c9039656758",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20060305:19",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20060305:19 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "38f6b970c455ebf47db1b1164510d2b59d9191b2e5daae95c540a4b6f6004fb7",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20170507:9",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20170507:9 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "44a8e73b1ec9e47f8e40b3d27fd10a991e5d78f565490e8f637c3a61b4053764",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20100725:12",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20100725:12 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "7b47d2ca445f5107cb13bffd30bb676902967f8b3fc20d2f8df643b79461fdd2",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20190804:9",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20190804:9 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "9d529818ae5e0d31c15139434208ef2f44b867e9399815a7661a506f830c697a",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20160306:19",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20160306:19 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "04f42289dbba92d9013a3d549ba99fc2802da2e2780d317d5aae521502c71d8b",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20190804:14",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20190804:14 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "1a109183916e90217824e688df2a60ea4dfd3f671c9742e8e7c3005302f99707",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20160306:2",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20160306:2 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "98e98053a62d4b49dfe05b104882fe890f21d470de1de840175d3514832265a9",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20180304:5",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20180304:5 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "4aefabc37e6f8df1ae2866ce8c7b9e6e532c4b08023067e329cedc08ee89e80e",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20110821:24",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20110821:24 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "e92241679546a04a69af09e468f7cf3b293dbbe9819c233d0aaf8cbaaaf2ce0c",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20100307:38",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20100307:38 저장 원문 지문·보기·정답·이용자 해설",
+      "sha256": "d91d7844d93fe7b46e7218b29c0125ff6365e617d06f0f34be506a91ff813778",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-20080727:37",
+      "date": "2026-11-18",
+      "file": "data/safety.js",
+      "section": "safety-20080727:37 저장 원문 지문·보기·정답",
+      "sha256": "14c38490fd524099605d1e7164f95b60292bbc03ee4950f565b88a0a426739c3",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer",
+        "explanation"
+      ]
+    },
+    {
+      "id": "safety-engineer-20210515:37",
+      "date": "2026-11-18",
+      "file": "data/safety-engineer.js",
+      "section": "safety-engineer-20210515:37 저장 원문 지문·보기·정답",
+      "sha256": "c9190163469a6847d6662fd415adac225fc8d97c297167588a72353c928b373c",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ]
+    },
+    {
+      "id": "safety-engineer-20190427:33",
+      "date": "2026-11-18",
+      "file": "data/safety-engineer.js",
+      "section": "safety-engineer-20190427:33 저장 원문 지문·보기·정답",
+      "sha256": "07ec7ddaa69e975c33679ec554eb915fbc7b4a9114f95eff9c8c2e4cc3e62245",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ]
     }
   ],
   "automaticAnswerCandidates": [
@@ -4412,18 +5140,18 @@
     "hvacBook": "data/hvac-hansol-book.js hvac-hansol-book-1-182:82부터. 79번만 완료.",
     "hvacRegular": "data/hvac.js hvac-20020310 1번부터 연속 검토. 이번에는 후보와 연결 문제만 점검하여 회차 완료 없음.",
     "otherSubjects": "automaticAnswerCandidates의 나머지18건은 단순 후보. 에너지·공조 작업을 이어간 뒤 확대.",
-    "missingExplanations": "data/safety-engineer.js safety-engineer-20220424:2 보류(당시 장해등급별 표), :3부터 번호순. records의 완료 ID 건너뛰기."
+    "missingExplanations": "data/safety-engineer.js safety-engineer-20220424:24부터. :23은 검토 완료. :2 환산표, :3·5·7·11·13·14·19는 2022년 4월 당시 법령/별표 확인 필요. 완료한 번호 건너뛰기."
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 116,
-    "contentCompleted": 110,
-    "contentCompletedChanged": 101,
+    "contentExamined": 135,
+    "contentCompleted": 122,
+    "contentCompletedChanged": 113,
     "contentCompletedUnchanged": 9,
-    "evidenceHold": 5,
+    "evidenceHold": 12,
     "answerNeedsConfirmation": 1,
-    "automaticOnly": 48888,
-    "changedQuestionIds": 103,
+    "automaticOnly": 48869,
+    "changedQuestionIds": 115,
     "imageTranscribed": 34,
     "imageFullyTranscribed": 12,
     "imagePartiallyTranscribed": 22,
@@ -4502,5 +5230,20 @@
     ],
     "reviewedDisplayEntries": 12,
     "fractionDisplays": 5
+  },
+  "safety20220424Batch": {
+    "range": [
+      3,
+      22
+    ],
+    "alreadyReviewed": [
+      6
+    ],
+    "newContent": 12,
+    "newHolds": 7,
+    "basedOnSavedComcbt": 11,
+    "comparedExamItems": 1,
+    "withFraction": 1,
+    "stillWithoutBankExplanation": 1629
   }
 }

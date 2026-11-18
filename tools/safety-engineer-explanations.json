@@ -276,5 +276,81 @@
     "explanation": "이 문항이 쓰는 산업안전심리의 분류는 협력·대립·도피·융합이다. 남의 행동을 따라 하는 모방은 이 네 가지에 들어 있지 않으므로 ①을 고른다.",
     "explanationProvenance": "manual-comcbt-reviewed",
     "explanationBasis": "저장된 COMCBT 산업안전산업기사 2011.06.12 6번, 2017.08.26 8번의 이용자 해설과 대조해 작성했습니다."
+  },
+  "safety-engineer-20220424:4": {
+    "questionSHA256": "c7e71a9f439c9d34f5671f56e27365a99b4881ab05fffdea949565bf8dd0579c",
+    "explanation": "참가자가 맡은 역할의 입장에서 직접 말하고 행동해 보며 그 역할을 익히는 방법이 ③ 롤 플레잉(역할연기)이다. 사례연구법은 주어진 사례의 사실과 원인을 분석하고 해결책을 토의한다는 점에서 구별된다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2015.05.31 5번. 참고 문제는 사례연구법을 묻고 이용자 설명이 역할연기법과 사례연구를 구분한다."
+  },
+  "safety-engineer-20220424:8": {
+    "questionSHA256": "562dbb407ece0c6bd39573535c3d700baecb3a442fb66e32cf3d1d4a4a1f5d77",
+    "explanation": "정보가 모자란 상태에서 과거의 성공이나 바라는 결과를 근거로 괜찮을 것이라고 단정하는 것이 이 문제의 억측판단이다. 남의 의견을 따라가는 동조는 이 분류에서 다른 현상이므로 ②이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2017.03.05 1번. 참고 문제의 제외 보기는 생략행위다. 동일한 정답 번호를 옮기지 않고 이번 네 보기와 배경 목록을 대조했다."
+  },
+  "safety-engineer-20220424:9": {
+    "questionSHA256": "0ff1c1978227c2b5ce40ecd06d6ed5055f3e082b38ed4baf524bb276e7534bf4",
+    "explanation": "원인을 분석한 뒤 어떤 개선책을 쓸지 정하는 단계가 ③ 시정방법의 선정이다. 교육·훈련 개선, 인사조정, 규정 개선은 이때 검토하는 대책들이다. 선정이 끝난 대책을 현장에 실제로 시행하는 것이 다음 단계인 시정책의 적용이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2018.03.04 13번, 2010.07.25 20번. 참고 기출 2018년 13번의 4단계 예시와 2010년 20번의 선정·적용 순서를 대조했다."
+  },
+  "safety-engineer-20220424:10": {
+    "questionSHA256": "01a36e563f0d9d6efdf6a110470fc3dd5b8002367d1add82784927a0d64b64cb",
+    "explanation": "사고에는 원인이 있어도 사고가 일어날 때마다 똑같은 손실이 생기지는 않는다. 같은 낙하 사고라도 아래에 사람이 있었는지에 따라 상해 여부가 달라지는 것이 손실우연의 원칙이다. 따라서 손실과 사고의 관계를 필연적이라고 한 ②가 틀리다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2011.03.20 15번, 2012.08.26 13번. 손실우연과 원인계기의 구분. 적용 예시는 별도로 작성."
+  },
+  "safety-engineer-20220424:12": {
+    "questionSHA256": "df0a9248dc928f22aa63c5db7bfcedfe6f9e11c773b85a48cf36535991e6b3f0",
+    "explanation": "버드의 경험적 분포에서 경상은 10, 상해와 물적 손실이 없는 위험순간은 600에 해당한다. 지문의 경상 20건은 기준의 2배이므로 위험순간도 600×2 = 1,200건, ③이다. 물적 손실만 있는 사고의 기준 30을 분모로 쓰지 않는다. 이 비율은 개별 사업장의 발생 건수를 보장하지 않는다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2013.06.02 13번, 2006.03.05 19번. 경상 10과 위험순간 600의 범주를 대조. 20×600/10=1200을 독립 검산.",
+    "explanationFormula": {
+      "tex": "N=20\\times\\frac{600}{10}=1200",
+      "label": "경상 20건에 600 나누기 10을 곱하면 위험순간 1200건"
+    }
+  },
+  "safety-engineer-20220424:15": {
+    "questionSHA256": "bd97aefd2922f78189309c94bf26beea98f69b65925582e29855f4275a62356d",
+    "explanation": "이 안전교육 분류에서는 대상을 알아차리는 인지에서 출발해 그 특징을 지각하고, 뜻과 관계를 이해한 다음 실제 상황에 적용한다. 이 순서인 ② 인지 → 지각 → 이해 → 적용을 고른다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2017.05.07 9번. 다른 학습이론의 단계와 혼합하지 않고 이 시험에서 명시한 분류와 순서만 설명."
+  },
+  "safety-engineer-20220424:16": {
+    "questionSHA256": "f17f196056555932ceb7efa11118c68d1de2182b23df63700fed7e03ae431b91",
+    "explanation": "보기의 Job Instruction은 작업을 가르치는 법, Job Methods는 작업을 개선하는 법, Job Relations는 현장 인간관계를 다루는 훈련이다. 이 세 과정에 해당하지 않는 보기는 ④ Job Standardization Training이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2010.07.25 12번, 2019.08.04 9번. 참고 기출의 제외 보기는 Job Support 또는 정책수립이므로 이번 보기에서 직접 선택."
+  },
+  "safety-engineer-20220424:17": {
+    "questionSHA256": "3ea4f2b6372878c7405e54b3b447b036b9186096b09040c7b69d3b284d1b03f8",
+    "explanation": "레빈의 식은 행동이 개인(P)과 환경(E)의 함수라는 뜻이다. 같은 사람도 환경에 따라 다르게 행동할 수 있다. 따라서 식의 왼쪽 B(behavior)는 ① 행동이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2016.03.06 19번, 2019.08.04 14번. 참고 기출 자체는 E의 예를 묻고, 두 원문 해설에서 B/P/E의 뜻을 대조."
+  },
+  "safety-engineer-20220424:18": {
+    "questionSHA256": "bd7cb816df58bddae6bd1cf26acf86d40c494b3a9cd336b191764ea7d2e659ad",
+    "explanation": "재해를 일으키는 바로 앞의 불안전한 상태는 물적 직접원인이다. 예를 들어 기계의 결함이 여기에 해당한다. 교육이나 관리상의 문제는 그런 상태를 남게 한 배경이므로 이 보기의 직접원인은 ① 물적 원인이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2016.03.06 2번. 참고 기출은 물적 원인이 ④, 대상은 ①. 기술적 원인 대신 정신적 원인이 있는 보기 차이도 확인."
+  },
+  "safety-engineer-20220424:20": {
+    "questionSHA256": "a345d48c3630d525302f2f8038b2e9f1a8f4723f58b337f073ece271790e8893",
+    "explanation": "헤드십에서는 조직이 부여한 직위와 공식 규정에서 지휘 권한이 나온다. 따라서 권한의 근거가 비공식적이라고 한 ②가 틀리다. 문항에 적힌 권위주의적 지휘와 넓은 사회적 간격은 이 분류에서 헤드십의 특징이다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2018.03.04 5번. 대상 지문은 권한 근거의 비공식성, 참고 기출은 사회적 간격에 대한 부정형."
+  },
+  "safety-engineer-20220424:21": {
+    "questionSHA256": "4877911fafa6395321073d8687cf03e6c6aa2109a4b1f11b23e5248da910e655",
+    "explanation": "① PHA는 예비위험분석이다. 시스템의 상세 설계가 정해지기 전 개념 단계에서 위험요소를 먼저 찾아 이후 설계와 분석에 반영하므로 보기 중 적용 시점이 가장 빠르다.",
+    "explanationProvenance": "manual-comcbt-reviewed",
+    "explanationBasis": "저장된 COMCBT 산업안전산업기사 이용자 해설 대조. 2011.08.21 24번, 2010.03.07 38번. 참고 2011년 24번은 네 보기 구성 동일, 2010년 38번은 상세 정보가 적은 단계의 목적을 설명."
+  },
+  "safety-engineer-20220424:22": {
+    "questionSHA256": "a89293d9ad7c08ee0e69b05f59bceb31e4146737e6dae100f1d0b836aa075382",
+    "explanation": "상황을 잘못 이해해 처음부터 맞지 않는 목표나 계획을 세운 경우는 ② 착오(mistake)다. 올바르게 계획했지만 행동이 빗나간 실수(slip), 해야 할 일을 잊은 건망증(lapse), 규칙을 알면서 어긴 위반(violation)과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "저장된 참고 기출 대조. 2008.07.27 37번, 2021.05.15 37번, 2019.04.27 33번. 2008년의 대응 지문에서 착오는 ①이다. 2021년 실수와 2019년 위반의 대비 기출을 확인. 저장 AI 해설은 이용자 작성 근거로 쓰지 않았다."
   }
 }

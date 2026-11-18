@@ -51,14 +51,20 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   }
  }
 }
+for (const source of review.sources.filter(item => item.digestFields)) {
+ const question = bankById.get(source.id);
+ assert.ok(question, 'Missing reference question: ' + source.id);
+ const bytes = JSON.stringify(source.digestFields.map(key => question[key]));
+ assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), source.sha256, 'Review reference changed: ' + source.id);
+}
 const fractions=[...bankById.values()].filter(q=>q.explanationFormula);
-assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays);
+assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction);
 for(const {explanationFormula:{tex,label}} of fractions){
  assert.ok(label.trim());
  assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);
 }
 const withoutExplanation=[...bankById.values()].filter(q=>!q.explanation&&!q.explanationHtml&&!q.explanationImages?.length);
-assert.equal(withoutExplanation.length,review.missingExplanationBatch.stillWithoutBankExplanation);
+assert.equal(withoutExplanation.length,review.safety20220424Batch.stillWithoutBankExplanation);
 assert.equal(bankQuestions,inventory.counts.bankQuestions);
 for(const row of review.records)for(const a of row.sourceAssets)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(a.displayAsset)).digest('hex'),a.sha256,`Reviewed pixels changed: ${a.original}`);
 const oldConfirmed=JSON.parse(original('data/image-text/confirmed.json')),newConfirmed=JSON.parse(fs.readFileSync('data/image-text/confirmed.json'));
