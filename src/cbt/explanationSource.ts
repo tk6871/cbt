@@ -3,7 +3,7 @@ import type { Question } from './types';
 /** Describe recorded provenance; a source label is never a claim of factual verification. */
 export function explanationSource(question: Question): { label: string; detail: string; url?: string } {
   const provenance = question.explanationProvenance || '';
-  if (provenance === 'energy-content-reviewed') return {label:'자료 대조 해설', detail:question.explanationBasis || ''};
+  if (provenance === 'energy-content-reviewed' || provenance === 'manual-reviewed') return {label:'자료 대조 해설', detail:question.explanationBasis || ''};
   if(provenance==='book-original-reviewed')return {label:'교재 원문 대조 설명',detail:question.explanationBasis||'교재 원문 지문·보기·정답을 직접 확인한 학습 설명이며 원문 풀이 이미지를 함께 보존합니다.'};
   const explanation = question.explanationHtml || question.explanation || '';
   const source = question.source || '';

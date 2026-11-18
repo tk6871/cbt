@@ -1364,5 +1364,76 @@
     "referencesUnavailable": [
       "Manufacturer and domestic administrative-rule domains returned proxy HTTP 403 on both access attempts. Historical pressure-test and gas-marking rules remain held."
     ]
+  },
+  "v658": {
+    "parent": "86190158a1511df1f7691edf57ab9ec3f650b7da",
+    "byChoiceBefore": {
+      "textRowsCompared": 38685,
+      "groupsWithUnreviewedMembers": 2405,
+      "distinctStoredExplanationGroups": 1823,
+      "members": 5173,
+      "unreviewedMembers": 5132,
+      "reorderedGroups": 360,
+      "conflictingKeyGroups": 1,
+      "groupsWithReviewedSource": 32
+    },
+    "byChoiceAfter": {
+      "textRowsCompared": 38685,
+      "groupsWithUnreviewedMembers": 2359,
+      "distinctStoredExplanationGroups": 1806,
+      "members": 5060,
+      "unreviewedMembers": 5049,
+      "reorderedGroups": 357,
+      "conflictingKeyGroups": 0,
+      "groupsWithReviewedSource": 2
+    },
+    "examined": {
+      "examined": 86,
+      "changed": 59,
+      "statuses": {
+        "내용 검토 완료·수정 없음": 25,
+        "내용 검토 완료·수정함": 57,
+        "정답 자체 확인 필요": 2,
+        "근거 부족으로 보류": 2
+      },
+      "reasons": {
+        "공식·계산·기호·단위·반올림": 11,
+        "개념·장치 작동 원리·적용 조건": 26,
+        "문제와 무관한 설명": 12,
+        "해설 미등록": 10
+      },
+      "rawFractionDisplays": 3,
+      "remainingBankBlanks": 1616,
+      "newAnswerNoticeExplanations": 9
+    },
+    "protection": {
+      "bankQuestions": 47284,
+      "imageReferences": 13214,
+      "reviewedFractions": 116,
+      "reviewedEnergyDisplays": 413,
+      "withoutExplanation": 1616,
+      "protectedQuestionFields": "unchanged including IDs/order/answers/choices/images/hotspots",
+      "transcriptionsAdded": 235,
+      "transcriptionsByKind": {
+        "question": 56,
+        "explanation": 179
+      },
+      "dynamicLinksValidated": 566,
+      "manualContentCompleted": 561,
+      "manualExamined": 671
+    },
+    "checks": [
+      "audit:questions (46,590 questions, 0 structural errors, 0 warnings, 19 candidates); audit:explanations (0 errors); audit:hansol and audit:hvac-learning passed.",
+      "22 source catalogs including all 47,284 source IDs; regenerated inventory compared byte-for-byte. 6,628 exact answer-only notices remain without a text, image, formula or additional solution in those rows.",
+      "Reapplied 9 independently written solutions to the parent information-engineer catalog via the importer and compared the full bank.",
+      "Choice matching, explanation source index and Hansol values: 8 unit tests passed. First 20 reading packets for 58 IDs round-tripped raw stems, HTML, choices, answer and all explanation fields to source banks.",
+      "vue-tsc, production build and test:pwa v658 passed.",
+      "Desktop, phone and tablet Chromium checks: 10 passed, 2 desktop-only registry checks skipped on other devices. LMTD fractions, answer storage, corrected textbook temperature, folded source, original image and text toggles."
+    ],
+    "existingFailures": [
+      "test:search-policy: archived CHANGELOG named-source rule",
+      "two pre-existing assertions in hansol-values-followup and textbook-text-correction require original files missing from the parent commit. Seven of nine tests passed."
+    ],
+    "network": "COMCBT 외부 사이트 CONNECT 403, 재시도 후에도 공식 답안 접근 불가. 두 충돌 회차의 저장 원문과 보기를 사용."
   }
 }

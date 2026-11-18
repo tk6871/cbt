@@ -424,5 +424,11 @@
     "explanation": "일사가 있는 옥외에서는 WBGT에 자연습구·흑구·건구 온도를 각각 70%·20%·10% 반영한다. 0.7×20 + 0.2×18 + 0.1×30 = 14 + 3.6 + 3 = 20.6 °C이므로 ①이다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "pythermalcomfort wbgt의 일사 있음 분기와 원문 온도 세 개를 대입해 재계산."
+  },
+  "safety-engineer-20220424:39": {
+    "questionSHA256": "204908d1c8cf9cc0bd71f1ac77986db6d759f07b3d74521d08e98d541257f927",
+    "explanation": "FTA는 정상사건을 일으키는 원인들의 논리 조합을 찾아 복잡한 시스템의 신뢰성과 안전성을 분석한다. 따라서 ②다. 원인 조합을 정성적으로 분석할 수 있고, 기초사건 확률과 의존관계를 알면 정상사건 확률도 계산할 수 있다. 같은 사건이 두 갈래에 나타나면 독립된 사건 둘로 계산하면 안 된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "SCRAM Introduction의 fault tree probability calculations와 Cross Validation의 qualitative analysis, 각 보기 대조."
   }
 }

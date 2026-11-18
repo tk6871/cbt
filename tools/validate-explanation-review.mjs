@@ -12,6 +12,8 @@ const baseline=review.baseline;
 const original=file=>execFileSync('git',['show',`${baseline}:${file}`],{encoding:'utf8',maxBuffer:40e6});
 const parse=source=>{const ctx={window:{}};vm.runInNewContext(source,ctx);return structuredClone(Object.values(ctx.window).flatMap(v=>Array.isArray(v)?v:[v]));};
 const reviewedIds=new Set(review.records.filter(r=>r.changed).map(r=>r.id));
+const primaryReviews=new Map(review.records.filter(r=>r.primarySourceReviewed).map(r=>[r.id,r]));
+const noticeReviews=new Map(review.records.filter(r=>r.reviewedAnswerNotice).map(r=>[r.id,r]));
 const formulaDisplayIds=new Set(review.records.filter(r=>r.formulaDisplay).map(r=>r.id));
 assert.equal(fs.readFileSync('data/problem-images-webp90.json','utf8'),original('data/problem-images-webp90.json'),'Source/display mapping changed');
 const maps=JSON.parse(fs.readFileSync('data/problem-images-webp90.json')).mappings;
@@ -34,6 +36,20 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
  }
  for(const catalog of expected)for(const round of catalog.rounds)for(const q of round.questions){
   const id=round.id+':'+q.number;
+  const notice=noticeReviews.get(id);
+  if(notice){
+   assert.equal(q.explanation, 'COMCBT 공개 시험 화면에서 정답은 '+q.answer+'번으로 확인됩니다. 등록된 상세 해설은 없습니다.');
+   assert.equal(q.explanationProvenance,'comcbt-public-exam-view');
+   assert.equal(crypto.createHash('sha256').update(JSON.stringify([q.text,q.html,q.choices,q.answer])).digest('hex'),notice.reviewedAnswerNotice);
+  }
+  const primary=notice || primaryReviews.get(id);
+  if(primary){
+   assert.equal(primary.file,file);
+   q.explanationProvenance='manual-reviewed';
+   const actual=after.find(c=>c.key===catalog.key).rounds.find(r=>r.id===round.id).questions.find(item=>item.number===q.number);
+   assert.equal(actual.explanation,primary.resolution);
+   assert.equal(actual.explanationBasis,primary.basis);
+  }
   if(!formulaDisplayIds.has(id))continue;
   assert.equal(q.explanationFormula,undefined);
   const entry=after.find(c=>c.key===catalog.key).rounds.find(r=>r.id===round.id).questions.find(item=>item.number===q.number);
@@ -52,7 +68,7 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
  }
 }
 const hansolRows=JSON.parse(fs.readFileSync('tools/hansol-book-native-review.json')).rows;
-for(const id of review.hvacHansolBookFirst20Rounds.correctedIds){
+for(const id of [...review.hvacHansolBookFirst20Rounds.correctedIds,"hvac-hansol-book-2-263:32"]){
  const q=bankById.get(id);
  const row=hansolRows.find(row=>`hvac-hansol-book-${row.page}:${row.number}`===id);
  assert.ok(row&&q,'Missing Hansol source: '+id);
@@ -66,13 +82,13 @@ for (const source of review.sources.filter(item => item.digestFields)) {
  assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), source.sha256, 'Review reference changed: ' + source.id);
 }
 const fractions=[...bankById.values()].filter(q=>q.explanationFormula);
-assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction+review.hvacHansolBookFirst20Rounds.withFraction);
+assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction+review.hvacHansolBookFirst20Rounds.withFraction+review.choiceMatchBatch.rawFractionDisplays);
 for(const {explanationFormula:{tex,label}} of fractions){
  assert.ok(label.trim());
  assert.ok(katex.renderToString(tex,{throwOnError:true}).includes('<mfrac>'),tex);
 }
 const withoutExplanation=[...bankById.values()].filter(q=>!q.explanation&&!q.explanationHtml&&!q.explanationImages?.length);
-assert.equal(withoutExplanation.length,review.energyChapters12To20.remainingBankBlanks);
+assert.equal(withoutExplanation.length,review.choiceMatchBatch.remainingBankBlanks);
 assert.equal(bankQuestions,inventory.counts.bankQuestions);
 for(const row of review.records)for(const a of row.sourceAssets)assert.equal(crypto.createHash('sha256').update(fs.readFileSync(a.displayAsset)).digest('hex'),a.sha256,`Reviewed pixels changed: ${a.original}`);
 const oldConfirmed=JSON.parse(original('data/image-text/confirmed.json')),newConfirmed=JSON.parse(fs.readFileSync('data/image-text/confirmed.json'));

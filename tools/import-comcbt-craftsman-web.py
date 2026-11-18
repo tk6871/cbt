@@ -9,6 +9,7 @@ only diagrams and image-only choices are downloaded.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html as html_std
 import json
 import re
@@ -84,6 +85,25 @@ def explanation_signature(question: dict) -> str:
 def has_visual_content(question: dict) -> bool:
     # Text equality cannot prove that diagrams/formula image choices are equal.
     return bool(question.get("images") or any(choice.get("images") for choice in question["choices"]))
+
+
+def apply_reviewed_answer_notices(catalog: dict) -> None:
+    """Restore manual explanations when reimporting the same answer-only source."""
+    ledger = ROOT / "docs/explanation-review/2026-11-18/review.json"
+    records = {row["id"]: row for row in json.loads(ledger.read_text())["records"]
+               if row.get("reviewedAnswerNotice") and row["catalog"] == catalog["key"]}
+    for exam in catalog["rounds"]:
+        for q in exam["questions"]:
+            row = records.get(f"{exam['id']}:{q['number']}")
+            if not row:
+                continue
+            fields = [q[key] for key in ("text", "html", "choices", "answer")]
+            digest = hashlib.sha256(json.dumps(fields, ensure_ascii=False, separators=(",", ":")).encode()).hexdigest()
+            notice = f"COMCBT 공개 시험 화면에서 정답은 {q['answer']}번으로 확인됩니다. 등록된 상세 해설은 없습니다."
+            if digest != row["reviewedAnswerNotice"] or q["explanation"] != notice or q.get("explanationHtml"):
+                raise ValueError(f"원문 변경으로 해설 재검토 필요: {row['id']}")
+            q.update(explanation=row["resolution"], explanationBasis=row["basis"],
+                     explanationProvenance="manual-reviewed")
 
 
 def reuse_exact_duplicate_explanations(catalog: dict) -> int:
@@ -506,6 +526,7 @@ def main() -> None:
     for target in targets:
         catalog, assets = parse_target(target, args.cache_root, download_assets=not args.skip_assets)
         reused = reuse_exact_duplicate_explanations(catalog)
+        apply_reviewed_answer_notices(catalog)
         asset_manifest.update({url: str(output) for url, output in assets.items()})
         output = ROOT / "data" / f"{target.key}.js"
         output.write_text(

@@ -305,3 +305,37 @@ test('산업안전기사 최소 컷셋 두 조합과 원본 도식', async ({pag
   await expect(card.locator('.explanation-box')).toContainText('{1, 2}와 {1, 3}');
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:28'])).toBe(2);
 });
+
+test('대수평균온도차 교정 분수와 답안 저장', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.locator('#round-card-hvac-20050306').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('29');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'냉각수 입구수온이'});
+ await card.locator('.choice-button').nth(1).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('3.27 °C');
+ await expect(box.locator('.explanation-source-note summary')).toHaveText('자료 대조 해설');
+ await expect(box.locator('.katex-html .mfrac')).toBeVisible();
+ await expect(box.locator('math mfrac')).toHaveCount(1);
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20050306:29'])).toBe(2);
+ await box.screenshot({path:info.outputPath('lmtd.png')});
+});
+test('한솔 동결매체 교재 온도 원문과 환산 교정', async ({page}, info) => {
+ await prepare(page,'hvac');
+ await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await enterBookReader(page);
+ await chooseBookPage(page,'2-263');
+ const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 32번',exact:true})}).locator('.question-card');
+ await expect(card.locator('.question-text')).toContainText('저온액화가스');
+ await card.locator('.choice-button').nth(2).click();
+ const box=card.locator('.explanation-box');
+ await expect(box).toContainText('−73.33 °C');
+ await box.locator('.original-textbook-explanation summary').click();
+ const figure=box.locator('.transcription-figure');
+ await expect(figure.locator('.transcription-text')).toContainText('−77.33℃(−100℉)');
+ await figure.getByRole('button',{name:'이미지로 보기'}).click();
+ await figure.locator('img').evaluate((im:HTMLImageElement)=>im.decode());
+ await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+ await box.screenshot({path:info.outputPath('cryogenic-book.png')});
+});
