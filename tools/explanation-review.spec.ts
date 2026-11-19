@@ -890,3 +890,14 @@ test('에너지 미세압력계의 경사관 눈금과 분수',async({page})=>{
   await expect(card.locator('.explanation-box')).toContainText('수직 액면차');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('랭킨사이클 열효율의 보기와 원본 엔탈피 분수',async({page})=>{
+  await prepare(page,'energy');
+  await page.locator('#round-card-energy-industrial-20160306').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('14');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'다음 랭킨사이클에서'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('응축기에서 버린 열은 h₃−h₄');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
