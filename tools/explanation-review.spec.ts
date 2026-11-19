@@ -1070,3 +1070,15 @@ test('공조 교재 냉동 성적계수 원도와 분수', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('i₃−i₂');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 필기 열펌프의 고온부 열량과 온도비', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20110821').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('23');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '열펌프의 성적계수를'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('고온부로 내보내는 열');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+  await expect(card.locator('img').first()).toBeVisible();
+});
