@@ -305,9 +305,41 @@ for (const row of review.records.filter(r => r.answerImportedFrom)) {
  assert.equal(directAnswers.get(row.id), row.answerAfter, row.id);
 }
 assert.equal(oldDirect.size,0,'A previously displayed direct explanation disappeared');
+// The appendix was introduced after the review baseline. Compare the imported
+// rounds directly, including their order, hotspots, original scans and keys.
+const appendixFile='data/hansol-appendix-rounds.json';
+const appendixBefore=JSON.parse(execFileSync('git',['show','03caf79f0d163a47ac03fe699f51851b8e040d48:'+appendixFile],{encoding:'utf8'}));
+const appendixAfter=JSON.parse(fs.readFileSync(appendixFile));
+const appendixRows=new Map(inventory.derived.appendix.map(row=>[row.sourceId,row]));
+const appendixAnswers=new Map(), appendixChanges=[];
+for(const [i,round] of appendixAfter.entries()){
+ for(const [j,question] of round.questions.entries()){
+  const sourceId=round.id+':'+question.number;
+  const row=appendixRows.get(sourceId), previous=appendixBefore[i].questions[j];
+  assert.ok(row,sourceId);
+  appendixAnswers.set(row.id,question.answer);
+  const record=recordsById.get(row.id);
+  if(!record?.appendixReview)continue;
+  assert.deepEqual(record.explanationImages,question.explanationImages,sourceId);
+  for(const asset of record.sourceAssets){
+   assert.equal(crypto.createHash('sha256').update(fs.readFileSync(asset.displayAsset)).digest('hex'),asset.sha256,asset.original);
+  }
+  if(!record.changed)continue;
+  assert.equal(record.resolution,question.explanation,sourceId);
+  assert.ok(!previous.explanation,sourceId);
+  previous.explanation=question.explanation;
+  previous.originalExplanationImagesFolded=true;
+  if(question.explanationFormula){
+   katex.renderToString(question.explanationFormula.tex,{throwOnError:true});
+   previous.explanationFormula=question.explanationFormula;
+  }
+  appendixChanges.push(row.id);
+ }
+}
+assert.deepEqual(appendixAfter,appendixBefore,'Unrecorded changes in textbook appendix');
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? directAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? directAnswers.get(record.id) ?? appendixAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -315,12 +347,12 @@ for (const [status, field] of Object.entries(statusCounts)) {
 }
 assert.equal(review.counts.contentCompleted, review.counts.contentCompletedChanged + review.counts.contentCompletedUnchanged);
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
-const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length + directNew.length;
+const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length + directNew.length + appendixChanges.length;
 assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
 assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
-const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges,...directChanges]);
+const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges,...directChanges,...appendixChanges]);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';
 const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));
@@ -350,5 +382,5 @@ for (const record of disputeRecords) {
  affectedIds.add(record.id);
 }
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={directTextAdded:directNew.length,directDisplayChanges:directChanges.length,practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length+directNew.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:explanationTranscriptions},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={appendixTextAdded:appendixChanges.length,directTextAdded:directNew.length,directDisplayChanges:directChanges.length,practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length+directNew.length+appendixChanges.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:explanationTranscriptions},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));

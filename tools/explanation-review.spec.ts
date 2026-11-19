@@ -1701,3 +1701,20 @@ test('공조 교재 직렬 용량 분수와 저항 원도', async ({page}) => {
   await expect(series.locator('.explanation-box')).toContainText('원도의 ④');
   await expect(series.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 부록 냉수코일 전면적의 분수와 원본 해설', async ({page},info) => {
+  await prepare(page,'hvac');
+  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+  await enterBookReader(page);
+  await chooseBookPage(page,'4-7');
+  const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 4번',exact:true})}).locator('.question-card');
+  await card.getByRole('button',{name:'이미지에서 2번 선택'}).click();
+  const box=card.locator('.explanation-box');
+  await expect(box).toContainText('37,500 m³/h');
+  await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+  await box.locator('.original-textbook-explanation summary').click();
+  const original=box.locator('img').first();
+  await expect(original).toBeVisible();
+  await original.evaluate((img:HTMLImageElement)=>img.decode());
+  await box.screenshot({path:info.outputPath('coil-face-area.png')});
+});

@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.10',scope:'industrial',date:'2026.11.19',title:"공조 교재 부록 신규 학습 ID 122개",summary:"4-23쪽 17번의 외기·환기 불일치와 5-16쪽 2번의 회벽 두께 2 cm·0.002 m 차이를 해설에 기록했습니다. 분수와 단위 환산을 대조하고 원래 도면과 답안을 보존했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.9',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2003년 3월",summary:"유리공 백내장을 열복사성 직업병 항목과 대조해 정답 재확인으로 분류했다. 음압 10 dB 차이를 √10배로 재계산했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.8',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2002년 5월·8월",summary:"달비계 와이어로프의 지름 감소율과 항타기 권상로프의 단선율을 구별했다. 화학설비 부식방지 문제는 2025년 시행 제256조의 60 ℃와 저장 답 65 ℃를 구분했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.7',scope:'industrial',date:'2026.11.19',title:'공조·에너지 교재 목록 로딩 개선',summary:'교재를 고르면 선택한 책의 전용 파일부터 불러옵니다.',tags:['교재'],changes:['전용 파일을 읽을 수 없으면 기존 문제은행으로 교재를 엽니다.']},
@@ -2899,8 +2900,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.9';
+  changelog.versions.industrial = '6.3.10';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.9';
+  changelog.currentVersion = '6.3.10';
   window.CBT_CHANGELOG = changelog;
 })();
