@@ -2,7 +2,7 @@
 
 저장 답안은 유지했다. review.json에는 각 문항의 근거와 원본 대조 상태가 있다.
 
-## 현재 검토 범위 (600개)
+## 현재 검토 범위 (604개)
 
 - `energy-industrial-20020310:34` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 질량당 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 = −1.08688 kJ/(kg·K). 한 주기의 상태 변화 0, 일정한 온도의 두 열원과 교환 가정하에 생성량 양수.
 - `energy-industrial-20020310:54` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 지문과 원문 보기 네 개 대조. 목표 온도가 제어출력이고 연료 유량이 조작입력인 폐루프와 비교.
@@ -604,6 +604,10 @@
 - `hansol-direct-4-182-55` (data/hansol-appendix-rounds.json, 공조 교재 교재 4-182쪽 55번) — 4-182 55. ③의 (X̅+Y̅)(X+Y)를 전개하면 X̅Y+XY̅. 인쇄 보기의 각 보수선을 다시 확인.
 - `hansol-direct-4-189-25` (data/hansol-appendix-rounds.json, 공조 교재 교재 4-189쪽 25번) — 4-189 25. 600×0.133322=79.99 kPa. 적용 제작검사 원문·공식 정오표 미확보, 복수 오류 가능.
 - `hansol-direct-5-8-25` (data/hansol-appendix-rounds.json, 공조 교재 교재 5-8쪽 25번) — 5-8 25. 선도만으로는 절대 유량·능력도 결정되지 않아 지문의 추가 조건 및 공식 단답 확인 필요.
+- `hansol-direct-3-146-24` (tools/textbook-explanation-text-review.json, 공조 교재 3-146쪽 인쇄 24번) — 3-146 24①. 바이패스 화살표와 세 포트를 추적. ② 혼합밸브도 해당하는지 원출제 의도 확인 필요.
+- `hansol-direct-3-176-4` (tools/textbook-explanation-text-review.json, 공조 교재 3-176쪽 인쇄 4번) — 3-176 04②. 같은 쪽 05의 표에는 세정밸브 70 kPa. 최저라는 조건과 보기 불일치.
+- `hansol-direct-3-178-13` (tools/textbook-explanation-text-review.json, 공조 교재 3-178쪽 인쇄 13번) — 3-178 13④와 3-179 22①의 직결식 시험압력이 1.0·1.75 MPa로 충돌. 기준 판본 미확보.
+- `hansol-direct-3-179-22` (tools/textbook-explanation-text-review.json, 공조 교재 3-179쪽 인쇄 22번) — 3-179 22①. 바로 앞 단원의 3-178 13④와 상충. 적용 시방·시행일·대상 구간 재확인 필요.
 
 ## 범위 조정 전에 기록한 그 밖의 항목 (32개)
 

@@ -482,7 +482,7 @@
       "id": "hansol-direct-3-175-3",
       "blocks": [
         {
-          "text": "공기압축기에서 터보식은 동적형에 속한다."
+          "text": "피스톤·다이어프램·스크루 방식은 공기를 가둔 공간의 체적을 줄여 압축한다. 터보식은 회전날개로 공기에 속도에너지를 준 뒤 압력으로 바꾸는 동적형이므로 양변위식이 아닌 ③이다."
         }
       ],
       "page": "3-175",
@@ -7640,6 +7640,1242 @@
         {
           "asset": "assets/hvac-hansol-book/direct-pages/3-133-original.png",
           "sha256": "90b9cbc995ec90f747a975e4bb9aace451a3c06383ad28d63cd7ddbd0621eba4"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-133-22",
+      "blocks": [
+        {
+          "text": "수평 증기관에서는 응축수가 흐르는 관 바닥에 단차가 생기면 물이 고일 수 있다. 두 관의 바닥 높이를 맞출 수 있는 편심 리듀서를 쓰는 ①이다."
+        }
+      ],
+      "page": "3-133",
+      "number": 22,
+      "questionParts": [
+        {
+          "page": "3-133",
+          "rect": [
+            671,
+            190,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-133",
+          "rect": [
+            671,
+            383,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-133-original.png",
+          "sha256": "90b9cbc995ec90f747a975e4bb9aace451a3c06383ad28d63cd7ddbd0621eba4"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-134-26",
+      "blocks": [
+        {
+          "text": "수평주관에서 입상 분기관으로 이어지는 부분에 여러 엘보를 조합하면 관의 신축에 따라 이음부가 회전해 변위를 흡수한다. 이 방식이 ① 스위블 이음이다."
+        }
+      ],
+      "page": "3-134",
+      "number": 26,
+      "questionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            387,
+            671,
+            193
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            581,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-134-original.png",
+          "sha256": "0e631d40ef9c95fc0037eb6402d804714f48c3aaf0c6bdcf2f55b50751f88546"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-134-27",
+      "blocks": [
+        {
+          "text": "교재는 진공환수식 증기난방의 리프트 피팅에서 응축수를 올리는 높이를 한 단당 1.5 m 이내로 제시하므로 ③이다. 이는 전체 계통의 양정과 다른 값이다."
+        }
+      ],
+      "page": "3-134",
+      "number": 27,
+      "questionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            788,
+            671,
+            184
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-134",
+          "rect": [
+            0,
+            975,
+            671,
+            106
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-134-original.png",
+          "sha256": "0e631d40ef9c95fc0037eb6402d804714f48c3aaf0c6bdcf2f55b50751f88546"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-135-6",
+      "blocks": [
+        {
+          "text": "입출구 온수의 평균온도는 62.5 ℃이므로 실내와의 평균 온도차는 44.5 K다. 방열계수 6.8 W/(m²·K)를 곱하면 면적당 302.6 W/m²로 ③이다."
+        },
+        {
+          "tex": "q=6.8\\left(\\frac{70+55}{2}-18\\right)=302.6\\;\\mathrm{W/m^2}",
+          "label": "교재 3-135쪽 33번 풀이"
+        }
+      ],
+      "page": "3-135",
+      "number": 33,
+      "questionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            841,
+            671,
+            228
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            0,
+            1072,
+            671,
+            261
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-135-original.png",
+          "sha256": "b1032895c8e69cd9b6221d5e37145fba334d892f7fbd25e66bd04b31bd2198b8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-135-36",
+      "blocks": [
+        {
+          "text": "필요 난방출력은 42,000 kJ/h=11,666.7 W다. 방열기 한 쪽은 온도차 100 K에서 9.2×100×0.13=119.6 W를 낸다. 나누면 약 97.55쪽이므로 부하를 충족하도록 올린 98쪽, ②다."
+        },
+        {
+          "tex": "N=\\left\\lceil\\frac{42000/3.6}{9.2(120-20)\\times0.13}\\right\\rceil=98",
+          "label": "교재 3-135쪽 36번 풀이"
+        }
+      ],
+      "page": "3-135",
+      "number": 36,
+      "questionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            671,
+            841,
+            671,
+            308
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-135",
+          "rect": [
+            671,
+            1150,
+            671,
+            340
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-135-original.png",
+          "sha256": "b1032895c8e69cd9b6221d5e37145fba334d892f7fbd25e66bd04b31bd2198b8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-142-2",
+      "blocks": [
+        {
+          "text": "밀폐식 팽창탱크는 압축 가능한 가스 공간으로 물의 팽창을 받아들이므로 대기로 물을 넘기는 개방형 넘침관이 필요 없다. 개방식 탱크에 쓰는 넘침관인 ③이다."
+        }
+      ],
+      "page": "3-142",
+      "number": 2,
+      "questionParts": [
+        {
+          "page": "3-142",
+          "rect": [
+            0,
+            842,
+            671,
+            159
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-142",
+          "rect": [
+            0,
+            1002,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-142-original.png",
+          "sha256": "cd64aca64f8ceac116077e2bcddaaca1dc656d54d47a84217633091800b5b264"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-143-10",
+      "blocks": [
+        {
+          "text": "개방형 냉각탑 수조를 반드시 펌프와 응축기보다 낮게 설치한다는 ②는 잘못이다. 펌프 흡입수두와 운전 정지 시 물의 되흐름을 고려해야 하며, 낮게 배치할 때에는 그에 맞는 배관과 역류 대책이 필요하다."
+        }
+      ],
+      "page": "3-143",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "3-143",
+          "rect": [
+            671,
+            700,
+            671,
+            360
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-143",
+          "rect": [
+            671,
+            1061,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-143-original.png",
+          "sha256": "bba8cc9dba923073a35c1f780ea35b9a53a0e1bb2f537bf002258fcbc3cf93f3"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-144-12",
+      "blocks": [
+        {
+          "text": "역환수는 공급관을 먼저 지나는 기기가 환수관에서는 가장 긴 경로를 지나도록 배치한다. 각 분기의 공급·환수 합계 길이와 저항 차를 줄여 ③처럼 유량 분배를 고르게 하기 쉽다. 펌프 동력 증가 여부는 실제 경로와 저항에 달려 있다."
+        }
+      ],
+      "page": "3-144",
+      "number": 12,
+      "questionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            0,
+            190,
+            671,
+            273
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            0,
+            464,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-144-original.png",
+          "sha256": "e21fc581dd5222b3186e58a93a4d70e6967da4931aef81b690688cc53041b4e7"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-144-13",
+      "blocks": [
+        {
+          "text": "이 교재의 코일 전후 덕트 기준은 상류 확대부 최대 30°, 하류 축소부 최대 45°로 ②다. 일반 덕트의 확대·축소각과 코일을 설치한 이 문제의 조건을 구분한다."
+        }
+      ],
+      "page": "3-144",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            0,
+            736,
+            671,
+            271
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            0,
+            1008,
+            671,
+            164
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-144-original.png",
+          "sha256": "e21fc581dd5222b3186e58a93a4d70e6967da4931aef81b690688cc53041b4e7"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-144-16",
+      "blocks": [
+        {
+          "text": "주관이 방향을 바꾸는 곳에는 완만하게 굽은 벤드를 쓰는 ④가 교재의 배관 원칙이다. 관통부는 슬리브로 보호하고, 공기가 모이는 곳에는 공기빼기 장치를 둔다. 개방형 팽창관의 통로는 차단하지 않는다."
+        }
+      ],
+      "page": "3-144",
+      "number": 16,
+      "questionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            671,
+            654,
+            671,
+            279
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-144",
+          "rect": [
+            671,
+            934,
+            671,
+            196
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-144-original.png",
+          "sha256": "e21fc581dd5222b3186e58a93a4d70e6967da4931aef81b690688cc53041b4e7"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-145-18",
+      "blocks": [
+        {
+          "text": "송풍기의 흡입·토출부를 덕트와 단단히 직결하면 진동이 덕트에 전달된다. 그 사이에 유연한 연결재를 넣어 진동 전달을 줄이는 방법이 ② 캔버스 커넥션이다."
+        }
+      ],
+      "page": "3-145",
+      "number": 18,
+      "questionParts": [
+        {
+          "page": "3-145",
+          "rect": [
+            0,
+            190,
+            671,
+            308
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-145",
+          "rect": [
+            0,
+            499,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-145-original.png",
+          "sha256": "6306efc407414bdab92dde3ffccace9c40518358f236ad6c8af7a1a183a2afc9"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-145-23",
+      "blocks": [
+        {
+          "text": "증기 흐름은 오른쪽 고압측에서 왼쪽 저압측으로 향한다. 감압밸브 앞의 ㉣은 이물질을 거르는 스트레이너이고 관을 분기하는 티가 아니다. 명칭이 틀린 보기는 ④다."
+        }
+      ],
+      "page": "3-145",
+      "number": 23,
+      "questionParts": [
+        {
+          "page": "3-145",
+          "rect": [
+            671,
+            1340,
+            671,
+            392
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            179,
+            671,
+            74
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-146-original.png",
+          "sha256": "e0dd35dbd9e799bc5e55b855dd09a1e2437bbff92312dca7774ef2e617ca5992"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-146-24",
+      "blocks": [
+        {
+          "text": "A에서 코일을 지난 유로와 바이패스 유로가 만난다. 3방 밸브로 두 경로의 유량 비율을 바꾸면 코일 통과량은 변하지만 계통 전체 순환량을 유지할 수 있다. 답안표는 ①이다. 다만 도면처럼 합류점에 쓰는 것은 혼합형 3방 밸브여서 ②의 명칭과도 겹칠 수 있다."
+        }
+      ],
+      "page": "3-146",
+      "number": 24,
+      "questionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            387,
+            671,
+            627
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-146",
+          "rect": [
+            0,
+            1015,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-146-original.png",
+          "sha256": "e0dd35dbd9e799bc5e55b855dd09a1e2437bbff92312dca7774ef2e617ca5992"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-159-1",
+      "blocks": [
+        {
+          "text": "액화석유가스(LPG)의 대표 주성분은 프로판(C₃H₈)과 부탄(C₄H₁₀)이므로 ②다. 프로필렌과 부틸렌은 각각 수소 원자 수가 다른 물질이다."
+        }
+      ],
+      "page": "3-159",
+      "number": 1,
+      "questionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            0,
+            323,
+            671,
+            256
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            0,
+            580,
+            671,
+            107
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-159-original.png",
+          "sha256": "3b4bc05d440ccfaf734c3cfcf560741d72117ed895953acdb07a41d5b9d9702f"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-159-4",
+      "blocks": [
+        {
+          "text": "저압 가스배관의 폴(Pole) 식에서는 같은 조건에서 관경과 허용 압력손실이 클수록 유량이 커지고 가스 비중과 관 길이가 클수록 작아진다. 관경의 다섯제곱이 분자에서 제곱근 안에 들어가는 ④다. 계수 K는 문제에서 지정한 단위계에 맞춰 쓴다."
+        },
+        {
+          "tex": "Q=K\\sqrt{\\frac{D^5\\Delta P}{SL}}",
+          "label": "교재 3-159쪽 4번 풀이"
+        }
+      ],
+      "page": "3-159",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            671,
+            324,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-159",
+          "rect": [
+            671,
+            644,
+            671,
+            138
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-159-original.png",
+          "sha256": "3b4bc05d440ccfaf734c3cfcf560741d72117ed895953acdb07a41d5b9d9702f"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-161-13",
+      "blocks": [
+        {
+          "text": "교재는 정압기를 직동식과 파일럿식으로 나누고 레이놀드식, 피셔식, 액셜 플로우식을 그 예로 든다. 가스미터는 가스 사용량을 계량하는 장치로, 제시한 정압기 구조 형식에 해당하지 않는 ③이다."
+        }
+      ],
+      "page": "3-161",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-161",
+          "rect": [
+            0,
+            1031,
+            671,
+            276
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-161",
+          "rect": [
+            0,
+            1308,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-161-original.png",
+          "sha256": "cc992791c787b2066d735c0361097ef284fe966401d56f7627667e3f2a46b216"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-168-12",
+      "blocks": [
+        {
+          "text": "굽힘이 급하면 유동의 방향이 급변하여 국부 압력손실이 커질 수 있다. 허용 굽힘반경을 지키면서 완만한 곡관을 써야 하므로 굽힘반경을 작게 하라는 ④가 틀렸다."
+        }
+      ],
+      "page": "3-168",
+      "number": 12,
+      "questionParts": [
+        {
+          "page": "3-168",
+          "rect": [
+            671,
+            1369,
+            671,
+            264
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-168",
+          "rect": [
+            671,
+            1634,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-168-original.png",
+          "sha256": "98887f1edb1a9ab5bba6fcc888f3b781dc9a952227fc1940d8e552c6be2cedb4"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-169-13",
+      "blocks": [
+        {
+          "text": "그림의 토출가스는 왼쪽 압축기에서 오른쪽 응축기로 향한다. 입상한 뒤 응축기 쪽으로 내려가는 경로는 네 선 중 (가)뿐이다. 이 구배는 응축액이 압축기 쪽으로 되돌아오는 것을 줄이므로 ①이다."
+        }
+      ],
+      "page": "3-169",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-169",
+          "rect": [
+            0,
+            190,
+            671,
+            475
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-169",
+          "rect": [
+            0,
+            668,
+            671,
+            137
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-169-original.png",
+          "sha256": "294d4f4e11f401d0c13577d16e94691d2155b481bcd3a47722e6e92fb7fd4674"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-175-2",
+      "blocks": [
+        {
+          "text": "플렉시블 조인트는 압축기 가까이에서 유연하게 움직여 기계 진동이 배관에 직접 전달되는 것을 줄인다. 팽창밸브는 냉매를 감압하고 리듀서는 관경을 바꾸므로 ③이다."
+        }
+      ],
+      "page": "3-175",
+      "number": 2,
+      "questionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1031,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-175",
+          "rect": [
+            0,
+            1223,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-175-original.png",
+          "sha256": "c31de2d087c254045428bc6b21ca63f48da0c32a74186b9f7a0e2c245c149df5"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-176-3",
+      "blocks": [
+        {
+          "text": "교재는 주거용 건물의 최대 사용 시간대에 쓰는 물의 양을 하루 사용수량의 약 10~15%로 잡으므로 ②다. 이 비율은 사용 패턴과 집계 시간에 따라 달라지는 추정치다."
+        }
+      ],
+      "page": "3-176",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            0,
+            1252,
+            671,
+            344
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            0,
+            1597,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-176-original.png",
+          "sha256": "7e2cdbafce3d40a233d3744978447f8e8114e387533e9f96764ee22a5883c0d8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-176-4",
+      "blocks": [
+        {
+          "text": "교재가 든 세정밸브의 필요 급수압 범위는 약 70~100 kPa이며 보기에서는 100 kPa인 ②만 이 범위에 있다. 다만 최저값 자체를 묻는다면 인쇄 범위의 하한은 70 kPa로 보기에 없고, 실제 최소 작동압력도 밸브 사양에 따라 다르다."
+        }
+      ],
+      "page": "3-176",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            324,
+            671,
+            194
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            519,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-176-original.png",
+          "sha256": "7e2cdbafce3d40a233d3744978447f8e8114e387533e9f96764ee22a5883c0d8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-176-5",
+      "blocks": [
+        {
+          "text": "같은 쪽의 기구별 표에서는 샤워·자동밸브·세정밸브가 70 kPa, 소형 저압 순간온수기가 10 kPa다. 이 자료에서 최저 필요수압이 가장 작은 기기는 ④다. 실제 제품의 요구압력은 사양을 확인한다."
+        }
+      ],
+      "page": "3-176",
+      "number": 5,
+      "questionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            747,
+            671,
+            237
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            985,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-176-original.png",
+          "sha256": "7e2cdbafce3d40a233d3744978447f8e8114e387533e9f96764ee22a5883c0d8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-176-6",
+      "blocks": [
+        {
+          "text": "교재는 공동주택의 급수 허용 최고사용압력을 0.3~0.4 MPa로 분류해 ②를 고른다. 인쇄 풀이 끝의 위생기구 최대 급수압력 0.55 MPa는 다른 대상을 가리키므로 두 값을 섞지 않는다."
+        }
+      ],
+      "page": "3-176",
+      "number": 6,
+      "questionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            1248,
+            671,
+            229
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-176",
+          "rect": [
+            671,
+            1478,
+            671,
+            228
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-176-original.png",
+          "sha256": "7e2cdbafce3d40a233d3744978447f8e8114e387533e9f96764ee22a5883c0d8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-177-10",
+      "blocks": [
+        {
+          "text": "수도본관에서 저수조로 물을 받은 뒤 양수펌프와 양수관을 거쳐 옥상탱크에 보낸다. 탱크에 저장한 물은 급수관을 통해 수전으로 공급한다. 각 관의 순서가 맞는 ②다."
+        }
+      ],
+      "page": "3-177",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "3-177",
+          "rect": [
+            671,
+            190,
+            671,
+            273
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-177",
+          "rect": [
+            671,
+            464,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-177-original.png",
+          "sha256": "4d94b345fd41b5a4e9111b5840800aa82b448f71d82a6080a8564f38af3bad63"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-178-13",
+      "blocks": [
+        {
+          "text": "이 문항이 기계설비 기술기준으로 제시한 수도 직결식 급수배관 시험압력은 1.0 MPa로 ④다. 같은 교재 3-179쪽 22번에는 공공수도 직결관에 다른 값이 제시돼 있어 두 문항에 적용한 시방과 판본을 확인해야 한다."
+        }
+      ],
+      "page": "3-178",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-178",
+          "rect": [
+            0,
+            190,
+            671,
+            157
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-178",
+          "rect": [
+            0,
+            348,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-178-original.png",
+          "sha256": "43302717e000229f8515c979dd4352c396cb78012811c8078e57939281accd7e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-179-22",
+      "blocks": [
+        {
+          "text": "이 문항은 공공수도 직결관에 1.75 MPa를 적용해 ①을 고르고 탱크 및 급수관에는 1.0 MPa를 든다. 3-178쪽 13번에서는 수도 직결식 급수배관 자체에 1.0 MPa를 제시하므로 같은 설비에 일률 적용할 수 없다."
+        }
+      ],
+      "page": "3-179",
+      "number": 22,
+      "questionParts": [
+        {
+          "page": "3-179",
+          "rect": [
+            671,
+            190,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-179",
+          "rect": [
+            671,
+            383,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-179-original.png",
+          "sha256": "3afdca62ab79af1205f32663194a23357480431b31b2b62bc90e2ace094850e8"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-181-32",
+      "blocks": [
+        {
+          "text": "팽창관과 팽창탱크는 가열된 물의 체적 증가를 받아들이고, 안전밸브는 과압을 해소한다. 일반 전자밸브는 전기 신호로 유로를 여닫는 부품이므로 이들 급탕 안전장치에 해당하지 않는 ④다."
+        }
+      ],
+      "page": "3-181",
+      "number": 32,
+      "questionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            0,
+            190,
+            671,
+            157
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            0,
+            348,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-181-original.png",
+          "sha256": "69cb1b203ad9afcc71798d53ad13fde8a5335cb824706076a7d85325cc99160d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-181-33",
+      "blocks": [
+        {
+          "text": "자연순환의 구동력은 공급·환수관 물기둥의 밀도 차에서 생긴다. 기준 물 밀도 1 kg/L에 대한 상대밀도 차 0.01125와 높이 10 m를 곱하면 0.1125 mAq, 즉 112.5 mmAq로 ②다."
+        },
+        {
+          "tex": "h=10\\frac{0.98001-0.96876}{1}=0.1125\\;\\mathrm{mAq}",
+          "label": "교재 3-181쪽 33번 풀이"
+        }
+      ],
+      "page": "3-181",
+      "number": 33,
+      "questionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            0,
+            670,
+            671,
+            345
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            0,
+            1016,
+            671,
+            104
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-181-original.png",
+          "sha256": "69cb1b203ad9afcc71798d53ad13fde8a5335cb824706076a7d85325cc99160d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-181-36",
+      "blocks": [
+        {
+          "text": "개별식은 사용처 가까이에서 물을 데워 배관 열손실을 줄일 수 있다. 그러나 급탕 장소가 많아지면 각 장소에 가열장치가 필요해지므로 시설비가 싸진다고 한 ②는 일반적인 장점으로 볼 수 없다."
+        }
+      ],
+      "page": "3-181",
+      "number": 36,
+      "questionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            671,
+            675,
+            671,
+            238
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-181",
+          "rect": [
+            671,
+            914,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-181-original.png",
+          "sha256": "69cb1b203ad9afcc71798d53ad13fde8a5335cb824706076a7d85325cc99160d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-182-39",
+      "blocks": [
+        {
+          "text": "신축곡관·슬리브·벨로스는 휘어짐이나 미끄러짐 등으로 배관 길이 변화를 받아들인다. 일반 플랜지 이음 자체는 두 관을 볼트로 고정하는 접합부이므로 신축 이음에 해당하지 않는 ④다."
+        }
+      ],
+      "page": "3-182",
+      "number": 39,
+      "questionParts": [
+        {
+          "page": "3-182",
+          "rect": [
+            0,
+            583,
+            671,
+            156
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-182",
+          "rect": [
+            0,
+            740,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-182-original.png",
+          "sha256": "56bc3bed03339f8a46cd95914a12304ab731e6f51a2070c7ea7666c852ca7fab"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-182-41",
+      "blocks": [
+        {
+          "text": "물의 비중량을 약 9.81 kN/m³으로 두면 70 kPa에 해당하는 수두는 약 7.14 m다. 실무 근사 10 kPa당 1 m로 계산하면 7 m로 ③이다."
+        },
+        {
+          "tex": "h=\\frac{70000}{1000\\times9.81}\\simeq7.14\\;\\mathrm m",
+          "label": "교재 3-182쪽 41번 풀이"
+        }
+      ],
+      "page": "3-182",
+      "number": 41,
+      "questionParts": [
+        {
+          "page": "3-182",
+          "rect": [
+            0,
+            1382,
+            671,
+            195
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-182",
+          "rect": [
+            0,
+            1578,
+            671,
+            139
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-182-original.png",
+          "sha256": "56bc3bed03339f8a46cd95914a12304ab731e6f51a2070c7ea7666c852ca7fab"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-183-47",
+      "blocks": [
+        {
+          "text": "신축이음은 열팽창 자체를 없애지 않고 변위를 받아들인다. 배관 전체를 아무 데도 고정하지 않는 것이 아니라 고정점과 안내 지지대로 변위가 해당 이음으로 향하게 하므로 고정해서는 안 된다는 ③이 틀렸다."
+        }
+      ],
+      "page": "3-183",
+      "number": 47,
+      "questionParts": [
+        {
+          "page": "3-183",
+          "rect": [
+            0,
+            1269,
+            671,
+            319
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-183",
+          "rect": [
+            0,
+            1589,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-183-original.png",
+          "sha256": "5b709030f9941721f46af1369056d2afed25ccfdd7f4f0e9417beb3d3ca9dc8a"
         }
       ]
     }
