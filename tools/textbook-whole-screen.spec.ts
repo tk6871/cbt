@@ -43,8 +43,9 @@ test('본문 예제 원문·풀이 접기와 다크/라이트를 실제 페이�
  await page.addInitScript(()=>{localStorage.setItem('modern-cbt-qualification-industrial','hvac');localStorage.setItem('unified-cbt-dynamic-ui','false');sessionStorage.setItem('unified-cbt-ios-pwa-popup-seen-v351','true');sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');});
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('./?safe=1');await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
+ await page.locator('.library-books button').filter({hasText:'에너지설비 교재'}).click();
  await enterBookReader(page);
- const root=page.locator('.textbook-pages');await switchTextbook(page,'energy');await chooseBookPage(page,'88');
+ const root=page.locator('.textbook-pages');await chooseBookPage(page,'88');
  const example=root.locator('.book-worked-example');await expect(example).toHaveCount(1);await expect(example.locator('details')).not.toHaveAttribute('open');await expect(root.getByRole('button',{name:'범위를 모아 CBT 시험',exact:true})).toBeDisabled();
  await example.locator('summary').click();await expect(example.locator('details')).toContainText('89.125 TOE');const image=example.locator('details img');await image.evaluate((img:HTMLImageElement)=>img.decode());
  await page.evaluate(()=>document.documentElement.dataset.theme='dark');expect(await image.evaluate(img=>getComputedStyle(img).filter)).toContain('invert');await page.evaluate(()=>document.documentElement.dataset.theme='light');expect(await image.evaluate(img=>getComputedStyle(img).filter)).toBe('none');

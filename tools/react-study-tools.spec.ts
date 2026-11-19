@@ -1,3 +1,4 @@
+import {usePracticalTestAccount} from './practical-test-account';
 import {expect,test,type Page} from '@playwright/test';
 
 async function open(page:Page,view:string){
@@ -49,6 +50,7 @@ test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시
 });
 
 test('필답 회차·답안·쪽 이동과 모바일 3D 설정 보존',async({page})=>{
+  await usePracticalTestAccount(page);
   await open(page,'guide');
   await page.getByRole('button',{name:'필답형 문제풀이',exact:true}).click();
   await page.locator('.practical-round-library button').filter({hasText:'시작하기'}).first().click();
