@@ -167032,6 +167032,2715 @@
         "sha256": "7021a54e12bec4ddaa4a24eeaf813b8e28d3f9994121bbb1c57f9061793018a3"
       },
       "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-06",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 1,
+      "location": "공조 실기 복원 2024년 3회 표시 1번 (저장 번호 6)",
+      "contentExamined": true,
+      "answerBefore": "① 장치의 부식 ② 윤활유의 유탁액(유화) 현상 ③ 증발온도 상승. (추가 가능: 흡입압력 저하)",
+      "answerAfter": "① 장치의 부식 ② 윤활유의 유탁액(유화) 현상 ③ 증발온도 상승. (추가 가능: 흡입압력 저하)",
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "같은 압력에서 비휘발성에 가까운 물이 섞이면 순수 암모니아보다 비등온도가 높아지는 방향. 강관 부식과 윤활유 유화에 필요한 조건을 검증할 원자료 미확보.",
+      "finding": "같은 압력에서 비휘발성에 가까운 물이 섞이면 순수 암모니아보다 비등온도가 높아지는 방향. 강관 부식과 윤활유 유화에 필요한 조건을 검증할 원자료 미확보.",
+      "basis": "같은 압력에서 비휘발성에 가까운 물이 섞이면 순수 암모니아보다 비등온도가 높아지는 방향. 강관 부식과 윤활유 유화에 필요한 조건을 검증할 원자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "수분이 섞이면 같은 증발압력에서 암모니아가 끓는 온도가 높아진다. 반대로 같은 온도를 얻으려면 더 낮은 흡입압력이 필요하다. 복원 답의 강관 부식과 윤활유 유화는 재질과 윤활유 등 운전 조건에 영향을 받으므로 수분만으로 항상 생긴다고 단정하기 어렵다.",
+      "practicalQuestionDigest": "66f9c34a483aac1664254276fd89e6337560ba951c56a3eb13a897d8e7a7d8f7",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-09",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 2,
+      "location": "공조 실기 복원 2024년 3회 표시 2번 (저장 번호 9)",
+      "contentExamined": true,
+      "answerBefore": "핀코일식(핀튜브식) 증발기. 핀은 공기측 전열면적을 넓혀 열교환량을 증가시킨다.",
+      "answerAfter": "핀코일식(핀튜브식) 증발기. 핀은 공기측 전열면적을 넓혀 열교환량을 증가시킨다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원본 두 사진과 답도에 전열관·밀집 핀이 보인다. 공기측 면적 증가와 전열량을 연결.",
+      "finding": "원본 두 사진과 답도에 전열관·밀집 핀이 보인다. 공기측 면적 증가와 전열량을 연결.",
+      "basis": "원본 두 사진과 답도에 전열관·밀집 핀이 보인다. 공기측 면적 증가와 전열량을 연결.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-scan-v550.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-1.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/69dcf145b4aab9b52989b7626e7521cf.webp",
+          "sha256": "be75215f00b7a37bbd1a3c03fbdf9f94f6eaf2499013afd8b7816b7155d3615e",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-09-question-1.png",
+          "displayAsset": "assets/problem-webp90/48ddc8f99ac28d695bad26ce19ab0a20.webp",
+          "sha256": "49ce8e05eac24a8befd562289742fd9bb4cc81d95c040ea70d4fefd38dca2f52",
+          "role": "answer"
+        }
+      ],
+      "resolution": "공기는 냉매나 금속보다 열을 잘 전달하지 못한다. 관 바깥에 얇은 핀을 많이 달면 공기와 닿는 면적이 커져 같은 크기에서도 더 많은 열을 흡수한다.",
+      "practicalQuestionDigest": "bfa86a01c86bbc57a037c2a8209a35b2ebe8110b259661fbb2e8936181dc2f4f"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-04",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 3,
+      "location": "공조 실기 복원 2024년 3회 표시 3번 (저장 번호 4)",
+      "contentExamined": true,
+      "answerBefore": "제베크 효과(Seebeck effect)",
+      "answerAfter": "제베크 효과(Seebeck effect)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "이종 도체 쌍의 두 접점 사이 온도차와 열기전력. 펠티어 효과는 전류에 의한 접합부 흡·발열.",
+      "finding": "이종 도체 쌍의 두 접점 사이 온도차와 열기전력. 펠티어 효과는 전류에 의한 접합부 흡·발열.",
+      "basis": "이종 도체 쌍의 두 접점 사이 온도차와 열기전력. 펠티어 효과는 전류에 의한 접합부 흡·발열.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "제베크 효과다. 서로 다른 두 도체로 만든 회로에서 두 접점의 온도가 다르면 열기전력이 생긴다. 반대로 펠티어 효과에서는 접합부에 전류가 흐를 때 전류 방향에 따라 열을 흡수하거나 방출한다.",
+      "practicalQuestionDigest": "f662264655bd4bf429366adecbfc4506a226f6b0c8d60ac4cc73c1fefae14d5e",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-12",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 4,
+      "location": "공조 실기 복원 2024년 3회 표시 4번 (저장 번호 12)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 액분리기(어큐뮬레이터). 역할: 증발기와 압축기 사이에서 액냉매를 분리해 액압축(리퀴드백)을 방지한다.",
+      "answerAfter": "명칭: 액분리기(어큐뮬레이터). 역할: 증발기와 압축기 사이에서 액냉매를 분리해 액압축(리퀴드백)을 방지한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진에 Suction Line Accumulator 표기. 답도 기액혼합물→용기, 기체→압축기 화살표. 액냉매 흡입 방지.",
+      "finding": "사진에 Suction Line Accumulator 표기. 답도 기액혼합물→용기, 기체→압축기 화살표. 액냉매 흡입 방지.",
+      "basis": "사진에 Suction Line Accumulator 표기. 답도 기액혼합물→용기, 기체→압축기 화살표. 액냉매 흡입 방지.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-upscaled-v551.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-answer-1.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-question-upscaled-v551.png",
+          "displayAsset": "assets/problem-webp90/f830011540f442c53a7c0bdfaed7d2b8.webp",
+          "sha256": "81bbace48339a2b44781479c76e7a9c31ccb9adea436fbc8c596618c7572ec78",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-12-answer-1.png",
+          "displayAsset": "assets/problem-webp90/7bb7f6b338f51d1d3174947bbe6b5ce7.webp",
+          "sha256": "2618d5433071a1ade8f5bea17ceb97030ba2121d1c825e058cbccfe4432f4bbd",
+          "role": "answer"
+        }
+      ],
+      "resolution": "기체는 위쪽 출구로 압축기에 가고 무거운 액은 용기 아래에 남는다. 압축기에 액이 들어가 밸브·피스톤을 손상시키는 일을 막는다.",
+      "practicalQuestionDigest": "3610790f796a6553f2d16b2d657d8a016f2fdb7a79376c5f0024d741ad036966"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-05",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 5,
+      "location": "공조 실기 복원 2024년 3회 표시 5번 (저장 번호 5)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 동관용 확관기(익스팬더). 역할: 동관 끝을 넓혀 스웨이징 이음을 만들 때 사용한다.",
+      "answerAfter": "명칭: 동관용 확관기(익스팬더). 역할: 동관 끝을 넓혀 스웨이징 이음을 만들 때 사용한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진에 레버형 확관기와 분할 확관 헤드. 관 끝을 벌려 겹침 소켓 만드는 역할.",
+      "finding": "사진에 레버형 확관기와 분할 확관 헤드. 관 끝을 벌려 겹침 소켓 만드는 역할.",
+      "basis": "사진에 레버형 확관기와 분할 확관 헤드. 관 끝을 벌려 겹침 소켓 만드는 역할.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-05-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-05-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/8ccc0d1f79c43824590039af846c9578.webp",
+          "sha256": "b37743a257cbc8aca2e4a0b7b73eb918929b94e1f9d5cad30deafdf45b9e7ae4",
+          "role": "question"
+        }
+      ],
+      "resolution": "관 끝을 같은 지름의 다른 관이 들어갈 만큼 균일하게 넓힌다. 별도 소켓 없이 겹쳐 끼운 뒤 브레이징할 수 있다.",
+      "practicalQuestionDigest": "981d3bc665decd724d744c86434a60243207187e88c418c5ac68a6953062dd70"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-03",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 6,
+      "location": "공조 실기 복원 2024년 3회 표시 6번 (저장 번호 3)",
+      "contentExamined": true,
+      "answerBefore": "① 제2종 환기: 강제급기·자연배기, 실내 양압, 수술실·클린룸에 적합. ② 제3종 환기: 자연급기·강제배기, 실내 음압, 화장실·주방·탕비실에 적합.",
+      "answerAfter": "① 제2종 환기: 강제급기·자연배기, 실내 양압, 수술실·클린룸에 적합. ② 제3종 환기: 자연급기·강제배기, 실내 음압, 화장실·주방·탕비실에 적합.",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "① 송풍기 화살표는 실 안, ② 배풍기는 밖. 상대 압력차의 유도와 공기 누설 방향.",
+      "finding": "① 송풍기 화살표는 실 안, ② 배풍기는 밖. 상대 압력차의 유도와 공기 누설 방향.",
+      "basis": "① 송풍기 화살표는 실 안, ② 배풍기는 밖. 상대 압력차의 유도와 공기 누설 방향.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-03-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/8ce6d06dd18219510c42a194da41c6df.webp",
+          "sha256": "671c9cf17bb410156cc4f92da7aed1d007abb547d245e8254e87187c0587e4ce",
+          "role": "question"
+        }
+      ],
+      "resolution": "그림 ①은 팬이 급기하고 배기는 자연적으로 이루어져 주변보다 실내 압력이 높아지는 제2종이다. ②는 팬으로 배기해 주변 공기가 주방 쪽으로 들어오게 하는 제3종이다. 청정·오염 공기의 이동을 정하는 것은 팬의 위치와 그 결과 생기는 압력차다.",
+      "practicalQuestionDigest": "fdcff562f54a8e4a27edd5c65b278edd0c2f2086d918426fd3364ce94206a7ed",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-07",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 7,
+      "location": "공조 실기 복원 2024년 3회 표시 7번 (저장 번호 7)",
+      "contentExamined": true,
+      "answerBefore": "혼합 건구온도=(-8×1+24×3)/4=16℃, 혼합 절대습도=(0.001×1+0.008×3)/4=0.00625 kg/kg(DA)",
+      "answerAfter": "혼합 건구온도=(-8×1+24×3)/4=16℃, 혼합 절대습도=(0.001×1+0.008×3)/4=0.00625 kg/kg(DA)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "건공기 질량 기준 수분수지 0.025/4=0.00625. 정밀 엔탈피식과 시험의 건구온도 근사 구분.",
+      "finding": "건공기 질량 기준 수분수지 0.025/4=0.00625. 정밀 엔탈피식과 시험의 건구온도 근사 구분.",
+      "basis": "건공기 질량 기준 수분수지 0.025/4=0.00625. 정밀 엔탈피식과 시험의 건구온도 근사 구분.",
+      "evidence": [
+        "686-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "건공기 질량 유량을 외기 1, 환기 3으로 놓는다. 수분수지에서 (0.001+3×0.008)/4=0.00625 kg/kg(DA)다. 건구온도는 비열 차이를 무시하는 문제의 근사로 (−8+3×24)/4=16℃다. 정밀 혼합 계산에서는 엔탈피도 같은 건공기 질량 기준으로 보존한다.",
+      "practicalQuestionDigest": "1da5e2a4605918adb550d13daad950b9b7df0d9d0883a67e9cb463eaf7191126",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-11",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 8,
+      "location": "공조 실기 복원 2024년 3회 표시 8번 (저장 번호 11)",
+      "contentExamined": true,
+      "answerBefore": "가: 팬형 취출구 / 나: 아네모스탯형 취출구 / 다: 루버형 취출구",
+      "answerAfter": "가: 팬형 취출구 / 나: 아네모스탯형 취출구 / 다: 루버형 취출구",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "사진 (가)는 중앙 원판과 둘레의 토출 틈새가 보이고 구동 팬은 식별되지 않는다. (나) 동심 다단 콘, (다) 평행 날개.",
+      "finding": "사진 (가)는 중앙 원판과 둘레의 토출 틈새가 보이고 구동 팬은 식별되지 않는다. (나) 동심 다단 콘, (다) 평행 날개.",
+      "basis": "사진 (가)는 중앙 원판과 둘레의 토출 틈새가 보이고 구동 팬은 식별되지 않는다. (나) 동심 다단 콘, (다) 평행 날개.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-11-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/c068cff12bd8199e15b4788165c45ade.webp",
+          "sha256": "d94a018813367fbc92d778b0fa7caac50f4918a0a8a1618c54294b7d6274e87f",
+          "role": "question"
+        }
+      ],
+      "resolution": "(가)는 중앙 원판과 그 둘레의 환형 틈으로 공기를 내보내는 형태다. 사진에서 내부 회전 팬이나 팬 속도 조절은 확인되지 않는다. (나)는 여러 겹의 원추 사이로 공기를 분산하는 아네모스탯형, (다)는 평행한 날개로 바람을 유도하는 루버형이다.",
+      "practicalQuestionDigest": "301a9b191b72efa0cf4b038522fd979a52f68899a27bd6d5bb8ec6c60216f7fa",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-08",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 9,
+      "location": "공조 실기 복원 2024년 3회 표시 9번 (저장 번호 8)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 레듀서(동심 레듀서). 역할: 지름이 서로 다른 두 관을 직선으로 연결한다.",
+      "answerAfter": "명칭: 레듀서(동심 레듀서). 역할: 지름이 서로 다른 두 관을 직선으로 연결한다.",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "두 사진에서 양 끝 지름이 다른 이경 이음 확인. 편심 이음의 설치방향은 배관 유체·용도에 따라 달라짐.",
+      "finding": "두 사진에서 양 끝 지름이 다른 이경 이음 확인. 편심 이음의 설치방향은 배관 유체·용도에 따라 달라짐.",
+      "basis": "두 사진에서 양 끝 지름이 다른 이경 이음 확인. 편심 이음의 설치방향은 배관 유체·용도에 따라 달라짐.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-08-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-08-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/1858e36c27341b668effe1984c053bd0.webp",
+          "sha256": "cb4976d4d7603e54f6e51be0c651ed45b3ec861545bcc4a09689d0f0d5c27629",
+          "role": "question"
+        }
+      ],
+      "resolution": "그림은 큰 지름에서 작은 지름으로 이어지는 레듀서다. 동심형은 양쪽 관의 중심선을 맞춘다. 편심형은 한쪽 면을 평평하게 이어야 할 때 쓰며, 평평한 면을 어느 쪽에 둘지는 공기 고임이나 배수가 문제가 되는지에 따라 달라진다.",
+      "practicalQuestionDigest": "c628eda642b8f29e8201b66996752452fab6d255ed56915dbebb8dd00632cc10",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-10",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 10,
+      "location": "공조 실기 복원 2024년 3회 표시 10번 (저장 번호 10)",
+      "contentExamined": true,
+      "answerBefore": "l = L - 2(A-a)",
+      "answerAfter": "l = L - 2(A-a)",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도에서 양쪽 작은 a가 나사 물림, A는 중심~면 길이. 양쪽 차감량 A−a. L−2(A−a).",
+      "finding": "원도에서 양쪽 작은 a가 나사 물림, A는 중심~면 길이. 양쪽 차감량 A−a. L−2(A−a).",
+      "basis": "원도에서 양쪽 작은 a가 나사 물림, A는 중심~면 길이. 양쪽 차감량 A−a. L−2(A−a).",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-10-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-10-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/9ea424daadf034f55b4a1fc172de367b.webp",
+          "sha256": "af3c39226ed32ce689ca92cf0666c13fa1451e2b621b1e91da70e1c2c66e3e98",
+          "role": "question"
+        }
+      ],
+      "resolution": "한쪽 엘보에서 빼야 할 길이는 중심길이 A에서 나사 물림길이 a를 뺀 값이다. 양쪽에 엘보가 있으므로 이 값을 두 번 전체 중심거리 L에서 뺀다.",
+      "practicalQuestionDigest": "f3ec328c640d09b0d83d35a594037b860625d660c779fac0a665c1a9eb62a5e9"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-01",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 11,
+      "location": "공조 실기 복원 2024년 3회 표시 11번 (저장 번호 1)",
+      "contentExamined": true,
+      "answerBefore": "① X1 a접점 ② T 한시 b접점 ③ X2 a접점",
+      "answerAfter": "① X1 a접점 ② T 한시 b접점 ③ X2 a접점",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "PBS1 병렬 ①, T 한시 b ②, GL과 직렬 X2-a ③. 원도와 답도 각각 닫힘·열림 동작 대조.",
+      "finding": "PBS1 병렬 ①, T 한시 b ②, GL과 직렬 X2-a ③. 원도와 답도 각각 닫힘·열림 동작 대조.",
+      "basis": "PBS1 병렬 ①, T 한시 b ②, GL과 직렬 X2-a ③. 원도와 답도 각각 닫힘·열림 동작 대조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-scan-v550.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/d76391c0e33e96f4909e720278042585.webp",
+          "sha256": "c0bf3af7a715b9563082da554eeb9bd906b8157c81201b2e892939d223d5e8b1",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-01-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/467a0b404810628a4fa0dc37e50202df.webp",
+          "sha256": "4550f318e859033f22854e350b1e5e713a871b6ded1c5c24e539c1912ab59f82",
+          "role": "answer"
+        }
+      ],
+      "resolution": "①은 X1-a로, PBS1에서 손을 떼도 X1을 유지한다. ②는 T의 한시 b접점으로, 시간이 지나면 열려 X2를 끈다. X2가 꺼지면 ③ X2-a도 열려 GL이 꺼진다. 답안에는 ① X1-a, ② T의 한시 b접점, ③ X2-a에 해당하는 도시기호를 그린다.",
+      "practicalQuestionDigest": "f148221034bb482cdf9371fe7a758f1a39a886078ac0929f5e55f8beb57db5ea"
+    },
+    {
+      "id": "hvac-practical-restored-2024-3-02",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-3",
+      "number": 12,
+      "location": "공조 실기 복원 2024년 3회 표시 12번 (저장 번호 2)",
+      "contentExamined": true,
+      "answerBefore": "① X2 ② X1 ③ X2 ④ X2",
+      "answerAfter": "① X2 ② X1 ③ X2 ④ X2",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "① X2 자기유지, ④ X2-b로 X1 차단. ② X1 전환 및 ③ X2-a와 전원 경로 추적. 원도와 답도 일치.",
+      "finding": "① X2 자기유지, ④ X2-b로 X1 차단. ② X1 전환 및 ③ X2-a와 전원 경로 추적. 원도와 답도 일치.",
+      "basis": "① X2 자기유지, ④ X2-b로 X1 차단. ② X1 전환 및 ③ X2-a와 전원 경로 추적. 원도와 답도 일치.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-scan-v550.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/86aea9996bb805c37bc874ad9900101d.webp",
+          "sha256": "f24fde1bcb9224ca93e694bc398ba6938c973c8dbedeea23ffc705cf764278c8",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-3/hvac-practical-restored-2024-3-02-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/a4f2fcc2b82ff2e85481cc6f91dd8981.webp",
+          "sha256": "e7df1a555949a62738abbfac8e5b360b0b625ad33c2f6e31df3f4b620fb871d8",
+          "role": "answer"
+        }
+      ],
+      "resolution": "PBS1 때 X1이 여자되어 부저와 직렬등을 켠다. PBS2 때 X2가 여자되어 X1을 끄고 접점 구성을 바꾸어 두 등을 병렬 점등하게 하므로 빈칸은 해당 코일의 접점명으로 채운다.",
+      "practicalQuestionDigest": "529c890d140ec1d91c45852670a580c712ded5d4d2c68c7ca9084d10d0410c96"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-04",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 1,
+      "location": "공조 실기 복원 2024년 2회 표시 1번 (저장 번호 4)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 매니폴드 게이지. 사용목적: 냉동장치의 고압·저압 확인, 냉매·윤활유 충전, 진공작업, 누설시험과 냉매 회수 작업 때 서비스 밸브에 연결해 사용한다.",
+      "answerAfter": "명칭: 매니폴드 게이지. 사용목적: 냉동장치의 고압·저압 확인, 냉매·윤활유 충전, 진공작업, 누설시험과 냉매 회수 작업 때 서비스 밸브에 연결해 사용한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진에서 두 게이지, 저압 파랑·고압 빨강과 가운데 서비스 호스 확인. 보조기기 연결을 통한 용도 구분.",
+      "finding": "사진에서 두 게이지, 저압 파랑·고압 빨강과 가운데 서비스 호스 확인. 보조기기 연결을 통한 용도 구분.",
+      "basis": "사진에서 두 게이지, 저압 파랑·고압 빨강과 가운데 서비스 호스 확인. 보조기기 연결을 통한 용도 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-04-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-04-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/8b9cb1991d488eae91aa973cbff9d489.webp",
+          "sha256": "c3a1207874e6fe05c23c96c9f605636bdf3f92266de074d893e42f50c41c2b3e",
+          "role": "question"
+        }
+      ],
+      "resolution": "파란 호스 쪽은 저압, 빨간 호스 쪽은 고압을 보고 가운데 호스를 냉매통·진공펌프·회수장치에 연결한다. 밸브 조작으로 필요한 작업 경로를 만든다.",
+      "practicalQuestionDigest": "e2a7406d18ce08bba339cea3bc23dd1db17e7ae59e4cea735d8ec409f190b77c"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-06",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 2,
+      "location": "공조 실기 복원 2024년 2회 표시 2번 (저장 번호 6)",
+      "contentExamined": true,
+      "answerBefore": "증발식 응축기(그림 형식은 흡입식)",
+      "answerAfter": "증발식 응축기(그림 형식은 흡입식)",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도 펌프가 물을 코일에 분사하고 팬은 위쪽에서 흡입, 냉매증기 입구와 하단 액 출구 확인.",
+      "finding": "원도 펌프가 물을 코일에 분사하고 팬은 위쪽에서 흡입, 냉매증기 입구와 하단 액 출구 확인.",
+      "basis": "원도 펌프가 물을 코일에 분사하고 팬은 위쪽에서 흡입, 냉매증기 입구와 하단 액 출구 확인.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-recrop-v596.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-06-question-recrop-v596.png",
+          "displayAsset": "assets/problem-webp90/5fdfa4cb5e2718dc54360433df220488.webp",
+          "sha256": "db421b6aeb73d22ad75556ff39128ff1667fa5e1134384a0c74f4babee69941e",
+          "role": "question"
+        }
+      ],
+      "resolution": "냉매가 흐르는 코일에 물을 뿌리고 공기를 통과시키면, 물이 증발할 때 많은 열을 가져가 코일 속 냉매가 응축된다. 송풍기가 공기를 위쪽에서 빨아내는 그림은 흡입식이다.",
+      "practicalQuestionDigest": "2954d4a5b0a288f1abb81c1648e8dcb76ca70ae99441f134d9980b4a07810c0e"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-12",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 3,
+      "location": "공조 실기 복원 2024년 2회 표시 3번 (저장 번호 12)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 모세관. 사용목적: 응축기와 증발기 사이에서 가는 관의 마찰저항으로 냉매를 감압·교축하고 증발기로 흐르는 냉매량을 제한한다.",
+      "answerAfter": "명칭: 모세관. 사용목적: 응축기와 증발기 사이에서 가는 관의 마찰저항으로 냉매를 감압·교축하고 증발기로 흐르는 냉매량을 제한한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진은 코일처럼 감은 가느다란 관. 지문의 감압·유량 제한과 부하변화 대응 한계 확인.",
+      "finding": "사진은 코일처럼 감은 가느다란 관. 지문의 감압·유량 제한과 부하변화 대응 한계 확인.",
+      "basis": "사진은 코일처럼 감은 가느다란 관. 지문의 감압·유량 제한과 부하변화 대응 한계 확인.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-12-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/d69dea92d3493e39f48795b989f7531f.webp",
+          "sha256": "4373a5cc7d8c1ea873766e9e6e626e74f86e46ef02bf33063de2bbc147fe64f5",
+          "role": "question"
+        }
+      ],
+      "resolution": "부하 변화가 작은 소형 냉동장치는 구조가 단순하고 값싼 모세관을 팽창장치로 사용한다.",
+      "practicalQuestionDigest": "0d122710c28564ec5699cd4194cab25216a21d5ac19d2bd94057ab7407a23fae"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-09",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 4,
+      "location": "공조 실기 복원 2024년 2회 표시 4번 (저장 번호 9)",
+      "contentExamined": true,
+      "answerBefore": "만액식 증발기",
+      "answerAfter": "만액식 증발기",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 저압 용기 하단 액 냉매→증발기→상부 기액 환류. 펌프 유무 외에 실제 순환로 확인.",
+      "finding": "원도 저압 용기 하단 액 냉매→증발기→상부 기액 환류. 펌프 유무 외에 실제 순환로 확인.",
+      "basis": "원도 저압 용기 하단 액 냉매→증발기→상부 기액 환류. 펌프 유무 외에 실제 순환로 확인.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-recrop-v596.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-09-question-recrop-v596.png",
+          "displayAsset": "assets/problem-webp90/692f8c5143d3209503c04defb124ef32.webp",
+          "sha256": "6f094745fa1b223fb4ccb9101004e4e034dd4d5cd32c21ac4e59b99db366b32a",
+          "role": "question"
+        }
+      ],
+      "resolution": "저압 용기 아래의 액냉매가 증발기로 내려가 관을 적신다. 열을 흡수한 기액혼합물은 위쪽 연결관으로 돌아오고, 분리된 증기가 압축기로 간다. 그림처럼 냉매펌프 없이 액과 기액혼합물의 밀도 차로 순환하는 만액식이다.",
+      "practicalQuestionDigest": "4de3decd870bf0fcc60ae18ab0773d2f2f670a9c4d6539272bdd5b5fb227c5d3",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-05",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 5,
+      "location": "공조 실기 복원 2024년 2회 표시 5번 (저장 번호 5)",
+      "contentExamined": true,
+      "answerBefore": "바닥면적 F=10×10=100 m², Q=KFΔt=0.5×100×(20-8.2)=590 W",
+      "answerAfter": "바닥면적 F=10×10=100 m², Q=KFΔt=0.5×100×(20-8.2)=590 W",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원문과 답도 10×10 m, 20℃와 8.2℃, U=0.5. 바닥을 통한 정상 열손실률 590 W.",
+      "finding": "원문과 답도 10×10 m, 20℃와 8.2℃, U=0.5. 바닥을 통한 정상 열손실률 590 W.",
+      "basis": "원문과 답도 10×10 m, 20℃와 8.2℃, U=0.5. 바닥을 통한 정상 열손실률 590 W.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-question-1.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-question-1.png",
+          "displayAsset": "assets/problem-webp90/8f3763f17bea84af12736ca09f850b83.webp",
+          "sha256": "f48ddbe9652b0347418175b13b367192fb05820c5e9f87612d34001012a4aca7",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-05-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/dc09a9bd06959522fad8d5227e431291.webp",
+          "sha256": "f75cb7b0877a712876529ef13e4dca783140f23ac51896ef4191703f04c6b5e6",
+          "role": "answer"
+        }
+      ],
+      "resolution": "열관류율은 바닥 1m²에서 온도차 1℃당 빠져나가는 열이다. 바닥 전체 면적 100m²와 실내·지중 온도차 11.8℃를 곱하면 손실열량이 나온다.",
+      "practicalQuestionDigest": "558ffb0edd0d7c6a4f17c2953612fec21666e1b117f6ce3655ee5e9e13d388ef"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-08",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 6,
+      "location": "공조 실기 복원 2024년 2회 표시 6번 (저장 번호 8)",
+      "contentExamined": true,
+      "answerBefore": "냉방부하 합계=22.1 kW, 냉동능력=22.1/3.86≈5.73 RT",
+      "answerAfter": "냉방부하 합계=22.1 kW, 냉동능력=22.1/3.86≈5.73 RT",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "문제 표 냉방 열만 직접 합계 5+6+0.1+0.9+1+1.3+2+4+1.8=22.1. 답도에 세부 숫자가 다른 추가 표가 있으나 총합 같음.",
+      "finding": "문제 표 냉방 열만 직접 합계 5+6+0.1+0.9+1+1.3+2+4+1.8=22.1. 답도에 세부 숫자가 다른 추가 표가 있으나 총합 같음.",
+      "basis": "문제 표 냉방 열만 직접 합계 5+6+0.1+0.9+1+1.3+2+4+1.8=22.1. 답도에 세부 숫자가 다른 추가 표가 있으나 총합 같음.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-scan-v550.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/5020ca05f882f6a8b1822fac7006d285.webp",
+          "sha256": "a47b1a8f2f9397b969148256f90ef1929dcab73ffd25f627f0c2d663b062f868",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-08-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/33331aea85c52c8003493821822bfcac.webp",
+          "sha256": "21783ea230f2fc4bad16c130b73bf35ec207a8122ac0c6e820682107fec95283",
+          "role": "answer"
+        }
+      ],
+      "resolution": "문제 표의 냉방부하 열에서 벽체 5, 창문 6, 틈새바람 0.1+0.9, 인체 1+1.3, 조명 2, 외기 4+1.8을 더하면 22.1 kW다. 난방부하는 더하지 않는다. 문제에서 지정한 3.86 kW/RT로 나누면 약 5.73 RT다. 손글씨 참고 그림은 일부 세부값이 달라 이 계산에는 문제 표를 사용했다.",
+      "practicalQuestionDigest": "2429e6c682afbe69125518bd2cf86c667551485b9c2af4076abb515805752a90",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-10",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 7,
+      "location": "공조 실기 복원 2024년 2회 표시 7번 (저장 번호 10)",
+      "contentExamined": true,
+      "answerBefore": "BF=(②-③)/(①-③), CF=(①-②)/(①-③)=1-BF",
+      "answerAfter": "BF=(②-③)/(①-③), CF=(①-②)/(①-③)=1-BF",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "상태점 ① 입구, ② 출구, ③ 포화곡선의 장치노점. t₂−t₃ 대 t₁−t₃와 CF=1−BF 확인.",
+      "finding": "상태점 ① 입구, ② 출구, ③ 포화곡선의 장치노점. t₂−t₃ 대 t₁−t₃와 CF=1−BF 확인.",
+      "basis": "상태점 ① 입구, ② 출구, ③ 포화곡선의 장치노점. t₂−t₃ 대 t₁−t₃와 CF=1−BF 확인.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-question-book-scan-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/3d10520f0d64fd9709b36c71d649a6f1.webp",
+          "sha256": "ede755fb9a16a16f0b7b4f8ae6de5f5ec3f24c1da9e60a1dc2303cf10bae63af",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-10-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/03df9d14951227c6b398df4ca05be981.webp",
+          "sha256": "faad8758aad6da0348391e529735a28c54df417a696b4e763693b9405d85af92",
+          "role": "answer"
+        }
+      ],
+      "resolution": "①은 코일 입구공기, ②는 실제 출구공기, ③은 코일 표면의 장치노점온도다. 전체 온도차 ①-③ 중 코일을 그대로 지나친 몫이 BF, 실제로 접촉해 냉각된 몫이 CF다.",
+      "practicalQuestionDigest": "645bd9d20dbb52d7472fbc4c46db695a35a8b3ffeec63e9e594a46573e6bb014"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-11",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 8,
+      "location": "공조 실기 복원 2024년 2회 표시 8번 (저장 번호 11)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 플랜지 이음. 사용목적: 분해·조립·수리가 필요한 65A 이상 대구경 배관을 직선 연결할 때 사용한다.",
+      "answerAfter": "명칭: 플랜지 이음. 사용목적: 분해·조립·수리가 필요한 65A 이상 대구경 배관을 직선 연결할 때 사용한다.",
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "그림 두 플랜지·볼트와 기호. 그림으로 호칭지름 65A 최소 기준은 판정 불가.",
+      "finding": "그림 두 플랜지·볼트와 기호. 그림으로 호칭지름 65A 최소 기준은 판정 불가.",
+      "basis": "그림 두 플랜지·볼트와 기호. 그림으로 호칭지름 65A 최소 기준은 판정 불가.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-11-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/0247c5247d2d13d5c17645649cdb9a6e.webp",
+          "sha256": "ed8dc5a6905bcaa2f28d06911573532d822e33b1d5a679d5e524d72c26394629",
+          "role": "question"
+        }
+      ],
+      "resolution": "두 플랜지를 볼트로 조이고 사이의 개스킷으로 밀봉한다. 볼트를 풀어 분리할 수 있어 기기 교체와 배관 정비에 유리하다. 그림의 분해 가능한 이음 구조를 보고 답하며, 그림만으로 적용 가능한 최소 호칭지름을 정할 수는 없다.",
+      "practicalQuestionDigest": "dfbaf674a702c4059786a15e8a1376dc861e427e057a9c585124f13712c7de7e",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-03",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 9,
+      "location": "공조 실기 복원 2024년 2회 표시 9번 (저장 번호 3)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 여과기 또는 Y형 스트레이너. 역할: 유체에 섞인 이물질을 망으로 걸러 배관과 기기를 보호한다.",
+      "answerAfter": "명칭: 여과기 또는 Y형 스트레이너. 역할: 유체에 섞인 이물질을 망으로 걸러 배관과 기기를 보호한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원사진 두 Y형 몸체의 경사진 청소 마개와 직선 관통 유로를 대조. 제거 가능한 망으로 이물을 포집.",
+      "finding": "원사진 두 Y형 몸체의 경사진 청소 마개와 직선 관통 유로를 대조. 제거 가능한 망으로 이물을 포집.",
+      "basis": "원사진 두 Y형 몸체의 경사진 청소 마개와 직선 관통 유로를 대조. 제거 가능한 망으로 이물을 포집.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-03-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/774309aa052fa6f0412bd8b922595e02.webp",
+          "sha256": "898196b8524afda88651ffd28de0e71d4aac60ee5392f1bf291e67e23adefdfe",
+          "role": "question"
+        }
+      ],
+      "resolution": "Y자 몸체 속 망에 이물질이 쌓이고, 캡을 열어 망을 꺼내 청소한다. 위쪽에 변압실이 있는 디스크식 증기트랩과 외형을 구분해야 한다.",
+      "practicalQuestionDigest": "bf40e3689056937d0ef66880844fc500b38c8c0dd08e39ae2fe2387da17faca8"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-07",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 10,
+      "location": "공조 실기 복원 2024년 2회 표시 10번 (저장 번호 7)",
+      "contentExamined": true,
+      "answerBefore": "타이머(한시계전기)",
+      "answerAfter": "타이머(한시계전기)",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림에는 두 개의 서로 다른 배선 예가 공존. 8-5 및 8-6 시한접점, 코일 전원과 시간 조건을 구분.",
+      "finding": "그림에는 두 개의 서로 다른 배선 예가 공존. 8-5 및 8-6 시한접점, 코일 전원과 시간 조건을 구분.",
+      "basis": "그림에는 두 개의 서로 다른 배선 예가 공존. 8-5 및 8-6 시한접점, 코일 전원과 시간 조건을 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1-reviewed-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-question-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/01fc9e11abc8cefe692d6dc4f29f5a93.webp",
+          "sha256": "42987cfe340838d12e6364fea592b0e82cfe958e5c137cf2ce02587f2a09f00c",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-07-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/01fc9e11abc8cefe692d6dc4f29f5a93.webp",
+          "sha256": "42987cfe340838d12e6364fea592b0e82cfe958e5c137cf2ce02587f2a09f00c",
+          "role": "answer"
+        }
+      ],
+      "resolution": "타이머(한시계전기)다. 코일에 전원을 인가하면 순시접점은 바로 바뀌고 한시접점은 설정시간 뒤에 바뀐다. 그림의 8번은 한시접점의 공통, 5번과 6번은 각각 b·a접점이다. 실제 기기에 연결할 때는 해당 모델의 단자도를 기준으로 한다.",
+      "practicalQuestionDigest": "d206d9df0d4590432642e3e5bd25c829afafd3501e1cc5c738bde0bd993467c9",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-01",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 11,
+      "location": "공조 실기 복원 2024년 2회 표시 11번 (저장 번호 1)",
+      "contentExamined": true,
+      "answerBefore": "① 전원 공급 시: MC는 소자, GL은 점등, RL은 소등한다. ② PBS1 동작 시: MC가 여자되어 자기유지하고 RL은 점등, GL은 소등한다. ③ PBS2 동작 시: MC가 소자되어 RL은 소등, GL은 점등하는 초기 상태로 돌아간다.",
+      "answerAfter": "① 전원 공급 시: MC는 소자, GL은 점등, RL은 소등한다. ② PBS1 동작 시: MC가 여자되어 자기유지하고 RL은 점등, GL은 소등한다. ③ PBS2 동작 시: MC가 소자되어 RL은 소등, GL은 점등하는 초기 상태로 돌아간다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도에서 PBS2 b 직렬, PBS1과 MC-a 병렬, 표시등은 MC-b→GL, MC-a→RL. 시작·정지와 답안 3상태 일치.",
+      "finding": "원도에서 PBS2 b 직렬, PBS1과 MC-a 병렬, 표시등은 MC-b→GL, MC-a→RL. 시작·정지와 답안 3상태 일치.",
+      "basis": "원도에서 PBS2 b 직렬, PBS1과 MC-a 병렬, 표시등은 MC-b→GL, MC-a→RL. 시작·정지와 답안 3상태 일치.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1-reviewed-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-question-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/f791f958c61e5cbadffb8656f0fac588.webp",
+          "sha256": "2ee9d487d008351b5c5433891885bed16dd6d29b002ee277e018b51e7ce81d50",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-01-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/30eb3b5131e8daf079a528342559472e.webp",
+          "sha256": "c1e9823b79461a21597feb3420b63fa1355ebdda828339b4dec76c2d343a5b1f",
+          "role": "answer"
+        }
+      ],
+      "resolution": "MC가 꺼져 있을 때 b접점 쪽 GL이 켜진다. 시작 버튼을 누르면 MC a접점이 붙어 운전 상태를 유지하고 RL이 켜진다. 정지 버튼을 누르면 MC 전원이 끊겨 모든 접점이 처음 위치로 돌아간다.",
+      "practicalQuestionDigest": "531d2ed38c9874d0e9c613c679fd573a31580a13913f0e07b87d421ea8aecdde"
+    },
+    {
+      "id": "hvac-practical-restored-2024-2-02",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-2",
+      "number": 12,
+      "location": "공조 실기 복원 2024년 2회 표시 12번 (저장 번호 2)",
+      "contentExamined": true,
+      "answerBefore": "a접점은 평상시 열린 접점(NO), b접점은 평상시 닫힌 접점(NC)으로 그린다. 자동복귀 릴레이는 일반 a·b접점 기호를 사용하고, 수동복귀 릴레이는 접점 기호에 수동복귀 표시(X)를 붙인다. 타이머 한시동작은 접점 위쪽에 시간지연 삼각표시, 한시복귀는 아래쪽에 시간지연 삼각표시를 붙인다.",
+      "answerAfter": "a접점은 평상시 열린 접점(NO), b접점은 평상시 닫힌 접점(NC)으로 그린다. 자동복귀 릴레이는 일반 a·b접점 기호를 사용하고, 수동복귀 릴레이는 접점 기호에 수동복귀 표시(X)를 붙인다. 타이머 한시동작은 접점 위쪽에 시간지연 삼각표시, 한시복귀는 아래쪽에 시간지연 삼각표시를 붙인다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "답도 수동복귀 X, 자동복귀 일반 접점 및 한시동작·복귀 방향 직접 비교. 기호 설명과 일치.",
+      "finding": "답도 수동복귀 X, 자동복귀 일반 접점 및 한시동작·복귀 방향 직접 비교. 기호 설명과 일치.",
+      "basis": "답도 수동복귀 X, 자동복귀 일반 접점 및 한시동작·복귀 방향 직접 비교. 기호 설명과 일치.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1-reviewed-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-scan-v550.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-question-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/d8951c1e4a924e5b40684c027c57e459.webp",
+          "sha256": "70a9f8b83804f9383f842026f83ff307939cad338fdee0b94c282f515e1827a0",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-2/hvac-practical-restored-2024-2-02-answer-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/64a842aa9df6318fd3f637801e1c40bd.webp",
+          "sha256": "ad15c8b7450a773007a5e4ce74443fa492dd3e5f6a3e1d8842214e4cdc49808a",
+          "role": "answer"
+        }
+      ],
+      "resolution": "a접점은 코일이 여자되면 닫히고 b접점은 여자되면 열린다. 안전장치의 수동복귀 표시는 고장을 고친 뒤 사람이 리셋해야 한다는 뜻이고, 타이머 삼각표시의 방향으로 동작 또는 복귀 지연을 구분한다.",
+      "practicalQuestionDigest": "10579ef361247cff7c69473860e38b5ee2079358b4ab12ff48bbe7c5dc7d5c73"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-04",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 1,
+      "location": "공조 실기 복원 2024년 1회 표시 1번 (저장 번호 4)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 반밀폐형 왕복동식 압축기. 특징: 전동기와 압축기가 한 하우징 안에 있고 외부와 밀폐되어 있으나, 볼트·너트 체결 구조라 분해·점검·수리가 가능하다.",
+      "answerAfter": "명칭: 반밀폐형 왕복동식 압축기. 특징: 전동기와 압축기가 한 하우징 안에 있고 외부와 밀폐되어 있으나, 볼트·너트 체결 구조라 분해·점검·수리가 가능하다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "단면에 피스톤과 크랭크축, 한 하우징의 전동기 확인. 볼트 체결부로 분해 가능.",
+      "finding": "단면에 피스톤과 크랭크축, 한 하우징의 전동기 확인. 볼트 체결부로 분해 가능.",
+      "basis": "단면에 피스톤과 크랭크축, 한 하우징의 전동기 확인. 볼트 체결부로 분해 가능.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-04-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-04-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/94721e11c4e6c905b893f53bdd46965f.webp",
+          "sha256": "de9d8884527b80c6c068a321e81ca904a560e12303440997b229cd9a9bb60a35",
+          "role": "question"
+        }
+      ],
+      "resolution": "완전 밀폐형은 케이스를 용접해 열기 어렵다. 반밀폐형은 케이스를 볼트로 조여 밀폐하므로 필요할 때 열어 내부 부품을 수리할 수 있다.",
+      "practicalQuestionDigest": "06ab8364ee4f4c5e7b7eaabe3b3c24bafa9e48fb7c476bdd18c553d7e6f5e1a6"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-06",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 2,
+      "location": "공조 실기 복원 2024년 1회 표시 2번 (저장 번호 6)",
+      "contentExamined": true,
+      "answerBefore": "냉동효과=1,630-545=1,085 kJ/kg, 냉동능력=12×3.86×3,600=166,752 kJ/h, 냉매순환량 G=166,752/1,085≈153.69 kg/h",
+      "answerAfter": "냉동효과=1,630-545=1,085 kJ/kg, 냉동능력=12×3.86×3,600=166,752 kJ/h, 냉매순환량 G=166,752/1,085≈153.69 kg/h",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원 p-h 선도 하단 545와 1630 kJ/kg. 12×3.86×3600/(1630−545)=153.6885 kg/h. 토출측 숫자의 차이는 증발기 수지에 영향 없음.",
+      "finding": "원 p-h 선도 하단 545와 1630 kJ/kg. 12×3.86×3600/(1630−545)=153.6885 kg/h. 토출측 숫자의 차이는 증발기 수지에 영향 없음.",
+      "basis": "원 p-h 선도 하단 545와 1630 kJ/kg. 12×3.86×3600/(1630−545)=153.6885 kg/h. 토출측 숫자의 차이는 증발기 수지에 영향 없음.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-question-book-scan-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1-reviewed-v514.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/28a09056f37f3fcc5f9519bcf824d517.webp",
+          "sha256": "753a6aa71fc1c8cf86c9bfbbe28b2732341736d28e8ef4e3474c464499252443",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-06-answer-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/bee666d28a074ac9114d6ffac71816ab.webp",
+          "sha256": "b1836086fbde7459deedce27aef1f527ac31ef167919a9a2730bcdf1a6ed633d",
+          "role": "answer"
+        }
+      ],
+      "resolution": "냉매 1kg이 증발기에서 가져가는 열은 출구와 입구 엔탈피 차 1,085kJ/kg이다. 전체 냉동능력 12RT를 kJ/h로 바꾼 뒤, 냉매 1kg당 가져가는 열로 나누면 한 시간에 필요한 냉매 질량이 나온다.",
+      "practicalQuestionDigest": "48c9c284d802cbef407eb8ae2b645ae966777e328107e4a4669a45de2e712aa0"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-08",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 3,
+      "location": "공조 실기 복원 2024년 1회 표시 3번 (저장 번호 8)",
+      "contentExamined": true,
+      "answerBefore": "바이메탈식",
+      "answerAfter": "바이메탈식",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "바이메탈의 열팽창 차이로 열동 접점이 휨. 네 보기에서 검출구조와 대응.",
+      "finding": "바이메탈의 열팽창 차이로 열동 접점이 휨. 네 보기에서 검출구조와 대응.",
+      "basis": "바이메탈의 열팽창 차이로 열동 접점이 휨. 네 보기에서 검출구조와 대응.",
+      "evidence": [
+        "656-expansion"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "전류가 커져 온도가 오르면 서로 다른 금속의 팽창 차이로 바이메탈이 휘어 회로를 끊는다.",
+      "practicalQuestionDigest": "87c61822b9eff94d529c4adfc5ef109dc5a19216748ba5f4e30de7f9d696144b"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-11",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 4,
+      "location": "공조 실기 복원 2024년 1회 표시 4번 (저장 번호 11)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 플레어 툴 세트. 용도: 동관 끝을 나팔 모양으로 넓혀 플레어 이음(압축 이음)을 만들 때 사용한다.",
+      "answerAfter": "명칭: 플레어 툴 세트. 용도: 동관 끝을 나팔 모양으로 넓혀 플레어 이음(압축 이음)을 만들 때 사용한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도 클램프·콘형 누름부·나사 손잡이 확인. 동관의 겹침 확관과 나팔형 플레어 접촉면 구별.",
+      "finding": "원도 클램프·콘형 누름부·나사 손잡이 확인. 동관의 겹침 확관과 나팔형 플레어 접촉면 구별.",
+      "basis": "원도 클램프·콘형 누름부·나사 손잡이 확인. 동관의 겹침 확관과 나팔형 플레어 접촉면 구별.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-11-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-11-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/3af85e717112e77b4f9e8eb287e9e57f.webp",
+          "sha256": "5934f215bdf2a766acea5d704ce1a75047e10c3f862e5c210732809827fefa31",
+          "role": "question"
+        }
+      ],
+      "resolution": "동관 끝을 나팔처럼 벌린 뒤 플레어 너트로 조이면 벌어진 부분이 눌리면서 기밀이 만들어진다.",
+      "practicalQuestionDigest": "51c7904bfda0feb3bd37ee6dcf3a7f0a219449e93e5f83faeeefe8f8b7a56673"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-12",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 5,
+      "location": "공조 실기 복원 2024년 1회 표시 5번 (저장 번호 12)",
+      "contentExamined": true,
+      "answerBefore": "내부균압형은 밸브 출구의 내부 압력을 이용하고, 외부균압형은 증발기 출구 압력을 외부 균압관으로 감지한다.",
+      "answerAfter": "내부균압형은 밸브 출구의 내부 압력을 이용하고, 외부균압형은 증발기 출구 압력을 외부 균압관으로 감지한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진의 밸브 감온통과 내부 압력 취출 방식, 외부균압관에서 증발기 출구압을 취하는 원리 구별.",
+      "finding": "사진의 밸브 감온통과 내부 압력 취출 방식, 외부균압관에서 증발기 출구압을 취하는 원리 구별.",
+      "basis": "사진의 밸브 감온통과 내부 압력 취출 방식, 외부균압관에서 증발기 출구압을 취하는 원리 구별.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-12-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-12-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/2238b6034eb416c5f83360964720c2ec.webp",
+          "sha256": "c3db91db2d084b3bb0e83c7a481245eea034bb539ecb6096ff2eba28548b86e8",
+          "role": "question"
+        }
+      ],
+      "resolution": "증발기의 압력손실이 크면 밸브 출구 압력과 증발기 출구 압력이 달라진다. 이때 외부균압형이 실제 출구 압력을 반영해 과열도를 더 정확히 제어한다.",
+      "practicalQuestionDigest": "fd769c9a4f343efe2d04c9612015b7a15eaa02a5896f9e422c26734209f5f789"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-07",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 6,
+      "location": "공조 실기 복원 2024년 1회 표시 6번 (저장 번호 7)",
+      "contentExamined": true,
+      "answerBefore": "가: 가습 / 나: 가열 / 다: 감습 / 라: 냉각",
+      "answerAfter": "가: 가습 / 나: 가열 / 다: 감습 / 라: 냉각",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도 t-x 수평 건구온도·수직 절대습도. 네 이동 방향 (가 위·나 우·다 아래·라 좌) 대조.",
+      "finding": "원도 t-x 수평 건구온도·수직 절대습도. 네 이동 방향 (가 위·나 우·다 아래·라 좌) 대조.",
+      "basis": "원도 t-x 수평 건구온도·수직 절대습도. 네 이동 방향 (가 위·나 우·다 아래·라 좌) 대조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-07-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/cdc2cdd4b9507dc29d9445fdffb3b0a6.webp",
+          "sha256": "7420d43422e09b980728a12b85a798635adc5e73f63c1af6288c348f5944a909",
+          "role": "question"
+        }
+      ],
+      "resolution": "위로 이동하면 절대습도가 늘어 가습, 아래로 이동하면 감습이다. 오른쪽은 건구온도가 올라 가열, 왼쪽은 내려가 냉각이다.",
+      "practicalQuestionDigest": "78ba4b3a6df2a1dadbbb56bc7534cf53ad0bcbdfe719b1ec7133bab93330f8c1"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-02",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 7,
+      "location": "공조 실기 복원 2024년 1회 표시 7번 (저장 번호 2)",
+      "contentExamined": true,
+      "answerBefore": "외기(OA)와 환기공기 ①(RA)를 섞은 점을 ③(MA)로 잡고, ③에서 오른쪽 수평으로 가열해 ④를 표시한다. ④에서 순환수 분무가습선으로 왼쪽 위로 이동한 점이 ⑤(SA)이며, ⑤에서 실내를 거쳐 ①로 돌아오는 사이클을 그린다.",
+      "answerAfter": "외기(OA)와 환기공기 ①(RA)를 섞은 점을 ③(MA)로 잡고, ③에서 오른쪽 수평으로 가열해 ④를 표시한다. ④에서 순환수 분무가습선으로 왼쪽 위로 이동한 점이 ⑤(SA)이며, ⑤에서 실내를 거쳐 ①로 돌아오는 사이클을 그린다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "가열기 전후 ③④ 수평, 분무가습 ④⑤ 좌상방. 외기②·환기①의 혼합점③. 구성·답 두 그림 대조.",
+      "finding": "가열기 전후 ③④ 수평, 분무가습 ④⑤ 좌상방. 외기②·환기①의 혼합점③. 구성·답 두 그림 대조.",
+      "basis": "가열기 전후 ③④ 수평, 분무가습 ④⑤ 좌상방. 외기②·환기①의 혼합점③. 구성·답 두 그림 대조.",
+      "evidence": [
+        "686-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1-reviewed-v514.png",
+      "explanationImages": [
+        "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-scan-v550.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-question-1-reviewed-v514.png",
+          "displayAsset": "assets/problem-webp90/2957eced52487a7fa3f2f7e366dd4486.webp",
+          "sha256": "f4420e3ebc7eadb06e6541211d1404f1931b9cf2c1b5192cf5c403940f9f6296",
+          "role": "question"
+        },
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-02-answer-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/ea69913c73204a37dc82b40dfe2a6fba.webp",
+          "sha256": "ea9afa2c01d2f5400eae4ddf4ca98e0fadbbe1f401e2fb915bbc341e343c0475",
+          "role": "answer"
+        }
+      ],
+      "resolution": "혼합점은 외기와 환기공기를 잇는 선 위에 놓인다. 가열하면 절대습도는 그대로이고 온도만 올라가므로 오른쪽으로 이동한다. 순환수를 분무하면 물이 증발하면서 공기의 열을 써 온도는 내려가고 습도는 올라가므로 왼쪽 위로 간다.",
+      "practicalQuestionDigest": "020488f4de75726a87c1cf905a4d11e3faa3e1af34ff3f88440b4ff802719b8b"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-09",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 8,
+      "location": "공조 실기 복원 2024년 1회 표시 8번 (저장 번호 9)",
+      "contentExamined": true,
+      "answerBefore": "혼합 건구온도 15℃, 혼합 절대습도 0.004 kg/kg(DA)",
+      "answerAfter": "혼합 건구온도 15℃, 혼합 절대습도 0.004 kg/kg(DA)",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원표 건공기 기준 1:4. 수분비 0.021/5=0.0042, 셋째 자리에서 0.004. 등비열 근사 온도 75/5=15.",
+      "finding": "원표 건공기 기준 1:4. 수분비 0.021/5=0.0042, 셋째 자리에서 0.004. 등비열 근사 온도 75/5=15.",
+      "basis": "원표 건공기 기준 1:4. 수분비 0.021/5=0.0042, 셋째 자리에서 0.004. 등비열 근사 온도 75/5=15.",
+      "evidence": [
+        "686-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-09-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-09-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/6b8cef6834d026a182ab128b9dc9ad5e.webp",
+          "sha256": "0e24af25adc679fdaaf2e7fac924ae08732deac4565d6717de8ee6c44d84d38d",
+          "role": "question"
+        }
+      ],
+      "resolution": "외기:실내=1:4이므로 총 5부분으로 가중평균한다. 건구온도는 {(-5×1)+(20×4)}÷5=15℃이고, 절대습도는 {(0.001×1)+(0.005×4)}÷5=0.0042이므로 소수점 셋째 자리까지 쓰면 0.004 kg/kg(DA)이다.",
+      "practicalQuestionDigest": "d3c166f809102617fbf6d6a27f53230b1c6ed09a02cd800f535c560e2f23d608"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-10",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 9,
+      "location": "공조 실기 복원 2024년 1회 표시 9번 (저장 번호 10)",
+      "contentExamined": true,
+      "answerBefore": "공기나 표면의 온도가 공기의 노점온도 이하로 내려가면 수증기가 물방울로 응축되어 결로가 생긴다.",
+      "answerAfter": "공기나 표면의 온도가 공기의 노점온도 이하로 내려가면 수증기가 물방울로 응축되어 결로가 생긴다.",
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "수증기 분압에 대응하는 포화온도와 표면에서의 응축을 연결. 같은 온도는 포화 시작, 아래로 더 내리면 응축 구동력 발생.",
+      "finding": "수증기 분압에 대응하는 포화온도와 표면에서의 응축을 연결. 같은 온도는 포화 시작, 아래로 더 내리면 응축 구동력 발생.",
+      "basis": "수증기 분압에 대응하는 포화온도와 표면에서의 응축을 연결. 같은 온도는 포화 시작, 아래로 더 내리면 응축 구동력 발생.",
+      "evidence": [
+        "686-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "노점은 현재 수증기 분압에서 공기가 포화되는 온도다. 차가운 표면에 닿은 공기가 노점까지 식으면 포화에 이르고, 표면온도가 그보다 낮아지면 표면 부근의 수증기가 응축해 물방울이 맺힌다.",
+      "practicalQuestionDigest": "28ec2cb384809949ca757dcdf3dc085336727b796e7c8207b9b19f4263b117d4",
+      "changeReason": "개념·장치 작동 원리·적용 조건"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-03",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 10,
+      "location": "공조 실기 복원 2024년 1회 표시 10번 (저장 번호 3)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 여과기 또는 Y형 스트레이너. 역할: 배관을 흐르는 유체 속 이물질을 걸러 장치 내부로 들어가지 못하게 한다.",
+      "answerAfter": "명칭: 여과기 또는 Y형 스트레이너. 역할: 배관을 흐르는 유체 속 이물질을 걸러 장치 내부로 들어가지 못하게 한다.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원사진 관 몸체의 흐름 화살표와 Y형 마개. 별도 구동기 없이 망으로 입자 제거.",
+      "finding": "원사진 관 몸체의 흐름 화살표와 Y형 마개. 별도 구동기 없이 망으로 입자 제거.",
+      "basis": "원사진 관 몸체의 흐름 화살표와 Y형 마개. 별도 구동기 없이 망으로 입자 제거.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-book-scan-v514.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-03-question-book-scan-v514.png",
+          "displayAsset": "assets/problem-webp90/dfd1a0455f4367ee027c53b755758662.webp",
+          "sha256": "3a2ad2ca9d040199f3a55f5f28bf9bd936896889e3634293d4971d35da4aea87",
+          "role": "question"
+        }
+      ],
+      "resolution": "유체는 망을 통과하지만 먼지와 금속 조각은 망에 걸린다. 아래 캡을 열어 망을 꺼내 청소할 수 있다.",
+      "practicalQuestionDigest": "76c73732ec7290e1e808f6850760418390a0dafb4e560e47a8fc71196c615df4"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-05",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 11,
+      "location": "공조 실기 복원 2024년 1회 표시 11번 (저장 번호 5)",
+      "contentExamined": true,
+      "answerBefore": "명칭: 클램프미터(후크미터). 측정 항목: 전류·전압·저항.",
+      "answerAfter": "명칭: 클램프미터(후크미터). 측정 항목: 전류·전압·저항.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "사진의 클램프, 입력 단자와 선택 스위치. 단일 도체 전류와 측정 리드로 재는 전압·저항 구별.",
+      "finding": "사진의 클램프, 입력 단자와 선택 스위치. 단일 도체 전류와 측정 리드로 재는 전압·저항 구별.",
+      "basis": "사진의 클램프, 입력 단자와 선택 스위치. 단일 도체 전류와 측정 리드로 재는 전압·저항 구별.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-recrop-v596.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-05-question-recrop-v596.png",
+          "displayAsset": "assets/problem-webp90/d1b9a3bde4a3190e50ad8ab5c3a70857.webp",
+          "sha256": "25ed414671ef1b90b94b85faf3884bb9b2ebb521c3cdc3d4cae1e109490bf150",
+          "role": "question"
+        }
+      ],
+      "resolution": "전류는 전선을 끊지 않고 집게 부분으로 한 가닥만 감싸 측정한다. 측정 단자와 선택 스위치를 사용하면 전압과 저항도 잴 수 있다.",
+      "practicalQuestionDigest": "e4940789eb0491f67fd299cbe9f767c7d3c346138ad17ecac4a0d12ffb678cb1"
+    },
+    {
+      "id": "hvac-practical-restored-2024-1-01",
+      "catalog": "practical",
+      "file": "data/hvac-practical-restored.json",
+      "round": "2024-1",
+      "number": 12,
+      "location": "공조 실기 복원 2024년 1회 표시 12번 (저장 번호 1)",
+      "contentExamined": true,
+      "answerBefore": "① MC 소자, RL 소등·GL 점등. ② MC 여자·자기유지, RL 점등·GL 소등. ③ RY와 T 여자, RY a접점으로 MC 여자, RL 점등·GL 소등. ④ T 한시 b접점이 열려 RY와 MC 소자, RL 소등·GL 점등. ⑤ THR b접점이 운전회로를 차단해 MC·RY·T 소자, RL·GL 소등. THR a접점으로 OL 점등.",
+      "answerAfter": "① MC 소자, RL 소등·GL 점등. ② MC 여자·자기유지, RL 점등·GL 소등. ③ RY와 T 여자, RY a접점으로 MC 여자, RL 점등·GL 소등. ④ T 한시 b접점이 열려 RY와 MC 소자, RL 소등·GL 점등. ⑤ THR b접점이 운전회로를 차단해 MC·RY·T 소자, RL·GL 소등. THR a접점으로 OL 점등.",
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도에서 RY-a는 MC 경로, T-b는 RY 경로. LS가 닫혀 있으면 T 직접 전원 유지. 전환형 THR 접점으로 OL과 GL 전원 분리.",
+      "finding": "원도에서 RY-a는 MC 경로, T-b는 RY 경로. LS가 닫혀 있으면 T 직접 전원 유지. 전환형 THR 접점으로 OL과 GL 전원 분리.",
+      "basis": "원도에서 RY-a는 MC 경로, T-b는 RY 경로. LS가 닫혀 있으면 T 직접 전원 유지. 전환형 THR 접점으로 OL과 GL 전원 분리.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-scan-v550.png",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-practical/restored/2024-1/hvac-practical-restored-2024-1-01-question-scan-v550.png",
+          "displayAsset": "assets/problem-webp90/0bb35951798e867fa6935ba82f0e6d0f.webp",
+          "sha256": "369ce31a40603d22b03f53d4a6fa65d677d6821c86b919c3bfebd6a706b2d891",
+          "role": "question"
+        }
+      ],
+      "resolution": "책의 질문 순서는 PBS2(정지), PBS1(운전)이다. 수동에서는 PBS1과 MC-a로 자기유지하며 RY-b가 운전 경로에 있다. 자동에서는 LS를 누르면 RY·T와 MC가 켜지고, 시간이 지나 T-b가 열리면 RY와 MC가 꺼진다. LS를 계속 누르면 T에는 전원이 남을 수 있다. THR가 작동하면 운전 전원과 GL도 끊기고 별도 OL만 켜진다.",
+      "practicalQuestionDigest": "ee43b2e9b3fb31d0b6092c289582c9939fff73fdea767dcc41c439328bbc6c0b"
+    },
+    {
+      "id": "energy-industrial-20150919:1",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 1,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "닫힌계에서 외부와의 열·일 교환이 내부 에너지 변화와 수지를 이룬다",
+      "finding": "닫힌계에서 외부와의 열·일 교환이 내부 에너지 변화와 수지를 이룬다",
+      "basis": "닫힌계에서 외부와의 열·일 교환이 내부 에너지 변화와 수지를 이룬다.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 열역학 제1법칙이다. 열과 일은 경계를 통해 에너지를 전달하는 두 방식이다. 계가 받은 열에서 계가 한 일을 빼면 내부에너지 증가량이 된다. 열기관에서 받은 열 전부를 일로 바꿀 수 있는지는 별도로 제2법칙이 제한한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 1,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "4266699fd643401baf445758a62959b955a7efb6193579a86f678d98a9fd78f5"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:6",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 6,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "노내 가스측 급격한 압력 상승과 보일러 물·증기측 안전밸브 구분",
+      "finding": "노내 가스측 급격한 압력 상승과 보일러 물·증기측 안전밸브 구분",
+      "basis": "노내 가스측 급격한 압력 상승과 보일러 물·증기측 안전밸브 구분.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 방폭문이다. 연소실에서 미연가스가 급격히 연소해 압력이 높아지면 가스측 압력을 방출해 노체 손상을 줄인다. 증기측 과압을 방출하는 안전밸브와 보호하는 공간이 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 6,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "18a58bd164b22f57f539ad412d99c3f7fc8d977e266b34e41854b575f131b580"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:11",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 11,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "LPG의 프로판·부탄, LNG의 천연가스 액화와 달리 대체천연가스는 원료 전환을 통해 제조",
+      "finding": "LPG의 프로판·부탄, LNG의 천연가스 액화와 달리 대체천연가스는 원료 전환을 통해 제조",
+      "basis": "LPG의 프로판·부탄, LNG의 천연가스 액화와 달리 대체천연가스는 원료 전환을 통해 제조.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④ 대체천연가스(SNG)는 나프타 등 다른 원료를 전환해 천연가스를 대신 사용할 수 있도록 만든 가스다. ①의 프로판·부탄 중심 제품은 LPG이고, ③의 천연가스 액화는 LNG에 해당한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 11,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "1bec7910fa2bfb7f3e78cd2e291a284099a9fc3d35d7a3d7454d3246c80afda8"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:12",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 12,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "연료 유량을 밸브로 조절하고 액체의 무화·고체 재 처리 부담이 적다",
+      "finding": "연료 유량을 밸브로 조절하고 액체의 무화·고체 재 처리 부담이 적다",
+      "basis": "연료 유량을 밸브로 조절하고 액체의 무화·고체 재 처리 부담이 적다. 실제 조절비는 버너 설계에 따라 다름.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③이 일반적인 가스버너 특성과 다르다. 가스는 밸브로 공급량을 조절하기 쉽고 액체 연료의 무화 장치나 고체 연료의 재 처리도 필요하지 않다. 실제로 안정된 화염을 유지할 수 있는 조절 범위는 버너 형식에 따라 달라진다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 12,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "2bec97975292a14b6c5f295788989b214ff6e5c5c26a0a9e234cfce1ae570532"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:14",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 14,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "가스를 선회시켜 관성 큰 입자가 외벽으로 이동·낙하",
+      "finding": "가스를 선회시켜 관성 큰 입자가 외벽으로 이동·낙하",
+      "basis": "가스를 선회시켜 관성 큰 입자가 외벽으로 이동·낙하.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 사이클론이다. 가스를 선회시키면 먼지 입자는 기체의 굽은 흐름을 그대로 따라가지 못해 바깥 벽 쪽으로 이동한다. 입자는 벽을 따라 아래로 내려가고 정화된 가스는 별도 출구로 나간다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 14,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "26524fca74af1a32f799c801c6f56702e07ec799e5101cd9bc49fe51bed03604"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:20",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 20,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증기 랭킨 사이클의 보일러 증발과 응축기 액화",
+      "finding": "증기 랭킨 사이클의 보일러 증발과 응축기 액화",
+      "basis": "증기 랭킨 사이클의 보일러 증발과 응축기 액화.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 랭킨사이클에서는 작동유체인 물이 보일러에서 증기로 바뀌고, 터빈을 지난 증기가 응축기에서 다시 액체가 된다. 이 두 과정에 상변화가 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 20,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "7c269d966d8b11a9c271ba1ad064c322de8f87aba1cae494f83e86807ea2bc8d"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:21",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 21,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림에서 비교부 다음 ⓐ, 제어대상 직전 ⓑ, 출력이 비교부로 돌아가는 길의 ⓒ",
+      "finding": "그림에서 비교부 다음 ⓐ, 제어대상 직전 ⓑ, 출력이 비교부로 돌아가는 길의 ⓒ",
+      "basis": "그림에서 비교부 다음 ⓐ, 제어대상 직전 ⓑ, 출력이 비교부로 돌아가는 길의 ⓒ.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/comcbt-restored/20150919/images/em20150919m21.gif",
+          "displayAsset": "assets/problem-webp90/ad7ebeb734c860550baae78b8222c81b.webp",
+          "sha256": "cd3d5678879ad7d00d2932f22285b73b320f39001c58161564c02ac22d933c76"
+        }
+      ],
+      "resolution": "비교부가 낸 편차를 받아 명령을 정하는 ⓐ가 조절부다. 명령을 실제 제어대상에 가하는 ⓑ는 조작부이고, 출력 상태를 측정해 비교부로 되돌리는 ⓒ는 검출부다. 따라서 ②다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 21,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "04ca68c99357c4af97ceeccc908aa1fc1ac8b3a2ac2a86175497e4b3c099aeb4"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:22",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 22,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "광고온계는 복사를 검출하는 비접촉식",
+      "finding": "광고온계는 복사를 검출하는 비접촉식",
+      "basis": "광고온계는 복사를 검출하는 비접촉식. 기존 마지막 문장은 바로 앞의 올바른 원리와 모순.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④ 광고온계가 비접촉식이다. 측정 대상에서 나온 빛의 밝기를 이용하므로 감온부를 대상에 댈 필요가 없다. 나머지 세 온도계는 감온부가 대상과 열을 교환해 그 온도에 가까워져야 측정한다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 22,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "956d6258bc1b99bb5bece0062d3a9d5b4de7f6bb90a682772a04ff8dc46a034a"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:25",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 25,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "스프링은 힘과 변위의 관계를 제공",
+      "finding": "스프링은 힘과 변위의 관계를 제공",
+      "basis": "스프링은 힘과 변위의 관계를 제공. 노즐·플래퍼 간격이 변하면서 배압이 변하는 것과 구별.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "①이 틀리다. 스프링은 변형량에 비례하는 복원력을 낸다. 작은 변위를 공기압 신호로 바꾸는 것은 노즐과 플래퍼 사이 간격에 따라 노즐 배압이 달라지는 원리를 이용한 기구다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 25,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "247fd0ff983ee9e413fa4491cbac8cd600c5e8f8ab91d413b8d522e20d281919"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:27",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 27,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "표준 콘과 시료가 무르는 정도를 같은 가열 조건에서 비교",
+      "finding": "표준 콘과 시료가 무르는 정도를 같은 가열 조건에서 비교",
+      "basis": "표준 콘과 시료가 무르는 정도를 같은 가열 조건에서 비교. 시간·온도에 따른 열효과.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 제게르콘은 가열하면 정해진 조건에서 휘어지는 표준 추다. 시료가 어느 표준 콘과 비슷하게 연화되는지를 같은 가열 조건에서 비교해 내화도를 판단한다. 한순간의 온도만 표시하는 센서와는 성격이 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 27,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "feb90b88f2d6e727e01c8a724c20629d00ecbc451eb7ed95eb325f2fc8fd36e0"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:28",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 28,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "품질·재현성과 작업자 노출 감소는 가능한 효과",
+      "finding": "품질·재현성과 작업자 노출 감소는 가능한 효과",
+      "basis": "품질·재현성과 작업자 노출 감소는 가능한 효과. 인건비 증가와 안전 저해는 필연이 아님.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④가 가장 멀다. 자동화하면 반복 동작을 일정하게 수행하고 사람이 위험한 공정에 직접 접근하는 일을 줄일 수 있다. 설비투자나 보전 인력은 필요하지만 안전성 저하와 인건비 증가가 항상 따르는 것은 아니다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 28,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "49c8b1712910eb401833249f747db784bcfe2a1454722c495d217aa6ab969f36"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:29",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 29,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "표준대기압 100℃ 포화수→100℃ 건포화증기 기준",
+      "finding": "표준대기압 100℃ 포화수→100℃ 건포화증기 기준",
+      "basis": "표준대기압 100℃ 포화수→100℃ 건포화증기 기준. 역방향 응축과 구별. 기존 풀이 적정.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "표준대기압 100℃ 포화수→100℃ 건포화증기 기준. 역방향 응축과 구별. 기존 풀이 적정.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 29,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "7e7091da0d53892e88bb304616bdd27a7d1245698325e18b8ab6a716ecf8b361"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:31",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 31,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 ① 증기압 피드백이 돌아가는 곳, 상단 연료조절밸브 뒤 ②, 하단 공기댐퍼 뒤 ③",
+      "finding": "원도 ① 증기압 피드백이 돌아가는 곳, 상단 연료조절밸브 뒤 ②, 하단 공기댐퍼 뒤 ③",
+      "basis": "원도 ① 증기압 피드백이 돌아가는 곳, 상단 연료조절밸브 뒤 ②, 하단 공기댐퍼 뒤 ③.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/comcbt-restored/20150919/images/em20150919m31.gif",
+          "displayAsset": "assets/problem-webp90/e45cbd427c1398d702819e2a2a286261.webp",
+          "sha256": "6d957e1c84802114a076f509d1444a1e0eafcdcb871c439066deebe2554ce9b9"
+        }
+      ],
+      "resolution": "증기압력을 되먹임받는 (1)은 압력조절기다. 그 신호를 배분해 위쪽 연료조절밸브로 (2) 연료공급량을, 아래쪽 댐퍼로 (3) 공기량을 바꾸므로 ③이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 31,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "18cf65d32fee8d48901b6d32428b82a35910a793637de7bafdb11278ea067be8"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:32",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 32,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 전향이득 1, 귀환 H, 합산점 음의 부호",
+      "finding": "원도 전향이득 1, 귀환 H, 합산점 음의 부호",
+      "basis": "원도 전향이득 1, 귀환 H, 합산점 음의 부호. C=R−HC. 보기 괄호 누락을 수식으로 보완.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/comcbt-restored/20150919/images/em20150919m32.gif",
+          "displayAsset": "assets/problem-webp90/7702a910331e1dbeee430b509784ff2c.webp",
+          "sha256": "82708012c10b29bdd9cfea7fd7d3f9852b4decd4f714fe6e32e73d6c57098a30"
+        }
+      ],
+      "resolution": "출력 C가 귀환 요소 H를 통과한 HC를 입력 R에서 뺀다. 전향 경로에는 다른 블록이 없으므로 C=R−HC다. 정리하면 ④이며 분모 전체가 1+H다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 32,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "e9e6b86d9f3033cbea6e4594724c472bfce8dc65527ca8c24d75afebb68d3892"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:34",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 34,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "같은 조건에서 일정한 방향으로 치우치는 성분과 산포 구분",
+      "finding": "같은 조건에서 일정한 방향으로 치우치는 성분과 산포 구분",
+      "basis": "같은 조건에서 일정한 방향으로 치우치는 성분과 산포 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 계통오차다. 예를 들어 영점이 어긋난 계기는 같은 조건에서 반복해도 한쪽으로 치우친 값을 준다. 반복 측정 평균만으로는 이 치우침이 없어지지 않는다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 34,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "7dc3d587b456af444dffb3f9549c089e34de16ead17456f8e6b1b1b33380c658"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:35",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 35,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "압력차 ρgΔh, 경사관 눈금 거리 Δh/sinθ",
+      "finding": "압력차 ρgΔh, 경사관 눈금 거리 Δh/sinθ",
+      "basis": "압력차 ρgΔh, 경사관 눈금 거리 Δh/sinθ. 기존 설명은 다른 문항의 팬코일.",
+      "evidence": [
+        "659-os-m42195"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 경사관식이다. 같은 미세 압력차가 만들어 내는 수직 액면차라도 관을 눕히면 관을 따라 움직이는 거리가 길어진다. 눈금을 더 크게 읽을 수 있어 작은 압력차 측정에 유리하다.",
+      "changeReason": "문제와 무관한 설명",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 35,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "f967bbfca9a162e00695caea70c20e33011d0adf9dea3a9033909dac3d33e7ca"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:41",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 41,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "밀도 p가 0℃ 기준이면 273pH(1/To−1/Tc)는 kgf/m² 또는 mmAq의 수치",
+      "finding": "밀도 p가 0℃ 기준이면 273pH(1/To−1/Tc)는 kgf/m² 또는 mmAq의 수치",
+      "basis": "밀도 p가 0℃ 기준이면 273pH(1/To−1/Tc)는 kgf/m² 또는 mmAq의 수치. 보기에 모두 mmHg 인쇄. mmHg 환산에 약 13.6으로 나눠야 함.",
+      "evidence": [
+        "682-ideal",
+        "659-os-m42195",
+        "652-units"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/energy/assets/questions/3076/em20150919m41b1.png",
+          "displayAsset": "assets/problem-webp90/be297b1873b059eb30fdc92d0306f5ae.webp",
+          "sha256": "718666577469519a40b47616d5fbb4f542e4eef3b65ea09a19140af3c14cb5ac"
+        },
+        {
+          "original": "assets/energy/assets/questions/3076/em20150919m41b2.png",
+          "displayAsset": "assets/problem-webp90/7b65354825434cd3ad103aa9f55b4ba1.webp",
+          "sha256": "a9bb31d81a5c1baebf5a7c738ab6aaa4f0c2426209fa91e75ae6f44e81078c22"
+        },
+        {
+          "original": "assets/energy/assets/questions/3076/em20150919m41b3.png",
+          "displayAsset": "assets/problem-webp90/da2e77d7cdc30d511249a88852cd4c8b.webp",
+          "sha256": "9ddc1989db27851ccba4f7146e46ae9f3bc8f7f5aae3227aaf6e8904c6b1a0bb"
+        },
+        {
+          "original": "assets/energy/assets/questions/3076/em20150919m41b4.png",
+          "displayAsset": "assets/problem-webp90/4def9292b4e53b60faeb9d71c52e060c.webp",
+          "sha256": "6efdf2607ac4ff6a1a68cd16407e9f41c4d239b71fe9ce4fe433626bca93014b"
+        }
+      ],
+      "resolution": "외기와 노내 가스의 기준밀도를 같게 근사하면 통풍 압력차는 gH(ρ외−ρ내)다. 0℃ 기준밀도 p를 쓰면 보기 ③의 숫자는 물기둥 mm에 해당한다. 원본 보기에는 mmHg로 인쇄되어 있어 수은주로 나타내려면 다시 약 13.6으로 나눠야 한다. 지문의 밀도 기준과 원출제 단위를 확인해야 한다.",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 41,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "bc6393e37dcf3be6be08b928d7ccc6e8056f7c191c9fc1790101e722ebf14a97"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:42",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 42,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "가열 전에도 운반·축조와 하중 지지를 위한 기계적 강도가 필요",
+      "finding": "가열 전에도 운반·축조와 하중 지지를 위한 기계적 강도가 필요",
+      "basis": "가열 전에도 운반·축조와 하중 지지를 위한 기계적 강도가 필요.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④가 부적절하다. 내화재는 사용 중 고온에서 형태와 강도를 유지해야 하고, 상온에서도 운반·시공·쌓기 하중에 견뎌야 한다. 따라서 상온 압축강도를 작게 해도 좋다고 일반화할 수 없다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 42,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "2ffc3864d122e477a81a331e792537475d51db4da6e50fef8a00ca480a1cbe8a"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:45",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 45,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "관성력과 점성력의 비",
+      "finding": "관성력과 점성력의 비",
+      "basis": "관성력과 점성력의 비. 길이·속도·밀도·점성계수 차원 취소.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④ 레이놀즈수다. 관성 효과가 점성 효과에 비해 얼마나 큰지 나타내며, 관에서는 보통 평균속도와 내경을 쓴다. 층류·난류를 가르는 수치는 유로 형상 등 조건에 따라 달라진다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 45,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "8bfb37b3dada8308d6dd6d220e6935a908d9ab7bf4dae7e42d35377b8bfddde0"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:47",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 47,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "콤포 이음 등 당시 배관 이음의 명칭과 적용 관종을 확인할 규격·제조사 카탈로그 미확보",
+      "finding": "콤포 이음 등 당시 배관 이음의 명칭과 적용 관종을 확인할 규격·제조사 카탈로그 미확보",
+      "basis": "콤포 이음 등 당시 배관 이음의 명칭과 적용 관종을 확인할 규격·제조사 카탈로그 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "콤포 이음 등 당시 배관 이음의 명칭과 적용 관종을 확인할 규격·제조사 카탈로그 미확보.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 47,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "1229e33b641f3ebb7ac3b5eb3342de53bcc627724d484820740d18c40581ccc0"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:53",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 53,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "보기 중 증기 피스톤과 펌프 피스톤을 직결해 왕복하는 형식",
+      "finding": "보기 중 증기 피스톤과 펌프 피스톤을 직결해 왕복하는 형식",
+      "basis": "보기 중 증기 피스톤과 펌프 피스톤을 직결해 왕복하는 형식.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 워싱턴펌프다. 증기가 증기실의 피스톤을 밀고 같은 로드에 연결된 펌프 피스톤이 왕복하면서 물을 흡입·토출한다. 외부 전동기 대신 증기의 에너지를 이용한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 53,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "d24a364d06b2e22ae097f9231b6f778233a55e0f533d1179829e5743e7761f56"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:59",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 59,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "플레어 가공 가능 범위는 관재·공구·피팅 규격에 따라 달라 일반 상한 20 mm의 출제 기준 미확보",
+      "finding": "플레어 가공 가능 범위는 관재·공구·피팅 규격에 따라 달라 일반 상한 20 mm의 출제 기준 미확보",
+      "basis": "플레어 가공 가능 범위는 관재·공구·피팅 규격에 따라 달라 일반 상한 20 mm의 출제 기준 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "플레어 가공 가능 범위는 관재·공구·피팅 규격에 따라 달라 일반 상한 20 mm의 출제 기준 미확보.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 59,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "edc019b7b0e767d012f9714e9c7392fcb39be0aa23fc97613ba452f8fae68af2"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:61",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 61,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "금속으로 들어간 수소가 연성을 떨어뜨려 응력 아래 균열을 유발할 수 있음",
+      "finding": "금속으로 들어간 수소가 연성을 떨어뜨려 응력 아래 균열을 유발할 수 있음",
+      "basis": "금속으로 들어간 수소가 연성을 떨어뜨려 응력 아래 균열을 유발할 수 있음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 수소취화다. 금속에 침투한 수소는 재료의 연성을 낮추고 인장응력이 작용할 때 균열 발생·성장을 촉진할 수 있다. 점식은 표면에 국부적인 구멍이 생기는 손상이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 61,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "60a23f99b6305fa6bf7d3147ba0285d6b083ef017759727e77df460cf4e573c5"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:62",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 62,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "물측 스케일을 녹이는 산세와 연소가스측 재·그을음 제거 구분",
+      "finding": "물측 스케일을 녹이는 산세와 연소가스측 재·그을음 제거 구분",
+      "basis": "물측 스케일을 녹이는 산세와 연소가스측 재·그을음 제거 구분.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 산세법은 보통 보일러 물에 접하는 관 안쪽의 스케일을 약품으로 녹여 제거하는 방법이다. 지문이 묻는 가스측 전열면 바깥의 재나 그을음 청소와 구별한다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 62,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "50fb9f230f1193c8b3ae9fe2c6baa467a545e3e47731519a5b6c5e60c9406932"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:63",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 63,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "황 연소→SO₂, 일부 SO₃와 수증기가 황산이 되어 저온부에서 산 이슬점 부식",
+      "finding": "황 연소→SO₂, 일부 SO₃와 수증기가 황산이 되어 저온부에서 산 이슬점 부식",
+      "basis": "황 연소→SO₂, 일부 SO₃와 수증기가 황산이 되어 저온부에서 산 이슬점 부식.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 아황산가스(SO₂)는 중유의 황이 연소할 때 생긴다. 그중 일부가 SO₃로 더 산화되고 수증기와 황산을 형성한다. 낮은 온도의 전열면에서 이 황산이 응축하면 저온부식이 일어난다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 63,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "529591a19d7c2166605953dac4514964305296030dce40106fbd38d17962d81f"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:64",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 64,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "2015",
+      "finding": "2015",
+      "basis": "2015.09.19 시행 교육 관련 별표의 교육 대상·기간 미확보. 현행 교육시간으로 대체하지 않음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "2015.09.19 시행 교육 관련 별표의 교육 대상·기간 미확보. 현행 교육시간으로 대체하지 않음.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 64,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "508890c3d91eca33074c4db65206770910dcc36e0efe176b2127f2a3fa0cb70a"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:65",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 65,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "건축물 단위면적당 목표량의 당시 고시권자 및 관계기관 협의 조문 원문 미확보",
+      "finding": "건축물 단위면적당 목표량의 당시 고시권자 및 관계기관 협의 조문 원문 미확보",
+      "basis": "건축물 단위면적당 목표량의 당시 고시권자 및 관계기관 협의 조문 원문 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "건축물 단위면적당 목표량의 당시 고시권자 및 관계기관 협의 조문 원문 미확보.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 65,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "af45c69eda71591522068de6ca74d42de42269577549b13ddb8135bcaec3255c"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:66",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 66,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "흡입측 스트레이너 막힘으로 손실이 증가하면 하류의 펌프 흡입압과 공급유량은 보통 감소",
+      "finding": "흡입측 스트레이너 막힘으로 손실이 증가하면 하류의 펌프 흡입압과 공급유량은 보통 감소",
+      "basis": "흡입측 스트레이너 막힘으로 손실이 증가하면 하류의 펌프 흡입압과 공급유량은 보통 감소.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④에서 원인과 결과가 어긋난다. 흡입측 스트레이너가 막히면 통과 저항이 커져 펌프 흡입압이 낮아지고 공급량이 줄 수 있다. 이때 연료 부족으로 불꽃이 꺼질 수 있지만 막힘 때문에 흡입 압력이 갑자기 높아진다는 설명은 맞지 않는다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 66,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "b439f36ac022aaa67cb48b293023f3ae1df308ad0f0585e1e46578444ff27923"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:67",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 67,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "에너지법상 공급자 정의와 당시 지정사업자 범위의 2015년 시행본 미확보",
+      "finding": "에너지법상 공급자 정의와 당시 지정사업자 범위의 2015년 시행본 미확보",
+      "basis": "에너지법상 공급자 정의와 당시 지정사업자 범위의 2015년 시행본 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "에너지법상 공급자 정의와 당시 지정사업자 범위의 2015년 시행본 미확보.",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 67,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "abdea51929a61a262b84114cd180a5824a0c01ea7f3a275cf5ed6301174ce921"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:68",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 68,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "수소이온 활동도의 음의 상용로그와 농도·경도 표시 구분",
+      "finding": "수소이온 활동도의 음의 상용로그와 농도·경도 표시 구분",
+      "basis": "수소이온 활동도의 음의 상용로그와 농도·경도 표시 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② pH다. 수소이온 활동도가 클수록 pH가 낮고 산성이 강하다. 25℃에서 중성인 물은 약 pH 7이다. ppm·ppb는 물질의 상대량을 표시하는 단위다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 68,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "b4cc78dba27554add3526d209bf11ca9422e7fa5e9a216ddcea713fd93805226"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:69",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 69,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "용해 고형물 중 이온을 수중에서 제거하는 탈염과 부유 입자 제거 구분",
+      "finding": "용해 고형물 중 이온을 수중에서 제거하는 탈염과 부유 입자 제거 구분",
+      "basis": "용해 고형물 중 이온을 수중에서 제거하는 탈염과 부유 입자 제거 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③의 탈염 처리는 물에 녹아 있는 양이온·음이온을 제거한다. 단순 침강과 여과는 주로 물에 떠 있는 입자를 분리하므로 이미 녹은 염류를 같은 방식으로 제거하기 어렵다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 69,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "18b7eacda2763f5eee584ce85fd321f5e62ef84a59432ea5c1ad5396f68e3cdf"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:70",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 70,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "연소에 필요한 공기 공급과 청소를 불가능하게 설계해야 한다는 주장을 분리",
+      "finding": "연소에 필요한 공기 공급과 청소를 불가능하게 설계해야 한다는 주장을 분리",
+      "basis": "연소에 필요한 공기 공급과 청소를 불가능하게 설계해야 한다는 주장을 분리.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④의 ‘물청소를 할 수 없는 구조로 설계한다’가 부적절하다. 연소 공기는 계획한 경로로 공급하고 노내는 점검·청소가 가능해야 한다. 실제 청소 방법은 내화물과 설비 조건에 맞춰 정한다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 70,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "5fc1d90a195cbff8eef316a7a6005266e1b1ccedb54b057ef7d49a3fe2c92d87"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:71",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 71,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "실화 뒤 연소실에 남은 미연가스 제거가 안전한 재점화의 전제",
+      "finding": "실화 뒤 연소실에 남은 미연가스 제거가 안전한 재점화의 전제",
+      "basis": "실화 뒤 연소실에 남은 미연가스 제거가 안전한 재점화의 전제.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④다. 화염이 꺼진 뒤 연소실에 미연가스가 남으면 재점화 때 급격히 연소할 수 있다. 재점화 전에는 연료를 차단하고 설비의 안전 절차에 따라 퍼지해 남은 가스를 제거한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 71,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "8cf1b9e041265846d1e466fcb7dab3a1abc5c9ad2cbe5401ae14bcd7566d4ebd"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:75",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 75,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증기상으로 이동해 금속면에 흡착하는 방청제와 흡습제로 수분을 줄이는 방법 구분",
+      "finding": "증기상으로 이동해 금속면에 흡착하는 방청제와 흡습제로 수분을 줄이는 방법 구분",
+      "basis": "증기상으로 이동해 금속면에 흡착하는 방청제와 흡습제로 수분을 줄이는 방법 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② VCI는 기화성 부식 억제제다. 밀폐 공간 안에서 성분이 기체로 이동해 금속 표면에 흡착하여 부식을 억제한다. 수분을 흡착하는 실리카겔과 작용 방식이 다르다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 75,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "41e32ca27231bffde391ac9318a67df5ecf6f69c5eaf3cef87e10cf033480448"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:76",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 76,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "포화 혼합물 총 질량 대비 증기 질량분율 x=0",
+      "finding": "포화 혼합물 총 질량 대비 증기 질량분율 x=0",
+      "basis": "포화 혼합물 총 질량 대비 증기 질량분율 x=0.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "건도 x는 포화 상태에서 전체 질량 가운데 증기 질량의 비율이다. x=0이면 증기가 전혀 없는 액체 쪽 경계이므로 ① 포화수다. x=1이면 건포화증기다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 76,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "2fc2e00ddde653ffd0bf941aa98199195b67e1fdcf1b2cad5da992a43436bbca"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "energy-industrial-20150919:77",
+      "catalog": "energy",
+      "file": "data/energy.js",
+      "round": "energy-industrial-20150919",
+      "number": 77,
+      "location": "에너지관리산업기사 필기 기출문제 2015년 09월 19일 (4회) (정답, 해설)",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "벽에 단단하게 부착된 스케일과 드럼 저부에 침전되는 슬러지 구별",
+      "finding": "벽에 단단하게 부착된 스케일과 드럼 저부에 침전되는 슬러지 구별",
+      "basis": "벽에 단단하게 부착된 스케일과 드럼 저부에 침전되는 슬러지 구별.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 슬러지다. 물속 불순물이 고체로 석출된 뒤 전열면에 단단히 달라붙지 않고 보일러 저부에 모인 침전물이다. 벽면에 고착된 스케일과 구별한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "reviewedExplanationFile": "data/energy-reviewed-explanations.json",
+      "originalItem": {
+        "file": "data/energy.js",
+        "round": "energy-industrial-20150919",
+        "number": 77,
+        "fields": [
+          "text",
+          "html",
+          "choices",
+          "answer"
+        ],
+        "sha256": "e16315c031448612e3e9b7544d574263daf812c769b506e5711af4a165744fde"
+      },
+      "previousExplanationProvenance": "concise-answer-guide"
     }
   ],
   "sources": [
@@ -171212,6 +173921,14 @@
       "date": "2026-11-19",
       "section": "SciPy 1.15.3, _norm_sf 380–381행. 표준정규 생존함수 sf(x)=cdf(-x).",
       "sha256": "4011a3b7e9308639b3537f9766d9e42525f2e0a0ba88893b0defe4dd364215fe"
+    },
+    {
+      "id": "686-psych",
+      "url": "https://raw.githubusercontent.com/psychrometrics/psychrolib/master/src/python/psychrolib/__init__.py",
+      "opened": true,
+      "date": "2026-11-19",
+      "section": "PsychroLib GetTDewPointFromHumRatio 749–771 및 GetMoistAirEnthalpy 1153–1177, ASHRAE Fundamentals 2017 ch. 1 eq. 30.",
+      "sha256": "37e08506bdc2e652a77026e7107ece7eaabb1c40997b563b88fe2951385aefdf"
     }
   ],
   "automaticAnswerCandidates": [
@@ -171493,22 +174210,22 @@
     "other": "자체 보충 해설을 작성한 에너지·공조 기출과 나머지 종목은 inventory.json scope.groups 각 next부터, 중복 판정 ID 제외.",
     "fieldReport": "src/cbt/hvacFieldReportPractice.ts 13개 모두 판정.",
     "workedExamples": "공조 교재 예제 26개 모두 전사 및 판정. 정답 확인 9개는 원본 보기를 보존했다.",
-    "energy": "data/energy.js energy-industrial-20150919:1",
-    "practical": "data/hvac-practical-restored.json의 hvac-practical-restored-2024-3-06부터 앱 수록 순서대로",
+    "energy": "data/energy.js energy-industrial-20160306:4",
+    "practical": "data/hvac-practical-restored.json hvac-practical-restored-2023-3-02",
     "hvac": "data/hvac.js hvac-20050529:1",
     "direct": "data/hansol-book-direct.json의 hansol-direct-1-167-16부터",
     "maintenance": "data/maintenance.js maintenance-20180819:1"
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 4871,
-    "contentCompleted": 3738,
-    "contentCompletedChanged": 3270,
-    "contentCompletedUnchanged": 468,
-    "evidenceHold": 886,
-    "answerNeedsConfirmation": 247,
-    "automaticOnly": 44133,
-    "changedQuestionIds": 3675,
+    "contentExamined": 4943,
+    "contentCompleted": 3802,
+    "contentCompletedChanged": 3308,
+    "contentCompletedUnchanged": 494,
+    "evidenceHold": 893,
+    "answerNeedsConfirmation": 248,
+    "automaticOnly": 44061,
+    "changedQuestionIds": 3716,
     "imageTranscribed": 445,
     "imageFullyTranscribed": 144,
     "imagePartiallyTranscribed": 301,
@@ -172324,7 +175041,7 @@
       }
     },
     "지문·정답·자료 대조에 남은 불확실성": {
-      "count": 259,
+      "count": 262,
       "findings": {
         "지문이 가리키는 수식 누락": 1,
         "h–s 선도 범위 확인 필요": 1,
@@ -172549,11 +175266,14 @@
         "50 m²는 입력값으로 계산할 값이 아니라 2015년 안전밸브 설치기준 예외": 1,
         "관리도는 시간 순으로 공정변동을 감시한다": 1,
         "회전자·스핀들은 회전→직선변환형의 부품일 수 있으나 모든 선형 스텝모터에 공통되지 않음": 1,
-        "지문에 모두 정답 처리 안내가 있고 저장 답은 ①": 1
+        "지문에 모두 정답 처리 안내가 있고 저장 답은 ①": 1,
+        "같은 압력에서 비휘발성에 가까운 물이 섞이면 순수 암모니아보다 비등온도가 높아지는 방향. 강관 부식과 윤활유 유화에 필요한 조건을 검증할 원자료 미확보.": 1,
+        "그림 두 플랜지·볼트와 기호. 그림으로 호칭지름 65A 최소 기준은 판정 불가.": 1,
+        "밀도 p가 0℃ 기준이면 273pH(1/To−1/Tc)는 kgf/m² 또는 mmAq의 수치": 1
       }
     },
     "문제와 무관한 설명": {
-      "count": 310,
+      "count": 311,
       "findings": {
         "0": 1,
         "문제 무관 일반론": 2,
@@ -172830,11 +175550,12 @@
         "지문의 일회성 파열 조건과 스프링식 릴리프밸브의 자동 복귀를 비교": 1,
         "원주를 회전시키면서 기준면에서 읽는 흔들림값, 다이얼게이지의 최대·최소 지시 차": 1,
         "지문 원에서 삼각형이 바깥을 향하고 검게 채워짐": 1,
-        "피스톤과 함께 이동하며 로드 커버를 통과해 힘과 변위를 외부에 전달하는 구조": 1
+        "피스톤과 함께 이동하며 로드 커버를 통과해 힘과 변위를 외부에 전달하는 구조": 1,
+        "압력차 ρgΔh, 경사관 눈금 거리 Δh/sinθ": 1
       }
     },
     "부정형·보기 비교·표 적용 범위": {
-      "count": 41,
+      "count": 49,
       "findings": {
         "비교 대상과 원리 보완": 2,
         "부정형 문항의 결론 교정": 2,
@@ -172865,11 +175586,19 @@
         "동일 입력에서 상승·하강 이력에 따라 다른 밸브 위치가 나타나면 재현성 저하": 1,
         "펌프 입구 불균일 유동을 의도적으로 만든다는 보기와 안정 흡입 조건을 대조": 1,
         "계측값으로 추세를 비교하는 설비진단 효과와 ②의 이미 심한 열화·오감 중심 설명 대조": 1,
-        "일정 회전수·임펠러 지름에서 유량에 따른 양정·축동력·효율과 설계점 기준 비교회전도 구별": 1
+        "일정 회전수·임펠러 지름에서 유량에 따른 양정·축동력·효율과 설계점 기준 비교회전도 구별": 1,
+        "연료 유량을 밸브로 조절하고 액체의 무화·고체 재 처리 부담이 적다": 1,
+        "광고온계는 복사를 검출하는 비접촉식": 1,
+        "스프링은 힘과 변위의 관계를 제공": 1,
+        "품질·재현성과 작업자 노출 감소는 가능한 효과": 1,
+        "가열 전에도 운반·축조와 하중 지지를 위한 기계적 강도가 필요": 1,
+        "물측 스케일을 녹이는 산세와 연소가스측 재·그을음 제거 구분": 1,
+        "흡입측 스트레이너 막힘으로 손실이 증가하면 하류의 펌프 흡입압과 공급유량은 보통 감소": 1,
+        "연소에 필요한 공기 공급과 청소를 불가능하게 설계해야 한다는 주장을 분리": 1
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 494,
+      "count": 496,
       "findings": {
         "0": 4,
         "11": 1,
@@ -173316,11 +176045,13 @@
         "원보기 ① 원 전체 면적, ② 환형 단면": 1,
         "정적 평형 kδ=mg, 무감쇠 각진동수 √(k/m)": 1,
         "그림에서 비반전 입력 접지, 세 전압의 저항이 반전 합산점으로 연결": 1,
-        "전단응력 단위 kgf/m²를 속도구배 단위 s⁻¹로 나누어 차원을 확인": 1
+        "전단응력 단위 kgf/m²를 속도구배 단위 s⁻¹로 나누어 차원을 확인": 1,
+        "원도 전향이득 1, 귀환 H, 합산점 음의 부호": 1,
+        "관성력과 점성력의 비": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 1450,
+      "count": 1477,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -174550,7 +177281,34 @@
         "방법의 정의가 문제에 주어짐": 1,
         "시간당 반복수의 차원 s⁻¹, 보기 mm/s는 속도": 1,
         "정류자와 브러시의 기계적 스위칭으로 외부 단자 극성 유지": 1,
-        "서로 통하는 두 수조 자유수면의 실제 높이 차와 손실 포함 전양정 구분": 1
+        "서로 통하는 두 수조 자유수면의 실제 높이 차와 손실 포함 전양정 구분": 1,
+        "이종 도체 쌍의 두 접점 사이 온도차와 열기전력. 펠티어 효과는 전류에 의한 접합부 흡·발열.": 1,
+        "① 송풍기 화살표는 실 안, ② 배풍기는 밖. 상대 압력차의 유도와 공기 누설 방향.": 1,
+        "건공기 질량 기준 수분수지 0.025/4=0.00625. 정밀 엔탈피식과 시험의 건구온도 근사 구분.": 1,
+        "사진 (가)는 중앙 원판과 둘레의 토출 틈새가 보이고 구동 팬은 식별되지 않는다. (나) 동심 다단 콘, (다) 평행 날개.": 1,
+        "두 사진에서 양 끝 지름이 다른 이경 이음 확인. 편심 이음의 설치방향은 배관 유체·용도에 따라 달라짐.": 1,
+        "원도 저압 용기 하단 액 냉매→증발기→상부 기액 환류. 펌프 유무 외에 실제 순환로 확인.": 1,
+        "문제 표 냉방 열만 직접 합계 5+6+0.1+0.9+1+1.3+2+4+1.8=22.1. 답도에 세부 숫자가 다른 추가 표가 있으나 총합 같음.": 1,
+        "그림에는 두 개의 서로 다른 배선 예가 공존. 8-5 및 8-6 시한접점, 코일 전원과 시간 조건을 구분.": 1,
+        "수증기 분압에 대응하는 포화온도와 표면에서의 응축을 연결. 같은 온도는 포화 시작, 아래로 더 내리면 응축 구동력 발생.": 1,
+        "닫힌계에서 외부와의 열·일 교환이 내부 에너지 변화와 수지를 이룬다": 1,
+        "노내 가스측 급격한 압력 상승과 보일러 물·증기측 안전밸브 구분": 1,
+        "LPG의 프로판·부탄, LNG의 천연가스 액화와 달리 대체천연가스는 원료 전환을 통해 제조": 1,
+        "가스를 선회시켜 관성 큰 입자가 외벽으로 이동·낙하": 1,
+        "증기 랭킨 사이클의 보일러 증발과 응축기 액화": 1,
+        "그림에서 비교부 다음 ⓐ, 제어대상 직전 ⓑ, 출력이 비교부로 돌아가는 길의 ⓒ": 1,
+        "표준 콘과 시료가 무르는 정도를 같은 가열 조건에서 비교": 1,
+        "원도 ① 증기압 피드백이 돌아가는 곳, 상단 연료조절밸브 뒤 ②, 하단 공기댐퍼 뒤 ③": 1,
+        "같은 조건에서 일정한 방향으로 치우치는 성분과 산포 구분": 1,
+        "보기 중 증기 피스톤과 펌프 피스톤을 직결해 왕복하는 형식": 1,
+        "금속으로 들어간 수소가 연성을 떨어뜨려 응력 아래 균열을 유발할 수 있음": 1,
+        "황 연소→SO₂, 일부 SO₃와 수증기가 황산이 되어 저온부에서 산 이슬점 부식": 1,
+        "수소이온 활동도의 음의 상용로그와 농도·경도 표시 구분": 1,
+        "용해 고형물 중 이온을 수중에서 제거하는 탈염과 부유 입자 제거 구분": 1,
+        "실화 뒤 연소실에 남은 미연가스 제거가 안전한 재점화의 전제": 1,
+        "증기상으로 이동해 금속면에 흡착하는 방청제와 흡습제로 수분을 줄이는 방법 구분": 1,
+        "포화 혼합물 총 질량 대비 증기 질량분율 x=0": 1,
+        "벽에 단단하게 부착된 스케일과 드럼 저부에 침전되는 슬러지 구별": 1
       }
     },
     "이미지 원문 텍스트 전환": {
@@ -175009,7 +177767,7 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 4200,
+    "examined": 4272,
     "rawFractionDisplays": 300,
     "remainingBankBlanks": 1108,
     "units": [
@@ -180513,18 +183271,134 @@
           "maintenance-20190303:72",
           "maintenance-20190303:77"
         ]
+      },
+      {
+        "unit": "공조 실기 복원 2024년 3회",
+        "statuses": {
+          "근거 부족으로 보류": 1,
+          "내용 검토 완료·수정 없음": 6,
+          "내용 검토 완료·수정함": 5
+        },
+        "changed": 6,
+        "ids": [
+          "hvac-practical-restored-2024-3-06",
+          "hvac-practical-restored-2024-3-09",
+          "hvac-practical-restored-2024-3-04",
+          "hvac-practical-restored-2024-3-12",
+          "hvac-practical-restored-2024-3-05",
+          "hvac-practical-restored-2024-3-03",
+          "hvac-practical-restored-2024-3-07",
+          "hvac-practical-restored-2024-3-11",
+          "hvac-practical-restored-2024-3-08",
+          "hvac-practical-restored-2024-3-10",
+          "hvac-practical-restored-2024-3-01",
+          "hvac-practical-restored-2024-3-02"
+        ]
+      },
+      {
+        "unit": "공조 실기 복원 2024년 2회",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 8,
+          "내용 검토 완료·수정함": 3,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 4,
+        "ids": [
+          "hvac-practical-restored-2024-2-04",
+          "hvac-practical-restored-2024-2-06",
+          "hvac-practical-restored-2024-2-12",
+          "hvac-practical-restored-2024-2-09",
+          "hvac-practical-restored-2024-2-05",
+          "hvac-practical-restored-2024-2-08",
+          "hvac-practical-restored-2024-2-10",
+          "hvac-practical-restored-2024-2-11",
+          "hvac-practical-restored-2024-2-03",
+          "hvac-practical-restored-2024-2-07",
+          "hvac-practical-restored-2024-2-01",
+          "hvac-practical-restored-2024-2-02"
+        ]
+      },
+      {
+        "unit": "공조 실기 복원 2024년 1회",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 11,
+          "내용 검토 완료·수정함": 1
+        },
+        "changed": 1,
+        "ids": [
+          "hvac-practical-restored-2024-1-04",
+          "hvac-practical-restored-2024-1-06",
+          "hvac-practical-restored-2024-1-08",
+          "hvac-practical-restored-2024-1-11",
+          "hvac-practical-restored-2024-1-12",
+          "hvac-practical-restored-2024-1-07",
+          "hvac-practical-restored-2024-1-02",
+          "hvac-practical-restored-2024-1-09",
+          "hvac-practical-restored-2024-1-10",
+          "hvac-practical-restored-2024-1-03",
+          "hvac-practical-restored-2024-1-05",
+          "hvac-practical-restored-2024-1-01"
+        ]
+      },
+      {
+        "unit": "에너지관리산업기사 2015.09.19 자체 보충 해설 36개",
+        "statuses": {
+          "내용 검토 완료·수정함": 29,
+          "내용 검토 완료·수정 없음": 1,
+          "정답 자체 확인 필요": 1,
+          "근거 부족으로 보류": 5
+        },
+        "changed": 30,
+        "ids": [
+          "energy-industrial-20150919:1",
+          "energy-industrial-20150919:6",
+          "energy-industrial-20150919:11",
+          "energy-industrial-20150919:12",
+          "energy-industrial-20150919:14",
+          "energy-industrial-20150919:20",
+          "energy-industrial-20150919:21",
+          "energy-industrial-20150919:22",
+          "energy-industrial-20150919:25",
+          "energy-industrial-20150919:27",
+          "energy-industrial-20150919:28",
+          "energy-industrial-20150919:29",
+          "energy-industrial-20150919:31",
+          "energy-industrial-20150919:32",
+          "energy-industrial-20150919:34",
+          "energy-industrial-20150919:35",
+          "energy-industrial-20150919:41",
+          "energy-industrial-20150919:42",
+          "energy-industrial-20150919:45",
+          "energy-industrial-20150919:47",
+          "energy-industrial-20150919:53",
+          "energy-industrial-20150919:59",
+          "energy-industrial-20150919:61",
+          "energy-industrial-20150919:62",
+          "energy-industrial-20150919:63",
+          "energy-industrial-20150919:64",
+          "energy-industrial-20150919:65",
+          "energy-industrial-20150919:66",
+          "energy-industrial-20150919:67",
+          "energy-industrial-20150919:68",
+          "energy-industrial-20150919:69",
+          "energy-industrial-20150919:70",
+          "energy-industrial-20150919:71",
+          "energy-industrial-20150919:75",
+          "energy-industrial-20150919:76",
+          "energy-industrial-20150919:77"
+        ]
       }
     ],
     "reasons": {
-      "지문·정답·자료 대조에 남은 불확실성": 210,
-      "공식·계산·기호·단위·반올림": 389,
-      "개념·장치 작동 원리·적용 조건": 1191,
-      "부정형·보기 비교·표 적용 범위": 22,
-      "문제와 무관한 설명": 272,
+      "지문·정답·자료 대조에 남은 불확실성": 213,
+      "공식·계산·기호·단위·반올림": 391,
+      "개념·장치 작동 원리·적용 조건": 1218,
+      "부정형·보기 비교·표 적용 범위": 30,
+      "문제와 무관한 설명": 273,
       "해설 미등록": 877,
       "이미지 원문 텍스트 전환": 172
     },
-    "changed": 3133,
+    "changed": 3174,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",

@@ -879,3 +879,14 @@ test('설비보전 실린더 전진 출력의 원본 보기와 분수식',async(
   await expect(card.locator('.explanation-box')).toContainText('로드가 없는 쪽');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('에너지 미세압력계의 경사관 눈금과 분수',async({page})=>{
+  await prepare(page,'energy');
+  await page.locator('#round-card-energy-industrial-20150919').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('35');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'미세한 압력 측정용'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('수직 액면차');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

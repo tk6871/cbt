@@ -92,3 +92,16 @@ test('2025년 1회 배관 평면도의 교정 설명과 원본 답도', async ({
   await diagram.evaluate((image: HTMLImageElement) => image.decode());
   await expect(diagram).toBeVisible();
 });
+
+test('2024년 2회 냉방부하 원표의 합계와 분수', async ({page}) => {
+  await page.goto('./?safe=1');
+  await openGuide(page);
+  await page.getByRole('button',{name:/회차별 기출/}).click();
+  const year = page.locator('.practical-year-group').filter({has:page.getByRole('heading',{name:'2024년',exact:true})});
+  await year.getByRole('button',{name:/^2회/}).click();
+  await page.getByLabel('필답형 화면 배치').selectOption('0');
+  const problem = page.locator('[data-practical-id="hvac-practical-restored-2024-2-08"]');
+  await problem.getByRole('button',{name:'정답·풀이 보기'}).click();
+  await expect(problem.locator('.practical-explanation')).toContainText('틈새바람 0.1+0.9');
+  await expect(problem.locator('.calculation-steps .mfrac').first()).toBeVisible();
+});
