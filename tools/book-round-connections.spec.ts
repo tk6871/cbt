@@ -1,6 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
+import {problemImage} from '../src/cbt/problemImages';
 import {bookContents, contentsEntries, examQuery, searchContents, contentsRows} from '../src/cbt/textbookContents';
 import {textbookEntries, textbookStudyId, readableBookPages} from '../src/cbt/textbookPages';
 import type {Catalog} from '../src/cbt/types';
@@ -129,14 +130,17 @@ test('한솔 부록 1,440개 인쇄 정답과 417개 신규 스캔의 실제 보
   const pages=new Map(sheets.map(p=>[p.page,p]));
   const nodes=bookContents.hansol.filter(n=>n.id==='hansol-mock'||n.id==='hansol-latest').flatMap(n=>n.children!);
   expect(nodes).toHaveLength(24);
-  let targets=0, held=0;
+  let targets=0;
   for(const node of nodes){
     const entries=contentsEntries(node,textbookEntries);
     expect(entries.map(e=>e.number),node.title).toEqual(Array.from({length:60},(_,i)=>i+1));
     for(const entry of entries){
-      if(entry.reviewHold){
-        expect([entry.page,entry.number]).toEqual(['4-87',22]);
-        expect(entry.workedExampleId).toBe('hansol-book-example-4-87-22');held++;continue;
+      expect(entry.reviewHold).not.toBe(true);
+      if (entry.page==='4-87' && entry.number===22) {
+        expect(entry.sourceId).toBe('hvac-hansol-2024-2:39');
+        expect(entry.correction?.text).toContain('0.93');
+        expect(entry.correction?.answer).toBe(2);
+        expect(entry.correction?.hotspots?.map(box=>box.choice)).toEqual([1,2,3,4]);
       }
       const question=questions.get(entry.sourceId!)!;
       const printed=pages.get(entry.page)!;
@@ -149,8 +153,31 @@ test('한솔 부록 1,440개 인쇄 정답과 417개 신규 스캔의 실제 보
         const hits=question.answerHotspots!.filter(b=>x/w*100>=b.x&&x/w*100<b.x+b.width&&y/h*100>=b.y&&y/h*100<b.y+b.height);
         expect(hits.map(h=>h.choice),entry.sourceId!).toEqual([i+1]);targets++;
       }
-      for(const path of [question.sourceImage!,...question.explanationImages!])expect(readFileSync(path).toString('ascii',8,12)).toBe('WEBP');
+      for(const path of [question.sourceImage!,...question.explanationImages!])expect(readFileSync(problemImage(path)!).toString('ascii',8,12)).toBe('WEBP');
     }
   }
-  expect(held).toBe(1);expect(targets).toBe(417*4);
+  expect(targets).toBe(417*4);
+});
+
+test('모의 7회 22번은 정정 조건을 먼저 읽고 이미지의 ②를 저장한다', async ({page})=>{
+  await page.goto('./?safe=1');
+  await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
+  const library=page.locator('.textbook-library');
+  await library.locator('.library-books button').filter({hasText:'한솔 공조 교재'}).click();
+  await library.getByRole('button',{name:'쪽번호로 바로 열기'}).click();
+  const dialog=page.locator('dialog.library-page-dialog[open]');
+  await dialog.locator('input').fill('4-87');
+  await dialog.getByRole('button',{name:'문제 풀기'}).click();
+  const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 22번',exact:true})});
+  await expect(card.getByLabel('문제 조건 정정')).toContainText('0.93');
+  await expect(card.getByRole('link',{name:/한솔 정오표/})).toHaveAttribute('href',/id=691/);
+  const choice=card.getByRole('button',{name:'이미지에서 2번 선택',exact:true});
+  await choice.click();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
+  await expect.poll(()=>page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem('unified-industrial-cbt-v1')||'{}');
+    return state.attempts?.['book-study::hansol::4-87::22::hvac-hansol-2024-2:39'];
+  })).toMatchObject({lastChoice:2,correctCount:1,wrongCount:0});
+  await page.reload();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
 });

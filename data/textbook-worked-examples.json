@@ -1260,7 +1260,7 @@
         "4-87"
       ],
       "number": 22,
-      "title": "산소10kg,등압 체적5→11m³,비열0.221kJ/(kgK).엔트로피변화",
+      "title": "등압 산소 팽창의 엔트로피 변화",
       "kind": "worked-example",
       "question": "assets/hvac-hansol-book/questions/4-87-22.webp",
       "questionSize": [
@@ -1272,9 +1272,9 @@
         1046,
         264
       ],
-      "answer": "정답표② / 지문 비열 불일치",
-      "note": "교재 정답표·보기 또는 풀이가 일치하지 않는 검토용 원문입니다. 임의 채점하지 않으며 객관식 시험에서 제외합니다.",
-      "explanation": "지문값 그대로면10×0.221×ln(11/5)≈1.74kJ/K로 보기와 다릅니다. 책 풀이와 정답②7.33은0.93을 사용합니다.0.221kcal를kJ로 환산하면 약0.925지만 지문의kJ표기와 충돌하므로 추정해 바꾸지 않습니다.",
+      "answer": "② 7.33 kJ/K",
+      "note": "한솔 2025년판 정오표에서 같은 지문과 보기를 가진 2024년 2회 39번의 정압비열을 0.93 kJ/(kg·K)로 수정했습니다. 원문의 0.221 대신 0.93을 사용하세요.",
+      "explanation": "일정 압력에서 이상기체의 절대온도 비는 체적 비와 같습니다. 따라서 엔트로피 변화는 10 × 0.93 × ln(11/5) ≈ 7.33 kJ/K입니다. 정답은 ②입니다.",
       "images": {
         "question": {
           "sourceSha256": "0ff5629c79c95b1c21b817ca3e3a379c6c33dfa085890aba94c306b75403d7c2",
@@ -1314,8 +1314,9 @@
       "explanationTranscribed": true,
       "explanationFormula": {
         "label": "계산식",
-        "tex": "\\Delta S=10(0.221)\\ln\\frac{11}{5}\\approx1.74\\ \\mathrm{kJ/K}"
-      }
+        "tex": "\\Delta S=10(0.93)\\ln\\frac{11}{5}\\approx7.33\\ \\mathrm{kJ/K}"
+      },
+      "promotedToGraded": true
     },
     {
       "id": "hansol-book-example-1-70-2",

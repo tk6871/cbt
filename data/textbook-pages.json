@@ -51108,11 +51108,59 @@
       "page": "4-87",
       "number": 22,
       "column": 1,
-      "sourceId": null,
-      "fingerprint": null,
-      "workedExampleId": "hansol-book-example-4-87-22",
-      "reviewHold": true,
-      "pendingReason": "책·실제 기존 이미지의 조건10kg/5→11m³/비열0.221kJ/kg·K와 네 보기는 같지만 다음4-88쪽 풀이는 비열0.93을 대입해7.33kJ/K를 얻는다. 주어진0.221을 그대로 쓰면1.74249로 보기에 없다. 조건·풀이 내부불일치로 출제 보류하며 원본은 보존."
+      "sourceId": "hvac-hansol-2024-2:39",
+      "fingerprint": "8d3c2422c1dbb314",
+      "imageSize": [
+        1104,
+        472
+      ],
+      "correction": {
+        "text": "10 kg의 산소가 일정 압력에서 5 m³에서 11 m³로 팽창한다. 이상기체로 보고 정압비열 0.93 kJ/(kg·K)를 사용할 때 엔트로피 변화는 몇 kJ/K인가?",
+        "choices": [
+          "3.42",
+          "7.33",
+          "14.62",
+          "28.33"
+        ],
+        "answer": 2,
+        "note": "한솔 2025년판 정오표에서 같은 지문과 보기를 가진 2024년 2회 39번의 정압비열을 0.93 kJ/(kg·K)로 수정했습니다. 원문의 0.221 대신 0.93을 사용하세요.",
+        "explanation": "일정 압력에서 이상기체의 절대온도 비는 체적 비와 같습니다. 따라서 엔트로피 변화는 10 × 0.93 × ln(11/5) ≈ 7.33 kJ/K입니다. 정답은 ②입니다.",
+        "asset": "assets/hvac-hansol-book/questions/4-87-22.webp",
+        "size": [
+          1104,
+          472
+        ],
+        "hotspots": [
+          {
+            "choice": 1,
+            "x": 2,
+            "y": 66,
+            "width": 43,
+            "height": 14
+          },
+          {
+            "choice": 2,
+            "x": 51,
+            "y": 66,
+            "width": 43,
+            "height": 14
+          },
+          {
+            "choice": 3,
+            "x": 2,
+            "y": 82,
+            "width": 43,
+            "height": 14
+          },
+          {
+            "choice": 4,
+            "x": 51,
+            "y": 82,
+            "width": 43,
+            "height": 14
+          }
+        ]
+      }
     },
     {
       "book": "hansol",

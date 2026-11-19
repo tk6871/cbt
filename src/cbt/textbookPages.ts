@@ -76,7 +76,7 @@ const directEntries:TextbookEntry[]=textbookDirectSources.filter(r=>r.id!=='hans
 export const textbookEntries: TextbookEntry[] = [...links.entries as TextbookEntry[],...directEntries]
  .sort((a,b)=>a.book.localeCompare(b.book)||compareBookPages(a.page,b.page)||a.number-b.number);
 export { textbookNames };
-export const textbookWorkedExamples=workedExamples.entries;
+export const textbookWorkedExamples=workedExamples.entries.filter(example=>!example.promotedToGraded);
 const auditedPages=new Map(pageAudit.pages.map(row=>[row.page,row]));
 export const textbookAuditPages=pageAudit.pages;
 export function textbookPageAudit(book:TextbookKey,page:string){return book==='hansol'?auditedPages.get(normalizeBookPage(page)):undefined;}

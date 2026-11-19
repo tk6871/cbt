@@ -296,6 +296,12 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             </footer>
           </form>
         ) : null}
+        {(item.id === 'hvac-hansol-2024-2:39' || item.id.endsWith('::hvac-hansol-2024-2:39')) && (
+          <p className="reader-page-note" aria-label="문제 조건 정정">
+            <strong>정압비열 0.93 kJ/(kg·K)</strong>를 사용하세요. 원문에는 0.221로 인쇄되어 있습니다.{' '}
+            <a href="https://www.inup.co.kr/bookstore/reform/reform_view.jsp?id=691" target="_blank" rel="noreferrer">한솔 정오표 · 2024년 2회 39번</a>
+          </p>
+        )}
         {sourceTranscription?.question ? (
           <div className="question-transcription-control">
             <small>

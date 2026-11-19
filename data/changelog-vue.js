@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.20',scope:'industrial',date:'2026.11.19',title:'한솔 모의고사 7회 22번 채점 연결',summary:'산소의 정압비열 수정값을 풀이 전에 표시하고 교재의 ②번을 채점합니다.',items:['한솔 정오표의 동일 문항과 지문·보기·해설을 대조했습니다.']},
     {version:'6.3.19',scope:'industrial',date:'2026.11.19',title:'기말고사 메뉴와 문항별 학습 초기화',summary:'회차별 기출은 마지막 자격증으로 열립니다. 풀이 중에는 한 문항 또는 현재 페이지만 초기화할 수 있습니다.',items:['기말고사 메뉴에서 냉동공학과 에너지설비를 선택합니다.','회차의 학습·시험·오답 버튼을 통일하고 홈에 이어풀기를 우선 표시합니다.']},
     {version:'6.3.18',scope:'industrial',date:'2026.11.19',title:'모바일 교재 열기 속도와 Android 이미지 답안',summary:'교재를 선택하면 다음 풀이 화면을 미리 준비합니다. Android 첫 방문에서도 공조와 에너지 교재의 이미지 번호를 눌러 저장할 수 있습니다.',items:['목차와 문제를 여는 시간을 단축했습니다.','에너지 교재를 골랐을 때 해당 교재 자료부터 읽도록 개선했습니다.']},
     {version:'6.3.17',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 원도 대조 56문항",summary:"평형 브리지의 저항비와 검류계 영점 조건을 보완하고 유도전동기 역률 개선을 콘덴서의 진상 무효전류 보상으로 바로잡았다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2909,8 +2910,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.19';
+  changelog.versions.industrial = '6.3.20';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.19';
+  changelog.currentVersion = '6.3.20';
   window.CBT_CHANGELOG = changelog;
 })();
