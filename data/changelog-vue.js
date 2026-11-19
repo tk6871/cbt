@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.95',scope:'industrial',date:'2026.11.19',title:"공조 교재 2024년 1회",summary:"혼합비 1대 2의 온도와 벽체 층별 저항을 다시 계산했다. R-500의 성분 표기와 LPG·LNG가 충돌한 문항은 별도로 남겼다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.94',scope:'industrial',date:'2026.11.19',title:"공조 교재 2023년 3회",summary:"펌프 양정 11.4 mAq, 파형률의 정류평균값, 권수비 제곱에 따른 환산저항 10 kΩ을 확인했다. 계측기 사용 전원 분류는 정답 확인 대상으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.93',scope:'industrial',date:'2026.11.19',title:"공조 교재 2023년 2회",summary:"2번 회벽 두께가 지문 2 cm와 표 0.002 m로 다른 점을 표시했다. 32번의 응축온도는 산술평균 근사와 대수평균 결과를 구분했고, 57번 분류기 저항은 병렬 전압으로 다시 계산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.92',scope:'industrial',date:'2026.11.19',title:"공조 교재 2023년 1회",summary:"1번 표의 공급 엔탈피와 정답이 양립하지 않음을 확인하고 39번의 냉동제조 허가·신고 혼동을 시행령으로 교정했다. 60번은 정현파 조건과 실효값 분수식을 명시했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2872,8 +2873,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.94';
+  changelog.versions.industrial = '6.2.95';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.94';
+  changelog.currentVersion = '6.2.95';
   window.CBT_CHANGELOG = changelog;
 })();
