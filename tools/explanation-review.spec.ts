@@ -934,3 +934,14 @@ test('공조 교재 미표기 저항의 회로와 분수', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('R₄=4 Ω일 때');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 2005년 5월 분기전류의 계산과 표시', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20050529').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('68');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'회로에 전압 100V'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('병렬부 전압은 60 V');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
