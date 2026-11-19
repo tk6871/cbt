@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.106',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 1-167~3-32쪽",summary:"송풍량 증가 시 풍속이 감소한다는 인쇄 오류를 교정하고, 입·출구 온도차와 분당 유량을 분수식으로 표시했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.105',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2010년 3월·5월",summary:"감속기 명판의 1,720 rpm과 1:30을 읽어 출력 57.3 rpm을 구하고 송출량 식의 mm·cm 불일치를 기록했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.104',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2011년 세 회차",summary:"유압 프레스 지름을 힘과 압력에서 162.9 mm로 구하고 라우스 배열로 불안정 근 두 개를 확인했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.103',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2012년 세 회차",summary:"축 변위에서 진동속도로 환산하는 단위와 SCR 게이트 회로에 필요한 3.6 V를 대조했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2883,8 +2884,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.105';
+  changelog.versions.industrial = '6.2.106';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.105';
+  changelog.currentVersion = '6.2.106';
   window.CBT_CHANGELOG = changelog;
 })();
