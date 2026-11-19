@@ -24,6 +24,23 @@ async function openPage(page:any,value:string){
  await expect(page.locator('.textbook-pages')).toBeVisible();
  await expect(page.locator('.textbook-pages .question-card').first()).toBeVisible();
 }
+test('공조 목차를 키보드로 다시 펼치면 열어 둔 장이 보인다',async({page})=>{
+ const part=page.locator('.library-index .contents-tree > details').first();
+ const chapter=part.locator('.contents-branch-body > details').first();
+ const toggle=part.locator(':scope > summary');
+ await expect(toggle).toBeVisible();
+ await expect(chapter).toHaveCount(0);
+ await toggle.press('Enter');
+ await chapter.locator(':scope > summary').press('Enter');
+ const openChapter=chapter.getByRole('button',{name:/연결 문제 모아 보기/}).first();
+ await expect(openChapter).toBeVisible();
+ await toggle.press('Enter');
+ await expect(openChapter).toBeHidden();
+ await toggle.press('Enter');
+ await openChapter.click();
+ await expect(page.locator('.library-selection .selection-path')).toBeVisible();
+});
+
 test('목차는 앱 안 · 문제만 독립 화면 · 복귀/새로고침/다시 선택',async({page},info)=>{
  await expect(page.locator('.app-frame')).toBeVisible();
  await expect(page.locator('.textbook-pages')).toHaveCount(0);

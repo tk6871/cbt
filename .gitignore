@@ -16,6 +16,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+cloud-config.local.js
 telerik-license.txt
 devextreme-license.js
 supabase/*.local.sql
@@ -63,4 +64,5 @@ __pycache__/
 work/private-notes/
 work/textbook-explanation-text/
 work/problem-webp90/
-work/textbook-completeness/
+
+work/explanation-intake/

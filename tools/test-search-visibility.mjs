@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
+import {verifyProtectedInputs} from './verify-protected-inputs.mjs';
 import {auditSearchExclusion,withSearchExclusion,searchRobotsPolicy} from './search-visibility-policy.mjs';
 
 const fixtures=[
@@ -26,10 +27,11 @@ markdown('docs');
 for(const p of notes)assert.ok(!forbidden.test(fs.readFileSync(p,'utf8')),`${p}: named source returned to public notes`);
 const context={window:{}};vm.runInNewContext(fs.readFileSync('data/changelog-vue.js','utf8'),context);
 const log=context.window.CBT_CHANGELOG;
-assert.equal(log.currentVersion,'6.1');
-const prior=log.entries.filter(e=>!(e.scope==='industrial'&&e.version==='6.1'&&e.date==='2026.11.10')).map(e=>[e.scope,e.version,e.date]);
+assert.equal(log.currentVersion,log.entries.find(e=>e.scope==='industrial').version);
+const releaseIndex=log.entries.findIndex(e=>e.scope==='industrial'&&e.version==='6.1'&&e.date==='2026.11.10');
+assert.ok(releaseIndex>=0,'Missing 6.1 release boundary');
+const prior=log.entries.slice(releaseIndex+1).map(e=>[e.scope,e.version,e.date]);
 assert.equal(prior.length,207);
 assert.equal(crypto.createHash('sha256').update(JSON.stringify(prior)).digest('hex'),'d8f90bbdc9f5fd8441eea5c3cdf42f77d273174c097871659e97c0883fc28c00','Historical release identities changed');
-const guards=JSON.parse(fs.readFileSync('tools/hansol-direct-boundary-review.json','utf8')).preservedFiles;
-for(const [p,expected] of Object.entries(guards))assert.equal(crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex'),expected,`${p}: question/source asset metadata changed`);
-console.log(JSON.stringify({htmlPages:audit.pages,publicNotes:notes.length,historicalReleases:prior.length,protectedInputs:Object.keys(guards).length,idempotent:true,limits:'No access control, repository privacy or search removal is claimed'}));
+const protectedInputs=verifyProtectedInputs();
+console.log(JSON.stringify({htmlPages:audit.pages,publicNotes:notes.length,historicalReleases:prior.length,protectedInputs,idempotent:true,limits:'No access control, repository privacy or search removal is claimed'}));

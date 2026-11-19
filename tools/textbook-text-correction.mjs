@@ -1,9 +1,9 @@
 // Explicitly reviewed text variants only. No OCR transcription or heuristics.
 import assert from 'node:assert/strict';
-import fs from 'node:fs';
+import {readOriginalAsset} from './read-original-asset.mjs';
 import crypto from 'node:crypto';
 import {correctionFigures,correctionFigureAssets} from './textbook-correction-figures.mjs';
-const sha=path=>crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex');
+const sha=path=>crypto.createHash('sha256').update(readOriginalAsset(path)).digest('hex');
 export function textbookSourceFingerprint(q){
  const text=JSON.stringify([q.text||'',q.html||'',q.ocrText||'',q.choices.map(c=>[c.text||'',c.html||'',c.images||[]]),q.answer,q.images||[],q.sourceImage||'']);
  let h=14695981039346656037n;for(const ch of text){h^=BigInt(ch.codePointAt(0));h=BigInt.asUintN(64,h*1099511628211n);}return h.toString(16);

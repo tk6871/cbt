@@ -1,7 +1,7 @@
 import {chromium, devices} from '@playwright/test';
 
 // Repeatable lab measurement, not an Android/iOS hardware benchmark.
-const base = new URL(process.env.CBT_TEST_URL || 'http://127.0.0.1:4248/');
+const base = new URL(process.env.CBT_TEST_URL || 'http://127.0.0.1:4360/');
 const browser = await chromium.launch({channel:'chrome'});
 const samples = {};
 try {
@@ -22,12 +22,9 @@ try {
       await cdp.send('Network.emulateNetworkConditions',{offline:false,latency:75,downloadThroughput:1_250_000,uploadThroughput:400_000,connectionType:'cellular4g'});
       await cdp.send('Emulation.setCPUThrottlingRate',{rate:4});
       await page.addLocatorHandler(page.locator('.pwa-error-notice'),()=>page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click());
-      const main=page.locator('.app-frame');
       const sidebar=page.locator('.sidebar');
       const menu=()=>page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
       const round=()=>sidebar.getByRole('button',{name:/회차별 문제/}).click();
-      await page.goto(new URL('?safe=1',base).href,{waitUntil:'domcontentloaded'});
-      await main.waitFor();
       const requests=[];
       page.on('requestfinished',r=>{if(r.resourceType()==='script'||r.resourceType()==='image')requests.push(new URL(r.url()).pathname.split('/').at(-1));});
       async function measure(name,action,ready){
@@ -36,7 +33,8 @@ try {
         await ready();
         (samples[name]??=[]).push({ms:Math.round(performance.now()-start),files:[...new Set(requests.slice(index))]});
       }
-      await menu();await round();
+      await measure('coldHome',()=>page.goto(new URL('?safe=1',base).href,{waitUntil:'commit'}),()=>page.getByRole('heading',{name:'나의 학습 홈'}).waitFor());
+      await page.getByRole('button',{name:'회차별 기출 고르기'}).click();
       await measure('bookLibrary',()=>page.getByRole('button',{name:'교재 페이지별',exact:true}).click(),async()=>{
         await page.locator('.textbook-library .library-open:enabled').first().waitFor();
         await page.locator('.textbook-library .contents-tree').waitFor();
@@ -59,7 +57,7 @@ try {
       await sidebar.getByRole('button',{name:/계산문제만 풀기/}).click();
       await measure('formulaTool',()=>page.getByRole('button',{name:'수식 계산 실험',exact:true}).click(),()=>page.locator('.formula-workbench-result .answer').waitFor());
       await menu();await round();
-      await page.getByRole('combobox',{name:'현재 화면의 자격증 종목',exact:true}).dispatchEvent('change');
+      await page.getByRole('button',{name:'자격증 기출',exact:true}).click();
       await page.locator('#round-card-hvac-20261').getByRole('button',{name:'CBT 시험모드',exact:true}).click();
       const firstCard=page.locator('.session-shell .question-card').first();
       await firstCard.waitFor();

@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-19",
   "book": "hansol",
   "normalScreensRead": 620,
   "columnOcrRegions": 2480,
@@ -9857,9 +9857,9 @@
       "page": "5-27",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 2,
+      "linkedPositions": 4,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9875,9 +9875,9 @@
       "page": "5-29",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
@@ -9902,25 +9902,25 @@
       "page": "5-32",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "5-33",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 4,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "5-34",
       "basis": "printed-footer",
       "detectedPositions": 3,
-      "linkedPositions": 3,
+      "linkedPositions": 4,
       "heldPositions": 0,
       "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
@@ -9929,27 +9929,27 @@
       "page": "5-35",
       "basis": "printed-footer",
       "detectedPositions": 4,
-      "linkedPositions": 3,
+      "linkedPositions": 5,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "5-36",
       "basis": "printed-footer",
       "detectedPositions": 6,
-      "linkedPositions": 5,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 1,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {
       "page": "5-37",
       "basis": "printed-footer",
       "detectedPositions": 5,
-      "linkedPositions": 3,
+      "linkedPositions": 6,
       "heldPositions": 0,
-      "unconfirmedCandidates": 2,
+      "unconfirmedCandidates": 0,
       "workedExamplePositions": 0
     },
     {

@@ -13,10 +13,25 @@
   <title>산업기사 통합 CBT</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-  <link rel="stylesheet" href="modern/cbt.css?v=753">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="modulepreload" href="modern/cbt.js?v=800">
+  <!-- study-module-preloads -->
+  <link rel="modulepreload" href="modern/chunks/_commonjsHelpers-v800.js">
+  <link rel="modulepreload" href="modern/chunks/import-wrapper-prod-v800.js">
+  <link rel="modulepreload" href="modern/chunks/index-v8003.js">
+  <link rel="modulepreload" href="modern/chunks/main-v800.js">
+  <link rel="modulepreload" href="modern/chunks/materials-v800.js">
+  <link rel="modulepreload" href="modern/chunks/preload-helper-v800.js">
+  <link rel="modulepreload" href="modern/chunks/problem-image-index-v800.js">
+  <link rel="modulepreload" href="modern/chunks/question-fingerprint-v800.js">
+  <link rel="modulepreload" href="modern/chunks/storage-v800.js">
+  <!-- /study-module-preloads -->
+  <link rel="stylesheet" href="modern/cbt.css?v=800">
+  <link rel="stylesheet" href="modern/materials-v800.css">
   <script>
     window.CBT_APP_SPACE = 'industrial';
     try {
+      document.documentElement.dataset.fontFamily = localStorage.getItem('unified-cbt-font-family') || 'regular';
       const mode = localStorage.getItem('unified-cbt-theme') || 'dark';
       const dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
       document.documentElement.dataset.theme = dark ? 'dark' : 'light';
@@ -27,23 +42,24 @@
   </script>
   <style>
     html,body,#next-app{min-height:100%}html,body{margin:0;background:var(--bg,#f2f6fb)}
-    .next-boot{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:12px;color:#10243f;font:600 14px "Nanum Gothic",system-ui,sans-serif}
+    .next-boot{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:12px;color:#10243f;font:600 14px system-ui,sans-serif}
+    :root[data-font-family="regular"] .next-boot{font-family:var(--app-font-family)}
     .next-boot span{width:52px;height:52px;border-radius:16px;color:#fff;background:linear-gradient(145deg,#1683eb,#0853b3);display:grid;place-items:center;box-shadow:0 12px 28px rgba(18,104,211,.25);font-size:12px}
     .next-boot small{color:#71839a;font-weight:500}
+    .next-boot{color:var(--text,#25394f)}.next-boot small{color:var(--muted,#54657a)}
+    .next-boot button{min-height:44px;padding:8px 18px;border:1px solid currentColor;border-radius:8px;background:var(--surface,#fff);color:var(--text,#10243f);font:inherit}
   </style>
 </head>
 <body>
   <div id="next-app">
-    <div class="next-boot"><span>CBT</span><strong>산업기사 CBT를 준비하고 있습니다.</strong><small>문제와 학습 기록을 안전하게 불러오는 중입니다.</small></div>
+    <div class="next-boot" data-entry="modern/cbt.js?v=800"><span>CBT</span><strong>산업기사 CBT를 준비하고 있습니다.</strong><small role="status">문제와 학습 기록을 안전하게 불러오는 중입니다.</small><button type="button" hidden onclick="location.reload()">다시 시도</button></div>
   </div>
+  <script src="data/study-start.js?v=800" onerror="document.querySelector('.next-boot button').hidden=false"></script>
   <script src="cloud-config.js?v=200"></script>
-  <script src="data/catalog-index.js?v=753"></script>
-  <script src="data/catalog-bootstrap.js?v=753"></script>
+  <script data-study-required src="data/catalog-index.js?v=800"></script>
+  <script data-study-required src="data/catalog-bootstrap.js?v=800"></script>
   <script src="data/changelog.js?v=255"></script>
-  <script src="data/changelog-vue.js?v=753"></script>
-  <script type="module">
-    import(/* @vite-ignore */ (window.CBT_DISPLAY_MODE === 'mobile' ? './modern/mobile.js?v=753' : './modern/cbt.js?v=753'));
-  </script>
+  <script src="data/changelog-vue.js?v=800"></script>
   <script type="module">
     if (window.CBT_CLOUD_CONFIG?.enabled) import('./modern/visitor.js?v=255');
   </script>

@@ -1,0 +1,60 @@
+{
+  "fan": {
+    "label": "임펠러",
+    "questions": [
+      "hvac-20100725:53",
+      "hvac-20160306:52"
+    ]
+  },
+  "pump": {
+    "label": "펌프 배관",
+    "questions": [
+      "hvac-20050529:51"
+    ],
+    "file": "centrifugal-pump.glb",
+    "source": "https://www.innerscene.com/tools/library/3d-parts/centrifugal-pump-skid-with-baseplate-and-motor-2dcc3ad2",
+    "license": "CC0-1.0",
+    "sourceTitle": "Centrifugal pump skid with baseplate and motor",
+    "part": "Suction and discharge spools",
+    "action": "연결 배관 강조",
+    "intro": "펌프 몸체와 모터, 연결 배관이 놓인 위치를 돌려 보세요.",
+    "detail": "강조한 배관이 펌프 흡입구와 토출구에 연결됩니다. 흡입구 바로 앞에서 급격히 방향을 바꾸면 유입 흐름이 불균일해질 수 있습니다."
+  },
+  "shell": {
+    "label": "원통다관식 열교환기",
+    "questions": [
+      "hvac-20080727:13",
+      "hvac-20090510:19"
+    ],
+    "file": "shell-and-tube.glb",
+    "source": "https://www.innerscene.com/tools/library/3d-parts/shell-and-tube-heat-exchanger-69685a9a",
+    "license": "CC0-1.0",
+    "sourceTitle": "Shell-and-tube heat exchanger",
+    "part": "Shell inlet|Shell outlet",
+    "action": "동체 측 입·출구 강조",
+    "intro": "양 끝의 덮개와 원통 옆의 연결구를 찾아보세요. 관 안을 지나는 유체와 관 바깥을 지나는 유체는 관 벽을 통해 열을 교환합니다.",
+    "detail": "강조된 두 연결구는 동체 내부로 이어집니다. 양 끝 덮개에 달린 연결구는 관 측 유체의 통로입니다."
+  },
+  "plate": {
+    "label": "판형 열교환기",
+    "questions": [
+      "hvac-20130310:15"
+    ],
+    "file": "plate-exchanger.glb",
+    "source": "https://www.innerscene.com/tools/library/3d-parts/plate-heat-exchanger-f6cd1b02",
+    "license": "CC0-1.0",
+    "sourceTitle": "Plate heat exchanger",
+    "part": "Plate pack",
+    "action": "전열판 묶음 강조",
+    "intro": "두꺼운 프레임 사이에 여러 장의 얇은 전열판이 들어 있습니다. 모형을 옆으로 돌려 전열판 묶음의 위치를 확인하세요.",
+    "detail": "인접한 유로로 두 유체가 번갈아 흐릅니다. 유체가 섞이지 않고 얇은 전열판을 사이에 두고 열이 이동합니다."
+  },
+  "piston": {
+    "label": "왕복동 압축기 행정",
+    "questions": [
+      "hvac-20030316:25",
+      "hvac-20040307:35",
+      "hvac-hansol-2019-1:39"
+    ]
+  }
+}

@@ -1,23 +1,21 @@
 <script setup lang="ts">
+import {legacyRef} from "./legacySignalRefs";
 import { onMounted, ref, watch } from 'vue';
 import { CollapsibleContent, CollapsibleRoot, CollapsibleTrigger, SwitchRoot, SwitchThumb } from 'reka-ui';
 import { Gauge, Palette, RotateCcw, ShieldCheck, Sparkles, WandSparkles } from '@lucide/vue';
 import { useUiLab, type UiAccent, type UiDensity, type UiMotion, type UiSurface } from './uiLab';
 
 const emit = defineEmits<{ startTour: [] }>();
-const {
-  enabled,
-  active,
-  safeMode,
-  density,
-  surface,
-  motion,
-  accent,
-  photoOverlay,
-  systemPreferenceLabel,
-  contrastReport,
-  reset,
-} = useUiLab();
+const lab=useUiLab();
+const {safeMode,contrastReport,reset}=lab;
+const enabled=legacyRef(lab.enabled);
+const active=legacyRef(lab.active);
+const density=legacyRef(lab.density);
+const surface=legacyRef(lab.surface);
+const motion=legacyRef(lab.motion);
+const accent=legacyRef(lab.accent);
+const photoOverlay=legacyRef(lab.photoOverlay);
+const systemPreferenceLabel=legacyRef(lab.systemPreferenceLabel);
 const detailsOpen = ref(false);
 const contrastRatio = ref(0);
 const contrastGrade = ref<'좋음' | '보통' | '부족'>('좋음');

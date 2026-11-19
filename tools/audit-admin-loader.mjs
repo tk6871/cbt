@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import ts from 'typescript';
 
-const source = readFileSync('src/admin/App.vue','utf8');
+const source = readFileSync('src/admin/adminController.ts','utf8');
 const start = source.indexOf('async function loadData(');
 const end = source.indexOf('\nfunction ', start);
 assert.ok(start > 0 && end > start);

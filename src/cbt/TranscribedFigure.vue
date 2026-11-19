@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import {computed, ref, watch} from 'vue';
-import {useImageTranscription} from './imageTranscription';
+import {imageSourceKey,imageTranscriptionSnapshot,requestImageTranscription,subscribeImageTranscription} from './imageTranscription';
+import {explanationDisplay} from './explanationDisplay';
 const props=defineProps<{source:string;imageClass?:string}>();
-const {entry,pending}=useImageTranscription(computed(()=>props.source));
+const snapshot=ref<ReturnType<typeof imageTranscriptionSnapshot>>();
+watch(()=>props.source,(source,_,cleanup)=>{
+  const key=imageSourceKey(source);
+  const update=()=>{snapshot.value=imageTranscriptionSnapshot(key,explanationDisplay.value);};
+  const stop=subscribeImageTranscription(key,update);
+  const mode=explanationDisplay.subscribe(value=>{requestImageTranscription(key,value);update();});
+  cleanup(()=>{stop();mode();});
+},{immediate:true});
+const entry=computed(()=>snapshot.value==='pending'?undefined:snapshot.value);
+const pending=computed(()=>snapshot.value==='pending');
 const imageOverride=ref(false);
 watch(()=>props.source,()=>imageOverride.value=false);
 const visibleText=computed(()=>!imageOverride.value&&entry.value?.kind==='explanation'?entry.value:undefined);

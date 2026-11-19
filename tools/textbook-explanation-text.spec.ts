@@ -1,6 +1,8 @@
+import {readOriginalAsset} from './read-original-asset.mjs';
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
 import katex from 'katex';
 import {textbookDirectSources} from '../src/cbt/textbookPages';
@@ -34,7 +36,15 @@ test('승인195개만 표시·43수식 KaTeX·원문 변경 시 이미지로 복
 
 test('교재 경계 감사 원본 지문 해시 보존',()=>{
  const guards=JSON.parse(fs.readFileSync('tools/hansol-direct-boundary-review.json','utf8')).preservedFiles;
- for(const [path,sha] of Object.entries(guards))expect(crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex')).toBe(sha);
+ // Later main revisions published reviewed explanations in these three banks.
+ // Keep every other file pinned to the original page-boundary audit.
+ for(const [path,sha] of Object.entries(guards)){
+  const baseline=crypto.createHash('sha256').update(execFileSync('git',['show','1d7fa8c8:'+path],{maxBuffer:80_000_000})).digest('hex');
+  expect(baseline,path).toBe(sha);
+  if(path==='data/textbook-pages.json')continue; // Verified by the per-entry preservation test.
+  const reviewedHash=crypto.createHash('sha256').update(execFileSync('git',['show','4949bd09:'+path],{maxBuffer:80_000_000})).digest('hex');
+  expect(crypto.createHash('sha256').update(readOriginalAsset(path)).digest('hex'),path).toBe(reviewedHash);
+ }
 });
 
 test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미검토 이미지 유지',async({page},testInfo)=>{
@@ -46,8 +56,7 @@ test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미�
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('/?safe=1');
- if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
- await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
+ await page.getByRole('button',{name:'회차별 기출 고르기',exact:true}).click();
  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();await enterBookReader(page);
  await chooseBookPage(page,'3-266');
  const card=page.locator('[data-source-id="hansol-direct-3-266-3"]');
@@ -69,6 +78,7 @@ test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미�
  }
  await card.locator('.direct-solution-original>summary').click();
  await page.locator('.textbook-pages').getByRole('button',{name:'교재 풀이 설정',exact:true}).click();
+ await page.getByRole('button',{name:'해설·이미지',exact:true}).click();
  const setting=page.locator('[data-setting="explanationDisplay"]');
  await setting.getByRole('button',{name:/원문 이미지/}).click();
  expect(await page.evaluate(()=>localStorage.getItem('cbt-explanation-display-v1'))).toBe('image');

@@ -15,7 +15,7 @@ const [viteConfig, worker, workerSource, recovery, index, jewelry, packageJson, 
   read('index.html'),
   read('jewelry.html'),
   read('package.json'),
-  read('src/cbt/QuestionCard.vue'),
+  read('src/react/session/QuestionCard.tsx'),
 ]);
 
 const version = viteConfig.match(/const buildVersion = '(\d+)'/)?.[1];
@@ -50,7 +50,7 @@ if (/localStorage\.clear|indexedDB\.deleteDatabase/.test(recovery)) {
 if (!packageJson.includes('"vite-plugin-pwa": "1.3.0"') || !packageJson.includes('"workbox-window": "7.4.1"')) {
   throw new Error('검증한 PWA 의존성 버전이 고정되지 않았습니다.');
 }
-if (!questionCard.includes('beginnerCalculationOpen.value = false;')) {
+if (!questionCard.includes('setBeginnerCalculationOpen(false);')) {
   throw new Error('쉽게 풀어보기의 기본 닫힘 설정이 빠졌습니다.');
 }
 

@@ -17,17 +17,12 @@ test('숫자·단위 감지는 부분 문자열을 정답으로 오인하지 않
 });
 
 async function openPractice(page: Page) {
-  await page.goto('./?safe=1');
-  const home = page.getByRole('heading', { name: '준비할 종목을 선택하세요' });
-  const practice = page.getByRole('heading', { name: '공조냉동 실기 필답형 훈련관' });
-  await expect(home.or(practice)).toBeVisible();
-  if (await practice.isVisible()) return;
-  const later = page.getByRole('button', { name: '나중에', exact: true });
-  if (await later.isVisible()) await later.click();
-  await page.getByRole('button', { name: '패치노트 보기' }).click();
-  await page.getByRole('button', { name: /신기술 학습관/ }).click();
-  await page.getByRole('button', { name: /필답형 훈련관 열기/ }).click();
-  await expect(page.locator('.practical-question-grid > article')).toHaveCount(1);
+  await page.goto('./?safe=1#/study/guide');
+  const question = page.locator('.practical-question-grid > article').first();
+  const round = page.locator('.practical-round-library button').filter({hasText:/시작하기|이어풀기/}).first();
+  await expect(question.or(round).first()).toBeVisible({timeout:15000});
+  if (!await question.isVisible()) await round.click();
+  await expect(question).toBeVisible();
 }
 
 test('CBT 흐름과 한/두/네/연속 보기, 작성 답안 보존', async ({ page }) => {
@@ -37,9 +32,9 @@ test('CBT 흐름과 한/두/네/연속 보기, 작성 답안 보존', async ({ p
   await expect(page.locator('.practical-extra-tools')).not.toHaveAttribute('open');
   const answer = page.locator('.practical-answer-input textarea').first();
   await answer.fill('압축기에서 냉매를 압축한다.');
-  await page.getByRole('button', { name: '다음 문제 →', exact: true }).click();
+  await page.getByRole('button', { name: /다음 문제/ }).click();
   await expect(answer).toHaveValue('');
-  await page.getByRole('button', { name: '← 이전 문제', exact: true }).click();
+  await page.getByRole('button', { name: /이전 문제/ }).click();
   await expect(answer).toHaveValue('압축기에서 냉매를 압축한다.');
   const layout = page.getByLabel('필답형 화면 배치');
   await layout.selectOption('2');
@@ -51,10 +46,10 @@ test('CBT 흐름과 한/두/네/연속 보기, 작성 답안 보존', async ({ p
   expect(await page.locator('.practical-question-grid > article').count()).toBeGreaterThan(4);
   await expect(page.locator('.practical-pagination')).toHaveCount(0);
   await layout.selectOption('single');
-  await page.getByRole('button', { name: '답안 확인', exact: true }).click();
+  await page.getByRole('button', { name: '정답·풀이 보기', exact: true }).click();
   await expect(page.locator('.practical-solution')).toBeVisible();
-  await expect(page.locator('.practical-explanation')).not.toHaveAttribute('open');
-  await expect(page.locator('.practical-solution')).toContainText('학습용 핵심 답안');
+  await expect(page.locator('.practical-explanation')).toHaveAttribute('open');
+  await expect(page.locator('.practical-solution')).toContainText('정답');
   await page.locator('.practical-extra-tools > summary').click();
   await page.getByRole('button', { name: '부분점수 채점', exact: true }).click();
   const criterion = page.locator('.practical-rubric-list button').first();
@@ -65,96 +60,39 @@ test('CBT 흐름과 한/두/네/연속 보기, 작성 답안 보존', async ({ p
   expect(errors).toEqual([]);
 });
 
-test('손글씨 확대와 이동 모드가 답안 복귀 시 유지된다', async ({ page }) => {
+test('이전 손글씨 환경에서도 현재 필답 입력과 기존 필기 저장값을 유지한다', async ({page}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem('unified-cbt-hvac-practical-study-mode-v1','handwrite');
+    localStorage.setItem('unified-cbt-hvac-practical-pad-v1:test',JSON.stringify([{points:[[10,20],[14,22]]}]));
+  });
   await openPractice(page);
-  await page.getByRole('button', { name: /실전 답안지/ }).click();
-  const canvas = page.locator('canvas[aria-label="공조냉동 필답형 손글씨 답안지"]');
-  await expect(canvas).toBeVisible();
-  await page.getByLabel('답안지 확대').selectOption('150');
-  const box = (await canvas.boundingBox())!;
-  await canvas.dispatchEvent('pointerdown', { pointerType: 'pen', pointerId: 1, button: 0, clientX: box.x+30, clientY: box.y+30, pressure: .5 });
-  await canvas.dispatchEvent('pointermove', { pointerType: 'touch', pointerId: 2, clientX: box.x+60, clientY: box.y+60 });
-  await canvas.dispatchEvent('pointerup', { pointerType: 'touch', pointerId: 2 });
-  await canvas.dispatchEvent('pointermove', { pointerType: 'pen', pointerId: 1, clientX: box.x+80, clientY: box.y+80, pressure: .7 });
-  await canvas.dispatchEvent('pointerup', { pointerType: 'pen', pointerId: 1 });
-  await page.getByRole('button', { name: '다음 문제 →', exact: true }).click();
-  await page.getByRole('button', { name: '← 이전 문제', exact: true }).click();
-  await expect(page.getByLabel('답안지 확대')).toHaveValue('150');
-  await expect(page.getByRole('button', { name: 'PNG 저장' })).toBeEnabled();
+  await expect(page.locator('.practical-answer-input textarea').first()).toBeVisible();
+  await expect(page.getByRole('button',{name:/실전 답안지/})).toHaveCount(0);
+  expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-hvac-practical-pad-v1:test')!))).toEqual([{points:[[10,20],[14,22]]}]);
 });
 
 test('다시 접속해도 필답형 위치와 입력 답안을 복원한다', async ({ page }) => {
   await openPractice(page);
-  await page.getByRole('button', { name: '다음 문제 →', exact: true }).click();
+  await page.getByRole('button', { name: /다음 문제/ }).click();
   await page.locator('.practical-answer-input textarea').fill('2번 답안 이어쓰기');
   await openPractice(page);
   await expect(page.locator('.practical-answer-input textarea')).toHaveValue('2번 답안 이어쓰기');
-  await expect(page.locator('.practical-page-center')).toContainText('2 / 407');
-});
-
-test('손가락 이동 ON에서 실제 pen 포인터가 이어지고 지우개는 배경 줄을 보존한다', async ({page, context}, info) => {
-  await openPractice(page);
-  await page.getByRole('button', {name:/실전 답안지/}).click();
-  await page.getByRole('button', {name:'답안지 크게 쓰기',exact:true}).click();
-  const pad = page.getByRole('dialog', {name:'실전 손글씨 답안지',exact:true});
-  await expect(pad).toBeVisible();
-  const canvas = pad.locator('canvas');
-  await expect(canvas).toHaveCSS('touch-action','none');
-  await expect(pad.getByLabel('손가락은 이동만')).toBeChecked();
-  const cdp = await context.newCDPSession(page);
-  let box = (await canvas.boundingBox())!;
-  await cdp.send('Input.dispatchTouchEvent', {type:'touchStart', touchPoints:[{x:box.x+100,y:box.y+120}]});
-  await cdp.send('Input.dispatchTouchEvent', {type:'touchMove', touchPoints:[{x:box.x+100,y:box.y+60}]});
-  await cdp.send('Input.dispatchTouchEvent', {type:'touchEnd', touchPoints:[]});
-  await expect.poll(() => pad.locator('.practical-pad-scroll').evaluate(el=>el.scrollTop)).toBeGreaterThan(20);
-  await pad.locator('.practical-pad-scroll').evaluate(el=>{el.scrollTop=0;});
-  box = (await canvas.boundingBox())!;
-  const sample = await canvas.evaluate((el: HTMLCanvasElement) => {
-    const ratio=el.width/el.getBoundingClientRect().width;
-    const y=Math.max(42,Math.round(el.width*.052))*2;
-    const x=Math.round(el.width*.4);
-    return {x:x/ratio,y:y/ratio,pixels:Array.from(el.getContext('2d')!.getImageData(x-2,y-2,5,5).data)};
-  });
-  const draw = async () => {
-    const x=box.x+sample.x,y=box.y+sample.y;
-    await cdp.send('Input.dispatchMouseEvent',{type:'mousePressed',x:x-25,y,button:'left',buttons:1,clickCount:1,pointerType:'pen',force:.5});
-    for(let i=1;i<=10;i++) await cdp.send('Input.dispatchMouseEvent',{type:'mouseMoved',x:x-25+i*5,y,button:'left',buttons:1,pointerType:'pen',force:.6});
-    await cdp.send('Input.dispatchMouseEvent',{type:'mouseReleased',x:x+25,y,button:'left',buttons:0,clickCount:1,pointerType:'pen'});
-  };
-  const pixels = () => canvas.evaluate((el:HTMLCanvasElement, point) => {
-    const ratio=el.width/el.getBoundingClientRect().width;
-    return Array.from(el.getContext('2d')!.getImageData(Math.round(point.x*ratio)-2,Math.round(point.y*ratio)-2,5,5).data);
-  }, sample);
-  await draw();
-  await expect.poll(pixels).not.toEqual(sample.pixels);
-  const lengths = await page.evaluate(() => Object.keys(localStorage).filter(key=>key.startsWith('unified-cbt-hvac-practical-pad-v1:')&&!key.endsWith(':view')).flatMap(key=>JSON.parse(localStorage.getItem(key)!).map((stroke:any)=>stroke.points.length)));
-  expect(Math.max(...lengths)).toBeGreaterThanOrEqual(8);
-  await pad.getByRole('button',{name:'지우개',exact:true}).click();
-  await draw();
-  await expect.poll(pixels).toEqual(sample.pixels);
-  const height = box.height;
-  await pad.getByRole('button',{name:'답안지 아래 늘리기',exact:true}).click();
-  await expect.poll(async()=>(await canvas.boundingBox())!.height).toBeGreaterThan(height);
-  await page.screenshot({path:`/private/tmp/cbt-pad-fixed-${info.project.name}.png`});
-  await pad.getByRole('button',{name:'원래 화면으로',exact:true}).click();
-  await expect(pad).toHaveCount(0);
-  expect(await page.evaluate(()=>document.body.style.overflow)).not.toBe('hidden');
-  await cdp.detach();
+  await expect(page.locator('.practical-page-center')).toContainText(/2\s*\/\s*12/);
 });
 
 test('계산 단계 연습은 기존 답안과 별도로 보존된다', async ({ page }) => {
   await openPractice(page);
-  await page.locator('.practical-scope > summary').click();
+  await page.getByRole('button',{name:'검색·범위',exact:true}).click();
   await page.locator('.practical-category-tabs').getByRole('button', { name: '계산', exact: true }).click();
   await page.locator('.practical-answer-input textarea').fill('기존 답안 유지');
-  await page.getByRole('button', { name: '답안 확인', exact: true }).click();
+  await page.getByRole('button', { name: '정답·풀이 보기', exact: true }).click();
   await page.locator('.practical-extra-tools > summary').click();
   await page.getByRole('button', { name: '부분점수 채점', exact: true }).click();
   await page.locator('.practical-calculation-retry > summary').click();
   await page.getByLabel('공식 다시 쓰기').fill('연습 공식');
   await page.locator('.practical-calculation-retry').getByRole('button', { name: '대입', exact: true }).click();
   await page.getByLabel('대입 다시 쓰기').fill('연습 대입');
-  await expect(page.locator('.practical-response-body > .practical-answer-input textarea')).toHaveValue('기존 답안 유지');
+  await expect(page.getByRole('textbox',{name:'내 답안',exact:true})).toHaveValue('기존 답안 유지');
   await page.locator('.practical-calculation-retry').getByRole('button', { name: '공식', exact: true }).click();
   await expect(page.getByLabel('공식 다시 쓰기')).toHaveValue('연습 공식');
 });
@@ -168,9 +106,9 @@ test('캐시 준비 후 오프라인에서도 처음 여는 도우미와 학교 
   await context.setOffline(true);
   await page.locator('.practical-extra-tools > summary').click();
   await expect(page.getByRole('button', { name: '답안 골격 넣기' })).toBeVisible();
-  await page.getByRole('button', { name: /실전 답안지/ }).click();
-  await expect(page.locator('canvas[aria-label="공조냉동 필답형 손글씨 답안지"]')).toBeVisible();
-  await page.locator('.sidebar nav button').filter({ hasText: '학교 시험 준비' }).click();
+  await expect(page.locator('.practical-answer-input textarea').first()).toBeVisible();
+  await page.goto('./?safe=1#/study/school');
+  await page.reload();
   await expect(page.getByRole('heading', { name: '학교 중간·기말고사 준비', exact: true })).toBeVisible();
   await context.setOffline(false);
 });
@@ -182,9 +120,11 @@ test('반쪽 FHD·태블릿·4K에서 넘침 없이 배치된다', async ({ page
     await page.setViewportSize({ width, height });
     await page.locator('.practical-study-room').scrollIntoViewIfNeeded();
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
-    const article = page.locator('.practical-question-grid > article').first();
-    const columns = await article.evaluate(el => getComputedStyle(el).gridTemplateColumns);
-    if (width === 1180 || width === 3840) expect(columns.split(' ').length).toBe(2);
+    const card = page.locator('.practical-question-grid > article').first();
+    const container = page.locator('.practical-question-grid');
+    const bounds = await card.boundingBox();
+    expect(bounds!.width).toBeLessThanOrEqual((await container.boundingBox())!.width + 1);
+    await expect(card.locator('.practical-answer-input textarea')).toBeVisible();
     await page.screenshot({ path: `/private/tmp/cbt-practical-${width}.png`, fullPage: false });
   }
 });

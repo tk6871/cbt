@@ -1,4 +1,4 @@
-import { shallowRef } from 'vue';
+import {signal as shallowRef} from '@preact/signals-core';
 import type { PracticalPrompt, StudyGuidePage } from './qualificationStudyGuides';
 
 // Keep menu availability independent of the optional, large practice bank.

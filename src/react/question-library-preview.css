@@ -1,0 +1,5 @@
+.library-image-preview { margin-block:.8rem; min-width:0; }
+.library-image-preview summary { cursor:pointer; padding:.5rem 0; font-weight:700; }
+.library-image-preview small { display:block; margin-top:.3rem; font-size:.85rem; color:var(--muted); }
+.library-image-preview img { display:block; width:100%; height:auto; max-height:none; margin-top:.7rem; border-radius:6px; object-fit:contain; }
+.library-image-preview button { min-height:44px; padding:.5rem; color:inherit; border:1px solid currentColor; border-radius:6px; background:transparent; }

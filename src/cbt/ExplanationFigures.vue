@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import {explanationDisplay} from './explanationDisplay';
+import {legacyRef} from "./legacySignalRefs";
+import {explanationDisplay as preference} from './explanationDisplay';
 import TranscribedFigure from './TranscribedFigure.vue';
 defineProps<{images?:string[];folded?:boolean;imageClass?:string}>();
 const emit=defineEmits<{interact:[]}>();
+const explanationDisplay=legacyRef(preference);
 </script>
 <template>
  <details v-if="folded&&explanationDisplay==='text'&&images?.length" class="original-textbook-explanation" @click="emit('interact')">

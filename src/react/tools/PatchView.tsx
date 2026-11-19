@@ -1,0 +1,114 @@
+import type { PatchViewModel } from '../../cbt/studyController';
+import {clsx as normalizeClass} from 'clsx';
+import { problemImage } from '../../cbt/problemImages';
+export function renderPatchView(m: PatchViewModel) {
+  const {
+    androidApkUrl,
+    checkForUpdate,
+    currentVersion,
+    openView,
+    patchEntries,
+    resumeSavedLearning,
+    savedLearningSession,
+    showAndroidApkPatchDownload,
+    spaceName,
+    updateChecking,
+  } = m;
+
+  return (
+    <>
+      <section className="patch-heading">
+        <div>
+          <span>RELEASE NOTES</span>
+          <h1>
+            {spaceName}
+            {' 패치노트'}
+          </h1>
+          <p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p>
+        </div>
+        <div className="patch-version-actions">
+          <strong>v{currentVersion}</strong>
+          {savedLearningSession ? (
+            <button type="button" onClick={resumeSavedLearning} className="resume-after-update">
+              ▶ 저장한 문제 이어서 풀기
+            </button>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => {
+              openView('showcase');
+            }}
+            className="feature-lab-entry"
+          >
+            ◉ 신기술 학습관 NEW
+          </button>
+          <button
+            type="button"
+            disabled={updateChecking}
+            onClick={() => {
+              checkForUpdate(true);
+            }}
+          >
+            {updateChecking ? '확인 중…' : '최신 버전 확인'}
+          </button>
+        </div>
+      </section>
+      {showAndroidApkPatchDownload ? (
+        <section aria-labelledby="patch-apk-download-title" className="patch-apk-download">
+          <div aria-hidden="true" className="android-app-mark">
+            <svg viewBox="0 0 48 48" role="img">
+              <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
+              <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
+              <circle cx="19" cy="15" r="1.3" />
+              <circle cx="29" cy="15" r="1.3" />
+            </svg>
+          </div>
+          <div>
+            <span>ANDROID APP</span>
+            <strong id="patch-apk-download-title">휴대폰·태블릿용 정식 APK</strong>
+            <small>Android 7.0 이상 · 약 8MB · 최신 버전으로 교체 설치할 수 있습니다.</small>
+          </div>
+          <a
+            href={problemImage(androidApkUrl)}
+            target="_blank"
+            rel="noopener"
+            aria-label="Android 전용 CBT 정식 APK 받기"
+          >
+            {'정식 APK 받기 '}
+            <b aria-hidden="true">↓</b>
+          </a>
+        </section>
+      ) : null}
+      <div className="patch-timeline">
+        {patchEntries.map((entry, index) => (
+          <article
+            key={`${entry.version}-${entry.title}`}
+            className={normalizeClass([{ latest: index === 0 }])}
+          >
+            <div className="patch-version">
+              <span>v{entry.version}</span>
+              <small>{entry.date}</small>
+            </div>
+            <div>
+              <header>
+                <h2>{entry.title}</h2>
+                {index === 0 ? <b>최신</b> : null}
+              </header>
+              <p>{entry.summary}</p>
+              <div className="patch-tags">
+                {(entry.tags || []).map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+              <ul>
+                {(entry.changes || []).map((change) => (
+                  <li key={change}>{change}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </>
+  );
+}

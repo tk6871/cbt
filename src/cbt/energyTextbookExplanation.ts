@@ -1,6 +1,6 @@
 import editorial from '../../data/energy-reviewed-explanations.json' with {type:'json'};
 import matches from '../../data/energy-textbook-comcbt-links.json' with {type:'json'};
-import {coolingBookFingerprint} from './coolingBookScope';
+import {coolingBookFingerprint} from './questionFingerprint';
 import type {Question} from './types';
 type Link={sourceId:string;sourceFingerprint:string;targetFingerprint:string;answer:number};
 type ReviewedExplanation = {fingerprint:string; text:string; basis:string; originalLabel?:string; formula?:Question['explanationFormula']};

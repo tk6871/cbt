@@ -66,7 +66,7 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
  const matchedCard=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 46번',exact:true})}).locator('.question-card');
  await expect(matchedCard.locator('.image-answer-hotspot')).toHaveCount(4);
  await matchedCard.locator('.image-answer-hotspot').first().click();
- await expect(matchedCard.locator('.beginner-primary-explanation strong')).toHaveText('COMCBT 해설');
+ await expect(matchedCard.locator('.beginner-primary-explanation strong')).toHaveText('풀이');
  const original=matchedCard.locator('.original-textbook-explanation');
  await expect(original).not.toHaveAttribute('open');
  await original.locator('summary').click();
@@ -81,7 +81,7 @@ test('책 형태 배치·쪽 넘김·선택과 복원·두 교재 전환',async(
  await chooseBookPage(page,'336');
  const textbookCard=root.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 1번',exact:true})}).locator('.question-card');
  await textbookCard.locator('.image-answer-hotspot').nth(3).click();
- await expect(textbookCard.locator('.beginner-primary-explanation strong')).toHaveText('COMCBT 해설');
+ await expect(textbookCard.locator('.beginner-primary-explanation strong')).toHaveText('풀이');
  await expect(textbookCard.locator('.beginner-primary-explanation')).not.toContainText('&gt;');
  if(info.project.name==='desktop'){
   await page.setViewportSize({width:3840,height:2160});await root.scrollIntoViewIfNeeded();

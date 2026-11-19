@@ -1,0 +1,7 @@
+.sync-recovery-panel { display:grid; gap:12px; font-size:14px; line-height:1.6; }
+.sync-recovery-panel p { margin:0; }
+.sync-recovery-panel button { min-height:44px; padding:8px 12px; color:inherit; border:1px solid currentColor; border-radius:10px; background:transparent; }
+.sync-recovery-panel summary { cursor:pointer; overflow-wrap:anywhere; padding:10px 0; }
+.sync-recovery-choices { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:12px; }
+.sync-recovery-choices > div { min-width:0; padding:12px; border:1px solid #8886; border-radius:12px; }
+.sync-recovery-panel pre { font:inherit; white-space:pre-wrap; overflow-wrap:anywhere; max-height:180px; overflow:auto; }

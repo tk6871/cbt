@@ -1,6 +1,8 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
+import {verifyProtectedInputs} from './verify-protected-inputs.mjs';
+import {readOriginalAsset} from './read-original-asset.mjs';
 import {rasterDimensions} from './raster-dimensions.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const display=read('data/problem-images-webp90.json');
@@ -16,13 +18,13 @@ for(const [source,target] of Object.entries(display.mappings)){
   assert.equal(fs.statSync(target).size,r.bytes);targets.set(target,r.bytes);
  }
  if(process.argv.includes('--sources')){
-  const original=fs.existsSync(source)?source:`work/problem-webp90/originals/${source}`;
-  assert.equal(sha(original),r.sourceSha256);
+  const original=readOriginalAsset(source);
+  assert.equal(original.length,r.sourceBytes,source);
+  assert.equal(crypto.createHash('sha256').update(original).digest('hex'),r.sourceSha256,source);
  }
  sourceBytes+=r.sourceBytes;displayBytes+=r.bytes;
 }
 for(const source of audit.retained)assert.ok(fs.existsSync(source));
-const guards=read('tools/hansol-direct-boundary-review.json').preservedFiles;
-for(const [p,expected] of Object.entries(guards))assert.equal(sha(p),expected);
+const protectedInputs=verifyProtectedInputs();
 assert.equal(Object.keys(display.mappings).length,17605);assert.equal(audit.retained.length,8);
-console.log(JSON.stringify({mapped:17605,retained:8,uniqueTargets:targets.size,sourceBytes,displayBytes,uniqueBytes:[...targets.values()].reduce((a,b)=>a+b,0),sourceCheck:process.argv.includes('--sources'),protectedInputs:Object.keys(guards).length}));
+console.log(JSON.stringify({mapped:17605,retained:8,uniqueTargets:targets.size,sourceBytes,displayBytes,uniqueBytes:[...targets.values()].reduce((a,b)=>a+b,0),sourceCheck:process.argv.includes('--sources'),protectedInputs}));

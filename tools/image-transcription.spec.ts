@@ -65,6 +65,7 @@ test('문제·해설 OCR/이미지 전환·같은 선택 유지·설정 저장·
  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
  const settings=page.locator('[data-setting="explanationDisplay"]');
  await page.locator('.session-tools').getByRole('button',{name:/설정/}).click();
+ await page.getByRole('button',{name:'해설·이미지',exact:true}).click();
  await settings.getByRole('button',{name:/원문 이미지/}).click();
  await page.getByRole('button',{name:'설정 닫기',exact:true}).click();
  await expect(card.locator('.source-question-image')).toBeVisible();

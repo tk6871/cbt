@@ -1,0 +1,14 @@
+
+.practical-issue { margin:8px 0; }
+button,select,textarea { font:inherit; color:var(--text); background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:8px 12px; }
+button,select { min-height:44px; cursor:pointer; }
+form { border:1px solid var(--line); padding:12px; margin-top:8px; border-radius:10px; background:var(--surface-2); }
+header,footer,.issue-types { display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+header strong,footer small { flex:1; }
+label { display:grid; gap:6px; margin-top:12px; }
+textarea,select { width:100%; min-width:0; box-sizing:border-box; }
+textarea { resize:vertical; }
+.issue-types { margin-top:12px; }
+[aria-pressed="true"] { border-color:var(--primary); background:var(--primary); color:white; }
+footer { margin-top:12px; } small { color:var(--muted); } p { color:var(--danger,#c13c45); }
+button:disabled { opacity:.6; cursor:wait; }

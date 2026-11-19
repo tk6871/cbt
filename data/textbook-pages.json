@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "date": "2026-11-03",
+  "date": "2026-11-19",
   "limits": "대조하여 확인된 연결만 사용합니다. 미확인 페이지는 문제가 없다는 뜻이 아닙니다.",
   "entries": [
     {
@@ -57130,6 +57130,18 @@
     {
       "book": "hansol",
       "page": "5-27",
+      "number": 1,
+      "sourceId": "hvac-hansol-2023-3:1",
+      "fingerprint": "303d7a392912dceb",
+      "column": 0,
+      "imageSize": [
+        902,
+        288
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-27",
       "number": 2,
       "sourceId": "hvac-hansol-2023-3:2",
       "fingerprint": "45bc905ea44fd2ee",
@@ -57137,6 +57149,19 @@
       "imageSize": [
         926,
         1631
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-27",
+      "number": 3,
+      "sourceId": "hvac-hansol-2023-3:3",
+      "fingerprint": "28c48c966434b3fb",
+      "column": 1,
+      "previousDirectId": "hansol-direct-5-27-3",
+      "imageSize": [
+        902,
+        464
       ]
     },
     {
@@ -57233,6 +57258,19 @@
       "imageSize": [
         941,
         458
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-29",
+      "number": 12,
+      "sourceId": "hvac-hansol-2023-3:12",
+      "fingerprint": "8ad4478b9587902f",
+      "column": 0,
+      "previousDirectId": "hansol-direct-5-29-12",
+      "imageSize": [
+        926,
+        731
       ]
     },
     {
@@ -57418,6 +57456,19 @@
     {
       "book": "hansol",
       "page": "5-32",
+      "number": 28,
+      "sourceId": "hvac-hansol-2023-3:28",
+      "fingerprint": "761a1f0859d4745d",
+      "column": 0,
+      "previousDirectId": "hansol-direct-5-32-28",
+      "imageSize": [
+        902,
+        653
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-32",
       "number": 29,
       "sourceId": "hvac-hansol-2017-2:29",
       "fingerprint": "81cfcf3b2e80ef60",
@@ -57461,6 +57512,19 @@
       "imageSize": [
         883,
         344
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-33",
+      "number": 33,
+      "sourceId": "hvac-hansol-2023-3:33",
+      "fingerprint": "963207aa4f47d71f",
+      "column": 0,
+      "previousDirectId": "hansol-direct-5-33-33",
+      "imageSize": [
+        902,
+        644
       ]
     },
     {
@@ -57526,6 +57590,18 @@
     {
       "book": "hansol",
       "page": "5-34",
+      "number": 39,
+      "sourceId": "hvac-hansol-2023-3:39",
+      "fingerprint": "18224b5d2ef246f4",
+      "column": 0,
+      "imageSize": [
+        901,
+        1076
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-34",
       "number": 40,
       "sourceId": "hvac-hansol-2023-3:40",
       "fingerprint": "f29d4d0ee206d859",
@@ -57545,6 +57621,18 @@
       "imageSize": [
         926,
         383
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-35",
+      "number": 42,
+      "sourceId": "hvac-hansol-2023-3:42",
+      "fingerprint": "4c6ccccf82c468ca",
+      "column": 0,
+      "imageSize": [
+        902,
+        342
       ]
     },
     {
@@ -57585,6 +57673,19 @@
     },
     {
       "book": "hansol",
+      "page": "5-35",
+      "number": 46,
+      "sourceId": "hvac-hansol-2023-3:46",
+      "fingerprint": "545dd7c368ed0b25",
+      "column": 1,
+      "previousDirectId": "hansol-direct-5-35-46",
+      "imageSize": [
+        904,
+        584
+      ]
+    },
+    {
+      "book": "hansol",
       "page": "5-36",
       "number": 47,
       "sourceId": "hvac-hansol-2017-1:49",
@@ -57605,6 +57706,19 @@
       "imageSize": [
         887,
         396
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-36",
+      "number": 49,
+      "sourceId": "hvac-hansol-2023-3:49",
+      "fingerprint": "8798c27ff695e583",
+      "column": 0,
+      "previousDirectId": "hansol-direct-5-36-49",
+      "imageSize": [
+        926,
+        598
       ]
     },
     {
@@ -57658,6 +57772,31 @@
     {
       "book": "hansol",
       "page": "5-37",
+      "number": 54,
+      "sourceId": "hvac-hansol-2023-3:54",
+      "fingerprint": "a9acae368cb8e124",
+      "column": 0,
+      "imageSize": [
+        902,
+        425
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-37",
+      "number": 55,
+      "sourceId": "hvac-hansol-2023-3:55",
+      "fingerprint": "c3951331845f4216",
+      "column": 0,
+      "previousDirectId": "hansol-direct-5-37-55",
+      "imageSize": [
+        926,
+        435
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-37",
       "number": 56,
       "sourceId": "hvac-hansol-2022-1:53",
       "fingerprint": "5c0be3605de8662e",
@@ -57677,6 +57816,19 @@
       "imageSize": [
         902,
         344
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-37",
+      "number": 58,
+      "sourceId": "hvac-hansol-2023-3:58",
+      "fingerprint": "bf2a0c3d3d22bf5f",
+      "column": 1,
+      "previousDirectId": "hansol-direct-5-37-58",
+      "imageSize": [
+        902,
+        290
       ]
     },
     {
@@ -61338,6 +61490,5305 @@
       "sourceId": "hvac-20030316:68",
       "fingerprint": "ebdeba889d9d70a9",
       "column": 1
+    },
+    {
+      "book": "hansol",
+      "page": "4-7",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-7:3",
+      "fingerprint": "338275102a0efe5",
+      "column": 0,
+      "imageSize": [
+        483,
+        119
+      ],
+      "previousDirectId": "hansol-direct-4-7-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-7",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-7:4",
+      "fingerprint": "39adcc9ca5a27d67",
+      "column": 1,
+      "imageSize": [
+        483,
+        179
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-7",
+      "number": 5,
+      "sourceId": "hansol-appendix-4-7:5",
+      "fingerprint": "57aef502447d8213",
+      "column": 1,
+      "imageSize": [
+        483,
+        447
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-8",
+      "number": 7,
+      "sourceId": "hansol-appendix-4-8:7",
+      "fingerprint": "3dd403a18bb79488",
+      "column": 0,
+      "imageSize": [
+        558,
+        374
+      ],
+      "previousDirectId": "hansol-direct-4-8-7"
+    },
+    {
+      "book": "hansol",
+      "page": "4-9",
+      "number": 13,
+      "sourceId": "hansol-appendix-4-9:13",
+      "fingerprint": "dafbe045fa05e16a",
+      "column": 0,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-4-9-13"
+    },
+    {
+      "book": "hansol",
+      "page": "4-9",
+      "number": 14,
+      "sourceId": "hansol-appendix-4-9:14",
+      "fingerprint": "ace5632f7ef30efa",
+      "column": 0,
+      "imageSize": [
+        558,
+        441
+      ],
+      "previousDirectId": "hansol-direct-4-9-14"
+    },
+    {
+      "book": "hansol",
+      "page": "4-9",
+      "number": 16,
+      "sourceId": "hansol-appendix-4-9:16",
+      "fingerprint": "15f05f644ec9359b",
+      "column": 1,
+      "imageSize": [
+        558,
+        311
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-11",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-11:23",
+      "fingerprint": "cf73e10c1c51a543",
+      "column": 0,
+      "imageSize": [
+        558,
+        410
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-11",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-11:25",
+      "fingerprint": "e9f3fe265b5f026",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-11",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-11:26",
+      "fingerprint": "8b8697b59b928f31",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-11-26"
+    },
+    {
+      "book": "hansol",
+      "page": "4-12",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-12:30",
+      "fingerprint": "3f13c2659a31f61e",
+      "column": 1,
+      "imageSize": [
+        558,
+        414
+      ],
+      "previousDirectId": "hansol-direct-4-12-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-13",
+      "number": 31,
+      "sourceId": "hansol-appendix-4-13:31",
+      "fingerprint": "c06ee63ee5e6b97e",
+      "column": 0,
+      "imageSize": [
+        558,
+        666
+      ],
+      "previousDirectId": "hansol-direct-4-13-31"
+    },
+    {
+      "book": "hansol",
+      "page": "4-13",
+      "number": 33,
+      "sourceId": "hansol-appendix-4-13:33",
+      "fingerprint": "60be0813dea44ab5",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-13-33"
+    },
+    {
+      "book": "hansol",
+      "page": "4-14",
+      "number": 35,
+      "sourceId": "hansol-appendix-4-14:35",
+      "fingerprint": "8cc8b8f73ca63aed",
+      "column": 0,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-14-35"
+    },
+    {
+      "book": "hansol",
+      "page": "4-15",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-15:44",
+      "fingerprint": "61bea8a313ad2378",
+      "column": 1,
+      "imageSize": [
+        558,
+        490
+      ],
+      "previousDirectId": "hansol-direct-4-15-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-16",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-16:45",
+      "fingerprint": "af41511c8a29fb3a",
+      "column": 0,
+      "imageSize": [
+        558,
+        989
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-16",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-16:46",
+      "fingerprint": "bd06509abce1a5f5",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-16-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-20",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-20:1",
+      "fingerprint": "84e0f00ed1c0a8f",
+      "column": 0,
+      "imageSize": [
+        558,
+        320
+      ],
+      "previousDirectId": "hansol-direct-4-20-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-20",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-20:3",
+      "fingerprint": "f697d69e46da43d4",
+      "column": 1,
+      "imageSize": [
+        558,
+        443
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-21",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-21:6",
+      "fingerprint": "8f205bcf9678f192",
+      "column": 0,
+      "imageSize": [
+        558,
+        567
+      ],
+      "previousDirectId": "hansol-direct-4-21-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-21",
+      "number": 7,
+      "sourceId": "hansol-appendix-4-21:7",
+      "fingerprint": "a2f39b55a7e7bbbe",
+      "column": 1,
+      "imageSize": [
+        558,
+        257
+      ],
+      "previousDirectId": "hansol-direct-4-21-7"
+    },
+    {
+      "book": "hansol",
+      "page": "4-23",
+      "number": 17,
+      "sourceId": "hansol-appendix-4-23:17",
+      "fingerprint": "b67147e0d454dec3",
+      "column": 0,
+      "imageSize": [
+        558,
+        622
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-23",
+      "number": 18,
+      "sourceId": "hansol-appendix-4-23:18",
+      "fingerprint": "e91d21ea0165f03d",
+      "column": 0,
+      "imageSize": [
+        558,
+        642
+      ],
+      "previousDirectId": "hansol-direct-4-23-18"
+    },
+    {
+      "book": "hansol",
+      "page": "4-23",
+      "number": 19,
+      "sourceId": "hansol-appendix-4-23:19",
+      "fingerprint": "fc1d4854ab20106d",
+      "column": 1,
+      "imageSize": [
+        558,
+        135
+      ],
+      "previousDirectId": "hansol-direct-4-23-19"
+    },
+    {
+      "book": "hansol",
+      "page": "4-23",
+      "number": 20,
+      "sourceId": "hansol-appendix-4-23:20",
+      "fingerprint": "7a3fef971dd1bb9a",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-23-20"
+    },
+    {
+      "book": "hansol",
+      "page": "4-24",
+      "number": 22,
+      "sourceId": "hansol-appendix-4-24:22",
+      "fingerprint": "a1611ff59dd149c8",
+      "column": 0,
+      "imageSize": [
+        558,
+        425
+      ],
+      "previousDirectId": "hansol-direct-4-24-22"
+    },
+    {
+      "book": "hansol",
+      "page": "4-24",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-24:23",
+      "fingerprint": "5257bf82ff939c4e",
+      "column": 1,
+      "imageSize": [
+        558,
+        530
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-25",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-25:25",
+      "fingerprint": "66b4929d59cf46a9",
+      "column": 0,
+      "imageSize": [
+        558,
+        424
+      ],
+      "previousDirectId": "hansol-direct-4-25-25"
+    },
+    {
+      "book": "hansol",
+      "page": "4-26",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-26:30",
+      "fingerprint": "b4cdbc51c8844319",
+      "column": 0,
+      "imageSize": [
+        558,
+        770
+      ],
+      "previousDirectId": "hansol-direct-4-26-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-26",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-26:32",
+      "fingerprint": "6eb73098cfe47a5d",
+      "column": 1,
+      "imageSize": [
+        558,
+        311
+      ],
+      "previousDirectId": "hansol-direct-4-26-32"
+    },
+    {
+      "book": "hansol",
+      "page": "4-27",
+      "number": 36,
+      "sourceId": "hansol-appendix-4-27:36",
+      "fingerprint": "486400ad31e8035a",
+      "column": 1,
+      "imageSize": [
+        558,
+        550
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-29",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-29:45",
+      "fingerprint": "b15826c780fc7e86",
+      "column": 0,
+      "imageSize": [
+        558,
+        294
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-29",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-29:48",
+      "fingerprint": "60699aa07f9691cc",
+      "column": 1,
+      "imageSize": [
+        558,
+        491
+      ],
+      "previousDirectId": "hansol-direct-4-29-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-30",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-30:49",
+      "fingerprint": "fb163463de8c43f2",
+      "column": 0,
+      "imageSize": [
+        558,
+        451
+      ],
+      "previousDirectId": "hansol-direct-4-30-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-30",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-30:51",
+      "fingerprint": "7e7057d6ce075bab",
+      "column": 1,
+      "imageSize": [
+        558,
+        340
+      ],
+      "previousDirectId": "hansol-direct-4-30-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-32",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-32:57",
+      "fingerprint": "fc642ec6866e10f",
+      "column": 0,
+      "imageSize": [
+        558,
+        211
+      ],
+      "previousDirectId": "hansol-direct-4-32-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-33",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-33:1",
+      "fingerprint": "39743e50286a63dc",
+      "column": 0,
+      "imageSize": [
+        558,
+        696
+      ],
+      "previousDirectId": "hansol-direct-4-33-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-33",
+      "number": 2,
+      "sourceId": "hansol-appendix-4-33:2",
+      "fingerprint": "48089d44ee1ecf23",
+      "column": 1,
+      "imageSize": [
+        558,
+        310
+      ],
+      "previousDirectId": "hansol-direct-4-33-18"
+    },
+    {
+      "book": "hansol",
+      "page": "4-33",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-33:3",
+      "fingerprint": "e91393be3b32529b",
+      "column": 1,
+      "imageSize": [
+        558,
+        252
+      ],
+      "previousDirectId": "hansol-direct-4-33-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-34",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-34:4",
+      "fingerprint": "7d12edf41a04bc6d",
+      "column": 0,
+      "imageSize": [
+        558,
+        374
+      ],
+      "previousDirectId": "hansol-direct-4-34-4"
+    },
+    {
+      "book": "hansol",
+      "page": "4-35",
+      "number": 11,
+      "sourceId": "hansol-appendix-4-35:11",
+      "fingerprint": "bb711942da7fbadf",
+      "column": 0,
+      "imageSize": [
+        558,
+        353
+      ],
+      "previousDirectId": "hansol-direct-4-35-11"
+    },
+    {
+      "book": "hansol",
+      "page": "4-36",
+      "number": 17,
+      "sourceId": "hansol-appendix-4-36:17",
+      "fingerprint": "7bb65f4c73d257bf",
+      "column": 0,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-4-36-17"
+    },
+    {
+      "book": "hansol",
+      "page": "4-36",
+      "number": 18,
+      "sourceId": "hansol-appendix-4-36:18",
+      "fingerprint": "d9f3ea53d97bb8fc",
+      "column": 1,
+      "imageSize": [
+        558,
+        383
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-37",
+      "number": 21,
+      "sourceId": "hansol-appendix-4-37:21",
+      "fingerprint": "8d6c35dffa1709dd",
+      "column": 0,
+      "imageSize": [
+        558,
+        415
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-37",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-37:23",
+      "fingerprint": "2c4bc6abefbf61c1",
+      "column": 1,
+      "imageSize": [
+        558,
+        530
+      ],
+      "previousDirectId": "hansol-direct-4-37-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-37",
+      "number": 24,
+      "sourceId": "hansol-appendix-4-37:24",
+      "fingerprint": "f4564ee0455732e5",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-38",
+      "number": 27,
+      "sourceId": "hansol-appendix-4-38:27",
+      "fingerprint": "a34ee257552121e8",
+      "column": 0,
+      "imageSize": [
+        558,
+        1371
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-39",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-39:32",
+      "fingerprint": "bea5e9d422fbeb54",
+      "column": 1,
+      "imageSize": [
+        558,
+        204
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-42",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-42:46",
+      "fingerprint": "54f20b2bec17b940",
+      "column": 0,
+      "imageSize": [
+        558,
+        411
+      ],
+      "previousDirectId": "hansol-direct-4-42-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-42",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-42:48",
+      "fingerprint": "3bd34474c20f4c22",
+      "column": 1,
+      "imageSize": [
+        558,
+        249
+      ],
+      "previousDirectId": "hansol-direct-4-42-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-43",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-43:49",
+      "fingerprint": "f6ddb6a0025279af",
+      "column": 0,
+      "imageSize": [
+        558,
+        349
+      ],
+      "previousDirectId": "hansol-direct-4-43-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-43",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-43:52",
+      "fingerprint": "6fdf907118296c81",
+      "column": 1,
+      "imageSize": [
+        558,
+        204
+      ],
+      "previousDirectId": "hansol-direct-4-43-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-44",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-44:54",
+      "fingerprint": "6e8945b7af09ee1f",
+      "column": 0,
+      "imageSize": [
+        558,
+        323
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-44",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-44:57",
+      "fingerprint": "1a8a0470c5075fe7",
+      "column": 1,
+      "imageSize": [
+        558,
+        532
+      ],
+      "previousDirectId": "hansol-direct-4-44-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-46",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-46:3",
+      "fingerprint": "861a8cac1774abe2",
+      "column": 1,
+      "imageSize": [
+        558,
+        304
+      ],
+      "previousDirectId": "hansol-direct-4-46-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-46",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-46:4",
+      "fingerprint": "b46017a300830c41",
+      "column": 1,
+      "imageSize": [
+        558,
+        1000
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-47",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-47:6",
+      "fingerprint": "192642f7cb5042ef",
+      "column": 0,
+      "imageSize": [
+        558,
+        284
+      ],
+      "previousDirectId": "hansol-direct-4-47-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-48",
+      "number": 13,
+      "sourceId": "hansol-appendix-4-48:13",
+      "fingerprint": "76ff0e9192985e57",
+      "column": 1,
+      "imageSize": [
+        558,
+        533
+      ],
+      "previousDirectId": "hansol-direct-4-48-13"
+    },
+    {
+      "book": "hansol",
+      "page": "4-50",
+      "number": 22,
+      "sourceId": "hansol-appendix-4-50:22",
+      "fingerprint": "1d564814b9463e4f",
+      "column": 0,
+      "imageSize": [
+        558,
+        495
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-51",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-51:26",
+      "fingerprint": "7b601a5cfe01e38f",
+      "column": 0,
+      "imageSize": [
+        558,
+        509
+      ],
+      "previousDirectId": "hansol-direct-4-51-9"
+    },
+    {
+      "book": "hansol",
+      "page": "4-52",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-52:30",
+      "fingerprint": "a841d5b3c5960c21",
+      "column": 0,
+      "imageSize": [
+        558,
+        530
+      ],
+      "previousDirectId": "hansol-direct-4-52-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-52",
+      "number": 34,
+      "sourceId": "hansol-appendix-4-52:34",
+      "fingerprint": "f48b4fbcddb3ae60",
+      "column": 1,
+      "imageSize": [
+        558,
+        285
+      ],
+      "previousDirectId": "hansol-direct-4-52-34"
+    },
+    {
+      "book": "hansol",
+      "page": "4-53",
+      "number": 36,
+      "sourceId": "hansol-appendix-4-53:36",
+      "fingerprint": "902aa55fcbf84370",
+      "column": 0,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-53-36"
+    },
+    {
+      "book": "hansol",
+      "page": "4-54",
+      "number": 41,
+      "sourceId": "hansol-appendix-4-54:41",
+      "fingerprint": "9383a5852a5b724d",
+      "column": 0,
+      "imageSize": [
+        558,
+        532
+      ],
+      "previousDirectId": "hansol-direct-4-54-41"
+    },
+    {
+      "book": "hansol",
+      "page": "4-55",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-55:44",
+      "fingerprint": "f5e9be2488fc8e0",
+      "column": 0,
+      "imageSize": [
+        558,
+        349
+      ],
+      "previousDirectId": "hansol-direct-4-55-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-55",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-55:45",
+      "fingerprint": "48dd92bcc81e3a9a",
+      "column": 0,
+      "imageSize": [
+        558,
+        503
+      ],
+      "previousDirectId": "hansol-direct-4-55-45"
+    },
+    {
+      "book": "hansol",
+      "page": "4-55",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-55:46",
+      "fingerprint": "5b97ff7c00c48c0d",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-55-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-56",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-56:49",
+      "fingerprint": "c1742c4c9df1d3a9",
+      "column": 0,
+      "imageSize": [
+        558,
+        242
+      ],
+      "previousDirectId": "hansol-direct-4-56-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-56",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-56:54",
+      "fingerprint": "17c6cc2aeb477e52",
+      "column": 1,
+      "imageSize": [
+        558,
+        376
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-57",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-57:55",
+      "fingerprint": "520c70819a181e1c",
+      "column": 0,
+      "imageSize": [
+        558,
+        286
+      ],
+      "previousDirectId": "hansol-direct-4-57-55"
+    },
+    {
+      "book": "hansol",
+      "page": "4-57",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-57:57",
+      "fingerprint": "3c3860830b805dcf",
+      "column": 0,
+      "imageSize": [
+        558,
+        237
+      ],
+      "previousDirectId": "hansol-direct-4-57-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-58",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-58:1",
+      "fingerprint": "d8ebb986d21ed83",
+      "column": 0,
+      "imageSize": [
+        558,
+        338
+      ],
+      "previousDirectId": "hansol-direct-4-58-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-58",
+      "number": 2,
+      "sourceId": "hansol-appendix-4-58:2",
+      "fingerprint": "6593682d85bb83d0",
+      "column": 0,
+      "imageSize": [
+        558,
+        481
+      ],
+      "previousDirectId": "hansol-direct-4-58-2"
+    },
+    {
+      "book": "hansol",
+      "page": "4-58",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-58:3",
+      "fingerprint": "a3691dc57f7c466c",
+      "column": 1,
+      "imageSize": [
+        558,
+        241
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-58",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-58:4",
+      "fingerprint": "a8769f6a6a906f85",
+      "column": 1,
+      "imageSize": [
+        558,
+        499
+      ],
+      "previousDirectId": "hansol-direct-4-58-4"
+    },
+    {
+      "book": "hansol",
+      "page": "4-60",
+      "number": 12,
+      "sourceId": "hansol-appendix-4-60:12",
+      "fingerprint": "b2b9b9625d669dff",
+      "column": 0,
+      "imageSize": [
+        558,
+        311
+      ],
+      "previousDirectId": "hansol-direct-4-60-12"
+    },
+    {
+      "book": "hansol",
+      "page": "4-61",
+      "number": 20,
+      "sourceId": "hansol-appendix-4-61:20",
+      "fingerprint": "fe70e14ec9d472ba",
+      "column": 0,
+      "imageSize": [
+        558,
+        444
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-61",
+      "number": 22,
+      "sourceId": "hansol-appendix-4-61:22",
+      "fingerprint": "867a1ef8ed77527f",
+      "column": 1,
+      "imageSize": [
+        558,
+        204
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-62",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-62:23",
+      "fingerprint": "de14fb38099bcf56",
+      "column": 0,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-62-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-62",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-62:25",
+      "fingerprint": "4ca8d4b0556f017a",
+      "column": 1,
+      "imageSize": [
+        558,
+        275
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-62",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-62:26",
+      "fingerprint": "3257279b8623eeaf",
+      "column": 1,
+      "imageSize": [
+        558,
+        530
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-63",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-63:28",
+      "fingerprint": "12c12993d75fdfa2",
+      "column": 0,
+      "imageSize": [
+        558,
+        483
+      ],
+      "previousDirectId": "hansol-direct-4-63-28"
+    },
+    {
+      "book": "hansol",
+      "page": "4-64",
+      "number": 35,
+      "sourceId": "hansol-appendix-4-64:35",
+      "fingerprint": "ec3866b030d17fbc",
+      "column": 1,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-64-35"
+    },
+    {
+      "book": "hansol",
+      "page": "4-65",
+      "number": 38,
+      "sourceId": "hansol-appendix-4-65:38",
+      "fingerprint": "f99bcf1e8db1026e",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-65-38"
+    },
+    {
+      "book": "hansol",
+      "page": "4-65",
+      "number": 39,
+      "sourceId": "hansol-appendix-4-65:39",
+      "fingerprint": "6eb11f837d503639",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-65-39"
+    },
+    {
+      "book": "hansol",
+      "page": "4-66",
+      "number": 41,
+      "sourceId": "hansol-appendix-4-66:41",
+      "fingerprint": "246ee48daecb160c",
+      "column": 0,
+      "imageSize": [
+        558,
+        555
+      ],
+      "previousDirectId": "hansol-direct-4-66-41"
+    },
+    {
+      "book": "hansol",
+      "page": "4-67",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-67:46",
+      "fingerprint": "e1e246c5fc99f554",
+      "column": 0,
+      "imageSize": [
+        558,
+        430
+      ],
+      "previousDirectId": "hansol-direct-4-67-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-67",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-67:48",
+      "fingerprint": "cf2d665fac3f6edc",
+      "column": 1,
+      "imageSize": [
+        558,
+        739
+      ],
+      "previousDirectId": "hansol-direct-4-67-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-67",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-67:49",
+      "fingerprint": "3a76b47e76daec8e",
+      "column": 1,
+      "imageSize": [
+        558,
+        497
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-68",
+      "number": 50,
+      "sourceId": "hansol-appendix-4-68:50",
+      "fingerprint": "4a817d222274b591",
+      "column": 0,
+      "imageSize": [
+        558,
+        413
+      ],
+      "previousDirectId": "hansol-direct-4-68-50"
+    },
+    {
+      "book": "hansol",
+      "page": "4-68",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-68:51",
+      "fingerprint": "1faccbafe7fa9047",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-68-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-68",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-68:52",
+      "fingerprint": "cc383131ab889ef4",
+      "column": 1,
+      "imageSize": [
+        558,
+        291
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-68",
+      "number": 53,
+      "sourceId": "hansol-appendix-4-68:53",
+      "fingerprint": "4cd8056f81e25644",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-68-53"
+    },
+    {
+      "book": "hansol",
+      "page": "4-69",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-69:55",
+      "fingerprint": "93c921d750305a30",
+      "column": 0,
+      "imageSize": [
+        558,
+        342
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-69",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-69:57",
+      "fingerprint": "df4f472e045a7511",
+      "column": 1,
+      "imageSize": [
+        558,
+        350
+      ],
+      "previousDirectId": "hansol-direct-4-69-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-69",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-69:59",
+      "fingerprint": "d5591f080dff5b46",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-69-59"
+    },
+    {
+      "book": "hansol",
+      "page": "4-71",
+      "number": 2,
+      "sourceId": "hansol-appendix-4-71:2",
+      "fingerprint": "d034de3f61e30ec5",
+      "column": 0,
+      "imageSize": [
+        558,
+        891
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-71",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-71:3",
+      "fingerprint": "72f24eecb95f9b45",
+      "column": 1,
+      "imageSize": [
+        558,
+        331
+      ],
+      "previousDirectId": "hansol-direct-4-71-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-72",
+      "number": 8,
+      "sourceId": "hansol-appendix-4-72:8",
+      "fingerprint": "575d8ef3a7fd6887",
+      "column": 0,
+      "imageSize": [
+        558,
+        134
+      ],
+      "previousDirectId": "hansol-direct-4-72-8"
+    },
+    {
+      "book": "hansol",
+      "page": "4-72",
+      "number": 10,
+      "sourceId": "hansol-appendix-4-72:10",
+      "fingerprint": "c23666fd61cc96ba",
+      "column": 1,
+      "imageSize": [
+        558,
+        981
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-73",
+      "number": 12,
+      "sourceId": "hansol-appendix-4-73:12",
+      "fingerprint": "a0315da5cbad5dca",
+      "column": 0,
+      "imageSize": [
+        558,
+        1312
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-75",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-75:23",
+      "fingerprint": "795d7f9aab96556d",
+      "column": 0,
+      "imageSize": [
+        558,
+        242
+      ],
+      "previousDirectId": "hansol-direct-4-75-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-76",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-76:28",
+      "fingerprint": "cded93e7f9d70260",
+      "column": 1,
+      "imageSize": [
+        558,
+        589
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-77",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-77:32",
+      "fingerprint": "e6c6fe66ad70cfab",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-77-32"
+    },
+    {
+      "book": "hansol",
+      "page": "4-79",
+      "number": 37,
+      "sourceId": "hansol-appendix-4-79:37",
+      "fingerprint": "eb6ba7179a0c21e4",
+      "column": 0,
+      "imageSize": [
+        558,
+        469
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-80",
+      "number": 42,
+      "sourceId": "hansol-appendix-4-80:42",
+      "fingerprint": "6caa776429ae9839",
+      "column": 0,
+      "imageSize": [
+        558,
+        171
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-80",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-80:44",
+      "fingerprint": "3a1e747fe40b33e0",
+      "column": 0,
+      "imageSize": [
+        558,
+        429
+      ],
+      "previousDirectId": "hansol-direct-4-80-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-81",
+      "number": 47,
+      "sourceId": "hansol-appendix-4-81:47",
+      "fingerprint": "a5b88c0f747a36e2",
+      "column": 0,
+      "imageSize": [
+        558,
+        603
+      ],
+      "previousDirectId": "hansol-direct-4-81-47"
+    },
+    {
+      "book": "hansol",
+      "page": "4-82",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-82:52",
+      "fingerprint": "5ad5ff4f59980702",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-82-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-82",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-82:55",
+      "fingerprint": "1e0816fb04396bb0",
+      "column": 1,
+      "imageSize": [
+        558,
+        173
+      ],
+      "previousDirectId": "hansol-direct-4-82-55"
+    },
+    {
+      "book": "hansol",
+      "page": "4-82",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-82:56",
+      "fingerprint": "d62e98a86b610f9a",
+      "column": 1,
+      "imageSize": [
+        558,
+        142
+      ],
+      "previousDirectId": "hansol-direct-4-82-56"
+    },
+    {
+      "book": "hansol",
+      "page": "4-83",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-83:59",
+      "fingerprint": "27af79dedea696c4",
+      "column": 0,
+      "imageSize": [
+        558,
+        352
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-84",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-84:3",
+      "fingerprint": "b5c81ec77cb7a2d0",
+      "column": 1,
+      "imageSize": [
+        558,
+        323
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-84",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-84:4",
+      "fingerprint": "5e6c7f1aa5df3061",
+      "column": 1,
+      "imageSize": [
+        558,
+        284
+      ],
+      "previousDirectId": "hansol-direct-4-84-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-85",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-85:6",
+      "fingerprint": "c79ccf2a5722d6cb",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-85-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-85",
+      "number": 8,
+      "sourceId": "hansol-appendix-4-85:8",
+      "fingerprint": "87910cc43e4594d2",
+      "column": 1,
+      "imageSize": [
+        558,
+        570
+      ],
+      "previousDirectId": "hansol-direct-4-85-8"
+    },
+    {
+      "book": "hansol",
+      "page": "4-86",
+      "number": 11,
+      "sourceId": "hansol-appendix-4-86:11",
+      "fingerprint": "c228a8b3c6fcd56b",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-86-11"
+    },
+    {
+      "book": "hansol",
+      "page": "4-86",
+      "number": 14,
+      "sourceId": "hansol-appendix-4-86:14",
+      "fingerprint": "7446c685bf613fd1",
+      "column": 1,
+      "imageSize": [
+        558,
+        338
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-88",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-88:25",
+      "fingerprint": "9856110b31dc5628",
+      "column": 1,
+      "imageSize": [
+        558,
+        415
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-88",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-88:26",
+      "fingerprint": "67bf4fdaacddf8f3",
+      "column": 1,
+      "imageSize": [
+        558,
+        521
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-89",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-89:28",
+      "fingerprint": "1bd71bcbeae37834",
+      "column": 0,
+      "imageSize": [
+        558,
+        572
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-89",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-89:30",
+      "fingerprint": "851696b93f998511",
+      "column": 1,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-89-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-90",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-90:32",
+      "fingerprint": "1c9711b95dbdd961",
+      "column": 0,
+      "imageSize": [
+        558,
+        400
+      ],
+      "previousDirectId": "hansol-direct-4-90-32"
+    },
+    {
+      "book": "hansol",
+      "page": "4-90",
+      "number": 33,
+      "sourceId": "hansol-appendix-4-90:33",
+      "fingerprint": "1a064f3efd2a3093",
+      "column": 1,
+      "imageSize": [
+        558,
+        460
+      ],
+      "previousDirectId": "hansol-direct-4-90-33"
+    },
+    {
+      "book": "hansol",
+      "page": "4-91",
+      "number": 35,
+      "sourceId": "hansol-appendix-4-91:35",
+      "fingerprint": "6cf5fde368c9fb6b",
+      "column": 0,
+      "imageSize": [
+        558,
+        364
+      ],
+      "previousDirectId": "hansol-direct-4-91-35"
+    },
+    {
+      "book": "hansol",
+      "page": "4-91",
+      "number": 39,
+      "sourceId": "hansol-appendix-4-91:39",
+      "fingerprint": "716c35b5ed522e7c",
+      "column": 1,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-4-91-39"
+    },
+    {
+      "book": "hansol",
+      "page": "4-92",
+      "number": 40,
+      "sourceId": "hansol-appendix-4-92:40",
+      "fingerprint": "900f2d89cc895596",
+      "column": 0,
+      "imageSize": [
+        558,
+        276
+      ],
+      "previousDirectId": "hansol-direct-4-92-40"
+    },
+    {
+      "book": "hansol",
+      "page": "4-92",
+      "number": 41,
+      "sourceId": "hansol-appendix-4-92:41",
+      "fingerprint": "9b4dcfe4f0721142",
+      "column": 1,
+      "imageSize": [
+        558,
+        206
+      ],
+      "previousDirectId": "hansol-direct-4-92-41"
+    },
+    {
+      "book": "hansol",
+      "page": "4-92",
+      "number": 43,
+      "sourceId": "hansol-appendix-4-92:43",
+      "fingerprint": "4a7e69344002a978",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-4-92-43"
+    },
+    {
+      "book": "hansol",
+      "page": "4-93",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-93:46",
+      "fingerprint": "f8e45fb5d920d82f",
+      "column": 0,
+      "imageSize": [
+        558,
+        595
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-93",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-93:48",
+      "fingerprint": "f45b2a8ab1b48349",
+      "column": 1,
+      "imageSize": [
+        558,
+        575
+      ],
+      "previousDirectId": "hansol-direct-4-93-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-94",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-94:49",
+      "fingerprint": "f4f84efa06093667",
+      "column": 0,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-4-94-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-94",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-94:51",
+      "fingerprint": "c95ff535d1953551",
+      "column": 0,
+      "imageSize": [
+        558,
+        229
+      ],
+      "previousDirectId": "hansol-direct-4-94-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-94",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-94:54",
+      "fingerprint": "d98da7e1df615c",
+      "column": 1,
+      "imageSize": [
+        558,
+        207
+      ],
+      "previousDirectId": "hansol-direct-4-94-54"
+    },
+    {
+      "book": "hansol",
+      "page": "4-95",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-95:55",
+      "fingerprint": "def103141d32c986",
+      "column": 0,
+      "imageSize": [
+        558,
+        335
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-95",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-95:56",
+      "fingerprint": "7d5b8498668eadf0",
+      "column": 0,
+      "imageSize": [
+        558,
+        169
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-95",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-95:57",
+      "fingerprint": "92efe6e79e40d64e",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ],
+      "previousDirectId": "hansol-direct-4-95-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-95",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-95:58",
+      "fingerprint": "4db96eda6a8a5a",
+      "column": 1,
+      "imageSize": [
+        558,
+        143
+      ],
+      "previousDirectId": "hansol-direct-4-95-58"
+    },
+    {
+      "book": "hansol",
+      "page": "4-95",
+      "number": 60,
+      "sourceId": "hansol-appendix-4-95:60",
+      "fingerprint": "c593de3eaa7ddddc",
+      "column": 1,
+      "imageSize": [
+        558,
+        422
+      ],
+      "previousDirectId": "hansol-direct-4-95-60"
+    },
+    {
+      "book": "hansol",
+      "page": "4-96",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-96:1",
+      "fingerprint": "7c78a9cf7260fe48",
+      "column": 0,
+      "imageSize": [
+        558,
+        480
+      ],
+      "previousDirectId": "hansol-direct-4-96-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-96",
+      "number": 2,
+      "sourceId": "hansol-appendix-4-96:2",
+      "fingerprint": "cbc569b9d07631ae",
+      "column": 0,
+      "imageSize": [
+        558,
+        771
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-96",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-96:3",
+      "fingerprint": "183fc2b2aaf2ffa7",
+      "column": 1,
+      "imageSize": [
+        558,
+        274
+      ],
+      "previousDirectId": "hansol-direct-4-96-20"
+    },
+    {
+      "book": "hansol",
+      "page": "4-97",
+      "number": 5,
+      "sourceId": "hansol-appendix-4-97:5",
+      "fingerprint": "6fd0535939fe3f9b",
+      "column": 0,
+      "imageSize": [
+        558,
+        460
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-98",
+      "number": 12,
+      "sourceId": "hansol-appendix-4-98:12",
+      "fingerprint": "29b9c1d90701c468",
+      "column": 1,
+      "imageSize": [
+        558,
+        522
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-99",
+      "number": 15,
+      "sourceId": "hansol-appendix-4-99:15",
+      "fingerprint": "93f47cc3a1c8659e",
+      "column": 0,
+      "imageSize": [
+        558,
+        276
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-100",
+      "number": 21,
+      "sourceId": "hansol-appendix-4-100:21",
+      "fingerprint": "2a307f54c0a3750f",
+      "column": 0,
+      "imageSize": [
+        558,
+        456
+      ],
+      "previousDirectId": "hansol-direct-4-100-21"
+    },
+    {
+      "book": "hansol",
+      "page": "4-100",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-100:23",
+      "fingerprint": "d5a6bb7885595eb7",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-100-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-100",
+      "number": 24,
+      "sourceId": "hansol-appendix-4-100:24",
+      "fingerprint": "5b074894e7ab6714",
+      "column": 1,
+      "imageSize": [
+        558,
+        415
+      ],
+      "previousDirectId": "hansol-direct-4-100-24"
+    },
+    {
+      "book": "hansol",
+      "page": "4-100",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-100:25",
+      "fingerprint": "f7e69d9f9713986f",
+      "column": 1,
+      "imageSize": [
+        558,
+        374
+      ],
+      "previousDirectId": "hansol-direct-4-100-25"
+    },
+    {
+      "book": "hansol",
+      "page": "4-102",
+      "number": 33,
+      "sourceId": "hansol-appendix-4-102:33",
+      "fingerprint": "4f09fde5f9ac7336",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-102-33"
+    },
+    {
+      "book": "hansol",
+      "page": "4-103",
+      "number": 36,
+      "sourceId": "hansol-appendix-4-103:36",
+      "fingerprint": "bbcfa0498edf1eac",
+      "column": 0,
+      "imageSize": [
+        558,
+        321
+      ],
+      "previousDirectId": "hansol-direct-4-103-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-103",
+      "number": 37,
+      "sourceId": "hansol-appendix-4-103:37",
+      "fingerprint": "1ef4e970ab5581c",
+      "column": 1,
+      "imageSize": [
+        558,
+        241
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-104",
+      "number": 40,
+      "sourceId": "hansol-appendix-4-104:40",
+      "fingerprint": "be17b091cbdc5322",
+      "column": 0,
+      "imageSize": [
+        558,
+        275
+      ],
+      "previousDirectId": "hansol-direct-4-104-40"
+    },
+    {
+      "book": "hansol",
+      "page": "4-104",
+      "number": 42,
+      "sourceId": "hansol-appendix-4-104:42",
+      "fingerprint": "7cb29fd584d47685",
+      "column": 1,
+      "imageSize": [
+        558,
+        249
+      ],
+      "previousDirectId": "hansol-direct-4-104-42"
+    },
+    {
+      "book": "hansol",
+      "page": "4-105",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-105:44",
+      "fingerprint": "b89292a482df543b",
+      "column": 0,
+      "imageSize": [
+        558,
+        589
+      ],
+      "previousDirectId": "hansol-direct-4-105-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-105",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-105:45",
+      "fingerprint": "f8508e91154458d8",
+      "column": 0,
+      "imageSize": [
+        558,
+        578
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-105",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-105:46",
+      "fingerprint": "7ac20c2baaf044fe",
+      "column": 1,
+      "imageSize": [
+        558,
+        452
+      ],
+      "previousDirectId": "hansol-direct-4-105-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-106",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-106:51",
+      "fingerprint": "dc110ea0f1681bf1",
+      "column": 1,
+      "imageSize": [
+        558,
+        278
+      ],
+      "previousDirectId": "hansol-direct-4-106-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-107",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-107:54",
+      "fingerprint": "4fd9ede2f04fbd42",
+      "column": 0,
+      "imageSize": [
+        558,
+        387
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-107",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-107:56",
+      "fingerprint": "fdce0dae88a59a78",
+      "column": 1,
+      "imageSize": [
+        558,
+        361
+      ],
+      "previousDirectId": "hansol-direct-4-107-56"
+    },
+    {
+      "book": "hansol",
+      "page": "4-107",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-107:57",
+      "fingerprint": "d0a1591413cb54a7",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-107-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-108",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-108:58",
+      "fingerprint": "a4203dd4f634085",
+      "column": 0,
+      "imageSize": [
+        558,
+        279
+      ],
+      "previousDirectId": "hansol-direct-4-108-58"
+    },
+    {
+      "book": "hansol",
+      "page": "4-108",
+      "number": 60,
+      "sourceId": "hansol-appendix-4-108:60",
+      "fingerprint": "5a5b32d9a8dec015",
+      "column": 1,
+      "imageSize": [
+        558,
+        464
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-109",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-109:3",
+      "fingerprint": "9e6de6e34fa7456d",
+      "column": 1,
+      "imageSize": [
+        558,
+        645
+      ],
+      "previousDirectId": "hansol-direct-4-109-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-110",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-110:4",
+      "fingerprint": "24be39668e0aa870",
+      "column": 0,
+      "imageSize": [
+        558,
+        218
+      ],
+      "previousDirectId": "hansol-direct-4-110-4"
+    },
+    {
+      "book": "hansol",
+      "page": "4-110",
+      "number": 5,
+      "sourceId": "hansol-appendix-4-110:5",
+      "fingerprint": "11279af7494bb9d0",
+      "column": 0,
+      "imageSize": [
+        558,
+        455
+      ],
+      "previousDirectId": "hansol-direct-4-110-5"
+    },
+    {
+      "book": "hansol",
+      "page": "4-111",
+      "number": 11,
+      "sourceId": "hansol-appendix-4-111:11",
+      "fingerprint": "f32ebf38eac5fc81",
+      "column": 0,
+      "imageSize": [
+        558,
+        530
+      ],
+      "previousDirectId": "hansol-direct-4-111-11"
+    },
+    {
+      "book": "hansol",
+      "page": "4-111",
+      "number": 12,
+      "sourceId": "hansol-appendix-4-111:12",
+      "fingerprint": "b224baf0c53ec457",
+      "column": 0,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-4-111-12"
+    },
+    {
+      "book": "hansol",
+      "page": "4-111",
+      "number": 16,
+      "sourceId": "hansol-appendix-4-111:16",
+      "fingerprint": "90ac01e0f509202e",
+      "column": 1,
+      "imageSize": [
+        558,
+        296
+      ],
+      "previousDirectId": "hansol-direct-4-111-16"
+    },
+    {
+      "book": "hansol",
+      "page": "4-113",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-113:25",
+      "fingerprint": "a4c70a1b60458b12",
+      "column": 0,
+      "imageSize": [
+        558,
+        241
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-114",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-114:32",
+      "fingerprint": "acbc275c1cc0de71",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-114-32"
+    },
+    {
+      "book": "hansol",
+      "page": "4-115",
+      "number": 33,
+      "sourceId": "hansol-appendix-4-115:33",
+      "fingerprint": "ff8450ba87f631fa",
+      "column": 0,
+      "imageSize": [
+        558,
+        435
+      ],
+      "previousDirectId": "hansol-direct-4-115-33"
+    },
+    {
+      "book": "hansol",
+      "page": "4-115",
+      "number": 35,
+      "sourceId": "hansol-appendix-4-115:35",
+      "fingerprint": "60e97ff1d39548a7",
+      "column": 1,
+      "imageSize": [
+        558,
+        521
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-115",
+      "number": 36,
+      "sourceId": "hansol-appendix-4-115:36",
+      "fingerprint": "141cffd3e053727d",
+      "column": 1,
+      "imageSize": [
+        558,
+        610
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-117",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-117:44",
+      "fingerprint": "bc6a62889b53f436",
+      "column": 1,
+      "imageSize": [
+        558,
+        1057
+      ],
+      "previousDirectId": "hansol-direct-4-117-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-118",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-118:45",
+      "fingerprint": "3777abf62d9b4fb8",
+      "column": 0,
+      "imageSize": [
+        558,
+        290
+      ],
+      "previousDirectId": "hansol-direct-4-118-45"
+    },
+    {
+      "book": "hansol",
+      "page": "4-118",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-118:46",
+      "fingerprint": "3c0b9676756fa3d0",
+      "column": 0,
+      "imageSize": [
+        558,
+        415
+      ],
+      "previousDirectId": "hansol-direct-4-118-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-119",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-119:54",
+      "fingerprint": "62c38123cd1c6f76",
+      "column": 1,
+      "imageSize": [
+        558,
+        313
+      ],
+      "previousDirectId": "hansol-direct-4-119-54"
+    },
+    {
+      "book": "hansol",
+      "page": "4-120",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-120:57",
+      "fingerprint": "1760af0f39562ba2",
+      "column": 0,
+      "imageSize": [
+        558,
+        134
+      ],
+      "previousDirectId": "hansol-direct-4-120-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-120",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-120:58",
+      "fingerprint": "348318f0c8378d07",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-120-58"
+    },
+    {
+      "book": "hansol",
+      "page": "4-120",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-120:59",
+      "fingerprint": "63dc79a21eebe440",
+      "column": 1,
+      "imageSize": [
+        558,
+        387
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-122",
+      "number": 3,
+      "sourceId": "hansol-appendix-4-122:3",
+      "fingerprint": "4b7ba1c8291b41a3",
+      "column": 0,
+      "imageSize": [
+        558,
+        135
+      ],
+      "previousDirectId": "hansol-direct-4-122-3"
+    },
+    {
+      "book": "hansol",
+      "page": "4-122",
+      "number": 5,
+      "sourceId": "hansol-appendix-4-122:5",
+      "fingerprint": "72d560f66a3f35db",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-122-5"
+    },
+    {
+      "book": "hansol",
+      "page": "4-122",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-122:6",
+      "fingerprint": "1afac14f623e58ce",
+      "column": 1,
+      "imageSize": [
+        558,
+        318
+      ],
+      "previousDirectId": "hansol-direct-4-122-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-123",
+      "number": 7,
+      "sourceId": "hansol-appendix-4-123:7",
+      "fingerprint": "1a4303056bbc0e96",
+      "column": 0,
+      "imageSize": [
+        558,
+        353
+      ],
+      "previousDirectId": "hansol-direct-4-123-7"
+    },
+    {
+      "book": "hansol",
+      "page": "4-123",
+      "number": 8,
+      "sourceId": "hansol-appendix-4-123:8",
+      "fingerprint": "7a1f524635e83351",
+      "column": 0,
+      "imageSize": [
+        558,
+        490
+      ],
+      "previousDirectId": "hansol-direct-4-123-8"
+    },
+    {
+      "book": "hansol",
+      "page": "4-123",
+      "number": 9,
+      "sourceId": "hansol-appendix-4-123:9",
+      "fingerprint": "682510670841f711",
+      "column": 1,
+      "imageSize": [
+        558,
+        452
+      ],
+      "previousDirectId": "hansol-direct-4-123-9"
+    },
+    {
+      "book": "hansol",
+      "page": "4-124",
+      "number": 13,
+      "sourceId": "hansol-appendix-4-124:13",
+      "fingerprint": "314693accdc6aeaa",
+      "column": 0,
+      "imageSize": [
+        558,
+        521
+      ],
+      "previousDirectId": "hansol-direct-4-124-13"
+    },
+    {
+      "book": "hansol",
+      "page": "4-124",
+      "number": 15,
+      "sourceId": "hansol-appendix-4-124:15",
+      "fingerprint": "c0331673ba49e0d6",
+      "column": 1,
+      "imageSize": [
+        558,
+        327
+      ],
+      "previousDirectId": "hansol-direct-4-124-15"
+    },
+    {
+      "book": "hansol",
+      "page": "4-125",
+      "number": 21,
+      "sourceId": "hansol-appendix-4-125:21",
+      "fingerprint": "a6ae9b76c1b75455",
+      "column": 1,
+      "imageSize": [
+        558,
+        410
+      ],
+      "previousDirectId": "hansol-direct-4-125-21"
+    },
+    {
+      "book": "hansol",
+      "page": "4-126",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-126:23",
+      "fingerprint": "99decbb231b7752b",
+      "column": 0,
+      "imageSize": [
+        558,
+        491
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-126",
+      "number": 24,
+      "sourceId": "hansol-appendix-4-126:24",
+      "fingerprint": "ec107c150b4fb18",
+      "column": 0,
+      "imageSize": [
+        558,
+        514
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-126",
+      "number": 27,
+      "sourceId": "hansol-appendix-4-126:27",
+      "fingerprint": "542bfd45c3f1bf83",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-126-27"
+    },
+    {
+      "book": "hansol",
+      "page": "4-128",
+      "number": 37,
+      "sourceId": "hansol-appendix-4-128:37",
+      "fingerprint": "306dd20428faa33",
+      "column": 1,
+      "imageSize": [
+        558,
+        276
+      ],
+      "previousDirectId": "hansol-direct-4-128-37"
+    },
+    {
+      "book": "hansol",
+      "page": "4-129",
+      "number": 38,
+      "sourceId": "hansol-appendix-4-129:38",
+      "fingerprint": "a181098a14717ed3",
+      "column": 0,
+      "imageSize": [
+        558,
+        249
+      ],
+      "previousDirectId": "hansol-direct-4-129-38"
+    },
+    {
+      "book": "hansol",
+      "page": "4-129",
+      "number": 40,
+      "sourceId": "hansol-appendix-4-129:40",
+      "fingerprint": "c964c7389c15bcdf",
+      "column": 1,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-4-129-40"
+    },
+    {
+      "book": "hansol",
+      "page": "4-129",
+      "number": 41,
+      "sourceId": "hansol-appendix-4-129:41",
+      "fingerprint": "c31e6ea21084b8d3",
+      "column": 1,
+      "imageSize": [
+        558,
+        374
+      ],
+      "previousDirectId": "hansol-direct-4-129-41"
+    },
+    {
+      "book": "hansol",
+      "page": "4-130",
+      "number": 43,
+      "sourceId": "hansol-appendix-4-130:43",
+      "fingerprint": "a75234952c5d1ce0",
+      "column": 0,
+      "imageSize": [
+        558,
+        397
+      ],
+      "previousDirectId": "hansol-direct-4-130-43"
+    },
+    {
+      "book": "hansol",
+      "page": "4-130",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-130:46",
+      "fingerprint": "c209bf18aa604369",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-130-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-131",
+      "number": 47,
+      "sourceId": "hansol-appendix-4-131:47",
+      "fingerprint": "6d4510b8fdc15d2d",
+      "column": 0,
+      "imageSize": [
+        558,
+        610
+      ],
+      "previousDirectId": "hansol-direct-4-131-47"
+    },
+    {
+      "book": "hansol",
+      "page": "4-131",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-131:48",
+      "fingerprint": "66c83dd187d01444",
+      "column": 0,
+      "imageSize": [
+        558,
+        546
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-131",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-131:49",
+      "fingerprint": "c44da73107296b2b",
+      "column": 1,
+      "imageSize": [
+        558,
+        285
+      ],
+      "previousDirectId": "hansol-direct-4-131-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-132",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-132:54",
+      "fingerprint": "657b76d5d928c6bb",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-4-132-54"
+    },
+    {
+      "book": "hansol",
+      "page": "4-132",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-132:55",
+      "fingerprint": "d5c0a3f9ee81026",
+      "column": 1,
+      "imageSize": [
+        558,
+        272
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-133",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-133:56",
+      "fingerprint": "1220813c6b70cdac",
+      "column": 0,
+      "imageSize": [
+        558,
+        505
+      ],
+      "previousDirectId": "hansol-direct-4-133-56"
+    },
+    {
+      "book": "hansol",
+      "page": "4-133",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-133:57",
+      "fingerprint": "beac2bbf9c3e4c4f",
+      "column": 0,
+      "imageSize": [
+        558,
+        230
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-133",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-133:58",
+      "fingerprint": "3aacbf14b55f151e",
+      "column": 1,
+      "imageSize": [
+        558,
+        134
+      ],
+      "previousDirectId": "hansol-direct-4-133-58"
+    },
+    {
+      "book": "hansol",
+      "page": "4-133",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-133:59",
+      "fingerprint": "f962107c2d253eda",
+      "column": 1,
+      "imageSize": [
+        558,
+        263
+      ],
+      "previousDirectId": "hansol-direct-4-133-59"
+    },
+    {
+      "book": "hansol",
+      "page": "4-134",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-134:6",
+      "fingerprint": "b1eb2e2e184b4feb",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-135",
+      "number": 9,
+      "sourceId": "hansol-appendix-4-135:9",
+      "fingerprint": "2e72fc8df895f2a",
+      "column": 1,
+      "imageSize": [
+        558,
+        486
+      ],
+      "previousDirectId": "hansol-direct-4-135-9"
+    },
+    {
+      "book": "hansol",
+      "page": "4-135",
+      "number": 10,
+      "sourceId": "hansol-appendix-4-135:10",
+      "fingerprint": "f6942befe182c9e5",
+      "column": 1,
+      "imageSize": [
+        558,
+        450
+      ],
+      "previousDirectId": "hansol-direct-4-135-10"
+    },
+    {
+      "book": "hansol",
+      "page": "4-138",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-138:25",
+      "fingerprint": "46426a924b7212b4",
+      "column": 0,
+      "imageSize": [
+        558,
+        253
+      ],
+      "previousDirectId": "hansol-direct-4-138-25"
+    },
+    {
+      "book": "hansol",
+      "page": "4-138",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-138:26",
+      "fingerprint": "97c276248d2ea48a",
+      "column": 1,
+      "imageSize": [
+        558,
+        254
+      ],
+      "previousDirectId": "hansol-direct-4-138-26"
+    },
+    {
+      "book": "hansol",
+      "page": "4-139",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-139:28",
+      "fingerprint": "dcf47a0bc4973579",
+      "column": 0,
+      "imageSize": [
+        558,
+        491
+      ],
+      "previousDirectId": "hansol-direct-4-139-28"
+    },
+    {
+      "book": "hansol",
+      "page": "4-139",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-139:30",
+      "fingerprint": "f76d5e54cbd7c311",
+      "column": 1,
+      "imageSize": [
+        558,
+        575
+      ],
+      "previousDirectId": "hansol-direct-4-139-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-139",
+      "number": 31,
+      "sourceId": "hansol-appendix-4-139:31",
+      "fingerprint": "dd0be4c14943e645",
+      "column": 1,
+      "imageSize": [
+        558,
+        240
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-140",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-140:32",
+      "fingerprint": "117236ac2b10e4e9",
+      "column": 0,
+      "imageSize": [
+        558,
+        449
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-142",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-142:45",
+      "fingerprint": "606da99978e3611d",
+      "column": 1,
+      "imageSize": [
+        558,
+        253
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-143",
+      "number": 47,
+      "sourceId": "hansol-appendix-4-143:47",
+      "fingerprint": "52ab77f0a9a4e815",
+      "column": 0,
+      "imageSize": [
+        558,
+        685
+      ],
+      "previousDirectId": "hansol-direct-4-143-47"
+    },
+    {
+      "book": "hansol",
+      "page": "4-143",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-143:48",
+      "fingerprint": "d619168697c9ae6b",
+      "column": 1,
+      "imageSize": [
+        558,
+        375
+      ],
+      "previousDirectId": "hansol-direct-4-143-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-143",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-143:49",
+      "fingerprint": "de64ad4e9faf34b",
+      "column": 1,
+      "imageSize": [
+        558,
+        771
+      ],
+      "previousDirectId": "hansol-direct-4-143-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-144",
+      "number": 50,
+      "sourceId": "hansol-appendix-4-144:50",
+      "fingerprint": "d6f2c872d9ae95aa",
+      "column": 0,
+      "imageSize": [
+        558,
+        349
+      ],
+      "previousDirectId": "hansol-direct-4-144-50"
+    },
+    {
+      "book": "hansol",
+      "page": "4-144",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-144:51",
+      "fingerprint": "f9987533f2f9227b",
+      "column": 0,
+      "imageSize": [
+        558,
+        263
+      ],
+      "previousDirectId": "hansol-direct-4-144-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-144",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-144:52",
+      "fingerprint": "40c5860e2af05e89",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-144-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-144",
+      "number": 53,
+      "sourceId": "hansol-appendix-4-144:53",
+      "fingerprint": "23e9f639251d2b97",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-4-144-53"
+    },
+    {
+      "book": "hansol",
+      "page": "4-145",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-145:54",
+      "fingerprint": "1461c82c3412cae6",
+      "column": 0,
+      "imageSize": [
+        558,
+        389
+      ],
+      "previousDirectId": "hansol-direct-4-145-54"
+    },
+    {
+      "book": "hansol",
+      "page": "4-145",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-145:57",
+      "fingerprint": "e5a343819bd9cadd",
+      "column": 1,
+      "imageSize": [
+        558,
+        163
+      ],
+      "previousDirectId": "hansol-direct-4-145-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-148",
+      "number": 6,
+      "sourceId": "hansol-appendix-4-148:6",
+      "fingerprint": "f5cf8406c6ae5b88",
+      "column": 0,
+      "imageSize": [
+        558,
+        214
+      ],
+      "previousDirectId": "hansol-direct-4-148-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-149",
+      "number": 16,
+      "sourceId": "hansol-appendix-4-149:16",
+      "fingerprint": "ceab3e42530a3b0b",
+      "column": 1,
+      "imageSize": [
+        558,
+        276
+      ],
+      "previousDirectId": "hansol-direct-4-149-16"
+    },
+    {
+      "book": "hansol",
+      "page": "4-150",
+      "number": 17,
+      "sourceId": "hansol-appendix-4-150:17",
+      "fingerprint": "ea6d1e1b5e9066f1",
+      "column": 0,
+      "imageSize": [
+        558,
+        320
+      ],
+      "previousDirectId": "hansol-direct-4-150-17"
+    },
+    {
+      "book": "hansol",
+      "page": "4-150",
+      "number": 19,
+      "sourceId": "hansol-appendix-4-150:19",
+      "fingerprint": "b1a230925aa745fd",
+      "column": 1,
+      "imageSize": [
+        558,
+        1121
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-151",
+      "number": 20,
+      "sourceId": "hansol-appendix-4-151:20",
+      "fingerprint": "962ef857c64bd109",
+      "column": 0,
+      "imageSize": [
+        558,
+        290
+      ],
+      "previousDirectId": "hansol-direct-4-151-20"
+    },
+    {
+      "book": "hansol",
+      "page": "4-156",
+      "number": 42,
+      "sourceId": "hansol-appendix-4-156:42",
+      "fingerprint": "15a141e320cd2ced",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-156-42"
+    },
+    {
+      "book": "hansol",
+      "page": "4-156",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-156:46",
+      "fingerprint": "5a89209c90ea5c9d",
+      "column": 1,
+      "imageSize": [
+        558,
+        310
+      ],
+      "previousDirectId": "hansol-direct-4-156-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-157",
+      "number": 47,
+      "sourceId": "hansol-appendix-4-157:47",
+      "fingerprint": "1086ee6e2b40b39b",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-157-47"
+    },
+    {
+      "book": "hansol",
+      "page": "4-157",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-157:49",
+      "fingerprint": "d088204d4157260d",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-157-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-157",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-157:52",
+      "fingerprint": "227663a311ffa270",
+      "column": 1,
+      "imageSize": [
+        558,
+        199
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-158",
+      "number": 53,
+      "sourceId": "hansol-appendix-4-158:53",
+      "fingerprint": "bb47795503b22852",
+      "column": 0,
+      "imageSize": [
+        558,
+        333
+      ],
+      "previousDirectId": "hansol-direct-4-158-53"
+    },
+    {
+      "book": "hansol",
+      "page": "4-158",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-158:54",
+      "fingerprint": "944acbf11f59f291",
+      "column": 0,
+      "imageSize": [
+        558,
+        285
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-158",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-158:55",
+      "fingerprint": "8322aa6455741a80",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-158-55"
+    },
+    {
+      "book": "hansol",
+      "page": "4-158",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-158:58",
+      "fingerprint": "bb2fcd54370ae0b4",
+      "column": 1,
+      "imageSize": [
+        558,
+        244
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-159",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-159:59",
+      "fingerprint": "d9d2a498c81c9ffe",
+      "column": 0,
+      "imageSize": [
+        558,
+        348
+      ],
+      "previousDirectId": "hansol-direct-4-159-59"
+    },
+    {
+      "book": "hansol",
+      "page": "4-159",
+      "number": 60,
+      "sourceId": "hansol-appendix-4-159:60",
+      "fingerprint": "e2a86d1a712308a1",
+      "column": 0,
+      "imageSize": [
+        558,
+        214
+      ],
+      "previousDirectId": "hansol-direct-4-159-60"
+    },
+    {
+      "book": "hansol",
+      "page": "4-160",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-160:1",
+      "fingerprint": "564543a685e80260",
+      "column": 0,
+      "imageSize": [
+        558,
+        239
+      ],
+      "previousDirectId": "hansol-direct-4-160-6"
+    },
+    {
+      "book": "hansol",
+      "page": "4-160",
+      "number": 2,
+      "sourceId": "hansol-appendix-4-160:2",
+      "fingerprint": "a22d7664463f16da",
+      "column": 0,
+      "imageSize": [
+        558,
+        556
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-162",
+      "number": 12,
+      "sourceId": "hansol-appendix-4-162:12",
+      "fingerprint": "a366b462c6c1e588",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-162-12"
+    },
+    {
+      "book": "hansol",
+      "page": "4-162",
+      "number": 14,
+      "sourceId": "hansol-appendix-4-162:14",
+      "fingerprint": "1f10bce50df786fb",
+      "column": 1,
+      "imageSize": [
+        558,
+        660
+      ],
+      "previousDirectId": "hansol-direct-4-162-14"
+    },
+    {
+      "book": "hansol",
+      "page": "4-163",
+      "number": 19,
+      "sourceId": "hansol-appendix-4-163:19",
+      "fingerprint": "dc771e7a2d53bd61",
+      "column": 0,
+      "imageSize": [
+        558,
+        206
+      ],
+      "previousDirectId": "hansol-direct-4-163-19"
+    },
+    {
+      "book": "hansol",
+      "page": "4-163",
+      "number": 20,
+      "sourceId": "hansol-appendix-4-163:20",
+      "fingerprint": "c66e73f06dd56048",
+      "column": 1,
+      "imageSize": [
+        558,
+        535
+      ],
+      "previousDirectId": "hansol-direct-4-163-20"
+    },
+    {
+      "book": "hansol",
+      "page": "4-164",
+      "number": 22,
+      "sourceId": "hansol-appendix-4-164:22",
+      "fingerprint": "269807fdf8dbcc07",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-164-22"
+    },
+    {
+      "book": "hansol",
+      "page": "4-164",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-164:23",
+      "fingerprint": "11350886e860baad",
+      "column": 0,
+      "imageSize": [
+        558,
+        489
+      ],
+      "previousDirectId": "hansol-direct-4-164-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-166",
+      "number": 31,
+      "sourceId": "hansol-appendix-4-166:31",
+      "fingerprint": "3d417ad8ebd14faf",
+      "column": 0,
+      "imageSize": [
+        558,
+        694
+      ],
+      "previousDirectId": "hansol-direct-4-166-31"
+    },
+    {
+      "book": "hansol",
+      "page": "4-167",
+      "number": 36,
+      "sourceId": "hansol-appendix-4-167:36",
+      "fingerprint": "840623397ef4e44",
+      "column": 0,
+      "imageSize": [
+        558,
+        479
+      ],
+      "previousDirectId": "hansol-direct-4-167-36"
+    },
+    {
+      "book": "hansol",
+      "page": "4-168",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-168:44",
+      "fingerprint": "bb1c13accb61e156",
+      "column": 1,
+      "imageSize": [
+        558,
+        249
+      ],
+      "previousDirectId": "hansol-direct-4-168-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-168",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-168:45",
+      "fingerprint": "2c085d5ff547f9e4",
+      "column": 1,
+      "imageSize": [
+        558,
+        149
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-169",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-169:46",
+      "fingerprint": "91910b21f14f74c1",
+      "column": 0,
+      "imageSize": [
+        558,
+        453
+      ],
+      "previousDirectId": "hansol-direct-4-169-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-169",
+      "number": 47,
+      "sourceId": "hansol-appendix-4-169:47",
+      "fingerprint": "5f997befd103b4ee",
+      "column": 0,
+      "imageSize": [
+        558,
+        284
+      ],
+      "previousDirectId": "hansol-direct-4-169-47"
+    },
+    {
+      "book": "hansol",
+      "page": "4-169",
+      "number": 48,
+      "sourceId": "hansol-appendix-4-169:48",
+      "fingerprint": "27199f771c583177",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-169-48"
+    },
+    {
+      "book": "hansol",
+      "page": "4-169",
+      "number": 49,
+      "sourceId": "hansol-appendix-4-169:49",
+      "fingerprint": "dc2f41ada66bbe54",
+      "column": 1,
+      "imageSize": [
+        558,
+        451
+      ],
+      "previousDirectId": "hansol-direct-4-169-49"
+    },
+    {
+      "book": "hansol",
+      "page": "4-169",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-169:51",
+      "fingerprint": "b0baede53cb0575e",
+      "column": 1,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-4-169-1"
+    },
+    {
+      "book": "hansol",
+      "page": "4-170",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-170:52",
+      "fingerprint": "16042160df0e499",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-170-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-170",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-170:55",
+      "fingerprint": "158fa158707dea21",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-170",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-170:56",
+      "fingerprint": "a30ddabf0c590341",
+      "column": 1,
+      "imageSize": [
+        558,
+        198
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-170",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-170:57",
+      "fingerprint": "d5923a156f6667b5",
+      "column": 1,
+      "imageSize": [
+        558,
+        451
+      ],
+      "previousDirectId": "hansol-direct-4-170-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-171",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-171:59",
+      "fingerprint": "b36a880b9a645f95",
+      "column": 0,
+      "imageSize": [
+        558,
+        285
+      ],
+      "previousDirectId": "hansol-direct-4-171-59"
+    },
+    {
+      "book": "hansol",
+      "page": "4-171",
+      "number": 60,
+      "sourceId": "hansol-appendix-4-171:60",
+      "fingerprint": "30c3b82c08e074a4",
+      "column": 1,
+      "imageSize": [
+        558,
+        267
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-173",
+      "number": 7,
+      "sourceId": "hansol-appendix-4-173:7",
+      "fingerprint": "57e9e28e8dd12307",
+      "column": 0,
+      "imageSize": [
+        558,
+        241
+      ],
+      "previousDirectId": "hansol-direct-4-173-7"
+    },
+    {
+      "book": "hansol",
+      "page": "4-173",
+      "number": 8,
+      "sourceId": "hansol-appendix-4-173:8",
+      "fingerprint": "8966037b11610c3e",
+      "column": 0,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-4-173-8"
+    },
+    {
+      "book": "hansol",
+      "page": "4-173",
+      "number": 9,
+      "sourceId": "hansol-appendix-4-173:9",
+      "fingerprint": "bbd82df23c9ac31b",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-173-9"
+    },
+    {
+      "book": "hansol",
+      "page": "4-173",
+      "number": 10,
+      "sourceId": "hansol-appendix-4-173:10",
+      "fingerprint": "f4762ab96c2f2e5e",
+      "column": 1,
+      "imageSize": [
+        558,
+        553
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-174",
+      "number": 14,
+      "sourceId": "hansol-appendix-4-174:14",
+      "fingerprint": "7a8fb55483107c00",
+      "column": 0,
+      "imageSize": [
+        558,
+        437
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-174",
+      "number": 15,
+      "sourceId": "hansol-appendix-4-174:15",
+      "fingerprint": "d5bde41d08b4037a",
+      "column": 0,
+      "imageSize": [
+        558,
+        416
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-174",
+      "number": 17,
+      "sourceId": "hansol-appendix-4-174:17",
+      "fingerprint": "bf463a62528fc5e",
+      "column": 1,
+      "imageSize": [
+        558,
+        374
+      ],
+      "previousDirectId": "hansol-direct-4-174-17"
+    },
+    {
+      "book": "hansol",
+      "page": "4-176",
+      "number": 23,
+      "sourceId": "hansol-appendix-4-176:23",
+      "fingerprint": "446391759db86091",
+      "column": 0,
+      "imageSize": [
+        558,
+        501
+      ],
+      "previousDirectId": "hansol-direct-4-176-23"
+    },
+    {
+      "book": "hansol",
+      "page": "4-176",
+      "number": 26,
+      "sourceId": "hansol-appendix-4-176:26",
+      "fingerprint": "ab92c1a3546007d1",
+      "column": 1,
+      "imageSize": [
+        558,
+        286
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-177",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-177:28",
+      "fingerprint": "e6ef0e45d21411de",
+      "column": 0,
+      "imageSize": [
+        558,
+        490
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-177",
+      "number": 29,
+      "sourceId": "hansol-appendix-4-177:29",
+      "fingerprint": "af03a71e38e6181f",
+      "column": 0,
+      "imageSize": [
+        558,
+        535
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-178",
+      "number": 35,
+      "sourceId": "hansol-appendix-4-178:35",
+      "fingerprint": "7a38964154810bfb",
+      "column": 1,
+      "imageSize": [
+        558,
+        530
+      ],
+      "previousDirectId": "hansol-direct-4-178-35"
+    },
+    {
+      "book": "hansol",
+      "page": "4-179",
+      "number": 41,
+      "sourceId": "hansol-appendix-4-179:41",
+      "fingerprint": "c471c6a0a818ed41",
+      "column": 1,
+      "imageSize": [
+        558,
+        407
+      ],
+      "previousDirectId": "hansol-direct-4-179-41"
+    },
+    {
+      "book": "hansol",
+      "page": "4-180",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-180:44",
+      "fingerprint": "2127d93b7db5c133",
+      "column": 0,
+      "imageSize": [
+        558,
+        252
+      ],
+      "previousDirectId": "hansol-direct-4-180-44"
+    },
+    {
+      "book": "hansol",
+      "page": "4-180",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-180:45",
+      "fingerprint": "c6aa32563d03b09d",
+      "column": 1,
+      "imageSize": [
+        558,
+        989
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-181",
+      "number": 46,
+      "sourceId": "hansol-appendix-4-181:46",
+      "fingerprint": "7aab0591fc49ca0d",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-4-181-46"
+    },
+    {
+      "book": "hansol",
+      "page": "4-182",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-182:51",
+      "fingerprint": "2c51b571c9a8ae22",
+      "column": 0,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-4-182-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-182",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-182:52",
+      "fingerprint": "d0c32ab1f87ac8ef",
+      "column": 0,
+      "imageSize": [
+        558,
+        256
+      ],
+      "previousDirectId": "hansol-direct-4-182-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-182",
+      "number": 54,
+      "sourceId": "hansol-appendix-4-182:54",
+      "fingerprint": "1f49d92231b80daa",
+      "column": 1,
+      "imageSize": [
+        558,
+        405
+      ],
+      "previousDirectId": "hansol-direct-4-182-54"
+    },
+    {
+      "book": "hansol",
+      "page": "4-182",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-182:55",
+      "fingerprint": "e5024e2d3e3dbf53",
+      "column": 1,
+      "imageSize": [
+        558,
+        344
+      ],
+      "previousDirectId": "hansol-direct-4-182-55"
+    },
+    {
+      "book": "hansol",
+      "page": "4-183",
+      "number": 57,
+      "sourceId": "hansol-appendix-4-183:57",
+      "fingerprint": "34e9850ace3e3257",
+      "column": 0,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-4-183-57"
+    },
+    {
+      "book": "hansol",
+      "page": "4-183",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-183:59",
+      "fingerprint": "1b5422e122f63f14",
+      "column": 1,
+      "imageSize": [
+        558,
+        209
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-183",
+      "number": 60,
+      "sourceId": "hansol-appendix-4-183:60",
+      "fingerprint": "af3964582a244ce2",
+      "column": 1,
+      "imageSize": [
+        558,
+        386
+      ],
+      "previousDirectId": "hansol-direct-4-183-60"
+    },
+    {
+      "book": "hansol",
+      "page": "4-184",
+      "number": 1,
+      "sourceId": "hansol-appendix-4-184:1",
+      "fingerprint": "b0254dd1f5132b0e",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-184",
+      "number": 4,
+      "sourceId": "hansol-appendix-4-184:4",
+      "fingerprint": "3007a449855416b0",
+      "column": 1,
+      "imageSize": [
+        558,
+        321
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-185",
+      "number": 8,
+      "sourceId": "hansol-appendix-4-185:8",
+      "fingerprint": "e3a1425639e68e25",
+      "column": 0,
+      "imageSize": [
+        558,
+        338
+      ],
+      "previousDirectId": "hansol-direct-4-185-8"
+    },
+    {
+      "book": "hansol",
+      "page": "4-185",
+      "number": 9,
+      "sourceId": "hansol-appendix-4-185:9",
+      "fingerprint": "37791dc5ae636a58",
+      "column": 1,
+      "imageSize": [
+        558,
+        239
+      ],
+      "previousDirectId": "hansol-direct-4-185-17"
+    },
+    {
+      "book": "hansol",
+      "page": "4-185",
+      "number": 10,
+      "sourceId": "hansol-appendix-4-185:10",
+      "fingerprint": "601acb23b9c257ac",
+      "column": 1,
+      "imageSize": [
+        558,
+        752
+      ],
+      "previousDirectId": "hansol-direct-4-185-10"
+    },
+    {
+      "book": "hansol",
+      "page": "4-186",
+      "number": 11,
+      "sourceId": "hansol-appendix-4-186:11",
+      "fingerprint": "9fccee1e9c297eb9",
+      "column": 0,
+      "imageSize": [
+        558,
+        610
+      ],
+      "previousDirectId": "hansol-direct-4-186-11"
+    },
+    {
+      "book": "hansol",
+      "page": "4-187",
+      "number": 17,
+      "sourceId": "hansol-appendix-4-187:17",
+      "fingerprint": "88822166c1b538fe",
+      "column": 0,
+      "imageSize": [
+        558,
+        249
+      ],
+      "previousDirectId": "hansol-direct-4-187-17"
+    },
+    {
+      "book": "hansol",
+      "page": "4-187",
+      "number": 20,
+      "sourceId": "hansol-appendix-4-187:20",
+      "fingerprint": "35a9e6b55c28edb4",
+      "column": 1,
+      "imageSize": [
+        558,
+        399
+      ],
+      "previousDirectId": "hansol-direct-4-187-20"
+    },
+    {
+      "book": "hansol",
+      "page": "4-188",
+      "number": 22,
+      "sourceId": "hansol-appendix-4-188:22",
+      "fingerprint": "c864b1eaf9b9f416",
+      "column": 0,
+      "imageSize": [
+        558,
+        452
+      ],
+      "previousDirectId": "hansol-direct-4-188-22"
+    },
+    {
+      "book": "hansol",
+      "page": "4-189",
+      "number": 25,
+      "sourceId": "hansol-appendix-4-189:25",
+      "fingerprint": "1a911cf904a49111",
+      "column": 0,
+      "imageSize": [
+        558,
+        530
+      ],
+      "previousDirectId": "hansol-direct-4-189-25"
+    },
+    {
+      "book": "hansol",
+      "page": "4-189",
+      "number": 28,
+      "sourceId": "hansol-appendix-4-189:28",
+      "fingerprint": "274cad90643d0950",
+      "column": 1,
+      "imageSize": [
+        558,
+        586
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-189",
+      "number": 29,
+      "sourceId": "hansol-appendix-4-189:29",
+      "fingerprint": "d5b8e8e5601f2779",
+      "column": 1,
+      "imageSize": [
+        558,
+        488
+      ],
+      "previousDirectId": "hansol-direct-4-189-29"
+    },
+    {
+      "book": "hansol",
+      "page": "4-190",
+      "number": 30,
+      "sourceId": "hansol-appendix-4-190:30",
+      "fingerprint": "bafb6fa33d06ca1d",
+      "column": 0,
+      "imageSize": [
+        558,
+        478
+      ],
+      "previousDirectId": "hansol-direct-4-190-30"
+    },
+    {
+      "book": "hansol",
+      "page": "4-190",
+      "number": 32,
+      "sourceId": "hansol-appendix-4-190:32",
+      "fingerprint": "69cbf4ff5f3923f6",
+      "column": 0,
+      "imageSize": [
+        558,
+        370
+      ],
+      "previousDirectId": "hansol-direct-4-190-32"
+    },
+    {
+      "book": "hansol",
+      "page": "4-190",
+      "number": 33,
+      "sourceId": "hansol-appendix-4-190:33",
+      "fingerprint": "c9f5c4f696655a4b",
+      "column": 1,
+      "imageSize": [
+        558,
+        305
+      ],
+      "previousDirectId": "hansol-direct-4-190-33"
+    },
+    {
+      "book": "hansol",
+      "page": "4-191",
+      "number": 39,
+      "sourceId": "hansol-appendix-4-191:39",
+      "fingerprint": "1a1528b4c58c0267",
+      "column": 1,
+      "imageSize": [
+        558,
+        241
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-192",
+      "number": 44,
+      "sourceId": "hansol-appendix-4-192:44",
+      "fingerprint": "816f9dc37681680b",
+      "column": 1,
+      "imageSize": [
+        558,
+        988
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "4-193",
+      "number": 45,
+      "sourceId": "hansol-appendix-4-193:45",
+      "fingerprint": "f190b6b909a3b2a8",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-4-193-45"
+    },
+    {
+      "book": "hansol",
+      "page": "4-194",
+      "number": 51,
+      "sourceId": "hansol-appendix-4-194:51",
+      "fingerprint": "4ca4a4c319e6f525",
+      "column": 0,
+      "imageSize": [
+        558,
+        134
+      ],
+      "previousDirectId": "hansol-direct-4-194-51"
+    },
+    {
+      "book": "hansol",
+      "page": "4-194",
+      "number": 52,
+      "sourceId": "hansol-appendix-4-194:52",
+      "fingerprint": "b33ba6335ccfea0",
+      "column": 0,
+      "imageSize": [
+        558,
+        359
+      ],
+      "previousDirectId": "hansol-direct-4-194-52"
+    },
+    {
+      "book": "hansol",
+      "page": "4-194",
+      "number": 55,
+      "sourceId": "hansol-appendix-4-194:55",
+      "fingerprint": "3a3d93a6e62c59b8",
+      "column": 1,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-4-194-55"
+    },
+    {
+      "book": "hansol",
+      "page": "4-195",
+      "number": 56,
+      "sourceId": "hansol-appendix-4-195:56",
+      "fingerprint": "6a117104e318f75e",
+      "column": 0,
+      "imageSize": [
+        558,
+        337
+      ],
+      "previousDirectId": "hansol-direct-4-195-56"
+    },
+    {
+      "book": "hansol",
+      "page": "4-195",
+      "number": 58,
+      "sourceId": "hansol-appendix-4-195:58",
+      "fingerprint": "b4456e0a27331f1e",
+      "column": 0,
+      "imageSize": [
+        558,
+        184
+      ],
+      "previousDirectId": "hansol-direct-4-195-58"
+    },
+    {
+      "book": "hansol",
+      "page": "4-195",
+      "number": 59,
+      "sourceId": "hansol-appendix-4-195:59",
+      "fingerprint": "df3a62c7db522b17",
+      "column": 1,
+      "imageSize": [
+        558,
+        392
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-4",
+      "number": 1,
+      "sourceId": "hansol-appendix-5-4:1",
+      "fingerprint": "fd7859b1d1929348",
+      "column": 0,
+      "imageSize": [
+        558,
+        511
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-4",
+      "number": 2,
+      "sourceId": "hansol-appendix-5-4:2",
+      "fingerprint": "391bf6c5fbbce922",
+      "column": 0,
+      "imageSize": [
+        558,
+        256
+      ],
+      "previousDirectId": "hansol-direct-5-4-2"
+    },
+    {
+      "book": "hansol",
+      "page": "5-5",
+      "number": 8,
+      "sourceId": "hansol-appendix-5-5:8",
+      "fingerprint": "4d42457dddbdfe56",
+      "column": 0,
+      "imageSize": [
+        558,
+        373
+      ],
+      "previousDirectId": "hansol-direct-5-5-8"
+    },
+    {
+      "book": "hansol",
+      "page": "5-5",
+      "number": 9,
+      "sourceId": "hansol-appendix-5-5:9",
+      "fingerprint": "4670f9df049f0ea0",
+      "column": 1,
+      "imageSize": [
+        558,
+        445
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-8",
+      "number": 25,
+      "sourceId": "hansol-appendix-5-8:25",
+      "fingerprint": "6d263c083bf792c9",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-8-25"
+    },
+    {
+      "book": "hansol",
+      "page": "5-9",
+      "number": 27,
+      "sourceId": "hansol-appendix-5-9:27",
+      "fingerprint": "2bec5ba27930565d",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-5-9-27"
+    },
+    {
+      "book": "hansol",
+      "page": "5-10",
+      "number": 32,
+      "sourceId": "hansol-appendix-5-10:32",
+      "fingerprint": "52df8259cb2b27da",
+      "column": 0,
+      "imageSize": [
+        558,
+        295
+      ],
+      "previousDirectId": "hansol-direct-5-10-32"
+    },
+    {
+      "book": "hansol",
+      "page": "5-10",
+      "number": 35,
+      "sourceId": "hansol-appendix-5-10:35",
+      "fingerprint": "20eca4ad5d6d18b0",
+      "column": 1,
+      "imageSize": [
+        558,
+        426
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-14",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-14:54",
+      "fingerprint": "16ba5194e96522ad",
+      "column": 0,
+      "imageSize": [
+        558,
+        461
+      ],
+      "previousDirectId": "hansol-direct-5-14-54"
+    },
+    {
+      "book": "hansol",
+      "page": "5-15",
+      "number": 60,
+      "sourceId": "hansol-appendix-5-15:60",
+      "fingerprint": "c9066df9ba7b637e",
+      "column": 0,
+      "imageSize": [
+        558,
+        326
+      ],
+      "previousDirectId": "hansol-direct-5-15-60"
+    },
+    {
+      "book": "hansol",
+      "page": "5-16",
+      "number": 2,
+      "sourceId": "hansol-appendix-5-16:2",
+      "fingerprint": "bc1583d65b1e06cf",
+      "column": 0,
+      "imageSize": [
+        558,
+        372
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-18",
+      "number": 16,
+      "sourceId": "hansol-appendix-5-18:16",
+      "fingerprint": "15755d7d13adb22b",
+      "column": 1,
+      "imageSize": [
+        558,
+        213
+      ],
+      "previousDirectId": "hansol-direct-5-18-16"
+    },
+    {
+      "book": "hansol",
+      "page": "5-20",
+      "number": 23,
+      "sourceId": "hansol-appendix-5-20:23",
+      "fingerprint": "9e99ab49bee9f871",
+      "column": 0,
+      "imageSize": [
+        558,
+        789
+      ],
+      "previousDirectId": "hansol-direct-5-20-23"
+    },
+    {
+      "book": "hansol",
+      "page": "5-21",
+      "number": 29,
+      "sourceId": "hansol-appendix-5-21:29",
+      "fingerprint": "f108c103d94ce3a9",
+      "column": 0,
+      "imageSize": [
+        558,
+        249
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-21",
+      "number": 30,
+      "sourceId": "hansol-appendix-5-21:30",
+      "fingerprint": "82d9b9bc3c884b5",
+      "column": 0,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-5-21-30"
+    },
+    {
+      "book": "hansol",
+      "page": "5-22",
+      "number": 35,
+      "sourceId": "hansol-appendix-5-22:35",
+      "fingerprint": "506d13751d6945f4",
+      "column": 0,
+      "imageSize": [
+        558,
+        289
+      ],
+      "previousDirectId": "hansol-direct-5-22-35"
+    },
+    {
+      "book": "hansol",
+      "page": "5-22",
+      "number": 38,
+      "sourceId": "hansol-appendix-5-22:38",
+      "fingerprint": "79a6cf3a2c450653",
+      "column": 1,
+      "imageSize": [
+        558,
+        411
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-25",
+      "number": 49,
+      "sourceId": "hansol-appendix-5-25:49",
+      "fingerprint": "706442f17ccb1037",
+      "column": 0,
+      "imageSize": [
+        558,
+        253
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-25",
+      "number": 53,
+      "sourceId": "hansol-appendix-5-25:53",
+      "fingerprint": "e4dfa75f5c2a4a9",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-5-25-53"
+    },
+    {
+      "book": "hansol",
+      "page": "5-26",
+      "number": 56,
+      "sourceId": "hansol-appendix-5-26:56",
+      "fingerprint": "326d2468bb685e21",
+      "column": 0,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-5-26-56"
+    },
+    {
+      "book": "hansol",
+      "page": "5-26",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-26:57",
+      "fingerprint": "7a29bac2e37022ca",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ],
+      "previousDirectId": "hansol-direct-5-26-57"
+    },
+    {
+      "book": "hansol",
+      "page": "5-26",
+      "number": 58,
+      "sourceId": "hansol-appendix-5-26:58",
+      "fingerprint": "b11fdf108c62cc41",
+      "column": 0,
+      "imageSize": [
+        558,
+        176
+      ],
+      "previousDirectId": "hansol-direct-5-26-58"
+    },
+    {
+      "book": "hansol",
+      "page": "5-26",
+      "number": 60,
+      "sourceId": "hansol-appendix-5-26:60",
+      "fingerprint": "a39b82ce038a37b6",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-26-60"
+    },
+    {
+      "book": "hansol",
+      "page": "5-39",
+      "number": 3,
+      "sourceId": "hansol-appendix-5-39:3",
+      "fingerprint": "7f9c4b8c7142f34b",
+      "column": 0,
+      "imageSize": [
+        558,
+        318
+      ],
+      "previousDirectId": "hansol-direct-5-39-3"
+    },
+    {
+      "book": "hansol",
+      "page": "5-39",
+      "number": 4,
+      "sourceId": "hansol-appendix-5-39:4",
+      "fingerprint": "377cf8d01dfc73e0",
+      "column": 1,
+      "imageSize": [
+        558,
+        619
+      ],
+      "previousDirectId": "hansol-direct-5-39-4"
+    },
+    {
+      "book": "hansol",
+      "page": "5-42",
+      "number": 18,
+      "sourceId": "hansol-appendix-5-42:18",
+      "fingerprint": "ca2afef80f47e2c3",
+      "column": 0,
+      "imageSize": [
+        558,
+        290
+      ],
+      "previousDirectId": "hansol-direct-5-42-18"
+    },
+    {
+      "book": "hansol",
+      "page": "5-43",
+      "number": 21,
+      "sourceId": "hansol-appendix-5-43:21",
+      "fingerprint": "db09787b7d98884a",
+      "column": 0,
+      "imageSize": [
+        558,
+        422
+      ],
+      "previousDirectId": "hansol-direct-5-43-21"
+    },
+    {
+      "book": "hansol",
+      "page": "5-43",
+      "number": 23,
+      "sourceId": "hansol-appendix-5-43:23",
+      "fingerprint": "aeda079bb5861392",
+      "column": 1,
+      "imageSize": [
+        558,
+        242
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-44",
+      "number": 26,
+      "sourceId": "hansol-appendix-5-44:26",
+      "fingerprint": "4e096486216e86e0",
+      "column": 0,
+      "imageSize": [
+        558,
+        618
+      ],
+      "previousDirectId": "hansol-direct-5-44-26"
+    },
+    {
+      "book": "hansol",
+      "page": "5-45",
+      "number": 31,
+      "sourceId": "hansol-appendix-5-45:31",
+      "fingerprint": "5d7a578e5afe093c",
+      "column": 0,
+      "imageSize": [
+        558,
+        438
+      ],
+      "previousDirectId": "hansol-direct-5-45-31"
+    },
+    {
+      "book": "hansol",
+      "page": "5-46",
+      "number": 35,
+      "sourceId": "hansol-appendix-5-46:35",
+      "fingerprint": "1fb9f3c26b4dc478",
+      "column": 0,
+      "imageSize": [
+        558,
+        242
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-49",
+      "number": 56,
+      "sourceId": "hansol-appendix-5-49:56",
+      "fingerprint": "1c9fad7da6b78e2b",
+      "column": 1,
+      "imageSize": [
+        558,
+        561
+      ],
+      "previousDirectId": "hansol-direct-5-49-56"
+    },
+    {
+      "book": "hansol",
+      "page": "5-50",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-50:57",
+      "fingerprint": "ab148be78f33f408",
+      "column": 0,
+      "imageSize": [
+        558,
+        388
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-50",
+      "number": 58,
+      "sourceId": "hansol-appendix-5-50:58",
+      "fingerprint": "43f1e7350b8e5b0e",
+      "column": 0,
+      "imageSize": [
+        558,
+        243
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-50",
+      "number": 59,
+      "sourceId": "hansol-appendix-5-50:59",
+      "fingerprint": "c7e5f22662fbf2c9",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-5-50-59"
+    },
+    {
+      "book": "hansol",
+      "page": "5-50",
+      "number": 60,
+      "sourceId": "hansol-appendix-5-50:60",
+      "fingerprint": "b8444baadcf68b00",
+      "column": 1,
+      "imageSize": [
+        558,
+        348
+      ],
+      "previousDirectId": "hansol-direct-5-50-60"
+    },
+    {
+      "book": "hansol",
+      "page": "5-51",
+      "number": 1,
+      "sourceId": "hansol-appendix-5-51:1",
+      "fingerprint": "3fe652c0667f130b",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-51",
+      "number": 2,
+      "sourceId": "hansol-appendix-5-51:2",
+      "fingerprint": "517ead5c8f9ccaf3",
+      "column": 0,
+      "imageSize": [
+        558,
+        897
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-51",
+      "number": 3,
+      "sourceId": "hansol-appendix-5-51:3",
+      "fingerprint": "eec3340924ff0e23",
+      "column": 1,
+      "imageSize": [
+        558,
+        331
+      ],
+      "previousDirectId": "hansol-direct-5-51-3"
+    },
+    {
+      "book": "hansol",
+      "page": "5-52",
+      "number": 8,
+      "sourceId": "hansol-appendix-5-52:8",
+      "fingerprint": "9c06c74da3e206b1",
+      "column": 1,
+      "imageSize": [
+        558,
+        134
+      ],
+      "previousDirectId": "hansol-direct-5-52-8"
+    },
+    {
+      "book": "hansol",
+      "page": "5-52",
+      "number": 10,
+      "sourceId": "hansol-appendix-5-52:10",
+      "fingerprint": "435defaaa447a592",
+      "column": 1,
+      "imageSize": [
+        558,
+        1246
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-53",
+      "number": 12,
+      "sourceId": "hansol-appendix-5-53:12",
+      "fingerprint": "491dd268924b9e66",
+      "column": 1,
+      "imageSize": [
+        558,
+        1317
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-55",
+      "number": 22,
+      "sourceId": "hansol-appendix-5-55:22",
+      "fingerprint": "ed26aaaa745d2496",
+      "column": 1,
+      "imageSize": [
+        558,
+        666
+      ],
+      "previousDirectId": "hansol-direct-5-55-22"
+    },
+    {
+      "book": "hansol",
+      "page": "5-56",
+      "number": 25,
+      "sourceId": "hansol-appendix-5-56:25",
+      "fingerprint": "294c420d9d3862b8",
+      "column": 0,
+      "imageSize": [
+        558,
+        375
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-58",
+      "number": 34,
+      "sourceId": "hansol-appendix-5-58:34",
+      "fingerprint": "bd30dbe67e729fa",
+      "column": 0,
+      "imageSize": [
+        558,
+        390
+      ],
+      "previousDirectId": "hansol-direct-5-58-34"
+    },
+    {
+      "book": "hansol",
+      "page": "5-58",
+      "number": 37,
+      "sourceId": "hansol-appendix-5-58:37",
+      "fingerprint": "821b83e4f1ef4ba5",
+      "column": 1,
+      "imageSize": [
+        558,
+        544
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-59",
+      "number": 39,
+      "sourceId": "hansol-appendix-5-59:39",
+      "fingerprint": "81e6d20825bd528b",
+      "column": 0,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-5-59-39"
+    },
+    {
+      "book": "hansol",
+      "page": "5-59",
+      "number": 42,
+      "sourceId": "hansol-appendix-5-59:42",
+      "fingerprint": "a5adf8e3fe8abe41",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-60",
+      "number": 44,
+      "sourceId": "hansol-appendix-5-60:44",
+      "fingerprint": "4fb7d288281da124",
+      "column": 0,
+      "imageSize": [
+        558,
+        442
+      ],
+      "previousDirectId": "hansol-direct-5-60-44"
+    },
+    {
+      "book": "hansol",
+      "page": "5-61",
+      "number": 51,
+      "sourceId": "hansol-appendix-5-61:51",
+      "fingerprint": "c4aa230710671f",
+      "column": 1,
+      "imageSize": [
+        558,
+        321
+      ],
+      "previousDirectId": "hansol-direct-5-61-51"
+    },
+    {
+      "book": "hansol",
+      "page": "5-61",
+      "number": 53,
+      "sourceId": "hansol-appendix-5-61:53",
+      "fingerprint": "80b3c05a30df953c",
+      "column": 1,
+      "imageSize": [
+        558,
+        233
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-62",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-62:54",
+      "fingerprint": "111f5a595e9e08ef",
+      "column": 0,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-62-54"
+    },
+    {
+      "book": "hansol",
+      "page": "5-62",
+      "number": 56,
+      "sourceId": "hansol-appendix-5-62:56",
+      "fingerprint": "f83f15ce4745c899",
+      "column": 0,
+      "imageSize": [
+        558,
+        500
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-62",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-62:57",
+      "fingerprint": "160e7ac2b489c0a8",
+      "column": 1,
+      "imageSize": [
+        558,
+        346
+      ],
+      "previousDirectId": "hansol-direct-5-62-57"
+    },
+    {
+      "book": "hansol",
+      "page": "5-63",
+      "number": 58,
+      "sourceId": "hansol-appendix-5-63:58",
+      "fingerprint": "f4b61059f987e1b0",
+      "column": 0,
+      "imageSize": [
+        558,
+        328
+      ],
+      "previousDirectId": "hansol-direct-5-63-58"
+    },
+    {
+      "book": "hansol",
+      "page": "5-63",
+      "number": 60,
+      "sourceId": "hansol-appendix-5-63:60",
+      "fingerprint": "779745eb336d568b",
+      "column": 0,
+      "imageSize": [
+        558,
+        203
+      ],
+      "previousDirectId": "hansol-direct-5-63-60"
+    },
+    {
+      "book": "hansol",
+      "page": "5-65",
+      "number": 8,
+      "sourceId": "hansol-appendix-5-65:8",
+      "fingerprint": "4d9d1cffbb491b41",
+      "column": 0,
+      "imageSize": [
+        558,
+        467
+      ],
+      "previousDirectId": "hansol-direct-5-65-8"
+    },
+    {
+      "book": "hansol",
+      "page": "5-66",
+      "number": 15,
+      "sourceId": "hansol-appendix-5-66:15",
+      "fingerprint": "4a1e56afbe327db0",
+      "column": 0,
+      "imageSize": [
+        558,
+        606
+      ],
+      "previousDirectId": "hansol-direct-5-66-15"
+    },
+    {
+      "book": "hansol",
+      "page": "5-69",
+      "number": 30,
+      "sourceId": "hansol-appendix-5-69:30",
+      "fingerprint": "256b0b05fd647db6",
+      "column": 0,
+      "imageSize": [
+        558,
+        255
+      ],
+      "previousDirectId": "hansol-direct-5-69-30"
+    },
+    {
+      "book": "hansol",
+      "page": "5-69",
+      "number": 31,
+      "sourceId": "hansol-appendix-5-69:31",
+      "fingerprint": "98f6d02123ea1fec",
+      "column": 0,
+      "imageSize": [
+        558,
+        434
+      ],
+      "previousDirectId": "hansol-direct-5-69-31"
+    },
+    {
+      "book": "hansol",
+      "page": "5-69",
+      "number": 32,
+      "sourceId": "hansol-appendix-5-69:32",
+      "fingerprint": "5db6252bdf5e5f7c",
+      "column": 1,
+      "imageSize": [
+        558,
+        514
+      ],
+      "previousDirectId": "hansol-direct-5-69-32"
+    },
+    {
+      "book": "hansol",
+      "page": "5-69",
+      "number": 33,
+      "sourceId": "hansol-appendix-5-69:33",
+      "fingerprint": "c03ffc51ff0f82fb",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ],
+      "previousDirectId": "hansol-direct-5-69-33"
+    },
+    {
+      "book": "hansol",
+      "page": "5-70",
+      "number": 36,
+      "sourceId": "hansol-appendix-5-70:36",
+      "fingerprint": "efe6110a2c1abe00",
+      "column": 0,
+      "imageSize": [
+        558,
+        240
+      ],
+      "previousDirectId": "hansol-direct-5-70-36"
+    },
+    {
+      "book": "hansol",
+      "page": "5-71",
+      "number": 41,
+      "sourceId": "hansol-appendix-5-71:41",
+      "fingerprint": "79d0d36549bc4ce5",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-71-41"
+    },
+    {
+      "book": "hansol",
+      "page": "5-71",
+      "number": 42,
+      "sourceId": "hansol-appendix-5-71:42",
+      "fingerprint": "7e3eb81d4b74a756",
+      "column": 1,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-5-71-42"
+    },
+    {
+      "book": "hansol",
+      "page": "5-73",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-73:54",
+      "fingerprint": "da27228f382d80b2",
+      "column": 1,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-5-73-54"
+    },
+    {
+      "book": "hansol",
+      "page": "5-73",
+      "number": 55,
+      "sourceId": "hansol-appendix-5-73:55",
+      "fingerprint": "a4cb8355de49b5d2",
+      "column": 1,
+      "imageSize": [
+        558,
+        236
+      ],
+      "previousDirectId": "hansol-direct-5-73-55"
+    },
+    {
+      "book": "hansol",
+      "page": "5-74",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-74:57",
+      "fingerprint": "59ffacfad60309cf",
+      "column": 0,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-5-74-57"
+    },
+    {
+      "book": "hansol",
+      "page": "5-74",
+      "number": 58,
+      "sourceId": "hansol-appendix-5-74:58",
+      "fingerprint": "fa8647f1864f7bee",
+      "column": 1,
+      "imageSize": [
+        558,
+        247
+      ],
+      "previousDirectId": "hansol-direct-5-74-58"
+    },
+    {
+      "book": "hansol",
+      "page": "5-74",
+      "number": 59,
+      "sourceId": "hansol-appendix-5-74:59",
+      "fingerprint": "bc386a8a7e95e5de",
+      "column": 1,
+      "imageSize": [
+        558,
+        366
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-75",
+      "number": 1,
+      "sourceId": "hansol-appendix-5-75:1",
+      "fingerprint": "4de5f4348c999ed3",
+      "column": 0,
+      "imageSize": [
+        558,
+        133
+      ],
+      "previousDirectId": "hansol-direct-5-75-1"
+    },
+    {
+      "book": "hansol",
+      "page": "5-75",
+      "number": 3,
+      "sourceId": "hansol-appendix-5-75:3",
+      "fingerprint": "cf3b3926416ff184",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ],
+      "previousDirectId": "hansol-direct-5-75-3"
+    },
+    {
+      "book": "hansol",
+      "page": "5-75",
+      "number": 5,
+      "sourceId": "hansol-appendix-5-75:5",
+      "fingerprint": "ed3a309c4dc64be4",
+      "column": 1,
+      "imageSize": [
+        558,
+        431
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-77",
+      "number": 12,
+      "sourceId": "hansol-appendix-5-77:12",
+      "fingerprint": "f4c9fa7a31099791",
+      "column": 0,
+      "imageSize": [
+        558,
+        891
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-79",
+      "number": 25,
+      "sourceId": "hansol-appendix-5-79:25",
+      "fingerprint": "38546c89c3d415cf",
+      "column": 0,
+      "imageSize": [
+        558,
+        451
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-82",
+      "number": 44,
+      "sourceId": "hansol-appendix-5-82:44",
+      "fingerprint": "edc289718b6a90ad",
+      "column": 1,
+      "imageSize": [
+        558,
+        159
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-83",
+      "number": 49,
+      "sourceId": "hansol-appendix-5-83:49",
+      "fingerprint": "37d30c6b8e101cf5",
+      "column": 0,
+      "imageSize": [
+        558,
+        215
+      ],
+      "previousDirectId": "hansol-direct-5-83-49"
+    },
+    {
+      "book": "hansol",
+      "page": "5-83",
+      "number": 52,
+      "sourceId": "hansol-appendix-5-83:52",
+      "fingerprint": "c91671b9c98ac506",
+      "column": 1,
+      "imageSize": [
+        558,
+        205
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-83",
+      "number": 53,
+      "sourceId": "hansol-appendix-5-83:53",
+      "fingerprint": "95ce2a921cf21f76",
+      "column": 1,
+      "imageSize": [
+        558,
+        352
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-84",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-84:54",
+      "fingerprint": "c59442ddc3be1aa5",
+      "column": 0,
+      "imageSize": [
+        558,
+        170
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-84",
+      "number": 55,
+      "sourceId": "hansol-appendix-5-84:55",
+      "fingerprint": "68f2138cd52a26d4",
+      "column": 0,
+      "imageSize": [
+        558,
+        376
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-84",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-84:57",
+      "fingerprint": "859da237cd0b601d",
+      "column": 1,
+      "imageSize": [
+        558,
+        354
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-85",
+      "number": 60,
+      "sourceId": "hansol-appendix-5-85:60",
+      "fingerprint": "41c6a1c59b214b44",
+      "column": 0,
+      "imageSize": [
+        558,
+        443
+      ],
+      "previousDirectId": "hansol-direct-5-85-60"
+    },
+    {
+      "book": "hansol",
+      "page": "5-86",
+      "number": 3,
+      "sourceId": "hansol-appendix-5-86:3",
+      "fingerprint": "43714fd7e50416d5",
+      "column": 1,
+      "imageSize": [
+        558,
+        204
+      ],
+      "previousDirectId": "hansol-direct-5-86-3"
+    },
+    {
+      "book": "hansol",
+      "page": "5-86",
+      "number": 4,
+      "sourceId": "hansol-appendix-5-86:4",
+      "fingerprint": "c4cf1cdd07c3766d",
+      "column": 1,
+      "imageSize": [
+        558,
+        316
+      ],
+      "previousDirectId": "hansol-direct-5-86-4"
+    },
+    {
+      "book": "hansol",
+      "page": "5-89",
+      "number": 20,
+      "sourceId": "hansol-appendix-5-89:20",
+      "fingerprint": "f5441f49274664a1",
+      "column": 1,
+      "imageSize": [
+        558,
+        133
+      ],
+      "previousDirectId": "hansol-direct-5-89-20"
+    },
+    {
+      "book": "hansol",
+      "page": "5-90",
+      "number": 26,
+      "sourceId": "hansol-appendix-5-90:26",
+      "fingerprint": "54bbba18a3f6aa8a",
+      "column": 1,
+      "imageSize": [
+        558,
+        414
+      ],
+      "previousDirectId": "hansol-direct-5-90-26"
+    },
+    {
+      "book": "hansol",
+      "page": "5-91",
+      "number": 31,
+      "sourceId": "hansol-appendix-5-91:31",
+      "fingerprint": "5f2a5259e93d570",
+      "column": 1,
+      "imageSize": [
+        558,
+        568
+      ],
+      "previousDirectId": "hansol-direct-5-91-31"
+    },
+    {
+      "book": "hansol",
+      "page": "5-92",
+      "number": 33,
+      "sourceId": "hansol-appendix-5-92:33",
+      "fingerprint": "c7a2e9d07dd0d7f6",
+      "column": 0,
+      "imageSize": [
+        558,
+        356
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-93",
+      "number": 39,
+      "sourceId": "hansol-appendix-5-93:39",
+      "fingerprint": "a691d0d93657d612",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-93-39"
+    },
+    {
+      "book": "hansol",
+      "page": "5-95",
+      "number": 47,
+      "sourceId": "hansol-appendix-5-95:47",
+      "fingerprint": "e689b7a4a68e8b09",
+      "column": 0,
+      "imageSize": [
+        558,
+        321
+      ],
+      "previousDirectId": "hansol-direct-5-95-47"
+    },
+    {
+      "book": "hansol",
+      "page": "5-95",
+      "number": 49,
+      "sourceId": "hansol-appendix-5-95:49",
+      "fingerprint": "8d6a3c02334ae946",
+      "column": 0,
+      "imageSize": [
+        558,
+        161
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-96",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-96:54",
+      "fingerprint": "a7ee8d6ffde0d9c0",
+      "column": 0,
+      "imageSize": [
+        558,
+        204
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-98",
+      "number": 5,
+      "sourceId": "hansol-appendix-5-98:5",
+      "fingerprint": "506fc3c62016917",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ],
+      "previousDirectId": "hansol-direct-5-98-5"
+    },
+    {
+      "book": "hansol",
+      "page": "5-99",
+      "number": 7,
+      "sourceId": "hansol-appendix-5-99:7",
+      "fingerprint": "34ce8bf36f6eb7b",
+      "column": 0,
+      "imageSize": [
+        558,
+        489
+      ],
+      "previousDirectId": "hansol-direct-5-99-7"
+    },
+    {
+      "book": "hansol",
+      "page": "5-99",
+      "number": 9,
+      "sourceId": "hansol-appendix-5-99:9",
+      "fingerprint": "69d5571b5d872c02",
+      "column": 1,
+      "imageSize": [
+        558,
+        433
+      ],
+      "previousDirectId": "hansol-direct-5-99-9"
+    },
+    {
+      "book": "hansol",
+      "page": "5-100",
+      "number": 13,
+      "sourceId": "hansol-appendix-5-100:13",
+      "fingerprint": "b723c07a9ea1807c",
+      "column": 0,
+      "imageSize": [
+        558,
+        606
+      ],
+      "previousDirectId": "hansol-direct-5-100-13"
+    },
+    {
+      "book": "hansol",
+      "page": "5-103",
+      "number": 31,
+      "sourceId": "hansol-appendix-5-103:31",
+      "fingerprint": "5b059edf074ddbff",
+      "column": 1,
+      "imageSize": [
+        558,
+        169
+      ],
+      "previousDirectId": "hansol-direct-5-103-31"
+    },
+    {
+      "book": "hansol",
+      "page": "5-104",
+      "number": 34,
+      "sourceId": "hansol-appendix-5-104:34",
+      "fingerprint": "e0e47a2c3e406458",
+      "column": 0,
+      "imageSize": [
+        558,
+        322
+      ],
+      "previousDirectId": "hansol-direct-5-104-1"
+    },
+    {
+      "book": "hansol",
+      "page": "5-105",
+      "number": 43,
+      "sourceId": "hansol-appendix-5-105:43",
+      "fingerprint": "8a5a68365b0a8ac8",
+      "column": 1,
+      "imageSize": [
+        558,
+        170
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-106",
+      "number": 48,
+      "sourceId": "hansol-appendix-5-106:48",
+      "fingerprint": "141b884e92d7e599",
+      "column": 1,
+      "imageSize": [
+        558,
+        250
+      ],
+      "previousDirectId": "hansol-direct-5-106-48"
+    },
+    {
+      "book": "hansol",
+      "page": "5-107",
+      "number": 50,
+      "sourceId": "hansol-appendix-5-107:50",
+      "fingerprint": "c444523b3c72c952",
+      "column": 0,
+      "imageSize": [
+        558,
+        215
+      ]
+    },
+    {
+      "book": "hansol",
+      "page": "5-107",
+      "number": 54,
+      "sourceId": "hansol-appendix-5-107:54",
+      "fingerprint": "11cbb14a3c3bd53",
+      "column": 1,
+      "imageSize": [
+        558,
+        355
+      ],
+      "previousDirectId": "hansol-direct-5-107-54"
+    },
+    {
+      "book": "hansol",
+      "page": "5-108",
+      "number": 57,
+      "sourceId": "hansol-appendix-5-108:57",
+      "fingerprint": "673d4b853bfbcc95",
+      "column": 0,
+      "imageSize": [
+        558,
+        217
+      ],
+      "previousDirectId": "hansol-direct-5-108-57"
     }
   ]
 }

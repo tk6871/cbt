@@ -1,6 +1,6 @@
 // Only separately stored, visually verified question/choice figures are reused.
 // A whole source scan is never inserted into a text correction as a diagram.
-import fs from 'node:fs';
+import {readOriginalAsset} from './read-original-asset.mjs';
 import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
 
@@ -13,7 +13,7 @@ export function correctionFigures(original, review) {
  const image=path=>{
   assert.match(path,/^assets\/[\w./-]+\.(png|jpe?g|webp|gif)$/i);
   assert.ok(!path.split('/').includes('..'),'figure must stay inside assets');
-  const bytes=fs.readFileSync(path);
+  const bytes=readOriginalAsset(path);
   const extension=path.split('.').at(-1).toLowerCase();
   const mime=extension==='jpg'?'jpeg':extension;
   return {path,sha256:crypto.createHash('sha256').update(bytes).digest('hex'),dataUrl:`data:image/${mime};base64,${bytes.toString('base64')}`};

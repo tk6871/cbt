@@ -15,7 +15,8 @@ try {
  await build({stdin:{contents:`export {practicalPrompts} from './src/cbt/qualificationStudyGuides'; export {hvacFieldReportRound} from './src/cbt/hvacFieldReportPractice'; export {textbookDirectSources,textbookEntries,textbookStudyId,textbookWorkedExamples} from './src/cbt/textbookPages';`,resolveDir:process.cwd(),loader:'ts'},bundle:true,platform:'node',format:'esm',outfile:runtime,logLevel:'silent'});
  const rt=await import(pathToFileURL(runtime));
  const banks=[],ids=new Set();
- const records = new Map(JSON.parse(fs.readFileSync('docs/explanation-review/2026-11-18/review.json')).records.map(row => [row.id, row]));
+ const reviewFile = process.argv[3] || 'docs/explanation-review/2026-11-18/review.json';
+ const records = new Map(JSON.parse(fs.readFileSync(reviewFile)).records.map(row => [row.id, row]));
  const scope = {excluded:{comcbt:0,energyBook:0}, included:0, statuses:{}, groups:{}, answerNeedsConfirmation:[], authoredWhenMissing:{total:0,restored:{comcbt:0,energyBook:0}}, bankExplanationFields:{text:0,image:0,additionalBlocks:0,empty:0}};
  const questionHasExplanation = new Map();
  const counted = new Set();

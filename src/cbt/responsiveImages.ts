@@ -16,7 +16,7 @@ export function responsiveImageAttrs(source: string, sizes = '64px') {
   };
 }
 
-export function restoreOriginalImage(event: Event): void {
+export function restoreOriginalImage(event: { currentTarget: EventTarget | null }): void {
   const image = event.currentTarget as HTMLImageElement;
   // A missing optional derivative must not hide the question. Removing srcset
   // retries the unchanged src URL once, without an error/retry loop.

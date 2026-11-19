@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
+import path from 'node:path';
 import vm from 'node:vm';
+import { problemImage } from '../src/cbt/problemImages';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, uniqueSchoolItems, coolingRecordItem, coolingUnusedItems, coolingOriginalId, coolingTopic, coolingTopics, coolingTopicGroups, schoolItemKey, coolingBookChapters, coolingSectionGroups, coolingBookSection } from '../src/cbt/schoolQuestionBank';
 import { coolingSourceAllowed, coolingSafety, coolingScopeCandidate } from '../src/cbt/coolingScope';
 import { coolingCalculation, coolingPracticeSelection } from '../src/cbt/coolingPractice';
@@ -61,7 +63,7 @@ test('2017년부터 한솔만 출제·구 기출 유지·이전1920개 원문과
   expect(audited).toBe(7100);
   for (const item of pool) {
     for (const url of [item.question.sourceImage, ...(item.question.images || [])].filter(Boolean) as string[]) {
-      if (!/^https?:/.test(url)) expect(fs.existsSync(url.replace(/^\.?\//, '').split('?')[0])).toBe(true);
+      if (!/^https?:/.test(url)) expect(fs.existsSync(problemImage(url)!.replace(/^\.?\//, '').split('?')[0])).toBe(true);
     }
   }
   const groups = coolingTopicGroups(pool);
@@ -156,6 +158,7 @@ test('회차별 중간고사·구 기출+한솔 검색·학교 시험지 담기�
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await expect(bank.getByRole('button', { name: '교재 목차', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(bank.locator('.round-card').first()).toBeVisible({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
@@ -226,6 +229,7 @@ test('전체 범위 학습과 한솔 랜덤 CBT를 별도 학교 기록으로 �
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('button', { name: '전체 문제 학습', exact: true }).click();
@@ -261,6 +265,7 @@ test('교재 목차 보강·2023년3회 제한·안전관리는 별도 학습과
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await expect(bank.getByRole('button', { name: '학습모드 · 냉방설비운영', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용', exact: true })).toBeVisible();
   await expect(bank.getByRole('heading', { name: '냉동장치의 응용과 안전관리', exact: true })).toHaveCount(0);
@@ -287,6 +292,9 @@ test('교재 목차 보강·2023년3회 제한·안전관리는 별도 학습과
   }
 });
 
+test.describe('느린 원문 응답', () => {
+  test.use({ serviceWorkers: 'block' });
+
 test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와 이전 답안 복원', async ({ page }, info) => {
   await page.addInitScript(() => {
     if (!localStorage.getItem('modern-cbt-qualification-industrial')) localStorage.setItem('modern-cbt-qualification-industrial', 'hvac');
@@ -299,6 +307,7 @@ test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await bank.getByRole('button', { name: '전체·랜덤', exact: true }).click();
   await expect(bank.getByRole('button', { name: '전체 문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await bank.getByRole('combobox', { name: '문제 출처', exact: true }).selectOption('hvac');
@@ -314,10 +323,13 @@ test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와
   expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
   await bank.locator('.round-card[data-topic="냉동이론"]').getByRole('button', { name: /^학습모드 ·/ }).click();
   await expect(page.locator('.session-topbar')).toContainText('냉동이론');
-  await page.waitForTimeout(300);
-  const readSession = () => page.evaluate(() => Object.keys(localStorage).map(key => {
-    try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
-  }).find(value => value?.itemIds?.length && value?.title?.startsWith('냉동공학 중간고사')));
+  async function readSession() {
+    const saved = await page.waitForFunction(() => {
+      const session = JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || 'null');
+      return session?.itemIds?.length && session.title?.startsWith('냉동공학 중간고사') ? session : false;
+    });
+    return saved.jsonValue();
+  }
   const roundSaved = await readSession();
   expect(roundSaved.itemIds.length).toBeGreaterThan(0);
   const originalId = coolingOriginalId(roundSaved.itemIds[0]);
@@ -383,18 +395,33 @@ test('소과목 카드 선택, 오답 분리, 두 랜덤 묶음 중복 제외와
   await page.getByRole('button', { name: '시작 화면으로', exact: true }).click();
   await bank.getByRole('button', { name: '풀이 기록', exact: true }).click();
   await expect(bank.getByRole('heading', { name: '완료한 중간고사 1개', exact: true })).toBeVisible();
-  await page.reload();
+  let releaseCatalogs!: () => void;
+  const catalogsReady = new Promise<void>(resolve => { releaseCatalogs = resolve; });
+  let delayedRequests = 0;
+  await page.route(/\/data\/hvac(?:-hansol)?\.js(?:\?|$)/, async route => {
+    delayedRequests++;
+    await catalogsReady;
+    await route.continue();
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(bank.getByRole('heading', { name: '완료한 중간고사 1개', exact: true })).toBeVisible();
   expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('school-exams');
   const completedStore = await page.evaluate(() => JSON.parse(localStorage.getItem('unified-industrial-cbt-v1') || '{}'));
   expect(completedStore.progress['school-cooling-midterm-sessions'].sessions).toHaveLength(3);
   expect(completedStore.attempts[exam.itemIds[0]]).toBeTruthy();
   expect(completedStore.attempts[coolingOriginalId(exam.itemIds[0])]).toBeUndefined();
-  await bank.getByRole('button', { name: '같은 문제 다시 풀기', exact: true }).click();
-  await page.waitForTimeout(300);
+  try {
+    await bank.getByRole('button', { name: '같은 문제 다시 풀기', exact: true }).click();
+    await expect.poll(() => delayedRequests).toBeGreaterThan(0);
+  } finally {
+    releaseCatalogs();
+  }
+  await expect(page.locator('.session-topbar')).toContainText('다시 풀기');
   const replayed = await readSession();
   expect(replayed.itemIds).toEqual(exam.itemIds);
   expect(replayed.answers).toEqual({});
+});
+
 });
 
 test('v5.3 중간고사 진행 답안은 유지하고 새 분리 ID로 이어풀기', async ({ page }) => {
@@ -432,7 +459,7 @@ test('학교 회차 첫 화면은 중간고사·일반 기출 버튼 없음·종
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   const choices = page.locator('.rounds-collection');
   await expect(page.getByRole('button', { name: '일반 기출', exact: true })).toHaveCount(0);
-  await expect(choices).toHaveCount(0);
+  await expect(choices.getByRole('button', { name: '냉동공학 중간고사', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.cooling-midterm .round-card').first()).toBeVisible({ timeout: 30000 });
   await expect(page.locator('.cooling-midterm .round-card')).toHaveCount(6);
   await expect(page.locator('.cooling-midterm').getByRole('combobox', { name: '연도', exact: true })).toHaveCount(0);
@@ -446,9 +473,10 @@ test('학교 회차 첫 화면은 중간고사·일반 기출 버튼 없음·종
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(1);
     await page.setViewportSize({ width: 1440, height: 900 });
   }
-  await page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true }).selectOption('hvac');
+  await page.getByRole('button', { name: /^종목 변경 ·/ }).click();
+  await page.getByRole('dialog', { name: '종목 변경' }).getByRole('button', { name: '공조냉동기계산업기사', exact: true }).click();
   await expect(page.locator('.cooling-midterm')).toHaveCount(0);
-  expect(await page.locator('.round-grid .round-card').count()).toBeGreaterThan(0);
+  await expect(page.locator('.round-grid .round-card').first()).toBeVisible();
   await openMenu();
   await page.locator('.sidebar').getByRole('button', { name: /학교 시험 준비/ }).click();
   await expect(page.locator('.cooling-midterm')).toHaveCount(0);
@@ -456,11 +484,12 @@ test('학교 회차 첫 화면은 중간고사·일반 기출 버튼 없음·종
   await openMenu();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   // School-prep navigation no longer changes the user's selected qualification.
-  await expect(page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true })).toHaveValue('hvac');
+  await expect(page.getByRole('button', { name: '종목 변경 · 공조냉동기계산업기사', exact: true })).toBeVisible();
   await page.locator('.rounds-collection').getByRole('button', { name: '냉동공학 중간고사', exact: true }).click();
   await expect(page.locator('.cooling-midterm')).toBeVisible();
-  await page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true }).selectOption('energy');
-  await expect(page.getByRole('combobox', { name: '현재 화면의 자격증 종목', exact: true })).toHaveValue('energy');
+  await page.getByRole('button', { name: /^종목 변경 ·/ }).click();
+  await page.getByRole('dialog', { name: '종목 변경' }).getByRole('button', { name: '에너지관리산업기사', exact: true }).click();
+  await expect(page.getByRole('button', { name: '종목 변경 · 에너지관리산업기사', exact: true })).toBeVisible();
   await expect(page.locator('.round-grid .round-card').first()).toBeVisible();
   await expect(page.locator('.cooling-midterm')).toHaveCount(0);
   expect(await page.evaluate(() => localStorage.getItem('modern-cbt-qualification-industrial'))).toBe('energy');
@@ -508,6 +537,7 @@ test('계산5개 포함 학습·CBT·선택 기억·미출제 순환·범위 부
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await expect(bank.getByRole('button', { name: '랜덤 20문제 학습', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByLabel('계산 5개 포함', { exact: true })).not.toBeChecked();
   await bank.getByLabel('계산 5개 포함', { exact: true }).check();
@@ -540,7 +570,12 @@ test('계산5개 포함 학습·CBT·선택 기억·미출제 순환·범위 부
 test('분류 검토 화면은 독립·검색·50개 페이지·에너지 출제 변경 없음', async ({ page }, info) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
-  const report = JSON.parse(fs.readFileSync('docs/energy-midterm-classification-review-2026-10-08.json', 'utf8'));
+  const reportDir = process.env.CBT_MIDTERM_REVIEW_DIR || 'docs';
+  if (process.env.CBT_MIDTERM_REVIEW_DIR) {
+    await page.route(/\/docs\/(energy|cooling)-midterm-classification-review-2026-10-08\.html$/, route =>
+      route.fulfill({ path: path.join(reportDir, path.basename(new URL(route.request().url()).pathname)), contentType: 'text/html' }));
+  }
+  const report = JSON.parse(fs.readFileSync(path.join(reportDir, 'energy-midterm-classification-review-2026-10-08.json'), 'utf8'));
   expect(report.mode).toBe('review-only');
   expect(report.originalEnergyQuestions).toBe(2640);
   expect(report.states['기존 중간고사']).toBe(179);
@@ -576,6 +611,7 @@ test('교재 세부 목차 선택·범위 학습/랜덤/오답·이어풀기와 
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name: '메뉴 열기', exact: true }).click();
   await page.locator('.sidebar').getByRole('button', { name: /회차별 문제/ }).click();
   const bank = page.locator('.cooling-midterm');
+  await bank.getByRole('checkbox', { name: '교재 본문에서 연결 확인된 문제만 풀기' }).uncheck();
   await expect(bank.getByRole('button', { name: '학습모드 · 냉동이론', exact: true })).toBeEnabled({ timeout: 30000 });
   await expect(bank.getByText('소과목', { exact: true })).toHaveCount(0);
   await bank.getByRole('button', { name: '세부 목차 보기 · 냉동이론', exact: true }).click();

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 async function waitForHome(page: import('@playwright/test').Page) {
-  await expect(page.getByRole('heading', { name: '준비할 종목을 선택하세요' })).toBeVisible({ timeout: 90_000 });
+  await expect(page.getByRole('heading', { name: '나의 학습 홈' })).toBeVisible({ timeout: 90_000 });
   const later = page.getByRole('button', { name: '나중에' }).filter({ visible: true });
   if (await later.count()) await later.first().click();
 }
@@ -15,17 +15,13 @@ test('홈과 설정의 심각한 접근성 오류가 없다', async ({ page }) =
 
   await page.getByRole('button', { name: '설정 열기', exact: true }).click();
   await page.getByRole('button', { name: /전체 설정 열기/ }).click();
-  await page.getByRole('button', { name: '학습 도구', exact: true }).click();
-  await expect(page.getByText('UI·테마 실험실')).toBeVisible();
+  await expect(page.getByRole('searchbox', { name: '설정 찾기' })).toBeVisible();
   const settings = await new AxeBuilder({ page }).disableRules(['color-contrast']).analyze();
   expect(settings.violations.filter((item) => item.impact === 'critical')).toEqual([]);
 });
 
 test('패치노트와 플러그인 안내가 작은 화면을 넘지 않는다', async ({ page }) => {
-  await page.goto('./?safe=1');
-  await waitForHome(page);
-  await page.getByRole('button', { name: '패치노트 보기' }).evaluate(button => button.scrollIntoView({ block: 'center', behavior: 'instant' }));
-  await page.getByRole('button', { name: '패치노트 보기' }).click();
+  await page.goto('./?safe=1#/study/updates');
   await page.getByRole('button', { name: /신기술 학습관/ }).click();
   await expect(page.getByRole('heading', { name: '이번 플러그인이 바꾼 기능' })).toBeVisible();
   await page.getByText('VueUse', { exact: true }).click();
@@ -41,13 +37,12 @@ test('패치노트와 플러그인 안내가 작은 화면을 넘지 않는다',
 });
 
 test('필답형 답안 도우미와 부분점수표를 사용할 수 있다', async ({ page }) => {
-  await page.goto('./?safe=1');
-  await waitForHome(page);
-  await page.getByRole('button', { name: '패치노트 보기' }).click();
+  await page.goto('./?safe=1#/study/updates');
   await page.getByRole('button', { name: /신기술 학습관/ }).click();
-  await expect(page.getByRole('heading', { name: '필답형 실전 채점 훈련' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '필답형과 계산 공부를 더 편하게' })).toBeVisible();
   await page.getByRole('button', { name: /필답형 훈련관 열기/ }).click();
   await expect(page.getByRole('heading', { name: '공조냉동 실기 필답형 훈련관' })).toBeVisible();
+  await page.locator('.practical-round-library button').filter({ hasText: '시작하기' }).first().click();
   await page.locator('.practical-extra-tools > summary').first().click();
   await page.getByRole('button', { name: '답안 골격 넣기' }).first().click();
   await expect(page.locator('.practical-answer-input textarea').first()).not.toHaveValue('');

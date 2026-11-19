@@ -13,7 +13,7 @@ for (const key of ['hvac', 'hvac-hansol']) vm.runInNewContext(fs.readFileSync(`d
 const items: QuestionItem[] = Object.values(context.window).flatMap(c => c.rounds.flatMap(r => r.questions.map(q => ({
   id: questionId(r, q), round: { ...r, qualificationKey: c.key }, question: q, subject: subjectFor(r, q),
 }))));
-const before = JSON.stringify(items);
+const before = JSON.stringify(context.window);
 const base = items[0];
 const mock = (id: string, text: string): QuestionItem => ({ ...base, id, question: { ...base.question, text, html: undefined, ocrText: undefined, choices: [{ text: '브라인' }, { text: '압축기' }, {}, {}] } });
 const scattered = [mock('brine1', '브라인의 구비조건은?'), mock('oil', '냉동기유의 성질은?'), mock('brine2', '브라인의 농도가 높을 때 성질은?'), mock('unknown', '다음 설명 중 옳은 것은?'), mock('brine3', '브라인의 동결온도는?')];
@@ -72,15 +72,15 @@ for (const bookOnly of [true, false]) {
   stats.push({ bookOnly, general: pool.length, safety: safety.length, recognizedStems: pool.filter(i => coolingOrderConcept(i)).length,
     brine: brine.map(i => ({ id: i.id, stem: (i.question.text || i.question.ocrText || '').slice(0, 95) })) });
 }
-assert.equal(JSON.stringify(items), before, 'entire source question/answer/image data untouched');
-const component = fs.readFileSync('src/cbt/CoolingMidterm.vue', 'utf8');
+assert.equal(JSON.stringify(context.window), before, 'entire source question/answer/image data untouched');
+const component = fs.readFileSync('src/react/tools/CoolingMidterm.tsx', 'utf8');
 const random = component.slice(component.indexOf('function startRandom('), component.indexOf('function resumeForGroup('));
-assert.ok(!random.includes('orderCoolingSimilar') && random.includes('groupRandom: groupRandom.value'), 'sampling precedes optional ordering');
-const app = fs.readFileSync('src/cbt/App.vue', 'utf8');
+assert.ok(!random.includes('orderCoolingSimilar') && random.includes('groupRandom: groupRandom'), 'sampling precedes optional ordering');
+const app = fs.readFileSync('src/cbt/studyController.ts', 'utf8');
 const start = app.slice(app.indexOf('async function startCoolingMidterm('), app.indexOf('function isMidtermCalculation('));
 assert.ok(start.includes('if (payload.randomCount && payload.groupRandom) items = orderCoolingSimilar(items)'), 'random reordering is opt-in');
 assert.ok(start.indexOf('coolingPracticeSelection(') < start.indexOf('orderCoolingSimilar('), 'sample first');
 assert.ok(component.includes('savedPreferences.groupRandom === true'), 'random grouping defaults off');
-assert.ok(component.includes("emit('resume',") && component.includes("emit('replay',"), 'saved order paths remain separate');
-assert.ok(component.includes("savedPreferences.questionOrder === 'original' ? 'original' : 'similar'"), 'default similar / original persists');
+assert.ok(component.includes("props.onResume(") && component.includes("props.onReplay("), 'saved order paths remain separate');
+assert.ok(/savedPreferences\.questionOrder\s*===\s*'original'\s*\?\s*'original'\s*:\s*'similar'/.test(component), 'default similar / original persists');
 console.log(JSON.stringify({ selections, stats }, null, 2));

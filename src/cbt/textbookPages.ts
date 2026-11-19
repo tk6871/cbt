@@ -1,23 +1,22 @@
+import numberReview from '../../data/textbook-direct-number-review.json' with {type:'json'};
 import links from '../../data/textbook-pages.json' with { type: 'json' };
+import reviewedPrintedPages from '../../data/textbook-direct-printed-pages.json' with { type: 'json' };
 import { coolingBookFingerprint } from './coolingBookScope';
 import type { QuestionItem, AnswerHotspot } from './types';
-import {questionId,subjectFor,withReviewedEnergyChoices} from './catalog';
-import {energyTextbookComcbtSource,energyExplanation} from './energyTextbookExplanation';
+import {prepareEnergyBookItem} from './energyQuestionLayout';
 import workedExamples from '../../data/textbook-worked-examples.json' with {type:'json'};
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
 import directBoundaries from '../../data/hansol-book-direct-boundaries.json' with {type:'json'};
-import reviewedPrintedPages from '../../data/textbook-direct-printed-pages.json' with {type:'json'};
 import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
-import numberReview from '../../data/textbook-direct-number-review.json' with {type:'json'};
 import {resolveBookInkHidden} from './textbookInkHidden';
-import type { TextbookKey } from './textbookRoutes';
+import { textbookNames, type TextbookKey } from './textbookRoutes';
 export { bookForStudyId, textbookSourceKeys, type TextbookKey } from './textbookRoutes';
 export type TextbookCorrection = {text:string;choices:string[];answer?:number;note:string;sourceImage?:string|null;explanation?:string} & (
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
 );
-export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; directSourceId?:string; correction?:TextbookCorrection };
+export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; previousDirectId?:string; directSourceId?:string; correction?:TextbookCorrection };
 export type TextbookDirectPart={page:string;rect:number[];label?:string;asset?:string;size?:number[]};
 export type TextbookDirectSource=typeof directBook.locations[number] & {questionParts:TextbookDirectPart[];solutionParts:TextbookDirectPart[]};
 export type TextbookDirectPage=typeof directBook.pages[number];
@@ -67,19 +66,24 @@ export function textbookDirectImage(page:TextbookDirectPage){
  if(clean&&clean.oldSha256===page.sha256)return {asset:clean.asset,pixelSize:clean.outputSize,improved:true,fallbackAsset:clean.sourceAsset};
  return {...resolveTextbookDirectImage(page,directUpgrades.get(page.page)),fallbackAsset:page.asset};
 }
+const bookPageCollator=new Intl.Collator('ko',{numeric:true});
 const existingPositions=new Set(links.entries.map(e=>`${e.book}:${e.page}:${e.number}`));
-const directEntries:TextbookEntry[]=textbookDirectSources.filter(r=>!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
+// Some archived crops start at a number inside a sentence. On 5-27 the crop starts at 5.5 kW.
+const migratedDirectIds=new Set(links.entries.flatMap(e=>'previousDirectId' in e && e.previousDirectId?[e.previousDirectId]:[]));
+const directEntries:TextbookEntry[]=textbookDirectSources.filter(r=>r.id!=='hansol-direct-5-27-5'&&!migratedDirectIds.has(r.id)&&!existingPositions.has(`hansol:${r.page}:${r.number}`)).map(r=>({book:'hansol',page:r.page,number:r.number,column:r.column,sourceId:null,fingerprint:null,directSourceId:r.id}));
 // Source-first reading must not become an automatically graded question or
 // replace an already verified/held book location.
-export const textbookEntries: TextbookEntry[] = [...links.entries as TextbookEntry[],...directEntries];
-export const textbookNames = { hansol:'한솔 공조 교재', energy:'에너지설비 교재' };
+export const textbookEntries: TextbookEntry[] = [...links.entries as TextbookEntry[],...directEntries]
+ .sort((a,b)=>a.book.localeCompare(b.book)||compareBookPages(a.page,b.page)||a.number-b.number);
+export { textbookNames };
 export const textbookWorkedExamples=workedExamples.entries;
 const auditedPages=new Map(pageAudit.pages.map(row=>[row.page,row]));
 export const textbookAuditPages=pageAudit.pages;
 export function textbookPageAudit(book:TextbookKey,page:string){return book==='hansol'?auditedPages.get(normalizeBookPage(page)):undefined;}
 export function textbookAssetUrl(path:string,native=typeof document!=='undefined'&&document.documentElement.dataset.nativeApp==='true'):string {
  path=resolveBookInkHidden(path)?.asset||path;
- return native&&path.startsWith('assets/')?`https://tk6871.github.io/cbt/${path}`:path;
+ const bundled=typeof document!=='undefined'&&document.documentElement.dataset.bundledAssets==='true';
+ return native&&!bundled&&path.startsWith('assets/')?`https://tk6871.github.io/cbt/${path}`:path;
 }
 // Visually checked scan pages: these contain only an answer table or the
 // previous question's explanation, not a missing selectable question.
@@ -87,43 +91,32 @@ export function textbookReferencePage(book:TextbookKey,page:string):string|undef
  if(book!=='energy')return;
  return ({'394':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.','489':'앞 문제의 이어지는 해설과 정답표가 있는 쪽입니다. 새로 풀 문제는 없습니다.','520':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.','599':'정답표만 있는 쪽입니다. 앞쪽 문제의 정답은 풀이 후 해설에서 확인하세요.'} as Record<string,string>)[normalizeBookPage(page)];
 }
-// Book-only scans must not duplicate the existing ordinary exam rounds or
-// expand a midterm selection. Load them only for the book reader/resume.
-const supplementLoads:Partial<Record<TextbookKey,Promise<QuestionItem[]>>>={};
-export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]> {
- const bank=()=>book==='energy'?window.CBT_DATA_ENERGY_BOOK_EARLIER:window.CBT_DATA_HVAC_HANSOL_BOOK;
- const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
- if(bank())return Promise.resolve(items());
- return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=753',document.baseURI).href;
-  script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
-  script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
-  document.head.appendChild(script);
- }).then(items).catch(error=>{delete supplementLoads[book];throw error;});
-}
 export function normalizeBookPage(value: string): string {
  return value.normalize('NFKC').trim().replace(/쪽|페이지|\s/g,'').replace(/[–—−]/g,'-').replace(/^p\.?/i,'');
 }
-const bookPageCollator=new Intl.Collator('ko',{numeric:true});
 export function compareBookPages(a:string,b:string):number {return bookPageCollator.compare(a,b);}
 export function adjacentBookPage(book:TextbookKey,page:string,delta:number):string|undefined {
  const m=(book==='hansol'?/^(\d+)-(\d+)$/:/^(\d+)$/).exec(normalizeBookPage(page));if(!m)return;
  const n=Number(m.at(-1))+delta;if(n<1||book==='energy'&&n>645)return;
  return book==='hansol'?`${Number(m[1])}-${n}`:String(n);
 }
-export function textbookStudyId(e:TextbookEntry):string {return `book-study::${e.book}::${e.page}::${e.number}::${e.sourceId}`;}
+export function textbookStudyId(e:TextbookEntry):string {return e.previousDirectId || `book-study::${e.book}::${e.page}::${e.number}::${e.sourceId}`;}
 // Same source question can have book-specific changed values/answers. Keep
 // those variants when combining pages, instead of deduplicating by source ID.
-export function textbookSelectionKey(e:TextbookEntry):string {return JSON.stringify([e.sourceId,e.correction?.text,e.correction?.choices,e.correction?.answer]);}
+export function textbookSelectionKey(e:TextbookEntry):string {if (e.book==='hansol' && /^[45]-/.test(e.page)) return textbookStudyId(e); return JSON.stringify([e.sourceId,e.correction?.text,e.correction?.choices,e.correction?.answer]);}
 export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=textbookEntries):QuestionItem[]{
+ return buildTextbookItems(items,prepareEnergyBookItem,entries);
+}
+
+function buildTextbookItems(items: QuestionItem[], prepareEnergy: typeof prepareEnergyBookItem | undefined, entries = textbookEntries): QuestionItem[] {
  const map=new Map(items.map(i=>[i.id,i]));
  return entries.flatMap(e=>{
-  if(e.reviewHold)return [];
+  if(e.reviewHold || (e.book==='energy' && !prepareEnergy))return [];
   const original=e.sourceId?map.get(e.sourceId):undefined;
   if(!original||coolingBookFingerprint(original.question)!==e.fingerprint)return [];
   const roundId=`textbook-${e.book}-${e.page}`;
   const location=`${textbookNames[e.book as TextbookKey]} ${e.page}쪽 · ${e.number}번`;
-  const enhanced=e.book==='energy'?energyExplanation(withReviewedEnergyChoices(original.question),e.sourceId!,map.get(energyTextbookComcbtSource(e.sourceId!)||'')?.question):original.question;
+  const enhanced=e.book==='energy'?prepareEnergy!(original.question,e.sourceId!,map):original.question;
   const correction=e.correction;
   const textCorrection=correction?.presentation==='text'?correction:undefined;
   const question={...enhanced,bookSourceNumber:correction?e.number:original.question.number,...(correction?{explanationFormula:undefined,text:correction.text,html:'',ocrText:undefined,imageOnly:!textCorrection,answer:correction.answer??enhanced.answer,sourceImage:correction.presentation==='text'?null:textbookAssetUrl(correction.asset),answerHotspots:correction.hotspots,
@@ -143,3 +136,25 @@ export function textbookStudyItems(items:QuestionItem[],entries:TextbookEntry[]=
    round:{...original.round,id:roundId,title:location,kind:'textbook-pages',questions:[question]}}];
  });
 }
+
+export function readableBookPages(book:TextbookKey,from:string,to:string,entries:TextbookEntry[],ready:Set<string>){
+ const pages=new Map<string,{page:string;count:number;direct:number;examples:number}>();
+ function pageRow(page:string){
+  let row=pages.get(page);
+  if(!row){row={page,count:0,direct:0,examples:0};pages.set(page,row);}
+  return row;
+ }
+ for(const entry of entries){
+  if(entry.book!==book)continue;
+  if(ready.has(textbookStudyId(entry)))pageRow(entry.page).count++;
+  else if(entry.directSourceId)pageRow(entry.page).direct++;
+ }
+ for(const example of textbookWorkedExamples){
+  if(example.book!==book)continue;
+  for(const page of example.pages){
+   if(compareBookPages(page,from)>=0&&compareBookPages(page,to||from)<=0)pageRow(page).examples++;
+  }
+ }
+ return [...pages.values()].sort((a,b)=>compareBookPages(a.page,b.page));
+}
+export const browserTextbookData = {readableBookPages,buildTextbookItems, textbookEntries, compareBookPages, textbookStudyId, normalizeBookPage};

@@ -16,12 +16,16 @@
 
 ## 로컬 개발
 
-Node.js와 npm이 필요합니다.
+Node.js와 프로젝트에서 지정한 pnpm을 사용합니다.
 
 ```bash
-npm install
-npm run dev
+pnpm install --frozen-lockfile
+pnpm dev
 ```
+
+개발 서버는 학습 홈(`/`), 보석관(`/jewelry.html`), 관리자(`/admin.html`)의 소스를 직접 엽니다. React 컴포넌트를 편집하면 Fast Refresh가 적용됩니다. Vue 화면과 React 화면에서 공유하는 속성 타입은 `.ts` 파일에 두면 React 화면 수정 중에 입력값을 유지할 수 있습니다.
+
+기본 개발 화면은 로컬 풀이 기록을 사용합니다. 개발 계정으로 로그인할 때는 개발 Supabase의 브라우저용 설정을 프로젝트 루트의 `cloud-config.local.js`에 두고 `serviceApiUrl`과 `reviewApiUrl`을 `/api`로 지정합니다. Vite가 이 요청을 로컬 NestJS의 4361번 포트로 전달합니다. [개발 서버 실행 방법](server/README.md)
 
 변경 후에는 관련 검사를 실행합니다.
 
