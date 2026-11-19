@@ -956,3 +956,14 @@ test('원형 코일 자계의 원문 조건과 정답 확인', async ({page}) =>
   await expect(card.locator('.explanation-box')).toContainText('1,000 A/m와 같은 보기가 없어');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 급탕 순환수두와 밀도 단위', async ({page}) => {
+  await prepare(page,'hvac');
+  await page.locator('#round-card-hvac-20060816').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('58');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'탕비기 출구의 온도를'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('0.1125 m');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
