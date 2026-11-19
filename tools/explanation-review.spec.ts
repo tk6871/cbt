@@ -1243,3 +1243,19 @@ test('공조 복원 중앙식 전공기 문제 대조와 원도 전환', async (
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 복원 흡수식 압축기 비교 원도와 해설 대조', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20252').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('38');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '흡수식냉동기의 구성품'})});
+  await expect(card.locator('.question-text')).toContainText('압축기와 같은 역할');
+  await card.getByRole('button',{name:'① 발생기',exact:true}).click();
+  await expect(card.locator('.explanation-box')).toContainText('용액펌프');
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
