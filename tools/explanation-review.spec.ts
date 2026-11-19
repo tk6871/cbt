@@ -1332,3 +1332,14 @@ test('공조 교재 정현파 주파수 분수와 원도 대조', async ({page})
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 교재 신호흐름선도 귀환과 분수', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2019-1').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('69');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.getByRole('button',{name:'69번 문제 원문 크게 보기'})});
+  await card.getByRole('button',{name:'이미지에서 3번 선택'}).click();
+  await expect(card.locator('.explanation-box')).toContainText('비접촉 루프');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

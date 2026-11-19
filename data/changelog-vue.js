@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.80',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 1회",summary:"저압의 부호에 따른 압축비와 신호흐름선도의 세 귀환 경로를 직접 계산하고, 저항비가 인쇄되지 않은 71번을 정답 재확인 대상으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.79',scope:'industrial',date:'2026.11.19',title:"공조 교재 2018년 3회",summary:"유효 평균 온도차와 냉각수 온도 상승을 구분했고, 팽창밸브 문항에 연결된 열동계전기 설명을 교축 원리로 교체했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.78',scope:'industrial',date:'2026.11.19',title:"공조 교재 2018년 2회",summary:"응축기 방열량 계산에서 인쇄된 3.7 W와 해설의 3.7 kW를 구분했고, 습공기선도에서 현열에 해당하는 수평 구간을 C→B로 고쳤다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.77',scope:'industrial',date:'2026.11.19',title:"공조 교재 2018년 1회",summary:"공정 제어와 냉동 계산을 원도와 대조하고, 64번은 인쇄식의 주파수 6 Hz와 저장 답 60 Hz가 달라 정답 확인 대상으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2857,8 +2858,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.79';
+  changelog.versions.industrial = '6.2.80';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.79';
+  changelog.currentVersion = '6.2.80';
   window.CBT_CHANGELOG = changelog;
 })();
