@@ -913,6 +913,17 @@ test('설비보전 진동속도 환산 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 유압 프레스 지름 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20110612').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('18');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'유압 프레스를 설계'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('162.9 mm');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 전류이득 계산의 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20160821').getByRole('button',{name:'학습모드',exact:true}).click();
