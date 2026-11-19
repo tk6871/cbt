@@ -1718,3 +1718,20 @@ test('공조 부록 냉수코일 전면적의 분수와 원본 해설', async ({
   await original.evaluate((img:HTMLImageElement)=>img.decode());
   await box.screenshot({path:info.outputPath('coil-face-area.png')});
 });
+
+test('공조 부록 분류기 저항의 분수와 원본 해설', async ({page},info) => {
+  await prepare(page,'hvac');
+  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+  await enterBookReader(page);
+  await chooseBookPage(page,'4-69');
+  const card=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 59번',exact:true})}).locator('.question-card');
+  await card.getByRole('button',{name:'이미지에서 1번 선택'}).click();
+  const box=card.locator('.explanation-box');
+  await expect(box).toContainText('0.060 V');
+  await expect(box.locator('.katex-html .mfrac').first()).toBeVisible();
+  await box.locator('.original-textbook-explanation summary').click();
+  const original=box.locator('img').first();
+  await expect(original).toBeVisible();
+  await original.evaluate((img:HTMLImageElement)=>img.decode());
+  await box.screenshot({path:info.outputPath('shunt-resistance.png')});
+});

@@ -41,9 +41,9 @@
   // The school workspace loads its own saved sets independently of the selected qualification.
   if (location.hash === '#/study/school') return;
 
-  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=810"];
-  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=810");
-  if (qualification === "energy") scripts.push("data/energy-restored.js?v=810");
+  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=811"];
+  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=811");
+  if (qualification === "energy") scripts.push("data/energy-restored.js?v=811");
   document.write(scripts.map(function (src) {
     return '<script data-study-required src="' + src + '"></script>';
   }).join(""));

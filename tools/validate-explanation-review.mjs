@@ -311,7 +311,7 @@ const appendixFile='data/hansol-appendix-rounds.json';
 const appendixBefore=JSON.parse(execFileSync('git',['show','03caf79f0d163a47ac03fe699f51851b8e040d48:'+appendixFile],{encoding:'utf8'}));
 const appendixAfter=JSON.parse(fs.readFileSync(appendixFile));
 const appendixRows=new Map(inventory.derived.appendix.map(row=>[row.sourceId,row]));
-const appendixAnswers=new Map(), appendixChanges=[];
+const appendixAnswers=new Map(), appendixChanges=[], appendixNew=[];
 for(const [i,round] of appendixAfter.entries()){
  for(const [j,question] of round.questions.entries()){
   const sourceId=round.id+':'+question.number;
@@ -326,7 +326,7 @@ for(const [i,round] of appendixAfter.entries()){
   }
   if(!record.changed)continue;
   assert.equal(record.resolution,question.explanation,sourceId);
-  assert.ok(!previous.explanation,sourceId);
+  if(!previous.explanation)appendixNew.push(row.id);
   previous.explanation=question.explanation;
   previous.originalExplanationImagesFolded=true;
   if(question.explanationFormula){
@@ -339,7 +339,7 @@ for(const [i,round] of appendixAfter.entries()){
 assert.deepEqual(appendixAfter,appendixBefore,'Unrecorded changes in textbook appendix');
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? directAnswers.get(record.id) ?? appendixAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? appendixAnswers.get(record.id) ?? directAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -347,7 +347,7 @@ for (const [status, field] of Object.entries(statusCounts)) {
 }
 assert.equal(review.counts.contentCompleted, review.counts.contentCompletedChanged + review.counts.contentCompletedUnchanged);
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
-const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length + directNew.length + appendixChanges.length;
+const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length + directNew.length + appendixNew.length;
 assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
@@ -382,5 +382,5 @@ for (const record of disputeRecords) {
  affectedIds.add(record.id);
 }
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={appendixTextAdded:appendixChanges.length,directTextAdded:directNew.length,directDisplayChanges:directChanges.length,practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length+directNew.length+appendixChanges.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:explanationTranscriptions},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={appendixTextAdded:appendixNew.length,appendixDisplayChanges:appendixChanges.length,directTextAdded:directNew.length,directDisplayChanges:directChanges.length,practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length+directNew.length+appendixNew.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:explanationTranscriptions},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));
