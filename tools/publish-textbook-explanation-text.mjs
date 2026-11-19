@@ -1,9 +1,8 @@
 // Only explicitly reviewed transcriptions are published. OCR scores alone
 // cannot approve prose, formulae, diagrams, numbers or printed answer keys.
 import fs from 'node:fs';
-import crypto from 'node:crypto';
 import assert from 'node:assert/strict';
-import {sourceAssetPath} from './source-asset-path.mjs';
+import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const review=read('tools/textbook-explanation-text-review.json');
 const book=read('data/hansol-book-direct.json');
@@ -11,7 +10,6 @@ const boundaries=read('data/hansol-book-direct-boundaries.json');
 const pages=new Map(book.pages.map(p=>[p.page,p]));
 const fixes=new Map(boundaries.entries.map(r=>[r.id,r]));
 const extras=new Map(boundaries.assets.map(a=>[a.asset,a]));
-const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(sourceAssetPath(p))).digest('hex');
 const seen=new Set();
 const entries=review.entries.map(entry=>{
  assert.ok(!seen.has(entry.id));seen.add(entry.id);
@@ -29,7 +27,7 @@ const entries=review.entries.map(entry=>{
  const assets=solutionParts.map(p=>{
   const file=p.asset||pages.get(p.page).asset;
   const expected=p.asset?extras.get(file).sha256:pages.get(p.page).sha256;
-  assert.equal(sha(file),expected);
+  verifyTextbookPageHash(file,expected);
   return {asset:file,sha256:expected};
  });
  return {...entry,page:source.page,number:fix?.printedNumber??source.number,

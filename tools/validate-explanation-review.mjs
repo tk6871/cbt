@@ -254,9 +254,39 @@ for (const [index, example] of currentExamples.entries()) {
  assert.deepEqual(example,before,'Worked example media, order or original fields changed: '+example.id);
  if(record.changed) exampleChanges.push(example.id);
 }
+// Direct textbook exercises keep their page coordinates and answer keys in separate files.
+for (const file of ['hansol-book-direct','hansol-book-direct-boundaries','textbook-direct-answers','textbook-direct-hitboxes']) {
+ const path = 'data/' + file + '.json';
+ assert.equal(fs.readFileSync(path,'utf8'),original(path),path);
+}
+const directModule = await build({
+ stdin:{contents:"export {textbookDirectSources,textbookDirectPageMap} from './src/cbt/textbookPages'; export {textbookDirectAnswer} from './src/cbt/textbookDirectAnswer'; export {textbookExplanationText} from './src/cbt/textbookExplanationText';",resolveDir:process.cwd()},
+ bundle:true,write:false,platform:'node',format:'esm',
+});
+const direct = await import('data:text/javascript;base64,'+Buffer.from(directModule.outputFiles[0].contents).toString('base64'));
+const directFile='data/textbook-explanation-text.json';
+const oldDirect=new Map(JSON.parse(original(directFile)).entries.map(entry=>[entry.id,entry]));
+const directAnswers=new Map(),directChanges=[],directNew=[];
+for(const source of direct.textbookDirectSources){
+ const previous=oldDirect.get(source.id), entry=direct.textbookExplanationText(source), record=recordsById.get(source.id);
+ directAnswers.set(source.id,direct.textbookDirectAnswer(source,direct.textbookDirectPageMap.get(source.page)));
+ if(previous)assert.deepEqual({...entry,blocks:previous.blocks},previous,source.id);
+ if(record?.directReview){
+  assert.deepEqual(record.resolution,entry.blocks,source.id);
+  assert.equal(record.directReview.newTranscription,!previous,source.id);
+ }
+ if(!entry)continue;
+ if(!previous)directNew.push(source.id);
+ if(!previous||JSON.stringify(previous.blocks)!==JSON.stringify(entry.blocks)){
+  assert.ok(record?.directReview&&record.changed,source.id);
+  directChanges.push(source.id);
+ }
+ oldDirect.delete(source.id);
+}
+assert.equal(oldDirect.size,0,'A previously displayed direct explanation disappeared');
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? directAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -264,12 +294,12 @@ for (const [status, field] of Object.entries(statusCounts)) {
 }
 assert.equal(review.counts.contentCompleted, review.counts.contentCompletedChanged + review.counts.contentCompletedUnchanged);
 const newTranscriptions=Object.entries(newConfirmed).filter(([p])=>!oldConfirmed[p]);
-const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length;
+const explanationTranscriptions = newTranscriptions.filter(([, entry]) => entry.kind === 'explanation').length + directNew.length;
 assert.equal(review.counts.imageTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyTranscribed, explanationTranscriptions);
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
 assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
-const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges]);
+const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges,...directChanges]);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';
 const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));
@@ -299,5 +329,5 @@ for (const record of disputeRecords) {
  affectedIds.add(record.id);
 }
 assert.equal(review.counts.changedQuestionIds,affectedIds.size);
-const result={practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:newTranscriptions.filter(([,e])=>e.kind==='explanation').length},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
+const result={directTextAdded:directNew.length,directDisplayChanges:directChanges.length,practicalDisplayAssets:practicalImages.size,disputedExplanations:disputeRecords.length,bankQuestions,imageReferences,reviewedFractions:fractions.length+Object.values(disputes).filter(e=>e.formula).length+Object.values(energyReviewed).filter(e=>e.formula).length,reviewedEnergyDisplays:Object.keys(energyReviewed).length,withoutExplanation:withoutExplanation.length,protectedQuestionFields:'unchanged including IDs/order/answers/choices/images/hotspots',changedBankIds,transcriptionsAdded:newTranscriptions.length+directNew.length,transcriptionsByKind:{question:newTranscriptions.filter(([,e])=>e.kind==='question').length,explanation:explanationTranscriptions},dynamicLinksValidated:Object.keys(links).length,manualContentCompleted:review.counts.contentCompleted,manualExamined:review.records.length};
 console.log(JSON.stringify(result,null,2));

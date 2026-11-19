@@ -1,13 +1,16 @@
 {
   "schemaVersion": 1,
-  "reviewedAt": "2026-11-04",
-  "basis": "기존 로컬 OCR 후보와 인쇄 풀이 영역을 개별 육안 대조. 줄바꿈·띄어쓰기만 정리하며 학술 정답 인증은 아님. 도표나 판독 불확실한 원문은 승인하지 않음.",
+  "reviewedAt": "2026-11-19",
+  "basis": "인쇄 풀이와 정답표를 문항별로 대조한 텍스트. 원본과 다른 기술적 보충에는 별도 설명을 붙인다.",
   "entries": [
     {
       "id": "hansol-direct-1-34-37",
       "blocks": [
         {
-          "text": "습공기 성분(체적비): 질소 78%, 산소 21%, 기타 1%."
+          "text": "인쇄 풀이 · 습공기 성분(체적비)으로 질소 78%, 산소 21%, 기타 1%를 제시한다."
+        },
+        {
+          "text": "보충 설명 · 이 수치는 건조한 공기의 근사 조성이다. 습공기는 수증기도 포함하므로 수증기량이 늘면 전체 부피에서 질소와 산소가 차지하는 비율은 각각 낮아진다. 보기 중에는 ①이 출제 의도에 가깝다."
         }
       ],
       "page": "1-34",
@@ -1258,6 +1261,1039 @@
         {
           "asset": "assets/hvac-hansol-book/direct-pages/4-130-original.png",
           "sha256": "526a830f7bc0a49fb6a00db7d55b922cf25ccb8c30ae5401c6e7c4cf02668f85"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-25-16",
+      "blocks": [
+        {
+          "text": "비열 kJ/(kg·K), 엔탈피 kJ/kg, 열관류율 W/(m²·K), 열전도율 W/(m·K)."
+        },
+        {
+          "text": "여기서 습공기선도의 엔탈피는 건공기 1 kg을 기준으로 한 비엔탈피다."
+        }
+      ],
+      "page": "1-25",
+      "number": 16,
+      "questionParts": [
+        {
+          "page": "1-25",
+          "rect": [
+            671,
+            1431,
+            671,
+            165
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-25",
+          "rect": [
+            671,
+            1597,
+            671,
+            104
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-25-original.png",
+          "sha256": "04845adefe2f85bf3d20d1f69369fb895060b88333e97c459a952b5582f2c98b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-26-9",
+      "blocks": [
+        {
+          "text": "열수분비는 비엔탈피의 변화량을 절대습도(습도비)의 변화량으로 나눈 값이다."
+        },
+        {
+          "tex": "\\mu=\\frac{\\Delta h}{\\Delta x}\\quad[\\mathrm{kJ/kg_{water}}]",
+          "label": "열수분비는 비엔탈피차 나누기 습도비 차"
+        }
+      ],
+      "page": "1-26",
+      "number": 9,
+      "questionParts": [
+        {
+          "page": "1-26",
+          "rect": [
+            0,
+            1395,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-26",
+          "rect": [
+            0,
+            1587,
+            671,
+            130
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-26-original.png",
+          "sha256": "65730e368c5b4f0ce728ddd8a7025f66a16666b97075b7169f7c5a88dd481e9c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-27-10",
+      "blocks": [
+        {
+          "text": "원문 계산은 공기 질량유량에 냉각 전후 비엔탈피 차를 곱한다."
+        },
+        {
+          "tex": "\\dot Q=300\\times1.2\\times(15.25-10.5)=1710\\ \\mathrm{kJ/h}",
+          "label": "시간당 제거열량 1710 킬로줄"
+        },
+        {
+          "text": "보충 설명 · 냉각 중 습도비가 변하는 경우에는 온도차만으로 잠열까지 구할 수 없다."
+        }
+      ],
+      "page": "1-27",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "1-27",
+          "rect": [
+            671,
+            629,
+            671,
+            190
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-27",
+          "rect": [
+            671,
+            820,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-27-original.png",
+          "sha256": "b738d06ef4681ed8515b6976bd9e23497a4748dd250e27802e37adae4fc79be2"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-30-7",
+      "blocks": [
+        {
+          "text": "교재가 제시한 인체 주변의 기류속도는 냉방 때 0.10~0.25 m/s, 난방 때 0.13~0.18 m/s다."
+        }
+      ],
+      "page": "1-30",
+      "number": 7,
+      "questionParts": [
+        {
+          "page": "1-30",
+          "rect": [
+            0,
+            188,
+            671,
+            399
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-30",
+          "rect": [
+            0,
+            588,
+            671,
+            134
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-30-original.png",
+          "sha256": "d0b86c9a65a44ecc20cf4b200c93d1984a77e00d4c0a0ed8fd93d6c02c7a93d6"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-30-12",
+      "blocks": [
+        {
+          "text": "수술실과 제약 공정에서는 오염을 줄이기 위한 공기의 청정도가 중요하다. 해당 용도에 맞춰 청정구역의 공조설비를 적용한다."
+        }
+      ],
+      "page": "1-30",
+      "number": 12,
+      "questionParts": [
+        {
+          "page": "1-30",
+          "rect": [
+            671,
+            868,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-30",
+          "rect": [
+            671,
+            1061,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-30-original.png",
+          "sha256": "d0b86c9a65a44ecc20cf4b200c93d1984a77e00d4c0a0ed8fd93d6c02c7a93d6"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-32-25",
+      "blocks": [
+        {
+          "text": "수분을 더하거나 빼지 않고 일정 압력에서 공기를 가열하면 엔탈피가 증가하고 습도비는 일정하다. 온도가 오르면 포화수증기압이 높아져 상대습도는 감소한다."
+        }
+      ],
+      "page": "1-32",
+      "number": 25,
+      "questionParts": [
+        {
+          "page": "1-32",
+          "rect": [
+            671,
+            662,
+            671,
+            161
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-32",
+          "rect": [
+            671,
+            824,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-32-original.png",
+          "sha256": "071f321ca7f451cfa824ac1fd0460e271599eee26982a0b04c52f0204d274b7e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-33-29",
+      "blocks": [
+        {
+          "text": "건공기와 수증기의 기체상수 비가 약 0.622다. 전체 압력에서 수증기분압을 빼면 건공기분압이므로 습도비는 다음과 같다. 수증기 비열은 이 식에 필요하지 않다."
+        },
+        {
+          "tex": "x=0.622\\frac{p_v}{p_a}=0.622\\frac{p_v}{p-p_v}",
+          "label": "습도비는 0.622 곱하기 수증기분압 나누기 건공기분압"
+        }
+      ],
+      "page": "1-33",
+      "number": 29,
+      "questionParts": [
+        {
+          "page": "1-33",
+          "rect": [
+            0,
+            1210,
+            671,
+            191
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-33",
+          "rect": [
+            0,
+            1402,
+            671,
+            238
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-33-original.png",
+          "sha256": "e5180b42a53e31fa678226be5bcf930fe10b9c9c9c1e56cbc76598c4662dfd7c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-34-39",
+      "blocks": [
+        {
+          "text": "습공기의 비엔탈피는 건공기와 그 안에 든 수증기의 기여를 더해 구한다."
+        },
+        {
+          "tex": "h=1.01(30)+0.00104\\,[2501+1.85(30)]\\approx32.96\\approx33.0\\ \\mathrm{kJ/kg_{da}}",
+          "label": "건공기 1 kg당 약 33.0 kJ"
+        }
+      ],
+      "page": "1-34",
+      "number": 39,
+      "questionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            1252,
+            671,
+            193
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-34",
+          "rect": [
+            671,
+            1446,
+            671,
+            170
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-34-original.png",
+          "sha256": "7cd20c16f7f3d435f154379ed17e5b561766864d9612681b4c79cd968a03216c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-35-40",
+      "blocks": [
+        {
+          "text": "건공기 1 kg 기준으로 수증기 0.0271 kg의 엔탈피를 더한다."
+        },
+        {
+          "tex": "h=1.01(30)+0.0271\\,[2501+1.85(30)]\\approx99.58\\ \\mathrm{kJ/kg_{da}}",
+          "label": "습공기 비엔탈피 약 99.58 kJ/kg 건공기"
+        }
+      ],
+      "page": "1-35",
+      "number": 40,
+      "questionParts": [
+        {
+          "page": "1-35",
+          "rect": [
+            0,
+            187,
+            671,
+            195
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-35",
+          "rect": [
+            0,
+            383,
+            671,
+            168
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-35-original.png",
+          "sha256": "1c3326c809ca440f83c319b2bfdd8d1eba2c0162f904f6facf4ea189afeb77fe"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-36-50",
+      "blocks": [
+        {
+          "text": "외기 한 몫과 실내공기 네 몫을 섞는다. 같은 비열로 근사한 혼합온도와 건공기 질량 기준의 습도비는 다음과 같다."
+        },
+        {
+          "tex": "t=\\frac{-10+4(20)}{5}=14\\,^{\\circ}\\mathrm C,\\qquad x=\\frac{0.001+4(0.008)}{5}=0.0066",
+          "label": "혼합온도 14도, 습도비 0.0066 kg/kg 건공기"
+        }
+      ],
+      "page": "1-36",
+      "number": 50,
+      "questionParts": [
+        {
+          "page": "1-36",
+          "rect": [
+            671,
+            872,
+            671,
+            470
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-36",
+          "rect": [
+            671,
+            1343,
+            671,
+            186
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-36-original.png",
+          "sha256": "e5b6654bcefb45a05803e8d40942468a4526943f11bd5ca2cbfbe78f03d893c0"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-58-5",
+      "blocks": [
+        {
+          "text": "외기냉방에는 실내로 충분한 외기를 보내는 통로가 필요하다. 전수식 팬코일 유닛은 물배관으로 열을 운반하고 실내 공기를 순환시키므로 단독으로는 외기냉방에 불리하다."
+        }
+      ],
+      "page": "1-58",
+      "number": 5,
+      "questionParts": [
+        {
+          "page": "1-58",
+          "rect": [
+            671,
+            1427,
+            671,
+            195
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-58",
+          "rect": [
+            671,
+            1623,
+            671,
+            94
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-58-original.png",
+          "sha256": "464bd73d8ebdbe8ad29ee38fc4ec3a6c412a682cdfc3e2b6515f17e68af62f06"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-62-24",
+      "blocks": [
+        {
+          "text": "교재는 운송동력비가 큰 전공기 방식의 예로 멀티존 방식과 덕트 방식을 든다. 이 문항의 인쇄 답은 ② 멀티존 방식이다. 실제 동력비는 풍량·압력손실·효율에 따라 달라진다."
+        }
+      ],
+      "page": "1-62",
+      "number": 24,
+      "questionParts": [
+        {
+          "page": "1-62",
+          "rect": [
+            0,
+            190,
+            671,
+            237
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-62",
+          "rect": [
+            0,
+            428,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-62-original.png",
+          "sha256": "e8a914c431fae670c4c97eeab190f159a3acc00ff5db44f2d0eac87d6e62ecab"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-70-4",
+      "blocks": [
+        {
+          "text": "주어진 실내 현열부하와 취출온도차로 송풍량을 구한다. 재열기 부하는 공기를 취출 상태로 만드는 장치 부하이며 같은 조건의 실내 현열부하에 거듭 더하지 않는다."
+        }
+      ],
+      "page": "1-70",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "1-70",
+          "rect": [
+            671,
+            324,
+            671,
+            239
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-70",
+          "rect": [
+            671,
+            564,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-70-original.png",
+          "sha256": "5f8915e5a562d397f6c0eda53bc22cf12e7c70f8873b8e8ed7cc4a26779b2885"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-71-9",
+      "blocks": [
+        {
+          "text": "벽의 안팎 표면과 두 재료층의 단위면적당 열저항을 직렬로 더한다."
+        },
+        {
+          "tex": "K=\\frac{1}{1/23.3+0.20/1.63+0.15/0.17+1/9.3}\\approx0.865\\ \\mathrm{W/(m^2 K)}",
+          "label": "열관류율 약 0.865 와트 매 제곱미터 켈빈"
+        },
+        {
+          "tex": "\\dot Q=0.865\\times20\\times[20-(-10)]\\approx519\\ \\mathrm W",
+          "label": "열손실 약 519 W"
+        }
+      ],
+      "page": "1-71",
+      "number": 9,
+      "questionParts": [
+        {
+          "page": "1-71",
+          "rect": [
+            671,
+            549,
+            671,
+            161
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-71",
+          "rect": [
+            671,
+            711,
+            671,
+            290
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-71-original.png",
+          "sha256": "913129a916fb1323957556f7da493808674ea0b8bc28157b9f8cdbb50cc3ad75"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-71-10",
+      "blocks": [
+        {
+          "text": "실내에는 기계만 있어 실내에서 소모되는 축출력을 센다. 실외 전동기의 손실열은 더하지 않는다. 평균 실내 발열은 10×0.85×0.7=5.95 kW이고, 한 시간에는 21,420 kJ다."
+        }
+      ],
+      "page": "1-71",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "1-71",
+          "rect": [
+            671,
+            1106,
+            671,
+            264
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-71",
+          "rect": [
+            671,
+            1371,
+            671,
+            128
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-71-original.png",
+          "sha256": "913129a916fb1323957556f7da493808674ea0b8bc28157b9f8cdbb50cc3ad75"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-90-3",
+      "blocks": [
+        {
+          "text": "천장이 높은 공간에서는 따뜻한 공기가 위로 모이기 쉽다. 복사난방은 사람이 있는 구역과 표면에 직접 열을 전달할 수 있어 유리하다."
+        }
+      ],
+      "page": "1-90",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "1-90",
+          "rect": [
+            0,
+            1353,
+            671,
+            160
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-90",
+          "rect": [
+            0,
+            1514,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-90-original.png",
+          "sha256": "44c1162e2f8f18780c58ca19d4e4baa42f9956f6bc209007738c54794f4e9d97"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-91-7",
+      "blocks": [
+        {
+          "text": "인쇄 풀이 · 온수난방에도 증기배관처럼 신축이음이 필요하다고 설명한다."
+        },
+        {
+          "text": "보충 설명 · 온수 배관도 가열하면 길이가 늘어 열팽창을 흡수하도록 설계해야 한다. 별도 신축이음쇠의 필요 여부는 길이·온도차와 배관 굴곡이 허용하는 변위에 달려 있다."
+        }
+      ],
+      "page": "1-91",
+      "number": 7,
+      "questionParts": [
+        {
+          "page": "1-91",
+          "rect": [
+            0,
+            190,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-91",
+          "rect": [
+            0,
+            508,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-91-original.png",
+          "sha256": "6108217c0380258f38fd8154a95913469a50f6e5381b0510dff33953c1989a7e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-91-9",
+      "blocks": [
+        {
+          "text": "배관손실까지 합하면 운반해야 할 열은 110,000 kJ/h다. 물의 비열을 4.2 kJ/(kg·K), 밀도를 약 1 kg/L로 두고 순환유량을 구한다."
+        },
+        {
+          "tex": "\\dot V\\simeq\\frac{100000+10000}{4.2(75-70)}\\frac{1}{3600}\\approx1.46\\ \\mathrm{L/s}",
+          "label": "순환수량 약 1.46 L/s"
+        }
+      ],
+      "page": "1-91",
+      "number": 9,
+      "questionParts": [
+        {
+          "page": "1-91",
+          "rect": [
+            0,
+            1307,
+            671,
+            263
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-91",
+          "rect": [
+            0,
+            1571,
+            671,
+            128
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-91-original.png",
+          "sha256": "6108217c0380258f38fd8154a95913469a50f6e5381b0510dff33953c1989a7e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-92-14",
+      "blocks": [
+        {
+          "text": "교재의 표준방열량은 증기 756 W/m², 온수 523 W/m²다. 증기난방 면적 10 m²에는 756×10=7,560 W가 대응한다."
+        }
+      ],
+      "page": "1-92",
+      "number": 14,
+      "questionParts": [
+        {
+          "page": "1-92",
+          "rect": [
+            0,
+            713,
+            671,
+            203
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-92",
+          "rect": [
+            0,
+            917,
+            671,
+            103
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-92-original.png",
+          "sha256": "386f0a77c6c817ca87a8ec256c7f8da829c539457c72de0349b3ce3c88eb3b6a"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-100-4",
+      "blocks": [
+        {
+          "text": "② 카본필터다. 활성탄의 넓은 내부 표면에 일부 냄새 성분 등 기체 분자가 흡착된다. HEPA와 ULPA는 주로 입자를 포집하는 필터다."
+        }
+      ],
+      "page": "1-100",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "1-100",
+          "rect": [
+            671,
+            316,
+            671,
+            275
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-100",
+          "rect": [
+            671,
+            592,
+            671,
+            132
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-100-original.png",
+          "sha256": "38ca8ee4db5020c20de3283ba20765959c2e2197e7a477108e7a681386c8f53d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-105-25",
+      "blocks": [
+        {
+          "text": "유인 유닛에 냉수·온수를 각각 공급하는 4관식 등을 쓰면 서로 다른 실에서 냉방과 난방을 동시에 할 수 있다. 따라서 이를 곤란하다고 단정한 ④가 적합하지 않다."
+        }
+      ],
+      "page": "1-105",
+      "number": 25,
+      "questionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            440,
+            671,
+            280
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            721,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-105-original.png",
+          "sha256": "a8b4130b7196864af5eaa4d668e9fdad12e9f576d72c519825dadbaf76c78d1b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-105-26",
+      "blocks": [
+        {
+          "text": "유인 유닛은 고속의 1차 공기로 실내 공기를 끌어들여 순환시킨다. 덕트는 주로 1차 공기를 운반하므로 덕트 공간이 비교적 크다는 ④가 맞지 않는다."
+        }
+      ],
+      "page": "1-105",
+      "number": 26,
+      "questionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            884,
+            671,
+            241
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            1126,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-105-original.png",
+          "sha256": "a8b4130b7196864af5eaa4d668e9fdad12e9f576d72c519825dadbaf76c78d1b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-105-27",
+      "blocks": [
+        {
+          "text": "인쇄 풀이에서 ③은 덕트를 병용하는 복사 냉난방이다. 물이 복사패널을 흐르고 별도의 공기도 공급하므로 공기–물 방식이다. 단순히 복사패널만 있다는 설명으로 공기–물 방식이라고 판단할 수는 없다."
+        }
+      ],
+      "page": "1-105",
+      "number": 27,
+      "questionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            1319,
+            671,
+            244
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            0,
+            1564,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-105-original.png",
+          "sha256": "a8b4130b7196864af5eaa4d668e9fdad12e9f576d72c519825dadbaf76c78d1b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-105-30",
+      "blocks": [
+        {
+          "text": "교재는 중앙식과 개별식이라는 분류로 ④ 패키지 방식을 고른다. 패키지형 장비를 각 층에 배치하는 구성 자체가 불가능한 것은 아니다. 이 문제에서 각층 유닛 방식을 어떤 범위로 정의했는지 원출제 자료 확인이 필요하다."
+        }
+      ],
+      "page": "1-105",
+      "number": 30,
+      "questionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            671,
+            1281,
+            671,
+            311
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-105",
+          "rect": [
+            671,
+            1593,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-105-original.png",
+          "sha256": "a8b4130b7196864af5eaa4d668e9fdad12e9f576d72c519825dadbaf76c78d1b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-106-31",
+      "blocks": [
+        {
+          "text": "통상적인 덕트 병용 팬코일에서는 실부하의 상당 부분을 물이 처리하므로 실로 보내는 1차 공기량이 적다. 높은 청정도를 위해 큰 여과·순환풍량이 필요한 용도의 대표 방식으로 보기 어려워 ④가 해당한다."
+        }
+      ],
+      "page": "1-106",
+      "number": 31,
+      "questionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            0,
+            190,
+            671,
+            313
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            0,
+            504,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-106-original.png",
+          "sha256": "0fe1810d40b9e081b113bd2de69c9f2b50d80f40ba4ae46dbd051b99c51750a6"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-106-33",
+      "blocks": [
+        {
+          "text": "①처럼 노즐로 실내 공기를 끌어들이는 장치는 유인 유닛이다. 팬코일 유닛은 송풍기와 냉온수 코일 등을 케이싱 안에 갖춘 실내용 장치이므로 ②다. 냉동기까지 한 몸에 넣는 것이 팬코일의 정의는 아니다."
+        }
+      ],
+      "page": "1-106",
+      "number": 33,
+      "questionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            0,
+            1277,
+            671,
+            455
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-106",
+          "rect": [
+            671,
+            179,
+            671,
+            168
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-106-original.png",
+          "sha256": "0fe1810d40b9e081b113bd2de69c9f2b50d80f40ba4ae46dbd051b99c51750a6"
         }
       ]
     }

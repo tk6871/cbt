@@ -1,22 +1,23 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
 import katex from 'katex';
 import {textbookDirectSources} from '../src/cbt/textbookPages';
 import {textbookExplanationText} from '../src/cbt/textbookExplanationText';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 
-test('승인32개만 표시·7수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
+test('승인58개만 표시·16수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
  const data=JSON.parse(fs.readFileSync('data/textbook-explanation-text.json','utf8'));
- expect(data.entries).toHaveLength(32);
+ expect(data.entries).toHaveLength(58);
  const approved=textbookDirectSources.filter(r=>textbookExplanationText(r));
- expect(approved).toHaveLength(32);
+ expect(approved).toHaveLength(58);
  let formulae=0;
  for(const entry of data.entries){
   const source=textbookDirectSources.find(r=>r.id===entry.id)!;
   expect(textbookExplanationText(source)).toBeTruthy();
-  for(const a of entry.assets)expect(crypto.createHash('sha256').update(fs.readFileSync(a.asset)).digest('hex')).toBe(a.sha256);
+  for(const a of entry.assets)verifyTextbookPageHash(a.asset,a.sha256);
   for(const block of entry.blocks)if(block.tex){
    expect(katex.renderToString(block.tex,{throwOnError:true})).not.toContain('katex-error');formulae++;
   }
@@ -24,12 +25,15 @@ test('승인32개만 표시·7수식 KaTeX·원문 변경 시 이미지로 복�
   expect(textbookExplanationText({...source,questionParts:[{...source.questionParts[0]!,rect:[0,0,1,1]}]})).toBeUndefined();
   expect(textbookExplanationText({...source,solutionParts:[]})).toBeUndefined();
  }
- expect(formulae).toBe(7);
+ expect(formulae).toBe(16);
+});
+
+test('교재 경계 감사 원본 지문 해시 보존',()=>{
  const guards=JSON.parse(fs.readFileSync('tools/hansol-direct-boundary-review.json','utf8')).preservedFiles;
  for(const [path,sha] of Object.entries(guards))expect(crypto.createHash('sha256').update(fs.readFileSync(path)).digest('hex')).toBe(sha);
 });
 
-test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미검토 이미지 유지',async({page})=>{
+test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미검토 이미지 유지',async({page},testInfo)=>{
  await page.addInitScript(()=>{
   localStorage.setItem('modern-cbt-qualification-industrial','hvac');
   localStorage.setItem('unified-cbt-dynamic-ui','false');
@@ -38,6 +42,7 @@ test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미�
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('/?safe=1');
+ if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();await enterBookReader(page);
  await chooseBookPage(page,'3-266');
@@ -72,7 +77,7 @@ test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미�
  await setting.getByRole('button',{name:/확인된 텍스트 우선/}).click();
  await page.getByRole('button',{name:'설정 닫기',exact:true}).click();
  await expect(text).toBeVisible();
- await card.screenshot({path:'/private/tmp/textbook-compact-explanation.png'});
+ await card.screenshot({path:testInfo.outputPath('textbook-compact-explanation.png')});
  await chooseBookPage(page,'1-168');
  const unreviewed=page.locator('[data-source-id="hansol-direct-1-168-25"]');
  await unreviewed.locator('.direct-solution>summary').click();
