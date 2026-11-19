@@ -11,6 +11,12 @@ async function prepare(page:Page,key:string){
   sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
  },key);
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async notice=>{await notice.getByRole('button',{name:'나중에',exact:true}).click();});
+ if(key==='energy-midterm'){
+  await page.goto('/?safe=1#/study/school');
+  await page.locator('.finals-hub summary').click();
+  await page.getByRole('button',{name:'에너지설비 중간고사 자료',exact:true}).click();
+  return;
+ }
  await page.goto('/?safe=1');
  if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
