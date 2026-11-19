@@ -4,6 +4,8 @@
 
 ## 로컬에서 검수분 대조하기
 
+후속 교재 변형 220개까지 반영한 누적 직접 판정은 13,293개, 미검토는 1,218개다. 교재 변형은 원본 CBT 키가 아니라 교재 모드의 실제 보기·키·해설과 대조한다. 근거가 부족한 문제와 정답 충돌은 별도 상태로 유지한다.
+
 변환 전 이미지까지 검증할 때는 `npm run review:intake -- --ocr --require-originals`를 사용한다. 검사기는 문제·해설에 더해 `sourceAssets`의 보기·도면까지 포함한다. 기본 원본 보관함은 `work/problem-webp90/originals/`이며 다른 위치는 `CBT_ORIGINAL_ASSET_DIR`로 지정한다. 원본을 필수로 지정하지 않으면 원본이 없을 때 화면용 이미지를 읽고 `ocrBySource`에 입력 종류를 표시한다. 문자 미검출 파일은 `noRecognizedText`에서 찾는다.
 
 저장소 루트에서 `npm run review:intake`를 실행하면 문항의 보존 필드와 이미지 참조를 검사하고 이 폴더의 목록을 현재 은행에서 다시 만든 목록과 대조한다. macOS에서 `npm run review:intake -- --ocr`를 실행하면 보류 항목에 연결된 원문 이미지도 한국어로 인식한다. 결과는 `work/explanation-intake/2026-11-18/report.json`에, 이미지별 인식 행은 같은 폴더의 `ocr/`에 저장한다. 보고서의 `scope`에는 현재 검토 대상으로 지정된 항목의 집계가 있다. `answer-confirmation.md`에서는 전체 목록의 ID와 현재 범위의 ID를 따로 대조한다. OCR은 다음 원문 대조를 돕는 초안이며, 문제와 해설에 반영하려면 별도로 판독해야 한다.

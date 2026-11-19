@@ -1,5 +1,6 @@
 import numberReview from '../../data/textbook-direct-number-review.json' with {type:'json'};
 import links from '../../data/textbook-pages.json' with { type: 'json' };
+import variantExplanations from '../../data/textbook-variant-explanations.json' with { type: 'json' };
 import reviewedPrintedPages from '../../data/textbook-direct-printed-pages.json' with { type: 'json' };
 import { coolingBookFingerprint } from './coolingBookScope';
 import type { QuestionItem, AnswerHotspot } from './types';
@@ -127,6 +128,12 @@ function buildTextbookItems(items: QuestionItem[], prepareEnergy: typeof prepare
    question.additionalExplanations=[...(enhanced.additionalExplanations||[]),...(enhanced.explanation?[{label:'수정 전 기존 CBT 해설',source:'기존 문제 보존본',text:enhanced.explanation}]:[])];
    question.explanation=correction.explanation;question.explanationHtml='';question.explanationType='editorial-supplement';question.explanationProvenance='book-verified-correction';
    question.explanationBasis='교재 지문·보기·정답표를 직접 대조하고, 원문과의 조건·정답 차이를 구분한 학습 설명입니다.';question.originalExplanationImagesFolded=true;
+  }
+  const reviewed = correction && (variantExplanations as Record<string,string>)[textbookStudyId(e)];
+  if(reviewed){
+   if(question.explanation) question.additionalExplanations=[...(question.additionalExplanations||[]),{label:'교재 대조 전 해설',source:'수정 전 보존본',text:question.explanation}];
+   question.explanation=reviewed;question.explanationHtml='';question.explanationType='editorial-supplement';
+   question.explanationProvenance='book-verified-correction';question.originalExplanationImagesFolded=true;
   }
   // Apply display-only reader-ink-hidden variants after checking the original
   // fingerprint. Question IDs, answers, percent hotspots and banks stay intact.

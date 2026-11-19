@@ -2,7 +2,7 @@
 
 저장 답안은 유지했다. review.json에는 각 문항의 근거와 원본 대조 상태가 있다.
 
-## 현재 검토 범위 (625개)
+## 현재 검토 범위 (631개)
 
 - `energy-industrial-20020310:34` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 질량당 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 = −1.08688 kJ/(kg·K). 한 주기의 상태 변화 0, 일정한 온도의 두 열원과 교환 가정하에 생성량 양수.
 - `energy-industrial-20020310:54` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 지문과 원문 보기 네 개 대조. 목표 온도가 제어출력이고 연료 유량이 조작입력인 폐루프와 비교.
@@ -644,6 +644,14 @@
 
 - `hansol-direct-3-378-12` (tools/textbook-explanation-text-review.json) — 왼쪽 길은 X가 꺼지고 Y가 켜질 때, 오른쪽 길은 그 반대일 때 닫힌다. 인쇄 답 ②는 XOR를 그대로 쓴 식이다. 그런데 ③을 전개해도 같은 식이므로 ②만 정답으로 단정할 수 없다.
 - `hansol-direct-3-384-39` (tools/textbook-explanation-text-review.json) — 그림의 다음 출력은 S OR (이전 Q AND NOT R)이다. S=R=1이면 Q는 1이므로 인쇄 답 ④는 틀린 설명이다. 다만 ③의 S=R=0에서는 이전 값을 유지하지 항상 0이 되는 것은 아니어서 단일 정답을 재확인해야 한다.
+
+- `book-study::hansol::2-106::97::hvac-20140302:40` (data/textbook-pages.json) — ①의 열·일은 상태량이 아니다. ②의 준정적과 가역을 같다고 하면 마찰 등 비가역 조건을 누락하며, ④의 온도·내부에너지 비례는 보편 법칙이 아니다.
+
+- `book-study::hansol::3-43::4::hvac-20100725:55` (data/textbook-pages.json) — 기존 풀이에 ① 이의제기가 있고 절단 공구와 밀봉재 사용법은 시방별로 달라진다. 인쇄 답 ④의 ‘충분히 감는다’도 양이 불명확해 단일판정 재확인.
+- `book-study::hansol::3-62::18::hvac-20130602:42` (data/textbook-pages.json) — 실제 제조사 AVK가 Single Flap Check Valve를 체크밸브로 판매한다. https://www.avkindustrial.com.au/en-au/products/single-flap-check-valve
+- `book-study::hansol::3-62::22::hvac-20140817:41` (data/textbook-pages.json) — ③의 직통 콕 유로저항 설명은 틀리지만 ②도 0~90℃로 인쇄된 각도 단위 오류가 있다. 엄밀히 읽으면 단일 오답 재확인.
+- `book-study::hansol::3-65::42::hvac-20080511:57` (data/textbook-pages.json) — 탄성 회복도 실링 재료 성능을 좌우하므로 ①을 고려사항이 아니라고 확정하기 어렵다. 보기 전체와 저장 답의 불일치로 재확인.
+- `book-study::hansol::3-66::48::hvac-20080511:51` (data/textbook-pages.json) — 책은 ②, 기존 CBT는 ①이고 같은 교재 3-31쪽은 충격을 견디는 것을 지지조건으로 다룬다. 두 근거가 충돌한다.
 
 ## 범위 조정 전에 기록한 그 밖의 항목 (33개)
 

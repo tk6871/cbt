@@ -345,9 +345,27 @@ for(const [i,round] of appendixAfter.entries()){
  }
 }
 assert.deepEqual(appendixAfter,appendixBefore,'Unrecorded changes in textbook appendix');
+// Review the actual book projection. A linked exam can have a different key,
+// reordered choices or different numbers even when its source ID is identical.
+const variantModule = await build({stdin:{contents:"export {textbookEntries,textbookStudyItems} from './src/cbt/textbookPages'",resolveDir:process.cwd()},bundle:true,write:false,platform:'node',format:'esm'});
+const variantRuntime=await import('data:text/javascript;base64,'+Buffer.from(variantModule.outputFiles[0].contents).toString('base64'));
+const correctedEntries=variantRuntime.textbookEntries.filter(e=>e.book==='hansol'&&e.correction);
+const variantSources=[...new Set(correctedEntries.map(e=>e.sourceId))].map(id=>({id,question:bankById.get(id),round:{},subject:''}));
+const variants=new Map(variantRuntime.textbookStudyItems(variantSources,correctedEntries).map(i=>[i.id,i]));
+assert.equal(variants.size,correctedEntries.length);
+const variantNotes=JSON.parse(fs.readFileSync('data/textbook-variant-explanations.json'));
+assert.deepEqual(Object.keys(variantNotes).sort(),review.records.filter(r=>r.variantReview&&r.changed).map(r=>r.id).sort());
+for(const r of review.records.filter(r=>r.variantReview)){
+ const item=variants.get(r.id),q=item?.question;assert.ok(q,r.id);
+ assert.equal(item.sourceQuestionId,r.variantReview.sourceId,r.id);
+ const payload=[q.text,q.choices.map(c=>c.text),q.answer];
+ assert.equal(crypto.createHash('sha256').update(JSON.stringify(payload)).digest('hex'),r.variantReview.questionSha256,r.id);
+ assert.equal(q.explanation||'',r.resolution,r.id);
+ if(r.changed)assert.equal(variantNotes[r.id],r.resolution,r.id);
+}
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);
- assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? appendixAnswers.get(record.id) ?? directAnswers.get(record.id), 'Stored answer differs from ledger: ' + record.id);
+ assert.equal(record.answerAfter, bankById.get(record.id)?.answer ?? fieldAnswers.get(record.id) ?? exampleAnswers.get(record.id) ?? practicalAnswers.get(record.id) ?? appendixAnswers.get(record.id) ?? directAnswers.get(record.id) ?? variants.get(record.id)?.question.answer, 'Stored answer differs from ledger: ' + record.id);
  for (const reference of record.evidence) assert.ok(knownEvidence.has(reference), 'Missing evidence: ' + reference);
 }
 for (const [status, field] of Object.entries(statusCounts)) {
@@ -361,6 +379,7 @@ assert.equal(review.counts.imageFullyTranscribed + review.counts.imagePartiallyT
 assert.equal(review.counts.imageCompared, explanationTranscriptions);
 assert.equal(review.counts.questionImagesConverted, newTranscriptions.filter(([, entry]) => entry.kind === 'question').length);
 const affectedIds=new Set([...changedBankIds,...fieldChanges,...exampleChanges,...practicalChanges,...directChanges,...appendixChanges]);
+for(const id of Object.keys(variantNotes))affectedIds.add(id);
 for(const [p] of newTranscriptions){const matching=review.records.filter(r=>r.questionImage===p||r.explanationImages.includes(p));assert.ok(matching.length,`Unrecorded transcription ${p}`);for(const r of matching)affectedIds.add(r.id);}
 const energyReviewFile = 'data/energy-reviewed-explanations.json';
 const energyReviewed = JSON.parse(fs.readFileSync(energyReviewFile));
