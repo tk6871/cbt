@@ -1023,6 +1023,17 @@ test('비반전 입력에 음전압을 가한 원도 확인',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('산업안전 직렬 신뢰도',async({page})=>{
+  await prepare(page,'safety');
+  await page.locator('#round-card-safety-20030316').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('33');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'인간-기계 통합체계'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('8/9');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('산업안전 흙의 포화도',async({page})=>{
   await prepare(page,'safety');
   await page.locator('#round-card-safety-20020526').getByRole('button',{name:'학습모드',exact:true}).click();
