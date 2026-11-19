@@ -28,7 +28,7 @@ test('이전 학교 종목을 저장한 사용자도 기출로 진입하고 기�
   expect(ids.some(id=>/2024-[23]|2025|2026/.test(id))).toBe(false);
 });
 
-test('한 문항 초기화·되돌리기·페이지 초기화가 다른 쪽 답과 누적 기록을 보존한다',async({page})=>{
+test('페이지 선택 초기화가 다른 쪽 답과 누적 기록을 보존한다',async({page})=>{
   await page.goto('./?safe=1#/study/school');
   await page.locator('.finals-hub article').filter({hasText:'에너지설비'}).getByRole('button',{name:'학습모드'}).click();
   const card=page.locator('.question-card').first();
@@ -48,10 +48,7 @@ test('한 문항 초기화·되돌리기·페이지 초기화가 다른 쪽 답�
   const records=()=>page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('unified-industrial-cbt-v1')||'{}');return {attempts:s.attempts,bookmarks:s.bookmarks,history:s.history,wrong:s.wrong};});
   await expect.poll(async()=>Object.keys((await records()).attempts||{}).length).toBeGreaterThanOrEqual(2);
   const history=await records();
-  await card.getByRole('button',{name:'이 문제 초기화'}).click();
-  expect((await saved(page)).answers).toEqual(initial.answers);
-  await card.getByRole('button',{name:'초기화 되돌리기'}).click();
-  expect((await saved(page)).answers).toEqual(before.answers);
+  await expect(card.getByRole('button',{name:/이 문제 초기화|초기화 되돌리기/})).toHaveCount(0);
   let reset=page.locator('.session-tools .reset-button');
   if (!await reset.isVisible()) {
     await page.locator('.session-menu-button:visible,.native-app-tabbar button:visible,.session-bottom-bar button:visible').filter({hasText:'메뉴'}).first().click();
@@ -71,7 +68,7 @@ test('한 문항 초기화·되돌리기·페이지 초기화가 다른 쪽 답�
 });
 
 for (const [book,pageNumber,number,choice] of [['한솔 공조 교재','1-168',25,2],['에너지설비 교재','414',16,3]] as const) {
-  test(book+' 이미지 답 하나만 초기화하고 되돌린 값을 새로고침 후 복원한다',async({page})=>{
+  test(book+' 이미지에서 선택한 답을 버튼 추가 없이 새로고침 후 복원한다',async({page})=>{
     await page.goto('./?safe=1');
     await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
     const library=page.locator('.textbook-library');
@@ -84,13 +81,13 @@ for (const [book,pageNumber,number,choice] of [['한솔 공조 교재','1-168',2
     const printed=row.getByRole('button',{name:'이미지에서 '+choice+'번 선택',exact:true});
     await printed.click();
     await expect(printed).toHaveAttribute('aria-pressed','true');
-    await row.getByRole('button',{name:'이 문제 초기화'}).click();
-    await expect(printed).toHaveAttribute('aria-pressed','false');
-    await row.getByRole('button',{name:'초기화 되돌리기'}).click();
+    await expect(row.getByRole('button',{name:/이 문제 초기화|초기화 되돌리기/})).toHaveCount(0);
     await page.reload();
     await expect(printed).toHaveAttribute('aria-pressed','true');
-    await row.getByRole('button',{name:'이 문제 초기화'}).click();
+    const other=row.getByRole('button',{name:'이미지에서 4번 선택',exact:true});
+    await other.click();
     await page.reload();
+    await expect(other).toHaveAttribute('aria-pressed','true');
     await expect(printed).toHaveAttribute('aria-pressed','false');
   });
 }

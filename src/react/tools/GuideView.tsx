@@ -20,7 +20,6 @@ export function renderGuideView(m: GuideViewModel) {
     finishPracticalMock,
     formatPracticalSession,
     formatPracticalTime,
-    hasPracticalProgress,
     hvacFieldReportRelatedGroups,
     hvacPracticalAvailable,
     jumpPracticalIndex,
@@ -100,7 +99,6 @@ export function renderGuideView(m: GuideViewModel) {
     practicalViewedAnswerIds,
     printPracticalSheet,
     replacePracticalDraft,
-    resetPracticalPrompt,
     resumePracticalPatternMock,
     selectedKey,
     settingsOpen,
@@ -1130,17 +1128,6 @@ export function renderGuideView(m: GuideViewModel) {
                                 className="subtle"
                               >
                                 같은 유형 연속 풀기
-                              </button>
-                            ) : null}
-                            {!practicalExamLocked && hasPracticalProgress(prompt.id) ? (
-                              <button
-                                type="button"
-                                onClick={() => {
-                                  resetPracticalPrompt(prompt.id);
-                                }}
-                                className="subtle"
-                              >
-                                이 문제 초기화
                               </button>
                             ) : null}
                           </div>

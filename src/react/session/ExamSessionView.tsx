@@ -467,7 +467,6 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                         onChoose: (event: Parameters<typeof chooseAnswer>[1]) => {
                           chooseAnswer(item, event);
                         },
-                        onReset: session.mode === 'learn' ? (choice: number) => m.resetOneLearningChoice(item, choice) : undefined,
                         onToggleBookmark: () => {
                           toggleBookmark(item);
                         },

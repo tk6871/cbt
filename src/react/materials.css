@@ -108,7 +108,14 @@
   background: var(--primary) url('./assets/materials/round-mode-sheen.svg') center / 100% 100% no-repeat;
   box-shadow: none;
 }
-.question-reset { min-height: 44px; padding-inline: 12px; }
+[data-react-view="round-list"] .round-card footer,
+.finals-hub .round-card footer {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.round-card footer .round-mode-button {
+  min-width: 0;
+  word-break: keep-all;
+}
 .finals-hub > details { margin-block: 1.25rem; }
 .finals-hub > details > summary { cursor: pointer; padding-block: .8rem; }
 

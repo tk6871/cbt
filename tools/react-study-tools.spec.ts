@@ -57,6 +57,7 @@ test('필답 회차·답안·쪽 이동과 모바일 3D 설정 보존',async({pa
   await page.getByLabel('필답형 화면 배치').selectOption('single');
   const field=page.locator('.practical-answer-input textarea').first();
   await field.fill('흡입과 압축');
+  await expect(page.getByRole('button',{name:'이 문제 초기화',exact:true})).toHaveCount(0);
   await page.getByRole('button',{name:/다음 문제/}).last().click();await expect(field).toHaveValue('');
   await page.getByRole('button',{name:/이전 문제/}).last().click();await expect(field).toHaveValue('흡입과 압축');
   await page.getByLabel('필답형 화면 배치').selectOption('2');await expect(page.locator('.practical-question-grid > article')).toHaveCount(2);

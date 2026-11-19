@@ -5,6 +5,11 @@
 
   const entries = [
     {
+      version: '6.5.2', scope: 'industrial', date: '2026.11.20', title: '학습모드 버튼 정리',
+      summary: '이어 학습과 CBT 시험모드를 같은 줄에 표시합니다.',
+      changes: ['문항마다 보이던 초기화 버튼을 제거했습니다.', '진행 중인 회차의 처음부터 풀기와 오답은 두 모드 아래에서 선택할 수 있습니다.']
+    },
+    {
       "version": "6.5.1",
       "scope": "industrial",
       "date": "2026.11.20",
@@ -3252,8 +3257,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.5.1';
+  changelog.versions.industrial = '6.5.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.5.1';
+  changelog.currentVersion = '6.5.2';
   window.CBT_CHANGELOG = changelog;
 })();

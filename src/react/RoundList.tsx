@@ -19,8 +19,9 @@ export function RoundList({rows}:{rows:StudyRound[]}){
       {r.hint&&<details className="energy-topic-note"><summary>자료 대조 안내</summary><p>{r.hint}</p></details>}
       {r.answered>0&&<><div className="round-progress"><span><i style={{width:r.progress+'%'}}/></span></div><small className="round-progress-copy">{r.answered}/{r.total} 학습 중</small></>}
       <footer><button type="button" className="round-mode-button" onClick={r.start}>{r.answered?'이어 학습':'학습모드'}</button>
+        <button type="button" className="round-mode-button" onClick={r.exam}>CBT 시험모드</button>
         {r.answered>0&&<button type="button" className="round-mode-button round-restart-button" onClick={r.restart}>처음부터</button>}
         {r.wrong>0&&<button type="button" className="round-mode-button round-wrong-button" onClick={r.openWrong}>오답 {r.wrong}개</button>}
-        <button type="button" className="round-mode-button" onClick={r.exam}>CBT 시험모드</button></footer>
+      </footer>
     </article>)}</div>;
 }

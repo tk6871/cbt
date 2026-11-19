@@ -2,7 +2,6 @@ import {clsx as normalizeClass} from 'clsx';
 import {lazy, Suspense} from 'react';
 import { problemImage, problemImageHtml } from '../../cbt/problemImages';
 import ExplanationFigures from './ExplanationFigures';
-import {QuestionReset} from './QuestionReset';
 import ModelSlot from '../ModelSlot';
 import { createPortal } from 'react-dom';
 import { AnswerChoices } from '../AnswerChoices';
@@ -1027,7 +1026,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             document.body,
           )}{' '}
         </>
-        {mode === 'learn' && m.onReset && <QuestionReset choice={selected} setChoice={m.onReset}/>}
       </article>
     </>
   );

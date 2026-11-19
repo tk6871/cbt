@@ -1329,11 +1329,6 @@ function practicalSimilarCount(prompt: PracticalPrompt): number {
     && (!keyPoints.size || (candidate.keyPoints || []).some((point) => [...keyPoints].some((word) => point.includes(word))))).length;
 }
 
-function hasPracticalProgress(id: string): boolean {
-  const progress = practicalProgress[id];
-  return Boolean(progress && !progress.deleted && (progress.grade || progress.draft || progress.assessment));
-}
-
 function practicalAdaptiveLabel(prompt: PracticalPrompt): string {
   const assessment = practicalProgress[prompt.id]?.assessment;
   if (!assessment?.attempts) return '첫 도전';
@@ -1384,13 +1379,6 @@ function markPracticalPrompt(id: string, grade: PracticalGrade): void {
     updatedAt: Date.now(),
   };
   if (!practicalAnswerRevealed(id)) practicalRevealedIds.value = [...practicalRevealedIds.value, id];
-  persistPracticalProgress();
-}
-
-function resetPracticalPrompt(id: string): void {
-  practicalProgress[id] = { deleted: true, updatedAt: Date.now() };
-  delete practicalDrafts[id];
-  practicalRevealedIds.value = practicalRevealedIds.value.filter((value) => value !== id);
   persistPracticalProgress();
 }
 
@@ -3737,12 +3725,6 @@ function setLearningChoice(item: QuestionItem, choice: number): void {
   resets[item.id] = choice ? -at : at;
 }
 
-function resetOneLearningChoice(item: QuestionItem, choice: number): void {
-  setLearningChoice(item, choice);
-  saveActiveLearningSession();
-  void persistStudyStoreNow();
-}
-
 function resetLearning(): void {
   if (!session.value || session.value.mode !== 'learn') return;
   const answered = currentItems.value.filter(item => session.value!.answers[item.id]);
@@ -5044,7 +5026,7 @@ beginSession, displayedWrongItems, isCalculationItem, openView, restoredImageThe
 });
 
 const examSessionViewModel=proxyRefs({
-activateSessionItem, activeSessionItem, adjustFontScale, answerLayout, answeredCount, betaModeMeta, betaQuestionMeta, chooseAnswer, coolingSessionActive, currentItemColumns, darkActive, examPace, examSheetOpen, experimentalFeaturesEnabled, fontScale, formattedTime, goToNextKept, goToNextUnanswered, goToPage, goToQuestion, hotspotIndicator, isMidtermCalculation, isSubjectStart, jumpToLearningQuestion, keptCount, learningJumpNumber, leaveSession, markOmrManualScroll, omrFilter, omrRows, openCalculator, pageCount, panelCalculator, panelNotes, prepareAiQuestion, questionJudgmentEnabled, questionTransitionName, resetLearning, resetOneLearningChoice, restoredImageTheme, selectedKey, session, sessionMenuOpen, sessionProgress, sessionQuestionMax, sessionSubjectNumber, sessionTitle, setFontScale, setQuestionConfidence, setQuestionMistakeReason, setQuestionStudyNote, setSessionPageSize, settingsOpen, solveLayoutMode, studyStore, submitExam, submitLearning, toggleBookmark, toggleKeep, toggleLightDark, unansweredCount,
+activateSessionItem, activeSessionItem, adjustFontScale, answerLayout, answeredCount, betaModeMeta, betaQuestionMeta, chooseAnswer, coolingSessionActive, currentItemColumns, darkActive, examPace, examSheetOpen, experimentalFeaturesEnabled, fontScale, formattedTime, goToNextKept, goToNextUnanswered, goToPage, goToQuestion, hotspotIndicator, isMidtermCalculation, isSubjectStart, jumpToLearningQuestion, keptCount, learningJumpNumber, leaveSession, markOmrManualScroll, omrFilter, omrRows, openCalculator, pageCount, panelCalculator, panelNotes, prepareAiQuestion, questionJudgmentEnabled, questionTransitionName, resetLearning, restoredImageTheme, selectedKey, session, sessionMenuOpen, sessionProgress, sessionQuestionMax, sessionSubjectNumber, sessionTitle, setFontScale, setQuestionConfidence, setQuestionMistakeReason, setQuestionStudyNote, setSessionPageSize, settingsOpen, solveLayoutMode, studyStore, submitExam, submitLearning, toggleBookmark, toggleKeep, toggleLightDark, unansweredCount,
 setOmrListRef:(node:HTMLDivElement|null)=>{omrListRef.value=node;},
 });
 
@@ -5114,7 +5096,6 @@ const guideViewModel=proxyRefs({
   finishPracticalMock,
   formatPracticalSession,
   formatPracticalTime,
-  hasPracticalProgress,
   hvacFieldReportRelatedGroups,
   hvacPracticalAvailable,
   jumpPracticalIndex,
@@ -5194,7 +5175,6 @@ const guideViewModel=proxyRefs({
   practicalViewedAnswerIds,
   printPracticalSheet,
   replacePracticalDraft,
-  resetPracticalPrompt,
   resumePracticalPatternMock,
   selectedKey,
   settingsOpen,

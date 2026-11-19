@@ -36,7 +36,6 @@ export interface QuestionCardFields {
 }
 export interface QuestionCardProps extends QuestionCardFields {
   id?:string;
-  onReset?: (choice: number) => void;
   onChoose?: (choice: number) => void;
   onToggleBookmark?: () => void;
   onToggleKeep?: () => void;

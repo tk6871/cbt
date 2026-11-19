@@ -58,3 +58,28 @@ for (const [space, style] of [
     });
   }
 }
+
+test('진행 중인 회차에서도 이어 학습과 CBT 시험이 같은 줄을 유지한다', async ({page}) => {
+  await page.goto('./?safe=1#/study/rounds');
+  const footer = page.locator('#round-card-hvac-20160306 footer');
+  await footer.getByRole('button',{name:'학습모드',exact:true}).click();
+  const card = page.locator('#session-question-1');
+  await card.locator('.choice-button:visible,button[aria-label^="이미지에서"]:visible').first().click();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-industrial-cbt-v1') || '{}').attempts?.['hvac-20160306:1']?.lastChoice)).toBe(1);
+  await expect(card.getByRole('button',{name:/이 문제 초기화|초기화 되돌리기/})).toHaveCount(0);
+  await page.goto('about:blank');
+  await page.goto('./?safe=1#/study/rounds');
+  const buttons = footer.getByRole('button');
+  await expect(buttons).toHaveText(['이어 학습','CBT 시험모드','처음부터','오답 1개']);
+  const bounds = await buttons.evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {y:r.y,width:r.width,height:r.height};}));
+  expect(bounds[0]!.y).toBe(bounds[1]!.y);
+  expect(Math.abs(bounds[0]!.width-bounds[1]!.width)).toBeLessThan(1);
+  expect(bounds[1]!.height).toBeGreaterThanOrEqual(44);
+  expect(bounds[2]!.y).toBeGreaterThan(bounds[1]!.y);
+  await buttons.first().focus();
+  await page.keyboard.press('Tab');
+  await expect(buttons.nth(1)).toBeFocused();
+  await buttons.nth(1).click();
+  await expect(page.locator('#session-question-1')).toBeVisible();
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial') || '{}').mode)).toBe('exam');
+});
