@@ -2,7 +2,7 @@
 
 저장 답안은 유지했다. review.json에는 각 문항의 근거와 원본 대조 상태가 있다.
 
-## 현재 검토 범위 (613개)
+## 현재 검토 범위 (615개)
 
 - `energy-industrial-20020310:34` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 질량당 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 = −1.08688 kJ/(kg·K). 한 주기의 상태 변화 0, 일정한 온도의 두 열원과 교환 가정하에 생성량 양수.
 - `energy-industrial-20020310:54` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 지문과 원문 보기 네 개 대조. 목표 온도가 제어출력이고 연료 유량이 조작입력인 폐루프와 비교.
@@ -625,6 +625,10 @@
 - `hvac-practical-restored-2020-2B-01` (data/hvac-practical-restored.json) — 적색 PBS는 GL 가지보다 앞의 공통전원선에 있다. 누르고 있는 동안 GL도 소등이다. 저장 답은 정지 후 버튼을 놓아 전원이 돌아온 상태와 일치한다.
 
 - `hvac-practical-restored-2020-2B-09` (data/hvac-practical-restored.json) — 창가 선형 취출구가 창면 열부하에 대응한다는 설명과 저장 답의 벌레 차단 기능은 다르다. 사진은 출입구 방충용 에어커튼 설치가 아니다.
+
+- `hvac-practical-restored-2019-3-03` (data/hvac-practical-restored.json) — 길고 좁은 창가 취출구 사진이다. 저장 답의 곤충 출입 방지는 창면 열부하 대응과 별개인 출입구 에어커튼의 기능이다.
+
+- `hvac-practical-restored-2019-2-01` (data/hvac-practical-restored.json) — 2020년 2B회 1번과 동일하게 적색 PBS가 두 표시등보다 전원 쪽에 있다. 저장 답의 GL ON은 누르는 순간이 아니라 정지 버튼을 놓은 뒤다.
 
 ## 범위 조정 전에 기록한 그 밖의 항목 (33개)
 
