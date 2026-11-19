@@ -828,3 +828,16 @@ test('산업안전 소음 휴식시간 환산과 답안 저장',async({page},inf
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20210307:25'])).toBe(2);
  await card.screenshot({path:info.outputPath('noise-dose-time.png')});
 });
+
+test('콘크리트벽 표면 온도차와 전도열 분수 계산', async ({page}) => {
+  await prepare(page,'energy');
+  await page.locator('#round-card-energy-industrial-20140920').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('47');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.locator('.question-text').filter({hasText:'콘크리트벽'})});
+  await card.locator('.choice-button').nth(2).click();
+  const solution = card.locator('.explanation-box');
+  await expect(solution).toContainText('5 cm=0.05 m');
+  await expect(solution).toContainText('80 kcal');
+  await expect(solution.locator('.katex-html .mfrac').first()).toBeVisible();
+});
