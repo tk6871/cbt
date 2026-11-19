@@ -841,3 +841,14 @@ test('콘크리트벽 표면 온도차와 전도열 분수 계산', async ({page
   await expect(solution).toContainText('80 kcal');
   await expect(solution.locator('.katex-html .mfrac').first()).toBeVisible();
 });
+
+test('산업안전 가스켓 생존확률과 표준화 분수',async({page})=>{
+  await prepare(page,'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20200926').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('32');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'실린더 블록에 사용하는 가스켓'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('P(Z>−2)=P(Z≤2)=0.9772');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

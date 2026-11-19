@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.41',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도와 기계 방호 풀이',summary:'비어 있던 해설에 풀이와 원문 확인 안내를 추가했습니다.',tags:['산업안전'],changes:['표의 열 위치와 굴착 기울기가 맞지 않는 두 문항을 표시했습니다.']},
     {version:'6.2.40',scope:'industrial',date:'2026.11.19',title:'에너지 기출 전도열과 단열팽창 풀이',summary:'열과 일을 구분하고 단위 환산과 분수 계산을 보완했습니다.',tags:['에너지'],changes:['약품 이름으로 보기에 복수 답이 생기는 문항에 확인 안내를 추가했습니다.']},
     {version:'6.2.39',scope:'industrial',date:'2026.11.19',title:'공조 실기 복원문제 해설 교정',summary:'2025년 1·2·3회 복원문제의 열회수 방향과 평면도 읽기를 교정했습니다.',tags:['공조','실기'],changes:['단말 유인유닛과 중앙 송풍기의 역할을 구분했습니다.']},
     {version:'6.2.38',scope:'industrial',date:'2026.11.19',title:'공조 실기 복원문제 해설 교정',summary:'2026년 1·2회 복원문제의 급기 현열과 제어회로 풀이를 바로잡았습니다.',tags:['공조','실기'],changes:['냉동능력당 소요동력과 총 소비전력을 구별했습니다.']},
@@ -2818,8 +2819,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.40';
+  changelog.versions.industrial = '6.2.41';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.40';
+  changelog.currentVersion = '6.2.41';
   window.CBT_CHANGELOG = changelog;
 })();
