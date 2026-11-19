@@ -1382,6 +1382,7 @@ for (const sample of [
   {title: '공조 교재 유효전력 원도와 보기', round: '2022-2', number: '55', stem: '역률 80[%]인 부하', choice: '④ 400', explanation: '500 VA'},
   {title: '공조 교재 위상차 원도와 분수', round: '2022-3', number: '54', stem: '주파수 50[Hz]인 교류', choice: '③ 1/300', explanation: '주기의 1/6'},
   {title: '공조 교재 정현파 실효값 원도와 분수', round: '2023-1', number: '60', stem: '교류에서 실효값과 최대값', choice: '① 실효값 = 최대치/√2', explanation: '정현파 교류'},
+  {title: '공조 교재 환산저항 원도와 분수', round: '2023-3', number: '55', stem: '권수비가 2400/240', choice: '② 10', explanation: '10,000 Ω'},
   {title: '공조 교재 분류기 원도와 분수', round: '2023-2', number: '57', stem: '최대눈금 10[mA]', choice: '① 2', explanation: '30 mA'},
 ]) {
   test(sample.title, async ({page}) => {
@@ -1392,7 +1393,7 @@ for (const sample of [
     const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: sample.stem})});
     await card.getByRole('button',{name:sample.choice,exact:true}).click();
     await expect(card.locator('.explanation-box')).toContainText(sample.explanation);
-    if (sample.number !== '55') {
+    if (sample.round !== '2022-2' || sample.number !== '55') {
       await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
     }
     await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
