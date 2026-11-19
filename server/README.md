@@ -90,3 +90,5 @@ node tools/verify-android-preview.mjs
 저장소 루트의 Render Blueprint는 무료 웹 서비스 한 개를 정의한다. Docker 빌드 컨텍스트는 저장소 루트이며 서버는 호스트가 지정한 PORT에서 실행된다. 상태 확인 경로는 `/api/health`다. 서비스에는 운영 Supabase의 브라우저 공개 키와 CBT 사이트의 Origin을 설정한다. 처음 배포한 뒤 실제 서비스 주소에서 상태, 문제은행, 모형 및 인증이 필요한 기록 경로를 확인하고 공개 사이트 설정의 `serviceApiUrl`과 `reviewApiUrl`에 HTTPS 주소와 `/api`를 지정한다.
 
 관리자 배정 검증은 `node tools/verify-admin-assignment-release.mjs development`로 연습할 수 있다. 운영 DB와 sync-account를 적용한 뒤 `development` 대신 `production`을 지정하면 공개 사이트에 임시 아이디 3개를 생성해 두 관리자 브라우저 간 배정·알림·읽음 상태를 대조하고 정리한다. 로그인된 CLI 대신 Supabase 플러그인으로 테스트 권한을 지정하고 정리하려면 `--external-sql`을 추가하고 표시된 SQL을 같은 대상 프로젝트에 적용한다.
+
+배포된 문제은행은 `git fetch origin main` 후 저장소 루트에서 `node server/verify-catalog-deployment.mjs origin/main safety maintenance`로 확인한다. 지정한 커밋의 은행 전체를 운영 API 응답과 비교하고, 차이가 있으면 종료 코드 1과 문항 식별자 표본을 출력한다.
