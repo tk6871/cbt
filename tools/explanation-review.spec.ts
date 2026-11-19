@@ -1198,3 +1198,20 @@ test('공조 복원 터보압축기 보기 전사와 전환', async ({page}) => 
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 복원 비열 중복 보기 원문 대조', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20232').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('30');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '몰리에르(P-h)선도'})});
+  await expect(card.locator('.question-text')).toContainText('나타나 있지 않은');
+  await expect(card.getByRole('button',{name:/^[③④] 비열$/})).toHaveCount(2);
+  await card.getByRole('button',{name:'④ 비열',exact:true}).click();
+  await expect(card.locator('.explanation-box')).toContainText('③과 ④');
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
