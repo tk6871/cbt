@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.88',scope:'industrial',date:'2026.11.19',title:"공조 교재 2021년 3회",summary:"19번의 원문 잠열 250과 통상값 2500을 구분했다. 27번의 타 판본 엔탈피 세 값을 원도와 대조했고, 69번은 선간전압과 선전류의 30° 차이를 반영했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.87',scope:'industrial',date:'2026.11.19',title:"공조 교재 2021년 2회",summary:"30번은 미터 냉동톤으로 환산해 80.0 kW를 얻는다. 79번은 원도 지문이 제어량을 묻는데 보기 전부가 시간이라 정답 재확인으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.86',scope:'industrial',date:'2026.11.19',title:"공조 교재 2021년 1회",summary:"54번 펌프 축동력은 수동력 196 kW를 효율 0.60으로 나눈 326.7 kW다. 2번의 손실열량 해석은 정답 재확인으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.85',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 4회",summary:"침입외기 잠열부하를 원도 수분비로 재계산했고, 대향류 열교환기의 대수평균온도차와 쇄교자속 계산을 보완했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2865,8 +2866,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.87';
+  changelog.versions.industrial = '6.2.88';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.87';
+  changelog.currentVersion = '6.2.88';
   window.CBT_CHANGELOG = changelog;
 })();
