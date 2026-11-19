@@ -3,6 +3,7 @@ import { copyFile, cp, mkdir, mkdtemp, readFile, rm } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join, relative, resolve } from 'node:path';
+import { androidReleaseVersion } from './android-release-version.mjs';
 import { readGitFileList } from './git-file-list.mjs';
 
 const root = resolve(import.meta.dirname, '..');
@@ -44,12 +45,7 @@ const env = {
   ANDROID_KEY_ALIAS: properties.keyAlias,
   ANDROID_KEY_PASSWORD: properties.keyPassword,
 };
-const buildGradle = await readFile(resolve(androidRoot, 'app/build.gradle'), 'utf8');
-const version = buildGradle.match(/versionName\s+["']([^"']+)["']/)?.[1];
-if (!version) {
-  console.error('Android versionName을 찾지 못했습니다.');
-  process.exit(1);
-}
+const {versionName: version} = androidReleaseVersion(resolve(androidRoot, 'app/src/main/assets/public'));
 const sdkRoot = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT;
 const localProperties = resolve(androidRoot, 'local.properties');
 const configuredSdk = existsSync(localProperties)

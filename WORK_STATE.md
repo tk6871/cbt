@@ -11,6 +11,12 @@
 - 전체 49,120개 중 대상 14,511개, 직접 판정 11,947개, 자동검사만 완료 2,564개다. 다음은 산업안전산업기사 safety-20030525:3, 공조 교재 직접 수록 hansol-direct-3-133-22, 공조 실기 hvac-practical-restored-2023-3-02, 교정 교재 1-15쪽 6번이다. [직전 배포 커밋](https://github.com/tk6871/cbt/commit/b57e7dbd286295a6911ea78e9ce7277b35cfa26a)
 - v810에서 문항·해설 감사, 47,284개 수집 검증, 부록 417개 원본 구조와 좌표 보존 검사, 타입 검사, 빌드, PWA, 공조 교재 감사를 통과했다. PC·iPhone·태블릿에서 4-7쪽 4번의 분수식과 접어 둔 원본 해설을 열어 확인했다. 실기 감사 532건 및 실기 이미지 감사 410건은 v801의 오류 목록과 각각 일치한다. 산업안전 운영 Render API의 전체 응답 비교는 이 환경의 DNS 및 프록시 403으로 확인하지 못했다.
 
+### Render 자동 배포 복구 및 운영 검증
+
+- GitHub 배포 자격 연결과 Render 앱의 `tk6871/cbt` 저장소 접근을 확인한 뒤 main 푸시가 Render에 `new_commit`으로 접수되고 Live가 됐다. 복구 전에는 자동 배포가 On Commit이고 대상 경로도 일치했지만 새 빌드·커밋 무시 이벤트가 없었다. 운영 은행은 이전 수동 배포와 일치했다.
+- 자동 배포 커밋 `507a862fd`의 19개 문제은행을 공개 API의 전체 JSON과 비교해 모두 일치했다. 종목 목록·상태 경로와 산업안전·설비보전의 변경 문항 개별 경로도 확인했다. [Render 배포 기록](https://dashboard.render.com/web/srv-dbvdcnmk1f9s73c7tcug/deploys/dep-dbvdt4f0n0ks73e9l840)
+- 후속 확인은 `git fetch origin main` 후 `node server/verify-catalog-deployment.mjs origin/main safety maintenance`로 재현한다.
+
 ### 산업안전산업기사 2003년 3월 61문항 (웹 v809)
 
 - 유리공 백내장을 열복사성 직업병 항목과 대조해 정답 재확인으로 분류했다. 음압 10 dB 차이를 √10배로 재계산했다.
