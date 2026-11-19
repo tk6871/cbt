@@ -223,7 +223,15 @@ const exampleChanges = [];
 const nativeExamples = new Map(JSON.parse(fs.readFileSync('tools/hansol-book-native-review.json')).rows
  .filter(row=>row.kind==='worked-example').map(row=>[row.page+':'+row.number,row]));
 assert.equal(currentExamples.length,oldExamples.length);
-for (const [index, example] of currentExamples.entries()) {
+// The v820 publisher erratum promoted one reviewed, ungraded example to a
+// graded question. Keep its historical verdict verifiable without presenting
+// the superseded answer as the current grading key.
+const promotionCommit='89b0009430e9b5f4d4ab33e1075304a8ee9b61e2';
+const promotedId='hansol-book-example-4-87-22';
+const exampleAt=rev=>JSON.parse(execFileSync('git',['show',rev+':'+exampleFile],{encoding:'utf8'})).entries.find(e=>e.id===promotedId);
+assert.deepEqual(currentExamples.find(e=>e.id===promotedId),exampleAt(promotionCommit),'Graded erratum differs from v820');
+for (const [index, currentExample] of currentExamples.entries()) {
+ const example=currentExample.id===promotedId?exampleAt(promotionCommit+'^'):currentExample;
  const before=oldExamples[index];
  const record=recordsById.get(example.id);
  exampleAnswers.set(example.id,example.answer);

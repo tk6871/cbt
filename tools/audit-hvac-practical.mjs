@@ -17,14 +17,32 @@ const guideSource = fs.readFileSync(path.join(root, 'src/cbt/qualificationStudyG
 const drillSource = fs.readFileSync(path.join(root, 'src/cbt/hvacPracticalDrills.ts'), 'utf8');
 const typeSource = fs.readFileSync(path.join(root, 'src/cbt/hvacPracticalTypes.ts'), 'utf8');
 const errors = [];
+// The app resolves legacy question image names through the WebP90 map. Check the
+// served bytes against the conversion manifest, not against the source PNG hash.
+const mappings = JSON.parse(fs.readFileSync(path.join(root,'data/problem-images-webp90.json'))).mappings;
+const conversions = JSON.parse(fs.readFileSync(path.join(root,'data/problem-images-webp90-audit.json'))).entries;
+const digests = new Map();
+function digest(filename) {
+  if (!digests.has(filename)) digests.set(filename, crypto.createHash('sha256').update(fs.readFileSync(filename)).digest('hex'));
+  return digests.get(filename);
+}
+function checkAsset(source, expected) {
+  if (!source) return false;
+  const mapped = mappings[source], display = path.join(root, mapped || source);
+  if (!fs.existsSync(display)) return false;
+  if (!mapped) return !expected || digest(display) === expected;
+  const entry = conversions[source];
+  if (!entry || entry.asset !== mapped || digest(display) !== entry.sha256 || (expected && expected !== entry.sourceSha256)) return false;
+  const archived = path.resolve(process.env.CBT_ORIGINAL_ASSET_DIR || path.join(root,'work/problem-webp90/originals'), source);
+  return !fs.existsSync(archived) || digest(archived) === entry.sourceSha256;
+}
 if (photoRows.length !== 123) errors.push('사진 PDF 123문항 수 불일치');
 for (const [index, row] of photoRows.entries()) {
   if (row.number !== index + 1 || row.id !== `hvac-practical-photo-20260917-${String(index + 1).padStart(3, '0')}`) errors.push(`사진 자료 번호/ID 오류: ${row.id}`);
   if (!row.question || !row.sourceAnswer || !row.sourcePage || row.sourceEndPage < row.sourcePage || !/^[a-f0-9]{64}$/.test(row.sourceSha256)) errors.push(`사진 자료 출처 누락: ${row.id}`);
   if (row.images.length !== row.imageSources.length) errors.push(`사진 원본 기록 불일치: ${row.id}`);
   for (const [i, image] of row.images.entries()) {
-    if (!fs.existsSync(path.join(root, image))) errors.push(`사진 누락: ${image}`);
-    else if (crypto.createHash('sha256').update(fs.readFileSync(path.join(root, image))).digest('hex') !== row.imageSources[i]?.sha256) errors.push(`사진 원본 해시 불일치: ${image}`);
+    if (!row.imageSources[i]?.sha256 || !checkAsset(image,row.imageSources[i].sha256)) errors.push(`사진 원본/표시 파일 또는 해시 불일치: ${image}`);
   }
 }
 if (!guideSource.includes('...hvacPracticalPhotos')) errors.push('사진 자료 앱 연결 누락');
@@ -33,7 +51,7 @@ for (const [index, row] of supplementRows.entries()) {
   if (row.number !== index + 1 || row.id !== `hvac-practical-supplement-20260916-${String(index + 1).padStart(2, '0')}`) errors.push(`추가 자료 번호/ID 오류: ${row.id}`);
   if (!row.question || !row.sourcePage || !/^[a-f0-9]{64}$/.test(row.sourceSha256)) errors.push(`추가 자료 출처 누락: ${row.id}`);
   if (!supplementSource.includes(`  ${row.number}: { category:`)) errors.push(`추가 자료 학습 답안 누락: ${row.id}`);
-  if (row.image && !fs.existsSync(path.join(root, row.image))) errors.push(`추가 자료 이미지 누락: ${row.image}`);
+  if (row.image && !checkAsset(row.image)) errors.push(`추가 자료 이미지 검증 실패: ${row.image}`);
 }
 if (!guideSource.includes('...hvacPracticalSupplement')) errors.push('추가 자료 앱 연결 누락');
 const expectedNumbers = Array.from({ length: 47 }, (_, index) => index + 1);
@@ -47,7 +65,7 @@ for (const number of expectedNumbers) {
   }
   if (!String(row.question || '').trim()) errors.push(`${number}번 문제 문장이 비어 있습니다.`);
   if (!String(row.image || '').trim()) errors.push(`${number}번 이미지 연결이 비어 있습니다.`);
-  else if (!fs.existsSync(path.join(root, row.image))) errors.push(`${number}번 이미지 파일이 없습니다: ${row.image}`);
+  else if (!checkAsset(row.image)) errors.push(`${number}번 이미지 검증 실패: ${row.image}`);
   if (!sharedAnswerSource.includes(`  ${number}: { answer:`)) errors.push(`${number}번 교정 답안이 없습니다.`);
 }
 
@@ -75,7 +93,7 @@ for (const row of restoredRows) {
   if (!Array.isArray(row.keyPoints) || !row.keyPoints.length) errors.push(`${row.id}: 채점 핵심어가 비어 있습니다.`);
   for (const image of [...(row.images || []), ...(row.answerImages || [])]) {
     restoredImageCount += 1;
-    if (!fs.existsSync(path.join(root, image))) errors.push(`${row.id}: 복원 필답형 이미지가 없습니다: ${image}`);
+    if (!checkAsset(image)) errors.push(`${row.id}: 복원 필답형 이미지 검증 실패: ${image}`);
   }
 }
 if (restoredRows.length && restoredRounds.size !== 26) errors.push(`회차별 복원 필답형 회차가 26개가 아닙니다: ${restoredRounds.size}`);
@@ -88,9 +106,7 @@ for (const [roundId, source] of Object.entries(reference2026.sources || {})) {
 }
 if (reference2026.crops?.length !== 25) errors.push(`2026년 해설 PDF 그림 수 불일치: ${reference2026.crops?.length}`);
 for (const crop of reference2026.crops || []) {
-  const outputPath = path.join(root, crop.output || '');
-  if (!fs.existsSync(outputPath)) errors.push(`2026년 해설 PDF 그림 누락: ${crop.output}`);
-  else if (crypto.createHash('sha256').update(fs.readFileSync(outputPath)).digest('hex') !== crop.sha256) errors.push(`2026년 해설 PDF 그림 해시 불일치: ${crop.output}`);
+  if (!crop.sha256 || !checkAsset(crop.output,crop.sha256)) errors.push(`2026년 해설 PDF 원본/표시 그림 검증 실패: ${crop.output}`);
   if (!['2026-1', '2026-2'].includes(crop.round) || !['question', 'answer'].includes(crop.role)) errors.push(`2026년 해설 PDF 그림 기록 오류: ${crop.output}`);
 }
 const reviewed2026 = restoredRows.filter((row) => row.year === 2026 && ['1', '2'].includes(String(row.session)));
@@ -127,7 +143,7 @@ for (const group of ['public', 'restored', 'foundation', 'drill']) {
 
 console.log(JSON.stringify({
   publicQuestions: rows.length,
-  publicImages: rows.filter((row) => fs.existsSync(path.join(root, row.image))).length,
+  publicImages: rows.filter((row) => checkAsset(row.image)).length,
   curatedAnswers: curatedEntries.length,
   foundationQuestions: 12,
   drillQuestions: drillIds.length,
