@@ -945,3 +945,14 @@ test('공조 2005년 5월 분기전류의 계산과 표시', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('병렬부 전압은 60 V');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('원형 코일 자계의 원문 조건과 정답 확인', async ({page}) => {
+  await prepare(page,'hvac');
+  await page.locator('#round-card-hvac-20050807').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('71');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'원형코일에 10A'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('1,000 A/m와 같은 보기가 없어');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.50',scope:'industrial',date:'2026.11.19',title:'공조 필기 두 회차 보충 해설',summary:'원형 코일과 이상기체의 계산을 원문 값에서 다시 풀었습니다.',tags:['공조'],changes:['답과 계산이 충돌하는 문항에 확인이 필요한 조건을 적었습니다.']},
     {version:'6.2.49',scope:'industrial',date:'2026.11.19',title:'공조 필기 2005년 5월 보충 해설',summary:'송풍량과 가지전류를 단위와 함께 계산했습니다.',tags:['공조'],changes:['복원 중인 보기와 제어 블록선도의 부호를 원문과 대조했습니다.']},
     {version:'6.2.48',scope:'industrial',date:'2026.11.19',title:'냉동·배관·전기제어 교재 해설',summary:'역카르노 선도와 정류기 맥동 계산을 교정했습니다.',tags:['공조'],changes:['저항값이 빠진 회로 문제에서 계산 가능한 범위를 명시했습니다.']},
     {version:'6.2.47',scope:'industrial',date:'2026.11.19',title:'공기조화 교재 해설',summary:'벽체 열관류율과 증기 발생량 기준 보일러 효율을 분수로 표시했습니다.',tags:['공조'],changes:['겨울철 침입외기 잠열부하의 부호를 원본 보기와 대조했습니다.']},
@@ -2827,8 +2828,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.49';
+  changelog.versions.industrial = '6.2.50';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.49';
+  changelog.currentVersion = '6.2.50';
   window.CBT_CHANGELOG = changelog;
 })();
