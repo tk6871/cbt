@@ -1387,3 +1387,23 @@ test('공조 교재 교류 저항성분 원도와 분수', async ({page}) => {
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 교재 직렬 용량 분수와 저항 원도', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2020-3').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('67');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '300 W의 전력'})});
+  await card.getByRole('button',{name:'① 3',exact:true}).click();
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('63');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const series = page.locator('.question-card').filter({has: page.getByRole('button', {name: '63번 문제 원문 크게 보기'})});
+  await series.getByRole('button', {name: '이미지에서 3번 선택'}).click();
+  await expect(series.locator('.explanation-box')).toContainText('원도의 ④');
+  await expect(series.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

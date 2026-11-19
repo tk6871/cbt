@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.84',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 3회",summary:"습공기선도의 수평 구간과 코일 접촉계수, 직렬 콘덴서의 합성용량을 원도와 대조해 저장 답과의 차이를 표시했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.83',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 1회",summary:"온수 유량의 단위를 바로잡고, 엔탈피선도에서 실제 성적계수를 계산했다. 저항성분과 임피던스의 크기를 분리했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.82',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 3회",summary:"음귀환 회로의 특성방정식을 도면에서 다시 구했고, 벽체 전도열의 W·kJ 단위와 PID의 적분·미분 역할을 교정했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.81',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 2회",summary:"암모니아 액체 질량분율의 입력값을 670에서 원도의 679 kJ/kg으로 고치고, 접점의 부정 표시와 PD 블록의 미분항 부호를 대조했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2861,8 +2862,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.83';
+  changelog.versions.industrial = '6.2.84';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.83';
+  changelog.currentVersion = '6.2.84';
   window.CBT_CHANGELOG = changelog;
 })();
