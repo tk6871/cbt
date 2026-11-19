@@ -1,6 +1,8 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
+import {rasterDimensions} from './raster-dimensions.mjs';
 import {resolveTextbookDirectImage,textbookDirectImage,textbookDirectPageMap,type TextbookDirectUpscale} from '../src/cbt/textbookPages';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
@@ -15,12 +17,18 @@ test('화질 연결은 원본 해시·좌표·정확한2배 크기가 일치할 
  expect(resolveTextbookDirectImage(p).asset).toBe(p.asset);
 });
 test('397확대본·원본 보존·크기·전역 형태 유지 감사',()=>{
- expect(upgrades.pages).toHaveLength(397);expect(upgrades.sourceIndexSha256).toBe(sha('data/hansol-book-direct.json'));
+ const clean=JSON.parse(fs.readFileSync('data/hansol-book-ink-hidden.json','utf8')).assets.filter((r:any)=>r.kind==='page');
+ expect(clean).toHaveLength(14);expect(upgrades.pages).toHaveLength(397-clean.length);expect(upgrades.sourceIndexSha256).toBe(sha('data/hansol-book-direct.json'));
  for(const p of source.pages){
+  verifyTextbookPageHash(p.asset,p.sha256);
+  const retained=clean.find((r:any)=>r.oldAsset===p.asset);
+  const displayed=textbookDirectImage(textbookDirectPageMap.get(p.page)!);
+  expect(displayed.improved).toBe(true);
+  if(retained){expect(displayed.asset).toBe(retained.asset);verifyTextbookPageHash(retained.asset,retained.outputSha256);continue;}
   const u=upgrades.pages.find((r:any)=>r.page===p.page);expect(u).toBeTruthy();
-  expect(sha(p.asset)).toBe(p.sha256);expect(sha(u.asset)).toBe(u.outputSha256);
+  expect(sha(u.asset)).toBe(u.outputSha256);expect(rasterDimensions(u.asset)).toEqual(u.outputSize);
   expect(u.coordinateSize).toEqual(p.size);expect(u.outputSize).toEqual(p.size.map((n:number)=>n*2));
-  expect(u.fidelity.luminanceCorrelation).toBeGreaterThan(.92);expect(u.fidelity.edgeCorrelation).toBeGreaterThan(.8);
+  expect(u.fidelity.correlation).toBeGreaterThan(.92);expect(u.fidelity.colorMAE).toBeLessThan(.1);expect(u.quality).toBe(90);
   expect(textbookDirectImage(textbookDirectPageMap.get(p.page)!).asset).toBe(u.asset);
  }
 });
@@ -34,7 +42,7 @@ test('2배 이미지도 문제/풀이 영역·선택 기록·다크/라이트 �
  const region=card.locator('.direct-viewport').first(),before=await region.boundingBox();
  const r=source.locations.find((r:any)=>r.id==='hansol-direct-1-168-25');expect(before!.width/before!.height).toBeCloseTo(r.questionRect[2]/r.questionRect[3],1);
  await card.getByRole('button',{name:'②',exact:true}).click();await expect(card.getByRole('button',{name:'②',exact:true})).toHaveAttribute('aria-pressed','true');
- await card.locator('.direct-solution summary').click();await expect(card.locator('.direct-solution')).toHaveAttribute('open','');
+ await expect(card.locator('.direct-solution')).toHaveAttribute('open','');
  for(const theme of ['light','dark']){await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);const filter=await image.evaluate(el=>getComputedStyle(el).filter);if(theme==='light')expect(filter).toBe('none');else expect(filter).toContain('invert');}
  await card.screenshot({path:'/private/tmp/hansol-direct-upscale-desktop.png'});
  const output=textbookDirectImage(textbookDirectPageMap.get('1-168')!).asset;

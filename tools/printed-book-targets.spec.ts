@@ -1,11 +1,13 @@
 import {expect,test} from '@playwright/test';
 import boxes from '../data/textbook-direct-hitboxes.json' with {type:'json'};
 import {textbookDirectSources} from '../src/cbt/textbookPages';
+import numberReview from '../data/textbook-direct-number-review.json' with {type:'json'};
 
 test('각 원문 보기의 실제 터치 영역이 해당 지문 안에 있고 서로 겹치지 않는다',()=>{
   const sources = new Map(textbookDirectSources.map(source=>[source.id,source]));
-  expect(Object.keys(boxes).sort()).toEqual([...sources.keys()].sort());
+  expect(Object.keys(boxes).filter(id=>!numberReview.hiddenDuplicates.includes(id)).sort()).toEqual([...sources.keys()].sort());
   for(const [id, choices] of Object.entries(boxes)){
+    if(numberReview.hiddenDuplicates.includes(id))continue;
     const question = sources.get(id)!;
     expect(choices, id).toHaveLength(4);
     choices.forEach(([part,x,y,w,h],i)=>{

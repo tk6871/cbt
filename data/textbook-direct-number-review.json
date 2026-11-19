@@ -1,0 +1,18 @@
+{
+  "date":"2026-11-19",
+  "basis":"원문 지문·풀이·인쇄 정답표 직접 확인. 잘못 읽은 ID는 저장 기록을 위해 보존하고 표시 번호만 교정. 이미 온전한 문항이 있는 조각은 표시에서 제외.",
+  "hiddenDuplicates":["hansol-direct-1-25-16","hansol-direct-2-200-3","hansol-direct-2-213-4","hansol-direct-3-268-3","hansol-direct-3-352-9","hansol-direct-3-353-3"],
+  "corrections":{
+    "hansol-direct-1-27-10":{"number":17,"originalRect":[671,629,671,190],"questionRect":[671,590,671,229]},
+    "hansol-direct-3-263-4":{"number":27,"originalRect":[0,872,671,191],"questionRect":[0,820,671,243]},
+    "hansol-direct-3-332-2":{"number":78,"originalRect":[671,600,671,227],"questionRect":[671,560,671,267]},
+    "hansol-direct-4-33-18":{"number":2,"originalRect":[671,387,671,257],"questionRect":[671,300,671,344]},
+    "hansol-direct-4-62-1":{"number":23,"originalRect":[0,509,671,191],"questionRect":[0,440,671,260]},
+    "hansol-direct-4-84-23":{"number":4,"originalRect":[671,1026,671,274],"questionRect":[671,990,671,310]},
+    "hansol-direct-4-103-1":{"number":36,"originalRect":[0,1109,671,303],"questionRect":[0,1060,671,352]},
+    "hansol-direct-4-160-6":{"number":1,"originalRect":[0,445,671,224],"questionRect":[0,410,671,259]},
+    "hansol-direct-4-169-1":{"number":51,"originalRect":[671,1446,671,162],"questionRect":[671,1410,671,198]},
+    "hansol-direct-5-27-5":{"number":1,"originalRect":[0,445,671,188],"questionRect":[0,405,671,228]},
+    "hansol-direct-5-104-1":{"number":34,"originalRect":[0,771,671,272],"questionRect":[0,704,671,339]}
+  }
+}

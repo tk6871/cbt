@@ -1,12 +1,19 @@
 <script setup lang="ts">
 import {computed,ref,watch} from 'vue';
+import continuations from '../../data/textbook-continuation-images.json';
 import {textbookAssetUrl,textbookDirectImage,textbookDirectPageMap,type TextbookDirectPart} from './textbookPages';
 const props=defineProps<{part:TextbookDirectPart;original:boolean;alt:string}>();
 const emit=defineEmits<{fallback:[page:string]}>();
 const failed=ref(false);
 const page=computed(()=>textbookDirectPageMap.get(props.part.page));
 const size=computed(()=>props.part.size||page.value?.size||[1,1]);
-const image=computed(()=>props.part.asset?{asset:props.part.asset,fallbackAsset:props.part.asset,improved:false}:page.value?textbookDirectImage(page.value):undefined);
+const continuationImages:Record<string,string>=continuations;
+const image=computed(()=>{
+ const original=props.part.asset;
+ if(!original)return page.value?textbookDirectImage(page.value):undefined;
+ const improved=continuationImages[original];
+ return {asset:improved||original,fallbackAsset:original,improved:!!improved};
+});
 const asset=computed(()=>textbookAssetUrl((failed.value?image.value?.fallbackAsset:image.value?.asset)||''));
 watch(()=>props.part,()=>{failed.value=false;});
 function imageError(){if(image.value?.improved&&!failed.value){failed.value=true;emit('fallback',props.part.page);}}

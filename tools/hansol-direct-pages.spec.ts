@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
-import crypto from 'node:crypto';
+import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
 import {textbookEntries,textbookStudyItems,textbookDirectSources,textbookDirectPageMap,textbookDirectImage} from '../src/cbt/textbookPages';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
@@ -11,7 +11,7 @@ test('759원문·397원해상도 쪽·모든 영역·자가확인 분리',()=>{
  const ids=new Set(data.locations.map((r:any)=>r.id));expect(ids.size).toBe(759);
  const existing=new Set(read('data/textbook-pages.json').entries.map((r:any)=>`${r.book}:${r.page}:${r.number}`));
  for(const p of data.pages){
-  expect(crypto.createHash('sha256').update(fs.readFileSync(p.asset)).digest('hex')).toBe(p.sha256);
+  verifyTextbookPageHash(p.asset,p.sha256);
   expect(p.size).toEqual([p.sourceCrop[2]-p.sourceCrop[0],p.sourceCrop[3]-p.sourceCrop[1]]);
  }
  for(const r of data.locations){
@@ -25,10 +25,10 @@ test('759원문·397원해상도 쪽·모든 영역·자가확인 분리',()=>{
   }
   expect(r.split).toBe(!!r.solutionRect);
  }
- const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(749);
+ const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(743);
  expect(direct.every(e=>e.sourceId===null&&!e.fingerprint&&!e.correction&&!e.reviewHold)).toBe(true);
  expect(textbookStudyItems([],direct)).toEqual([]);
- expect(textbookDirectSources.filter(r=>r.split)).toHaveLength(749);
+ expect(textbookDirectSources.filter(r=>r.split)).toHaveLength(743);
 });
 test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목차 복귀',async({page},info)=>{
  await page.addInitScript(()=>{
@@ -50,8 +50,8 @@ test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목
  await expect(card.locator('.direct-solution')).not.toHaveAttribute('open','');
  const choice=card.getByRole('button',{name:'②',exact:true});await choice.click();await expect(choice).toHaveAttribute('aria-pressed','true');
  expect(await page.evaluate(()=>localStorage.getItem('cbt-book-direct-choice-v1::hansol-direct-1-168-25'))).toBe('2');
- await card.locator('.direct-solution summary').click();await expect(card.locator('.direct-solution')).toHaveAttribute('open','');
- await expect(card.locator('.direct-solution')).toContainText('자동채점');
+ await expect(card.locator('.direct-solution')).toHaveAttribute('open','');
+ await expect(card.locator('.direct-answer-label')).toContainText('정답 ②');
  for(const theme of ['light','dark']){
   await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);
   const filter=await image.evaluate(el=>getComputedStyle(el).filter);

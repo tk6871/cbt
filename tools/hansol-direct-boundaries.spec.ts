@@ -14,9 +14,13 @@ test('127경계 개별검토·117분리/10오인식 구분·기존632영역과 �
  expect(review.entries.filter((r:any)=>r.status==='split')).toHaveLength(117);
  expect(review.entries.filter((r:any)=>r.status==='not-question')).toHaveLength(6);
  expect(review.entries.filter((r:any)=>r.status==='covered-question')).toHaveLength(4);
- const map=new Map(textbookDirectSources.map(r=>[r.id,r]));expect(map.size).toBe(749);
+ const numberReview=read('data/textbook-direct-number-review.json');
+ const map=new Map(textbookDirectSources.map(r=>[r.id,r]));expect(map.size).toBe(743);
  for(const row of old.locations){
   const current=map.get(row.id);
+  if(numberReview.hiddenDuplicates.includes(row.id)){expect(current).toBeUndefined();continue;}
+  const fix=numberReview.corrections[row.id];
+  if(fix){expect(row.questionRect).toEqual(fix.originalRect);expect(current?.questionRect).toEqual(fix.questionRect);expect(current?.number).toBe(fix.number);expect(current?.solutionRect).toEqual(row.solutionRect);continue;}
   if(row.id==='hansol-direct-1-119-4' || row.id==='hansol-direct-3-194-3'){
     expect(current!.number).toBe(row.page==='1-119'?109:125);
     expect(current!.questionRect).toEqual(row.page==='1-119'?[671,798,671,271]:[671,1365,671,222]);
@@ -59,8 +63,10 @@ test('조건표·공통그림 유지/다음 열·쪽 풀이 닫힘/번호 복구
   await expect(card.locator('.direct-solution-parts')).toHaveCount(0);await expect(card.locator('.direct-solution')).not.toHaveAttribute('open','');
   const q=card.locator('.direct-question-parts img').first();await expect(q).toHaveJSProperty('complete',true);expect(await q.evaluate((el:HTMLImageElement)=>el.naturalWidth)).toBeGreaterThan(0);
   const selected=card.getByRole('button',{name:'③',exact:true});await selected.click();await expect(selected).toHaveAttribute('aria-pressed','true');
-  await card.locator('.direct-solution summary').click();await expect(card.locator(`.direct-solution-parts .direct-region[data-page="${solutionPage}"] img`)).toBeVisible();
-  await card.locator('.direct-solution summary').click();await expect(card.locator('.direct-solution-parts')).toHaveCount(0);
+  const original=card.locator('.direct-solution-original > summary');
+  if(await original.count())await original.click();
+  await expect(card.locator(`.direct-solution-parts .direct-region[data-page="${solutionPage}"] img`).first()).toBeVisible();
+  await card.locator('.direct-solution > summary').click();await expect(card.locator('.direct-solution-parts')).toHaveCount(0);
   for(const theme of ['light','dark']){await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);const filter=await q.evaluate(el=>getComputedStyle(el).filter);expect(theme==='dark'?filter.includes('invert'):filter==='none').toBe(true);}
   await card.screenshot({path:`/private/tmp/hansol-boundary-${bookPage}-${n}.png`});
  }

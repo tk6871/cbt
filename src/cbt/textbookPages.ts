@@ -9,6 +9,7 @@ import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
 import directBoundaries from '../../data/hansol-book-direct-boundaries.json' with {type:'json'};
 import reviewedPrintedPages from '../../data/textbook-direct-printed-pages.json' with {type:'json'};
 import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
+import numberReview from '../../data/textbook-direct-number-review.json' with {type:'json'};
 import {resolveBookInkHidden} from './textbookInkHidden';
 import type { TextbookKey } from './textbookRoutes';
 export { bookForStudyId, textbookSourceKeys, type TextbookKey } from './textbookRoutes';
@@ -28,6 +29,13 @@ const boundaryReviews=new Map(directBoundaries.entries.map(r=>[r.id,r]));
 // complete problem on each page is 109 or 125. Keep the original storage ID.
 const printedPageCorrections: Record<string, { number: number; question: number[]; solution: number[] }> = reviewedPrintedPages;
 export const textbookDirectSources:TextbookDirectSource[]=directBook.locations.flatMap<TextbookDirectSource>(r=>{
+ if(numberReview.hiddenDuplicates.includes(r.id))return [];
+ const numberFix=(numberReview.corrections as Record<string,{number:number;originalRect:number[];questionRect:number[]}>)[r.id];
+ if(numberFix&&numberFix.originalRect.every((n,i)=>n===r.questionRect[i])){
+  const questionParts=[{page:r.page,rect:numberFix.questionRect}];
+  const solutionParts=r.solutionRect?[{page:r.page,rect:r.solutionRect}]:[];
+  return [{...r,number:numberFix.number,questionRect:numberFix.questionRect,questionParts,solutionParts,split:solutionParts.length>0}];
+ }
  const printed = printedPageCorrections[r.id];
  if (printed) {
   const questionParts = [{page:r.page, rect:printed.question}];
@@ -87,7 +95,7 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
  const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
  if(bank())return Promise.resolve(items());
  return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=692',document.baseURI).href;
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=693',document.baseURI).href;
   script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);
