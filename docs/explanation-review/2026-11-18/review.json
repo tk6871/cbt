@@ -444054,6 +444054,1582 @@
       "changeReason": "이미지 원문 텍스트 전환",
       "answerBefore": 3,
       "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-183-48",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-183",
+      "number": 48,
+      "location": "공조 교재 3-183쪽 인쇄 48번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-183 48④. 가스 차단과 압력 평형 역할을 구분.",
+      "finding": "3-183 48④. 가스 차단과 압력 평형 역할을 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "배수트랩 안에는 봉수가 남는다. 이 물이 하수관이나 오수탱크의 기체가 실내로 올라오는 통로를 막으므로 ④ 트랩이다. 통기관은 공기압을 조절해 봉수의 유지를 돕는다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-183-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-183-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-183-original.png",
+          "displayAsset": "assets/problem-webp90/d5323177643a9e1e5b09d02ba94fd6cb.webp",
+          "sha256": "0553d434c569250b89b0e09b2dfbe79fcb340c56f29ba7e452388ea3a7205814"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 48,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-184-55",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-184",
+      "number": 55,
+      "location": "공조 교재 3-184쪽 인쇄 55번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-184 55③. 교재의 구획과 답표 확인. 적용 설계기준 판본 미확보.",
+      "finding": "3-184 55③. 교재의 구획과 답표 확인. 적용 설계기준 판본 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재의 옥내·옥외 배수 구분에서는 건물 외벽에서 바깥쪽으로 1 m 떨어진 선을 경계로 삼는다. 외벽 자체나 대지 경계가 아닌 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-184-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-184-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-184-original.png",
+          "displayAsset": "assets/problem-webp90/9e81a4de779278a137738ebf96befb13.webp",
+          "sha256": "5558ac925bc8c4fa6095d1652b874fcf18357e84cd65ec38de9e0f476419f859"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 55,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-184-57",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-184",
+      "number": 57,
+      "location": "공조 교재 3-184쪽 인쇄 57번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-184 57①. 풀이 크롭이 잘려 같은 원지의 아래쪽 문장을 확대해 1.2~1.5 대조. 권장 배수 적용자료 미확보.",
+      "finding": "3-184 57①. 풀이 크롭이 잘려 같은 원지의 아래쪽 문장을 확대해 1.2~1.5 대조. 권장 배수 적용자료 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재는 유입량이 일정한 경우 배수펌프의 시간당 배출능력을 평균 유입량의 약 1.2~1.5배로 정하므로 ①이다. 유입량을 초과하는 용량이 있어야 펌프 운전 중 수위가 내려간다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-184-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-184-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-184-original.png",
+          "displayAsset": "assets/problem-webp90/9e81a4de779278a137738ebf96befb13.webp",
+          "sha256": "5558ac925bc8c4fa6095d1652b874fcf18357e84cd65ec38de9e0f476419f859"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 57,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-185-58",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-185",
+      "number": 58,
+      "location": "공조 교재 3-185쪽 인쇄 58번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-185 58②. 지문은 정화조 전처리 방식, 인쇄 해설은 오수와 우수의 분리만 설명. 배수구역 기준 미확보.",
+      "finding": "3-185 58②. 지문은 정화조 전처리 방식, 인쇄 해설은 오수와 우수의 분리만 설명. 배수구역 기준 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재가 구분하는 방식에서는 정화조에서 오수만 따로 처리하고 다른 배수는 별도 경로로 보낸다는 점에서 ② 분류식이다. 다만 잡배수까지 우수와 함께 보내는 설명을 현행 공공하수도의 분류식 정의로 일반화하려면 해당 시설의 배수 체계를 확인해야 한다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-185-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-185-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-185-original.png",
+          "displayAsset": "assets/problem-webp90/171817b7faf7693338d13a4bc4f19343.webp",
+          "sha256": "f38f25b08a48657f8a58715aa83a38c9f1f0f97f4a842c03533daa15a86bc72e"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 58,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-187-75",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-187",
+      "number": 75,
+      "location": "공조 교재 3-187쪽 인쇄 75번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-187 75③. 넓은 비용 일반화를 피하고 예열·기류 조건으로 선택.",
+      "finding": "3-187 75③. 넓은 비용 일반화를 피하고 예열·기류 조건으로 선택.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "따뜻한 공기를 직접 공급하므로 예열이 빠르고, 더운 공기가 위로 모여 상하 온도차가 커질 수 있다. 송풍으로 소음이 생기기 쉽다는 단서까지 맞는 것은 ③ 온풍난방이다. 설비비와 연료비는 실제 시스템에 따라 달라진다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-187-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-187-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-187-original.png",
+          "displayAsset": "assets/problem-webp90/c40fa324d02fbd9d7fe4b65e8ed38cf0.webp",
+          "sha256": "63e260501174af1116561fe896e90b472f6e2956edbb2338803d75decf442c53"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 75,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-187-76",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-187",
+      "number": 76,
+      "location": "공조 교재 3-187쪽 인쇄 76번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-187 76④. 허용 높이와 관경 차에 대한 해당 설계자료 미확보.",
+      "finding": "3-187 76④. 허용 높이와 관경 차에 대한 해당 설계자료 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재는 방열기보다 높은 환수관으로 응축수를 올리는 진공환수식 리프트 피팅에서 리프트관을 환수주관보다 1~2단계 작은 지름으로 제시한다. 더 큰 관을 쓴다는 ④는 이 조건과 반대다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-187-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-187-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-187-original.png",
+          "displayAsset": "assets/problem-webp90/c40fa324d02fbd9d7fe4b65e8ed38cf0.webp",
+          "sha256": "63e260501174af1116561fe896e90b472f6e2956edbb2338803d75decf442c53"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 76,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-188-79",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-188",
+      "number": 79,
+      "location": "공조 교재 3-188쪽 인쇄 79번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-188 79②. 열을 전달하는 장치와 저장장치 구분.",
+      "finding": "3-188 79②. 열을 전달하는 장치와 저장장치 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "증기가 응축할 때 내놓는 잠열을 전열면을 통해 난방수에 전달하는 장치는 ② 열교환기다. 저장탱크는 생산된 온수를 저장하고 팽창탱크는 물의 팽창을 받아들이는 장치다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-188-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-188-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-188-original.png",
+          "displayAsset": "assets/problem-webp90/dba97704ee676aed2c86a37e6f64efaf.webp",
+          "sha256": "cd7305ec24258d15b96c3729a5535b4b8969ceeb6cbac92696a60bf8622dd9d0"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 79,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-189-88",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-189",
+      "number": 88,
+      "location": "공조 교재 3-189쪽 인쇄 88번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-189 88④. 트랩 명칭이 같아도 처리 유체와 목적이 다름.",
+      "finding": "3-189 88④. 트랩 명칭이 같아도 처리 유체와 목적이 다름.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "버킷·플로트·열동식 트랩은 증기계통에서 응축수를 배출하는 트랩이다. 그리스 트랩은 주방 등의 배수에서 기름을 분리하므로 증기트랩이 아닌 ④다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-189-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-189-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-189-original.png",
+          "displayAsset": "assets/problem-webp90/797ac48233e35453d63e3fed133acb3b.webp",
+          "sha256": "58b578b0b054eeebf1fc8119042ff01d81bab5f247cdfe3c18a9d0c0bb1ff8b4"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 88,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-189-89",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-189",
+      "number": 89,
+      "location": "공조 교재 3-189쪽 인쇄 89번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-189 89③. 배출과 계통 밖 폐기를 구별.",
+      "finding": "3-189 89③. 배출과 계통 밖 폐기를 구별.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "증기트랩은 아직 응축되지 않은 증기가 빠져나가는 것을 억제하면서 응축수를 배출한다. 두 상을 구분하는 ③이다. 배출한 응축수는 회수할 수도 있으므로 인쇄 풀이의 버린다는 표현은 트랩 밖으로 배출한다는 뜻이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-189-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-189-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-189-original.png",
+          "displayAsset": "assets/problem-webp90/797ac48233e35453d63e3fed133acb3b.webp",
+          "sha256": "58b578b0b054eeebf1fc8119042ff01d81bab5f247cdfe3c18a9d0c0bb1ff8b4"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 89,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-190-94",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-190",
+      "number": 94,
+      "location": "공조 교재 3-190쪽 인쇄 94번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-190 94④. 기준 판본과 압력의 기준면 미확보.",
+      "finding": "3-190 94④. 기준 판본과 압력의 기준면 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "이 교재의 증기난방 압력 분류에서 고압식은 100 kPa 이상으로 ④다. 이는 제시한 난방 방식의 분류이며 압력용기의 등급이나 절대압으로 그대로 해석할 값은 아니다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-190-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-190-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-190-original.png",
+          "displayAsset": "assets/problem-webp90/a6b1acdab989ff71fe3da5c85c91b99a.webp",
+          "sha256": "2a6b06075bc638adb0dbdbde82bedb8ddbab070ab437d054effcfb2ed8a6c4b7"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 94,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-190-96",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-190",
+      "number": 96,
+      "location": "공조 교재 3-190쪽 인쇄 96번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-190 96②. 증기 자체보다 공기 유입 조건을 구분.",
+      "finding": "3-190 96②. 증기 자체보다 공기 유입 조건을 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "증기와 응축수를 다루는 배관에서 공기가 유입되면 산소 등으로 부식이 생길 수 있다. 따라서 온수난방보다 부식 우려가 작다고 한 ②는 교재의 비교와 맞지 않는다. 실제 부식은 수질과 계통의 밀폐·회수 상태에도 좌우된다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-190-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-190-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-190-original.png",
+          "displayAsset": "assets/problem-webp90/a6b1acdab989ff71fe3da5c85c91b99a.webp",
+          "sha256": "2a6b06075bc638adb0dbdbde82bedb8ddbab070ab437d054effcfb2ed8a6c4b7"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 96,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-191-98",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-191",
+      "number": 98,
+      "location": "공조 교재 3-191쪽 인쇄 98번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-191 98④. 특정 모델의 작동 온도 및 설치 지침 원문 미확보.",
+      "finding": "3-191 98④. 특정 모델의 작동 온도 및 설치 지침 원문 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "벨로스 열동식 트랩은 온도에 따라 개폐하므로 입구 앞에서 응축수가 식을 구간이 필요하다. 교재가 이 문제의 입구 냉각관에 제시한 최소 길이는 1.2 m로 ④다. 같은 풀이에 나온 관말트랩의 냉각다리와는 조건이 다르다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-191-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-191-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-191-original.png",
+          "displayAsset": "assets/problem-webp90/9e90ccc9cf46ed522dd71b417c433129.webp",
+          "sha256": "a3c234b3c4c1d1baae9438f66a4e976396d07b25b735457b56180a41c6ff2680"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 98,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-191-99",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-191",
+      "number": 99,
+      "location": "공조 교재 3-191쪽 인쇄 99번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-191 99②. 교재 구배와 정답표 대조. 출제 당시 별도 설계기준 미확보.",
+      "finding": "3-191 99②. 교재 구배와 정답표 대조. 출제 당시 별도 설계기준 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재의 건식 환수 방식에서는 증기주관을 증기 진행 방향으로 낮춰 응축수가 흐르게 한다. 제시한 선하향 구배는 수평거리 200~300에 대해 높이 1의 비율로 ②다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-191-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-191-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-191-original.png",
+          "displayAsset": "assets/problem-webp90/9e90ccc9cf46ed522dd71b417c433129.webp",
+          "sha256": "a3c234b3c4c1d1baae9438f66a4e976396d07b25b735457b56180a41c6ff2680"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 99,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-194-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-194",
+      "number": 125,
+      "location": "공조 교재 3-194쪽 인쇄 125번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-194 실제 125③. 단상 물 계통과 응축수가 생기는 증기 계통 구분.",
+      "finding": "3-194 실제 125③. 단상 물 계통과 응축수가 생기는 증기 계통 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "증기트랩은 증기관에서 응축수를 빼내면서 생증기의 누출을 억제한다. 물을 분배하거나 모으는 냉·온수 헤더에는 이 기능이 필요하지 않으므로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-194-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-194-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-194-original.png",
+          "displayAsset": "assets/problem-webp90/6b73f21d3c53ff0e78b95aa7a1f271b1.webp",
+          "sha256": "b95a535c53e37da64aca18710deb915abe68897f849dfbe0aff9ab1478b3aedd"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 125,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-207-1",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-207",
+      "number": 1,
+      "location": "공조 교재 3-207쪽 인쇄 1번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-207 1③. 겨냥도 방향 전환점 4개 재계수.",
+      "finding": "3-207 1③. 겨냥도 방향 전환점 4개 재계수.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "평면도에서 겹쳐 보이는 수직 구간을 겨냥도로 펼쳐 센다. 왼쪽에서 올라가는 관의 아래·위 굽힘이 두 곳이고 오른쪽에서 내려가는 관의 위·아래 굽힘이 두 곳이므로 엘보는 총 4개, ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-207-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+          "displayAsset": "assets/problem-webp90/28e2d4c0582421c0e864d48b1989b2fa.webp",
+          "sha256": "1f66efeb5c01cec7f5f70a1b4e5e32a7f8df2c960ed1b4db6ea988f188324eb0"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 1,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-207-2",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-207",
+      "number": 2,
+      "location": "공조 교재 3-207쪽 인쇄 2번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-207 2③. 원도와 입체도를 대조해 두 갈래 굽힘과 세 방향 분기 분리.",
+      "finding": "3-207 2③. 원도와 입체도를 대조해 두 갈래 굽힘과 세 방향 분기 분리.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "겨냥도에서 세 방향으로 갈라지는 접속점 둘은 티다. 나머지 두 관이 직각으로 이어지는 지점은 높이가 달라지는 굽힘까지 세면 일곱 곳이다. 따라서 엘보 7개와 티 2개인 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-207-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+          "displayAsset": "assets/problem-webp90/28e2d4c0582421c0e864d48b1989b2fa.webp",
+          "sha256": "1f66efeb5c01cec7f5f70a1b4e5e32a7f8df2c960ed1b4db6ea988f188324eb0"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 2,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-207-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-207",
+      "number": 3,
+      "location": "공조 교재 3-207쪽 인쇄 3번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-207 3③. 도면과 2번의 부속 수 및 용접 단수 재계산.",
+      "finding": "3-207 3③. 도면과 2번의 부속 수 및 용접 단수 재계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "앞 문제의 엘보 7개에는 양 끝에 접합부가 하나씩 있고 티 2개에는 세 끝에 하나씩 있다. 부속과 관 사이의 용접은 7×2 + 2×3 = 20개소로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-207-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-207-original.png",
+          "displayAsset": "assets/problem-webp90/28e2d4c0582421c0e864d48b1989b2fa.webp",
+          "sha256": "1f66efeb5c01cec7f5f70a1b4e5e32a7f8df2c960ed1b4db6ea988f188324eb0"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 3,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-208-1",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-208",
+      "number": 1,
+      "location": "공조 교재 3-208쪽 인쇄 1번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-208 1③. A–B 주배관의 호칭지름과 레듀서 위치 대조.",
+      "finding": "3-208 1③. A–B 주배관의 호칭지름과 레듀서 위치 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "스트레이너는 도면에서 축경하기 전의 25A 측에 설치되어 있다. 20A는 트랩의 호칭지름이므로 스트레이너를 20A 1개라고 산출한 ③이 틀리다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-208-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+          "displayAsset": "assets/problem-webp90/7074295c66522ed82a1e3cdb8cd02270.webp",
+          "sha256": "3cfbd67b955b6ced5218fcb620e30cb70d216f2f206c22428babcdf0a1a14d3a"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 1,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-208-2",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-208",
+      "number": 2,
+      "location": "공조 교재 3-208쪽 인쇄 2번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-208 2③. 도면상 생략된 레듀서를 실제 설치 조건에 넣어 양쪽 관경별 재계수.",
+      "finding": "3-208 2③. 도면상 생략된 레듀서를 실제 설치 조건에 넣어 양쪽 관경별 재계수.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "65A 쪽은 플랜지 8곳, 티 두 개의 6곳, 엘보 두 개의 4곳으로 우선 18곳이다. 실제 50A 정유량밸브를 연결하려면 양측 레듀서에서 65A 용접 2곳이 더 필요하다. 50A 쪽은 밸브 연결 플랜지 2곳과 레듀서 2곳이다. 합계 65A 20곳·50A 4곳으로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-208-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+          "displayAsset": "assets/problem-webp90/7074295c66522ed82a1e3cdb8cd02270.webp",
+          "sha256": "3cfbd67b955b6ced5218fcb620e30cb70d216f2f206c22428babcdf0a1a14d3a"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 2,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-208-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-208",
+      "number": 3,
+      "location": "공조 교재 3-208쪽 인쇄 3번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-208 3③. 주덕트 제외 후 6 m짜리 분기관 네 개의 전개면적과 할증 독립 계산.",
+      "finding": "3-208 3③. 주덕트 제외 후 6 m짜리 분기관 네 개의 전개면적과 할증 독립 계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "0.5t 대상은 장변 450 mm 이하인 400×200 mm 분기관 네 줄이다. 총길이 24 m에 둘레 1.2 m를 곱하면 순면적 28.8 m²이다. 재료 할증 28%를 더하면 약 36.86 m²이므로 ③이다."
+        },
+        {
+          "tex": "A=2(0.4+0.2)(4\\times6)\\times1.28=36.864\\,\\mathrm{m^2}",
+          "label": "교재 3-208쪽 3번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-208-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-208-original.png",
+          "displayAsset": "assets/problem-webp90/7074295c66522ed82a1e3cdb8cd02270.webp",
+          "sha256": "3cfbd67b955b6ced5218fcb620e30cb70d216f2f206c22428babcdf0a1a14d3a"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 3,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-209-4",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-209",
+      "number": 4,
+      "location": "공조 교재 3-209쪽 인쇄 4번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "정답 자체 확인 필요",
+      "evidence": [],
+      "basis": "3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.",
+      "finding": "3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "0.6t 대상은 600×250 mm, 길이 12 m인 구간이다. 둘레 1.70 m에 길이와 재료 할증을 곱하면 26.11 m²로 ②다. 인쇄 정답표와 저장 답은 ③이지만 ③의 32.86 m²는 주어진 치수로 나오지 않는다."
+        },
+        {
+          "tex": "A=2(0.60+0.25)\\times12\\times1.28=26.112\\,\\mathrm{m^2}",
+          "label": "교재 3-209쪽 4번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-209-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+          "displayAsset": "assets/problem-webp90/6092b1ccf8ad19d0cb5e2851af5e43a2.webp",
+          "sha256": "5ccf3727dc8a562f5f6ad0b25fcbdc11ad1e215c4e5b89f2adb9dc9d3003e0bd"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 4,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-209-5",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-209",
+      "number": 5,
+      "location": "공조 교재 3-209쪽 인쇄 5번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-209 5④. 도면상 해당 장변 치수와 모든 보기의 두께 오기 구분.",
+      "finding": "3-209 5④. 도면상 해당 장변 치수와 모든 보기의 두께 오기 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "지문이 묻는 0.8t는 800×250 mm 덕트에 해당한다. 순면적은 둘레 2.10 m에 길이 12 m를 곱한 25.20 m²이고, 할증 28%를 포함하면 32.26 m²로 수치는 ④와 일치한다. 모든 보기의 두께 표기 0.6t는 지문의 0.8t와 다르다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-209-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+          "displayAsset": "assets/problem-webp90/6092b1ccf8ad19d0cb5e2851af5e43a2.webp",
+          "sha256": "5ccf3727dc8a562f5f6ad0b25fcbdc11ad1e215c4e5b89f2adb9dc9d3003e0bd"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 5,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-209-6",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-209",
+      "number": 6,
+      "location": "공조 교재 3-209쪽 인쇄 6번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-209 6③. 교재의 공량·재료 할증을 각각 적용하고 중간 반올림을 확인.",
+      "finding": "3-209 6③. 교재의 공량·재료 할증을 각각 적용하고 중간 반올림을 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "철판은 재료 할증 후 면적 36.86 m²에 단가 5,400원을 곱해 199,044원이다. 노무에는 순면적 28.8 m²를 쓴다. 공량은 28.8×0.44×1.20 ≈ 15.21인이고 이 중간 반올림값에 45,000원을 곱하면 684,450원이므로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-209-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-209-original.png",
+          "displayAsset": "assets/problem-webp90/6092b1ccf8ad19d0cb5e2851af5e43a2.webp",
+          "sha256": "5ccf3727dc8a562f5f6ad0b25fcbdc11ad1e215c4e5b89f2adb9dc9d3003e0bd"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 6,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-210-7",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-210",
+      "number": 7,
+      "location": "공조 교재 3-210쪽 인쇄 7번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-210 7①. 원문 최종 대입식의 19,648,500 오기를 독립 합산으로 교정.",
+      "finding": "3-210 7①. 원문 최종 대입식의 19,648,500 오기를 독립 합산으로 교정.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "간접노무비 1,200만 원을 포함한 노무비는 9,200만 원이다. 재료비·노무비·경비를 더한 순공사원가 2억 9,000만 원의 5.5%가 일반관리비 15,950,000원이다. 이윤은 (92,000,000+23,000,000+15,950,000)×0.15=19,642,500원이다. 총액은 325,592,500원으로 ①이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-210-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-210-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-210-original.png",
+          "displayAsset": "assets/problem-webp90/67c3fa2a227bab8fbd0aa142e7bd5c60.webp",
+          "sha256": "bc5aa3768dd7223228964efb8e4ae8a0b1dd8de7ea4793984ce75d1d1c9b5540"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 7,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-210-8",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-210",
+      "number": 8,
+      "location": "공조 교재 3-210쪽 인쇄 8번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-210 8②. 표의 규격·수량과 지문 소재구 조건을 재집계.",
+      "finding": "3-210 8②. 표의 규격·수량과 지문 소재구 조건을 재집계.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "100 mm 수구는 직관 7개, 곡관 5개, 이경 Y–T관 1개, Y관 두 개에서 4개로 합계 17개다. 150 mm는 직관 5개와 이경 Y–T관 1개로 6개다. 소재구는 기존 수구에 삽입한다는 조건이므로 별도로 더하지 않아 ②다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-210-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-210-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-210-original.png",
+          "displayAsset": "assets/problem-webp90/67c3fa2a227bab8fbd0aa142e7bd5c60.webp",
+          "sha256": "bc5aa3768dd7223228964efb8e4ae8a0b1dd8de7ea4793984ce75d1d1c9b5540"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 8,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-221-1",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-221",
+      "number": 1,
+      "location": "공조 교재 3-221쪽 인쇄 1번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-221 1③. 여과 목적과 유체 흐름 순서를 대조.",
+      "finding": "3-221 1③. 여과 목적과 유체 흐름 순서를 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "스트레이너는 흘러오는 이물질을 기기나 제어밸브에 들어가기 전에 걸러야 한다. 따라서 입구 쪽인 상류에 설치하며 하류라고 한 ③이 틀리다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-221-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-221-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-221-original.png",
+          "displayAsset": "assets/problem-webp90/6f72d6a867040d98880ac8d9c534766d.webp",
+          "sha256": "b24dc837d0a01a7e88cc540f0857f7395ef430375a502d3606ae06ba04e65e71"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 1,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-221-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-221",
+      "number": 3,
+      "location": "공조 교재 3-221쪽 인쇄 3번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-221 3④. 일반 배치도라는 문맥에서 네 보기의 역할을 구별.",
+      "finding": "3-221 3④. 일반 배치도라는 문맥에서 네 보기의 역할을 구별.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "일반 공조배관 배치도에서 배관을 따라 읽어야 하는 정보는 배관 종류·지름·유체 흐름 방향이다. 이 문제에서 그 용도와 가장 거리가 먼 것은 ④ 작용 압력이다. 설계 목적에 따라 다른 도서에 압력 조건을 명시할 수 있다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-221-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-221-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-221-original.png",
+          "displayAsset": "assets/problem-webp90/6f72d6a867040d98880ac8d9c534766d.webp",
+          "sha256": "b24dc837d0a01a7e88cc540f0857f7395ef430375a502d3606ae06ba04e65e71"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 3,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-241-2",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-241",
+      "number": 2,
+      "location": "공조 교재 3-241쪽 인쇄 2번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-241 2④. 원문 단위와 시설 목록 대조. 해당 시점 시행규칙 별표 원문 미확보.",
+      "finding": "3-241 2④. 원문 단위와 시설 목록 대조. 해당 시점 시행규칙 별표 원문 미확보.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재가 제시한 지하역사 등 해당 시설의 폼알데하이드 유지기준은 공기 1 m³당 100 μg 이하로 ④다. 출제 시점의 적용 조문과 시행일 확인은 보류한다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-241-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+          "displayAsset": "assets/problem-webp90/da4266a0994b1b3b13593560fe6deaf4.webp",
+          "sha256": "d90dde5c3e848c352d1226326e1dee8bfd15554eb453522b7c56a71b29b536ee"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 2,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-241-4",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-241",
+      "number": 4,
+      "location": "공조 교재 3-241쪽 인쇄 4번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": false,
+      "status": "근거 부족으로 보류",
+      "evidence": [],
+      "basis": "3-241 4④. 교재와 답지 대조. 출제 당시 법령의 직책별 조문과 시행일 확인 보류.",
+      "finding": "3-241 4④. 교재와 답지 대조. 출제 당시 법령의 직책별 조문과 시행일 확인 보류.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "보기에서 안전보건관리책임자·안전관리자·안전보건담당자는 산업안전보건 업무와 직접 관련된 직책이다. 교재가 고른 ④ 품질관리자는 제품·공정의 품질을 관리하는 직책이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-241-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+          "displayAsset": "assets/problem-webp90/da4266a0994b1b3b13593560fe6deaf4.webp",
+          "sha256": "d90dde5c3e848c352d1226326e1dee8bfd15554eb453522b7c56a71b29b536ee"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 4,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-241-5",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-241",
+      "number": 5,
+      "location": "공조 교재 3-241쪽 인쇄 5번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-241 5③. 수요와 공급열량의 균형, 대수 제어 목적과 대조.",
+      "finding": "3-241 5③. 수요와 공급열량의 균형, 대수 제어 목적과 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "열 수요가 달라지면 보일러 출력을 조절하거나 여러 대 중 가동할 대수를 조절한다. 부하에 관계없이 항상 100%로 운전해야 한다는 ③은 이 원리와 맞지 않는다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-241-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-241-original.png",
+          "displayAsset": "assets/problem-webp90/da4266a0994b1b3b13593560fe6deaf4.webp",
+          "sha256": "d90dde5c3e848c352d1226326e1dee8bfd15554eb453522b7c56a71b29b536ee"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 5,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-258-1",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-258",
+      "number": 1,
+      "location": "공조 교재 3-258쪽 인쇄 1번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-258 1③. 원식의 t 계수와 초기위상 분리.",
+      "finding": "3-258 1③. 원식의 t 계수와 초기위상 분리.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "사인 안에서 시간 t에 곱한 값이 각주파수다. 한 주기는 2π rad이므로 120π rad/s를 2π로 나누면 60 Hz, ③이다. 초기 위상은 주파수에 영향을 주지 않는다."
+        },
+        {
+          "tex": "f=\\frac{120\\pi}{2\\pi}=60\\,\\mathrm{Hz}",
+          "label": "교재 3-258쪽 1번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-258-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+          "displayAsset": "assets/problem-webp90/0c4f2646d0983d1dcfffe424e804171b.webp",
+          "sha256": "a57558de3759b4bdeb4cb461283fd21e9260b6a09778ab37d2f0bfcb7e60013b"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 1,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-258-2",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-258",
+      "number": 2,
+      "location": "공조 교재 3-258쪽 인쇄 2번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-258 2②. 377/(2π)=60.0028.",
+      "finding": "3-258 2②. 377/(2π)=60.0028.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "377은 초당 위상 변화량(rad/s)이다. 초당 반복 횟수는 이를 한 바퀴의 각도 2π로 나눈 약 60 Hz이므로 ②다."
+        },
+        {
+          "tex": "f=\\frac{377}{2\\pi}\\approx60\\,\\mathrm{Hz}",
+          "label": "교재 3-258쪽 2번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-258-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+          "displayAsset": "assets/problem-webp90/0c4f2646d0983d1dcfffe424e804171b.webp",
+          "sha256": "a57558de3759b4bdeb4cb461283fd21e9260b6a09778ab37d2f0bfcb7e60013b"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 2,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-258-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-258",
+      "number": 3,
+      "location": "공조 교재 3-258쪽 인쇄 3번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-258 3④. 628/(2π)=99.9493.",
+      "finding": "3-258 3④. 628/(2π)=99.9493.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "위상 628t−π/6에서 각주파수는 628 rad/s다. 이를 2π로 나누면 약 100 Hz이므로 ④다."
+        },
+        {
+          "tex": "f=\\frac{628}{2\\pi}\\approx100\\,\\mathrm{Hz}",
+          "label": "교재 3-258쪽 3번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-258-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-258-original.png",
+          "displayAsset": "assets/problem-webp90/0c4f2646d0983d1dcfffe424e804171b.webp",
+          "sha256": "a57558de3759b4bdeb4cb461283fd21e9260b6a09778ab37d2f0bfcb7e60013b"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 3,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-259-6",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-259",
+      "number": 6,
+      "location": "공조 교재 3-259쪽 인쇄 6번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-259 6③. 각도 비율을 시간 비율로 변환.",
+      "finding": "3-259 6③. 각도 비율을 시간 비율로 변환.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "π/6 rad은 한 주기 2π rad의 1/12이다. 60 Hz의 주기는 1/60초이므로 시간 차이는 약 1.4밀리초, ③이다."
+        },
+        {
+          "tex": "\\Delta t=\\frac{\\pi/6}{2\\pi}\\frac{1}{60}=\\frac{1}{720}\\,\\mathrm{s}",
+          "label": "교재 3-259쪽 6번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-259-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+          "displayAsset": "assets/problem-webp90/452ed8015e4504041af4d623ffaca5cd.webp",
+          "sha256": "10790a33b981a9113e1d4c2e52872aa7008d5902ec942a1cd0e518ccf9148079"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 6,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-259-8",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-259",
+      "number": 8,
+      "location": "공조 교재 3-259쪽 인쇄 8번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-259 8①. 저항 발열 기준과 정현파 파고율 구분.",
+      "finding": "3-259 8①. 저항 발열 기준과 정현파 파고율 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "가정용 교류 전원의 표시 전압 200 V는 같은 저항에서 직류 200 V와 같은 평균 전력을 내는 실효값이다. 따라서 ①이다. 정현파라면 최대값은 이보다 √2배 크다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-259-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+          "displayAsset": "assets/problem-webp90/452ed8015e4504041af4d623ffaca5cd.webp",
+          "sha256": "10790a33b981a9113e1d4c2e52872aa7008d5902ec942a1cd0e518ccf9148079"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 8,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-259-9",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-259",
+      "number": 9,
+      "location": "공조 교재 3-259쪽 인쇄 9번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-259 9②. 제곱평균제곱근과 산술평균을 구별.",
+      "finding": "3-259 9②. 제곱평균제곱근과 산술평균을 구별.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "실효치는 순간값을 제곱하여 한 주기 동안 평균한 뒤 제곱근을 취한 값이다. ②처럼 순간값을 그대로 평균하면 대칭 정현파에서는 0이 되므로 실효치의 정의로 틀리다."
+        },
+        {
+          "tex": "V_{\\mathrm{rms}}=\\sqrt{\\frac{1}{T}\\int_0^T v(t)^2\\,dt}",
+          "label": "교재 3-259쪽 9번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-259-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-259-original.png",
+          "displayAsset": "assets/problem-webp90/452ed8015e4504041af4d623ffaca5cd.webp",
+          "sha256": "10790a33b981a9113e1d4c2e52872aa7008d5902ec942a1cd0e518ccf9148079"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 9,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
     }
   ],
   "sources": [
@@ -450616,26 +452192,26 @@
     "energy": "data/energy.js 대상 1607개 직접 판정 완료. 보류·정답 재확인은 문항별 기록 참조.",
     "practical": "data/hvac-practical-restored.json hvac-practical-restored-2023-3-02",
     "hvac": "data/hvac.js 공조 필기 대상 2934개 직접 판정 완료",
-    "direct": "data/hansol-book-direct.json hansol-direct-3-183-48",
+    "direct": "data/hansol-book-direct.json hansol-direct-3-260-11",
     "maintenance": "전체 대상 2236개 판정 완료",
     "hvacHansol": "data/hvac-hansol.js 대상 1920개 직접 판정 완료",
     "appendix": "완료"
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 12799,
-    "contentCompleted": 10141,
-    "contentCompletedChanged": 8104,
+    "contentExamined": 12835,
+    "contentCompleted": 10167,
+    "contentCompletedChanged": 8130,
     "contentCompletedUnchanged": 2037,
-    "evidenceHold": 2022,
-    "answerNeedsConfirmation": 636,
-    "automaticOnly": 36205,
-    "changedQuestionIds": 9041,
-    "imageTranscribed": 997,
+    "evidenceHold": 2031,
+    "answerNeedsConfirmation": 637,
+    "automaticOnly": 36169,
+    "changedQuestionIds": 9077,
+    "imageTranscribed": 1033,
     "imageFullyTranscribed": 251,
-    "imagePartiallyTranscribed": 746,
-    "imageCompared": 997,
-    "imageAcademicCompleted": 852,
+    "imagePartiallyTranscribed": 782,
+    "imageCompared": 1033,
+    "imageAcademicCompleted": 878,
     "questionImagesConverted": 152,
     "questionImagesCompared": 152,
     "questionImageAcademicCompleted": 142
@@ -454096,7 +455672,7 @@
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 4533,
+      "count": 4537,
       "findings": {
         "0": 3,
         "1": 1,
@@ -458295,11 +459871,15 @@
         "철골 세우기에는 고소작업의 추락 방지, 양중기 능력과 바람 등 기상조건이 직접 관련된다": 1,
         "기존 부록 텍스트 검토": 6,
         "3-144 12③. 균등 분배와 펌프 동력의 필연적 증가를 구분.": 1,
-        "3-175 03③. 기존 해설의 분류에 그 분류를 결정하는 작동 원리 보완.": 1
+        "3-175 03③. 기존 해설의 분류에 그 분류를 결정하는 작동 원리 보완.": 1,
+        "3-189 89③. 배출과 계통 밖 폐기를 구별.": 1,
+        "3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.": 1,
+        "3-209 5④. 도면상 해당 장변 치수와 모든 보기의 두께 오기 구분.": 1,
+        "3-210 7①. 원문 최종 대입식의 19,648,500 오기를 독립 합산으로 교정.": 1
       }
     },
     "이미지 원문 텍스트 전환": {
-      "count": 722,
+      "count": 754,
       "findings": {
         "바이패스 팩터의 정의": 1,
         "덕트 정압계의 판독": 1,
@@ -458618,7 +460198,39 @@
         "3-181 36②. 설치 지점 수와 배관 길이가 비용에 미치는 효과 구분.": 1,
         "3-182 39④. 플랜지로 접속한 신축이음과 단순 플랜지 접합의 기능을 구분.": 1,
         "3-182 41③. 압력/비중량 차원으로 검산.": 1,
-        "3-183 47③. 고정점과 신축을 허용하는 지점 구분.": 1
+        "3-183 47③. 고정점과 신축을 허용하는 지점 구분.": 1,
+        "3-183 48④. 가스 차단과 압력 평형 역할을 구분.": 1,
+        "3-184 55③. 교재의 구획과 답표 확인. 적용 설계기준 판본 미확보.": 1,
+        "3-184 57①. 풀이 크롭이 잘려 같은 원지의 아래쪽 문장을 확대해 1.2~1.5 대조. 권장 배수 적용자료 미확보.": 1,
+        "3-185 58②. 지문은 정화조 전처리 방식, 인쇄 해설은 오수와 우수의 분리만 설명. 배수구역 기준 미확보.": 1,
+        "3-187 75③. 넓은 비용 일반화를 피하고 예열·기류 조건으로 선택.": 1,
+        "3-187 76④. 허용 높이와 관경 차에 대한 해당 설계자료 미확보.": 1,
+        "3-188 79②. 열을 전달하는 장치와 저장장치 구분.": 1,
+        "3-189 88④. 트랩 명칭이 같아도 처리 유체와 목적이 다름.": 1,
+        "3-190 94④. 기준 판본과 압력의 기준면 미확보.": 1,
+        "3-190 96②. 증기 자체보다 공기 유입 조건을 구분.": 1,
+        "3-191 98④. 특정 모델의 작동 온도 및 설치 지침 원문 미확보.": 1,
+        "3-191 99②. 교재 구배와 정답표 대조. 출제 당시 별도 설계기준 미확보.": 1,
+        "3-194 실제 125③. 단상 물 계통과 응축수가 생기는 증기 계통 구분.": 1,
+        "3-207 1③. 겨냥도 방향 전환점 4개 재계수.": 1,
+        "3-207 2③. 원도와 입체도를 대조해 두 갈래 굽힘과 세 방향 분기 분리.": 1,
+        "3-207 3③. 도면과 2번의 부속 수 및 용접 단수 재계산.": 1,
+        "3-208 1③. A–B 주배관의 호칭지름과 레듀서 위치 대조.": 1,
+        "3-208 2③. 도면상 생략된 레듀서를 실제 설치 조건에 넣어 양쪽 관경별 재계수.": 1,
+        "3-208 3③. 주덕트 제외 후 6 m짜리 분기관 네 개의 전개면적과 할증 독립 계산.": 1,
+        "3-209 6③. 교재의 공량·재료 할증을 각각 적용하고 중간 반올림을 확인.": 1,
+        "3-210 8②. 표의 규격·수량과 지문 소재구 조건을 재집계.": 1,
+        "3-221 1③. 여과 목적과 유체 흐름 순서를 대조.": 1,
+        "3-221 3④. 일반 배치도라는 문맥에서 네 보기의 역할을 구별.": 1,
+        "3-241 2④. 원문 단위와 시설 목록 대조. 해당 시점 시행규칙 별표 원문 미확보.": 1,
+        "3-241 4④. 교재와 답지 대조. 출제 당시 법령의 직책별 조문과 시행일 확인 보류.": 1,
+        "3-241 5③. 수요와 공급열량의 균형, 대수 제어 목적과 대조.": 1,
+        "3-258 1③. 원식의 t 계수와 초기위상 분리.": 1,
+        "3-258 2②. 377/(2π)=60.0028.": 1,
+        "3-258 3④. 628/(2π)=99.9493.": 1,
+        "3-259 6③. 각도 비율을 시간 비율로 변환.": 1,
+        "3-259 8①. 저항 발열 기준과 정현파 파고율 구분.": 1,
+        "3-259 9②. 제곱평균제곱근과 산술평균을 구별.": 1
       }
     }
   },
@@ -458900,7 +460512,7 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 12128,
+    "examined": 12164,
     "rawFractionDisplays": 940,
     "remainingBankBlanks": 544,
     "units": [
@@ -475856,18 +477468,105 @@
           "hansol-direct-3-182-41",
           "hansol-direct-3-183-47"
         ]
+      },
+      {
+        "unit": "공조 교재 3-183쪽 인쇄 48번 ~ 공조 교재 3-187쪽 인쇄 76번",
+        "statuses": {
+          "내용 검토 완료·수정함": 2,
+          "근거 부족으로 보류": 4
+        },
+        "changed": 6,
+        "ids": [
+          "hansol-direct-3-183-48",
+          "hansol-direct-3-184-55",
+          "hansol-direct-3-184-57",
+          "hansol-direct-3-185-58",
+          "hansol-direct-3-187-75",
+          "hansol-direct-3-187-76"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-188쪽 인쇄 79번 ~ 공조 교재 3-191쪽 인쇄 98번",
+        "statuses": {
+          "내용 검토 완료·수정함": 4,
+          "근거 부족으로 보류": 2
+        },
+        "changed": 6,
+        "ids": [
+          "hansol-direct-3-188-79",
+          "hansol-direct-3-189-88",
+          "hansol-direct-3-189-89",
+          "hansol-direct-3-190-94",
+          "hansol-direct-3-190-96",
+          "hansol-direct-3-191-98"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-191쪽 인쇄 99번 ~ 공조 교재 3-208쪽 인쇄 3번",
+        "statuses": {
+          "근거 부족으로 보류": 1,
+          "내용 검토 완료·수정함": 7
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-191-99",
+          "hansol-direct-3-194-3",
+          "hansol-direct-3-207-1",
+          "hansol-direct-3-207-2",
+          "hansol-direct-3-207-3",
+          "hansol-direct-3-208-1",
+          "hansol-direct-3-208-2",
+          "hansol-direct-3-208-3"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-209쪽 인쇄 4번 ~ 공조 교재 3-241쪽 인쇄 2번",
+        "statuses": {
+          "정답 자체 확인 필요": 1,
+          "내용 검토 완료·수정함": 6,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-209-4",
+          "hansol-direct-3-209-5",
+          "hansol-direct-3-209-6",
+          "hansol-direct-3-210-7",
+          "hansol-direct-3-210-8",
+          "hansol-direct-3-221-1",
+          "hansol-direct-3-221-3",
+          "hansol-direct-3-241-2"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-241쪽 인쇄 4번 ~ 공조 교재 3-259쪽 인쇄 9번",
+        "statuses": {
+          "근거 부족으로 보류": 1,
+          "내용 검토 완료·수정함": 7
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-241-4",
+          "hansol-direct-3-241-5",
+          "hansol-direct-3-258-1",
+          "hansol-direct-3-258-2",
+          "hansol-direct-3-258-3",
+          "hansol-direct-3-259-6",
+          "hansol-direct-3-259-8",
+          "hansol-direct-3-259-9"
+        ]
       }
     ],
     "reasons": {
       "지문·정답·자료 대조에 남은 불확실성": 516,
       "공식·계산·기호·단위·반올림": 935,
-      "개념·장치 작동 원리·적용 조건": 4274,
+      "개념·장치 작동 원리·적용 조건": 4278,
       "부정형·보기 비교·표 적용 범위": 188,
       "문제와 무관한 설명": 423,
       "해설 미등록": 1441,
-      "이미지 원문 텍스트 전환": 722
+      "이미지 원문 텍스트 전환": 754
     },
-    "changed": 8499,
+    "changed": 8535,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",
