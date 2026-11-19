@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.111',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2008년 3월·2007년 8월",summary:"베인 모터의 1회전 유량을 기준으로 600 rpm을 계산하고, 누락된 실린더 변위선도는 정답을 확인할 수 없는 문항으로 기록했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.110',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2009년 3월·2008년 7월",summary:"표준대기압을 더해 200 mmHg 게이지압을 절대압 1.305 kgf/cm²로 환산하고, 피드백 원도의 블록 첨자와 저장 정답의 불일치를 기록했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.109',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2009년 5월·7월",summary:"베어링 크리프를 끼워맞춤면의 미끄럼으로 바로잡고, 12 kW 펌프의 압력·유량으로 전효율 76.3%를 검산했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.108',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 3-89~3-133쪽",summary:"급탕 주관 내경 53.2 mm를 유량에서 다시 계산하고, 교차 연결과 역사이펀의 차이를 미국 환경보호청 원문에서 확인했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2888,8 +2889,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.110';
+  changelog.versions.industrial = '6.2.111';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.110';
+  changelog.currentVersion = '6.2.111';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -994,6 +994,17 @@ test('설비보전 유압 펌프의 전효율 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 베인 모터의 회전수',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20070805').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('17');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'50㏄'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('최대 속도');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 송풍기 게이지압의 절대압 환산',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20080727').getByRole('button',{name:'학습모드',exact:true}).click();
