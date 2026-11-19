@@ -2,7 +2,7 @@
 
 저장 답안은 유지했다. review.json에는 각 문항의 근거와 원본 대조 상태가 있다.
 
-## 현재 검토 범위 (605개)
+## 현재 검토 범위 (613개)
 
 - `energy-industrial-20020310:34` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 질량당 열에 수반된 순 엔트로피 전달은 2066.3/438.15 − 1898.4/327.15 = −1.08688 kJ/(kg·K). 한 주기의 상태 변화 0, 일정한 온도의 두 열원과 교환 가정하에 생성량 양수.
 - `energy-industrial-20020310:54` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 지문과 원문 보기 네 개 대조. 목표 온도가 제어출력이고 연료 유량이 조작입력인 폐루프와 비교.
@@ -609,6 +609,22 @@
 - `hansol-direct-3-178-13` (tools/textbook-explanation-text-review.json, 공조 교재 3-178쪽 인쇄 13번) — 3-178 13④와 3-179 22①의 직결식 시험압력이 1.0·1.75 MPa로 충돌. 기준 판본 미확보.
 - `hansol-direct-3-179-22` (tools/textbook-explanation-text-review.json, 공조 교재 3-179쪽 인쇄 22번) — 3-179 22①. 바로 앞 단원의 3-178 13④와 상충. 적용 시방·시행일·대상 구간 재확인 필요.
 - `hansol-direct-3-209-4` (tools/textbook-explanation-text-review.json, 공조 교재 3-209쪽 인쇄 4번) — 3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.
+
+- `hvac-practical-restored-2022-3-08` (data/hvac-practical-restored.json) — 사진은 선형 취출구이고 지문은 창가의 천장이다. 창면 열부하·찬 하강기류 억제와 출입구 에어커튼의 벌레 차단을 하나의 목적으로 적은 저장 답은 원답 재확인.
+
+- `hvac-practical-restored-2022-3-12` (data/hvac-practical-restored.json) — 사진에는 Electric actuator와 수직 축. 전동식 구동부를 단순 전자기 유도작용이라 하는 저장 답은 불충분하며 코일식 전자밸브와 다르다.
+
+- `hvac-practical-restored-2021-3-09` (data/hvac-practical-restored.json) — 동관형 몸체 절개 사진에 다공질 또는 망 형상의 부품이 보인다. 역류를 막는 가동체·밸브 시트는 식별되지 않아 저장 답 ‘체크밸브’와 사진의 대응 재확인. 필터라고 단정하지 않았다.
+
+- `hvac-practical-restored-2021-1-04` (data/hvac-practical-restored.json) — 오일레벨 조정기의 저장 답에는 정상 유압을 유지한다고 되어 있으나 해설은 오일 높이를 유지한다고 적었다. 압력과 액면은 다른 제어량이다.
+
+- `hvac-practical-restored-2020-4-02` (data/hvac-practical-restored.json) — 첨부 회로도에서 GL 위 MC는 a접점, RL 위 MC는 b접점이다. 녹색 PBS1로 MC가 여자되면 그림은 GL ON, RL OFF로 저장 답과 반대다. 영상·실물 결선 확인이 필요하다.
+
+- `hvac-practical-restored-2020-4-07` (data/hvac-practical-restored.json) — 장치 명칭은 오일레벨 조정기이나 저장 답은 정상 유압 유지로 설명했다. 액면 조절과 압력 제어는 다른 기능이다.
+
+- `hvac-practical-restored-2020-2B-01` (data/hvac-practical-restored.json) — 적색 PBS는 GL 가지보다 앞의 공통전원선에 있다. 누르고 있는 동안 GL도 소등이다. 저장 답은 정지 후 버튼을 놓아 전원이 돌아온 상태와 일치한다.
+
+- `hvac-practical-restored-2020-2B-09` (data/hvac-practical-restored.json) — 창가 선형 취출구가 창면 열부하에 대응한다는 설명과 저장 답의 벌레 차단 기능은 다르다. 사진은 출입구 방충용 에어커튼 설치가 아니다.
 
 ## 범위 조정 전에 기록한 그 밖의 항목 (33개)
 
