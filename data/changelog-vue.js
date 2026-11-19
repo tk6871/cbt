@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.71',scope:'industrial',date:'2026.11.19',title:"공조 복원 2023년 1회",summary:"냉각장치의 브라인 입출구 온도차와 냉매와의 온도차를 구별하고 터보압축기 디퓨저가 빠진 보기를 기록했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.70',scope:'industrial',date:'2026.11.19',title:"공조 복원 2022년 2·3회",summary:"등온 이상기체의 내부에너지와 저장 답의 불일치, 메거를 묻는 원도의 전열·절연 표기 차이를 기록하고 자기유지 회로의 접점 설명을 교정했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.69',scope:'industrial',date:'2026.11.19',title:"공조 복원 2022년 1회 1~60번(기존 판정 4번 제외)",summary:"실린더 과열 문제에서 습압축을 설명하던 오류와 파형률·파고율 혼동을 교정했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.68',scope:'industrial',date:'2026.11.19',title:"공조 복원 2021년 3회 원도 1~60번(기존 판정 2번 제외)",summary:"33번의 열유속 단위를 원도에서 대조한 결과 표면온도는 20.04 ℃로 보기와 달랐습니다. 30번은 산술평균 근사와 대수평균 계산값을 구별했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2848,8 +2849,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.70';
+  changelog.versions.industrial = '6.2.71';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.70';
+  changelog.currentVersion = '6.2.71';
   window.CBT_CHANGELOG = changelog;
 })();
