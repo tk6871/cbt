@@ -8,6 +8,7 @@ test('에너지 교재는 공유 은행을 한 번 요청하고 실패한 파일
     contentType:'application/javascript', body:"window.CBT_CLOUD_CONFIG={serviceApiUrl:'/api'};",
   }));
   const apiRequests: string[] = [];
+  await page.route('**/modern/textbook-energy-sources-*.json', route => route.fulfill({status:404}));
   const failedFile = '**/data/energy.js?*';
   let staticRequests = 0;
   let fail = true;
