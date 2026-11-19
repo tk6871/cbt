@@ -1288,3 +1288,30 @@ test('공조 교재 절점주파수 원도와 분수 대조', async ({page}) => 
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 교재 시간에 따른 전류와 전하량 대조', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2018-2').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('77');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '전류 I'})});
+  await expect(card.locator('.question-text')).toContainText('5초 동안');
+  await card.getByRole('button',{name:'④ 200',exact:true}).click();
+  await expect(card.locator('.explanation-box')).toContainText('125+75=200');
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
+
+test('공조 교재 공기선도 현열비 분수', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2018-2').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('9');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.getByRole('button',{name:'9번 문제 원문 크게 보기'})});
+  await card.getByRole('button',{name:'이미지에서 4번 선택'}).click();
+  await expect(card.locator('.explanation-box')).toContainText('수평 구간');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
