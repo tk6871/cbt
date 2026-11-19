@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.48',scope:'industrial',date:'2026.11.19',title:'냉동·배관·전기제어 교재 해설',summary:'역카르노 선도와 정류기 맥동 계산을 교정했습니다.',tags:['공조'],changes:['저항값이 빠진 회로 문제에서 계산 가능한 범위를 명시했습니다.']},
     {version:'6.2.47',scope:'industrial',date:'2026.11.19',title:'공기조화 교재 해설',summary:'벽체 열관류율과 증기 발생량 기준 보일러 효율을 분수로 표시했습니다.',tags:['공조'],changes:['겨울철 침입외기 잠열부하의 부호를 원본 보기와 대조했습니다.']},
     {version:'6.2.46',scope:'industrial',date:'2026.11.19',title:'에너지 2017~2020년 기출 해설',summary:'열관류율의 기준 면적과 연돌 유량의 단위 환산을 분수식으로 설명했습니다.',tags:['에너지'],changes:['압력차를 곱셈으로 표시한 보기 등 원문 확인이 필요한 항목을 구분했습니다.']},
     {version:'6.2.45',scope:'industrial',date:'2026.11.19',title:'에너지 2016년 세 회차 해설',summary:'증기 사이클의 받는 열과 버리는 열을 구분하고 센서·측정기 원리를 보완했습니다.',tags:['에너지'],changes:['원도가 없는 문제에서 정답을 가정해야 하는 부분을 표시했습니다.']},
@@ -2825,8 +2826,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.47';
+  changelog.versions.industrial = '6.2.48';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.47';
+  changelog.currentVersion = '6.2.48';
   window.CBT_CHANGELOG = changelog;
 })();

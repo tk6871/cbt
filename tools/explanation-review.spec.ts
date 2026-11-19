@@ -923,3 +923,14 @@ test('공조 교재 침입외기 잠열의 원보기와 부호', async ({page}) 
   await card.locator('.choice-button').nth(3).click();
   await expect(card.locator('.explanation-box')).toContainText('실내에서 실외를 뺀다');
 });
+
+test('공조 교재 미표기 저항의 회로와 분수', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2017-2').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('77');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.getByRole('button',{name:'77번 문제 원문 크게 보기'})});
+  await card.getByRole('button',{name:'이미지에서 3번 선택'}).click();
+  await expect(card.locator('.explanation-box')).toContainText('R₄=4 Ω일 때');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
