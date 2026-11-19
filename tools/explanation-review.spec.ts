@@ -815,3 +815,16 @@ test('교재 열당량 분수식과 인쇄 보기',async({page},info)=>{
  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
  await card.screenshot({path:info.outputPath('heat-equivalent.png')});
 });
+
+test('산업안전 소음 휴식시간 환산과 답안 저장',async({page},info)=>{
+ await prepare(page,'safety-engineer');
+ await page.locator('#round-card-safety-engineer-20210307').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('25');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'자동차를 생산하는 공장'});
+ await card.locator('.choice-button').nth(1).click();
+ await expect(card.locator('.explanation-box')).toContainText('92.1 dB(A)');
+ await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20210307:25'])).toBe(2);
+ await card.screenshot({path:info.outputPath('noise-dose-time.png')});
+});
