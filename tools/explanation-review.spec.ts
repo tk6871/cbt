@@ -1012,6 +1012,17 @@ test('설비보전 유압 펌프의 전효율 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('비반전 입력에 음전압을 가한 원도 확인',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20020811').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('57');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'RF=75'});
+  await card.locator('.choice-button').nth(0).click();
+  await expect(card.locator('.explanation-box')).toContainText('−1.20 V');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('수은의 질량·체적 계산과 실제 물성 구분',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20030810').getByRole('button',{name:'학습모드',exact:true}).click();

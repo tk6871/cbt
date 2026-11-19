@@ -84,7 +84,7 @@ function loadBankFile(file: string): Promise<void> {
       const script = document.createElement('script');
       // Use the same URL as the bootstrap for the initially selected bank so a
       // range first opened on the mobile home can also be reopened offline.
-      const version = '804';
+      const version = '805';
       script.src = new URL(`data/${file}.js?v=${version}`, document.baseURI).href;
       script.onload = () => hasBank() ? resolve() : reject(new Error('문제 자료를 읽지 못했습니다.'));
       script.onerror = () => { script.remove(); reject(new Error('문제 자료에 연결하지 못했습니다.')); };
