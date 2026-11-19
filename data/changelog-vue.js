@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.39',scope:'industrial',date:'2026.11.19',title:'공조 실기 복원문제 해설 교정',summary:'2025년 1·2·3회 복원문제의 열회수 방향과 평면도 읽기를 교정했습니다.',tags:['공조','실기'],changes:['단말 유인유닛과 중앙 송풍기의 역할을 구분했습니다.']},
     {version:'6.2.38',scope:'industrial',date:'2026.11.19',title:'공조 실기 복원문제 해설 교정',summary:'2026년 1·2회 복원문제의 급기 현열과 제어회로 풀이를 바로잡았습니다.',tags:['공조','실기'],changes:['냉동능력당 소요동력과 총 소비전력을 구별했습니다.']},
     {version:'6.2.37',scope:'industrial',date:'2026.11.19',title:'산업안전기사 빈 해설과 기출 계산 풀이',summary:'산업안전·공조·에너지 세 회차의 해설을 보완했습니다.',tags:['산업안전','공조','에너지'],changes:['소음 노출량과 시스템 신뢰도를 풀이했습니다.','벽체 열관류율과 교류 회로의 소비전력 계산을 교정했습니다.']},
     {version:'6.2.36',scope:'industrial',date:'2026.11.19',title:'열당량과 제어회로 해설 교정',summary:'공조 교재와 에너지 기출의 계산을 보완했습니다.',tags:['공조','에너지'],changes:['세 문항의 보기에서 깨진 분수와 화학식을 복구했습니다.','응축기 열수지와 피토관 수두의 원본 수치를 확인했습니다.']},
@@ -2816,8 +2817,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.38';
+  changelog.versions.industrial = '6.2.39';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.38';
+  changelog.currentVersion = '6.2.39';
   window.CBT_CHANGELOG = changelog;
 })();

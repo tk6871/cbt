@@ -76,3 +76,19 @@ test('2026년 2회 급기가 흡수한 열과 시간당 송풍량 분수', async
   await expect(problem.locator('.practical-explanation')).toContainText('15℃ 급기가 실내의 현열을 흡수해 26℃');
   await expect(problem.locator('.calculation-steps .mfrac').first()).toBeVisible();
 });
+
+test('2025년 1회 배관 평면도의 교정 설명과 원본 답도', async ({page}) => {
+  await page.goto('./?safe=1');
+  await openGuide(page);
+  await page.getByRole('button',{name:/회차별 기출/}).click();
+  const year = page.locator('.practical-year-group').filter({has:page.getByRole('heading',{name:'2025년',exact:true})});
+  await year.getByRole('button',{name:/^1회/}).click();
+  await page.getByLabel('필답형 화면 배치').selectOption('0');
+  const problem = page.locator('[data-practical-id="hvac-practical-restored-2025-1-03"]');
+  await problem.getByRole('button',{name:'정답·풀이 보기'}).click();
+  await expect(problem.locator('.practical-explanation')).toContainText('높이 차가 한 평면에 겹쳐');
+  const diagram = problem.locator('.practical-answer-images img');
+  await diagram.scrollIntoViewIfNeeded();
+  await diagram.evaluate((image: HTMLImageElement) => image.decode());
+  await expect(diagram).toBeVisible();
+});
