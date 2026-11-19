@@ -1384,6 +1384,7 @@ for (const sample of [
   {title: '공조 교재 정현파 실효값 원도와 분수', round: '2023-1', number: '60', stem: '교류에서 실효값과 최대값', choice: '① 실효값 = 최대치/√2', explanation: '정현파 교류'},
   {title: '공조 교재 환산저항 원도와 분수', round: '2023-3', number: '55', stem: '권수비가 2400/240', choice: '② 10', explanation: '10,000 Ω'},
   {title: '공조 교재 혼합비 원도와 분수', round: '2024-1', number: '2', stem: '절대습도 x₁', choice: '② 26.3', explanation: '두 몫'},
+  {title: '공조 교재 에어필터 원도와 분수', round: '2024-2', number: '17', stem: '통과 풍량이 350', choice: '④ 10개', explanation: '36 m³/min'},
   {title: '공조 교재 분류기 원도와 분수', round: '2023-2', number: '57', stem: '최대눈금 10[mA]', choice: '① 2', explanation: '30 mA'},
 ]) {
   test(sample.title, async ({page}) => {
