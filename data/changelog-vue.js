@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.76',scope:'industrial',date:'2026.11.19',title:"공조 복원 2025년 3회·2026년 1·2회",summary:"마찰손실수두와 압력손실을 구분하고 사용 전 검사 결과의 제출 근거와 귀환 블록선도 분수식을 바로잡았다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.75',scope:'industrial',date:'2026.11.19',title:"공조 복원 2025년 1·2회",summary:"응축기 전열면적은 산술평균과 대수평균을 구분했다. 2회 58번은 출제 당시 시행령과 비교해 오답의 근거를 압력에서 가스 이름으로 바로잡았다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.74',scope:'industrial',date:'2026.11.19',title:"공조 복원 2024년 3회",summary:"냉매 배관의 불응축가스와 플래시가스를 구분하고, 전력계 하나만 그려진 58번은 저장 답을 재확인 목록에 올렸다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.73',scope:'industrial',date:'2026.11.19',title:"공조 복원 2024년 1·2회",summary:"왕복동 압축기의 행정 800 mm와 냉동사이클 선도의 입구 엔탈피 106 kJ/kg를 원도에서 다시 읽어 계산했다. 냉동제조 신고 범위는 출제 당시 시행령 제4조제2호와 대조했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2853,8 +2854,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.75';
+  changelog.versions.industrial = '6.2.76';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.75';
+  changelog.currentVersion = '6.2.76';
   window.CBT_CHANGELOG = changelog;
 })();
