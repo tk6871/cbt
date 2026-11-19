@@ -956,3 +956,59 @@ test('원형 코일 자계의 원문 조건과 정답 확인', async ({page}) =>
   await expect(card.locator('.explanation-box')).toContainText('1,000 A/m와 같은 보기가 없어');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 급탕 순환수두와 밀도 단위', async ({page}) => {
+  await prepare(page,'hvac');
+  await page.locator('#round-card-hvac-20060816').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('58');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'탕비기 출구의 온도를'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('0.1125 m');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
+test('산업안전기사 병렬 밸브의 실패확률', async ({page}) => {
+  await prepare(page,'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20200822').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('35');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'병렬밸브계'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('실패확률이므로 ② 0.0595');
+  await expect(card.locator('img').first()).toBeVisible();
+});
+
+test('산업안전기사 화면 대비의 정의와 보기 대조', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20200606').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('28');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '반사율이 85%'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('약 −322%');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
+test('산업안전기사 와이어로프 사이 각도와 장력', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20190804').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('51');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '질량이 100kg인 물체'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('약 980 N');
+  await expect(card.locator('img').first()).toBeVisible();
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
+test('산업안전기사 병렬 접지경로와 인체전류', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20190427').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('79');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '누전된 전동기에 인체가 접촉'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('490 mA');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

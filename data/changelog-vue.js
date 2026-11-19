@@ -4,7 +4,12 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
-    {version:'6.2.51',scope:'industrial',date:'2026.11.19',title:'교재 정답과 풀이 바로 보기',summary:'원문의 보기를 누르면 정답 번호와 풀이가 함께 열립니다.',tags:['교재'],changes:['기존 답안 기록을 유지하면서 문제 번호와 중복 조각을 정리했습니다.','교재 원문 397쪽에 2배 해상도 이미지를 연결했습니다.']},
+    {version:'6.2.56',scope:'industrial',date:'2026.11.19',title:'교재 정답과 풀이 바로 보기',summary:'원문의 보기를 누르면 정답 번호와 풀이가 함께 열립니다.',tags:['교재'],changes:['기존 답안 기록을 유지하면서 문제 번호와 중복 조각을 정리했습니다.','교재 원문 397쪽에 2배 해상도 이미지를 연결했습니다.']},
+    {version:'6.2.55',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도 및 전류 분배 해설',summary:'7개 부품의 신뢰도와 접지경로의 분기 전류를 계산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
+    {version:'6.2.54',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·로프 장력 해설',summary:'최소컷셋, 로프 장력, 직병렬 회로의 전류를 원도에서 확인했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
+    {version:'6.2.53',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도·화면 대비 해설',summary:'직병렬 시스템 신뢰도와 화면 대비 계산을 검산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
+    {version:'6.2.52',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·펌프 신뢰도 해설',summary:'펌프와 병렬 밸브의 실패확률을 원도와 대조했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
+    {version:'6.2.51',scope:'industrial',date:'2026.11.19',title:'공조 순환수두·전압계 보충 해설',summary:'밀도차를 수두로 바꾸고 전압계의 측정 부하를 설명했습니다.',tags:['공조'],changes:['접점도와 보기의 부정기호가 다른 문항은 확인 대상으로 남겼습니다.']},
     {version:'6.2.50',scope:'industrial',date:'2026.11.19',title:'공조 필기 두 회차 보충 해설',summary:'원형 코일과 이상기체의 계산을 원문 값에서 다시 풀었습니다.',tags:['공조'],changes:['답과 계산이 충돌하는 문항에 확인이 필요한 조건을 적었습니다.']},
     {version:'6.2.49',scope:'industrial',date:'2026.11.19',title:'공조 필기 2005년 5월 보충 해설',summary:'송풍량과 가지전류를 단위와 함께 계산했습니다.',tags:['공조'],changes:['복원 중인 보기와 제어 블록선도의 부호를 원문과 대조했습니다.']},
     {version:'6.2.48',scope:'industrial',date:'2026.11.19',title:'냉동·배관·전기제어 교재 해설',summary:'역카르노 선도와 정류기 맥동 계산을 교정했습니다.',tags:['공조'],changes:['저항값이 빠진 회로 문제에서 계산 가능한 범위를 명시했습니다.']},
@@ -2829,8 +2834,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.51';
+  changelog.versions.industrial = '6.2.56';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.51';
+  changelog.currentVersion = '6.2.56';
   window.CBT_CHANGELOG = changelog;
 })();
