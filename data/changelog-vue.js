@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.85',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 4회",summary:"침입외기 잠열부하를 원도 수분비로 재계산했고, 대향류 열교환기의 대수평균온도차와 쇄교자속 계산을 보완했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.84',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 3회",summary:"습공기선도의 수평 구간과 코일 접촉계수, 직렬 콘덴서의 합성용량을 원도와 대조해 저장 답과의 차이를 표시했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.83',scope:'industrial',date:'2026.11.19',title:"공조 교재 2020년 1회",summary:"온수 유량의 단위를 바로잡고, 엔탈피선도에서 실제 성적계수를 계산했다. 저항성분과 임피던스의 크기를 분리했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.82',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 3회",summary:"음귀환 회로의 특성방정식을 도면에서 다시 구했고, 벽체 전도열의 W·kJ 단위와 PID의 적분·미분 역할을 교정했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2862,8 +2863,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.84';
+  changelog.versions.industrial = '6.2.85';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.84';
+  changelog.currentVersion = '6.2.85';
   window.CBT_CHANGELOG = changelog;
 })();
