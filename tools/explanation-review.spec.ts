@@ -1082,3 +1082,15 @@ test('공조 필기 열펌프의 고온부 열량과 온도비', async ({page}) 
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('공조 필기 직렬 저항과 음의 피드백 전압 분배', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20120304').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('74');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '직렬로 연결된 저항회로'});
+  await card.locator('.choice-button').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('Vᵢ−Vₒ');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+  await expect(card.locator('img').first()).toBeVisible();
+});

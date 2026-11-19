@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.63',scope:'industrial',date:'2026.11.19',title:"공조 필기 2012년 3월·5월·8월",summary:"급수관 균등표의 20A 열과 동시사용률로 주관 32A를 확인했다. 8월 2번의 원보기는 수두식에 비중량을 곱해 압력 단위가 되므로 정답 확인 대상으로 남겼다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.62',scope:'industrial',date:'2026.11.19',title:"공조 필기 2011년 3월·6월·8월",summary:"열펌프는 원도에서 고온부 방출열을 분자로 쓰고, 6월 제어 블록의 분기점에서 신호 표기가 어긋나는 보기는 공식 정답 재확인 목록에 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.61',scope:'industrial',date:'2026.11.19',title:"공조 한솔 2017년 3회 공기조화·냉동·배관·전기",summary:"원도의 필터 면적 기준에 따라 8장과 10장을 구별하고, 냉동 성적계수를 실제 상태점의 엔탈피 차로 다시 설명했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.60',scope:'industrial',date:'2026.11.19',title:"공조 필기 2010년 3월·5월·7월",summary:"제조사 단면 설명에서 더블디스크형도 역류방지 밸브임을 확인해 3월 55번을 정답 재확인으로 남겼다. 7월 65번은 원도의 교류 최댓값을 실효값으로 바꿔 실제 소비전력 1.2 kW를 계산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2840,8 +2841,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.62';
+  changelog.versions.industrial = '6.2.63';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.62';
+  changelog.currentVersion = '6.2.63';
   window.CBT_CHANGELOG = changelog;
 })();
