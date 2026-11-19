@@ -869,6 +869,17 @@ test('교재 송풍기 500 Pa의 분수식과 인쇄 계산 차이',async({page}
   await expect(image).toBeVisible();
 });
 
+test('설비보전 전류이득 계산의 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20160821').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('41');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'베이스 접지 시 전류 증폭률'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('컬렉터로 흐르면');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 반전 합산기의 원도와 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20180819').getByRole('button',{name:'학습모드',exact:true}).click();

@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.99',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2017년 5월·3월과 2016년 8월·5월",summary:"트랜지스터 전류이득을 보호접지로 설명한 오류와 기어 펌프 토출량을 잇수비로 계산한 오류를 바로잡았습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.98',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2018년 8월·4월·3월",summary:"반전 합산기의 음의 부호와 마이크로미터의 회전각 환산을 원도에서 확인했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.97',scope:'industrial',date:'2026.11.19',title:"공조 교재 2024년 3회와 2025년 1~3회",summary:"카르노 효율을 절대온도로 재계산하고, 배관 수격과 펌프 맥동을 구별했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.96',scope:'industrial',date:'2026.11.19',title:"공조 교재 2024년 2회",summary:"산소의 정압 엔트로피 변화가 인쇄 단위로는 1.74 kJ/K임을 확인해 정답 확인 대상으로 기록했다. 병렬 코일의 펌프 양정과 두 합산점의 귀환식을 재계산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2876,8 +2877,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.98';
+  changelog.versions.industrial = '6.2.99';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.98';
+  changelog.currentVersion = '6.2.99';
   window.CBT_CHANGELOG = changelog;
 })();
