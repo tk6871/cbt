@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.59',scope:'industrial',date:'2026.11.19',title:"공조 필기 2008년 5월·7월 및 2009년 5월",summary:"배관 스케줄 20이 되려면 지문 압력 단위가 달라야 한다는 점을 설명했다. 두 증발기의 냉매 유량은 원도의 134.4와 138.3 kcal/kg을 읽어 약 522.6 kg/h로 검산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.58',scope:'industrial',date:'2026.11.19',title:'공조 필기 냉각 코일·축전기 해설',summary:'냉각 코일의 상태점과 축전기 회로를 원도에서 확인했습니다.',tags:['공조냉동'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.57',scope:'industrial',date:'2026.11.19',title:'산업안전기사 광속과 조도·최소컷셋 해설',summary:'광속과 광도를 구분하고 신뢰도 원도의 최소컷셋을 다시 계산했습니다.',tags:['산업안전기사'],changes:['네 회차에 비어 있던 해설 287개를 보완했습니다.']},
     {version:'6.2.56',scope:'industrial',date:'2026.11.19',title:'교재 정답과 풀이 바로 보기',summary:'원문의 보기를 누르면 정답 번호와 풀이가 함께 열립니다.',tags:['교재'],changes:['기존 답안 기록을 유지하면서 문제 번호와 중복 조각을 정리했습니다.','교재 원문 397쪽에 2배 해상도 이미지를 연결했습니다.']},
@@ -2836,8 +2837,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.58';
+  changelog.versions.industrial = '6.2.59';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.58';
+  changelog.currentVersion = '6.2.59';
   window.CBT_CHANGELOG = changelog;
 })();

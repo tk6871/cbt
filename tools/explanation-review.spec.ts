@@ -1035,3 +1035,15 @@ test('공조 필기 축전기의 전압 분배와 저장에너지', async ({page
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('공조 필기 두 증발기의 냉매 질량유량', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20090510').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('25');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '냉장실용 준비실'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('522.6 kg/h');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+  await expect(card.locator('img').first()).toBeVisible();
+});
