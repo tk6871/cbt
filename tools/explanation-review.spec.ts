@@ -902,6 +902,17 @@ test('설비보전 축전기 저장에너지 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 진동속도 환산 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20120826').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('29');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'변위(μm)와 속도(mm/s)'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('정현파 변위를 시간에 대해 미분');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 전류이득 계산의 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20160821').getByRole('button',{name:'학습모드',exact:true}).click();

@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.103',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2012년 세 회차",summary:"축 변위에서 진동속도로 환산하는 단위와 SCR 게이트 회로에 필요한 3.6 V를 대조했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.102',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2013년 세 회차",summary:"축전기의 에너지 식 세 가지를 대조하고 회전주파수와 기어 맞물림 주파수를 구별했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.101',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2015년 3월과 2014년 세 회차",summary:"C급 전력증폭기의 도통각을 화재 등급으로 설명한 오류를 고치고 이중 음귀환 회로의 전달함수를 유도했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.100',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2016년 3월과 2015년 8월·5월",summary:"부하전력 계산에서 전압계와 전류계의 내부저항을 구별하고 원도와 지문의 기호 충돌을 표시했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2880,8 +2881,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.102';
+  changelog.versions.industrial = '6.2.103';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.102';
+  changelog.currentVersion = '6.2.103';
   window.CBT_CHANGELOG = changelog;
 })();
