@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.2',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2005년 3월 20일·3월 6일",summary:"반전 증폭기의 입력 저항 R₂와 귀환 저항 R₁을 도면에서 확인해 저장 답 재확인으로 분류했다. 펌프의 수동력 2.94 kW를 다시 계산하고 지문에 없는 효율 80%를 삭제했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.1',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2007.03·2006.08·2006.03·2005.08",summary:"유압 동력식에서 유량 cm³/s에 쓰는 환산계수 10,200과 L/min에 쓰는 612를 구분했다. 공조 교재 부록 417개 중 기존 ID를 쓰는 295개를 제외한 122개를 목록에 추가했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.0',scope:'industrial',date:'2026.11.19',title:'학습 화면과 교재 풀이 개편',summary:'교재에서 인쇄 번호를 눌러 답을 저장하고 시험 기록에서 오답을 다시 풀 수 있습니다.',tags:['학습','교재'],changes:['설정 목차와 키보드 이동, 모바일 교재 선택을 개선했습니다.']},
     {version:'6.2.111',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2008년 3월·2007년 8월",summary:"베인 모터의 1회전 유량을 기준으로 600 rpm을 계산하고, 누락된 실린더 변위선도는 정답을 확인할 수 없는 문항으로 기록했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2891,8 +2892,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.1';
+  changelog.versions.industrial = '6.3.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.1';
+  changelog.currentVersion = '6.3.2';
   window.CBT_CHANGELOG = changelog;
 })();

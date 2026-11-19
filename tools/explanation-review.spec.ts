@@ -1012,6 +1012,17 @@ test('설비보전 유압 펌프의 전효율 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('반전 증폭기 원도와 정답 보기의 저항비',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20050306').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('51');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'연산 증폭기의 증폭도'});
+  await card.locator('.choice-button').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('저항비가 뒤집혀');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').last()).toBeVisible();
+});
+
 test('설비보전 유압 펌프의 단위 환산 계수',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20070304').getByRole('button',{name:'학습모드',exact:true}).click();
