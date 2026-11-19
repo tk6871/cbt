@@ -802,3 +802,16 @@ test('교재 순환유량 1.46 L/s의 분수식과 인쇄 풀이',async({page},i
  await image.evaluate((im:HTMLImageElement)=>im.decode());
  await card.screenshot({path:info.outputPath('book-heating-circulation.png')});
 });
+
+test('교재 열당량 분수식과 인쇄 보기',async({page},info)=>{
+ await prepare(page,'hvac-hansol');
+ await page.locator('#round-card-hvac-hansol-2017-1').getByRole('button',{name:'학습모드',exact:true}).click();
+ await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('22');
+ await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+ const card=page.locator('.question-card').filter({hasText:'일의 열당량(A)'});
+ await expect(card.locator('.choice-copy').nth(1)).toContainText('1/427');
+ await card.locator('.choice-button').nth(1).click();
+ await expect(card.locator('.explanation-box')).toContainText('단위 일에 대응하는 열량');
+ await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+ await card.screenshot({path:info.outputPath('heat-equivalent.png')});
+});

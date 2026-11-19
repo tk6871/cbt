@@ -8,8 +8,8 @@ test.use({serviceWorkers:'block'});
 test('전사 원문 해시 전수·임시/확인 구분·수식 원문 보존',({},info)=>{
  test.skip(info.project.name!=='desktop','파일 전수 검사는 한 번만 실행합니다.');
  const entries={...confirmed,...Object.assign({},...families.map(family=>JSON.parse(fs.readFileSync(`data/image-text/${family}.json`,'utf8'))))} as Record<string,ImageTranscription>;
- expect(Object.keys(entries)).toHaveLength(2344);
- expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(538);
+ expect(Object.keys(entries)).toHaveLength(2347);
+ expect(Object.values(entries).filter(e=>e.status==='reviewed')).toHaveLength(541);
  expect(entries['assets/hvac/assets/questions/2021_2/06.jpg'].question?.choices).toEqual(['6857','8857','10857','12857']);
  expect(entries['assets/hvac-hansol-book/explanations/2-73-6.webp'].text).toContain('308.67 K');
  expect(entries['assets/hvac/assets/questions/2021_1/22.jpg'].question?.choices).toEqual(['R-717','R-504','R-22','R-114']);

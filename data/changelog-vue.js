@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.36',scope:'industrial',date:'2026.11.19',title:'열당량과 제어회로 해설 교정',summary:'공조 교재와 에너지 기출의 계산을 보완했습니다.',tags:['공조','에너지'],changes:['세 문항의 보기에서 깨진 분수와 화학식을 복구했습니다.','응축기 열수지와 피토관 수두의 원본 수치를 확인했습니다.']},
     {version:'6.2.35',scope:'industrial',date:'2026.11.19',title:'공조 교재 풀이와 기출 계산 해설 교정',summary:'공조 교재 풀이 26개를 텍스트로 읽을 수 있습니다.',tags:['공조','에너지'],changes:['분수식과 원본 풀이를 함께 확인할 수 있습니다.','배기가스 농도와 냉매별 포화압력, 병렬회로 풀이를 교정했습니다.']},
     {version:'6.2.34',scope:'industrial',date:'2026.11.19',title:'공조 원문과 에너지 계산 해설 교정',summary:'습증기 건도와 분수 계산을 다시 확인했습니다.',tags:['공조','실기'],changes:['공조 원본 이미지 10개의 지문과 보기를 텍스트로도 제공합니다.','같은 부피에서 압력을 올릴 때 건도가 달라지는 두 사례를 구분했습니다.']},
     {version:'6.2.33',scope:'industrial',date:'2026.11.19',title:'공조 실기와 자체 보충 해설 교정',summary:'두 단의 압축비와 혼합냉매 과열·과냉도 기준을 명확히 했습니다.',tags:['공조','실기'],changes:['배관 높이와 중력의 방향이 맞지 않는 설명을 교정했습니다.','보기 순서가 다른 시험 문제의 보충 해설을 대조했습니다.']},
@@ -2813,8 +2814,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.35';
+  changelog.versions.industrial = '6.2.36';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.35';
+  changelog.currentVersion = '6.2.36';
   window.CBT_CHANGELOG = changelog;
 })();
