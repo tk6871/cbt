@@ -1379,6 +1379,7 @@ for (const sample of [
   {title: '공조 교재 평균전류 원도와 분수', round: '2021-2', number: '73', stem: '7200 C의 전기량', choice: '② 2', explanation: '3,600초'},
   {title: '공조 교재 저항비 원도와 분수', round: '2021-3', number: '75', stem: '5 Ω의 저항 5개', choice: '② 25', explanation: '25배'},
   {title: '공조 교재 인덕턴스 원도와 분수', round: '2022-1', number: '58', stem: '자기 인덕턴스 100 mH', choice: '③ 5.0', explanation: '5.0 J'},
+  {title: '공조 교재 유효전력 원도와 보기', round: '2022-2', number: '55', stem: '역률 80[%]인 부하', choice: '④ 400', explanation: '500 VA'},
 ]) {
   test(sample.title, async ({page}) => {
     await prepare(page, 'hvac-hansol');
@@ -1388,7 +1389,9 @@ for (const sample of [
     const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: sample.stem})});
     await card.getByRole('button',{name:sample.choice,exact:true}).click();
     await expect(card.locator('.explanation-box')).toContainText(sample.explanation);
-    await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+    if (sample.number !== '55') {
+      await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+    }
     await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
     const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
     await expect(selected.locator('.source-question-image')).toBeVisible();
