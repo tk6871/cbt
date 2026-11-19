@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.73',scope:'industrial',date:'2026.11.19',title:"공조 복원 2024년 1·2회",summary:"왕복동 압축기의 행정 800 mm와 냉동사이클 선도의 입구 엔탈피 106 kJ/kg를 원도에서 다시 읽어 계산했다. 냉동제조 신고 범위는 출제 당시 시행령 제4조제2호와 대조했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.72',scope:'industrial',date:'2026.11.19',title:"공조 복원 2023년 2·3회",summary:"몰리에르 선도의 중복 보기, 냉각수 비열의 원도 수치와 방열기 중단 표시를 확인하여 해설을 바로잡았습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.71',scope:'industrial',date:'2026.11.19',title:"공조 복원 2023년 1회",summary:"냉각장치의 브라인 입출구 온도차와 냉매와의 온도차를 구별하고 터보압축기 디퓨저가 빠진 보기를 기록했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.70',scope:'industrial',date:'2026.11.19',title:"공조 복원 2022년 2·3회",summary:"등온 이상기체의 내부에너지와 저장 답의 불일치, 메거를 묻는 원도의 전열·절연 표기 차이를 기록하고 자기유지 회로의 접점 설명을 교정했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2850,8 +2851,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.72';
+  changelog.versions.industrial = '6.2.73';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.72';
+  changelog.currentVersion = '6.2.73';
   window.CBT_CHANGELOG = changelog;
 })();

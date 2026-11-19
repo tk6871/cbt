@@ -261091,6 +261091,3911 @@
       ],
       "resolution": "특급·고급·중급 최소 인원과 당시 시행령 등록 요건 별표 원문 확인 전 보류.",
       "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:1",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 1,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "열관류율에 두께 효과 포함, 4×10×18=720 W",
+      "finding": "열관류율에 두께 효과 포함, 4×10×18=720 W",
+      "basis": "열관류율에 두께 효과 포함, 4×10×18=720 W. ①.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/01.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/01.jpg",
+          "displayAsset": "assets/problem-webp90/ad13a040f29abb3be6c84f0dcb48869f.webp",
+          "sha256": "55954670e53586760c816b6960dc754a42933080366ae5892d877717e70af66d"
+        }
+      ],
+      "resolution": "열관류율에 두께 효과 포함, 4×10×18=720 W. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:2",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 2,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "급격한 굽힘은 박리와 국부 손실을 일으킴",
+      "finding": "급격한 굽힘은 박리와 국부 손실을 일으킴",
+      "basis": "급격한 굽힘은 박리와 국부 손실을 일으킴. ③.",
+      "evidence": [
+        "659-os-m42208"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/02.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/02.jpg",
+          "displayAsset": "assets/problem-webp90/0472cc71c74f38e0103395946acc93f5.webp",
+          "sha256": "0483f9b2c93d6a6c9a399d02eceb67a72e1236e10b90517702d0de1e40278323"
+        }
+      ],
+      "resolution": "급격한 굽힘은 박리와 국부 손실을 일으킴. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:3",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 3,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "댐퍼·베인은 조작 장치, 정압 제어는 제어목표",
+      "finding": "댐퍼·베인은 조작 장치, 정압 제어는 제어목표",
+      "basis": "댐퍼·베인은 조작 장치, 정압 제어는 제어목표. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/03.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/03.jpg",
+          "displayAsset": "assets/problem-webp90/8cd43097adb06586e8b4cd034d5646e9.webp",
+          "sha256": "f7bcc2385a20ad351749a4cf25373f57ce112dd84f220a3f4f701bd3d0cd1f6e"
+        }
+      ],
+      "resolution": "댐퍼·베인은 조작 장치, 정압 제어는 제어목표. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:4",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 4,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "1",
+      "finding": "1",
+      "basis": "1.85t는 증기의 온도차에 의한 현열 항. ④.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/04.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/04.jpg",
+          "displayAsset": "assets/problem-webp90/621c55806dfca318950bdaf68b0e0956.webp",
+          "sha256": "b809b7e1f53e6647966ac5461ceb48123c199588004979c10bb8a841aef37817"
+        }
+      ],
+      "resolution": "1.85t는 증기의 온도차에 의한 현열 항. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:5",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 5,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "환수관 파손 시 보일러수 유출 제한",
+      "finding": "환수관 파손 시 보일러수 유출 제한",
+      "basis": "환수관 파손 시 보일러수 유출 제한. ① 하트포드 접속.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/05.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/05.jpg",
+          "displayAsset": "assets/problem-webp90/630eac1116bef2c5f6bc1fe8ca82f60d.webp",
+          "sha256": "56ebe5d72cb73892fef0352cb2057c645149b6c8a4d21001c8085adc52c36ee2"
+        }
+      ],
+      "resolution": "환수관 파손 시 보일러수 유출 제한. ① 하트포드 접속.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:6",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 6,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "양 표면온도차 280 K, 두께 0",
+      "finding": "양 표면온도차 280 K, 두께 0",
+      "basis": "양 표면온도차 280 K, 두께 0.1 m. 0.05×280/0.1=140 kJ/(m²·h). ③.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/06.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/06.jpg",
+          "displayAsset": "assets/problem-webp90/9c128207410b314d84bf58b1eda7f8ad.webp",
+          "sha256": "9dd65f300611d166adafbb0e337bcaad79ada74095b40c4acebf19e5a7784e56"
+        }
+      ],
+      "resolution": "양 표면온도차 280 K, 두께 0.1 m. 0.05×280/0.1=140 kJ/(m²·h). ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:7",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 7,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "일반 공조 덕트 판재 아연도금 강판",
+      "finding": "일반 공조 덕트 판재 아연도금 강판",
+      "basis": "일반 공조 덕트 판재 아연도금 강판. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/07.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/07.jpg",
+          "displayAsset": "assets/problem-webp90/e1ffcb567341808548267ef8160aa93b.webp",
+          "sha256": "85d09f8b8259835238c0d16b29328415612c7160eefa22e3754f5b2b02f77614"
+        }
+      ],
+      "resolution": "일반 공조 덕트 판재 아연도금 강판. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:8",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 8,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "조닝은 부하 특성과 시간대가 유사한 실을 함께 제어",
+      "finding": "조닝은 부하 특성과 시간대가 유사한 실을 함께 제어",
+      "basis": "조닝은 부하 특성과 시간대가 유사한 실을 함께 제어. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/08.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/08.jpg",
+          "displayAsset": "assets/problem-webp90/1bf2b4be3ee604d7012996720e147760.webp",
+          "sha256": "50d473408d14c20ca608da3bc3002340e67dbe754894cb592af5ae71b79be0a3"
+        }
+      ],
+      "resolution": "조닝은 부하 특성과 시간대가 유사한 실을 함께 제어. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:9",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 9,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "복사면에서 인체로 직접 복사열 전달",
+      "finding": "복사면에서 인체로 직접 복사열 전달",
+      "basis": "복사면에서 인체로 직접 복사열 전달. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/09.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/09.jpg",
+          "displayAsset": "assets/problem-webp90/277606091c4745e93929d6b38aaaaf87.webp",
+          "sha256": "00c59a35dd87589f0aa7ffe0dc75a2d05e58eb4f163653e085805c0d16dd80da"
+        }
+      ],
+      "resolution": "복사면에서 인체로 직접 복사열 전달. ③.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:10",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 10,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "소량 1차공기 유인식에서는 많은 외기를 이용한 냉방효과 제한",
+      "finding": "소량 1차공기 유인식에서는 많은 외기를 이용한 냉방효과 제한",
+      "basis": "소량 1차공기 유인식에서는 많은 외기를 이용한 냉방효과 제한. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/10.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/10.jpg",
+          "displayAsset": "assets/problem-webp90/81880f1ea7ada8b07cd9afc542a59f9d.webp",
+          "sha256": "751a3faa441c7fe1d5fd2c55b0b2872abf83a6ecab55140fa1d1563ba5648e0e"
+        }
+      ],
+      "resolution": "소량 1차공기 유인식에서는 많은 외기를 이용한 냉방효과 제한. ④.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:11",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 11,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "1000/(0",
+      "finding": "1000/(0",
+      "basis": "1000/(0.287×293.15)=11.886 kg/m³. ③.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/11.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/11.jpg",
+          "displayAsset": "assets/problem-webp90/f1f712e562fedd3df368ecc329a8047f.webp",
+          "sha256": "877575860fdd6768f57ee85c81321336aa4e7ff525ed0586494c9e7f52feb70e"
+        }
+      ],
+      "resolution": "1000/(0.287×293.15)=11.886 kg/m³. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:12",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 12,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "증기·응축수로 수격 발생 가능",
+      "finding": "증기·응축수로 수격 발생 가능",
+      "basis": "증기·응축수로 수격 발생 가능. 무소음 주장 ④.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/12.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/12.jpg",
+          "displayAsset": "assets/problem-webp90/0e1bc3496695b3ec3ca8828e59e4a2f3.webp",
+          "sha256": "6824d09ddd5544c73db87588a3bf31d89fd15269253a6afb04458e29405dea65"
+        }
+      ],
+      "resolution": "증기·응축수로 수격 발생 가능. 무소음 주장 ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:13",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 13,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "1",
+      "finding": "1",
+      "basis": "1.2×1.0×Q×(to−tr) kJ/s. 원문 외기가 실내보다 낮으면 난방손실의 크기는 양의 반대 부호.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/13.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/13.jpg",
+          "displayAsset": "assets/problem-webp90/f6f116a0b15a4c89a0102d17cac93f94.webp",
+          "sha256": "c00c3ec99e9d46d4db2e51415e90d29d79ab8b0e3c8994fcdbe3523962c45772"
+        }
+      ],
+      "resolution": "②는 외기가 실내로 가져오는 현열을 부호까지 나타낸 식이다. 체적유량에 밀도와 정압비열, 외기온도에서 실내온도를 뺀 차를 곱한다. 겨울에 외기가 더 차면 값이 음수이고, 난방으로 보충할 열량의 크기는 그 절댓값이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:14",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 14,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "덕트병용 팬코일과 유인유닛 모두 1차공기와 냉온수 이용",
+      "finding": "덕트병용 팬코일과 유인유닛 모두 1차공기와 냉온수 이용",
+      "basis": "덕트병용 팬코일과 유인유닛 모두 1차공기와 냉온수 이용. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/14.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/14.jpg",
+          "displayAsset": "assets/problem-webp90/f89ad79a94dc619b9f6d061ef2bbfc3f.webp",
+          "sha256": "27a9d3aa48839503d30c29fabd5f48ed83f761c91304f4e134432ec1eda47683"
+        }
+      ],
+      "resolution": "덕트병용 팬코일과 유인유닛 모두 1차공기와 냉온수 이용. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:15",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 15,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "주간 전동 압축기 구동과 연료·열원 대체 또는 부하 시간 이전 구분",
+      "finding": "주간 전동 압축기 구동과 연료·열원 대체 또는 부하 시간 이전 구분",
+      "basis": "주간 전동 압축기 구동과 연료·열원 대체 또는 부하 시간 이전 구분. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/15.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/15.jpg",
+          "displayAsset": "assets/problem-webp90/9144bb2a8df481ffe346121dd1036eef.webp",
+          "sha256": "3f432b5dccc1a5f9a22cd3f87f0d54bbd2374a53ca210bbf2ea93c63678e3a86"
+        }
+      ],
+      "resolution": "주간 전동 압축기 구동과 연료·열원 대체 또는 부하 시간 이전 구분. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:16",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 16,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "일정 압력·수분비로 냉각해 포화되는 온도는 노점",
+      "finding": "일정 압력·수분비로 냉각해 포화되는 온도는 노점",
+      "basis": "일정 압력·수분비로 냉각해 포화되는 온도는 노점. ②.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/16.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/16.jpg",
+          "displayAsset": "assets/problem-webp90/649f8a1139a73841920f284ced3d5751.webp",
+          "sha256": "90feaca6822eb9fed19db656efa5e7437f249b2acb814044e32207211d7addc8"
+        }
+      ],
+      "resolution": "일정 압력·수분비로 냉각해 포화되는 온도는 노점. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:17",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 17,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "설계 난방최대부하에서 인체 발열은 보통 손실을 보충하는 내부열",
+      "finding": "설계 난방최대부하에서 인체 발열은 보통 손실을 보충하는 내부열",
+      "basis": "설계 난방최대부하에서 인체 발열은 보통 손실을 보충하는 내부열. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/17.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/17.jpg",
+          "displayAsset": "assets/problem-webp90/0011ee913850a1c5686ebdbcb2b32c41.webp",
+          "sha256": "cf2834e947e9644075b2296e85319e9d5bbb625e3c2bc64ed15bad9c7d214779"
+        }
+      ],
+      "resolution": "설계 난방최대부하에서 인체 발열은 보통 손실을 보충하는 내부열. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:18",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 18,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "상사조건 축동력 회전수 세제곱 비례, 댐퍼 교축손실 회피",
+      "finding": "상사조건 축동력 회전수 세제곱 비례, 댐퍼 교축손실 회피",
+      "basis": "상사조건 축동력 회전수 세제곱 비례, 댐퍼 교축손실 회피. ①.",
+      "evidence": [
+        "659-fan4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/18.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/18.jpg",
+          "displayAsset": "assets/problem-webp90/660e4419f3a007d8983d8b465d251e88.webp",
+          "sha256": "4bcb1c5c8e4de06ef80350b0d6558004d145815e741361983ae37f3d9fe2e51c"
+        }
+      ],
+      "resolution": "상사조건 축동력 회전수 세제곱 비례, 댐퍼 교축손실 회피. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:19",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 19,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도에는 해설에서 언급하는 그래프가 없음",
+      "finding": "원도에는 해설에서 언급하는 그래프가 없음",
+      "basis": "원도에는 해설에서 언급하는 그래프가 없음. 계통저항은 흐름에 따라 증가하나 송풍기 자체 압력곡선과 다름.",
+      "evidence": [
+        "659-fan4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/19.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/19.jpg",
+          "displayAsset": "assets/problem-webp90/3d97e2801801323954edc895cb35d75a.webp",
+          "sha256": "2dd0483fdbfcd41bbcf404d2463174aed06ef26c2fec3e3977ece92a3aea3dcb"
+        }
+      ],
+      "resolution": "②는 일정한 회전수에서 일반적인 송풍기의 안정 운전 구간을 기준으로 한다. 이 구간에서는 풍량이 증가할수록 송풍기가 낼 수 있는 정압이 보통 낮아진다. 덕트 계통이 요구하는 압력은 풍량에 따라 증가하며, 두 곡선의 교점이 운전점이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:20",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 20,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고장 빈도와 수명은 기종·정비 조건 영향",
+      "finding": "고장 빈도와 수명은 기종·정비 조건 영향",
+      "basis": "고장 빈도와 수명은 기종·정비 조건 영향. 분산식의 고장이 잦다고 단정하지 않음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/20.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/20.jpg",
+          "displayAsset": "assets/problem-webp90/a162ed4c79d03371dc58b3049da03ad3.webp",
+          "sha256": "738e43cc517ba00cee74a165ab43c5a8066d03f87f21e63b63a6b501c6ef0dad"
+        }
+      ],
+      "resolution": "②가 이 방식의 고유한 특징은 아니다. 패키지 공조는 장비를 분산 설치할 수 있어 전용 중앙 기계실 공간을 줄이기 쉽다. 고장 빈도와 수명은 장비 선정, 운전 시간, 정비 상태에 따라 달라진다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:21",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 21,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "응축기에서 수액기로 액이 들어가면 수액기 기체가 배출되어야 함",
+      "finding": "응축기에서 수액기로 액이 들어가면 수액기 기체가 배출되어야 함",
+      "basis": "응축기에서 수액기로 액이 들어가면 수액기 기체가 배출되어야 함. 기존 설명의 압력 위치 모호.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/21.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/21.jpg",
+          "displayAsset": "assets/problem-webp90/0e98882e7fd6c1f1c2aaa1703b417e21.webp",
+          "sha256": "e19b001c6208bad0c634443575122dd5d6992c6b029b717c854c5f83bcba99e0"
+        }
+      ],
+      "resolution": "③이다. 수액기에 응축액이 유입될 때 그 부피만큼 수액기 기체가 균압관을 통해 빠져나가야 한다. 균압관이 지나치게 작으면 수액기와 응축기 사이에 압력차가 생겨 액의 자연 유하를 방해한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:22",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 22,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "입출구 온도차는 손실수량 분류가 아님",
+      "finding": "입출구 온도차는 손실수량 분류가 아님",
+      "basis": "입출구 온도차는 손실수량 분류가 아님. 증발·비산·블로다운 발생. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/22.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/22.jpg",
+          "displayAsset": "assets/problem-webp90/19b3725d2dbf2a2a7bca19d44fef9fc2.webp",
+          "sha256": "e728d96fd5fc4806e24f6991f8261d687c5f3c332eb4fd45061eb5a71354df34"
+        }
+      ],
+      "resolution": "입출구 온도차는 손실수량 분류가 아님. 증발·비산·블로다운 발생. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:23",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 23,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 순수 냉매의 포화 증발온도는 포화압력과 함께 내려감",
+      "finding": "같은 순수 냉매의 포화 증발온도는 포화압력과 함께 내려감",
+      "basis": "같은 순수 냉매의 포화 증발온도는 포화압력과 함께 내려감. ①.",
+      "evidence": [
+        "659-sat"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/23.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/23.jpg",
+          "displayAsset": "assets/problem-webp90/44f9753e1cf7dec1e07a2edb12973a2f.webp",
+          "sha256": "422fd6996029fa9c1ebbc17cea840381b2b172121ac57d960694c525bba87fef"
+        }
+      ],
+      "resolution": "같은 순수 냉매의 포화 증발온도는 포화압력과 함께 내려감. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:24",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 24,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "온도 두 개와 부하만으로 실제 동력 결정 불가",
+      "finding": "온도 두 개와 부하만으로 실제 동력 결정 불가",
+      "basis": "온도 두 개와 부하만으로 실제 동력 결정 불가. 카르노 최소소요동력이라는 전제 누락.",
+      "evidence": [
+        "652-carnot"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/24.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/24.jpg",
+          "displayAsset": "assets/problem-webp90/a808666578c9b1aa7907f8a5119f0b64.webp",
+          "sha256": "9b41dcb6f9d8186ac04a2a8e0ee4c9cd025d0dec27d5b51503fdea6aba31d131"
+        }
+      ],
+      "resolution": "저온 263.15 K, 고온 288.15 K 사이에서 가역 운전을 가정하면 냉동 COP는 약 10.53이다. 냉동부하 116.67 kW를 이 값으로 나눈 최소동력은 약 11.08 kW여서 ③에 가깝다. 실제 동력은 냉동기의 COP가 주어져야 정할 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:25",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 25,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "고체에서 기체로 직접 상변화",
+      "finding": "고체에서 기체로 직접 상변화",
+      "basis": "고체에서 기체로 직접 상변화. ③ 승화.",
+      "evidence": [
+        "659-sat"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/25.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/25.jpg",
+          "displayAsset": "assets/problem-webp90/db3816ca76cc3dd3c7b31a21afd7c368.webp",
+          "sha256": "9d560b0429b24cec971f59539016762ac4ab442aad082b0d35c4c742bf030bc4"
+        }
+      ],
+      "resolution": "고체에서 기체로 직접 상변화. ③ 승화.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:26",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 26,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "2023년 1회 28번과 동일 보기",
+      "finding": "2023년 1회 28번과 동일 보기",
+      "basis": "2023년 1회 28번과 동일 보기. 고압뿐 아니라 분자량 단독으로도 이상성 비교 불가능.",
+      "evidence": [
+        "649-process",
+        "hvac-20231:28"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/26.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/26.jpg",
+          "displayAsset": "assets/problem-webp90/5ddec9699fc3d98a03cb041a0c149fe1.webp",
+          "sha256": "ded2d98eb4d6b942bb1ca68204004b8db6098066c92532e19766eaea76b269d2"
+        }
+      ],
+      "resolution": "② 고압은 일반적으로 이상기체에 가까워지는 조건이 아니다. 낮은 밀도에서 분자 간 상호작용이 작아질 때 이상기체 근사가 좋아진다. ①의 분자량만으로 근사의 정확도를 판단할 수도 없어 보기의 단일성을 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:27",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 27,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "가역단열 압축의 엔트로피 일정",
+      "finding": "가역단열 압축의 엔트로피 일정",
+      "basis": "가역단열 압축의 엔트로피 일정. ④.",
+      "evidence": [
+        "649-process"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/27.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/27.jpg",
+          "displayAsset": "assets/problem-webp90/8bb3a852f7a2c25fbf1a56e3d0f97b69.webp",
+          "sha256": "3325a27969a48f5883f016cc1a81acb14c4db3131177b146f81a55ca9261fd3f"
+        }
+      ],
+      "resolution": "가역단열 압축의 엔트로피 일정. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:28",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 28,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "빙축열에서도 수질·부식 관리가 필요할 수 있음",
+      "finding": "빙축열에서도 수질·부식 관리가 필요할 수 있음",
+      "basis": "빙축열에서도 수질·부식 관리가 필요할 수 있음. 수처리 불필요 단정 ①이 틀림.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/28.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/28.jpg",
+          "displayAsset": "assets/problem-webp90/2f47781257a8a18605b6e804d2bc1c11.webp",
+          "sha256": "6af4d13e5de70d580b6cbb55577c30787fbee87c3b0ff898c641b3c1af3025b0"
+        }
+      ],
+      "resolution": "빙축열에서도 수질·부식 관리가 필요할 수 있음. 수처리 불필요 단정 ①이 틀림.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:29",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 29,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "부족 충전 시 과열도는 증가하지만 흡입압력 하락으로 포화온도도 내려가므로 절대온도 방향은 조건부",
+      "finding": "부족 충전 시 과열도는 증가하지만 흡입압력 하락으로 포화온도도 내려가므로 절대온도 방향은 조건부",
+      "basis": "부족 충전 시 과열도는 증가하지만 흡입압력 하락으로 포화온도도 내려가므로 절대온도 방향은 조건부.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/29.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/29.jpg",
+          "displayAsset": "assets/problem-webp90/f03f4ff2013d9c507c99c45da4f26d4b.webp",
+          "sha256": "5b7036cae58c2f8560c25ba7b6eaaa2f4723e07f03a21c08012f1a7875a6dc84"
+        }
+      ],
+      "resolution": "②가 묻는 현상은 냉매 공급 부족으로 증발기에서 액이 일찍 소진되어 흡입 과열도가 커지는 것이다. 실제 흡입가스 온도는 증발압력에 해당하는 포화온도와 과열도의 합이므로 포화온도 변화도 함께 고려한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:30",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 30,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "같은 질량과 정압 조건에서도 비열의 크기는 냉매·상태에 의존",
+      "finding": "같은 질량과 정압 조건에서도 비열의 크기는 냉매·상태에 의존",
+      "basis": "같은 질량과 정압 조건에서도 비열의 크기는 냉매·상태에 의존. 건포화증기도 열을 받으면 과열증기.",
+      "evidence": [
+        "659-sat"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/30.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/30.jpg",
+          "displayAsset": "assets/problem-webp90/4d308251d60f7a367046c74a4e4ec660.webp",
+          "sha256": "70e3ee89e1523daf97ee142d887c3a67208bc0296e7cb458e238d4f5e4479a74"
+        }
+      ],
+      "resolution": "습증기는 정압에서 증발하는 동안 열을 받아도 온도가 일정하다. 단상 유체에서는 같은 질량에 같은 열을 줄 때 정압비열이 작을수록 온도가 많이 오른다. 냉매와 압력·온도 없이 과열증기의 비열이 반드시 가장 작다고 할 수 없어 ③의 조건을 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:31",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 31,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "√(2×442300)=940",
+      "finding": "√(2×442300)=940",
+      "basis": "√(2×442300)=940.53 m/s. ②.",
+      "evidence": [
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/31.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/31.jpg",
+          "displayAsset": "assets/problem-webp90/2f915cd161403b21f08dc01a1d1f78c6.webp",
+          "sha256": "42e6d9d5aa1a877dc917d27c375822c9f4b2a6226329fe7b6bae4a431e9843ba"
+        }
+      ],
+      "resolution": "√(2×442300)=940.53 m/s. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:32",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 32,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "저압 흡수와 고압 발생",
+      "finding": "저압 흡수와 고압 발생",
+      "basis": "저압 흡수와 고압 발생. 분리되는 증기는 물 냉매. ②.",
+      "evidence": [
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/32.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/32.jpg",
+          "displayAsset": "assets/problem-webp90/34a1c8ce2bb32d15bd2833ccba0abca5.webp",
+          "sha256": "8e2a4dfb2314124493c451bf27fbbdcbc8204fa04b6c872093accaf325232db4"
+        }
+      ],
+      "resolution": "저압 흡수와 고압 발생. 분리되는 증기는 물 냉매. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:33",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 33,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "폐수열은 배수의 폐열 회수, 지열원 분류와 구별",
+      "finding": "폐수열은 배수의 폐열 회수, 지열원 분류와 구별",
+      "basis": "폐수열은 배수의 폐열 회수, 지열원 분류와 구별. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/33.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/33.jpg",
+          "displayAsset": "assets/problem-webp90/a036d1641bfa26957c72b1c9d1cbfbb7.webp",
+          "sha256": "44ad34cb710d93836ec97ec9b0bff3481704ba77743b093352dc13987d43b5f1"
+        }
+      ],
+      "resolution": "폐수열은 배수의 폐열 회수, 지열원 분류와 구별. ②.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:34",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 34,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "높은 토출온도에서 냉동기유 열화 가능",
+      "finding": "높은 토출온도에서 냉동기유 열화 가능",
+      "basis": "높은 토출온도에서 냉동기유 열화 가능. ①.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/34.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/34.jpg",
+          "displayAsset": "assets/problem-webp90/0ccf785d150ee9581c2fcb114afc8d57.webp",
+          "sha256": "19709c8580f1e351fb3f423f37b4d96c968fa4b78f25233203a6a5a45051a96b"
+        }
+      ],
+      "resolution": "높은 토출온도에서 냉동기유 열화 가능. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:35",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 35,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "CO₂와 할로카본 계통의 구리 도금 발생을 조건별로 비교한 원자료 미확보",
+      "finding": "CO₂와 할로카본 계통의 구리 도금 발생을 조건별로 비교한 원자료 미확보",
+      "basis": "CO₂와 할로카본 계통의 구리 도금 발생을 조건별로 비교한 원자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/35.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/35.jpg",
+          "displayAsset": "assets/problem-webp90/7d044b894118dc827e535a592b53cd29.webp",
+          "sha256": "2802f9da91febe42f67e6ea5e02bd0b73b6924b8e4615925ef3db4359f4725f4"
+        }
+      ],
+      "resolution": "CO₂와 할로카본 계통의 구리 도금 발생을 조건별로 비교한 원자료 미확보.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:36",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 36,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "800×1",
+      "finding": "800×1",
+      "basis": "800×1.8/1.5=960 rpm. 동력은 유량비에 필요 없음. ②.",
+      "evidence": [
+        "energyplus-pump"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/36.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/36.jpg",
+          "displayAsset": "assets/problem-webp90/0caffe0965d4c9c9d6006f0c9f14730a.webp",
+          "sha256": "8ab8b8c8fe4602c1b490bc6da63f552aec2f724c6f1c558d57bbf6cf357eeee8"
+        }
+      ],
+      "resolution": "800×1.8/1.5=960 rpm. 동력은 유량비에 필요 없음. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:37",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 37,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "건도는 습포화 혼합물 중 증기 질량분율",
+      "finding": "건도는 습포화 혼합물 중 증기 질량분율",
+      "basis": "건도는 습포화 혼합물 중 증기 질량분율. 포화액 0. ③.",
+      "evidence": [
+        "659-sat"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/37.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_1/37.jpg",
+          "displayAsset": "assets/problem-webp90/d01fc59bd40a678891c8e114a8acc1af.webp",
+          "sha256": "1d14fa9b2edc8c1c32f5afa2d807e82dab64962bfca2b392f558d71590a00fca"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_1/37.jpg",
+          "displayAsset": "assets/problem-webp90/d94814740c07f8dd41cd4bedd3908ae1.webp",
+          "sha256": "2c2a2a1809ec4e2ebc5a780d3f7a81df1cc38410f3c9de798323009066fc0977"
+        }
+      ],
+      "resolution": "건도는 습포화 혼합물 중 증기 질량분율. 포화액 0. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:38",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 38,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "0",
+      "finding": "0",
+      "basis": "0.1875/(1/0.35−1/20−1/5.4)=0.0715 W/(m·K). ④.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/38.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/38.jpg",
+          "displayAsset": "assets/problem-webp90/8b9b62c7f780b85c28d3ca6509852c9b.webp",
+          "sha256": "175462c4c8d2a1b5cfc47d1a0001678e258fb55515096fadacf4f4895f68302d"
+        }
+      ],
+      "resolution": "0.1875/(1/0.35−1/20−1/5.4)=0.0715 W/(m·K). ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:39",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 39,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "냉매 방열 시 엔트로피 감소",
+      "finding": "냉매 방열 시 엔트로피 감소",
+      "basis": "냉매 방열 시 엔트로피 감소. 교축은 비가역, 압축은 이상 등엔트로피. ②.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/39.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/39.jpg",
+          "displayAsset": "assets/problem-webp90/221a7f2b445f47e0d87a524f36fffa83.webp",
+          "sha256": "6d532c6bbc519a909a34bcf02c702ea89383707dae7529a81f18d871332029d5"
+        }
+      ],
+      "resolution": "냉매 방열 시 엔트로피 감소. 교축은 비가역, 압축은 이상 등엔트로피. ②.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:40",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 40,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "낮은 점도로 압력손실과 펌핑 동력 감소",
+      "finding": "낮은 점도로 압력손실과 펌핑 동력 감소",
+      "basis": "낮은 점도로 압력손실과 펌핑 동력 감소. ②.",
+      "evidence": [
+        "659-os-m42208"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/40.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/40.jpg",
+          "displayAsset": "assets/problem-webp90/02517bde3945a91ebef462d0b8f31c59.webp",
+          "sha256": "507603c9da884684b2632aec6274d4d903fa88432f4c952bbc4ea855d4e16281"
+        }
+      ],
+      "resolution": "낮은 점도로 압력손실과 펌핑 동력 감소. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:41",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 41,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "코터는 로드 등 기계 부품을 결합",
+      "finding": "코터는 로드 등 기계 부품을 결합",
+      "basis": "코터는 로드 등 기계 부품을 결합. 강관의 일반 이음은 나사·용접·플랜지. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/41.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/41.jpg",
+          "displayAsset": "assets/problem-webp90/2aacb3810d82bd3d22ef22029f98af2e.webp",
+          "sha256": "807bc2897d6bb3f482774b5c3bfae11e71b35194b34cb78511d237a37ccb1816"
+        }
+      ],
+      "resolution": "코터는 로드 등 기계 부품을 결합. 강관의 일반 이음은 나사·용접·플랜지. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:42",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 42,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "대기에 개방된 탱크에 자체 압력방출밸브 불필요",
+      "finding": "대기에 개방된 탱크에 자체 압력방출밸브 불필요",
+      "basis": "대기에 개방된 탱크에 자체 압력방출밸브 불필요. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/42.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/42.jpg",
+          "displayAsset": "assets/problem-webp90/33fffcda257f9e02122c4012343537d7.webp",
+          "sha256": "b421527ba1c8ad303af840b769a53f5f72706c5738addc62fcdf6027ba210512"
+        }
+      ],
+      "resolution": "대기에 개방된 탱크에 자체 압력방출밸브 불필요. ①.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:43",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 43,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "2 m/s를 도출할 관경·관종·사용량이나 당시 설계표 없음",
+      "finding": "2 m/s를 도출할 관경·관종·사용량이나 당시 설계표 없음",
+      "basis": "2 m/s를 도출할 관경·관종·사용량이나 당시 설계표 없음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/43.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/43.jpg",
+          "displayAsset": "assets/problem-webp90/782ba40804138a0f2192dde957798b47.webp",
+          "sha256": "decebab88841c25a5195f066863c265f33feb5d0449e1309f4d197e2f0a75f5f"
+        }
+      ],
+      "resolution": "2 m/s를 도출할 관경·관종·사용량이나 당시 설계표 없음.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:44",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 44,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "350 ℃ 이하·10~100 kgf/cm²라는 허용 범위를 정한 출제 당시 규격 미확보",
+      "finding": "350 ℃ 이하·10~100 kgf/cm²라는 허용 범위를 정한 출제 당시 규격 미확보",
+      "basis": "350 ℃ 이하·10~100 kgf/cm²라는 허용 범위를 정한 출제 당시 규격 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/44.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/44.jpg",
+          "displayAsset": "assets/problem-webp90/f8bcda1674247babe0b71fdb714b5e13.webp",
+          "sha256": "4ec6ff33e63fa2807a1a7a0b7f5d0f7914600dd728908715a0ffd9acdc08dcff"
+        }
+      ],
+      "resolution": "350 ℃ 이하·10~100 kgf/cm²라는 허용 범위를 정한 출제 당시 규격 미확보.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:45",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 45,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "흡수식은 냉동사이클의 열구동 방식",
+      "finding": "흡수식은 냉동사이클의 열구동 방식",
+      "basis": "흡수식은 냉동사이클의 열구동 방식. 저단 토출가스 냉각의 형식과 구별. ②.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/45.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/45.jpg",
+          "displayAsset": "assets/problem-webp90/2bac03ee827f2cc3ada7e9059482d120.webp",
+          "sha256": "4a85865f0b501f393419285889c788d8e0e526840a84a2683a357d8282959542"
+        }
+      ],
+      "resolution": "흡수식은 냉동사이클의 열구동 방식. 저단 토출가스 냉각의 형식과 구별. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:46",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 46,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "증기 수평관 관저 정렬로 응축수 고임 방지",
+      "finding": "증기 수평관 관저 정렬로 응축수 고임 방지",
+      "basis": "증기 수평관 관저 정렬로 응축수 고임 방지. 편심 레듀서 ①.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/46.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/46.jpg",
+          "displayAsset": "assets/problem-webp90/6e55f03deee6c90bdbdf3697d2af50e2.webp",
+          "sha256": "55a46738a6e048c501e7eab6cce72689b10a218b7c74894e8ce2c7ac49d3589f"
+        }
+      ],
+      "resolution": "증기 수평관 관저 정렬로 응축수 고임 방지. 편심 레듀서 ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:47",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 47,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "세정기 헹굼의 고온수는 열소독형 전제",
+      "finding": "세정기 헹굼의 고온수는 열소독형 전제",
+      "basis": "세정기 헹굼의 고온수는 열소독형 전제. ② 음료용과 비교할 급탕 용도별 온도표 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/47.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/47.jpg",
+          "displayAsset": "assets/problem-webp90/0ff592fb60bee4005667ea720f7992d2.webp",
+          "sha256": "e59faf5717b918a67b2e0b3543c44f2ebfd63d1304891fff8ae434e0750713de"
+        }
+      ],
+      "resolution": "세정기 헹굼의 고온수는 열소독형 전제. ② 음료용과 비교할 급탕 용도별 온도표 미확보.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:48",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 48,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "P·S·U형은 관의 굽힘으로 봉수 형성",
+      "finding": "P·S·U형은 관의 굽힘으로 봉수 형성",
+      "basis": "P·S·U형은 관의 굽힘으로 봉수 형성. 통상적 분류에 없는 V ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/48.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/48.jpg",
+          "displayAsset": "assets/problem-webp90/f80dd008298ff515484e05133480d70c.webp",
+          "sha256": "c30d26c3e26ba5bebb0a5fa907e152d86c85414e79463a8d08a7d0245bb1aedd"
+        }
+      ],
+      "resolution": "P·S·U형은 관의 굽힘으로 봉수 형성. 통상적 분류에 없는 V ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:49",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 49,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "대형 개방 공기쿠션식의 공기 보충과 밀폐 다이어프램식 구분",
+      "finding": "대형 개방 공기쿠션식의 공기 보충과 밀폐 다이어프램식 구분",
+      "basis": "대형 개방 공기쿠션식의 공기 보충과 밀폐 다이어프램식 구분.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/49.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/49.jpg",
+          "displayAsset": "assets/problem-webp90/fbe8c8a53e5dd39cd321aec71f557237.webp",
+          "sha256": "3ee8011f2155bc4bca0d3e4b9021bd4c2bb8f31a53e8fdd9f154e491e5c74535"
+        }
+      ],
+      "resolution": "③이 틀리다. 물과 공기가 직접 접하는 압력탱크는 공기가 물에 녹거나 빠져나가 압축공기를 보충해야 할 수 있다. 압축기 필요 여부는 탱크 용량뿐 아니라 공기와 물을 분리하는 구조에도 좌우된다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:50",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 50,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "파형률 실효값/정류평균값",
+      "finding": "파형률 실효값/정류평균값",
+      "basis": "파형률 실효값/정류평균값. 파고율은 최대값/실효값. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/50.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/50.jpg",
+          "displayAsset": "assets/problem-webp90/3632d8d8bed56ef805c835ca8b228e97.webp",
+          "sha256": "2c735dbb1cdeb2712a3d3e31ad54db8678c466ee2c43e69ffd93ff1415dda4c3"
+        }
+      ],
+      "resolution": "파형률 실효값/정류평균값. 파고율은 최대값/실효값. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:51",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 51,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "제어량이 따라야 할 기준은 목표값",
+      "finding": "제어량이 따라야 할 기준은 목표값",
+      "basis": "제어량이 따라야 할 기준은 목표값. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/51.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/51.jpg",
+          "displayAsset": "assets/problem-webp90/b59de01ceb8379202e50cf0be0151d6b.webp",
+          "sha256": "705270a5f122b978c6583b9826fca7986a17543d71a6dd04ef5b366c48a343fa"
+        }
+      ],
+      "resolution": "제어량이 따라야 할 기준은 목표값. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:52",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 52,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "전압에 따른 비선형 저항으로 순간 과전압 제한",
+      "finding": "전압에 따른 비선형 저항으로 순간 과전압 제한",
+      "basis": "전압에 따른 비선형 저항으로 순간 과전압 제한. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/52.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_1/52.jpg",
+          "displayAsset": "assets/problem-webp90/ade30f5fcd313e6849cf3bb2c47e9b47.webp",
+          "sha256": "12fa5e293edb124dca8a657eca5a13da96c59df9836239a61bed8020055ed4f0"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_1/52.jpg",
+          "displayAsset": "assets/problem-webp90/57f98dd8446f89ef28ead318e3322265.webp",
+          "sha256": "eb2e4f87ccbd67c2a037ca50e58afb207954fe03eb611fdd5f18a311cccfb55c"
+        }
+      ],
+      "resolution": "전압에 따른 비선형 저항으로 순간 과전압 제한. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:53",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 53,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "음의 2개 고리에서 C=G2G3[G1(R−C)−C]",
+      "finding": "음의 2개 고리에서 C=G2G3[G1(R−C)−C]",
+      "basis": "음의 2개 고리에서 C=G2G3[G1(R−C)−C]. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/53.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_1/53.jpg",
+          "displayAsset": "assets/problem-webp90/2a53ff01cd27a64f511728ee3d72b69a.webp",
+          "sha256": "5a50155fd20ed4bd415183bbda3393351eaa378a36fb68acd4ec380e0b669f35"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_1/53.jpg",
+          "displayAsset": "assets/problem-webp90/060d7d082756274ddf644b5b84dff47e.webp",
+          "sha256": "9c4631daa0b9a537c66f91630fcde18f945439116e7261fdcd53d9159a9e4284"
+        }
+      ],
+      "resolution": "음의 2개 고리에서 C=G2G3[G1(R−C)−C]. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:54",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 54,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "2개 병렬 가지 합계 15 A",
+      "finding": "2개 병렬 가지 합계 15 A",
+      "basis": "2개 병렬 가지 합계 15 A. 전압계 1.5 A 제외하여 30/13.5=2.222 Ω. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/54.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_1/54.jpg",
+          "displayAsset": "assets/problem-webp90/e41399829cfe9c435eeabd39986ac22a.webp",
+          "sha256": "8ea1c50df013394eda63019d2edde43b10d119458a4c0bda09c039a2d711609b"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_1/54.jpg",
+          "displayAsset": "assets/problem-webp90/8742ffb2dd1f9b88a36d379917d2e9b1.webp",
+          "sha256": "e014f4fd1cc3fcd6e0e991f2a507ac7ea3e1ce42c1b06f2f1260dacc4921c6ff"
+        }
+      ],
+      "resolution": "2개 병렬 가지 합계 15 A. 전압계 1.5 A 제외하여 30/13.5=2.222 Ω. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:55",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 55,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "비례제어에서 정상 부하변화 보상에 오차가 남을 수 있음",
+      "finding": "비례제어에서 정상 부하변화 보상에 오차가 남을 수 있음",
+      "basis": "비례제어에서 정상 부하변화 보상에 오차가 남을 수 있음. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/55.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/55.jpg",
+          "displayAsset": "assets/problem-webp90/995208871e8f8d2d526de518563b4366.webp",
+          "sha256": "52f1b057eaa2a3d1c38e6291f17a890f341a5e78f7651072316f20cc93aedee9"
+        }
+      ],
+      "resolution": "비례제어에서 정상 부하변화 보상에 오차가 남을 수 있음. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:56",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 56,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "전기력선 밀도가 전계의 세기를 나타내는 도식",
+      "finding": "전기력선 밀도가 전계의 세기를 나타내는 도식",
+      "basis": "전기력선 밀도가 전계의 세기를 나타내는 도식. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/56.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/56.jpg",
+          "displayAsset": "assets/problem-webp90/b2742208963acb4da43cb13f9a3b99b0.webp",
+          "sha256": "456ce4b7f91c46026e832ce791c3925d59031662f7fcbd18bf4c7c73a9d39dcf"
+        }
+      ],
+      "resolution": "전기력선 밀도가 전계의 세기를 나타내는 도식. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:57",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 57,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "2차 저항을 늘려 최대토크 발생 슬립 이동",
+      "finding": "2차 저항을 늘려 최대토크 발생 슬립 이동",
+      "basis": "2차 저항을 늘려 최대토크 발생 슬립 이동. 최대토크 자체는 일정 전압·주파수 근사에서 불변. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/57.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_1/57.jpg",
+          "displayAsset": "assets/problem-webp90/ed1c34e083a26794f73de31346065d68.webp",
+          "sha256": "2abd104aa309d19a003dfcaa9648d53f332fc69515605dae545615d7cd23256c"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_1/57.jpg",
+          "displayAsset": "assets/problem-webp90/2a53fb77f846ef65a53b3f5de6474c09.webp",
+          "sha256": "3702544e338aa27bb1d1bc01583f88132a0709443be5de50154ab43f2a15bc2d"
+        }
+      ],
+      "resolution": "2차 저항을 늘려 최대토크 발생 슬립 이동. 최대토크 자체는 일정 전압·주파수 근사에서 불변. ④.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20241:58",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 58,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "50 Hz의 주기 0",
+      "finding": "50 Hz의 주기 0",
+      "basis": "50 Hz의 주기 0.02 s의 1/6=1/300 s. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/58.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/58.jpg",
+          "displayAsset": "assets/problem-webp90/f84678c8fc9b14e02f13a3c447aeedf0.webp",
+          "sha256": "2bcefc2fb7e87a87fb020eb2bba7fa780d4bea78ac9fafe62816ccd8080ba011"
+        }
+      ],
+      "resolution": "50 Hz의 주기 0.02 s의 1/6=1/300 s. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:59",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 59,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "출제 당시 시행령 방호조치 대상표와 해당 기계의 방호장치 조항 원문 확인 필요",
+      "finding": "출제 당시 시행령 방호조치 대상표와 해당 기계의 방호장치 조항 원문 확인 필요",
+      "basis": "출제 당시 시행령 방호조치 대상표와 해당 기계의 방호장치 조항 원문 확인 필요.",
+      "evidence": [
+        "659-oshord"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/59.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/59.jpg",
+          "displayAsset": "assets/problem-webp90/c73ab1a270f8eb99ee6523cb6c32b7c9.webp",
+          "sha256": "bf39b014b2b01fef24a456a2ec0346169afbdfdcbf3e05760c6b0326d2408022"
+        }
+      ],
+      "resolution": "출제 당시 시행령 방호조치 대상표와 해당 기계의 방호장치 조항 원문 확인 필요.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20241:60",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20241",
+      "number": 60,
+      "location": "공조냉동기계산업기사 : 2024년 1회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "냉동제조 신고 범위의 출제 기준 확인",
+      "finding": "시행령 제4조제2호 원문 확보",
+      "basis": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만. 원도 괄호의 비가연성·비독성 예외까지 일치. ④.",
+      "evidence": [
+        "715-gas-decree-2023"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_1/60.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_1/60.jpg",
+          "displayAsset": "assets/problem-webp90/c38337dcf536f50d12bac7c8868f11d0.webp",
+          "sha256": "ac277418a78fb33f6ccc899897b942c6e302f4dd7fe48714d29c6dc3a7ec224d"
+        }
+      ],
+      "resolution": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만. 원도 괄호의 비가연성·비독성 예외까지 일치. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:1",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 1,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "표준 650 kcal/(m²·h) 환산 756 W/m²",
+      "finding": "표준 650 kcal/(m²·h) 환산 756 W/m²",
+      "basis": "표준 650 kcal/(m²·h) 환산 756 W/m². 증기·실내 온도 표준 조건 출제 자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/01.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/01.jpg",
+          "displayAsset": "assets/problem-webp90/d408e27f47997d5541d7a81801688e84.webp",
+          "sha256": "e19e3475cf74cc856837f0fed7be5de57671e5c8adfa335f4a8a9dcdea52eadd"
+        }
+      ],
+      "resolution": "표준 650 kcal/(m²·h) 환산 756 W/m². 증기·실내 온도 표준 조건 출제 자료 미확보.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:2",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 2,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "습공기 각각의 정압비열 차 무시 근사와 수분·엔탈피 보존 결과 모두 반올림 26",
+      "finding": "습공기 각각의 정압비열 차 무시 근사와 수분·엔탈피 보존 결과 모두 반올림 26",
+      "basis": "습공기 각각의 정압비열 차 무시 근사와 수분·엔탈피 보존 결과 모두 반올림 26.3 ℃. ③.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/02.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/02.jpg",
+          "displayAsset": "assets/problem-webp90/8897f60d52e6b0062fe2eba544c8afc5.webp",
+          "sha256": "dd0f5605edbdd081d74b70e896d5df6ce6530587027b81ba9aecd66e6ed661ec"
+        }
+      ],
+      "resolution": "습공기 각각의 정압비열 차 무시 근사와 수분·엔탈피 보존 결과 모두 반올림 26.3 ℃. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:3",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 3,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "강제순환 온수관에서 응축수 배출용 연속 구배 불필요",
+      "finding": "강제순환 온수관에서 응축수 배출용 연속 구배 불필요",
+      "basis": "강제순환 온수관에서 응축수 배출용 연속 구배 불필요. 배수·공기빼기는 고려. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/03.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/03.jpg",
+          "displayAsset": "assets/problem-webp90/f370ddda5c454fb2d3753c3b576f8eba.webp",
+          "sha256": "2d98ab80f229dea20785c7280437546baff9b17c22d2614fd31287f06f70147c"
+        }
+      ],
+      "resolution": "강제순환 온수관에서 응축수 배출용 연속 구배 불필요. 배수·공기빼기는 고려. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:4",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 4,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 존 내 실들의 부하 변화 유사성이 중요",
+      "finding": "같은 존 내 실들의 부하 변화 유사성이 중요",
+      "basis": "같은 존 내 실들의 부하 변화 유사성이 중요. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/04.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/04.jpg",
+          "displayAsset": "assets/problem-webp90/60c4dd8007307790dfeb0b4ae2e86507.webp",
+          "sha256": "9ab29558f49906089fcd9d49eb8488a0c3112dcc630f20433334b6e823646f96"
+        }
+      ],
+      "resolution": "같은 존 내 실들의 부하 변화 유사성이 중요. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:5",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 5,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "매립·패널·제어 설비 설치비가 항상 작다고 할 수 없음",
+      "finding": "매립·패널·제어 설비 설치비가 항상 작다고 할 수 없음",
+      "basis": "매립·패널·제어 설비 설치비가 항상 작다고 할 수 없음. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/05.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/05.jpg",
+          "displayAsset": "assets/problem-webp90/f0a720766398e666175dacf7c562b543.webp",
+          "sha256": "5e3bad68ff9676166e3a23c0460371d2b036071358ec8c4b568b1901f24f9642"
+        }
+      ],
+      "resolution": "매립·패널·제어 설비 설치비가 항상 작다고 할 수 없음. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:6",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 6,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "분기점에서 분류판으로 분기 풍량 비 조절",
+      "finding": "분기점에서 분류판으로 분기 풍량 비 조절",
+      "basis": "분기점에서 분류판으로 분기 풍량 비 조절. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/06.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/06.jpg",
+          "displayAsset": "assets/problem-webp90/853486280eaf549417fcd2498aa3d437.webp",
+          "sha256": "2da3816ac238438b289f29a11c7abdeaf34a0e99cf30d92295b8455b8a069048"
+        }
+      ],
+      "resolution": "분기점에서 분류판으로 분기 풍량 비 조절. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:7",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 7,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "중앙에서 가열한 공기를 덕트로 보내는 간접난방 기준 ④",
+      "finding": "중앙에서 가열한 공기를 덕트로 보내는 간접난방 기준 ④",
+      "basis": "중앙에서 가열한 공기를 덕트로 보내는 간접난방 기준 ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/07.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/07.jpg",
+          "displayAsset": "assets/problem-webp90/de52e636e3372071a6fcd4eb064bb4b6.webp",
+          "sha256": "3fa317e098d0b46230e48d4aecd26f2b1cf547b53111b57b0ce72483a3d0bc34"
+        }
+      ],
+      "resolution": "중앙에서 가열한 공기를 덕트로 보내는 간접난방 기준 ④.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20242:8",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 8,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "주철의 취성과 내압 한계",
+      "finding": "주철의 취성과 내압 한계",
+      "basis": "주철의 취성과 내압 한계. 통상 저압용. ④.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/08.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/08.jpg",
+          "displayAsset": "assets/problem-webp90/4ab10c6697acda4a745909309d23429f.webp",
+          "sha256": "e2304ccd0b81eedf819997f7df80cca9b740d2e4bc6df49d94a13a27b3fd342e"
+        }
+      ],
+      "resolution": "주철의 취성과 내압 한계. 통상 저압용. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:9",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 9,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "고속 유동의 소음과 마찰손실 증가",
+      "finding": "고속 유동의 소음과 마찰손실 증가",
+      "basis": "고속 유동의 소음과 마찰손실 증가. ①.",
+      "evidence": [
+        "659-os-m42208"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/09.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/09.jpg",
+          "displayAsset": "assets/problem-webp90/cdbcce6bb17281ba4d6816d453fa6b73.webp",
+          "sha256": "a25b9d696cf3820de2be38d3bf7b456fef6275a60bc76d193cc249a5fd0de567"
+        }
+      ],
+      "resolution": "고속 유동의 소음과 마찰손실 증가. ①.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20242:10",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 10,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "기계 급기+기계 배기는 제1종",
+      "finding": "기계 급기+기계 배기는 제1종",
+      "basis": "기계 급기+기계 배기는 제1종. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/10.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/10.jpg",
+          "displayAsset": "assets/problem-webp90/36b5da4bf4f6dfa20bd3cb6b085e320c.webp",
+          "sha256": "26450a8859e6c0e9aaa6eff382416ed1dbb03d966c1665a52c28b8adda730ccd"
+        }
+      ],
+      "resolution": "기계 급기+기계 배기는 제1종. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:11",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 11,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "수관 배열 복잡하고 내부 청소가 간단하지 않음",
+      "finding": "수관 배열 복잡하고 내부 청소가 간단하지 않음",
+      "basis": "수관 배열 복잡하고 내부 청소가 간단하지 않음. ④.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/11.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/11.jpg",
+          "displayAsset": "assets/problem-webp90/2c65eb21c3d9f8651f34024721c83cbb.webp",
+          "sha256": "bcc7d59d5016995c5807537c4da8ebc30854445248483a829faedc7af1ee85d5"
+        }
+      ],
+      "resolution": "수관 배열 복잡하고 내부 청소가 간단하지 않음. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:12",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 12,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "15 ℃가 공조기 출구인지 말단 취출인지에 따라 기기 취득열의 적용 위치 구분",
+      "finding": "15 ℃가 공조기 출구인지 말단 취출인지에 따라 기기 취득열의 적용 위치 구분",
+      "basis": "15 ℃가 공조기 출구인지 말단 취출인지에 따라 기기 취득열의 적용 위치 구분.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/12.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/12.jpg",
+          "displayAsset": "assets/problem-webp90/f3c0b3c71eedfbc2c3df462be27f34e1.webp",
+          "sha256": "9b167e335272972cfa6f94b7175926b3054d9b2ca3acb7193f9ce67b204e02e6"
+        }
+      ],
+      "resolution": "공조기 출구 15 ℃ 이후 공기가 실에 이르기 전에 0.55 kW를 얻는 것으로 보면, 공조기가 제거할 현열은 3.55 kW다. 공기 밀도 1.2 kg/m³, 비열 1.01 kJ/(kg·K)를 쓰면 약 1,054 m³/h로 ①이다. 실내 잠열 1 kW는 온도차로 계산하는 현열식에 더하지 않는다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:13",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 13,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "저항 1/20+",
+      "finding": "저항 1/20+",
+      "basis": "저항 1/20+.2/.7+.15/.03+.02/.15+1/8=5.594. 역수 0.1788 W/(m² K). ④.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/13.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/13.jpg",
+          "displayAsset": "assets/problem-webp90/762444e39a888c8e3ec36825da2d0093.webp",
+          "sha256": "bfde64ea324d6af0c8e90ea2d6356e0b6d32c2362f49939be6458e76d3b741a0"
+        }
+      ],
+      "resolution": "저항 1/20+.2/.7+.15/.03+.02/.15+1/8=5.594. 역수 0.1788 W/(m² K). ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:14",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 14,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "원도 ① 포화압력 이하에서 응결 주장은 부호 반대, ④ 방습막과 방수막 혼용",
+      "finding": "원도 ① 포화압력 이하에서 응결 주장은 부호 반대, ④ 방습막과 방수막 혼용",
+      "basis": "원도 ① 포화압력 이하에서 응결 주장은 부호 반대, ④ 방습막과 방수막 혼용.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/14.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/14.jpg",
+          "displayAsset": "assets/problem-webp90/3a185e998c2883baa5ee1dd98c9fa4d5.webp",
+          "sha256": "b8d8ec9844b90915a78dbbda2ebc4ea0d3419725b56e9f84b38c877412ee9241"
+        }
+      ],
+      "resolution": "③처럼 응결 자체가 수증기 분압을 높이지 않는다. 또한 ①에는 포화압력 이하가 되면 응결한다고 적혀 있다. 실제로는 수증기 분압이 해당 표면온도의 포화수증기압에 도달하고 이를 넘으려 할 때 응결한다. ③만 틀린 것으로 볼 수 없어 원문과 답을 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:15",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 15,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "냉온수로 말단 코일에 열을 전달하는 전수식 팬코일 ③",
+      "finding": "냉온수로 말단 코일에 열을 전달하는 전수식 팬코일 ③",
+      "basis": "냉온수로 말단 코일에 열을 전달하는 전수식 팬코일 ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/15.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/15.jpg",
+          "displayAsset": "assets/problem-webp90/acad6d9b8bd46c1809d48e618c65d7f6.webp",
+          "sha256": "0c24e75a1580fd88b56464ee1485c636fa776ba247dfcd104ae762c842659773"
+        }
+      ],
+      "resolution": "냉온수로 말단 코일에 열을 전달하는 전수식 팬코일 ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:16",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 16,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "기존 해설이 습도 유지를 위한 수분 보충을 설명하지 않음",
+      "finding": "기존 해설이 습도 유지를 위한 수분 보충을 설명하지 않음",
+      "basis": "기존 해설이 습도 유지를 위한 수분 보충을 설명하지 않음.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/16.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/16.jpg",
+          "displayAsset": "assets/problem-webp90/5d245e3ca26164dc817d5816a4b14c28.webp",
+          "sha256": "63e423e2b898e01fd619bbf3e0307ce16af08f1f7544c596f365ea4f35135991"
+        }
+      ],
+      "resolution": "④다. 겨울철 실내 온도를 유지하려면 손실 열량을 난방으로, 습도도 유지하려면 손실 수분을 가습으로 보충한다. 통상 설계 난방부하는 외피와 환기·침입외기 손실을 중심으로 산정하므로 일사와 내부 발열의 시간별 변화를 따지는 냉방부하보다 계산이 간단한 편이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:17",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 17,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "성능량인 효율·압력손실·집진용량과 소재 종류 구분",
+      "finding": "성능량인 효율·압력손실·집진용량과 소재 종류 구분",
+      "basis": "성능량인 효율·압력손실·집진용량과 소재 종류 구분. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/17.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/17.jpg",
+          "displayAsset": "assets/problem-webp90/d88a3edfe212c5238224ff662622cac6.webp",
+          "sha256": "0cfcc8fb126d41f836af6a9e4b3ffe3404943f5aad39b966cc00d2712477679d"
+        }
+      ],
+      "resolution": "성능량인 효율·압력손실·집진용량과 소재 종류 구분. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:18",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 18,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "공조에서 건공기 1 kg당 수증기 질량",
+      "finding": "공조에서 건공기 1 kg당 수증기 질량",
+      "basis": "공조에서 건공기 1 kg당 수증기 질량. ④.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/18.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/18.jpg",
+          "displayAsset": "assets/problem-webp90/fceb3b4b5f98abc6d8ab5b1ed4c5ef5b.webp",
+          "sha256": "924d3726b6e147b962c26b47c55024302ca9b41265136802b65629d9dffec0af"
+        }
+      ],
+      "resolution": "공조에서 건공기 1 kg당 수증기 질량. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:19",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 19,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "조명 발열은 냉방부하를 증가시킬 수 있음",
+      "finding": "조명 발열은 냉방부하를 증가시킬 수 있음",
+      "basis": "조명 발열은 냉방부하를 증가시킬 수 있음. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/19.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/19.jpg",
+          "displayAsset": "assets/problem-webp90/be715dc5d88b620e4588e8364cadfe88.webp",
+          "sha256": "a6da68e5d6aed86bb266275ac9ef03ec39acdeed06389a1c7968ccb16624a04b"
+        }
+      ],
+      "resolution": "조명 발열은 냉방부하를 증가시킬 수 있음. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:20",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 20,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "일반 중앙 공조기 내 공기처리 장치와 냉동기 압축기 구분",
+      "finding": "일반 중앙 공조기 내 공기처리 장치와 냉동기 압축기 구분",
+      "basis": "일반 중앙 공조기 내 공기처리 장치와 냉동기 압축기 구분. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/20.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/20.jpg",
+          "displayAsset": "assets/problem-webp90/4bbb677a9faf1f7d0d1cc8868defd952.webp",
+          "sha256": "029ecf4a2e8c849a06d9a959571ec77fc3d82b8550a6246b87a3076f2d70559e"
+        }
+      ],
+      "resolution": "일반 중앙 공조기 내 공기처리 장치와 냉동기 압축기 구분. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:21",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 21,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "증발식 응축기의 증발냉각 한계는 외기 습구온도에 의존",
+      "finding": "증발식 응축기의 증발냉각 한계는 외기 습구온도에 의존",
+      "basis": "증발식 응축기의 증발냉각 한계는 외기 습구온도에 의존. ②.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/21.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/21.jpg",
+          "displayAsset": "assets/problem-webp90/0308201ad7971acf344e953a8065fb9d.webp",
+          "sha256": "0178c9834fd2bf20371e8441a3168c647dc11197b543c5fb2768a8b1874762e8"
+        }
+      ],
+      "resolution": "증발식 응축기의 증발냉각 한계는 외기 습구온도에 의존. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:22",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 22,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "전압강하는 윤활유 상태의 직접 원인과 거리가 멂",
+      "finding": "전압강하는 윤활유 상태의 직접 원인과 거리가 멂",
+      "basis": "전압강하는 윤활유 상태의 직접 원인과 거리가 멂. ③.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/22.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/22.jpg",
+          "displayAsset": "assets/problem-webp90/1dc1b6f036532ab2e8c477551a0f73b4.webp",
+          "sha256": "d88270b4a698049fea1dc6c6ad9186ac876acbc853670e47c1c4bdbc53ff3636"
+        }
+      ],
+      "resolution": "전압강하는 윤활유 상태의 직접 원인과 거리가 멂. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:23",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 23,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "냉매 공급 부족으로 과열 구간 증가",
+      "finding": "냉매 공급 부족으로 과열 구간 증가",
+      "basis": "냉매 공급 부족으로 과열 구간 증가. ④.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/23.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/23.jpg",
+          "displayAsset": "assets/problem-webp90/4659595dd8c03fd88b994e351ad5f5d4.webp",
+          "sha256": "6b176476ca8719dec30a24e083d3ac54d00baabb75bcbb3e4e98d5d2fb278d80"
+        }
+      ],
+      "resolution": "냉매 공급 부족으로 과열 구간 증가. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:24",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 24,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "모세관 선정 변수는 응축기 용량 외에도 냉매·압력차 등",
+      "finding": "모세관 선정 변수는 응축기 용량 외에도 냉매·압력차 등",
+      "basis": "모세관 선정 변수는 응축기 용량 외에도 냉매·압력차 등. ③.",
+      "evidence": [
+        "652-valve"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/24.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/24.jpg",
+          "displayAsset": "assets/problem-webp90/ec9d307f0594e31f18ba3a5ac0e83096.webp",
+          "sha256": "953777f1c0deb6aff094d354f0d8e3e357137d63af0d0b8b48d4ee9ec8691444"
+        }
+      ],
+      "resolution": "모세관 선정 변수는 응축기 용량 외에도 냉매·압력차 등. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:25",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 25,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "흡수식 재생기에서 증기 등 열원으로 냉매 분리",
+      "finding": "흡수식 재생기에서 증기 등 열원으로 냉매 분리",
+      "basis": "흡수식 재생기에서 증기 등 열원으로 냉매 분리. ③.",
+      "evidence": [
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/25.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/25.jpg",
+          "displayAsset": "assets/problem-webp90/6faded1d89a9a0c814b44ab24998adf8.webp",
+          "sha256": "82ee313e93721df8cf55406915bdc9f7652826a340feb53d4e46ba92e3fd7084"
+        }
+      ],
+      "resolution": "흡수식 재생기에서 증기 등 열원으로 냉매 분리. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:26",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 26,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 수증기압에서 저온 고농도 LiBr의 흡수 구동력 증가",
+      "finding": "같은 수증기압에서 저온 고농도 LiBr의 흡수 구동력 증가",
+      "basis": "같은 수증기압에서 저온 고농도 LiBr의 흡수 구동력 증가. ④.",
+      "evidence": [
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/26.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/26.jpg",
+          "displayAsset": "assets/problem-webp90/7f8548cb2c241067c15299adb524f821.webp",
+          "sha256": "a128158b060660e8c93915e42ff78cfaf2ea831068f13a3a4e3659cc42f19010"
+        }
+      ],
+      "resolution": "같은 수증기압에서 저온 고농도 LiBr의 흡수 구동력 증가. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:27",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 27,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "이상 응축은 정압 방열",
+      "finding": "이상 응축은 정압 방열",
+      "basis": "이상 응축은 정압 방열. 냉각수로 냉각하여 압력 상승한다는 ②는 틀림.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/27.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/27.jpg",
+          "displayAsset": "assets/problem-webp90/3c906e627af4ecd85361bdcb5ac3f3cb.webp",
+          "sha256": "47ce3dbb6c2f1599a0893688bc21b6c97811ad2505c0c71bac549fe023574904"
+        }
+      ],
+      "resolution": "이상 응축은 정압 방열. 냉각수로 냉각하여 압력 상승한다는 ②는 틀림.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:28",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 28,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "단일 열원의 열만 받아 전부 일로 바꾸는 순환기관 불가",
+      "finding": "단일 열원의 열만 받아 전부 일로 바꾸는 순환기관 불가",
+      "basis": "단일 열원의 열만 받아 전부 일로 바꾸는 순환기관 불가. 제2법칙. ③.",
+      "evidence": [
+        "652-carnot"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/28.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/28.jpg",
+          "displayAsset": "assets/problem-webp90/d48ae8c0b067123a2d606dc53277a638.webp",
+          "sha256": "eb7121d3383c4fc67afe3fb1dca57016851106d0eaa84859653788e8cb2d302b"
+        }
+      ],
+      "resolution": "단일 열원의 열만 받아 전부 일로 바꾸는 순환기관 불가. 제2법칙. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:29",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 29,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 행정 800 mm, 기존 해설은 80 mm로 읽고 그 값으로도 성립하지 않는 계산",
+      "finding": "원도 행정 800 mm, 기존 해설은 80 mm로 읽고 그 값으로도 성립하지 않는 계산",
+      "basis": "원도 행정 800 mm, 기존 해설은 80 mm로 읽고 그 값으로도 성립하지 않는 계산.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/29.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/29.jpg",
+          "displayAsset": "assets/problem-webp90/76b498138d144f1fc95e50577037c188.webp",
+          "sha256": "94adbeb07fe446be627caf9735b2497bdfd674053c3a9a419ca5a6bd6ba78cd5"
+        }
+      ],
+      "resolution": "원도 행정은 800 mm이므로 0.800 m다. 단동 4기통에서 지름 0.100 m인 피스톤이 한 시간 동안 밀어내는 체적은 약 301.6 m³여서 ④다. 행정에 0.080 m를 쓰면 결과가 10분의 1이 된다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:30",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 30,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "암모니아 및 R-12·22와 기름의 상용성은 윤활유 종류·온도·농도에 따라 다름",
+      "finding": "암모니아 및 R-12·22와 기름의 상용성은 윤활유 종류·온도·농도에 따라 다름",
+      "basis": "암모니아 및 R-12·22와 기름의 상용성은 윤활유 종류·온도·농도에 따라 다름. 당시 광유 물성표 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/30.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/30.jpg",
+          "displayAsset": "assets/problem-webp90/362f73a0784ba09cd730c5232291306a.webp",
+          "sha256": "597c6b286237f45b4bdee2e8f959f9474ab2dfae14566a2c0d00f54cb822181b"
+        }
+      ],
+      "resolution": "암모니아 및 R-12·22와 기름의 상용성은 윤활유 종류·온도·농도에 따라 다름. 당시 광유 물성표 미확보.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:31",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 31,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "일정 회전수·토출압력에서 흡입증기 밀도 하락으로 질량유량 감소",
+      "finding": "일정 회전수·토출압력에서 흡입증기 밀도 하락으로 질량유량 감소",
+      "basis": "일정 회전수·토출압력에서 흡입증기 밀도 하락으로 질량유량 감소. ②.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/31.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/31.jpg",
+          "displayAsset": "assets/problem-webp90/b66310405ceb071be0f386ab5699ef5d.webp",
+          "sha256": "e143acdfccb44d1591e634300cc3d6c8ea3be1ad6a938828ec3e996ada237d49"
+        }
+      ],
+      "resolution": "일정 회전수·토출압력에서 흡입증기 밀도 하락으로 질량유량 감소. ②.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20242:32",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 32,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "액봉 열팽창 압력은 가용전의 용융온도에 이르기 전에도 위험",
+      "finding": "액봉 열팽창 압력은 가용전의 용융온도에 이르기 전에도 위험",
+      "basis": "액봉 열팽창 압력은 가용전의 용융온도에 이르기 전에도 위험. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/32.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/32.jpg",
+          "displayAsset": "assets/problem-webp90/a5f4f5a2d7a58d856b075740531760a2.webp",
+          "sha256": "ff9db978630a7a3791dfb2c87f222c5201a0c84ad8a33b112a21816efcfdd261"
+        }
+      ],
+      "resolution": "액봉 열팽창 압력은 가용전의 용융온도에 이르기 전에도 위험. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:33",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 33,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "응축기에 불응축가스 축적 시 압력 상승",
+      "finding": "응축기에 불응축가스 축적 시 압력 상승",
+      "basis": "응축기에 불응축가스 축적 시 압력 상승. ①.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/33.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/33.jpg",
+          "displayAsset": "assets/problem-webp90/81a1cfe5574f19d420b8e6ddb4bc9705.webp",
+          "sha256": "18913f599590db9e2898a7e7e7290444ae9b328e13f2e5519349bd385b7d10fc"
+        }
+      ],
+      "resolution": "응축기에 불응축가스 축적 시 압력 상승. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:34",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 34,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "37",
+      "finding": "37",
+      "basis": "37.0 ℃≈32+(17.5+4)/(4.2×62/60). ①.",
+      "evidence": [
+        "669-hx"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/34.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/34.jpg",
+          "displayAsset": "assets/problem-webp90/2ff385b1e5c56ed560c21c0cb71fb163.webp",
+          "sha256": "2fec1476b3bb7333031ac70cc5e6cd827106f86c406f61a1d4fd6e5d5d050104"
+        }
+      ],
+      "resolution": "37.0 ℃≈32+(17.5+4)/(4.2×62/60). ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:35",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 35,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 유량에서 큰 관경은 액관 마찰압력강하 감소",
+      "finding": "같은 유량에서 큰 관경은 액관 마찰압력강하 감소",
+      "basis": "같은 유량에서 큰 관경은 액관 마찰압력강하 감소. ①.",
+      "evidence": [
+        "659-os-m42208"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/35.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/35.jpg",
+          "displayAsset": "assets/problem-webp90/93de9be173421de105867195b8ae3504.webp",
+          "sha256": "02602ece801c4ae4fe2c4304f99ef5a5c46f41633005f34f030d5b61adb55918"
+        }
+      ],
+      "resolution": "같은 유량에서 큰 관경은 액관 마찰압력강하 감소. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:36",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 36,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림 증발기 입구는 106",
+      "finding": "그림 증발기 입구는 106",
+      "basis": "그림 증발기 입구는 106. 106.8은 고압측 포화액선 위치. 29/6=4.8333.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/36.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/36.jpg",
+          "displayAsset": "assets/problem-webp90/1ee1626e06ada871978d5eab65c396e7.webp",
+          "sha256": "879f77cab5ef9022f893e53b2e2b0262b41d83bbdc5836f8a3a5e21a9b30b8ca"
+        }
+      ],
+      "resolution": "① 4.8이다. 그림에서 팽창은 h=106 kJ/kg인 수직선을 따라 일어나므로 증발기 입구도 106이다. 106.8은 고압측 포화액선과 만나는 지점이다. 증발기 출구 135, 압축기 출구 141을 읽으면 냉동효과는 29 kJ/kg, 압축일은 6 kJ/kg이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:37",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 37,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "기화성 증기의 착화 위험을 낮추려면 높은 인화점",
+      "finding": "기화성 증기의 착화 위험을 낮추려면 높은 인화점",
+      "basis": "기화성 증기의 착화 위험을 낮추려면 높은 인화점. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/37.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/37.jpg",
+          "displayAsset": "assets/problem-webp90/2b10df3a42e91c3dc10822a114ab2f16.webp",
+          "sha256": "6d344db6f866b2fe15047d086de59f00ef994bff8e1cb9ef3bcac849984ca4b9"
+        }
+      ],
+      "resolution": "기화성 증기의 착화 위험을 낮추려면 높은 인화점. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:38",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 38,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "에틸렌글리콜은 유기 화합물, 다른 세 가지는 무기염 수계",
+      "finding": "에틸렌글리콜은 유기 화합물, 다른 세 가지는 무기염 수계",
+      "basis": "에틸렌글리콜은 유기 화합물, 다른 세 가지는 무기염 수계. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/38.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/38.jpg",
+          "displayAsset": "assets/problem-webp90/46c2e08dab4de3ac131a0a8e6f4c491e.webp",
+          "sha256": "dcf52373469801476cb1766aa0d47356b6e60fca710994e141bb974588db2a00"
+        }
+      ],
+      "resolution": "에틸렌글리콜은 유기 화합물, 다른 세 가지는 무기염 수계. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:39",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 39,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "흡수기에서 주어진 냉매증기압보다 용액 평형증기압이 낮아야 흡수",
+      "finding": "흡수기에서 주어진 냉매증기압보다 용액 평형증기압이 낮아야 흡수",
+      "basis": "흡수기에서 주어진 냉매증기압보다 용액 평형증기압이 낮아야 흡수. ①.",
+      "evidence": [
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/39.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/39.jpg",
+          "displayAsset": "assets/problem-webp90/3dac3924f4c4738cddc05475d7942ef7.webp",
+          "sha256": "58a7c443a31a93c60fe8eb7672c05ec7feebfbe437aa7194663b358c38bbd87b"
+        }
+      ],
+      "resolution": "흡수기에서 주어진 냉매증기압보다 용액 평형증기압이 낮아야 흡수. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:40",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 40,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "침수 코일은 ②",
+      "finding": "침수 코일은 ②",
+      "basis": "침수 코일은 ②. 그림이 없는 문제에서 그림을 읽도록 한 해설 수정.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/40.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/40.jpg",
+          "displayAsset": "assets/problem-webp90/5a3e3ef541f57f4c31575c447d0e1b0a.webp",
+          "sha256": "b778a7f2a90e5bf9919b3adc984838944052306a9bf98aef13668be9acd2f2d1"
+        }
+      ],
+      "resolution": "② 지수식 응축기다. 냉매증기가 흐르는 나선관을 수조 안에 담가 두면 냉매가 관벽을 통해 물에 열을 내주고 액체로 응축된다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:41",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 41,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "대구경 지중 중력 배수용 철근콘크리트관은 옥내 통기 배관과 용도·중량이 다름",
+      "finding": "대구경 지중 중력 배수용 철근콘크리트관은 옥내 통기 배관과 용도·중량이 다름",
+      "basis": "대구경 지중 중력 배수용 철근콘크리트관은 옥내 통기 배관과 용도·중량이 다름. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/41.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/41.jpg",
+          "displayAsset": "assets/problem-webp90/ca7079c7570401e694af27b6457983c6.webp",
+          "sha256": "ebfa58dc21281adcd01b8747aa88a6c172e2d7bd56644add2633e2118b2cb205"
+        }
+      ],
+      "resolution": "대구경 지중 중력 배수용 철근콘크리트관은 옥내 통기 배관과 용도·중량이 다름. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:42",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 42,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "보기 ④ 인젝터가 일반 우회 설치 대상인지 묻는데 기존은 구성품 여부를 설명",
+      "finding": "보기 ④ 인젝터가 일반 우회 설치 대상인지 묻는데 기존은 구성품 여부를 설명",
+      "basis": "보기 ④ 인젝터가 일반 우회 설치 대상인지 묻는데 기존은 구성품 여부를 설명. 설치 조건을 정한 출제 자료 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/42.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/42.jpg",
+          "displayAsset": "assets/problem-webp90/a40403be741b0d22f1bf10187731b1b0.webp",
+          "sha256": "ddcf2d3dd0fcf11d6e5b54d6c2e8b41664c82792e4d228d220c5ff883b94154f"
+        }
+      ],
+      "resolution": "보기 ④ 인젝터가 일반 우회 설치 대상인지 묻는데 기존은 구성품 여부를 설명. 설치 조건을 정한 출제 자료 미확보.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:43",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 43,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "열린 직통형 콕의 유로가 곧아 손실이 작음",
+      "finding": "열린 직통형 콕의 유로가 곧아 손실이 작음",
+      "basis": "열린 직통형 콕의 유로가 곧아 손실이 작음. ③.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/43.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/43.jpg",
+          "displayAsset": "assets/problem-webp90/0abb75a979aa3f8d173349e30758de09.webp",
+          "sha256": "ed5288c7259dfc30aa319aca712413b5f2360eb10f59f128594ced5c4d0857fa"
+        }
+      ],
+      "resolution": "열린 직통형 콕의 유로가 곧아 손실이 작음. ③.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:44",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 44,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "13",
+      "finding": "13",
+      "basis": "13.25×2×(220−20)=5300 W. ④.",
+      "evidence": [
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/44.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/44.jpg",
+          "displayAsset": "assets/problem-webp90/3500c8c89d7dccb9a48cf5de383949c9.webp",
+          "sha256": "25a2f8369ef2f4cea95d107aaaae3bf6fe774fbffb347baa6cd0ebdf49260bc6"
+        }
+      ],
+      "resolution": "13.25×2×(220−20)=5300 W. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:45",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 45,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "증발·비산·블로다운 세 항의 물수지, ①",
+      "finding": "증발·비산·블로다운 세 항의 물수지, ①",
+      "basis": "증발·비산·블로다운 세 항의 물수지, ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/45.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/45.jpg",
+          "displayAsset": "assets/problem-webp90/2cc70c1c5474831dae1d69273f6e36e4.webp",
+          "sha256": "ecb47a5423e5257282f472f84c39f5715b19042310a2504abdad2b072d629fc3"
+        }
+      ],
+      "resolution": "증발·비산·블로다운 세 항의 물수지, ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:46",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 46,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 대각선의 양방향 치수 130 mm",
+      "finding": "원도 대각선의 양방향 치수 130 mm",
+      "basis": "원도 대각선의 양방향 치수 130 mm. 중심간 거리·양단 삽입깊이 계산 보충.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/46.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/46.jpg",
+          "displayAsset": "assets/problem-webp90/12df553854b0fd893da451043ff2a68b.webp",
+          "sha256": "7491e001e6a7bbffd07f9ce20191d037315e4ec0fc201adf35bd490b02a6b95f"
+        }
+      ],
+      "resolution": "각 끝에서 이음쇠 중심부터 관 끝까지는 25−10=15 mm다. 두 끝을 합쳐 30 mm를 빼면 수평관 A는 160−30=130 mm다. 대각선은 가로·세로가 모두 130 mm여서 중심 간 거리가 130√2 mm이고, B는 약 153.8 mm다. ③이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:47",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 47,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "기존은 1 EDR당 523",
+      "finding": "기존은 1 EDR당 523",
+      "basis": "기존은 1 EDR당 523.3 W로 써 면적 단위 모호. 원도는 10 m² EDR. 표준 온수 450 kcal/(m²·h) 기준.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/47.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/47.jpg",
+          "displayAsset": "assets/problem-webp90/3cf6fdc668dd2f271ec944d065ca9404.webp",
+          "sha256": "af8aa2a2696f19701792956f7a36cc29cb87453813cf106fc16899c3860fce97"
+        }
+      ],
+      "resolution": "문제의 상당방열면적은 10 m²다. 온수 표준 방열량을 면적당 450 kcal/(m²·h), 약 523.3 W/m²로 두면 전체 방열량은 10×523.3=5,233 W로 ④다. 증기 방열기의 표준값과 구별한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:48",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 48,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "원도 50 mm와 기존의 150 mm를 비교할 당시 위생배관 기준표 미확보",
+      "finding": "원도 50 mm와 기존의 150 mm를 비교할 당시 위생배관 기준표 미확보",
+      "basis": "원도 50 mm와 기존의 150 mm를 비교할 당시 위생배관 기준표 미확보. 개구 위치·지붕 이용 조건도 고려.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/48.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/48.jpg",
+          "displayAsset": "assets/problem-webp90/818fb5ffaca73f31bda349fcb9e517d3.webp",
+          "sha256": "904ebfd8e9a361c47c22100a249bfeeb685a98ae0c3d1456abf57adac9e22005"
+        }
+      ],
+      "resolution": "원도 50 mm와 기존의 150 mm를 비교할 당시 위생배관 기준표 미확보. 개구 위치·지붕 이용 조건도 고려.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20242:49",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 49,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "위생도기는 매끄러운 유약면으로 청소하기 쉬워 널리 사용",
+      "finding": "위생도기는 매끄러운 유약면으로 청소하기 쉬워 널리 사용",
+      "basis": "위생도기는 매끄러운 유약면으로 청소하기 쉬워 널리 사용. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/49.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/49.jpg",
+          "displayAsset": "assets/problem-webp90/9511e4f4a5222f1de5535b098d862129.webp",
+          "sha256": "d8c50e1e97570d33de36113a5b98ebe27430d885c3dafcae1dde3fd21095f35f"
+        }
+      ],
+      "resolution": "위생도기는 매끄러운 유약면으로 청소하기 쉬워 널리 사용. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:50",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 50,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "열전온도계는 온도를 검출",
+      "finding": "열전온도계는 온도를 검출",
+      "basis": "열전온도계는 온도를 검출. 원도 ①·④ 모두 조작부이나 정답 ②의 유일성에는 영향 없음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/50.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/50.jpg",
+          "displayAsset": "assets/problem-webp90/9cb3d5137792c3c170a14ad28b81d621.webp",
+          "sha256": "92d2081910b05e654981c74760d4ef90a34f905895e4c41848e552f718efa481"
+        }
+      ],
+      "resolution": "열전온도계는 온도를 검출. 원도 ①·④ 모두 조작부이나 정답 ②의 유일성에는 영향 없음.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:51",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 51,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "밝기 피드백 없는 전등 점멸 장치",
+      "finding": "밝기 피드백 없는 전등 점멸 장치",
+      "basis": "밝기 피드백 없는 전등 점멸 장치. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/51.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/51.jpg",
+          "displayAsset": "assets/problem-webp90/1b71c09c510d586265641ed8fe61c3b0.webp",
+          "sha256": "4e606fccb9689abfdd96ac1c08a264c38a24e857e659c6e9b7594fa0296baf60"
+        }
+      ],
+      "resolution": "밝기 피드백 없는 전등 점멸 장치. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:52",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 52,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "선간전압 동일, Y 상전압은 Δ의 1/√3이고 Δ 선전류는 상전류의 √3배",
+      "finding": "선간전압 동일, Y 상전압은 Δ의 1/√3이고 Δ 선전류는 상전류의 √3배",
+      "basis": "선간전압 동일, Y 상전압은 Δ의 1/√3이고 Δ 선전류는 상전류의 √3배. 선전류비 1/3. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/52.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/52.jpg",
+          "displayAsset": "assets/problem-webp90/8bdb12cd064a43e69159fc3894150d25.webp",
+          "sha256": "64d4f502b7afd5c3d19554177e2232b57364243bec0085e7d959bf55cb68b3ac"
+        }
+      ],
+      "resolution": "선간전압 동일, Y 상전압은 Δ의 1/√3이고 Δ 선전류는 상전류의 √3배. 선전류비 1/3. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:53",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 53,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "원도에 출력을 되먹인다는 조건 없음",
+      "finding": "원도에 출력을 되먹인다는 조건 없음",
+      "basis": "원도에 출력을 되먹인다는 조건 없음. 조건제어도 기억·검출·판단으로 동작 결정 가능.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/53.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/53.jpg",
+          "displayAsset": "assets/problem-webp90/e73f7d268fd380559aeabd7b3b1aebb1.webp",
+          "sha256": "679ac6a45b98041008687bb5b83f7d85a728b9942eb3be8fdcf93975d78fd672"
+        }
+      ],
+      "resolution": "피드백 제어의 판별 기준은 출력을 다시 측정해 목표와 비교하는 경로다. 검출기·기억·판단 기구를 갖추었다는 지문만으로 이 경로가 정해지지 않으며 조건 제어도 검출 결과를 판단에 쓸 수 있다. 저장 답과 원문 분류를 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:54",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 54,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "V결선에 쓰는 2대의 3상 출력 √3×10=17",
+      "finding": "V결선에 쓰는 2대의 3상 출력 √3×10=17",
+      "basis": "V결선에 쓰는 2대의 3상 출력 √3×10=17.32 kVA. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/54.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/54.jpg",
+          "displayAsset": "assets/problem-webp90/46f6b7ed822b431d545398ff68ab1aa2.webp",
+          "sha256": "2ea5df34f011d8c58dc654ebcfa24162bb4c8f5f76c28adfcbfb9af6ab98bc40"
+        }
+      ],
+      "resolution": "V결선에 쓰는 2대의 3상 출력 √3×10=17.32 kVA. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:55",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 55,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "정해진 순서로 단계를 진행하는 시퀀스 제어",
+      "finding": "정해진 순서로 단계를 진행하는 시퀀스 제어",
+      "basis": "정해진 순서로 단계를 진행하는 시퀀스 제어. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/55.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/55.jpg",
+          "displayAsset": "assets/problem-webp90/14adf965fc8c1fa1826a0c6f7ab2e8e0.webp",
+          "sha256": "d7fbda9b208134730aadc2e07e3482c66e1e9d8dce8db968abd10350b44252eb"
+        }
+      ],
+      "resolution": "정해진 순서로 단계를 진행하는 시퀀스 제어. ②.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:56",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 56,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "추종제어는 목표 시간변화에 따르는 구분",
+      "finding": "추종제어는 목표 시간변화에 따르는 구분",
+      "basis": "추종제어는 목표 시간변화에 따르는 구분. 유량도 추종 제어 가능.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/56.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/56.jpg",
+          "displayAsset": "assets/problem-webp90/d7b08890f328914641f1241a463d94cb.webp",
+          "sha256": "ada723615f8c9aed7ee2c30d419c83ea4742d4d2c5865471d1d896ad73a06384"
+        }
+      ],
+      "resolution": "②~④는 서보기구에서 흔히 추종하는 기계적 위치·방위·자세다. 저장 답 ①은 이 분류를 전제로 이해할 수 있다. 다만 추종제어 일반에서는 유량도 시간에 따라 바뀌는 목표를 추종시킬 수 있어 지문의 범위를 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:57",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 57,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "다이오드와 병렬 커패시터",
+      "finding": "다이오드와 병렬 커패시터",
+      "basis": "다이오드와 병렬 커패시터. 계기 내부저항이 커 방전이 미미하면 최대값 Vm 근사. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/57.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/diagram-images/2024_2/57.jpg",
+          "displayAsset": "assets/problem-webp90/9077ac2bf4652e7b75c567fc4746a90f.webp",
+          "sha256": "0c9665b04e781394f869ec4e4617de618cda185f8aa95a5c770e95549db8ff57"
+        },
+        {
+          "original": "assets/hvac/assets/questions/2024_2/57.jpg",
+          "displayAsset": "assets/problem-webp90/acc7d3341bb11b70dab6f53c3413418a.webp",
+          "sha256": "a15e4a5abb2b506ac477c3ff7e33dd7acbdcbfbeab61b38bbd2786655b4310c5"
+        }
+      ],
+      "resolution": "다이오드와 병렬 커패시터. 계기 내부저항이 커 방전이 미미하면 최대값 Vm 근사. ①.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:58",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 58,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "회전수 제어량, 직접 바꾸는 전압은 조작량",
+      "finding": "회전수 제어량, 직접 바꾸는 전압은 조작량",
+      "basis": "회전수 제어량, 직접 바꾸는 전압은 조작량. ②.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/58.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/58.jpg",
+          "displayAsset": "assets/problem-webp90/931b03caa519e77f7e4c68892ed0061f.webp",
+          "sha256": "41ddcb7f8e04e2f2bbc8f5e75875ac6189ad651ed270abeacd455bae83e553ea"
+        }
+      ],
+      "resolution": "회전수 제어량, 직접 바꾸는 전압은 조작량. ②.",
+      "previousExplanationProvenance": "matched"
+    },
+    {
+      "id": "hvac-20242:59",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 59,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만",
+      "finding": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만",
+      "basis": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만. 원도 괄호의 비가연성·비독성 예외까지 일치. ④.",
+      "evidence": [
+        "715-gas-decree-2023"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/59.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/59.jpg",
+          "displayAsset": "assets/problem-webp90/d45613d976c2e0096b3f94a740c4f551.webp",
+          "sha256": "f6f1123f37c49e33cd7495b0b5ebe93a4a2e17ea4d68712bedead99a0b8fb866"
+        }
+      ],
+      "resolution": "2023-12-12 시행 고압가스 안전관리법 시행령 제4조제2호에서 일반 범위 3톤 이상 20톤 미만. 원도 괄호의 비가연성·비독성 예외까지 일치. ④.",
+      "previousExplanationProvenance": "manual"
+    },
+    {
+      "id": "hvac-20242:60",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20242",
+      "number": 60,
+      "location": "공조냉동기계산업기사 : 2024년 2회 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "2023-11-21 시행령 제17조가 등록요건 별표 7을 참조하나 해당 최소 인원의 표 본문 미확보",
+      "finding": "2023-11-21 시행령 제17조가 등록요건 별표 7을 참조하나 해당 최소 인원의 표 본문 미확보",
+      "basis": "2023-11-21 시행령 제17조가 등록요건 별표 7을 참조하나 해당 최소 인원의 표 본문 미확보.",
+      "evidence": [
+        "715-mechanical-decree-2023"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac/assets/questions/2024_2/60.jpg",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/questions/2024_2/60.jpg",
+          "displayAsset": "assets/problem-webp90/25143013bea78607b24a7cb94e822e83.webp",
+          "sha256": "c9f30cb2b462623f882f612b7831eb96d981af0425da65f335feca78c02ccc90"
+        }
+      ],
+      "resolution": "2023-11-21 시행령 제17조가 등록요건 별표 7을 참조하나 해당 최소 인원의 표 본문 미확보.",
+      "previousExplanationProvenance": "manual"
     }
   ],
   "sources": [
@@ -267209,6 +271114,22 @@
       "sha256": "846c18ca576636cfbb8eca43ce316611f72ae213ee838fdf6f0458e819725d43",
       "opened": true,
       "section": "산업안전보건법 시행령 2026.3.24 시행본 제42조 제3항 제1호 다목 7), 제2호. 2022년 출제 당시 연혁 미확인."
+    },
+    {
+      "id": "715-gas-decree-2023",
+      "opened": true,
+      "date": "2026-11-19",
+      "sha256": "bec00086f4541587dca003efba381c4384e65b594fe623906422db7dfd9e8e0f",
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/9606d4469ed27cfff85d36d822da0f6619eec75e/%EB%8C%80%ED%86%B5%EB%A0%B9%EB%A0%B9/%EA%B3%A0%EC%95%95%EA%B0%80%EC%8A%A4%20%EC%95%88%EC%A0%84%EA%B4%80%EB%A6%AC%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9.md",
+      "section": "2023-12-12 시행, 대통령령 제33913호 제4조제2호 냉동제조. 2024년 말까지의 법령 이력 대조."
+    },
+    {
+      "id": "715-mechanical-decree-2023",
+      "opened": true,
+      "date": "2026-11-19",
+      "section": "2023-11-21 시행 기계설비법 시행령 제17조제1항. 별표 7을 참조한다는 사항까지 확인.",
+      "url": "https://raw.githubusercontent.com/yjroot/korea-law/23b2c795aa2d2f4b194f1b5cc11faecc48a04946/%EB%8C%80%ED%86%B5%EB%A0%B9%EB%A0%B9/%EA%B8%B0%EA%B3%84%EC%84%A4%EB%B9%84%EB%B2%95%20%EC%8B%9C%ED%96%89%EB%A0%B9.md",
+      "sha256": "0c05c10d9c0d7d0ff4d0877b6915e273f33eb4997b957d9bd1392273165a10c2"
     }
   ],
   "automaticAnswerCandidates": [
@@ -267483,7 +271404,7 @@
   "next": {
     "scope": "inventory.json scope.groups의 next는 저장소 수록순 첫 미검토 ID. COMCBT 원문 및 에너지 교재 제외. 원래 없던 해설을 자체 작성한 경우 포함. 보류·정답 확인은 records와 answer-confirmation.md 참조.",
     "energyEngineer": "2022.04.24 A형 전 100개 대조. 정답·근거 보류 항목은 상태별 목록 참조.",
-    "hvacLocal": "data/hvac.js hvac-20241:1",
+    "hvacLocal": "data/hvac.js hvac-20243:1",
     "supplementedTextbook": "data/energy-restored.js 3개 모두 판독. 2022년 4회 66번은 출제 당시 도시가스 설비기준 원문 재확인.",
     "hvacBook": "data/hvac-hansol.js hvac-hansol-2017-3:1",
     "safety": "data/safety.js safety-20020310:10",
@@ -267492,21 +271413,21 @@
     "workedExamples": "공조 교재 예제 26개 모두 전사 및 판정. 정답 확인 9개는 원본 보기를 보존했다.",
     "energy": "data/energy.js 대상 1607개 직접 판정 완료. 보류·정답 재확인은 문항별 기록 참조.",
     "practical": "data/hvac-practical-restored.json hvac-practical-restored-2023-3-02",
-    "hvac": "data/hvac.js hvac-20241:1",
+    "hvac": "data/hvac.js hvac-20243:1",
     "direct": "data/hansol-book-direct.json의 hansol-direct-1-167-16부터",
     "maintenance": "data/maintenance.js maintenance-20180819:1",
     "hvacHansol": "data/hvac-hansol.js hvac-hansol-2018-1:1"
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 7898,
-    "contentCompleted": 6023,
-    "contentCompletedChanged": 5065,
-    "contentCompletedUnchanged": 958,
-    "evidenceHold": 1517,
-    "answerNeedsConfirmation": 358,
-    "automaticOnly": 41106,
-    "changedQuestionIds": 5628,
+    "contentExamined": 8018,
+    "contentCompleted": 6128,
+    "contentCompletedChanged": 5079,
+    "contentCompletedUnchanged": 1049,
+    "evidenceHold": 1527,
+    "answerNeedsConfirmation": 363,
+    "automaticOnly": 40986,
+    "changedQuestionIds": 5647,
     "imageTranscribed": 445,
     "imageFullyTranscribed": 144,
     "imagePartiallyTranscribed": 301,
@@ -269191,6 +273112,7 @@
       "count": 388,
       "findings": {
         "0": 1,
+        "8314": 1,
         "문제 무관 일반론": 2,
         "무관한 CO 설명·건조 배기가스 희석 보정": 1,
         "교축밸브에 무관한 전기기기 설명": 1,
@@ -269440,7 +273362,6 @@
         "실내에서 발생·유입되는 취득열과 공기 수송 도중의 덕트 취득열을 분리": 1,
         "CoolProp predefined_mixtures": 1,
         "준정적 p dv 일만 있는 닫힌계에서 dq=du+p dv, dh=du+p dv+v dp": 1,
-        "8314": 1,
         "운전 압력비와 내부 체적비·토출온도 설계의 관련성": 1,
         "온수 공급온도·유량 제어와 큰 열용량에 따른 응답 지연 구분": 1,
         "저압 증기 공급관 허용 압력강하율의 2005년 원표 미확보": 1,
@@ -269737,9 +273658,11 @@
       "count": 686,
       "findings": {
         "0": 5,
+        "4": 1,
         "11": 1,
         "423": 1,
         "4186": 1,
+        "8314": 1,
         "계산식·상사법칙": 5,
         "단위·조건·근거 부족": 2,
         "종합효율 기준과 반올림 보완": 1,
@@ -270116,7 +274039,6 @@
         "건가스 100 mol 기준, C 합계 17": 1,
         "네 원본 보기의 G/G′와 분자·분모 대조": 1,
         "미터마력 1 PS=735": 1,
-        "4": 1,
         "1 atm 포화온도 약 100 ℃에서 기화잠열 약 2257 kJ/kg≈539 kcal/kg": 1,
         "같은 초기 P,V에서 V₂/V₁=10": 1,
         "4개 이미지의 부호·제곱근 범위 확인": 1,
@@ -270257,7 +274179,6 @@
         "120/180=2/3, 원도 ②": 1,
         "미포화 자속∝계자전류·전기자저항 강하 무시 시 속도∝전압/자속": 1,
         "전류계 전압 0": 1,
-        "8314": 1,
         "정현파 전파정류 평균은 2√2 Vs/π": 1,
         "원도 단일 다이오드와 저항": 1,
         "초기조건 0인 직렬 RLC의 임피던스 R+sL+1/(sC)": 1,
@@ -270370,8 +274291,13 @@
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 2315,
+      "count": 2334,
       "findings": {
+        "1": 1,
+        "303": 1,
+        "647": 1,
+        "2025": 2,
+        "2026": 1,
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
         "경도와 P알칼리도의 구별": 1,
@@ -271170,7 +275096,6 @@
         "한국어 코터와 영미 cotter pin(분할핀) 구별": 2,
         "규칙 제390조제2호 부두·안벽 선을 따르는 통로": 2,
         "통상 기본 반응조건은 온도·압력·농도": 2,
-        "2025": 2,
         "시스템 안전 활동은 타 개발·운영 프로그램과 인터페이스 공유가 필요": 2,
         "상부 지점에서 와이어로프 등으로 작업발판을 매달아 지지": 2,
         "상위 제어기의 출력이 하위 제어기의 설정점으로 들어감": 2,
@@ -271373,7 +275298,6 @@
         "원도에서 점 4는 세 경계가 만나는 곳, 점 5는 기액 공존곡선의 고온·고압 끝": 1,
         "원서 포화증기표의 증발잠열 열과 임계점에서 상 구별 소멸": 1,
         "실재 기체의 희박기체 극한과 이상기체 모델 구분": 1,
-        "647": 1,
         "원도 분자가 L, 분모가 T": 1,
         "밀도를 측정하는 물리식과 흡수·연소 반응을 쓰는 화학식 구분": 1,
         "외부 선원·검출기를 쓰는 투과형 액면계의 비접촉 특성": 1,
@@ -272391,7 +276315,6 @@
         "원도는 제조신고, 기존 해설은 허가대상이라고 잘못 안내": 1,
         "미세입자 포집 용도 HEPA가 대표적": 1,
         "다른 조건·질량유량 같으면 과냉도 증가로 교축 유입 엔탈피 감소, 냉동능력 증가": 1,
-        "303": 1,
         "정상 유동·운동 및 위치 에너지 무시 시 단열 압축의 일은 엔탈피 증가": 1,
         "틀린 설명을 묻는데 기존 해설은 저장 답 ①을 적절하다고 긍정함": 1,
         "입형은 설치 높이가 필요하지만 바닥 점유면적이 작음": 1,
@@ -272420,7 +276343,6 @@
         "원도 “전열저항”은 열저항, 저장 ① 메거는 “절연저항” 측정기": 1,
         "정현파에서만 Vpeak/√2": 1,
         "원도 A는 기동 버튼, 병렬 유지접점은 R": 1,
-        "2026": 1,
         "혼합에 의한 열손실과 송풍기·펌프 소요동력을 혼동": 1,
         "기존 해설은 먼지까지 흡수·용해되는 것처럼 표현": 1,
         "상대습도는 가열만 해도 변함": 1,
@@ -272462,7 +276384,25 @@
         "밸브 공급 제한 시 질량유량 감소로 총 소비동력이 실제 감소할 수 있음": 1,
         "폼 폴리에틸렌 허용온도는 제품별로 다름": 1,
         "결상 시 과열 위험은 보호설비의 차단 여부에 따라 달라짐": 1,
-        "연료·공기 유량비 조정": 1
+        "연료·공기 유량비 조정": 1,
+        "원도에는 해설에서 언급하는 그래프가 없음": 1,
+        "고장 빈도와 수명은 기종·정비 조건 영향": 1,
+        "응축기에서 수액기로 액이 들어가면 수액기 기체가 배출되어야 함": 1,
+        "온도 두 개와 부하만으로 실제 동력 결정 불가": 1,
+        "2023년 1회 28번과 동일 보기": 1,
+        "부족 충전 시 과열도는 증가하지만 흡입압력 하락으로 포화온도도 내려가므로 절대온도 방향은 조건부": 1,
+        "같은 질량과 정압 조건에서도 비열의 크기는 냉매·상태에 의존": 1,
+        "대형 개방 공기쿠션식의 공기 보충과 밀폐 다이어프램식 구분": 1,
+        "15 ℃가 공조기 출구인지 말단 취출인지에 따라 기기 취득열의 적용 위치 구분": 1,
+        "원도 ① 포화압력 이하에서 응결 주장은 부호 반대, ④ 방습막과 방수막 혼용": 1,
+        "기존 해설이 습도 유지를 위한 수분 보충을 설명하지 않음": 1,
+        "원도 행정 800 mm, 기존 해설은 80 mm로 읽고 그 값으로도 성립하지 않는 계산": 1,
+        "그림 증발기 입구는 106": 1,
+        "침수 코일은 ②": 1,
+        "원도 대각선의 양방향 치수 130 mm": 1,
+        "기존은 1 EDR당 523": 1,
+        "원도에 출력을 되먹인다는 조건 없음": 1,
+        "추종제어는 목표 시간변화에 따르는 구분": 1
       }
     },
     "이미지 원문 텍스트 전환": {
@@ -272932,8 +276872,8 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 7227,
-    "rawFractionDisplays": 543,
+    "examined": 7347,
+    "rawFractionDisplays": 547,
     "remainingBankBlanks": 544,
     "units": [
       {
@@ -282645,18 +286585,206 @@
           "hvac-20233:59",
           "hvac-20233:60"
         ]
+      },
+      {
+        "unit": "공조 복원 2024년 1회 공기조화설비 1~20번",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 17,
+          "내용 검토 완료·수정함": 3
+        },
+        "changed": 3,
+        "ids": [
+          "hvac-20241:1",
+          "hvac-20241:2",
+          "hvac-20241:3",
+          "hvac-20241:4",
+          "hvac-20241:5",
+          "hvac-20241:6",
+          "hvac-20241:7",
+          "hvac-20241:8",
+          "hvac-20241:9",
+          "hvac-20241:10",
+          "hvac-20241:11",
+          "hvac-20241:12",
+          "hvac-20241:13",
+          "hvac-20241:14",
+          "hvac-20241:15",
+          "hvac-20241:16",
+          "hvac-20241:17",
+          "hvac-20241:18",
+          "hvac-20241:19",
+          "hvac-20241:20"
+        ]
+      },
+      {
+        "unit": "공조 복원 2024년 1회 냉동냉장설비 21~40번",
+        "statuses": {
+          "내용 검토 완료·수정함": 3,
+          "내용 검토 완료·수정 없음": 14,
+          "정답 자체 확인 필요": 2,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 5,
+        "ids": [
+          "hvac-20241:21",
+          "hvac-20241:22",
+          "hvac-20241:23",
+          "hvac-20241:24",
+          "hvac-20241:25",
+          "hvac-20241:26",
+          "hvac-20241:27",
+          "hvac-20241:28",
+          "hvac-20241:29",
+          "hvac-20241:30",
+          "hvac-20241:31",
+          "hvac-20241:32",
+          "hvac-20241:33",
+          "hvac-20241:34",
+          "hvac-20241:35",
+          "hvac-20241:36",
+          "hvac-20241:37",
+          "hvac-20241:38",
+          "hvac-20241:39",
+          "hvac-20241:40"
+        ]
+      },
+      {
+        "unit": "공조 복원 2024년 1회 공조냉동설치운영 41~60번",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 15,
+          "근거 부족으로 보류": 4,
+          "내용 검토 완료·수정함": 1
+        },
+        "changed": 1,
+        "ids": [
+          "hvac-20241:41",
+          "hvac-20241:42",
+          "hvac-20241:43",
+          "hvac-20241:44",
+          "hvac-20241:45",
+          "hvac-20241:46",
+          "hvac-20241:47",
+          "hvac-20241:48",
+          "hvac-20241:49",
+          "hvac-20241:50",
+          "hvac-20241:51",
+          "hvac-20241:52",
+          "hvac-20241:53",
+          "hvac-20241:54",
+          "hvac-20241:55",
+          "hvac-20241:56",
+          "hvac-20241:57",
+          "hvac-20241:58",
+          "hvac-20241:59",
+          "hvac-20241:60"
+        ]
+      },
+      {
+        "unit": "공조 복원 2024년 2회 공기조화설비 1~20번",
+        "statuses": {
+          "근거 부족으로 보류": 1,
+          "내용 검토 완료·수정 없음": 16,
+          "내용 검토 완료·수정함": 2,
+          "정답 자체 확인 필요": 1
+        },
+        "changed": 3,
+        "ids": [
+          "hvac-20242:1",
+          "hvac-20242:2",
+          "hvac-20242:3",
+          "hvac-20242:4",
+          "hvac-20242:5",
+          "hvac-20242:6",
+          "hvac-20242:7",
+          "hvac-20242:8",
+          "hvac-20242:9",
+          "hvac-20242:10",
+          "hvac-20242:11",
+          "hvac-20242:12",
+          "hvac-20242:13",
+          "hvac-20242:14",
+          "hvac-20242:15",
+          "hvac-20242:16",
+          "hvac-20242:17",
+          "hvac-20242:18",
+          "hvac-20242:19",
+          "hvac-20242:20"
+        ]
+      },
+      {
+        "unit": "공조 복원 2024년 2회 냉동냉장설비 21~40번",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 16,
+          "내용 검토 완료·수정함": 3,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 3,
+        "ids": [
+          "hvac-20242:21",
+          "hvac-20242:22",
+          "hvac-20242:23",
+          "hvac-20242:24",
+          "hvac-20242:25",
+          "hvac-20242:26",
+          "hvac-20242:27",
+          "hvac-20242:28",
+          "hvac-20242:29",
+          "hvac-20242:30",
+          "hvac-20242:31",
+          "hvac-20242:32",
+          "hvac-20242:33",
+          "hvac-20242:34",
+          "hvac-20242:35",
+          "hvac-20242:36",
+          "hvac-20242:37",
+          "hvac-20242:38",
+          "hvac-20242:39",
+          "hvac-20242:40"
+        ]
+      },
+      {
+        "unit": "공조 복원 2024년 2회 공조냉동설치운영 41~60번, 1회 60번 당시 법령 확인",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 13,
+          "근거 부족으로 보류": 3,
+          "내용 검토 완료·수정함": 2,
+          "정답 자체 확인 필요": 2
+        },
+        "changed": 4,
+        "ids": [
+          "hvac-20242:41",
+          "hvac-20242:42",
+          "hvac-20242:43",
+          "hvac-20242:44",
+          "hvac-20242:45",
+          "hvac-20242:46",
+          "hvac-20242:47",
+          "hvac-20242:48",
+          "hvac-20242:49",
+          "hvac-20242:50",
+          "hvac-20242:51",
+          "hvac-20242:52",
+          "hvac-20242:53",
+          "hvac-20242:54",
+          "hvac-20242:55",
+          "hvac-20242:56",
+          "hvac-20242:57",
+          "hvac-20242:58",
+          "hvac-20242:59",
+          "hvac-20242:60"
+        ]
       }
     ],
     "reasons": {
       "지문·정답·자료 대조에 남은 불확실성": 288,
       "공식·계산·기호·단위·반올림": 581,
-      "개념·장치 작동 원리·적용 조건": 2056,
+      "개념·장치 작동 원리·적용 조건": 2075,
       "부정형·보기 비교·표 적용 범위": 187,
       "문제와 무관한 설명": 350,
       "해설 미등록": 1441,
       "이미지 원문 텍스트 전환": 183
     },
-    "changed": 5086,
+    "changed": 5105,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",

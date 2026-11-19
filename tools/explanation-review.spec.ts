@@ -1215,3 +1215,15 @@ test('공조 복원 비열 중복 보기 원문 대조', async ({page}) => {
   await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
   await expect(card.locator('.choice-button.selected')).toHaveCount(1);
 });
+
+test('공조 복원 압축기 행정과 체적 분수식', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20242').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('29');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has: page.getByRole('img', {name:'29번 문제 원문', exact:true})});
+  await card.locator('.image-answer-hotspot').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('0.800 m');
+  await expect(card.locator('.explanation-box')).toContainText('301.6');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
