@@ -8,11 +8,11 @@ import {textbookExplanationText} from '../src/cbt/textbookExplanationText';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 
-test('승인58개만 표시·16수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
+test('승인80개만 표시·26수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
  const data=JSON.parse(fs.readFileSync('data/textbook-explanation-text.json','utf8'));
- expect(data.entries).toHaveLength(58);
+ expect(data.entries).toHaveLength(80);
  const approved=textbookDirectSources.filter(r=>textbookExplanationText(r));
- expect(approved).toHaveLength(58);
+ expect(approved).toHaveLength(80);
  let formulae=0;
  for(const entry of data.entries){
   const source=textbookDirectSources.find(r=>r.id===entry.id)!;
@@ -25,7 +25,7 @@ test('승인58개만 표시·16수식 KaTeX·원문 변경 시 이미지로 복�
   expect(textbookExplanationText({...source,questionParts:[{...source.questionParts[0]!,rect:[0,0,1,1]}]})).toBeUndefined();
   expect(textbookExplanationText({...source,solutionParts:[]})).toBeUndefined();
  }
- expect(formulae).toBe(16);
+ expect(formulae).toBe(26);
 });
 
 test('교재 경계 감사 원본 지문 해시 보존',()=>{

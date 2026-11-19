@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.42',scope:'industrial',date:'2026.11.19',title:'공조 교재 풀이 22개 텍스트 전환',summary:'송풍기 동력·습공기 유량·상당증발량 계산을 원본과 함께 확인할 수 있습니다.',tags:['공조','교재'],changes:['단위가 다른 두 송풍기 문제의 분수 계산과 반올림을 구별했습니다.']},
     {version:'6.2.41',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도와 기계 방호 풀이',summary:'비어 있던 해설에 풀이와 원문 확인 안내를 추가했습니다.',tags:['산업안전'],changes:['표의 열 위치와 굴착 기울기가 맞지 않는 두 문항을 표시했습니다.']},
     {version:'6.2.40',scope:'industrial',date:'2026.11.19',title:'에너지 기출 전도열과 단열팽창 풀이',summary:'열과 일을 구분하고 단위 환산과 분수 계산을 보완했습니다.',tags:['에너지'],changes:['약품 이름으로 보기에 복수 답이 생기는 문항에 확인 안내를 추가했습니다.']},
     {version:'6.2.39',scope:'industrial',date:'2026.11.19',title:'공조 실기 복원문제 해설 교정',summary:'2025년 1·2·3회 복원문제의 열회수 방향과 평면도 읽기를 교정했습니다.',tags:['공조','실기'],changes:['단말 유인유닛과 중앙 송풍기의 역할을 구분했습니다.']},
@@ -2819,8 +2820,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.41';
+  changelog.versions.industrial = '6.2.42';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.41';
+  changelog.currentVersion = '6.2.42';
   window.CBT_CHANGELOG = changelog;
 })();

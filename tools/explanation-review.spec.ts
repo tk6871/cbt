@@ -852,3 +852,19 @@ test('산업안전 가스켓 생존확률과 표준화 분수',async({page})=>{
   await expect(card.locator('.explanation-box')).toContainText('P(Z>−2)=P(Z≤2)=0.9772');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('교재 송풍기 500 Pa의 분수식과 인쇄 계산 차이',async({page})=>{
+  await prepare(page,'hvac');
+  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+  await enterBookReader(page);
+  await chooseBookPage(page,'1-136');
+  const card=page.locator('[data-source-id="hansol-direct-1-136-11"]');
+  await card.locator('.direct-solution>summary').click();
+  const text=card.locator('.direct-explanation-text');
+  await expect(text).toContainText('7.50 kW');
+  await expect(text.locator('.katex-html .mfrac').first()).toBeVisible();
+  await card.locator('.direct-solution-original>summary').click();
+  const image=card.locator('.direct-solution-parts img').first();
+  await image.evaluate((im:HTMLImageElement)=>im.decode());
+  await expect(image).toBeVisible();
+});

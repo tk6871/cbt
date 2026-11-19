@@ -86,7 +86,10 @@
       "id": "hansol-direct-1-106-36",
       "blocks": [
         {
-          "text": "압력손실은 배관의 지름이 크면 유속이 작아져서 적어진다."
+          "text": "인쇄 풀이에서는 관 지름이 크면 유속이 낮아져 압력손실이 줄어든다고 설명한다."
+        },
+        {
+          "text": "보충 설명 · 같은 유량을 보내고 길이·유체 조건이 같을 때의 비교다. 단면적이 커져 평균유속이 낮아지고 직관 마찰손실도 줄어든다."
         }
       ],
       "page": "1-106",
@@ -2294,6 +2297,905 @@
         {
           "asset": "assets/hvac-hansol-book/direct-pages/1-106-original.png",
           "sha256": "0fe1810d40b9e081b113bd2de69c9f2b50d80f40ba4ae46dbd051b99c51750a6"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-112-68",
+      "blocks": [
+        {
+          "text": "취출공기가 실내 현열을 받는 양으로 질량유량을 구한다. 잠열 20,000 kJ/h는 이 식에 더하지 않는다. 보기가 kg/h이므로 밀도로 나누지 않는다."
+        },
+        {
+          "tex": "\\dot m=\\frac{q_s}{c_p\\Delta T}=\\frac{50000}{1.01\\times10}\\approx4950\\ \\mathrm{kg/h}",
+          "label": "취출 질량유량 약 4,950 kg/h"
+        }
+      ],
+      "page": "1-112",
+      "number": 68,
+      "questionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            847,
+            671,
+            265
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            1115,
+            671,
+            162
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-112-original.png",
+          "sha256": "b7edbc552f4e9ca3bbbe01f6c79ec3d82565bbd507fbdb9400c55cbf9ec1706c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-112-69",
+      "blocks": [
+        {
+          "text": "인쇄 풀이의 중간값은 질량유량 2.3054 kg/s, 약 8,298 kg/h이다. 원문의 단위 안내에 붙은 kJ/s와 kg/s의 등호는 성립하지 않는다."
+        },
+        {
+          "text": "교정 풀이 · 23,280 W는 23.28 kJ/s다. 비열과 온도차로 나누어 질량유량을 구하고 밀도 1.2 kg/m³로 나누어야 체적유량이 된다."
+        },
+        {
+          "tex": "\\dot V=\\frac{23.28\\times3600}{1.2\\times1.01\\times(25-15)}\\approx6915\\ \\mathrm{m^3/h}",
+          "label": "시간당 송풍량 약 6,915 세제곱미터"
+        }
+      ],
+      "page": "1-112",
+      "number": 69,
+      "questionParts": [
+        {
+          "page": "1-112",
+          "rect": [
+            671,
+            1415,
+            671,
+            317
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-113",
+          "rect": [
+            0,
+            0,
+            671,
+            196
+          ],
+          "asset": "assets/hvac-hansol-book/direct-continuations/1-113-0-179-671-196.png",
+          "size": [
+            671,
+            196
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-continuations/1-113-0-179-671-196.png",
+          "sha256": "a1c778c0d2c556e3eee0dac2454c2964c177841e04ee7dc41f69f186f548d87f"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-117-93",
+      "blocks": [
+        {
+          "text": "교재는 소규모 건물에서 온수난방이 흔하다는 ①을 고른다. 온수는 온도가 떨어지면서 현열을 내고, 증기는 주로 응축하면서 잠열을 내놓는다. 축열량이 큰 복사바닥은 외기 온도의 급변에 방열량을 신속히 맞추기 어렵다."
+        }
+      ],
+      "page": "1-117",
+      "number": 93,
+      "questionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            0,
+            730,
+            671,
+            316
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            0,
+            1047,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-117-original.png",
+          "sha256": "bc54b89a906445c97e71d27877189d4820ec0a571d4bcfc36c55014ebbacd65d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-117-94",
+      "blocks": [
+        {
+          "text": "인쇄 풀이는 증기·온수 방열기를 직접 대류난방의 예로 들어 ④를 선택한다."
+        },
+        {
+          "text": "보충 설명 · 직접·간접은 실내에서 열을 주는 방식의 분류이고 복사·대류는 열전달 기구다. 온수를 바닥에 흘려 복사난방을 할 수도 있다. 복사난방은 적절히 설계하면 주변 표면온도를 높여 쾌적감을 얻을 수 있다."
+        }
+      ],
+      "page": "1-117",
+      "number": 94,
+      "questionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            0,
+            1357,
+            671,
+            238
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            0,
+            1596,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-117-original.png",
+          "sha256": "bc54b89a906445c97e71d27877189d4820ec0a571d4bcfc36c55014ebbacd65d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-117-95",
+      "blocks": [
+        {
+          "text": "② 증기난방과 팽창탱크의 짝이 부적절하다. 밀폐식 온수난방에서는 물이 가열되어 늘어난 부피를 받아 주는 팽창탱크가 필요하다. 증기난방의 응축수를 모으는 탱크와는 용도가 다르다."
+        }
+      ],
+      "page": "1-117",
+      "number": 95,
+      "questionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            671,
+            186,
+            671,
+            241
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            671,
+            428,
+            671,
+            165
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-117-original.png",
+          "sha256": "bc54b89a906445c97e71d27877189d4820ec0a571d4bcfc36c55014ebbacd65d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-117-96",
+      "blocks": [
+        {
+          "text": "④가 잘못된 조합이다. 팽창탱크는 밀폐식 온수 배관에서 늘어난 물의 부피를 받아 주는 설비다. 증기난방의 응축수 배출에는 증기트랩을 쓴다."
+        }
+      ],
+      "page": "1-117",
+      "number": 96,
+      "questionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            671,
+            671,
+            671,
+            243
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-117",
+          "rect": [
+            671,
+            915,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-117-original.png",
+          "sha256": "bc54b89a906445c97e71d27877189d4820ec0a571d4bcfc36c55014ebbacd65d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-119-4",
+      "blocks": [
+        {
+          "text": "109번의 인쇄 풀이는 증기 환수관에서 공기와 접촉해 부식될 수 있다고 설명한다. ③처럼 내부 부식이 지연되어 수명이 길다는 것은 증기난방의 일반적인 장점이 아니다. 실제 부식은 응축수 수질과 산소 유입 등에도 좌우된다."
+        }
+      ],
+      "page": "1-119",
+      "number": 109,
+      "questionParts": [
+        {
+          "page": "1-119",
+          "rect": [
+            671,
+            798,
+            671,
+            271
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-119",
+          "rect": [
+            671,
+            1070,
+            671,
+            112
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-119-original.png",
+          "sha256": "e154271f83702a0ba22766c26537b08678ee199f471b7e512d418f843f3649df"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-135-1",
+      "blocks": [
+        {
+          "text": "①이 중앙식의 특징과 다르다. 중앙 기계실과 덕트·배관이 연결되어 있어 옮기기 어렵고, 대개 건물을 설계할 때부터 설치 공간과 경로를 함께 계획한다."
+        }
+      ],
+      "page": "1-135",
+      "number": 1,
+      "questionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            0,
+            323,
+            671,
+            320
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            0,
+            644,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-135-original.png",
+          "sha256": "7dacd7ad0a4016162ffaa5eb5874c957452863b391dbde9963112e6141473f5b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-135-4",
+      "blocks": [
+        {
+          "text": "②가 부적당하다. 이 문제의 유닛 히터는 팬으로 공기를 가열코일에 통과시켜 난방하는 장치다. 냉동기를 내장하는 것이 구성 요건은 아니다."
+        }
+      ],
+      "page": "1-135",
+      "number": 4,
+      "questionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            671,
+            537,
+            671,
+            279
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-135",
+          "rect": [
+            671,
+            817,
+            671,
+            69
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-135-original.png",
+          "sha256": "7dacd7ad0a4016162ffaa5eb5874c957452863b391dbde9963112e6141473f5b"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-136-8",
+      "blocks": [
+        {
+          "text": "교재의 다익형 원심송풍기 호칭은 임펠러 지름 150 mm를 1호로 센다. 그 기준을 적용하면 ③ 3번이다."
+        },
+        {
+          "tex": "\\mathrm{No.}=\\frac{450\\ \\mathrm{mm}}{150\\ \\mathrm{mm}}=3",
+          "label": "450 mm 나누기 150 mm는 3"
+        }
+      ],
+      "page": "1-136",
+      "number": 8,
+      "questionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            0,
+            1051,
+            671,
+            193
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            0,
+            1245,
+            671,
+            139
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-136-original.png",
+          "sha256": "54bd96a4dfd2f1481a04d1d4aaeff05c65b5b409170395bc7c8d54f8f16e5061"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-136-10",
+      "blocks": [
+        {
+          "text": "분당 풍량을 60으로 나누면 7.5 m³/s이고 50 mmAq는 약 490 Pa이다. 공기에 주는 정압동력을 정압효율 0.50으로 나누면 송풍기 입력동력이 된다. 주어진 풍량·정압을 쓰므로 600 rpm을 따로 곱하지 않는다."
+        },
+        {
+          "tex": "P=\\frac{(450/60)\\times490.33}{1000\\times0.50}\\approx7.35\\ \\mathrm{kW}",
+          "label": "정압 50 mm 수주에서 약 7.4 kW"
+        }
+      ],
+      "page": "1-136",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            671,
+            512,
+            671,
+            223
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            671,
+            736,
+            671,
+            131
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-136-original.png",
+          "sha256": "54bd96a4dfd2f1481a04d1d4aaeff05c65b5b409170395bc7c8d54f8f16e5061"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-136-11",
+      "blocks": [
+        {
+          "text": "인쇄 풀이는 500 Pa를 식에 대입한 뒤 7.4 kW라고 적고 ②를 제시한다."
+        },
+        {
+          "text": "교정 풀이 · 주어진 500 Pa는 50 mmAq로 환산할 필요가 없다. 정확한 계산값은 7.50 kW이고 보기 중에는 ② 7.4 kW가 가장 가깝다."
+        },
+        {
+          "tex": "P=\\frac{450\\times500}{60\\times1000\\times0.50}=7.50\\ \\mathrm{kW}",
+          "label": "500 Pa로 계산한 값은 7.50 kW"
+        }
+      ],
+      "page": "1-136",
+      "number": 11,
+      "questionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            671,
+            969,
+            671,
+            231
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-136",
+          "rect": [
+            671,
+            1201,
+            671,
+            132
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-136-original.png",
+          "sha256": "54bd96a4dfd2f1481a04d1d4aaeff05c65b5b409170395bc7c8d54f8f16e5061"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-137-14",
+      "blocks": [
+        {
+          "text": "냉각수를 1 L당 약 1 kg으로 보면 시간당 18,000 kg이다. 냉각수의 질량유량에 비열과 입·출구 온도차를 곱한다."
+        },
+        {
+          "tex": "\\dot Q=(300\\times60)\\times4.2\\times5=378000\\ \\mathrm{kJ/h}",
+          "label": "냉각수가 시간당 흡수하는 열량 378,000 kJ"
+        }
+      ],
+      "page": "1-137",
+      "number": 14,
+      "questionParts": [
+        {
+          "page": "1-137",
+          "rect": [
+            0,
+            888,
+            671,
+            263
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-137",
+          "rect": [
+            0,
+            1152,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-137-original.png",
+          "sha256": "4a5f0497c5e7e503c594103cfc5907002d29732cc05b7dbd3ca4a3851ae698ae"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-139-27",
+      "blocks": [
+        {
+          "text": "공기 체적유량을 비체적으로 나누면 약 1,177.86 kg/min이다. 가습 없이 건구온도를 5℃에서 20℃로 올리므로 15 K의 현열만 계산한다."
+        },
+        {
+          "tex": "\\dot Q=\\frac{1000}{0.849}\\frac{1.0(20-5)}{60}\\approx294.5\\ \\mathrm{kW}",
+          "label": "재열기 열량 약 294.5 kW"
+        }
+      ],
+      "page": "1-139",
+      "number": 27,
+      "questionParts": [
+        {
+          "page": "1-139",
+          "rect": [
+            671,
+            190,
+            671,
+            301
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-139",
+          "rect": [
+            671,
+            494,
+            671,
+            154
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-139-original.png",
+          "sha256": "c932eae2c6fa2c4437d8c050fad0b34f15c51b540f7ef0d13f38841da31d746d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-141-36",
+      "blocks": [
+        {
+          "text": "인쇄 풀이는 얼음을 분무하는 ②를 일반적인 공기 가습법에서 제외하고 감습된다고 설명한다."
+        },
+        {
+          "text": "보충 설명 · 얼음이 있다는 사실만으로 늘 감습되는 것은 아니다. 공기 중 수증기가 찬 표면에 응축·착상하면 습기비가 줄고, 반대로 얼음에서 승화한 수분이 공기로 들어갈 수도 있다."
+        }
+      ],
+      "page": "1-141",
+      "number": 36,
+      "questionParts": [
+        {
+          "page": "1-141",
+          "rect": [
+            0,
+            1386,
+            671,
+            240
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-141",
+          "rect": [
+            0,
+            1627,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-141-original.png",
+          "sha256": "b632fef6215235b002b9358127745e6092f84a5a1636e30cb32b0d0a49a4f96e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-143-47",
+      "blocks": [
+        {
+          "text": "외기가 실내보다 냉방에 유리할 때 배기의 열을 회수하여 외기를 다시 데우면 외기냉방 효과가 줄 수 있다. 교재는 이때 바이패스 덕트로 열교환기를 우회하므로 ④가 틀렸다고 설명한다."
+        }
+      ],
+      "page": "1-143",
+      "number": 47,
+      "questionParts": [
+        {
+          "page": "1-143",
+          "rect": [
+            0,
+            1018,
+            671,
+            240
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-143",
+          "rect": [
+            0,
+            1259,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-143-original.png",
+          "sha256": "705e37bcac93fa30f7008b0c6e2db0628cc2d54ab976c0d8e6b4e9559ad802de"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-153-6",
+      "blocks": [
+        {
+          "text": "교재가 말하는 접속은 ① 하트포드 루프다. 환수관 쪽 누설 등으로 보일러 물이 빠져나갈 때 수위가 접속 높이 아래까지 떨어질 위험을 줄인다. 급수 불량이나 다른 원인의 저수위를 모두 막는 장치는 아니다."
+        }
+      ],
+      "page": "1-153",
+      "number": 6,
+      "questionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            0,
+            190,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            0,
+            383,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-153-original.png",
+          "sha256": "42a8515e5b4eb54b1d5245d941d5383787c55a1488a5296a08fe80d16275b5a3"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-153-8",
+      "blocks": [
+        {
+          "text": "②가 틀리다. 하트포드 접속은 보일러수가 환수관으로 빠져나가도록 만드는 배관이 아니다. 환수관 쪽 문제로 보일러 물이 과도하게 유출되는 위험을 줄이는 배관이다."
+        }
+      ],
+      "page": "1-153",
+      "number": 8,
+      "questionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            0,
+            1118,
+            671,
+            433
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            0,
+            1552,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-153-original.png",
+          "sha256": "42a8515e5b4eb54b1d5245d941d5383787c55a1488a5296a08fe80d16275b5a3"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-153-10",
+      "blocks": [
+        {
+          "text": "발생한 증기가 얻은 열량은 실제 증발량에 급수와 증기의 비엔탈피 차를 곱한 값이다. 이를 100℃ 포화수의 증발잠열 약 2,257 kJ/kg로 나누면 상당증발량이다. 손실을 채우는 보급수량을 실제 증발량 대신 쓰지 않는다."
+        },
+        {
+          "tex": "G_e=\\frac{G_s(h_2-h_1)}{2257}",
+          "label": "상당증발량은 보일러 출력 나누기 표준 증발잠열"
+        }
+      ],
+      "page": "1-153",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            671,
+            909,
+            671,
+            508
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-153",
+          "rect": [
+            671,
+            1418,
+            671,
+            233
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-153-original.png",
+          "sha256": "42a8515e5b4eb54b1d5245d941d5383787c55a1488a5296a08fe80d16275b5a3"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-154-11",
+      "blocks": [
+        {
+          "text": "인쇄 풀이 첫 식의 분모는 539이고 대입식은 2,257이다. 두 숫자는 같은 기준 잠열을 각각 kcal/kg와 kJ/kg로 표현한 근삿값이다."
+        },
+        {
+          "text": "교정 풀이 · 여기서는 엔탈피가 kJ/kg이므로 2,257을 사용한다."
+        },
+        {
+          "tex": "G_e=\\frac{10000(2914-42)}{2257}\\approx12725\\ \\mathrm{kg/h}",
+          "label": "상당증발량 시간당 약 12,725 kg"
+        }
+      ],
+      "page": "1-154",
+      "number": 11,
+      "questionParts": [
+        {
+          "page": "1-154",
+          "rect": [
+            0,
+            190,
+            671,
+            259
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-154",
+          "rect": [
+            0,
+            452,
+            671,
+            194
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-154-original.png",
+          "sha256": "4d68f3077ddba27061d5448a343d71571748e650a00b0fe561c58abd838b8995"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-164-1",
+      "blocks": [
+        {
+          "text": "교재가 제시한 저속 덕트 설계풍속은 15 m/s 이하이므로 주덕트를 20~30 m/s로 설계한다는 ②가 해당 기준과 맞지 않는다. 실제 설계에는 허용 소음과 압력손실 등 해당 기준을 함께 적용한다."
+        }
+      ],
+      "page": "1-164",
+      "number": 1,
+      "questionParts": [
+        {
+          "page": "1-164",
+          "rect": [
+            0,
+            322,
+            671,
+            365
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-164",
+          "rect": [
+            0,
+            688,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-164-original.png",
+          "sha256": "d4034b95bf6de0f4d704b319663b4864ea939cd049ad59282208a838d1b752e1"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-1-165-6",
+      "blocks": [
+        {
+          "text": "원문은 마찰손실과 장단변비를 비교하며 ②를 고른다. 여기서 상당직경은 같은 풍량에서 단위 길이당 마찰손실이 같은 원형 덕트의 지름이다."
+        },
+        {
+          "text": "②의 식은 다음과 같이 쓸 수 있다. 단면적 등 나머지 조건 없이 동일 풍량만으로 두 임의 덕트의 손실을 비교할 수는 없다."
+        },
+        {
+          "tex": "d_e=1.3\\frac{(ab)^{5/8}}{(a+b)^{1/4}}",
+          "label": "같은 단위로 잰 두 변 a와 b의 상당직경"
+        }
+      ],
+      "page": "1-165",
+      "number": 6,
+      "questionParts": [
+        {
+          "page": "1-165",
+          "rect": [
+            0,
+            440,
+            671,
+            441
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "1-165",
+          "rect": [
+            0,
+            882,
+            671,
+            165
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/1-165-original.png",
+          "sha256": "0a63a75ae29a8be89eb86b8a82c7cfa8e20d63f36b66d141f1dc30ecfb5227f8"
         }
       ]
     }

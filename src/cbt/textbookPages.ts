@@ -7,6 +7,7 @@ import workedExamples from '../../data/textbook-worked-examples.json' with {type
 import pageAudit from '../../data/textbook-page-audit.json' with {type:'json'};
 import directBook from '../../data/hansol-book-direct.json' with {type:'json'};
 import directBoundaries from '../../data/hansol-book-direct-boundaries.json' with {type:'json'};
+import reviewedPrintedPages from '../../data/textbook-direct-printed-pages.json' with {type:'json'};
 import directUpscale from '../../data/hansol-book-direct-upscale.json' with {type:'json'};
 import {resolveBookInkHidden} from './textbookInkHidden';
 import type { TextbookKey } from './textbookRoutes';
@@ -25,10 +26,7 @@ const boundaryReviews=new Map(directBoundaries.entries.map(r=>[r.id,r]));
 // are hidden from the reader, never removed from the original source archive.
 // These crops started at a circled option in the preceding exercise. The
 // complete problem on each page is 109 or 125. Keep the original storage ID.
-const printedPageCorrections: Record<string, { number: number; question: number[]; solution: number[] }> = {
- 'hansol-direct-1-119-4': { number: 109, question: [671, 798, 671, 271], solution: [671, 1070, 671, 112] },
- 'hansol-direct-3-194-3': { number: 125, question: [671, 1365, 671, 222], solution: [671, 1588, 671, 102] },
-};
+const printedPageCorrections: Record<string, { number: number; question: number[]; solution: number[] }> = reviewedPrintedPages;
 export const textbookDirectSources:TextbookDirectSource[]=directBook.locations.flatMap<TextbookDirectSource>(r=>{
  const printed = printedPageCorrections[r.id];
  if (printed) {
@@ -89,7 +87,7 @@ export function loadTextbookSupplement(book:TextbookKey):Promise<QuestionItem[]>
  const items=()=> (bank()?.rounds||[]).flatMap(round=>round.questions.map(question=>({round,question,subject:subjectFor(round,question),id:questionId(round,question)})));
  if(bank())return Promise.resolve(items());
  return supplementLoads[book] ||= new Promise<void>((resolve,reject)=>{
-  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=683',document.baseURI).href;
+  const script=document.createElement('script');script.src=new URL(book==='energy'?'data/energy-book-earlier.js?v=621':'data/hvac-hansol-book.js?v=684',document.baseURI).href;
   script.onload=()=>bank()?resolve():reject(new Error('교재 자료를 읽지 못했습니다.'));
   script.onerror=()=>reject(new Error('교재 자료에 연결하지 못했습니다.'));
   document.head.appendChild(script);

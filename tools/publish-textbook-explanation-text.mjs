@@ -10,13 +10,16 @@ const boundaries=read('data/hansol-book-direct-boundaries.json');
 const pages=new Map(book.pages.map(p=>[p.page,p]));
 const fixes=new Map(boundaries.entries.map(r=>[r.id,r]));
 const extras=new Map(boundaries.assets.map(a=>[a.asset,a]));
+const printedPages = read('data/textbook-direct-printed-pages.json');
 const seen=new Set();
 const entries=review.entries.map(entry=>{
  assert.ok(!seen.has(entry.id));seen.add(entry.id);
  const source=book.locations.find(r=>r.id===entry.id);assert.ok(source);
- const fix=fixes.get(source.id);
+ const printed = printedPages[source.id];
+ const candidate = fixes.get(source.id);
+ const fix = !printed && !source.split && candidate?.originalQuestionRect.every((v,i)=>v===source.questionRect[i]) ? candidate : undefined;
  assert.ok(!fix||fix.status==='split');
- const solutionParts=fix?.solutionParts||[{page:source.page,rect:source.solutionRect}];
+ const solutionParts=fix?.solutionParts||[{page:source.page,rect:printed?.solution??source.solutionRect}];
  assert.ok(solutionParts.every(p=>p.rect?.length===4));
  assert.ok(entry.blocks.length>0);
  for(const b of entry.blocks){
@@ -30,8 +33,8 @@ const entries=review.entries.map(entry=>{
   verifyTextbookPageHash(file,expected);
   return {asset:file,sha256:expected};
  });
- return {...entry,page:source.page,number:fix?.printedNumber??source.number,
-  questionParts:fix?.questionParts||[{page:source.page,rect:source.questionRect}],solutionParts,assets};
+ return {...entry,page:source.page,number:printed?.number??fix?.printedNumber??source.number,
+  questionParts:fix?.questionParts||[{page:source.page,rect:printed?.question??source.questionRect}],solutionParts,assets};
 });
 const out={schemaVersion:1,reviewedAt:review.reviewedAt,basis:review.basis,entries};
 const path='data/textbook-explanation-text.json',content=JSON.stringify(out,null,2)+'\n';
