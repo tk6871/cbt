@@ -11,11 +11,15 @@ const pages=new Map(book.pages.map(p=>[p.page,p]));
 const fixes=new Map(boundaries.entries.map(r=>[r.id,r]));
 const extras=new Map(boundaries.assets.map(a=>[a.asset,a]));
 const printedPages = read('data/textbook-direct-printed-pages.json');
+const numberCorrections=read('data/textbook-direct-number-review.json').corrections;
 const seen=new Set();
 const entries=review.entries.map(entry=>{
  assert.ok(!seen.has(entry.id));seen.add(entry.id);
  const source=book.locations.find(r=>r.id===entry.id);assert.ok(source);
- const printed = printedPages[source.id];
+ const correction=numberCorrections[source.id];
+ const printed=correction && JSON.stringify(correction.originalRect)===JSON.stringify(source.questionRect)
+  ? {number:correction.number,question:correction.questionRect,solution:source.solutionRect}
+  : printedPages[source.id];
  const candidate = fixes.get(source.id);
  const fix = !printed && !source.split && candidate?.originalQuestionRect.every((v,i)=>v===source.questionRect[i]) ? candidate : undefined;
  assert.ok(!fix||fix.status==='split');

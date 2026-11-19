@@ -283,6 +283,28 @@ for(const source of direct.textbookDirectSources){
  }
  oldDirect.delete(source.id);
 }
+// A reviewed crop was archived by the upstream printed-key release. Validate its original
+// transcription as historical work even though it no longer appears in the reader.
+const archive = review.upstreamDirectReview;
+const upstreamJson = file => JSON.parse(execFileSync('git', ['show', archive.commit + ':' + file], {encoding:'utf8', maxBuffer:40e6}));
+const upstreamHidden = upstreamJson('data/textbook-direct-number-review.json').hiddenDuplicates;
+const upstreamPrinted = new Map(upstreamJson('data/textbook-direct-answer-review.json').entries.map(e => [e.id, e]));
+const publishedText = new Map(JSON.parse(fs.readFileSync(directFile)).entries.map(e => [e.id,e]));
+for (const id of archive.archivedReviewedIds) {
+ assert.ok(upstreamHidden.includes(id) && !directAnswers.has(id), id);
+ const entry = publishedText.get(id);
+ const upstreamEntry = upstreamJson(directFile).entries.find(item => item.id === id);
+ assert.deepEqual(entry, upstreamEntry, id);
+ assert.deepEqual(entry.blocks, recordsById.get(id).resolution, id);
+ assert.ok(recordsById.get(id).directReview.newTranscription && !oldDirect.has(id), id);
+ directNew.push(id);
+ directChanges.push(id);
+}
+for (const row of review.records.filter(r => r.answerImportedFrom)) {
+ assert.equal(row.answerImportedFrom, archive.commit);
+ assert.equal(upstreamPrinted.get(row.id)?.answer, row.answerAfter, row.id);
+ assert.equal(directAnswers.get(row.id), row.answerAfter, row.id);
+}
 assert.equal(oldDirect.size,0,'A previously displayed direct explanation disappeared');
 for (const record of review.records) {
  assert.ok(Object.hasOwn(statusCounts, record.status) && record.contentExamined, 'Unreviewed entry in manual ledger: ' + record.id);

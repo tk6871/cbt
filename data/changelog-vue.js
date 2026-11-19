@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.57',scope:'industrial',date:'2026.11.19',title:'산업안전기사 광속과 조도·최소컷셋 해설',summary:'광속과 광도를 구분하고 신뢰도 원도의 최소컷셋을 다시 계산했습니다.',tags:['산업안전기사'],changes:['네 회차에 비어 있던 해설 287개를 보완했습니다.']},
     {version:'6.2.56',scope:'industrial',date:'2026.11.19',title:'교재 정답과 풀이 바로 보기',summary:'원문의 보기를 누르면 정답 번호와 풀이가 함께 열립니다.',tags:['교재'],changes:['기존 답안 기록을 유지하면서 문제 번호와 중복 조각을 정리했습니다.','교재 원문 397쪽에 2배 해상도 이미지를 연결했습니다.']},
     {version:'6.2.55',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도 및 전류 분배 해설',summary:'7개 부품의 신뢰도와 접지경로의 분기 전류를 계산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.54',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·로프 장력 해설',summary:'최소컷셋, 로프 장력, 직병렬 회로의 전류를 원도에서 확인했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
@@ -2834,8 +2835,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.56';
+  changelog.versions.industrial = '6.2.57';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.56';
+  changelog.currentVersion = '6.2.57';
   window.CBT_CHANGELOG = changelog;
 })();
