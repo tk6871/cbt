@@ -84,3 +84,9 @@ node tools/verify-android-preview.mjs
 관리자 홈의 후속 목록과 사이트 내 배정 알림에는 `202611190004_followup_desk.sql`이 필요하다. 같은 검증 명령이 두 관리자 브라우저에서 배정 알림 수신, 회원 기록 바로 열기, 읽음 상태 격리와 다음 로그인 시 복원까지 확인한다.
 
 운영 요약의 ‘내가 맡기’에는 `202611190005_claim_member_followup.sql`이 필요하다. 같은 검사에서 편집 담당자 두 명이 같은 건을 동시에 맡을 때 실제 배정 결과와 담당자 표시, 배정 이력·알림 개수, 조회 전용 권한을 대조한다.
+
+## 운영 NestJS와 관리자 배정 확인
+
+저장소 루트의 Render Blueprint는 무료 웹 서비스 한 개를 정의한다. Docker 빌드 컨텍스트는 저장소 루트이며 서버는 호스트가 지정한 PORT에서 실행된다. 상태 확인 경로는 `/api/health`다. 서비스에는 운영 Supabase의 브라우저 공개 키와 CBT 사이트의 Origin을 설정한다. 처음 배포한 뒤 실제 서비스 주소에서 상태, 문제은행, 모형 및 인증이 필요한 기록 경로를 확인하고 공개 사이트 설정의 `serviceApiUrl`과 `reviewApiUrl`에 HTTPS 주소와 `/api`를 지정한다.
+
+관리자 배정 검증은 `node tools/verify-admin-assignment-release.mjs development`로 연습할 수 있다. 운영 DB와 sync-account를 적용한 뒤 `development` 대신 `production`을 지정하면 공개 사이트에 임시 아이디 3개를 생성해 두 관리자 브라우저 간 배정·알림·읽음 상태를 대조하고 정리한다. 로그인된 CLI 대신 Supabase 플러그인으로 테스트 권한을 지정하고 정리하려면 `--external-sql`을 추가하고 표시된 SQL을 같은 대상 프로젝트에 적용한다.
