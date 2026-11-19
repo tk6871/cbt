@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.66',scope:'industrial',date:'2026.11.19',title:"공조 필기 2017년 세 회차 및 2018년 3월",summary:"불대수 원문 해설 이미지의 마지막 항 xy를 xz로 바로잡고, 냉동기 열기준 성적계수와 되먹임 식을 분수로 표시했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.65',scope:'industrial',date:'2026.11.19',title:"공조 필기 2015~2016년 여섯 회차",summary:"계단 입력에 대한 PI 출력에서 처음 도약과 이후 일정 기울기의 원인을 나누어 설명하고, 현열비의 분모에 잠열을 포함했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.64',scope:'industrial',date:'2026.11.19',title:"공조 필기 2013~2014년 여섯 회차",summary:"같은 접점 회로라도 원보기의 부정선이 다르게 인쇄된 사례를 구별했다. 반파정류에서는 원도의 실효전압을 최댓값으로 바꾼 뒤 전 주기 평균 전류를 계산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.63',scope:'industrial',date:'2026.11.19',title:"공조 필기 2012년 3월·5월·8월",summary:"급수관 균등표의 20A 열과 동시사용률로 주관 32A를 확인했다. 8월 2번의 원보기는 수두식에 비중량을 곱해 압력 단위가 되므로 정답 확인 대상으로 남겼다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2843,8 +2844,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.65';
+  changelog.versions.industrial = '6.2.66';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.65';
+  changelog.currentVersion = '6.2.66';
   window.CBT_CHANGELOG = changelog;
 })();

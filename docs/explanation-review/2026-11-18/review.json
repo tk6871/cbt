@@ -243682,6 +243682,2211 @@
       "changeReason": "개념·장치 작동 원리·적용 조건",
       "primarySourceReviewed": true,
       "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:10",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 10,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "관경 선정 기준이 단위 길이당 일정한 마찰손실",
+      "finding": "관경 선정 기준이 단위 길이당 일정한 마찰손실",
+      "basis": "관경 선정 기준이 단위 길이당 일정한 마찰손실. 등속법은 속도를 일정하게 유지.",
+      "evidence": [
+        "hvac-hansol-2017-1:10"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "관경 선정 기준이 단위 길이당 일정한 마찰손실. 등속법은 속도를 일정하게 유지.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:11",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 11,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "볼트로 죈 판 묶음, 판 사이 유로와 전열면적 증감으로 판형 식별",
+      "finding": "볼트로 죈 판 묶음, 판 사이 유로와 전열면적 증감으로 판형 식별",
+      "basis": "볼트로 죈 판 묶음, 판 사이 유로와 전열면적 증감으로 판형 식별.",
+      "evidence": [
+        "hvac-hansol-2017-1:11"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 플레이트형이다. 이 문제의 볼트 체결식에서는 전열판 사이 교대 유로로 두 유체가 흐른다. 용량을 바꿀 때 증감하는 것은 지문에 적힌 전열관이 아니라 전열판이다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:35",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 35,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "액관 마찰손실 감소와 액관 입상·막힘·일사 구분",
+      "finding": "액관 마찰손실 감소와 액관 입상·막힘·일사 구분",
+      "basis": "액관 마찰손실 감소와 액관 입상·막힘·일사 구분.",
+      "evidence": [
+        "hvac-hansol-2017-1:35"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "액관 마찰손실 감소와 액관 입상·막힘·일사 구분.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:43",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 43,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원본 아래첨자 C₃H₈과 C₄H₁₀ 대조",
+      "finding": "원본 아래첨자 C₃H₈과 C₄H₁₀ 대조",
+      "basis": "원본 아래첨자 C₃H₈과 C₄H₁₀ 대조. 깨진 정답 문구 해소.",
+      "evidence": [
+        "hvac-hansol-2017-1:43"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "원본 아래첨자 C₃H₈과 C₄H₁₀ 대조. 깨진 정답 문구 해소.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:48",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 48,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": false,
+      "academicVerified": false,
+      "errorType": "물방울 비산 원리는 확인되지만 해당 코일의 2~3 m/s 설계 권장표 미확보",
+      "finding": "물방울 비산 원리는 확인되지만 해당 코일의 2~3 m/s 설계 권장표 미확보",
+      "basis": "물방울 비산 원리는 확인되지만 해당 코일의 2~3 m/s 설계 권장표 미확보.",
+      "evidence": [
+        "hvac-hansol-2017-1:48"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "물방울 비산 원리는 확인되지만 해당 코일의 2~3 m/s 설계 권장표 미확보.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:50",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 50,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "콘크리트에 매입해 행거 볼트를 받는 인서트와 길이 조절용 턴버클 구별",
+      "finding": "콘크리트에 매입해 행거 볼트를 받는 인서트와 길이 조절용 턴버클 구별",
+      "basis": "콘크리트에 매입해 행거 볼트를 받는 인서트와 길이 조절용 턴버클 구별.",
+      "evidence": [
+        "hvac-hansol-2017-1:50"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "콘크리트에 매입해 행거 볼트를 받는 인서트와 길이 조절용 턴버클 구별.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:53",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 53,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "Darcy–Weisbach의 h=f(L/D)v²/(2g), 다른 조건 고정 시 속도수두에 정비례",
+      "finding": "Darcy–Weisbach의 h=f(L/D)v²/(2g), 다른 조건 고정 시 속도수두에 정비례",
+      "basis": "Darcy–Weisbach의 h=f(L/D)v²/(2g), 다른 조건 고정 시 속도수두에 정비례.",
+      "evidence": [
+        "hvac-hansol-2017-1:53"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "②다. Darcy–Weisbach 식에서 마찰계수와 관의 길이·직경을 고정하면 손실수두는 속도수두에 정비례한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:57",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 57,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "기구 트랩 개별 통기로 배수 시의 압력차 완화",
+      "finding": "기구 트랩 개별 통기로 배수 시의 압력차 완화",
+      "basis": "기구 트랩 개별 통기로 배수 시의 압력차 완화. 각개 통기관을 특정.",
+      "evidence": [
+        "hvac-hansol-2017-1:57"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "기구 트랩 개별 통기로 배수 시의 압력차 완화. 각개 통기관을 특정.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:61",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 61,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림의 전향요소 1/s, 출력에 P₁ 곱해 감산",
+      "finding": "그림의 전향요소 1/s, 출력에 P₁ 곱해 감산",
+      "basis": "그림의 전향요소 1/s, 출력에 P₁ 곱해 감산. sC=R−P₁C.",
+      "evidence": [
+        "hvac-hansol-2017-1:61",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m61.png",
+          "displayAsset": "assets/problem-webp90/404794baba73bdfda5cddfed6f23528f.webp",
+          "sha256": "56787da41214e28dcc944888eef48708f25596ee20789fb8645b38273a77f328"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m61b1.png",
+          "displayAsset": "assets/problem-webp90/b4e7a00e2e25c6c27bfdbc0807072a78.webp",
+          "sha256": "e0b85eba19ddc46cd9af3d13cccf8a0bd8260c99ed965f17d7680e5cf302e270"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m61b2.png",
+          "displayAsset": "assets/problem-webp90/07816edeab62a8003730cbf4275443ee.webp",
+          "sha256": "57e5f050e83267ae62652228b2c0da3f6b9b7fe409edb3575e9b72597a50fdf1"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m61b3.png",
+          "displayAsset": "assets/problem-webp90/cdd0d2779861f05efe5a6b8c2d9b2125.webp",
+          "sha256": "ae005050d2a8a7f297e23690b611cab3b38489f2cfe0c59a844fc21056575357"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m61b4.png",
+          "displayAsset": "assets/problem-webp90/64677c3204ad35d177106e8687e01c29.webp",
+          "sha256": "3bfcb5cb4d261659a9531f5e12d2cb0ba561bb007066065be2d251b9264520ad"
+        }
+      ],
+      "resolution": "출력 C에 P₁을 곱해 입력 R에서 뺀 값이 1/s 블록으로 들어간다. 양변에 s를 곱해 정리하면 (s+P₁)C=R이므로 등가 블록은 ③이다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:62",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 62,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "목푯값이 시간에 따라 일정한 것이 정치제어의 분류 기준",
+      "finding": "목푯값이 시간에 따라 일정한 것이 정치제어의 분류 기준",
+      "basis": "목푯값이 시간에 따라 일정한 것이 정치제어의 분류 기준.",
+      "evidence": [
+        "hvac-hansol-2017-1:62",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "공정의 온도나 압력을 미리 정해 둔 일정한 값에 유지하는 제어를 ③ 정치제어라고 한다. 외란으로 출력이 변해도 되돌아가려는 목표는 일정하다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:66",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 66,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "직렬회로 I=e/Rm=(V−e)/Rx",
+      "finding": "직렬회로 I=e/Rm=(V−e)/Rx",
+      "basis": "직렬회로 I=e/Rm=(V−e)/Rx. 10⁻⁶ 곱해 MΩ.",
+      "evidence": [
+        "hvac-hansol-2017-1:66"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m66.png",
+          "displayAsset": "assets/problem-webp90/2cac4d75c66407cdf9298d067eb777eb.webp",
+          "sha256": "8dd12f9c1f5d9af82ad90ae1c47cac2d5005292b0c208785e5f216b91090c985"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m66b1.png",
+          "displayAsset": "assets/problem-webp90/93db1b35dd067a4996f1e743fb41de28.webp",
+          "sha256": "c587a0fdba30c53f0b9c46d9db6ca04c1a4ed3cd4ac728fde6247d59e3a8449b"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m66b2.png",
+          "displayAsset": "assets/problem-webp90/571c67187d1d004457f059546a512af8.webp",
+          "sha256": "a41f9a42b9873e3518ccc2deb1d6d6193836424457588afdcd439379f0b16761"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m66b3.png",
+          "displayAsset": "assets/problem-webp90/14cc9549958908a3ee20fa3706b4a9c1.webp",
+          "sha256": "9fbfde2d0f7e14e418ddd0ee49cebbd1a586546a198c6d00962b8c3683ed4dc8"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m66b4.png",
+          "displayAsset": "assets/problem-webp90/2ca4da18c70ed6958dca3fa87dbe4f7d.webp",
+          "sha256": "55bb52338085c40f361c4f2b35da2cbcd3425558683d87b84b1636af5caf847c"
+        }
+      ],
+      "resolution": "전압계 내부저항과 절연저항에는 같은 전류가 흐른다. 전압계에 걸린 전압은 e, 절연저항에 걸린 전압은 V−e다. 전류 e/Rₘ으로 후자를 나눈 뒤 Ω에서 MΩ으로 환산하면 ③이다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:71",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 71,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "i=C dv/dt이므로 정현파에서 전류가 90° 앞섬",
+      "finding": "i=C dv/dt이므로 정현파에서 전류가 90° 앞섬",
+      "basis": "i=C dv/dt이므로 정현파에서 전류가 90° 앞섬. 전압 기준 물음 ②.",
+      "evidence": [
+        "hvac-hansol-2017-1:71"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "②다. 콘덴서 전류는 전압의 시간 변화율에 비례한다. 정현파에서는 전류가 전압보다 90° 앞서므로, 문제에서 묻는 전압의 위상은 전류보다 90° 늦다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:72",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 72,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "단위계단 높이 1을 원도에서 확인",
+      "finding": "단위계단 높이 1을 원도에서 확인",
+      "basis": "단위계단 높이 1을 원도에서 확인. 0부터 무한대까지 exp(−st) 적분은 1/s.",
+      "evidence": [
+        "hvac-hansol-2017-1:72"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m72.png",
+          "displayAsset": "assets/problem-webp90/617f7c696da33ca7bc690ce40dc9943b.webp",
+          "sha256": "abff749d5b251d196885ae822a3e707cbe8284c6def1ca42555d4b200cac2c16"
+        }
+      ],
+      "resolution": "원도에서 t=0부터 함수값이 1로 유지된다. 따라서 단위계단함수의 라플라스 변환인 ② 1/s다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:75",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 75,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "온도에 따른 저항 변화가 검출 원리인 서미스터를 다른 세 장치와 비교",
+      "finding": "온도에 따른 저항 변화가 검출 원리인 서미스터를 다른 세 장치와 비교",
+      "basis": "온도에 따른 저항 변화가 검출 원리인 서미스터를 다른 세 장치와 비교.",
+      "evidence": [
+        "hvac-hansol-2017-1:75"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "온도에 따른 저항 변화가 검출 원리인 서미스터를 다른 세 장치와 비교.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:79",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 79,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "인쇄된 부정 기호는 ② 첫 X, ③ 마지막 X, ④ 첫 Y 위",
+      "finding": "인쇄된 부정 기호는 ② 첫 X, ③ 마지막 X, ④ 첫 Y 위",
+      "basis": "인쇄된 부정 기호는 ② 첫 X, ③ 마지막 X, ④ 첫 Y 위. 불대수로 각 항 축약.",
+      "evidence": [
+        "hvac-hansol-2017-1:79"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m79b1.png",
+          "displayAsset": "assets/problem-webp90/c0e8a3d881920e5f52d76db128dedbdf.webp",
+          "sha256": "b06acd076cbceffb7d3b3ed1d3e048d88859c6e769775a16146e088dea43e718"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m79b2.png",
+          "displayAsset": "assets/problem-webp90/49d07dc63943b935512e221ae0aa9917.webp",
+          "sha256": "1fd7c2f7e59135a6e3162466679b32927cf05d54203a174438c7d401ba0b4d51"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m79b3.png",
+          "displayAsset": "assets/problem-webp90/73e9ffcec525596d664e46ee5cd18027.webp",
+          "sha256": "e9f6a5fbabad8430bd29479d352cd6edc8a8b189ff32ccabf1f34c2a6996e995"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m79b4.png",
+          "displayAsset": "assets/problem-webp90/8c4efdcad5f8d93a4fcf7a4c7a2b81e5.webp",
+          "sha256": "7bcbcfbed2182c588a7a2cc43d3ddfa92710e029842627496a0bb638336089b4"
+        }
+      ],
+      "resolution": "①은 흡수법칙에 따라 XY+Y=Y다. ②는 (X̅+X)Y=Y이고 ③도 X+X̅=1이므로 Y다. ④는 괄호 안에 Y̅+Y=1이 있어 X만 남는다. 따라서 ④가 다르다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170305:80",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170305",
+      "number": 80,
+      "location": "공조냉동기계산업기사 : 2017년 03월 05일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도 출력 분기에서 비교점 음 입력으로 되돌아가는 경로의 ⓐ 확인",
+      "finding": "원도 출력 분기에서 비교점 음 입력으로 되돌아가는 경로의 ⓐ 확인",
+      "basis": "원도 출력 분기에서 비교점 음 입력으로 되돌아가는 경로의 ⓐ 확인.",
+      "evidence": [
+        "hvac-hansol-2017-1:80",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170305/images/nq20170305m80.png",
+          "displayAsset": "assets/problem-webp90/3bd930118a5d0703c729a05c1bcf3ebe.webp",
+          "sha256": "9c0c173392e462fb984442a49f4dfd10e45a5a70feb1c79273dbb18479c59a8c"
+        }
+      ],
+      "resolution": "원도 출력 분기에서 비교점 음 입력으로 되돌아가는 경로의 ⓐ 확인.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:1",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 1,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①",
+      "finding": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①",
+      "basis": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①.",
+      "evidence": [
+        "hvac-hansol-2017-2:1"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:4",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 4,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "넓은 패널에서 복사열 교환",
+      "finding": "넓은 패널에서 복사열 교환",
+      "basis": "넓은 패널에서 복사열 교환. 방열면적 및 난방원리에 비춰 ②.",
+      "evidence": [
+        "hvac-hansol-2017-2:4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "넓은 패널에서 복사열 교환. 방열면적 및 난방원리에 비춰 ②.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:6",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 6,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감",
+      "finding": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감",
+      "basis": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감.",
+      "evidence": [
+        "hvac-hansol-2017-2:6",
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:8",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 8,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "노통과 연관을 함께 갖춘 동체의 단서",
+      "finding": "노통과 연관을 함께 갖춘 동체의 단서",
+      "basis": "노통과 연관을 함께 갖춘 동체의 단서. 기존 증기·온수 비교는 질문과 무관.",
+      "evidence": [
+        "hvac-hansol-2017-2:8",
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "큰 노통에서 연료가 타고, 연소가스가 여러 가는 연관을 지나면서 관 밖의 보일러수에 열을 전달한다. 노통과 연관을 모두 갖추므로 ② 노통연관보일러다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:24",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 24,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "고온 300 ℃",
+      "finding": "고온 300 ℃",
+      "basis": "고온 300 ℃. 80/(427×0.5)=0.3747. 573.15×(1−0.3747)−273.15≈85.2 ℃.",
+      "evidence": [
+        "hvac-hansol-2017-2:24",
+        "652-carnot"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m24h1.png",
+          "displayAsset": "assets/problem-webp90/ad641e60d1acb37a9e583b5818dac3fc.webp",
+          "sha256": "0e414501159877a479c612b49b9fbd0fffae4ce7a8e69e9be2a4213927b3ef02"
+        }
+      ],
+      "resolution": "일량의 kg·m는 kgf·m를 뜻한다. 공급열 0.5 kcal를 약 213.5 kgf·m로 환산하면 효율은 약 0.375다. 고온 열원의 300 ℃를 573.15 K로 바꿔 카르노 효율식에 대입하면 저온 열원은 약 85 ℃이므로 ③이다. 첨부 해설의 마지막 대입 줄에 인쇄된 293은 273의 오기다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:29",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 29,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "응축 중 작동유체 방열",
+      "finding": "응축 중 작동유체 방열",
+      "basis": "응축 중 작동유체 방열. 이상 압축은 등엔트로피이고 실제 단열교축은 엔트로피 증가.",
+      "evidence": [
+        "hvac-hansol-2017-2:29",
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 응축과정이다. 냉매가 응축기에서 주위로 열을 내보내며 증기에서 액체로 변할 때 냉매의 비엔트로피가 줄어든다. 증발기에서는 열을 흡수하므로 반대다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:43",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 43,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "유체 이송 펌프 일반론과 4방 전환밸브의 역할 구분",
+      "finding": "유체 이송 펌프 일반론과 4방 전환밸브의 역할 구분",
+      "basis": "유체 이송 펌프 일반론과 4방 전환밸브의 역할 구분.",
+      "evidence": [
+        "hvac-hansol-2017-2:43",
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 열펌프다. 4방밸브가 압축기 흡입·토출과 실내외 코일의 연결을 바꾼다. 실내 코일이 냉방 때는 증발기, 난방 때는 응축기로 작동한다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:47",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 47,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림 왼쪽 압축기에서 오른쪽 응축기로 가는 토출관",
+      "finding": "그림 왼쪽 압축기에서 오른쪽 응축기로 가는 토출관",
+      "basis": "그림 왼쪽 압축기에서 오른쪽 응축기로 가는 토출관. (가)만 응축기 쪽으로 하향. 기존 흡입측 설명 교정.",
+      "evidence": [
+        "hvac-hansol-2017-2:47"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m47.png",
+          "displayAsset": "assets/problem-webp90/2ca7ca2d82ad1d8203abaec5e170976d.webp",
+          "sha256": "452e437d6f8f84395bdfc3b75e8a65a252006280d6cc7414375be42e70703ccb"
+        }
+      ],
+      "resolution": "① (가)다. 압축기에서 올라온 토출관이 오른쪽 응축기를 향해 내려간다. 이렇게 하면 오일이나 정지 중 생긴 응축액이 압축기로 되돌아가는 것을 줄일 수 있다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:58",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 58,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "트랩 봉수가 배수관과 실내 사이의 기체 통로를 차단",
+      "finding": "트랩 봉수가 배수관과 실내 사이의 기체 통로를 차단",
+      "basis": "트랩 봉수가 배수관과 실내 사이의 기체 통로를 차단. ④.",
+      "evidence": [
+        "hvac-hansol-2017-2:58"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "트랩 봉수가 배수관과 실내 사이의 기체 통로를 차단. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:60",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 60,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 증발기에서 공조기 쪽으로 나가는 상단 냉수 화살표와 하단 냉수 순환펌프 확인",
+      "finding": "원도 증발기에서 공조기 쪽으로 나가는 상단 냉수 화살표와 하단 냉수 순환펌프 확인",
+      "basis": "원도 증발기에서 공조기 쪽으로 나가는 상단 냉수 화살표와 하단 냉수 순환펌프 확인.",
+      "evidence": [
+        "hvac-hansol-2017-2:60",
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m60.png",
+          "displayAsset": "assets/problem-webp90/5a52be0d7c2461fd52ab98366dcc0eae.webp",
+          "sha256": "54526fe555a40f43cb30d88ac33902d71c43db566fe7a0b4b5718d57d80ba53f"
+        }
+      ],
+      "resolution": "오른쪽 회로에서 증발기가 냉각한 물이 공조기 코일로 흘러 공기를 식히고 순환펌프를 거쳐 돌아온다. 따라서 ① 냉수를 냉열매로 쓰는 방식이다. 왼쪽 냉각탑의 냉각수는 응축열을 버리는 별도 회로다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:62",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 62,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "기준 입력과 되먹임 신호 비교해 오차를 줄이는 음의 피드백",
+      "finding": "기준 입력과 되먹임 신호 비교해 오차를 줄이는 음의 피드백",
+      "basis": "기준 입력과 되먹임 신호 비교해 오차를 줄이는 음의 피드백. ①.",
+      "evidence": [
+        "hvac-hansol-2017-2:62",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "기준 입력과 되먹임 신호 비교해 오차를 줄이는 음의 피드백. ①.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:65",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 65,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "기계적 변위의 추종제어",
+      "finding": "기계적 변위의 추종제어",
+      "basis": "기계적 변위의 추종제어. ②.",
+      "evidence": [
+        "hvac-hansol-2017-2:65",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 서보기구다. 실제 위치나 각도를 검출해 명령한 위치나 각도와 비교하고, 오차가 줄어들도록 전동기 같은 구동기를 움직인다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-20170507:66",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 66,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "역병렬 사이리스터 위상제어에서 반주기 시작점부터 도통하면 인가전압 최대",
+      "finding": "역병렬 사이리스터 위상제어에서 반주기 시작점부터 도통하면 인가전압 최대",
+      "basis": "역병렬 사이리스터 위상제어에서 반주기 시작점부터 도통하면 인가전압 최대. 기존 슬립 설명은 무관.",
+      "evidence": [
+        "hvac-hansol-2017-2:66"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m66.png",
+          "displayAsset": "assets/problem-webp90/42d2d1c8bd1e1187e19a520138da8b2d.webp",
+          "sha256": "9c241f896f07a377faa6405b82ddb8ee179656027b7d0350135e862e50d2408a"
+        }
+      ],
+      "resolution": "원도의 역병렬 사이리스터는 각 반주기에서 점호를 늦춰 전동기에 전달되는 전압을 줄인다. 지연 없이 점호할 때 최대 전압을 인가할 수 있으므로 선택할 점호각은 ① 0 rad이다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:68",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 68,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "그림 처음 두 항은 x̄y(z̄+z), 다음 두 항은 xz(ȳ+y)",
+      "finding": "그림 처음 두 항은 x̄y(z̄+z), 다음 두 항은 xz(ȳ+y)",
+      "basis": "그림 처음 두 항은 x̄y(z̄+z), 다음 두 항은 xz(ȳ+y). ①.",
+      "evidence": [
+        "hvac-hansol-2017-2:68"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68m1.png",
+          "displayAsset": "assets/problem-webp90/b8ff9c85251b59c8cbb962a3d51f5b52.webp",
+          "sha256": "3b8237317969245b65707544ee72aae0deb814250e4aebf1013aefb43e7ee301"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68h1.png",
+          "displayAsset": "assets/problem-webp90/f32c6a6890e7dc635f049953f5ddfc86.webp",
+          "sha256": "c0a11837c734149fb740d27f501b6c3d777bc85f0a15a27bdde5d60c8dbcd690"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68b1.png",
+          "displayAsset": "assets/problem-webp90/43f9e780ebed67eff94f331d7ee70958.webp",
+          "sha256": "5335a08b742ffee11b8ec18e5eec80fb06fbc1d30e069e7f8d7b0340b45816ab"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68b2.png",
+          "displayAsset": "assets/problem-webp90/5f9b44f9ddaa7591184749a305fad924.webp",
+          "sha256": "6bc9a8eb27e4ed4a135505c541e9c592ad26522c755cad0342db4d66e3478d5c"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68b3.png",
+          "displayAsset": "assets/problem-webp90/f61e94e18a49d69eedb5cbc1c1593311.webp",
+          "sha256": "f7f1ffbab78570e27d0d24b7550d54cfa4d88f94629a7c6e6468aa933c8f05db"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m68b4.png",
+          "displayAsset": "assets/problem-webp90/0f17a6d953dc4d1646fa203d8aa2a226.webp",
+          "sha256": "77bddc60b88c60cbf8216eb8381a144c3bde7afda7d73c7c71f55b1b8dbae5aa"
+        }
+      ],
+      "resolution": "앞의 두 항에서 x̄y를 묶으면 z̄+z=1이 남는다. 뒤의 두 항에서 xz를 묶으면 ȳ+y=1이므로 합은 x̄y+xz, 즉 ①이다. 첨부 해설 그림의 마지막 항 xy는 xz의 오기다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:73",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 73,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "조절부가 제어 동작을 정하고 조작부가 조작량을 만들어 전달",
+      "finding": "조절부가 제어 동작을 정하고 조작부가 조작량을 만들어 전달",
+      "basis": "조절부가 제어 동작을 정하고 조작부가 조작량을 만들어 전달. ③.",
+      "evidence": [
+        "hvac-hansol-2017-2:73",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "조절부가 제어 동작을 정하고 조작부가 조작량을 만들어 전달. ③.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:74",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 74,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "두 상을 바꾸면 상순서와 회전자계 방향이 역전",
+      "finding": "두 상을 바꾸면 상순서와 회전자계 방향이 역전",
+      "basis": "두 상을 바꾸면 상순서와 회전자계 방향이 역전. ④.",
+      "evidence": [
+        "hvac-hansol-2017-2:74"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "두 상을 바꾸면 상순서와 회전자계 방향이 역전. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:75",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 75,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "R12+R31−R23=2R1",
+      "finding": "R12+R31−R23=2R1",
+      "basis": "R12+R31−R23=2R1. 원도 ④의 부호까지 확인.",
+      "evidence": [
+        "hvac-hansol-2017-2:75"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m75.png",
+          "displayAsset": "assets/problem-webp90/85aabb89d2a5a787dab0aa86fadae160.webp",
+          "sha256": "d3c8c6ea88baad9866b1fd1fee0d2f76d440523f7ed87baeb1e0ceb411baa334"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m75b1.png",
+          "displayAsset": "assets/problem-webp90/14b54455b690023e91c7c23848360f80.webp",
+          "sha256": "1ec0fd6e6656360a1243fe57d9492694bd36a4c915aa7eb4a0fd6839ee672819"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m75b2.png",
+          "displayAsset": "assets/problem-webp90/ce570f594aa0999036f6d5af42d4bb1f.webp",
+          "sha256": "0a6a5186171e897bbea079975d2dbee93e8a64c4e9549114a4768010e134010c"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m75b3.png",
+          "displayAsset": "assets/problem-webp90/9970ab5209cf33429d6c338bd34da990.webp",
+          "sha256": "41460a8118f0ca1c4ed92df8f1bd1f513f9f1e6134d9139a45f9311198a81083"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m75b4.png",
+          "displayAsset": "assets/problem-webp90/e80cf2956bb395db4ab716746920712e.webp",
+          "sha256": "b9a2c0f7d613501f5a0816c41d5e71b0c0a7f0cd6415954ad98ed4f46867def8"
+        }
+      ],
+      "resolution": "R₁이 들어 있는 측정값 R₁₂와 R₃₁을 더하면 R₂와 R₃도 한 번씩 포함된다. R₂₃을 빼면 2R₁만 남으므로 절반을 취하는 ④가 맞다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170507:76",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170507",
+      "number": 76,
+      "location": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "합점 오차 I−I₁=I₂, 병렬 양단 전압 동일, I₁R₁=I₂R₂",
+      "finding": "합점 오차 I−I₁=I₂, 병렬 양단 전압 동일, I₁R₁=I₂R₂",
+      "basis": "합점 오차 I−I₁=I₂, 병렬 양단 전압 동일, I₁R₁=I₂R₂.",
+      "evidence": [
+        "hvac-hansol-2017-2:76",
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76.png",
+          "displayAsset": "assets/problem-webp90/1fcb25a75b0aef431567097a19d1407f.webp",
+          "sha256": "84a4348e13a47a4c8d35dff1b9c6d529c800345d4c984eaadf28a3c5b1506430"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76h1.png",
+          "displayAsset": "assets/problem-webp90/74e31a4d2ba1ce533dfea6b223d25235.webp",
+          "sha256": "06291f62c301cbf781b71e45b3919f3091240530d1a6763f0c07af2059733cb3"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76b1.png",
+          "displayAsset": "assets/problem-webp90/a2d1dbb5e8e46c69c123e8e228af8840.webp",
+          "sha256": "914ea9996663441bee6ec59f02a7a2b0368d5e2529e4888faa5ea5d9f3de2127"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76b2.png",
+          "displayAsset": "assets/problem-webp90/727a05705d5861e424e493f39c34cd88.webp",
+          "sha256": "6cbab9cb984715e504885f307aed3822c11dc5b1e19d69537ccb0c38c822631f"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76b3.png",
+          "displayAsset": "assets/problem-webp90/62b1538729796db480ada88cbdc28024.webp",
+          "sha256": "2c2cebf2c0d7895dbffd2d3caeb1c2918b07e01c21ff2f742fa28bdc25da4e60"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170507/images/nq20170507m76b4.png",
+          "displayAsset": "assets/problem-webp90/feab66f76a5980d90daf05d4cc435edf.webp",
+          "sha256": "f53cc1c3e0a85c2bb6ed1be3d9fe938580b7d5a9150c7cc8abf83a61677e5b27"
+        }
+      ],
+      "resolution": "블록의 입력은 합점의 I−I₁, 곧 다른 가지 전류 I₂이고 출력은 I₁이다. 두 병렬 저항의 전압이 같으므로 I₁R₁=I₂R₂다. 따라서 블록 이득은 ②다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:12",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 12,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 수축·좁은 등단면·재확대와 그래프 ③의 전압 하락 및 동압·정압 간격 대조",
+      "finding": "원도 수축·좁은 등단면·재확대와 그래프 ③의 전압 하락 및 동압·정압 간격 대조",
+      "basis": "원도 수축·좁은 등단면·재확대와 그래프 ③의 전압 하락 및 동압·정압 간격 대조.",
+      "evidence": [
+        "hvac-hansol-2017-3:12",
+        "659-fan4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m12.png",
+          "displayAsset": "assets/problem-webp90/81ed6bb03a041e22eb4acfad326d1701.webp",
+          "sha256": "2beeccd98b9c10750636cf0c06e23f701ff99dda38c93748cef351596a951991"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m12b1.png",
+          "displayAsset": "assets/problem-webp90/078fc13c270a8d0c39f95a1ddc067b2d.webp",
+          "sha256": "91dac097fcc9a3952df5600b2ec0d21329880276aa7b8b15804b15851d967189"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m12b2.png",
+          "displayAsset": "assets/problem-webp90/7cb72ead41ace3541a46523789398e9e.webp",
+          "sha256": "18691f56fdb3bb4837985a81746061c3b487b974f9f819992445b9b04380122c"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m12b3.png",
+          "displayAsset": "assets/problem-webp90/f0de54d235eb4d44d82b85b80963b7a5.webp",
+          "sha256": "824700127acada252bf88e69595f598825f76606f809d80fa8010bc71e8e3a79"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m12b4.png",
+          "displayAsset": "assets/problem-webp90/5eef34dee230dff0e7719476950015d2.webp",
+          "sha256": "a9f6f210abd093b72d59c5c558bb88ffdec920474c67d2a8e97d065a21fcea75"
+        }
+      ],
+      "resolution": "③이다. 좁은 구간에서 같은 풍량을 보내려면 속도가 커져 동압이 증가하고 정압은 낮아진다. 다시 넓어지면 동압이 줄면서 정압이 일부 회복된다. 마찰과 국부손실 때문에 전압은 흐름 방향으로 떨어진다. 그림에서는 전압선과 정압선 사이의 간격이 동압이다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-20170826:27",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 27,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "식품이 금속판에 직접 접촉",
+      "finding": "식품이 금속판에 직접 접촉",
+      "basis": "식품이 금속판에 직접 접촉. 기존은 냉매의 일반 성질.",
+      "evidence": [
+        "hvac-hansol-2017-3:27",
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 접촉식 동결장치다. 식품에서 나온 열이 직접 닿은 금속판을 통해 내부의 냉매나 브라인으로 전달된다. 차가운 공기를 불어서 열을 빼앗는 송풍 동결과 구별된다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:29",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 29,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 아래 용액선 두 개에서 a→b, g→h는 각각 농도 일정, b→g와 h→a에서 농도 변화",
+      "finding": "원도 아래 용액선 두 개에서 a→b, g→h는 각각 농도 일정, b→g와 h→a에서 농도 변화",
+      "basis": "원도 아래 용액선 두 개에서 a→b, g→h는 각각 농도 일정, b→g와 h→a에서 농도 변화.",
+      "evidence": [
+        "hvac-hansol-2017-3:29",
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m29.png",
+          "displayAsset": "assets/problem-webp90/1d0e374f5b9bfe179092e101fc5c0112.webp",
+          "sha256": "5c411b9863b7d07b65ca2ccb54bd2ced6ee39147a190ce59359399465b7eb151"
+        }
+      ],
+      "resolution": "③이다. 그림의 아래쪽 두 곡선에서 용액 상태를 따라간다. a에서 b로는 같은 농도에서 고압측으로 이동하고, 발생기에서 냉매가 분리되면서 b에서 g로 용액이 농축된다. g에서 h로 저압측에 돌아온 용액은 흡수기에서 냉매를 받아 h에서 a로 묽어진다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:37",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 37,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 2→3 증발, 3→4 압축과 보기 분자·분모 직접 대조",
+      "finding": "원도 2→3 증발, 3→4 압축과 보기 분자·분모 직접 대조",
+      "basis": "원도 2→3 증발, 3→4 압축과 보기 분자·분모 직접 대조.",
+      "evidence": [
+        "hvac-hansol-2017-3:37",
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m37.png",
+          "displayAsset": "assets/problem-webp90/a7730c3ca716dc76bbed8b8914338024.webp",
+          "sha256": "818709210a282a14a9083739ca649a8a6f5068b2e7ceaadfcbdcc4d28d729354"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m37b1.png",
+          "displayAsset": "assets/problem-webp90/17d2884bc0ae3855c56f9b84902d98fc.webp",
+          "sha256": "6a525760d91226dc97c1cd912a336919f6ee566ffbf3f85f91ea9dc9f8503cf0"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m37b2.png",
+          "displayAsset": "assets/problem-webp90/36e02cf06d2af9ae26168febe6b6fcc6.webp",
+          "sha256": "46fcc983ac80cb83264520f30d054356aeb9ffd83f64148ee411c31d37598457"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m37b3.png",
+          "displayAsset": "assets/problem-webp90/b7d1f4bd9be518f144bd84e166649902.webp",
+          "sha256": "dcc003dd0b8e9b799c3b5b30d3f930c69213a2bb7fa525ef66829d35a7974489"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m37b4.png",
+          "displayAsset": "assets/problem-webp90/ded37465980075f1f808d3dfbdd6fe63.webp",
+          "sha256": "efdafde84f0954ec59f3e9b5e1e822605d1d6b698704c77f93a86d03f4b3c15a"
+        }
+      ],
+      "resolution": "원도에서 저압의 2→3이 증발이다. 냉매 1 kg이 빼앗는 열은 i₃−i₂이고, 3→4에서 압축기가 공급하는 일은 i₄−i₃이다. 냉동효과를 압축일로 나눈 ③이 성적계수다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:41",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 41,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "미관은 주요 구조부 관통을 권할 이유가 아님",
+      "finding": "미관은 주요 구조부 관통을 권할 이유가 아님",
+      "basis": "미관은 주요 구조부 관통을 권할 이유가 아님. ④. 구체 이격거리 판정 없음.",
+      "evidence": [
+        "hvac-hansol-2017-3:41"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "미관은 주요 구조부 관통을 권할 이유가 아님. ④. 구체 이격거리 판정 없음.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:47",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 47,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "대구경 배관의 플랜지 볼트 해체로 배관 절단 없이 분리",
+      "finding": "대구경 배관의 플랜지 볼트 해체로 배관 절단 없이 분리",
+      "basis": "대구경 배관의 플랜지 볼트 해체로 배관 절단 없이 분리. ②.",
+      "evidence": [
+        "hvac-hansol-2017-3:47"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "② 플랜지 접합이다. 관 끝의 두 플랜지를 볼트로 조이므로 점검할 때 볼트를 풀어 관을 절단하지 않고 분리할 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:67",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 67,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 출력의 단위 음의 되먹임, 합산점 R−C",
+      "finding": "원도 출력의 단위 음의 되먹임, 합산점 R−C",
+      "basis": "원도 출력의 단위 음의 되먹임, 합산점 R−C.",
+      "evidence": [
+        "hvac-hansol-2017-3:67"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m67.png",
+          "displayAsset": "assets/problem-webp90/b95104f566c170e36536cb61e79576b8.webp",
+          "sha256": "b5abd7b5bc98f36a689377c6925529befd6ccf768f5298d5a72d4e430be69c71"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m67b1.png",
+          "displayAsset": "assets/problem-webp90/d838802c10d5abccc4b44de239a978f6.webp",
+          "sha256": "deae98c17d5ea097d322345ca4e0ba548034664ec7b22143eb77888f99e76aec"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m67b2.png",
+          "displayAsset": "assets/problem-webp90/5f8436ec2b3fd26ad339e036f6868c1d.webp",
+          "sha256": "049d666584b4629460e01af70cc8ce348ce88d6400974883d7e3e013c90086e7"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m67b3.png",
+          "displayAsset": "assets/problem-webp90/939d9ba776793c81706fa6a14ca134ea.webp",
+          "sha256": "8cee36078ebe54c6e47bdede7d0a7a04980988fc408b228691e373b237e45377"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m67b4.png",
+          "displayAsset": "assets/problem-webp90/77b035af6661a647a8436351d0a01cb5.webp",
+          "sha256": "4ccef37b9bc9c0fad7b7e321ba694c68130066f8c62726a6bdb2a9cba00d261a"
+        }
+      ],
+      "resolution": "그림은 출력을 그대로 빼는 단위 음의 피드백이다. 합산점 뒤 신호는 R−C이고 출력은 C=G(R−C)다. C가 있는 항을 모아 입력 R로 나누면 ②다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:69",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 69,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "제어기와 조작기가 동작신호를 조작량으로 바꿈",
+      "finding": "제어기와 조작기가 동작신호를 조작량으로 바꿈",
+      "basis": "제어기와 조작기가 동작신호를 조작량으로 바꿈. ④.",
+      "evidence": [
+        "hvac-hansol-2017-3:69"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "제어기와 조작기가 동작신호를 조작량으로 바꿈. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:70",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 70,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "정확성·응답속도·신뢰성은 범용 계측기 선정 요소",
+      "finding": "정확성·응답속도·신뢰성은 범용 계측기 선정 요소",
+      "basis": "정확성·응답속도·신뢰성은 범용 계측기 선정 요소. ④.",
+      "evidence": [
+        "hvac-hansol-2017-3:70"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "정확성·응답속도·신뢰성은 범용 계측기 선정 요소. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:71",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 71,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 시간축 t=a에서 0→1 전이",
+      "finding": "원도 시간축 t=a에서 0→1 전이",
+      "basis": "원도 시간축 t=a에서 0→1 전이.",
+      "evidence": [
+        "hvac-hansol-2017-3:71"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m71.png",
+          "displayAsset": "assets/problem-webp90/5cfc9a554a2e1d89c19a97c5c0e5f50d.webp",
+          "sha256": "71e94a336bd9ad048b747b8f6d0fc2f9b6d4f5918819cd0b44c7d087246106ce"
+        }
+      ],
+      "resolution": "그림의 신호는 a보다 이른 시간에는 0이고 a를 지난 뒤에는 1이다. 원점에서 켜지는 단위계단 U(t)를 오른쪽으로 a만큼 옮긴 ② U(t−a)다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:72",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 72,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "보호계전기의 이상 검출과 차단기 트립 명령",
+      "finding": "보호계전기의 이상 검출과 차단기 트립 명령",
+      "basis": "보호계전기의 이상 검출과 차단기 트립 명령. 옴의 법칙과 무관.",
+      "evidence": [
+        "hvac-hansol-2017-3:72"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "① 보호계전기다. 전류나 전압 등 감시량에서 고장을 검출하면 차단기 등에 트립 신호를 보내 고장 구간을 분리하도록 한다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20170826:76",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20170826",
+      "number": 76,
+      "location": "공조냉동기계산업기사 : 2017년 08월 26일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 직렬 RLC",
+      "finding": "원도 직렬 RLC",
+      "basis": "원도 직렬 RLC. 동상에서 허수부 ωL−1/(ωC)=0.",
+      "evidence": [
+        "hvac-hansol-2017-3:76"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20170826/images/nq20170826m76.png",
+          "displayAsset": "assets/problem-webp90/1114e510cf003639af097de5058236b1.webp",
+          "sha256": "e9a3699342cba8c9e1832721295e8cd156a4dc2b2f9fcc321c7403298e5a7f89"
+        }
+      ],
+      "resolution": "③이다. 저항의 전압은 전류와 동상이고 코일과 축전기의 전압은 서로 반대 위상을 가진다. 두 리액턴스가 같아지면 직렬 임피던스의 허수부가 0이 되어 단자전압도 전류와 동상이 된다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:9",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 9,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "풍량과 급배기 지점으로 각 구간 유량 결정 후 치수·압력손실과 송풍기 선정",
+      "finding": "풍량과 급배기 지점으로 각 구간 유량 결정 후 치수·압력손실과 송풍기 선정",
+      "basis": "풍량과 급배기 지점으로 각 구간 유량 결정 후 치수·압력손실과 송풍기 선정.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③이다. 필요한 풍량과 흡입·취출구 위치를 정하면 각 구간에 흐를 풍량을 배분할 수 있다. 경로와 치수가 정해져야 가장 불리한 경로의 압력손실을 계산해 송풍기를 선정할 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:13",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 13,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "보일러수가 증기에 동반되는 캐리오버",
+      "finding": "보일러수가 증기에 동반되는 캐리오버",
+      "basis": "보일러수가 증기에 동반되는 캐리오버.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 캐리오버다. 증기가 보일러 밖으로 나갈 때 물방울이나 거품까지 동반하는 현상이다. 물속의 고형분도 함께 이동해 증기관이나 기기를 오염시킬 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:18",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 18,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증기트랩은 응축수를 내보내고 생증기 유출을 억제",
+      "finding": "증기트랩은 응축수를 내보내고 생증기 유출을 억제",
+      "basis": "증기트랩은 응축수를 내보내고 생증기 유출을 억제. 배수트랩 설명 교정.",
+      "evidence": [
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "②다. 증기트랩은 응축수를 환수관으로 내보내면서 증기가 그대로 빠져나가는 것을 막는다. 배수관의 냄새를 막는 봉수 트랩과 작동 목적이 다르다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:32",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 32,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "p–h 원도 1→2, 3→4 압축 및 5→6, 7→8 등엔탈피 팽창",
+      "finding": "p–h 원도 1→2, 3→4 압축 및 5→6, 7→8 등엔탈피 팽창",
+      "basis": "p–h 원도 1→2, 3→4 압축 및 5→6, 7→8 등엔탈피 팽창.",
+      "evidence": [
+        "654-compress"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m32.png",
+          "displayAsset": "assets/problem-webp90/529f780802eedabeb739442b2e623d4d.webp",
+          "sha256": "b40aaf7eba48dfbd4a058bdece4956bc0e3489932b07dbb35f1776cec147dbf4"
+        }
+      ],
+      "resolution": "② 2단압축 2단팽창이다. 오른쪽 선도에서 압력이 오르는 압축이 1→2와 3→4로 나뉜다. 액측에서는 5→6과 7→8의 수직선이 각각 엔탈피를 유지하며 압력이 떨어지는 교축을 나타낸다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:35",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 35,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "증발기 냉동열량 24000, 재생기 공급열 21000 kJ/h",
+      "finding": "증발기 냉동열량 24000, 재생기 공급열 21000 kJ/h",
+      "basis": "증발기 냉동열량 24000, 재생기 공급열 21000 kJ/h. 비 1.142857.",
+      "evidence": [
+        "659-absorption"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m35.png",
+          "displayAsset": "assets/problem-webp90/aa63c7e548706930141108d618dcfe53.webp",
+          "sha256": "b3275b6894978974880a8015f8019824b2eb2268139586742bd523e470911fc0"
+        }
+      ],
+      "resolution": "흡수식 냉동기의 열기준 성적계수는 증발기의 냉동열량을 재생기 가열량으로 나눈 값이다. 두 열량률의 단위가 같아 약분하면 ② 약 1.14다. 응축기와 흡수기에서 버리는 열은 분모에 넣지 않는다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-20180304:42",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 42,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "밀폐식으로 물이 차 있는 급탕 저탕조에서 운전 중 수면을 읽을 필요가 없음",
+      "finding": "밀폐식으로 물이 차 있는 급탕 저탕조에서 운전 중 수면을 읽을 필요가 없음",
+      "basis": "밀폐식으로 물이 차 있는 급탕 저탕조에서 운전 중 수면을 읽을 필요가 없음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "통상 물로 가득 찬 밀폐식 저탕조를 전제하면 ② 수위계의 필요성이 가장 낮다. 온도와 압력은 운전 중 감시하며 과압에 대해서는 안전밸브를 둔다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-20180304:47",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 47,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "작은 곡률반경은 급격한 방향 전환과 국부손실 유발",
+      "finding": "작은 곡률반경은 급격한 방향 전환과 국부손실 유발",
+      "basis": "작은 곡률반경은 급격한 방향 전환과 국부손실 유발. ④.",
+      "evidence": [
+        "659-os-m42208"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "작은 곡률반경은 급격한 방향 전환과 국부손실 유발. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:52",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 52,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "원도 사선형 폐쇄부의 체크밸브 기호",
+      "finding": "원도 사선형 폐쇄부의 체크밸브 기호",
+      "basis": "원도 사선형 폐쇄부의 체크밸브 기호. 일방향 유동 허용. ①.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m52.png",
+          "displayAsset": "assets/problem-webp90/928abc8320c1ac041f7e357063c0cf45.webp",
+          "sha256": "91b17dcc83f039f84f29348ed32356942747608192a5d13a8ba069fcd40e0b04"
+        }
+      ],
+      "resolution": "원도 사선형 폐쇄부의 체크밸브 기호. 일방향 유동 허용. ①.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:53",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 53,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "금속을 용융해 연속적 이음 형성",
+      "finding": "금속을 용융해 연속적 이음 형성",
+      "basis": "금속을 용융해 연속적 이음 형성.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "④ 용접접합이다. 관과 관을 용접해 금속이 연속된 이음부를 만들므로 적절히 시공하면 견고하고 기밀·수밀을 유지할 수 있다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:55",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 55,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "너트로 나팔형 확관 끝을 테이퍼에 밀착시키는 플레어 이음",
+      "finding": "너트로 나팔형 확관 끝을 테이퍼에 밀착시키는 플레어 이음",
+      "basis": "너트로 나팔형 확관 끝을 테이퍼에 밀착시키는 플레어 이음.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "③ 플레어 이음이다. 관 끝을 나팔 모양으로 벌리고 너트를 조여 테이퍼면에 밀착시킨다. 너트를 다시 풀 수 있어 분해와 재결합이 가능하다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:56",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 56,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "저장 답이 가리키는 루프의 정확한 위치와 정지 중 냉매 이동 조건을 확정할 배관 원도 미확보",
+      "finding": "저장 답이 가리키는 루프의 정확한 위치와 정지 중 냉매 이동 조건을 확정할 배관 원도 미확보",
+      "basis": "저장 답이 가리키는 루프의 정확한 위치와 정지 중 냉매 이동 조건을 확정할 배관 원도 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "①은 관을 일단 위로 올려 중력으로 액냉매가 낮은 쪽으로 흘러드는 경로를 끊는 배관이다. 실제 설치 위치와 높이는 기기 배치에 따라 달라지므로 원 배관도를 확인해야 한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:63",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 63,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "비교점이 기준 입력과 출력 검출값의 편차 생성",
+      "finding": "비교점이 기준 입력과 출력 검출값의 편차 생성",
+      "basis": "비교점이 기준 입력과 출력 검출값의 편차 생성. ③.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "비교점이 기준 입력과 출력 검출값의 편차 생성. ③.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:67",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 67,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도 피드백 RC 출력은 R 양단",
+      "finding": "원도 피드백 RC 출력은 R 양단",
+      "basis": "원도 피드백 RC 출력은 R 양단. H=R/(R+1/jωC). 무한 증폭에서 전체 이득은 1/H.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m67.png",
+          "displayAsset": "assets/problem-webp90/7a948c47603c87fa884260b2d64cb636.webp",
+          "sha256": "d9225441ef5d6a672cfc40fcfcdaa4b7a0f0f5baa954be9e8d20489700f87fae"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m67b1.png",
+          "displayAsset": "assets/problem-webp90/6b0f0730246f96ad68af68ed8629c113.webp",
+          "sha256": "ae635f5d346799a8c977a75320fdc9cd52f855492200beda681033d1f710561a"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m67b2.png",
+          "displayAsset": "assets/problem-webp90/f1cbd2cbff6a8a053495388f7be922b5.webp",
+          "sha256": "e744639911ea458a672fbce8e537bd93f773cf27f8ca82ad3140b4d9abd42e72"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m67b3.png",
+          "displayAsset": "assets/problem-webp90/4eb2c0bb4cf961db26edfe555d619f62.webp",
+          "sha256": "41a6f8c6426cedf96e28594195f2ab6ef173ee277717fcf44f1b7e9bd94a096a"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m67b4.png",
+          "displayAsset": "assets/problem-webp90/0c085cded299b14ab9307b8d2dca1e29.webp",
+          "sha256": "276f7d3a72e618558262883ff8f8d78a3c65a76902f91f1e1e64744e25c09482"
+        }
+      ],
+      "resolution": "출력 신호가 직렬 C와 R을 거쳐 R 양단 전압으로 되먹임된다. 음의 피드백 전체 이득은 A/(1+AH)이고 A가 매우 커지면 1/H에 접근한다. 따라서 ②다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:70",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 70,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "중간 노드 y=AX₁−By, 출력 X₂=Cy+DX₂",
+      "finding": "중간 노드 y=AX₁−By, 출력 X₂=Cy+DX₂",
+      "basis": "중간 노드 y=AX₁−By, 출력 X₂=Cy+DX₂.",
+      "evidence": [
+        "655-feedback"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m70.png",
+          "displayAsset": "assets/problem-webp90/7c15693b41f1f427b6c4aa30a88fd9cb.webp",
+          "sha256": "68dee32720cf0a7ad5b17c90343fa5d192098e353a03deaf0f0ab794bca72c13"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m70b1.png",
+          "displayAsset": "assets/problem-webp90/ee2034a97620c377061164ec0b1c6997.webp",
+          "sha256": "4782489085ad162578cb096cdf787f3036aadd3a8c743a6b19e36ecc646c804b"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m70b2.png",
+          "displayAsset": "assets/problem-webp90/70c77ddb0402629e3d6203541c0f83e8.webp",
+          "sha256": "44e786eab03d4d53896d19cfcb70557a2fd207882418605168fd01b394383d5a"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m70b3.png",
+          "displayAsset": "assets/problem-webp90/34ba25e5f0bd94db4b38540a2709c697.webp",
+          "sha256": "6423d2dfbf78c65d3f33bb977988f2e00f9d37aa6b23f2c789e9c644a475cabe"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m70b4.png",
+          "displayAsset": "assets/problem-webp90/a01f76f7321bba6f40a1d078bc6d4cd1.webp",
+          "sha256": "5c18055ab0adad520915cbba0c83b0327f8cba4b26b766162593b4eb08026afa"
+        }
+      ],
+      "resolution": "두 자기 루프의 부호가 다르다. 첫 노드에서는 −B가 되돌아와 이득이 A/(1+B)이고 마지막 노드에서는 +D가 되돌아와 C/(1−D)다. 두 단을 곱한 ④다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:72",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 72,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "온도에 따른 저항 변화로 회로의 온도 의존성을 보상",
+      "finding": "온도에 따른 저항 변화로 회로의 온도 의존성을 보상",
+      "basis": "온도에 따른 저항 변화로 회로의 온도 의존성을 보상. ④.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": false,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [],
+      "resolution": "온도에 따른 저항 변화로 회로의 온도 의존성을 보상. ④.",
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:77",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 77,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "상단 직렬 A·B̄와 하단 B 병렬",
+      "finding": "상단 직렬 A·B̄와 하단 B 병렬",
+      "basis": "상단 직렬 A·B̄와 하단 B 병렬. B가 1이면 출력 1, 0이면 A.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m77.png",
+          "displayAsset": "assets/problem-webp90/80635bf1ec73507e76124502e982ec86.webp",
+          "sha256": "6fde9b2bb19bd46a78c2173899976c860e9e4653d17b3a484732cf414ac8c7bb"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m77b1.png",
+          "displayAsset": "assets/problem-webp90/8e13f4dcfadf96c4ac1bd50172884c20.webp",
+          "sha256": "e408d549ba3b04a582fa737644e4a1e870f3bdaba8ada853bb461afc6a567943"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m77b2.png",
+          "displayAsset": "assets/problem-webp90/f5c77fe862d17e20d63bbdcec1737167.webp",
+          "sha256": "12f3875b4374a2451095380b4b3d32f78237eea1f2ff67e8a0d2101c3010b056"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m77b3.png",
+          "displayAsset": "assets/problem-webp90/5d5b69e2c9fe408753343935a649817c.webp",
+          "sha256": "53c0a29629055e40cb2b86d4dfc343bc1c50fa0450919a06b92d6d90b23f61aa"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m77b4.png",
+          "displayAsset": "assets/problem-webp90/775e366b8c1f58a002d41424eef5a1d3.webp",
+          "sha256": "815eb9357ef1210b03ddf26562bce24cf0f68809c926d0ffab3e424911613f9a"
+        }
+      ],
+      "resolution": "아래쪽 B 접점이 닫히면 A와 무관하게 전류가 흐른다. B가 열리면 위쪽의 B 반전 접점이 닫혀 A 상태만 남는다. 따라서 A 또는 B가 닫히면 되는 ① 병렬회로와 같다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
+    },
+    {
+      "id": "hvac-20180304:79",
+      "catalog": "hvac",
+      "file": "data/hvac.js",
+      "round": "hvac-20180304",
+      "number": 79,
+      "location": "공조냉동기계산업기사 : 2018년 03월 04일 기출문제",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "② 그래프 t=0부터 일정한 1",
+      "finding": "② 그래프 t=0부터 일정한 1",
+      "basis": "② 그래프 t=0부터 일정한 1. ①은 단위충격 위치도 1.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": null,
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m79b1.png",
+          "displayAsset": "assets/problem-webp90/4bcc6b9413646b0896f4ebcd0ea5bd5b.webp",
+          "sha256": "c1bee1623ddfb630d5a47e9be6f178b15616b13b2c3938f7ebdc2e3af2b67c6e"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m79b2.png",
+          "displayAsset": "assets/problem-webp90/aa369334f6ef797c0314678e59206740.webp",
+          "sha256": "abe09cf0a2ec16e68743f746e54ef439ce2847faf316d8c531dede3e6a711591"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m79b3.png",
+          "displayAsset": "assets/problem-webp90/20155cdd31d3d3fa9ab95226646b975b.webp",
+          "sha256": "5dfbf8b6649c0df2e0b602f5e364474ccc77efd8b4c0ccb41da3f34b9e710161"
+        },
+        {
+          "original": "assets/hvac/assets/comcbt/20180304/images/nq20180304m79b4.png",
+          "displayAsset": "assets/problem-webp90/7c8bea2b93b2d1381feaee18ceb27adb.webp",
+          "sha256": "5210821b4932f97a0945c2b82a755c52f0c967b0826ba7636ed995b1c53e23ab"
+        }
+      ],
+      "resolution": "②다. 단위계단은 t가 0보다 작을 때 0이고, 0을 지난 뒤에는 높이 1을 유지한다. 원점에서 출발해 계속 증가하는 ③은 램프다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "local-beginner-authored"
     }
   ],
   "sources": [
@@ -250066,7 +252271,7 @@
   "next": {
     "scope": "inventory.json scope.groups의 next는 저장소 수록순 첫 미검토 ID. COMCBT 원문 및 에너지 교재 제외. 원래 없던 해설을 자체 작성한 경우 포함. 보류·정답 확인은 records와 answer-confirmation.md 참조.",
     "energyEngineer": "2022.04.24 A형 전 100개 대조. 정답·근거 보류 항목은 상태별 목록 참조.",
-    "hvacLocal": "data/hvac.js hvac-20170305:10",
+    "hvacLocal": "data/hvac.js hvac-20180428:5",
     "supplementedTextbook": "data/energy-restored.js 3개 모두 판독. 2022년 4회 66번은 출제 당시 도시가스 설비기준 원문 재확인.",
     "hvacBook": "data/hvac-hansol.js hvac-hansol-2017-3:1",
     "safety": "data/safety.js safety-20020310:10",
@@ -250075,21 +252280,21 @@
     "workedExamples": "공조 교재 예제 26개 모두 전사 및 판정. 정답 확인 9개는 원본 보기를 보존했다.",
     "energy": "data/energy.js 대상 1607개 직접 판정 완료. 보류·정답 재확인은 문항별 기록 참조.",
     "practical": "data/hvac-practical-restored.json hvac-practical-restored-2023-3-02",
-    "hvac": "data/hvac.js hvac-20170305:10",
+    "hvac": "data/hvac.js hvac-20180428:5",
     "direct": "data/hansol-book-direct.json의 hansol-direct-1-167-16부터",
     "maintenance": "data/maintenance.js maintenance-20180819:1",
     "hvacHansol": "data/hvac-hansol.js hvac-hansol-2018-1:1"
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 7380,
-    "contentCompleted": 5585,
-    "contentCompletedChanged": 4921,
-    "contentCompletedUnchanged": 664,
-    "evidenceHold": 1468,
+    "contentExamined": 7443,
+    "contentCompleted": 5646,
+    "contentCompletedChanged": 4961,
+    "contentCompletedUnchanged": 685,
+    "evidenceHold": 1470,
     "answerNeedsConfirmation": 327,
-    "automaticOnly": 41624,
-    "changedQuestionIds": 5440,
+    "automaticOnly": 41561,
+    "changedQuestionIds": 5481,
     "imageTranscribed": 445,
     "imageFullyTranscribed": 144,
     "imagePartiallyTranscribed": 301,
@@ -251766,7 +253971,7 @@
       }
     },
     "문제와 무관한 설명": {
-      "count": 373,
+      "count": 387,
       "findings": {
         "0": 1,
         "문제 무관 일반론": 2,
@@ -252000,10 +254205,10 @@
         "포화에 가까운 습한 배기와 찬 외기의 혼합, 응결된 물방울이 빛을 산란": 1,
         "세 재료와 양쪽 공기막 열저항의 합 4": 1,
         "오리피스 단면과 압력차는 유량 직접 결정": 1,
-        "그림의 전향요소 1/s, 출력에 P₁ 곱해 감산": 1,
+        "그림의 전향요소 1/s, 출력에 P₁ 곱해 감산": 2,
         "선형 저항의 전력식은 비선형 특성 및 단자 수를 설명하지 못함": 1,
         "원도에서 C가 두 감산점에 귀환": 1,
-        "인쇄된 부정 기호는 ② 첫 X, ③ 마지막 X, ④ 첫 Y 위": 1,
+        "인쇄된 부정 기호는 ② 첫 X, ③ 마지막 X, ④ 첫 Y 위": 2,
         "급수가열에 추기 이용, 팽창 도중 재가열": 1,
         "추기 증기로 급수 가열하는 것이 재생, 주증기를 다시 데우는 재열과 구별": 1,
         "제3의 물체와의 열평형에서 온도의 같음이 추이적": 1,
@@ -252065,12 +254270,12 @@
         "증기관 냉각은 응축수 축적 증가": 1,
         "원보기 ③의 분모 3600W": 1,
         "실내소음·진동은 주로 음향·기계 설계 문제": 1,
-        "노통과 연관을 함께 갖춘 동체의 단서": 1,
-        "고온 300 ℃": 1,
+        "노통과 연관을 함께 갖춘 동체의 단서": 2,
+        "고온 300 ℃": 2,
         "R502의 R22와 R115 성분을 냉매 번호 규칙과 대조": 1,
-        "유체 이송 펌프 일반론과 4방 전환밸브의 역할 구분": 1,
-        "그림 왼쪽 압축기에서 오른쪽 응축기로 가는 토출관": 1,
-        "역병렬 사이리스터 위상제어에서 반주기 시작점부터 도통하면 인가전압 최대": 1,
+        "유체 이송 펌프 일반론과 4방 전환밸브의 역할 구분": 2,
+        "그림 왼쪽 압축기에서 오른쪽 응축기로 가는 토출관": 2,
+        "역병렬 사이리스터 위상제어에서 반주기 시작점부터 도통하면 인가전압 최대": 2,
         "원도의 각주파수 377 rad/s를 2π로 나누면 60 Hz": 1,
         "중앙에서 처리한 공기를 두 덕트로 보내 말단에서 혼합": 1,
         "실제 흡입 체적유량/이론 행정체적유량": 1,
@@ -252081,14 +254286,14 @@
         "증기트랩 설치와 보일러 과압방지 구별": 1,
         "흡입·토출 전압선: 입구 −5와 출구 10+5=15 mmAq": 1,
         "원도 ① h–x": 1,
-        "원도 수축·좁은 등단면·재확대와 그래프 ③의 전압 하락 및 동압·정압 간격 대조": 1,
+        "원도 수축·좁은 등단면·재확대와 그래프 ③의 전압 하락 및 동압·정압 간격 대조": 2,
         "원본 ④ 에틸렌글리콜에 뒤따른 전화번호는 보기 밖": 1,
-        "식품이 금속판에 직접 접촉": 1,
-        "원도 아래 용액선 두 개에서 a→b, g→h는 각각 농도 일정, b→g와 h→a에서 농도 변화": 1,
-        "원도 2→3 증발, 3→4 압축과 보기 분자·분모 직접 대조": 1,
+        "식품이 금속판에 직접 접촉": 2,
+        "원도 아래 용액선 두 개에서 a→b, g→h는 각각 농도 일정, b→g와 h→a에서 농도 변화": 2,
+        "원도 2→3 증발, 3→4 압축과 보기 분자·분모 직접 대조": 2,
         "원본에서 지시선 약호가 ① A ② O ③ S ④ W임을 직접 확인": 1,
-        "원도 시간축 t=a에서 0→1 전이": 1,
-        "보호계전기의 이상 검출과 차단기 트립 명령": 1,
+        "원도 시간축 t=a에서 0→1 전이": 2,
+        "보호계전기의 이상 검출과 차단기 트립 명령": 2,
         "원도 1→7 오른쪽 아래": 1,
         "증기트랩은 생증기 유출을 억제하고 응축수를 배출": 1,
         "배수밸브는 저점에서 물을 비우며 고점 잔류 공기를 배출하지 못함": 1,
@@ -252106,7 +254311,8 @@
         "전력사용 시각을 이동시켜 주간 피크 완화": 1,
         "스파이럴은 판을 나선 형태로 감아 유로 구성": 1,
         "직통형 콕 유로는 열렸을 때 비교적 곧고 짧음": 1,
-        "배리스터의 비선형 전압·전류 관계": 1
+        "배리스터의 비선형 전압·전류 관계": 1,
+        "증기트랩은 응축수를 내보내고 생증기 유출을 억제": 1
       }
     },
     "부정형·보기 비교·표 적용 범위": {
@@ -252310,7 +254516,7 @@
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 671,
+      "count": 680,
       "findings": {
         "0": 5,
         "11": 1,
@@ -252736,7 +254942,7 @@
         "이론 O₂=0": 1,
         "1 kcal≈4186 J, 1 kgf·m≈9": 1,
         "냉각수 300000, 제빙 2000×(30+80+5)=230000 kcal/h": 1,
-        "직렬회로 I=e/Rm=(V−e)/Rx": 1,
+        "직렬회로 I=e/Rm=(V−e)/Rx": 2,
         "이상기체 일정 k, p vᵏ 일정과 p v=RT를 연립하면 T p^((1−k)/k) 일정": 1,
         "원형 단면적 πd²/4에 평균유속 곱함": 1,
         "1/(1/18+": 1,
@@ -252789,11 +254995,11 @@
         "절대온도 두 개만으로 결정되는 이론 카르노 난방 COP 308": 1,
         "같은 단위에서 1000P/S, 여기서는 S에 100을 곱하여 단위 통일": 1,
         "인쇄 G(s)=10/(3+2s)": 1,
-        "그림 처음 두 항은 x̄y(z̄+z), 다음 두 항은 xz(ȳ+y)": 1,
+        "그림 처음 두 항은 x̄y(z̄+z), 다음 두 항은 xz(ȳ+y)": 2,
         "저항에서 P=VI, V=IR로 P=I²R": 1,
         "저항부하 무평활의 단상 전파 리플률 sqrt(π²/8−1)≈0": 1,
-        "R12+R31−R23=2R1": 1,
-        "합점 오차 I−I₁=I₂, 병렬 양단 전압 동일, I₁R₁=I₂R₂": 1,
+        "R12+R31−R23=2R1": 2,
+        "합점 오차 I−I₁=I₂, 병렬 양단 전압 동일, I₁R₁=I₂R₂": 2,
         "시간당 단위로 8640/(1": 1,
         "R=1/20+0": 1,
         "이상기체 등엔트로피 분출로 해석": 1,
@@ -252890,9 +255096,9 @@
         "원도 환산 3320 kcal/h": 1,
         "실제 내경 0": 1,
         "일정 전압에서 새 저항은 처음의 90%": 1,
-        "원도 출력의 단위 음의 되먹임, 합산점 R−C": 1,
+        "원도 출력의 단위 음의 되먹임, 합산점 R−C": 2,
         "원도 첫 블록 3과 입력 5, 출력 3의 음의 귀환": 1,
-        "원도 직렬 RLC": 1,
+        "원도 직렬 RLC": 2,
         "G₂ 출력 X=G₂[G₁(R−H₂X)−H₁C], C=G₃X": 1,
         "원도 네 직렬계 극점 +1,+3 / −2,−6 / +4,−5 / +4,+8": 1,
         "원도 ① 분모 P−Pw": 1,
@@ -252933,11 +255139,14 @@
         "전압을 sin으로 쓰면 위상 π/2−φ, 전류 위상 θ": 1,
         "T₂=0 원도 1/(1+jωT₁)": 1,
         "원도 한 주기 2π 중 π 동안 Iₘ, 나머지 0": 1,
-        "응력 kgf/mm²→kgf/cm²에 100배, 1000P/(100S)=10P/S": 1
+        "응력 kgf/mm²→kgf/cm²에 100배, 1000P/(100S)=10P/S": 1,
+        "증발기 냉동열량 24000, 재생기 공급열 21000 kJ/h": 1,
+        "원도 피드백 RC 출력은 R 양단": 1,
+        "중간 노드 y=AX₁−By, 출력 X₂=Cy+DX₂": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 2173,
+      "count": 2191,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -254010,7 +256219,7 @@
         "강성 행거는 수직 이동을 허용할 필요가 없는 곳": 1,
         "개방형 탱크 기능과 밀폐형 탱크 구분": 1,
         "수직으로 떨어지는 물과 수평 통과 공기의 직교": 1,
-        "목푯값이 시간에 따라 일정한 것이 정치제어의 분류 기준": 1,
+        "목푯값이 시간에 따라 일정한 것이 정치제어의 분류 기준": 2,
         "비례 제어만으로 일정한 출력 보정을 내려면 편차 필요": 1,
         "정현파 한 주기에서 sin²의 평균은 1/2": 1,
         "전기자 자속이 주자속 분포 왜곡, 자기중성축 이동": 1,
@@ -254332,7 +256541,7 @@
         "원심·왕복동은 압축 방식, 흡수는 열 구동 사이클": 1,
         "전열식은 물을 가열해 증기를 공급": 1,
         "정지 후 고저압 균압 시 압축기 기동 토크 경감": 1,
-        "응축 중 작동유체 방열": 1,
+        "응축 중 작동유체 방열": 2,
         "부하에 대한 입력동력 비는 용량제어 방식과 운전조건에 종속": 1,
         "물-LiBr은 물 냉매, LiBr 수용액 흡수제": 1,
         "감온통 압력은 열림 방향, 스프링과 밸브 출구 증발압은 닫힘 방향": 1,
@@ -254340,7 +256549,7 @@
         "스윙·리프트·풋밸브는 모두 역류 저지": 1,
         "증기 자체가 아랫면에서 윗면으로 이동한다는 기존 설명을 응축수 물고임 방지로 수정": 1,
         "앵커의 배관 운동 구속, 행거·가이드의 역할 구별": 1,
-        "원도 증발기에서 공조기 쪽으로 나가는 상단 냉수 화살표와 하단 냉수 순환펌프 확인": 1,
+        "원도 증발기에서 공조기 쪽으로 나가는 상단 냉수 화살표와 하단 냉수 순환펌프 확인": 2,
         "조작량은 제어대상에 가하는 입력, 제어량은 대상의 출력": 1,
         "2005 원문 ④ 정류기가 현재 ②": 1,
         "압력으로 다이어프램이 휨": 1,
@@ -254890,7 +257099,22 @@
         "원도 Nyquist선도 −1+j0을 지나는 궤적 B": 1,
         "두 유량 사이 비를 목표로 하는 ① 비율제어": 1,
         "원도 X→G₁→G₂→Y, 직렬 전향 경로": 1,
-        "원도 개루프 G(s)H(s)의 근궤적 출발·종착점": 1
+        "원도 개루프 G(s)H(s)의 근궤적 출발·종착점": 1,
+        "볼트로 죈 판 묶음, 판 사이 유로와 전열면적 증감으로 판형 식별": 1,
+        "Darcy–Weisbach의 h=f(L/D)v²/(2g), 다른 조건 고정 시 속도수두에 정비례": 1,
+        "i=C dv/dt이므로 정현파에서 전류가 90° 앞섬": 1,
+        "단위계단 높이 1을 원도에서 확인": 1,
+        "기계적 변위의 추종제어": 1,
+        "대구경 배관의 플랜지 볼트 해체로 배관 절단 없이 분리": 1,
+        "풍량과 급배기 지점으로 각 구간 유량 결정 후 치수·압력손실과 송풍기 선정": 1,
+        "보일러수가 증기에 동반되는 캐리오버": 1,
+        "p–h 원도 1→2, 3→4 압축 및 5→6, 7→8 등엔탈피 팽창": 1,
+        "밀폐식으로 물이 차 있는 급탕 저탕조에서 운전 중 수면을 읽을 필요가 없음": 1,
+        "금속을 용융해 연속적 이음 형성": 1,
+        "너트로 나팔형 확관 끝을 테이퍼에 밀착시키는 플레어 이음": 1,
+        "저장 답이 가리키는 루프의 정확한 위치와 정지 중 냉매 이동 조건을 확정할 배관 원도 미확보": 1,
+        "상단 직렬 A·B̄와 하단 B 병렬": 1,
+        "② 그래프 t=0부터 일정한 1": 1
       }
     },
     "이미지 원문 텍스트 전환": {
@@ -255349,8 +257573,8 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 6709,
-    "rawFractionDisplays": 507,
+    "examined": 6772,
+    "rawFractionDisplays": 520,
     "remainingBankBlanks": 544,
     "units": [
       {
@@ -264274,18 +266498,123 @@
           "hvac-20160821:74",
           "hvac-20160821:79"
         ]
+      },
+      {
+        "unit": "공조 필기 20170305 교재 원도와 대응하는 자체 보충 문항",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 7,
+          "내용 검토 완료·수정함": 8,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 8,
+        "ids": [
+          "hvac-20170305:10",
+          "hvac-20170305:11",
+          "hvac-20170305:35",
+          "hvac-20170305:43",
+          "hvac-20170305:48",
+          "hvac-20170305:50",
+          "hvac-20170305:53",
+          "hvac-20170305:57",
+          "hvac-20170305:61",
+          "hvac-20170305:62",
+          "hvac-20170305:66",
+          "hvac-20170305:71",
+          "hvac-20170305:72",
+          "hvac-20170305:75",
+          "hvac-20170305:79",
+          "hvac-20170305:80"
+        ]
+      },
+      {
+        "unit": "공조 필기 20170507 교재 원도와 대응하는 자체 보충 문항",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 7,
+          "내용 검토 완료·수정함": 11
+        },
+        "changed": 11,
+        "ids": [
+          "hvac-20170507:1",
+          "hvac-20170507:4",
+          "hvac-20170507:6",
+          "hvac-20170507:8",
+          "hvac-20170507:24",
+          "hvac-20170507:29",
+          "hvac-20170507:43",
+          "hvac-20170507:47",
+          "hvac-20170507:58",
+          "hvac-20170507:60",
+          "hvac-20170507:62",
+          "hvac-20170507:65",
+          "hvac-20170507:66",
+          "hvac-20170507:68",
+          "hvac-20170507:73",
+          "hvac-20170507:74",
+          "hvac-20170507:75",
+          "hvac-20170507:76"
+        ]
+      },
+      {
+        "unit": "공조 필기 20170826 교재 원도와 대응하는 자체 보충 문항",
+        "statuses": {
+          "내용 검토 완료·수정함": 9,
+          "내용 검토 완료·수정 없음": 3
+        },
+        "changed": 9,
+        "ids": [
+          "hvac-20170826:12",
+          "hvac-20170826:27",
+          "hvac-20170826:29",
+          "hvac-20170826:37",
+          "hvac-20170826:41",
+          "hvac-20170826:47",
+          "hvac-20170826:67",
+          "hvac-20170826:69",
+          "hvac-20170826:70",
+          "hvac-20170826:71",
+          "hvac-20170826:72",
+          "hvac-20170826:76"
+        ]
+      },
+      {
+        "unit": "공조 필기 2018년 3월 자체 보충 17문항",
+        "statuses": {
+          "내용 검토 완료·수정함": 12,
+          "내용 검토 완료·수정 없음": 4,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 13,
+        "ids": [
+          "hvac-20180304:9",
+          "hvac-20180304:13",
+          "hvac-20180304:18",
+          "hvac-20180304:32",
+          "hvac-20180304:35",
+          "hvac-20180304:42",
+          "hvac-20180304:47",
+          "hvac-20180304:52",
+          "hvac-20180304:53",
+          "hvac-20180304:55",
+          "hvac-20180304:56",
+          "hvac-20180304:63",
+          "hvac-20180304:67",
+          "hvac-20180304:70",
+          "hvac-20180304:72",
+          "hvac-20180304:77",
+          "hvac-20180304:79"
+        ]
       }
     ],
     "reasons": {
       "지문·정답·자료 대조에 남은 불확실성": 283,
-      "공식·계산·기호·단위·반올림": 566,
-      "개념·장치 작동 원리·적용 조건": 1914,
+      "공식·계산·기호·단위·반올림": 575,
+      "개념·장치 작동 원리·적용 조건": 1932,
       "부정형·보기 비교·표 적용 범위": 187,
-      "문제와 무관한 설명": 335,
+      "문제와 무관한 설명": 349,
       "해설 미등록": 1441,
       "이미지 원문 텍스트 전환": 172
     },
-    "changed": 4898,
+    "changed": 4939,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",
