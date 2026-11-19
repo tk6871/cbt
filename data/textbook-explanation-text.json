@@ -326,7 +326,7 @@
       "id": "hansol-direct-3-118-6",
       "blocks": [
         {
-          "text": "배수관은 하류 방향으로 갈수록 지름을 크게 한다."
+          "text": "①의 오류는 하류로 갈수록 관경을 줄이라고 한 점이다. 여러 기구의 배수가 합쳐지므로 하류는 필요한 배수량을 감당할 관경을 유지하거나 확대한다. 모든 접속점에서 반드시 한 단계씩 키운다는 뜻은 아니다."
         }
       ],
       "page": "3-118",
@@ -6762,6 +6762,884 @@
         {
           "asset": "assets/hvac-hansol-book/direct-pages/3-74-original.png",
           "sha256": "d93dc4e2c5f5a7e92d6a67e4c8fcbd716570daa1960724c6346701822a72f29c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-89-1",
+      "blocks": [
+        {
+          "text": "흐르던 물이 밸브의 급폐 등으로 갑자기 멈추면 운동량이 급변하고 관 속으로 압력파가 전파된다. 이 압력 변동이 수격현상이다."
+        }
+      ],
+      "page": "3-89",
+      "number": 1,
+      "questionParts": [
+        {
+          "page": "3-89",
+          "rect": [
+            0,
+            324,
+            671,
+            274
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-89",
+          "rect": [
+            0,
+            599,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-89-original.png",
+          "sha256": "00d63376f60fc20fa91eb51f56b744902f286c2c2a0a080da6350f9c086966a0"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-89-5",
+      "blocks": [
+        {
+          "text": "선도에서 관경과 직접 대응시키는 양은 유량, 유속, 단위 길이당 마찰손실이다. 한 지점의 압력(kPa)은 길이당 손실(mmAq/m)과 다른 양이다. 따라서 관계가 먼 것은 ①이다."
+        }
+      ],
+      "page": "3-89",
+      "number": 5,
+      "questionParts": [
+        {
+          "page": "3-89",
+          "rect": [
+            671,
+            792,
+            671,
+            194
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-89",
+          "rect": [
+            671,
+            987,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-89-original.png",
+          "sha256": "00d63376f60fc20fa91eb51f56b744902f286c2c2a0a080da6350f9c086966a0"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-90-10",
+      "blocks": [
+        {
+          "text": "수도 본관의 물을 저수탱크에 받은 뒤 양수펌프가 양수관을 통해 옥상탱크로 올린다. 옥상탱크에서 급수관을 거쳐 수도꼭지에 이르는 순서가 ④다."
+        }
+      ],
+      "page": "3-90",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "3-90",
+          "rect": [
+            671,
+            366,
+            671,
+            398
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-90",
+          "rect": [
+            671,
+            765,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-90-original.png",
+          "sha256": "2d2185c1a3f84afd96cda644423de08610bc16752fe05c1e973e43d203e7369c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-91-14",
+      "blocks": [
+        {
+          "text": "교재는 일수관(오버플로관)을 양수관 호칭지름의 두 배 이상으로 잡는다. 25A에 이 기준을 적용한 최소 호칭은 50A이므로 교재 정답은 ③이다."
+        }
+      ],
+      "page": "3-91",
+      "number": 14,
+      "questionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            0,
+            654,
+            671,
+            194
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            0,
+            849,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-91-original.png",
+          "sha256": "ffa56283523887c84b6dbabcc87a960f205d060f8c84f5c809a1a5056046ddaa"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-91-15",
+      "blocks": [
+        {
+          "text": "음용수 배관이 비음용수나 오염 가능성이 있는 계통과 연결된 상태가 크로스 이음(교차 연결)이다. 압력 조건이 바뀌어 물이 역류하면 이 연결을 통해 음용수가 오염될 수 있다. 인쇄 풀이가 언급하는 역류 방지는 이 위험을 줄이기 위한 것이다."
+        }
+      ],
+      "page": "3-91",
+      "number": 15,
+      "questionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            0,
+            1273,
+            671,
+            306
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            0,
+            1580,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-91-original.png",
+          "sha256": "ffa56283523887c84b6dbabcc87a960f205d060f8c84f5c809a1a5056046ddaa"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-91-16",
+      "blocks": [
+        {
+          "text": "세정밸브에서 급수측이 부압이 되면 오염수가 빨려 들어갈 수 있다. ④ 버큠브레이커는 이때 공기를 들여 사이펀을 끊는다. 인쇄 풀이의 역류 방지 설명 중 이 장치가 막는 것은 역사이펀이다."
+        }
+      ],
+      "page": "3-91",
+      "number": 16,
+      "questionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            671,
+            190,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-91",
+          "rect": [
+            671,
+            383,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-91-original.png",
+          "sha256": "ffa56283523887c84b6dbabcc87a960f205d060f8c84f5c809a1a5056046ddaa"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-92-19",
+      "blocks": [
+        {
+          "text": "물보다 압축되기 쉬운 공기를 담은 에어챔버는 급격한 유속 변화 때 공기가 압축되면서 압력 상승을 완화한다."
+        }
+      ],
+      "page": "3-92",
+      "number": 19,
+      "questionParts": [
+        {
+          "page": "3-92",
+          "rect": [
+            0,
+            190,
+            671,
+            237
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-92",
+          "rect": [
+            0,
+            428,
+            671,
+            70
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-92-original.png",
+          "sha256": "6c18dce8705574f0349135ec5eb12c48b46988a79ea9b98e54dc527ef92cfa4e"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-102-3",
+      "blocks": [
+        {
+          "text": "유량 8 m³/h를 3,600으로 나누면 초당 체적유량이다. 원형 관 단면에 평균유속 1 m/s를 적용한다."
+        },
+        {
+          "tex": "d=\\sqrt{\\frac{4Q}{\\pi v}}=\\sqrt{\\frac{4\\times8}{3600\\pi\\times1}}\\simeq0.0532\\;\\mathrm m=53.2\\;\\mathrm{mm}",
+          "label": "급탕 주관 내경 53.2밀리미터"
+        }
+      ],
+      "page": "3-102",
+      "number": 3,
+      "questionParts": [
+        {
+          "page": "3-102",
+          "rect": [
+            0,
+            1393,
+            671,
+            196
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-102",
+          "rect": [
+            0,
+            1592,
+            671,
+            135
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-102-original.png",
+          "sha256": "fc0d5b5fc0f06133678f673dbf69699d8f6a8c4604750ea87e20d7a7a3c0833c"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-104-13",
+      "blocks": [
+        {
+          "text": "기수혼합식은 증기를 물에 직접 혼합해 가열한다. 혼합·응축 과정의 소음을 줄이는 장치가 스팀 사이렌서이며, 교재는 S형과 F형을 예로 든다."
+        }
+      ],
+      "page": "3-104",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-104",
+          "rect": [
+            0,
+            190,
+            671,
+            192
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-104",
+          "rect": [
+            0,
+            383,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-104-original.png",
+          "sha256": "47dbd8cccf12a87ed98b4f20641f1d201e6591e65f8bf0eb757cf0eb646a41c2"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-105-20",
+      "blocks": [
+        {
+          "text": "도면 A는 위로 솟은 배관의 가장 높은 지점이다. 물에서 분리된 공기가 여기에 고여 순환을 방해할 수 있으므로 ③ 공기빼기 밸브를 설치한다."
+        }
+      ],
+      "page": "3-105",
+      "number": 20,
+      "questionParts": [
+        {
+          "page": "3-105",
+          "rect": [
+            0,
+            868,
+            671,
+            452
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-105",
+          "rect": [
+            0,
+            1321,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-105-original.png",
+          "sha256": "3c833a7055bdabbbb0494fba7ad75b915b7ab3491def8c1328b6c3fecc70f13a"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-118-2",
+      "blocks": [
+        {
+          "text": "통기관은 배수계통에 공기가 드나들게 해 트랩 양쪽의 압력차를 줄인다. 배수 때 생긴 부압이 트랩의 봉수를 빨아내는 것을 막기 위한 장치다."
+        }
+      ],
+      "page": "3-118",
+      "number": 2,
+      "questionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            0,
+            863,
+            671,
+            217
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            0,
+            1081,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-118-original.png",
+          "sha256": "924bb171ee949c0c69bde283fb7cdbb371d088b90743274b344100337bc50b24"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-118-5",
+      "blocks": [
+        {
+          "text": "기구 자체에서 한꺼번에 나온 물이 관을 가득 채우면 연속된 물기둥이 트랩의 봉수를 끌고 간다. 이것이 자기 사이펀 작용이다. S트랩에서 생기기 쉬우며 사이펀식 변기는 이 작용을 세정에 이용한다."
+        }
+      ],
+      "page": "3-118",
+      "number": 5,
+      "questionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            671,
+            780,
+            671,
+            309
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-118",
+          "rect": [
+            671,
+            1090,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-118-original.png",
+          "sha256": "924bb171ee949c0c69bde283fb7cdbb371d088b90743274b344100337bc50b24"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-119-7",
+      "blocks": [
+        {
+          "text": "실험실 등의 특수배수는 어떤 물질을 포함하는지에 따라 분리해 적절히 처리해야 한다. 별도 판단 없이 그대로 방류하거나 일반 오수와 함께 처리한다고 한 ③이 틀렸다."
+        }
+      ],
+      "page": "3-119",
+      "number": 7,
+      "questionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            349,
+            671,
+            316
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            666,
+            671,
+            102
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-119-original.png",
+          "sha256": "b3c7d886c1658721f81d0de17d1d8f47866d8755768f1c80ec47c731942fee7d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-119-8",
+      "blocks": [
+        {
+          "text": "교재는 세면기의 기준 배수량 30 L/min를 기구배수 부하단위 1 fu의 기준으로 둔다. 따라서 기준 기구를 묻는 보기에서는 ①이다."
+        }
+      ],
+      "page": "3-119",
+      "number": 8,
+      "questionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            863,
+            671,
+            275
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-119",
+          "rect": [
+            0,
+            1139,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-119-original.png",
+          "sha256": "b3c7d886c1658721f81d0de17d1d8f47866d8755768f1c80ec47c731942fee7d"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-120-13",
+      "blocks": [
+        {
+          "text": "가로축에서 100 mm/h 열을 고르고 125A 행을 읽으면 허용 수평투영면적은 804 m²다. ④에 적힌 1,072 m²는 같은 행의 75 mm/h 열 값이다."
+        }
+      ],
+      "page": "3-120",
+      "number": 13,
+      "questionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            0,
+            499,
+            671,
+            593
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            0,
+            1095,
+            671,
+            140
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-120-original.png",
+          "sha256": "142338636494fecf6734ecc981ce414bb3512713509483031dd94de35c63c842"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-120-17",
+      "blocks": [
+        {
+          "text": "섹스티어 방식은 배수가 수직관 벽을 따라 회전하며 내려가게 해 중심부에 공기 통로를 확보한다. 같은 수직관이 통기 역할도 하므로 교재에서는 단관 방식으로 분류한다."
+        }
+      ],
+      "page": "3-120",
+      "number": 17,
+      "questionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            671,
+            1260,
+            671,
+            277
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-120",
+          "rect": [
+            671,
+            1538,
+            671,
+            164
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-120-original.png",
+          "sha256": "142338636494fecf6734ecc981ce414bb3512713509483031dd94de35c63c842"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-121-19",
+      "blocks": [
+        {
+          "text": "교재의 분류에서 관 자체를 굽혀 봉수를 만드는 관트랩의 예는 S·P·U트랩이다. 이 목록과 맞지 않는 보기는 ④ V트랩이다."
+        }
+      ],
+      "page": "3-121",
+      "number": 19,
+      "questionParts": [
+        {
+          "page": "3-121",
+          "rect": [
+            0,
+            696,
+            671,
+            239
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-121",
+          "rect": [
+            0,
+            936,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-121-original.png",
+          "sha256": "5bc753f175a2f02f190b5dc7d16ac6f310c002660f3aee517155704a13c789ae"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-130-1",
+      "blocks": [
+        {
+          "text": "증기난방은 증기가 응축할 때 방출하는 잠열을, 온수난방은 물이 식을 때 내놓는 현열을 이용한다. 온수계통에는 팽창 대책이 필요하다. 복사난방 효과를 평가하는 평균복사온도와 연결한 ④가 맞는다."
+        }
+      ],
+      "page": "3-130",
+      "number": 1,
+      "questionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            0,
+            322,
+            671,
+            241
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            0,
+            564,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-130-original.png",
+          "sha256": "e54d840f2ea2645ea69ef1fc7e54a9fdf1e0d990bc4af3bfade91cef0a3ebe88"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-130-5",
+      "blocks": [
+        {
+          "text": "스팀헤더는 보일러에서 온 증기를 받아 여러 사용처의 분기관으로 나누어 보낸다. 목적은 유량 배분이며, 각 분기 유량은 부하와 저항에 따라 달라질 수 있다."
+        }
+      ],
+      "page": "3-130",
+      "number": 5,
+      "questionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            671,
+            876,
+            671,
+            273
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            671,
+            1150,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-130-original.png",
+          "sha256": "e54d840f2ea2645ea69ef1fc7e54a9fdf1e0d990bc4af3bfade91cef0a3ebe88"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-130-6",
+      "blocks": [
+        {
+          "text": "스위블형은 엘보를 두 개 이상 조합해 관이 열로 늘어날 때 이음부의 회전으로 변위를 흡수한다. 교재는 방열기 주위 배관을 사용 예로 든다."
+        }
+      ],
+      "page": "3-130",
+      "number": 6,
+      "questionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            671,
+            1332,
+            671,
+            276
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-130",
+          "rect": [
+            671,
+            1609,
+            671,
+            108
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-130-original.png",
+          "sha256": "e54d840f2ea2645ea69ef1fc7e54a9fdf1e0d990bc4af3bfade91cef0a3ebe88"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-131-10",
+      "blocks": [
+        {
+          "text": "온수의 자연순환을 일으키는 힘은 공급수와 환수의 온도 차에서 생긴 밀도 차다. 순환펌프로 물을 보내는 것은 강제순환이므로 ②의 연결이 틀렸다."
+        }
+      ],
+      "page": "3-131",
+      "number": 10,
+      "questionParts": [
+        {
+          "page": "3-131",
+          "rect": [
+            671,
+            190,
+            671,
+            273
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-131",
+          "rect": [
+            671,
+            464,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-131-original.png",
+          "sha256": "2444c6459a645b08c3b12bc61bfd313f9e27a2eb849df972e4fc7adf581a1249"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-132-15",
+      "blocks": [
+        {
+          "text": "압력차 100 kPa는 물의 정수두로 약 10.2 m다. 교재에서 묻는 버킷트랩 응축수의 리프팅 높이는 이 이론 높이와 구분해 5 m 이하로 잡으므로 ②다. 실제 장치의 허용 높이는 차압과 배압·손실에 달려 있다."
+        }
+      ],
+      "page": "3-132",
+      "number": 15,
+      "questionParts": [
+        {
+          "page": "3-132",
+          "rect": [
+            0,
+            1219,
+            671,
+            267
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-132",
+          "rect": [
+            0,
+            1487,
+            671,
+            133
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-132-original.png",
+          "sha256": "d7920f2b344cc672507d151f48fe2fcda85a093e4c170958a2b6ed75e5412cfd"
+        }
+      ]
+    },
+    {
+      "id": "hansol-direct-3-133-21",
+      "blocks": [
+        {
+          "text": "교재는 저압 증기관의 권장 유속을 20~30 m/s, 고압 증기관을 30~50 m/s로 구분한다. 문제의 조건은 저압이므로 ②다."
+        }
+      ],
+      "page": "3-133",
+      "number": 21,
+      "questionParts": [
+        {
+          "page": "3-133",
+          "rect": [
+            0,
+            1311,
+            671,
+            202
+          ]
+        }
+      ],
+      "solutionParts": [
+        {
+          "page": "3-133",
+          "rect": [
+            0,
+            1514,
+            671,
+            101
+          ]
+        }
+      ],
+      "assets": [
+        {
+          "asset": "assets/hvac-hansol-book/direct-pages/3-133-original.png",
+          "sha256": "90b9cbc995ec90f747a975e4bb9aace451a3c06383ad28d63cd7ddbd0621eba4"
         }
       ]
     }

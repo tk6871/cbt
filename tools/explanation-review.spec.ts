@@ -901,6 +901,22 @@ test('교재 스케줄 번호의 압력 대입과 인쇄 원본',async({page})=>
   await expect(image).toBeVisible();
 });
 
+test('교재 급탕 주관의 내경과 인쇄 원본',async({page})=>{
+  await prepare(page,'hvac');
+  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+  await enterBookReader(page);
+  await chooseBookPage(page,'3-102');
+  const card=page.locator('[data-source-id="hansol-direct-3-102-3"]');
+  await card.locator('.direct-solution>summary').click();
+  const text=card.locator('.direct-explanation-text');
+  await expect(text).toContainText('8 m³/h');
+  await expect(text.locator('.katex-html .mfrac').first()).toBeVisible();
+  await card.locator('.direct-solution-original>summary').click();
+  const image=card.locator('.direct-solution-parts img').first();
+  await image.evaluate((im:HTMLImageElement)=>im.decode());
+  await expect(image).toBeVisible();
+});
+
 test('설비보전 전압계 내부저항 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20160306').getByRole('button',{name:'학습모드',exact:true}).click();
