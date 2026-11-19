@@ -9,7 +9,7 @@ for (const [space, style] of [
         localStorage.setItem('unified-cbt-theme', theme);
         localStorage.setItem('unified-' + space + '-cbt-visual-style', style);
       }, { space, style, theme });
-      const path = space === 'jewelry' ? '/jewelry.html' : '/';
+      const path = space === 'jewelry' ? './jewelry.html' : './';
       await page.goto(path + '#/study/rounds');
       const buttons = page.locator('.round-grid .round-card').first().locator('footer .round-mode-button');
       await expect(buttons).toHaveCount(2);

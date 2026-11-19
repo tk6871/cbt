@@ -66,7 +66,7 @@ export function renderPatchView(m: PatchViewModel) {
           <div>
             <span>ANDROID APP</span>
             <strong id="patch-apk-download-title">휴대폰·태블릿용 정식 APK</strong>
-            <small>Android 7.0 이상 · 약 8MB · 최신 버전으로 교체 설치할 수 있습니다.</small>
+            <small>Android 7.0 이상 · 기존 앱에서 업데이트할 수 있습니다.</small>
           </div>
           <a
             href={problemImage(androidApkUrl)}
@@ -80,9 +80,11 @@ export function renderPatchView(m: PatchViewModel) {
         </section>
       ) : null}
       <div className="patch-timeline">
-        {patchEntries.map((entry, index) => (
+        {patchEntries.map((entry, index) => {
+          const changes = <ul>{entry.changes.map((change) => <li key={change}>{change}</li>)}</ul>;
+          return (
           <article
-            key={`${entry.version}-${entry.title}`}
+            key={`${entry.version}-${entry.date}-${entry.title}`}
             className={normalizeClass([{ latest: index === 0 }])}
           >
             <div className="patch-version">
@@ -100,14 +102,10 @@ export function renderPatchView(m: PatchViewModel) {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <ul>
-                {(entry.changes || []).map((change) => (
-                  <li key={change}>{change}</li>
-                ))}
-              </ul>
+              {entry.changes.length > 4 ? <details><summary>세부 변경 {entry.changes.length}건 보기</summary>{changes}</details> : changes}
             </div>
           </article>
-        ))}
+        );})}
       </div>
     </>
   );

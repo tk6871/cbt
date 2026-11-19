@@ -103,6 +103,7 @@ export type Catalog = {
 };
 
 export type QuestionItem = {
+  sourceQuestionId?: string;
   round: Round;
   question: Question;
   subject: string;

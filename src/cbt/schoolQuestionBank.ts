@@ -15,7 +15,7 @@ export const coolingRecordId = (id: string) => id.startsWith(coolingRecordPrefix
 export const isCoolingRecord = (id: string) => id.startsWith(coolingRecordPrefix);
 export const coolingOriginalId = (id: string) => isCoolingRecord(id) ? id.slice(coolingRecordPrefix.length) : id;
 export function coolingRecordItem(item: QuestionItem): QuestionItem {
-  return { ...item, id: coolingRecordId(item.id), subject: '냉동냉장설비' };
+  return { ...item, id: coolingRecordId(item.id), sourceQuestionId: item.sourceQuestionId ?? coolingOriginalId(item.id), subject: '냉동냉장설비' };
 }
 
 // User's textbook contents and coverage table; chapter 6 uses their confirmed name.

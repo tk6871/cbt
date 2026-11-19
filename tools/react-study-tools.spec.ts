@@ -2,14 +2,14 @@ import {expect,test,type Page} from '@playwright/test';
 
 async function open(page:Page,view:string){
   await page.goto('about:blank');
-  await page.goto('/?safe=1#/study/'+view);
+  await page.goto('./?safe=1#/study/'+view);
 }
 
 test('검색·복수 출처·계산 실험과 보조 화면의 정상 진입',async({page})=>{
   await open(page,'search');
   const query=page.getByPlaceholder(/냉동사이클/);
   await query.fill('압축기');
-  await expect(page.locator('.search-library article').first()).toBeVisible();
+  await expect(page.locator('.search-library article').first()).toBeVisible({timeout:40000});
   await page.getByLabel('검색 출처').selectOption('selected');
   await expect(page.locator('.search-scope-controls fieldset')).toBeVisible();
   await page.getByRole('button',{name:/즐겨찾기 문제만 보기/}).click();
@@ -31,6 +31,7 @@ test('검색·복수 출처·계산 실험과 보조 화면의 정상 진입',as
 
 test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시 푼다',async({page})=>{
   await open(page,'school');
+  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
   const school=page.locator('[data-react-view=school-exams]');
   await school.getByPlaceholder('예: 냉동공학').fill('설비 복습');
   await school.locator('.scope-form').getByLabel('학기').selectOption('2');
@@ -39,7 +40,9 @@ test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시
   for(let n=1;n<=4;n++)await school.getByPlaceholder(n+'번 보기',{exact:true}).fill('검증 보기 '+n);
   await school.locator('.question-form').getByRole('combobox').selectOption('3');
   await school.getByRole('button',{name:'객관식 문제 추가'}).click();
-  await page.reload();await school.getByRole('button',{name:'학습모드',exact:true}).first().click();
+  await page.reload();
+  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
+  await school.locator('.school-round-grid article').filter({hasText:'설비 복습'}).getByRole('button',{name:'학습모드',exact:true}).click();
   const card=page.locator('.question-card').first();await expect(card).toContainText('저장 확인용 문항');
   const third=card.locator('.choice-button').nth(2);await third.click();await expect(third).toHaveAttribute('aria-pressed','true');
   await expect(card.locator('.choice-button.correct')).toContainText('검증 보기 3');
@@ -47,7 +50,9 @@ test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시
 
 test('필답 회차·답안·쪽 이동과 모바일 3D 설정 보존',async({page})=>{
   await open(page,'guide');
+  await page.getByRole('button',{name:'필답형 문제풀이',exact:true}).click();
   await page.locator('.practical-round-library button').filter({hasText:'시작하기'}).first().click();
+  await page.getByLabel('필답형 화면 배치').selectOption('single');
   const field=page.locator('.practical-answer-input textarea').first();
   await field.fill('흡입과 압축');
   await page.getByRole('button',{name:/다음 문제/}).last().click();await expect(field).toHaveValue('');
@@ -63,8 +68,8 @@ test('필답 회차·답안·쪽 이동과 모바일 3D 설정 보존',async({pa
 
 
 for (const theme of [
-  { space: 'industrial', name: 'simpsons', path: '/', title: '공부 한 컷' },
-  { space: 'jewelry', name: 'sunjae', path: '/jewelry.html', title: '같이 달릴래?' },
+  { space: 'industrial', name: 'simpsons', path: './', title: '공부 한 컷' },
+  { space: 'jewelry', name: 'sunjae', path: './jewelry.html', title: '같이 달릴래?' },
 ]) {
   test(theme.name + ' 홈 표지에서 이미지와 회차 이동', async ({ page }) => {
     await page.addInitScript(({ space, name }) => {

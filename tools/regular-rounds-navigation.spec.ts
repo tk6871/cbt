@@ -13,7 +13,7 @@ test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로
   await page.addLocatorHandler(page.locator('.pwa-error-notice'), async notice => {
     await notice.getByRole('button', { name: '나중에', exact: true }).click();
   });
-  await page.goto('/?safe=1');
+  await page.goto('./?safe=1');
   await expect(page.locator('.app-frame')).toBeVisible();
   await expect(page.getByRole('button', { name: /3D 캠퍼스 체험/ })).toHaveCount(0);
   await expect.poll(() => page.evaluate(() => [

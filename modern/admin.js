@@ -1,1 +1,1 @@
-import"./chunks/materials-v820.js";import"./chunks/admin-v820.js";import"./chunks/problem-image-index-v820.js";import"./chunks/_commonjsHelpers-v820.js";import"./chunks/preload-helper-v820.js";import"./chunks/queryClient-v820.js";
+import"./chunks/materials-v821.js";import"./chunks/admin-v821.js";import"./chunks/problem-image-index-v821.js";import"./chunks/_commonjsHelpers-v821.js";import"./chunks/preload-helper-v821.js";import"./chunks/queryClient-v821.js";
