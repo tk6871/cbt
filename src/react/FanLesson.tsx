@@ -30,6 +30,7 @@ export default function FanLesson(){
       {compare&&<Rotor x={.85} scale={1.1}/>}
       <OrbitControls enablePan={false} enableDamping={false} minDistance={3} maxDistance={8}/>
     </Canvas></div>
+    {compare && <div className="fan-comparison" aria-label="같은 회전수에서 지름 비교"><b>D</b><b>2D</b></div>}
     <button type="button" aria-pressed={compare} onClick={()=>setCompare(!compare)}>{compare?'기본 구조 보기':'지름 D와 2D 비교'}</button>
     <p>{compare?'같은 회전수와 공기 밀도에서 기하학적으로 닮은 송풍기를 비교하면, 지름이 2배일 때 풍량은 8배, 압력은 4배, 동력은 32배입니다.':'중앙 허브와 바깥쪽 날개를 보세요. 드래그하면 임펠러를 다른 각도에서 볼 수 있습니다.'}</p>
     <details><summary>모형 출처·라이선스</summary>CBT 자체 제작 교육용 개념 모형입니다. 외부 모형 파일을 사용하지 않았습니다.</details>

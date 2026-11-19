@@ -95,3 +95,23 @@
 .native-more-sheet .study-menu-icon.menu-beta {background-color:currentColor;}
 
 .round-bank-actions {display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+/* Use the same surface, including the space around actions on resumed rounds. */
+[data-react-view="round-list"] .round-card footer {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+[data-react-view="round-list"] .round-card footer button.round-mode-button {
+  border: 0;
+  color: var(--on-primary);
+  background: var(--primary) url('./assets/materials/round-mode-sheen.svg') center / 100% 100% no-repeat;
+  box-shadow: none;
+}
+.question-reset { min-height: 44px; padding-inline: 12px; }
+.finals-hub > details { margin-block: 1.25rem; }
+.finals-hub > details > summary { cursor: pointer; padding-block: .8rem; }
+
+.history-tools, .fan-comparison { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: .8rem; }
+.history-tools button { min-height: 44px; }
+.fan-comparison { justify-content: space-around; }

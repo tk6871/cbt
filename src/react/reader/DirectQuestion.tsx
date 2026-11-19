@@ -8,6 +8,7 @@ import {textbookExplanationText} from '../../cbt/textbookExplanationText';
 import {textbookAssetUrl,textbookDirectImage,textbookDirectPageMap,type TextbookDirectSource,type TextbookDirectPage,type TextbookDirectPart} from '../../cbt/textbookPages';
 import {problemImage} from '../../cbt/problemImages';
 import {legacyDirectPrefix} from '../../cbt/textbookAnswerProgress';
+import {QuestionReset} from '../session/QuestionReset';
 import {PrintedChoices} from './PrintedChoices';
 import './direct-question.css';
 
@@ -61,8 +62,8 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
   const answer=textbookDirectAnswer(source,page),image=textbookDirectImage(page);
   const asset=problemImage(textbookAssetUrl(fallback?image.fallbackAsset:image.asset))!;
   const text=solutionOpen&&showText?textbookExplanationText(source):undefined;
-  function choose(n:number) {
-    const next=chosen===n?0:n;
+  function choose(n:number) { setChoice(chosen===n?0:n); }
+  function setChoice(next:number) {
     setSolutionOpen(Boolean(next));
     try{saveChoice(source.id,next);if(next)localStorage.setItem(key,String(next));else localStorage.removeItem(key);setStorageFailed(false)}
     catch{setStorageFailed(true)}
@@ -85,6 +86,7 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
       {choiceLabels.map((label,i)=><button type="button" key={label} aria-pressed={chosen===i+1} onClick={()=>choose(i+1)}>{label}</button>)}
       <small>{chosen?chosen+'번 선택 · 다시 누르면 취소':'내 답안 선택'}</small>
     </div>
+    <QuestionReset choice={chosen} setChoice={setChoice}/>
     {!!(answer&&chosen)&&<p className="direct-grade" data-result={chosen===answer?'correct':'wrong'} role="status">{chosen===answer?'맞았어요':'틀렸어요'} · 교재 정답 {answer}번</p>}
     {storageFailed&&<p role="status">현재 기기에 선택을 저장하지 못했습니다.</p>}
     <details open={solutionOpen} className="direct-solution" onToggle={e=>setSolutionOpen(e.currentTarget.open)}>

@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 fonts = root / "assets/fonts"
 text = (root / "src/react/StudyHome.tsx").read_text()
 text += (root / "data/catalog-index.js").read_text()
-text += (root / "src/cbt/TextbookLibrary.vue").read_text()
+text += (root / "src/react/reader/TextbookLibrary.tsx").read_text()
 text += (root / "src/cbt/textbookRoutes.ts").read_text()
 # Header, navigation, progress and offline/update status shown alongside StudyHome.
 text += """

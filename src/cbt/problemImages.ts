@@ -46,9 +46,3 @@ export function problemImageHtml(html:string|undefined|null):string {
  return html.replace(/(<img\b[^>]*?\s+src\s*=\s*)(?:(["'])(.*?)\2|([^\s"'=<>`]+))/gi,
   (_all,start,quote,quoted,plain)=>`${start}${quote||'"'}${problemImage(quote?quoted:plain)}${quote||'"'}`);
 }
-declare module 'vue' {
- interface ComponentCustomProperties {
-  $problemImage:typeof problemImage;
-  $problemImageHtml:typeof problemImageHtml;
- }
-}

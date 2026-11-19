@@ -22,8 +22,6 @@ export function SubjectPicker({groups,selected,name,onSelect}:SubjectSelection){
 const materials=[
   ['자격증 기출','exam'],
   ['교재 페이지별','textbook'],
-  ['냉동공학 중간고사','refrigeration'],
-  ['에너지설비 중간고사','energy'],
 ];
 export function MaterialSwitch({active,actions}:MaterialSelection){
   return <nav className="rounds-collection material-switch" aria-label="회차별 문제 모음">

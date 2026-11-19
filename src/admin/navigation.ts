@@ -1,3 +1,5 @@
+import {generatePath, matchPath} from 'react-router';
+
 export const adminPages = [
   {id:'overview', group:'운영', title:'운영 요약', permission:'viewAnalytics'},
   {id:'visitors', group:'운영', title:'접속 기록', permission:'viewAnalytics'},
@@ -14,6 +16,11 @@ export const adminPages = [
 export type AdminPage = typeof adminPages[number];
 export type AdminSection = AdminPage['id'];
 
+export function adminSectionFromHash(hash: string) {
+  const path = hash.split('?')[0]?.slice(1) || '';
+  return matchPath('/admin/:section', path)?.params.section;
+}
+
 export function adminHref(id: AdminSection) {
-  return '#/admin/' + id;
+  return '#' + generatePath('/admin/:section', {section:id});
 }

@@ -43,5 +43,5 @@ export default function PistonLesson() {
   </Canvas></div><label>피스톤 위치 <input type="range" min={0} max={100} value={position} onChange={e=>setPosition(Number(e.target.value))}/> {position}%</label>
   {position > 0 && <p>눈금 한 칸은 전체 행정 체적의 25%입니다.</p>}
   <p>{position === 0 ? '상사점입니다. 슬라이더를 움직이면 피스톤이 하사점으로 이동합니다.' : position === 100 ? '하사점입니다. 색칠된 공간이 피스톤 한 개가 한 행정에서 밀어내는 체적입니다.' : '현재까지 피스톤이 쓸고 지나간 공간을 색으로 표시했습니다.'}</p>
-  <p>한 기통의 행정체적 = π × (실린더 지름 ÷ 2)² × 행정 길이</p><details><summary>모형 출처</summary>CBT 자체 제작 교육용 단면 모형</details></section>;
+  <p>현재까지 쓸어낸 체적 = π × (실린더 지름 ÷ 2)² × <strong>전체 행정 길이의 {position}%</strong></p><details><summary>모형 출처</summary>CBT 자체 제작 교육용 단면 모형</details></section>;
 }

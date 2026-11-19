@@ -155,10 +155,7 @@ if args.geometry:
   question=dict(number=q['number'],text=q['key'],imageOnly=True,sourceImage=f"{WORK.relative_to(ROOT).as_posix()}/original/{q['key']}-question.png",choices=[dict(text='') for _ in range(4)],answer=q['answer'],answerHotspots=result.get(q['key']) or []),subject='에너지관리',id=q['key']) for q in manifest['rows']]
  (geometry/'items.json').write_text(json.dumps(items,ensure_ascii=False)+'\n')
  (geometry/'harness.html').write_text('''<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/"></head><body><main id="review"></main><script type="module">
-import {createApp,h,ref,nextTick} from 'vue';
-import Card from '/src/cbt/QuestionCard.vue';import '/src/cbt/cbt.css';
+import {mountEnergyCard} from '/tools/energy-card-harness.tsx';
 const items=await fetch('/work/energy-restored-full/answer-geometry/items.json').then(r=>r.json());
-const index=ref(0),selected=ref(),indicator=ref('area'),mode=ref('exam');
-createApp({setup:()=>()=>h(Card,{item:items[index.value],selected:selected.value,mode:mode.value,imageAnswerMode:'hotspot',hotspotIndicator:indicator.value,onChoose:c=>selected.value=selected.value===c?undefined:c})}).mount('#review');
-window.review={items,async show(i,style='area'){index.value=i;selected.value=undefined;indicator.value=style;await nextTick();},async tick(){await nextTick();},get selected(){return selected.value;}};
+window.review = mountEnergyCard(items);
 </script><style>body{margin:16px;background:#f2f4f8}#review{max-width:720px;margin:auto}.question-card{width:100%;box-sizing:border-box}</style></body></html>'''.replace('work/energy-restored-full',WORK.relative_to(ROOT).as_posix()))

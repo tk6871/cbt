@@ -18,9 +18,9 @@ export function StudyHome(props: StudyHomeProps) {
     <section ref={hero} className="hybrid-cover" data-subject={props.selected} style={{'--subject-photo': `url("${subjectPhoto(props.selected)}")`} as CSSProperties}><div className="hybrid-copy">
       <p>{props.name}</p><h1>나의 학습 홈</h1>
       <div className="hybrid-actions">
+        {props.resume && <button type="button" onClick={props.onResume}><span className="action-label">이어서 풀기</span></button>}
         <button type="button" onClick={props.onRounds}><span className="action-label">회차별 기출 고르기</span><span className="action-arrow" aria-hidden="true">→</span></button>
         {props.onBook && <button type="button" onClick={props.onBook}><span className="action-label">교재에서 풀기</span></button>}
-        {props.resume && <button type="button" onClick={props.onResume}><span className="action-label">이어서 풀기</span></button>}
       </div>
     </div></section>
     <section className="qualification-section">

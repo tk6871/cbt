@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {problemImage} from '../src/cbt/problemImages';
 import crypto from 'node:crypto';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
 import { curatedPracticalAnswers, completePracticalPublicAnswer } from '../src/cbt/hvacPracticalPublicAnswers';
@@ -31,18 +32,28 @@ for (const [i,prompt] of practicalPrompts.entries()) {
   assert.ok(payload.question_number > 0 && Number.isInteger(payload.question_number));
   assert.ok(payload.question_text!.length <= 5000);
   assert.equal(payload.configured_answer, undefined, 'written answer must not become a 1..4 answer');
-  for (const image of [prompt.image, ...(prompt.images || []), ...(prompt.answerImages || [])].filter(Boolean)) assert.ok(fs.existsSync(image!), image);
+  for (const image of [prompt.image, ...(prompt.images || []), ...(prompt.answerImages || [])].filter(Boolean)) assert.ok(fs.existsSync(problemImage(image)!), image);
 }
 assert.equal(repairs.repairs.length, 10);
+const imageAudit: Record<string, {asset:string;sourceSha256:string;sha256:string}> =
+  JSON.parse(fs.readFileSync('data/problem-images-webp90-audit.json','utf8')).entries;
+function verifyRepair(path:string, expected:string) {
+  if (fs.existsSync(path)) return assert.equal(hash(path),expected);
+  const mapped=imageAudit[path];
+  assert.ok(mapped, path+' missing from conversion manifest');
+  assert.equal(mapped.sourceSha256,expected);
+  assert.equal(mapped.asset,problemImage(path));
+  assert.equal(hash(mapped.asset),mapped.sha256);
+}
 for (const repair of repairs.repairs) {
-  assert.equal(hash(repair.oldImage), repair.oldSha256, 'original asset retained');
-  assert.equal(hash(repair.output), repair.sha256);
+  verifyRepair(repair.oldImage, repair.oldSha256);
+  verifyRepair(repair.output, repair.sha256);
   assert.ok(byId.get(repair.id)!.images?.includes(repair.output), 'runtime repair connected');
   assert.ok(!byId.get(repair.id)!.images?.includes(repair.oldImage));
 }
-const app = fs.readFileSync('src/cbt/App.vue','utf8');
-assert.ok(app.includes('class="practical-explanation" open'), 'explanation defaults open only after answer reveal');
-assert.ok(app.includes('<PracticalIssueReport :prompt="practicalSourcePrompt(prompt)"'), 'all rendered practical prompts report their original source');
+const app = fs.readFileSync('src/react/tools/GuideView.tsx','utf8');
+assert.ok(app.includes('open={true} className="practical-explanation"'), 'explanation defaults open only after answer reveal');
+assert.ok(app.includes('prompt: practicalSourcePrompt(prompt)'), 'all rendered practical prompts report their original source');
 const multi = practicalPrompts.filter(p => /명칭.{0,12}(?:특징|목적|역할|용도|원리|기능)/.test(p.question));
 const shortCandidates = multi.filter(p => p.answer.length < 20).map(p=>({id:p.id,question:p.question,answer:p.answer}));
 assert.deepEqual(shortCandidates, [], 'compound request with only a short name');

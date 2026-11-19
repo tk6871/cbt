@@ -27,6 +27,11 @@ export function renderHistoryView(m: HistoryViewModel) {
           </button>
         ) : null}
       </section>
+      <nav aria-label="복습 도구" className="history-tools">
+        <button type="button" onClick={()=>openView('wrong')}>오답 노트</button>
+        <button type="button" onClick={()=>openView('coach')}>취약 과목 복습</button>
+        <button type="button" onClick={()=>openView('stats')}>학습 분석</button>
+      </nav>
       {savedLearningSession ? (
         <section className="history-resume-card">
           <div>

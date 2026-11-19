@@ -43,7 +43,11 @@ test('교재에서 종목을 바꾸고 중간고사에서도 자격증 기출로
   await expect(page.getByRole('heading', { name: '산업안전산업기사 기출문제' })).toBeVisible();
   await expect(page.locator('.round-card').first()).toBeVisible();
   await expect(progress).toHaveCount(0);
-  await page.getByRole('button', { name: '에너지설비 중간고사', exact: true }).click();
+  if (!await page.locator('.sidebar').getByRole('button',{name:'기말고사'}).isVisible())
+    await page.getByRole('button',{name:'메뉴 열기'}).click();
+  await page.locator('.sidebar').getByRole('button',{name:'기말고사'}).click();
+  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
+  await page.getByRole('button',{name:'에너지설비 중간고사 자료'}).click();
   await expect(page.getByRole('heading', { name: '에너지설비 중간고사', exact: true })).toBeVisible();
   await page.getByRole('button', { name: '자격증 기출', exact: true }).click();
   await expect(page.getByRole('heading', { name: '산업안전산업기사 기출문제' })).toBeVisible();

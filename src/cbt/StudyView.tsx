@@ -5,6 +5,7 @@ import {problemImage,problemImageHtml} from './problemImages';
 import QuestionCard from '../react/session/QuestionCard';
 import RoundsLoading from '../react/RoundsLoading';
 import ThemeStudyCover from '../react/ThemeStudyCover';
+import {FinalExams} from '../react/FinalExams';
 import {StudyHome} from '../react/StudyHome';
 import TextbookLibrary, {getTextbookReader} from '../react/reader/TextbookLibrary';
 import {RoundList} from '../react/RoundList';
@@ -43,12 +44,12 @@ return <>
 <small >{sunjaeRotationSeconds ? `${sunjaeRotationLabel(sunjaeRotationSeconds)}마다 내가 찾아올게` : '오늘은 이 모습으로 기다릴게'}</small></figcaption></figure>) : null}
 <nav ><button onClick={() => { openView('home'); }} className={normalizeClass([{ active: view === 'home' }])}><span data-theme-symbol={"⌂"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(0), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(0))} alt={""} className={"theme-nav-character simpsons-scene-grin"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-home-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(0))} alt={""} className={"theme-nav-character crop-sunjae-face"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-home"}/>}</span>
 {"홈"}</button>
-<button onClick={() => { openView('rounds'); }} className={normalizeClass([{ active: view === 'rounds' }])}><span data-theme-symbol={"▤"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(1))} alt={""} className={"theme-nav-character simpsons-scene-cool"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-rounds-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""} className={"theme-nav-character crop-sunjae-night"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-rounds"}/>}</span>
+<button onClick={() => { void openRegularRounds(); }} className={normalizeClass([{ active: view === 'rounds' }])}><span data-theme-symbol={"▤"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(1))} alt={""} className={"theme-nav-character simpsons-scene-cool"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-rounds-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""} className={"theme-nav-character crop-sunjae-night"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-rounds"}/>}</span>
 {"회차별 문제"}</button>
 {(!isJewelry) ? (<button onClick={() => { openView('school'); }} className={normalizeClass([{ active: view === 'school' }])}><span data-theme-symbol={"✎"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(6))} alt={""} className={"theme-nav-character simpsons-scene-doctor"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-school"}/>}</span>
-{"학교 시험 준비"}</button>) : null}
+{"기말고사"}</button>) : null}
 <button onClick={() => { openView('history'); }} className={normalizeClass([{ active: view === 'history' }])}><span data-theme-symbol={"◴"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(8))} alt={""} className={"theme-nav-character simpsons-scene-exercise"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-history-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(3))} alt={""} className={"theme-nav-character crop-sunjae-face"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-history"}/>}</span>
-{"학습 내역"}</button>
+{"복습·학습 내역"}</button>
 <button onClick={() => { openView('wrong'); }} className={normalizeClass([{ active: view === 'wrong' }])}><span data-theme-symbol={"!"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(2), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(2))} alt={""} className={"theme-nav-character simpsons-scene-phone"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-wrong-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(2))} alt={""} className={"theme-nav-character crop-sunjae-sad"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-wrong"}/>}</span>
 {"오답노트 "}
 {(stats.wrong) ? (<b >{stats.wrong}</b>) : null}</button>
@@ -58,12 +59,6 @@ return <>
 {"계산문제만 풀기"}</button>
 {(studyGuideAvailable) ? (<button onClick={() => { openView('guide'); }} className={normalizeClass([{ active: view === 'guide' }])}><span data-theme-symbol={"▣"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(5), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(5))} alt={""} className={"theme-nav-character simpsons-scene-hardhat"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-guide-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""} className={"theme-nav-character crop-sunjae-cherry"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-guide"}/>}</span>
 {"시험 자료실"}</button>) : null}
-<button onClick={() => { openView('coach'); }} className={normalizeClass(["coach-nav-button", { active: view === 'coach' }])}><span data-theme-symbol={"✦"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsBurnsImage, '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsBurnsImage)} alt={""} className={"theme-nav-character simpsons-scene-burns"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-coach-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(2))} alt={""} className={"theme-nav-character crop-sunjae-face"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-coach"}/>}</span>
-{"합격 엔진"}</button>
-{(experimentalFeaturesEnabled) ? (<button onClick={() => { openView('beta'); }} className={normalizeClass(["beta-nav-button", { active: view === 'beta' }])}><span data-theme-symbol={"β"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(6))} alt={""} className={"theme-nav-character simpsons-scene-doctor"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-beta-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""} className={"theme-nav-character crop-sunjae-face"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-beta"}/>}</span>
-{"베타 학습 도구"}</button>) : null}
-<button onClick={() => { openView('stats'); }} className={normalizeClass([{ active: view === 'stats' }])}><span data-theme-symbol={"▥"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsThemeImage, '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsThemeImage)} alt={""} className={"theme-nav-character crop-bart"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-stats-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(3))} alt={""} className={"theme-nav-character crop-sunjae-cherry"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-stats"}/>}</span>
-{"학습 분석"}</button>
 <button onClick={() => { openView('updates'); }} className={normalizeClass([{ active: view === 'updates' }])}><span data-theme-symbol={"◷"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(7), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(7))} alt={""} className={"theme-nav-character simpsons-scene-exhausted"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-updates-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(0))} alt={""} className={"theme-nav-character crop-sunjae-night"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-updates"}/>}</span>
 {"패치노트"}</button></nav>
 <a href={problemImage(isJewelry ? 'index.html' : 'jewelry.html')} className={"space-portal"}><span >{isJewelry ? 'CBT' : '◇'}</span>
@@ -78,7 +73,7 @@ return <>
 <main inert={mobileMenuOpen} className={"main-area"}>{(!practicalSolving) ? (<header className={"topbar"}><button type={"button"} aria-label={"메뉴 열기"} onClick={() => { m.mobileMenuOpen = true; }} className={"menu-button"}>{"☰ "}
 <span >{"메뉴"}</span></button>
 <div className={"topbar-context"}><strong >{viewTitle}</strong>
-<SubjectPicker {...{groups:qualificationGroups,selected:selectedKey,name:selectedCatalog.name,onSelect:changeContextQualification}}/></div>
+<SubjectPicker {...{groups:qualificationGroups,selected:selectedKey,name:view==='school'?'기말고사':selectedCatalog.name,onSelect:changeContextQualification}}/></div>
 <div className={"top-actions"}><button type={"button"} aria-label={"문제 검색 열기"} onClick={() => { openView('search'); }}>{"⌕ "}
 <span >{"검색"}</span></button>
 <button type={"button"} aria-label={"공학용 계산기 열기"} onClick={openCalculator}>{"▦ "}
@@ -101,11 +96,11 @@ return <>
 <i />
 <i />
 <i className={"skeleton-wide"}/></div>) : <StudyTransition name={viewTransitionName} stageKey={view} afterEnter={()=>{animateViewDetails(view)}}><div key={view} className={normalizeClass(["view-stage", { 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }])}>{(view === 'settings') ? (<Suspense fallback={<p role="status">설정을 불러오는 중…</p>}><StudySettings {...{"mode": "page", "values": settingsValues, "context": settingsContext, "onChange": changeSetting, "onAction": settingsAction}}><Suspense fallback={null}><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요."/></Suspense></StudySettings></Suspense>) : (view === 'home') ? (<Fragment >{(visualStyle === 'default') ? (<div data-react-view="study-home"><StudyHome {...reactHome}/></div>) : null}
-{(visualStyle==='simpsons'||visualStyle==='sunjae') ? (<ThemeStudyCover {...{"styleName": visualStyle, "subject": selectedKey, "subjectName": selectedCatalog.name, "jewelry": isJewelry, "portrait": visualStyle==='sunjae'?currentSunjaeImage:simpsonsKingSizeImage, "answered": stats.answered, "accuracy": stats.accuracy, "onRounds": () => { openView('rounds'); }, "onSecondary": () => { isJewelry?openView('wrong'):openTextbookPages(); }, "onSettings": () => { m.settingsOpen=true; }}}/>) : null}
+{(visualStyle==='simpsons'||visualStyle==='sunjae') ? (<ThemeStudyCover {...{"styleName": visualStyle, "subject": selectedKey, "subjectName": selectedCatalog.name, "jewelry": isJewelry, "portrait": visualStyle==='sunjae'?currentSunjaeImage:simpsonsKingSizeImage, "answered": stats.answered, "accuracy": stats.accuracy, "onResume": savedLearningSession ? resumeSavedLearning : undefined, "onRounds": openRegularRounds, "onSecondary": () => { isJewelry?openView('wrong'):openTextbookPages(); }, "onSettings": () => { m.settingsOpen=true; }}}/>) : null}
 {(visualStyle === 'sunjae' && dynamicUiEnabled) ? (<section className={"sunjae-fan-home"}><div className={"sunjae-fan-workspace"}><section className={"sunjae-qualification-album"}><header ><div ><span >{"01 · PICK OUR COURSE"}</span>
 <h2 >{"오늘 나랑 어떤 종목 달릴래?"}</h2></div>
 <p >{"사진을 넘기듯 골라봐. 고르면 내가 공부 범위를 바로 바꿔줄게."}</p></header>
-<div className={"sunjae-album-track"}>{(catalogs).map((catalog, catalogIndex) => <button key={catalog.key} type={"button"} onClick={() => { selectQualification(catalog.key); }} className={normalizeClass([{ selected: selectedKey === catalog.key }])}><img {...responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaeImageAt(catalogIndex + 1))} alt={""}/>
+<div className={"sunjae-album-track"}>{qualificationGroups.flatMap(group => group.items).map((catalog, catalogIndex) => <button key={catalog.key} type={"button"} onClick={() => { selectQualification(catalog.key); }} className={normalizeClass([{ selected: selectedKey === catalog.key }])}><img {...responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaeImageAt(catalogIndex + 1))} alt={""}/>
 <span >{selectedKey === catalog.key ? '우리 오늘 이거 하자' : '같이 골라볼래?'}</span>
 <strong >{catalog.name}</strong>
 <small >{catalog.roundCount ?? catalog.rounds.length}
@@ -121,7 +116,7 @@ return <>
 <button onClick={() => { applyPreset(10); }} className={normalizeClass([{ active: quickPreset === 10 }])}>{"최근 10년"}</button>
 <button onClick={() => { applyPreset(0); }} className={normalizeClass([{ active: quickPreset === 0 }])}>{"전체"}</button></div>
 <div className={"sunjae-ticket-fields"}><label ><span >{"종목"}</span>
-<select value={selectedKey} onChange={e=>updateQualificationFromSetup(e.nativeEvent)}>{(catalogs).map((catalog) => <option key={catalog.key} value={catalog.key}>{catalog.name}</option>)}</select></label>
+<select value={selectedKey} onChange={e=>updateQualificationFromSetup(e.nativeEvent)}>{qualificationGroups.flatMap(group => group.items).map((catalog) => <option key={catalog.key} value={catalog.key}>{catalog.name}</option>)}</select></label>
 <label ><span >{"시작"}</span>
 <select value={yearFrom} onChange={event => { m.yearFrom = Number(event.currentTarget.value) as typeof yearFrom; }}>{([...availableYears].reverse()).map((year) => <option key={year} value={year}>{year}
 {"년"}</option>)}</select></label>
@@ -156,7 +151,7 @@ return <>
 <span >{"내가 채점해줄게"}</span>
 <strong >{"랜덤시험"}</strong>
 <small >{"과목 균형 · OMR · 타이머"}</small></button>
-<button type={"button"} onClick={() => { openView('rounds'); }}><img {...responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(2))} alt={""}/>
+<button type={"button"} onClick={() => { void openRegularRounds(); }}><img {...responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(2))} alt={""}/>
 <span >{"원하는 날을 골라"}</span>
 <strong >{"회차별 문제"}</strong>
 <small >{yearFrom}
@@ -223,7 +218,7 @@ return <>
 <button onClick={() => { applyPreset(10); }} className={normalizeClass([{ active: quickPreset === 10 }])}>{"최근 10년"}</button>
 <button onClick={() => { applyPreset(0); }} className={normalizeClass([{ active: quickPreset === 0 }])}>{"전체"}</button></div></div>
 <div className={"builder-controls"}><label className={"qualification-control"}><span >{"자격증 종목"}</span>
-<select value={selectedKey} onChange={e=>updateQualificationFromSetup(e.nativeEvent)}>{(catalogs).map((catalog) => <option key={catalog.key} value={catalog.key}>{catalog.name}</option>)}</select></label>
+<select value={selectedKey} onChange={e=>updateQualificationFromSetup(e.nativeEvent)}>{qualificationGroups.flatMap(group => group.items).map((catalog) => <option key={catalog.key} value={catalog.key}>{catalog.name}</option>)}</select></label>
 <label ><span >{"시작 연도"}</span>
 <select value={yearFrom} onChange={event => { m.yearFrom = Number(event.currentTarget.value) as typeof yearFrom; }}>{([...availableYears].reverse()).map((year) => <option key={year} value={year}>{year}
 {"년"}</option>)}</select></label>
@@ -298,7 +293,7 @@ return <>
 <small >{officialRule?.scoring === 'total-only' ? `${officialExamQuestionCount}문제` : '과목별 20문제'}
 {selectedKey === 'hvac' && includeHansolInRandom ? ' · 한솔 후보 포함' : ''}
 {" · OMR · 타이머"}</small></button>
-<button type={"button"} onClick={() => { openView('rounds'); }} className={"round-start"}>{(visualStyle === 'simpsons' && dynamicUiEnabled) ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(7), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(7))} alt={""} className={"simpsons-action-photo"}/>) : null}
+<button type={"button"} onClick={() => { void openRegularRounds(); }} className={"round-start"}>{(visualStyle === 'simpsons' && dynamicUiEnabled) ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(7), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(7))} alt={""} className={"simpsons-action-photo"}/>) : null}
 <span >{"연도 순서대로"}</span>
 <strong >{"회차별 기출문제"}</strong>
 <small >{yearFrom}
@@ -325,7 +320,7 @@ return <>
 {(pwaRegistrationError) ? (<small role={"status"}>{"온라인으로 계속 풀 수 있습니다. 설정의 ‘기록·동기화’에서도 복구 화면을 열 수 있습니다."}</small>) : <small >{updateAvailable ? '학습 기록은 유지되고 화면과 기능만 최신 상태로 바뀝니다.' : '새 업데이트가 있는지 언제든 다시 확인할 수 있습니다.'}</small>}</div>
 <div className={"home-release-actions"}>{(pwaRegistrationError) ? (<button type={"button"} onClick={openPwaRecoveryFromError}>{"자동 복구 열기"}</button>) : null}
 {(updateAvailable) ? (<button type={"button"} onClick={applyUpdate} className={"apply"}>{"신버전 적용"}</button>) : <button type={"button"} disabled={updateChecking} onClick={() => { checkForUpdate(true); }}>{updateChecking ? '확인 중…' : '업데이트 확인'}</button>}
-<button type={"button"} onClick={() => { openView('updates'); }}>{"패치노트 보기"}</button></div></section>) : null}</Fragment>) : (view === 'school') ? (<Fragment ><button type={"button"} onClick={openTextbookPages} className={"primary-button"}>{"▤ 교재 페이지별로 풀기 · 한솔 공조 / 에너지"}</button>
+<button type={"button"} onClick={() => { openView('updates'); }}>{"패치노트 보기"}</button></div></section>) : null}</Fragment>) : (view === 'school') ? (<FinalExams start={m.startFinalExam} archive={subject=>void openQualificationRounds(subject==='cooling'?SCHOOL_EXAM_CATALOG_KEY:'energy-midterm')}>
 {(savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY && !coolingSavedSession) ? (<section className={"resume-learning-card"}><div ><span >{"자동 저장된 학교 시험 "}
 {savedLearningSession.mode === 'exam' ? 'CBT' : '학습'}</span>
 <strong >{savedLearningSession.title}</strong>
@@ -334,8 +329,8 @@ return <>
 {savedLearningSession.itemIds.length}
 {"문제 풀이"}</small></div>
 <button type={"button"} onClick={resumeSavedLearning}>{"이어서 풀기"}</button></section>) : null}
-<Suspense fallback={<p role="status">학교 시험을 불러오는 중…</p>}><SchoolExamManager {...{"data": schoolExamData, "onUpdate": updateSchoolExamData, "onStart": startSchoolExamRound, "onStartSet": startSchoolQuestionSet, "onSearch": openSchoolSetSearch}}/></Suspense></Fragment>) : (view === 'rounds') ? (<Fragment >{(!isJewelry) ? (<MaterialSwitch {...{active:roundsCollection==='textbook'?1:roundsCollection==='cooling'?2:selectedKey==='energy-midterm'?3:0,
-            actions:[openRegularRounds,openTextbookPages,()=>openQualificationRounds(SCHOOL_EXAM_CATALOG_KEY),()=>openQualificationRounds('energy-midterm')]}}/>) : null}
+<Suspense fallback={<p role="status">학교 시험을 불러오는 중…</p>}><SchoolExamManager {...{"data": schoolExamData, "onUpdate": updateSchoolExamData, "onStart": startSchoolExamRound, "onStartSet": startSchoolQuestionSet, "onSearch": openSchoolSetSearch}}/></Suspense></FinalExams>) : (view === 'rounds') ? (<Fragment >{(!isJewelry) ? (<MaterialSwitch {...{active:roundsCollection==='textbook'?1:0,
+            actions:[openRegularRounds,openTextbookPages]}}/>) : null}
 {(roundsCollection === 'textbook' && !isJewelry) ? (<Fragment >{(savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))) ? (<section className={"resume-learning-card"}><div ><strong >{savedLearningSession.title}</strong>
 <small >{"저장된 교재 풀이"}</small></div>
 <button onClick={resumeSavedLearning}>{"이어서 풀기"}</button></section>) : null}
@@ -453,19 +448,18 @@ return <>
 <b aria-hidden={"true"}>{"↓"}</b></a></div></section></div>) : null}</StudyTransition>
 {(!practicalSolving) ? (<nav inert={mobileMenuOpen} className={"mobile-tabbar"}><button onClick={() => { openView('home'); }} className={normalizeClass([{ active: view === 'home' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(0))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-home-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(0))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-home"}/>}</span>
 {"홈"}</button>
-<button onClick={() => { openView('rounds'); }} className={normalizeClass([{ active: view === 'rounds' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(1))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-rounds-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-rounds"}/>}</span>
+<button onClick={() => { void openRegularRounds(); }} className={normalizeClass([{ active: view === 'rounds' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(1))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-rounds-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-rounds"}/>}</span>
 {"회차"}</button>
 <button onClick={() => { openView('wrong'); }} className={normalizeClass([{ active: view === 'wrong' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(2))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-wrong-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(2))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-wrong"}/>}</span>
 {"오답"}</button>
 <button onClick={() => { openView('search'); }} className={normalizeClass([{ active: view === 'search' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(3))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-search-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(3))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-search"}/>}</span>
 {"검색"}</button>
-<button onClick={() => { openView('coach'); }} className={normalizeClass([{ active: view === 'coach' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsBurnsImage)} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-coach-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(0))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-coach"}/>}</span>
-{"합격"}</button>
+{!isJewelry && <button onClick={()=>openView('school')} className={view==='school'?'active':''}><span aria-hidden="true">✎</span>기말고사</button>}
 <button onClick={() => { openView('stats'); }} className={normalizeClass([{ active: view === 'stats' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(5))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-stats-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-stats"}/>}</span>
 {"통계"}</button></nav>) : null}
 {(!practicalSolving) ? (<nav aria-label={"Android 앱 메뉴"} inert={mobileMenuOpen} className={"native-app-tabbar"}><button onClick={() => { m.nativeMoreOpen = false; openView('home'); }} className={normalizeClass([{ active: view === 'home' }])}><span >{"⌂"}</span>
 <strong >{"홈"}</strong></button>
-<button onClick={() => { m.nativeMoreOpen = false; openView('rounds'); }} className={normalizeClass([{ active: view === 'rounds' }])}><span >{"▤"}</span>
+<button onClick={() => { m.nativeMoreOpen = false; void openRegularRounds(); }} className={normalizeClass([{ active: view === 'rounds' }])}><span >{"▤"}</span>
 <strong >{"회차"}</strong></button>
 <button onClick={() => { m.nativeMoreOpen = false; openView('wrong'); }} className={normalizeClass([{ active: view === 'wrong' }])}><span >{"!"}</span>
 <strong >{"오답"}</strong>
@@ -477,7 +471,7 @@ return <>
 <StudyTransition name={"modal-fade"} stageKey={undefined} >{(nativeMoreOpen) ? (<div onClick={event => { if(event.target !== event.currentTarget)return; m.nativeMoreOpen = false; }} className={"native-more-backdrop"}><section className={"native-more-sheet"}><header ><div ><span >{"QUICK MENU"}</span>
 <strong >{"더보기"}</strong></div>
 <button type={"button"} aria-label={"더보기 닫기"} onClick={() => { m.nativeMoreOpen = false; }}>{"×"}</button></header>
-<nav ><button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('history'); }}><span >{"◴"}</span>
+<nav >{!isJewelry && <button type="button" onClick={()=>{m.nativeMoreOpen=false;openView('school')}}><span>✎</span><strong>기말고사</strong></button>}<button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('history'); }}><span >{"◴"}</span>
 <div ><strong >{"학습 내역"}</strong>
 <small >{"이어하기·점수·재도전"}</small></div></button>
 <button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('calculation'); }}><span >{"∑"}</span>
@@ -487,15 +481,6 @@ return <>
 <div ><strong >{"시험 자료실"}</strong>
 <small >{"공식·핵심 개념"}
 {hvacPracticalAvailable ? '·필답형' : ''}</small></div></button>) : null}
-<button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('coach'); }}><span >{"✦"}</span>
-<div ><strong >{"합격 엔진"}</strong>
-<small >{"취약 과목과 복습"}</small></div></button>
-{(experimentalFeaturesEnabled) ? (<button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('beta'); }}><span ><i aria-hidden={"true"} className={"study-menu-icon menu-beta"}/></span>
-<div ><strong >{"베타 학습 도구"}</strong>
-<small >{"확신도·메모·맞춤 복습"}</small></div></button>) : null}
-<button type={"button"} onClick={() => { m.nativeMoreOpen = false; openView('stats'); }}><span >{"▥"}</span>
-<div ><strong >{"학습 통계"}</strong>
-<small >{"점수와 학습 기록"}</small></div></button>
 <button type={"button"} onClick={() => { m.nativeMoreOpen = false; openCalculator(); }}><span >{"▦"}</span>
 <div ><strong >{"계산기"}</strong>
 <small >{"공학용 계산 도구"}</small></div></button>

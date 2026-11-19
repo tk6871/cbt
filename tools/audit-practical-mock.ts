@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {problemImage} from '../src/cbt/problemImages';
 import { practicalPrompts } from '../src/cbt/qualificationStudyGuides';
 import { practicalMockSlots, practicalMockRounds, buildPracticalPattern, mockSessionPrompts, mockPromptId, validPracticalPattern, practicalPatternSummary, type PracticalPattern } from '../src/cbt/practicalMock';
 import { additionalMockCandidate } from '../src/cbt/practicalMockCandidates';
@@ -54,9 +55,9 @@ assert.ok(validPracticalPattern(legacy)); assert.equal(mockSessionPrompts(practi
 assert.equal(additionalMockCandidate(practicalPrompts.find(p=>p.id==='hvac-practical-photo-20260917-001')!)?.topic,additionalMockCandidate(practicalPrompts.find(p=>p.id==='moducbt-hvac-practical-1')!)?.topic);
 const motion=practicalPrompts.find(p=>p.id==='hvac-practical-restored-2022-3-01')!;
 assert.equal(additionalMockCandidate(motion),null,'older motion-only tasks are not admitted as photos');
-for (const p of practicalPrompts.filter(p=>ids.has(p.id))) for(const image of [p.image,...(p.images||[]),...(p.answerImages||[])].filter(Boolean)) assert.ok(fs.existsSync(image!),`missing ${image}`);
+for (const p of practicalPrompts.filter(p=>ids.has(p.id))) for(const image of [p.image,...(p.images||[]),...(p.answerImages||[])].filter(Boolean)) assert.ok(fs.existsSync(problemImage(image)!),`missing ${image}`);
 assert.equal(JSON.stringify(practicalPrompts),bankBefore,'source bank is never changed');
-const app=fs.readFileSync('src/cbt/App.vue','utf8');
+const app=['src/cbt/studyController.ts','src/react/tools/GuideView.tsx'].map(f=>fs.readFileSync(f,'utf8')).join(' ').replace(/\s+/g,' ');
 assert.ok(app.includes('!practicalExamLocked && practicalStudyMode'));
 assert.ok(app.includes("(!practicalExamLocked && practicalStudyMode === 'memorize') || practicalAnswerRevealed(prompt.id)"));
 assert.ok(app.includes('viewedAnswerIds: practicalViewedAnswerIds.value.filter'));

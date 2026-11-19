@@ -12,7 +12,7 @@ const baselinePath=`${work}/release-baseline.json`;
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const guards=['data/hansol-book-direct.json','data/textbook-pages.json','data/textbook-corrections.json','data/hansol-book-native-audit.json',...['hvac','hvac-hansol','energy','energy-midterm','energy-restored','energy-textbook','hvac-hansol-book'].map(n=>`data/${n}.js`)];
-const releaseFiles=['vite.config.ts','index.html','jewelry.html','admin.html','android/app/build.gradle','data/changelog-vue.js','CHANGELOG.md','README.md','src/cbt/App.vue','src/cbt/textbookPages.ts','src/cbt/TextbookDirectQuestion.vue'];
+const releaseFiles=['vite.config.ts','index.html','jewelry.html','admin.html','android/app/build.gradle','data/changelog-vue.js','CHANGELOG.md','README.md','src/react/StudyHome.tsx','src/cbt/textbookPages.ts','src/react/reader/DirectQuestion.tsx'];
 if(process.argv.includes('--prepare')){
  const oldAssets=[...new Set(Object.values(read('data/hansol-book-native-audit.json').images).map(im=>im.asset))];
  const snapshot={date:new Date().toISOString(),protected:Object.fromEntries(guards.map(p=>[p,sha(p)])),protectedAssets:Object.fromEntries(oldAssets.map(p=>[p,sha(p)])),releaseFiles:Object.fromEntries(releaseFiles.map(p=>[p,sha(p)]))};
@@ -57,9 +57,6 @@ replaceOnce('data/changelog-vue.js',"changelog.versions.industrial = '5.8';","ch
 replaceOnce('data/changelog-vue.js',"changelog.currentVersion = '5.8';","changelog.currentVersion = '5.8.1';");
 replaceOnce('CHANGELOG.md','# 변경 기록\n\n',`# 변경 기록\n\n## v5.8.1 - 2026-11-03\n\n- 교재 원문397쪽을 기존 Real-ESRGAN x4plus-anime·타일256·4배→2배 bicubic·lossless WebP로 개선했습니다. 원본397장과 기존 개선500장을 보존합니다.\n- 표시 크기·문제/풀이/정답표 좌표·선택 기록은 원래 기준을 유지합니다. 다크/라이트와 확대본 연결 실패 시 원해상도 대체 표시를 지원합니다.\n- 정답 검증·127곳의 풀이 경계 보완·전체 개별 대조 완료를 뜻하지 않습니다.\n\n`);
 replaceOnce('README.md','- 이미 완료된 화질 개선 결과는 유지합니다. 새 업스케일링은 보류하고, 필요한 새 교재 이미지는 원래 해상도로도 연결할 수 있습니다. 이미지 선택·다크/라이트는 동일하게 지원합니다.','- 교재 원문397쪽의 화질 개선 결과와 이전 개선본을 함께 유지합니다. 원래 표시 좌표·쪽 배치·다크/라이트를 보존하고 확대본을 읽지 못하면 원해상도로 표시합니다. 원본 이미지는 삭제하지 않습니다.');
-replaceOnce('src/cbt/App.vue','NEW · v5.8</span>','NEW · v5.8.1</span>');
-replaceOnce('src/cbt/App.vue','<h2>교재 원문으로 먼저 풀기</h2>','<h2>교재 원문397쪽, 더 선명하게</h2>');
-replaceOnce('src/cbt/App.vue','기존 CBT·해설·기록과 완료된 화질 개선은 유지하고 새 업스케일링은 하지 않았습니다.','교재 원문397쪽은4배 처리 후2배 화질 개선을 적용했습니다. 기존 CBT·해설·기록과 원본·이전 개선본은 보존합니다.');
 command('build','npm',['run','build']);
 command('pwa','npm',['run','test:pwa']);
 command('changelog-identity','node',['tools/audit-changelog-identity.mjs']);

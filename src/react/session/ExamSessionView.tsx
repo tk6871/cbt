@@ -206,7 +206,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
           ) : null}
           {session.mode === 'learn' ? (
             <button type="button" onClick={resetLearning} className="reset-button">
-              선택 초기화
+              이 페이지 선택 초기화
             </button>
           ) : (
             <button type="button" className="timer-button">
@@ -293,6 +293,10 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
           </button>
         </header>
         <nav>
+          {session.mode === 'learn' && <button type="button" onClick={()=>{
+            resetLearning();
+            m.sessionMenuOpen=false;
+          }}><span aria-hidden="true">↺</span><strong>이 페이지 선택 초기화</strong></button>}
           <button
             type="button"
             onClick={() => {
@@ -463,6 +467,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                         onChoose: (event: Parameters<typeof chooseAnswer>[1]) => {
                           chooseAnswer(item, event);
                         },
+                        onReset: session.mode === 'learn' ? (choice: number) => m.resetOneLearningChoice(item, choice) : undefined,
                         onToggleBookmark: () => {
                           toggleBookmark(item);
                         },

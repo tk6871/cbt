@@ -1,4 +1,4 @@
-import {adminPages, adminHref, type AdminSection} from './navigation';
+import {adminPages, adminHref, adminSectionFromHash, type AdminSection} from './navigation';
 import { computed, nextTick, proxyRefs, ref, createObservers, mutableRef } from '../cbt/controllerSignals';
 import { createClient, type RealtimeChannel, type Session, type SupabaseClient } from '@supabase/supabase-js';
 import { animate, stagger } from 'motion';
@@ -236,7 +236,7 @@ const allowedPages = computed(() => adminPages.filter(page => adminAccess.value?
 
 function applyLocation(focus: boolean): void {
   const [route,search] = location.hash.split('?');
-  const page = allowedPages.value.find(item => adminHref(item.id) === route) || allowedPages.value[0];
+  const page = allowedPages.value.find(item => item.id === adminSectionFromHash(route)) || allowedPages.value[0];
   if (!page) return;
   const params = new URLSearchParams(search);
   const member = params.get('member') || '';

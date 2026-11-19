@@ -14,5 +14,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "vite.config.ts"]
+  "include": ["src/env.d.ts", "src/cbt/main.ts", "src/cbt/mobile.ts", "src/admin/admin.ts", "src/visitor.ts", "src/sw.ts", "vite.config.ts"]
 }

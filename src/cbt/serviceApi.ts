@@ -7,18 +7,25 @@ export function publicApiBase() {
 export async function loadApiBank(file: string): Promise<Catalog | undefined> {
   const base = publicApiBase();
   if (!base) return;
+  try {
+    const {queryBank} = await import('./queryBank');
+    return await queryBank(base,file,()=>readApiBank(base,file));
+  } catch { return; }
+}
+
+async function readApiBank(base:string,file:string): Promise<Catalog> {
   const controller = new AbortController();
   let timer = window.setTimeout(() => controller.abort(), 3500);
   try {
     const response = await fetch(base+'/catalogs/'+encodeURIComponent(file), {signal:controller.signal});
-    if (!response.ok) return;
+    if (!response.ok) throw Error('문제은행을 불러오지 못했습니다.');
     // The API has answered. Give large banks time to finish on a mobile connection.
     window.clearTimeout(timer);
     timer = window.setTimeout(() => controller.abort(), 30000);
     const bank: Catalog = await response.json();
     if (bank.key === file && Array.isArray(bank.rounds)) return bank;
-  } catch { return; }
-  finally { window.clearTimeout(timer); }
+    throw Error('문제은행 형식이 올바르지 않습니다.');
+  } finally { window.clearTimeout(timer); }
 }
 
 async function learningResponse(space:string, token:string, method:'GET'|'PUT'|'DELETE', body?:object) {

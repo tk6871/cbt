@@ -113,6 +113,7 @@ export type StudyMode = 'learn' | 'exam';
 export type CurriculumScope = 'all-mapped' | 'current' | 'legacy-original';
 
 export type SessionState = {
+  qualificationKey?: string;
   id: string;
   mode: StudyMode;
   title: string;

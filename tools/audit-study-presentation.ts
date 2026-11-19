@@ -51,7 +51,7 @@ assert.equal(paginate(rows, 1).rows.length, 50);
 assert.equal(paginate(rows, 20).rows.at(-1), 999);
 assert.equal(paginate(rows, 21).page, 20);
 assert.deepEqual(paginate([], 9), { page:1, pageCount:1, rows:[] });
-const main = readFileSync('src/cbt/App.vue','utf8');
+const main = ['src/react/tools/CoachView.tsx','src/react/tools/CalculationView.tsx','src/cbt/studyController.ts'].map(f=>readFileSync(f,'utf8')).join(' ');
 for (const count of [0,1,39,40,41,434]) {
   const input = Array.from({length:count},(_,i)=>i);
   const pages = pageItems(input,1).pages;
@@ -59,8 +59,8 @@ for (const count of [0,1,39,40,41,434]) {
   assert.deepEqual(output,input);
   assert.equal(pageItems(input,999).page,pages);
 }
-assert.ok(main.includes('v-for="item in calculationPagination.rows"'));
-assert.ok(main.includes('v-if="filteredCalculationRows.length" class="library-pagination"'));
+assert.ok(main.includes('calculationPagination.rows.map('));
+assert.ok(main.includes('filteredCalculationRows.length ? ('));
 assert.ok(main.includes("weakRows.value.length ? '취약 문제 집중' : '기초 진단 학습'"));
 assert.ok(main.includes("!row.answered ? '미진단'"));
 assert.ok(main.includes("coachHasEvidence ? predictedScore : '—'"));

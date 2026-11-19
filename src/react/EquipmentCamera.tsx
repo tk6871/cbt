@@ -4,7 +4,8 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {Box3, PerspectiveCamera, Vector3, type Group} from 'three';
 
 // Fit projected bounds to both viewport dimensions while keeping the target at the origin.
-export function EquipmentCamera({scene, turn, highlight}: {scene:Group; turn:number; highlight:boolean}) {
+export function EquipmentCamera({scene, turn, highlight, part}: {scene:Group; turn:number; highlight:boolean; part:string}) {
+  const previousScene = useRef<Group | null>(null);
   const controls=useRef<OrbitControls | null>(null);
   const frame=useRef<number | null>(null);
   const {camera,gl,size,advance,viewport}=useThree();
@@ -35,6 +36,13 @@ export function EquipmentCamera({scene, turn, highlight}: {scene:Group; turn:num
   useLayoutEffect(()=>{
     if (!(camera instanceof PerspectiveCamera) || !controls.current) return;
     const box=new Box3().setFromObject(scene);
+    const target = new Vector3();
+    if (highlight) {
+      const parts = new Box3();
+      const match = new RegExp(part, 'i');
+      scene.traverse(node => { if (match.test(node.name.replace(/_/g,' '))) parts.expandByObject(node); });
+      if (!parts.isEmpty()) { parts.getCenter(target); box.copy(parts); }
+    }
     const angle=.52+turn*Math.PI/6;
     const back=new Vector3(Math.sin(angle),.47,Math.cos(angle)).normalize();
     const right=new Vector3().crossVectors(camera.up,back).normalize();
@@ -43,15 +51,35 @@ export function EquipmentCamera({scene, turn, highlight}: {scene:Group; turn:num
     const horizontal=vertical*size.width/Math.max(1,size.height);
     let distance=1;
     for (const x of [box.min.x,box.max.x]) for (const y of [box.min.y,box.max.y]) for (const z of [box.min.z,box.max.z]) {
-      const corner=new Vector3(x,y,z);
+      const corner=new Vector3(x,y,z).sub(target);
       const extent=Math.max(Math.abs(corner.dot(right))/horizontal,Math.abs(corner.dot(up))/vertical);
       distance=Math.max(distance,corner.dot(back)+extent*1.2);
     }
-    camera.position.copy(back.multiplyScalar(distance));
+    const destination = back.multiplyScalar(distance).add(target);
+    const orbit = controls.current;
+    const smooth = previousScene.current === scene && matchMedia('(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference)').matches;
+    previousScene.current = scene;
     controls.current.minDistance=distance*.45;
     controls.current.maxDistance=distance*3;
-    controls.current.target.set(0,0,0);
-    controls.current.update(); redraw();
-  },[scene,camera,size.width,size.height,turn,redraw]);
+    if (!smooth) {
+      camera.position.copy(destination); orbit.target.copy(target); orbit.update(); redraw();
+      return;
+    }
+    const from = camera.position.clone(), fromTarget = orbit.target.clone();
+    const start = performance.now();
+    let id = 0;
+    function draw(now:number) {
+      const t = Math.min(1,(now-start)/240);
+      const eased = 1-(1-t)**3;
+      camera.position.lerpVectors(from,destination,eased);
+      orbit.target.lerpVectors(fromTarget,target,eased);
+      orbit.update(); redraw();
+      if (t<1) id=requestAnimationFrame(draw);
+    }
+    const stop = ()=>cancelAnimationFrame(id);
+    orbit.addEventListener('start',stop);
+    id=requestAnimationFrame(draw);
+    return ()=>{stop();orbit.removeEventListener('start',stop);};
+  },[scene,camera,size.width,size.height,turn,highlight,part,redraw]);
   return null;
 }

@@ -59,7 +59,7 @@ export default function EquipmentLesson({kind}:{kind:AssetKind}){
   return <section>{error?<p>{asset.label} 모형을 열지 못했습니다.</p>:!scene?<p role="status">{asset.label} 모형 준비 중…</p>:<>
     <div className="equipment-viewport"><Canvas frameloop="never" dpr={[1,1.4]} camera={{position:[2.8,2,3.5],fov:42}}>
       <ambientLight intensity={1.6}/><directionalLight position={[3,6,3]} intensity={2.4}/>
-      <Equipment scene={scene} highlight={highlight} part={asset.part}/><EquipmentCamera scene={scene} turn={turn} highlight={highlight}/>
+      <Equipment scene={scene} highlight={highlight} part={asset.part}/><EquipmentCamera scene={scene} turn={turn} highlight={highlight} part={asset.part}/>
     </Canvas></div><div className="equipment-controls"><button type="button" onClick={()=>setTurn(t=>t-1)}>왼쪽 회전</button><button type="button" onClick={()=>setTurn(t=>t+1)}>오른쪽 회전</button><button type="button" aria-pressed={highlight} onClick={()=>select(!highlight)}>{asset.action}</button></div>
     <p>{highlight?asset.detail:asset.intro}</p></>}
     <details><summary>모형 출처·라이선스</summary>

@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 
 test('학교 시험의 직접 입력, 암기 복습, 백업 병합과 복원이 같은 문제를 유지한다', async ({page}) => {
   await page.goto('./?safe=1#/study/school');
+  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
   await page.getByPlaceholder('예: 냉동공학').fill('냉동 실습');
   await page.getByRole('button', {name:'시험지 만들기'}).click();
   await page.getByPlaceholder('객관식 문제를 입력하세요').fill('증발기의 역할은?');
@@ -27,6 +28,7 @@ test('학교 시험의 직접 입력, 암기 복습, 백업 병합과 복원이 
   expect(saved.rounds[0].questions[0]).toMatchObject({text:'증발기의 역할은?',answer:2});
   expect(saved.memoryCards[0]).toMatchObject({prompt:'증발 과정',reviewCount:1,knownCount:1});
   await page.reload();
+  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
   await expect(page.getByText(/확인 1회 · 외움 1회/)).toBeVisible();
   expect(await backup()).toEqual(saved);
 

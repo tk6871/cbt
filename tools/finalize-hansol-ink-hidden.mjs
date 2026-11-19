@@ -7,7 +7,7 @@ const work='work/hansol-ink-hidden',read=p=>JSON.parse(fs.readFileSync(p,'utf8')
 const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
 const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const protectedFiles=['data/hansol-book-direct.json','data/textbook-pages.json','data/textbook-corrections.json','data/hansol-book-native-audit.json',...['hvac','hvac-hansol','energy','energy-midterm','energy-restored','energy-textbook','hvac-hansol-book'].map(n=>`data/${n}.js`),...read('data/hansol-book-direct.json').pages.map(p=>p.asset),...Object.values(read('data/hansol-book-native-audit.json').images).map(im=>im.asset)];
-const releaseFiles=['vite.config.ts','index.html','jewelry.html','admin.html','android/app/build.gradle','data/changelog-vue.js','CHANGELOG.md','README.md','src/cbt/App.vue','src/cbt/textbookPages.ts','src/cbt/textbookInkHidden.ts','src/cbt/TextbookDirectQuestion.vue'];
+const releaseFiles=['vite.config.ts','index.html','jewelry.html','admin.html','android/app/build.gradle','data/changelog-vue.js','CHANGELOG.md','README.md','src/react/StudyHome.tsx','src/cbt/textbookPages.ts','src/cbt/textbookInkHidden.ts','src/react/reader/DirectQuestion.tsx'];
 const baselinePath=`${work}/release-baseline.json`,journalPath=`${work}/release-journal.json`;
 if(process.argv.includes('--prepare')){
  const snapshot={date:new Date().toISOString(),protected:Object.fromEntries(protectedFiles.map(p=>[p,sha(p)])),releaseFiles:Object.fromEntries(releaseFiles.map(p=>[p,sha(p)]))};
@@ -39,8 +39,6 @@ else{
  once('data/changelog-vue.js',"changelog.versions.industrial = '5.8';","changelog.versions.industrial = '5.8.1';");once('data/changelog-vue.js',"changelog.currentVersion = '5.8';","changelog.currentVersion = '5.8.1';");
  once('CHANGELOG.md','# 변경 기록\n\n',`# 변경 기록\n\n## v5.8.1 - 2026-11-04\n\n- 필기 영향이 있는 원문14쪽과 문제·풀이${count}장만 교보 필기 숨김 원문으로 교체·개선했습니다. 영향 없는383쪽·기존 개선474장과 이전 원본은 유지합니다. 인쇄 글자·도면의 색을 삭제하지 않고 문제/정답/선택 좌표는 보존합니다.\n- 다크/라이트·원본 색상 표시를 유지하고 교체한 확대 쪽 연결 실패 시 필기 없는 원해상도 쪽으로 대체합니다. 정답 검증·풀이 경계127곳의 보완 완료를 뜻하지 않습니다.\n\n`);
  once('README.md','- 이미 완료된 화질 개선 결과는 유지합니다. 새 업스케일링은 보류하고, 필요한 새 교재 이미지는 원래 해상도로도 연결할 수 있습니다. 이미지 선택·다크/라이트는 동일하게 지원합니다.','- 교재 필기를 숨긴 원문과 화질 개선본을 표시합니다. 이전 원본·개선본과 선택 좌표는 보존하며 이미지 선택·다크/라이트를 지원합니다.');
- once('src/cbt/App.vue','NEW · v5.8</span>','NEW · v5.8.1</span>');once('src/cbt/App.vue','<h2>교재 원문으로 먼저 풀기</h2>','<h2>필기 없는 교재 원문, 더 선명하게</h2>');
- once('src/cbt/App.vue','기존 CBT·해설·기록과 완료된 화질 개선은 유지하고 새 업스케일링은 하지 않았습니다.','교보에서 필기를 숨긴 원문을 다시 가져와 화질을 개선했습니다. 기존 CBT·해설·기록·선택 좌표와 이전 자산은 보존합니다.');
  edits=[...next].map(([file,after])=>({file,beforeHash:baseline.releaseFiles[file],afterHash:hash(after),after}));
  fs.writeFileSync(journalPath,JSON.stringify({date:new Date().toISOString(),edits},null,2)+'\n');
 }

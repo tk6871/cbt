@@ -166,7 +166,7 @@ const reactHome = computed<StudyHomeProps>(() => ({
   })),
   loadingStats: appHydrating.value, answered: stats.value.answered, accuracy: stats.value.accuracy, wrong: stats.value.wrong,
   resume: Boolean(savedLearningSession.value),
-  onRounds: () => selectQualification(selectedKey.value),
+  onRounds: openRegularRounds,
   onSelect: selectQualification, onBook: isJewelry ? undefined : openTextbookPages, onResume: resumeSavedLearning,
 }));
 const { practicalPrompts, practicalSources, studyGuidePages, guideLoaded, guideLoading, guideError, loadStudyGuide } = useStudyGuideData();
@@ -337,7 +337,7 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
 const studyResourceKeys = new Set(['hvac-hansol', 'energy-midterm', SCHOOL_EXAM_CATALOG_KEY]);
 const qualificationGroups = [
   { label: '자격증 기출', items: catalogs.filter(catalog => !studyResourceKeys.has(catalog.key)) },
-  { label: '교재 · 학교시험', items: catalogs.filter(catalog => studyResourceKeys.has(catalog.key)) },
+  { label: '교재 기출', items: catalogs.filter(catalog => catalog.key === 'hvac-hansol') },
 ].filter(group => group.items.length);
 
 const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
@@ -351,6 +351,8 @@ const savedRegularQualification = localStorage.getItem(regularQualificationStora
 let lastRegularQualification = isRegularQualification(selectedKey.value) ? selectedKey.value
   : catalogs.find(item => item.key === savedRegularQualification && isRegularQualification(item.key))?.key
     || catalogs.find(item => isRegularQualification(item.key))?.key || '';
+// Old releases persisted school subjects as the home qualification.
+if (!isRegularQualification(selectedKey.value)) selectedKey.value = lastRegularQualification;
 const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE === 'mobile' || window.CBT_DISPLAY_PREFERENCE === 'desktop'
   ? window.CBT_DISPLAY_PREFERENCE : 'auto');
 const resolvedDisplayMode = window.CBT_DISPLAY_MODE || 'desktop';
@@ -435,7 +437,7 @@ const fontScale = ref(Math.min(1.6, Math.max(.8, Number(studyStore.fontScale) ||
 const recentExamRecords = ref<ExamRecord[]>([]);
 const coolingExamRecords = ref<ExamRecord[]>([]);
 const coolingSessionActive = computed(() => Boolean(session.value?.items.length && session.value.items.every(item => isCoolingRecord(item.id))));
-const sessionQualificationKey = computed(() => coolingSessionActive.value ? SCHOOL_EXAM_CATALOG_KEY : selectedKey.value);
+const sessionQualificationKey = computed(() => session.value?.qualificationKey || (coolingSessionActive.value ? SCHOOL_EXAM_CATALOG_KEY : selectedKey.value));
 const officialRule = computed(() => coolingSessionActive.value ? undefined : qualificationRuleFor(selectedKey.value));
 const officialExamQuestionCount = computed(() => officialRule.value?.totalQuestions
   || (selectedSubjects.value.length * (officialRule.value?.questionsPerSubject || 20)));
@@ -915,7 +917,7 @@ const questionTransitionName = computed(() => motionAllowed.value
 const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
-  school: '학교 시험 준비',
+  school: '기말고사',
   history: '학습 내역',
   wrong: '오답노트',
   search: '문제 검색',
@@ -2277,7 +2279,7 @@ function configureQualification(key: string): void {
     localStorage.setItem(regularQualificationStorageKey, lastRegularQualification);
   }
   selectedKey.value = key;
-  localStorage.setItem(qualificationStorageKey, key);
+  localStorage.setItem(qualificationStorageKey, isRegularQualification(key) ? key : lastRegularQualification);
   curriculum.value = 'all-mapped';
   calculationSubjectFilter.value = 'all';
   calculationRoundFilter.value = 'all';
@@ -2381,6 +2383,37 @@ watch(homeScopeTrigger, (button, _, onCleanup) => {
 watch([view, textbookPagesOpen, visualStyle], ([page, books, style]) => {
   if (page === 'home' ? style !== 'default' : !(page === 'rounds' && books)) void loadCurrentScope();
 });
+
+async function startFinalExam(subject: 'cooling' | 'energy', mode: StudyMode): Promise<void> {
+  const origin = view.value;
+  let items: QuestionItem[];
+  try {
+    if (subject === 'energy') {
+      await Promise.all([loadTextbookModule(), ensureBookSources('energy')]);
+      items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy');
+    } else {
+      await loadQuestionSources(['hvac-hansol']);
+      items = coolingRecordSourceItems(allItems.value).filter(({round}) =>
+        round.qualificationKey === 'hvac-hansol' && (round.year < 2024 || round.id === 'hvac-hansol-2024-1')
+      ).map(coolingRecordItem);
+    }
+  } catch {
+    showToast('기말고사 자료를 불러오지 못했습니다. 다시 시도해 주세요.');
+    return;
+  }
+  if (view.value !== origin || !items.length) {
+    if (view.value === origin) showToast('연결된 기말고사 문제가 없습니다.');
+    return;
+  }
+  const title = '기말고사 · ' + (subject === 'energy' ? '에너지설비' : '냉동공학');
+  if (savedLearningSession.value?.title === title && savedLearningSession.value.mode === mode) {
+    await resumeSavedLearning();
+    return;
+  }
+  const savedChoices = mode === 'learn' && subject === 'energy' ? textbookAnswers.value : {};
+  const answers = Object.fromEntries(items.filter(item => savedChoices[item.id]).map(item => [item.id,savedChoices[item.id]]));
+  await beginSession(mode, title, items, answers, {qualificationKey: SCHOOL_EXAM_CATALOG_KEY});
+}
 
 async function loadCoolingMidterm(): Promise<void> {
   coolingLoading.value = true;
@@ -3084,7 +3117,7 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { sessionId?: string; calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
+  options: { qualificationKey?: string; sessionId?: string; calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -3108,6 +3141,7 @@ async function beginSession(
   learningJumpNumber.value = '';
   shallow(items);
   session.value = {
+    qualificationKey: options.qualificationKey,
     id: options.sessionId || `${mode}-${Date.now()}`,
     mode,
     title,
@@ -3171,11 +3205,12 @@ async function resumeSavedLearning(): Promise<void> {
     return item ? [item] : [];
   });
   if (!items.length || items.length !== saved.itemIds.length) {
-    clearSavedLearningSession();
-    showToast('저장된 문제 구성이 바뀌어 이어하기 기록을 정리했습니다.');
+    showToast('일부 문제를 불러오지 못했습니다. 이어하기 기록은 보존했습니다.');
     return;
   }
-  if (saved.itemIds.every(isCoolingRecord)) {
+  if (saved.title.startsWith('기말고사 · ')) {
+    openView('school');
+  } else if (saved.itemIds.every(isCoolingRecord)) {
     selectedKey.value = SCHOOL_EXAM_CATALOG_KEY;
     localStorage.setItem(qualificationStorageKey, SCHOOL_EXAM_CATALOG_KEY);
     if (view.value !== 'rounds') openView('rounds');
@@ -3191,6 +3226,7 @@ async function resumeSavedLearning(): Promise<void> {
     remainingSeconds: saved.remainingSeconds,
     kept: saved.kept,
     resume: true,
+    qualificationKey: saved.qualificationKey,
     sessionId: saved.id,
   });
 }
@@ -3206,7 +3242,9 @@ async function startRound(round: Round, mode: StudyMode): Promise<void> {
   }
   if (mode === 'learn') {
     const previousAnswers = Object.fromEntries(items.flatMap((item) => {
-      const choice = studyStore.attempts[item.id]?.lastChoice;
+      const attempt = studyStore.attempts[item.id];
+      const resetAt = (studyStore.progress?.learningAnswerResetAtV1 as Record<string, number> | undefined)?.[item.id] || 0;
+      const choice = attempt && resetAt < attempt.at ? attempt.lastChoice : 0;
       return choice ? [[item.id, choice]] : [];
     }));
     return beginSession(
@@ -3686,11 +3724,32 @@ function jumpToLearningQuestion(): void {
   goToQuestion(index);
 }
 
+function setLearningChoice(item: QuestionItem, choice: number): void {
+  const active = session.value;
+  if (!active || active.finished || active.mode !== 'learn') return;
+  if (choice) active.answers[item.id] = choice;
+  else delete active.answers[item.id];
+  const progress = studyStore.progress ||= {};
+  if (bookForStudyId(item.id)) saveTextbookAnswer(progress, item.id, choice);
+  const resets = (progress.learningAnswerResetAtV1 ||= {}) as Record<string, number>;
+  // A positive timestamp suppresses the old attempt on re-entry. A negative one undoes a reset.
+  const at = Math.max(Date.now(), Math.abs(resets[item.id] || 0) + 1);
+  resets[item.id] = choice ? -at : at;
+}
+
+function resetOneLearningChoice(item: QuestionItem, choice: number): void {
+  setLearningChoice(item, choice);
+  saveActiveLearningSession();
+  void persistStudyStoreNow();
+}
+
 function resetLearning(): void {
   if (!session.value || session.value.mode !== 'learn') return;
-  if (!confirm('현재 화면에서 선택한 답을 모두 초기화할까요? 저장된 누적 학습 통계는 유지됩니다.')) return;
-  session.value.answers = {};
-  session.value.page = 0;
+  const answered = currentItems.value.filter(item => session.value!.answers[item.id]);
+  if (!answered.length || !confirm('이 페이지에서 선택한 답만 초기화할까요? 다른 페이지의 답과 누적 기록은 유지됩니다.')) return;
+  for (const item of answered) setLearningChoice(item, 0);
+  saveActiveLearningSession();
+  void persistStudyStoreNow();
   showToast('현재 학습 선택을 초기화했습니다.');
 }
 
@@ -4985,7 +5044,7 @@ beginSession, displayedWrongItems, isCalculationItem, openView, restoredImageThe
 });
 
 const examSessionViewModel=proxyRefs({
-activateSessionItem, activeSessionItem, adjustFontScale, answerLayout, answeredCount, betaModeMeta, betaQuestionMeta, chooseAnswer, coolingSessionActive, currentItemColumns, darkActive, examPace, examSheetOpen, experimentalFeaturesEnabled, fontScale, formattedTime, goToNextKept, goToNextUnanswered, goToPage, goToQuestion, hotspotIndicator, isMidtermCalculation, isSubjectStart, jumpToLearningQuestion, keptCount, learningJumpNumber, leaveSession, markOmrManualScroll, omrFilter, omrRows, openCalculator, pageCount, panelCalculator, panelNotes, prepareAiQuestion, questionJudgmentEnabled, questionTransitionName, resetLearning, restoredImageTheme, selectedKey, session, sessionMenuOpen, sessionProgress, sessionQuestionMax, sessionSubjectNumber, sessionTitle, setFontScale, setQuestionConfidence, setQuestionMistakeReason, setQuestionStudyNote, setSessionPageSize, settingsOpen, solveLayoutMode, studyStore, submitExam, submitLearning, toggleBookmark, toggleKeep, toggleLightDark, unansweredCount,
+activateSessionItem, activeSessionItem, adjustFontScale, answerLayout, answeredCount, betaModeMeta, betaQuestionMeta, chooseAnswer, coolingSessionActive, currentItemColumns, darkActive, examPace, examSheetOpen, experimentalFeaturesEnabled, fontScale, formattedTime, goToNextKept, goToNextUnanswered, goToPage, goToQuestion, hotspotIndicator, isMidtermCalculation, isSubjectStart, jumpToLearningQuestion, keptCount, learningJumpNumber, leaveSession, markOmrManualScroll, omrFilter, omrRows, openCalculator, pageCount, panelCalculator, panelNotes, prepareAiQuestion, questionJudgmentEnabled, questionTransitionName, resetLearning, resetOneLearningChoice, restoredImageTheme, selectedKey, session, sessionMenuOpen, sessionProgress, sessionQuestionMax, sessionSubjectNumber, sessionTitle, setFontScale, setQuestionConfidence, setQuestionMistakeReason, setQuestionStudyNote, setSessionPageSize, settingsOpen, solveLayoutMode, studyStore, submitExam, submitLearning, toggleBookmark, toggleKeep, toggleLightDark, unansweredCount,
 setOmrListRef:(node:HTMLDivElement|null)=>{omrListRef.value=node;},
 });
 
@@ -5329,6 +5388,7 @@ openCalculator,
 openCoolingSearch,
 openPwaRecoveryFromError,
 openQualificationRounds,
+startFinalExam,
 openRegularRounds,
 openSchoolSetSearch,
 openTextbookPages,

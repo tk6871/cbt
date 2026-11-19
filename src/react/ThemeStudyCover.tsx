@@ -13,6 +13,7 @@ interface Props {
   jewelry: boolean;
   answered: number;
   accuracy: number;
+  onResume?: () => void;
   onRounds: () => void;
   onSecondary: () => void;
   onSettings: () => void;
@@ -25,6 +26,7 @@ export default function ThemeStudyCover({
   jewelry,
   answered,
   accuracy,
+  onResume,
   onRounds,
   onSecondary,
   onSettings,
@@ -44,6 +46,7 @@ export default function ThemeStudyCover({
           <em>{simpsons ? '공부 한 컷' : '같이 달릴래?'}</em>
         </h1>
         <div className="fan-cover-actions">
+          {onResume && <button onClick={onResume}>이어서 풀기</button>}
           <button onClick={onRounds}>
             회차별 기출 고르기 <span aria-hidden="true">→</span>
           </button>
