@@ -967,3 +967,14 @@ test('공조 급탕 순환수두와 밀도 단위', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('0.1125 m');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('산업안전기사 병렬 밸브의 실패확률', async ({page}) => {
+  await prepare(page,'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20200822').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('35');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'병렬밸브계'});
+  await card.locator('.choice-button').nth(1).click();
+  await expect(card.locator('.explanation-box')).toContainText('실패확률이므로 ② 0.0595');
+  await expect(card.locator('img').first()).toBeVisible();
+});

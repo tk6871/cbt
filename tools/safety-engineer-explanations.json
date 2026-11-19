@@ -3614,5 +3614,501 @@
     "explanation": "③이 틀리다. 다짐은 갇힌 공기를 줄일 정도로 해야 하지만, 과도한 진동은 굵은 골재와 모르타르가 분리되게 할 수 있다. 타설 위치·속도에 맞는 적정 다짐이 필요하다.",
     "explanationProvenance": "manual-reviewed",
     "explanationBasis": "지나친 진동에 따른 골재 분리·블리딩 위험. 균일 타설과 적정 다짐 및 양생 구분."
+  },
+  "safety-engineer-20200822:1": {
+    "questionSHA256": "a2616af429e6f49b9d9f11d12ad0f6b93b2a1d5cf76abc93d79ef73fbf6c34de",
+    "explanation": "③ 환경이다. 같은 사람이라도 작업환경, 동료와의 관계, 상황에 따라 행동이 달라질 수 있다는 뜻이다. P는 개인의 특성을 나타낸다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "Lewin 행동함수 P=개인, E=환경."
+  },
+  "safety-engineer-20200822:2": {
+    "questionSHA256": "9509e196a1e18b1ef9c8a1835c10c437c13482199ae51cc1086be79e7f63c99d",
+    "explanation": "①이 가장 멀다. OJT에서는 현장 상사나 숙련자가 실제 작업을 보여주고 작업자의 수행을 지도한다. 많은 사람에게 같은 내용을 한꺼번에 교육하는 데에는 집체교육이 더 어울린다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "OJT는 실제 업무에 밀착한 현장 훈련. 다수 대상 동시 집체 훈련과 구분."
+  },
+  "safety-engineer-20200822:3": {
+    "questionSHA256": "d88aca80ffec7ff01dd5a97aba5432e2b870e78b78b50781d6784885af191feb",
+    "explanation": "①이다. 사고사례로 위험요인을 배우고 안전작업 절차를 익히는 것은 재해 예방을 직접 겨냥한다. 생산성 향상은 가능한 부수 효과다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "안전교육의 직접 목적은 위해 예방·안전작업 수행. 생산성은 간접 효과."
+  },
+  "safety-engineer-20200822:4": {
+    "questionSHA256": "b7d03f65c9d7b6b9f033da3174f5c3b99fdf8a2517b5a32e502e2d5fbbfe664e",
+    "explanation": "② 버즈세션이다. 큰 집단을 소집단으로 나누어 짧은 시간 동안 각자 발언하게 한 뒤 의견을 모은다. 지문의 6인 6분 방식이 그 예다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "본문에 6명·6분 소집단 토의 명시."
+  },
+  "safety-engineer-20200822:5": {
+    "questionSHA256": "3628f95aa200ef738ab5230c05a1efa16472395686de50c88f4690eae936b8ce",
+    "explanation": "③ 특별점검이다. 매일 또는 정해진 주기에 하는 점검과 달리 태풍·침수·지진 등으로 평소와 다른 손상이 생겼을 가능성이 있을 때 실시한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "천재지변 등 특정 비정상 사건을 계기로 한 기능 점검."
+  },
+  "safety-engineer-20200822:6": {
+    "questionSHA256": "9bbf58e039de8f816b8aa66677971c671a004b4498c657ffabf224191054f05f",
+    "explanation": "② 물적 원인이다. 사고를 일으킨 기계·설비의 불안전한 상태는 직접 원인으로, 그러한 상태를 방치한 교육·관리·기술상의 문제는 그 배경 원인으로 분류한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "물적 불안전 상태는 통상 사고의 직접 원인. 관리·교육·기술 배경과 구분."
+  },
+  "safety-engineer-20200822:9": {
+    "questionSHA256": "af133b8b604fdcd208230049d89ee6927a349bd64cf1a000f1d4d73036c9beeb",
+    "explanation": "①이 가장 멀다. 같은 사고도 사람이 어디에 있었는지에 따라 손실 정도는 우연히 달라질 수 있다. 그것이 사고를 일으킨 원인까지 모두 우연이라는 뜻은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "재해 손실의 우연성과 사고 원인의 존재를 구별."
+  },
+  "safety-engineer-20200822:13": {
+    "questionSHA256": "c4a56ab9814032ab38f21ccf2b4c37615c6306cb60ea580a88973ead1b836d50",
+    "explanation": "④ 급성독성물질 경고다. 해골과 교차한 뼈는 단기간 노출로 생명에 위험하거나 독성이 큰 경우 사용하는 그림이다. 부식이나 산화성을 나타내는 표지와 모양이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "수록 그림은 빨간 마름모 속 해골·교차한 뼈. GHS06 형상 확인."
+  },
+  "safety-engineer-20200822:15": {
+    "questionSHA256": "d0a6546fea629b8ad6a14832b697092ab596c2fb8b271704f3e3e639db0ff540",
+    "explanation": "③ 책임감이다. 허즈버그의 구분에서 맡은 일 자체의 책임과 성취는 동기를 높이는 요인이고, 감독이나 작업조건은 불만과 관련된 환경 요인이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "동기요인에는 직무 내용·책임·성취, 위생요인에는 감독·안전 등 직무환경."
+  },
+  "safety-engineer-20200822:16": {
+    "questionSHA256": "c2a9626e006ae033443563126d325562a855b4a3013ed4a1aab5df15e5d5c867",
+    "explanation": "② 특성요인도다. 분석하려는 재해나 결과를 머리 부분에 쓰고, 관련된 원인을 큰 가지와 작은 가지로 나누어 조사한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "결과를 머리에 두고 가능한 원인을 가지로 전개하는 어골형 도식."
+  },
+  "safety-engineer-20200822:18": {
+    "questionSHA256": "bb6eb691f1cbaaf7970e528ba1cac8fc1521f7a3b576494f98476ec9b015caff",
+    "explanation": "④ 피로의 정도다. 점멸광이 하나의 지속광처럼 보이기 시작하는 경계를 측정해 피로에 따른 기능 변화를 살핀다. 혈중 농도나 작업강도를 직접 재는 검사는 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "점멸광이 연속광처럼 보이는 임계 주파수로 각성·피로 상태 변화 평가."
+  },
+  "safety-engineer-20200822:20": {
+    "questionSHA256": "0881282d275150c123d97193fab92195df1f39a9d7ed015675486d0d9d4c609a",
+    "explanation": "①이 가장 멀다. 아이디어를 내는 동안에는 비평을 미루어 발언을 위축시키지 않는다. 제안 수를 넓히고 다른 사람의 생각을 결합하거나 개선할 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "비판 유예·자유분방·양 우선·결합개선 중 비판은 발상 시 유예."
+  },
+  "safety-engineer-20200822:22": {
+    "questionSHA256": "cb4764a244b761153d804dca6b43d8e99ce3f979c3d042bdf870d36dc1da1e40",
+    "explanation": "②가 틀리다. 해야 할 행동을 빠뜨리는 것은 omission이고, 행동을 했지만 방법이나 대상이 잘못된 것은 commission이다. 적절한 시점을 놓치는 오류는 시간 오류로 따로 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "commission은 잘못 수행, timing error는 지연·시점 착오."
+  },
+  "safety-engineer-20200822:24": {
+    "questionSHA256": "47964bd2d7b27d4b92d503273e9b5a3624a33aad9414497944821767114c2b80",
+    "explanation": "② X3 수리 직후다. X1과 X2를 고쳐도 X3 고장 때문에 양쪽 OR가 모두 참이다. X3까지 고치면 왼쪽 OR가 거짓이 되어 오른쪽에 고장이 남아도 최상위 AND 고장은 해제된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "그림상 (X1 OR X2 OR X3) AND (X3 OR X4 OR X5). 앞 OR가 처음 거짓이 되는 수리 단계 확인."
+  },
+  "safety-engineer-20200822:25": {
+    "questionSHA256": "f58eaa0f05c29faa32af86aedd8442cced9ec6c51c79fdef469e3fac0c06b326",
+    "explanation": "물체가 작으므로 시각을 크기/거리(라디안)로 근사한다. 두 길이가 모두 cm라서 바로 나누고, 도와 각분으로 환산하면 ③ 약 4.48분이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "0.03/23 rad에 57.3과 60을 곱해 4.484분.",
+    "explanationFormula": {
+      "tex": "\\theta\\approx\\frac{0.03}{23}\\times57.3\\times60=4.48\\ \\mathrm{arcmin}",
+      "label": "0"
+    }
+  },
+  "safety-engineer-20200822:26": {
+    "questionSHA256": "f0181240d40a438a9e98f7993dfc9a00ecdd5772f5765d92f4b73c287df7cb88",
+    "explanation": "의자는 허리의 자연스러운 전만을 지지해 디스크와 근육의 부담을 줄이는 것이 원칙이다. ①의 ‘요부 후반’은 용어가 불명확하므로 원문에서 후만 등을 뜻했는지 확인할 필요가 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "요추의 자연스러운 전만 지지와 후만 유지의 용어를 대조. 보기 원문 후반 표기 확인 필요."
+  },
+  "safety-engineer-20200822:27": {
+    "questionSHA256": "f885f9955b97fb659b94d38bfb972025bdd7d59ccdbf3b7952f10c1306f21aa3",
+    "explanation": "④가 옳지 않다. 가스에 냄새를 더해 누출을 알아차리도록 하는 것이 후각 경보의 예다. 사람마다 민감도가 다르고 냄새에 적응할 수 있어 다른 경보 수단도 함께 고려한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "가스 누출을 알리는 부취제는 후각 경보의 실례. 개인차·후각피로로 단독 의존은 한계."
+  },
+  "safety-engineer-20200822:28": {
+    "questionSHA256": "77cfc789e5b1636ba8fe4de2d5e4297d16cb3e838e199e6c0e1f2a20d2393fa4",
+    "explanation": "독립 고장으로 보면 F1과 F2가 동시에 발생할 확률은 0.015×0.02=0.0003이다. 이 사건 또는 F3가 발생하면 T가 되므로 0.0003+0.05−0.0003×0.05=0.050285, 즉 ③이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "원도 F1·F2는 AND, F3와 OR. 독립일 때 교집합 차감. 0.050285."
+  },
+  "safety-engineer-20200822:29": {
+    "questionSHA256": "3dc3592d6ff802896d8dba6c4245d12efe21953b3e5b8972b8f11960d9b322ca",
+    "explanation": "①이다. 권장무게한계는 기본 하중에 작업 위치·이동거리·몸의 비틀림·빈도·손잡이 상태 등에 관련된 계수를 곱해 구한다. 휴식이라는 독립된 곱셈 계수는 없다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "개정 NIOSH식은 수평·수직·이동거리·비대칭·빈도·손잡이 계수. 독립적인 휴식 계수는 없음."
+  },
+  "safety-engineer-20200822:30": {
+    "questionSHA256": "431675dfe1190689dab99d9b0e0117a93cf09e0b14e31a2bdbe93e28e6458efa",
+    "explanation": "①이 기대효과에서 벗어난다. 사람의 특성에 맞게 도구와 작업을 설계하면 부담과 실수가 줄고 안전·품질이 개선될 수 있다. 노사 신뢰 저하는 그 목적에 해당하지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "작업을 사람 능력에 맞춰 위험과 불필요한 부담을 낮추는 목적."
+  },
+  "safety-engineer-20200822:31": {
+    "questionSHA256": "e696f22072b75528b28d034a5b7f966b06d74be6312b81310438f4bd02d908dd",
+    "explanation": "THERP는 작업을 나누고 각 단계의 오류 가능성과 후속 영향을 분석하므로 ㉠은 맞고 ‘정성적으로만’이라는 ㉡은 틀리다. 다만 ㉢의 100만 시간당 도수를 THERP 고유 기본값으로 보는 근거가 없어 저장 ②를 재확인한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "THERP는 작업 단계별 인간오류 확률을 다루는 정량 분석. ㉢의 시간당 도수 기준이 원래 THERP와 일치하는지 근거 부족."
+  },
+  "safety-engineer-20200822:32": {
+    "questionSHA256": "72fa031989957c507c258ac928d784a49bc69747092a31bfee9c760335db60bf",
+    "explanation": "④가 틀리다. 차폐음 때문에 들으려는 신호의 검출이 어려워지는 현상이다. 같은 크기의 전화음도 드라이어 소리가 함께 나면 알아차리기 어려워지는 것이 예다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "마스킹은 다른 소리의 검출 역치를 올려 감도를 낮춤."
+  },
+  "safety-engineer-20200822:34": {
+    "questionSHA256": "ee653289bbbb5e0c5925609ef573a54191245ee60c7a4d7591b564c278d9eec0",
+    "explanation": "④가 잘못 연결됐다. HAZOP의 Other than은 설계와 다른 물질·공정·상태가 대신 나타나는 경우를 묻는다. 주변 환경요인 전반을 가리키는 말이 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "Other than은 의도한 기능이나 물질이 다른 것으로 대체되는 일탈."
+  },
+  "safety-engineer-20200822:35": {
+    "questionSHA256": "dfb2c5185be6fa92d5399559fffe31a2b9f3ff61650ab8113dd4a904a7bdfacf",
+    "explanation": "두 밸브가 독립이면 병렬부는 둘 다 고장나야 기능을 잃는다. 병렬부 성공확률은 1−0.1²=0.99이고 직렬 펌프까지 정상일 확률은 0.95×0.99=0.9405다. 묻는 것은 실패확률이므로 ② 0.0595다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "원도 A 직렬 (B∥C). 밸브 2개 동시 고장 확률 .01, 전체 성공 .9405."
+  },
+  "safety-engineer-20200822:36": {
+    "questionSHA256": "ac3f8b87b653b24dca9917bf545e925a5665d5bdae622a160cf7b4b0d2bccf5c",
+    "explanation": "①이 틀리다. 대량의 부호화 정보를 빠르고 정확하게 저장하는 데에는 기계가 유리하다. 보기의 귀납적 추론과 맥락을 고려한 형태 인식은 비교에서 인간의 강점으로 든 기능이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "통상 인간·기계 기능 배분에서 대량 정보의 정확한 신속 저장은 기계 강점."
+  },
+  "safety-engineer-20200822:37": {
+    "questionSHA256": "dba1efb6c0c9a9640ada03bf137abd2646c80b840a76de1d92801e5a12b5319d",
+    "explanation": "④가 틀리다. 최소 컷셋은 그 안의 고장이 함께 발생하면 최상위 고장사상이 일어나고, 어느 하나라도 빼면 그 조합만으로는 충분하지 않은 집합이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "최소 컷셋은 함께 발생하면 정상사상을 일으키는 최소 기본사상 집합."
+  },
+  "safety-engineer-20200822:38": {
+    "questionSHA256": "8698fb121f6185ad871243062b3639ca6f57dd580909eb585d2f913a0e09ad20",
+    "explanation": "② 양식 양립성이다. 신호를 어떤 감각으로 받으며 어떤 종류의 반응으로 답하는지가 자연스럽게 대응하는지를 뜻한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "소리 자극·음성 응답은 정보 전달 감각과 반응 유형의 대응."
+  },
+  "safety-engineer-20200822:39": {
+    "questionSHA256": "b8b5a5503cb33274ad04b2d07f9ad5aa627314a8d9059210b684bc6d8d477971",
+    "explanation": "① Fitts의 법칙이다. 커서가 지나야 하는 거리가 길수록, 버튼에서 클릭 가능한 폭이 좁을수록 목표를 가리키는 데 걸리는 시간이 길어진다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "목표까지 거리와 목표 폭이 가리키기 동작시간에 영향."
+  },
+  "safety-engineer-20200822:40": {
+    "questionSHA256": "3041f415229ba5172fa77ae0525b9435002984d21d9bc3131b5931548cb2bfec",
+    "explanation": "② 푸아송분포다. 일정 시간 동안의 고장 횟수처럼 평균 발생률이 일정하고 사건이 독립적으로 일어난다고 가정할 때 쓴다. 고장까지의 대기시간과는 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "정해진 구간에서 일정 평균률을 가진 독립적 희소 사건의 횟수 모델."
+  },
+  "safety-engineer-20200822:41": {
+    "questionSHA256": "839aefaed870c2b0afabb6137b3fb8df7f03ec10beeb9d1a9442b1e1dceb6e7f",
+    "explanation": "④ 최대 인양 높이가 가장 멀다. 규칙 제133조가 열거하는 항목은 정격하중, 운전속도, 경고표시 등이다. 정격하중은 들어 올릴 수 있는 하중이므로 인양 높이와 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "2025.12.01 시행본 규칙 제133조 표시목록과 수록 지문 대조. 원래 시험일 2020.08.22."
+  },
+  "safety-engineer-20200822:42": {
+    "questionSHA256": "7f85e505980072e5055a0fbe8fd8d7a8d3d1b6ea6be93fdd2786174bef4563ae",
+    "explanation": "①이 지문의 표와 다르다. 표에서 복부 조작식은 밑면에서 조작부 중심까지 0.8~1.1 m인데 ①은 1.2~1.4 m로 적었다. 이 비교는 문제에 주어진 표 기준이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "원문 HTML 표에서 복부 0.8~1.1 m, 손 1.8 m 이내, 무릎 0.6 m 이내. 설비 적용 수치는 당시 원고시 별도 확인."
+  },
+  "safety-engineer-20200822:43": {
+    "questionSHA256": "7c7788efeaf09dfd359db0040fe663eccb4db3291f8bcd837aedc3b1892b7d84",
+    "explanation": "①이 부적절하다. 숫돌 파손 시 파편이 날아올 수 있어 특히 교체 후 시운전할 때에는 회전면 정면을 피한다. 사용 전 손상과 허용 회전속도도 확인한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "회전 숫돌 파손 시 비래할 수 있는 회전면 정면에서 시운전하지 않는 안전 원리."
+  },
+  "safety-engineer-20200822:44": {
+    "questionSHA256": "fadabcd4ff4cbbdca4c85a00d583f18d8c2458750f878ff22c80a9e3e66f80d5",
+    "explanation": "지문에 제시된 식에서 X는 위험점까지 거리이고 Y는 개구부 간격이다. X=100 mm를 넣으면 6+0.15×100=21 mm이므로 ②다. 이 값은 문제 속 식으로 계산한 값이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "문제 HTML에 Y=6+0.15X가 제시됨. X=100 mm 대입=21 mm. ILO 원규격 적용범위는 별도."
+  },
+  "safety-engineer-20200822:45": {
+    "questionSHA256": "1c3bec0f1623aa1cafb2722f0b9f1914a946a4b2a3733548049aa275e2077e3d",
+    "explanation": "② 백레스트다. 포크 뒤쪽의 받침이 마스트 방향으로 적재물이 넘어오는 것을 막는다. 운전석 상부를 덮는 헤드가드와 보호 위치가 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "마스트 쪽으로 적재물이 뒤로 떨어지는 것을 받침. 헤드가드는 상부 낙하물 보호."
+  },
+  "safety-engineer-20200822:46": {
+    "questionSHA256": "22d27f316c03808dd4fb9829a26510ffe276175585e4f68278c26f0b70f2e7e3",
+    "explanation": "① 금형 가공작업이 제일 멀다. 규칙 제104조는 프레스에서 금형을 부착·해체·조정하면서 신체가 위험한계 안에 있는 경우 슬라이드의 불시 작동을 막도록 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제104조 열거한 금형 부착·해체·조정, 위험한계 내 신체 진입 조건."
+  },
+  "safety-engineer-20200822:48": {
+    "questionSHA256": "06ce9fd693006fce2c3e6078b533ba4e81d35c72a3bb6b2dec30bf25910ece75",
+    "explanation": "① 인장검사다. 인장강도를 구하는 시험은 시험편에 하중을 가해 영구변형이나 파단을 일으킨다. 자분·초음파·침투 탐상은 검사 대상을 파괴하지 않고 결함을 찾는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "표준 인장강도 시험은 시험편을 늘려 변형·파단시킴."
+  },
+  "safety-engineer-20200822:51": {
+    "questionSHA256": "cb67997549e699804b8a824ab203541881b36fc09556f8b7e0342bdea164046e",
+    "explanation": "④ 과부하방지장치다. 하중이 허용치를 넘었을 때 더 들어 올리는 동작을 제한한다. 아우트리거는 크레인의 지지폭을 넓혀 안정성을 확보한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "하중 초과 시 상승동작 차단. 아우트리거·후크 해지장치와 목적 구분."
+  },
+  "safety-engineer-20200822:52": {
+    "questionSHA256": "d7ede65901e66aa8da6ca2c15440d0044f8eaf4c3cbba8d7c7d16444695602d1",
+    "explanation": "④ fool proof다. 잘못된 방향으로 끼우지 못하게 하거나 잘못된 조작 순서를 차단하는 설계가 예다. fail safe는 기기 고장에 대해 안전한 상태로 이행하는 설계를 뜻한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "인간 오조작을 예상해 위험동작을 막는 설계와 기기 고장 시 안전상태로 가는 설계를 구분."
+  },
+  "safety-engineer-20200822:54": {
+    "questionSHA256": "88af90b7a151350a79a8deab2516da5aac05a5e333d72e45fa0d1124372b0a46",
+    "explanation": "① 물림점이다. 서로 맞물려 돌아가는 두 회전체 사이로 손이나 옷이 유입되면 회전력이 안쪽으로 끌어당긴다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "반대방향으로 돌아가는 두 롤러의 접선에서 내부로 끌려가는 위험."
+  },
+  "safety-engineer-20200822:58": {
+    "questionSHA256": "0e445fd96b2d7ac9791ee9cad4e8e9944001d5f19b7ad8810c25296552c4e3fd",
+    "explanation": "지문에 제시된 접근속도 1.6 m/s에 소요시간 0.5 s를 곱하면 0.8 m다. 보기 단위로 바꾸면 ④ 800 mm다. 이 계산은 주어진 양수기동식의 조건을 사용한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "문제에 제공된 식 Dm=1.6Tm, 0.5초에서 0.8 m, 800 mm."
+  },
+  "safety-engineer-20200822:59": {
+    "questionSHA256": "78ca8274e830f1ddcf9a5d0694156781795862ca03d49b795b65f05d2641b6a0",
+    "explanation": "④ 안전덮개는 회전하는 톱날에 직접 닿지 않도록 가리는 장치다. 재료가 끼어 뒤로 튀는 것을 줄이는 분할날·반발방지 기구와 주된 보호 기능이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "덮개는 톱날과의 접촉 방지. 분할날·역류방지 핑거는 반발 억제."
+  },
+  "safety-engineer-20200822:60": {
+    "questionSHA256": "bc77ec4bfa5f755e038f1f4ec4ddebb7ce8551fc8abb94c19b383c0deb5c6f39",
+    "explanation": "④ 아버다. 형삭기는 램에 설치한 공구가 왕복하여 테이블 위 공작물을 깎는다. 아버는 밀링커터 등 회전 공구를 지지하는 축이라 제시된 형식의 주 구조와 거리가 멀다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "형삭기는 램의 왕복운동과 공구대·테이블을 사용. 아버는 회전 공구 장착축. 법령 판본과 별개로 형식 판별."
+  },
+  "safety-engineer-20200822:61": {
+    "questionSHA256": "cf50fb9fcb50789101373f93fd54ebeca2ce3c821c130db719e0e652cd7a84bb",
+    "explanation": "③이 틀리다. 피뢰기는 정상 전압에서는 동작하지 않고 이상 충격전압이 들어오면 보호 대상의 절연을 손상시키기 전에 처리가 시작돼야 한다. 충격 방전 개시전압이 무조건 높아야 한다는 설명은 목적에 맞지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "서지 때 절연 파괴에 앞서 동작하여 제한전압을 낮추는 피뢰기."
+  },
+  "safety-engineer-20200822:62": {
+    "questionSHA256": "d2dc1f41db85524f9dae1b99724f3a0b9f15da168adbca5ba1e1221f9a1ef997",
+    "explanation": "③이다. 전도 대전은 이미 대전된 물체와 접촉해 전하를 전달받는 과정이다. 문제에서 말하는 발생과 전하의 전달을 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "전도로 이미 존재하는 순전하 이동. 분출·유동 등 접촉과 분리로 생기는 대전과 구분."
+  },
+  "safety-engineer-20200822:64": {
+    "questionSHA256": "67e9a1267dfdb7597ef3818d5ce249230dbe78f71b8260887b4bc801c4de4a12",
+    "explanation": "④가 가장 멀다. 제전설비는 위험기구에 쌓이는 정전기를 제거하기 위해 쓰는 방지 설비다. 건조·세정 등에서 전하가 생기는 공정설비와 역할이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제전설비는 전하 축적을 제거하는 장치 자체. 위험공정 예방 목적 구별."
+  },
+  "safety-engineer-20200822:65": {
+    "questionSHA256": "4c602a7b7492ec44e78dafb1d9d2d2a74bd655becabec0ec895e02cab6b46ea5",
+    "explanation": "지문의 기준식을 적용하면 최대 누설전류는 300/2,000=0.15 A다. A를 mA로 바꾸면 1,000배이므로 ④ 150 mA다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "제시식 허용치 300/2000 A=0.15 A=150 mA. 출제식과 단위 변환에 한정.",
+    "explanationFormula": {
+      "tex": "I_g\\le\\frac{300}{2000}\\ \\mathrm A=150\\ \\mathrm{mA}",
+      "label": "제시식 허용치 300/2000 A=0"
+    }
+  },
+  "safety-engineer-20200822:66": {
+    "questionSHA256": "2bc0d2c982a1341b5b9e22468d23a29712bec506e258a2699eaa3c73317aee2c",
+    "explanation": "②에서 단로기 개방과 전원 차단의 순서가 뒤바뀌었다. 관련 도면으로 공급원을 확인하고 전원을 차단한 뒤 단로기를 개방한다. 잠금·표시와 무전압 확인은 별도로 필요한 단계다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제319조제2항 공급원 확인·전원 차단·단로기 개방 순서. 2025.12.01 시행본 대조."
+  },
+  "safety-engineer-20200822:68": {
+    "questionSHA256": "32926443d4d3f7817cea5100454727a1a83957b53c068eafc33d3c49b87d3cea",
+    "explanation": "③이 틀리다. 매우 건조한 환경은 전하 축적을 줄이는 일반 대책이 아니다. 공정에 맞는 접지·제전과 적정 습도 관리를 사용한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "습도가 낮으면 표면에서 전하가 잘 빠져나가지 못함. 규칙 제325조 가습 대책과 대조."
+  },
+  "safety-engineer-20200822:69": {
+    "questionSHA256": "da28f54484b054b1587d95d6b4f108cecdb46d94099f52089377a6353f1b11d6",
+    "explanation": "보기 중 ④ T5의 최고표면온도 100 ℃만 지문이 제시한 120 ℃보다 낮다. 이는 온도등급에 관한 판단이며 실제 기기 선정에는 해당 장소와 가스에 대한 다른 인증 조건도 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "본문 표의 최고표면온도 T4 135 ℃와 T5 100 ℃를 120 ℃에 직접 대조."
+  },
+  "safety-engineer-20200822:70": {
+    "questionSHA256": "ec7c196b42be53f93aefb62d36d17175a87f133f2c9f21fb32cfd7ca1000dedd",
+    "explanation": "문제의 과거 접지 구분과 제시식에 따르면 제2종 접지저항은 150/10=15 Ω이다. 인체저항 10 kΩ이 30 Ω보다 커 그 영향을 무시한 근사에서 220×30/(15+30)≈146.7 V로 ③이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "지문 제공 구식 접지계산 R₂=15 Ω, R₃=30 Ω. 인체 병렬 무시 근사 146.67 V, 병렬 반영 약 146.52 V.",
+    "explanationFormula": {
+      "tex": "E\\approx220\\frac{30}{15+30}=146.7\\ \\mathrm V",
+      "label": "지문 제공 구식 접지계산 R₂=15 Ω, R₃=30 Ω"
+    }
+  },
+  "safety-engineer-20200822:72": {
+    "questionSHA256": "4ed9d2d43a2acd14bc4c0db851f021ddf87e112ff27e8fceda5ef97a8ed6a353",
+    "explanation": "④ 스팀방전이 해당하지 않는다. 연면방전은 절연물 표면을 따라, 코로나 방전은 전계가 집중된 기체에서 생긴다. 낙뢰는 대기 중의 대규모 방전이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "연면·코로나·낙뢰는 전기적 절연 파괴나 기체 이온화에 따른 방전 유형."
+  },
+  "safety-engineer-20200822:74": {
+    "questionSHA256": "b49aaf1d5f1858ea5b773a2d5872faf67a6401a748ba0e20929bd321b35b9643",
+    "explanation": "축전기에 저장된 에너지는 ½CV²다. 20 μF=20×10⁻⁶ F, 2 kV=2,000 V를 넣으면 40 J로 ①이다. 전압에는 제곱이 적용된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "μF를 10⁻⁶ F, kV를 1000 V로 환산하고 ½CV² 적용.",
+    "explanationFormula": {
+      "tex": "W=\\frac12(20\\times10^{-6})(2000)^2=40\\ \\mathrm J",
+      "label": "μF를 10⁻⁶ F, kV를 1000 V로 환산하고 ½CV² 적용"
+    }
+  },
+  "safety-engineer-20200822:77": {
+    "questionSHA256": "6d969d63f9a5b89e889fc21bfbe99a5b9446b85dc316893876911e27a17c4e7c",
+    "explanation": "① 근본 방폭구조가 해당하지 않는다. 본질안전은 고장 등을 고려해 회로 에너지를 제한하는 특정 보호방식의 이름이므로 ‘근본’과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "압력·안전증·본질안전은 보호구조 명칭, 근본은 이 목록의 이름이 아님."
+  },
+  "safety-engineer-20200822:78": {
+    "questionSHA256": "ea9586987daddd62b6d9e1b3d1e232bf938fe50c5544cd437313dd1f14392f17",
+    "explanation": "④는 사람이 착용하는 절연안전모다. 나머지는 전로 등 충전부를 덮거나 가리는 방호구다. 이 구분은 안전모 하나로 해당 전압의 작업 보호가 충족된다는 뜻으로 해석하면 안 된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "절연관·시트·커버는 전로 쪽 방호구, 보기 중 착용하는 보호구는 절연안전모."
+  },
+  "safety-engineer-20200822:79": {
+    "questionSHA256": "dd1d35f005c4eb2534597c72c56dafa08f16c110a65ffd7313d2ecfcb79a3d08",
+    "explanation": "②가 틀리다. T4는 기기 최고표면온도를 135 ℃ 이하로 제한하는 온도등급이다. 150 ℃를 기준으로 삼으면 T4 한계를 초과할 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "69번에 수록된 온도등급 원표 T4=135 ℃와 보기 ② 150 ℃의 불일치."
+  },
+  "safety-engineer-20200822:80": {
+    "questionSHA256": "642aaf7885884d619503f7bb38933531a32d9eb66a1359a6e763516771f11de6",
+    "explanation": "①이다. 차단기(CB)는 정격과 차단능력 범위에서 부하전류를 개폐하고 고장전류도 차단한다. 단로기는 전로를 분리하기 위한 장치로 일반 부하전류 차단용과 구분한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "CB는 차단기. ACB 공기 차단, DS 단로기는 일반 부하 개폐용이 아님."
+  },
+  "safety-engineer-20200822:81": {
+    "questionSHA256": "477220558969b6191b5d24283f4a3b1e5158df3e825738dd270043f5c5bf775a",
+    "explanation": "③이다. 막힘 등으로 토출관 저항이 커지면 같은 유량을 내보낼 때 압축기 출구에 더 높은 압력이 필요하다. 저장조 압력 감소는 반대 방향의 조건이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "토출측 저항 증가하면 필요한 압력차 증가. 피스톤링 누설은 유효토출량 감소."
+  },
+  "safety-engineer-20200822:82": {
+    "questionSHA256": "d6ce5061721dc0bd4fcf04075228c9908da1c879f76c0515aaeee0bb92967dee",
+    "explanation": "② 이산화질소(NO₂)다. 질산이 빛에 의해 분해될 때 보이는 갈색 기체가 이산화질소다. 독성이 있으므로 냄새를 맡아 확인하지 않는다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "갈색 기체 NO₂와 무색 질소·암모니아 구별."
+  },
+  "safety-engineer-20200822:86": {
+    "questionSHA256": "452463d93355f9e898e1c269c7d9fb2a393aa748c0a137be0e4136c1ee8c2c2d",
+    "explanation": "② Steam trap이다. 기기나 증기관에서 생긴 응축수는 배출하고 증기의 직접 유출은 줄인다. Relief valve는 과압 보호 장치로 목적이 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "기수 상태·온도·밀도 등의 차이를 이용하는 증기트랩."
+  },
+  "safety-engineer-20200822:88": {
+    "questionSHA256": "b1af82ba448a60e8b6afd4c9a9c56b7e02df72cc17e4f3ba0c4f101087e36f7d",
+    "explanation": "① 유동형 지붕 탱크, 즉 부상지붕식 탱크다. 지붕이 액면을 따라 움직여 액체 위의 증기 공간을 줄이므로 증발 손실이 적다. 밀봉부 등에는 별도의 관리가 필요하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "부상지붕이 액면을 따라 상하로 이동해 액면 위 증기 공간을 줄임."
+  },
+  "safety-engineer-20200822:89": {
+    "questionSHA256": "d009d730fd02fb9203a11d1983b190cfe2ca744de57918cc7709a6c735e09173",
+    "explanation": "④ 광전식이다. 연기 입자로 인한 빛의 산란 또는 감쇠를 검출한다. 정해진 온도나 온도상승률을 검출하는 열감지기와 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "차동·정온·보상형은 온도나 온도상승 반응, 광전식은 연기의 광학적 검출."
+  },
+  "safety-engineer-20200822:94": {
+    "questionSHA256": "1afc98edee0b524db845524b59ce56a345f0b65296991318ab18fea4f1533eec",
+    "explanation": "①이 부적절하다. 산소결핍이나 유해가스로 질식 위험이 생기면 작업을 중지하고 대피해야 한다. 작업을 계속하면서 환기만 강화하는 것으로 대체할 수 없다. 재진입 전에는 공기 상태와 안전조치를 확인한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "질식 우려가 있는 상태에서 작업 지속 전제가 문제. 환기·측정·인원 확인·감시 절차 구별."
+  },
+  "safety-engineer-20200822:97": {
+    "questionSHA256": "fd14578a5163c2537c0035f569cc76813b7c08bdff185585621905f1c37328a7",
+    "explanation": "② 2 mol이다. 에탄올 1 mol에 탄소 원자 2 mol이 들어 있고 완전연소에서 모두 이산화탄소로 가므로 CO₂도 2 mol 생긴다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "에탄올 한 분자의 탄소 원자 두 개가 완전연소 후 각각 CO₂에 포함."
+  },
+  "safety-engineer-20200822:99": {
+    "questionSHA256": "44df0898d397ca65795c9ed53a6a5a413ed5be2fea7998bde60ed4f160258cf1",
+    "explanation": "③이 틀리다. 이산화탄소 소화약제는 연소 영역의 산소 농도를 낮추는 질식 작용이 주된 효과다. 연소의 화학 연쇄반응을 억제하는 방식과 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "CO₂ 소화의 주효과는 산소 희석. 화학 연쇄반응 억제와 구분."
+  },
+  "safety-engineer-20200822:100": {
+    "questionSHA256": "0ab73ee1eb3be8845fc3a317804b01384adf63a0d98d29bdc48aceee4544e14b",
+    "explanation": "②가 가장 멀다. 다른 조건이 같다면 열전도율이 큰 물체는 내부에서 생긴 열을 표면 쪽으로 더 쉽게 전달한다. 축열이 지속될 위험을 판단하려면 주위로 실제 방출되는 열도 함께 봐야 한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "물질 내부에서 발생한 열이 환경으로 빠져나가는 과정과 축열을 구별."
+  },
+  "safety-engineer-20200822:101": {
+    "questionSHA256": "1f9429aed32e95a5ecc9804732696eeb6145b604523ad537be68d7aedf0e7567",
+    "explanation": "②다. 거푸집, 굳지 않은 콘크리트, 작업자와 장비 등에서 가설구조에 작용할 하중을 먼저 정해야 각 부재의 힘과 필요한 단면을 계산할 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "하중·하중조합 결정 후 부재력과 단면 검토 가능."
+  },
+  "safety-engineer-20200822:102": {
+    "questionSHA256": "f5aec2d40f805ff9947cef8f47654e50e31aafa9e19dfdf0f191b73df7171427",
+    "explanation": "④ 진동롤러다. 진동과 자중으로 지반이나 포장재를 다진다. 기존 구조물을 깨거나 부수는 압쇄기·브레이커와 용도가 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "진동롤러는 토사·포장층 다짐 기계. 타격·압쇄와 작업 목적 다름."
+  },
+  "safety-engineer-20200822:104": {
+    "questionSHA256": "3d16c6a385867250779a6a19c75b8c0fe5f53a3c36c9a3cc18370c68785724e4",
+    "explanation": "②다. A는 지주부재와 수평면의 최대 각도 75°이고 B는 높이 2 m를 초과하는 말비계 작업발판의 최소 폭 40 cm다. 각도의 상한과 발판 폭의 하한을 구별한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제67조 제2·3호 기울기 75도 이하·높이 2 m 초과 시 폭 40 cm 이상. 자료 시행 2025.12.01, 원문 조건 일치."
+  },
+  "safety-engineer-20200822:106": {
+    "questionSHA256": "5a8edbcbc2f1b0f3d96d95a1a85572b54d904de8f2eb353f1c3f93edbba645af",
+    "explanation": "② 조명시설이다. 가스 자동경보장치의 점검 항목은 검지부, 계기 및 경보장치의 작동 상태다. 터널 조명 점검과 자동경보장치 자체의 점검은 구분된다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "후기 시행본 규칙 제350조의 세 항목 계기·검지부·경보장치 작동을 대조."
+  },
+  "safety-engineer-20200822:107": {
+    "questionSHA256": "cac433e387f687ecf5648d71fbd2dbdbd109046fb333326443ce79d1a703978f",
+    "explanation": "② 4, 10, 10이다. 띠장 방향 길이가 4 m 이하이면서 높이가 10 m를 넘는 경우가 조건이고, 해당할 때 띠장 방향으로 10 m 이내마다 버팀기둥을 설치한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제62조 강관틀비계의 띠장 방향 길이 4, 높이 10, 버팀기둥 간격 10 m. 본문 빈칸 순서 대조."
+  },
+  "safety-engineer-20200822:108": {
+    "questionSHA256": "bad9892cfec8ae6a60c8ab0b7d093ce0fc484f26be0da5968ddf53d6ff32e0ca",
+    "explanation": "문제에 실린 출제 당시 기준표에서 보통흙 중 습지 행을 읽으면 ② 1:1~1:1.5다. 건지나 풍화암의 값을 고르면 적용 지반이 달라진다. 이 답은 문제 속 표의 판독 결과다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "수록 표에 출제 당시 기준이라고 명시. 보통흙 습지 행 직접 대조. 현재 굴착 작업에 그대로 적용하지 않음."
+  },
+  "safety-engineer-20200822:110": {
+    "questionSHA256": "fadc4931ab75d2dd0de3ba18918cbf8567db880a62a759b9726e981422c4bc37",
+    "explanation": "③이다. 물건의 모양과 크기가 매번 다르면 같은 기계 동작이나 지그를 반복 적용하기 어렵다. 이는 중량물의 무리한 인력 운반이 적절하다는 뜻은 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규격·반복성이 낮아 전용 기계화 어려운 경우와 중량물 운반 안전 구별."
+  },
+  "safety-engineer-20200822:111": {
+    "questionSHA256": "782d5a697b368514954c8f4a32efc56bcdbd129b4d571cac78ce1c3e76b78cf0",
+    "explanation": "③ 울 설치는 사람의 접근을 제한할 수 있지만 암반을 지지하거나 떨어질 돌을 제거하지는 않는다. 나머지 세 조치는 낙반 자체를 막거나 위험원을 제거한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "지보공과 록볼트는 암반 지지, 부석 제거는 낙하원 제거. 울은 접근 제한."
+  },
+  "safety-engineer-20200822:112": {
+    "questionSHA256": "e69c2c50512d9178c3bb4a93a37fcec4b0ae72b1aa2423bee2b58230706d7271",
+    "explanation": "① 파워 쇼벨이다. 버킷이 장비 앞쪽의 흙을 위쪽으로 밀어 파는 구조여서 기계가 서 있는 면보다 높은 흙을 굴착하는 데 적합하다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "전방 상향으로 굴착하는 쇼벨과 하부 지반 굴착장비 비교."
+  },
+  "safety-engineer-20200822:113": {
+    "questionSHA256": "5bf84d1cbeffd9ab80fa6ef3142527ed85a04929b6fd0e4a3172c3448cc475ee",
+    "explanation": "③ 5 m 이내마다 설치한다. 10 m는 계단참 설치 기준을 적용하기 시작하는 사다리식 통로의 길이이고, 5 m는 계단참 사이의 최대 간격이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제24조 제1항 제8호, 길이 10 m 이상과 간격 5 m 이내를 분리. 후기 시행본 확인."
+  },
+  "safety-engineer-20200822:114": {
+    "questionSHA256": "3925a4e6276ae7500dd7ae2977f107ce1217a1efec6578a7a3b478c9cb5ef679",
+    "explanation": "② 200 kgf 이상이다. 표에서 그물코 10 cm 행의 ‘매듭 있는 방망’ 열을 읽어야 한다. 같은 행의 240 kgf는 매듭 없는 방망 값이다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "문제 제공 표의 10 cm 행과 매듭 있는 방망 열 교차값 200 kgf. 신품 조건."
+  },
+  "safety-engineer-20200822:115": {
+    "questionSHA256": "4e3f0bca4164c0ec29e8970b4197ff306a962b5e136d9c9f781e80ef900a2763",
+    "explanation": "③이 틀리다. 와이어로프와 고정부위에는 충분한 강도와 장력이 필요하며, 클립·샤클 등 적절한 고정기구로 견고히 고정해야 한다. 보기처럼 고정기구 사용을 금지하는 규정이 아니다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "규칙 제142조 와이어로프를 클립·샤클 등 고정기구로 견고히 고정. 보기 ③은 금지로 반전."
+  },
+  "safety-engineer-20200822:116": {
+    "questionSHA256": "8f6120dd2fd35966dc50b1426057ba7afbacea814241934ffb800a79c128ed8a",
+    "explanation": "① 베인테스트다. 지반에 십자형 날개를 넣고 회전시켜 흙이 전단파괴될 때의 토크를 잰다. 연약한 점토의 비배수 전단강도를 현장에서 추정할 수 있다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "연약한 점토에 십자 날개 삽입, 회전 저항으로 현장 비배수 전단강도 추정."
+  },
+  "safety-engineer-20200822:117": {
+    "questionSHA256": "11b033446003ee5520e4153db399b5144f24ad6580ec94867abcc50409052c3b",
+    "explanation": "④ 작업발판이다. 근로자가 서거나 이동하고 작업하중을 전달하는 면이다. 기둥 등 골조를 연결하거나 가새로 흔들림을 억제하는 부재와 용도가 다르다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "띠장·장선·가새의 구조 기능과 작업발판의 용도 구분."
+  },
+  "safety-engineer-20200822:120": {
+    "questionSHA256": "0385363f3fc69cfe54cb3f5ba4da3c7aedecb7ad49a7a3f2c904f378ce514230",
+    "explanation": "④ 파일럿 터널이다. 본 굴착 전에 작은 터널을 먼저 파서 지질과 지하수 상태를 확인하고, 계획에 따라 환기·배수나 운반에도 활용한다.",
+    "explanationProvenance": "manual-reviewed",
+    "explanationBasis": "본 터널보다 먼저 굴진해 지질과 공사 조건 확인."
   }
 }

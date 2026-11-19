@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.52',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·펌프 신뢰도 해설',summary:'펌프와 병렬 밸브의 실패확률을 원도와 대조했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.51',scope:'industrial',date:'2026.11.19',title:'공조 순환수두·전압계 보충 해설',summary:'밀도차를 수두로 바꾸고 전압계의 측정 부하를 설명했습니다.',tags:['공조'],changes:['접점도와 보기의 부정기호가 다른 문항은 확인 대상으로 남겼습니다.']},
     {version:'6.2.50',scope:'industrial',date:'2026.11.19',title:'공조 필기 두 회차 보충 해설',summary:'원형 코일과 이상기체의 계산을 원문 값에서 다시 풀었습니다.',tags:['공조'],changes:['답과 계산이 충돌하는 문항에 확인이 필요한 조건을 적었습니다.']},
     {version:'6.2.49',scope:'industrial',date:'2026.11.19',title:'공조 필기 2005년 5월 보충 해설',summary:'송풍량과 가지전류를 단위와 함께 계산했습니다.',tags:['공조'],changes:['복원 중인 보기와 제어 블록선도의 부호를 원문과 대조했습니다.']},
@@ -2829,8 +2830,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.51';
+  changelog.versions.industrial = '6.2.52';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.51';
+  changelog.currentVersion = '6.2.52';
   window.CBT_CHANGELOG = changelog;
 })();
