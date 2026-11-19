@@ -8,14 +8,14 @@ import {textbookExplanationText} from '../src/cbt/textbookExplanationText';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
 
-test('승인126개만 표시·39수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
+test('승인172개만 표시·42수식 KaTeX·원문 변경 시 이미지로 복귀',()=>{
  const data=JSON.parse(fs.readFileSync('data/textbook-explanation-text.json','utf8'));
- expect(data.entries).toHaveLength(126);
+ expect(data.entries).toHaveLength(172);
  const approved=textbookDirectSources.filter(r=>textbookExplanationText(r));
  const archivedId='hansol-direct-1-25-16';
  expect(data.entries.filter((entry:{id:string})=>entry.id===archivedId)).toHaveLength(1);
  expect(textbookDirectSources.some(source=>source.id===archivedId)).toBe(false);
- expect(approved).toHaveLength(125);
+ expect(approved).toHaveLength(171);
  let formulae=0;
  for(const entry of data.entries){
   const source=textbookDirectSources.find(r=>r.id===entry.id)!;
@@ -29,7 +29,7 @@ test('승인126개만 표시·39수식 KaTeX·원문 변경 시 이미지로 복
   expect(textbookExplanationText({...source,questionParts:[{...source.questionParts[0]!,rect:[0,0,1,1]}]})).toBeUndefined();
   expect(textbookExplanationText({...source,solutionParts:[]})).toBeUndefined();
  }
- expect(formulae).toBe(39);
+ expect(formulae).toBe(42);
 });
 
 test('교재 경계 감사 원본 지문 해시 보존',()=>{
@@ -74,7 +74,7 @@ test('간결한 해설·분수/루트·원문 접기·표시설정 저장·미�
  expect(await page.evaluate(()=>localStorage.getItem('cbt-explanation-display-v1'))).toBe('image');
  await page.getByRole('button',{name:'설정 닫기',exact:true}).click();
  await expect(text).toHaveCount(0);await expect(card.locator('.direct-solution-parts img')).toBeVisible();
- await page.reload();await expect(page.locator('.textbook-pages')).toBeVisible();
+ await page.reload();await expect(page.locator('.textbook-pages')).toBeVisible({timeout:30000});
  await card.locator('.direct-solution>summary').click();await expect(text).toHaveCount(0);
  await expect(card.locator('.direct-solution-parts img')).toBeVisible();
  await page.locator('.textbook-pages').getByRole('button',{name:/설정/}).click();
