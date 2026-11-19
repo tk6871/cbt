@@ -978,3 +978,14 @@ test('산업안전기사 병렬 밸브의 실패확률', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('실패확률이므로 ② 0.0595');
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('산업안전기사 화면 대비의 정의와 보기 대조', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20200606').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('28');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '반사율이 85%'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('약 −322%');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
