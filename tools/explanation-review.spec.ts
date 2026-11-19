@@ -891,6 +891,17 @@ test('설비보전 이중 음귀환 전달함수 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 축전기 저장에너지 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20130818').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('47');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'저장 전기량'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('충전할 때 순간 전압');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 전류이득 계산의 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20160821').getByRole('button',{name:'학습모드',exact:true}).click();
