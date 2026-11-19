@@ -4,7 +4,8 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
-    {version:'6.3.7',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2002년 5월·8월",summary:"달비계 와이어로프의 지름 감소율과 항타기 권상로프의 단선율을 구별했다. 화학설비 부식방지 문제는 2025년 시행 제256조의 60 ℃와 저장 답 65 ℃를 구분했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
+    {version:'6.3.8',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2002년 5월·8월",summary:"달비계 와이어로프의 지름 감소율과 항타기 권상로프의 단선율을 구별했다. 화학설비 부식방지 문제는 2025년 시행 제256조의 60 ℃와 저장 답 65 ℃를 구분했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
+    {version:'6.3.7',scope:'industrial',date:'2026.11.19',title:'공조·에너지 교재 목록 로딩 개선',summary:'교재를 고르면 선택한 책의 전용 파일부터 불러옵니다.',tags:['교재'],changes:['전용 파일을 읽을 수 없으면 기존 문제은행으로 교재를 엽니다.']},
     {version:'6.3.6',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2002년 3월",summary:"밀링 이송속도를 재계산하고, 수직갱 통로와 사다리식 통로의 계단참 조건을 구분했다. 2002년 당시 법령 판본이 필요한 항목은 확인한 시행일을 적어 보류했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.5',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2002년 8월·3월",summary:"비반전 입력에 −0.2 V를 가하는 원도에서 출력 −1.2 V를 구했다. 회로도와 저장 답이 달라 정답 재확인으로 기록했다. 설비보전산업기사 대상 2,236개에 모두 문항별 판정이 있다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.4',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2003년 8월·3월",summary:"벨트·스프링·펌프 계산에 단위와 분수식을 보완했다. 밸브 앞뒤의 두 압력을 더한 유량 보기와 20 ℃ 수은의 물성이 주어진 부피·질량과 충돌하는 문항은 정답을 재확인하도록 기록했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2897,8 +2898,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.7';
+  changelog.versions.industrial = '6.3.8';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.7';
+  changelog.currentVersion = '6.3.8';
   window.CBT_CHANGELOG = changelog;
 })();

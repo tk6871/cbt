@@ -3,7 +3,8 @@ import {expect,test} from '@playwright/test';
 test.use({serviceWorkers:'block'});
 
 test.beforeEach(async ({page}) => {
-  await page.route('**/cloud-config.js*', route=>route.fulfill({contentType:'application/javascript',body:'window.CBT_CLOUD_CONFIG = {};'}));
+  await page.route('**/cloud-config.js*', route=>route.fulfill({contentType:'application/javascript',body:"window.CBT_CLOUD_CONFIG = {serviceApiUrl:'/api'};"}));
+  await page.route('**/api/catalogs/**', route => route.fulfill({status:503}));
   await page.addLocatorHandler(page.locator('.pwa-error-notice'), notice=>notice.getByRole('button',{name:'나중에',exact:true}).click());
 });
 
@@ -32,7 +33,7 @@ for (const book of ['energy','hansol'] as const) {
     const sources: string[] = [];
     page.on('request', request => {
       const path = new URL(request.url()).pathname;
-      if (/\/data\/(?:hvac|energy)[\w-]*\.js$|\/modern\/textbook-[\w-]+\.json$/.test(path)) sources.push(path.split('/').pop()!);
+      if (/\/api\/catalogs\/|\/data\/(?:hvac|energy)[\w-]*\.js$|\/modern\/textbook-[\w-]+\.json$/.test(path)) sources.push(path.split('/').pop()!);
     });
     await page.goto('./');
     await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();

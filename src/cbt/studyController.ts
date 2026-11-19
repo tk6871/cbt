@@ -2399,9 +2399,9 @@ function ensureBookSources(book: TextbookKey): Promise<void> {
    : undefined;
  const load = Promise.all([energy, (async () => {
   let sources: QuestionItem[] | undefined;
-  if (!window.CBT_CLOUD_CONFIG?.serviceApiUrl && !isNativeApp && location.protocol !== 'file:') {
+  if (!isNativeApp && location.protocol !== 'file:') {
    try { sources = await fetchTextbookSources(book); }
-   catch { /* Offline installations may only have the original bank scripts cached. */ }
+   catch { /* Older installations can still read the original question banks. */ }
   }
   if (!sources) {
    [sources] = await Promise.all([loadTextbookSupplement(book),loadQuestionSources(textbookSourceKeys(book))]);
