@@ -1376,6 +1376,7 @@ for (const sample of [
   {title: '공조 교재 교류 저항성분 원도와 분수', round: '2020-1', number: '72', stem: '이 회로의 저항성분', choice: '② 25', explanation: '실수축'},
   {title: '공조 교재 전기량 원도와 분수', round: '2020-4', number: '61', stem: '전기량은 몇 C인가', choice: '① 0.5', explanation: '0.5 C'},
   {title: '공조 교재 펌프 축동력 원도와 분수', round: '2021-1', number: '54', stem: '벌류트 펌프로 구동할 경우', choice: '③ 326.7', explanation: '196 kW'},
+  {title: '공조 교재 평균전류 원도와 분수', round: '2021-2', number: '73', stem: '7200 C의 전기량', choice: '② 2', explanation: '3,600초'},
 ]) {
   test(sample.title, async ({page}) => {
     await prepare(page, 'hvac-hansol');
