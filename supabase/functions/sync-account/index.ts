@@ -2,6 +2,8 @@ import { createClient } from 'npm:@supabase/supabase-js@2.57.4';
 
 type RequestBody = {
   action?: string;
+  pageSize?: number;
+  cursor?: {createdAt: string; userId: string} | null;
   username?: string;
   password?: string;
   recoveryCode?: string;
@@ -257,41 +259,20 @@ Deno.serve(async (request) => {
 
     if (action === 'admin-list') {
       if (!access.permissions.viewMembers) return json(request, { error: '회원 목록 조회 권한이 필요합니다.' }, 403);
-      const [{ data: recoveryRows, error: recoveryError }, { data: roleRows, error: roleError }, authResponse] = await Promise.all([
-        adminClient
-        .from('sync_account_recovery')
-        .select('user_id,username_display,created_at,updated_at')
-        .order('created_at', { ascending: false }),
-        adminClient
-          .from('admin_role_members')
-          .select('user_id,role,can_view_analytics,can_manage_issues,can_view_members,can_manage_members'),
-        adminClient.auth.admin.listUsers({ page: 1, perPage: 1000 }),
-      ]);
-      if (recoveryError || roleError || authResponse.error) return json(request, { error: '회원 목록을 불러오지 못했습니다.' }, 500);
-      const recoveryByUser = new Map((recoveryRows || []).map((row) => [row.user_id, row]));
-      const roleByUser = new Map((roleRows || []).map((row) => [row.user_id, row as AdminRoleRow]));
-      return json(request, {
-        accounts: authResponse.data.users.map((user) => {
-          const recovery = recoveryByUser.get(user.id);
-          const role = roleByUser.get(user.id);
-          return {
-            userId: user.id,
-            username: recovery?.username_display || String(user.user_metadata?.sync_username || user.email || '이름 없는 계정'),
-            email: recovery ? null : user.email || null,
-            accountType: recovery ? 'site_id' : 'email',
-            createdAt: user.created_at,
-            updatedAt: recovery?.updated_at || user.updated_at || user.created_at,
-            lastSignInAt: user.last_sign_in_at || null,
-            role: role?.role || null,
-            permissions: role ? accessFromRole(role).permissions : {
-              viewAnalytics: false,
-              manageIssues: false,
-              viewMembers: false,
-              manageMembers: false,
-            },
-          };
-        }).sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)),
+      const size = body.pageSize === undefined ? 1000 : body.pageSize;
+      const cursor = body.cursor;
+      if (!Number.isInteger(size) || size < 1 || size > 1000 ||
+          (cursor != null && (typeof cursor.createdAt !== 'string' || !Number.isFinite(Date.parse(cursor.createdAt)) ||
+            typeof cursor.userId !== 'string' || !/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/i.test(cursor.userId)))) {
+        return json(request, {error:'회원 목록의 조회 위치를 확인해 주세요.'}, 400);
+      }
+      const {data, error} = await adminClient.rpc('cbt_member_directory_page', {
+        before_created_at: cursor?.createdAt ?? null,
+        before_user_id: cursor?.userId ?? null,
+        page_size: size,
       });
+      if (error) return json(request, {error:'회원 목록을 불러오지 못했습니다.'}, 500);
+      return json(request, data);
     }
 
     if (action === 'admin-set-role') {

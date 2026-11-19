@@ -1,6 +1,7 @@
+import {readOriginalAsset} from './read-original-asset.mjs';
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
-import {verifyTextbookPageHash} from './verify-textbook-page-hash.mjs';
+import crypto from 'node:crypto';
 import {textbookEntries,textbookStudyItems,textbookDirectSources,textbookDirectPageMap,textbookDirectImage} from '../src/cbt/textbookPages';
 import {enterBookReader,chooseBookPage} from './textbook-reader-test-helpers';
 test.use({serviceWorkers:'block'});
@@ -9,13 +10,15 @@ const data=read('data/hansol-book-direct.json');
 test('759원문·397원해상도 쪽·모든 영역·자가확인 분리',()=>{
  expect(data.locations).toHaveLength(759);expect(data.pages).toHaveLength(397);
  const ids=new Set(data.locations.map((r:any)=>r.id));expect(ids.size).toBe(759);
- const existing=new Set(read('data/textbook-pages.json').entries.map((r:any)=>`${r.book}:${r.page}:${r.number}`));
+ const existing=new Map<string,string|undefined>(textbookEntries.filter(e=>e.sourceId).map(e=>[`${e.book}:${e.page}:${e.number}`,e.previousDirectId]));
  for(const p of data.pages){
-  verifyTextbookPageHash(p.asset,p.sha256);
+  expect(crypto.createHash('sha256').update(readOriginalAsset(p.asset)).digest('hex')).toBe(p.sha256);
   expect(p.size).toEqual([p.sourceCrop[2]-p.sourceCrop[0],p.sourceCrop[3]-p.sourceCrop[1]]);
  }
  for(const r of data.locations){
-  expect(existing.has(`hansol:${r.page}:${r.number}`)).toBe(false);
+  const printed=textbookDirectSources.find(s=>s.id===r.id);
+  if(r.id==='hansol-direct-5-27-5'){expect(textbookEntries.find(e=>e.book==='hansol'&&e.page==='5-27'&&e.number===1)?.sourceId).toBe('hvac-hansol-2023-3:1');}
+  else if(printed && existing.has(`hansol:${printed.page}:${printed.number}`)) expect(existing.get(`hansol:${printed.page}:${printed.number}`)).toBe(r.id);
   expect(r.grading).toBe('self-check-only');expect(r.answer).toBeUndefined();expect(r.text).toBeUndefined();
   const p=textbookDirectPageMap.get(r.page)!;expect(p).toBeTruthy();
   for(const rect of [r.questionRect,r.solutionRect,p.answerKeyRect].filter(Boolean)){
@@ -25,7 +28,8 @@ test('759원문·397원해상도 쪽·모든 영역·자가확인 분리',()=>{
   }
   expect(r.split).toBe(!!r.solutionRect);
  }
- const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(743);
+ const direct=textbookEntries.filter(e=>e.directSourceId);expect(direct).toHaveLength(439);
+ expect(textbookEntries.filter(e=>e.previousDirectId)).toHaveLength(303);
  expect(direct.every(e=>e.sourceId===null&&!e.fingerprint&&!e.correction&&!e.reviewHold)).toBe(true);
  expect(textbookStudyItems([],direct)).toEqual([]);
  expect(textbookDirectSources.filter(r=>r.split)).toHaveLength(743);
@@ -39,8 +43,7 @@ test('원문 선택 저장·책 풀이 접기·전체 쪽·다크/라이트·목
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
  await page.goto('/?safe=1');
- if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
- await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
+ await page.getByRole('button',{name:'회차별 기출 고르기',exact:true}).click();
  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
  await enterBookReader(page);await chooseBookPage(page,'1-168');
  const card=page.locator('[data-source-id="hansol-direct-1-168-25"]');await expect(card).toBeVisible();

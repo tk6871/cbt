@@ -1,34 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import vm from 'node:vm';
+import {readQuestionBanks} from './read-question-banks.mjs';
 
 const root = process.cwd();
 const displayImages=JSON.parse(fs.readFileSync('data/problem-images-webp90.json','utf8')).mappings;
-const dataFiles = ['hvac.js', 'hvac-hansol.js', 'safety.js', 'energy.js', 'energy-restored.js', 'energy-book-earlier.js', 'maintenance.js', 'maintenance-engineer.js', 'electric-craftsman.js', 'gas-craftsman.js', 'hazardous-craftsman.js', 'information-engineer.js', 'forklift-craftsman.js', 'jewelry.js'];
-const context = { window: {} };
-
-for (const file of [...dataFiles, 'safety-engineer.js']) {
-  const source = fs.readFileSync(path.join(root, 'data', file), 'utf8');
-  vm.runInNewContext(source, context, { filename: file });
-}
-
-const catalogs = [
-  context.window.CBT_DATA_HVAC,
-  context.window.CBT_DATA_HANSOL_HVAC,
-  context.window.CBT_DATA_SAFETY,
-  context.window.CBT_DATA_SAFETY_ENGINEER,
-  context.window.CBT_DATA_ENERGY,
-  context.window.CBT_DATA_ENERGY_RESTORED,
-  context.window.CBT_DATA_ENERGY_BOOK_EARLIER,
-  context.window.CBT_DATA_MAINTENANCE,
-  context.window.CBT_DATA_MAINTENANCE_ENGINEER,
-  context.window.CBT_DATA_ELECTRIC_CRAFTSMAN,
-  context.window.CBT_DATA_GAS_CRAFTSMAN,
-  context.window.CBT_DATA_HAZARDOUS_CRAFTSMAN,
-  context.window.CBT_DATA_INFORMATION_ENGINEER,
-  context.window.CBT_DATA_FORKLIFT_CRAFTSMAN,
-  ...(context.window.CBT_DATA_JEWELRY || []),
-].filter(Boolean);
+const catalogs = [...readQuestionBanks(root)];
 
 const errors = [];
 const warnings = [];
@@ -36,7 +12,8 @@ const missingImages = [];
 const referencedImages = new Set();
 const manualReview = [];
 const catalogRows = [];
-const roundIds = new Set();
+const roundOwners = new Map();
+const storedQuestions = new Set();
 const duplicateSignatures = new Map();
 const answerConflicts = [];
 const explanationAnswerReviewCandidates = [];
@@ -124,12 +101,22 @@ for (const catalog of catalogs) {
   for (const round of catalog.rounds || []) {
     const location = `${catalog.key}/${round.id}`;
     if (!round.id) errors.push({ location, issue: '회차 ID 없음' });
-    if (roundIds.has(round.id)) errors.push({ location, issue: '중복 회차 ID' });
-    roundIds.add(round.id);
+    const owners = roundOwners.get(round.id) || new Set();
+    // The midterm screen joins its two source banks by topic round ID.
+    const sharedTopic = owners.size === 1 && (
+      (owners.has('energy-midterm') && catalog.key === 'energy-textbook') ||
+      (owners.has('energy-textbook') && catalog.key === 'energy-midterm')
+    );
+    if (owners.size && !sharedTopic) errors.push({ location, issue: '중복 회차 ID' });
+    owners.add(catalog.key);
+    roundOwners.set(round.id, owners);
     const numbers = new Set();
     for (const question of round.questions || []) {
       questionCount += 1;
       const questionLocation = `${location}/${question.number}`;
+      const storedId = `${question._originRoundId || round.id}:${question._originalNumber || question.number}`;
+      if (storedQuestions.has(storedId)) errors.push({ location: questionLocation, issue: `중복 풀이 저장 ID: ${storedId}` });
+      storedQuestions.add(storedId);
       if (numbers.has(question.number)) errors.push({ location: questionLocation, issue: '회차 안의 중복 문제 번호' });
       numbers.add(question.number);
       const choices = question.choices || [];

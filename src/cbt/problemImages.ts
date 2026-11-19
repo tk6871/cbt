@@ -31,6 +31,11 @@ export function problemImage(source:string|undefined|null):string|undefined {
  const target=mappedImage(key);
  const native=typeof document!=='undefined'&&document.documentElement.dataset.nativeApp==='true';
  const bundled=key.startsWith('assets/hvac/formula-samples/');
+ if(native && document.documentElement.dataset.bundledAssets==='true'){
+   const local=source.startsWith(published)?'':prefix;
+   const result=local+(target||path)+suffix;
+   memo.set(source,result);return result;
+ }
  const result=target?(native&&!bundled&&!/^https?:/i.test(prefix!)?published:prefix)+target+suffix:source;
  memo.set(source,result);return result;
 }

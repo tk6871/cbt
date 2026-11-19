@@ -1,0 +1,26 @@
+@media (prefers-reduced-motion: no-preference) {
+  .question-columns.question-forward { --page-offset: 10px; animation: study-page-enter 180ms ease-out; }
+  .question-columns.question-backward { --page-offset: -10px; animation: study-page-enter 180ms ease-out; }
+  :root[data-dynamic-ui="on"] [data-react-view="grade"] .result-card {
+    animation: study-page-enter 220ms ease-out;
+  }
+}
+@keyframes study-page-enter {
+  from { opacity: 0; transform: translateX(var(--page-offset, 0)); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.session-drawer {overflow-y:auto;overscroll-behavior:contain}
+.session-drawer > footer {display:flex;flex-direction:column;gap:10px}
+.session-drawer > footer fieldset {margin:0;padding:0;border:0;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.session-drawer > footer legend {margin:0 0 4px;padding:0;color:#c0ccda;font-size:.77rem}
+.session-drawer > footer button {min-height:44px}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  :root[data-dynamic-ui="on"]:not([data-ui-motion="off"],[data-ui-motion="reduced"]) .question-card button.choice-button:active {transform:scale(.99)}
+  :root[data-dynamic-ui="on"]:not([data-ui-motion="off"],[data-ui-motion="reduced"]) .cloud-sync-help[data-phase="complete"] {animation:cbt-sync-saved 220ms ease-out}
+}
+@keyframes cbt-sync-saved {
+  from {opacity:.65}
+  to {opacity:1}
+}

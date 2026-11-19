@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 });
 async function openGuide(page: Page) {
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', { name:'메뉴 열기',exact:true }).click();
-  await page.locator('.sidebar').getByRole('button', { name:'▣ 시험 자료실' }).click();
+  await page.locator('.sidebar').getByRole('button', { name:'시험 자료실',exact:true }).click();
   await expect(page.locator('.practical-study-room')).toBeVisible();
 }
 test('필답 자료는 메뉴 진입 때만 로딩하고 저장 답안·커서 복원', async ({page}) => {
@@ -41,7 +41,7 @@ test('자료 모듈 실패 시 다른 화면과 저장 기록을 유지한다', 
   await page.addInitScript(()=>localStorage.setItem('unified-cbt-hvac-practical-session-v1',JSON.stringify({ids:['saved-unloaded-id'],deadline:Date.now()+600000,finished:false,stoppedSeconds:0})));
   await page.goto('./?safe=1');
   if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', {name:'메뉴 열기',exact:true}).click();
-  await page.locator('.sidebar').getByRole('button', {name:'▣ 시험 자료실'}).click();
+  await page.locator('.sidebar').getByRole('button', {name:'시험 자료실',exact:true}).click();
   await expect(page.getByRole('button',{name:'다시 불러오기',exact:true})).toBeVisible();
   expect(await page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-hvac-practical-session-v1')!).ids)).toEqual(['saved-unloaded-id']);
   await page.unroute('**/*qualificationStudyGuides*');
@@ -52,14 +52,12 @@ test('자료 모듈 실패 시 다른 화면과 저장 기록을 유지한다', 
 test('저장된 실전 필답 세션은 홈에서도 자료를 준비하고 답안 유지',async({page})=>{
   await page.goto('./?safe=1');
   await openGuide(page);
-  await page.locator('.practical-overview > summary').click();
-  await page.getByRole('button',{name:/실전 12문제/}).click();
+  await page.getByRole('button',{name:'복원 비율 실전 시작',exact:true}).click();
   const answer=page.locator('.practical-answer-input textarea').first();
   await answer.fill('진행 중 실전 답안');
   const saved=await page.evaluate(()=>localStorage.getItem('unified-cbt-hvac-practical-session-v1'));
   expect(JSON.parse(saved!).ids.length).toBeGreaterThan(0);
   await page.reload();
-  await openGuide(page);
   await expect(answer).toHaveValue('진행 중 실전 답안');
   expect(await page.evaluate(()=>localStorage.getItem('unified-cbt-hvac-practical-session-v1'))).toBe(saved);
 });

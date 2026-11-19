@@ -520,5 +520,17 @@
     ,{"page":"2-62","number":10,"sourceId":"hvac-20150816:33","answer":4,"column":0,"reason":"묶음 대조에서 책의 지문·네 냉동시스템 보기·실제P(MPa)-h(kJ/kg) 중간냉각 완전2단압축2단팽창 선도를 기존 원문 그림과 직접 확인. 인쇄정답10④도 별도 확인했고 표기 차이 없이 원문 유지."}
     ,{"page":"2-104","number":88,"sourceId":"hvac-hansol-2018-1:32","answer":2,"column":0,"reason":"묶음 대조에서 실제 책과 한솔2018원문 이미지의 T-S/P-h 두 선도·1~8점의 위치와 연결·압축/팽창 관계 및 네 보기를 직접 확인. 같은2단압축2단팽창 도식이며 인쇄정답88②를 별도 확인해 원문 유지."}
     ,{"page":"2-260","number":15,"sourceId":"hvac-hansol-2024-1:26","answer":3,"column":1,"reason":"묶음 대조에서 실제 책과 기존 원문의 브라인 빙축열 배관·(A)/(B)·빙축열조/부하측·네 보기의 장치와 매체를 직접 확인. 도식 연결·지시문자 같고 인쇄정답15③ 확인. 그림은 새로 만들지 않고 기존 원문 유지."}
+    ,{"page":"5-27","number":1,"sourceId":"hvac-hansol-2023-3:1","answer":2,"column":0,"reason":"5℃·5.5 kW·4.2 및 네 냉각수량 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-27","number":3,"sourceId":"hvac-hansol-2023-3:3","answer":2,"column":1,"previousDirectId":"hansol-direct-5-27-3","reason":"포화효율의 온도 기호와 네 분수식 순서 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-29","number":12,"sourceId":"hvac-hansol-2023-3:12","answer":4,"column":0,"previousDirectId":"hansol-direct-5-29-12","reason":"벽 두께 20·15·2 cm 및 열관류율 네 보기 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-32","number":28,"sourceId":"hvac-hansol-2023-3:28","answer":1,"column":0,"previousDirectId":"hansol-direct-5-32-28","reason":"역카르노 T-S 선도의 1–2–2′–1′ 영역 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-33","number":33,"sourceId":"hvac-hansol-2023-3:33","answer":3,"column":0,"previousDirectId":"hansol-direct-5-33-33","reason":"R-502의 167 kg/h·3.5 kW·엔탈피 449/563 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-34","number":39,"sourceId":"hvac-hansol-2023-3:39","answer":2,"column":0,"reason":"일체형냉동기 조건 ㉠~㉤과 오른쪽 단의 보기 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-35","number":42,"sourceId":"hvac-hansol-2023-3:42","answer":4,"column":0,"reason":"배관 유체 기호 A·O·S·W와 화살표 방향 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-35","number":46,"sourceId":"hvac-hansol-2023-3:46","answer":3,"column":1,"previousDirectId":"hansol-direct-5-35-46","reason":"펌프 양정 120 m·6 mAq·50%·30 mmAq/m 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-36","number":49,"sourceId":"hvac-hansol-2023-3:49","answer":2,"column":0,"previousDirectId":"hansol-direct-5-36-49","reason":"85/65℃와 밀도 0.96876/0.98001·높이 10 m 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-37","number":54,"sourceId":"hvac-hansol-2023-3:54","answer":1,"column":0,"reason":"파형률 네 분수식의 분자·분모와 순서 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-37","number":55,"sourceId":"hvac-hansol-2023-3:55","answer":2,"column":0,"previousDirectId":"hansol-direct-5-37-55","reason":"2400/240 V·100 Ω의 1차 환산 저항 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
+    ,{"page":"5-37","number":58,"sourceId":"hvac-hansol-2023-3:58","answer":4,"column":1,"previousDirectId":"hansol-direct-5-37-58","reason":"정전·유도·가동철편·가동코일형 순서 대조. 2023년 3회 교재 쪽 하단 인쇄 정답과 기존 문항 정답 일치."}
   ]
 }

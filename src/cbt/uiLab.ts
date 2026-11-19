@@ -1,5 +1,28 @@
-import { computed, nextTick, watch } from 'vue';
-import { usePreferredContrast, usePreferredReducedMotion, useStorage } from '@vueuse/core';
+import {computed, effect, signal} from '@preact/signals-core';
+import {nextTick} from './controllerSignals';
+
+function useStorage<T extends string | boolean | number>(key:string, fallback:T) {
+  function read():T {
+    try {
+      const raw=localStorage.getItem(key);
+      if(raw===null)return fallback;
+      if(typeof fallback==='boolean')return (raw==='true') as T;
+      if(typeof fallback==='number')return (Number.isFinite(Number(raw))?Number(raw):fallback) as T;
+      return raw as T;
+    } catch {return fallback;}
+  }
+  const cell=signal(read());
+  cell.subscribe(value=>{try {localStorage.setItem(key,String(value));} catch {}});
+  window.addEventListener('storage',event=>{if(!event.key || event.key===key)cell.value=read();});
+  return cell;
+}
+function mediaPreference(feature:string,values:string[]) {
+  const queries=values.map(value=>matchMedia('('+feature+': '+value+')'));
+  const read=()=>values[queries.findIndex(query=>query.matches)] || 'no-preference';
+  const cell=signal(read());
+  for(const query of queries)query.addEventListener('change',()=>{cell.value=read();});
+  return cell;
+}
 
 export type UiDensity = 'comfortable' | 'compact';
 export type UiSurface = 'soft' | 'flat' | 'glass';
@@ -15,14 +38,14 @@ const accentColors: Record<Exclude<UiAccent, 'auto'>, string> = {
 };
 
 const safeMode = typeof location !== 'undefined' && new URLSearchParams(location.search).get('safe') === '1';
-const enabled = useStorage('unified-cbt-ui-lab-enabled', false);
+const enabled = useStorage<boolean>('unified-cbt-ui-lab-enabled', false);
 const density = useStorage<UiDensity>('unified-cbt-ui-density', 'comfortable');
 const surface = useStorage<UiSurface>('unified-cbt-ui-surface', 'soft');
 const motion = useStorage<UiMotion>('unified-cbt-ui-motion', 'full');
 const accent = useStorage<UiAccent>('unified-cbt-ui-accent', 'auto');
-const photoOverlay = useStorage('unified-cbt-theme-photo-overlay', 68);
-const preferredContrast = usePreferredContrast();
-const preferredReducedMotion = usePreferredReducedMotion();
+const photoOverlay = useStorage<number>('unified-cbt-theme-photo-overlay', 68);
+const preferredContrast = mediaPreference('prefers-contrast',['more','less']);
+const preferredReducedMotion = mediaPreference('prefers-reduced-motion',['reduce']);
 
 function mix(color: string, target: string, amount: number): string {
   return `color-mix(in oklch, ${color} ${(1 - amount) * 100}%, ${target})`;
@@ -55,9 +78,7 @@ export function applyUiLabPreferences(): void {
   applyAccent(root);
 }
 
-watch([enabled, density, surface, motion, accent, photoOverlay], () => {
-  applyUiLabPreferences();
-}, { immediate: true });
+effect(applyUiLabPreferences);
 
 export function useUiLab() {
   const active = computed(() => enabled.value && !safeMode);

@@ -1,5 +1,6 @@
-import Dexie, { type EntityTable } from 'dexie';
-import { reactive, watch } from 'vue';
+import {importLegacyDirectAnswers} from './textbookAnswerProgress';
+import Dexie, { type EntityTable, type Table } from 'dexie';
+import { proxy, subscribe } from 'valtio/vanilla';
 import type { AttemptRecord, LegacyStore, StudyMode } from './types';
 
 const IS_JEWELRY = window.CBT_APP_SPACE === 'jewelry';
@@ -69,12 +70,14 @@ function loadLegacy(): Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookma
       value.notes = Object.fromEntries(Object.entries(value.notes || {}).filter(([id]) => jewelryPrefix.test(id)));
       value.history = [];
     }
+    const progress = value.progress || {};
+    if (!IS_JEWELRY) importLegacyDirectAnswers(progress, localStorage);
     return {
       ...value,
       attempts: value.attempts || {},
       wrong: value.wrong || {},
       bookmarks: value.bookmarks || [],
-      progress: value.progress || {},
+      progress,
       history: value.history || [],
       notes: value.notes || {},
       sync: {
@@ -86,19 +89,57 @@ function loadLegacy(): Required<Pick<LegacyStore, 'attempts' | 'wrong' | 'bookma
   }
 }
 
-export const studyStore = reactive(loadLegacy());
+export const studyStore = proxy(loadLegacy());
+
+export function subscribeStudyChanges(listener: () => void): () => void {
+  return subscribe(studyStore, listener);
+}
+
+// Android WebView can acknowledge a localStorage write before it reaches disk.
+// Keep the bundled APK's study snapshot in a strict IndexedDB transaction.
+let nativeSnapshots: Table<string, string> | undefined;
+let lastNativeSnapshot: string | undefined;
+
+export async function openBundledStudyStorage(): Promise<void> {
+  const store = new Dexie('cbt-bundled-study', {chromeTransactionDurability: 'strict'});
+  store.version(1).stores({snapshots: ''});
+  await store.open();
+  const table = store.table<string, string>('snapshots');
+  const saved = await table.get(STORAGE_KEY);
+  if (saved !== undefined) {
+    localStorage.setItem(STORAGE_KEY, saved);
+    Object.assign(studyStore, loadLegacy());
+  }
+  nativeSnapshots = table;
+  lastNativeSnapshot = saved;
+  await persistStudyStoreNow();
+}
 
 let persistHandle = 0;
-watch(studyStore, () => {
+subscribeStudyChanges(() => {
   window.clearTimeout(persistHandle);
-  persistHandle = window.setTimeout(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(studyStore));
-  }, 120);
-}, { deep: true });
+  if (nativeSnapshots) {
+    void persistStudyStoreNow();
+    return;
+  }
+  persistHandle = window.setTimeout(persistStudyStoreNow, 120);
+});
 
-export function persistStudyStoreNow(): void {
+export function persistStudyStoreNow(): void | Promise<void> {
   window.clearTimeout(persistHandle);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(studyStore));
+  const data = JSON.stringify(studyStore);
+  if (!nativeSnapshots) {
+    localStorage.setItem(STORAGE_KEY, data);
+    return;
+  }
+  if (lastNativeSnapshot === data) return;
+  lastNativeSnapshot = data;
+  return nativeSnapshots.put(data, STORAGE_KEY).then(() => {
+    if (lastNativeSnapshot === data) localStorage.setItem(STORAGE_KEY, data);
+  }).catch((error: unknown) => {
+    if (lastNativeSnapshot === data) lastNativeSnapshot = undefined;
+    throw error;
+  });
 }
 
 export function markBookmarkSyncState(id: string, value: boolean): void {

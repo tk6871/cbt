@@ -8,7 +8,7 @@ const versionQuery = `v=${__CBT_BUILD_VERSION__}`;
 const CORE = [
   './', './index.html', './jewelry.html', './next.html', './recovery.html', './manifest.webmanifest', './jewelry.webmanifest',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
-  `./data/catalog-index.js?${versionQuery}`, `./data/catalog-bootstrap.js?${versionQuery}`,
+  `./data/study-start.js?${versionQuery}`, `./data/catalog-index.js?${versionQuery}`, `./data/catalog-bootstrap.js?${versionQuery}`,
   './data/jewelry.js?v=255', './data/changelog.js?v=255', `./data/changelog-vue.js?${versionQuery}`,
   './calculator.html', './calculator.css?v=321', './calculator.js?v=255', './vendor/math.js?v=194',
   './admin.html', './cloud-config.js?v=200',

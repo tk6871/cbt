@@ -1,3 +1,4 @@
+import {readOriginalAsset} from './read-original-asset.mjs';
 import {test,expect} from '@playwright/test';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -19,7 +20,7 @@ test('동일 문항만 실제 COMCBT 해설 우선 · 원문/기존 설명 보�
  for(const [id,link] of Object.entries(matches.links)){
   const q=map.get(id)!,source=map.get(link.sourceId)!;
   expect(q,id).toBeTruthy();expect(source,link.sourceId).toBeTruthy();
-  if(q.sourceImage)expect(crypto.createHash('sha256').update(fs.readFileSync(q.sourceImage)).digest('hex')).toBe((link as any).targetImageSha256);
+  if(q.sourceImage)expect(crypto.createHash('sha256').update(readOriginalAsset(q.sourceImage)).digest('hex')).toBe((link as any).targetImageSha256);
   const result=withEnergyTextbookComcbt(q,id,source);
   expect(result.explanationProvenance,id).toBe('comcbt-matched-textbook');
   expect(result.explanation,id).toBe(source.explanation||source.explanationHtml?.replace(/<[^>]+>/g,' ').trim());

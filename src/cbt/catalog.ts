@@ -1,23 +1,10 @@
 import {withDisputedExplanations} from './disputedExplanations';
+import {prepareHvacQuestion} from './hvacQuestionLayout';
+import {loadApiBank} from './serviceApi';
 import type { Catalog, CurriculumScope, Question, QuestionItem, Round } from './types';
-import { hvacAnswerHotspots } from './generatedHvacHotspots';
-import { hvacAnswerSegments } from './generatedHvacAnswerSegments';
-import { reviewedHvacAnswerSegments } from './reviewedHvacAnswerSegments';
-import { reviewedHvacHotspots } from './reviewedHvacHotspots';
 import { reviewedHansolHotspots } from './reviewedHansolHotspots';
-import energyMidtermHotspots from '../../data/energy-midterm-hotspots.json' with { type: 'json' };
-import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' with { type: 'json' };
-import type { AnswerHotspot } from './types';
-import reviewedEnergyChoices from '../../data/energy-reviewed-printed-options.json' with { type: 'json' };
-import {energyTextbookComcbtSource,energyExplanation} from './energyTextbookExplanation';
-
-const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
-
-const reviewedEnergyByImage: Record<string, AnswerHotspot[]> = reviewedEnergyChoices;
-export function withReviewedEnergyChoices(question: Question): Question {
-  const choices = reviewedEnergyByImage[question.sourceImage || ''];
-  return choices ? { ...question, answerHotspots: choices } : question;
-}
+import {prepareEnergyQuestions} from './energyQuestionLayout';
+export {withReviewedEnergyChoices} from './energyQuestionLayout';
 
 const primaryKeys = [
   'hvac', 'hvac-hansol', 'safety', 'safety-engineer', 'energy', 'energy-midterm', 'maintenance',
@@ -38,7 +25,8 @@ const legacyGemSubjectMap: Record<string, string> = {
 // Banks are immutable after loading. Reuse prepared question/coordinate objects
 // during cross-bank search instead of cloning the entire bank on every lookup.
 const preparedCatalogs = new WeakMap<Catalog, { book?: Catalog; energy?: Catalog; result: Catalog }>();
-function prepareCatalog(source: Catalog): Catalog {
+type PrepareHvacQuestion = (question: Question) => Question;
+function prepareCatalog(source: Catalog, hvac?: PrepareHvacQuestion, energyQuestions?: typeof prepareEnergyQuestions): Catalog {
   const original = source;
   const book = source.key === 'energy-midterm' ? window.CBT_DATA_ENERGY_TEXTBOOK
     : source.key === 'energy' ? window.CBT_DATA_ENERGY_RESTORED : undefined;
@@ -62,30 +50,10 @@ function prepareCatalog(source: Catalog): Catalog {
     qualification: round.qualification || source.name,
     shortQualification: round.shortQualification || source.shortName || source.name,
     questions: source.key === 'hvac'
-      ? round.questions.map((question) => {
-          const sourceImage = question.sourceImage || '';
-          const hotspots = sourceImage
-            ? reviewedHvacHotspots[sourceImage] || hvacAnswerHotspots[sourceImage] || question.answerHotspots
-            : question.answerHotspots;
-          const segments = sourceImage
-            ? { ...hvacAnswerSegments[sourceImage], ...reviewedHvacAnswerSegments[sourceImage] }
-            : undefined;
-          return {
-            ...question,
-            answerHotspots: hotspots?.map((hotspot) => ({
-              ...hotspot,
-              segments: segments?.[hotspot.choice],
-            })),
-          };
-        })
+      ? round.questions.map(hvac!)
       : source.key === 'hvac-hansol'
       ? round.questions.map(question=>({...question,answerHotspots:reviewedHansolHotspots[question.sourceImage||'']||question.answerHotspots}))
-      : source.key === 'energy-midterm'
-        ? round.questions.map((question) => ({
-            ...energyExplanation(question,`${question._originRoundId||round.id}:${question._originalNumber||question.number}`,energySources?.get(energyTextbookComcbtSource(`${question._originRoundId||round.id}:${question._originalNumber||question.number}`)||'')),
-            answerHotspots: energyImageHotspots[question.sourceImage || ''] || question.answerHotspots,
-          }))
-        : source.key==='energy' ? round.questions.map(q=>energyExplanation(withReviewedEnergyChoices(q),`${round.id}:${q.number}`,energySources?.get(energyTextbookComcbtSource(`${round.id}:${q.number}`)||''))) : withDisputedExplanations(round),
+      : energySources ? energyQuestions!(round, energySources, source.key === 'energy-midterm') : withDisputedExplanations(round),
   }));
   const result = { ...source, rounds };
   preparedCatalogs.set(original, { book, energy, result });
@@ -94,39 +62,88 @@ function prepareCatalog(source: Catalog): Catalog {
 
 const catalogLoads = new Map<string, Promise<Catalog>>();
 
-export function ensureCatalogLoaded(key: string): Promise<Catalog> {
-  const existing = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
+const bankLoads = new Map<string, Promise<void>>();
+
+function loadBankFile(file: string): Promise<void> {
+  const suffix = file === 'hvac-hansol' ? 'HANSOL_HVAC' : file.toUpperCase().replaceAll('-', '_');
+  const globalName = 'CBT_DATA_' + suffix;
+  const hasBank = () => {
+    const bank = Reflect.get(window, globalName) as Catalog | undefined;
+    return bank?.key === file && Array.isArray(bank.rounds);
+  };
+  if (hasBank()) return Promise.resolve();
+  const pending = bankLoads.get(file);
+  if (pending) return pending;
+
+  const load = loadApiBank(file).then(async bank => {
+    if (bank) {
+      Reflect.set(window, globalName, bank);
+      return;
+    }
+    await new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script');
+      // Use the same URL as the bootstrap for the initially selected bank so a
+      // range first opened on the mobile home can also be reopened offline.
+      const version = '801';
+      script.src = new URL(`data/${file}.js?v=${version}`, document.baseURI).href;
+      script.onload = () => hasBank() ? resolve() : reject(new Error('문제 자료를 읽지 못했습니다.'));
+      script.onerror = () => { script.remove(); reject(new Error('문제 자료에 연결하지 못했습니다.')); };
+      document.head.appendChild(script);
+    });
+  }).finally(() => bankLoads.delete(file));
+  bankLoads.set(file, load);
+  return load;
+}
+
+let hvacLayout: PrepareHvacQuestion | undefined;
+let energyLayout: typeof prepareEnergyQuestions | undefined;
+export async function browserCatalogs(): Promise<Catalog[]> {
+  const pending = [];
+  if (window.CBT_DATA_HVAC && !hvacLayout) {
+    pending.push(import('./hvacQuestionLayout').then(layout => { hvacLayout = layout.prepareHvacQuestion; }));
+  }
+  if ((window.CBT_DATA_ENERGY || window.CBT_DATA_ENERGY_MIDTERM) && !energyLayout) {
+    pending.push(import('./energyQuestionLayout').then(layout => { energyLayout = layout.prepareEnergyQuestions; }));
+  }
+  if (pending.length) {
+    await Promise.all(pending);
+    // Another bank may have finished downloading while these layouts loaded.
+    return browserCatalogs();
+  }
+  return catalogSnapshot(hvacLayout, energyLayout);
+}
+
+export async function ensureCatalogLoaded(key: string): Promise<Catalog> {
+  const existing = (await browserCatalogs()).find(catalog => catalog.key === key && !catalog.isPlaceholder);
   const supplementReady = key === 'energy-midterm' ? Boolean(window.CBT_DATA_ENERGY_TEXTBOOK && window.CBT_DATA_ENERGY)
     : key === 'energy' ? Boolean(window.CBT_DATA_ENERGY_RESTORED) : true;
-  if (existing && supplementReady) return Promise.resolve(existing);
-  if (!primaryKeys.includes(key)) return Promise.reject(new Error('지원하지 않는 문제 출처입니다.'));
+  if (existing && supplementReady) return existing;
+  if (!primaryKeys.includes(key)) throw new Error('지원하지 않는 문제 출처입니다.');
   const pending = catalogLoads.get(key);
   if (pending) return pending;
   const files = key === 'energy-midterm' ? [key, 'energy-textbook', 'energy']
     : key === 'energy' ? [key, 'energy-restored'] : [key];
-  const promise = Promise.all(files.map(file => new Promise<void>((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = new URL(`data/${file}.js?v=754`, document.baseURI).href;
-    script.onload = () => {
-      resolve();
-    };
-    script.onerror = () => { catalogLoads.delete(key); script.remove(); reject(new Error('문제 자료에 연결하지 못했습니다.')); };
-    document.head.appendChild(script);
-  }))).then(() => {
-    const loaded = loadCatalogs().find(catalog => catalog.key === key && !catalog.isPlaceholder);
+  const promise = Promise.all(files.map(loadBankFile)).then(async () => {
+    const catalogs = await browserCatalogs();
+    const loaded = catalogs.find(catalog => catalog.key === key && !catalog.isPlaceholder);
     if (!loaded || (key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)
       || (key === 'energy' && !window.CBT_DATA_ENERGY_RESTORED)) {
-      catalogLoads.delete(key); throw new Error('문제 자료를 읽지 못했습니다.');
+      throw new Error('문제 자료를 읽지 못했습니다.');
     }
     return loaded;
-  });
+  }).finally(() => catalogLoads.delete(key));
   catalogLoads.set(key, promise);
   return promise;
 }
 
 export function loadCatalogs(): Catalog[] {
+  return catalogSnapshot(prepareHvacQuestion, prepareEnergyQuestions);
+}
+
+function catalogSnapshot(hvac?: PrepareHvacQuestion, energy?: typeof prepareEnergyQuestions): Catalog[] {
+  const prepare = (catalog: Catalog) => prepareCatalog(catalog, hvac, energy);
   if (window.CBT_APP_SPACE === 'jewelry') {
-    const sourceCatalogs = (window.CBT_DATA_JEWELRY || []).map(prepareCatalog);
+    const sourceCatalogs = (window.CBT_DATA_JEWELRY || []).map(prepare);
     return [createGemAppraiserTargetCatalog(sourceCatalogs), ...sourceCatalogs];
   }
   const sources = [
@@ -147,7 +164,7 @@ export function loadCatalogs(): Catalog[] {
 
   const loaded = sources
     .filter((item) => primaryKeys.includes(item.key))
-    .map(prepareCatalog);
+    .map(prepare);
   const loadedByKey = new Map(loaded.map((catalog) => [catalog.key, catalog]));
   if (!window.CBT_CATALOG_INDEX?.length) return loaded;
   return window.CBT_CATALOG_INDEX.map((item) => loadedByKey.get(item.key) || {

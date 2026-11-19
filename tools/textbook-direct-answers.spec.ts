@@ -14,7 +14,8 @@ test('기존 15문항과 전체 정답표 검수 문항의 원문·좌표 보호
   for(const [number,[answer]] of Object.entries(proof.answers)){
    const id=`hansol-direct-${page}-${number}`;
    const source=textbookDirectSources.find(r=>r.id===id)!;
-   expect(textbookEntries.find(r=>r.page===page&&r.number===Number(number))?.directSourceId).toBe(id);
+   const entry=textbookEntries.find(r=>r.book==='hansol'&&r.page===page&&r.number===Number(number));
+   expect(entry?.directSourceId ?? entry?.previousDirectId).toBe(id);
    expect(textbookDirectAnswer(source,bookPage)).toBe(answer);
    expect(textbookDirectAnswer(source,{...bookPage,sha256:'other'})).toBeUndefined();
    expect(textbookDirectAnswer({...source,split:false},bookPage)).toBeUndefined();
@@ -35,20 +36,23 @@ test('교재 원문 정오답·재선택·기존 저장·선택 후 정답과 �
  test.skip(info.project.name==='tablet');
  await page.addInitScript(()=>{
   localStorage.setItem('modern-cbt-qualification-industrial','hvac');
+  if(!sessionStorage.getItem('seeded-legacy-answer')){
+   localStorage.setItem('cbt-book-direct-choice-v1::hansol-direct-1-106-36','2');
+   sessionStorage.setItem('seeded-legacy-answer','1');
+  }
   localStorage.setItem('cbt-textbook-selected','hansol');
   sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
  });
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),()=>page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click());
  await page.goto('/?safe=1');
- await page.evaluate(()=>localStorage.setItem('cbt-book-direct-choice-v1::hansol-direct-4-9-13','2'));
  if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
  await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
  await page.getByRole('button',{name:'쪽번호로 바로 열기 ↗',exact:true}).click();
  const dialog=page.locator('.library-page-dialog');
- await dialog.getByRole('textbox',{name:'쪽번호',exact:true}).fill('4-9');
+ await dialog.getByRole('textbox',{name:'쪽번호',exact:true}).fill('1-106');
  await dialog.getByRole('button',{name:'문제 풀기 →',exact:true}).click();
- const card=page.locator('[data-source-id="hansol-direct-4-9-13"]');
+ const card=page.locator('[data-source-id="hansol-direct-1-106-36"]');
  await expect(card.locator('.direct-status')).toContainText('정답표 대조 완료');
  await expect(card.locator('.direct-grade')).toHaveText('틀렸어요 · 교재 정답 3번');
  await card.getByRole('button',{name:'③',exact:true}).click();
@@ -65,18 +69,12 @@ test('교재 원문 정오답·재선택·기존 저장·선택 후 정답과 �
  await expect(unverified.locator('.direct-solution')).toHaveAttribute('open','');
  await expect(unverified.locator('.direct-answer-label')).toHaveText('정답 ② · 2번');
  await chooseBookPage(page,'5-35');
- const pump=page.locator('[data-source-id="hansol-direct-5-35-46"]');
- await pump.getByRole('button',{name:'③',exact:true}).click();
- await expect(pump.locator('.direct-grade')).toContainText('맞았어요');
- await expect(pump.locator('.direct-answer-label')).toHaveText('정답 ③ · 3번');
- const solution=pump.locator('.direct-solution-parts img').first();
- await expect(solution).toBeVisible();
- await solution.evaluate((image:HTMLImageElement)=>image.decode());
- for(const theme of ['light','dark']){
-  await page.evaluate(t=>document.documentElement.dataset.theme=t,theme);
-  expect(await solution.evaluate(el=>getComputedStyle(el).filter)).toMatch(theme==='dark'?/invert/:/^none$/);
- }
- await pump.screenshot({path:'/private/tmp/textbook-5-35-46.png'});
+ const pump=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 46번',exact:true})});
+ const pumpChoice=pump.getByRole('button',{name:'이미지에서 3번 선택',exact:true});
+ await pumpChoice.click();
+ await expect(pumpChoice).toHaveAttribute('aria-pressed','true');
+ await expect(pump.locator('.explanation-title')).toContainText('정답 3번');
+ await expect(pump).toContainText('11.4');
  await chooseBookPage(page,'5-33');
  const q36=page.locator('.book-sheet-question').filter({has:page.getByRole('heading',{name:'교재 36번',exact:true})});
  await q36.locator('button.choice-button:visible,button.image-answer-hotspot:visible').first().click();

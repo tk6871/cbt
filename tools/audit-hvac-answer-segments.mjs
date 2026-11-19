@@ -92,8 +92,8 @@ if (/min-(?:width|height)\s*:/.test(hotspotCss)) {
   errors.push('모바일에서 답안 클릭 구역을 겹치게 만드는 CSS 최소 크기가 남아 있습니다.');
 }
 
-const questionCard = fs.readFileSync('src/cbt/QuestionCard.vue', 'utf8');
-if (!/v-for="hotspot in unifiedHotspots"/.test(questionCard)
+const questionCard = fs.readFileSync('src/react/session/QuestionCard.tsx', 'utf8');
+if (!/unifiedHotspots\.map\(hit =>/.test(questionCard)
   || !/return \[hotspotStyle\(hotspot\)\]/.test(questionCard)) {
   errors.push('마우스 올림·클릭·선택 표시가 같은 단일 답안 박스를 사용하지 않습니다.');
 }

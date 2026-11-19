@@ -1,0 +1,5 @@
+.admin-trend-panel { margin-top:14px; }
+.admin-trend-panel .admin-panel-title { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.admin-trend-chart { width:100%; height:290px; }
+.admin-trend-panel summary { cursor:pointer; padding:12px 0; }
+@media(max-width:620px){ .admin-trend-chart {height:250px;} }

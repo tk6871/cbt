@@ -15,7 +15,8 @@ try {
  await build({stdin:{contents:`export {practicalPrompts} from './src/cbt/qualificationStudyGuides'; export {hvacFieldReportRound} from './src/cbt/hvacFieldReportPractice'; export {textbookDirectSources,textbookEntries,textbookStudyId,textbookWorkedExamples} from './src/cbt/textbookPages';`,resolveDir:process.cwd(),loader:'ts'},bundle:true,platform:'node',format:'esm',outfile:runtime,logLevel:'silent'});
  const rt=await import(pathToFileURL(runtime));
  const banks=[],ids=new Set();
- const records = new Map(JSON.parse(fs.readFileSync('docs/explanation-review/2026-11-18/review.json')).records.map(row => [row.id, row]));
+ const reviewFile = process.argv[3] || 'docs/explanation-review/2026-11-18/review.json';
+ const records = new Map(JSON.parse(fs.readFileSync(reviewFile)).records.map(row => [row.id, row]));
  const scope = {excluded:{comcbt:0,energyBook:0}, included:0, statuses:{}, groups:{}, answerNeedsConfirmation:[], authoredWhenMissing:{total:0,restored:{comcbt:0,energyBook:0}}, bankExplanationFields:{text:0,image:0,additionalBlocks:0,empty:0}};
  const questionHasExplanation = new Map();
  const counted = new Set();
@@ -72,6 +73,17 @@ try {
    banks.push(bank);
   }
  }
+ const appendixQuestions = new Map(JSON.parse(fs.readFileSync('data/hansol-appendix-rounds.json')).flatMap(r =>
+  r.questions.map(q => [r.id + ':' + q.number, q])));
+ const directIds = new Set(rt.textbookDirectSources.map(e => e.id));
+ const appendix = rt.textbookEntries.filter(e => appendixQuestions.has(e.sourceId)).map(e => {
+  const id = rt.textbookStudyId(e), q = appendixQuestions.get(e.sourceId);
+  if (!directIds.has(id)) track('appendix', id, null);
+  return {id, sourceId:e.sourceId, page:e.page, number:e.number, existingDirect:directIds.has(id),
+   text:Boolean(q.explanation || q.explanationHtml), images:q.explanationImages || []};
+ });
+ if (new Set(appendix.map(e=>e.sourceId)).size !== appendixQuestions.size) throw Error('Unlinked appendix source');
+ const appendixByStudyId = new Map(appendix.map(e=>[e.id,e]));
  const corrections=rt.textbookEntries.filter(e=>e.correction);
  for (const p of rt.practicalPrompts) track('practical',p.id,isComcbtSource(p.sourceUrl)?'comcbt':null);
  for (const q of rt.hvacFieldReportRound.questions) track('fieldReport',rt.hvacFieldReportRound.id+':'+q.number,questionExclusion({},rt.hvacFieldReportRound,q));
@@ -83,10 +95,11 @@ try {
  // Count a linked explanation once for each separately rendered study item.
  const missingDerived = rt.practicalPrompts.filter(p=>!isComcbtSource(p.sourceUrl) && !p.explanation).length
   + rt.hvacFieldReportRound.questions.filter(q=>!q.explanation).length
-  + rt.textbookDirectSources.filter(e=>e.book!=='energy' && !e.solutionParts.length).length
+  + rt.textbookDirectSources.filter(e=>e.book!=='energy' && !e.solutionParts.length && !appendixByStudyId.get(e.id)?.images.length && !appendixByStudyId.get(e.id)?.text).length
+  + appendix.filter(e=>!e.existingDirect && !e.text && !e.images.length).length
   + corrections.filter(e=>e.book!=='energy' && !e.correction.explanation && !questionHasExplanation.get(e.sourceId)).length;
  scope.withExplanationOrNotice = scope.included - scope.bankExplanationFields.empty - missingDerived;
- const derived={
+ const derived={appendix,
   practical:rt.practicalPrompts.map(p=>[p.id,p.group,p.year||null,p.session||null,p.number||null,+!!p.explanation]),
   fieldReport:rt.hvacFieldReportRound.questions.map(q=>[`${rt.hvacFieldReportRound.id}:${q.number}`,q.number,+!!q.explanation]),
   direct:rt.textbookDirectSources.map(e=>[e.id,e.page,e.number,e.solutionParts.length]),
@@ -100,7 +113,9 @@ try {
  counts.disputeExplanationOverlays=disputeIds.length;
  derived.disputeExplanationOverlays=disputeIds;
 
- counts.originalReviewUnits=counts.bankQuestions+counts.practical+counts.fieldReport+counts.direct+counts.workedExamples;
+ counts.appendixSources=appendix.length;
+ counts.appendixNewStudyIds=appendix.filter(e=>!e.existingDirect).length;
+ counts.originalReviewUnits=counts.appendixNewStudyIds+counts.bankQuestions+counts.practical+counts.fieldReport+counts.direct+counts.workedExamples;
  counts.reviewUnitsIncludingVariants=counts.originalReviewUnits+counts.correctedBookVariants;
  if(counted.size!==counts.reviewUnitsIncludingVariants) throw Error('Editorial scope does not partition all review units');
  const output={schemaVersion:1,scope,counts,summary,rowSchema:{bank:['storageId','printedNumber','hasText','hasImage','additionalBlockCount'],practical:['id','group','year','session','number','hasExplanation'],fieldReport:['id','number','hasExplanation'],direct:['id','page','number','solutionPartCount'],correctedBookVariants:['book','page','number','sourceId','hasOwnExplanation','reviewHold'],workedExamples:['id','pages','title']},banks,derived};

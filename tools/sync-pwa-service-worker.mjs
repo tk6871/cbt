@@ -27,10 +27,29 @@ function include(key) {
   }
   for(const dependency of chunk.imports||[])include(dependency);
 }
-for(const file of ['main.ts','mobile.ts','pwa.ts','StudySettings.vue','ThemeStudio.vue','CloudSyncPanel.vue','SyncRecoveryPanel.vue','SchoolExamManager.vue','CoolingMidterm.vue','PracticalTrainingTools.vue']) {
-  const key=`src/cbt/${file}`;
-  const name=file.replace(/\.(?:vue|ts)$/,'');
-  include(manifest[key]?key:Object.keys(manifest).find(id=>manifest[id].name===name&&manifest[id].isDynamicEntry) || key);
+// Browsers may preload the tiny app entry without fetching its imports. Discover
+// those files alongside the selected bank, while preserving the existing boot gate.
+include('src/cbt/main.ts');
+const preloadLinks = [...urls].filter(url => url.endsWith('.js')).sort()
+  .map(url => '  <link rel="modulepreload" href="' + url.slice(2) + '">');
+const preloadBlock = ['<!-- study-module-preloads -->', ...preloadLinks, '  <!-- /study-module-preloads -->'].join('\n');
+for (const page of ['index.html', 'jewelry.html']) {
+  const path = resolve(projectRoot, page);
+  const html = await readFile(path, 'utf8');
+  const markers = /<!-- study-module-preloads -->[\s\S]*?<!-- \/study-module-preloads -->/;
+  if (!markers.test(html)) throw new Error('Missing module preload markers in ' + page);
+  await writeFile(path, html.replace(markers, preloadBlock));
+}
+const offlineEntries = [
+  'src/cbt/main.ts', 'src/cbt/mobile.ts', 'src/cbt/pwa.ts', 'src/react/tools/CloudSyncPanel.tsx',
+  'src/react/tools/SyncRecoveryPanel.tsx', 'src/react/tools/CoolingMidterm.tsx', 'src/react/practical/PracticalTrainingTools.tsx',
+  'src/react/tools/StudySettings.tsx', 'src/react/tools/ThemeStudio.tsx', 'src/react/tools/SchoolExamManager.tsx',
+];
+for (const path of offlineEntries) {
+  // Rollup can emit a shared entry under its output name instead of the source path.
+  const name = path.split('/').pop().replace(/\.(vue|tsx?)$/, '');
+  const key = manifest[path] ? path : Object.keys(manifest).find(id => manifest[id].isDynamicEntry && manifest[id].name === name);
+  include(key ?? path);
 }
 for(const key of manifest['src/cbt/pwa.ts'].dynamicImports||[])include(key);
 const marker = /["']\.\/modern\/__CBT_STATIC_CHUNKS__["']/;

@@ -1,17 +1,41 @@
 <script setup lang="ts">
+import {legacyRef} from "./legacySignalRefs";
+import {saveTextbookAnswer, textbookAnswersIn} from './textbookAnswerProgress';
+import {renderSearchView} from "../react/tools/SearchView";
+import {renderCalculationView} from "../react/tools/CalculationView";
+import {renderGuideView} from "../react/tools/GuideView";
+import {renderCoachView} from "../react/tools/CoachView";
+import {renderBetaView} from "../react/tools/BetaView";
+import {renderShowcaseView} from "../react/tools/ShowcaseView";
+import {renderStatsView} from "../react/tools/StatsView";
+import {renderPatchView} from "../react/tools/PatchView";
+import {proxyRefs} from "vue";
+import ReactSurface from "../react/ReactSurface.vue";
+import { renderHistoryView } from "../react/session/HistoryView";
+import { renderWrongView } from "../react/session/WrongView";
+import { renderExamSessionView } from "../react/session/ExamSessionView";
+import { renderGradeView } from "../react/session/GradeView";
+
 import { App as CapacitorApp } from '@capacitor/app';
 import type { PluginListenerHandle } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
+import '../react/hybrid.css';
+import '../react/materials.css';
+import {pinSolutionKey,type PinnedSolution,type ToolName} from '../react/workspaceTypes';
+import type { StudyHomeProps } from '../react/studyModels';
+import {allowMobileModel,setMobileModel} from '../react/modelPreference';
+import { isStudyView, studyHref, viewFromHash, type StudyView } from '../react/studyRoutes';
+import ThemeStudyCover from './ThemeStudyCover.vue';
+import NavigationMount from '../react/NavigationMount.vue';
 import { animate, stagger } from 'motion';
 import { visibleMotionTargets } from './viewMotion';
 import { pluginExperiences } from './pluginExperiences';
 import { responsiveImageAttrs, restoreOriginalImage } from './responsiveImages';
-import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, nextTick, onBeforeUnmount, onMounted, provide, reactive, ref, shallowRef, watch } from 'vue';
 import {
   GEM_APPRAISER_TARGET_KEY,
   ensureCatalogLoaded,
   latestSubjects,
-  loadCatalogs,
   loadReferenceRounds,
   questionId,
   questionItems,
@@ -24,7 +48,6 @@ import {
 } from './catalog';
 import QuestionCard from './QuestionCard.vue';
 import RoundsLoading from './RoundsLoading.vue';
-const StudyLounge = defineAsyncComponent(() => import('./StudyLounge.vue'));
 import {problemImage} from './problemImages';
 import {explanationDisplay, setExplanationDisplay} from './explanationDisplay';
 import QuestionLibraryPreview from './QuestionLibraryPreview.vue';
@@ -41,13 +64,62 @@ const PracticalSearchLibrary = defineAsyncComponent(() => import('./PracticalSea
 import { matchesPracticalText } from './practicalSearch';
 const PracticalCalculationLesson = defineAsyncComponent(() => import('./PracticalCalculationLesson.vue'));
 const CloudSyncPanel = defineAsyncComponent(() => import('./CloudSyncPanel.vue'));
+const ToolPanelsMount = defineAsyncComponent(()=>import('../react/ToolPanelsMount.vue'));
+const panelCalculator = ref(false), panelNotes = ref(false);
+const pinnedSolution = ref<PinnedSolution|null>(null);
+provide(pinSolutionKey, solution => { pinnedSolution.value=solution; });
+function closeTool(name:ToolName) {
+  if(name==='calculator') panelCalculator.value=false;
+  if(name==='notes') panelNotes.value=false;
+  if(name==='explanation') pinnedSolution.value=null;
+}
+const RoundListMount=defineAsyncComponent(()=>import('../react/RoundListMount.vue'));
+const roundCards=computed(()=>visibleRounds.value.map(round=>{
+  const energy=selectedKey.value==='energy-midterm';
+  const school=round.kind==='school-midterm';
+  const excluded=energy && energyCalculationExcluded.value.includes(round.id);
+  const calculations=energy?round.questions.filter(q=>q.midtermCalculation).length:0;
+  const record=roundRecordMap.value.get(round.id);
+  const total=round.questions.length;
+  return {
+    id:round.id,title:round.title,qualification:round.shortQualification||round.qualification||selectedCatalog.value.name,
+    year:round.year,school,restored:isRestoredRound(round),
+    description:energy?`${energyTopicQuestions(round).length}문제 선택${excluded?' · 전체'+total+'문제 중 계산 제외':''}`:`${total}문제 · ${round.subjects.length}과목 · 시험 ${roundExamMinutes(round)}분`,
+    scope:school?`시험범위${round.questions.filter(q=>q.midtermMatch==='direct').length} · 관련 예상${round.questions.filter(q=>q.midtermMatch==='related').length}${['school-energy-topic-6','school-energy-topic-11'].includes(round.id)?' · 계산 출제 예상':''}`:'',
+    subjects:energy?[]:round.subjects,hint:school?round.questions[0]?.teacherHint:undefined,
+    record:record?{score:record.score,date:new Date(record.finishedAt).toLocaleDateString('ko-KR'),latest:lastRoundRecord.value?.roundId===round.id}:undefined,
+    calculation:calculations?{count:calculations,included:!excluded,set:(on:boolean)=>setEnergyTopicCalculation(round.id,on)}:undefined,
+    answered:roundAnswered(round),total,progress:roundProgress(round),wrong:roundWrongGroupMap.value.get(round.id)?.items.length??0,
+    start:()=>startRound(round,'learn'),restart:()=>restartRoundLearning(round),openWrong:()=>openRoundWrongAnswers(round),exam:()=>startRound(round,'exam'),
+  };
+}));
+import StudyHomeMount from '../react/StudyHomeMount.vue';
+const reactHome = computed<StudyHomeProps>(() => ({
+  name: selectedCatalog.value.name, selected: selectedKey.value,
+  groups: qualificationGroups.map(group => ({
+    label: group.label,
+    items: group.items.map(item => ({
+      key: item.key, name: item.name,
+      icon: qualificationMeta[item.key]?.icon ?? '◇',
+      color: qualificationMeta[item.key]?.className ?? '',
+      rounds: item.roundCount ?? item.rounds.length,
+      questions: catalogDisplayQuestionCount(item),
+    })),
+  })),
+  loadingStats: appHydrating.value, answered: stats.value.answered, accuracy: stats.value.accuracy, wrong: stats.value.wrong,
+  resume: Boolean(savedLearningSession.value),
+  onRounds: () => selectQualification(selectedKey.value),
+  onSelect: selectQualification, onBook: isJewelry ? undefined : openTextbookPages, onResume: resumeSavedLearning,
+}));
 const StudySettings = defineAsyncComponent(() => import('./StudySettings.vue'));
 import type { SettingsValues, SettingChange, SettingsAction } from './settingsCatalog';
 const SchoolExamManager = defineAsyncComponent(() => import('./SchoolExamManager.vue'));
 const CoolingMidterm = defineAsyncComponent(() => import('./CoolingMidterm.vue'));
 const TextbookPages = defineAsyncComponent(() => import('./TextbookPages.vue'));
-const TextbookLibrary = defineAsyncComponent(() => import('./TextbookLibrary.vue'));
+import TextbookLibrary from './TextbookLibrary.vue';
 import {saveBookSelection,type BookSelection} from './textbookReaderState';
+import { fetchTextbookSources } from './staticTextbookSources';
+import { loadTextbookSupplement } from './textbookSupplement';
 import { textbookSourceKeys, bookForStudyId, type TextbookKey } from './textbookRoutes';
 import { coolingMidtermItems, coolingSafetyItems, coolingRecordSourceItems, coolingMidtermTitle, normalizedSchoolSubject, coolingRecordItem, coolingRecordId, coolingOriginalId, isCoolingRecord, coolingUnusedItems, uniqueSchoolItems, coolingItemsWithOccurrences, type CoolingDrawState } from './schoolQuestionBank';
 import { coolingCalculation, coolingPracticeSelection } from './coolingPractice';
@@ -79,7 +151,14 @@ import {
 } from './hvacCalculatorSheet';
 import { buildHvacPredictionSet } from './hvacPrediction';
 import { studyGuideKeys, useStudyGuideData } from './useStudyGuideData';
-const { practicalPrompts, practicalSources, studyGuidePages, guideLoaded, guideLoading, guideError, loadStudyGuide } = useStudyGuideData();
+const guide=useStudyGuideData();
+const {loadStudyGuide}=guide;
+const practicalPrompts=legacyRef(guide.practicalPrompts);
+const practicalSources=legacyRef(guide.practicalSources);
+const studyGuidePages=legacyRef(guide.studyGuidePages);
+const guideLoaded=legacyRef(guide.guideLoaded);
+const guideLoading=legacyRef(guide.guideLoading);
+const guideError=legacyRef(guide.guideError);
 import { matchesPracticalMaterialPeriod, type PracticalMaterialPeriod } from './practicalMaterialPeriod';
 import { buildPracticalPattern, mockSessionPrompts, practicalPatternSummary, validPracticalPattern, type PracticalPattern } from './practicalMock';
 import { practicalBatchOptions, restorePracticalBatch, restorePracticalMode } from './practicalDisplay';
@@ -106,17 +185,17 @@ import {
   persistStudyStoreNow,
   recordAttempt,
   recordExam,
-  studyStore,
   type ExamRecord,
   type VisualStyle,
 } from './storage';
+import { controllerStudyStore as studyStore } from './controllerStudyStore';
 import type { AttemptRecord, Catalog, CurriculumScope, Question, QuestionItem, Round, SessionState, StudyMode } from './types';
 
 const MathFormula = defineAsyncComponent(() => import('./MathFormula.vue'));
 const PracticalTrainingTools = defineAsyncComponent(() => import('./PracticalTrainingTools.vue'));
 const FormulaWorkbench = defineAsyncComponent(() => import('./FormulaWorkbench.vue'));
 
-type ViewName = 'home' | 'rounds' | 'school' | 'history' | 'wrong' | 'search' | 'calculation' | 'guide' | 'coach' | 'beta' | 'showcase' | 'stats' | 'updates' | 'settings';
+type ViewName = StudyView;
 type CoachPlanKey = 'due' | 'weak' | 'calculation' | 'subject' | 'exam';
 type UpscalePreviewKind = 'original' | 'improved';
 type VisualTransitionPhase = 'leaving' | 'entering' | null;
@@ -167,6 +246,7 @@ type CbtHistoryState = {
   practicalRoom?: boolean;
   textbookRoom?: boolean;
   textbookCollection?: boolean;
+  choosingTextbook?: boolean;
 };
 type MasteryRow = QuestionItem & {
   mastery: number;
@@ -253,7 +333,8 @@ const savedSunjaeRotationSeconds = savedSunjaeRotationValue === null ? Number.Na
 const sunjaeRotationChoices = [0, 5, 10, 30, 60, 180, 300];
 const schoolExamData = ref(loadSchoolExamData());
 const schoolCatalog = reactive(schoolExamCatalog(schoolExamData.value));
-const catalogs = reactive([...loadCatalogs(), ...(!isJewelry ? [schoolCatalog] : [])]);
+const { initialCatalogs } = defineProps<{initialCatalogs: Catalog[]}>();
+const catalogs = reactive([...initialCatalogs, ...(!isJewelry ? [schoolCatalog] : [])]);
 const referenceRounds = loadReferenceRounds();
 const qualificationMeta: Record<string, { icon: string; className: string; description: string }> = {
   hvac: { icon: '❄', className: 'blue', description: '공조·냉동·설치운영' },
@@ -276,6 +357,12 @@ const qualificationMeta: Record<string, { icon: string; className: string; descr
   [SCHOOL_EXAM_CATALOG_KEY]: { icon: '✎', className: 'school-navy', description: '중간·기말 · 주관식 암기 · 교재 범위' },
 };
 
+const studyResourceKeys = new Set(['hvac-hansol', 'energy-midterm', SCHOOL_EXAM_CATALOG_KEY]);
+const qualificationGroups = [
+  { label: '자격증 기출', items: catalogs.filter(catalog => !studyResourceKeys.has(catalog.key)) },
+  { label: '교재 · 학교시험', items: catalogs.filter(catalog => studyResourceKeys.has(catalog.key)) },
+].filter(group => group.items.length);
+
 const qualificationStorageKey = `modern-cbt-qualification-${spaceScope}`;
 const learningSessionStorageKey = `unified-cbt-learning-session-${spaceScope}`;
 const learningSessionProgressKey = 'activeLearningSessionV1';
@@ -295,19 +382,8 @@ const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold
   ? savedFontFamily : 'regular');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
-const homeLayout = ref<'classic' | 'lounge'>((() => {
-  try { return localStorage.getItem('unified-cbt-home-layout') === 'lounge' ? 'lounge' : 'classic'; } catch { return 'classic'; }
-})());
-function setHomeLayout(value: 'classic' | 'lounge'): void {
-  homeLayout.value = value;
-  try { localStorage.setItem('unified-cbt-home-layout', value); } catch { /* The current screen still works without storage. */ }
-}
-function navigateLounge(destination: string): void {
-  if (destination === 'random') { setHomeLayout('classic'); return; }
-  if (destination === 'textbook') { openTextbookPages(); return; }
-  if (['rounds', 'history', 'wrong', 'guide', 'calculation'].includes(destination)) openView(destination as ViewName);
-}
 const textbookPagesOpen = ref(false);
+const choosingTextbook = ref(false);
 const textbookReaderOpen = ref(false);
 const textbookKey = ref<TextbookKey>(localStorage.getItem('cbt-textbook-selected')==='energy'?'energy':'hansol');
 const textbookLoading = ref(false);
@@ -319,6 +395,7 @@ const curriculum = ref<CurriculumScope>('all-mapped');
 const yearFrom = ref(0);
 const yearTo = ref(0);
 const session = ref<SessionState | null>(null);
+watch(()=>session.value?.id,()=>{pinnedSolution.value=null;panelCalculator.value=false;panelNotes.value=false});
 const examResult = ref<ExamResult | null>(null);
 const mobileMenuOpen = ref(false);
 const sessionMenuOpen = ref(false);
@@ -390,6 +467,16 @@ const displayedPassChance = ref(0);
 const displayedResultScore = ref(0);
 const sunjaeResultPhase = ref<SunjaeResultPhase>('reveal');
 const appHydrating = ref(true);
+// The first mobile home can navigate from the catalog index while Dexie restores
+// history. Keep result and study screens behind their existing hydration gate.
+const showHydrationSkeleton = computed(() => {
+  if (!appHydrating.value || !dynamicUiEnabled.value) return false;
+  if (resolvedDisplayMode === 'mobile' && visualStyle.value === 'default') {
+    if (view.value === 'home' && selectedCatalog.value.isPlaceholder && !savedLearningSession.value) return false;
+    if (view.value === 'rounds' && textbookPagesOpen.value) return false;
+  }
+  return true;
+});
 const isNativeApp = document.documentElement.dataset.nativeApp === 'true';
 const androidApkUrl = 'https://github.com/tk6871/cbt/releases/download/android-latest/industrial-cbt-latest.apk';
 const platformUserAgent = navigator.userAgent || '';
@@ -562,22 +649,20 @@ const allItems = computed(() => [
 }))));
 const coolingItems = computed(() => coolingMidtermItems(allItems.value).map(coolingRecordItem));
 const coolingSafetyPool = computed(() => coolingSafetyItems(allItems.value).map(coolingRecordItem));
-const textbookSupplement = ref<QuestionItem[]>([]);
+const textbookSupplement = shallowRef<QuestionItem[]>([]);
 const textbooksReady = new Set<TextbookKey>();
-type TextbookModule = typeof import('./textbookPages');
-const textbookModule = ref<TextbookModule>();
+type TextbookModule = typeof import('./textbookPages').browserTextbookData;
+const prepareEnergyBook = shallowRef<typeof import('./energyQuestionLayout').prepareEnergyBookItem>();
+const textbookModule = shallowRef<TextbookModule>();
 let textbookImport: Promise<TextbookModule> | undefined;
 function loadTextbookModule(): Promise<TextbookModule> {
-  return textbookImport ??= import('./textbookPages').then(module => {
-    textbookModule.value = module;
-    return module;
+  return textbookImport ??= import('./textbookPages').then(({browserTextbookData}) => {
+    textbookModule.value = browserTextbookData;
+    return browserTextbookData;
   }).catch(error => { textbookImport = undefined; throw error; });
 }
-const textbookItems = computed(() => textbookModule.value?.textbookStudyItems([...allItems.value,...textbookSupplement.value]) ?? []);
-const textbookAnswers = computed<Record<string,number>>(() => {
- const state=studyStore.progress?.textbookPageAnswersV1;
- return state && typeof state==='object' && !Array.isArray(state) ? state as Record<string,number> : {};
-});
+const textbookItems = computed(() => textbookModule.value?.buildTextbookItems([...allItems.value,...textbookSupplement.value],prepareEnergyBook.value) ?? []);
+const textbookAnswers = computed(() => textbookAnswersIn(studyStore.progress || {}));
 const itemMap = computed(() => new Map([...allItems.value, ...textbookItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
 const coolingDrawKey = 'school-cooling-midterm-draws';
 const coolingArchiveKey = 'school-cooling-midterm-sessions';
@@ -1376,7 +1461,7 @@ function rememberPracticalLibrary(): void {
   practicalLibraryScrollY = window.scrollY;
   persistPracticalCursor();
   if (ownHistoryState()?.view === 'guide' && !ownHistoryState()?.practicalRoom) {
-    history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', location.href);
+    history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', studyHref('guide'));
   }
 }
 
@@ -1434,13 +1519,25 @@ function openPracticalCalculations(ids: string[], memorize: boolean): void {
 }
 
 function openPracticalRound(key: string): void {
+  const sameRound = practicalPromptFilter.value === 'restored' && practicalRoundFilter.value === key
+    && practicalCategoryFilter.value === 'all' && practicalMaterialPeriod.value === 'all' && !practicalSearch.value;
+  const previousPage = sameRound ? practicalPage.value : undefined;
   rememberPracticalLibrary();
   practicalPromptFilter.value = 'restored';
   practicalRoundFilter.value = key;
   practicalMaterialPeriod.value = 'all';
   practicalCategoryFilter.value = 'all';
   practicalSearch.value = '';
-  practicalPage.value = 1;
+  const prompts = practicalPagedPrompts.value;
+  const lastEdited = prompts.reduce((best, prompt, index) => {
+    const at = practicalProgress[prompt.id]?.updatedAt || 0;
+    return at > best.at ? {at, index} : best;
+  }, {at: 0, index: 0});
+  // Filter watchers reset pagination when switching rounds. Restore after that reset.
+  void nextTick(() => {
+    if (practicalRoundFilter.value !== key || practicalLibraryOpen.value) return;
+    practicalPage.value = Math.min(practicalPageCount.value, previousPage ?? Math.floor(lastEdited.index / practicalPageSize.value) + 1);
+  });
   practicalLibraryOpen.value = false;
   practicalNavigatorOpen.value = false;
   scrollPracticalRoomStart();
@@ -1710,7 +1807,7 @@ const stats = computed(() => {
   const wrong = all.filter((id) => studyStore.wrong[id]);
   const bookmarks = all.filter((id) => studyStore.bookmarks.includes(id));
   return {
-    total: all.length,
+    total: selectedCatalog.value.isPlaceholder ? selectedCatalog.value.questionCount ?? 0 : all.length,
     answered: answered.length,
     correct: correct.length,
     wrong: wrong.length,
@@ -1750,7 +1847,7 @@ const omrRows = computed(() => {
 const sessionProgress = computed(() => session.value?.items.length
   ? Math.round(answeredCount.value / session.value.items.length * 100)
   : 0);
-const preferredPageSize = computed(() => solveLayoutMode.value === 'comcbt' ? 6 : 4);
+const preferredPageSize = computed(() => resolvedDisplayMode !== 'mobile' && solveLayoutMode.value === 'comcbt' ? 6 : 4);
 const sessionQuestionMax = computed(() => session.value?.items.length || 0);
 const formattedTime = computed(() => {
   const total = Math.max(0, session.value?.remainingSeconds || 0);
@@ -2232,13 +2329,13 @@ async function selectQualification(key: string): Promise<void> {
 
 async function updateQualificationFromSetup(event: Event): Promise<void> {
   const select = event.target as HTMLSelectElement;
-  const key = select.value;
-  if (!(await switchQualification(key))) {
-    if (!pendingQualification.value) select.value = selectedKey.value;
-    return;
-  }
+  if (!(await changeContextQualification(select.value)) && !pendingQualification.value) select.value = selectedKey.value;
+}
+async function changeContextQualification(key: string): Promise<boolean> {
+  if (!(await switchQualification(key))) return false;
   if (key === SCHOOL_EXAM_CATALOG_KEY) openView('school');
   else if (view.value === 'school') openView('rounds');
+  return true;
 }
 
 function updateSchoolExamData(next: SchoolExamData): void {
@@ -2264,10 +2361,48 @@ async function loadQuestionSources(keys: string[]): Promise<void> {
       && !(key === 'energy-midterm' && !window.CBT_DATA_ENERGY_TEXTBOOK)
       && !(key === 'energy' && !window.CBT_DATA_ENERGY_RESTORED))) return;
     const loaded = await ensureCatalogLoaded(key);
+    const needsYears = target.isPlaceholder && key === selectedKey.value;
     Object.assign(target, loaded, { isPlaceholder: false });
+    if (needsYears) setDefaultYears(quickPreset.value);
   }));
   indexSearchItems();
 }
+
+// The first mobile home shows counts from the catalog index. Hydrate the
+// detailed study range when it is visible or a regular study view is opened.
+const homeScopeTrigger = ref<HTMLButtonElement>();
+const scopeLoading = ref(false);
+const scopeError = ref('');
+async function loadCurrentScope() {
+  if (!selectedCatalog.value.isPlaceholder || scopeLoading.value) return;
+  const key = selectedKey.value;
+  scopeLoading.value = true;
+  scopeError.value = '';
+  try { await loadQuestionSources([key]); }
+  catch { if (key === selectedKey.value) scopeError.value = '학습 범위를 불러오지 못했습니다.'; }
+  finally { scopeLoading.value = false; }
+}
+watch(homeScopeTrigger, (button, _, onCleanup) => {
+  if (!button || !('IntersectionObserver' in window)) return;
+  const observer = new IntersectionObserver(entries => {
+    if (view.value === 'home' && entries.some(entry => entry.isIntersecting)) {
+      observer.disconnect();
+      void loadCurrentScope();
+    }
+  });
+  // The asynchronous home cover briefly leaves the range at the top of the
+  // page. Observe after actual scrolling so this transient layout cannot load HVAC.
+  const observeRange = () => observer.observe(button);
+  if (window.scrollY > 0) observeRange();
+  else window.addEventListener('scroll', observeRange, {once:true, passive:true});
+  onCleanup(() => {
+    observer.disconnect();
+    window.removeEventListener('scroll', observeRange);
+  });
+});
+watch([view, textbookPagesOpen, visualStyle], ([page, books, style]) => {
+  if (page === 'home' ? style !== 'default' : !(page === 'rounds' && books)) void loadCurrentScope();
+});
 
 async function loadCoolingMidterm(): Promise<void> {
   coolingLoading.value = true;
@@ -2277,18 +2412,36 @@ async function loadCoolingMidterm(): Promise<void> {
   finally { coolingLoading.value = false; }
 }
 
+const bookSourceLoads = new Map<TextbookKey, Promise<void>>();
+function ensureBookSources(book: TextbookKey): Promise<void> {
+ const pending = bookSourceLoads.get(book);
+ if (pending) return pending;
+ const energy = book === 'energy'
+   ? import('./energyQuestionLayout').then(module => {prepareEnergyBook.value = module.prepareEnergyBookItem;})
+   : undefined;
+ const load = Promise.all([energy, (async () => {
+  let sources: QuestionItem[] | undefined;
+  if (!window.CBT_CLOUD_CONFIG?.serviceApiUrl && !isNativeApp && location.protocol !== 'file:') {
+   try { sources = await fetchTextbookSources(book); }
+   catch { /* Offline installations may only have the original bank scripts cached. */ }
+  }
+  if (!sources) {
+   [sources] = await Promise.all([loadTextbookSupplement(book),loadQuestionSources(textbookSourceKeys(book))]);
+  }
+  textbookSupplement.value = [...new Map([...textbookSupplement.value,...sources].map(item=>[item.id,item])).values()];
+ })()]).then(() => {}).catch(error => { bookSourceLoads.delete(book); throw error; });
+ bookSourceLoads.set(book, load);
+ return load;
+}
+
 async function loadTextbookPages():Promise<void> {
  const book=textbookKey.value;
  const revision=++textbookLoadRevision;
+ if(choosingTextbook.value){textbookLoading.value=false;textbookError.value='';return;}
  if(textbooksReady.has(book)){textbookLoading.value=false;textbookError.value='';return;}
  textbookLoading.value=true;textbookError.value='';
  try{
-  const [supplement]=await Promise.all([
-   loadTextbookModule().then(module=>module.loadTextbookSupplement(book)),
-   loadQuestionSources(textbookSourceKeys(book)),
-  ]);
-  const combined=new Map([...textbookSupplement.value,...supplement].map(item=>[item.id,item]));
-  if(combined.size!==textbookSupplement.value.length)textbookSupplement.value=[...combined.values()];
+  await Promise.all([loadTextbookModule(), ensureBookSources(book)]);
   textbooksReady.add(book);
  }
  catch{if(revision===textbookLoadRevision)textbookError.value='문제 자료를 읽지 못했습니다. 인터넷 연결을 확인하고 다시 시도하세요.';}
@@ -2296,6 +2449,9 @@ async function loadTextbookPages():Promise<void> {
 }
 function openTextbookPages():void {
  qualificationRequest++;pendingQualification.value='';qualificationLoadError.value='';
+ const savedBook = localStorage.getItem('cbt-textbook-selected');
+ choosingTextbook.value = view.value === 'home' && savedBook !== 'energy' && savedBook !== 'hansol';
+ if (!choosingTextbook.value && !savedBook && (selectedKey.value === 'energy' || selectedKey.value === 'energy-midterm')) textbookKey.value = 'energy';
  textbookPagesOpen.value=true;openView('rounds');
  textbookReaderOpen.value=false;
  history.replaceState(viewHistoryState('rounds'),'',location.href);
@@ -2303,6 +2459,7 @@ function openTextbookPages():void {
  window.scrollTo({top:0});
 }
 function startTextbookReader(selection:BookSelection):void {
+ localStorage.setItem('cbt-textbook-selected',textbookKey.value);
  saveBookSelection(textbookKey.value,selection);
  textbookReaderOpen.value=true;
  if(!ownHistoryState()?.textbookRoom)history.pushState(viewHistoryState('rounds'),'',location.href);
@@ -2317,12 +2474,19 @@ function closeTextbookReader():void {
  openView('rounds',{replace:true});
  history.replaceState(viewHistoryState('rounds'),'',location.href);
 }
-function selectTextbook(book:TextbookKey):void {textbookKey.value=book;localStorage.setItem('cbt-textbook-selected',book);void loadTextbookPages();}
+function selectTextbook(book:TextbookKey):void {
+ textbookKey.value=book;
+ localStorage.setItem('cbt-textbook-selected',book);
+ if(choosingTextbook.value){
+  choosingTextbook.value=false;
+  history.replaceState(viewHistoryState('rounds'),'',location.href);
+ }
+ void loadTextbookPages();
+}
 function chooseTextbookAnswer(item:QuestionItem,choice:number):void {
- const next={...textbookAnswers.value};
- if(next[item.id]===choice)delete next[item.id];
- else{next[item.id]=choice;recordAttempt(item.id,choice,item.question.answer);}
- studyStore.progress||={};studyStore.progress.textbookPageAnswersV1=next;
+ const next = textbookAnswers.value[item.id] === choice ? 0 : choice;
+ if (next) recordAttempt(item.id, next, item.question.answer);
+ saveTextbookAnswer(studyStore.progress ||= {}, item.id, next);
 }
 
 function openCoolingSearch(): void {
@@ -2364,15 +2528,12 @@ function isMidtermCalculation(item: QuestionItem): boolean {
 async function ensureItemSources(ids: string[]): Promise<void> {
   const savedBooks=[...new Set(ids.map(bookForStudyId).filter((book):book is TextbookKey=>!!book))];
   if(savedBooks.length){
-    const module=await loadTextbookModule();
-    const supplements=(await Promise.all(savedBooks.map(module.loadTextbookSupplement))).flat();
-    textbookSupplement.value=[...new Map([...textbookSupplement.value,...supplements].map(item=>[item.id,item])).values()];
+    await Promise.all([loadTextbookModule(), ...savedBooks.map(ensureBookSources)]);
   }
   const keys = catalogs.filter(catalog => !catalog.isVirtual && catalog.key !== SCHOOL_EXAM_CATALOG_KEY
     && ids.some(id => coolingOriginalId(id).startsWith(`${catalog.key}-`))).map(catalog => catalog.key);
   // Occurrence groups can cross both banks, even when saved IDs use only one.
   await loadQuestionSources([...new Set([...keys,
-    ...ids.flatMap(id=>{const book=bookForStudyId(id);return book?textbookSourceKeys(book):[];}),
     ...(ids.some(id=>id.startsWith('school-energy-')) ? ['energy-midterm'] : []),
     ...(ids.some(isCoolingRecord) ? ['hvac', 'hvac-hansol'] : [])])]);
 }
@@ -2613,13 +2774,12 @@ function startBetaTrial(): void {
 function ownHistoryState(value: unknown = history.state): CbtHistoryState | null {
   if (!value || typeof value !== 'object') return null;
   const candidate = value as Partial<CbtHistoryState>;
-  const validViews: ViewName[] = ['home', 'rounds', 'school', 'history', 'wrong', 'search', 'calculation', 'guide', 'coach', 'beta', 'showcase', 'stats', 'updates', 'settings'];
-  if (candidate.cbtSpace !== historyScope || !validViews.includes(candidate.view as ViewName)) return null;
+  if (candidate.cbtSpace !== historyScope || !isStudyView(candidate.view)) return null;
   return candidate as CbtHistoryState;
 }
 
 function viewHistoryState(next: ViewName, sessionId?: string): CbtHistoryState {
-  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}), ...(next==='rounds'&&textbookPagesOpen.value?{textbookCollection:true}:{}), ...(next==='rounds'&&textbookReaderOpen.value?{textbookRoom:true}:{}) };
+  return { cbtSpace: historyScope, view: next, ...(sessionId ? { sessionId } : {}), ...(next==='rounds'&&textbookPagesOpen.value?{textbookCollection:true,...(choosingTextbook.value?{choosingTextbook:true}:{})}:{}), ...(next==='rounds'&&textbookReaderOpen.value?{textbookRoom:true}:{}) };
 }
 
 function initializeNavigationHistory(): void {
@@ -2631,16 +2791,17 @@ function initializeNavigationHistory(): void {
   } catch {
     openUpdatesAfterRefresh = false;
   }
-  const restoredView = openUpdatesAfterRefresh ? 'updates' : current?.view || 'home';
+  const restoredView = openUpdatesAfterRefresh ? 'updates' : viewFromHash(location.hash) ?? current?.view ?? 'home';
   const initialView = restoredView === 'beta' && !experimentalFeaturesEnabled.value
     ? 'home'
     : restoredView;
   view.value = initialView;
+  choosingTextbook.value=!!current?.choosingTextbook && !current.textbookRoom;
   if(initialView==='rounds'&&current?.textbookCollection&&!current.textbookRoom&&!openUpdatesAfterRefresh){textbookPagesOpen.value=true;void loadTextbookPages();}
   if(initialView==='rounds'&&current?.textbookRoom&&!openUpdatesAfterRefresh){
     textbookPagesOpen.value=true;textbookReaderOpen.value=true;void loadTextbookPages();
   }
-  history.replaceState(viewHistoryState(initialView), '', location.href);
+  history.replaceState(viewHistoryState(initialView), '', studyHref(initialView));
 }
 
 function openView(next: ViewName, options: { fromHistory?: boolean; replace?: boolean } = {}): void {
@@ -2663,7 +2824,7 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
     const current = ownHistoryState();
     if (!current || current.view !== next || current.sessionId) {
       const method = options.replace ? 'replaceState' : 'pushState';
-      history[method](viewHistoryState(next), '', location.href);
+      history[method](viewHistoryState(next), '', studyHref(next));
     }
   }
   view.value = next;
@@ -2698,6 +2859,7 @@ function restoreSessionReturnPosition(state: SessionReturnState | null): void {
 }
 
 function deactivateSession(preserveForForward = false): void {
+  if (learningSessionSaveHandle) saveActiveLearningSession();
   if (preserveForForward) {
     suspendedSession = session.value;
     suspendedExamResult = examResult.value;
@@ -2713,8 +2875,11 @@ function deactivateSession(preserveForForward = false): void {
 }
 
 function handleBrowserHistory(event: PopStateEvent): void {
-  const target = ownHistoryState(event.state);
+  const link = viewFromHash(location.hash);
+  const target = ownHistoryState(event.state) ?? (link ? { cbtSpace: historyScope, view: link } as CbtHistoryState : null);
   if (!target) return;
+  if (!ownHistoryState(event.state)) history.replaceState(target, '', location.href);
+  choosingTextbook.value=!!target.choosingTextbook && !target.textbookRoom;
   textbookReaderOpen.value=target.view==='rounds'&&!!target.textbookRoom;
   textbookPagesOpen.value=target.view==='rounds'&&!!(target.textbookCollection||target.textbookRoom);
   if(textbookPagesOpen.value&&!textbookReaderOpen.value)void loadTextbookPages();
@@ -2723,7 +2888,7 @@ function handleBrowserHistory(event: PopStateEvent): void {
     if (practicalSessionActive.value) closePracticalMock();
     else openPracticalLibrary(practicalLibraryTab.value, true);
     if (practicalSessionActive.value) {
-      history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', location.href);
+      history.pushState({ ...viewHistoryState('guide'), practicalRoom: true }, '', studyHref('guide'));
     } else if (target.view !== 'guide') {
       history.pushState(viewHistoryState('guide'), '', location.href);
     }
@@ -2780,7 +2945,6 @@ function setupSearchWorker(): void {
       searchTotal.value = message.total || 0;
     }
   });
-  indexSearchItems();
 }
 
 function indexSearchItems(): void {
@@ -2826,6 +2990,7 @@ async function prepareSearchScope(): Promise<void> {
   searchRequestId += 1;
   searchResultIds.value = [];
   try {
+    if (!searchWorker) setupSearchWorker();
     await loadQuestionSources(requestKeys);
     if (sequence !== searchLoadSequence) return;
     if (searchSubject.value !== 'all' && !searchSubjects.value.includes(searchSubject.value)) searchSubject.value = 'all';
@@ -3731,6 +3896,11 @@ function stopTimer(): void {
 }
 
 function openCalculator(): void {
+  if (session.value) {
+    panelCalculator.value=true;
+    sessionMenuOpen.value=false;
+    return;
+  }
   if (document.documentElement.dataset.nativeApp === 'true') {
     nativeCalculatorOpen.value = true;
     nativeMoreOpen.value = false;
@@ -4047,7 +4217,7 @@ async function startUiTour(): Promise<void> {
     doneBtnText: '확인',
     progressText: '{{current}} / {{total}}',
     steps: [
-      { element: '.settings-hub', popover: { title: '화면과 학습 데이터', description: '기존처럼 모든 설정이 이어집니다. 버튼 안의 이름과 설명을 비교해 선택하세요.' } },
+      { element: '.settings-hub', popover: { title: '화면과 학습 데이터', description: '설정 목차에서 바꿀 항목을 고르세요. 검색하면 모든 분류에서 찾을 수 있습니다.' } },
       { element: '.settings-open-full,.settings-hub-search', popover: { title: '전체 설정', description: '같은 설정을 넓게 보고, 목차로 이동하거나 검색할 수 있습니다.' } },
       { element: '.theme-studio', popover: { title: 'UI·테마 실험실', description: '기존 테마의 색상과 밀도만 조절합니다. 저장한 답안에는 영향을 주지 않습니다.' } },
     ],
@@ -4307,7 +4477,7 @@ async function applyUpdate(): Promise<void> {
   } catch {
     updateChecking.value = false;
     pwaRegistrationError.value = true;
-    showToast('업데이트 적용에 실패했습니다. 화면의 PWA 자동 복구를 이용해 주세요.');
+    showToast('업데이트 적용에 실패했습니다. 설정의 기록·동기화에서 복구 화면을 열어 주세요.');
   }
 }
 
@@ -4703,30 +4873,24 @@ onMounted(async () => {
     appHydrating.value = false;
   }
   void initializeCloudSync();
-  try {
-    setupSearchWorker();
-  } catch (error) {
-    console.error('문제 검색 색인을 시작하지 못했습니다.', error);
-  }
   await nextTick();
   animateViewDetails(view.value);
 });
 
 const settingsValues = computed<SettingsValues>(() => ({
-  homeLayout: homeLayout.value,
-  theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
+  mobileModel: allowMobileModel.value, theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
   visualStyle: visualStyle.value, display: displayPreference.value, dynamic: dynamicUiEnabled.value,
   solveLayout: solveLayoutMode.value, answerLayout: answerLayout.value, indicator: hotspotIndicator.value,
   imageTheme: restoredImageTheme.value, explanationDisplay: explanationDisplay.value, experimental: experimentalFeaturesEnabled.value,
   judgment: questionJudgmentEnabled.value, rotation: sunjaeRotationSeconds.value,
 }));
-const settingsContext = computed(() => ({ jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value)||textbookReaderOpen.value,
+const settingsContext = computed(() => ({ pwaRegistrationError: pwaRegistrationError.value, jewelry: isJewelry, native: isNativeApp, session: Boolean(session.value)||textbookReaderOpen.value,
   exam: session.value?.mode === 'exam', omr: examSheetOpen.value, version: currentVersion.value,
   displayLabel: resolvedDisplayMode === 'mobile' ? '모바일·태블릿' : 'PC',
 }));
 function changeSetting(change: SettingChange): void {
   switch (change.key) {
-    case 'homeLayout': setHomeLayout(change.value); break;
+    case 'mobileModel': setMobileModel(change.value); break;
     case 'theme': theme.value = change.value; applyTheme(change.value); break;
     case 'fontScale': setFontScale(change.value); break;
     case 'fontFamily': setFontFamilyPreference(change.value); break;
@@ -4788,6 +4952,295 @@ onBeforeUnmount(() => {
   delete document.documentElement.dataset.resizing;
   searchWorker?.terminate();
 });
+
+const historyViewModel=proxyRefs({
+openView, recentExamRecords, replayHistoryRecord, resumeSavedLearning, savedLearningSession, selectedCatalog,
+});
+export type HistoryViewModel=typeof historyViewModel;
+
+const wrongViewModel=proxyRefs({
+beginSession, displayedWrongItems, isCalculationItem, openView, restoredImageTheme, selectedCatalog, selectedWrongCalculationCount, studyStore, wrongAnswerDetailMap, wrongItems, wrongRoundFilter, wrongRoundGroups, wrongTypeFilter,
+});
+export type WrongViewModel=typeof wrongViewModel;
+
+const examSessionViewModel=proxyRefs({
+activateSessionItem, activeSessionItem, adjustFontScale, answerLayout, answeredCount, betaModeMeta, betaQuestionMeta, chooseAnswer, coolingSessionActive, currentItemColumns, darkActive, examPace, examSheetOpen, experimentalFeaturesEnabled, fontScale, formattedTime, goToNextKept, goToNextUnanswered, goToPage, goToQuestion, hotspotIndicator, isMidtermCalculation, isSubjectStart, jumpToLearningQuestion, keptCount, learningJumpNumber, leaveSession, markOmrManualScroll, omrFilter, omrRows, openCalculator, pageCount, panelCalculator, panelNotes, prepareAiQuestion, questionJudgmentEnabled, questionTransitionName, resetLearning, restoredImageTheme, selectedKey, session, sessionMenuOpen, sessionProgress, sessionQuestionMax, sessionSubjectNumber, sessionTitle, setFontScale, setQuestionConfidence, setQuestionMistakeReason, setQuestionStudyNote, setSessionPageSize, settingsOpen, solveLayoutMode, studyStore, submitExam, submitLearning, toggleBookmark, toggleKeep, toggleLightDark, unansweredCount,
+setOmrListRef:(node:HTMLDivElement|null)=>{omrListRef.value=node;},
+});
+export type ExamSessionViewModel=typeof examSessionViewModel;
+
+const gradeViewModel=proxyRefs({
+displayedResultScore, examResult, leaveSession, officialRule, openResultWrongAnswers, responsiveImageAttrs, restoreOriginalImage, session, simpsonsKingSizeImage, simpsonsThemeImage, sunjaeGradingImage, sunjaeResultDetail, sunjaeResultImage, sunjaeResultPhase, sunjaeResultTitle, visualStyle,
+});
+export type GradeViewModel=typeof gradeViewModel;
+
+const searchViewModel=proxyRefs({
+  QuestionLibraryPreview,
+  addSearchItemToSchool,
+  beginSession,
+  bookmarkRoundFilter,
+  bookmarkRounds,
+  bookmarkedCatalogItems,
+  catalogs,
+  displayedSearchResults,
+  isJewelry,
+  newSearchSetTitle,
+  normalizedSchoolSubject,
+  openView,
+  prepareSearchScope,
+  requestSearch,
+  restoredImageTheme,
+  schoolExamData,
+  searchBookmarksOnly,
+  searchCatalogKeys,
+  searchError,
+  searchLoading,
+  searchQuery,
+  searchReady,
+  searchScope,
+  searchScopeLabel,
+  searchSetId,
+  searchSubject,
+  searchSubjects,
+  searchTotal
+});
+export type SearchViewModel=typeof searchViewModel;
+
+const calculationViewModel=proxyRefs({
+  FormulaWorkbench,
+  MathFormula,
+  QuestionLibraryPreview,
+  beginSession,
+  calculationPage,
+  calculationPagination,
+  calculationResultFilter,
+  calculationRoundFilter,
+  calculationRounds,
+  calculationRows,
+  calculationSubjectFilter,
+  calculationSubjects,
+  calculationWrongRows,
+  filteredCalculationRows,
+  formulaRenderSamples,
+  formulaWorkbenchOpen,
+  hvacCalculatorMemory,
+  hvacCalculatorMemoryGroups,
+  hvacCalculatorSheetNotes,
+  hvacFrequentFormulas,
+  restoredImageTheme,
+  selectedCatalog,
+  startCalculationLearning,
+  stripMarkup
+});
+export type CalculationViewModel=typeof calculationViewModel;
+
+const guideViewModel=proxyRefs({
+  MathFormula,
+  PracticalCalculationLesson,
+  PracticalCalculationLibrary,
+  PracticalFractionLines,
+  PracticalIssueReport,
+  PracticalLoadMore,
+  PracticalProblemImage,
+  PracticalSearchLibrary,
+  PracticalTrainingTools,
+  activeStudyGuide,
+  calculationLesson,
+  changePracticalPage,
+  closePracticalMock,
+  finishPracticalMock,
+  formatPracticalSession,
+  formatPracticalTime,
+  hasPracticalProgress,
+  hvacFieldReportRelatedGroups,
+  hvacPracticalAvailable,
+  jumpPracticalIndex,
+  jumpPracticalUnanswered,
+  markPracticalPrompt,
+  openCalculator,
+  openPracticalCalculations,
+  openPracticalLibrary,
+  openPracticalMaterial,
+  openPracticalRound,
+  openPracticalSearchResults,
+  openView,
+  practicalAbsoluteTemperatureExample,
+  practicalAdaptiveLabel,
+  practicalAnswerRevealed,
+  practicalBatchOptions,
+  practicalCalculationCount,
+  practicalCalculationPdf,
+  practicalCategoryFilter,
+  practicalCategoryLabels,
+  practicalCategoryOptions,
+  practicalContinuous,
+  practicalContinuousLimit,
+  practicalDifficultyLabels,
+  practicalDisplayChoice,
+  practicalDraftClosedIds,
+  practicalDrafts,
+  practicalExamLocked,
+  practicalGradeLabel,
+  practicalGroupCounts,
+  practicalGroupLabel,
+  practicalGuideSection,
+  practicalHasAnswer,
+  practicalHelperIds,
+  practicalLatestRound,
+  practicalLayout,
+  practicalLibraryOpen,
+  practicalLibraryTab,
+  practicalListNumber,
+  practicalMasteredCount,
+  practicalMaterialPeriod,
+  practicalMistakeLabel,
+  practicalNavigatorOpen,
+  practicalOptionsOpen,
+  practicalPage,
+  practicalPageCount,
+  practicalPageSize,
+  practicalPagedPrompts,
+  practicalPartialCount,
+  practicalPatternResume,
+  practicalPatternSummary,
+  practicalPeriodAvailable,
+  practicalProgress,
+  practicalPromptFilter,
+  practicalPrompts,
+  practicalProvidedCount,
+  practicalReviewCount,
+  practicalRoundSummaries,
+  practicalRoundYears,
+  practicalSearch,
+  practicalSelectionLabel,
+  practicalSessionActive,
+  practicalSessionFinished,
+  practicalSessionGradedCount,
+  practicalSessionIds,
+  practicalSessionPattern,
+  practicalSessionRemainingSeconds,
+  practicalSessionReport,
+  practicalSessionScore,
+  practicalSessionTotalPoints,
+  practicalSiBasics,
+  practicalSimilarCount,
+  practicalSolving,
+  practicalSourcePrompt,
+  practicalSources,
+  practicalStudyMode,
+  practicalViewedAnswerIds,
+  printPracticalSheet,
+  replacePracticalDraft,
+  resetPracticalPrompt,
+  resumePracticalPatternMock,
+  selectedKey,
+  settingsOpen,
+  showPracticalReview,
+  startHvacFieldReportPractice,
+  startPracticalDaily,
+  startPracticalMock,
+  startPracticalPatternMock,
+  startPracticalRelated,
+  togglePracticalAnswer,
+  updatePracticalAssessment,
+  updatePracticalDraft,
+  visiblePracticalPrompts
+});
+export type GuideViewModel=typeof guideViewModel;
+
+const coachViewModel=proxyRefs({
+  coachAnswered,
+  coachConfidence,
+  coachCoverage,
+  coachHasEvidence,
+  coachHasUnmeasuredSubjects,
+  coachPlans,
+  coachSubjectRows,
+  displayedPassChance,
+  dueRows,
+  officialExamRecords,
+  passChance,
+  predictedScore,
+  recentExamAverage,
+  reviewSchedule,
+  selectedCatalog,
+  startCoachPlan,
+  startCoachSubject,
+  yearFrom,
+  yearTo
+});
+export type CoachViewModel=typeof coachViewModel;
+
+const betaViewModel=proxyRefs({
+  betaFalseConfidenceRows,
+  betaLowConfidenceRows,
+  betaMemoRows,
+  betaModeFilter,
+  betaModeSummaries,
+  betaReasonRows,
+  betaWeakRows,
+  settingsOpen,
+  startBetaReview,
+  startBetaTrial
+});
+export type BetaViewModel=typeof betaViewModel;
+
+const showcaseViewModel=proxyRefs({
+  answerLayout,
+  applyTheme,
+  currentVersion,
+  darkActive,
+  dynamicUiEnabled,
+  isJewelry,
+  openCalculator,
+  openHvacPracticalGuide,
+  openQualificationRounds,
+  openTextbookPages,
+  openView,
+  patchEntries,
+  pluginExperiences,
+  responsiveImageAttrs,
+  restoreOriginalImage,
+  restoredDarkPreviewImage,
+  restoredImageTheme,
+  searchBookmarksOnly,
+  setAnswerLayout,
+  setDynamicUiEnabled,
+  setHotspotIndicator,
+  setRestoredImageTheme,
+  setSolveLayoutMode,
+  settingsOpen,
+  simpsonsThemeImage,
+  solveLayoutMode,
+  startFeatureRound,
+  theme,
+  toggleLightDark,
+  upscaleComparison,
+  upscalePreview,
+  upscalePreviewKind
+});
+export type ShowcaseViewModel=typeof showcaseViewModel;
+
+const statsViewModel=proxyRefs({
+  selectedCatalog,
+  stats,
+  subjectStats
+});
+export type StatsViewModel=typeof statsViewModel;
+
+const patchViewModel=proxyRefs({
+  androidApkUrl,
+  checkForUpdate,
+  currentVersion,
+  openView,
+  patchEntries,
+  resumeSavedLearning,
+  savedLearningSession,
+  showAndroidApkPatchDownload,
+  spaceName,
+  updateChecking
+});
+export type PatchViewModel=typeof patchViewModel;
 </script>
 
 <template>
@@ -4827,18 +5280,18 @@ onBeforeUnmount(() => {
         <figcaption><strong>오늘도 나랑 같이 달릴래?</strong><small>{{ sunjaeRotationSeconds ? `${sunjaeRotationLabel(sunjaeRotationSeconds)}마다 내가 찾아올게` : '오늘은 이 모습으로 기다릴게' }}</small></figcaption>
       </figure>
       <nav>
-        <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>⌂</template></span>홈</button>
-        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▤</template></span>회차별 문제</button>
-        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="openView('school')"><span data-theme-symbol="✎"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><template v-else>✎</template></span>학교 시험 준비</button>
-        <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exercise" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(8))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-history-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>◴</template></span>학습 내역</button>
-        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>!</template></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
-        <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>⌕</template></span>문제 검색</button>
-        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>∑</template></span>계산문제만 풀기</button>
-        <button v-if="studyGuideAvailable" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▣</template></span>시험 자료실</button>
-        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" v-bind="responsiveImageAttrs(simpsonsBurnsImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>✦</template></span>합격 엔진</button>
-        <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>β</template></span>베타 학습 도구</button>
-        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" v-bind="responsiveImageAttrs(simpsonsThemeImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>▥</template></span>학습 분석</button>
-        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(7))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>◷</template></span>패치노트</button>
+        <button :class="{ active: view === 'home' }" @click="openView('home')"><span data-theme-symbol="⌂"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-grin" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-home-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><i v-else class="study-menu-icon menu-home" aria-hidden="true" /></span>홈</button>
+        <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span data-theme-symbol="▤"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-cool" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-rounds-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><i v-else class="study-menu-icon menu-rounds" aria-hidden="true" /></span>회차별 문제</button>
+        <button v-if="!isJewelry" :class="{ active: view === 'school' }" @click="openView('school')"><span data-theme-symbol="✎"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><i v-else class="study-menu-icon menu-school" aria-hidden="true" /></span>학교 시험 준비</button>
+        <button :class="{ active: view === 'history' }" @click="openView('history')"><span data-theme-symbol="◴"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exercise" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(8))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-history-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><i v-else class="study-menu-icon menu-history" aria-hidden="true" /></span>학습 내역</button>
+        <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span data-theme-symbol="!"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-phone" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-wrong-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-sad" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><i v-else class="study-menu-icon menu-wrong" aria-hidden="true" /></span>오답노트 <b v-if="stats.wrong">{{ stats.wrong }}</b></button>
+        <button :class="{ active: view === 'search' }" @click="openView('search')"><span data-theme-symbol="⌕"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-bart" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-search-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><i v-else class="study-menu-icon menu-search" aria-hidden="true" /></span>문제 검색</button>
+        <button :class="{ active: view === 'calculation' }" @click="openView('calculation')"><span data-theme-symbol="∑"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-calculation-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><i v-else class="study-menu-icon menu-calculation" aria-hidden="true" /></span>계산문제만 풀기</button>
+        <button v-if="studyGuideAvailable" :class="{ active: view === 'guide' }" @click="openView('guide')"><span data-theme-symbol="▣"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-hardhat" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-guide-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><i v-else class="study-menu-icon menu-guide" aria-hidden="true" /></span>시험 자료실</button>
+        <button class="coach-nav-button" :class="{ active: view === 'coach' }" @click="openView('coach')"><span data-theme-symbol="✦"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-burns" v-bind="responsiveImageAttrs(simpsonsBurnsImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-coach-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><i v-else class="study-menu-icon menu-coach" aria-hidden="true" /></span>합격 엔진</button>
+        <button v-if="experimentalFeaturesEnabled" class="beta-nav-button" :class="{ active: view === 'beta' }" @click="openView('beta')"><span data-theme-symbol="β"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-doctor" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(6))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-beta-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-face" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><i v-else class="study-menu-icon menu-beta" aria-hidden="true" /></span>베타 학습 도구</button>
+        <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span data-theme-symbol="▥"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character crop-bart" v-bind="responsiveImageAttrs(simpsonsThemeImage, '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-stats-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-cherry" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><i v-else class="study-menu-icon menu-stats" aria-hidden="true" /></span>학습 분석</button>
+        <button :class="{ active: view === 'updates' }" @click="openView('updates')"><span data-theme-symbol="◷"><img  v-if="visualStyle === 'simpsons'" class="theme-nav-character simpsons-scene-exhausted" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(7), '64px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(7))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-updates-${sunjaeImageIndex}`" class="theme-nav-character crop-sunjae-night" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), '64px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><i v-else class="study-menu-icon menu-updates" aria-hidden="true" /></span>패치노트</button>
       </nav>
       <a class="space-portal" :href="$problemImage(isJewelry ? 'index.html' : 'jewelry.html')">
         <span>{{ isJewelry ? 'CBT' : '◇' }}</span>
@@ -4858,12 +5311,7 @@ onBeforeUnmount(() => {
         <button class="menu-button" type="button" aria-label="메뉴 열기" @click="mobileMenuOpen = true">☰ <span>메뉴</span></button>
         <div class="topbar-context">
           <strong>{{ viewTitle }}</strong>
-          <label class="topbar-qualification">
-            <span>종목</span>
-            <select :value="pendingQualification || selectedKey" aria-label="현재 화면의 자격증 종목" @change="updateQualificationFromSetup">
-              <option v-for="catalog in catalogs" :key="catalog.key" :value="catalog.key">{{ catalog.name }}</option>
-            </select>
-          </label>
+          <NavigationMount :subject="{groups:qualificationGroups,selected:selectedKey,name:selectedCatalog.name,onSelect:changeContextQualification}"/>
         </div>
         <div class="top-actions">
           <button type="button" aria-label="문제 검색 열기" @click="openView('search')">⌕ <span>검색</span></button>
@@ -4873,43 +5321,28 @@ onBeforeUnmount(() => {
         </div>
       </header>
       <RoundsLoading v-if="pendingQualification" :percent="qualificationLoadPercent" />
+      <p v-if="scopeError && selectedCatalog.isPlaceholder && !(view==='rounds' && textbookPagesOpen)" role="alert">{{scopeError}} <button type="button" @click="loadCurrentScope">다시 불러오기</button></p>
       <p v-if="qualificationLoadError" role="alert">{{ qualificationLoadError }}</p>
 
-      <div class="page-content">
+      <div class="page-content" :class="{ 'mobile-book-navigation': resolvedDisplayMode === 'mobile' && view === 'rounds' && textbookPagesOpen }">
         <p v-if="selectedKey === 'maintenance-engineer' && !session" class="qualification-scope-notice" role="note">설비보전기사 수록 범위: 2006~2022년 공개 기출 27회차. 2022년 4과목과 이전 5과목을 구분합니다. 2025년부터 개편된 현행 과목과는 다르며, 최신 시험 준비 시 출제기준을 함께 확인하세요.</p>
         <p v-if="selectedKey === 'safety-engineer' && !session" class="qualification-scope-notice" role="note">산업안전기사 2018~2022년 구 6과목 기출. 현행 모의시험이 아니며, 법령 문항의 답은 출제 당시 기준일 수 있습니다. <a href="https://safetygwajang.com/?audience=jobseeker" target="_blank" rel="noopener noreferrer">회차 자료: 안전과장</a></p>
-        <div v-if="appHydrating && dynamicUiEnabled" class="dashboard-skeleton" aria-label="학습 화면을 준비하는 중">
+        <div v-if="showHydrationSkeleton" class="dashboard-skeleton" aria-label="학습 화면을 준비하는 중">
           <i class="skeleton-title" /><i /><i /><i /><i class="skeleton-wide" />
         </div>
         <Transition v-else :name="viewTransitionName" mode="out-in" @after-enter="animateViewDetails(view)">
-          <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home' && homeLayout === 'classic', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' && homeLayout === 'classic' }">
+          <div :key="view" class="view-stage" :class="{ 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }">
         <StudySettings v-if="view === 'settings'" mode="page" :values="settingsValues" :context="settingsContext" @change="changeSetting" @action="settingsAction">
           <template #account><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요." /></template>
         </StudySettings>
         <template v-else-if="view === 'home'">
-          <StudyLounge v-if="homeLayout === 'lounge'" :qualification="selectedCatalog.name" :answered="stats.answered" :wrong="stats.wrong" :motion="dynamicUiEnabled" @navigate="navigateLounge" @exit="setHomeLayout('classic')" />
-          <template v-else>
-          <div class="lounge-home-entry"><button type="button" @click="setHomeLayout('lounge')">학습 라운지 둘러보기 ↗</button><small>공간형 홈 · 언제든 기존 홈으로 돌아올 수 있어요</small></div>
+          <StudyHomeMount v-if="visualStyle === 'default'" :model="reactHome" />
 
+          <ThemeStudyCover v-if="visualStyle==='simpsons'||visualStyle==='sunjae'" :style-name="visualStyle"
+            :subject="selectedKey" :subject-name="selectedCatalog.name" :jewelry="isJewelry"
+            :portrait="visualStyle==='sunjae'?currentSunjaeImage:simpsonsKingSizeImage"
+            :answered="stats.answered" :accuracy="stats.accuracy" @rounds="openView('rounds')" @secondary="isJewelry?openView('wrong'):openTextbookPages()" @settings="settingsOpen=true" />
           <section v-if="visualStyle === 'sunjae' && dynamicUiEnabled" class="sunjae-fan-home">
-            <div class="sunjae-fan-stage">
-              <Transition name="sunjae-photo-fade" mode="out-in">
-                <img  :key="`sunjae-stage-${currentSunjaeImage}`" class="sunjae-stage-photo" v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="류선재·변우석 테마 메인 사진">
-              </Transition>
-              <div class="sunjae-stage-shade" />
-              <div class="sunjae-stage-copy">
-                <span>LOVELY RUNNER · FAN STUDY ROOM</span>
-                <h1>나 보러 왔지?<br><em>오늘도 같이 달리자</em></h1>
-                <p>네가 문제를 푸는 동안 나는 여기 있을게. 어려워도 한 문제씩 끝까지 가보자.</p>
-                <div><button type="button" @click="startRangeLearning">나랑 바로 공부하기</button><button type="button" @click="openView('wrong')">틀린 문제 같이 보기</button></div>
-              </div>
-              <div class="sunjae-stage-polaroids" aria-hidden="true">
-                <figure><img  v-bind="responsiveImageAttrs(sunjaeImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(2))" alt=""><span>오늘도 네 편</span></figure>
-                <figure><img  v-bind="responsiveImageAttrs(sunjaeImageAt(6), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(6))" alt=""><span>끝까지 같이</span></figure>
-              </div>
-              <div class="sunjae-stage-status"><span>오늘의 우리 기록</span><strong>{{ stats.answered.toLocaleString() }}문제</strong><small>정답률 {{ stats.accuracy }}% · 오답 {{ stats.wrong.toLocaleString() }}</small></div>
-            </div>
-
             <div class="sunjae-fan-workspace">
               <section class="sunjae-qualification-album">
                 <header><div><span>01 · PICK OUR COURSE</span><h2>오늘 나랑 어떤 종목 달릴래?</h2></div><p>사진을 넘기듯 골라봐. 고르면 내가 공부 범위를 바로 바꿔줄게.</p></header>
@@ -4959,39 +5392,12 @@ onBeforeUnmount(() => {
             </div>
           </section>
 
-          <section v-else-if="visualStyle === 'simpsons'" class="simpsons-home-hero">
-            <div class="simpsons-home-copy">
-              <span>SPRINGFIELD STUDY MODE · 🍩</span>
-              <h1>공부 안 하면<br><em>호머가 찾아옵니다!</em></h1>
-              <p>기능과 학습 기록은 그대로 두고, 화면만 심슨풍 코믹 UI로 바꿨습니다. 설정에서 언제든 기본 화면으로 돌아갈 수 있습니다.</p>
-              <div>
-                <button type="button" @click="openView('rounds')">회차 풀기 →</button>
-                <button type="button" @click="settingsOpen = true">테마 설정</button>
-              </div>
-            </div>
-            <div class="simpsons-hero-gallery">
-              <figure class="simpsons-hero-primary">
-                <img  v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" fetchpriority="high">
-              </figure>
-              <figure class="simpsons-hero-secondary">
-                <img  v-bind="responsiveImageAttrs(simpsonsKingSizeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsKingSizeImage)" alt="꽃무늬 옷을 입은 뚱뚱한 호머 심슨 본편 장면" loading="lazy" decoding="async">
-                <figcaption>일단 공부부터 시작!</figcaption>
-              </figure>
-              <div class="simpsons-scene-stack" aria-label="웃긴 심슨 본편 장면 모음">
-                <figure v-for="(image, index) in simpsonsHeroScenes" :key="image"><img  :src="$problemImage(image)" :alt="`심슨 본편의 웃긴 장면 ${index + 1}`" loading="lazy" decoding="async"></figure>
-              </div>
-            </div>
-          </section>
-          <section v-else-if="visualStyle === 'sunjae'" class="sunjae-home-hero">
-            <img  v-bind="responsiveImageAttrs(currentSunjaeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(currentSunjaeImage)" alt="선재 업고 튀어 류선재 단독 장면">
-            <div class="sunjae-hero-copy"><span>LOVELY RUNNER STUDY MODE · ☂</span><h1>오늘도 나랑<br><em>같이 달릴래?</em></h1><p>동적 UI를 켜면 선재 전용 팬페이지 배치와 채점 연출을 볼 수 있어.</p><div class="sunjae-hero-actions"><button type="button" @click="openView('rounds')">나랑 회차 풀기 →</button><button type="button" @click="settingsOpen = true">동적 UI 설정</button></div></div>
-          </section>
-          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
+          <section v-if="visualStyle !== 'default' && (visualStyle !== 'sunjae' || !dynamicUiEnabled)" class="qualification-section">
             <div class="section-title">
               <div>
-                <span>QUALIFICATIONS</span>
-                <h1>준비할 종목을 선택하세요</h1>
-                <p>선택 즉시 아래 과목, 연도 범위와 출제 문항이 바뀝니다.</p>
+
+                <h1>종목 선택</h1>
+                <p>종목을 누르면 회차와 문제를 볼 수 있습니다.</p>
               </div>
               <div class="compact-stats">
                 <span>학습<strong>{{ stats.answered.toLocaleString() }}</strong></span>
@@ -4999,13 +5405,17 @@ onBeforeUnmount(() => {
                 <span>오답<strong>{{ stats.wrong.toLocaleString() }}</strong></span>
               </div>
             </div>
-            <div class="qualification-grid">
+            <div class="subject-groups">
+              <section v-for="group in qualificationGroups" :key="group.label" class="subject-group">
+                <h3>{{ group.label }}</h3>
+                <div class="qualification-grid">
               <button
-                v-for="(catalog, catalogIndex) in catalogs"
+                v-for="(catalog, catalogIndex) in group.items"
                 :key="catalog.key"
                 type="button"
                 class="qualification-card"
                 :class="[qualificationMeta[catalog.key]?.className, { selected: selectedKey === catalog.key }]"
+                :aria-pressed="selectedKey === catalog.key"
                 @click="selectQualification(catalog.key)"
               >
                 <img  v-if="visualStyle === 'sunjae'" class="sunjae-card-photo" v-bind="responsiveImageAttrs(sunjaeImageAt(catalogIndex + 1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeImageAt(catalogIndex + 1))" alt="">
@@ -5016,8 +5426,10 @@ onBeforeUnmount(() => {
                   <small>{{ catalog.roundCount ?? catalog.rounds.length }}{{ catalog.key === 'energy-midterm' ? '주제' : '회차' }} · {{ catalogDisplayQuestionCount(catalog).toLocaleString() }}문제</small>
                   <em>{{ qualificationMeta[catalog.key]?.description }}</em>
                 </span>
-                <b>›</b>
+                <b aria-hidden="true">{{ selectedKey === catalog.key ? '✓' : '›' }}</b>
               </button>
+            </div>
+              </section>
             </div>
           </section>
 
@@ -5027,7 +5439,10 @@ onBeforeUnmount(() => {
             <button type="button" class="secondary" @click="clearSavedLearningSession">기록 지우기</button>
           </section>
 
-          <section v-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
+          <section v-if="selectedCatalog.isPlaceholder" class="study-builder">
+            <button ref="homeScopeTrigger" type="button" :disabled="scopeLoading" @click="loadCurrentScope">{{scopeLoading?'학습 범위를 불러오는 중…':'연도와 출제 체계 설정'}}</button>
+          </section>
+          <section v-else-if="(visualStyle !== 'sunjae' || !dynamicUiEnabled) && selectedKey !== SCHOOL_EXAM_CATALOG_KEY" class="study-builder">
             <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-builder-mascot" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(4), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(4))" alt="공부 계획을 확인하는 닥터 닉">
             <div class="builder-heading">
               <div><span>STUDY SETUP</span><h2>연도와 출제 체계를 정하세요</h2></div>
@@ -5141,22 +5556,22 @@ onBeforeUnmount(() => {
             </dl>
           </section>
 
-          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled" class="home-release-card" :class="{ ready: updateAvailable }">
+          <section v-if="visualStyle !== 'sunjae' || !dynamicUiEnabled || pwaRegistrationError" class="home-release-card" :class="{ ready: updateAvailable }" :aria-label="pwaRegistrationError ? '오프라인 저장 상태' : undefined">
             <img  v-if="visualStyle === 'simpsons' && dynamicUiEnabled" class="simpsons-release-photo" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt="손가락을 맞댄 번즈">
             <div class="home-release-icon">{{ updateAvailable ? '↻' : '✓' }}</div>
             <div>
-              <span>{{ updateAvailable ? 'NEW VERSION READY' : 'LATEST VERSION' }}</span>
-              <strong>{{ updateAvailable ? '새 버전을 바로 적용할 수 있습니다' : `현재 v${currentVersion} 최신 버전을 사용 중입니다` }}</strong>
-              <small>{{ updateAvailable ? '학습 기록은 유지되고 화면과 기능만 최신 상태로 바뀝니다.' : '새 업데이트가 있는지 언제든 다시 확인할 수 있습니다.' }}</small>
+              <span>{{ updateAvailable ? 'NEW VERSION READY' : pwaRegistrationError ? 'OFFLINE' : 'LATEST VERSION' }}</span>
+              <strong>{{ updateAvailable ? '새 버전을 바로 적용할 수 있습니다' : pwaRegistrationError ? '오프라인 준비를 마치지 못했습니다' : `현재 v${currentVersion} 최신 버전을 사용 중입니다` }}</strong>
+              <small v-if="pwaRegistrationError" role="status">온라인으로 계속 풀 수 있습니다. 설정의 ‘기록·동기화’에서도 복구 화면을 열 수 있습니다.</small>
+              <small v-else>{{ updateAvailable ? '학습 기록은 유지되고 화면과 기능만 최신 상태로 바뀝니다.' : '새 업데이트가 있는지 언제든 다시 확인할 수 있습니다.' }}</small>
             </div>
             <div class="home-release-actions">
+              <button v-if="pwaRegistrationError" type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>
               <button v-if="updateAvailable" type="button" class="apply" @click="applyUpdate">신버전 적용</button>
               <button v-else type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '업데이트 확인' }}</button>
               <button type="button" @click="openView('updates')">패치노트 보기</button>
             </div>
           </section>
-        </template>
-
         </template>
         <template v-else-if="view === 'school'">
           <button type="button" class="primary-button" @click="openTextbookPages">▤ 교재 페이지별로 풀기 · 한솔 공조 / 에너지</button>
@@ -5168,15 +5583,11 @@ onBeforeUnmount(() => {
         </template>
 
         <template v-else-if="view === 'rounds'">
-          <nav v-if="!isJewelry" class="rounds-collection" aria-label="회차별 문제 모음">
-            <button type="button" :class="{ active: roundsCollection === 'regular' && isRegularQualification(selectedKey) }" @click="openRegularRounds">자격증 기출</button>
-            <button :class="{ active: roundsCollection === 'textbook' }" @click="openTextbookPages">교재 페이지별</button>
-            <button :class="{ active: roundsCollection === 'cooling' }" @click="openQualificationRounds(SCHOOL_EXAM_CATALOG_KEY)">냉동공학 중간고사</button>
-            <button :class="{ active: roundsCollection === 'regular' && selectedKey === 'energy-midterm' }" @click="openQualificationRounds('energy-midterm')">에너지설비 중간고사</button>
-          </nav>
+          <NavigationMount v-if="!isJewelry" :material="{active:roundsCollection==='textbook'?1:roundsCollection==='cooling'?2:selectedKey==='energy-midterm'?3:0,
+            actions:[openRegularRounds,openTextbookPages,()=>openQualificationRounds(SCHOOL_EXAM_CATALOG_KEY),()=>openQualificationRounds('energy-midterm')]}"/>
           <template v-if="roundsCollection === 'textbook' && !isJewelry">
             <section v-if="savedLearningSession?.itemIds.every(id=>!!bookForStudyId(id))" class="resume-learning-card"><div><strong>{{savedLearningSession.title}}</strong><small>저장된 교재 풀이</small></div><button @click="resumeSavedLearning">이어서 풀기</button></section>
-            <TextbookLibrary :book="textbookKey" :items="textbookItems" :loading="textbookLoading" :error="textbookError" @book="selectTextbook" @open="startTextbookReader" @retry="loadTextbookPages" />
+            <TextbookLibrary :choosing="choosingTextbook" :pages="textbookModule" :book="textbookKey" :items="textbookItems" :loading="textbookLoading" :error="textbookError" @book="selectTextbook" @open="startTextbookReader" @retry="loadTextbookPages" />
           </template>
           <template v-else-if="roundsCollection === 'cooling' && !isJewelry">
             <section v-if="coolingSavedSession && savedLearningSession" class="resume-learning-card">
@@ -5251,984 +5662,42 @@ onBeforeUnmount(() => {
             </details>
             <details><summary>자료가 애매하거나 기출과 다른 부분</summary><p>수업PPT는 급수pH6~9(적정8.5)·관수11~11.8, 교재260쪽은 급수6.5~9·관수10.5~11.5로 다릅니다. 후기 PDF의 특정 원통보일러 급수7~9도 해당 조건으로만 읽으세요. 보염장치/윈드박스와 CO₂/수트블로워는 구분합니다. 메모의 약품명·배관33 경계는 미확정입니다. 후기 PDF13회차 전체1,040개를 넣은 것은 아니며 중간고사20주제의 검토 문항만 연결했습니다. 보류했던14개도 원문 경계를 직접 확인해 반영했습니다.</p></details>
           </section>
-          <TransitionGroup name="list-shift" tag="div" class="round-grid">
-            <article v-for="round in visibleRounds" :id="`round-card-${round.id}`" :key="round.id" class="round-card" :class="{ 'energy-topic-card': round.kind === 'school-midterm' }">
-              <header><span>{{ round.shortQualification || round.qualification }}</span><b v-if="round.kind !== 'school-midterm'">{{ round.year }}년</b></header>
-              <div v-if="roundRecordMap.get(round.id)" class="round-record-badge" :class="{ latest: lastRoundRecord?.roundId === round.id }">
-                <span>{{ lastRoundRecord?.roundId === round.id ? '마지막으로 푼 회차' : '최근 CBT 기록' }}</span>
-                <strong>{{ roundRecordMap.get(round.id)?.score }}점</strong>
-                <small>{{ new Date(roundRecordMap.get(round.id)!.finishedAt).toLocaleDateString('ko-KR') }}</small>
-              </div>
-              <em v-if="isRestoredRound(round)" class="round-restored">CBT 복원문제 · 원문 이미지</em>
-              <h2>{{ round.title }}</h2>
-              <p v-if="selectedKey === 'energy-midterm'">{{ energyTopicQuestions(round).length }}문제 선택<template v-if="energyCalculationExcluded.includes(round.id)"> · 전체{{ round.questions.length }}문제 중 계산 제외</template></p>
-              <p v-else>{{ round.questions.length }}문제 · {{ round.subjects.length }}과목 · 시험 {{ roundExamMinutes(round) }}분</p>
-              <small v-if="round.kind === 'school-midterm'">시험범위{{ round.questions.filter(q => q.midtermMatch === 'direct').length }} · 관련 예상{{ round.questions.filter(q => q.midtermMatch === 'related').length }}<template v-if="['school-energy-topic-6','school-energy-topic-11'].includes(round.id)"> · 계산 출제 예상</template></small>
-              <label v-if="selectedKey === 'energy-midterm' && round.questions.some(q => q.midtermCalculation)" class="energy-topic-calculation"><input type="checkbox" :checked="!energyCalculationExcluded.includes(round.id)" :aria-label="`${round.title} 계산 문제 포함`" @change="setEnergyTopicCalculation(round.id, ($event.target as HTMLInputElement).checked)">계산{{ round.questions.filter(q => q.midtermCalculation).length }}문제 {{ energyCalculationExcluded.includes(round.id) ? 'Off · 제외' : 'On · 포함' }}</label>
-              <div v-if="selectedKey !== 'energy-midterm'" class="round-subjects"><span v-for="subject in round.subjects" :key="subject">{{ subject }}</span></div>
-              <details v-if="round.kind === 'school-midterm' && round.questions[0]?.teacherHint" class="energy-topic-note"><summary>자료 대조 안내</summary><p>{{ round.questions[0].teacherHint }}</p></details>
-              <div v-if="roundAnswered(round)" class="round-progress"><span><i :style="{ width: `${roundProgress(round)}%` }" /></span></div>
-              <small v-if="roundAnswered(round)" class="round-progress-copy">{{ roundAnswered(round) }}/{{ round.questions.length }} 학습 중</small>
-              <footer>
-                <button type="button" @click="startRound(round, 'learn')">{{ roundAnswered(round) ? '이어 학습' : '학습모드' }}</button>
-                <button v-if="roundAnswered(round)" type="button" class="round-restart-button" @click="restartRoundLearning(round)">처음부터</button>
-                <button v-if="roundWrongGroupMap.get(round.id)" type="button" class="round-wrong-button" @click="openRoundWrongAnswers(round)">오답 {{ roundWrongGroupMap.get(round.id)?.items.length }}개</button>
-                <button type="button" @click="startRound(round, 'exam')">CBT 시험모드</button>
-              </footer>
-            </article>
-          </TransitionGroup>
+          <RoundListMount :model="{rows:roundCards}"/>
           </template>
         </template>
 
-        <template v-else-if="view === 'history'">
-          <section class="tool-hero history-hero">
-            <div><span>LEARNING HISTORY</span><h1>풀었던 문제와 이어할 학습</h1><p>{{ selectedCatalog.name }} · 최근 완료 기록 {{ recentExamRecords.length }}개</p></div>
-            <button v-if="savedLearningSession" type="button" @click="resumeSavedLearning">마지막 학습 이어하기</button>
-          </section>
-          <section v-if="savedLearningSession" class="history-resume-card">
-            <div><span>진행 중 · {{ savedLearningSession.mode === 'exam' ? 'CBT 시험' : '학습' }}</span><strong>{{ savedLearningSession.title }}</strong><small>{{ new Date(savedLearningSession.savedAt).toLocaleString('ko-KR') }} · {{ Object.keys(savedLearningSession.answers).length }}/{{ savedLearningSession.itemIds.length }}문제</small></div>
-            <button type="button" @click="resumeSavedLearning">이어서 풀기</button>
-          </section>
-          <div v-if="recentExamRecords.length" class="history-grid">
-            <article v-for="record in recentExamRecords" :key="record.id">
-              <header><span>{{ record.mode === 'exam' ? 'CBT 시험' : '학습모드' }}</span><time>{{ new Date(record.finishedAt).toLocaleString('ko-KR') }}</time></header>
-              <h2>{{ record.title }}</h2>
-              <div><strong>{{ record.score }}점</strong><span>{{ record.answered }}/{{ record.total }}문제 풀이</span><span>오답 {{ record.wrongAnswers?.length || 0 }}개</span></div>
-              <footer><button type="button" @click="replayHistoryRecord(record)">같은 문제 다시 풀기</button></footer>
-            </article>
-          </div>
-          <section v-else-if="!savedLearningSession" class="empty-state"><span>◴</span><h2>아직 학습 내역이 없습니다</h2><p>회차별 문제나 연도별 학습을 시작하면 여기에 날짜·점수·문제 수가 기록됩니다.</p><button @click="openView('rounds')">회차 선택하기</button></section>
-        </template>
+        <ReactSurface v-else-if="view === 'history'" data-react-view="history" :draw="() => renderHistoryView(historyViewModel)"/>
 
-        <template v-else-if="view === 'wrong'">
-          <section class="tool-hero wrong-hero">
-            <div><span>WRONG ANSWERS BY ROUND</span><h1>회차별 오답만 골라 복습하세요</h1><p>{{ selectedCatalog.name }} · 선택한 회차 {{ displayedWrongItems.length }}문제</p></div>
-            <button v-if="displayedWrongItems.length" type="button" @click="beginSession('learn', `${selectedCatalog.shortName || selectedCatalog.name} ${wrongTypeFilter === 'calculation' ? '계산 오답' : '회차별 오답'} 복습`, displayedWrongItems, {}, { calculationMode: wrongTypeFilter === 'calculation' })">{{ wrongTypeFilter === 'calculation' ? '계산 오답 다시 풀기' : '이 회차 오답 다시 풀기' }}</button>
-          </section>
-          <div v-if="wrongRoundGroups.length" class="wrong-round-filter" role="group" aria-label="오답 회차 선택">
-            <button
-              v-for="group in wrongRoundGroups"
-              :key="group.roundId"
-              type="button"
-              :class="{ active: wrongRoundFilter === group.roundId }"
-              @click="wrongRoundFilter = group.roundId"
-            >
-              <strong>{{ group.year }}년 {{ group.session || group.title.replace(/^.*?:\s*/, '') }}</strong>
-              <span>{{ group.items.length }}문제 · 계산 오답 {{ group.items.filter(isCalculationItem).length }} · 기록 {{ group.attempts }}회</span>
-            </button>
-          </div>
-          <div v-if="wrongItems.length" class="problem-kind-filter" role="group" aria-label="오답 종류 선택">
-            <button type="button" :class="{ active: wrongTypeFilter === 'all' }" @click="wrongTypeFilter = 'all'">전체 오답 <strong>{{ wrongItems.length }}</strong></button>
-            <button type="button" :class="{ active: wrongTypeFilter === 'calculation' }" @click="wrongTypeFilter = 'calculation'">계산 오답 <strong>{{ selectedWrongCalculationCount }}</strong></button>
-          </div>
-          <TransitionGroup v-if="displayedWrongItems.length" name="list-shift" tag="div" class="question-library">
-            <article v-for="item in displayedWrongItems" :key="item.id">
-              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
-              <QuestionLibraryPreview :text="item.question.text || ''" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
-              <footer>
-                <span v-if="wrongAnswerDetailMap.get(item.id)">내 답 {{ wrongAnswerDetailMap.get(item.id)?.selected }}번 · 정답 {{ wrongAnswerDetailMap.get(item.id)?.answer }}번</span>
-                <span v-else>{{ studyStore.attempts[item.id]?.wrongCount || 1 }}회 오답</span>
-                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 복습`, [item], {}, { calculationMode: isCalculationItem(item) })">다시 풀기 →</button>
-              </footer>
-            </article>
-          </TransitionGroup>
-          <section v-else class="empty-state"><span>✓</span><h2>{{ wrongTypeFilter === 'calculation' ? '이 회차에는 계산 오답이 없습니다' : '현재 오답이 없습니다' }}</h2><p>{{ wrongTypeFilter === 'calculation' ? '다른 회차를 선택하거나 전체 오답으로 바꿔 보세요.' : '학습모드에서 틀린 문제가 생기면 이곳에 자동으로 모입니다.' }}</p><button v-if="wrongTypeFilter === 'calculation'" @click="wrongTypeFilter = 'all'">전체 오답 보기</button><button v-else @click="openView('home')">학습 시작하기</button></section>
-        </template>
+        <ReactSurface v-else-if="view === 'wrong'" data-react-view="wrong" :draw="() => renderWrongView(wrongViewModel)"/>
 
-        <template v-else-if="view === 'search'">
-          <section class="search-command">
-            <span>QUESTION FINDER</span>
-            <h1>문제·보기·과목을 한 번에 검색</h1>
-            <div>
-              <b>⌕</b>
-              <input v-model="searchQuery" type="search" placeholder="예: 냉동사이클, 레이놀즈수, 안전밸브" autofocus @input="requestSearch">
-              <small>{{ searchLoading ? '출처를 불러오는 중' : searchReady ? `${searchScopeLabel} 검색 준비 완료` : '문제 색인을 준비하는 중' }}</small>
-            </div>
-            <section class="search-scope-controls" aria-label="통합 검색 범위">
-              <label>검색 출처<select v-model="searchScope" @change="prepareSearchScope"><option value="current">현재 종목</option><option v-if="!isJewelry" value="hvac">공조 + 한솔 공조</option><option value="selected">여러 종목 선택</option><option value="all">전체 종목</option></select></label>
-              <label>과목<select v-model="searchSubject" @change="requestSearch"><option value="all">모든 과목</option><option v-for="subject in searchSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
-              <fieldset v-if="searchScope === 'selected'"><legend>함께 검색할 종목</legend><label v-for="catalog in catalogs.filter(c => !c.isVirtual)" :key="catalog.key"><input v-model="searchCatalogKeys" type="checkbox" :value="catalog.key" @change="prepareSearchScope">{{ catalog.shortName || catalog.name }}</label></fieldset>
-              <p v-if="searchScope === 'all'">전체 종목 자료를 처음 불러올 때는 시간이 걸릴 수 있습니다.</p>
-              <p v-if="searchError" role="alert">{{ searchError }} <button type="button" @click="prepareSearchScope">다시 불러오기</button></p>
-            </section>
-            <section v-if="!isJewelry" class="search-school-target" aria-label="검색 문제를 담을 시험지">
-              <label>문제를 담을 학교 시험지<select v-model="searchSetId"><option value="">새 시험지</option><option v-for="set in schoolExamData.questionSets || []" :key="set.id" :value="set.id">{{ set.title }} · {{ set.itemIds.length }}문제</option></select></label>
-              <label v-if="!searchSetId">시험지 이름<input v-model="newSearchSetTitle" aria-label="새 학교 시험지 이름"></label>
-              <button type="button" @click="openView('school')">학교 시험 준비로</button>
-            </section>
-            <button
-              type="button"
-              class="bookmark-search-toggle"
-              :class="{ active: searchBookmarksOnly }"
-              :aria-pressed="searchBookmarksOnly"
-              @click="searchBookmarksOnly = !searchBookmarksOnly"
-            >★ {{ searchBookmarksOnly ? '즐겨찾기만 보는 중' : '즐겨찾기 문제만 보기' }}</button>
-            <label v-if="searchBookmarksOnly" class="bookmark-round-filter">
-              <span>즐겨찾기 회차</span>
-              <select v-model="bookmarkRoundFilter">
-                <option value="all">전체 회차 · {{ bookmarkedCatalogItems.length }}문제</option>
-                <option v-for="round in bookmarkRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ round.count }}문제</option>
-              </select>
-            </label>
-          </section>
-          <div class="search-summary">
-            <span v-if="searchQuery.length < 2 && !searchBookmarksOnly">두 글자 이상 입력하면 바로 검색됩니다.</span>
-            <span v-else><strong>{{ displayedSearchResults.length }}</strong>개의 {{ searchBookmarksOnly ? '즐겨찾기' : '검색' }} 결과<template v-if="!searchBookmarksOnly && searchTotal > displayedSearchResults.length"> · 전체 {{ searchTotal.toLocaleString() }}개 중 먼저 120개 표시</template></span>
-          </div>
-          <TransitionGroup v-if="displayedSearchResults.length" name="list-shift" tag="div" class="question-library search-library">
-            <article v-for="item in displayedSearchResults" :key="item.id">
-              <header><span>{{ item.round.shortQualification || item.round.qualification }} · {{ item.round.year }}년 · {{ normalizedSchoolSubject(item) }}</span><b>{{ item.question.number }}번</b></header>
-              <QuestionLibraryPreview :text="item.question.text || ''" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
-              <footer>
-                <span>{{ item.round.session || item.round.title }}</span>
-                <button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번`, [item])">문제 열기 →</button>
-                <button v-if="!isJewelry" type="button" @click="addSearchItemToSchool(item)">{{ schoolExamData.questionSets?.find(set => set.id === searchSetId)?.itemIds.includes(item.id) ? '✓ 시험지에 담음' : '+ 시험지에 담기' }}</button>
-              </footer>
-            </article>
-          </TransitionGroup>
-          <section v-else-if="searchBookmarksOnly" class="empty-state"><span>★</span><h2>조건에 맞는 즐겨찾기 문제가 없습니다</h2><p>문제의 별표를 눌러 저장하거나 검색어를 지워 보세요.</p></section>
-          <section v-else-if="searchQuery.length >= 2" class="empty-state"><span>⌕</span><h2>일치하는 문제를 찾지 못했습니다</h2><p>검색어를 짧게 줄이거나 다른 용어로 입력해 보세요.</p></section>
-        </template>
+<ReactSurface v-else-if="view === 'search'" data-react-view="search-view" :draw="() => renderSearchView(searchViewModel)"/>
 
-        <template v-else-if="view === 'calculation'">
-          <section class="tool-hero calculation-hero">
-            <div><span>FORMULA PRACTICE</span><h1>계산이 필요한 문제만 골라 푸세요</h1><p>{{ selectedCatalog.name }} · 현재 범위에서 {{ calculationRows.length.toLocaleString() }}문제 감지</p></div>
-            <div><button type="button" @click="formulaWorkbenchOpen = !formulaWorkbenchOpen">{{ formulaWorkbenchOpen ? '수식 실험실 닫기' : '수식 계산 실험' }}</button><button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning(20)">취약순 20문제 시작</button></div>
-          </section>
-          <OptionalFeatureBoundary v-if="formulaWorkbenchOpen" label="수식 계산 실험실">
-            <FormulaWorkbench @close="formulaWorkbenchOpen = false" />
-          </OptionalFeatureBoundary>
-          <section v-if="selectedCatalog.key === 'hvac' || selectedCatalog.key === 'hvac-hansol'" class="calculator-memory-sheet">
-            <header>
-              <div><span>FX-991EX MEMORY MAP</span><h2>전체 단위·공식 전에 보는 계산기 저장표</h2><p>AB 공기 · CD 물 · EF 온도와 습도 · XY 냉동톤 · M 힘과 수두</p></div>
-              <strong>9개 저장</strong>
-            </header>
-            <div class="calculator-memory-groups">
-              <article v-for="group in hvacCalculatorMemoryGroups" :key="group.key" :class="`memory-group-${group.key}`">
-                <h3>{{ group.title }}</h3>
-                <div>
-                  <section v-for="item in hvacCalculatorMemory.filter((entry) => entry.group === group.key)" :key="item.variable">
-                    <b>{{ item.variable }}</b>
-                    <strong>{{ item.value }}</strong>
-                    <span>{{ item.name }}</span>
-                    <small>{{ item.unit }} · {{ item.use }}</small>
-                  </section>
-                </div>
-              </article>
-            </div>
-            <details class="calculator-formula-sheet">
-              <summary><span><b>∑</b><strong>저장한 A~M으로 자주 나온 공식 보기</strong><small>실제 공조 계산문제에서 반복된 유형 {{ hvacFrequentFormulas.length }}개</small></span><em>열기</em></summary>
-              <div class="calculator-formula-grid">
-                <article v-for="formula in hvacFrequentFormulas" :key="formula.title">
-                  <header><span>{{ formula.frequency }}</span><h3>{{ formula.title }}</h3></header>
-                  <p><b>구하는 것</b>{{ formula.target }}</p>
-                  <strong class="formula-line">{{ formula.formula }}</strong>
-                  <strong v-if="formula.calculatorFormula" class="stored-formula-line">저장값 사용: {{ formula.calculatorFormula }}</strong>
-                  <ol><li v-for="step in formula.steps" :key="step">{{ step }}</li></ol>
-                  <small v-if="formula.caution">주의 · {{ formula.caution }}</small>
-                </article>
-              </div>
-            </details>
-            <details class="formula-render-compare">
-              <summary><span><b>ƒ</b><strong>계산식 텍스트 표시 비교</strong><small>기존 글자와 KaTeX 수식을 직접 비교</small></span><em>열기</em></summary>
-              <div class="formula-render-grid">
-                <article v-for="sample in formulaRenderSamples" :key="sample.title">
-                  <h3>{{ sample.title }}</h3>
-                  <img  v-if="sample.sourceImage" class="formula-source-image restored-image-original" :src="$problemImage(sample.sourceImage)" alt="PP-FormulaNet으로 인식한 공조 원문 수식">
-                  <section><span>{{ sample.sourceImage ? 'PP-FormulaNet-plus-M 인식 LaTeX' : '기존 텍스트' }}</span><p>{{ sample.plain }}</p></section>
-                  <section class="is-katex"><span>KaTeX</span><MathFormula :tex="sample.tex" :label="`${sample.title} 수식`" /></section>
-                </article>
-              </div>
-              <p>PP-FormulaNet-plus-M을 Mac M4 Pro의 arm64 CPU로 실행한 실제 원문 샘플입니다. 자동 전수 적용은 오인식 검수 방식까지 비교한 뒤 결정합니다.</p>
-            </details>
-            <ul class="calculator-memory-notes"><li v-for="note in hvacCalculatorSheetNotes" :key="note">{{ note }}</li></ul>
-          </section>
-          <section class="calculation-filter-panel">
-            <header><div><span>FILTER</span><h2>과목과 회차 선택</h2></div><strong>{{ filteredCalculationRows.length.toLocaleString() }}문제</strong></header>
-            <div class="problem-kind-filter" role="group" aria-label="계산문제 학습 종류 선택">
-              <button type="button" :class="{ active: calculationResultFilter === 'all' }" @click="calculationResultFilter = 'all'">전체 계산문제 <strong>{{ calculationRows.length.toLocaleString() }}</strong></button>
-              <button type="button" :class="{ active: calculationResultFilter === 'wrong' }" @click="calculationResultFilter = 'wrong'">계산 오답 <strong>{{ calculationWrongRows.length.toLocaleString() }}</strong></button>
-            </div>
-            <div class="calculation-filter-grid">
-              <label><span>과목</span><select v-model="calculationSubjectFilter"><option value="all">전체 과목</option><option v-for="subject in calculationSubjects" :key="subject" :value="subject">{{ subject }}</option></select></label>
-              <label><span>회차</span><select v-model="calculationRoundFilter"><option value="all">전체 회차 · {{ calculationResultFilter === 'wrong' ? calculationWrongRows.length : calculationRows.length }}문제</option><option v-for="round in calculationRounds" :key="round.id" :value="round.id">{{ round.label }} · {{ calculationResultFilter === 'wrong' ? round.wrongCount : round.count }}문제</option></select></label>
-              <button type="button" :disabled="!filteredCalculationRows.length" @click="startCalculationLearning()">{{ calculationResultFilter === 'wrong' ? '선택한 계산 오답 풀기 →' : '선택한 계산문제 전체 풀기 →' }}</button>
-            </div>
-            <p>문제 문장과 보기의 계산 키워드를 기준으로 자동 분류합니다. 계산 전용 학습에서는 정답 뒤에 공식과 숫자 출처, 계산 순서를 간단히 확인할 수 있습니다.</p>
-          </section>
-          <TransitionGroup v-if="filteredCalculationRows.length" name="list-shift" tag="div" class="question-library calculation-library">
-            <article v-for="item in calculationPagination.rows" :key="item.id">
-              <header><span>{{ item.round.year }}년 · {{ item.subject }}</span><b>{{ item.question.number }}번</b></header>
-              <QuestionLibraryPreview :text="stripMarkup(item.question.text || item.question.html)" :image="item.question.sourceImage" :image-theme="restoredImageTheme" />
-              <footer><span>{{ item.round.session || item.round.title }}</span><button type="button" @click="beginSession('learn', `${item.round.year}년 ${item.question.number}번 계산 풀이`, [item], {}, { calculationMode: true })">풀어보기 →</button></footer>
-            </article>
-          </TransitionGroup>
-          <nav v-if="filteredCalculationRows.length" class="library-pagination" aria-label="계산문제 목록 페이지">
-            <button type="button" :disabled="calculationPagination.page <= 1" @click="calculationPage = calculationPagination.page - 1">← 이전 목록</button>
-            <span role="status">{{ calculationPagination.first }}~{{ calculationPagination.last }} / {{ filteredCalculationRows.length }}문제 · {{ calculationPagination.page }}/{{ calculationPagination.pages }}쪽</span>
-            <button type="button" :disabled="calculationPagination.page >= calculationPagination.pages" @click="calculationPage = calculationPagination.page + 1">다음 목록 →</button>
-          </nav>
-          <section v-else class="empty-state"><span>∑</span><h2>조건에 맞는 계산문제가 없습니다</h2><p>과목 또는 회차를 전체로 바꿔 보세요.</p><button type="button" @click="calculationSubjectFilter = 'all'; calculationRoundFilter = 'all'; calculationResultFilter = 'all'">계산 필터 초기화</button></section>
-        </template>
+
+<ReactSurface v-else-if="view === 'calculation'" data-react-view="calculation-view" :draw="() => renderCalculationView(calculationViewModel)"/>
+
 
         <section v-else-if="view === 'guide' && !guideLoaded" class="guide-notice" aria-live="polite">
           <strong>{{ guideLoading ? '시험 자료를 불러오는 중입니다…' : '시험 자료실' }}</strong>
           <p v-if="guideError" role="alert">{{ guideError }}</p>
           <button v-if="!guideLoading" type="button" @click="retryStudyGuide">다시 불러오기</button>
         </section>
-        <template v-else-if="view === 'guide' && activeStudyGuide">
-          <nav v-if="hvacPracticalAvailable && !practicalSolving" class="practical-guide-tabs" aria-label="시험 자료실 구분">
-            <button type="button" :class="{ active: practicalGuideSection === 'practice' }" @click="practicalGuideSection = 'practice'">필답형 문제풀이</button>
-            <button type="button" :class="{ active: practicalGuideSection === 'theory' }" @click="practicalGuideSection = 'theory'">필기 공식·자료</button>
-          </nav>
-          <template v-if="!hvacPracticalAvailable || practicalGuideSection === 'theory'">
-          <section class="tool-hero guide-hero">
-            <div><span>{{ activeStudyGuide.kicker }}</span><h1>{{ activeStudyGuide.title }}</h1><p>{{ activeStudyGuide.description }}</p></div>
-            <button type="button" @click="openView('calculation')">계산문제로 연습 →</button>
-          </section>
-          <section class="guide-notice"><strong>사용법</strong><p>{{ activeStudyGuide.notice }}</p></section>
-          <section v-if="activeStudyGuide.formulas.length" class="study-formula-grid">
-            <article v-for="formula in activeStudyGuide.formulas" :key="formula.label">
-              <span>{{ formula.label }}</span>
-              <MathFormula :tex="formula.tex" :label="formula.label" />
-              <p>{{ formula.note }}</p>
-            </article>
-          </section>
-          <section v-if="selectedKey === 'hvac' || selectedKey === 'hvac-hansol'" class="field-report-practice">
-            <div class="field-report-copy">
-              <span>2026.08.22 · 비공식 실전 제보</span>
-              <h2>제보 키워드로 만든 13문제</h2>
-              <p>정확한 원문이 아닌 수험생 기억을 바탕으로 재구성했습니다. 저장소의 반복 기출과 대조한 개념만 문제로 만들었고, 문장이 불분명한 내용은 확정 정답처럼 단정하지 않았습니다.</p>
-              <div class="field-report-stats"><strong>13문제</strong><span>공기조화 · 냉동 · 설치운영</span><span>정답 뒤 쉬운 해설</span></div>
-              <button type="button" @click="startHvacFieldReportPractice">0822 실전 제보 문제 풀기 →</button>
-            </div>
-            <div class="field-report-related">
-              <strong>저장소에서 찾은 유사 기출</strong>
-              <ul>
-                <li v-for="group in hvacFieldReportRelatedGroups" :key="group.topic"><b>{{ group.topic }}</b><span>{{ group.matches }}</span></li>
-              </ul>
-            </div>
-          </section>
-          </template>
-          <section v-if="hvacPracticalAvailable && practicalGuideSection === 'practice'" class="practical-study-room" :class="{ 'practical-cbt-layout': practicalLayout === 'cbt', 'practical-multi-layout': practicalLayout === 'list' }">
-            <header class="practical-room-header">
-              <button v-if="!practicalLibraryOpen || practicalSessionActive" type="button" class="practical-library-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 회차·자료 목록</button>
-              <div><span>WRITTEN CBT</span><h2>{{ practicalLibraryOpen && !practicalSessionActive ? '공조냉동 실기 필답형 훈련관' : practicalSelectionLabel }}</h2><p>{{ practicalLibraryOpen && !practicalSessionActive ? '풀 자료를 고른 뒤 문제 화면으로 들어갑니다. 회차와 별도 PDF 자료의 진도를 각각 이어서 볼 수 있습니다.' : `${practicalPagedPrompts.length}문제 · 작성한 답안과 채점 기록은 자동 저장됩니다.` }}</p></div>
-              <strong v-if="!practicalSolving">{{ practicalPrompts.length }}문제</strong>
-              <nav v-else class="practical-room-actions" aria-label="필답형 풀이 설정">
-                <button type="button" @click="openCalculator">계산기</button>
-                <button type="button" @click="settingsOpen = true">설정</button>
-              </nav>
-            </header>
-            <section v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-pattern-start" aria-label="복원 비율 실전">
-              <div><strong>실제 복원 구성으로 랜덤 12문제</strong><p>2023년 3회~2026년 2회 9회차의 유형 비율에 맞춰 최근 기출·추가자료·과거 기출 사진문제를 섞습니다. 추가자료는 매번1문제 이상 포함하며 같은 문항은 중복 출제하지 않습니다.</p><small>추가자료 PDF·사진·공개·연습 포함 · 90분 · 문제별 풀이 확인 가능 · 학습용60점 · 제출 후 자가채점 · 공식 출제비율이나 채점표가 아닙니다.</small></div>
-              <div class="practical-pattern-actions"><button v-if="practicalPatternResume.pattern" type="button" @click="resumePracticalPatternMock">{{ practicalPatternResume.finished ? '마지막 실전 답안·채점 보기' : '마지막 실전 이어풀기' }}</button><button type="button" @click="startPracticalPatternMock">복원 비율 실전 시작</button><small v-if="practicalPatternResume.pattern && !practicalPatternResume.finished">목록에 있어도 제한 시간은 계속 흐릅니다.</small></div>
-            </section>
-            <details v-if="practicalLibraryOpen && !practicalSessionActive" class="practical-overview"><summary>학습 현황 · 일반 랜덤 · 자료 출처</summary>
-            <div class="practical-exam-facts">
-              <span><b>12문제</b> 실제 필답 구성</span><span><b>90분</b> 공식 시험시간</span><span><b>60점</b> 필답 배점</span><span><b>40점</b> 동관 작업</span>
-            </div>
-            <div class="practical-source-links"><a v-for="source in practicalSources" :key="source.href" :href="$problemImage(source.href)" target="_blank" rel="noreferrer">{{ source.label }} ↗</a></div>
-            <div class="practical-progress-board">
-              <div><span>학습 완료</span><strong>{{ practicalMasteredCount }}</strong><small>/ {{ practicalPrompts.length }}</small></div>
-              <div><span>부분 정답</span><strong>{{ practicalPartialCount }}</strong><small>문제</small></div>
-              <div><span>다시 보기</span><strong>{{ practicalReviewCount }}</strong><small>문제</small></div>
-              <button type="button" @click="showPracticalReview">복습 문제 모아보기</button>
-            </div>
-            <div v-if="!practicalSessionActive" class="practical-quick-start">
-              <button type="button" @click="startPracticalDaily"><b>오늘의 필답 5문제</b><small>오답·부분점수·미학습 우선 · 30분</small></button>
-              <button type="button" @click="startPracticalMock"><b>일반 랜덤 12문제</b><small>현재 선택 범위 · 90분 · 정답 확인 가능</small></button>
-              <button type="button" class="subtle" @click="printPracticalSheet"><b>A4 시험지 출력</b><small>현재 선택 문제와 별도 답안 공간</small></button>
-            </div>
-            </details>
-            <template v-if="practicalLibraryOpen && !practicalSessionActive">
-              <nav class="practical-library-tabs" aria-label="필답형 자료 선택">
-                <button type="button" :class="{ active: practicalLibraryTab === 'search' }" @click="practicalLibraryTab = 'search'"><b>⌕ 문제 검색</b><small>문제·정답·해설·회차 찾기</small></button>
-                <button type="button" :class="{ active: practicalLibraryTab === 'calculation' }" @click="practicalLibraryTab = 'calculation'"><b>계산·공식 공부</b><small>{{ practicalCalculationCount }}문제 · SI 단위부터 · PDF</small></button>
-                <button type="button" :class="{ active: practicalLibraryTab === 'rounds' }" @click="practicalLibraryTab = 'rounds'"><b>회차별 기출</b><small>{{ practicalGroupCounts.restored }}문제 · {{ practicalRoundSummaries.length }}회차</small></button>
-                <button type="button" :class="{ active: practicalLibraryTab === 'materials' }" @click="practicalLibraryTab = 'materials'"><b>추가 자료</b><small>PDF·사진·연습 {{ practicalPrompts.length - practicalGroupCounts.restored }}문제</small></button>
-                <button type="button" :class="{ active: practicalLibraryTab === 'review' }" @click="practicalLibraryTab = 'review'"><b>복습</b><small>부분 정답·다시 보기 {{ practicalReviewCount }}문제</small></button>
-              </nav>
+<ReactSurface v-else-if="view === 'guide' && activeStudyGuide" data-react-view="guide-view" :draw="() => renderGuideView(guideViewModel)"/>
 
-              <PracticalSearchLibrary v-if="practicalLibraryTab === 'search'" :prompts="practicalPrompts" @open="openPracticalSearchResults" />
-              <PracticalCalculationLibrary v-else-if="practicalLibraryTab === 'calculation'" :prompts="practicalPrompts" @start="openPracticalCalculations" />
-              <section v-else-if="practicalLibraryTab === 'rounds'" class="practical-round-library">
-                <button v-if="practicalLatestRound" type="button" class="practical-resume-round" @click="openPracticalRound(practicalLatestRound.key)">
-                  <span>최근 학습</span><strong>{{ practicalLatestRound.label }}</strong><small>{{ practicalLatestRound.answered }} / {{ practicalLatestRound.total }}문제 작성 · 이어풀기 →</small>
-                </button>
-                <div v-for="([year, rounds]) in practicalRoundYears" :key="year" class="practical-year-group">
-                  <header><h3>{{ year }}년</h3><span>{{ rounds.reduce((sum, round) => sum + round.total, 0) }}문제</span></header>
-                  <div>
-                    <button v-for="round in rounds" :key="round.key" type="button" @click="openPracticalRound(round.key)">
-                      <span>{{ formatPracticalSession(round.session) }}</span>
-                      <strong>{{ round.answered ? `${round.answered} / ${round.total} 작성` : `${round.total}문제` }}</strong>
-                      <small v-if="round.review">복습 {{ round.review }}문제</small><small v-else>{{ round.answered ? '이어풀기' : '시작하기' }} →</small>
-                      <i :style="{ width: `${Math.round((round.answered / round.total) * 100)}%` }" />
-                    </button>
-                  </div>
-                </div>
-              </section>
 
-              <section v-else-if="practicalLibraryTab === 'materials'" class="practical-material-library">
-                <button type="button" @click="openPracticalMaterial('supplement')"><span>PDF</span><div><strong>필답문제2</strong><small>사용자 제공 PDF · {{ practicalGroupCounts.supplement }}문제</small></div><b>풀기 →</b></button>
-                <button type="button" @click="openPracticalMaterial('photos')"><span>IMG</span><div><strong>사진·기기 문제</strong><small>사용자 제공 사진 PDF · {{ practicalGroupCounts.photos }}문제</small></div><b>풀기 →</b></button>
-                <button type="button" @click="openPracticalMaterial('public')"><span>WEB</span><div><strong>공개 자료</strong><small>공개 출처 필답 · {{ practicalGroupCounts.public }}문제</small></div><b>풀기 →</b></button>
-                <button type="button" @click="openPracticalMaterial('foundation')"><span>기초</span><div><strong>기초 연습</strong><small>핵심 개념부터 · {{ practicalGroupCounts.foundation }}문제</small></div><b>풀기 →</b></button>
-                <button type="button" @click="openPracticalMaterial('drill')"><span>심화</span><div><strong>유형 연습</strong><small>계산·도면·서술 · {{ practicalGroupCounts.drill }}문제</small></div><b>풀기 →</b></button>
-                <button type="button" class="all" @click="openPracticalMaterial('provided')"><span>ALL</span><div><strong>별도 제공 자료 전체</strong><small>PDF·사진·공개 자료 · {{ practicalProvidedCount }}문제</small></div><b>모아 풀기 →</b></button>
-              </section>
+<ReactSurface v-else-if="view === 'coach'" data-react-view="coach-view" :draw="() => renderCoachView(coachViewModel)"/>
 
-              <section v-else class="practical-review-library">
-                <div><span>다시 확인할 문제</span><strong>{{ practicalReviewCount }}</strong><small>부분 정답과 다시 보기로 표시한 문제</small></div>
-                <button type="button" :disabled="!practicalReviewCount" @click="showPracticalReview">복습 문제 이어풀기 →</button>
-                <p v-if="!practicalReviewCount">문제를 채점할 때 ‘부분 정답’이나 ‘다시 보기’를 누르면 이곳에 자동으로 모입니다.</p>
-              </section>
-            </template>
 
-            <div v-else class="practical-solve-controls">
-              <label><span>학습 방식</span><select v-model="practicalStudyMode"><option value="type">문제 → 풀이 확인</option><option v-if="!practicalSessionActive" value="memorize">답까지 암기</option></select></label>
-              <label><span>표시 개수</span><select v-model="practicalDisplayChoice" aria-label="필답형 화면 배치"><option value="single">한 문제씩</option><option v-for="count in practicalBatchOptions" :key="count" :value="String(count)">{{ count ? `${count}문제씩` : '여러 문제 이어보기' }}</option></select></label>
-              <button v-if="!practicalSessionActive" type="button" @click="practicalOptionsOpen = !practicalOptionsOpen">{{ practicalOptionsOpen ? '검색·범위 닫기' : '검색·범위' }}</button>
-            </div>
-            <div v-if="practicalSessionActive" class="practical-mock-status" :class="{ finished: practicalSessionFinished }">
-              <div><span>{{ practicalSessionFinished ? '제출 완료 · 자가 채점' : practicalSessionPattern ? '복원 비율 실전 · 풀이 확인 가능' : practicalSessionIds.length <= 5 ? 'TODAY 5 WRITTEN PRACTICE' : '90 MINUTE MOCK TEST' }}</span><strong>{{ practicalSessionFinished ? `${practicalSessionScore} / ${practicalSessionTotalPoints}점` : formatPracticalTime(practicalSessionRemainingSeconds) }}</strong><small>{{ practicalSessionGradedCount }} / {{ practicalSessionIds.length }}문제 채점</small><small v-if="practicalSessionPattern">구성 기준 {{ practicalSessionPattern.template }}회 · {{ practicalPatternSummary(practicalSessionPattern.kinds) }}</small></div>
-              <div><button v-if="!practicalSessionFinished" type="button" @click="finishPracticalMock(false)">{{ practicalSessionPattern ? '답안 제출·자가채점' : '실전 종료·점수 보기' }}</button><button type="button" @click="closePracticalMock()">목록으로 돌아가기</button></div>
-            </div>
-            <p v-if="practicalSessionActive && practicalSessionPattern">제출 전 풀이 확인 {{ practicalViewedAnswerIds.length }}문제 · 제출 전에는 풀이를 봐도 시간이 계속 진행됩니다. 점수는 자가채점한 학습용 결과입니다.</p>
-            <p v-if="practicalSessionActive && practicalSessionPattern">이번 출제: 회차별 기출 {{ practicalPagedPrompts.filter(p => p.group === 'restored').length }}문제 · 추가자료 {{ practicalPagedPrompts.filter(p => p.group !== 'restored').length }}문제</p>
-            <section v-if="practicalSessionActive && practicalSessionFinished" class="practical-session-report">
-              <header><div><span>WRITTEN SCORE REPORT</span><h3>필답형 실전 분석</h3></div><strong>{{ practicalSessionGradedCount === practicalSessionIds.length ? `${Math.round((practicalSessionScore / Math.max(1, practicalSessionTotalPoints)) * 100)}%` : `${practicalSessionGradedCount}/${practicalSessionIds.length} 채점` }}</strong></header>
-              <p v-if="practicalSessionGradedCount < practicalSessionIds.length">아래 답안과 비교해 자가채점해 주세요. 모든 문제를 채점한 뒤 취약 분야를 정리합니다. 미채점은 오답 판정이 아닙니다.</p>
-              <template v-else>
-              <div>
-                <article><span>취약 분야</span><b>{{ practicalSessionReport.weakestLabel }}</b><small>다음 복습에서 우선 출제</small></article>
-                <article><span>힌트 사용</span><b>{{ practicalSessionReport.hints }}단계</b><small>적게 쓸수록 실전 회상에 유리</small></article>
-                <article><span>막힘 표시</span><b>{{ practicalSessionReport.lowConfidence }}문제</b><small>다시 작성 권장</small></article>
-              </div>
-              <p v-if="practicalSessionReport.topMistakes.length"><b>반복 실수</b><span v-for="([reason, count]) in practicalSessionReport.topMistakes" :key="reason">{{ practicalMistakeLabel(reason) }} {{ count }}회</span></p>
-              <p v-else><b>다음 단계</b><span>각 문제의 부분점수 채점표에서 빠진 요소와 실수 원인을 기록해 보세요.</span></p>
-              </template>
-            </section>
-            <details v-if="!practicalLibraryOpen && !practicalSessionActive && practicalOptionsOpen" class="practical-scope" open><summary @click.prevent="practicalOptionsOpen = false">검색·분야·범위 닫기</summary>
-              <div class="practical-filter-tabs" aria-label="필답형 문제 묶음 선택">
-                <button type="button" :class="{ active: practicalPromptFilter === 'all' }" @click="practicalPromptFilter = 'all'">전체 {{ practicalPrompts.length }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'restored' }" @click="practicalPromptFilter = 'restored'">회차별 기출 {{ practicalGroupCounts.restored }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'provided' }" @click="practicalPromptFilter = 'provided'">추가 자료 전체 {{ practicalProvidedCount }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'public' }" @click="practicalPromptFilter = 'public'">공개 자료 {{ practicalGroupCounts.public }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'supplement' }" @click="practicalPromptFilter = 'supplement'">추가 자료 {{ practicalGroupCounts.supplement }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'photos' }" @click="practicalPromptFilter = 'photos'">사진·기기 자료 {{ practicalGroupCounts.photos }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'foundation' }" @click="practicalPromptFilter = 'foundation'">기초 연습 {{ practicalGroupCounts.foundation }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'drill' }" @click="practicalPromptFilter = 'drill'">심화 연습 {{ practicalGroupCounts.drill }}</button>
-                <button type="button" :class="{ active: practicalPromptFilter === 'review' }" @click="practicalPromptFilter = 'review'">복습 {{ practicalReviewCount }}</button>
-              </div>
-              <div class="practical-category-tabs" aria-label="필답형 분야 선택">
-                <button type="button" :class="{ active: practicalCategoryFilter === 'all' }" @click="practicalCategoryFilter = 'all'">전 분야</button>
-                <button v-for="([key, label]) in practicalCategoryOptions" :key="key" type="button" :class="{ active: practicalCategoryFilter === key }" @click="practicalCategoryFilter = key">{{ label }}</button>
-              </div>
-              <div class="practical-toolbar">
-                <label><span>문제 검색</span><input v-model="practicalSearch" type="search" placeholder="예: 과열도, 진공, 냉각수"></label>
-                <label v-if="practicalPeriodAvailable" class="practical-round-select"><span>자료 기간</span><select v-model="practicalMaterialPeriod"><option value="all">전체 기간</option><option value="since-2023-2">2023년 2회 이후</option><option value="before-2023-2">2023년 1회 이전</option></select></label>
-                <button type="button" @click="startPracticalMock"><strong>일반 랜덤 12문제</strong><small>현재 선택 범위 · 정답 확인 가능</small></button>
-              </div>
-            </details>
-            <template v-if="!practicalLibraryOpen || practicalSessionActive">
-            <details v-if="practicalPromptFilter === 'calculation' && !practicalSessionActive" class="practical-si-basics"><summary>SI 단위·기호가 헷갈리면 여기를 열어보세요</summary><article v-for="item in practicalSiBasics" :key="item.title"><h4>{{ item.title }}</h4><p>{{ item.text }}</p></article><article><h4>{{ practicalAbsoluteTemperatureExample.title }}</h4><p>{{ practicalAbsoluteTemperatureExample.text }}</p><PracticalFractionLines :rows="practicalAbsoluteTemperatureExample.fractions" /></article><a :href="$problemImage(practicalCalculationPdf)" download>같은 내용 PDF 받기 ↓</a></details>
-            <div class="practical-cbt-toolbar">
-              <button type="button" class="practical-toolbar-back" @click="practicalSessionActive ? closePracticalMock() : openPracticalLibrary()">← 목록</button>
-              <span>{{ practicalPagedPrompts.filter(p => practicalProgress[p.id]?.grade).length }} / {{ practicalPagedPrompts.length }} 채점</span>
-              <button type="button" :aria-expanded="practicalNavigatorOpen" @click="practicalNavigatorOpen = !practicalNavigatorOpen">문제 번호</button>
-              <button type="button" @click="jumpPracticalUnanswered">미작성 이동</button>
-            </div>
-            <nav v-if="practicalNavigatorOpen" class="practical-number-grid" aria-label="필답형 문제 번호">
-              <button v-for="(item, i) in practicalPagedPrompts" :key="item.id" type="button" :class="{ active: visiblePracticalPrompts.some(p => p.id === item.id), answered: practicalHasAnswer(item.id), graded: !!practicalProgress[item.id]?.grade }" :aria-label="`${practicalSessionActive ? (i + 1) + '번' : item.numberLabel || practicalListNumber(i, item) + '번'} ${practicalGradeLabel(practicalProgress[item.id]?.grade)}`" @click="jumpPracticalIndex(i)">{{ practicalSessionActive ? i + 1 : item.group === 'restored' ? practicalListNumber(i, item) : i + 1 }}</button>
-            </nav>
-            <p v-if="!visiblePracticalPrompts.length" class="practical-empty">현재 조건에 맞는 문제가 없습니다. 분야나 문제 묶음을 바꿔 보세요.</p>
-            <div v-else class="practical-question-grid">
-              <article v-for="(prompt, index) in visiblePracticalPrompts" :key="prompt.id" :data-practical-id="prompt.id" :data-practical-index="(practicalPage - 1) * practicalPageSize + index" :class="[`grade-${practicalProgress[prompt.id]?.grade || 'none'}`, { 'memorize-mode': practicalStudyMode === 'memorize' }]">
-                <div class="practical-question-body"><header>
-                  <span>{{ practicalListNumber(index, prompt) }}</span>
-                  <div><small>{{ practicalGroupLabel(prompt.group) }}<template v-if="prompt.year && prompt.session"> · {{ prompt.year }}년 {{ formatPracticalSession(prompt.session) }} {{ prompt.numberLabel || `${prompt.number}번` }}</template> · {{ practicalCategoryLabels[prompt.category] }} · {{ practicalDifficultyLabels[prompt.difficulty] }} · {{ practicalAdaptiveLabel(prompt) }}</small><h3>{{ prompt.question }}</h3></div>
-                  <b>{{ practicalGradeLabel(practicalProgress[prompt.id]?.grade) }}</b>
-                </header>
-                <PracticalIssueReport :prompt="practicalSourcePrompt(prompt)" :display-number="Number(practicalListNumber(index, prompt)) || (practicalPage - 1) * practicalPageSize + index + 1" />
-                <PracticalProblemImage v-if="prompt.image" :src="prompt.image" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림`" />
-                <div v-if="prompt.images?.length" class="practical-prompt-images">
-                  <PracticalProblemImage v-for="(image, imageIndex) in prompt.images" :key="image" :src="image" :max-height="prompt.imageMaxHeight" :alt="`공조냉동 필답형 ${practicalListNumber(index, prompt)}번 문제 그림 ${imageIndex + 1}`" />
-                </div>
-                <a v-if="!practicalExamLocked && prompt.group === 'restored' && prompt.sourceUrl" class="practical-source-video" :href="$problemImage(prompt.sourceUrl)" target="_blank" rel="noopener noreferrer">▶ 원문 동작 영상 보기 ↗</a>
-                </div><div class="practical-response-body">
-                <div v-if="practicalStudyMode !== 'memorize'" class="practical-answer-actions">
-                  <button type="button" @click="togglePracticalAnswer(prompt.id)">{{ practicalAnswerRevealed(prompt.id) ? '풀이 닫기' : '정답·풀이 보기' }}</button>
-                  <button v-if="!practicalSessionActive" type="button" class="subtle" @click="startPracticalRelated(prompt)">같은 유형 연속 풀기</button>
-                  <button v-if="!practicalExamLocked && hasPracticalProgress(prompt.id)" type="button" class="subtle" @click="resetPracticalPrompt(prompt.id)">이 문제 초기화</button>
-                </div>
-                <small v-if="practicalSessionPattern && practicalViewedAnswerIds.includes(prompt.id)">제출 전 풀이 확인한 문제</small>
-                <div v-if="(!practicalExamLocked && practicalStudyMode === 'memorize') || practicalAnswerRevealed(prompt.id)" class="practical-solution">
-                  <p><b>학습용 핵심 답안</b>{{ prompt.answer }}</p>
-                  <details class="practical-explanation" open><summary>이해용 설명 · 접기/펼치기</summary><p>{{ prompt.explanation }}</p></details>
-                  <PracticalCalculationLesson v-if="calculationLesson(practicalSourcePrompt(prompt))" :lesson="calculationLesson(practicalSourcePrompt(prompt))!" />
-                  <div v-if="prompt.answerImages?.length" class="practical-answer-images"><strong>답안 도식</strong><div><img  v-for="(image, imageIndex) in prompt.answerImages" :key="image" :src="$problemImage(image)" :alt="`공조냉동 필답형 답안 도식 ${imageIndex + 1}`" loading="lazy"></div></div>
-                  <details v-if="prompt.keyPoints?.length" class="practical-key-points"><summary>채점 핵심어</summary><ul><li v-for="point in prompt.keyPoints" :key="point">{{ point }}</li></ul></details>
-                  <div v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-self-grade" aria-label="자가 채점">
-                    <span>내 답과 비교해 채점</span>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'correct' }" @click="markPracticalPrompt(prompt.id, 'correct')">✓ 정답 {{ prompt.points }}점</button>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'partial' }" @click="markPracticalPrompt(prompt.id, 'partial')">△ 부분 {{ prompt.points / 2 }}점</button>
-                    <button type="button" :class="{ active: practicalProgress[prompt.id]?.grade === 'review' }" @click="markPracticalPrompt(prompt.id, 'review')">↻ 다시 보기</button>
-                  </div>
-                  <small>{{ prompt.sourceNote }} <a v-if="prompt.sourceUrl" :href="$problemImage(prompt.sourceUrl)" target="_blank" rel="noreferrer">{{ ['supplement', 'photos'].includes(prompt.group) ? '보완 근거' : '원문 보기' }} ↗</a></small>
-                </div>
-                <details v-if="practicalStudyMode === 'type'" class="practical-draft" :open="!practicalDraftClosedIds.includes(prompt.id)" @toggle="($event.target as HTMLDetailsElement).open ? practicalDraftClosedIds = practicalDraftClosedIds.filter(id => id !== prompt.id) : (!practicalDraftClosedIds.includes(prompt.id) && practicalDraftClosedIds.push(prompt.id))">
-                  <summary>답안 직접 입력 · 접기/펼치기{{ practicalDrafts[prompt.id] ? ' · 작성 답안 있음' : '' }}</summary>
-                  <label class="practical-answer-input"><span>내 답안</span><textarea :value="practicalDrafts[prompt.id] || ''" :disabled="practicalSessionFinished" rows="3" placeholder="답안이나 계산 과정을 적어보세요. 작성 내용은 자동 저장됩니다." @input="updatePracticalDraft(prompt.id, $event)" /></label>
-                </details>
-                <details v-if="!practicalExamLocked && practicalStudyMode !== 'memorize'" class="practical-extra-tools" @toggle="($event.target as HTMLDetailsElement).open && !practicalHelperIds.includes(prompt.id) && practicalHelperIds.push(prompt.id)"><summary>힌트 · 답안 골격 · 부분점수 채점</summary>
-                <PracticalTrainingTools
-                  v-if="practicalHelperIds.includes(prompt.id)"
-                  :prompt="prompt"
-                  :draft="practicalDrafts[prompt.id] || ''"
-                  :revealed="practicalAnswerRevealed(prompt.id)"
-                  :assessment="practicalProgress[prompt.id]?.assessment"
-                  :similar-count="practicalSimilarCount(prompt)"
-                  @update="updatePracticalAssessment(prompt.id, $event)"
-                  @insert-template="replacePracticalDraft(prompt.id, $event)"
-                  @reveal="togglePracticalAnswer(prompt.id)"
-                />
-                </details>
-                </div>
-              </article>
-            </div>
-            <PracticalLoadMore v-if="practicalContinuous && visiblePracticalPrompts.length < practicalPagedPrompts.length" @more="practicalContinuousLimit += 20" />
-            <nav v-if="visiblePracticalPrompts.length && !practicalContinuous" class="practical-pagination" aria-label="필답형 문제 페이지">
-              <button type="button" :disabled="practicalPage === 1" @click="changePracticalPage(practicalPage - 1)">← {{ practicalPageSize === 1 ? '이전 문제' : '이전 묶음' }}</button>
-              <div class="practical-page-center"><span><b>{{ practicalPage }}</b> / {{ practicalPageCount }}</span><button v-if="practicalPageSize === 1 && practicalStudyMode !== 'memorize'" type="button" @click="togglePracticalAnswer(visiblePracticalPrompts[0].id)">{{ practicalAnswerRevealed(visiblePracticalPrompts[0].id) ? '답안 닫기' : '답안 확인' }}</button></div>
-              <button type="button" :disabled="practicalPage === practicalPageCount" @click="changePracticalPage(practicalPage + 1)">{{ practicalPageSize === 1 ? '다음 문제' : '다음 묶음' }} →</button>
-            </nav>
-            </template>
-          </section>
-          <div v-if="!hvacPracticalAvailable || practicalGuideSection === 'theory'" class="hvac-guide-grid">
-            <article v-for="(section, index) in activeStudyGuide.sections" :key="section.title">
-              <header><span>{{ String(index + 1).padStart(2, '0') }}</span><h2>{{ section.title }}</h2></header>
-              <p>{{ section.summary }}</p>
-              <ul><li v-for="point in section.points" :key="point">{{ point }}</li></ul>
-            </article>
-          </div>
-        </template>
+<ReactSurface v-else-if="view === 'beta'" data-react-view="beta-view" :draw="() => renderBetaView(betaViewModel)"/>
 
-        <template v-else-if="view === 'coach'">
-          <section class="coach-hero">
-            <div class="coach-aurora coach-aurora-one" />
-            <div class="coach-aurora coach-aurora-two" />
-            <div class="coach-orbit" aria-hidden="true"><i /><i /><i /></div>
-            <div class="coach-hero-copy">
-              <span class="coach-kicker"><b>✦</b> PASS INTELLIGENCE 2.0</span>
-              <h1>기록이 쌓일수록<br><em>합격 전략이 선명해집니다</em></h1>
-              <p>{{ selectedCatalog.name }} · {{ yearFrom }}~{{ yearTo }}년 기록을 분석해 지금 가장 점수가 오를 문제를 고릅니다.</p>
-              <div class="coach-hero-badges">
-                <span>학습 {{ coachAnswered.toLocaleString() }}문제</span>
-                <span>분석 신뢰도 {{ coachConfidence }}</span>
-                <span :class="{ danger: coachHasEvidence && coachSubjectRows.some(row => row.risk) }">{{ !coachHasEvidence ? '기록을 쌓으면 분석합니다' : coachSubjectRows.some(row => row.risk) ? '과락 위험 감지' : coachHasUnmeasuredSubjects ? '아직 풀지 않은 과목 있음' : '과락 위험 안정' }}</span>
-              </div>
-            </div>
-            <div class="coach-gauge-wrap">
-              <div class="coach-gauge" :style="{ '--coach-angle': `${displayedPassChance * 3.6}deg` }">
-                <div>
-                  <span>예상 합격 가능성</span>
-                  <strong>{{ coachHasEvidence ? displayedPassChance : '—' }}<small v-if="coachHasEvidence">%</small></strong>
-                  <b>{{ !coachHasEvidence ? '학습 후 분석' : passChance >= 70 ? '합격권' : passChance >= 40 ? '상승 구간' : '진단·보강 필요' }}</b>
-                </div>
-              </div>
-              <small>학습 기록 기반 추정치 · 실제 결과를 보장하지 않음</small>
-            </div>
-          </section>
 
-          <section class="coach-overview">
-            <article class="coach-panel coach-score-panel">
-              <header><div><span>READINESS SIGNAL</span><h2>현재 시험 준비도</h2></div><b>{{ coachConfidence }}</b></header>
-              <div class="coach-metric-grid">
-                <div><span>예상 점수</span><strong>{{ coachHasEvidence ? predictedScore : '—' }}<small v-if="coachHasEvidence">점</small></strong><i :style="{ width: `${coachHasEvidence ? predictedScore : 0}%` }" /></div>
-                <div><span>선택 범위 학습률</span><strong>{{ coachCoverage }}<small>%</small></strong><i :style="{ width: `${coachCoverage}%` }" /></div>
-                <div><span>지금 복습</span><strong>{{ dueRows.length }}<small>문제</small></strong><i :style="{ width: `${Math.min(100, dueRows.length * 5)}%` }" /></div>
-                <div><span>최근 모의평균</span><strong>{{ recentExamAverage ?? '—' }}<small>{{ recentExamAverage === null ? '' : '점' }}</small></strong><i :style="{ width: `${recentExamAverage || 0}%` }" /></div>
-              </div>
-              <p>정답률, 반복 횟수, 마지막 정오답, 경과 시간, 과목별 과락 위험과 최근 시험 점수를 함께 계산합니다.</p>
-            </article>
+<ReactSurface v-else-if="view === 'showcase'" data-react-view="showcase-view" :draw="() => renderShowcaseView(showcaseViewModel)"/>
 
-            <article class="coach-panel coach-trend-panel">
-              <header><div><span>EXAM TRAJECTORY</span><h2>최근 시험 흐름</h2></div><b>{{ officialExamRecords.length }}회</b></header>
-              <div v-if="officialExamRecords.length" class="coach-trend-chart">
-                <div v-for="record in [...officialExamRecords.slice(0, 7)].reverse()" :key="record.id">
-                  <span :class="{ pass: record.passed }" :style="{ height: `${Math.max(8, record.score)}%` }"><b>{{ record.score }}</b></span>
-                  <time>{{ new Date(record.finishedAt).toLocaleDateString('ko-KR', { month: 'numeric', day: 'numeric' }) }}</time>
-                </div>
-                <i class="coach-pass-line"><span>60점</span></i>
-              </div>
-              <div v-else class="coach-empty-trend">
-                <span>◎</span>
-                <strong>아직 모의시험 기록이 없습니다</strong>
-                <small>문제를 풀면 점수와 복습할 과목을 여기서 확인할 수 있습니다.</small>
-                <button type="button" @click="startCoachPlan('exam')">첫 진단시험 시작</button>
-              </div>
-            </article>
-          </section>
 
-          <section class="coach-action-section">
-            <header>
-              <div><span>ADAPTIVE TRAINING</span><h2>지금 점수가 가장 빨리 오르는 훈련</h2></div>
-              <p>현재 기록을 기준으로 문제 순서가 자동으로 다시 계산됩니다.</p>
-            </header>
-            <div class="coach-plan-grid">
-              <button
-                v-for="plan in coachPlans"
-                :key="plan.key"
-                type="button"
-                class="coach-plan"
-                :class="`coach-plan-${plan.tone}`"
-                :disabled="!plan.count"
-                @click="startCoachPlan(plan.key)"
-              >
-                <span>{{ plan.eyebrow }}</span>
-                <strong>{{ plan.title }}</strong>
-                <p>{{ plan.description }}</p>
-                <footer><b>{{ plan.count }}문제</b><em>시작하기 →</em></footer>
-              </button>
-            </div>
-          </section>
+<ReactSurface v-else-if="view === 'stats'" data-react-view="stats-view" :draw="() => renderStatsView(statsViewModel)"/>
 
-          <section class="coach-detail-grid">
-            <article class="coach-panel coach-subject-panel">
-              <header><div><span>SUBJECT SHIELD</span><h2>과목별 과락 방어선</h2></div><small>40점 미만 위험 표시</small></header>
-              <div class="coach-subject-list">
-                <button
-                  v-for="row in coachSubjectRows"
-                  :key="row.subject"
-                  type="button"
-                  class="coach-subject-card"
-                  :class="{ risk: row.risk }"
-                  @click="startCoachSubject(row.subject)"
-                >
-                  <div><span>{{ !row.answered ? '미진단' : row.risk ? '위험' : '안정' }}</span><strong>{{ row.subject }}</strong><small>{{ row.answered }}/{{ row.total }}문제 학습 · {{ row.answered ? `숙련도 ${row.mastery}%` : '학습 후 분석' }}</small></div>
-                  <div class="coach-readiness-ring" :style="{ '--readiness-angle': `${row.answered ? row.predicted * 3.6 : 0}deg` }"><strong>{{ row.answered ? row.predicted : '—' }}</strong><small>예상점수</small></div>
-                </button>
-              </div>
-            </article>
 
-            <article class="coach-panel coach-memory-panel">
-              <header><div><span>MEMORY QUEUE</span><h2>망각곡선 복습 대기열</h2></div><small>문제를 풀 때마다 자동 변경</small></header>
-              <div class="coach-review-schedule">
-                <div v-for="bucket in reviewSchedule" :key="bucket.label" :class="`review-${bucket.tone}`">
-                  <span><i />{{ bucket.label }}</span>
-                  <strong>{{ bucket.count }}<small>문제</small></strong>
-                </div>
-              </div>
-              <div class="coach-memory-note">
-                <b>작동 방식</b>
-                <p>맞히고 반복할수록 복습 간격을 늘리고, 틀리면 오늘 대기열 맨 앞으로 되돌립니다. 인터넷 없이도 이 기기의 기록으로 계속 계산합니다.</p>
-              </div>
-            </article>
-          </section>
-        </template>
+<ReactSurface v-else data-react-view="patch-view" :draw="() => renderPatchView(patchViewModel)"/>
 
-        <template v-else-if="view === 'beta'">
-          <section class="beta-lab-hero">
-            <div>
-              <span><b>β</b> OPTIONAL LEARNING TOOLS</span>
-              <h1>기존 CBT와 바로 비교하는<br><em>베타 학습 도구</em></h1>
-              <p>문제와 정답 데이터는 건드리지 않고 확신도·실수 원인·내 메모만 별도로 저장합니다. 설정에서 전체 OFF하면 기존 화면으로 즉시 돌아갑니다.</p>
-              <div><button type="button" @click="startBetaTrial">5문제로 비교하기</button><button type="button" class="secondary" @click="settingsOpen = true">전체 ON/OFF 설정</button></div>
-            </div>
-            <aside>
-              <strong>실험 기능 전체 ON</strong>
-              <span>기존 학습 기록 유지</span>
-              <small>OFF해도 베타 기록은 삭제하지 않습니다.</small>
-            </aside>
-          </section>
-
-          <section class="beta-mode-compare" aria-label="학습모드와 CBT모드 기록 선택">
-            <button v-for="summary in betaModeSummaries" :key="summary.mode" type="button" :class="{ active: betaModeFilter === summary.mode }" @click="betaModeFilter = summary.mode">
-              <span>{{ summary.mode === 'learn' ? 'LEARNING MODE' : 'CBT MODE' }}</span>
-              <strong>{{ summary.mode === 'learn' ? '학습모드 기록' : 'CBT모드 기록' }}</strong>
-              <div><small>확신 <b>{{ summary.sure }}</b></small><small>애매 <b>{{ summary.unsure }}</b></small><small>찍음 <b>{{ summary.guess }}</b></small><small>자동 취약 <b>{{ summary.weak }}</b></small></div>
-            </button>
-          </section>
-
-          <section class="beta-summary-grid">
-            <article><span>{{ betaModeFilter === 'learn' ? '학습' : 'CBT' }} 애매·찍음</span><strong>{{ betaLowConfidenceRows.length }}</strong><small>확신 낮은 문제</small></article>
-            <article><span>내 메모</span><strong>{{ betaMemoRows.length }}</strong><small>동기화되는 문제 메모</small></article>
-            <article><span>확신 오답</span><strong>{{ betaFalseConfidenceRows.length }}</strong><small>알았다고 생각했지만 틀림</small></article>
-            <article><span>자동 취약</span><strong>{{ betaWeakRows.length }}</strong><small>오답·확신도를 함께 분석</small></article>
-          </section>
-
-          <section class="beta-review-grid">
-            <button type="button" :disabled="!betaLowConfidenceRows.length" @click="startBetaReview('confidence')">
-              <span>01 · CONFIDENCE</span><strong>애매·찍음 다시 풀기</strong><p>정답 여부와 별개로 확신이 없었던 문제를 최대 20개 다시 냅니다.</p><b>{{ betaLowConfidenceRows.length }}문제 →</b>
-            </button>
-            <button type="button" :disabled="!betaFalseConfidenceRows.length" @click="startBetaReview('false-confidence')">
-              <span>02 · BLIND SPOT</span><strong>확신했지만 틀린 문제</strong><p>잘못 알고 있던 개념을 일반 오답보다 먼저 찾아냅니다.</p><b>{{ betaFalseConfidenceRows.length }}문제 →</b>
-            </button>
-            <button type="button" :disabled="!betaMemoRows.length" @click="startBetaReview('memo')">
-              <span>03 · MY NOTE</span><strong>메모한 문제 모아 풀기</strong><p>문제마다 적은 공식·주의점을 유지한 채 다시 학습합니다.</p><b>{{ betaMemoRows.length }}문제 →</b>
-            </button>
-            <button type="button" :disabled="!betaWeakRows.length" @click="startBetaReview('weak')">
-              <span>04 · WEAKNESS ENGINE</span><strong>{{ betaModeFilter === 'learn' ? '학습' : 'CBT' }} 취약 문제 자동 검출</strong><p>오답률, 최근 오답, 애매·찍음, 확신 오답을 합쳐 약한 문제부터 냅니다.</p><b>{{ betaWeakRows.length }}문제 →</b>
-            </button>
-          </section>
-
-          <section class="beta-reason-panel">
-            <header><div><span>MISTAKE MAP</span><h2>실수 원인별 복습</h2></div><p>풀이 화면에서 이유를 눌러야 이곳에 모입니다.</p></header>
-            <div>
-              <button v-for="row in betaReasonRows" :key="row.key" type="button" :disabled="!row.count" @click="startBetaReview(row.key)"><span>{{ row.label }}</span><strong>{{ row.count }}</strong><small>문제 다시 풀기 →</small></button>
-            </div>
-          </section>
-
-          <section class="beta-compare-panel">
-            <div><b>ON</b><strong>문제 아래에 확신도·실수 원인·내 메모가 표시됩니다.</strong><span>시험모드에서는 답안 속도를 계산해 완료 예상과 시간 여유를 보여 줍니다.</span></div>
-            <div><b>OFF</b><strong>v3.5.4와 같은 기존 문제풀이 화면으로 돌아갑니다.</strong><span>추가 버튼과 베타 메뉴만 숨고 답안·오답·메모 기록은 보존됩니다.</span></div>
-          </section>
-        </template>
-
-        <template v-else-if="view === 'showcase'">
-          <section class="feature-hero">
-            <div class="feature-orb feature-orb-one" />
-            <div class="feature-orb feature-orb-two" />
-            <div class="feature-hero-copy">
-              <span><b>NEW</b> INTERACTIVE LEARNING LAB · v{{ currentVersion }}</span>
-              <h1>새 기능을 바로 배우고 눌러보는<br><em>신기술 학습관</em></h1>
-              <p>정식으로 적용된 문제풀이와 화면 기능을 한곳에서 익힐 수 있습니다.</p>
-              <div>
-                <button type="button" @click="openView('rounds')">3분 체험 시작 →</button>
-                <button type="button" @click="openView('updates')">← 패치노트로</button>
-              </div>
-            </div>
-            <div class="feature-pulse">
-              <i /><i /><i />
-              <strong>LIVE</strong>
-              <span>Vue Motion</span>
-            </div>
-          </section>
-
-          <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v{{currentVersion}}</span><h2>문제는 그대로, 풀이만 펼쳐 보기</h2></div><p>교재 원문에서 실제 문제와 풀이를 나누고 다른 열·쪽의 해설과 공통 그림을 연결했습니다. 본문 오인식과 번호 오인식 중복은 목록에서 제외하되 원본·기록·화질 개선본은 보존합니다. 다크·라이트·원본 보기와 기기 내 선택 저장을 지원하며, 화면 경계 검수는 전체 정답 검증·자동채점 완료와 구분합니다.</p></header>
-            <p>같은 지문·보기 순서·정답이 확인된 문제는 기존 등록 해설을 먼저 표시합니다. 원문 해설을 펼쳐 비교할 수 있고 기존 학습 설명도 보존합니다. 확인된 오타·수치·정답 차이는 교재용 사본에서 구분하며 내부 불일치나 복수정답은 보류 사유를 표시합니다. CBT 시험 중 정답을 포함한 안내는 숨깁니다. 실시간 재수집이나 공식 정답 인증은 아닙니다.</p>
-            <p>교재 선택 화면에서는 사이트 메뉴를 그대로 사용합니다. 문제를 펼친 뒤에는 ‘목차·쪽 선택’과 인쇄 쪽번호를 눌러 이동할 수 있습니다. 연결 현황과 긴 안내는 필요한 경우에만 별도 탭에서 확인하세요.</p>
-            <button type="button" @click="openTextbookPages">교재 페이지별 열기 →</button>
-          </section>
-
-          <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>NEW · v5.4</span><h2>에너지관리산업기사 교재 복원 13회차</h2></div><p>회차별 문제에서 에너지관리산업기사를 고르면 2021~2025년 복원문제 1,040개를 추가로 풀 수 있습니다. 문제·보기를 교재 이미지로 표시하고 정답표와 원문 해설을 연결했습니다.</p></header>
-            <p>설정 → 답안 선택 방식 → 이미지 직접 선택에서 보기 번호와 내용을 누릅니다. 체크 마커·영역 강조, 다크·라이트·원본 표시를 비교하세요. 해설이 없는3문항은 보충 설명으로 구분합니다. 기존 기출과 중간고사 기록은 유지하며 기사 추가자료는 산업기사 목록에서 제외했습니다.</p>
-            <button type="button" @click="openQualificationRounds('energy')">에너지 회차별 문제 열기 →</button>
-          </section>
-
-          <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>기록 보호·해설 출처</span><h2>서버 저장 단계와 다른 풀이 복구</h2></div><p>설정 → 기기 간 학습 기록 동기화에서 읽기·비교·저장·반영 단계와 최근 동기화 시각을 확인합니다. 서로 다른 풀이 사본은 이 브라우저에 최근 100건까지 보관하며 필요한 풀이만 골라 복구할 수 있습니다.</p></header>
-            <p>해설 아래 출처 표시를 펼치면 COMCBT 이용자 해설, 기존 문항 연결, 학습용 작성·AI 보강 여부를 확인합니다. 출처 표시는 사실 검증 완료를 뜻하지 않습니다.</p>
-            <button type="button" @click="openView('settings')">동기화 설정 열기 →</button>
-          </section>
-
-          <section class="feature-layout-lab settings-feature-guide">
-            <header><div><span>기존 설정 복원</span><h2>설명과 선택지를 한눈에 비교하기</h2></div><p>기존 설정의 아이콘·이름·설명을 복원했습니다. 작은 설정창과 전체 설정에서 같은 항목을 순서대로 볼 수 있습니다.</p></header>
-            <p>전체 설정의 목차는 항목을 숨기지 않고 해당 위치로 이동합니다. 검색은 필요한 항목을 찾을 때만 사용하세요.</p>
-            <button type="button" @click="openView('settings')">전체 설정 둘러보기 →</button>
-          </section>
-
-          <section class="feature-layout-lab">
-            <header>
-              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>시험 직전 공조 도구</h2></div>
-              <p>이번 버전의 쉬운 계산 암기장, 즐겨찾기 문제 모아보기와 COMCBT 제출 동선을 바로 체험할 수 있습니다.</p>
-            </header>
-            <div>
-              <button type="button" @click="openView('guide')"><b>SI</b><strong>초등 계산 암기장</strong><span>열량 · COP · 냉각수 · 송풍기 공식</span></button>
-              <button type="button" @click="searchBookmarksOnly = true; openView('search')"><b>★</b><strong>즐겨찾기만 보기</strong><span>검색어 없이 저장한 문제만 모아보기</span></button>
-              <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>제출 버튼 체험</strong><span>학습 결과 · 시험 제출을 하단에서 바로</span></button>
-            </div>
-            <footer><strong>문제 해설 보강</strong><span>쉬운 핵심 해설을 먼저 읽고, 동일 문항으로 확인된 다른 해설은 아래에서 함께 볼 수 있습니다.</span></footer>
-          </section>
-
-          <section v-if="!isJewelry" class="feature-practical-lab">
-            <header><div><span>NEW SUBJECT · v5.3</span><h2>설비보전기사 기출 추가</h2></div><p>종목 선택에서 설비보전기사를 고르면 2006~2022년27회차·2,660문제를 학습·시험·랜덤으로 풀 수 있습니다. 산업기사와 별도 기록이며, 그림265장은 원본을 보존하고2배 개선했습니다. 다크·라이트·원본 표시도 기존 설정을 따릅니다. 상세 해설 미등록 문항과2025년 개편 체계의 차이는 별도로 안내합니다.</p></header>
-            <header><div><span>STUDY FLOW</span><h2>필답형과 계산 공부를 더 편하게</h2></div><p>공식부터 읽거나 문제 목록으로 바로 이동하세요. 계산식은 분수선으로 보고 분자·분모와 숫자 대입을 함께 익힙니다. PDF도 같은 수식입니다. 계산 목록은40개씩 끝까지 둘러보고, 검색·오답·계산 목록의 이미지 문제는 원문으로 미리 봅니다.</p></header>
-            <details class="feature-history"><summary>이전 필답형 화면 개선 기록 보기</summary>
-            <p>v5.1 모바일 뒤로가기·그림 확대: 닫힌 모바일 메뉴가 PC용 복귀 모션으로 화면을 덮지 않게 했습니다. 본문과 PC 모션은 유지합니다. 그림 확대창은 여유 있게 줄였고 배율을 바꾸면 고정된 창 안에서 그림만 커집니다. 그림을 다시 클릭하면 닫힙니다.</p>
-            <p>v5.9.9 필답형 전용 풀이: 회차·자료를 열면 사이트 메뉴와 상·하단 탐색을 숨기고 목록 복귀·계산기·설정만 남깁니다. 그림 확대창은 화면 대부분을 쓰고 화면 너비 맞춤부터400%까지 확대합니다. 모바일 메뉴는 전환 영역 밖에서 새로 표시해 모션·흐림 효과의 충돌을 줄입니다. 문제 아래 풀이·표시 개수 저장과 기존 답안·필기 데이터는 유지합니다.</p>
-            <p>v5.1.5 먼저 외울 한 줄 공식: CGT·CR·COP·BF·상사법칙과 보충5개 공식을 이름으로 모았습니다. 언제 쓰는지·기호 뜻·암기법을 펼쳐 보세요. PDF는 SI 다음에 공식 요약2쪽을 넣은29쪽 합본이며 기존36문제의 숫자·함정·조건 설명과 우선13문제 선택을 유지합니다.</p>
-            <p>v5.1.1 복원 비율 실전: 문제별 ‘정답·풀이 보기’로 제출 전에도 답안과 설명을 확인합니다. 미리 본 문제는 표시하고 이어풀기에도 유지합니다. 시간은 계속 진행하며 자가채점은 제출 후 열립니다.</p>
-            <p>v5.9.6 필답형 답안 보강: 명칭·특징·목적·원리를 함께 묻는 공개 자료의 핵심 답안을 보강하고, 답안 확인 후 이해용 설명을 기본으로 펼칩니다. 문제 아래 ‘이상 신고’에서 답안 누락·그림 잘림 등을 알릴 수 있으며 PDF·스캔 그림10개를 원본에서 복구했습니다. 원본 자체의 잘림은 별도 확인이 필요합니다.</p>
-            <p>v5.9.5 비슷한 문제끼리: 회차별 문제 → 냉동공학 중간고사의 ‘문제 배치’에서 같은 목차·주제끼리 모으거나 기존 순서를 선택하세요. 랜덤은 ‘뽑힌 문제를 비슷한 내용끼리 배치’를 켜면 무작위 선택 후 순서만 묶습니다. 기존 이어풀기·다시 풀기와 기록은 유지됩니다.</p>
-            <p>v5.9.4 교재 본문 확인 문제: 회차별 문제 → 냉동공학 중간고사에서 ‘교재 본문에서 연결 확인된 문제만 풀기’를 켜거나 끌 수 있습니다. 확인된 일반316문제·안전24문제와 추가 확인 대장을 제공하며, 기존 원문·오답·이어풀기 기록을 보존합니다. 교재 전체 수록 완료는 아닙니다.</p>
-            <p>v5.9.3 로딩 최적화: 문제와 해설은 기존 원본 이미지로 표시합니다. 시험 자료실·필답형 자료는 필요할 때 불러오며, 진행 중인 필답형 풀이와 저장 답안을 유지합니다. PC 읽기 폭 제한·보이는 카드 중심 모션·테마 아이콘 최적화는 유지합니다.</p>
-            </details>
-            <header><div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>필답 계산 · 온도차와 절대온도</h2></div><p>필답 계산 풀이에서 ‘온도차와 절대온도 구별’을 확인하세요. 비열의 kJ/(kg·K)는 온도차1 K당 열이며, 31℃-28℃=3 K입니다. 두 온도를 켈빈으로 바꿔 빼도 같은3 K이고, 온도차 자체에273.15를 더하지 않습니다. 카르노 온도비·이상기체식의 온도 자체와 구별하며, 간단·상세 PDF도 같은 안내로 보강했습니다. 기존 문제 검색·복원 비율 실전·답안 저장은 유지합니다.</p></header>
-            <div>
-              <article><b>01</b><strong>익숙한 CBT 풀이 흐름</strong><span>하단 이전·답안 확인·다음, 문제 번호·미작성 이동</span></article>
-              <article><b>02</b><strong>최대12문제씩 보기</strong><span>1·2·4·6·8·10·12개와 이어보기 · 표시 개수 저장</span></article>
-              <article><b>03</b><strong>핵심 답안과 이해용 풀이</strong><span>풀이를 열면 설명도 펼침 · 채점 핵심어와 힌트는 선택 확인</span></article>
-              <article><b>04</b><strong>문제 아래 바로 풀이</strong><span>정답·설명은 같은 카드 아래에 · 직접 입력은 선택 펼침</span></article>
-              <article><b>05</b><strong>단위 환산 비교</strong><span>부분점수표에서 1 kW와 1000 W처럼 같은 물리량 비교 · 요구 단위는 직접 확인</span></article>
-            </div>
-            <details class="feature-history"><summary>이전 자료 추가·분류 기록 보기 (당시 기준)</summary>
-            <p>아래 문항 수와 기본값은 해당 업데이트 당시 기록입니다. 현재 선택 화면의 수량·설정이 우선합니다.</p>
-            <p>v5.2 필답 화면: 회차별 기출·추가 자료·복습을 먼저 고르고, 연도별 회차에서 작성 진도와 이어풀기를 확인합니다. 풀이에 들어가면 문제와 답안 중심 화면으로 전환되고 회차·자료 목록으로 바로 돌아갑니다.</p>
-            <p>v5.9.1 에너지 출처 선택: ‘에너지 교재 문제’는 교재 원문140문제, ‘CBT + 에너지 교재’는 이전 CBT 목록154문제를 기존 방식으로 풉니다. 교재 이미지191장의 보기에도 직접 선택 영역을 연결했습니다. 설정 → 답안 선택 방식에서 이미지 직접 선택을 켜고 체크 마커 또는 영역 색상 박스를 비교하세요. 원문 해설·다크·라이트 표시와 기존 풀이 기록은 유지됩니다.</p>
-            <p>v5.8.3 냉동공학 중간고사: 교재의 장·세부 목차로 일반1108문제를 정리하고, 안전관리·보호장치·누설검사56문제는 별도 선택합니다. ‘전체·랜덤’에서 계산5개 포함을 켜면 계산5개와 나머지 이론을 뽑습니다. 부족하면 범위를 바꾸도록 안내하며 기존 랜덤과 이어풀기 기록은 유지합니다.</p>
-            <p>v5.8.4 에너지 원문73문제: 설정 → 답안 배치 → 이미지 직접 선택으로①②③④와 보기 내용을 눌러 답합니다. 여러 줄 보기·분수도 한 박스로 표시하고, 체크 마커 또는 영역 색상을 고를 수 있습니다. 기존 답안 버튼 설정·179문제·풀이 기록은 유지합니다.</p>
-            <p>v5.8.5 중간고사: 에너지의 같은 질문·정답은 최신 회차로 정리해154문제를 출제하며 계산 수치·정답이 다른 변형은 유지합니다. 기본 계산 체크는2번·6번, ‘계산 문제만 보기’에서는22개 전체 원문을 확인합니다. 냉동도 같은 문장·정답은 최신 회차로 묶고 ‘나왔던 회차’를 표시합니다. 기존 기록과 일반 기출은 보존합니다.</p>
-            <p>v5.8.6 에너지 계산 기본값 정정: 6번 상당증발량·11번 스케줄번호만 기본On입니다. 랜덤20은 각1개를 계산으로 뽑고 전체·주제별 새 풀이에도 적용합니다. ‘기본6번·11번’으로 언제든 복원하며 개별 선택과 이어풀기 기록은 유지합니다.</p>
-            <p>v5.4 중간고사: 전용 오답 기록, 연도·회차별 학습과 6개 소과목 필터를 제공합니다. 소과목은 자동 참고 분류이고 미확인 문제도 전체에 포함합니다. 랜덤은 이미 나온 문제를 제외하며 풀이 기록에서 이전 묶음의 답안·위치를 이어 풉니다.</p>
-            <p>v5.4.5: 교재 목차에서 냉동이론 → 냉매와 브라인처럼 세부 범위를 골라 학습·CBT·오답·이어풀기를 선택합니다. 전체·랜덤도 세부 목차로 고르며 반복 소과목 표시는 제거했습니다. 애매한 문항은 세부 분류 미확인에 남기고 기존 답안·점수는 유지합니다.</p>
-            <p>v5.6: 2018~2020년 공개 원문의 사진90개와15개 회로·평면도 선택 답안 설명을 보강했습니다. 정답이 인쇄된2개 사진은 답안에만 표시하며, 공개 원문192문항은 문제 아래 ‘원문 동작 영상 보기’로 해당 장면을 열 수 있습니다. 2023년1회2번의 다른 보기 그림은 원문 동작에 맞춰 제어부를 재작성했습니다. 책95개 대응·기존 기록·원본은 유지하며, 전체312문항의 정답 검증 완료를 뜻하지 않습니다.</p>
-            <p>v5.1.5 자료 보관함: 회차가 있는 기출312문제는 연도·회차로 바로 고르고, 따로 받은 공개 자료47·필답문제2 PDF42·사진·기기 PDF123은 추가 자료 모음에서 서로 섞지 않고 선택합니다.</p>
-            <p>v5.1.4 이미지 보완: 2026년 1·2회 24문항은 영상 캡처를 새 해설 PDF의 문제18·답안7 그림으로 완전 교체했습니다. 회로·타임차트·계통도를 잘림 없이 다시 분리했고, 2회11번 원문과 표시등·스크롤 압축기 풀이도 보강했습니다. 문제 ID와 학습 기록은 그대로 유지됩니다.</p>
-            <p>새 필답문제2 42문항도 추가했습니다. 훈련관의 자료·범위에서 추가 자료42를 선택하면 이 자료만 풀이 확인·직접 입력·암기로 풀 수 있습니다. 그림2개와 답안 보완 근거를 함께 제공하며 기존407문제와 기록은 유지합니다.</p>
-            <p>9월17일 제공된 가지1 123문항은 사진·기기 자료123에서 따로 풀 수 있습니다. 원본 사진95개와 학습 답안·설명을 연결했으며 정답 표기가 있는 비교 사진2개는 문제용과 답안용을 분리했습니다.</p>
-            <p>복원 자료 구분: 필답형 상단에서 전체 기간 / 2023년 2회 이후 / 2023년 1회 이전을 선택합니다. 회차 목록과 랜덤 실전에도 같은 범위를 적용합니다. 원본 영상 보유 시점을 기준으로 한 구분이며 전체 수정 완료 표시는 아닙니다.</p>
-            <p>2023년 2회1번의 주회로·제어회로 전체와 3회1번의 우측 PB2/X2 회로도 원본 영상으로 보완했습니다. 기존 잘린 이미지는 삭제하지 않았습니다.</p>
-            </details>
-            <footer><strong>기기 간 이어하기</strong><span>입력 답안, 채점표, 실수 원인과 최근 답안 이력을 로그인한 PC·태블릿·휴대폰에서 합칩니다.</span><button type="button" @click="openHvacPracticalGuide">필답형 훈련관 열기 →</button></footer>
-          </section>
-
-          <section class="feature-theme-preview">
-            <div>
-              <span>LATEST EXPERIENCE · v{{ currentVersion }}</span>
-              <h2>테마와 동적 UI를 직접 바꿔보세요</h2>
-              <p>동적 UI는 기본으로 켜지며 화면이 움직이고 카드 배치가 달라집니다. 끄면 v2.4.2 방식의 기존 배치로 돌아가고, 심슨 테마는 학습 기록을 건드리지 않은 채 유지됩니다.</p>
-              <div>
-                <button type="button" @click="settingsOpen = true">⚙ 테마 설정 열기</button>
-                <button type="button" :class="{ active: dynamicUiEnabled }" @click="setDynamicUiEnabled(true)">동적 UI ON</button>
-                <button type="button" :class="{ active: !dynamicUiEnabled }" @click="setDynamicUiEnabled(false)">기존 UI로</button>
-              </div>
-            </div>
-            <figure>
-              <img  v-bind="responsiveImageAttrs(simpsonsThemeImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsThemeImage)" alt="호머 심슨이 바트 심슨의 목을 조르는 장면" loading="lazy" decoding="async">
-            </figure>
-          </section>
-
-          <section class="feature-layout-lab">
-            <header>
-              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>세 가지 문제풀이 화면</h2></div>
-              <p>선택한 화면은 다음 학습과 CBT부터 적용되며 풀이 중 설정에서도 바로 바꿀 수 있습니다.</p>
-            </header>
-            <div>
-              <button type="button" :class="{ active: solveLayoutMode === 'standard' }" @click="setSolveLayoutMode('standard')"><b>CBT</b><strong>기본 CBT</strong><span>기존 v2.7 카드형 · 기본값</span></button>
-              <button type="button" :class="{ active: solveLayoutMode === 'comcbt' }" @click="setSolveLayoutMode('comcbt')"><b>COM</b><strong>COMCBT 모드</strong><span>고밀도 2열 · 고정 OMR · 빠른 이동</span></button>
-              <button type="button" class="combat" :class="{ active: solveLayoutMode === 'combat' }" @click="setSolveLayoutMode('combat')"><b>⚡</b><strong>컴뱃 CBT</strong><span>진행 HUD · 4문제 연속 · 미션형 화면</span></button>
-            </div>
-            <footer><strong>COMCBT 전용 키보드</strong><span>1~4 답 선택 · ←/→ 이동 · K 킵 · B 북마크 · E 해설</span></footer>
-          </section>
-
-          <section class="feature-upscale-compare">
-            <header>
-              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>원본과 업스케일링 후를 직접 비교하세요</h2></div>
-              <p>Real-ESRGAN 4배 처리 후 2배 bicubic 축소 · Mac M4 Pro · 256px 타일</p>
-            </header>
-            <div class="upscale-compare-grid">
-              <button
-                type="button"
-                class="upscale-compare-card original"
-                :aria-label="`${upscaleComparison.subject} 원본 크게 보기`"
-                @click="upscalePreviewKind = 'original'"
-              >
-                <div><span>BEFORE</span><strong>원본</strong><small>{{ upscaleComparison.originalSize }}</small></div>
-                <figure><img  :src="$problemImage(upscaleComparison.original)" :alt="`${upscaleComparison.subject} 업스케일링 전 원본`"></figure>
-                <b>눌러서 크게 보기 ⌕</b>
-              </button>
-              <button
-                type="button"
-                class="upscale-compare-card improved"
-                :aria-label="`${upscaleComparison.subject} 업스케일링 후 크게 보기`"
-                @click="upscalePreviewKind = 'improved'"
-              >
-                <div><span>AFTER</span><strong>업스케일링 후</strong><small>{{ upscaleComparison.improvedSize }}</small></div>
-                <figure><img  :src="$problemImage(upscaleComparison.improved)" :alt="`${upscaleComparison.subject} 업스케일링 후`"></figure>
-                <b>눌러서 크게 보기 ⌕</b>
-              </button>
-            </div>
-            <footer>
-              <strong>{{ upscaleComparison.subject }}</strong>
-              <span>{{ upscaleComparison.count }}에 같은 처리 기준을 적용했으며, 기존 원본 파일은 그대로 보존했습니다.</span>
-            </footer>
-          </section>
-
-          <section v-if="!isJewelry" class="feature-restored-dark">
-            <header>
-              <div><span>LATEST EXPERIENCE · v{{ currentVersion }}</span><h2>복원문제 다크 이미지를 눈으로 비교하세요</h2></div>
-              <p>원본 파일과 답안 좌표는 바꾸지 않고 화면 색상만 전환합니다.</p>
-            </header>
-            <div class="restored-dark-preview-grid">
-              <button type="button" class="restored-dark-preview original" :class="{ active: restoredImageTheme === 'original' }" @click="setRestoredImageTheme('original')">
-                <figure><img  :src="$problemImage(restoredDarkPreviewImage)" alt="원본 흰색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
-                <strong>항상 원본</strong><small>흰 문제지 그대로</small>
-              </button>
-              <button type="button" class="restored-dark-preview comfort" :class="{ active: restoredImageTheme === 'auto' }" @click="setRestoredImageTheme('auto')">
-                <figure><img  :src="$problemImage(restoredDarkPreviewImage)" alt="눈부심을 줄인 남색 복원문제 수식 예시" loading="lazy" decoding="async"></figure>
-                <strong>눈부심 완화</strong><small>추천 · 짙은 남색</small>
-              </button>
-            </div>
-            <footer><strong>설정 위치</strong><span>화면·데이터 설정과 풀이 중 설정에서 언제든 바꿀 수 있습니다. 선택한 방식은 다크 모드에서 적용됩니다.</span></footer>
-          </section>
-
-          <Teleport to="body">
-            <div
-              v-if="upscalePreview"
-              class="question-image-lightbox"
-              role="dialog"
-              aria-modal="true"
-              :aria-label="`${upscalePreview.title} 확대`"
-              @click="upscalePreviewKind = null"
-            >
-              <header @click.stop>
-                <strong>{{ upscalePreview.title }}</strong>
-                <span>{{ upscalePreview.size }} · 문제 풀이 화면과 같은 크게 보기</span>
-                <button type="button" aria-label="확대 이미지 닫기" @click="upscalePreviewKind = null">×</button>
-              </header>
-              <div @click.self="upscalePreviewKind = null">
-                <img  :src="$problemImage(upscalePreview.src)" :alt="`${upscalePreview.title} 확대`">
-              </div>
-            </div>
-          </Teleport>
-
-          <section class="feature-tour">
-            <header><div><span>3-MINUTE TOUR</span><h2>이번에 정식 적용된 기능 네 가지</h2></div><p>베타 전환 없이 실제 문제풀이에서 바로 사용할 수 있습니다.</p></header>
-            <div class="feature-tour-grid">
-              <article class="feature-tour-card blue">
-                <b>01</b><span>PADDLE OCR</span><h3>여러 줄 보기도 한 박스로 선택</h3>
-                <p>두 줄·세 줄 답안의 전체 글자를 하나의 정확한 박스로 묶어 누릅니다.</p>
-                <button type="button" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">이미지 답안 강조 켜기 →</button>
-              </article>
-              <article class="feature-tour-card violet">
-                <b>02</b><span>IN-SESSION SETTINGS</span><h3>풀이 중에도 설정</h3>
-                <p>답안과 타이머를 유지하면서 테마·글씨·답안 배치·OMR을 바로 바꿉니다.</p>
-                <button type="button" @click="startFeatureRound('learn')">학습 화면에서 체험 →</button>
-              </article>
-              <article class="feature-tour-card mint">
-                <b>03</b><span>SMART OMR</span><h3>현재 문제 자동 따라가기</h3>
-                <p>CBT에서 다음 문제로 이동하면 OMR도 필요한 때만 부드럽게 따라옵니다.</p>
-                <button type="button" @click="startFeatureRound('exam')">실전 CBT에서 체험 →</button>
-              </article>
-              <article v-if="!isJewelry" class="feature-tour-card midnight">
-                <b>04</b><span>RESTORED IMAGE DARK</span><h3>복원문제까지 편안한 다크</h3>
-                <p>원본 이미지와 답안 좌표는 보존하고 눈부심 완화·원본 중 원하는 표시를 고릅니다.</p>
-                <button type="button" @click="theme = 'dark'; applyTheme(theme); setRestoredImageTheme('auto')">눈부심 완화 체험 →</button>
-              </article>
-            </div>
-          </section>
-
-          <section class="feature-action-section">
-            <header><div><span>QUICK EXPERIENCE</span><h2>한 번 눌러 바로 체감하기</h2></div></header>
-            <div class="feature-action-grid">
-              <button type="button" class="feature-action-card simpsons" @click="settingsOpen = true">
-                <span>⚙</span><div><strong>테마 설정 열기</strong><small>{{ isJewelry ? '기본·심슨·선재 UI 선택' : '기본·심슨 UI 선택' }}</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card motion" @click="setDynamicUiEnabled(!dynamicUiEnabled)">
-                <span>{{ dynamicUiEnabled ? 'ON' : 'OFF' }}</span><div><strong>{{ dynamicUiEnabled ? '기존 UI로 돌아가기' : '동적 UI 켜기' }}</strong><small>새 배치와 모션 한 번에 전환</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card exam" @click="setAnswerLayout('hotspot')">
-                <span>☝</span><div><strong>{{ answerLayout === 'hotspot' ? '이미지 직접 선택 사용 중' : '이미지에서 답 고르기' }}</strong><small>원문 속 ①·②·③·④를 바로 선택</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card coach" @click="setAnswerLayout('hotspot'); setHotspotIndicator('area')">
-                <span>▰</span><div><strong>PaddleOCR 답안 박스</strong><small>여러 줄 답안도 한 박스로 선택</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card sun" @click="toggleLightDark">
-                <span>{{ darkActive ? '☀' : '☾' }}</span><div><strong>{{ darkActive ? '라이트 모드로' : '다크 모드로' }}</strong><small>전체 테마 즉시 전환</small></div><b>›</b>
-              </button>
-              <button v-if="!isJewelry" type="button" class="feature-action-card midnight" @click="settingsOpen = true">
-                <span>◐</span><div><strong>복원 이미지 다크 설정</strong><small>눈부심 완화·원본 중 선택</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card calc" @click="openCalculator">
-                <span>▦</span><div><strong>공학용 계산기</strong><small>별도 팝업으로 실행</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card coach" @click="openView('coach')">
-                <span>✦</span><div><strong>합격 엔진</strong><small>예상 점수와 취약 과목</small></div><b>›</b>
-              </button>
-              <button type="button" class="feature-action-card exam" @click="startFeatureRound('exam')">
-                <span>OMR</span><div><strong>실전 CBT</strong><small>최신 회차 시험 화면</small></div><b>›</b>
-              </button>
-            </div>
-          </section>
-
-          <section class="feature-plugin-guide">
-            <header>
-              <div><span>PLUGIN GUIDE · v{{ currentVersion }}</span><h2>이번 플러그인이 바꾼 기능</h2></div>
-              <p>이름만 나열하지 않고 실제로 어디에 쓰였는지 펼쳐서 확인할 수 있습니다. 무거운 도구는 해당 기능을 열 때만 내려받습니다.</p>
-            </header>
-            <div class="feature-plugin-grid">
-              <details v-for="plugin in pluginExperiences" :key="plugin.name">
-                <summary>
-                  <span>{{ plugin.area }}</span>
-                  <strong>{{ plugin.name }}</strong>
-                  <b>{{ plugin.loading }}</b>
-                </summary>
-                <p>{{ plugin.role }}</p>
-                <small><b>바뀐 점</b>{{ plugin.change }}</small>
-              </details>
-            </div>
-            <footer><strong>안전장치</strong><span>선택 기능에서 오류가 나면 해당 카드만 멈추고 기존 CBT는 유지합니다. 주소에 <code>?safe=1</code>을 붙이면 UI 실험 기능만 임시로 끌 수 있습니다.</span></footer>
-          </section>
-
-          <section class="feature-latest">
-            <header><div><span>LATEST CHANGES</span><h2>v{{ patchEntries[0]?.version }} 핵심 변경점</h2></div><button type="button" @click="openView('updates')">전체 패치노트 →</button></header>
-            <ul><li v-for="change in patchEntries[0]?.changes || []" :key="change">{{ change }}</li></ul>
-          </section>
-        </template>
-
-        <template v-else-if="view === 'stats'">
-          <section class="stats-hero">
-            <div><span>LEARNING REPORT</span><h1>{{ selectedCatalog.name }} 학습 통계</h1><p>기존 CBT에서 푼 기록과 새 화면의 기록을 함께 표시합니다.</p></div>
-            <strong>{{ stats.accuracy }}<small>%</small></strong>
-          </section>
-          <section class="stats-grid">
-            <article><span>전체 문제</span><strong>{{ stats.total.toLocaleString() }}</strong><small>수록 문항</small></article>
-            <article><span>학습 문제</span><strong>{{ stats.answered.toLocaleString() }}</strong><small>학습률 {{ stats.coverage }}%</small></article>
-            <article><span>맞힌 문제</span><strong>{{ stats.correct.toLocaleString() }}</strong><small>최근 선택 기준</small></article>
-            <article><span>복습 필요</span><strong>{{ stats.wrong.toLocaleString() }}</strong><small>현재 오답</small></article>
-          </section>
-          <section class="subject-report">
-            <header><div><span>SUBJECT ANALYSIS</span><h2>과목별 학습 현황</h2></div><small>최근 선택한 답 기준</small></header>
-            <div v-for="row in subjectStats" :key="row.subject" class="subject-row">
-              <div><strong>{{ row.subject }}</strong><span>{{ row.answered.toLocaleString() }}/{{ row.total.toLocaleString() }}문제 학습</span></div>
-              <div class="subject-bar"><i :style="{ width: `${row.accuracy}%` }" /></div>
-              <b>{{ row.accuracy }}%</b>
-            </div>
-          </section>
-        </template>
-
-        <template v-else>
-          <section class="patch-heading">
-            <div><span>RELEASE NOTES</span><h1>{{ spaceName }} 패치노트</h1><p>새 기능과 수정 내용을 버전별로 확인할 수 있습니다.</p></div>
-            <div class="patch-version-actions">
-              <strong>v{{ currentVersion }}</strong>
-              <button v-if="savedLearningSession" type="button" class="resume-after-update" @click="resumeSavedLearning">▶ 저장한 문제 이어서 풀기</button>
-              <button type="button" class="feature-lab-entry" @click="openView('showcase')">◉ 신기술 학습관 NEW</button>
-              <button type="button" :disabled="updateChecking" @click="checkForUpdate(true)">{{ updateChecking ? '확인 중…' : '최신 버전 확인' }}</button>
-            </div>
-          </section>
-          <section v-if="showAndroidApkPatchDownload" class="patch-apk-download" aria-labelledby="patch-apk-download-title">
-            <div class="android-app-mark" aria-hidden="true">
-              <svg viewBox="0 0 48 48" role="img">
-                <path d="M15 18h18a5 5 0 0 1 5 5v12a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V23a5 5 0 0 1 5-5Z" />
-                <path d="m16 18-3-5m19 5 3-5M18 12h12a4 4 0 0 1 4 4v2H14v-2a4 4 0 0 1 4-4Z" />
-                <circle cx="19" cy="15" r="1.3" /><circle cx="29" cy="15" r="1.3" />
-              </svg>
-            </div>
-            <div>
-              <span>ANDROID APP</span>
-              <strong id="patch-apk-download-title">휴대폰·태블릿용 정식 APK</strong>
-              <small>Android 7.0 이상 · 약 8MB · 최신 버전으로 교체 설치할 수 있습니다.</small>
-            </div>
-            <a :href="$problemImage(androidApkUrl)" target="_blank" rel="noopener" aria-label="Android 전용 CBT 정식 APK 받기">정식 APK 받기 <b aria-hidden="true">↓</b></a>
-          </section>
-          
-          <div class="patch-timeline">
-            <article v-for="(entry, index) in patchEntries" :key="`${entry.version}-${entry.title}`" :class="{ latest: index === 0 }">
-              <div class="patch-version"><span>v{{ entry.version }}</span><small>{{ entry.date }}</small></div>
-              <div>
-                <header><h2>{{ entry.title }}</h2><b v-if="index === 0">최신</b></header>
-                <p>{{ entry.summary }}</p>
-                <div class="patch-tags"><span v-for="tag in entry.tags || []" :key="tag">{{ tag }}</span></div>
-                <ul><li v-for="change in entry.changes || []" :key="change">{{ change }}</li></ul>
-              </div>
-            </article>
-          </div>
-        </template>
           </div>
         </Transition>
       </div>
@@ -6236,7 +5705,7 @@ onBeforeUnmount(() => {
     <button v-if="showAndroidApkPopup" type="button" class="android-apk-floating-trigger" aria-label="Android 앱 다운로드 안내 열기" @click="androidApkPopupOpen = true">
       <span>ANDROID</span><strong>앱 받기</strong>
     </button>
-    
+
     <Transition name="modal-fade">
       <div v-if="showAndroidApkPopup && androidApkPopupOpen" class="android-apk-popup-backdrop" @click.self="androidApkPopupOpen = false">
         <section class="android-apk-popup" role="dialog" aria-modal="true" aria-labelledby="android-apk-popup-title">
@@ -6259,14 +5728,14 @@ onBeforeUnmount(() => {
         </section>
       </div>
     </Transition>
-    
+
     <nav v-if="!practicalSolving" class="mobile-tabbar" :inert="mobileMenuOpen">
-      <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>⌂</template></span>홈</button>
-      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▤</template></span>회차</button>
-      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><template v-else>!</template></span>오답</button>
-      <button :class="{ active: view === 'search' }" @click="openView('search')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-search-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><template v-else>⌕</template></span>검색</button>
-      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><template v-else>✦</template></span>합격</button>
-      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><template v-else>▥</template></span>통계</button>
+      <button :class="{ active: view === 'home' }" @click="openView('home')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(0))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-home-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><i v-else class="study-menu-icon menu-home" aria-hidden="true" /></span>홈</button>
+      <button :class="{ active: view === 'rounds' }" @click="openView('rounds')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(1))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-rounds-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><i v-else class="study-menu-icon menu-rounds" aria-hidden="true" /></span>회차</button>
+      <button :class="{ active: view === 'wrong' }" @click="openView('wrong')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(2))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-wrong-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(2), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(2))" alt=""><i v-else class="study-menu-icon menu-wrong" aria-hidden="true" /></span>오답</button>
+      <button :class="{ active: view === 'search' }" @click="openView('search')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(3))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-search-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(3))" alt=""><i v-else class="study-menu-icon menu-search" aria-hidden="true" /></span>검색</button>
+      <button :class="{ active: view === 'coach' }" @click="openView('coach')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsBurnsImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsBurnsImage)" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-coach-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(0), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(0))" alt=""><i v-else class="study-menu-icon menu-coach" aria-hidden="true" /></span>합격</button>
+      <button :class="{ active: view === 'stats' }" @click="openView('stats')"><span><img  v-if="visualStyle === 'simpsons'" v-bind="responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(simpsonsFunnyImageAt(5))" alt=""><img  v-else-if="visualStyle === 'sunjae'" :key="`sunjae-mobile-stats-${sunjaeImageIndex}`" v-bind="responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaePortraitImageAt(1))" alt=""><i v-else class="study-menu-icon menu-stats" aria-hidden="true" /></span>통계</button>
     </nav>
     <nav v-if="!practicalSolving" class="native-app-tabbar" aria-label="Android 앱 메뉴" :inert="mobileMenuOpen">
       <button :class="{ active: view === 'home' }" @click="nativeMoreOpen = false; openView('home')"><span>⌂</span><strong>홈</strong></button>
@@ -6284,7 +5753,7 @@ onBeforeUnmount(() => {
             <button type="button" @click="nativeMoreOpen = false; openView('calculation')"><span>∑</span><div><strong>계산문제</strong><small>공식부터 차근차근</small></div></button>
             <button v-if="studyGuideAvailable" type="button" @click="nativeMoreOpen = false; openView('guide')"><span>▣</span><div><strong>시험 자료실</strong><small>공식·핵심 개념{{ hvacPracticalAvailable ? '·필답형' : '' }}</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>취약 과목과 복습</small></div></button>
-            <button v-if="experimentalFeaturesEnabled" type="button" @click="nativeMoreOpen = false; openView('beta')"><span>β</span><div><strong>베타 학습 도구</strong><small>확신도·메모·맞춤 복습</small></div></button>
+            <button v-if="experimentalFeaturesEnabled" type="button" @click="nativeMoreOpen = false; openView('beta')"><span><i class="study-menu-icon menu-beta" aria-hidden="true" /></span><div><strong>베타 학습 도구</strong><small>확신도·메모·맞춤 복습</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openView('stats')"><span>▥</span><div><strong>학습 통계</strong><small>점수와 학습 기록</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; openCalculator()"><span>▦</span><div><strong>계산기</strong><small>공학용 계산 도구</small></div></button>
             <button type="button" @click="nativeMoreOpen = false; settingsOpen = true"><span>⚙</span><div><strong>설정</strong><small>테마·글씨·문제 화면</small></div></button>
@@ -6296,6 +5765,7 @@ onBeforeUnmount(() => {
 
   </div>
 
+  <p v-else-if="!session && textbookReaderOpen && appHydrating" class="library-note" role="status">저장한 풀이 기록을 불러오는 중…</p>
   <TextbookPages v-else-if="!session && textbookReaderOpen" :book="textbookKey" :items="textbookItems" :answers="textbookAnswers" :bookmarked-ids="studyStore.bookmarks" :loading="textbookLoading" :error="textbookError" :answer-layout="answerLayout" :hotspot-indicator="hotspotIndicator" :restored-image-theme="restoredImageTheme" @close="closeTextbookReader" @settings="settingsOpen=true" @calculator="openCalculator()" @book="selectTextbook" @retry="loadTextbookPages" @choose="chooseTextbookAnswer" @bookmark="toggleBookmark" @ai="prepareAiQuestion" @start="payload=>beginSession(payload.mode,payload.label,payload.items)" />
 
   <div
@@ -6312,254 +5782,9 @@ onBeforeUnmount(() => {
       'experience-session-leaving': experienceTransitionPhase === 'session-leaving',
     }"
   >
-    <header class="session-topbar">
-      <div class="session-leading">
-        <button class="back-button" type="button" @click="leaveSession()">← <span>뒤로가기</span></button>
-        <button class="session-menu-button" type="button" @click="sessionMenuOpen = true">☰ <span>메뉴</span></button>
-      </div>
-      <div>
-        <span>{{ solveLayoutMode === 'combat' ? 'COMBAT CBT · MISSION' : session.mode === 'exam' ? 'CBT EXAM' : 'LEARNING MODE' }}</span>
-        <strong>{{ sessionTitle }}</strong>
-        <div v-if="solveLayoutMode === 'combat'" class="combat-progress-track"><i :style="{ width: `${sessionProgress}%` }" /></div>
-      </div>
-      <div class="session-tools">
-        <button type="button" @click="openCalculator">▦ 계산기</button>
-        <button type="button" @click="settingsOpen = true">⚙ 설정</button>
-        <div class="session-font-control" aria-label="문자 크기 조절">
-          <button type="button" aria-label="문자 작게" :disabled="fontScale <= .8" @click="adjustFontScale(-.1)">가−</button>
-          <button type="button" title="기본 크기로" @click="setFontScale(1)">{{ Math.round(fontScale * 100) }}%</button>
-          <button type="button" aria-label="문자 크게" :disabled="fontScale >= 1.6" @click="adjustFontScale(.1)">가+</button>
-        </div>
-        <form v-if="session.mode === 'learn'" class="session-jump-form" @submit.prevent="jumpToLearningQuestion">
-          <label for="learning-jump-number">문제 번호</label>
-          <input
-            id="learning-jump-number"
-            v-model="learningJumpNumber"
-            type="number"
-            inputmode="numeric"
-            min="1"
-            :max="sessionQuestionMax"
-            :placeholder="`1~${sessionQuestionMax}`"
-            aria-label="이동할 문제 번호"
-          >
-          <button type="submit">이동</button>
-        </form>
-        <label v-if="session.mode === 'learn'">
-          문제 표시
-          <select :value="session.pageSize" @change="setSessionPageSize(Number(($event.target as HTMLSelectElement).value))">
-            <option :value="1">1문제</option>
-            <option :value="2">2문제</option>
-            <option :value="4">4문제</option>
-            <option :value="6">6문제</option>
-          </select>
-        </label>
-        <button v-if="session.mode === 'learn'" type="button" class="reset-button" @click="resetLearning">선택 초기화</button>
-        <button v-else type="button" class="timer-button">남은 시간 <strong>{{ formattedTime }}</strong></button>
-        <button v-if="session.mode === 'exam'" type="button" @click="examSheetOpen = !examSheetOpen">{{ examSheetOpen ? 'OMR 닫기' : 'OMR 열기' }}</button>
-      </div>
-      <div
-        class="session-status-strip"
-        :class="{
-          'combat-hud-stats': solveLayoutMode === 'combat',
-          'comcbt-status-strip': solveLayoutMode === 'comcbt',
-        }"
-        aria-label="현재 풀이 진행 상태"
-      >
-        <span><small>진행</small><strong>{{ sessionProgress }}%</strong></span>
-        <span><small>완료</small><strong>{{ answeredCount }}</strong></span>
-        <button
-          type="button"
-          class="session-unanswered-status"
-          :disabled="!unansweredCount"
-          :title="unansweredCount ? '다음 미응답 문제로 이동' : '모든 문제에 답했습니다'"
-          @click="goToNextUnanswered"
-        ><small>미응답</small><strong>{{ unansweredCount }}</strong></button>
-        <button type="button" class="session-kept-status" :disabled="!keptCount" @click="goToNextKept"><small>킵</small><strong>{{ keptCount }}</strong></button>
-      </div>
-      <div v-if="examPace" class="beta-exam-pace" :class="`is-${examPace.tone}`" aria-live="polite">
-        <b>β 속도 예측</b><strong>{{ examPace.label }}</strong><span>{{ examPace.detail }}</span>
-      </div>
-    </header>
-
-    <button v-if="sessionMenuOpen" class="session-menu-backdrop" type="button" aria-label="풀이 메뉴 닫기" @click="sessionMenuOpen = false" />
-    <aside class="session-drawer" :class="{ open: sessionMenuOpen }">
-      <header><div><span>CBT</span><strong>풀이 메뉴</strong></div><button type="button" aria-label="닫기" @click="sessionMenuOpen = false">×</button></header>
-      <nav>
-        <button type="button" @click="leaveSession('home')"><span>⌂</span><div><strong>첫 화면</strong><small>종목 선택과 학습 설정</small></div></button>
-        <button type="button" @click="leaveSession('rounds')"><span>▤</span><div><strong>회차별 문제</strong><small>전체 기출 회차 선택</small></div></button>
-        <button type="button" @click="leaveSession('history')"><span>◴</span><div><strong>학습 내역</strong><small>이어하기와 지난 점수</small></div></button>
-        <button type="button" @click="leaveSession('wrong')"><span>!</span><div><strong>오답노트</strong><small>틀린 문제 다시 풀기</small></div></button>
-        <button type="button" @click="leaveSession('coach')"><span>✦</span><div><strong>합격 엔진</strong><small>맞춤 복습과 합격 예측</small></div></button>
-        <button type="button" @click="leaveSession('updates')"><span>◷</span><div><strong>패치노트</strong><small>최근 업데이트 확인</small></div></button>
-      </nav>
-      <footer>
-        <button type="button" @click="settingsOpen = true; sessionMenuOpen = false">⚙ 화면·문제풀이 설정</button>
-        <button type="button" @click="openCalculator">▦ 공학용 계산기</button>
-        <button type="button" @click="toggleLightDark">{{ darkActive ? '☀ 라이트 모드' : '☾ 다크 모드' }}</button>
-      </footer>
-    </aside>
-
-    <main class="session-main">
-      <section class="question-area">
-        <details v-if="selectedKey === 'energy-midterm' || coolingSessionActive" class="midterm-question-map">
-          <summary>문제 번호 목록 · 계산{{ session.items.filter(isMidtermCalculation).length }}문제</summary>
-          <nav aria-label="중간고사 문제 번호">
-            <button v-for="(item,index) in session.items" :key="item.id" type="button" :class="{ active:Math.floor(index/session.pageSize)===session.page }" :aria-label="`${index+1}번${isMidtermCalculation(item)?' 계산 문제':''}`" @click="goToQuestion(index)"><strong>{{ index+1 }}</strong><small v-if="isMidtermCalculation(item)" class="midterm-calculation-badge">계산</small></button>
-          </nav>
-        </details>
-        <Transition :name="questionTransitionName" mode="out-in">
-          <div :key="`${session.page}-${session.pageSize}`" class="question-columns">
-            <div v-for="(column, columnIndex) in currentItemColumns" :key="columnIndex" class="question-column">
-              <QuestionCard
-                v-for="item in column"
-                :key="item.id"
-                :id="`session-question-${session.items.indexOf(item) + 1}`"
-                :item="item"
-                :mode="session.mode"
-                :selected="session.answers[item.id]"
-                :subject-start="isSubjectStart(item)"
-                :subject-number="sessionSubjectNumber(item)"
-                :display-number="session.items.indexOf(item) + 1"
-                :bookmarked="studyStore.bookmarks.includes(item.id)"
-                :kept="session.kept.includes(item.id)"
-                :calculation-mode="session.calculationMode"
-                :image-answer-mode="answerLayout === 'hotspot' ? 'hotspot' : 'buttons'"
-                :answer-layout="answerLayout"
-                :hotspot-indicator="hotspotIndicator"
-                :restored-image-theme="restoredImageTheme"
-                :solve-layout="solveLayoutMode"
-                :active="solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id"
-                :experimental-features="experimentalFeaturesEnabled && questionJudgmentEnabled"
-                :confidence="betaModeMeta(item.id, session.mode).confidence"
-                :mistake-reason="betaModeMeta(item.id, session.mode).reason"
-                :study-note="betaQuestionMeta(item.id).note"
-                @choose="chooseAnswer(item, $event)"
-                @toggle-bookmark="toggleBookmark(item)"
-                @toggle-keep="toggleKeep(item)"
-                @ask-ai="prepareAiQuestion(item)"
-                @activate="activateSessionItem(item)"
-                @set-confidence="setQuestionConfidence(item, $event)"
-                @set-mistake-reason="setQuestionMistakeReason(item, $event)"
-                @update-study-note="setQuestionStudyNote(item, $event)"
-              />
-            </div>
-          </div>
-        </Transition>
-        <footer class="pager" :class="{ 'has-unanswered': unansweredCount }">
-          <button type="button" class="pager-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← 이전</button>
-          <span class="pager-position"><strong>{{ session.page + 1 }}</strong> / {{ pageCount }}</span>
-          <button v-if="unansweredCount" type="button" class="pager-unanswered-button" @click="goToNextUnanswered">다음 미응답</button>
-          <button type="button" class="pager-next" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)">다음 →</button>
-          <button v-if="session.mode === 'learn'" type="button" class="learning-result-button" @click="submitLearning">학습 결과 보기</button>
-          <button v-else type="button" class="exam-submit-button" @click="submitExam(false)">시험 제출·채점</button>
-        </footer>
-      </section>
-
-      <aside v-if="session.mode === 'exam'" class="omr-sheet">
-        <header>
-          <div><span>ANSWER SHEET</span><strong>답안지</strong></div>
-          <div class="omr-summary">
-            <button v-if="keptCount" type="button" @click="goToNextKept">킵 {{ keptCount }}</button>
-            <Transition name="count-pop" mode="out-in"><b :key="answeredCount">{{ answeredCount }}/{{ session.items.length }}</b></Transition>
-          </div>
-        </header>
-        <div v-if="solveLayoutMode === 'comcbt'" class="omr-filter-bar" aria-label="OMR 빠른 필터">
-          <button :class="{ active: omrFilter === 'all' }" @click="omrFilter = 'all'">전체</button>
-          <button :class="{ active: omrFilter === 'unanswered' }" @click="omrFilter = 'unanswered'">미응답 {{ unansweredCount }}</button>
-          <button :class="{ active: omrFilter === 'kept' }" @click="omrFilter = 'kept'">킵 {{ keptCount }}</button>
-          <button :class="{ active: omrFilter === 'subject' }" @click="omrFilter = 'subject'">현재 과목</button>
-        </div>
-        <div ref="omrListRef" class="omr-list" @pointerdown="markOmrManualScroll" @wheel.passive="markOmrManualScroll">
-          <button
-            v-for="({ item, index }) in omrRows"
-            :key="item.id"
-            :data-omr-index="index"
-            type="button"
-            :class="{ current: Math.floor(index / session.pageSize) === session.page, kept: session.kept.includes(item.id) }"
-            @click="goToQuestion(index)"
-          >
-            <strong>{{ index + 1 }}.<i v-if="session.kept.includes(item.id)">K</i><small v-if="isMidtermCalculation(item)" class="midterm-calculation-badge">계산</small></strong>
-            <span
-              v-for="choice in 4"
-              :key="choice"
-              :class="{ marked: session.answers[item.id] === choice }"
-              @click.stop="chooseAnswer(item, choice)"
-            >{{ choice }}</span>
-          </button>
-          <p v-if="!omrRows.length" class="omr-empty">해당 문제가 없습니다.</p>
-        </div>
-        <footer>
-          <button v-if="unansweredCount" type="button" class="omr-next-unanswered" @click="goToNextUnanswered">다음 미응답</button>
-          <button type="button" @click="submitExam(false)">채점하기</button>
-        </footer>
-      </aside>
-    </main>
-
-
-    <nav class="native-session-bar" :class="{ 'has-unanswered': unansweredCount }" aria-label="Android 풀이 도구">
-      <button type="button" :disabled="session.page === 0" @click="goToPage(session.page - 1)"><span>‹</span><strong>이전</strong></button>
-      <button v-if="unansweredCount" type="button" class="native-unanswered-button" @click="goToNextUnanswered"><span>?</span><strong>미응답</strong><b>{{ unansweredCount }}</b></button>
-      <button v-if="session.mode === 'exam'" type="button" :class="{ active: examSheetOpen }" @click="examSheetOpen = !examSheetOpen"><span>OMR</span><strong>답안지</strong><b v-if="unansweredCount">{{ unansweredCount }}</b></button>
-      <button v-else type="button" @click="settingsOpen = true"><span>가</span><strong>글씨·설정</strong></button>
-      <button type="button" @click="openCalculator"><span>▦</span><strong>계산기</strong></button>
-      <button v-if="session.mode === 'exam' && activeSessionItem" type="button" :class="{ active: session.kept.includes(activeSessionItem.id) }" @click="toggleKeep(activeSessionItem)"><span>K</span><strong>킵</strong></button>
-      <button v-else type="button" @click="sessionMenuOpen = true"><span>☰</span><strong>메뉴</strong></button>
-      <button type="button" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>›</span><strong>다음</strong></button>
-    </nav>
-
-    <nav v-if="solveLayoutMode === 'comcbt'" class="compact-session-pager" aria-label="문제 페이지 이동">
-      <button type="button" class="compact-prev" :disabled="session.page === 0" @click="goToPage(session.page - 1)">← <span>이전</span></button>
-      <div>
-        <span>COMCBT PAGE</span>
-        <strong>{{ session.page + 1 }} / {{ pageCount }}</strong>
-        <small>{{ answeredCount }}개 완료 · {{ unansweredCount }}개 미응답</small>
-      </div>
-      <button v-if="unansweredCount" type="button" class="unanswered-jump" @click="goToNextUnanswered">미응답</button>
-      <button type="button" class="compact-next" :disabled="session.page >= pageCount - 1" @click="goToPage(session.page + 1)"><span>다음</span> →</button>
-      <button v-if="session.mode === 'learn'" type="button" class="compact-submit learning" @click="submitLearning">학습 결과 보기</button>
-      <button v-else type="button" class="compact-submit exam" @click="submitExam(false)">시험 제출·채점</button>
-    </nav>
-
-    <Transition name="result-pop" appear>
-      <div v-if="examResult" class="result-backdrop">
-        <section class="result-card" :class="{ 'sunjae-result-card': visualStyle === 'sunjae', 'sunjae-result-revealed': visualStyle === 'sunjae' && sunjaeResultPhase === 'reveal' }">
-        <div v-if="visualStyle === 'sunjae' && sunjaeResultPhase === 'grading'" class="sunjae-grading-stage">
-          <div class="sunjae-grading-photo"><img  v-bind="responsiveImageAttrs(sunjaeGradingImage, 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeGradingImage)" alt="답안을 채점하는 변우석"><i /><i /><i /></div>
-          <div class="sunjae-grading-copy"><span>선재가 채점 중 ···</span><strong>잠깐만, 내가 하나씩 볼게.</strong><p>네가 끝까지 푼 답안이니까 더 꼼꼼하게 확인하고 있어.</p><div><i /><i /><i /><i /><i /></div></div>
-        </div>
-        <template v-else>
-        <div v-if="visualStyle === 'simpsons'" class="simpsons-result-message">
-          <img  :src="$problemImage(examResult.score >= 60 ? simpsonsKingSizeImage : simpsonsThemeImage)" :alt="examResult.score >= 60 ? '꽃무늬 옷을 입은 뚱뚱한 호머' : '호머와 바트'">
-          <p><strong>{{ examResult.score >= 60 ? '오늘은 목 조르기 면제!' : '호머가 오기 전에 오답 복습!' }}</strong><span>{{ examResult.score >= 60 ? '바트도 놀랄 만큼 잘 풀었습니다.' : '이번 회차 오답만 다시 풀면 점수가 금방 올라갑니다.' }}</span></p>
-        </div>
-        <div v-if="visualStyle === 'sunjae'" class="sunjae-result-message" :class="{ praise: examResult.score >= 60 }">
-          <img  v-bind="responsiveImageAttrs(sunjaeResultImage(examResult.score), 'auto, (max-width: 820px) 80vw, 640px')" @error="restoreOriginalImage" :src="$problemImage(sunjaeResultImage(examResult.score))" :alt="examResult.score >= 60 ? '점수를 칭찬하는 선재·변우석' : '다음 학습을 응원하는 선재·변우석'">
-          <p><strong>{{ sunjaeResultTitle(examResult.score) }}</strong><span>{{ sunjaeResultDetail(examResult.score) }}</span></p>
-        </div>
-        <span>{{ session.mode === 'exam' ? (examResult.passed ? 'PASS' : 'REVIEW') : 'LEARNING RESULT' }}</span>
-        <h2>{{ session.mode === 'learn' ? '현재 학습 결과입니다' : (examResult.passed ? '합격 기준을 통과했습니다' : '조금 더 복습이 필요합니다') }}</h2>
-        <div class="result-score">{{ displayedResultScore }}<small>점</small></div>
-        <p>{{ examResult.total }}문제 중 {{ examResult.correct }}문제를 맞혔습니다.</p>
-        <p class="result-criteria">
-          <span>{{ examResult.official ? 'Q-Net 필기 기준' : '기준 확인 필요' }}</span>
-          <strong>{{ examResult.criteria }}</strong>
-          <a v-if="examResult.source" :href="$problemImage(examResult.source)" target="_blank" rel="noopener">공식 기준 보기</a>
-        </p>
-        <div class="subject-results">
-          <div v-for="row in examResult.subjectRows" :key="row.subject">
-            <span>{{ row.subject }}</span><strong>{{ row.score }}점</strong><small :class="{ fail: officialRule?.scoring === 'subject-average' && !row.passed }">{{ officialRule?.scoring === 'total-only' ? '참고' : (row.passed ? '통과' : '과락') }}</small>
-          </div>
-        </div>
-        <div class="result-actions">
-          <button type="button" @click="examResult = null; session.finished = false">문제 다시 보기</button>
-          <button type="button" @click="openResultWrongAnswers(false)">이번 회차 오답 보기</button>
-          <button type="button" @click="openResultWrongAnswers(true)">오답만 다시 풀기</button>
-          <button type="button" @click="leaveSession()">시작 화면으로</button>
-        </div>
-        </template>
-        </section>
-      </div>
-    </Transition>
+    <ToolPanelsMount v-if="panelCalculator || panelNotes || pinnedSolution" :model="{calculator:panelCalculator, notes:panelNotes, solution:pinnedSolution, scope:spaceScope, close:closeTool}" />
+    <ReactSurface data-react-view="exam-session" :draw="() => renderExamSessionView(examSessionViewModel)"/>
+    <ReactSurface v-if="examResult" data-react-view="grade" :draw="() => renderGradeView(gradeViewModel)"/>
   </div>
 
   <StudySettings v-if="settingsOpen && (view !== 'settings' || session)" :mode="settingsExpanded ? 'full' : 'quick'" :values="settingsValues" :context="settingsContext" @change="changeSetting" @action="settingsAction">
@@ -6606,15 +5831,7 @@ onBeforeUnmount(() => {
     </aside>
   </Transition>
 
-  <Transition name="toast">
-    <aside v-if="pwaRegistrationError && !updateAvailable && !session && !practicalSolving && !textbookReaderOpen" class="update-notice pwa-error-notice">
-      <div><span>PWA RECOVERY</span><strong>업데이트 연결을 자동으로 복구할 수 있습니다</strong><small>학습 기록·오답·로그인은 보존하고 서비스워커와 CBT 캐시만 다시 설정합니다.</small></div>
-      <div class="pwa-error-actions">
-        <button type="button" @click="openPwaRecoveryFromError">자동 복구 열기</button>
-        <button type="button" class="secondary" @click="pwaRegistrationError = false">나중에</button>
-      </div>
-    </aside>
-  </Transition>
+
 
   <Transition name="toast">
     <div v-if="toastMessage" class="toast-message">{{ toastMessage }}</div>

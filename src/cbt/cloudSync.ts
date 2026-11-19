@@ -1,6 +1,8 @@
+import {mergeTextbookAnswers} from './textbookAnswerProgress';
+import {publicApiBase,readLearning,writeLearning,deleteLearning} from './serviceApi';
 import { createClient, type Session, type SupabaseClient } from '@supabase/supabase-js';
-import { reactive, watch } from 'vue';
-import { db, persistStudyStoreNow, studyStore, type ExamRecord } from './storage';
+import {reactive} from './controllerSignals';
+import { db, persistStudyStoreNow, studyStore, subscribeStudyChanges, type ExamRecord } from './storage';
 import type { AttemptRecord, LegacyStore } from './types';
 import { differingLearningCopies, listSyncRecoveries, preserveLearningCopies, restoreLearningCopy, type SyncRecovery } from './syncRecovery';
 
@@ -127,6 +129,7 @@ function mergeProgress(
   remote: Record<string, unknown>,
 ): Record<string, unknown> {
   const merged = { ...remote, ...local };
+  mergeTextbookAnswers(merged, local, remote);
   const key = 'activeLearningSessionV1';
   const localSession = local[key];
   const remoteSession = remote[key];
@@ -269,9 +272,17 @@ export async function syncLearningData(): Promise<void> {
   try {
     for (let attempt = 0; attempt < 4; attempt += 1) {
       syncPhase('reading', attempt ? '다른 기기의 저장을 확인했습니다. 최신 기록을 다시 읽는 중…' : '1/4 서버 기록 읽는 중…');
-      const { data, error } = await client.from('user_learning_states')
-        .select('payload,updated_at').eq('user_id', userId).eq('space', space).maybeSingle();
-      if (error) throw error;
+      const token = session?.access_token;
+      if (!sameAccount() || !token) return;
+      let data: {payload:unknown; updated_at:string} | null;
+      if (publicApiBase()) {
+        data = await readLearning(space, token);
+      } else {
+        const read = await client.from('user_learning_states').select('payload,updated_at')
+          .eq('user_id', userId).eq('space', space).maybeSingle();
+        if (read.error) throw read.error;
+        data = read.data;
+      }
       if (!sameAccount()) return;
       const remote = data?.payload as SyncPayload | undefined;
       if (data && remote?.version !== 1) throw new Error('지원하지 않는 동기화 형식입니다. 기존 서버 기록을 보존합니다.');
@@ -288,15 +299,21 @@ export async function syncLearningData(): Promise<void> {
           exams: mergeExams(local.exams, remote.exams || []),
         } : local;
       syncPhase('uploading', '3/4 서버에 저장 확인 중…');
-      const updatedAt = new Date(Math.max(Date.now(), (Date.parse(data?.updated_at || '') || 0) + 1)).toISOString();
-      const row = { user_id: userId, space, payload: merged, updated_at: updatedAt };
       // Optimistic concurrency: only replace the revision we actually read.
-      const result = data
-        ? await client.from('user_learning_states').update(row).eq('user_id', userId).eq('space', space).eq('updated_at', data.updated_at).select('updated_at')
-        : await client.from('user_learning_states').insert(row).select('updated_at');
-      if (!sameAccount()) return;
-      if (result.error?.code === '23505' || (!result.error && !result.data?.length)) continue;
-      if (result.error) throw result.error;
+      if (publicApiBase()) {
+        const saved = await writeLearning(space, token, merged, data?.updated_at ?? null);
+        if (!sameAccount()) return;
+        if (!saved) continue;
+      } else {
+        const updatedAt = new Date(Math.max(Date.now(), (Date.parse(data?.updated_at || '') || 0) + 1)).toISOString();
+        const row = { user_id:userId, space, payload:merged, updated_at:updatedAt };
+        const result = data
+          ? await client.from('user_learning_states').update(row).eq('user_id', userId).eq('space', space).eq('updated_at', data.updated_at).select('updated_at')
+          : await client.from('user_learning_states').insert(row).select('updated_at');
+        if (!sameAccount()) return;
+        if (result.error?.code === '23505' || (!result.error && !result.data?.length)) continue;
+        if (result.error) throw result.error;
+      }
       syncPhase('applying', '4/4 이 기기 기록에 반영 중…');
       const latest = await localPayload();
       if (!sameAccount()) return;
@@ -373,9 +390,9 @@ export async function initializeCloudSync(): Promise<void> {
   cloudSyncState.email = String(session?.user.user_metadata?.sync_username || session?.user.email || '');
   cloudSyncState.mustChangePassword = Boolean(session?.user.user_metadata?.must_change_password);
   cloudSyncState.status = session ? 'syncing' : 'signed-out';
-  stopStoreWatch ||= watch(studyStore, () => {
+  stopStoreWatch ||= subscribeStudyChanges(() => {
     if (!applyingRemote) { localRevision += 1; scheduleLearningSync(); }
-  }, { deep: true });
+  });
   window.addEventListener('online', () => scheduleLearningSync(100));
   if (session) await syncLearningData();
 }
@@ -467,6 +484,7 @@ export async function updateSyncPassword(password: string): Promise<string | nul
 
 export async function clearCloudLearningState(): Promise<void> {
   if (!client || !session) return;
+  if (publicApiBase()) { await deleteLearning(space,session.access_token); return; }
   const { error } = await client.from('user_learning_states').delete().eq('space', space);
   if (error) throw error;
 }

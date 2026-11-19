@@ -30,34 +30,40 @@ test('해설 작성 출처를 문제 출처와 혼동하지 않는다', () => {
 const owner = '00000000-0000-4000-8000-000000000001';
 const basePayload = (draft: string, updatedAt = 10) => ({ version:1, capturedAt:updatedAt, store:{ attempts:{},wrong:{},bookmarks:[],history:[],notes:{},progress:{ hvacPracticalV2:{ p1:{ draft,updatedAt } } } }, exams:[] });
 const evaluate = <T>(page: Page, fn: (h: any) => T) => page.evaluate(`(${fn.toString()})(window.syncTest)`) as Promise<Awaited<T>>;
-async function harness(page: Page) {
-  await page.addInitScript(({owner}) => {
-    (window as any).CBT_CLOUD_CONFIG = {enabled:true,supabaseUrl:'https://sync-test.supabase.co',supabaseAnonKey:'test-anon-key'};
+async function harness(page: Page, api = false) {
+  await page.addInitScript(({owner,api}) => {
+    (window as any).CBT_CLOUD_CONFIG = {enabled:true,supabaseUrl:'https://sync-test.supabase.co',supabaseAnonKey:'test-anon-key',serviceApiUrl:api ? 'https://learning-api.example.invalid/api' : undefined};
     const token = `eyJhbGciOiJIUzI1NiJ9.${btoa(JSON.stringify({sub:owner,exp:Math.floor(Date.now()/1000)+3600}))}.test-signature`;
     localStorage.setItem('cbt-learning-auth-industrial', JSON.stringify({ access_token:token, refresh_token:'test-only',expires_at:Math.floor(Date.now()/1000)+3600,token_type:'bearer',user:{id:owner,email:'test@example.invalid',user_metadata:{}} }));
-  }, {owner});
+  }, {owner,api});
   await page.route('**/sync-test.html', route => route.fulfill({contentType:'text/html',body:'<!doctype html><html><body><script src="./work/sync-test-harness.js"></script></body></html>'}));
+  await page.route('**/work/sync-test-harness.js', route => route.fulfill({path:'work/sync-test-harness.js',contentType:'application/javascript'}));
   await page.goto('./sync-test.html');
   await page.waitForFunction(() => Boolean((window as any).syncTest));
 }
 
-test('동시 저장 충돌은 다시 읽고, 업로드 도중 작성한 답과 복구 사본을 지킨다', async ({page}) => {
+for (const api of [false,true]) test((api ? 'NestJS · ' : 'Supabase · ')+'동시 저장 충돌은 다시 읽고, 업로드 도중 작성한 답과 복구 사본을 지킨다', async ({page}) => {
   let remote = basePayload('서버의 이전 답', 10);
   let stamp = '2026-09-01T00:00:00.000Z';
   let writes = 0;
-  await page.route('https://sync-test.supabase.co/rest/v1/user_learning_states**', async route => {
+  await page.route(api ? 'https://learning-api.example.invalid/api/learning/industrial' : 'https://sync-test.supabase.co/rest/v1/user_learning_states**', async route => {
     const request = route.request();
-    const headers = {'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'GET,PATCH,POST,OPTIONS'};
+    const headers = {'access-control-allow-origin':'*','access-control-allow-headers':'*','access-control-allow-methods':'GET,PUT,PATCH,POST,OPTIONS'};
     if (request.method() === 'OPTIONS') return route.fulfill({headers,status:200});
-    if (request.method() === 'GET') return route.fulfill({headers,json:{payload:remote,updated_at:stamp}});
-    expect(new URL(request.url()).searchParams.get('updated_at')).toBe(`eq.${stamp}`);
-    const row = request.postDataJSON(); writes += 1;
-    if (writes === 1) { stamp = '2026-09-01T00:00:01.000Z'; return route.fulfill({headers,json:[]}); }
+    if (request.method() === 'GET') {
+      const state = {payload:remote,updated_at:stamp};
+      return route.fulfill({headers,json:api ? {state} : state});
+    }
+    const row = request.postDataJSON();
+    if (api) expect(row.expectedUpdatedAt).toBe(stamp);
+    else expect(new URL(request.url()).searchParams.get('updated_at')).toBe(`eq.${stamp}`);
+    writes += 1;
+    if (writes === 1) { stamp = '2026-09-01T00:00:01.000Z'; return route.fulfill({headers,status:api?409:200,json:[]}); }
     if (writes === 2) await evaluate(page, h => { h.studyStore.progress.hvacPracticalV2.p1 = {draft:'업로드 도중 새 답',updatedAt:Date.now()}; });
-    remote = row.payload; stamp = row.updated_at;
-    return route.fulfill({headers,json:[{updated_at:stamp}]});
+    remote = row.payload; stamp = row.updated_at ?? new Date().toISOString();
+    return route.fulfill({headers,json:api?{updated_at:stamp}:[{updated_at:stamp}]});
   });
-  await harness(page);
+  await harness(page,api);
   await evaluate(page, async h => { h.studyStore.progress.hvacPracticalV2 = {p1:{draft:'이 기기 답',updatedAt:20}}; await h.cloud.initializeCloudSync(); });
   await expect.poll(() => remote.store.progress.hvacPracticalV2.p1.draft).toBe('업로드 도중 새 답');
   expect(writes).toBeGreaterThanOrEqual(3);

@@ -22,10 +22,29 @@
   window.CBT_DISPLAY_PREFERENCE = displayPreference;
   window.CBT_LOADED_QUALIFICATION = qualification;
 
-  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=754"];
-  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=754");
-  if (qualification === "energy") scripts.push("data/energy-restored.js?v=754");
+  var previousView = history.state;
+  if (!nativeApp && resolvedDisplay === 'mobile' && previousView && previousView.cbtSpace === 'cbt-industrial' &&
+      location.hash === '#/study/rounds' && previousView.view === 'rounds' && previousView.textbookCollection) return;
+
+  // A first mobile home can display the published catalog counts. Read questions
+  // when a book, a qualification or the detailed study range actually needs them.
+  if (!nativeApp && resolvedDisplay === 'mobile' && qualification === 'hvac' &&
+      (!location.hash || location.hash === '#/study/home') && !history.state) {
+    try {
+      if (!localStorage.getItem(QUALIFICATION_KEY) && !localStorage.getItem('unified-industrial-cbt-v1') &&
+          !localStorage.getItem('unified-cbt-learning-session-industrial') &&
+          !sessionStorage.getItem('cbt-open-updates-after-refresh-industrial') &&
+          (!localStorage.getItem('unified-cbt-visual-style') || localStorage.getItem('unified-cbt-visual-style') === 'default')) return;
+    } catch (error) { /* Keep the normal bootstrap when stored preferences are inaccessible. */ }
+  }
+
+  // The school workspace loads its own saved sets independently of the selected qualification.
+  if (location.hash === '#/study/school') return;
+
+  var scripts = qualification === "school-exams" ? [] : ["data/" + qualification + ".js?v=801"];
+  if (qualification === "energy-midterm") scripts.push("data/energy-textbook.js?v=801");
+  if (qualification === "energy") scripts.push("data/energy-restored.js?v=801");
   document.write(scripts.map(function (src) {
-    return '<script src="' + src + '"></script>';
+    return '<script data-study-required src="' + src + '"></script>';
   }).join(""));
 })();

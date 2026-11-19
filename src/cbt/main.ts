@@ -1,8 +1,9 @@
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
-import { createApp } from 'vue';
-import App from './App.vue';
-import {problemImage,problemImageHtml} from './problemImages';
+import {createElement} from 'react';
+import {createRoot} from 'react-dom/client';
+import {StudyApp} from './StudyApp';
+import {browserCatalogs} from './catalog';
 import 'open-props/easings.min.css';
 import 'open-props/durations.min.css';
 import 'driver.js/dist/driver.css';
@@ -53,12 +54,15 @@ if (nativeApp) {
   void import('./nativeEnhancements').then(({ initializeNativeEnhancements }) => initializeNativeEnhancements());
 }
 
-const app = createApp(App);
-app.config.globalProperties.$problemImage=problemImage;
-app.config.globalProperties.$problemImageHtml=problemImageHtml;
-app.config.errorHandler = (error) => showRuntimeRecovery(error);
-window.addEventListener('unhandledrejection', (event) => showRuntimeRecovery(event.reason));
-app.mount('#next-app');
+if (nativeApp && document.documentElement.dataset.bundledAssets === 'true') {
+  const {openBundledStudyStorage} = await import('./storage');
+  await openBundledStudyStorage().catch(error => { showRuntimeRecovery(error); throw error; });
+}
+
+const initialCatalogs = await browserCatalogs();
+window.addEventListener('unhandledrejection', event => showRuntimeRecovery(event.reason));
+createRoot(document.getElementById('next-app')!, {onUncaughtError:showRuntimeRecovery})
+  .render(createElement(StudyApp,{initialCatalogs}));
 
 if (!nativeApp && 'serviceWorker' in navigator && location.protocol !== 'file:') {
   void import('./pwa').catch((error) => {

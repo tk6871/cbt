@@ -25,9 +25,15 @@ function inspect(entry, revision) {
   return {bytes,gzip,files:[...paths]};
 }
 const baseline=process.argv[2];
+for (const layout of fs.readdirSync('modern/chunks').filter(file => /^(energy|hvac)QuestionLayout-v\d+\.js$/.test(file))) {
+  const imports = inspect('modern/chunks/' + layout).files;
+  if (imports.some(file => /\/main-v\d+\.js$/.test(file))) {
+    throw new Error('Startup awaits a layout that imports the app entry: ' + layout);
+  }
+}
 for(const entry of ['modern/cbt.js','modern/mobile.js']){
   const current=inspect(entry);
-  if(current.files.some(file=>/textbookPages-v|image-text-candidates-v|FormulaWorkbench-v/.test(file)))throw new Error(`Optional feature loaded at startup: ${entry}`);
+  if(current.files.some(file=>/textbookPages-v|image-text-candidates-v|FormulaWorkbench-v|hvacQuestionLayout-v|energyQuestionLayout-v/.test(file)))throw new Error(`Optional feature loaded at startup: ${entry}`);
   const before=baseline?inspect(entry,baseline):null;
   console.log(JSON.stringify({entry,before,after:current}));
 }

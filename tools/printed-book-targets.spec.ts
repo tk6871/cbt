@@ -1,7 +1,27 @@
+import numberReview from '../data/textbook-direct-number-review.json' with {type:'json'};
 import {expect,test} from '@playwright/test';
 import boxes from '../data/textbook-direct-hitboxes.json' with {type:'json'};
 import {textbookDirectSources} from '../src/cbt/textbookPages';
-import numberReview from '../data/textbook-direct-number-review.json' with {type:'json'};
+import {saveTextbookAnswer, mergeTextbookAnswers, importLegacyDirectAnswers} from '../src/cbt/textbookAnswerProgress';
+
+test('기존 원문 답과 서로 다른 기기의 교재 답·선택 취소를 문항별로 병합한다', () => {
+  const id = 'hansol-direct-1-168-25';
+  const key = 'cbt-book-direct-choice-v1::' + id;
+  const snapshot = {length:1, key:()=>key, getItem:(name:string)=>name===key?'3':null};
+  const local:Record<string,unknown> = {textbookPageAnswersV1:{energy:2}};
+  importLegacyDirectAnswers(local,snapshot);
+  expect(local.textbookPageAnswersV1).toEqual({energy:2,[id]:3});
+  const remote:Record<string,unknown> = {};
+  saveTextbookAnswer(remote,id,0);
+  saveTextbookAnswer(remote,'energy-other',4);
+  const merged = {...local,...remote};
+  mergeTextbookAnswers(merged,local,remote);
+  importLegacyDirectAnswers(merged,snapshot);
+  expect(merged.textbookPageAnswersV1).toEqual({energy:2,'energy-other':4});
+  const reverse = {...merged,...local};
+  mergeTextbookAnswers(reverse,merged,local);
+  expect(reverse.textbookPageAnswersV1).toEqual(merged.textbookPageAnswersV1);
+});
 
 test('각 원문 보기의 실제 터치 영역이 해당 지문 안에 있고 서로 겹치지 않는다',()=>{
   const sources = new Map(textbookDirectSources.map(source=>[source.id,source]));
@@ -32,6 +52,11 @@ const samples = [
 
 test('인쇄된 번호를 눌러 답안을 저장하고 교재 이동·새로고침 후 복원한다', async ({page, hasTouch}) => {
   test.setTimeout(180_000);
+  await page.addInitScript(() => {
+    if (!localStorage.getItem('unified-industrial-cbt-v1')) {
+      localStorage.setItem('cbt-book-direct-choice-v1::hansol-direct-1-168-25','3');
+    }
+  });
   await page.goto('./', {waitUntil: 'domcontentloaded'});
   async function openReader() {
     if (hasTouch) await page.getByRole('button', {name:'메뉴 열기', exact:true}).click();
@@ -40,6 +65,7 @@ test('인쇄된 번호를 눌러 답안을 저장하고 교재 이동·새로고
     await enterBookReader(page);
   }
   await openReader();
+  await expect(page.locator('[data-react-view="textbook-reader"] .reader-toolbar')).toBeVisible();
   async function openSample(sample: typeof samples[number]) {
     await switchTextbook(page, sample.book);
     await chooseBookPage(page, sample.page);
@@ -48,6 +74,8 @@ test('인쇄된 번호를 눌러 답안을 저장하고 교재 이동·새로고
     });
     const stage = row.locator(sample.book === 'energy' ? '.source-image-stage' : '.direct-question-parts .direct-viewport').first();
     const img = stage.locator('img');
+    const reactChoices = sample.book === 'energy' ? '[data-react-view="printed-choices"]' : '[data-react-view="direct-question"]';
+    await expect(row.locator(reactChoices)).toHaveCount(1);
     await expect(img).toBeAttached();
     await img.evaluate((image: HTMLImageElement) => image.decode());
     return stage;
@@ -62,6 +90,9 @@ test('인쇄된 번호를 눌러 답안을 저장하고 교재 이동·새로고
   }
   for (const sample of samples) {
     const stage = await openSample(sample);
+    if (sample.book === 'hansol') {
+      await expect(stage.locator('[aria-pressed=true]')).toHaveAttribute('aria-label','이미지에서 3번 선택');
+    }
     const choices = [1,2,3,4].filter(n => n !== sample.keep).concat(sample.keep);
     for (const choice of choices) {
       await stage.evaluate(el => el.scrollIntoView({behavior:'instant',block:'center'}));
@@ -76,8 +107,7 @@ test('인쇄된 번호를 눌러 답안을 저장하고 교재 이동·새로고
   }
 
   await page.reload({waitUntil:'domcontentloaded'});
-  await expect(page.locator('.textbook-pages, .sidebar, button[aria-label="메뉴 열기"]').first()).toBeAttached();
-  if (!await page.locator('.textbook-pages').isVisible()) await openReader();
+  await expect(page.getByRole('region', {name:'교재 전용 풀이'})).toBeVisible();
   for (const sample of samples) {
     const stage = await openSample(sample);
     await expect(stage.locator('[aria-pressed=true]')).toHaveAttribute('aria-label', '이미지에서 ' + sample.keep + '번 선택');

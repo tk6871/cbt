@@ -1,0 +1,97 @@
+:root {
+  --study-primary-image: url('./assets/materials/C-primary.webp');
+  --study-secondary-image: url('./assets/materials/C-secondary.webp');
+  --study-panel-image: url('./assets/materials/C-panel.webp');
+  --study-primary-ink: white;
+  --study-secondary-ink: #182b3a;
+}
+:root[data-theme="dark"] {
+  --study-primary-image: url('./assets/materials/A-primary.webp');
+  --study-secondary-image: url('./assets/materials/A-secondary.webp');
+  --study-panel-image: url('./assets/materials/A-panel.webp');
+  --study-primary-ink: #102437;
+  --study-secondary-ink: #f0f5f9;
+}
+[data-react-view="round-list"] .round-card footer button:not(.round-mode-button) {
+  background-image: var(--study-secondary-image);
+  background-size: 100% 100%;
+  color: var(--study-secondary-ink);
+}
+.admin-auth-card form button[type="submit"] {
+  background-image: var(--study-primary-image);
+  background-size: 100% 100%;
+  color: var(--study-primary-ink);
+}
+[data-react-view="round-list"] .round-card footer { border: 0; background: transparent; box-shadow: none; }
+.round-card footer button.round-mode-button {
+  appearance: none;
+  min-height: 44px;
+  border: 0;
+  box-shadow: none;
+  color: var(--on-primary);
+  background: var(--primary) url('./assets/materials/round-mode-sheen.svg') center / 100% 100% no-repeat;
+}
+@media (hover: hover) {
+  .round-card footer button.round-mode-button:hover:enabled { text-decoration: underline; text-underline-offset: .18em; }
+}
+.study-float > header,
+.mobile-tool-drawer > header {
+  background-image: linear-gradient(to right, color-mix(in srgb, var(--surface) 82%, transparent), var(--surface)), var(--study-panel-image);
+  background-size: 100% 100%;
+}
+.round-card footer button.round-mode-button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+.material-exam { --material-shape:url('./assets/navigation/exam.svg'); }
+.material-textbook { --material-shape:url('./assets/navigation/textbook.svg'); }
+.material-refrigeration { --material-shape:url('./assets/navigation/refrigeration.svg'); }
+.material-energy { --material-shape:url('./assets/navigation/energy.svg'); }
+.material-icon {
+  display:inline-block;
+  mask-image:var(--material-shape);
+  mask-position:center;
+  width: 18px;
+  height: 18px;
+  flex: none;
+  background: currentColor;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}
+@media (forced-colors: active) {
+  .material-icon { background: ButtonText; forced-color-adjust: none; }
+  .round-card footer button.round-mode-button { border: 1px solid ButtonText; }
+}
+
+.study-menu-icon {display:inline-block; width:1.2em; height:1.2em; background:currentColor; mask:var(--study-menu-shape) center / contain no-repeat; vertical-align:middle;}
+.study-menu-icon.menu-home { --study-menu-shape:url("./assets/navigation/menu-home.svg"); }
+.study-menu-icon.menu-rounds { --study-menu-shape:url("./assets/navigation/menu-rounds.svg"); }
+.study-menu-icon.menu-school { --study-menu-shape:url("./assets/navigation/menu-school.svg"); }
+.study-menu-icon.menu-history { --study-menu-shape:url("./assets/navigation/menu-history.svg"); }
+.study-menu-icon.menu-wrong { --study-menu-shape:url("./assets/navigation/menu-wrong.svg"); }
+.study-menu-icon.menu-search { --study-menu-shape:url("./assets/navigation/menu-search.svg"); }
+.study-menu-icon.menu-calculation { --study-menu-shape:url("./assets/navigation/menu-calculation.svg"); }
+.study-menu-icon.menu-guide { --study-menu-shape:url("./assets/navigation/menu-guide.svg"); }
+.study-menu-icon.menu-coach { --study-menu-shape:url("./assets/navigation/menu-coach.svg"); }
+.study-menu-icon.menu-beta { --study-menu-shape:url("./assets/navigation/menu-beta.svg"); }
+.study-menu-icon.menu-stats { --study-menu-shape:url("./assets/navigation/menu-stats.svg"); }
+.study-menu-icon.menu-updates { --study-menu-shape:url("./assets/navigation/menu-updates.svg"); }
+
+.model-slot .equipment-viewport {
+  width:100%; height:clamp(230px,30vw,320px); overflow:hidden; border-radius:12px;
+  background:radial-gradient(ellipse at 50% 36%,#f7fafb,#d8e3e9);
+}
+:root[data-theme=dark] .model-slot .equipment-viewport {
+  background:radial-gradient(ellipse at 50% 36%,#314151,#17212b);
+}
+.model-slot .equipment-controls {display:flex;flex-wrap:wrap;gap:6px;margin-block:8px;}
+.model-slot .equipment-controls button {min-height:44px;}
+
+@media(max-width:900px) {
+  .round-grid .round-card footer button {scroll-margin-block:80px calc(82px + env(safe-area-inset-bottom));}
+}
+
+.sidebar .beta-nav-button > span {background:color-mix(in srgb,currentColor 9%, transparent);color:inherit;}
+.native-more-sheet .study-menu-icon.menu-beta {background-color:currentColor;}
+
+.round-bank-actions {display:flex;flex-wrap:wrap;gap:8px;align-items:center}

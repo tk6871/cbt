@@ -5,6 +5,8 @@ type CloudConfig = {
   supabaseUrl: string;
   supabaseAnonKey: string;
   analyticsFunction?: string;
+  reviewApiUrl?: string;
+  serviceApiUrl?: string;
 };
 
 type AnalyticsResult = {

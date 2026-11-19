@@ -1,0 +1,1 @@
+const e=""+new URL("../assets/pdf.worker.min-Dswkl-cV.mjs",import.meta.url).href;export{e as default};

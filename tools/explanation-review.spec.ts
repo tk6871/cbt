@@ -22,6 +22,7 @@ test('교정된 펌프 해설·단위·지수와 답안 저장',async({page},inf
  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
  const card=page.locator('.question-card').filter({hasText:'12kW 펌프의 회전수가'});
  await expect(card).toBeVisible();
+ await page.clock.install();
  await card.locator('.choice-button').nth(1).click();
  await expect(card).toContainText('960 rpm');
  await expect(card).toContainText('H₂/H₁=(N₂/N₁)²');
@@ -30,6 +31,19 @@ test('교정된 펌프 해설·단위·지수와 답안 저장',async({page},inf
  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20150531:36'])).toBe(2);
  await page.screenshot({path:info.outputPath('pump-correction.png'),fullPage:true});
+ const pause=card.getByRole('button',{name:/자동 닫힘 멈추기/});
+ await pause.click();
+ await expect(pause).toHaveCount(0);
+ // Advance each second so a mistakenly retained interval would expire.
+ for(let second=0;second<21;second++) await page.clock.fastForward(1000);
+ await expect(card.getByRole('button',{name:'해설 닫기',exact:true})).toBeVisible();
+ await card.getByRole('button',{name:'해설 닫기',exact:true}).click();
+ await card.getByRole('button',{name:/해설 다시 보기/}).click();
+ await expect(card.getByRole('button',{name:'해설 닫기',exact:true})).toBeVisible();
+ await card.getByRole('button',{name:'해설 고정',exact:true}).click();
+ const pinned=page.locator('[data-react-view="study-tools"]');
+ await expect(pinned).toContainText('36번 고정 해설');
+ await expect(pinned).toContainText('960 rpm');
 });
 test('새 전사·부분 전사 표기·원문 전환과 선택 보존',async({page},info)=>{
  await prepare(page,'energy-midterm');
@@ -315,7 +329,11 @@ test('대수평균온도차 교정 분수와 답안 저장', async ({page}, info
  await card.locator('.choice-button').nth(1).click();
  const box=card.locator('.explanation-box');
  await expect(box).toContainText('3.27 °C');
- await expect(box.locator('.explanation-source-note summary')).toHaveText('자료 대조 해설');
+ const source=box.locator('.explanation-source-note');
+ await expect(source.locator('p')).toBeHidden();
+ await source.getByText('출처 보기',{exact:true}).click();
+ await expect(source.locator('p')).toContainText('3/ln(2.5)=3.27407 °C');
+ await source.locator('summary').click();
  await expect(box.locator('.katex-html .mfrac')).toBeVisible();
  await expect(box.locator('math mfrac')).toHaveCount(1);
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20050306:29'])).toBe(2);

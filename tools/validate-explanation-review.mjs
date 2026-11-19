@@ -9,7 +9,7 @@ import {execFileSync} from 'node:child_process';
 import {createRequire} from 'node:module';
 const require = createRequire(import.meta.url);
 const {build,transformSync} = require(require.resolve('esbuild', {paths:[require.resolve('vite')]}));
-const dir='docs/explanation-review/2026-11-18';
+const dir=process.argv[2] || 'docs/explanation-review/2026-11-18';
 const review=JSON.parse(fs.readFileSync(dir+'/review.json'));
 const inventory=JSON.parse(fs.readFileSync(dir+'/inventory.json'));
 const baseline=review.baseline;

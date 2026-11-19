@@ -1,6 +1,6 @@
 import type {TextbookEntry,TextbookKey} from './textbookPages';
 import {compareBookPages,textbookWorkedExamples} from './textbookPages';
-export type BookContentsNode={id:string;book:TextbookKey;title:string;from?:string;to?:string;prefix?:string;pages?:string[];keywords?:string[];children?:BookContentsNode[];note?:string};
+export type BookContentsNode={id:string;book:TextbookKey;title:string;from?:string;to?:string;roundBankId?:string;prefix?:string;pages?:string[];keywords?:string[];children?:BookContentsNode[];note?:string};
 type Chapter=[string,Array<[string,number,number?]>,number?];
 const keywords=(title:string):string[]=>{
  const rules:Array<[RegExp,string[]]>=[
@@ -68,7 +68,7 @@ export const bookContents:Record<TextbookKey,BookContentsNode[]>={
    ['시퀀스 제어',[['시퀀스 제어',368,376]]],
   ]),
   {id:'hansol-mock',book:'hansol',title:'부록 · 핵심 모의고사',prefix:'4-',note:'정상 열람한 교재 목차의 15회 쪽번호를 사용합니다. 문제 연결 수는 별도로 표시합니다.',children:[7,20,33,46,58,71,84,96,109,122,134,147,160,172,184].map((from,i,starts)=>({id:`hansol-mock-${i+1}`,book:'hansol',title:`제${i+1}회 핵심 모의고사`,from:`4-${from}`,to:`4-${(starts[i+1]||196)-1}`,prefix:'4-'}))},
-  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',prefix:'5-',note:'정상 열람한 교재 목차의 2023~2025년 회차별 쪽번호입니다.',children:[4,16,27,39,51,64,75,86,98].map((from,i,starts)=>({id:`hansol-latest-${2023+Math.floor(i/3)}-${i%3+1}`,book:'hansol',title:`${2023+Math.floor(i/3)}년 ${i%3+1}회`,from:`5-${from}`,to:`5-${(starts[i+1]||109)-1}`,prefix:'5-'}))},
+  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',prefix:'5-',note:'정상 열람한 교재 목차의 2023~2025년 회차별 쪽번호입니다.',children:[4,16,27,39,51,64,75,86,98].map((from,i,starts)=>({id:`hansol-latest-${2023+Math.floor(i/3)}-${i%3+1}`,book:'hansol',roundBankId:`hvac-hansol-${2023+Math.floor(i/3)}-${i%3+1}`,title:`${2023+Math.floor(i/3)}년 ${i%3+1}회`,from:`5-${from}`,to:`5-${(starts[i+1]||109)-1}`,prefix:'5-'}))},
  ],
  energy:[
   {id:'energy-theory',book:'energy',title:'이론편 · 제공 PDF 본문 순서',note:'스캔에 앞쪽 목차가 없어 본문의 확인된 장 제목으로 구성했습니다. 객관식과 본문 풀이 예제를 구분합니다.',children:[
@@ -109,7 +109,19 @@ function near(a:string,b:string):boolean{
  const [short,long]=a.length<b.length?[a,b]:[b,a];let i=0,j=0,skipped=false;
  while(i<short.length&&j<long.length){if(short[i]===long[j]){i++;j++;}else{if(skipped)return false;skipped=true;j++;}}return true;
 }
+export function examQuery(query:string) {
+ const match = /^(\d{2}|20\d{2})\s*년(?:\s*제?\s*(\d+)\s*회)?$/.exec(query.normalize('NFKC').trim());
+ if (!match) return;
+ return {year: match[1]!.length === 2 ? '20' + match[1] : match[1]!, session: match[2]};
+}
 export function searchContents(rows:ContentsRow[],query:string){
+ const exam = examQuery(query);
+ if (exam) {
+  const title = new RegExp('^'+exam.year+'년\\s*'+(exam.session ? '(?:[0-9]+·)*'+exam.session+'(?:·[0-9]+)*(?:통합)?회' : ''));
+  return rows.filter(row=>row.node.from && title.test(row.node.title)).map(row=>({
+   ...row, matched:[{term:query.trim(),kind:'회차 일치',weight:1}],score:1,
+  }));
+ }
  const vocabulary=[...new Set(['냉동','냉장','대용량','급속동결','선도',...rows.flatMap(r=>r.terms)])].filter(w=>w.length>=2).sort((a,b)=>b.length-a.length);
  function splitWord(word:string):string[]{
   if(word.length<4||vocabulary.includes(word))return [word];
