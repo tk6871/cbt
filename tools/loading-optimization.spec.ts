@@ -63,3 +63,16 @@ test('저장된 실전 필답 세션은 홈에서도 자료를 준비하고 답�
   await expect(answer).toHaveValue('진행 중 실전 답안');
   expect(await page.evaluate(()=>localStorage.getItem('unified-cbt-hvac-practical-session-v1'))).toBe(saved);
 });
+
+test('2026년 2회 급기가 흡수한 열과 시간당 송풍량 분수', async ({page}) => {
+  await page.goto('./?safe=1');
+  await openGuide(page);
+  await page.getByRole('button',{name:/회차별 기출/}).click();
+  const year = page.locator('.practical-year-group').filter({has:page.getByRole('heading',{name:'2026년',exact:true})});
+  await year.getByRole('button',{name:/^2회/}).click();
+  await page.getByLabel('필답형 화면 배치').selectOption('0');
+  const problem = page.locator('[data-practical-id="hvac-practical-restored-2026-2-09"]');
+  await problem.getByRole('button',{name:'정답·풀이 보기'}).click();
+  await expect(problem.locator('.practical-explanation')).toContainText('15℃ 급기가 실내의 현열을 흡수해 26℃');
+  await expect(problem.locator('.calculation-steps .mfrac').first()).toBeVisible();
+});
