@@ -70,7 +70,7 @@ test('진행 중인 회차에서도 이어 학습과 CBT 시험이 같은 줄을
   await page.goto('about:blank');
   await page.goto('./?safe=1#/study/rounds');
   const buttons = footer.getByRole('button');
-  await expect(buttons).toHaveText(['이어 학습','CBT 시험모드','처음부터','오답 1개']);
+  await expect(buttons).toHaveText(['이어 학습','CBT 시험모드','오답 1개']);
   const bounds = await buttons.evaluateAll(nodes=>nodes.map(n=>{const r=n.getBoundingClientRect();return {y:r.y,width:r.width,height:r.height};}));
   expect(bounds[0]!.y).toBe(bounds[1]!.y);
   expect(Math.abs(bounds[0]!.width-bounds[1]!.width)).toBeLessThan(1);

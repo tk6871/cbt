@@ -69,14 +69,14 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
   if (!session) return null;
   return (
     <>
-      <header className="session-topbar">
+      <header className={normalizeClass(['session-topbar', {'learn-topbar': session.mode === 'learn'}])}>
         <div className="session-leading">
           <button
             type="button"
             onClick={() => {
               leaveSession();
             }}
-            className="back-button"
+            aria-label="뒤로가기" className="back-button"
           >
             {'← '}
             <span>뒤로가기</span>
@@ -86,7 +86,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
             onClick={() => {
               m.sessionMenuOpen = true;
             }}
-            className="session-menu-button"
+            aria-label="풀이 메뉴 열기" aria-expanded={sessionMenuOpen} className="session-menu-button"
           >
             {'☰ '}
             <span>메뉴</span>
@@ -204,14 +204,9 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
               </select>
             </label>
           ) : null}
-          {session.mode === 'learn' ? (
-            <button type="button" onClick={resetLearning} className="reset-button">
-              이 페이지 선택 초기화
-            </button>
-          ) : (
+          {session.mode === 'exam' && (
             <button type="button" className="timer-button">
-              {'남은 시간 '}
-              <strong>{formattedTime}</strong>
+              남은 시간 <strong>{formattedTime}</strong>
             </button>
           )}
           {session.mode === 'exam' ? (

@@ -140,6 +140,7 @@ const roundCards=computed(()=>visibleRounds.value.map(round=>{
   const calculations=energy?round.questions.filter(q=>q.midtermCalculation).length:0;
   const record=roundRecordMap.value.get(round.id);
   const total=round.questions.length;
+  const answered=roundAnswered(round);
   return {
     id:round.id,title:round.title,qualification:round.shortQualification||round.qualification||selectedCatalog.value.name,
     year:round.year,school,restored:isRestoredRound(round),
@@ -148,8 +149,8 @@ const roundCards=computed(()=>visibleRounds.value.map(round=>{
     subjects:energy?[]:round.subjects,hint:school?round.questions[0]?.teacherHint:undefined,
     record:record?{score:record.score,date:new Date(record.finishedAt).toLocaleDateString('ko-KR'),latest:lastRoundRecord.value?.roundId===round.id}:undefined,
     calculation:calculations?{count:calculations,included:!excluded,set:(on:boolean)=>setEnergyTopicCalculation(round.id,on)}:undefined,
-    answered:roundAnswered(round),total,progress:roundProgress(round),wrong:roundWrongGroupMap.value.get(round.id)?.items.length??0,
-    start:()=>startRound(round,'learn'),restart:()=>restartRoundLearning(round),openWrong:()=>openRoundWrongAnswers(round),exam:()=>startRound(round,'exam'),
+    answered,total,progress:total ? Math.round(answered / total * 100) : 0,canReset:answered > 0 || !!savedRoundLearning(round),wrong:roundWrongGroupMap.value.get(round.id)?.items.length??0,
+    start:()=>startRound(round,'learn'),reset:()=>resetRoundLearning(round),openWrong:()=>openRoundWrongAnswers(round),exam:()=>startRound(round,'exam'),
   };
 }));
 const reactHome = computed<StudyHomeProps>(() => ({
@@ -3230,9 +3231,7 @@ async function startRound(round: Round, mode: StudyMode): Promise<void> {
   }
   if (mode === 'learn') {
     const previousAnswers = Object.fromEntries(items.flatMap((item) => {
-      const attempt = studyStore.attempts[item.id];
-      const resetAt = (studyStore.progress?.learningAnswerResetAtV1 as Record<string, number> | undefined)?.[item.id] || 0;
-      const choice = attempt && resetAt < attempt.at ? attempt.lastChoice : 0;
+      const choice = roundLearningChoice(round, item.id);
       return choice ? [[item.id, choice]] : [];
     }));
     return beginSession(
@@ -3264,10 +3263,39 @@ function startEnergyMidterm(mode: StudyMode, full = false, bookOnly = false, mat
   void beginSession(mode, `에너지설비 중간고사 · ${energySourceLabel(energySourceMode.value)} · ${priorityLabel || (match === 'direct' ? '시험범위 3개 묶음' : match === 'related' ? '추가 예상만' : bookOnly ? '교재 대응 확인 문항' : full ? '전체 주제 연습' : '랜덤 20문제 시험 연습')}`, items);
 }
 
-function restartRoundLearning(round: Round): void {
-  const items=roundToItems(selectedKey.value === 'energy-midterm' ? {...round,questions:energyTopicQuestions(round)} : round);
-  if(!items.length){ showToast('계산 제외 후 남은 문제가 없습니다. 계산 문제를 켜 주세요.'); return; }
-  beginSession('learn', round.kind==='school-midterm' ? `${round.title} 처음부터 학습` : `${round.year}년 ${round.session || ''} 처음부터 학습`, items);
+function savedRoundLearning(round: Round) {
+  const saved = savedLearningSession.value;
+  if (!saved || (saved.mode || 'learn') !== 'learn') return null;
+  if (saved.roundId) return saved.roundId === round.id ? saved : null;
+  // Older saved rounds can lack roundId. Match the question list in order.
+  return saved.itemIds.length === round.questions.length &&
+    round.questions.every((q,i) => questionId(round,q) === saved.itemIds[i]) ? saved : null;
+}
+
+function roundLearningChoice(round: Round, id: string): number {
+  const attempt = studyStore.attempts[id];
+  if (!attempt) return 0;
+  const progress = studyStore.progress;
+  const roundAt = (progress?.roundLearningResetAtV1 as Record<string, number> | undefined)?.[round.id] || 0;
+  const itemAt = (progress?.learningAnswerResetAtV1 as Record<string, number> | undefined)?.[id] || 0;
+  return attempt.at > Math.max(roundAt, itemAt) ? attempt.lastChoice : 0;
+}
+
+function resetRoundLearning(round: Round): void {
+  const saved = savedRoundLearning(round);
+  if (!roundAnswered(round) && !saved) return;
+  if (!window.confirm(round.title + '의 학습 답안과 이어풀기 위치를 지울까요? 다른 회차의 답, CBT 시험 기록, 오답노트와 북마크는 유지됩니다.')) return;
+  const progress = studyStore.progress ||= {};
+  const resets = (progress.roundLearningResetAtV1 ||= {}) as Record<string, number>;
+  resets[round.id] = Math.max(Date.now(), resets[round.id] || 0,
+    ...round.questions.map(q => studyStore.attempts[questionId(round,q)]?.at || 0));
+  if (saved) clearSavedLearningSession();
+  if (suspendedSession?.mode === 'learn' && suspendedSession.items.every(item => item.round.id === round.id)) {
+    suspendedSession = null;
+    suspendedExamResult = null;
+  }
+  void persistStudyStoreNow();
+  showToast('이 회차의 학습을 초기화했습니다.');
 }
 
 function openRoundWrongAnswers(round: Round): void {
@@ -4692,14 +4720,10 @@ function subjectQuestionCount(subject: string): number {
   return selectedItems.value.filter((item) => item.subject === subject).length;
 }
 
-function roundProgress(round: Round): number {
-  const ids = round.questions.map((question) => questionId(round, question));
-  const answered = ids.filter((id) => studyStore.attempts[id]).length;
-  return ids.length ? Math.round((answered / ids.length) * 100) : 0;
-}
-
 function roundAnswered(round: Round): number {
-  return round.questions.filter((question) => studyStore.attempts[questionId(round, question)]).length;
+  const saved = savedRoundLearning(round);
+  if (saved) return Object.values(saved.answers).filter(Boolean).length;
+  return round.questions.filter(q => roundLearningChoice(round, questionId(round,q))).length;
 }
 
 function roundExamMinutes(round: Round): number {

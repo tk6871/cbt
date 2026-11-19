@@ -28,7 +28,7 @@ test('해설 작성 출처를 문제 출처와 혼동하지 않는다', () => {
 });
 
 const owner = '00000000-0000-4000-8000-000000000001';
-const basePayload = (draft: string, updatedAt = 10) => ({ version:1, capturedAt:updatedAt, store:{ attempts:{},wrong:{},bookmarks:[],history:[],notes:{},progress:{ hvacPracticalV2:{ p1:{ draft,updatedAt } } } }, exams:[] });
+const basePayload = (draft: string, updatedAt = 10) => ({ version:1, capturedAt:updatedAt, store:{ attempts:{},wrong:{},bookmarks:[],history:[],notes:{},progress:{ roundLearningResetAtV1:{A:30,B:10,C:20}, hvacPracticalV2:{ p1:{ draft,updatedAt } } } }, exams:[] });
 const evaluate = <T>(page: Page, fn: (h: any) => T) => page.evaluate(`(${fn.toString()})(window.syncTest)`) as Promise<Awaited<T>>;
 async function harness(page: Page, api = false) {
   await page.addInitScript(({owner,api}) => {
@@ -64,9 +64,10 @@ for (const api of [false,true]) test((api ? 'NestJS · ' : 'Supabase · ')+'동�
     return route.fulfill({headers,json:api?{updated_at:stamp}:[{updated_at:stamp}]});
   });
   await harness(page,api);
-  await evaluate(page, async h => { h.studyStore.progress.hvacPracticalV2 = {p1:{draft:'이 기기 답',updatedAt:20}}; await h.cloud.initializeCloudSync(); });
+  await evaluate(page, async h => { h.studyStore.progress.roundLearningResetAtV1 = {A:10,B:40,D:20}; h.studyStore.progress.hvacPracticalV2 = {p1:{draft:'이 기기 답',updatedAt:20}}; await h.cloud.initializeCloudSync(); });
   await expect.poll(() => remote.store.progress.hvacPracticalV2.p1.draft).toBe('업로드 도중 새 답');
   expect(writes).toBeGreaterThanOrEqual(3);
+  expect(remote.store.progress.roundLearningResetAtV1).toEqual({A:30,B:40,C:20,D:20});
   expect(await evaluate(page, h => h.studyStore.progress.hvacPracticalV2.p1.draft)).toBe('업로드 도중 새 답');
   expect(await evaluate(page, async h => (await h.cloud.getLearningRecoveryCopies()).length)).toBeGreaterThan(0);
   expect(await evaluate(page, async h => (await h.recovery.listSyncRecoveries('industrial:another-user')).length)).toBe(0);

@@ -91,3 +91,74 @@ for (const [book,pageNumber,number,choice] of [['한솔 공조 교재','1-168',2
     await expect(printed).toHaveAttribute('aria-pressed','false');
   });
 }
+
+test('회차 카드의 초기화는 확인한 회차의 학습 답과 이어풀기 위치에만 적용된다',async({page})=>{
+  const route='./?safe=1#/study/rounds';
+  const card=(id:string)=>page.locator('#round-card-'+id);
+  const target='hvac-20160306', other='hvac-20150816';
+  async function pick(id:string,choice:number) {
+    await card(id).getByRole('button',{name:/^(이어 학습|학습모드)$/}).click();
+    const first=page.locator('#session-question-1');
+    await first.locator('.choice-button:visible,button[aria-label^="이미지에서"]:visible').nth(choice-1).click();
+    await expect.poll(async()=>(await saved(page)).answers[id+':1']).toBe(choice);
+    await page.goto('about:blank');await page.goto(route);
+  }
+  const history=()=>page.evaluate(()=>{
+    const {attempts,wrong,history,bookmarks}=JSON.parse(localStorage.getItem('unified-industrial-cbt-v1')||'{}');
+    return {attempts,wrong,history,bookmarks};
+  });
+  await page.goto(route);
+  const reset=card(target).getByRole('button',{name:/학습 초기화$/});
+  await expect(reset).toBeDisabled();
+  await pick(target,1);await pick(other,2);
+  const before=await history(), unrelated=await saved(page);
+  const title=await card(target).locator('h2').innerText();
+  for (const accept of [false,true]) {
+    const dialog=page.waitForEvent('dialog');const click=reset.click();
+    const confirmation=await dialog;
+    expect(confirmation.message()).toContain(title);
+    if(accept) await confirmation.accept();else await confirmation.dismiss();
+    await click;
+    await expect(reset).toBeEnabled({enabled:!accept});
+  }
+  await page.reload();
+  await expect(card(target).getByRole('button',{name:'학습모드',exact:true})).toBeVisible();
+  await expect(card(other).getByRole('button',{name:'이어 학습',exact:true})).toBeVisible();
+  expect((await saved(page)).answers).toEqual(unrelated.answers);
+  expect(await history()).toEqual(before);
+  await pick(target,3);
+  page.once('dialog',d=>d.accept());
+  await reset.click();await page.reload();
+  await card(target).getByRole('button',{name:'학습모드',exact:true}).click();
+  await expect.poll(async()=>(await saved(page)).page).toBe(0);
+  expect((await saved(page)).answers).toEqual({});
+});
+
+test('풀이 도구와 해설 버튼을 좁은 화면에서도 읽고 사용할 수 있다',async({page},info)=>{
+  if(info.project.name==='iphone-14-pro') await page.setViewportSize({width:320,height:740});
+  await page.goto('./?safe=1#/study/rounds');
+  await page.locator('#round-card-hvac-20160306').getByRole('button',{name:'학습모드',exact:true}).click();
+  const card=page.locator('#session-question-1');
+  const choice=card.locator('.choice-button').nth(3);
+  await choice.click();
+  const explanation=card.locator('.explanation-title:visible');
+  await explanation.getByRole('button',{name:/자동 닫힘 멈추기/}).click();
+  const close=explanation.getByRole('button',{name:'해설 닫기'});
+  const buttons=[explanation.getByRole('button',{name:'해설 고정'}),close];
+  if(info.project.name==='iphone-14-pro') buttons.push(choice,page.getByRole('button',{name:'북마크 추가'}).first(),page.getByRole('button',{name:'문자 크게'}));
+  for(const b of buttons){
+    const box=await b.boundingBox();
+    expect(box!.width).toBeGreaterThanOrEqual(44);
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+  }
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await close.click();await expect(explanation).toHaveCount(0);
+  await page.getByRole('button',{name:'풀이 메뉴 열기'}).click();
+  await expect(page.locator('.session-drawer.open')).toBeVisible();
+  await page.locator('.session-drawer.open').getByRole('button',{name:'닫기',exact:true}).click();
+  const jump=page.locator('.session-jump-form');
+  await jump.getByRole('spinbutton').fill('17');await jump.getByRole('button',{name:'이동',exact:true}).click();
+  await expect(page.locator('#session-question-17')).toBeVisible();
+  await jump.getByRole('spinbutton').fill('1');await jump.getByRole('button',{name:'이동',exact:true}).click();
+  await expect(choice).toHaveAttribute('aria-pressed','true');
+});

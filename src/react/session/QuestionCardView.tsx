@@ -198,7 +198,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             ) : null}
             <button
               type="button"
-              aria-label={bookmarked ? '북마크 제거' : '북마크 추가'}
+              aria-label={bookmarked ? '북마크 제거' : '북마크 추가'} aria-pressed={bookmarked}
               onClick={() => {
                 m.onToggleBookmark?.();
               }}
@@ -636,7 +636,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               <strong>정답 해설</strong>
               {pinSolution && presentation !== 'book' ? (
                 <button
-                  type="button"
+                  type="button" className="explanation-pin-button"
                   onClick={(event) => {
                     event.stopPropagation();
                     keepExplanation();
@@ -841,7 +841,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                         <strong>핵심부터 차근차근 확인하세요</strong>
                         {pinSolution && presentation !== 'book' ? (
                           <button
-                            type="button"
+                            type="button" className="explanation-pin-button"
                             onClick={(event) => {
                               event.stopPropagation();
                               keepExplanation();

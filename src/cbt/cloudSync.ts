@@ -130,8 +130,8 @@ function mergeProgress(
 ): Record<string, unknown> {
   const merged = { ...remote, ...local };
   mergeTextbookAnswers(merged, local, remote);
-  const keyResets = 'learningAnswerResetAtV1';
-  if (local[keyResets] || remote[keyResets]) {
+  for (const keyResets of ['learningAnswerResetAtV1', 'roundLearningResetAtV1']) {
+    if (!local[keyResets] && !remote[keyResets]) continue;
     const resets = {...remote[keyResets] as Record<string, number>};
     for (const [id, at] of Object.entries(local[keyResets] as Record<string, number> || {})) {
       if (Math.abs(at) > Math.abs(resets[id] || 0)) resets[id] = at;

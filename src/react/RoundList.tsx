@@ -3,13 +3,15 @@ export interface StudyRound {
   description:string; scope:string; subjects:string[]; hint?:string;
   record?:{score:number;date:string;latest:boolean};
   calculation?:{count:number;included:boolean;set:(included:boolean)=>void};
-  answered:number; total:number; progress:number; wrong:number;
-  start:()=>void; restart:()=>void; openWrong:()=>void; exam:()=>void;
+  answered:number; total:number; progress:number; wrong:number; canReset:boolean;
+  start:()=>void; reset:()=>void; openWrong:()=>void; exam:()=>void;
 }
 export function RoundList({rows}:{rows:StudyRound[]}){
   return <div className="round-grid" data-react-view="round-list">{rows.map(r=>
     <article id={'round-card-'+r.id} key={r.id} className={'round-card'+(r.school?' energy-topic-card':'')}>
-      <header><span>{r.qualification}</span>{!r.school&&<b>{r.year}년</b>}</header>
+      <header><span>{r.qualification}</span><div className="round-header-actions">{!r.school&&<b>{r.year}년</b>}
+        <button type="button" className="round-reset" aria-label={r.title+' 학습 초기화'} disabled={!r.canReset} onClick={r.reset}>초기화</button>
+      </div></header>
       {r.record&&<div className={'round-record-badge'+(r.record.latest?' latest':'')}><span>{r.record.latest?'마지막으로 푼 회차':'최근 CBT 기록'}</span>
         <strong>{r.record.score}점</strong><small>{r.record.date}</small></div>}
       {r.restored&&<em className="round-restored">CBT 복원문제 · 원문 이미지</em>}
@@ -20,7 +22,6 @@ export function RoundList({rows}:{rows:StudyRound[]}){
       {r.answered>0&&<><div className="round-progress"><span><i style={{width:r.progress+'%'}}/></span></div><small className="round-progress-copy">{r.answered}/{r.total} 학습 중</small></>}
       <footer><button type="button" className="round-mode-button" onClick={r.start}>{r.answered?'이어 학습':'학습모드'}</button>
         <button type="button" className="round-mode-button" onClick={r.exam}>CBT 시험모드</button>
-        {r.answered>0&&<button type="button" className="round-mode-button round-restart-button" onClick={r.restart}>처음부터</button>}
         {r.wrong>0&&<button type="button" className="round-mode-button round-wrong-button" onClick={r.openWrong}>오답 {r.wrong}개</button>}
       </footer>
     </article>)}</div>;

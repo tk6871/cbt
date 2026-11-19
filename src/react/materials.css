@@ -122,3 +122,38 @@
 .history-tools, .fan-comparison { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: .8rem; }
 .history-tools button { min-height: 44px; }
 .fan-comparison { justify-content: space-around; }
+
+.round-header-actions { display: flex; align-items: center; gap: .45rem; }
+.round-header-actions .round-reset {
+  min-height: 44px; min-width: 44px; padding: 0 .35rem; background: transparent;
+  color: var(--muted); border: 0; border-radius: 6px; font: inherit;
+}
+.round-reset:enabled:hover { color: var(--text); text-decoration: underline; }
+.round-reset:focus-visible { outline: 2px solid var(--primary); }
+.round-reset:disabled { opacity: .5; }
+.question-card .explanation-title { flex-wrap: wrap; }
+.question-card .explanation-title > * { flex-shrink: 0; }
+.question-card .explanation-title button {
+  min-height: 44px; min-width: 44px; white-space: nowrap; padding-inline: .65rem;
+  border: 1px solid var(--line); border-radius: 8px; color: var(--text);
+  background: var(--surface-2); font: inherit; font-size: .77rem;
+}
+.learn-topbar .session-leading button { min-width: 44px; min-height: 44px; }
+@media (max-width: 820px), (pointer: coarse) {
+  .question-card .question-head > button, .question-card .choice-grid button.choice-button,
+  .learn-topbar .session-status-strip > button {
+    min-width: 44px; min-height: 44px;
+  }
+  .learn-topbar .session-font-control { grid-template-columns: 44px 48px 44px; }
+  .learn-topbar .session-font-control button, .learn-topbar .session-jump-form button,
+  .learn-topbar .session-jump-form input { min-width: 44px; min-height: 44px; }
+}
+@media (max-width: 600px) {
+  :root:not([data-native-app="true"]) .session-topbar.learn-topbar {
+    grid-template-columns: auto minmax(0,1fr); gap: 4px 8px;
+  }
+  :root:not([data-native-app="true"]) .learn-topbar .session-title { display: block; min-width: 0; }
+  :root:not([data-native-app="true"]) .learn-topbar .session-tools {
+    grid-column: 1 / -1; justify-self: stretch; justify-content: space-between; flex-wrap: wrap;
+  }
+}
