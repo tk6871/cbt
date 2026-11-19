@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.69',scope:'industrial',date:'2026.11.19',title:"공조 복원 2022년 1회 1~60번(기존 판정 4번 제외)",summary:"실린더 과열 문제에서 습압축을 설명하던 오류와 파형률·파고율 혼동을 교정했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.68',scope:'industrial',date:'2026.11.19',title:"공조 복원 2021년 3회 원도 1~60번(기존 판정 2번 제외)",summary:"33번의 열유속 단위를 원도에서 대조한 결과 표면온도는 20.04 ℃로 보기와 달랐습니다. 30번은 산술평균 근사와 대수평균 계산값을 구별했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.67',scope:'industrial',date:'2026.11.19',title:"공조 필기 2018년 4월~2020년 8월",summary:"전위차계와 회전식 부호기의 위치 검출, PD 블록선도 미분항의 실제 부호를 확인하고 정답 재확인 대상으로 기록했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.66',scope:'industrial',date:'2026.11.19',title:"공조 필기 2017년 세 회차 및 2018년 3월",summary:"불대수 원문 해설 이미지의 마지막 항 xy를 xz로 바로잡고, 냉동기 열기준 성적계수와 되먹임 식을 분수로 표시했습니다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2846,8 +2847,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.68';
+  changelog.versions.industrial = '6.2.69';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.68';
+  changelog.currentVersion = '6.2.69';
   window.CBT_CHANGELOG = changelog;
 })();
