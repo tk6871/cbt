@@ -1142,3 +1142,20 @@ test('공조 필기 Y 결선 저항 변환', async ({page}) => {
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('공조 복원 열유속 원문 전환과 단위 오류', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20213').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('33');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '열유속(heat flux)'})});
+  await expect(card.locator('.question-text')).toContainText('0.4 W/m²');
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('20.04 ℃');
+  await expect(card.locator('.explanation-box .mfrac').first()).toBeVisible();
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
