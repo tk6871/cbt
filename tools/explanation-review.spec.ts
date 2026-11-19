@@ -1171,3 +1171,14 @@ test('공조 복원 물 전체와 단위질량당 엔트로피', async ({page}) 
   await expect(card.locator('.explanation-box')).toContainText('1.31');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 복원 전열저항과 절연저항 원문', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20223').getByRole('button', {name: '학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('53');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has: page.getByRole('img', {name:'53번 문제 원문', exact:true})});
+  await card.locator('.image-answer-hotspot').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('메거');
+  await expect(card.locator('.explanation-box')).toContainText('전열저항');
+});
