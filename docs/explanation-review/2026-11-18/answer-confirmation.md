@@ -142,7 +142,7 @@
 - `hansol-book-example-3-186-69` (data/textbook-worked-examples.json, 공조 교재 3-186쪽 69번) — S트랩은 수직 방향, P트랩은 수평 방향 배출. 원본 ②와 ③이 각각 반대로 연결. 원문 U 설명은 ①과 충돌하지 않음.
 - `hansol-book-example-3-241-3` (data/textbook-worked-examples.json, 공조 교재 3-241쪽 3번) — 산업안전보건법 제38조제1항 1~3호와 제39조제1항제2호를 대조. 안전조치 ①②③, 물리적 인자의 보건조치 ④. 인쇄 정답표와 분리.
 - `hansol-book-example-3-348-27` (data/textbook-worked-examples.json, 공조 교재 3-348쪽 27번) — ③ 전문지식·기술 필요는 운영 부담. 고장·외란을 피드백으로 보정하는 장점과 구분. 다른 보기의 생산효과는 조건에 따라 다름.
-- `hansol-book-example-4-87-22` (data/textbook-worked-examples.json, 공조 교재 4-87쪽 22번) — V₂/V₁=11/5, 정압이므로 T비와 같음. 10×0.221×ln2.2=1.7425 kJ/K, 인쇄 풀이의 0.93이면 7.3327.
+- `hvac-practical-restored-2023-2-05` (공조 실기 2023년 2회 교재 9번) — CM 어댑터 명칭은 일치한다. 교재 399쪽의 도시기호와 앱의 답안 SVG가 달라 도시기호만 재확인한다.
 - `hansol-book-example-1-70-2` (data/textbook-worked-examples.json, 공조 교재 1-70쪽 2번) — 실내 열수지와 열원기기의 선택 구분. 공조 현지 시험지 hvac-20211:2의 실제 인쇄 보기 네 개와 비교했고 해당 판본의 ①과 내용 대조.
 - `hansol-book-example-1-165-8` (data/textbook-worked-examples.json, 공조 교재 1-165쪽 8번) — γ=ρg이므로 압력손실에서 g는 소거. 주어진 네 보기 ④의 2g에 비례 주장은 틀림. 정답표는 ③이라는 기존 별도 표시 유지.
 - `hansol-book-example-1-116-89` (data/textbook-worked-examples.json, 공조 교재 1-116쪽 89번) — 본문 보기 모두 설비 부품이며 침입외기에 의한 열손실의 직접 분류가 아님. 원도 정답표 이미지는 번호와 답만 표기.
@@ -610,7 +610,9 @@
 - `hansol-direct-3-179-22` (tools/textbook-explanation-text-review.json, 공조 교재 3-179쪽 인쇄 22번) — 3-179 22①. 바로 앞 단원의 3-178 13④와 상충. 적용 시방·시행일·대상 구간 재확인 필요.
 - `hansol-direct-3-209-4` (tools/textbook-explanation-text-review.json, 공조 교재 3-209쪽 인쇄 4번) — 3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.
 
-## 범위 조정 전에 기록한 그 밖의 항목 (32개)
+## 범위 조정 전에 기록한 그 밖의 항목 (33개)
+
+- `hansol-book-example-4-87-22` (이전 예제 ID) — V₂/V₁=11/5, 정압이므로 T비와 같음. 10×0.221×ln2.2=1.7425 kJ/K, 인쇄 풀이의 0.93이면 7.3327. v820에서는 공식 정오표를 적용한 교재 교정 문항으로 교체되어 예전 ID는 누적 기록에만 남는다.
 
 - `hazardous-craftsman-2004-4:54` (data/hazardous-craftsman.js, https://www.comcbt.com/cbt/exam/14511/) — OpenStax Organic Chemistry, Oxidation of Aldehydes and Ketones 및 Alcohols from Carbonyl Compounds: Reduction. 아세트알데히드 산화·환원 생성물과 ③의 반대 방향 확인. 공식 채점표 미확보.
 - `energy-industrial-20020310:33` (data/energy.js, 에너지관리산업기사 필기 기출문제 2002년 03월 10일 (1회) (정답, 해설)) — 비압축성 가역 단열 정상 펌프의 단위질량당 입력일 w = ∫v dp. 실제 지문과 저장 COMCBT 이의제기·관리자 답변·보기 별도 대조.
