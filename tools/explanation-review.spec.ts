@@ -1227,3 +1227,19 @@ test('공조 복원 압축기 행정과 체적 분수식', async ({page}) => {
   await expect(card.locator('.explanation-box')).toContainText('301.6');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 복원 중앙식 전공기 문제 대조와 원도 전환', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20243').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('9');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '중앙식 전공기방식'})});
+  await expect(card.locator('.question-text')).toContainText('특징에 관한 설명');
+  await card.getByRole('button',{name:'③ 개별제어가 용이하다.',exact:true}).click();
+  await expect(card.locator('.explanation-box')).toContainText('변풍량 단말');
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
