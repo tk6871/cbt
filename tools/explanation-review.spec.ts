@@ -868,3 +868,14 @@ test('교재 송풍기 500 Pa의 분수식과 인쇄 계산 차이',async({page}
   await image.evaluate((im:HTMLImageElement)=>im.decode());
   await expect(image).toBeVisible();
 });
+
+test('설비보전 실린더 전진 출력의 원본 보기와 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20200606').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('11');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'실린더가 전진할 때'});
+  await card.locator('.choice-button').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('로드가 없는 쪽');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
