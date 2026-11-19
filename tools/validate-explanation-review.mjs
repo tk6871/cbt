@@ -20,7 +20,6 @@ const recordsById = new Map(review.records.map(row => [row.id,row]));
 const supplementSource = fs.readFileSync('tools/stage-energy-restored-full.py', 'utf8');
 const primaryReviews=new Map(review.records.filter(r=>r.primarySourceReviewed).map(r=>[r.id,r]));
 const noticeReviews=new Map(review.records.filter(r=>r.reviewedAnswerNotice).map(r=>[r.id,r]));
-const correctedLinks = new Map(review.records.filter(row => row.additionalCorrection).map(row => [row.id, row.additionalCorrection]));
 const formulaDisplayIds=new Set(review.records.filter(r=>r.formulaDisplay).map(r=>r.id));
 assert.equal(fs.readFileSync('data/problem-images-webp90.json','utf8'),original('data/problem-images-webp90.json'),'Source/display mapping changed');
 const maps=JSON.parse(fs.readFileSync('data/problem-images-webp90.json')).mappings;
@@ -83,13 +82,13 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
     assert.equal(q.explanationProvenance, 'printed-question-and-answer-supplement', id);
     assert.ok(supplementSource.includes(q.explanation), id);
    }
-   const correction = correctedLinks.get(id);
-   if (correction) {
-    const prior = b.additionalExplanations.find(item => item.source === correction.source);
-    const display = q.additionalExplanations.find(item => item.source === correction.source);
-    assert.ok(prior && display, 'Missing reviewed additional explanation: ' + id);
-    assert.equal(crypto.createHash('sha256').update(prior.text).digest('hex'), correction.originalSha256, id);
-    assert.deepEqual(display, {...prior, text: correction.text}, 'Additional explanation or source changed: ' + id);
+   const corrections = reviewRow?.additionalCorrections ?? (reviewRow?.additionalCorrection ? [reviewRow.additionalCorrection] : []);
+   for (const correction of corrections) {
+    const index = b.additionalExplanations.findIndex(item => item.source === correction.source &&
+      crypto.createHash('sha256').update(item.text).digest('hex') === correction.originalSha256);
+    assert.ok(index >= 0, 'Missing reviewed additional explanation: ' + id);
+    assert.deepEqual(q.additionalExplanations[index], {...b.additionalExplanations[index], text: correction.text},
+      'Additional explanation or source changed: ' + id);
    }
    assert.ok(Array.isArray(q.choices)&&q.choices.length===4,`Choice count ${id}`);assert.ok(q.answer>=1&&q.answer<=4,`Answer range ${id}`);
    for(const p of [q.sourceImage,...q.images||[],...q.explanationImages||[],...q.choices.flatMap(c=>c.images||[])])imageExists(p);

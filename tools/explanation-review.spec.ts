@@ -1271,3 +1271,20 @@ test('공조 복원 마찰손실수두와 압력손실 분수식', async ({page}
   await expect(card.locator('.explanation-box')).toContainText('압력손실');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 교재 절점주파수 원도와 분수 대조', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2018-1').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('73');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({has: page.locator('.question-text').filter({hasText: '절점주파수'})});
+  await expect(card.locator('.question-text')).toContainText('rad/sec');
+  await card.getByRole('button',{name:'② 0.2',exact:true}).click();
+  await expect(card.locator('.explanation-box')).toContainText('시정수');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+  await card.getByRole('button', {name:'이미지로 보기', exact:true}).click();
+  const selected = page.locator('.question-card').filter({has: page.locator('.image-answer-hotspot.selected')});
+  await expect(selected.locator('.source-question-image')).toBeVisible();
+  await selected.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+  await expect(card.locator('.choice-button.selected')).toHaveCount(1);
+});
