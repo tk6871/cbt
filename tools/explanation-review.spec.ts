@@ -1047,3 +1047,15 @@ test('공조 필기 두 증발기의 냉매 질량유량', async ({page}) => {
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('공조 필기 교류의 실효전압과 저항 소비전력', async ({page}) => {
+  await prepare(page, 'hvac');
+  await page.locator('#round-card-hvac-20100725').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('65');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '회로에서 소비하는 전력'});
+  await card.locator('.choice-button').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('1.2 kW');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+  await expect(card.locator('img').first()).toBeVisible();
+});
