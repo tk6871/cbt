@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.12',scope:'industrial',date:'2026.11.19',title:"공조 교재 부록 원도 대조 51문항",summary:"4-91쪽 39번의 압축일·순입력·저장 답 불일치, 4-109쪽 3번의 입출구 유량 기준과 선도 엔탈피 차를 구분했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.11',scope:'industrial',date:'2026.11.19',title:"공조 교재 부록 원도 대조 84문항",summary:"4-69쪽 59번은 분류기 양단 전압으로 2 Ω을 재계산했고, 4-75쪽 23번은 중간 반올림 전 약 2.15 m³/kg과 교재 보기 2.17의 차이를 설명했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.10',scope:'industrial',date:'2026.11.19',title:"공조 교재 부록 신규 학습 ID 122개",summary:"4-23쪽 17번의 외기·환기 불일치와 5-16쪽 2번의 회벽 두께 2 cm·0.002 m 차이를 해설에 기록했습니다. 분수와 단위 환산을 대조하고 원래 도면과 답안을 보존했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.9',scope:'industrial',date:'2026.11.19',title:"산업안전산업기사 2003년 3월",summary:"유리공 백내장을 열복사성 직업병 항목과 대조해 정답 재확인으로 분류했다. 음압 10 dB 차이를 √10배로 재계산했다.",tags:['산업안전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2901,8 +2902,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.11';
+  changelog.versions.industrial = '6.3.12';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.11';
+  changelog.currentVersion = '6.3.12';
   window.CBT_CHANGELOG = changelog;
 })();
