@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.101',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2015년 3월과 2014년 세 회차",summary:"C급 전력증폭기의 도통각을 화재 등급으로 설명한 오류를 고치고 이중 음귀환 회로의 전달함수를 유도했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.100',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2016년 3월과 2015년 8월·5월",summary:"부하전력 계산에서 전압계와 전류계의 내부저항을 구별하고 원도와 지문의 기호 충돌을 표시했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.99',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2017년 5월·3월과 2016년 8월·5월",summary:"트랜지스터 전류이득을 보호접지로 설명한 오류와 기어 펌프 토출량을 잇수비로 계산한 오류를 바로잡았습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.98',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2018년 8월·4월·3월",summary:"반전 합산기의 음의 부호와 마이크로미터의 회전각 환산을 원도에서 확인했습니다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2878,8 +2879,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.100';
+  changelog.versions.industrial = '6.2.101';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.100';
+  changelog.currentVersion = '6.2.101';
   window.CBT_CHANGELOG = changelog;
 })();

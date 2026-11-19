@@ -880,6 +880,17 @@ test('설비보전 전압계 내부저항 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 이중 음귀환 전달함수 분수식',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20140817').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('56');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'블록선도에서 전달함수로 알맞은'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('첫 번째 합산점');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 전류이득 계산의 분수식',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20160821').getByRole('button',{name:'학습모드',exact:true}).click();
