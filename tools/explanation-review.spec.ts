@@ -1012,6 +1012,17 @@ test('설비보전 유압 펌프의 전효율 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('초전 전압 계산에서 원문의 계수 구분',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20040307').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('11');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'초전재료 PZT'});
+  await card.locator('.choice-button').nth(2).click();
+  await expect(card.locator('.explanation-box')).toContainText('0.84 V');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('반전 증폭기 원도와 정답 보기의 저항비',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20050306').getByRole('button',{name:'학습모드',exact:true}).click();
