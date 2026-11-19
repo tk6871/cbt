@@ -97,7 +97,7 @@ test('4K 전체·절반과 모바일 두 폭에서 두 모드 버튼과 설정 �
   test.skip(info.project.name !== 'desktop');
   for (const width of [3840, 1920, 390, 320]) {
     await page.setViewportSize({width, height:width >= 1920 ? 2160 : 844});
-    await page.goto('/?safe=1#/study/rounds');
+    await page.goto('./?safe=1#/study/rounds');
     const buttons = page.locator('#round-card-hvac-20160306 .round-mode-button');
     await expect(buttons).toHaveCount(2);
     for (const theme of ['dark','light']) {
@@ -111,7 +111,7 @@ test('4K 전체·절반과 모바일 두 폭에서 두 모드 버튼과 설정 �
       expect(styles[0]).toEqual(styles[1]);
       expect(parseFloat(styles[0]![5]!)).toBeGreaterThanOrEqual(44);
     }
-    await page.goto('/?safe=1#/study/settings');
+    await page.goto('./?safe=1#/study/settings');
     const nav = page.getByRole('navigation',{name:'설정 목차'});
     await expect(nav.getByRole('button')).toHaveCount(6);
     for (const button of await nav.getByRole('button').all()) {

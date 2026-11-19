@@ -42,7 +42,7 @@ async function openWorkspace(page:Page, role:'super_admin'|'issues'|'members', h
     }
     await r.fulfill({json:data});
   });
-  await page.goto('/admin.html'+hash);await expect(page.locator('.admin-intro h1')).toBeVisible();
+  await page.goto('./admin.html'+hash);await expect(page.locator('.admin-intro h1')).toBeVisible();
   return {fetched,issue,accounts};
 }
 
@@ -95,7 +95,7 @@ test('제보 담당 권한에 맞는 메뉴와 조회 요청',async({page})=>{
   const nav=page.getByRole('navigation',{name:'관리자 화면 구역'});
   await expect(nav.locator('.admin-menu-group a')).toHaveCount(3);
   await expect(nav.locator('a[aria-current]')).toHaveText('문제 제보');
-  await page.goto('/admin.html#/admin/accounts');
+  await page.goto('./admin.html#/admin/accounts');
   await expect(page).toHaveURL(/#\/admin\/issues$/);
   await expect(nav.locator('option[value=accounts]')).toHaveCount(0);
   expect(fetched.some(p=>/exam_results|visitor_profiles|visit_events/.test(p))).toBe(false);

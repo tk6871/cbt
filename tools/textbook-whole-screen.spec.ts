@@ -42,7 +42,7 @@ test('본문 예제는 객관식과 분리하고 원본·업스케일·계산 �
 test('본문 예제 원문·풀이 접기와 다크/라이트를 실제 페이지에서 확인',async({page},info)=>{
  await page.addInitScript(()=>{localStorage.setItem('modern-cbt-qualification-industrial','hvac');localStorage.setItem('unified-cbt-dynamic-ui','false');sessionStorage.setItem('unified-cbt-ios-pwa-popup-seen-v351','true');sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');});
  await page.addLocatorHandler(page.locator('.pwa-error-notice'),async()=>{await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();});
- await page.goto('/?safe=1');if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();await page.getByRole('button',{name:'교재 페이지별',exact:true}).click();
+ await page.goto('./?safe=1');await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
  await enterBookReader(page);
  const root=page.locator('.textbook-pages');await switchTextbook(page,'energy');await chooseBookPage(page,'88');
  const example=root.locator('.book-worked-example');await expect(example).toHaveCount(1);await expect(example.locator('details')).not.toHaveAttribute('open');await expect(root.getByRole('button',{name:'범위를 모아 CBT 시험',exact:true})).toBeDisabled();
@@ -50,10 +50,8 @@ test('본문 예제 원문·풀이 접기와 다크/라이트를 실제 페이�
  await page.evaluate(()=>document.documentElement.dataset.theme='dark');expect(await image.evaluate(img=>getComputedStyle(img).filter)).toContain('invert');await page.evaluate(()=>document.documentElement.dataset.theme='light');expect(await image.evaluate(img=>getComputedStyle(img).filter)).toBe('none');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await chooseBookPage(page,'89');await expect(root.locator('.book-worked-example')).toHaveCount(1);
- await switchTextbook(page,'hansol');await openBookNavigator(page,'info');
- await root.locator('.book-comparison-summary summary').click();
- await root.getByRole('searchbox',{name:'교재 대조 쪽 검색'}).fill('1-108');
- const auditRow=root.locator('.book-audit-list button');await expect(auditRow).toHaveCount(1);await expect(auditRow).toContainText('보류 1');
- await auditRow.scrollIntoViewIfNeeded();await page.screenshot({path:`/private/tmp/textbook-audit-v56-${info.project.name}.png`});await auditRow.click();
+ await switchTextbook(page,'hansol');const navigator=await openBookNavigator(page,'pages');
+ await expect(navigator.getByRole('button',{name:'연결 현황·안내'})).toHaveCount(0);
+ await chooseBookPage(page,'1-108');
  await expect(root.locator('.book-sheet>footer>strong')).toHaveText('1-108');await expect(root.locator('.book-worked-example').filter({hasText:'면적A'})).toBeVisible();
 });

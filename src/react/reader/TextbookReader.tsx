@@ -10,7 +10,7 @@ import {readBookSelection,saveBookSelection,type BookSelection} from '../../cbt/
 import {saveTextbookAnswer,textbookAnswersIn} from '../../cbt/textbookAnswerProgress';
 import {studyStore,persistStudyStoreNow} from '../../cbt/storage';
 import {explanationDisplay} from '../../cbt/explanationDisplay';
-import {adjacentBookPage, compareBookPages, normalizeBookPage, readableBookPages, textbookAuditPages, textbookDirectSources, textbookEntries, textbookNames, textbookPageAudit, textbookReferencePage, textbookSelectionKey, textbookStudyId, textbookWorkedExamples, type TextbookKey} from '../../cbt/textbookPages';
+import {adjacentBookPage, compareBookPages, normalizeBookPage, readableBookPages, textbookDirectSources, textbookEntries, textbookNames, textbookReferencePage, textbookSelectionKey, textbookStudyId, textbookWorkedExamples, type TextbookKey} from '../../cbt/textbookPages';
 import {pageNavigationStep} from '../../cbt/pageNavigationKey';
 import './reader.css';
 
@@ -38,11 +38,9 @@ export default function TextbookReader(p:Props){
  const invalid=!!end && compareBookPages(start,end)>0;
  const [tab,setTab]=useState<NavigationTab>('contents'),[visited,setVisited]=useState(false);
  const [draftFrom,setDraftFrom]=useState(''),[draftTo,setDraftTo]=useState('');
- const [auditSearch,setAuditSearch]=useState(''),[auditLimit,setAuditLimit]=useState(80);
  if(selectedBook!==book){
   const saved=readBookSelection(book);
   setSelectedBook(book);setSelection(saved);setDraftFrom(saved.from);setDraftTo(saved.to);
-  setAuditSearch('');setAuditLimit(80);
  }
  const dialog=useRef<HTMLDialogElement|null>(null),trigger=useRef<HTMLButtonElement|null>(null);
  const display=useSyncExternalStore(subscribeDisplay,getDisplay);
@@ -64,8 +62,6 @@ export default function TextbookReader(p:Props){
     [{entry,item:byId.get(textbookStudyId(entry)),direct:entry.directSourceId?directById.get(entry.directSourceId):undefined}]:[]));
  },[entries,start,byId]);
  const examples=useMemo(()=>textbookWorkedExamples.filter(e=>e.book===book && e.pages.some(page=>inRange(page,start,end))),[book,start,end]);
- const audit=end?undefined:textbookPageAudit(book,start);
- const auditRows=useMemo(()=>visited?textbookAuditPages.filter(r=>r.page.includes(normalizeBookPage(auditSearch))).sort((a,b)=>compareBookPages(a.page,b.page)):[],[auditSearch,visited]);
  const round=book==='hansol' && start ? latest.find(n=>compareBookPages(start,n.from!)>=0 && compareBookPages(end||start,n.to!)<=0):undefined;
  const [starting,setStarting]=useState(false);
  async function startSession(start:()=>Promise<void>){
@@ -100,7 +96,7 @@ export default function TextbookReader(p:Props){
   <BookSurface book={book} start={start} end={end} title={selection.contentsLabel} loading={p.loading} error={p.error} invalid={invalid} matched={matched.length}
    fullRound={round?.roundBankId?{title:round.title,open:()=>void startSession(()=>p.onRound(round.roundBankId!))}:undefined}
    directCount={locations.filter(e=>e.directSourceId).length} pending={locations.filter(e=>!e.directSourceId&&!byId.has(textbookStudyId(e))).length}
-   hasLocations={!!locations.length} reference={end?undefined:textbookReferencePage(book,start)} audited={!!audit} examples={examples} columns={columns}
+   hasLocations={!!locations.length} reference={end?undefined:textbookReferencePage(book,start)} examples={examples} columns={columns}
    previous={!!adjacentBookPage(book,start,-1)} next={!!adjacentBookPage(book,start,1)} original={p.restoredImageTheme==='original'} showText={display!=='image'}
    answers={answers} saveDirect={(id,choice)=>{saveTextbookAnswer(studyStore.progress ||= {},id,choice);persistStudyStoreNow();}}
    renderLinked={(item,number)=><QuestionCard {...{item,presentation:'book',mode:'learn',bookmarked:records.bookmarks.includes(item.id),selected:answers[item.id],displayNumber:number,answerLayout:p.answerLayout,imageAnswerMode:p.answerLayout==='hotspot'?'hotspot':'buttons',hotspotIndicator:p.hotspotIndicator,restoredImageTheme:p.restoredImageTheme,onChoose:(choice:number)=>p.onChoose(item,choice),onReset:(choice:number)=>{saveTextbookAnswer(studyStore.progress ||= {},item.id,choice);void persistStudyStoreNow();},onToggleBookmark:()=>p.onBookmark(item),onAskAi:()=>p.onAi(item)}}/>}
@@ -108,9 +104,8 @@ export default function TextbookReader(p:Props){
    play={mode=>{if(!invalid&&!p.loading&&matched.length)void startSession(()=>p.onStart({items:matched,mode,label:textbookNames[book]+' '+start+(end?'~'+end:'')+'쪽'+(selection.contentsLabel?' · '+selection.contentsLabel:'')}));}}
    go={delta=>{const next=adjacentBookPage(book,start,delta);if(next)jump(next);}}
    navigator={{book,start,tab,visited,draftFrom,draftTo,invalid:draftInvalid,pages,selectedPages:[...new Set(locations.map(e=>e.page))],
-    detected:audit?.detectedPositions,auditSearch,auditRows:auditRows.slice(0,auditLimit),hasMore:auditRows.length>auditLimit,
-    changeTab,changeBook:p.onBook,changeFrom:setDraftFrom,changeTo:setDraftTo,changeSearch:value=>{setAuditSearch(value);setAuditLimit(80);},
-    more:()=>setAuditLimit(n=>n+80),apply:()=>{if(!draftInvalid)jump(fromPage,toPage);},select:jump,close,afterClose:()=>trigger.current?.focus({preventScroll:true}),
+    changeTab,changeBook:p.onBook,changeFrom:setDraftFrom,changeTo:setDraftTo,
+    apply:()=>{if(!draftInvalid)jump(fromPage,toPage);},select:jump,close,afterClose:()=>trigger.current?.focus({preventScroll:true}),
     dialogRef:el=>{dialog.current=el;},contents:visited?<ContentsTree key={book} book={book} items={items} selected={selection.contentsId} onSelect={selectRow}/>:undefined}}/>
  </div></section>;
 }

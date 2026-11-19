@@ -7,12 +7,12 @@ export async function enterBookReader(page:Page){
  await openBookNavigator(page);
 }
 
-export async function openBookNavigator(page:Page,tab?:'pages'|'info'|'contents'){
+export async function openBookNavigator(page:Page,tab?:'pages'|'contents'){
  const dialog=page.locator('#textbook-navigator');
  await expect(dialog).toBeAttached();
  if(!await dialog.evaluate((el:HTMLDialogElement)=>el.open))await page.getByRole('button',{name:/☷ 목차·쪽 선택/}).click();
  await expect(dialog).toBeVisible();
- if(tab)await dialog.getByRole('button',{name:tab==='pages'?'쪽번호 이동':tab==='info'?'연결 현황·안내':'교재 목차',exact:true}).click();
+ if(tab)await dialog.getByRole('button',{name:tab==='pages'?'쪽번호 이동':'교재 목차',exact:true}).click();
  return dialog;
 }
 export async function closeBookNavigator(page:Page){

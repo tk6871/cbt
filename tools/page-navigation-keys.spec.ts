@@ -44,6 +44,7 @@ for(const layout of ['standard','combat','comcbt']){
 
 test('실기 답안을 쓰는 중에는 커서만 움직이고 풀이에서는 다음·이전 문제로 이동한다',async({page})=>{
  await page.goto('./?safe=1#/study/guide');
+ await page.getByRole('button',{name:'필답형 문제풀이',exact:true}).click();
  const question=page.locator('.practical-question-grid > article').first();
  const open=page.locator('.practical-round-library button').filter({hasText:/시작하기|이어풀기/}).first();
  await expect(question.or(open).first()).toBeVisible();

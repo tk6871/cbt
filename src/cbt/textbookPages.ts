@@ -132,7 +132,7 @@ function buildTextbookItems(items: QuestionItem[], prepareEnergy: typeof prepare
   // fingerprint. Question IDs, answers, percent hotspots and banks stay intact.
   if(question.sourceImage)question.sourceImage=textbookAssetUrl(question.sourceImage);
   if(question.explanationImages)question.explanationImages=question.explanationImages.map(path=>textbookAssetUrl(path));
-  return [{id:textbookStudyId(e),subject:original.subject,question,
+  return [{id:textbookStudyId(e),sourceQuestionId:original.id,subject:original.subject,question,
    round:{...original.round,id:roundId,title:location,kind:'textbook-pages',questions:[question]}}];
  });
 }

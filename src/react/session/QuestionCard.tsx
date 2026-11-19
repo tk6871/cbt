@@ -273,7 +273,7 @@ function useQuestionCard(props:QuestionCardProps) {
     };
   });
 
-  const modelLesson = equipmentLessons.get(props.item.id);
+  const modelLesson = equipmentLessons.get(props.item.sourceQuestionId ?? props.item.id);
   function toggleIssueType(type:QuestionIssueType) {
     setIssueReportTypes(current=>current.includes(type)?current.filter(value=>value!==type):[...current,type]);
     setIssueReportError('');

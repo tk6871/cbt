@@ -24,7 +24,7 @@ test('패치노트와 플러그인 안내가 작은 화면을 넘지 않는다',
   await page.goto('./?safe=1#/study/updates');
   await page.getByRole('button', { name: /신기술 학습관/ }).click();
   await expect(page.getByRole('heading', { name: '이번 플러그인이 바꾼 기능' })).toBeVisible();
-  await page.getByText('VueUse', { exact: true }).click();
+  await page.getByText('Preact Signals', { exact: true }).click();
   await expect(page.getByText(/새 설정이 새로고침 뒤에도 유지/)).toBeVisible();
 
   const overflow = await page.evaluate(() => ({
