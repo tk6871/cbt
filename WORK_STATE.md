@@ -4,6 +4,12 @@
 
 ## 현재 스냅샷
 
+### Render 자동 배포 복구 및 운영 검증
+
+- GitHub 배포 자격 연결과 Render 앱의 `tk6871/cbt` 저장소 접근을 확인한 뒤 main 푸시가 Render에 `new_commit`으로 접수되고 Live가 됐다. 복구 전에는 자동 배포가 On Commit이고 대상 경로도 일치했지만 새 빌드·커밋 무시 이벤트가 없었다. 운영 은행은 이전 수동 배포와 일치했다.
+- 자동 배포 커밋 `507a862fd`의 19개 문제은행을 공개 API의 전체 JSON과 비교해 모두 일치했다. 종목 목록·상태 경로와 산업안전·설비보전의 변경 문항 개별 경로도 확인했다. [Render 배포 기록](https://dashboard.render.com/web/srv-dbvdcnmk1f9s73c7tcug/deploys/dep-dbvdt4f0n0ks73e9l840)
+- 후속 확인은 `git fetch origin main` 후 `node server/verify-catalog-deployment.mjs origin/main safety maintenance`로 재현한다.
+
 ### 산업안전산업기사 2003년 3월 61문항 (웹 v809)
 
 - 유리공 백내장을 열복사성 직업병 항목과 대조해 정답 재확인으로 분류했다. 음압 10 dB 차이를 √10배로 재계산했다.
