@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.17',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 원도 대조 56문항",summary:"평형 브리지의 저항비와 검류계 영점 조건을 보완하고 유도전동기 역률 개선을 콘덴서의 진상 무효전류 보상으로 바로잡았다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.16',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 원도 대조 36문항",summary:"덕트 철판 할증을 재계산해 3-209쪽 4번의 정답표 ③과 계산 결과 ②의 충돌을 기록했다. 총공사금액의 이윤 대입 오기를 바로잡았다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.15',scope:'industrial',date:'2026.11.19',title:"공조 교재 직접 수록 원도 대조 36문항",summary:"3-178쪽과 3-179쪽의 직결식 급수배관 시험압력 충돌을 정답 재확인으로 기록하고, 방열기 방열량과 필요 쪽수에 계산식을 추가했습니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.14',scope:'industrial',date:'2026.11.19',title:"공조 교재 부록 원도 대조 107문항",summary:"부록 417개의 문항별 원도 대조를 마쳤습니다. 4-182쪽 55번은 ②와 ③이 같은 논리식이고, 5-39쪽 4번은 도면과 풀이의 모르타르 두께가 5 mm 다릅니다.",tags:['공조','교재'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2906,8 +2907,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.16';
+  changelog.versions.industrial = '6.3.17';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.16';
+  changelog.currentVersion = '6.3.17';
   window.CBT_CHANGELOG = changelog;
 })();

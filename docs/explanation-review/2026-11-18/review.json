@@ -445630,6 +445630,2523 @@
       "changeReason": "이미지 원문 텍스트 전환",
       "answerBefore": 2,
       "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-260-11",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-260",
+      "number": 11,
+      "location": "공조 교재 3-260쪽 인쇄 11번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-260 11①. 정현파에 한정하여 실효값 정의로 유도.",
+      "finding": "3-260 11①. 정현파에 한정하여 실효값 정의로 유도.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "직류 성분이 없는 정현파에서는 한 주기 동안 사인 제곱의 평균이 1/2이다. 제곱평균의 제곱근을 구하면 실효값은 최대값의 1/√2배로 ①이다."
+        },
+        {
+          "tex": "I_{\\rm rms}=\\sqrt{I_m^2\\cdot\\frac12}=\\frac{I_m}{\\sqrt2}",
+          "label": "교재 3-260쪽 11번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-260-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+          "displayAsset": "assets/problem-webp90/a3f20949de1d2a0eb3fcf6fc0c4ca055.webp",
+          "sha256": "19a24a33df0be005edc99b63c569dbba5531b8ce6826bb13e11cb0c05a185276"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 11,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-260-12",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-260",
+      "number": 12,
+      "location": "공조 교재 3-260쪽 인쇄 12번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-260 12②. 141.4/√2=99.985.",
+      "finding": "3-260 12②. 141.4/√2=99.985.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "사인 앞의 계수 141.4 A는 최대값이다. 정현파의 실효값은 최대값을 √2로 나눈 약 100 A이므로 ②다."
+        },
+        {
+          "tex": "I_{\\rm rms}=\\frac{141.4}{\\sqrt2}\\approx100\\,\\mathrm A",
+          "label": "교재 3-260쪽 12번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-260-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+          "displayAsset": "assets/problem-webp90/a3f20949de1d2a0eb3fcf6fc0c4ca055.webp",
+          "sha256": "19a24a33df0be005edc99b63c569dbba5531b8ce6826bb13e11cb0c05a185276"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 12,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-260-14",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-260",
+      "number": 14,
+      "location": "공조 교재 3-260쪽 인쇄 14번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-260 14②. 반주기 적분과 119π/2=186.925.",
+      "finding": "3-260 14②. 반주기 적분과 119π/2=186.925.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "여기서 평균값은 정현파를 정류한 평균값(양의 반주기 평균값)이다. 이 평균값은 최대값의 2/π배이므로 최대값은 약 187 V, ②다. 정류 전 정현파의 한 주기 평균은 0이다."
+        },
+        {
+          "tex": "V_m=\\frac{\\pi}{2}\\,119\\approx187\\,\\mathrm V",
+          "label": "교재 3-260쪽 14번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-260-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-260-original.png",
+          "displayAsset": "assets/problem-webp90/a3f20949de1d2a0eb3fcf6fc0c4ca055.webp",
+          "sha256": "19a24a33df0be005edc99b63c569dbba5531b8ce6826bb13e11cb0c05a185276"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 14,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-261-18",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-261",
+      "number": 18,
+      "location": "공조 교재 3-261쪽 인쇄 18번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-261 18②. 일정전류의 미분과 저장에너지 비교.",
+      "finding": "3-261 18②. 일정전류의 미분과 저장에너지 비교.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "이상적인 인덕터의 단자전압은 전류의 시간 변화율에 비례한다. 일정한 전류에서는 전압이 0이고 자기장에는 에너지가 저장될 수 있다. 전압이 무한대라고 한 ②가 틀리다."
+        },
+        {
+          "tex": "v=L\\frac{di}{dt},\\qquad W=\\frac12 Li^2",
+          "label": "교재 3-261쪽 18번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-261-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-261-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-261-original.png",
+          "displayAsset": "assets/problem-webp90/76e561b45b71287bdd07dec0e530ccbe.webp",
+          "sha256": "e651013a2e46cb43c48bbad159926f0e90094b5567b31c7e50274a7e62f16ec9"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 18,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-261-19",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-261",
+      "number": 19,
+      "location": "공조 교재 3-261쪽 인쇄 19번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-261 19①. 원도 전압 최대와 전류 상승 영점 대조. 실효치 비의 분자·분모 명시.",
+      "finding": "3-261 19①. 원도 전압 최대와 전류 상승 영점 대조. 실효치 비의 분자·분모 명시.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "이상적인 인덕터에서 전압은 전류의 시간 미분에 비례한다. 정현파를 미분하면 주파수는 그대로이고 위상만 90° 앞선다. 따라서 전압과 전류가 같은 주파수라는 ①이 맞다. 전압/전류의 실효값 비는 ωL이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-261-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-261-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-261-original.png",
+          "displayAsset": "assets/problem-webp90/76e561b45b71287bdd07dec0e530ccbe.webp",
+          "sha256": "e651013a2e46cb43c48bbad159926f0e90094b5567b31c7e50274a7e62f16ec9"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 19,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-262-21",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-262",
+      "number": 21,
+      "location": "공조 교재 3-262쪽 인쇄 21번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-262 21③. 2/(2π×60×100)=0.00005305 F.",
+      "finding": "3-262 21③. 2/(2π×60×100)=0.00005305 F.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "이상적인 콘덴서의 정현파 전류 실효값은 각주파수·정전용량·전압 실효값의 곱이다. 정전용량을 구해 F에서 μF로 바꾸면 약 53 μF, ③이다."
+        },
+        {
+          "tex": "C=\\frac{I}{2\\pi f V}=\\frac{2}{2\\pi\\times60\\times100}\\,\\mathrm F\\approx53\\,\\mu\\mathrm F",
+          "label": "교재 3-262쪽 21번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-262-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+          "displayAsset": "assets/problem-webp90/ac2cbf89307b1604b0d462821aa6763e.webp",
+          "sha256": "1f34f41b21955b62aa7c3cea7f57fc0050381364cc0d90d1cbf4e336288012ae"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 21,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-262-22",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-262",
+      "number": 22,
+      "location": "공조 교재 3-262쪽 인쇄 22번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-262 22④. 전압과 전류의 비교 방향 확인.",
+      "finding": "3-262 22④. 전압과 전류의 비교 방향 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "콘덴서 전류는 전압의 변화율에 비례한다. 정현파 전압이 0에서 상승할 때 이미 전류는 양의 최대값이므로 전류가 90° 앞선다. 전압을 기준 문장의 주어로 쓰면 전압이 전류보다 90° 뒤진다는 ④다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-262-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+          "displayAsset": "assets/problem-webp90/ac2cbf89307b1604b0d462821aa6763e.webp",
+          "sha256": "1f34f41b21955b62aa7c3cea7f57fc0050381364cc0d90d1cbf4e336288012ae"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 22,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-262-23",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-262",
+      "number": 23,
+      "location": "공조 교재 3-262쪽 인쇄 23번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-262 23③. 같은 각주파수 377을 확인하고 두 위상 비교.",
+      "finding": "3-262 23③. 같은 각주파수 377을 확인하고 두 위상 비교.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "코사인은 같은 각의 사인보다 90° 앞선다. 주어진 전류가 전압보다 90° 앞서므로 정현파에서 이 관계를 보이는 소자는 ③ 콘덴서다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-262-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+          "displayAsset": "assets/problem-webp90/ac2cbf89307b1604b0d462821aa6763e.webp",
+          "sha256": "1f34f41b21955b62aa7c3cea7f57fc0050381364cc0d90d1cbf4e336288012ae"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 23,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-262-24",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-262",
+      "number": 24,
+      "location": "공조 교재 3-262쪽 인쇄 24번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-262 24①. 저항·리액턴스·임피던스의 관계 대조.",
+      "finding": "3-262 24①. 저항·리액턴스·임피던스의 관계 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "코일과 콘덴서가 정현파 전류의 흐름에 미치는 효과를 임피던스의 허수부로 나타낸 것이 ① 리액턴스다. 단위는 저항과 같은 Ω이지만 이상적인 코일·콘덴서는 한 주기 평균 유효전력을 소비하지 않는다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-262-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-262-original.png",
+          "displayAsset": "assets/problem-webp90/ac2cbf89307b1604b0d462821aa6763e.webp",
+          "sha256": "1f34f41b21955b62aa7c3cea7f57fc0050381364cc0d90d1cbf4e336288012ae"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 24,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-263-4",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-263",
+      "number": 27,
+      "location": "공조 교재 3-263쪽 인쇄 27번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-263 전체 쪽의 인쇄 27번 첫 줄에서 220 V 확인. 27②와 재계산 일치.",
+      "finding": "3-263 전체 쪽의 인쇄 27번 첫 줄에서 220 V 확인. 27②와 재계산 일치.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전압 220 V를 전류 4.4 A로 나누면 임피던스의 크기는 50 Ω이다. 저항은 그 실수부이므로 위상차 60°의 코사인을 곱한 25 Ω으로 ②다."
+        },
+        {
+          "tex": "R=\\frac{V}{I}\\cos\\phi=\\frac{220}{4.4}\\cos60^\\circ=25\\,\\Omega",
+          "label": "교재 3-263쪽 27번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-263-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+          "displayAsset": "assets/problem-webp90/c26f2508a5e167b5451ac1cc73524552.webp",
+          "sha256": "bdc2c0d5504609d21471b8992ed5616a820e026ba4679cd7e1f64e8ca69968af"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 27,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-263-26",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-263",
+      "number": 26,
+      "location": "공조 교재 3-263쪽 인쇄 26번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-263 26③. 100²−80²=3600.",
+      "finding": "3-263 26③. 100²−80²=3600.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "직렬 R–L 회로에서는 저항 전압과 코일 전압의 위상이 90° 다르다. 따라서 전압의 크기는 직각삼각형 관계로 계산한다. 전체 100 V, 저항 80 V이므로 코일은 60 V, ③이다."
+        },
+        {
+          "tex": "V_L=\\sqrt{V^2-V_R^2}=\\sqrt{100^2-80^2}=60\\,\\mathrm V",
+          "label": "교재 3-263쪽 26번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-263-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+          "displayAsset": "assets/problem-webp90/c26f2508a5e167b5451ac1cc73524552.webp",
+          "sha256": "bdc2c0d5504609d21471b8992ed5616a820e026ba4679cd7e1f64e8ca69968af"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 26,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-263-28",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-263",
+      "number": 28,
+      "location": "공조 교재 3-263쪽 인쇄 28번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-263 28③. 그림에서 세 소자의 직렬 연결 확인.",
+      "finding": "3-263 28③. 그림에서 세 소자의 직렬 연결 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "직렬 RLC 회로의 전압과 전류가 동상이 되려면 전체 임피던스의 허수부가 0이어야 한다. 코일과 콘덴서의 리액턴스 크기가 같아 서로 상쇄되는 ③이다."
+        },
+        {
+          "tex": "Z=R+j(X_L-X_C),\\qquad X_L-X_C=0",
+          "label": "교재 3-263쪽 28번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-263-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+          "displayAsset": "assets/problem-webp90/c26f2508a5e167b5451ac1cc73524552.webp",
+          "sha256": "bdc2c0d5504609d21471b8992ed5616a820e026ba4679cd7e1f64e8ca69968af"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 28,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-263-29",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-263",
+      "number": 29,
+      "location": "공조 교재 3-263쪽 인쇄 29번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-263 29③. 도면 직렬 연결과 보기의 제곱 지수 대조.",
+      "finding": "3-263 29③. 도면 직렬 연결과 보기의 제곱 지수 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "단자전압과 전류가 동상이 되는 직렬공진 조건은 코일과 콘덴서의 리액턴스 크기가 같은 것이다. 양변에 ωC를 곱하면 ③이 된다."
+        },
+        {
+          "tex": "\\omega L=\\frac{1}{\\omega C}\\quad\\Rightarrow\\quad\\omega^2 LC=1",
+          "label": "교재 3-263쪽 29번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-263-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-263-original.png",
+          "displayAsset": "assets/problem-webp90/c26f2508a5e167b5451ac1cc73524552.webp",
+          "sha256": "bdc2c0d5504609d21471b8992ed5616a820e026ba4679cd7e1f64e8ca69968af"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 29,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-264-32",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-264",
+      "number": 32,
+      "location": "공조 교재 3-264쪽 인쇄 32번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-264 32④. 고정 전압 및 저항 조건을 명시.",
+      "finding": "3-264 32④. 고정 전압 및 저항 조건을 명시.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전원 실효전압과 저항이 일정할 때 유효전력은 전류가 클수록 크다. 직렬회로에서는 유도성·용량성 리액턴스가 상쇄되면 임피던스 크기가 최소여서 소비전력이 최대다. 따라서 ④다."
+        },
+        {
+          "tex": "P=\\frac{V^2R}{R^2+(\\omega L-1/(\\omega C))^2}",
+          "label": "교재 3-264쪽 32번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-264-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-264-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-264-original.png",
+          "displayAsset": "assets/problem-webp90/3a887f46bf9b5dd413d39fe17b4b9449.webp",
+          "sha256": "6327f7b449018fad6c2d228710a4276e845a9ab2332967de4a338a1ef5280d0d"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 32,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-264-33",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-264",
+      "number": 33,
+      "location": "공조 교재 3-264쪽 인쇄 33번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-264 33②. 공진 시 임피던스와 저항 소비전력 확인.",
+      "finding": "3-264 33②. 공진 시 임피던스와 저항 소비전력 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "직렬공진에서는 코일과 콘덴서의 전압이 상쇄되고 전원 전압이 저항에 걸린다. 저항은 유효전력을 소비하므로 유효전력이 없다는 ②가 틀리다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-264-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-264-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-264-original.png",
+          "displayAsset": "assets/problem-webp90/3a887f46bf9b5dd413d39fe17b4b9449.webp",
+          "sha256": "6327f7b449018fad6c2d228710a4276e845a9ab2332967de4a338a1ef5280d0d"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 33,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-265-34",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-265",
+      "number": 34,
+      "location": "공조 교재 3-265쪽 인쇄 34번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-265 34②. 가지전류 조건 ωCE>E/(ωL)에서 부등식 정리.",
+      "finding": "3-265 34②. 가지전류 조건 ωCE>E/(ωL)에서 부등식 정리.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "병렬 L·C의 두 가지에는 같은 전압이 걸린다. 전체 전류가 앞서려면 콘덴서 가지 전류가 코일 가지 전류보다 커야 한다. 이 조건은 주파수가 공진주파수보다 큰 ②다."
+        },
+        {
+          "tex": "\\omega C>\\frac{1}{\\omega L}\\quad\\Rightarrow\\quad f>\\frac{1}{2\\pi\\sqrt{LC}}",
+          "label": "교재 3-265쪽 34번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-265-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+          "displayAsset": "assets/problem-webp90/0f3c1e598313a9b0b41e25c4bad5bfed.webp",
+          "sha256": "b0866948817a7dda222517be0f971cbe75ab9d0abe1ac19dd7410c76335d9fb3"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 34,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-265-35",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-265",
+      "number": 35,
+      "location": "공조 교재 3-265쪽 인쇄 35번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-265 35①. 100²/200=50.",
+      "finding": "3-265 35①. 100²/200=50.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전구를 200 Ω의 저항 부하로 보고 표시된 실효전압을 사용한다. 소비전력은 전압 제곱을 저항으로 나눈 50 W이므로 ①이다."
+        },
+        {
+          "tex": "P=\\frac{V^2}{R}=\\frac{100^2}{200}=50\\,\\mathrm W",
+          "label": "교재 3-265쪽 35번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-265-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+          "displayAsset": "assets/problem-webp90/0f3c1e598313a9b0b41e25c4bad5bfed.webp",
+          "sha256": "b0866948817a7dda222517be0f971cbe75ab9d0abe1ac19dd7410c76335d9fb3"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 35,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-265-36",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-265",
+      "number": 36,
+      "location": "공조 교재 3-265쪽 인쇄 36번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-265 36②. 위상각의 코사인과 W→kW 환산 확인.",
+      "finding": "3-265 36②. 위상각의 코사인과 W→kW 환산 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "단상 교류의 소비전력은 전압과 전류의 실효값에 역률을 곱한다. 220×15×cos 30° ≈ 2,858 W이므로 kW로 쓰면 약 2.9 kW, ②다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-265-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+          "displayAsset": "assets/problem-webp90/0f3c1e598313a9b0b41e25c4bad5bfed.webp",
+          "sha256": "b0866948817a7dda222517be0f971cbe75ab9d0abe1ac19dd7410c76335d9fb3"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 36,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-265-37",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-265",
+      "number": 37,
+      "location": "공조 교재 3-265쪽 인쇄 37번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-265 37③. 복소 실효값의 위상차로 재계산.",
+      "finding": "3-265 37③. 복소 실효값의 위상차로 재계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전압의 위상은 60°, 전류의 위상은 30°이므로 역률 계산에 쓸 차이는 30°다. 유효전력은 100×20×cos 30° ≈ 1,732 W로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-265-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+          "displayAsset": "assets/problem-webp90/0f3c1e598313a9b0b41e25c4bad5bfed.webp",
+          "sha256": "b0866948817a7dda222517be0f971cbe75ab9d0abe1ac19dd7410c76335d9fb3"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 37,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-265-38",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-265",
+      "number": 38,
+      "location": "공조 교재 3-265쪽 인쇄 38번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-265 38①. 3–4–5 임피던스 삼각형 및 유효전력 검산.",
+      "finding": "3-265 38①. 3–4–5 임피던스 삼각형 및 유효전력 검산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "주어진 순간전압의 최대값은 100√2 V이므로 실효값은 100 V다. 직렬 임피던스 크기는 5 Ω이고 전류는 20 A다. 저항에서 소비되는 전력은 20²×3=1,200 W로 ① 1.2 kW다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-265-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-265-original.png",
+          "displayAsset": "assets/problem-webp90/0f3c1e598313a9b0b41e25c4bad5bfed.webp",
+          "sha256": "b0866948817a7dda222517be0f971cbe75ab9d0abe1ac19dd7410c76335d9fb3"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 38,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-266-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-266",
+      "number": 43,
+      "location": "공조 교재 3-266쪽 인쇄 43번",
+      "contentExamined": true,
+      "changed": false,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정 없음",
+      "evidence": [],
+      "basis": "3-266 인쇄 43②. 기존 분수식의 유효전력/피상전력과 정현파 전력 삼각형 대조.",
+      "finding": "3-266 인쇄 43②. 기존 분수식의 유효전력/피상전력과 정현파 전력 삼각형 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "역률은 유효전력을 피상전력으로 나눈 값이다."
+        },
+        {
+          "tex": "\\cos\\theta=\\frac{P}{S}=\\frac{P}{\\sqrt{P^2+Q^2}}",
+          "label": "역률 코사인 세타는 유효전력 P 나누기 피상전력 S, P 나누기 루트 P제곱 더하기 Q제곱"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-266-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "displayAsset": "assets/problem-webp90/39f8447cc6b971f81b13f3de9971c751.webp",
+          "sha256": "eaaf8d45c06c2421e5c03bfffba253eb168cdf5e8c12aaafb961fc3091d0d7b5"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "기존 전사 재대조",
+      "directReview": {
+        "printedNumber": 43,
+        "printedAnswer": 2,
+        "newTranscription": false,
+        "correctedSeparately": false
+      },
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-266-39",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-266",
+      "number": 39,
+      "location": "공조 교재 3-266쪽 인쇄 39번",
+      "contentExamined": true,
+      "changed": false,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정 없음",
+      "evidence": [],
+      "basis": "3-266 39③. 기존 전사 네 단위 모두 원지와 대조. 무효전력 단위 var.",
+      "finding": "3-266 39③. 기존 전사 네 단위 모두 원지와 대조. 무효전력 단위 var.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "① VA: 피상전력 · ② W: 유효전력 · ③ Var: 무효전력 · ④ Wh: 유효전력량."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-266-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "displayAsset": "assets/problem-webp90/39f8447cc6b971f81b13f3de9971c751.webp",
+          "sha256": "eaaf8d45c06c2421e5c03bfffba253eb168cdf5e8c12aaafb961fc3091d0d7b5"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "기존 전사 재대조",
+      "directReview": {
+        "printedNumber": 39,
+        "printedAnswer": 3,
+        "newTranscription": false,
+        "correctedSeparately": false
+      },
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-266-40",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-266",
+      "number": 40,
+      "location": "공조 교재 3-266쪽 인쇄 40번",
+      "contentExamined": true,
+      "changed": false,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정 없음",
+      "evidence": [],
+      "basis": "3-266 40③. 표시된 기존 수식에서 100×5×√(1−0.8²)=300 var 재계산.",
+      "finding": "3-266 40③. 표시된 기존 수식에서 100×5×√(1−0.8²)=300 var 재계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "cosθ = 0.8, V = 100V, I = 5A일 때, 무효전력은 다음과 같다."
+        },
+        {
+          "tex": "\\sin\\theta=\\sqrt{1-0.8^2}=0.6",
+          "label": "사인 세타는 루트 1 빼기 0.8제곱, 0.6"
+        },
+        {
+          "tex": "Q=VI\\sin\\theta=100\\times5\\times0.6=300\\,\\mathrm{Var}",
+          "label": "무효전력 Q는 100 곱하기 5 곱하기 0.6, 300바르"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-266-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "displayAsset": "assets/problem-webp90/39f8447cc6b971f81b13f3de9971c751.webp",
+          "sha256": "eaaf8d45c06c2421e5c03bfffba253eb168cdf5e8c12aaafb961fc3091d0d7b5"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "기존 전사 재대조",
+      "directReview": {
+        "printedNumber": 40,
+        "printedAnswer": 3,
+        "newTranscription": false,
+        "correctedSeparately": false
+      },
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-266-41",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-266",
+      "number": 41,
+      "location": "공조 교재 3-266쪽 인쇄 41번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-266 41②. 100²−80²=3600.",
+      "finding": "3-266 41②. 100²−80²=3600.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "유효전력 80 kW를 역률 0.80으로 나누면 피상전력 100 kVA다. 전력 삼각형에서 남는 무효전력의 크기는 60 kvar로 ②다."
+        },
+        {
+          "tex": "|Q|=\\sqrt{S^2-P^2}=\\sqrt{100^2-80^2}=60\\,\\mathrm{kvar}",
+          "label": "교재 3-266쪽 41번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-266-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "displayAsset": "assets/problem-webp90/39f8447cc6b971f81b13f3de9971c751.webp",
+          "sha256": "eaaf8d45c06c2421e5c03bfffba253eb168cdf5e8c12aaafb961fc3091d0d7b5"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 41,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-266-42",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-266",
+      "number": 42,
+      "location": "공조 교재 3-266쪽 인쇄 42번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-266 42④. 전력량이므로 시간을 곱했는지 확인.",
+      "finding": "3-266 42④. 전력량이므로 시간을 곱했는지 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "역률 0.8에서 유효전력 80 kW에 대응하는 피상전력은 100 kVA이고 무효전력 크기는 60 kvar다. 2시간 동안 일정하면 무효전력량은 60×2=120 kvarh로 ④다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-266-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-266-original.png",
+          "displayAsset": "assets/problem-webp90/39f8447cc6b971f81b13f3de9971c751.webp",
+          "sha256": "eaaf8d45c06c2421e5c03bfffba253eb168cdf5e8c12aaafb961fc3091d0d7b5"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 42,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-267-2",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-267",
+      "number": 48,
+      "location": "공조 교재 3-267쪽 인쇄 48번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-267 실제 48④. 도면 좌우의 저항 및 길이 대응 대조.",
+      "finding": "3-267 실제 48④. 도면 좌우의 저항 및 길이 대응 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "평형이면 검류계 양단의 전위가 같다. 균일한 저항선의 두 부분은 저항비가 길이비와 같아 R:X=1:2가 된다. R=20 Ω이므로 X=40 Ω, ④다."
+        },
+        {
+          "tex": "X=R\\frac{L_2}{L_1}=20\\times2=40\\,\\Omega",
+          "label": "교재 3-267쪽 48번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-267-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "displayAsset": "assets/problem-webp90/f3dc46d48962c38178ac1874c0539e22.webp",
+          "sha256": "88f49d01cb82e690cb6f2f8071318037114b88485d22c626c3c242804bbd1807"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 48,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-267-45",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-267",
+      "number": 45,
+      "location": "공조 교재 3-267쪽 인쇄 45번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-267 45②. 인쇄 풀이의 병렬공진 일반화를 무효전류 보상 원리로 교정.",
+      "finding": "3-267 45②. 인쇄 풀이의 병렬공진 일반화를 무효전류 보상 원리로 교정.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "유도전동기의 지상 무효전류 일부를 부하와 병렬로 연결한 콘덴서의 진상전류로 상쇄한다. 전원에서 공급할 무효전류가 줄어 역률이 개선되므로 ②다. 공진시켜야 한다는 뜻은 아니다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-267-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "displayAsset": "assets/problem-webp90/f3dc46d48962c38178ac1874c0539e22.webp",
+          "sha256": "88f49d01cb82e690cb6f2f8071318037114b88485d22c626c3c242804bbd1807"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 45,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-267-46",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-267",
+      "number": 46,
+      "location": "공조 교재 3-267쪽 인쇄 46번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-267 46②. 기존 해설은 장치명만 반복해 검류계 영점과 저항비 조건 보완.",
+      "finding": "3-267 46②. 기존 해설은 장치명만 반복해 검류계 영점과 저항비 조건 보완.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "네 저항을 두 갈래의 분압회로로 연결하고 중간 두 점 사이에 검류계를 놓는다. 검류계 전류가 0이 되면 두 가지의 저항비가 같아져 세 저항에서 나머지 하나를 구할 수 있다. 이 방식이 ② 휘트스톤 브리지다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-267-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "displayAsset": "assets/problem-webp90/f3dc46d48962c38178ac1874c0539e22.webp",
+          "sha256": "88f49d01cb82e690cb6f2f8071318037114b88485d22c626c3c242804bbd1807"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "기존 전사 재대조",
+      "directReview": {
+        "printedNumber": 46,
+        "printedAnswer": 2,
+        "newTranscription": false,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-267-47",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-267",
+      "number": 47,
+      "location": "공조 교재 3-267쪽 인쇄 47번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-267 47①. 회로도의 네 저항으로 분압비 확인.",
+      "finding": "3-267 47①. 회로도의 네 저항으로 분압비 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "왼쪽 가지와 오른쪽 가지에서 위·아래 저항비는 각각 4:8과 3:6으로 같다. 두 중간점 a와 b의 전위가 같아 검류계 양단의 전압이 0이므로 그 사이 전류도 0 A, ①이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-267-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "displayAsset": "assets/problem-webp90/f3dc46d48962c38178ac1874c0539e22.webp",
+          "sha256": "88f49d01cb82e690cb6f2f8071318037114b88485d22c626c3c242804bbd1807"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 47,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-267-49",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-267",
+      "number": 49,
+      "location": "공조 교재 3-267쪽 인쇄 49번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-267 49②. 두 크기가 같은 페이저의 차 계산.",
+      "finding": "3-267 49②. 두 크기가 같은 페이저의 차 계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "평형 Y결선의 선간전압은 위상차 120°인 두 상전압의 벡터 차다. 크기는 상전압의 √3배이므로 ②다."
+        },
+        {
+          "tex": "V_l=\\sqrt{2V_p^2(1-\\cos120^\\circ)}=\\sqrt3 V_p",
+          "label": "교재 3-267쪽 49번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-267-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-267-original.png",
+          "displayAsset": "assets/problem-webp90/f3dc46d48962c38178ac1874c0539e22.webp",
+          "sha256": "88f49d01cb82e690cb6f2f8071318037114b88485d22c626c3c242804bbd1807"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 49,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-268-50",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-268",
+      "number": 50,
+      "location": "공조 교재 3-268쪽 인쇄 50번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-268 50②. 복소 임피던스 크기와 Y결선 전압비 재계산.",
+      "finding": "3-268 50②. 복소 임피던스 크기와 Y결선 전압비 재계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "상 임피던스의 크기는 5 Ω이다. Y결선에서 상전류는 선전류와 같으므로 상전압은 20×5=100 V다. 선간전압은 그 √3배인 약 173 V, ②다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-268-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+          "displayAsset": "assets/problem-webp90/0e3e6faedcb34b2d4d0d191f250f1c14.webp",
+          "sha256": "9f52f7066440628821f907eb587fae2c19d8bce875847fa04dece2671fea5950"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 50,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-268-53",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-268",
+      "number": 53,
+      "location": "공조 교재 3-268쪽 인쇄 53번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-268 53①. 선간 실효전압 해석에서 √3×100×10×0.8=1385.64.",
+      "finding": "3-268 53①. 선간 실효전압 해석에서 √3×100×10×0.8=1385.64.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전압 100 V와 전류 10 A를 각각 선간전압과 선전류로 해석한다. 평형 3상의 유효전력은 두 실효값의 곱에 √3과 역률을 곱한 약 1,386 W로 ①이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-268-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+          "displayAsset": "assets/problem-webp90/0e3e6faedcb34b2d4d0d191f250f1c14.webp",
+          "sha256": "9f52f7066440628821f907eb587fae2c19d8bce875847fa04dece2671fea5950"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 53,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-268-54",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-268",
+      "number": 54,
+      "location": "공조 교재 3-268쪽 인쇄 54번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-268 54③. 15,000/(√3×220×0.85×0.80) 검산.",
+      "finding": "3-268 54③. 15,000/(√3×220×0.85×0.80) 검산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "15 kW는 축출력이므로 효율 0.80으로 나누어 전기 입력을 구한다. 이를 선간전압·역률·√3의 곱으로 나누면 선전류는 약 57.9 A, ③이다."
+        },
+        {
+          "tex": "I=\\frac{15000}{\\sqrt3\\times220\\times0.85\\times0.80}\\approx57.9\\,\\mathrm A",
+          "label": "교재 3-268쪽 54번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-268-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+          "displayAsset": "assets/problem-webp90/0e3e6faedcb34b2d4d0d191f250f1c14.webp",
+          "sha256": "9f52f7066440628821f907eb587fae2c19d8bce875847fa04dece2671fea5950"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 54,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-268-55",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-268",
+      "number": 55,
+      "location": "공조 교재 3-268쪽 인쇄 55번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-268 55②. 5×746/(√3×220×0.9×0.8)=13.60.",
+      "finding": "3-268 55②. 5×746/(√3×220×0.9×0.8)=13.60.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "교재의 영국식 마력 환산 1 hp ≈ 746 W를 쓰면 출력은 3,730 W다. 효율을 고려한 전기입력을 평형 3상의 전력식에 대입하면 선전류 약 13.6 A로 ②다."
+        },
+        {
+          "tex": "I=\\frac{5\\times746}{0.80\\sqrt3\\times220\\times0.90}",
+          "label": "교재 3-268쪽 55번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-268-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-268-original.png",
+          "displayAsset": "assets/problem-webp90/0e3e6faedcb34b2d4d0d191f250f1c14.webp",
+          "sha256": "9f52f7066440628821f907eb587fae2c19d8bce875847fa04dece2671fea5950"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 55,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-269-56",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-269",
+      "number": 56,
+      "location": "공조 교재 3-269쪽 인쇄 56번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-269 56④. 고정된 전원 선간전압 기준으로 비교.",
+      "finding": "3-269 56④. 고정된 전원 선간전압 기준으로 비교.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "같은 선간전압의 전원에 연결한 기기에서 Δ결선은 한 상에 선간전압이 그대로 걸린다. Y결선에서는 한 상에 그 1/√3배가 걸리므로 Y결선 쪽이 높다고 한 ④가 틀리다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-269-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-269-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-269-original.png",
+          "displayAsset": "assets/problem-webp90/fb1b6c7634b4ff3c92db5541c2bea0b1.webp",
+          "sha256": "2c637ec4d5eef9e471d1158bbc06f2a2f0daa40bcd8812cbb9dd22e2cf985084"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 56,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-269-58",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-269",
+      "number": 58,
+      "location": "공조 교재 3-269쪽 인쇄 58번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-269 58④. 원도의 출력 개방 및 20 Ω 위치 확인.",
+      "finding": "3-269 58④. 원도의 출력 개방 및 20 Ω 위치 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "같은 33 Ω 세 개로 된 Δ를 Y로 바꾸면 각 가지가 11 Ω이다. c–d 출력은 개방되어 c로 향하는 가지의 전압강하는 0이다. 100 V를 11 Ω과 31 Ω이 분압하므로 c–d에는 약 73.8 V가 걸려 ④다."
+        },
+        {
+          "tex": "V_{cd}=100\\frac{11+20}{11+11+20}\\approx73.8\\,\\mathrm V",
+          "label": "교재 3-269쪽 58번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-269-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-269-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-269-original.png",
+          "displayAsset": "assets/problem-webp90/fb1b6c7634b4ff3c92db5541c2bea0b1.webp",
+          "sha256": "2c637ec4d5eef9e471d1158bbc06f2a2f0daa40bcd8812cbb9dd22e2cf985084"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 58,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-270-59",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-270",
+      "number": 59,
+      "location": "공조 교재 3-270쪽 인쇄 59번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-270 59①. 인쇄 Δ–Y 풀이와 별도로 회로의 상하 대칭으로 재계산.",
+      "finding": "3-270 59①. 인쇄 Δ–Y 풀이와 별도로 회로의 상하 대칭으로 재계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "원회로는 위와 아래가 대칭이므로 같은 가로 위치에 있는 두 점의 전위가 같다. 세로 저항에는 전류가 흐르지 않는다. 위·아래 각 가지는 30+5+15=50 Ω이고 이 둘이 병렬이므로 합성저항은 25 Ω, ①이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-270-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+          "displayAsset": "assets/problem-webp90/a1a9d895fc93349b48f381d7e09ffa39.webp",
+          "sha256": "be20efffa3bd298cfbea7ae326b4dcc0ef88cd65de3b6b7be01dafa186af21e6"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 59,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-270-60",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-270",
+      "number": 60,
+      "location": "공조 교재 3-270쪽 인쇄 60번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-270 60①. 영상 임피던스 행렬의 대각항을 동일 영상전류로 확인.",
+      "finding": "3-270 60①. 영상 임피던스 행렬의 대각항을 동일 영상전류로 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "세 상에 같은 영상전류가 흐를 때 영상전압은 세 상전압의 평균이다. 따라서 상 임피던스의 합을 3으로 나누면 2+j1 Ω으로 ①이다."
+        },
+        {
+          "tex": "Z_0=\\frac{3+3+j3}{3}=2+j1\\;\\Omega",
+          "label": "교재 3-270쪽 60번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-270-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+          "displayAsset": "assets/problem-webp90/a1a9d895fc93349b48f381d7e09ffa39.webp",
+          "sha256": "be20efffa3bd298cfbea7ae326b4dcc0ef88cd65de3b6b7be01dafa186af21e6"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 60,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-270-61",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-270",
+      "number": 61,
+      "location": "공조 교재 3-270쪽 인쇄 61번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-270 61②. 각 가지 전압과 3상 합산 구분.",
+      "finding": "3-270 61②. 각 가지 전압과 3상 합산 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "Δ결선에서는 각 콘덴서에 선간전압 V가 걸린다. 한 가지의 용량성 무효전력 크기는 ωCV²이고 세 가지의 합은 6πfCV²이므로 ②다."
+        },
+        {
+          "tex": "|Q_C|=3\\frac{V^2}{X_C}=3(2\\pi f)CV^2",
+          "label": "교재 3-270쪽 61번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-270-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-270-original.png",
+          "displayAsset": "assets/problem-webp90/a1a9d895fc93349b48f381d7e09ffa39.webp",
+          "sha256": "be20efffa3bd298cfbea7ae326b4dcc0ef88cd65de3b6b7be01dafa186af21e6"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 61,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-271-63",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-271",
+      "number": 63,
+      "location": "공조 교재 3-271쪽 인쇄 63번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-271 63②. Ls²+Rs+1/C=0의 판별식 확인.",
+      "finding": "3-271 63②. Ls²+Rs+1/C=0의 판별식 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "직렬 RLC의 자연응답은 특성방정식의 근으로 판정한다. 주어진 조건에서는 판별식이 양수라 서로 다른 두 실근이 생긴다. 과도성분이 진동하지 않는 과감쇠, ②다. 인가한 교류의 정상상태 응답은 별개다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-271-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-271-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-271-original.png",
+          "displayAsset": "assets/problem-webp90/542b799d5bacd7c9cbd8ec7b2cb1034c.webp",
+          "sha256": "99d7ddf3d8fb3a4a83a1433425988531d8b5f41c39f580e468b87136957a2c32"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 63,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-271-64",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-271",
+      "number": 64,
+      "location": "공조 교재 3-271쪽 인쇄 64번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-271 64①. 마이크로패럿과 밀리초 변환 확인.",
+      "finding": "3-271 64①. 마이크로패럿과 밀리초 변환 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "RC 회로의 시정수는 저항과 정전용량의 곱이다. 20 μF를 F로 바꾸어 곱하면 0.0002초, 곧 0.2 ms로 ①이다."
+        },
+        {
+          "tex": "\\tau=RC=10(20\\times10^{-6})\\,\\mathrm s=0.2\\,\\mathrm{ms}",
+          "label": "교재 3-271쪽 64번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-271-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-271-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-271-original.png",
+          "displayAsset": "assets/problem-webp90/542b799d5bacd7c9cbd8ec7b2cb1034c.webp",
+          "sha256": "99d7ddf3d8fb3a4a83a1433425988531d8b5f41c39f580e468b87136957a2c32"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 64,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-279-1",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-279",
+      "number": 1,
+      "location": "공조 교재 3-279쪽 인쇄 1번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-279 1④. 구동·제어·제동 토크의 역할 구분.",
+      "finding": "3-279 1④. 구동·제어·제동 토크의 역할 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "가동부를 움직이는 구동장치, 편향에 맞서는 복원력을 만드는 제어장치, 진동을 가라앉히는 제동장치가 기계식 지시계기의 세 구성요소다. 공통 구성요소에서 벗어나는 것은 ④ 유도장치다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-279-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-279-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-279-original.png",
+          "displayAsset": "assets/problem-webp90/55e63fbaa2f56c88297624f57f287bad.webp",
+          "sha256": "1a937b08c6c858aa58db60ed25b690e936f32ba95251bc81fbfe59cd273d7484"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 1,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-279-3",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-279",
+      "number": 3,
+      "location": "공조 교재 3-279쪽 인쇄 3번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-279 3③. 도면 분기점과 전류계 위치를 확인.",
+      "finding": "3-279 3③. 도면 분기점과 전류계 위치를 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전압계가 저항과 병렬이라 30 V가 양쪽에 걸린다. 전압계로 흐르는 1.5 A를 전류계의 전체 지시 15 A에서 빼면 저항 전류는 13.5 A다. 따라서 약 2.22 Ω인 ③이다."
+        },
+        {
+          "tex": "R=\\frac{30}{15-30/20}\\approx2.22\\,\\Omega",
+          "label": "교재 3-279쪽 3번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-279-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-279-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-279-original.png",
+          "displayAsset": "assets/problem-webp90/55e63fbaa2f56c88297624f57f287bad.webp",
+          "sha256": "1a937b08c6c858aa58db60ed25b690e936f32ba95251bc81fbfe59cd273d7484"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 3,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-280-6",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-280",
+      "number": 6,
+      "location": "공조 교재 3-280쪽 인쇄 6번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-280 6④. 가동철편과 가동코일의 힘 발생 원리 구별.",
+      "finding": "3-280 6④. 가동철편과 가동코일의 힘 발생 원리 구별.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "영구자석이 만드는 자기장 안에 놓인 코일에 직류가 흐르면 회전력이 생겨 지침이 움직인다. 전류의 방향에 따라 토크 방향이 바뀌는 ④ 가동코일형이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-280-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-280-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-280-original.png",
+          "displayAsset": "assets/problem-webp90/b74f0f6bec5fdaed18ff9504f50128d1.webp",
+          "sha256": "518815ab1f2da4861c6b787e0e9b0d8528ee1c9061e4ab2c1a0b5bb9a2ef7240"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 6,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-280-7",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-280",
+      "number": 7,
+      "location": "공조 교재 3-280쪽 인쇄 7번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-280 7④. 최대눈금이 아닌 실제 지시값으로 전압 분배 계산.",
+      "finding": "3-280 7④. 최대눈금이 아닌 실제 지시값으로 전압 분배 계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "전압계 내부저항 10 kΩ과 외부저항 90 kΩ이 직렬이다. 계기에서 읽은 200 V는 전체저항의 1/10에 걸린 전압이므로 전체 전압은 2,000 V, ④다."
+        },
+        {
+          "tex": "E=200\\frac{90+10}{10}=2000\\,\\mathrm V",
+          "label": "교재 3-280쪽 7번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-280-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-280-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-280-original.png",
+          "displayAsset": "assets/problem-webp90/b74f0f6bec5fdaed18ff9504f50128d1.webp",
+          "sha256": "518815ab1f2da4861c6b787e0e9b0d8528ee1c9061e4ab2c1a0b5bb9a2ef7240"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 7,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-281-9",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-281",
+      "number": 9,
+      "location": "공조 교재 3-281쪽 인쇄 9번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-281 9①. 두 가지 전류 차 및 공통 전압 60 mV 대조.",
+      "finding": "3-281 9①. 두 가지 전류 차 및 공통 전압 60 mV 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "40 mA 중 전류계에는 10 mA만 보내고 분류기에는 30 mA를 흘려야 한다. 두 저항은 병렬이므로 전압강하가 같다. 필요한 분류기 저항은 2 Ω, ①이다."
+        },
+        {
+          "tex": "R_s=\\frac{0.010\\times6}{0.040-0.010}=2\\,\\Omega",
+          "label": "교재 3-281쪽 9번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-281-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+          "displayAsset": "assets/problem-webp90/9252259b5af864cc6e7bb45e16f8122e.webp",
+          "sha256": "5878217c42ed8613d168242dfcdedf7f515bd115f65efebcc8c9e9ca82c3c58e"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 9,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-281-10",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-281",
+      "number": 10,
+      "location": "공조 교재 3-281쪽 인쇄 10번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-281 10③. 지시값 부호와 단위 대조.",
+      "finding": "3-281 10③. 지시값 부호와 단위 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "3상 3선식 2전력계법에서는 두 지시값을 부호까지 포함하여 더하면 전체 유효전력이다. 두 값이 모두 양수이므로 4+3=7 W, ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-281-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+          "displayAsset": "assets/problem-webp90/9252259b5af864cc6e7bb45e16f8122e.webp",
+          "sha256": "5878217c42ed8613d168242dfcdedf7f515bd115f65efebcc8c9e9ca82c3c58e"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 10,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-281-11",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-281",
+      "number": 11,
+      "location": "공조 교재 3-281쪽 인쇄 11번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-281 11③. 선간전압과 상전류 코일의 실제 결선으로 계산.",
+      "finding": "3-281 11③. 선간전압과 상전류 코일의 실제 결선으로 계산.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "그림의 전류코일은 한 선의 전류를, 전압코일은 선간전압을 잰다. 평형이고 역률이 1이면 이 조합의 위상차는 30°다. 3상 전체 전력은 이 지시값의 두 배이므로 200 W, ③이다."
+        },
+        {
+          "tex": "\\frac{P}{W}=\\frac{\\sqrt3 V_L I_L}{V_L I_L\\cos30^\\circ}=2",
+          "label": "교재 3-281쪽 11번 풀이"
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-281-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-281-original.png",
+          "displayAsset": "assets/problem-webp90/9252259b5af864cc6e7bb45e16f8122e.webp",
+          "sha256": "5878217c42ed8613d168242dfcdedf7f515bd115f65efebcc8c9e9ca82c3c58e"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 11,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-282-12",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-282",
+      "number": 12,
+      "location": "공조 교재 3-282쪽 인쇄 12번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-282 12②. 불평형과 중성선 조건 확인.",
+      "finding": "3-282 12②. 불평형과 중성선 조건 확인.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "불평형인 3상 4선식에서는 상마다 전력이 다를 수 있다. 각 상과 중성선 사이의 전압 및 해당 상 전류로 한 상씩 전력을 재어 합산하므로 단상전력계 3대, ②다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-282-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-282-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-282-original.png",
+          "displayAsset": "assets/problem-webp90/cbac5a7f457387d29aaec53076e78692.webp",
+          "sha256": "cdb2ae40af2d7f154ea8ab2f28449e6b92630656a78b6b69bb6d1ed74add5aa8"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 12,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-282-14",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-282",
+      "number": 14,
+      "location": "공조 교재 3-282쪽 인쇄 14번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-282 14④. 일반 멀티미터와 전력 측정 기능 구분.",
+      "finding": "3-282 14④. 일반 멀티미터와 전력 측정 기능 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "일반 회로시험기는 저항·교류전압·직류전압을 직접 읽을 수 있다. 교류 유효전력은 전압과 전류 사이의 위상 관계까지 반영해야 하므로 기본 회로시험기의 직접 측정 항목에서 빠지는 것은 ④다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-282-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-282-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-282-original.png",
+          "displayAsset": "assets/problem-webp90/cbac5a7f457387d29aaec53076e78692.webp",
+          "sha256": "cdb2ae40af2d7f154ea8ab2f28449e6b92630656a78b6b69bb6d1ed74add5aa8"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 14,
+        "printedAnswer": 4,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 4,
+      "answerAfter": 4
+    },
+    {
+      "id": "hansol-direct-3-283-16",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-283",
+      "number": 16,
+      "location": "공조 교재 3-283쪽 인쇄 16번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-283 16②. 기존 풀이의 정전 조건은 필요하나 오답의 핵심은 시험전압 선정이라는 점 보완.",
+      "finding": "3-283 16②. 기존 풀이의 정전 조건은 필요하나 오답의 핵심은 시험전압 선정이라는 점 보완.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "절연저항계의 시험전압은 대상 회로의 정격과 적용 기준에 맞춰 선택한다. 선로의 사용전압에 관계없이 항상 같은 전압을 인가한다는 ②가 틀리다. 측정은 대상 회로의 전원을 차단한 상태에서 한다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-283-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+          "displayAsset": "assets/problem-webp90/349c8e76084ba32cae0df46d83286f04.webp",
+          "sha256": "35d71ce6ba6c12b1c238dbc4a0f3814cb8ce5e2b551c7abe113aff53cd97118f"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 16,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": true
+      },
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-283-17",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-283",
+      "number": 17,
+      "location": "공조 교재 3-283쪽 인쇄 17번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-283 17②. 보기 중 복원력을 담당하는 부분과 증상 대조.",
+      "finding": "3-283 17②. 보기 중 복원력을 담당하는 부분과 증상 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "지침을 영점으로 되돌리는 역할은 제어 스프링이 한다. 보기 중 장시간 통전 후 복귀력이 변해 영점이 어긋나는 현상에 해당하는 것은 ② 스프링의 피로다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-283-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+          "displayAsset": "assets/problem-webp90/349c8e76084ba32cae0df46d83286f04.webp",
+          "sha256": "35d71ce6ba6c12b1c238dbc4a0f3814cb8ce5e2b551c7abe113aff53cd97118f"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 17,
+        "printedAnswer": 2,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 2,
+      "answerAfter": 2
+    },
+    {
+      "id": "hansol-direct-3-283-19",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-283",
+      "number": 19,
+      "location": "공조 교재 3-283쪽 인쇄 19번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-283 19③. 펠티에 효과와 원인·결과 방향 구분.",
+      "finding": "3-283 19③. 펠티에 효과와 원인·결과 방향 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "서로 다른 두 금속의 접점 사이에 온도차를 주면 열기전력이 생기고 폐회로에서는 전류가 흐른다. 이 온도차→기전력 현상이 ③ 제벡 효과다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-283-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+          "displayAsset": "assets/problem-webp90/349c8e76084ba32cae0df46d83286f04.webp",
+          "sha256": "35d71ce6ba6c12b1c238dbc4a0f3814cb8ce5e2b551c7abe113aff53cd97118f"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 19,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-283-20",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-283",
+      "number": 20,
+      "location": "공조 교재 3-283쪽 인쇄 20번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-283 20①. 제시된 네 종류의 이름과 보기 분류 기준 대조.",
+      "finding": "3-283 20①. 제시된 네 종류의 이름과 보기 분류 기준 대조.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "변위·속도·열·빛은 센서가 검출하려는 물리량을 나타낸다. 각 센서의 재료나 전기신호 변환 방식은 따로 정해지므로 이 분류의 기준은 ① 계측의 대상이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-283-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+          "displayAsset": "assets/problem-webp90/349c8e76084ba32cae0df46d83286f04.webp",
+          "sha256": "35d71ce6ba6c12b1c238dbc4a0f3814cb8ce5e2b551c7abe113aff53cd97118f"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 20,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
+    },
+    {
+      "id": "hansol-direct-3-283-21",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-283",
+      "number": 21,
+      "location": "공조 교재 3-283쪽 인쇄 21번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-283 21③. 전류 측정 대상과 변성기 구분.",
+      "finding": "3-283 21③. 전류 측정 대상과 변성기 구분.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "계기용 변류기는 큰 교류전류를 계기로 읽을 수 있는 작은 2차 전류로 바꾼다. 전압을 변환하는 계기용 변압기와 구별되므로 ③이다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-283-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-283-original.png",
+          "displayAsset": "assets/problem-webp90/349c8e76084ba32cae0df46d83286f04.webp",
+          "sha256": "35d71ce6ba6c12b1c238dbc4a0f3814cb8ce5e2b551c7abe113aff53cd97118f"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 21,
+        "printedAnswer": 3,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 3,
+      "answerAfter": 3
+    },
+    {
+      "id": "hansol-direct-3-318-5",
+      "catalog": "direct",
+      "file": "tools/textbook-explanation-text-review.json",
+      "round": "3-318",
+      "number": 5,
+      "location": "공조 교재 3-318쪽 인쇄 5번",
+      "contentExamined": true,
+      "changed": true,
+      "academicVerified": true,
+      "status": "내용 검토 완료·수정함",
+      "evidence": [],
+      "basis": "3-318 5①. 재료 고유저항과 정류에 쓰이는 접촉저항 구별.",
+      "finding": "3-318 5①. 재료 고유저항과 정류에 쓰이는 접촉저항 구별.",
+      "errorType": "원문 해설과 개념·계산 대조",
+      "resolution": [
+        {
+          "text": "정류 도중 브러시가 이웃한 정류자편을 걸칠 때 접촉저항이 크면 단락 전류가 억제되고 전류 반전이 원활해진다. 이 저항정류에 직접 작용하는 성질은 ① 접촉저항이다. 탄소의 고유저항도 구리보다 크지만 ④는 접촉부의 정류 작용을 직접 나타내지 않는다."
+        }
+      ],
+      "questionImage": "assets/hvac-hansol-book/direct-pages/3-318-original.png",
+      "explanationImages": [
+        "assets/hvac-hansol-book/direct-pages/3-318-original.png"
+      ],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol-book/direct-pages/3-318-original.png",
+          "displayAsset": "assets/problem-webp90/ab82200fcf42c6af50eb798751a4ff9c.webp",
+          "sha256": "7544fac90d3a0db8db0c8b7dffb2515acb55ca7e0ab848102d9a6cf09a06fcbc"
+        }
+      ],
+      "originalCompared": true,
+      "transcription": "부분 전사·대조",
+      "directReview": {
+        "printedNumber": 5,
+        "printedAnswer": 1,
+        "newTranscription": true,
+        "correctedSeparately": false
+      },
+      "changeReason": "이미지 원문 텍스트 전환",
+      "answerBefore": 1,
+      "answerAfter": 1
     }
   ],
   "sources": [
@@ -452192,26 +454709,26 @@
     "energy": "data/energy.js 대상 1607개 직접 판정 완료. 보류·정답 재확인은 문항별 기록 참조.",
     "practical": "data/hvac-practical-restored.json hvac-practical-restored-2023-3-02",
     "hvac": "data/hvac.js 공조 필기 대상 2934개 직접 판정 완료",
-    "direct": "data/hansol-book-direct.json hansol-direct-3-260-11",
+    "direct": "data/hansol-book-direct.json hansol-direct-3-318-6",
     "maintenance": "전체 대상 2236개 판정 완료",
     "hvacHansol": "data/hvac-hansol.js 대상 1920개 직접 판정 완료",
     "appendix": "완료"
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 12835,
-    "contentCompleted": 10167,
-    "contentCompletedChanged": 8130,
-    "contentCompletedUnchanged": 2037,
+    "contentExamined": 12891,
+    "contentCompleted": 10223,
+    "contentCompletedChanged": 8183,
+    "contentCompletedUnchanged": 2040,
     "evidenceHold": 2031,
     "answerNeedsConfirmation": 637,
-    "automaticOnly": 36169,
-    "changedQuestionIds": 9077,
-    "imageTranscribed": 1033,
+    "automaticOnly": 36113,
+    "changedQuestionIds": 9130,
+    "imageTranscribed": 1085,
     "imageFullyTranscribed": 251,
-    "imagePartiallyTranscribed": 782,
-    "imageCompared": 1033,
-    "imageAcademicCompleted": 878,
+    "imagePartiallyTranscribed": 834,
+    "imageCompared": 1085,
+    "imageAcademicCompleted": 930,
     "questionImagesConverted": 152,
     "questionImagesCompared": 152,
     "questionImageAcademicCompleted": 142
@@ -455672,7 +458189,7 @@
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 4537,
+      "count": 4540,
       "findings": {
         "0": 3,
         "1": 1,
@@ -459875,11 +462392,14 @@
         "3-189 89③. 배출과 계통 밖 폐기를 구별.": 1,
         "3-209 4번 원표 ③과 산출값 ② 충돌. 2(0.6+0.25)×12×1.28=26.112.": 1,
         "3-209 5④. 도면상 해당 장변 치수와 모든 보기의 두께 오기 구분.": 1,
-        "3-210 7①. 원문 최종 대입식의 19,648,500 오기를 독립 합산으로 교정.": 1
+        "3-210 7①. 원문 최종 대입식의 19,648,500 오기를 독립 합산으로 교정.": 1,
+        "3-267 45②. 인쇄 풀이의 병렬공진 일반화를 무효전류 보상 원리로 교정.": 1,
+        "3-267 46②. 기존 해설은 장치명만 반복해 검류계 영점과 저항비 조건 보완.": 1,
+        "3-283 16②. 기존 풀이의 정전 조건은 필요하나 오답의 핵심은 시험전압 선정이라는 점 보완.": 1
       }
     },
     "이미지 원문 텍스트 전환": {
-      "count": 754,
+      "count": 804,
       "findings": {
         "바이패스 팩터의 정의": 1,
         "덕트 정압계의 판독": 1,
@@ -460230,7 +462750,57 @@
         "3-258 3④. 628/(2π)=99.9493.": 1,
         "3-259 6③. 각도 비율을 시간 비율로 변환.": 1,
         "3-259 8①. 저항 발열 기준과 정현파 파고율 구분.": 1,
-        "3-259 9②. 제곱평균제곱근과 산술평균을 구별.": 1
+        "3-259 9②. 제곱평균제곱근과 산술평균을 구별.": 1,
+        "3-260 11①. 정현파에 한정하여 실효값 정의로 유도.": 1,
+        "3-260 12②. 141.4/√2=99.985.": 1,
+        "3-260 14②. 반주기 적분과 119π/2=186.925.": 1,
+        "3-261 18②. 일정전류의 미분과 저장에너지 비교.": 1,
+        "3-261 19①. 원도 전압 최대와 전류 상승 영점 대조. 실효치 비의 분자·분모 명시.": 1,
+        "3-262 21③. 2/(2π×60×100)=0.00005305 F.": 1,
+        "3-262 22④. 전압과 전류의 비교 방향 확인.": 1,
+        "3-262 23③. 같은 각주파수 377을 확인하고 두 위상 비교.": 1,
+        "3-262 24①. 저항·리액턴스·임피던스의 관계 대조.": 1,
+        "3-263 전체 쪽의 인쇄 27번 첫 줄에서 220 V 확인. 27②와 재계산 일치.": 1,
+        "3-263 26③. 100²−80²=3600.": 1,
+        "3-263 28③. 그림에서 세 소자의 직렬 연결 확인.": 1,
+        "3-263 29③. 도면 직렬 연결과 보기의 제곱 지수 대조.": 1,
+        "3-264 32④. 고정 전압 및 저항 조건을 명시.": 1,
+        "3-264 33②. 공진 시 임피던스와 저항 소비전력 확인.": 1,
+        "3-265 34②. 가지전류 조건 ωCE>E/(ωL)에서 부등식 정리.": 1,
+        "3-265 35①. 100²/200=50.": 1,
+        "3-265 36②. 위상각의 코사인과 W→kW 환산 확인.": 1,
+        "3-265 37③. 복소 실효값의 위상차로 재계산.": 1,
+        "3-265 38①. 3–4–5 임피던스 삼각형 및 유효전력 검산.": 1,
+        "3-266 41②. 100²−80²=3600.": 1,
+        "3-266 42④. 전력량이므로 시간을 곱했는지 확인.": 1,
+        "3-267 실제 48④. 도면 좌우의 저항 및 길이 대응 대조.": 1,
+        "3-267 47①. 회로도의 네 저항으로 분압비 확인.": 1,
+        "3-267 49②. 두 크기가 같은 페이저의 차 계산.": 1,
+        "3-268 50②. 복소 임피던스 크기와 Y결선 전압비 재계산.": 1,
+        "3-268 53①. 선간 실효전압 해석에서 √3×100×10×0.8=1385.64.": 1,
+        "3-268 54③. 15,000/(√3×220×0.85×0.80) 검산.": 1,
+        "3-268 55②. 5×746/(√3×220×0.9×0.8)=13.60.": 1,
+        "3-269 56④. 고정된 전원 선간전압 기준으로 비교.": 1,
+        "3-269 58④. 원도의 출력 개방 및 20 Ω 위치 확인.": 1,
+        "3-270 59①. 인쇄 Δ–Y 풀이와 별도로 회로의 상하 대칭으로 재계산.": 1,
+        "3-270 60①. 영상 임피던스 행렬의 대각항을 동일 영상전류로 확인.": 1,
+        "3-270 61②. 각 가지 전압과 3상 합산 구분.": 1,
+        "3-271 63②. Ls²+Rs+1/C=0의 판별식 확인.": 1,
+        "3-271 64①. 마이크로패럿과 밀리초 변환 확인.": 1,
+        "3-279 1④. 구동·제어·제동 토크의 역할 구분.": 1,
+        "3-279 3③. 도면 분기점과 전류계 위치를 확인.": 1,
+        "3-280 6④. 가동철편과 가동코일의 힘 발생 원리 구별.": 1,
+        "3-280 7④. 최대눈금이 아닌 실제 지시값으로 전압 분배 계산.": 1,
+        "3-281 9①. 두 가지 전류 차 및 공통 전압 60 mV 대조.": 1,
+        "3-281 10③. 지시값 부호와 단위 대조.": 1,
+        "3-281 11③. 선간전압과 상전류 코일의 실제 결선으로 계산.": 1,
+        "3-282 12②. 불평형과 중성선 조건 확인.": 1,
+        "3-282 14④. 일반 멀티미터와 전력 측정 기능 구분.": 1,
+        "3-283 17②. 보기 중 복원력을 담당하는 부분과 증상 대조.": 1,
+        "3-283 19③. 펠티에 효과와 원인·결과 방향 구분.": 1,
+        "3-283 20①. 제시된 네 종류의 이름과 보기 분류 기준 대조.": 1,
+        "3-283 21③. 전류 측정 대상과 변성기 구분.": 1,
+        "3-318 5①. 재료 고유저항과 정류에 쓰이는 접촉저항 구별.": 1
       }
     }
   },
@@ -460512,7 +463082,7 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 12164,
+    "examined": 12220,
     "rawFractionDisplays": 940,
     "remainingBankBlanks": 544,
     "units": [
@@ -477555,18 +480125,138 @@
           "hansol-direct-3-259-8",
           "hansol-direct-3-259-9"
         ]
+      },
+      {
+        "unit": "공조 교재 3-260쪽 인쇄 11번 ~ 공조 교재 3-262쪽 인쇄 23번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-260-11",
+          "hansol-direct-3-260-12",
+          "hansol-direct-3-260-14",
+          "hansol-direct-3-261-18",
+          "hansol-direct-3-261-19",
+          "hansol-direct-3-262-21",
+          "hansol-direct-3-262-22",
+          "hansol-direct-3-262-23"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-262쪽 인쇄 24번 ~ 공조 교재 3-265쪽 인쇄 34번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-262-24",
+          "hansol-direct-3-263-4",
+          "hansol-direct-3-263-26",
+          "hansol-direct-3-263-28",
+          "hansol-direct-3-263-29",
+          "hansol-direct-3-264-32",
+          "hansol-direct-3-264-33",
+          "hansol-direct-3-265-34"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-265쪽 인쇄 35번 ~ 공조 교재 3-266쪽 인쇄 41번",
+        "statuses": {
+          "내용 검토 완료·수정함": 5,
+          "내용 검토 완료·수정 없음": 3
+        },
+        "changed": 5,
+        "ids": [
+          "hansol-direct-3-265-35",
+          "hansol-direct-3-265-36",
+          "hansol-direct-3-265-37",
+          "hansol-direct-3-265-38",
+          "hansol-direct-3-266-3",
+          "hansol-direct-3-266-39",
+          "hansol-direct-3-266-40",
+          "hansol-direct-3-266-41"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-266쪽 인쇄 42번 ~ 공조 교재 3-268쪽 인쇄 53번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-266-42",
+          "hansol-direct-3-267-2",
+          "hansol-direct-3-267-45",
+          "hansol-direct-3-267-46",
+          "hansol-direct-3-267-47",
+          "hansol-direct-3-267-49",
+          "hansol-direct-3-268-50",
+          "hansol-direct-3-268-53"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-268쪽 인쇄 54번 ~ 공조 교재 3-271쪽 인쇄 63번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-268-54",
+          "hansol-direct-3-268-55",
+          "hansol-direct-3-269-56",
+          "hansol-direct-3-269-58",
+          "hansol-direct-3-270-59",
+          "hansol-direct-3-270-60",
+          "hansol-direct-3-270-61",
+          "hansol-direct-3-271-63"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-271쪽 인쇄 64번 ~ 공조 교재 3-281쪽 인쇄 11번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-271-64",
+          "hansol-direct-3-279-1",
+          "hansol-direct-3-279-3",
+          "hansol-direct-3-280-6",
+          "hansol-direct-3-280-7",
+          "hansol-direct-3-281-9",
+          "hansol-direct-3-281-10",
+          "hansol-direct-3-281-11"
+        ]
+      },
+      {
+        "unit": "공조 교재 3-282쪽 인쇄 12번 ~ 공조 교재 3-318쪽 인쇄 5번",
+        "statuses": {
+          "내용 검토 완료·수정함": 8
+        },
+        "changed": 8,
+        "ids": [
+          "hansol-direct-3-282-12",
+          "hansol-direct-3-282-14",
+          "hansol-direct-3-283-16",
+          "hansol-direct-3-283-17",
+          "hansol-direct-3-283-19",
+          "hansol-direct-3-283-20",
+          "hansol-direct-3-283-21",
+          "hansol-direct-3-318-5"
+        ]
       }
     ],
     "reasons": {
       "지문·정답·자료 대조에 남은 불확실성": 516,
       "공식·계산·기호·단위·반올림": 935,
-      "개념·장치 작동 원리·적용 조건": 4278,
+      "개념·장치 작동 원리·적용 조건": 4281,
       "부정형·보기 비교·표 적용 범위": 188,
       "문제와 무관한 설명": 423,
       "해설 미등록": 1441,
-      "이미지 원문 텍스트 전환": 754
+      "이미지 원문 텍스트 전환": 804
     },
-    "changed": 8535,
+    "changed": 8588,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",
