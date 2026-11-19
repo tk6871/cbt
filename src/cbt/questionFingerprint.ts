@@ -7,9 +7,16 @@ export function coolingBookFingerprint(q: Question): string {
     q.choices.map(c => [c.text || '', c.html || '', c.images || []]), q.answer, q.images || [], q.sourceImage || '']);
   const known = cache.get(q);
   if (known?.text === text) return known.fingerprint;
-  let h = 14695981039346656037n;
-  for (const ch of text) { h ^= BigInt(ch.codePointAt(0)!); h = BigInt.asUintN(64, h * 1099511628211n); }
-  const result = h.toString(16);
+  // FNV-1a's 64-bit prime is 2^40 + 435. Both word products fit exactly in a JS number.
+  let high = 0xcbf29ce4;
+  let low = 0x84222325;
+  for (const ch of text) {
+    low = (low ^ ch.codePointAt(0)!) >>> 0;
+    const product = low * 435;
+    high = (high * 435 + low * 256 + Math.floor(product / 0x100000000)) >>> 0;
+    low = product >>> 0;
+  }
+  const result = high ? high.toString(16) + low.toString(16).padStart(8, '0') : low.toString(16);
   cache.set(q, { text, fingerprint: result });
   return result;
 }

@@ -5,8 +5,19 @@ import {readBookSelection, type BookSelection} from '../../cbt/textbookReaderSta
 import {textbookNames, type TextbookKey} from '../../cbt/textbookRoutes';
 import './textbookLibrary.css';
 
-const loadTree = () => import('./ContentsTree');
-const ContentsTree = lazy(() => loadTree().then(module => ({default:module.ContentsTree})));
+let readyTree: typeof import('./ContentsTree').ContentsTree | undefined;
+const loadTree = () => import('./ContentsTree').then(module => {
+  readyTree = module.ContentsTree;
+  return {default: readyTree};
+});
+const LazyTree = lazy(loadTree);
+let readyReader: typeof import('./TextbookReader').default | undefined;
+const loadReader = () => import('./TextbookReader').then(module => {
+  readyReader = module.default;
+  return module;
+});
+const LazyReader = lazy(loadReader);
+export const getTextbookReader = () => readyReader ?? LazyReader;
 type Pages = typeof import('../../cbt/textbookPages').browserTextbookData;
 interface Props {
   book: TextbookKey;
@@ -23,7 +34,13 @@ interface Props {
 }
 
 export default function TextbookLibrary({book,choosing,loading,error,items,pages,onBook,onOpen,onRound,onStudy,onRetry}:Props) {
-  useEffect(()=>{if(!choosing)void loadTree().catch(()=>{});},[choosing]);
+  const ContentsTree = readyTree ?? LazyTree;
+  useEffect(()=>{
+    if (!choosing) {
+      void loadTree().catch(()=>{});
+      void loadReader().catch(()=>{});
+    }
+  },[choosing]);
   const [selection,setSelection] = useState(() => readBookSelection(book));
   const [picked,setPicked] = useState<ContentsRow>();
   const [draft,setDraft] = useState('');

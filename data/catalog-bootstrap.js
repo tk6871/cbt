@@ -23,12 +23,13 @@
   window.CBT_LOADED_QUALIFICATION = qualification;
 
   var previousView = history.state;
-  if (!nativeApp && resolvedDisplay === 'mobile' && previousView && previousView.cbtSpace === 'cbt-industrial' &&
+  var deferMobileBank = resolvedDisplay === 'mobile' && document.documentElement.dataset.bundledAssets !== 'true';
+  if (deferMobileBank && previousView && previousView.cbtSpace === 'cbt-industrial' &&
       location.hash === '#/study/rounds' && previousView.view === 'rounds' && previousView.textbookCollection) return;
 
   // A first mobile home can display the published catalog counts. Read questions
   // when a book, a qualification or the detailed study range actually needs them.
-  if (!nativeApp && resolvedDisplay === 'mobile' && qualification === 'hvac' &&
+  if (deferMobileBank && qualification === 'hvac' &&
       (!location.hash || location.hash === '#/study/home') && !history.state) {
     try {
       if (!localStorage.getItem(QUALIFICATION_KEY) && !localStorage.getItem('unified-industrial-cbt-v1') &&

@@ -2399,7 +2399,7 @@ function ensureBookSources(book: TextbookKey): Promise<void> {
    : undefined;
  const load = Promise.all([energy, (async () => {
   let sources: QuestionItem[] | undefined;
-  if (!isNativeApp && location.protocol !== 'file:') {
+  if (location.protocol !== 'file:') {
    try { sources = await fetchTextbookSources(book); }
    catch { /* Older installations can still read the original question banks. */ }
   }
