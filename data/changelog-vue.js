@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.81',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 2회",summary:"암모니아 액체 질량분율의 입력값을 670에서 원도의 679 kJ/kg으로 고치고, 접점의 부정 표시와 PD 블록의 미분항 부호를 대조했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.80',scope:'industrial',date:'2026.11.19',title:"공조 교재 2019년 1회",summary:"저압의 부호에 따른 압축비와 신호흐름선도의 세 귀환 경로를 직접 계산하고, 저항비가 인쇄되지 않은 71번을 정답 재확인 대상으로 기록했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.79',scope:'industrial',date:'2026.11.19',title:"공조 교재 2018년 3회",summary:"유효 평균 온도차와 냉각수 온도 상승을 구분했고, 팽창밸브 문항에 연결된 열동계전기 설명을 교축 원리로 교체했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.78',scope:'industrial',date:'2026.11.19',title:"공조 교재 2018년 2회",summary:"응축기 방열량 계산에서 인쇄된 3.7 W와 해설의 3.7 kW를 구분했고, 습공기선도에서 현열에 해당하는 수평 구간을 C→B로 고쳤다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2858,8 +2859,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.80';
+  changelog.versions.industrial = '6.2.81';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.80';
+  changelog.currentVersion = '6.2.81';
   window.CBT_CHANGELOG = changelog;
 })();
