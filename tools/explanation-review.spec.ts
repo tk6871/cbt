@@ -1023,6 +1023,17 @@ test('비반전 입력에 음전압을 가한 원도 확인',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('산업안전 밀링 회전수와 이송속도의 단위',async({page})=>{
+  await prepare(page,'safety');
+  await page.locator('#round-card-safety-20020310').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('54');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'밀링작업에서'});
+  await card.locator('.choice-button').nth(0).click();
+  await expect(card.locator('.explanation-box')).toContainText('날 수×날당 이송');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('수은의 질량·체적 계산과 실제 물성 구분',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20030810').getByRole('button',{name:'학습모드',exact:true}).click();

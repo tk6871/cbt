@@ -12,7 +12,7 @@ export function loadTextbookSupplement(book: TextbookKey): Promise<QuestionItem[
   const loaded = new Promise<void>((resolve, reject) => {
     if (source()) { resolve(); return; }
     const script = document.createElement('script');
-    const path = book === 'energy' ? 'data/energy-book-earlier.js?v=621' : 'data/hvac-hansol-book.js?v=805';
+    const path = book === 'energy' ? 'data/energy-book-earlier.js?v=621' : 'data/hvac-hansol-book.js?v=806';
     script.src = new URL(path, document.baseURI).href;
     script.onload = () => resolve();
     script.onerror = () => { script.remove(); reject(new Error('교재 자료에 연결하지 못했습니다.')); };
