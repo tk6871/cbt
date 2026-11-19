@@ -25,7 +25,7 @@
     "android:debug": "npm run android:sync && node tools/build-android-debug.mjs",
     "android:release": "npm run android:sync && node tools/build-android-release.mjs",
     "android:install": "adb install -r android/app/build/outputs/apk/debug/app-debug.apk",
-    "android:install:release": "adb install -r dist/industrial-cbt-v5.6.apk",
+    "android:install:release": "node tools/install-android-release.mjs",
     "test:learning-safety": "vite build --config tools/sync-harness.vite.config.mjs && playwright test tools/learning-safety.spec.ts",
     "dev": "vite --host 127.0.0.1",
     "test:a11y": "playwright test tools/ui-accessibility.spec.ts",
