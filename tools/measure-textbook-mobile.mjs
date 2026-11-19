@@ -20,7 +20,7 @@ try {
     try {
       const page=tab.page;
       const context=page.context();
-      const startUrl=mobileTestUrl(page,'/',base);
+      const startUrl=mobileTestUrl(page,'./',base);
       page.setDefaultTimeout(60000);
       if (staticOnly) {
         await page.route('**/cloud-config.js*', route => route.fulfill({
@@ -44,7 +44,6 @@ try {
       const otherBook = sample.book === 'energy' ? '(?:hvac|hansol)' : 'energy';
       const otherSource = new RegExp('/(?:data/|api/catalogs/|modern/textbook-)' + otherBook);
       const trackRequest = request => {
-        if (new URL(request.url()).origin !== new URL(startUrl).origin) return;
         const path = new URL(request.url()).pathname;
         if (otherSource.test(path) || (sample.book === 'hansol' && /\/energyQuestionLayout-v\d+\.js$/.test(path))) otherBookRequests.push(path);
         if (/\/hvacQuestionLayout-v\d+\.js$/.test(path)) hvacLayouts.push(path);
@@ -77,6 +76,7 @@ try {
       }
       if (!firstVisit) await home.click();
       const homeFiles = [...staticFiles];
+      const homeApiFiles = [...apiFiles];
       apiFiles.length = 0;
       staticFiles.length = 0;
       const start = performance.now();
@@ -118,13 +118,19 @@ try {
         return Object.entries(answers).some(([id,n])=>id.startsWith('book-study::energy::'+page+'::'+number+'::')&&n===choice);
       },sample);
       const saved = performance.now();
-      if (staticOnly && firstVisit) {
+      if (firstVisit && (staticOnly || process.env.CBT_BOOK_SOURCE === 'dedicated')) {
+        assert.deepEqual(homeApiFiles, [], 'A bank was requested before selecting a textbook');
         assert.ok(!homeFiles.some(file => /hvac|hansol|energy/i.test(file)), 'A book was fetched before selection');
         assert.deepEqual(otherBookRequests, [], 'Unexpected source from the other book');
         assert.deepEqual(hvacLayouts, [], 'Unexpected HVAC exam geometry on the static textbook route');
         assert.equal(apiFiles.length, 0);
         assert.equal(staticFiles.length, 1, 'Expected only the selected textbook source');
         assert.match(staticFiles[0], new RegExp('^textbook-' + sample.book + '-sources-v[0-9]+[.]json$'));
+      }
+      if (process.env.CBT_BOOK_SOURCE === 'dedicated') {
+        await page.reload();
+        await expect(stage.getByRole('button',{name:'이미지에서 '+sample.choice+'번 선택'})).toHaveAttribute('aria-pressed','true',{timeout:30000});
+        assert.deepEqual(otherBookRequests, [], 'Unexpected source while restoring the selected textbook');
       }
       if (process.env.CBT_HOME_TRACE && run === 1) {
         console.error(JSON.stringify(await page.evaluate(() => performance.getEntriesByType('resource')
