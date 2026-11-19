@@ -994,6 +994,17 @@ test('설비보전 유압 펌프의 전효율 분수식',async({page})=>{
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
 
+test('설비보전 유압 펌프의 단위 환산 계수',async({page})=>{
+  await prepare(page,'maintenance');
+  await page.locator('#round-card-maintenance-20070304').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('3');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'이론토출량'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('10,200');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
+
 test('설비보전 베인 모터의 회전수',async({page})=>{
   await prepare(page,'maintenance');
   await page.locator('#round-card-maintenance-20070805').getByRole('button',{name:'학습모드',exact:true}).click();
