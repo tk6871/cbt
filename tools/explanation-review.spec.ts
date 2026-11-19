@@ -912,3 +912,14 @@ test('강관 외면적 기준 열관류율의 분수와 단위',async({page})=>{
   await expect(card.locator('.explanation-box')).toContainText('612.82 W/(m²·K)');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('공조 교재 침입외기 잠열의 원보기와 부호', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2017-2').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('19');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({hasText:'겨울철 침입외기'});
+  await expect(card.locator('.choice-copy').nth(3)).toContainText('717');
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('실내에서 실외를 뺀다');
+});

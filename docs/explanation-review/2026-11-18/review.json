@@ -185191,6 +185191,738 @@
         "sha256": "4c9c077515a96ff73c129b734deb4f148811987831f9c15044fe99c1585699dd"
       },
       "previousExplanationProvenance": "concise-answer-guide"
+    },
+    {
+      "id": "hvac-hansol-2017-2:1",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 1,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①",
+      "finding": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①",
+      "basis": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①.",
+      "evidence": [
+        "hvac-20170507:1"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/01.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/01.webp",
+          "displayAsset": "assets/problem-webp90/58c07ca7016f57011b727c74eb4cd6e4.webp",
+          "sha256": "f634d5e62b0ffa7f0d8da5218d009ad661f49c6f18b18a51a9ac9348f7b24883"
+        }
+      ],
+      "resolution": "수직 적층으로 설치 면적을 줄이고 층고를 활용하므로 ①.",
+      "previousExplanationProvenance": "hvac-20170507:1"
+    },
+    {
+      "id": "hvac-hansol-2017-2:2",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 2,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "같은 풍량에서 단면적은 줄지만 속도 증가에 따른 압력손실과 팬 동력이 증가",
+      "finding": "같은 풍량에서 단면적은 줄지만 속도 증가에 따른 압력손실과 팬 동력이 증가",
+      "basis": "같은 풍량에서 단면적은 줄지만 속도 증가에 따른 압력손실과 팬 동력이 증가.",
+      "evidence": [
+        "hvac-20170507:2",
+        "659-fan4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/02.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/02.webp",
+          "displayAsset": "assets/problem-webp90/7f5512db76c1d4c91399bdf06b76d9e5.webp",
+          "sha256": "cbc51727b14a1355e99b02492363004b7879f8bbfa4f1fc839bd728f05bbb73c"
+        }
+      ],
+      "resolution": "①은 장점에 해당하지 않는다. 같은 풍량에서 유속을 높이면 덕트 단면을 줄일 수 있다. 반면 유속 증가로 압력손실이 커지면 같은 풍량을 보내는 데 더 많은 송풍동력이 필요하다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:2"
+    },
+    {
+      "id": "hvac-hansol-2017-2:3",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 3,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "냉각 시 포화수증기압 감소",
+      "finding": "냉각 시 포화수증기압 감소",
+      "basis": "냉각 시 포화수증기압 감소. 응결 자체가 분압을 높인다는 ③은 틀림.",
+      "evidence": [
+        "hvac-20170507:3",
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/03.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/03.webp",
+          "displayAsset": "assets/problem-webp90/573d580d4fb31fae143ebb3cc5d04d6b.webp",
+          "sha256": "116b56f370a1256982e0860d27ad380dd7747a17e84d6666b32143093852fd7e"
+        }
+      ],
+      "resolution": "③이 틀리다. 습공기를 노점 아래로 냉각하면 그 온도에서 기체로 남을 수 있는 수분량이 줄어 일부가 물방울로 맺힌다. 냉각이 계속되면 남은 수증기의 분압은 낮아진 포화수증기압을 따른다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:3"
+    },
+    {
+      "id": "hvac-hansol-2017-2:4",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 4,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "넓은 패널에서 복사열 교환",
+      "finding": "넓은 패널에서 복사열 교환",
+      "basis": "넓은 패널에서 복사열 교환. 방열면적 및 난방원리에 비춰 ②.",
+      "evidence": [
+        "hvac-20170507:4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/04.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/04.webp",
+          "displayAsset": "assets/problem-webp90/7aed7da63f6207dd28d829e46ec21130.webp",
+          "sha256": "aa36a52e9d3c5c870bdc1874d972cb3a749d155991af7d99b1fb79258b0dda83"
+        }
+      ],
+      "resolution": "넓은 패널에서 복사열 교환. 방열면적 및 난방원리에 비춰 ②.",
+      "previousExplanationProvenance": "hvac-20170507:4"
+    },
+    {
+      "id": "hvac-hansol-2017-2:5",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 5,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원도와 2010년 14번의 지문·④는 일치하나 ②는 각각 제3종과 제2종",
+      "finding": "원도와 2010년 14번의 지문·④는 일치하나 ②는 각각 제3종과 제2종",
+      "basis": "원도와 2010년 14번의 지문·④는 일치하나 ②는 각각 제3종과 제2종. 근거가 되는 희석 원리만 공통.",
+      "evidence": [
+        "hvac-20170507:5",
+        "hvac-20100725:14"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/05.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/05.webp",
+          "displayAsset": "assets/problem-webp90/88a850ae3bcb1f8791b084acf9a1bd4d.webp",
+          "sha256": "6fbd9c67aa7c7838a0e08f63e26f24d1a3bae46489c01f32111339368047641a"
+        }
+      ],
+      "resolution": "오염원이 실내 곳곳에 퍼져 있어 한 곳에서 포집하기 어렵다. 실 전체에 공기를 공급해 오염물질 농도를 낮추고 배기하는 ④ 전반 환기에 해당한다. 국부 환기는 오염원이 있는 지점에서 포집한다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:5"
+    },
+    {
+      "id": "hvac-hansol-2017-2:6",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 6,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감",
+      "finding": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감",
+      "basis": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감.",
+      "evidence": [
+        "hvac-20170507:6",
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/06.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/06.webp",
+          "displayAsset": "assets/problem-webp90/3c5f3ba76674abc245aec86c0bb67424.webp",
+          "sha256": "7772a17343d1e212493c76ea27264bf89eb62f7458273d63fcdf606dfd0ad849"
+        }
+      ],
+      "resolution": "배기의 현열·잠열을 외기에 전달하여 도입외기 처리 부하 경감.",
+      "previousExplanationProvenance": "hvac-20170507:6"
+    },
+    {
+      "id": "hvac-hansol-2017-2:7",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 7,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "노즐의 1차 공기 제트가 주위 실내공기를 끌어들이는 유인 작용",
+      "finding": "노즐의 1차 공기 제트가 주위 실내공기를 끌어들이는 유인 작용",
+      "basis": "노즐의 1차 공기 제트가 주위 실내공기를 끌어들이는 유인 작용.",
+      "evidence": [
+        "hvac-20170507:7"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/07.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/07.webp",
+          "displayAsset": "assets/problem-webp90/c2ae4bbe89c4dabe3193ee3e7ed6ae07.webp",
+          "sha256": "ed995fc146e35fbe50eb26deb52cc5f309355eca46cadc19277d7add115f2852"
+        }
+      ],
+      "resolution": "② 유인형이다. 공조기에서 온 1차 공기가 노즐로 분출하면서 주위의 실내공기를 끌어들인다. 두 공기가 유닛 안에서 섞여 실내로 공급된다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:7",
+      "additionalCorrection": {
+        "source": "COMCBT · 2017년 2017.05.07 7번",
+        "originalSha256": "32a311c15f3ba3eade1825a1c64bb57b26a0b771d3208a6927b412ff7b0631cb",
+        "text": "1차 공기 제트가 2차 공기를 끌어들이는지가 유인형을 구별하는 기준이다."
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:8",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 8,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "노통과 연관을 함께 갖춘 동체의 단서",
+      "finding": "노통과 연관을 함께 갖춘 동체의 단서",
+      "basis": "노통과 연관을 함께 갖춘 동체의 단서. 기존 증기·온수 비교는 질문과 무관.",
+      "evidence": [
+        "hvac-20170507:8",
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/08.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/08.webp",
+          "displayAsset": "assets/problem-webp90/9f0369435439eceef5b3ca2e7d94aada.webp",
+          "sha256": "8062b509006db1182356b1152693d3e4ebc99529f23eb4f20e323f53e2a310ca"
+        }
+      ],
+      "resolution": "큰 노통에서 연료가 타고, 연소가스가 여러 가는 연관을 지나면서 관 밖의 보일러수에 열을 전달한다. 노통과 연관을 모두 갖추므로 ② 노통연관보일러다.",
+      "changeReason": "문제와 무관한 설명",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:8"
+    },
+    {
+      "id": "hvac-hansol-2017-2:9",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 9,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 3,
+      "answerAfter": 3,
+      "status": "정답 자체 확인 필요",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "냉온수를 실내기 코일로 보내는 조건은 ③",
+      "finding": "냉온수를 실내기 코일로 보내는 조건은 ③",
+      "basis": "냉온수를 실내기 코일로 보내는 조건은 ③. 별도 1차 공기 공급 여부 미기재. 물·공기 분류에 오류 신고가 있어 원출제 기준 보류.",
+      "evidence": [
+        "hvac-20170507:9"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/09.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/09.webp",
+          "displayAsset": "assets/problem-webp90/1d9e07844f3652f1dd65c79241c8b24e.webp",
+          "sha256": "bec4ae33e881edb1fa77ab78f7e5e6ed061be2dabb6a269eb5c832eeed4fa4b4"
+        }
+      ],
+      "resolution": "중앙에서 공급한 냉온수가 실내 코일을 지나고 팬이 실내공기를 순환시키는 장치는 ③ 팬코일이다. 다만 팬코일만 쓰는 전수 방식과 1차 공기를 함께 공급하는 수·공기 방식을 구분하려면 별도 급기 여부가 필요하다. 지문에는 그 조건이 빠져 있다.",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:9"
+    },
+    {
+      "id": "hvac-hansol-2017-2:10",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 10,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 2,
+      "answerAfter": 2,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원심·왕복동은 압축 방식, 흡수는 열 구동 사이클",
+      "finding": "원심·왕복동은 압축 방식, 흡수는 열 구동 사이클",
+      "basis": "원심·왕복동은 압축 방식, 흡수는 열 구동 사이클.",
+      "evidence": [
+        "hvac-20170507:10"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/10.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/10.webp",
+          "displayAsset": "assets/problem-webp90/42cb2a47b0d609677e1ca3444f7816df.webp",
+          "sha256": "61b7de60cd7459f322536454514c852a59b06d864810ebea8ac95698c1c2b86f"
+        }
+      ],
+      "resolution": "①과 ③은 압축기를 쓰는 냉동기이고 ④는 흡수액과 열원을 이용한다. ② 자흡식은 이들처럼 공조용 냉동기의 냉동 원리나 압축 방식을 나타내는 분류가 아니다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:10",
+      "additionalCorrection": {
+        "source": "COMCBT · 2017년 2017.05.07 10번",
+        "originalSha256": "ceb5bc80f32ad070aa174224bfdc2e55f4a74fe3fe12adb434578d07fc0a6d6b",
+        "text": "자흡은 보통 펌프가 흡입관의 공기를 배출하여 물을 끌어올리는 특성을 가리킨다."
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:11",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 11,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "근거 부족으로 보류",
+      "changed": true,
+      "academicVerified": false,
+      "errorType": "원보기 ④ 끝에 없는 전화번호가 OCR에 섞임",
+      "finding": "원보기 ④ 끝에 없는 전화번호가 OCR에 섞임",
+      "basis": "원보기 ④ 끝에 없는 전화번호가 OCR에 섞임. 임펠러 지름 환산 규격의 해당 판은 미확보.",
+      "evidence": [],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/11.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/11.webp",
+          "displayAsset": "assets/problem-webp90/3748454c2b5bceacc4bf94da5f6e7f0f.webp",
+          "sha256": "442ce511ce970f79dacfdc42e96eae8201dce6a89697dbe802fbfaa2c97a10e0"
+        }
+      ],
+      "resolution": "인쇄된 ④는 임펠러 지름(mm)을 150(mm)으로 나눈다는 보기다. 송풍기 번호의 환산 규격은 별도 확인이 필요하다.",
+      "changeReason": "지문·정답·자료 대조에 남은 불확실성",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hansol-beginner-authored",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:12",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 12,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "두께 m 환산 후 양쪽 대류저항과 세 전도저항을 직렬 합산",
+      "finding": "두께 m 환산 후 양쪽 대류저항과 세 전도저항을 직렬 합산",
+      "basis": "두께 m 환산 후 양쪽 대류저항과 세 전도저항을 직렬 합산. 역수 0.442338.",
+      "evidence": [
+        "hvac-20170507:12",
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/12.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/12.webp",
+          "displayAsset": "assets/problem-webp90/3268f3bc5f6d329e3183b8beb40012fd.webp",
+          "sha256": "f6efc01b90ab707451c5ec79eff57b17d2b0f2657892f50a714b32e3fbf2fc23"
+        }
+      ],
+      "resolution": "내외 표면에서는 대류로, 벽의 세 층에서는 전도로 열이 이동한다. 각 재료의 두께를 m로 바꿔 열저항을 모두 더하고 역수를 취하면 0.442 kcal/(m²·h·℃)로 ④다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "hvac-20170507:12"
+    },
+    {
+      "id": "hvac-hansol-2017-2:13",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 13,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "10550은 증기 발생량",
+      "finding": "10550은 증기 발생량",
+      "basis": "10550은 증기 발생량. 연소량이라는 기존 분자 명칭 오류. 비율 0.758177.",
+      "evidence": [
+        "hvac-20170507:13",
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/13.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/13.webp",
+          "displayAsset": "assets/problem-webp90/6acf4ff1b9e20060789fbe19d16f1b24.webp",
+          "sha256": "b447116e69ab9b5ac6b6b08a7dd5c7ca45544040d39ee740e138496632e0e656"
+        }
+      ],
+      "resolution": "증기가 얻은 열은 시간당 증기 발생량에 증기와 급수의 엔탈피 차를 곱한 값이다. 이를 석탄 연소량과 저위발열량의 곱으로 나누면 효율은 75.8%로 ④다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "formulaDisplay": true,
+      "previousExplanationProvenance": "hvac-20170507:13",
+      "additionalCorrection": {
+        "source": "COMCBT · 2017년 2017.05.07 13번",
+        "originalSha256": "b418d2fde54a06f1f9f62dba32b6b651c3cbcabf2d9b135c1ac8cc53e1e824bd",
+        "text": "분자에 쓰는 10,550 kg/h는 증기 발생량이다. 석탄 연소량은 분모에 들어가는 1,925 kg/h다."
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:14",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 14,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "건식 재열은 절대습도 일정",
+      "finding": "건식 재열은 절대습도 일정",
+      "basis": "건식 재열은 절대습도 일정. 기존 첫 문장은 인체·외기·극간풍을 잠열로만 분류.",
+      "evidence": [
+        "hvac-20170507:14",
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/14.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/14.webp",
+          "displayAsset": "assets/problem-webp90/501193280979815c59404a14ca84a006.webp",
+          "sha256": "5e3cc3714446d4f2641d16d86a10fb4470ccec8e7156b03669732c03f65694bd"
+        }
+      ],
+      "resolution": "①이다. 재열코일은 제습된 공기의 온도를 올리며 수분을 더하거나 빼지 않으므로 현열만 준다. 인체에서는 열과 수분이 모두 발생하며 외기와 틈새바람에도 온도차와 습도차가 모두 있을 수 있다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:14",
+      "additionalCorrection": {
+        "source": "COMCBT · 2017년 2017.05.07 14번",
+        "originalSha256": "297848698dfeab6206254912b62a9ba98d843af722fb005da72c17e457963e7c",
+        "text": "인체와 외기·극간풍 부하에는 조건에 따라 현열과 잠열이 함께 포함된다."
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:15",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 15,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 열관류율·면적에서 평균온도차가 크면 열교환량 증가",
+      "finding": "같은 열관류율·면적에서 평균온도차가 크면 열교환량 증가",
+      "basis": "같은 열관류율·면적에서 평균온도차가 크면 열교환량 증가. 평행류로 차를 작게 한다는 ① 반대.",
+      "evidence": [
+        "hvac-20170507:15",
+        "650-conduction"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/15.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/15.webp",
+          "displayAsset": "assets/problem-webp90/8e59677c33fba4753e28c7abcbe86f2f.webp",
+          "sha256": "4a11affae02e9c1aff6eb8cb0aad048b0c2ed01eb0ceb78bfdc5aeadea42b913"
+        }
+      ],
+      "resolution": "같은 열관류율·면적에서 평균온도차가 크면 열교환량 증가. 평행류로 차를 작게 한다는 ① 반대.",
+      "previousExplanationProvenance": "hvac-20170507:15"
+    },
+    {
+      "id": "hvac-hansol-2017-2:16",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 16,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "전열식은 물을 가열해 증기를 공급",
+      "finding": "전열식은 물을 가열해 증기를 공급",
+      "basis": "전열식은 물을 가열해 증기를 공급. 나머지는 액적 분무.",
+      "evidence": [
+        "hvac-20170507:16"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/16.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/16.webp",
+          "displayAsset": "assets/problem-webp90/0b8f7b63a9136f28528b997878f7cf0a.webp",
+          "sha256": "6c79e5f5141d0c28763aaf28ff85072eb34e6dd8302899081d9293b272d07498"
+        }
+      ],
+      "resolution": "④ 전열식은 전기로 물을 가열해 수증기를 공급한다. 원심식·초음파식·분무식은 액체 물을 작은 물방울로 만들어 공기 중에 분산시킨다.",
+      "changeReason": "개념·장치 작동 원리·적용 조건",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:16",
+      "additionalCorrection": {
+        "source": "COMCBT · 2017년 2017.05.07 16번",
+        "originalSha256": "e8bf6c2a7d92c1d79ca356795b3f1ce4e7242073ef40a482c1cef5a0f8357e27",
+        "text": "원심력·초음파·노즐 분무는 액적을 만든다. 전열식은 물을 기화시킨다."
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:17",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 17,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "일사는 열취득이므로 일반적인 겨울 난방 요구량을 줄이는 방향",
+      "finding": "일사는 열취득이므로 일반적인 겨울 난방 요구량을 줄이는 방향",
+      "basis": "일사는 열취득이므로 일반적인 겨울 난방 요구량을 줄이는 방향.",
+      "evidence": [
+        "hvac-20170507:17",
+        "649-first"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/17.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/17.webp",
+          "displayAsset": "assets/problem-webp90/04dbc42c8b3227eccfed75b0f5c9eb89.webp",
+          "sha256": "f746e040bbda426b65758480e76c83a14cdbf94325111022e5686cea99103e49"
+        }
+      ],
+      "resolution": "① 일사다. 겨울에 창을 통해 들어온 햇빛은 실내에 열을 보탠다. 난방기가 보충해야 할 열은 그만큼 줄어든다. 외기 도입이나 외벽을 통한 열손실은 반대로 난방 요구량을 늘린다.",
+      "changeReason": "부정형·보기 비교·표 적용 범위",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hvac-20170507:17"
+    },
+    {
+      "id": "hvac-hansol-2017-2:18",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 18,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "관류식은 급수가 가열관을 지나며 증발하고 드럼 보유수량이 작음",
+      "finding": "관류식은 급수가 가열관을 지나며 증발하고 드럼 보유수량이 작음",
+      "basis": "관류식은 급수가 가열관을 지나며 증발하고 드럼 보유수량이 작음. ④ 틀림.",
+      "evidence": [
+        "hvac-20170507:18",
+        "650-steam"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/18.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/18.webp",
+          "displayAsset": "assets/problem-webp90/d5d7d4d43db88276d5a3cca15e85c44d.webp",
+          "sha256": "b489d21dd563a6800e6de3fd70c1a9d173521c10825a7af099bf1d165e801dd2"
+        }
+      ],
+      "resolution": "관류식은 급수가 가열관을 지나며 증발하고 드럼 보유수량이 작음. ④ 틀림.",
+      "previousExplanationProvenance": "hvac-20170507:18"
+    },
+    {
+      "id": "hvac-hansol-2017-2:19",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 19,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 4,
+      "answerAfter": 4,
+      "status": "내용 검토 완료·수정함",
+      "changed": true,
+      "academicVerified": true,
+      "errorType": "원본 ④의 차는 실외−실내",
+      "finding": "원본 ④의 차는 실외−실내",
+      "basis": "원본 ④의 차는 실외−실내. 1.2×597.5≈717. 겨울철 공급해야 할 가습열의 양은 부호 반대.",
+      "evidence": [
+        "659-psych"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/19.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/19.webp",
+          "displayAsset": "assets/problem-webp90/02fa1ffbeeef6e70fe0ff7ea86d99246.webp",
+          "sha256": "5c0b247fabb999948b5d250b5cc03c6c4cbb454ad9c2d5e773de35535dd2356a"
+        }
+      ],
+      "resolution": "체적풍량 Q에 공기밀도 약 1.2 kg/m³를 곱하면 질량유량이 된다. 여기에 수분비 차와 증발잠열 약 597.5 kcal/kg을 곱하므로 계수는 약 717로 ④다. 보기는 실외에서 실내를 뺀 부호를 쓴다. 겨울에 실내 가습에 필요한 열량을 양수로 구할 때는 실내에서 실외를 뺀다.",
+      "changeReason": "공식·계산·기호·단위·반올림",
+      "primarySourceReviewed": true,
+      "previousExplanationProvenance": "hansol-beginner-authored",
+      "questionTranscription": {
+        "status": "전체 전사·대조 완료",
+        "imagesPreserved": true
+      }
+    },
+    {
+      "id": "hvac-hansol-2017-2:20",
+      "catalog": "hvac-hansol",
+      "file": "data/hvac-hansol.js",
+      "round": "hvac-hansol-2017-2",
+      "number": 20,
+      "location": "한솔아카데미 공조냉동기계산업기사 2017년 2회",
+      "contentExamined": true,
+      "answerBefore": 1,
+      "answerAfter": 1,
+      "status": "내용 검토 완료·수정 없음",
+      "changed": false,
+      "academicVerified": true,
+      "errorType": "같은 팬과 밀도에서 632/451의 1·2·3승, 각각 278",
+      "finding": "같은 팬과 밀도에서 632/451의 1·2·3승, 각각 278",
+      "basis": "같은 팬과 밀도에서 632/451의 1·2·3승, 각각 278.865 m³/min, 628.393 Pa, 4.128 kW.",
+      "evidence": [
+        "659-fan4"
+      ],
+      "transcription": "해당 없음",
+      "originalCompared": true,
+      "questionImage": "assets/hvac-hansol/questions/2017_2/20.webp",
+      "explanationImages": [],
+      "sourceAssets": [
+        {
+          "original": "assets/hvac-hansol/questions/2017_2/20.webp",
+          "displayAsset": "assets/problem-webp90/844d2cd4880d5e2cb654051b946708b0.webp",
+          "sha256": "88e82bda843f10abd9d9d0df09c93ee2b178c5e3f6c033d6b293569305e91f61"
+        }
+      ],
+      "resolution": "같은 팬과 밀도에서 632/451의 1·2·3승, 각각 278.865 m³/min, 628.393 Pa, 4.128 kW.",
+      "previousExplanationProvenance": "hansol-beginner-authored"
     }
   ],
   "sources": [
@@ -189379,6 +190111,240 @@
       "date": "2026-11-19",
       "section": "PsychroLib GetTDewPointFromHumRatio 749–771 및 GetMoistAirEnthalpy 1153–1177, ASHRAE Fundamentals 2017 ch. 1 eq. 30.",
       "sha256": "37e08506bdc2e652a77026e7107ece7eaabb1c40997b563b88fe2951385aefdf"
+    },
+    {
+      "id": "hvac-20170507:1",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 1번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "60529bf7e8e0b656cdcc8f8a9545a28f115fe3fb86d6e6b72925bf9a0331d405"
+    },
+    {
+      "id": "hvac-20170507:2",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 2번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "da0a9e074f807a5943fa0db0faf6a6067c33b6217677b8a31dedc8d7b5f2eded"
+    },
+    {
+      "id": "hvac-20170507:3",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 3번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "87799c32b1840bfbd499d96b8ea84bed4fd23303dcf268e32c873fd044a50f7f"
+    },
+    {
+      "id": "hvac-20170507:4",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 4번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "1b6ad17e9f9ba58a2f2eec3ab60c203985eef99ee919739ca648d0436f36e0b5"
+    },
+    {
+      "id": "hvac-20100725:14",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2010년 07월 25일 기출문제 14번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "424c5ab9006e00843300b6296c631249cc5ebfcf14899b6e700d8bbbcbea7cbc"
+    },
+    {
+      "id": "hvac-20170507:5",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 5번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "222de668581516b1e3610dabed0f0df5f5755f693ef5930aac32dfbce6dc21b4"
+    },
+    {
+      "id": "hvac-20170507:6",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 6번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "d04d1aec8562291e6a86e86611864e81deceac9b10c302319cf21828a60dd7cb"
+    },
+    {
+      "id": "hvac-20170507:7",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 7번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "295e84f31b4a8c8eabfe61576607f12ed23f6f5c039365965ef2f0605451ea28"
+    },
+    {
+      "id": "hvac-20170507:8",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 8번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "3643cf28baac4057240f456eba5d2702e5ae265b9c8dcd740d4a5689b3852f4d"
+    },
+    {
+      "id": "hvac-20170507:9",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 9번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "4f4a6a2c15d37e4a86a140706ce8aefcec1aee4a2a7a594ca969380969d5a00a"
+    },
+    {
+      "id": "hvac-20170507:10",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 10번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "fc464502d3d767ed8ff68cbfedf67bcfaacd252457ff095ea1ea5d97f18cb235"
+    },
+    {
+      "id": "hvac-20170507:12",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 12번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "94247b21793f4f98c09fcdf0d143d312fe75791d5f24ecb0cfb18c5470a90905"
+    },
+    {
+      "id": "hvac-20170507:13",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 13번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "077038c773201f940511749ded8f674b978e75fdee22d014f460ca2eb4c30187"
+    },
+    {
+      "id": "hvac-20170507:14",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 14번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "dac09fcc76249d7a57cafe974c0ecc3970d6cfaa565bf92fb324269ebc74178b"
+    },
+    {
+      "id": "hvac-20170507:15",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 15번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "f50d1f6b43b6c9a59b3344d923aad61073d0ccd80f7cd83dacb4ea9370d6e98a"
+    },
+    {
+      "id": "hvac-20170507:16",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 16번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "359e278242755cf0303c8d5b7b739118b45a5f8c96e54662f4b54068f2fc0c1a"
+    },
+    {
+      "id": "hvac-20170507:17",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 17번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "8d800a983549372ebb3d4e2beb37cc462d21666da69b559de41c50d148d15d4c"
+    },
+    {
+      "id": "hvac-20170507:18",
+      "date": "2026-11-18",
+      "file": "data/hvac.js",
+      "section": "공조냉동기계산업기사 : 2017년 05월 07일 기출문제 18번 원문과 보기",
+      "digestFields": [
+        "text",
+        "html",
+        "choices",
+        "answer"
+      ],
+      "sha256": "a19b85970c491179f6e558aa129ab3c2d8f908a33bb94237d25da57c119de420"
     }
   ],
   "automaticAnswerCandidates": [
@@ -189655,7 +190621,7 @@
     "energyEngineer": "2022.04.24 A형 전 100개 대조. 정답·근거 보류 항목은 상태별 목록 참조.",
     "hvacLocal": "data/hvac.js hvac-20050529:1",
     "supplementedTextbook": "data/energy-restored.js 3개 모두 판독. 2022년 4회 66번은 출제 당시 도시가스 설비기준 원문 재확인.",
-    "hvacBook": "data/hvac-hansol.js hvac-hansol-2017-2:1",
+    "hvacBook": "data/hvac-hansol.js hvac-hansol-2017-2:21",
     "safety": "data/safety-engineer.js safety-engineer-20200822:1",
     "other": "자체 보충 해설을 작성한 에너지·공조 기출과 나머지 종목은 inventory.json scope.groups 각 next부터, 중복 판정 ID 제외.",
     "fieldReport": "src/cbt/hvacFieldReportPractice.ts 13개 모두 판정.",
@@ -189668,22 +190634,22 @@
   },
   "counts": {
     "reviewUnits": 49004,
-    "contentExamined": 5332,
-    "contentCompleted": 4062,
-    "contentCompletedChanged": 3547,
-    "contentCompletedUnchanged": 515,
-    "evidenceHold": 1002,
-    "answerNeedsConfirmation": 268,
-    "automaticOnly": 43672,
-    "changedQuestionIds": 3983,
+    "contentExamined": 5352,
+    "contentCompleted": 4080,
+    "contentCompletedChanged": 3559,
+    "contentCompletedUnchanged": 521,
+    "evidenceHold": 1003,
+    "answerNeedsConfirmation": 269,
+    "automaticOnly": 43652,
+    "changedQuestionIds": 3997,
     "imageTranscribed": 445,
     "imageFullyTranscribed": 144,
     "imagePartiallyTranscribed": 301,
     "imageCompared": 445,
     "imageAcademicCompleted": 365,
-    "questionImagesConverted": 109,
-    "questionImagesCompared": 109,
-    "questionImageAcademicCompleted": 104
+    "questionImagesConverted": 111,
+    "questionImagesCompared": 111,
+    "questionImageAcademicCompleted": 105
   },
   "followup": {
     "date": "2026-11-18",
@@ -190491,7 +191457,7 @@
       }
     },
     "지문·정답·자료 대조에 남은 불확실성": {
-      "count": 290,
+      "count": 292,
       "findings": {
         "지문이 가리키는 수식 누락": 1,
         "h–s 선도 범위 확인 필요": 1,
@@ -190747,11 +191713,13 @@
         "CO₂ 및 O₂의 기준을 물었으나 기존 해설은 CO 중독": 1,
         "큐폴라는 주철용으로 사용": 1,
         "③가 바꾸는 것은 두께/열전도율인 열저항": 1,
-        "기재 ② ‘로체를 수축할 수 있다’ 문언 불명확": 1
+        "기재 ② ‘로체를 수축할 수 있다’ 문언 불명확": 1,
+        "냉온수를 실내기 코일로 보내는 조건은 ③": 1,
+        "원보기 ④ 끝에 없는 전화번호가 OCR에 섞임": 1
       }
     },
     "문제와 무관한 설명": {
-      "count": 331,
+      "count": 332,
       "findings": {
         "0": 1,
         "문제 무관 일반론": 2,
@@ -191049,11 +192017,12 @@
         "스케일은 열저항과 유로 축소를 유발": 1,
         "증기관 냉각은 응축수 축적 증가": 1,
         "원보기 ③의 분모 3600W": 1,
-        "실내소음·진동은 주로 음향·기계 설계 문제": 1
+        "실내소음·진동은 주로 음향·기계 설계 문제": 1,
+        "노통과 연관을 함께 갖춘 동체의 단서": 1
       }
     },
     "부정형·보기 비교·표 적용 범위": {
-      "count": 116,
+      "count": 120,
       "findings": {
         "비교 대상과 원리 보완": 2,
         "부정형 문항의 결론 교정": 2,
@@ -191159,11 +192128,15 @@
         "분출 자체가 관수를 빼내므로 최저 안전수위 미만이 되게 하는 것은 위험": 1,
         "급수·연소·온도는 보일러 공정 제어 목적, 위치 제어는 밸브·댐퍼 구동기에 적용 가능": 1,
         "전로는 용선 산화열 이용": 1,
-        "수관식의 작은 보유수량, 작은 열적 완충에 따른 부하변화 영향": 1
+        "수관식의 작은 보유수량, 작은 열적 완충에 따른 부하변화 영향": 1,
+        "같은 풍량에서 단면적은 줄지만 속도 증가에 따른 압력손실과 팬 동력이 증가": 1,
+        "냉각 시 포화수증기압 감소": 1,
+        "건식 재열은 절대습도 일정": 1,
+        "일사는 열취득이므로 일반적인 겨울 난방 요구량을 줄이는 방향": 1
       }
     },
     "공식·계산·기호·단위·반올림": {
-      "count": 516,
+      "count": 519,
       "findings": {
         "0": 4,
         "11": 1,
@@ -191632,11 +192605,14 @@
         "연료의 시간당 발열량을 연소실 용적으로 나누어 차원 확인": 1,
         "외면적 기준 내측 대류항 Dₒ/(Dᵢhᵢ), 원통벽 Dₒln(Dₒ/Dᵢ)/(2k), 외측 1/hₒ": 1,
         "원도에서 게이지 위치가 수위 기준점보다 10 m 아래": 1,
-        "원그림 ① P₂/P₁=(V₂/V₁)^(k−1)": 1
+        "원그림 ① P₂/P₁=(V₂/V₁)^(k−1)": 1,
+        "두께 m 환산 후 양쪽 대류저항과 세 전도저항을 직렬 합산": 1,
+        "10550은 증기 발생량": 1,
+        "원본 ④의 차는 실외−실내": 1
       }
     },
     "개념·장치 작동 원리·적용 조건": {
-      "count": 1609,
+      "count": 1613,
       "findings": {
         "PI 계단응답 판독": 1,
         "건식·습식 작동 원리 보완": 2,
@@ -193025,7 +194001,11 @@
         "광경로를 사이에 둔 광원·검출기가 투과광 감쇠를 전기 신호로 기록": 1,
         "표준수면 부근 균형관에 습식 환수관을 연결해 파손 시 빠질 수 있는 물 높이 제한": 1,
         "외부 압력으로 불안정 변형되어 안으로 무너짐": 1,
-        "고속 구동 유체 분류가 흡입 유체에 운동량 전달": 1
+        "고속 구동 유체 분류가 흡입 유체에 운동량 전달": 1,
+        "원도와 2010년 14번의 지문·④는 일치하나 ②는 각각 제3종과 제2종": 1,
+        "노즐의 1차 공기 제트가 주위 실내공기를 끌어들이는 유인 작용": 1,
+        "원심·왕복동은 압축 방식, 흡수는 열 구동 사이클": 1,
+        "전열식은 물을 가열해 증기를 공급": 1
       }
     },
     "이미지 원문 텍스트 전환": {
@@ -193484,8 +194464,8 @@
     "newAnswerNoticeExplanations": 9
   },
   "continuousReview": {
-    "examined": 4661,
-    "rawFractionDisplays": 300,
+    "examined": 4681,
+    "rawFractionDisplays": 302,
     "remainingBankBlanks": 1108,
     "units": [
       {
@@ -199655,18 +200635,50 @@
           "energy-industrial-20200822:79",
           "energy-industrial-20200822:80"
         ]
+      },
+      {
+        "unit": "공조 한솔 2017년 2회 제1과목 공기조화 1~20번",
+        "statuses": {
+          "내용 검토 완료·수정 없음": 6,
+          "내용 검토 완료·수정함": 12,
+          "정답 자체 확인 필요": 1,
+          "근거 부족으로 보류": 1
+        },
+        "changed": 14,
+        "ids": [
+          "hvac-hansol-2017-2:1",
+          "hvac-hansol-2017-2:2",
+          "hvac-hansol-2017-2:3",
+          "hvac-hansol-2017-2:4",
+          "hvac-hansol-2017-2:5",
+          "hvac-hansol-2017-2:6",
+          "hvac-hansol-2017-2:7",
+          "hvac-hansol-2017-2:8",
+          "hvac-hansol-2017-2:9",
+          "hvac-hansol-2017-2:10",
+          "hvac-hansol-2017-2:11",
+          "hvac-hansol-2017-2:12",
+          "hvac-hansol-2017-2:13",
+          "hvac-hansol-2017-2:14",
+          "hvac-hansol-2017-2:15",
+          "hvac-hansol-2017-2:16",
+          "hvac-hansol-2017-2:17",
+          "hvac-hansol-2017-2:18",
+          "hvac-hansol-2017-2:19",
+          "hvac-hansol-2017-2:20"
+        ]
       }
     ],
     "reasons": {
-      "지문·정답·자료 대조에 남은 불확실성": 241,
-      "공식·계산·기호·단위·반올림": 411,
-      "개념·장치 작동 원리·적용 조건": 1350,
-      "부정형·보기 비교·표 적용 범위": 97,
-      "문제와 무관한 설명": 293,
+      "지문·정답·자료 대조에 남은 불확실성": 243,
+      "공식·계산·기호·단위·반올림": 414,
+      "개념·장치 작동 원리·적용 조건": 1354,
+      "부정형·보기 비교·표 적용 범위": 101,
+      "문제와 무관한 설명": 294,
       "해설 미등록": 877,
       "이미지 원문 텍스트 전환": 172
     },
-    "changed": 3441,
+    "changed": 3455,
     "bookChanged": [
       "hvac-hansol-book-2-272:2",
       "hvac-hansol-book-2-272:3",
