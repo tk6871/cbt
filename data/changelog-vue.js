@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.61',scope:'industrial',date:'2026.11.19',title:"공조 한솔 2017년 3회 공기조화·냉동·배관·전기",summary:"원도의 필터 면적 기준에 따라 8장과 10장을 구별하고, 냉동 성적계수를 실제 상태점의 엔탈피 차로 다시 설명했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.60',scope:'industrial',date:'2026.11.19',title:"공조 필기 2010년 3월·5월·7월",summary:"제조사 단면 설명에서 더블디스크형도 역류방지 밸브임을 확인해 3월 55번을 정답 재확인으로 남겼다. 7월 65번은 원도의 교류 최댓값을 실효값으로 바꿔 실제 소비전력 1.2 kW를 계산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.59',scope:'industrial',date:'2026.11.19',title:"공조 필기 2008년 5월·7월 및 2009년 5월",summary:"배관 스케줄 20이 되려면 지문 압력 단위가 달라야 한다는 점을 설명했다. 두 증발기의 냉매 유량은 원도의 134.4와 138.3 kcal/kg을 읽어 약 522.6 kg/h로 검산했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.58',scope:'industrial',date:'2026.11.19',title:'공조 필기 냉각 코일·축전기 해설',summary:'냉각 코일의 상태점과 축전기 회로를 원도에서 확인했습니다.',tags:['공조냉동'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
@@ -2838,8 +2839,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.60';
+  changelog.versions.industrial = '6.2.61';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.60';
+  changelog.currentVersion = '6.2.61';
   window.CBT_CHANGELOG = changelog;
 })();

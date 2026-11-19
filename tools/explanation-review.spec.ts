@@ -1059,3 +1059,14 @@ test('공조 필기 교류의 실효전압과 저항 소비전력', async ({page
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
   await expect(card.locator('img').first()).toBeVisible();
 });
+
+test('공조 교재 냉동 성적계수 원도와 분수', async ({page}) => {
+  await prepare(page, 'hvac-hansol');
+  await page.locator('#round-card-hvac-hansol-2017-3').getByRole('button', {name:'학습모드', exact:true}).click();
+  await page.getByRole('spinbutton', {name:'이동할 문제 번호'}).fill('37');
+  await page.locator('.session-jump-form').getByRole('button', {name:'이동', exact:true}).click();
+  const card = page.locator('.question-card').filter({has:page.getByRole('button',{name:'37번 문제 원문 크게 보기'})});
+  await card.getByRole('button',{name:'이미지에서 3번 선택'}).click();
+  await expect(card.locator('.explanation-box')).toContainText('i₃−i₂');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
