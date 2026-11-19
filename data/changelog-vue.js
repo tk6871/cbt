@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.46',scope:'industrial',date:'2026.11.19',title:'에너지 2017~2020년 기출 해설',summary:'열관류율의 기준 면적과 연돌 유량의 단위 환산을 분수식으로 설명했습니다.',tags:['에너지'],changes:['압력차를 곱셈으로 표시한 보기 등 원문 확인이 필요한 항목을 구분했습니다.']},
     {version:'6.2.45',scope:'industrial',date:'2026.11.19',title:'에너지 2016년 세 회차 해설',summary:'증기 사이클의 받는 열과 버리는 열을 구분하고 센서·측정기 원리를 보완했습니다.',tags:['에너지'],changes:['원도가 없는 문제에서 정답을 가정해야 하는 부분을 표시했습니다.']},
     {version:'6.2.44',scope:'industrial',date:'2026.11.19',title:'공조 실기 도면과 에너지 압력계 풀이',summary:'냉방부하 표의 실제 합계와 혼합공기의 수분비 기준을 설명했습니다.',tags:['공조','실기','에너지'],changes:['에너지 기출의 경사관식 압력계와 통풍 압력 단위 차이를 설명했습니다.','중앙 원판형 취출구와 자연순환 만액식 증발기의 사진·도면 해설을 보완했습니다.']},
     {version:'6.2.43',scope:'industrial',date:'2026.11.19',title:'설비보전 회로와 진동 풀이',summary:'실린더 유효 면적과 정적 처짐 단위, 연산증폭기 입력 부호를 확인했습니다.',tags:['설비보전'],changes:['정답 확인이 필요한 세 문항에 이유를 표시했습니다.']},
@@ -2823,8 +2824,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.45';
+  changelog.versions.industrial = '6.2.46';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.45';
+  changelog.currentVersion = '6.2.46';
   window.CBT_CHANGELOG = changelog;
 })();

@@ -901,3 +901,14 @@ test('랭킨사이클 열효율의 보기와 원본 엔탈피 분수',async({pag
   await expect(card.locator('.explanation-box')).toContainText('응축기에서 버린 열은 h₃−h₄');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('강관 외면적 기준 열관류율의 분수와 단위',async({page})=>{
+  await prepare(page,'energy');
+  await page.locator('#round-card-energy-industrial-20190303').getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('58');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const card=page.locator('.question-card').filter({hasText:'내경이 2.5cm'});
+  await card.locator('.choice-button').first().click();
+  await expect(card.locator('.explanation-box')).toContainText('612.82 W/(m²·K)');
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});
