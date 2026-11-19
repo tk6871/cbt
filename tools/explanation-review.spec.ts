@@ -1380,6 +1380,7 @@ for (const sample of [
   {title: '공조 교재 저항비 원도와 분수', round: '2021-3', number: '75', stem: '5 Ω의 저항 5개', choice: '② 25', explanation: '25배'},
   {title: '공조 교재 인덕턴스 원도와 분수', round: '2022-1', number: '58', stem: '자기 인덕턴스 100 mH', choice: '③ 5.0', explanation: '5.0 J'},
   {title: '공조 교재 유효전력 원도와 보기', round: '2022-2', number: '55', stem: '역률 80[%]인 부하', choice: '④ 400', explanation: '500 VA'},
+  {title: '공조 교재 위상차 원도와 분수', round: '2022-3', number: '54', stem: '주파수 50[Hz]인 교류', choice: '③ 1/300', explanation: '주기의 1/6'},
 ]) {
   test(sample.title, async ({page}) => {
     await prepare(page, 'hvac-hansol');

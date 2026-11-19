@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.91',scope:'industrial',date:'2026.11.19',title:"공조 교재 2022년 3회",summary:"13번 송풍량의 인쇄 단위와 25번의 압력 차원 불일치를 기록하고, 54번의 교류 위상차와 56번 논리회로를 원도로 다시 계산했다. 59번은 원도에서 ②가 중복되어 정답 보기를 별도 표시했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.90',scope:'industrial',date:'2026.11.19',title:"공조 교재 2022년 2회",summary:"45번 표면 대류 열전달, 49번 상당관표와 동시사용률, 54번 단위 음의 피드백 전달함수, 55번 역률과 유효전력을 교정했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.89',scope:'industrial',date:'2026.11.19',title:"공조 교재 2022년 1회",summary:"41번 도면의 절단 길이는 A 130 mm, B 약 153.85 mm로 보기와 불일치한다. 46번의 두 보기가 같은 펌프 유량을 뜻한다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.2.88',scope:'industrial',date:'2026.11.19',title:"공조 교재 2021년 3회",summary:"19번의 원문 잠열 250과 통상값 2500을 구분했다. 27번의 타 판본 엔탈피 세 값을 원도와 대조했고, 69번은 선간전압과 선전류의 30° 차이를 반영했다.",tags:['공조냉동'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2868,8 +2869,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.90';
+  changelog.versions.industrial = '6.2.91';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.90';
+  changelog.currentVersion = '6.2.91';
   window.CBT_CHANGELOG = changelog;
 })();
