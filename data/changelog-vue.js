@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.3.4',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2003년 8월·3월",summary:"벨트·스프링·펌프 계산에 단위와 분수식을 보완했다. 밸브 앞뒤의 두 압력을 더한 유량 보기와 20 ℃ 수은의 물성이 주어진 부피·질량과 충돌하는 문항은 정답을 재확인하도록 기록했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.3',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2004년 8월·3월",summary:"초전 출력 문항은 인쇄 계수의 π 포함 여부에 따라 0.84 V와 0.27 V로 달라진다. 원도 없이 π를 삭제하지 않고 정답 확인 목록에 기록했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.2',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2005년 3월 20일·3월 6일",summary:"반전 증폭기의 입력 저항 R₂와 귀환 저항 R₁을 도면에서 확인해 저장 답 재확인으로 분류했다. 펌프의 수동력 2.94 kW를 다시 계산하고 지문에 없는 효율 80%를 삭제했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
     {version:'6.3.1',scope:'industrial',date:'2026.11.19',title:"설비보전산업기사 2007.03·2006.08·2006.03·2005.08",summary:"유압 동력식에서 유량 cm³/s에 쓰는 환산계수 10,200과 L/min에 쓰는 612를 구분했다. 공조 교재 부록 417개 중 기존 ID를 쓰는 295개를 제외한 122개를 목록에 추가했다.",tags:['설비보전'],changes:['보기·도면·계산을 대조하고 자료가 부족한 항목은 보류했습니다.']},
@@ -2893,8 +2894,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.3.3';
+  changelog.versions.industrial = '6.3.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.3.3';
+  changelog.currentVersion = '6.3.4';
   window.CBT_CHANGELOG = changelog;
 })();
