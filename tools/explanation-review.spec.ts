@@ -989,3 +989,15 @@ test('산업안전기사 화면 대비의 정의와 보기 대조', async ({page
   await expect(card.locator('.explanation-box')).toContainText('약 −322%');
   await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
 });
+
+test('산업안전기사 와이어로프 사이 각도와 장력', async ({page}) => {
+  await prepare(page, 'safety-engineer');
+  await page.locator('#round-card-safety-engineer-20190804').getByRole('button', {name: '학습모드', exact: true}).click();
+  await page.getByRole('spinbutton', {name: '이동할 문제 번호'}).fill('51');
+  await page.locator('.session-jump-form').getByRole('button', {name: '이동', exact: true}).click();
+  const card = page.locator('.question-card').filter({hasText: '질량이 100kg인 물체'});
+  await card.locator('.choice-button').nth(3).click();
+  await expect(card.locator('.explanation-box')).toContainText('약 980 N');
+  await expect(card.locator('img').first()).toBeVisible();
+  await expect(card.locator('.explanation-box .katex-html .mfrac').first()).toBeVisible();
+});

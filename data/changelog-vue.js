@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.54',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·로프 장력 해설',summary:'최소컷셋, 로프 장력, 직병렬 회로의 전류를 원도에서 확인했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.53',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도·화면 대비 해설',summary:'직병렬 시스템 신뢰도와 화면 대비 계산을 검산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.52',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·펌프 신뢰도 해설',summary:'펌프와 병렬 밸브의 실패확률을 원도와 대조했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.51',scope:'industrial',date:'2026.11.19',title:'공조 순환수두·전압계 보충 해설',summary:'밀도차를 수두로 바꾸고 전압계의 측정 부하를 설명했습니다.',tags:['공조'],changes:['접점도와 보기의 부정기호가 다른 문항은 확인 대상으로 남겼습니다.']},
@@ -2831,8 +2832,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.53';
+  changelog.versions.industrial = '6.2.54';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.53';
+  changelog.currentVersion = '6.2.54';
   window.CBT_CHANGELOG = changelog;
 })();
