@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.2.55',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도 및 전류 분배 해설',summary:'7개 부품의 신뢰도와 접지경로의 분기 전류를 계산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.54',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·로프 장력 해설',summary:'최소컷셋, 로프 장력, 직병렬 회로의 전류를 원도에서 확인했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.53',scope:'industrial',date:'2026.11.19',title:'산업안전기사 신뢰도·화면 대비 해설',summary:'직병렬 시스템 신뢰도와 화면 대비 계산을 검산했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
     {version:'6.2.52',scope:'industrial',date:'2026.11.19',title:'산업안전기사 고장도·펌프 신뢰도 해설',summary:'펌프와 병렬 밸브의 실패확률을 원도와 대조했습니다.',tags:['산업안전기사'],changes:['출제 당시 표와 법령 원본이 필요한 항목을 구분했습니다.']},
@@ -2832,8 +2833,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.2.54';
+  changelog.versions.industrial = '6.2.55';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.2.54';
+  changelog.currentVersion = '6.2.55';
   window.CBT_CHANGELOG = changelog;
 })();
