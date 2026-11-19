@@ -25,6 +25,8 @@ assert.equal(fs.readFileSync('data/problem-images-webp90.json','utf8'),original(
 const maps=JSON.parse(fs.readFileSync('data/problem-images-webp90.json')).mappings;
 let bankQuestions=0,imageReferences=0,changedBankIds=[];
 const bankById=new Map();
+const referenceIds = new Set(review.sources.filter(source => source.digestFields).map(source => source.id));
+const baselineReferences = new Map();
 function imageExists(p){if(!p||/^(https?:|data:)/.test(p))return;const clean=decodeURIComponent(p.split(/[?#]/)[0]).replace(/^\.\//,'');assert.ok(fs.existsSync(maps[clean]||clean),`Missing original/display image: ${p}`);imageReferences++;}
 function protectedBank(catalogs){return catalogs.map(c=>({...c,rounds:c.rounds.map(r=>({...r,questions:r.questions.map(q=>{
  const copy=structuredClone(q);
@@ -68,6 +70,7 @@ for(const file of new Set(inventory.summary.map(b=>b.file))){
   const r=after[ci].rounds[ri];for(let qi=0;qi<r.questions.length;qi++){
    const q=r.questions[qi],b=before[ci].rounds[ri].questions[qi],id=`${q._originRoundId||r.id}:${q._originalNumber||q.number}`;
    assert.ok(!bankById.has(id),`Duplicate ID ${id}`);bankById.set(id,q);bankQuestions++;
+   if(referenceIds.has(id)) baselineReferences.set(id,b);
    const reviewRow = recordsById.get(id);
    if (reviewRow?.originalItem) {
     const item = reviewRow.originalItem;
@@ -107,8 +110,16 @@ for(const id of [...review.hvacHansolBookFirst20Rounds.correctedIds,"hvac-hansol
 for (const source of review.sources.filter(item => item.digestFields)) {
  const question = bankById.get(source.id);
  assert.ok(question, 'Missing reference question: ' + source.id);
- const bytes = JSON.stringify(source.digestFields.map(key => question[key]));
- assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), source.sha256, 'Review reference changed: ' + source.id);
+ const digest = item => crypto.createHash('sha256').update(JSON.stringify(source.digestFields.map(key => item[key]))).digest('hex');
+ if (digest(question) !== source.sha256) {
+  // A later review can correct the explanation of a cited question. Verify the
+  // historical citation AND the replacement; do not silently re-hash the citation.
+  const old = baselineReferences.get(source.id), later = primaryReviews.get(source.id);
+  assert.ok(old && later?.changed && source.digestFields.includes('explanation'), 'Review reference changed: ' + source.id);
+  assert.equal(digest(old), source.sha256, 'Historical reference changed: ' + source.id);
+  for(const key of source.digestFields.filter(key => key !== 'explanation')) assert.deepEqual(question[key],old[key],source.id);
+  assert.equal(question.explanation,later.resolution,source.id);
+ }
 }
 const fractions=[...bankById.values()].filter(q=>q.explanationFormula);
 assert.equal(fractions.length,review.missingExplanationBatch.withFraction+review.missingExplanationBatch.previouslyReviewedFractionDisplays+review.safety20220424Batch.withFraction+review.hvacHansolBookFirst20Rounds.withFraction+review.choiceMatchBatch.rawFractionDisplays+review.continuousReview.rawFractionDisplays);

@@ -5,6 +5,17 @@
 
   const entries = [
     {
+      "version": "6.5.1",
+      "scope": "industrial",
+      "date": "2026.11.20",
+      "title": "문항 해설과 교재 변형 풀이 검수",
+      "summary": "공조 실기·교재와 산업안전 문항의 풀이를 점검하고, 계산 조건과 원도에서 읽는 근거를 보완했습니다.",
+      "changes": [
+        "교재에서 수치나 보기가 달라진 문항은 기출 풀이와 구분해 설명합니다.",
+        "옛 기준이나 원문만으로 답을 확정할 수 없는 문항은 그 이유를 설명하고 기존 채점값은 유지했습니다."
+      ]
+    },
+    {
       "version": "6.5",
       "scope": "industrial",
       "date": "2026.11.20",
@@ -3241,8 +3252,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.5';
+  changelog.versions.industrial = '6.5.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.5';
+  changelog.currentVersion = '6.5.1';
   window.CBT_CHANGELOG = changelog;
 })();
