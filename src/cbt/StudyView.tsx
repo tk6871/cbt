@@ -1,3 +1,4 @@
+import {GemLighting} from '../react/GemLighting';
 import {Fragment, lazy, Suspense} from 'react';
 import type {QuestionItem,StudyMode} from './types';
 import {clsx as normalizeClass} from 'clsx';
@@ -97,6 +98,7 @@ return <>
 <i />
 <i className={"skeleton-wide"}/></div>) : <StudyTransition name={viewTransitionName} stageKey={view} afterEnter={()=>{animateViewDetails(view)}}><div key={view} data-entrance={viewTransitionName ? view : undefined} className={normalizeClass(["view-stage", { 'sunjae-fan-dashboard': visualStyle === 'sunjae' && view === 'home', 'simpsons-fan-dashboard': visualStyle === 'simpsons' && dynamicUiEnabled && view === 'home' }])}>{(view === 'settings') ? (<Suspense fallback={<p role="status">설정을 불러오는 중…</p>}><StudySettings {...{"mode": "page", "values": settingsValues, "context": settingsContext, "onChange": changeSetting, "onAction": settingsAction}}><Suspense fallback={null}><CloudSyncPanel description="로그인 없이도 공부할 수 있습니다. 다른 기기와 기록을 연결할 때만 로그인하세요."/></Suspense></StudySettings></Suspense>) : (view === 'home') ? (<Fragment >{(visualStyle === 'default') ? (<div data-react-view="study-home"><StudyHome {...reactHome}/></div>) : null}
 {(visualStyle==='simpsons'||visualStyle==='sunjae') ? (<ThemeStudyCover {...{"styleName": visualStyle, "subject": selectedKey, "subjectName": selectedCatalog.name, "jewelry": isJewelry, "portrait": visualStyle==='sunjae'?currentSunjaeImage:'assets/theme/simpsons/springfield.webp', "answered": stats.answered, "accuracy": stats.accuracy, "onResume": savedLearningSession ? resumeSavedLearning : undefined, "onRounds": openRegularRounds, "onSecondary": () => { isJewelry?openView('wrong'):openTextbookPages(); }, "onSettings": () => { m.settingsOpen=true; }}}/>) : null}
+{isJewelry && <GemLighting/>}
 {(visualStyle === 'sunjae' && dynamicUiEnabled) ? (<section className={"sunjae-fan-home"}><div className={"sunjae-fan-workspace"}><section className={"sunjae-qualification-album"}><header ><div ><span >{"01 · PICK OUR COURSE"}</span>
 <h2 >{"오늘 나랑 어떤 종목 달릴래?"}</h2></div>
 <p >{"사진을 넘기듯 골라봐. 고르면 내가 공부 범위를 바로 바꿔줄게."}</p></header>

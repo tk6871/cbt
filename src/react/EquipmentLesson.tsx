@@ -35,7 +35,7 @@ function Equipment({scene,highlight,part}:{scene:Group;highlight:boolean;part:st
 }
 export default function EquipmentLesson({kind}:{kind:AssetKind}){
   const asset=lessons[kind];
-  const [turn,setTurn]=useState(0);
+  const [turn,setTurn]=useState(0),[cut,setCut]=useState(0);
   const [scene,setScene]=useState<Group>(),[error,setError]=useState(false),[highlight,select]=useState(false);
   useEffect(()=>{
     const abort=new AbortController();let loaded:Group|undefined;
@@ -59,8 +59,9 @@ export default function EquipmentLesson({kind}:{kind:AssetKind}){
   return <section>{error?<p>{asset.label} 모형을 열지 못했습니다.</p>:!scene?<p role="status">{asset.label} 모형 준비 중…</p>:<>
     <div className="equipment-viewport"><Canvas frameloop="never" dpr={[1,1.4]} camera={{position:[2.8,2,3.5],fov:42}}>
       <ambientLight intensity={1.6}/><directionalLight position={[3,6,3]} intensity={2.4}/>
-      <Equipment scene={scene} highlight={highlight} part={asset.part}/><EquipmentCamera scene={scene} turn={turn} highlight={highlight} part={asset.part}/>
+      <Equipment scene={scene} highlight={highlight} part={asset.part}/><EquipmentCamera cut={cut} scene={scene} turn={turn} highlight={highlight} part={asset.part}/>
     </Canvas></div><div className="equipment-controls"><button type="button" onClick={()=>setTurn(t=>t-1)}>왼쪽 회전</button><button type="button" onClick={()=>setTurn(t=>t+1)}>오른쪽 회전</button><button type="button" aria-pressed={highlight} onClick={()=>select(!highlight)}>{asset.action}</button></div>
+    <label className="model-section-label">단면 위치 <input type="range" min="0" max="95" step="5" value={cut} onChange={e=>setCut(Number(e.target.value))}/><output>{cut}%</output></label>
     <p>{highlight?asset.detail:asset.intro}</p></>}
     <details><summary>모형 출처·라이선스</summary>
       <a href={asset.source} target="_blank" rel="noreferrer">Innerscene · {asset.sourceTitle}</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noreferrer">CC0 1.0</a>. 화면에서 크기와 강조색을 조절했습니다.

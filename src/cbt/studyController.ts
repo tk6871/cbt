@@ -189,7 +189,7 @@ type RestoredImageTheme = 'auto' | 'original';
 type SolveLayoutMode = 'standard' | 'comcbt' | 'combat';
 type OmrFilter = 'all' | 'unanswered' | 'kept' | 'subject';
 type DisplayPreference = 'auto' | 'mobile' | 'desktop';
-type FontFamilyPreference = 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
+type FontFamilyPreference = 'clear-sans' | 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
 type PredictionRange = 'selected' | 'recent' | 'all';
 type PracticalPromptFilter = 'all' | PracticalPrompt['group'] | 'provided' | 'review' | 'calculation' | 'search';
 type PracticalGrade = 'correct' | 'partial' | 'review';
@@ -365,8 +365,8 @@ const displayPreference = ref<DisplayPreference>(window.CBT_DISPLAY_PREFERENCE =
   ? window.CBT_DISPLAY_PREFERENCE : 'auto');
 const resolvedDisplayMode = window.CBT_DISPLAY_MODE || 'desktop';
 const savedFontFamily = localStorage.getItem('unified-cbt-font-family');
-const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'bold' || savedFontFamily === 'd2coding' || savedFontFamily === 'd2coding-bold'
-  ? savedFontFamily : 'regular');
+const fontFamilyPreference = ref<FontFamilyPreference>(savedFontFamily === 'regular' || savedFontFamily === 'bold' || savedFontFamily === 'd2coding' || savedFontFamily === 'd2coding-bold'
+  ? savedFontFamily : 'clear-sans');
 document.documentElement.dataset.fontFamily = fontFamilyPreference.value;
 const view = ref<ViewName>('home');
 const textbookPagesOpen = ref(false);
@@ -2284,7 +2284,7 @@ async function openRegularRounds(): Promise<void> {
 
 async function openQualificationRounds(key: string): Promise<void> {
   if (!(await switchQualification(key))) return;
-  const sharedCover = view.value === 'home' && document.querySelector('.hybrid-cover') && motionAllowed.value
+  const sharedCover = view.value === 'home' && document.querySelector('.hybrid-cover,.fan-cover') && motionAllowed.value
     && matchMedia('(min-width: 821px) and (pointer: fine)').matches && document.startViewTransition;
   if (!sharedCover) { openView('rounds'); return; }
   const root=document.documentElement;

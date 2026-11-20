@@ -1,3 +1,4 @@
+import {SourceImageStage} from '../reader/SourceImageStage';
 import {ExplanationReadingTools} from './ExplanationReadingTools';
 import {Check, Flag, Pin, Star} from 'lucide-react';
 import {clsx as normalizeClass} from 'clsx';
@@ -93,8 +94,14 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     unifiedHotspots,
     verifiedHotspots,
   } = m;
+  const focusStudy=m.readingSize===1 && mode==='learn' && !!m.onReadingFocus;
+  const veiled=focusStudy && m.veil;
+  const firstChoiceTop=imageOptions.length ? Math.min(...imageOptions.map(hit=>parseFloat(String(hit.style.top)))) : NaN;
+  const canVeil=!primaryImage || Number.isFinite(firstChoiceTop);
   const readingTools = () => <ExplanationReadingTools choices={m.displayedChoices.map((html,i) =>
     (item.question.choices[i]?.images?.length || /<(?:img|svg|math|sup|sub)\b/i.test(html)) ? '' : m.readableText(html))}
+    source={item.question.sourceImage ? problemImage(item.question.sourceImage) : undefined}
+    hotspot={item.question.answerHotspots?.find(row=>row.choice===item.question.answer)}
     answer={item.question.answer} onInteract={stopExplanationAutoClose}/>;
   const CorrectionNote = presentation === 'book' ? 'details' : 'aside';
   return (
@@ -312,6 +319,11 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             <a href="https://www.inup.co.kr/bookstore/reform/reform_view.jsp?id=691" target="_blank" rel="noreferrer">한솔 정오표 · 2024년 2회 39번</a>
           </p>
         )}
+        {focusStudy && <details className="focus-reading-tools"><summary>집중 읽기 도구</summary>
+          <div>{canVeil && <button type="button" aria-pressed={veiled} onClick={()=>m.setVeil(!veiled)}>{veiled?'보기 다시 표시':'보기 가리기'}</button>}
+          <button type="button" aria-pressed={m.ruler} onClick={()=>m.setRuler(!m.ruler)}>읽기 자</button>
+          {m.ruler && <label>줄 위치 <input type="range" min="0" max="100" value={m.rulerAt} onChange={e=>m.setRulerAt(Number(e.target.value))}/></label>}</div>
+        </details>}
         {sourceTranscription?.question ? (
           <div className="question-transcription-control">
             <small>
@@ -332,11 +344,12 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           </div>
         ) : null}
         <div className={normalizeClass(['question-content', { 'source-image-content': primaryImage }])}>
+          {focusStudy && m.ruler && <i className="focus-reading-rule" aria-hidden="true" style={{top:m.rulerAt+'%'}}/>}
           {transcriptionPending ? (
             <p role="status">텍스트 확인 중…</p>
           ) : primaryImage && item.question.sourceImage ? (
             <div className="source-image-frame">
-              <div className="source-image-stage">
+              <SourceImageStage onChoose={n=>m.onChoose?.(n)}>
                 <img
                   ref={m.sourceImageRef}
                   src={problemImage(item.question.sourceImage)}
@@ -353,7 +366,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                     [restoredImageClass, { 'hansol-source-image': hansolQuestion }],
                   ])}
                 />
-                {unifiedHotspots.length ? (
+                {!veiled && unifiedHotspots.length ? (
                   <div data-react-view="printed-choices" style={{ display: 'contents' }}>
                     <PrintedChoices
                       choices={imageOptions}
@@ -382,7 +395,8 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                     />
                   ),
                 )}
-              </div>
+                {veiled && canVeil && <span className="focus-choice-veil" style={{top:firstChoiceTop+'%'}}>보기 가림</span>}
+              </SourceImageStage>
               <div className="source-image-actions">
                 {verifiedHotspots.length && selected ? (
                   <small className="source-image-selected-answer">
@@ -392,7 +406,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 ) : verifiedHotspots.length ? (
                   <small>
                     <span aria-hidden="true">☝</span>
-                    {' 이미지의 ①·②·③·④를 눌러 답하세요'}
+                    {' 이미지에서 답을 누르세요 · 길게 누르면 확대'}
                   </small>
                 ) : (
                   <span />
@@ -455,7 +469,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             ) : null}
           </CorrectionNote>
         ) : null}
-        {!transcriptionPending && (!verifiedHotspots.length || imageAnswerMode !== 'hotspot') ? (
+        {!veiled && !transcriptionPending && (!verifiedHotspots.length || imageAnswerMode !== 'hotspot') ? (
           <div className="choice-grid-shell">
             <div
               className={normalizeClass([

@@ -5,7 +5,7 @@ export interface SettingsValues {
   mobileModel: boolean;
   theme: 'system' | 'light' | 'dark';
   fontScale: number;
-  fontFamily: 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
+  fontFamily: 'clear-sans' | 'regular' | 'bold' | 'd2coding' | 'd2coding-bold';
   visualStyle: 'default' | 'simpsons' | 'sunjae';
   display: 'auto' | 'mobile' | 'desktop';
   dynamic: boolean;
@@ -46,7 +46,7 @@ export const settingsHelp: Record<keyof SettingsValues, string> = {
   fontScale: '글씨가 작은 FHD 반쪽 창이나 큰 모니터에서는 120~130%부터 비교해 보세요. 사진에 인쇄된 글자는 글꼴 설정으로 바뀌지 않으므로 문제의 크게보기를 이용하세요.',
   answerLayout: '기존 번호 버튼은 사진 아래에서 1~4번을 고릅니다. 이미지 직접 선택은 좌표가 준비된 문제의 보기를 바로 누릅니다. 답안 문구는 추출된 보기 내용을 버튼으로 표시합니다. 지원하지 않는 문제는 번호 버튼을 사용합니다.',
   visualStyle: '색상과 캐릭터 표현을 바꿉니다. 정답·해설·학습 기록에는 영향을 주지 않습니다. 동적 UI를 켠 테마는 메뉴 배치와 전환 연출도 달라질 수 있습니다.',
-  fontFamily: '나눔고딕은 일반적인 읽기용 글꼴이고, D2Coding은 글자 폭이 일정한 글꼴입니다. Bold는 더 굵게 보입니다. 문제 이미지 안의 글씨체는 바뀌지 않습니다.',
+  fontFamily: '클리어 산스는 기본 가변 글꼴입니다. 나눔고딕은 일반적인 읽기용 글꼴이고, D2Coding은 글자 폭이 일정한 글꼴입니다. Bold는 더 굵게 보입니다. 문제 이미지 안의 글씨체는 바뀌지 않습니다.',
   display: '자동은 기기에 맞는 화면을 선택합니다. 원하는 화면이 아니면 직접 고를 수 있습니다. 이 항목은 화면을 다시 불러오므로 시험 중에는 다른 표시 설정부터 조절하는 것을 권장합니다.',
   dynamic: '메뉴·문제 전환과 테마 연출을 켜고 끕니다. 기기에서 동작 줄이기를 켰다면 일부 모션은 제한됩니다. 강조색·밀도 같은 세부 조절은 기기·모션의 UI·테마 실험실에 있습니다.',
   rotation: '현재 테마의 사진이 자동으로 바뀌는 시간입니다. 3분은 180초입니다. 끔을 고르면 자동 교체를 멈춥니다.',
@@ -64,7 +64,7 @@ export const settingGroups: SettingGroup[] = [
   { key: 'fontScale', title: '문자 크기', category: 'appearance', quick: true, description: '문제·답안·해설에 적용됩니다. 큰 모니터에서도 직접 조절하세요.', options: [.8, 1, 1.2, 1.3, 1.4, 1.6].map(value => ({ value, label: `${Math.round(value * 100)}%${value === 1 ? ' · 기본' : ''}` })) },
   { key: 'answerLayout', title: '답안 선택 방식', category: 'solving', quick: true, description: '복원 이미지 문제의 답안을 누르는 방법입니다.', options: [{ value: 'classic', label: '기존 번호 버튼' }, { value: 'hotspot', label: '이미지 직접 선택' }, { value: 'inline', label: '답안 문구' }] },
   { key: 'visualStyle', title: '캐릭터 테마', category: 'appearance', description: '기존 메뉴와 공부 기능을 유지합니다.', options: [{ value: 'default', label: '기본 CBT' }, { value: 'simpsons', label: '심슨' }, { value: 'sunjae', label: '선재' }] },
-  { key: 'fontFamily', title: '글씨체', category: 'appearance', description: '메뉴와 문제 글꼴을 함께 바꿉니다.', options: [{ value: 'regular', label: '나눔고딕' }, { value: 'bold', label: '나눔고딕 Bold' }, { value: 'd2coding', label: 'D2Coding' }, { value: 'd2coding-bold', label: 'D2Coding Bold' }] },
+  { key: 'fontFamily', title: '글씨체', category: 'appearance', description: '메뉴와 문제 글꼴을 함께 바꿉니다.', options: [{ value: 'clear-sans', label: '클리어 산스' }, { value: 'regular', label: '나눔고딕' }, { value: 'bold', label: '나눔고딕 Bold' }, { value: 'd2coding', label: 'D2Coding' }, { value: 'd2coding-bold', label: 'D2Coding Bold' }] },
   { key: 'display', title: '기기 화면 모드', category: 'device', description: '자동을 권장합니다. 변경 시 풀이를 저장한 뒤 화면을 다시 엽니다.', options: [{ value: 'auto', label: '자동' }, { value: 'mobile', label: '모바일·태블릿' }, { value: 'desktop', label: 'PC' }] },
   { key: 'dynamic', title: '동적 UI·모션', category: 'device', description: '기존 테마의 동적 배치와 화면 전환입니다. 끄면 이전 정적 배치로 돌아갑니다.', options: [{ value: true, label: '켜기' }, { value: false, label: '끄기' }] },
   { key: 'rotation', title: '사진 자동 교체', category: 'appearance', description: '선재 테마 사진의 교체 간격입니다.', options: [0, 5, 10, 30, 60, 180, 300].map(value => ({ value, label: value === 0 ? '끔' : value < 60 ? `${value}초` : `${value / 60}분` })) },

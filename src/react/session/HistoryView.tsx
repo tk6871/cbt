@@ -1,3 +1,4 @@
+import {RecordComparison} from './RecordComparison';
 import type { HistoryViewModel } from '../../cbt/studyController';
 
 export function renderHistoryView(m: HistoryViewModel) {
@@ -54,7 +55,7 @@ export function renderHistoryView(m: HistoryViewModel) {
       ) : null}
       {recentExamRecords.length ? (
         <div className="history-grid">
-          {recentExamRecords.map((record) => (
+          {recentExamRecords.map((record, index) => (
             <article key={record.id}>
               <header>
                 <span>{record.mode === 'exam' ? 'CBT 시험' : '학습모드'}</span>
@@ -72,6 +73,9 @@ export function renderHistoryView(m: HistoryViewModel) {
                   {record.wrongAnswers?.length || 0}개
                 </span>
               </div>
+              <RecordComparison record={record} previous={recentExamRecords.slice(index+1).find(older=>
+                record.roundId ? older.roundId===record.roundId && (older.mode??'exam')===(record.mode??'exam') :
+                older.title===record.title && older.qualificationKey===record.qualificationKey && (older.mode??'exam')===(record.mode??'exam'))}/>
               <footer>
                 <button
                   type="button"

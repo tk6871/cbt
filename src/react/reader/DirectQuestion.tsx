@@ -1,3 +1,4 @@
+import {SourceImageStage} from './SourceImageStage';
 import continuations from '../../../data/textbook-continuation-images.json';
 import {useState,type ReactNode} from 'react';
 import katex from 'katex';
@@ -18,21 +19,23 @@ function crop(rect:number[],size:number[]){
   return {width:`${size[0]! / w *100}%`,left:`${-x / w *100}%`,top:`${-y / h *100}%`};
 }
 type ScanProps = {original:boolean; onFallback:(page:string)=>void};
-function Region({part,alt,original,onFallback,children}:ScanProps & {part:TextbookDirectPart;alt:string;children?:ReactNode}) {
+function Region({part,alt,original,onFallback,children,onChoose}:ScanProps & {part:TextbookDirectPart;alt:string;children?:ReactNode;onChoose?:(n:number)=>void}) {
   const [failed,setFailed]=useState(false);
   const page=textbookDirectPageMap.get(part.page);
   const size=part.size ?? page?.size ?? [1,1];
   const upgraded=part.asset && (continuations as Record<string,string>)[part.asset];
   const image=part.asset ? {asset:upgraded || part.asset,fallbackAsset:part.asset,improved:!!upgraded} : page && textbookDirectImage(page);
-  return <div className="direct-region" data-page={part.page} data-rect={part.rect.join(',')}>
-    {part.label&&<small className="direct-part-label">{part.label} · {part.page}쪽</small>}
-    <figure className="direct-viewport textbook-explanation-image" style={{aspectRatio:part.rect.slice(2).join('/')}}>
+  const frame={className:"direct-viewport textbook-explanation-image",style:{aspectRatio:part.rect.slice(2).join('/')}};
+  const content=<>
       {image&&<img src={problemImage(textbookAssetUrl(failed?image.fallbackAsset:image.asset))}
         style={crop(part.rect,size)} className={original?'restored-image-original':undefined}
         width={size[0]} height={size[1]} alt={alt} loading="lazy" decoding="async"
         onError={()=>{if(image.improved&&!failed){setFailed(true);onFallback(part.page)}}}/>}
       {children}
-    </figure>
+    </>;
+  return <div className="direct-region" data-page={part.page} data-rect={part.rect.join(',')}>
+    {part.label&&<small className="direct-part-label">{part.label} · {part.page}쪽</small>}
+    {onChoose ? <SourceImageStage as="figure" {...frame} onChoose={onChoose}>{content}</SourceImageStage> : <figure {...frame}>{content}</figure>}
   </div>;
 }
 
@@ -77,7 +80,7 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
       const choices=(indexedBoxes[source.id]??[]).flatMap((box,index)=>box[0]===i?[{
         number:index+1,style:{left:(box[1]!-left)/w*100+'%',top:(box[2]!-top)/h*100+'%',width:box[3]!/w*100+'%',height:box[4]!/h*100+'%'},
       }]:[]);
-      return <Region key={i} part={part} original={original} onFallback={onFallback} alt={`한솔 교재 ${part.page}쪽 ${source.number}번 원문 문제${i?' 이어짐':''}`}>
+      return <Region key={i} part={part} original={original} onFallback={onFallback} onChoose={choices.length?choose:undefined} alt={`한솔 교재 ${part.page}쪽 ${source.number}번 원문 문제${i?' 이어짐':''}`}>
         <PrintedChoices choices={choices} selected={chosen} buttonClass="printed-choice" onChoose={choose}/>
       </Region>;
     })}</div>

@@ -3689,3 +3689,24 @@ body.session-active .toast-message { bottom:max(82px,calc(env(safe-area-inset-bo
  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .question-columns.reading-one{animation:reading-enter .18s ease-out}
  @keyframes reading-enter{from{opacity:.8;transform:translateY(3px)}to{opacity:1;transform:none}}
 }
+
+.focus-reading-tools {margin:6px 0;color:var(--text);font-size:.86rem}
+.focus-reading-tools summary {width:fit-content;padding:8px 0;cursor:pointer}
+.focus-reading-tools>div {display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.focus-reading-tools button {min-height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);color:var(--text);padding:4px 10px}
+.focus-reading-tools button[aria-pressed=true] {color:var(--primary);border-color:currentColor}
+.focus-reading-tools label {display:inline-flex;align-items:center;gap:6px}
+.question-card .question-content:has(.focus-reading-rule) {position:relative}
+.focus-reading-rule {position:absolute;z-index:5;height:2px;background:var(--primary);box-shadow:0 -10px 0 0 color-mix(in srgb,var(--primary) 14%,transparent);inset-inline:0;pointer-events:none}
+.focus-choice-veil {position:absolute;z-index:4;inset:0 0 0;display:grid;place-content:center;background:var(--surface-2);color:var(--muted);font-size:.85rem}
+.source-choice-lens {width:92px;height:92px;box-sizing:border-box;border:2px solid var(--primary);position:absolute;z-index:6;pointer-events:none;transform:translate(-50%,-50%);border-radius:50%;box-shadow:0 4px 14px #0005;background-color:white;background-repeat:no-repeat}
+.source-choice-lens b {position:absolute;bottom:0;left:50%;transform:translateX(-50%);border-radius:6px;padding:1px 5px;background:var(--surface);color:var(--text);white-space:nowrap;font-size:12px}
+
+.gem-study{display:grid;place-items:center;margin:20px 0 8px;height:clamp(160px,22vw,260px);position:relative;isolation:isolate;border-radius:21px;border:1px solid var(--line);background:radial-gradient(ellipse at var(--lightpos,30%) 20%,var(--surface),var(--primary-soft) 62%,var(--surface-2));overflow:hidden}.gem-study:after{content:"";position:absolute;bottom:14%;width:98px;height:8px;background:var(--muted);opacity:.26;filter:blur(6px)}.gem-facet{width:126px;height:112px;position:relative;isolation:isolate;clip-path:polygon(0 31%,24% 0,76% 0,100% 31%,50% 100%);background:conic-gradient(from 45deg at 50% 34%,#79aab8,#c9f7ef,#577c94,#e9f5f3,#88afbb)}.gem-facet i,.gem-facet b,.gem-facet em{position:absolute;inset:0}.gem-facet i{clip-path:polygon(0 31%,24% 0,32% 32%,50% 100%);background:linear-gradient(75deg,#79a4ab,#f2fcff)}.gem-facet b{clip-path:polygon(32% 32%,50% 100%,70% 32%);background:linear-gradient(110deg,#688f9e,#f4fcff)}.gem-facet em{clip-path:polygon(24% 0,76% 0,70% 32%,32% 32%);background:linear-gradient(25deg,#b1d9da,#fff)}.gem-study[data-light="1"]{--lightpos:85%}.gem-study[data-light="1"] .gem-facet{filter:contrast(1.35) hue-rotate(13deg)}.gem-study[data-light="1"] .gem-facet i{background:linear-gradient(105deg,#476b7d,#8ab0ba)}.gem-study[data-light="2"]{--lightpos:55%}.gem-study[data-light="2"] .gem-facet{filter:brightness(.78) saturate(1.3)}.gem-study[data-light="2"] .gem-facet em{background:linear-gradient(20deg,#496777,#fcfffa)}
+.gem-lighting,.record-comparison,.reading-overlay {margin-block:10px;color:var(--text)}
+.gem-lighting summary,.record-comparison summary,.reading-overlay summary {padding:8px 0;cursor:pointer;width:fit-content}
+.gem-lighting [role=group]{display:flex;gap:6px}.gem-lighting button{background:var(--surface);border:1px solid var(--line);color:var(--text);min-height:44px;border-radius:10px;padding:4px 12px}
+.gem-lighting button[aria-pressed=true]{color:var(--primary);border-color:currentColor}
+.record-comparison{max-height:24rem;overflow:auto}.record-comparison table{width:100%;border-collapse:collapse}.record-comparison td,.record-comparison th{padding:6px 8px;border-bottom:1px solid var(--line);text-align:start}
+.reading-overlay figure {position:relative;margin:0;line-height:0}.reading-overlay img{width:100%;height:auto;display:block}.reading-overlay i{position:absolute;pointer-events:none;border:2px solid #136844;background:#3cad7229;box-sizing:border-box}
+.model-section-label {display:flex;align-items:center;gap:8px;margin:6px 0}.model-section-label input {flex:1;max-width:14rem}

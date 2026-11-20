@@ -4,6 +4,9 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.6', scope:'industrial', date:'2026.11.20', title:'클리어 서체와 집중 읽기',
+      summary:'클리어 화면의 글꼴과 기출 집중 읽기를 다듬었습니다.',
+      changes:['기본 글꼴은 Pretendard 기반 클리어 산스입니다. 설정에서 이전 글꼴로 바꿀 수 있습니다.','집중 읽기에서 보기를 가리거나 읽기 자를 움직일 수 있습니다.','이미지 보기를 길게 눌러 확대하고 놓은 번호를 선택할 수 있습니다. 해설에서 정답의 원문 위치를 확인합니다.','이전 제출 답안 대조, 설비 모형의 단면 조절, 보석관의 세 가지 조명을 사용할 수 있습니다.']},
     {version:'6.5.3',scope:'industrial',date:'2026.11.20',title:'리퀴드 글라스와 하단 Dock',
       summary:'설정에서 클리어·프로스트·프리즘 재질을 고릅니다.',
       changes:['학습과 관리자 화면은 클리어로 시작하고, 선택한 재질을 기억합니다.','심슨·선재 테마에서 홈·메뉴·풀이 배경과 회차 표지가 바뀝니다.','회차별 기출에서 카드·목록 보기를 선택할 수 있습니다. 모바일 즐겨찾기·킵·이상 신고 버튼은 작게 표시합니다.','하단 Dock에서 자주 쓰는 메뉴로 이동할 수 있습니다.','문항 집중 보기·복귀, 교재 단원 색인, CBT 미응답 필터, 해설의 보기 대조와 단위 환산을 사용할 수 있습니다.']},
@@ -3260,8 +3263,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.5.3';
+  changelog.versions.industrial = '6.6';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.5.3';
+  changelog.currentVersion = '6.6';
   window.CBT_CHANGELOG = changelog;
 })();

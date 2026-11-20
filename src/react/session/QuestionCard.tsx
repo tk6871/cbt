@@ -113,6 +113,10 @@ function useQuestionCard(props:QuestionCardProps) {
   const [sourceImageOverride, setSourceImageOverride] = useState(false);
   const [forceVerticalTextChoices, setForceVerticalTextChoices] = useState(false);
   const [answerHighlightStyles, setAnswerHighlightStyles] = useState<Record<number, Record<string,string>>>({});
+  const [veil,setVeil]=useState(false);
+  const [ruler,setRuler]=useState(false);
+  const [rulerAt,setRulerAt]=useState(50);
+  useEffect(()=>{setVeil(false);setRuler(false);setRulerAt(50);},[props.item.id,props.readingSize,props.mode]);
   const [imageZoomOpen, setImageZoomOpen] = useState(false);
   const [explanationOpen, setExplanationOpen] = useState(false);
   const [explanationDismissed, setExplanationDismissed] = useState(false);
@@ -477,7 +481,7 @@ function useQuestionCard(props:QuestionCardProps) {
   },[verifiedHotspots]);
 
   return {
-    ...props,
+    ...props, veil, setVeil, ruler, setRuler, rulerAt, setRulerAt,
     additionalExplanationSections, beginnerCalculationAvailable, beginnerCalculationOpen,
     calculateAnswerHighlights, calculationGuide, calculationNumberOrigins,
     canReadQuestion, circles, closeCompactExplanation,

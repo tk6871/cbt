@@ -155,7 +155,7 @@ test('홈의 기본 글꼴은 작은 파일로 표시하고 드문 한글은 원
   await page.goto('./');
   await expect(page.getByRole('button',{name:'교재에서 풀기',exact:true})).toBeVisible();
   await page.evaluate(() => document.fonts.ready.then(() => undefined));
-  expect(fontRequests.some(path => path.includes('CBTHomeSans-Regular'))).toBe(true);
+  expect(fontRequests.some(path => path.includes('CBT-UI-Variable'))).toBe(true);
   expect(fontRequests.some(path => path.includes('CBTStudySans-Regular'))).toBe(false);
   expect(fontRequests.some(path => path.includes('NanumGothic-Regular'))).toBe(false);
 

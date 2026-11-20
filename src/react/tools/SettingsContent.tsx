@@ -447,6 +447,11 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
         <span>글씨체</span>
         <p className="setting-description">문제·보기·해설과 메뉴 글꼴을 함께 바꿉니다.</p>
         <div className="font-family-options">
+          <button type="button" aria-pressed={fontFamilyPreference === 'clear-sans'}
+            onClick={() => setFontFamilyPreference('clear-sans')}
+            className={fontFamilyPreference === 'clear-sans' ? 'active' : ''}>
+            <strong>클리어 산스</strong><small>Pretendard 기반 · 기본</small>
+          </button>
           <button
             aria-pressed={fontFamilyPreference === 'regular'}
             onClick={() => {
@@ -455,7 +460,7 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
             className={fontFamilyPreference === 'regular' ? 'active' : ''}
           >
             <strong>나눔고딕</strong>
-            <small>Regular · 기본</small>
+            <small>Regular · 보통</small>
           </button>
           <button
             aria-pressed={fontFamilyPreference === 'bold'}

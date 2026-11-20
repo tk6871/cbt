@@ -1,10 +1,10 @@
 import {useCallback, useLayoutEffect, useRef} from 'react';
 import {useThree} from '@react-three/fiber';
 import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
-import {Box3, PerspectiveCamera, Vector3, type Group} from 'three';
+import {Box3, PerspectiveCamera, Plane, Vector3, type Group} from 'three';
 
 // Fit projected bounds to both viewport dimensions while keeping the target at the origin.
-export function EquipmentCamera({scene, turn, highlight, part}: {scene:Group; turn:number; highlight:boolean; part:string}) {
+export function EquipmentCamera({scene, turn, highlight, part, cut}: {scene:Group; turn:number; highlight:boolean; part:string; cut:number}) {
   const previousScene = useRef<Group | null>(null);
   const controls=useRef<OrbitControls | null>(null);
   const frame=useRef<number | null>(null);
@@ -32,6 +32,14 @@ export function EquipmentCamera({scene, turn, highlight, part}: {scene:Group; tu
       frame.current=null;
     };
   },[camera,gl,redraw]);
+  useLayoutEffect(()=>{
+    const old=gl.clippingPlanes;
+    const box=new Box3().setFromObject(scene);
+    const x=box.max.x-(box.max.x-box.min.x)*cut/100;
+    gl.clippingPlanes=cut>0 ? [new Plane(new Vector3(-1,0,0),x)] : [];
+    redraw();
+    return ()=>{gl.clippingPlanes=old;};
+  },[gl,scene,cut,redraw]);
   useLayoutEffect(redraw,[highlight,viewport.dpr,redraw]);
   useLayoutEffect(()=>{
     if (!(camera instanceof PerspectiveCamera) || !controls.current) return;

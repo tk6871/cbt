@@ -20,7 +20,9 @@ test('쪽번호로 연 교재에서 같은 원문의 3D 해설을 펼치고 선�
   if (info.project.name === 'desktop') {
     await button.click();
     await expect(row.locator('canvas')).toBeVisible({timeout:25000});
-    await row.getByRole('button',{name:'3D 접기'}).click();
+    const cut=row.getByRole('slider',{name:/단면 위치/});
+    await cut.fill('50');await expect(row.locator('.model-section-label output')).toHaveText('50%');
+    await cut.fill('0');await row.getByRole('button',{name:'3D 접기'}).click();
   } else {
     await expect(button).toBeDisabled();
   }
@@ -33,7 +35,7 @@ test('쪽번호로 연 교재에서 같은 원문의 3D 해설을 펼치고 선�
 test('패치노트에는 짧은 공개 버전과 이전 회차별 수정 내용이 있다', async ({page}) => {
   await page.goto('./?safe=1#/study/updates');
   const notes = page.locator('.patch-timeline article');
-  await expect(notes.first().locator('.patch-version span')).toHaveText('v6.5.3');
+  await expect(notes.first().locator('.patch-version span')).toHaveText('v6.6');
   const versions = await notes.locator('.patch-version span').allTextContents();
   expect(versions).toContain('v6.4');
   expect(versions).toContain('v6.4.1');

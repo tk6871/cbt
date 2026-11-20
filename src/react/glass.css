@@ -1,3 +1,13 @@
+@font-face {
+  font-family:"CBT UI Sans";
+  src:url("../../assets/fonts/CBT-UI-Variable.woff2") format("woff2");
+  font-weight:100 900;
+  font-display:swap;
+}
+:root[data-font-family=clear-sans], :root[data-glass]:not([data-font-family]) {
+  --app-font-family:"CBT UI Sans","Nanum Gothic","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+}
+:root[data-glass]:not([data-font-family]) body {font-family:var(--app-font-family)}
 /* Use one optical recipe for the learner, jewelry workspace and administration. */
 :root[data-glass] {
   --glass-blur:3px; --glass-coverage:76%; --glass-fill:rgba(220,247,255,.09);
@@ -125,7 +135,7 @@
 :root[data-glass] .photo-stage{position:relative;isolation:isolate;background:#264044 var(--scene-art) center / cover}
 .photo-stage::before{content:"";position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(90deg,#041b24ab,transparent 80%),linear-gradient(0deg,#061c2454,transparent 80%)}
 .photo-stage .glass-lens{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-:root[data-glass] .rounds-heading h1,:root[data-glass] .admin-intro h1{font-family:"CBT Home Myeongjo","AppleMyungjo",Georgia,serif;letter-spacing:-.055em;line-height:1.2}
+:root[data-glass] .rounds-heading h1,:root[data-glass] .admin-intro h1{font-family:var(--app-font-family);font-weight:720;letter-spacing:-.04em;line-height:1.2}
 :root[data-glass] .glass-scene .glass-caption{background:var(--glass-glint),var(--glass-fill);color:white;text-shadow:0 1px 4px #10242b}
 :root[data-glass=prism]{--glass-fill:rgba(234,245,255,.025);--glass-glint:linear-gradient(139deg,#baffef12,transparent 29%,transparent 80%,#d9bdff16);--glass-blur:2px}
 :root[data-glass=clear]{--glass-fill:rgba(230,250,255,.015);--glass-blur:1px}
@@ -198,7 +208,7 @@
  .view-stage[data-entrance=rounds] .round-grid>.round-card:nth-child(-n+5){animation:glass-arrive .5s .10s both}
  .view-stage[data-entrance=rounds] .round-grid>.round-card:nth-child(3){animation-delay:.16s}
  .view-stage[data-entrance=rounds] .round-grid>.round-card:nth-child(4){animation-delay:.22s}
- :root[data-cover-flight=on] :is(.hybrid-cover,.rounds-heading){view-transition-name:cbt-study-cover}
+ :root[data-cover-flight=on] :is(.hybrid-cover,.fan-cover,.rounds-heading){view-transition-name:cbt-study-cover}
  :root[data-cover-flight=on]::view-transition-group(cbt-study-cover){animation-duration:.60s;animation-timing-function:cubic-bezier(.2,.83,.22,1)}
  :root[data-cover-flight=on]::view-transition-image-pair(cbt-study-cover){overflow:clip;border-radius:22px;isolation:isolate}
  :root[data-cover-flight=on]::view-transition-old(root),:root[data-cover-flight=on]::view-transition-new(root){animation:none}
@@ -258,7 +268,7 @@ body:has(.fan-wallpaper)::before { display:none }
 :root[data-glass][data-theme] .round-grid[data-layout=list] {grid-template-columns:minmax(0,1fr)}
 .round-theme-photo {display:block; width:100%; height:clamp(86px,9vw,135px); object-fit:cover; border-radius:11px; margin:0 0 8px}
 :root[data-glass][data-theme] .round-grid:has(.round-theme-photo) .round-card {background:var(--glass-glint),color-mix(in srgb,var(--rail-base) 83%,transparent)}
-:root[data-glass] .round-grid .round-card h2 {font-family:var(--home-display,"Apple SD Gothic Neo",sans-serif);letter-spacing:-.025em;text-wrap:pretty}
+:root[data-glass] .round-grid .round-card h2 {font-family:var(--app-font-family);font-weight:670;letter-spacing:-.025em;text-wrap:pretty}
 @media(min-width:750px) {
   .round-grid[data-layout=list] .round-card {min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;column-gap:18px}
   .round-grid[data-layout=list] .round-card>* {grid-column:1}
@@ -295,3 +305,14 @@ body:has(.fan-wallpaper)::before { display:none }
   background:var(--glass-glint),color-mix(in srgb,var(--rail-base) 90%,transparent);
 }
 :root[data-glass][data-theme] .sunjae-album-track img {height:auto;aspect-ratio:4/5}
+
+:root[data-font-family=clear-sans] .hybrid-cover {--home-display:var(--app-font-family)}
+
+@media (min-width:821px) and (hover:hover) and (prefers-reduced-motion:no-preference) {
+  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .round-view-options {position:relative;isolation:isolate}
+  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .round-view-options button {width:72px;justify-content:center}
+  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .round-view-options button[aria-pressed=true] {background:transparent;box-shadow:none}
+  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .round-view-options::before {content:"";position:absolute;inset:3px auto 3px 3px;width:72px;border-radius:11px;background:var(--glass-paper);box-shadow:var(--glass-edge);z-index:-1;transition:transform .24s cubic-bezier(.22,.8,.24,1)}
+  .round-view-options:has(button:last-child[aria-pressed=true])::before {transform:translateX(74px)}
+  :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .session-topbar .session-title {animation:workspace-settle .32s cubic-bezier(.2,.8,.2,1) both}
+}

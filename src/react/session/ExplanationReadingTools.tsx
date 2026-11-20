@@ -1,3 +1,5 @@
+import {hotspotStyle} from '../../cbt/answerHotspotGeometry';
+import type {AnswerHotspot} from '../../cbt/types';
 import {useState} from 'react';
 
 const conversions:Record<string,[string,number]> = {
@@ -15,7 +17,7 @@ function HighlightedChoice({text,other}:{text:string;other:string}) {
   return <>{words.slice(0,start).join('')}<mark>{words.slice(start,words.length-end).join('')}</mark>{words.slice(words.length-end).join('')}</>;
 }
 
-export function ExplanationReadingTools({choices,answer,onInteract}:{choices:string[];answer:number;onInteract:()=>void}) {
+export function ExplanationReadingTools({choices,answer,source,hotspot,onInteract}:{choices:string[];answer:number;source?:string;hotspot?:AnswerHotspot;onInteract:()=>void}) {
   const available=choices.map((text,i)=>({text,i})).filter(({text})=>text && !/^(?:[①②③④]|[1-4]번)$/.test(text));
   const first=available.find(row=>row.i===answer-1)?.i ?? available[0]?.i ?? 0;
   const [pair,setPair]=useState([first,available.find(row=>row.i!==first)?.i ?? 0]);
@@ -30,7 +32,14 @@ export function ExplanationReadingTools({choices,answer,onInteract}:{choices:str
     if(next[1-side]===newIndex) next[1-side]=pair[side]!;
     next[side]=newIndex;setPair(next);
   }
+  const [showSource,setShowSource]=useState(false);
   return <>
+    {source && hotspot && <details className="reading-overlay" onClick={onInteract} onToggle={e=>setShowSource(e.currentTarget.open)}>
+      <summary>원문에서 정답 위치 보기</summary>
+      {showSource && <figure><img src={source} alt={'원문 이미지 · 정답 '+answer+'번'}/>
+        {(hotspot.segments?.length ? hotspot.segments : [hotspot]).map((area,i)=><i key={i} style={hotspotStyle(area)} aria-hidden="true"/>)}
+      </figure>}
+    </details>}
     {quantity && conversion && value!==null && Number.isFinite(value) && <div className="reading-unit" onClick={onInteract}>
       <span>정답 보기의 단위</span><output aria-live="polite">{converted ? numberFormat.format(value*conversion[1])+' '+conversion[0] : original}</output>
       <button type="button" onClick={()=>setConverted(!converted)}>{converted?quantity[2]:conversion[0]}로 보기</button>
