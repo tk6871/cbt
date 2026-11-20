@@ -1,3 +1,4 @@
+import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
 import {shallow} from 'deepsignal/core';
 import {pageNavigationStep} from './pageNavigationKey';
 import {saveTextbookAnswer, textbookAnswersIn} from './textbookAnswerProgress';
@@ -4964,6 +4965,7 @@ async function start() {
 
 
 const settingsValues = computed<SettingsValues>(() => ({
+  glass: glassMaterial.value,
   mobileModel: allowMobileModel.value, theme: theme.value, fontScale: fontScale.value, fontFamily: fontFamilyPreference.value,
   visualStyle: visualStyle.value, display: displayPreference.value, dynamic: dynamicUiEnabled.value,
   solveLayout: solveLayoutMode.value, answerLayout: answerLayout.value, indicator: hotspotIndicator.value,
@@ -4977,6 +4979,7 @@ const settingsContext = computed(() => ({ pwaRegistrationError: pwaRegistrationE
 function changeSetting(change: SettingChange): void {
   switch (change.key) {
     case 'mobileModel': setMobileModel(change.value); break;
+    case 'glass': setGlassMaterial(change.value); break;
     case 'theme': theme.value = change.value; applyTheme(change.value); break;
     case 'fontScale': setFontScale(change.value); break;
     case 'fontFamily': setFontFamilyPreference(change.value); break;

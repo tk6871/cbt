@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+ <defs>
+ <linearGradient id="field" x2=".82" y2="1" gradientUnits="objectBoundingBox"><stop stop-color="#f2f1f4"/><stop offset=".6" stop-color="#eeebf2"/><stop offset="1" stop-color="#e8e1ee"/></linearGradient>
+ <linearGradient id="sheet" x1=".79" y1=".02" x2=".35" y2=".9"><stop stop-color="#c9cfdb"/><stop offset=".28" stop-color="#c6c2e4"/><stop offset=".48" stop-color="#b3c8e1"/><stop offset=".50" stop-color="#fdfbff"/><stop offset=".54" stop-color="#c3b3d6"/><stop offset=".76" stop-color="#c9cfdb"/><stop offset="1" stop-color="#f2f1f4"/></linearGradient>
+ <linearGradient id="turn" x1=".13" y1=".19" x2=".79" y2=".81"><stop stop-color="#f2f1f4"/><stop offset=".34" stop-color="#c9cfdb"/><stop offset=".63" stop-color="#91b7b5"/><stop offset=".75" stop-color="#eafffc"/><stop offset=".79" stop-color="#b3c8e1"/><stop offset="1" stop-color="#c6c2e4"/></linearGradient>
+ <linearGradient id="lip" x1="0" y1=".7" x2="1" y2=".17"><stop stop-color="#c9cfdb"/><stop offset=".3" stop-color="#b3c8e1"/><stop offset=".55" stop-color="#ffeff1"/><stop offset=".68" stop-color="#eafffc"/><stop offset="1" stop-color="#c6c2e4"/></linearGradient>
+ </defs>
+ <path fill="url(#field)" d="M0 0h1600v1000H0z"/>
+ <path fill="url(#sheet)" d="M738 -55C1054 92 1363 155 1229 345C1134 479 749 566 387 701C133 796 -51 912 -94 1052L329 1046C418 872 697 720 980 619C1452 451 1625 336 1594 165C1578 65 1482 -28 1413 -57Z"/>
+ <path fill="url(#turn)" d="M-85 408C163 604 557 582 842 503C1018 455 1151 396 1229 345C1166 454 982 525 803 600C453 748 178 806 -85 728Z"/>
+ <path fill="none" stroke="url(#lip)" stroke-width="2" d="M-85 408C163 604 557 582 842 503C1018 455 1151 396 1229 345"/>
+ <path fill="url(#sheet)" d="M755 1060C929 873 1207 836 1518 706C1585 678 1644 641 1684 610L1684 879C1467 948 1364 993 1264 1060Z"/>
+ <path fill="none" stroke="url(#lip)" stroke-width="2.2" d="M755 1060C929 873 1207 836 1518 706C1585 678 1644 641 1684 610"/>
+ </svg>

@@ -4,6 +4,9 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.5.3',scope:'industrial',date:'2026.11.20',title:'리퀴드 글라스와 하단 Dock',
+      summary:'설정에서 클리어·프로스트·프리즘 재질을 고릅니다.',
+      changes:['학습과 관리자 화면의 기본 재질은 프리즘입니다.','리얼블랙·펄 월페이퍼와 왼쪽 유리 메뉴, 회차 창을 적용했습니다.','하단 Dock에서 자주 쓰는 메뉴로 이동할 수 있습니다.']},
     {
       version: '6.5.2', scope: 'industrial', date: '2026.11.20', title: '학습모드 버튼 정리',
       summary: '이어 학습과 CBT 시험모드를 같은 줄에 표시합니다.',
@@ -3257,8 +3260,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.5.2';
+  changelog.versions.industrial = '6.5.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.5.2';
+  changelog.currentVersion = '6.5.3';
   window.CBT_CHANGELOG = changelog;
 })();

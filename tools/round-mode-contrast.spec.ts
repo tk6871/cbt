@@ -32,14 +32,13 @@ for (const [space, style] of [
           canvas.width = img.width; canvas.height = img.height;
           const ctx = canvas.getContext('2d')!;
           ctx.drawImage(img, 0, 0);
-          const base = rgb(css.backgroundColor);
+          const alpha = Number(css.backgroundColor.match(/[\d.]+/g)?.[3] ?? 1);
           const ink = luminance(rgb(css.color));
-          const samples = [[0.2, 0.04], [0.8, 0.96], [0.015, 0.5], [0.985, 0.5]].map(([x, y]) =>
+          const samples = [[0.22, 0.27], [0.78, 0.73], [0.12, 0.5], [0.88, 0.5]].map(([x, y]) =>
             Array.from(ctx.getImageData(Math.floor(img.width * x!), Math.floor(img.height * y!), 1, 1).data).slice(0, 3));
           return {
             border: css.borderTopWidth, height: element.getBoundingClientRect().height,
-            // The asset may shade the fill. A separately painted rim has a different color.
-            maxDelta: Math.max(...samples.flatMap(sample => sample.map((v, i) => Math.abs(v - base[i]!)))),
+            alpha,
             minContrast: Math.min(...samples.map(sample => {
               const fill = luminance(sample);
               return (Math.max(fill, ink) + 0.05) / (Math.min(fill, ink) + 0.05);
@@ -48,7 +47,7 @@ for (const [space, style] of [
         }, png.toString('base64'));
         expect(result.border).toBe('0px');
         expect(result.height).toBeGreaterThanOrEqual(44);
-        expect(result.maxDelta).toBeLessThan(28);
+        expect(result.alpha).toBeLessThan(1);
         expect(result.minContrast).toBeGreaterThanOrEqual(4.5);
       }
       await buttons.first().focus();

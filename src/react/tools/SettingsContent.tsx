@@ -1,4 +1,6 @@
+import {GlassScene} from '../GlassScene';
 import {lazy, type ReactNode} from 'react';
+import {GlassPicker} from '../GlassPicker';
 import {OptionalTool} from '../OptionalTool';
 import {settingsHelp,type SettingsValues,type SettingsContext,type SettingsAction,type SettingChange} from '../../cbt/settingsCatalog';
 const ThemeStudio = lazy(() => import('./ThemeStudio'));
@@ -40,6 +42,9 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
   } = m;
   return (
     <>
+      {matches('glass') && <section className="setting-group glass-setting" data-setting="glass">
+        <span>리퀴드 글라스</span><GlassScene/><GlassPicker/>
+      </section>}
       <section
         className="setting-group"
         data-setting="mobileModel"
@@ -350,6 +355,7 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
           </div>
         </section>
       ) : null}
+
       <section
         data-setting="theme"
         style={{ display: matches('theme') ? undefined : 'none' }}

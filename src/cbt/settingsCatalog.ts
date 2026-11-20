@@ -1,4 +1,7 @@
+import {glassMaterials,type GlassMaterial} from '../react/glassMaterial';
+
 export interface SettingsValues {
+  glass: GlassMaterial;
   mobileModel: boolean;
   theme: 'system' | 'light' | 'dark';
   fontScale: number;
@@ -37,6 +40,7 @@ export const settingsCategories: Array<{ id: SettingsCategory; label: string }> 
   { id: 'data', label: '기록·동기화' },
 ];
 export const settingsHelp: Record<keyof SettingsValues, string> = {
+  glass: "학습과 관리자 화면에 함께 적용합니다.",
   mobileModel: "설정을 켜도 해설에서 직접 열 때까지 3D 모형을 내려받지 않습니다.",
   theme: '기기 설정은 운영체제의 밝기 모드를 따라갑니다. 사진 속 문제의 밝기는 해설·이미지의 문제 이미지 다크 표시에서 따로 바꿀 수 있습니다.',
   fontScale: '글씨가 작은 FHD 반쪽 창이나 큰 모니터에서는 120~130%부터 비교해 보세요. 사진에 인쇄된 글자는 글꼴 설정으로 바뀌지 않으므로 문제의 크게보기를 이용하세요.',
@@ -54,6 +58,7 @@ export const settingsHelp: Record<keyof SettingsValues, string> = {
   judgment: '베타 학습 도구를 유지하면서 내 판단·메모 입력란만 숨길 수 있습니다. 킵·즐겨찾기·답안 선택과는 별개입니다.',
 };
 export const settingGroups: SettingGroup[] = [
+  {key:'glass',title:'리퀴드 글라스',category:'appearance',description:'버튼·패널·상단바·Dock의 유리 재질',options:[...glassMaterials]},
   {key:'mobileModel',title:'모바일 3D 해설',category:'explanation',description:'관련 해설에서 3D 보기를 눌렀을 때 모형을 읽습니다.',options:[{value:false,label:'끔'},{value:true,label:'허용'}]},
   { key: 'theme', title: '밝기', category: 'appearance', quick: true, description: '화면의 밝고 어두운 색상을 고릅니다.', options: [{ value: 'system', label: '기기 설정' }, { value: 'light', label: '라이트' }, { value: 'dark', label: '다크' }] },
   { key: 'fontScale', title: '문자 크기', category: 'appearance', quick: true, description: '문제·답안·해설에 적용됩니다. 큰 모니터에서도 직접 조절하세요.', options: [.8, 1, 1.2, 1.3, 1.4, 1.6].map(value => ({ value, label: `${Math.round(value * 100)}%${value === 1 ? ' · 기본' : ''}` })) },

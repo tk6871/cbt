@@ -7,7 +7,7 @@ export function renderAdminHeader(m: AdminHeaderModel) {
   if (!session) return null;
   return (
     <>
-      <header className="admin-header">
+      <header className="admin-header"><i className="window-lights" aria-hidden="true"/>
         <div className="admin-brand">
           <span>CBT</span>
           <div>
