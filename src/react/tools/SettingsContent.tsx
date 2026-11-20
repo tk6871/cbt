@@ -287,8 +287,7 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
       >
         <span>UI 스타일</span>
         <p className="setting-description">
-          {isJewelry ? '기본 CBT, 심슨, 선재 테마' : '기본 CBT와 심슨 테마'}는 이 설정 화면에서만 바꿀 수
-          있습니다. 동적 UI를 꺼도 선택한 테마는 유지됩니다.
+          테마를 고르면 홈·메뉴·회차·풀이 배경이 함께 바뀝니다.
         </p>
         <div className="style-options">
           <button
@@ -313,22 +312,21 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
             <span>심슨 테마</span>
             <small>스프링필드 코믹 UI</small>
           </button>
-          {isJewelry ? (
-            <button
-              aria-pressed={visualStyle === 'sunjae'}
-              onClick={() => {
-                setVisualStyle('sunjae');
-              }}
-              className={visualStyle === 'sunjae' ? 'active' : ''}
-            >
-              <strong>☂</strong>
-              <span>선재 테마</span>
-              <small>보석관 전용 팬페이지 UI</small>
-            </button>
-          ) : null}
+          <button
+            aria-pressed={visualStyle === 'sunjae'}
+            onClick={() => {
+              setVisualStyle('sunjae');
+            }}
+            className={visualStyle === 'sunjae' ? 'active' : ''}
+          >
+            <strong>☂</strong>
+            <span>선재 테마</span>
+            <small>변우석 포토 앨범</small>
+          </button>
         </div>
+        {visualStyle !== 'default' && <a className="wall-credits" href={'assets/theme/' + visualStyle + '/SOURCES.md'} target="_blank" rel="noreferrer">테마 사진 출처</a>}
       </section>
-      {isJewelry ? (
+      {visualStyle === 'sunjae' ? (
         <section
           data-setting="rotation"
           style={{ display: matches('rotation') ? undefined : 'none' }}

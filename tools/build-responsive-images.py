@@ -14,7 +14,7 @@ OUT.mkdir(exist_ok=True)
 STAGING = ROOT / 'work/responsive-images-unused'
 STAGING.mkdir(parents=True, exist_ok=True)
 paths = {str(p.relative_to(ROOT)) for p in (ROOT / 'assets/theme').rglob('*')
-         if p.suffix.lower() in {'.jpg', '.jpeg', '.png', '.webp'}}
+         if p.suffix.lower() in {'.jpg', '.jpeg', '.png', '.webp'} and not p.stem.endswith('-small')}
 manifest = {}
 original_bytes = variant_bytes = 0
 for asset in sorted(paths):
@@ -26,6 +26,15 @@ for asset in sorted(paths):
         oriented = ImageOps.exif_transpose(raw)
         image = oriented.convert('RGBA' if 'A' in oriented.getbands() or 'transparency' in oriented.info else 'RGB')
         width, height = image.size
+        # Preserve the art-directed mobile companion already used by the round cards.
+        companion = source.with_name(source.stem + '-small.webp')
+        if source.suffix == '.webp' and companion.is_file():
+            with Image.open(companion) as small:
+                variants = [{'src': str(companion.relative_to(ROOT)), 'width': small.width}]
+            manifest[asset] = {'width': width, 'height': height, 'variants': variants}
+            original_bytes += source.stat().st_size
+            variant_bytes += companion.stat().st_size
+            continue
         candidates = []
         for size in [192, 640]:
             if size >= width:

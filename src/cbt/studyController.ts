@@ -1,3 +1,4 @@
+import {photoStyle, roundPhoto, workspacePhoto} from '../react/themePhotos';
 import {flushSync} from 'react-dom';
 import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
@@ -296,6 +297,8 @@ const sunjaeEncourageImage = 'assets/theme/sunjae/sunjae-encourage.jpg';
 const sunjaeGradingImage = 'assets/theme/sunjae/wooseok-restaurant-portrait.jpg';
 const sunjaeCherryImage = 'assets/theme/sunjae/sunjae-cherry-capture.jpg';
 const sunjaeImages = [
+  'assets/theme/sunjae/wooseok-discovery.webp',
+  'assets/theme/sunjae/wooseok-prada.webp',
   sunjaeCherryImage,
   sunjaePraiseImage,
   sunjaeEncourageImage,
@@ -304,6 +307,7 @@ const sunjaeImages = [
   'assets/theme/sunjae/wooseok-blue-backstage.jpg',
 ];
 const sunjaePortraitImages = [
+  'assets/theme/sunjae/wooseok-prada-small.webp',
   sunjaePraiseImage,
   'assets/theme/sunjae/sunjae-campus.png',
   sunjaeCherryImage,
@@ -518,27 +522,17 @@ const selectedCatalog = computed<Catalog>(() => catalogs.find((item) => item.key
 const sourceCatalogs = catalogs.filter((catalog) => !catalog.isVirtual);
 const currentSunjaeImage = computed(() => sunjaeImages[sunjaeImageIndex.value % sunjaeImages.length] || sunjaeThemeBanner);
 const themeBackdropStyle = computed<Record<string, string>>(() => {
-  if (visualStyle.value === 'sunjae') return { '--theme-main-photo': `url("${new URL(currentSunjaeImage.value, document.baseURI).href}")` };
-  if (visualStyle.value === 'simpsons') return {
-    '--theme-main-photo': `url("${new URL(simpsonsThemeImage, document.baseURI).href}")`,
-    '--simpsons-sidebar-photo': `url("${new URL(simpsonsKingSizeImage, document.baseURI).href}")`,
-  };
-  return {} as Record<string, string>;
+  const theme = visualStyle.value;
+  if (theme === 'default') return {} as Record<string,string>;
+  const round = session.value?.items[0]?.round;
+  if (round) return photoStyle(roundPhoto(theme, round.id));
+  const section = textbookReaderOpen.value || (view.value === 'rounds' && textbookPagesOpen.value) ? 'textbook' : view.value;
+  const rotation = theme === 'sunjae' && section === 'home' ? sunjaeImageIndex.value : 0;
+  return photoStyle(workspacePhoto(theme, section, rotation));
 });
 const sidebarThemeStyle = computed<Record<string, string>>(() => {
-  if (visualStyle.value === 'simpsons') return {
-    backgroundImage: `linear-gradient(180deg, rgba(255,217,15,.16), rgba(255,217,15,.34)), url("${simpsonsKingSizeImage}")`,
-    backgroundPosition: '52% 50%',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
-  if (visualStyle.value === 'sunjae') return {
-    backgroundImage: `linear-gradient(165deg, rgba(225,244,255,.56), rgba(255,232,244,.64)), url("${currentSunjaeImage.value}")`,
-    backgroundPosition: '50% 20%',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  };
-  return {} as Record<string, string>;
+  const theme = visualStyle.value;
+  return theme === 'default' ? {} as Record<string,string> : photoStyle(workspacePhoto(theme, 'menu', theme === 'sunjae' ? sunjaeImageIndex.value : 0));
 });
 const availableYears = computed(() => {
   const years = yearsFor(selectedCatalog.value);
@@ -3133,13 +3127,14 @@ async function beginSession(
     return;
   }
   if (experienceTransitionPhase.value || visualTransitionPhase.value) return;
+  const animateEntry = motionAllowed.value && !matchMedia('(max-width:820px), (pointer:coarse)').matches;
   sessionReturnState = {
     view: view.value,
     scrollY: window.scrollY,
     roundId: items.every((item) => item.round.id === items[0]?.round.id) ? items[0]?.round.id : undefined,
   };
   experienceTransitionPhase.value = 'home-leaving';
-  await waitForMotion(300);
+  if (animateEntry) await waitForMotion(300);
   const pageSize = Math.max(1, Number(options.pageSize) || preferredPageSize.value);
   const firstUnanswered = mode === 'learn'
     ? items.findIndex((item) => initialAnswers[item.id] == null)
@@ -3184,7 +3179,7 @@ async function beginSession(
   window.scrollTo({ top: 0 });
   window.CBTAnalytics?.trackNavigation?.(`next-${mode}`);
   void nextTick(() => {
-    if (!motionAllowed.value) return;
+    if (!animateEntry) return;
     animate('.session-topbar', { opacity: [0, 1], y: [-32, 0] }, { duration: .46, ease: [0.2, 0.8, 0.2, 1] });
     animate(
       '.question-card',
@@ -3195,7 +3190,7 @@ async function beginSession(
     );
   });
   scheduleLearningSessionSave();
-  await waitForMotion(620);
+  if (animateEntry) await waitForMotion(620);
   experienceTransitionPhase.value = null;
 }
 
@@ -4426,7 +4421,6 @@ function sunjaeResultDetail(score: number): string {
 }
 
 async function setVisualStyle(style: VisualStyle): Promise<void> {
-  if (style === 'sunjae' && !isJewelry) return;
   if (style === visualStyle.value || visualTransitionPhase.value) return;
   visualTransitionTarget.value = style;
   settingsOpen.value = false;

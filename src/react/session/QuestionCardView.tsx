@@ -1,3 +1,4 @@
+import {Check, Flag, Pin, Star} from 'lucide-react';
 import {clsx as normalizeClass} from 'clsx';
 import {lazy, Suspense} from 'react';
 import { problemImage, problemImageHtml } from '../../cbt/problemImages';
@@ -196,40 +197,43 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 ✦ AI 질문
               </button>
             ) : null}
-            <button
-              type="button"
-              aria-label={bookmarked ? '북마크 제거' : '북마크 추가'} aria-pressed={bookmarked}
-              onClick={() => {
-                m.onToggleBookmark?.();
-              }}
-              className={normalizeClass(['bookmark-button', { active: bookmarked }])}
-            >
-              ★
-            </button>
-            <button
-              type="button"
-              aria-label={kept ? '현재 문제 킵 해제' : '현재 문제를 나중에 다시 보기'}
-              aria-pressed={kept}
-              onClick={() => {
-                m.onToggleKeep?.();
-              }}
-              className={normalizeClass(['keep-button', { active: kept }])}
-            >
-              {kept ? 'KEEP' : '킵'}
-            </button>
-            <button
-              type="button"
-              aria-expanded={issueReportOpen}
-              onClick={() => {
-                m.setIssueReportOpen(!issueReportOpen);
-              }}
-              className={normalizeClass([
-                'question-issue-button',
-                { active: issueReportOpen, submitted: issueReportSubmitted },
-              ])}
-            >
-              {issueReportSubmitted ? '✓ 접수됨' : issueReportOpen ? '☑ 이상 신고' : '☐ 이상 신고'}
-            </button>
+            <span className="question-utilities">
+              <button
+                type="button"
+                aria-label={bookmarked ? '북마크 제거' : '북마크 추가'} aria-pressed={bookmarked}
+                onClick={() => {
+                  m.onToggleBookmark?.();
+                }}
+                className={normalizeClass(['bookmark-button', { active: bookmarked }])}
+              >
+                <span className="utility-face"><Star size={15} fill={bookmarked ? 'currentColor' : 'none'} aria-hidden="true"/></span>
+              </button>
+              <button
+                type="button"
+                aria-label={kept ? '현재 문제 킵 해제' : '현재 문제를 나중에 다시 보기'}
+                aria-pressed={kept}
+                onClick={() => {
+                  m.onToggleKeep?.();
+                }}
+                className={normalizeClass(['keep-button', { active: kept }])}
+              >
+                <span className="utility-face"><Pin size={13} fill={kept ? 'currentColor' : 'none'} aria-hidden="true"/>킵</span>
+              </button>
+              <button
+                type="button"
+                aria-expanded={issueReportOpen}
+                aria-label={issueReportSubmitted ? '이상 신고 접수됨' : '이상 신고'}
+                onClick={() => {
+                  m.setIssueReportOpen(!issueReportOpen);
+                }}
+                className={normalizeClass([
+                  'question-issue-button',
+                  { active: issueReportOpen, submitted: issueReportSubmitted },
+                ])}
+              >
+                <span className="utility-face">{issueReportSubmitted ? <Check size={13} aria-hidden="true"/> : <Flag size={13} aria-hidden="true"/>}{issueReportSubmitted ? '접수됨' : <><span className="utility-long-label">이상 </span>신고</>}</span>
+              </button>
+            </span>
           </header>
         ) : null}
         {issueReportOpen ? (
@@ -776,7 +780,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 m.onToggleBookmark?.();
               }}
             >
-              {bookmarked ? '★' : '☆'} <span>저장</span>
+              <span className="utility-face"><Star size={14} fill={bookmarked ? 'currentColor' : 'none'} aria-hidden="true"/>저장</span>
             </button>
             <button
               type="button"
@@ -784,16 +788,17 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 m.onAskAi?.();
               }}
             >
-              ✦ AI 질문
+              <span className="utility-face">✦ AI 질문</span>
             </button>
             <button
               type="button"
               aria-expanded={issueReportOpen}
+              aria-label={issueReportSubmitted ? '이상 신고 접수됨' : '이상 신고'}
               onClick={() => {
                 m.setIssueReportOpen(!issueReportOpen);
               }}
             >
-              {issueReportSubmitted ? '✓ 접수됨' : '이상 신고'}
+              <span className="utility-face"><Flag size={13} aria-hidden="true"/>{issueReportSubmitted ? '접수됨' : <><span className="utility-long-label">이상 </span>신고</>}</span>
             </button>
           </div>
         ) : null}

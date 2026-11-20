@@ -29,3 +29,12 @@
 - 공식 프로그램 페이지: https://tvn.cjenm.com/ko/Lovely-Runner/
 
 웹앱의 선택형 개인 테마에 필요한 크기로만 최적화했으며 인물이나 글자를 생성·변형하는 업스케일링은 적용하지 않았습니다.
+
+## 홈·메뉴·회차 인물 사진
+
+| 앱 파일 | 촬영자와 원본 | 사진 라이선스 |
+| --- | --- | --- |
+| `wooseok-discovery.webp` | [티비텐 TV10, 변우석 디스커버리 행사 (2026)](https://commons.wikimedia.org/wiki/File:20260429_Byeon_Wooseok_DISCOVERY(1).png) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+| `wooseok-prada.webp` | [K-POPIT 케이팝잇, 변우석 프라다 포토콜 (2025)](https://commons.wikimedia.org/wiki/File:Byeon_Woo-seok_at_PRADA_Photo_Call_in_2025_01.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
+
+두 사진을 리사이즈하고 WebP로 변환했습니다. 작은 화면과 회차 카드용 파일은 이름 끝에 `-small`이 붙습니다. 다른 회차 사진의 작은 WebP는 위에 기록한 기존 사진에서 만들었습니다.

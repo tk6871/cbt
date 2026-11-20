@@ -34,7 +34,7 @@ export default function ThemeStudyCover({
   const simpsons = styleName === 'simpsons';
   const { srcset, ...imageAttrs } = responsiveImageAttrs(
     portrait,
-    '(max-width:600px) 90vw, 640px',
+    '(max-width:650px) 94vw, (max-width:1400px) 46vw, 680px',
   );
   return (
     <section className={'fan-cover cover-' + styleName} data-subject={subject}>
@@ -64,7 +64,7 @@ export default function ThemeStudyCover({
           srcSet={srcset}
           {...imageAttrs}
           onError={restoreOriginalImage}
-          alt={simpsons ? '스프링필드의 호머 심슨' : '변우석 테마 사진'}
+          alt={simpsons ? '스프링필드의 환영 표지판' : '변우석 테마 사진'}
         />
         <figure>
           <img src={subjectPhoto(subject)} alt="" />

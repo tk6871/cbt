@@ -202,7 +202,6 @@ export function applyTheme(mode: 'system' | 'light' | 'dark'): void {
 
 export function currentVisualStyle(): VisualStyle {
   const saved = localStorage.getItem(VISUAL_STYLE_KEY) || localStorage.getItem(LEGACY_VISUAL_STYLE_KEY);
-  if (!IS_JEWELRY && saved === 'sunjae') return 'default';
   return saved === 'simpsons' || saved === 'sunjae' ? saved : 'default';
 }
 

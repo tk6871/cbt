@@ -67,7 +67,7 @@ export const settingGroups: SettingGroup[] = [
   { key: 'fontFamily', title: '글씨체', category: 'appearance', description: '메뉴와 문제 글꼴을 함께 바꿉니다.', options: [{ value: 'regular', label: '나눔고딕' }, { value: 'bold', label: '나눔고딕 Bold' }, { value: 'd2coding', label: 'D2Coding' }, { value: 'd2coding-bold', label: 'D2Coding Bold' }] },
   { key: 'display', title: '기기 화면 모드', category: 'device', description: '자동을 권장합니다. 변경 시 풀이를 저장한 뒤 화면을 다시 엽니다.', options: [{ value: 'auto', label: '자동' }, { value: 'mobile', label: '모바일·태블릿' }, { value: 'desktop', label: 'PC' }] },
   { key: 'dynamic', title: '동적 UI·모션', category: 'device', description: '기존 테마의 동적 배치와 화면 전환입니다. 끄면 이전 정적 배치로 돌아갑니다.', options: [{ value: true, label: '켜기' }, { value: false, label: '끄기' }] },
-  { key: 'rotation', title: '사진 자동 교체', category: 'appearance', jewelryOnly: true, description: '선재 테마 사진의 교체 간격입니다.', options: [0, 5, 10, 30, 60, 180, 300].map(value => ({ value, label: value === 0 ? '끔' : value < 60 ? `${value}초` : `${value / 60}분` })) },
+  { key: 'rotation', title: '사진 자동 교체', category: 'appearance', description: '선재 테마 사진의 교체 간격입니다.', options: [0, 5, 10, 30, 60, 180, 300].map(value => ({ value, label: value === 0 ? '끔' : value < 60 ? `${value}초` : `${value / 60}분` })) },
   { key: 'solveLayout', title: '문제풀이 화면', category: 'solving', description: '답안·진도·타이머를 유지하며 전환합니다.', options: [{ value: 'standard', label: '기본 CBT' }, { value: 'comcbt', label: 'COMCBT · 고밀도' }, { value: 'combat', label: '컴뱃 CBT' }] },
   { key: 'indicator', title: '이미지 선택 표시', category: 'solving', description: '이미지 직접 선택에서 사용하는 표시입니다.', options: [{ value: 'marker', label: '체크 마커' }, { value: 'area', label: '영역 색상 박스' }] },
   { key: 'imageTheme', title: '문제 이미지 다크 표시', category: 'explanation', industrialOnly: true, description: '다크 모드에서만 적용되며 원본 파일은 바꾸지 않습니다.', options: [{ value: 'auto', label: '눈부심 완화' }, { value: 'original', label: '항상 원본' }] },
@@ -93,8 +93,7 @@ export function visibleSettings(category: SettingsCategory, query: string, conte
   }
   for (const item of settingGroups) {
     if ((item.jewelryOnly && !context.jewelry) || (item.industrialOnly && context.jewelry)) continue;
-    const options = item.options.filter(option => context.jewelry || option.value !== 'sunjae');
-    include(item.key, item.category, [item.title, item.description, settingsHelp[item.key], ...options.map(option => option.label)]);
+    include(item.key, item.category, [item.title, item.description, settingsHelp[item.key], ...item.options.map(option => option.label)]);
   }
   for (const item of additionalSettings) {
     if ((item.key === 'omr' && !context.exam) || (item.key === 'recovery' && context.native)) continue;

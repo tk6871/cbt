@@ -8,8 +8,8 @@ export const glassMaterials = [
 export type GlassMaterial = typeof glassMaterials[number]['value'];
 const key = 'cbt-glass-material';
 function read(): GlassMaterial {
-  try { return glassMaterials.find(item => item.value === localStorage.getItem(key))?.value ?? 'prism'; }
-  catch { return 'prism'; }
+  try { return glassMaterials.find(item => item.value === localStorage.getItem(key))?.value ?? 'clear'; }
+  catch { return 'clear'; }
 }
 export const glassMaterial = signal(read());
 glassMaterial.subscribe(value => { document.documentElement.dataset.glass = value; });

@@ -29,3 +29,12 @@
   - 출처 페이지: https://www.dailymotion.com/video/xgs3fw
   - 640×480 JPEG
 - 번즈 `Excellent` 장면 3장은 페이지를 열 때 무작위로 하나를 골라 합격 엔진 아이콘과 홈 장면에 표시
+
+## 홈·메뉴·회차 배경 사진
+
+| 앱 파일 | 촬영자와 원본 | 사진 라이선스 |
+| --- | --- | --- |
+| `springfield.webp` | [apasciuto, Springfield Sign (2024)](https://commons.wikimedia.org/wiki/File:The_Simpsons,_Universal_Studios,_Orlando.jpg) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| `kwik-e-mart.webp` | [Joe Shlabotnik, Kwik-E-Mart (2008)](https://commons.wikimedia.org/wiki/File:The_Simpsons_Ride_-_KwikEMart.jpg) | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+
+두 사진을 리사이즈하고 WebP로 변환했습니다. 작은 화면과 회차 카드용 파일은 이름 끝에 `-small`이 붙습니다. 다른 회차 장면의 작은 WebP는 위에 기록한 기존 스틸에서 만들었습니다.
