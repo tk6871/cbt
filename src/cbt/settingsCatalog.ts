@@ -58,7 +58,7 @@ export const settingsHelp: Record<keyof SettingsValues, string> = {
   judgment: '베타 학습 도구를 유지하면서 내 판단·메모 입력란만 숨길 수 있습니다. 킵·즐겨찾기·답안 선택과는 별개입니다.',
 };
 export const settingGroups: SettingGroup[] = [
-  {key:'glass',title:'리퀴드 글라스',category:'appearance',description:'버튼·패널·상단바·Dock의 유리 재질',options:[...glassMaterials]},
+  {key:'glass',title:'리퀴드 글라스',category:'appearance',description:'버튼·패널·상단바·Dock의 유리 재질과 배경 작품 선택',options:[...glassMaterials]},
   {key:'mobileModel',title:'모바일 3D 해설',category:'explanation',description:'관련 해설에서 3D 보기를 눌렀을 때 모형을 읽습니다.',options:[{value:false,label:'끔'},{value:true,label:'허용'}]},
   { key: 'theme', title: '밝기', category: 'appearance', quick: true, description: '화면의 밝고 어두운 색상을 고릅니다.', options: [{ value: 'system', label: '기기 설정' }, { value: 'light', label: '라이트' }, { value: 'dark', label: '다크' }] },
   { key: 'fontScale', title: '문자 크기', category: 'appearance', quick: true, description: '문제·답안·해설에 적용됩니다. 큰 모니터에서도 직접 조절하세요.', options: [.8, 1, 1.2, 1.3, 1.4, 1.6].map(value => ({ value, label: `${Math.round(value * 100)}%${value === 1 ? ' · 기본' : ''}` })) },

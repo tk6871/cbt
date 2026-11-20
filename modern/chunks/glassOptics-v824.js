@@ -1,10 +1,11 @@
-import{T as f,W as w,O as x,S as y,V as S,a as d,P as q,b,M as P}from"./three.module-v824.js";const C=""+new URL("../assets/glass-lake-CRZnh9qB.webp",import.meta.url).href,z=`
+import{T as y,W as S,O as z,S as q,V as P,a as n,P as b,b as C,M}from"./three.module-v824.js";const R=`
   varying vec2 uvScreen;
   uniform sampler2D photo;
   uniform vec2 viewport, imageSize;
   uniform vec4 panes[4];
   uniform float radii[4];
   uniform float strength;
+  uniform vec2 light;
   vec3 samplePhoto(vec2 pixel){
     float ratio=viewport.x*imageSize.y/(viewport.y*imageSize.x);
     vec2 crop=min(vec2(1.),vec2(ratio,1./ratio));
@@ -19,9 +20,14 @@ import{T as f,W as w,O as x,S as y,V as S,a as d,P as q,b,M as P}from"./three.mo
     if(d>0.)continue;
     vec2 normal=q.x>q.y?vec2(sign(rel.x),0.):vec2(0.,sign(rel.y));
     if(max(q.x,q.y)>0.)normal=normalize(max(q,0.)*sign(rel));
-    float edge=exp(d/(4.*strength));
-    vec2 shift=normal*edge*strength*13.;
-    vec3 c=vec3(samplePhoto(pixel-shift*1.15).r,samplePhoto(pixel-shift).g,samplePhoto(pixel-shift*.83).b);
-    layer=vec4(c*.88+max(dot(normal,vec2(-.6,.8)),0.)*edge*.22,edge*.94);
+    // Snell refraction through a rounded shoulder. The planar center has zero slope.
+    float edge=1.-smoothstep(0.,min(radii[i],8.*strength),-d);
+    vec3 n=normalize(vec3(normal*(edge*2.8),1.));
+    vec3 ray=refract(vec3(0.,0.,-1.),n,1./1.48);
+    vec2 travel=ray.xy*(12.+7.*strength)/max(.01,-ray.z);
+    vec3 c=vec3(samplePhoto(pixel+travel*1.045).r,samplePhoto(pixel+travel).g,samplePhoto(pixel+travel*.965).b);
+    float gleam=pow(max(dot(n,normalize(vec3(light,.70))),0.),18.)*edge;
+    layer=vec4(c*.87+gleam*.48,edge*.92);
+
     } gl_FragColor=layer;
-  }`;async function M(s,m){const a=await new f().loadAsync(C);let t;try{t=new w({canvas:s,alpha:!0,powerPreference:"low-power"})}catch(o){throw a.dispose(),o}const g=new x(-1,1,1,-1,0,1),l=new y,i={photo:{value:a},viewport:{value:new d},imageSize:{value:new d(a.image.width,a.image.height)},panes:{value:Array.from({length:4},()=>new S)},radii:{value:new Float32Array(4)},strength:{value:1}},c=new q(2,2),p=new b({uniforms:i,transparent:!0,vertexShader:"varying vec2 uvScreen;void main(){uvScreen=uv;gl_Position=vec4(position.xy,0.,1.);}",fragmentShader:z});return l.add(new P(c,p)),t.setPixelRatio(Math.min(devicePixelRatio,1.5)),t.setClearColor(0,0),{draw(o){const e=s.getBoundingClientRect();if(!e.width||!e.height)return;t.setSize(Math.round(e.width),Math.round(e.height),!1),i.viewport.value.set(e.width,e.height);const u=m.querySelectorAll("[data-lens]");i.panes.value.forEach((h,v)=>{const n=u[v];if(!n){h.set(0,0,0,0);return}const r=n.getBoundingClientRect();h.set(r.left-e.left+r.width/2,e.bottom-r.bottom+r.height/2,r.width/2,r.height/2),i.radii.value[v]=parseFloat(getComputedStyle(n).borderTopLeftRadius)||0}),i.strength.value={clear:1,frost:.7,prism:2.1}[o],t.render(l,g)},dispose(){a.dispose(),c.dispose(),p.dispose(),t.dispose(),t.forceContextLoss()}}}export{M as createOptics};
+  }`;async function L(c,u,w){const i=await new y().loadAsync(w);let t;try{t=new S({canvas:c,alpha:!0,powerPreference:"low-power"})}catch(l){throw i.dispose(),l}const f=new z(-1,1,1,-1,0,1),v=new q,r={photo:{value:i},viewport:{value:new n},imageSize:{value:new n(i.image.width,i.image.height)},panes:{value:Array.from({length:4},()=>new P)},radii:{value:new Float32Array(4)},strength:{value:1},light:{value:new n(-.42,.62)}},h=new b(2,2),p=new C({uniforms:r,transparent:!0,vertexShader:"varying vec2 uvScreen;void main(){uvScreen=uv;gl_Position=vec4(position.xy,0.,1.);}",fragmentShader:R});v.add(new M(h,p)),t.setPixelRatio(Math.min(devicePixelRatio,1.5)),t.setClearColor(0,0);const m=new n;return{draw(l,o){const e=c.getBoundingClientRect();if(!e.width||!e.height)return;r.viewport.value.equals(m.set(e.width,e.height))||(t.setSize(Math.round(e.width),Math.round(e.height),!1),r.viewport.value.copy(m)),r.light.value.set(o?(o.x-e.left)/e.width*2-1:-.42,o?1-(o.y-e.top)/e.height*2:.62);const x=u.querySelectorAll("[data-lens]");r.panes.value.forEach((d,g)=>{const s=x[g];if(!s){d.set(0,0,0,0);return}const a=s.getBoundingClientRect();d.set(a.left-e.left+a.width/2,e.bottom-a.bottom+a.height/2,a.width/2,a.height/2),r.radii.value[g]=parseFloat(getComputedStyle(s).borderTopLeftRadius)||0}),r.strength.value={clear:1,frost:.7,prism:2.1}[l],t.render(v,f)},dispose(){i.dispose(),h.dispose(),p.dispose(),t.dispose(),t.forceContextLoss()}}}export{L as createOptics};

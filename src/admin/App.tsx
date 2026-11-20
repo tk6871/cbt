@@ -45,7 +45,7 @@ function renderAdmin(controller: ReturnType<typeof createAdminController>) {
     <AdminAppearance/>
     <div className="admin-layout">
       {renderAdminNavigation(controller.adminHeaderModel)}
-      <div className="admin-content">
+      <div className="admin-content" key={a.activeSection} data-enter-section={a.activeSection}>
         {renderAdminPageHeading(controller.adminHeaderModel, a.canViewMembers && controller.adminAccountsModel.client &&
           <FollowupDesk writable={controller.adminAccountsModel.canManageMembers} key={a.session.user.id} client={controller.adminAccountsModel.client} home={a.activeSection==='overview'}/>)}
         {a.canManageIssues && a.activeSection === 'banks' && <OptionalTool title="문제은행 현황"><BankInventory/></OptionalTool>}

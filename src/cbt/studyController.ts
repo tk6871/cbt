@@ -1,3 +1,5 @@
+import {flushSync} from 'react-dom';
+import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
 import {shallow} from 'deepsignal/core';
 import {pageNavigationStep} from './pageNavigationKey';
@@ -2165,7 +2167,6 @@ function animateViewDetails(next: ViewName): void {
   }
   const selectors: Partial<Record<ViewName, string>> = {
     home: '.android-app-promo,.simpsons-home-hero,.qualification-card,.study-builder,.subject-strip article,.start-actions button,.progress-panel dl > div,.home-release-card',
-    rounds: '.round-card',
     wrong: '.tool-hero,.question-library article,.empty-state',
     search: '.search-command,.search-summary,.question-library article,.empty-state',
     showcase: '.feature-hero,.feature-theme-preview,.feature-upscale-compare,.feature-tour-card,.feature-action-card,.feature-latest',
@@ -2288,7 +2289,24 @@ async function openRegularRounds(): Promise<void> {
 }
 
 async function openQualificationRounds(key: string): Promise<void> {
-  if (await switchQualification(key)) openView('rounds');
+  if (!(await switchQualification(key))) return;
+  const sharedCover = view.value === 'home' && document.querySelector('.hybrid-cover') && motionAllowed.value
+    && matchMedia('(min-width: 821px) and (pointer: fine)').matches && document.startViewTransition;
+  if (!sharedCover) { openView('rounds'); return; }
+  const root=document.documentElement;
+  if(root.dataset.coverFlight) return;
+  root.dataset.coverFlight='on';
+  try {
+    const transition=document.startViewTransition(()=>{
+      if(view.value==='home') flushSync(()=>openView('rounds'));
+    });
+    const finish=()=>{delete root.dataset.coverFlight;};
+    void transition.finished.then(finish,finish);
+  } catch {
+    delete root.dataset.coverFlight;
+    openView('rounds');
+  }
+
 }
 
 async function selectQualification(key: string): Promise<void> {
@@ -2370,6 +2388,7 @@ watch(homeScopeTrigger, (button, _, onCleanup) => {
     window.removeEventListener('scroll', observeRange);
   });
 }, {immediate:true});
+watch([view, selectedKey], ([page, subject]) => updateWallpaperContext(page,subject,isJewelry), {immediate:true});
 watch([view, textbookPagesOpen, visualStyle], ([page, books, style]) => {
   if (page === 'home' ? style !== 'default' : !(page === 'rounds' && books)) void loadCurrentScope();
 });

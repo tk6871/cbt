@@ -8,6 +8,7 @@ import '../react/materials.css';
 createRoot(document.getElementById('admin-app')!).render(createElement(AdminApp));
 
 function syncAppearance(){
+  document.documentElement.dataset.dynamicUi=localStorage.getItem('unified-cbt-dynamic-ui')==='false'?'off':'on';
   const mode=localStorage.getItem('unified-cbt-theme')||'dark';
   const dark=mode==='system'?matchMedia('(prefers-color-scheme:dark)').matches:mode==='dark';
   document.documentElement.dataset.theme=dark?'dark':'light';
