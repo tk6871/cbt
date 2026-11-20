@@ -46,6 +46,17 @@ export default function TextbookReader(p:Props){
  const display=useSyncExternalStore(subscribeDisplay,getDisplay);
  const entries=useMemo(()=>textbookEntries.filter(e=>e.book===book),[book]);
  const pages=useMemo(()=>[...new Set(entries.map(e=>e.page))].sort(compareBookPages),[entries]);
+ const chapterIndex=useMemo(()=>{
+  const eligible=new Set(entries.filter(entry=>entry.directSourceId || (entry.sourceId && !entry.reviewHold)).map(entry=>entry.page));
+  for(const example of textbookWorkedExamples) if(example.book===book) for(const page of example.pages) eligible.add(page);
+  const ordered=[...eligible].sort(compareBookPages);
+  return bookContents[book].map(part=>({title:part.title,tabs:(part.children || []).flatMap(node=>{
+    if(!node.from)return [];
+    const from=node.from;
+    const page=ordered.find(p=>(!node.prefix || p.startsWith(node.prefix)) && compareBookPages(p,from)>=0 && (!node.to || compareBookPages(p,node.to)<=0));
+    return page ? [{id:node.id,title:node.title,page,from,to:node.to,prefix:node.prefix}] : [];
+  })})).filter(part=>part.tabs.length);
+ },[book,entries]);
  const locations=useMemo(()=>entries.filter(e=>!e.workedExampleId && !invalid && start && inRange(e.page,start,end)),[entries,start,end,invalid]);
  const byId=useMemo(()=>new Map(items.map(item=>[item.id,item])),[items]);
  const matched=useMemo(()=>{
@@ -93,7 +104,13 @@ export default function TextbookReader(p:Props){
  const draftInvalid=!validPage(fromPage)||!!toPage&&(!validPage(toPage)||compareBookPages(fromPage,toPage)>0);
  if(starting)return <p className="library-note" role="status">선택한 문제를 여는 중…</p>;
  return <section className="textbook-pages" aria-label="교재 전용 풀이"><div data-react-view="textbook-reader" style={{display:'contents'}}>
-  <BookSurface book={book} start={start} end={end} title={selection.contentsLabel} loading={p.loading} error={p.error} invalid={invalid} matched={matched.length}
+  <BookSurface chapterIndex={<details className="book-edge-index"><summary>단원 색인</summary>
+    <nav aria-label="교재 단원 바로가기">{chapterIndex.map(part=><section key={part.title}><strong>{part.title}</strong>
+      <div>{part.tabs.map(tab=><button key={tab.id} type="button"
+        aria-current={(!tab.prefix || start.startsWith(tab.prefix)) && compareBookPages(start,tab.from)>=0 && (!tab.to || compareBookPages(start,tab.to)<=0) ? 'location' : undefined}
+        onClick={e=>{e.currentTarget.closest('details')?.removeAttribute('open');jump(tab.page);
+          document.querySelector<HTMLElement>('.book-edge-index>summary')?.focus({preventScroll:true});}}>
+          {tab.title}<small>{tab.page}쪽</small></button>)}</div></section>)}</nav></details>} book={book} start={start} end={end} title={selection.contentsLabel} loading={p.loading} error={p.error} invalid={invalid} matched={matched.length}
    fullRound={round?.roundBankId?{title:round.title,open:()=>void startSession(()=>p.onRound(round.roundBankId!))}:undefined}
    directCount={locations.filter(e=>e.directSourceId).length} pending={locations.filter(e=>!e.directSourceId&&!byId.has(textbookStudyId(e))).length}
    hasLocations={!!locations.length} reference={end?undefined:textbookReferencePage(book,start)} examples={examples} columns={columns}

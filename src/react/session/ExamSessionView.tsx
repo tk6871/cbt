@@ -432,7 +432,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
           <>
             <div
               key={`${session.page}-${session.pageSize}`}
-              className={normalizeClass(['question-columns', questionTransitionName])}
+              className={normalizeClass(['question-columns', questionTransitionName, {'reading-one':session.pageSize === 1}])}
             >
               {currentItemColumns.map((column, columnIndex) => (
                 <div key={columnIndex} className="question-column">
@@ -443,6 +443,8 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                         item: item,
                         mode: session.mode,
                         selected: session.answers[item.id],
+                        readingSize: session.pageSize,
+                        onReadingFocus: () => setSessionPageSize(session.pageSize === 1 ? 4 : 1, item),
                         subjectStart: isSubjectStart(item),
                         subjectNumber: sessionSubjectNumber(item),
                         displayNumber: session.items.indexOf(item) + 1,
@@ -559,9 +561,8 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                 </>
               </div>
             </header>
-            {solveLayoutMode === 'comcbt' ? (
               <div aria-label="OMR 빠른 필터" className="omr-filter-bar">
-                <button
+                <button type="button" aria-pressed={omrFilter === 'all'}
                   onClick={() => {
                     m.omrFilter = 'all';
                   }}
@@ -569,7 +570,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                 >
                   전체
                 </button>
-                <button
+                <button type="button" aria-pressed={omrFilter === 'unanswered'}
                   onClick={() => {
                     m.omrFilter = 'unanswered';
                   }}
@@ -578,7 +579,8 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                   {'미응답 '}
                   {unansweredCount}
                 </button>
-                <button
+                {solveLayoutMode === 'comcbt' && <>
+                <button type="button" aria-pressed={omrFilter === 'kept'}
                   onClick={() => {
                     m.omrFilter = 'kept';
                   }}
@@ -587,7 +589,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                   {'킵 '}
                   {keptCount}
                 </button>
-                <button
+                <button type="button" aria-pressed={omrFilter === 'subject'}
                   onClick={() => {
                     m.omrFilter = 'subject';
                   }}
@@ -595,8 +597,8 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                 >
                   현재 과목
                 </button>
+                </>}
               </div>
-            ) : null}
             <div
               ref={m.setOmrListRef}
               onPointerDown={markOmrManualScroll}

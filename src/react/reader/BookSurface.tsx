@@ -12,6 +12,7 @@ const MathFormula = lazy(()=>import('../practical/MathFormula'));
 export interface PageRow {entry:TextbookEntry;item?:QuestionItem;direct?:TextbookDirectSource}
 type RegisterTarget=(id:string,element:HTMLDivElement|null)=>void;
 export interface BookSurfaceProps {
+  chapterIndex:ReactNode;
   fullRound?:{title:string;open:()=>void};
   answers:Record<string,number>; saveDirect:(id:string,choice:number)=>void;
   navigator:NavigatorProps; book:TextbookKey; start:string; end:string; title:string; loading:boolean; error:string;
@@ -53,6 +54,7 @@ export function BookSurface(p:BookSurfaceProps) {
     <button type="button" aria-label="교재 풀이 설정" onClick={p.settings}>⚙ <span>설정</span></button>
   </header>
   <main className="reader-main">
+    {p.chapterIndex}
     {p.invalid&&<p role="alert">끝 쪽은 시작 쪽보다 뒤여야 합니다. 한 페이지는 시작 쪽만 입력하세요.</p>}
     {p.loading?<p role="status">교재에 연결된 원문을 불러오는 중…</p>:p.error?<p role="alert">{p.error} <button onClick={p.retry}>다시 불러오기</button></p>:<>
       <div className="book-page-result" aria-live="polite"><div><h2>{p.title||p.start+'쪽'+(p.end?' ~ '+p.end+'쪽':'')}</h2>

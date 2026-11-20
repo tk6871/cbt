@@ -1,3 +1,4 @@
+import {ExplanationReadingTools} from './ExplanationReadingTools';
 import {Check, Flag, Pin, Star} from 'lucide-react';
 import {clsx as normalizeClass} from 'clsx';
 import {lazy, Suspense} from 'react';
@@ -92,6 +93,9 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     unifiedHotspots,
     verifiedHotspots,
   } = m;
+  const readingTools = () => <ExplanationReadingTools choices={m.displayedChoices.map((html,i) =>
+    (item.question.choices[i]?.images?.length || /<(?:img|svg|math|sup|sub)\b/i.test(html)) ? '' : m.readableText(html))}
+    answer={item.question.answer} onInteract={stopExplanationAutoClose}/>;
   const CorrectionNote = presentation === 'book' ? 'details' : 'aside';
   return (
     <>
@@ -197,6 +201,9 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 ✦ AI 질문
               </button>
             ) : null}
+            {m.onReadingFocus && (m.readingSize === 4 || m.readingSize === 1) && <button type="button"
+              className="reading-focus" aria-label={m.readingSize === 4 ? `${displayNumber}번 한 문제로 크게 보기` : '네 문제로 돌아가기'}
+              onClick={m.onReadingFocus}>{m.readingSize === 4 ? '집중 보기' : '네 문제로'}</button>}
             <span className="question-utilities">
               <button
                 type="button"
@@ -682,6 +689,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             {item.question.explanationFormula && (
               <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
             )}
+            {readingTools()}
             <ExplanationFigures {...{
                 images: item.question.explanationImages,
                 folded: item.question.originalExplanationImagesFolded,
@@ -880,6 +888,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                       {item.question.explanationFormula && (
                         <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
                       )}
+                      {readingTools()}
                       <ExplanationFigures {...{
                           images: item.question.explanationImages,
                           folded: item.question.originalExplanationImagesFolded,

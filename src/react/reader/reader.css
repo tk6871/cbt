@@ -241,3 +241,14 @@ body:has(#textbook-navigator[open]){overflow:hidden}
   border-radius: 12px;
 }
 :root:is([data-visual-style="sunjae"], [data-visual-style="simpsons"]) .reader-toolbar :is(h1,b) { color: inherit; }
+
+.textbook-pages .book-edge-index{margin:0 0 .65rem auto;width:fit-content;max-width:100%;color:var(--text)}
+.book-edge-index>summary{cursor:pointer;min-height:44px;padding:10px 14px;border-radius:12px;background:var(--glass-bar,var(--surface));box-shadow:var(--glass-edge)}
+.textbook-pages .book-edge-index[open]{width:100%}
+.book-edge-index nav{max-height:min(45vh,340px);overflow:auto;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.book-edge-index section+section{margin-top:12px}
+.book-edge-index section>strong{font-size:.8rem}
+.book-edge-index section>div{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.book-edge-index button{min-height:44px;padding:5px 9px;background:var(--surface-2);color:var(--text);border:1px solid var(--line);border-radius:4px 10px 10px 4px;font:inherit;font-size:.72rem}
+.book-edge-index button small{margin-left:5px;color:var(--muted)}
+.book-edge-index [aria-current=location]{border-inline-start:3px solid var(--primary)}

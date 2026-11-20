@@ -36,6 +36,8 @@ export interface QuestionCardFields {
 }
 export interface QuestionCardProps extends QuestionCardFields {
   id?:string;
+  readingSize?:number;
+  onReadingFocus?:()=>void;
   onChoose?: (choice: number) => void;
   onToggleBookmark?: () => void;
   onToggleKeep?: () => void;
@@ -481,7 +483,7 @@ function useQuestionCard(props:QuestionCardProps) {
     canReadQuestion, circles, closeCompactExplanation,
     closeInlineExplanation, combatDenseChoices, combatUltraShortChoices,
     compactSolveLayout, compactTextChoices, compactVisualChoices,
-    correctSelected, displayedChoices, displayedQuestionMarkup,
+    correctSelected, displayedChoices, displayedQuestionMarkup, readableText,
     explanationAutoCloseSeconds, explanationDismissed, explanationOpen,
     explanationOrigin, fieldReportQuestion, hansolQuestion,
     hasReadableChoices, imageOptions, imageZoomOpen,

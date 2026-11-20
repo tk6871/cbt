@@ -3681,12 +3681,20 @@ function goToNextUnanswered(): void {
   goToQuestion(target.index);
 }
 
-function setSessionPageSize(size: number): void {
-  if (!session.value) return;
-  const activeIndex = Math.max(0, session.value.items.findIndex((item) => item.id === activeSessionItem.value?.id));
-  session.value.pageSize = size;
-  session.value.page = Math.floor(activeIndex / size);
-  activeSessionItemId.value = session.value.items[activeIndex]?.id || '';
+function setSessionPageSize(size: number, item?: QuestionItem): void {
+  const current = session.value;
+  if (!current || ![1, 2, 4, 6].includes(size)) return;
+  const anchor = item?.id ?? activeSessionItem.value?.id;
+  const index = Math.max(0, current.items.findIndex(entry => entry.id === anchor));
+  current.pageSize = size;
+  current.page = Math.floor(index / size);
+  activeSessionItemId.value = current.items[index]?.id || '';
+  scheduleLearningSessionSave();
+  if (item) requestAnimationFrame(() => {
+    const button = document.querySelector<HTMLButtonElement>(`#session-question-${index + 1} .reading-focus`);
+    button?.focus({preventScroll: true});
+    button?.closest('article')?.scrollIntoView({block: 'start', behavior: 'instant'});
+  });
 }
 
 function activateSessionItem(item: QuestionItem): void {
