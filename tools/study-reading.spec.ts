@@ -84,12 +84,21 @@ test('시안의 기본 서체와 회차 배치가 적용되고 이전 글꼴 선
   const grid=page.locator('.round-grid');
   await expect(grid).toHaveAttribute('data-layout','cards');
   await expect(grid.locator('.photo-stage,.window-lights,.glass-lens')).toHaveCount(0);
+  const years=page.getByRole('combobox',{name:'연도'});
+  await years.selectOption('2025');
+  await expect(grid.locator('.round-year-heading h2')).toHaveText(['2025년']);
+  await expect(grid.locator('article')).toHaveCount(3);
+  await years.selectOption('0');
+  expect(await grid.locator('.round-year-heading').count()).toBeGreaterThan(1);
+  expect(await page.locator('body').evaluate(el=>getComputedStyle(el,'::before').backgroundImage)).not.toContain('url(');
   await page.getByRole('button',{name:'목록',exact:true}).click();
   await page.reload();await expect(grid).toHaveAttribute('data-layout','list');
   await page.goto('./#/study/settings');
+  await page.locator('.wall-picker').getByRole('button',{name:'빙하',exact:true}).click();
   await page.locator('[data-setting=fontFamily]').getByRole('button',{name:/D2Coding Regular/}).click();
   await page.reload();await expect(page.locator('html')).toHaveAttribute('data-font-family','d2coding');
   await page.goto('./#/study/rounds');await expect(heading).toHaveCSS('font-family',/D2Coding/);
+  expect(await page.locator('body').evaluate(el=>getComputedStyle(el,'::before').backgroundImage)).toContain('IceCold');
 });
 
 test('집중 읽기에서 보기와 읽기 자를 조절하고 원래 네 문제로 복귀한다',async({page})=>{

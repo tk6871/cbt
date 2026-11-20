@@ -4,6 +4,9 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.6.1',scope:'industrial',date:'2026.11.20',title:'회차별 기출의 연도별 카드와 목록',
+      summary:'기본 회차 화면에서 연도를 골라 카드를 보거나 한 줄 목록으로 바꿀 수 있습니다.',
+      changes:['자동 배경은 기본 회차에서 밝은 중성색·리얼블랙을 사용합니다. 직접 고른 작품과 캐릭터 테마는 해당 배경을 표시합니다.','회차를 연도별로 묶고 반복되는 종목·연도 표기를 줄였습니다.']},
     {version:'6.6', scope:'industrial', date:'2026.11.20', title:'클리어 서체와 집중 읽기',
       summary:'클리어 화면의 글꼴과 기출 집중 읽기를 다듬었습니다.',
       changes:['기본 글꼴은 Pretendard 기반 클리어 산스입니다. 설정에서 이전 글꼴로 바꿀 수 있습니다.','집중 읽기에서 보기를 가리거나 읽기 자를 움직일 수 있습니다.','이미지 보기를 길게 눌러 확대하고 놓은 번호를 선택할 수 있습니다. 해설에서 정답의 원문 위치를 확인합니다.','이전 제출 답안 대조, 설비 모형의 단면 조절, 보석관의 세 가지 조명을 사용할 수 있습니다.']},
@@ -3263,8 +3266,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.6';
+  changelog.versions.industrial = '6.6.1';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.6';
+  changelog.currentVersion = '6.6.1';
   window.CBT_CHANGELOG = changelog;
 })();

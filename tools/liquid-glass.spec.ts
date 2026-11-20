@@ -122,9 +122,9 @@ for (const theme of ['simpsons','sunjae'] as const) {
         expect(new Set(boxes.map(b=>b.x)).size).toBe(1);
         expect(boxes[0]!.width).toBeGreaterThan(w*.85);
         for(const b of await card.locator('.question-utilities button').all()){
-          const target=await b.boundingBox(),face=await b.locator('.utility-face').boundingBox();
-          expect(target!.height).toBeGreaterThanOrEqual(44);expect(target!.width).toBeGreaterThanOrEqual(44);
-          expect(face!.height).toBe(26);
+          const size=await b.evaluate(el=>({width:el.offsetWidth,height:el.offsetHeight,face:el.querySelector<HTMLElement>('.utility-face')!.offsetHeight}));
+          expect(size.height).toBeGreaterThanOrEqual(44);expect(size.width).toBeGreaterThanOrEqual(44);
+          expect(size.face).toBe(26);
         }
         expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(w+1);
       }

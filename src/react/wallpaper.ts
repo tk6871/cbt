@@ -18,6 +18,7 @@ function read():Preference{
 }
 export const wallpaperChoice=signal(read());
 const context=signal<Artwork>(document.getElementById('admin-app')?'nexus':location.pathname.endsWith('jewelry.html')?'shell':'ice');
+wallpaperChoice.subscribe(value=>{document.documentElement.dataset.wallpaperMode=value==='auto'?'auto':'fixed';});
 export const activeWallpaper=computed(()=>wallpaperChoice.value==='auto'?context.value:wallpaperChoice.value);
 activeWallpaper.subscribe(value=>{
   document.documentElement.dataset.wallpaper=value;
