@@ -119,6 +119,12 @@
   word-break: keep-all;
 }
 .finals-hub > details { margin-block: 1.25rem; }
+.finals-hub .final-course {height:auto;min-height:0;display:flex;flex-direction:column;align-items:stretch;gap:.65rem}
+.final-course label,.final-course summary,.final-course a,.printed-subject {font-size:.92rem;line-height:1.5}
+.final-course select,.final-course textarea {font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.45rem;padding:.4rem}
+.final-course textarea {box-sizing:border-box;width:100%;min-height:4rem}
+.final-course footer {margin-top:auto}
+.printed-subject {display:block;font-weight:700;color:var(--primary);margin-bottom:.25rem}
 .finals-hub > details > summary { cursor: pointer; padding-block: .8rem; }
 
 .history-tools, .fan-comparison { display: flex; flex-wrap: wrap; gap: .6rem; margin-block: .8rem; }

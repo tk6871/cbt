@@ -29,6 +29,9 @@ const files = [
 
 if (!bundled) await rm(output, { recursive: true, force: true });
 await mkdir(output);
+await mkdir(resolve(output,'output/pdf'),{recursive:true});
+await cp(resolve(root,'output/pdf/sports-leadership-final.pdf'),resolve(output,'output/pdf/sports-leadership-final.pdf'));
+await cp(resolve(root,'output/pdf/metal-curves-final.pdf'),resolve(output,'output/pdf/metal-curves-final.pdf'));
 
 await Promise.all(directories.map((directory) =>
   cp(resolve(root, directory), resolve(output, directory), { recursive: true, filter: bundleFilter })));

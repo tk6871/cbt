@@ -1,4 +1,5 @@
 import {SourceImageStage} from '../reader/SourceImageStage';
+import {questionSubject,subjectLabel} from '../../cbt/printedSubject';
 import {ExplanationReadingTools} from './ExplanationReadingTools';
 import {Check, Flag, Pin, Star} from 'lucide-react';
 import {clsx as normalizeClass} from 'clsx';
@@ -84,7 +85,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     speechSpeaking,
     stopExplanationAutoClose,
     studyNote,
-    subjectNumber,
     subjectStart,
     toggleIssueType,
     toggleQuestionSpeech,
@@ -127,13 +127,12 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           },
         ])}
       >
-        {subjectStart ? (
+        {subjectStart && presentation !== 'book' ? (
           <div className="subject-divider">
             <span>
-              {subjectNumber || 1}
-              과목
+              {questionSubject(item).ordinal ? questionSubject(item).ordinal+'과목' : '과목'}
             </span>
-            <strong>{item.subject}</strong>
+            <strong>{questionSubject(item).name}</strong>
           </div>
         ) : null}
         {presentation !== 'book' ? (
@@ -154,7 +153,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 {item.question.number}번
               </span>
             ) : null}
-            {!subjectStart ? <span className="source-chip subject-source-chip">{item.subject}</span> : null}
+            {!subjectStart ? <span className="source-chip subject-source-chip">{subjectLabel(questionSubject(item))}</span> : null}
             {item.question.answerRate ? (
               <span className="answer-rate">
                 {'정답률 '}

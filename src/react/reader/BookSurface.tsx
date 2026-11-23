@@ -6,6 +6,7 @@ import type {QuestionItem,StudyMode} from '../../cbt/types';
 import {textbookAssetUrl,textbookDirectPageMap,textbookNames,textbookWorkedExamples,type TextbookEntry,type TextbookDirectSource,type TextbookKey} from '../../cbt/textbookPages';
 import {BookNavigator,type NavigatorProps} from './BookNavigator';
 import {DirectQuestion} from './DirectQuestion';
+import {bookSubject,subjectLabel} from '../../cbt/printedSubject';
 
 const MathFormula = lazy(()=>import('../practical/MathFormula'));
 
@@ -74,6 +75,7 @@ export function BookSurface(p:BookSurfaceProps) {
             const page=direct&&textbookDirectPageMap.get(entry.page);
             const embedded=direct||(item&&isImagePrimary(item)&&item.question.bookSourceNumber===entry.number);
             return <section className="book-sheet-question" key={entry.number}>
+              <small className="printed-subject">{subjectLabel(bookSubject(p.book,entry.page,entry.number,item))}</small>
               <h3 aria-label={'교재 '+entry.number+'번'} className={embedded?'printed-number-embedded':undefined}><span>{String(entry.number).padStart(2,'0')}</span><small>교재 {entry.number}번</small></h3>
               {item?(p.renderLinked?<div className="book-linked-question">{p.renderLinked(item,entry.number)}</div>:<LinkedQuestionTarget id={item.id} register={p.register!}/>):direct&&page?<DirectQuestion chosen={p.answers[direct.id] || 0} saveChoice={p.saveDirect} key={direct.id} source={direct} page={page} original={p.original} showText={p.showText}/>:<p className="book-pending">이 문항은 아직 준비 중입니다.</p>}
             </section>;

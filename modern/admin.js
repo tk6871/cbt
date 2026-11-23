@@ -1,1 +1,1 @@
-import"./chunks/materials-v826.js";import"./chunks/admin-v826.js";import"./chunks/problem-image-index-v826.js";import"./chunks/_commonjsHelpers-v826.js";import"./chunks/preload-helper-v826.js";import"./chunks/GlassPicker-v826.js";import"./chunks/queryClient-v826.js";
+import"./chunks/materials-v827.js";import"./chunks/admin-v827.js";import"./chunks/problem-image-index-v827.js";import"./chunks/_commonjsHelpers-v827.js";import"./chunks/preload-helper-v827.js";import"./chunks/GlassPicker-v827.js";import"./chunks/queryClient-v827.js";

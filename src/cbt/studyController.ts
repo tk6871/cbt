@@ -1,4 +1,6 @@
 import {photoStyle, roundPhoto, workspacePhoto} from '../react/themePhotos';
+import {finalAuthoredItems,finalNames,type FinalSubject} from './finalCourseBank';
+import {selectFinalItems,type FinalOptions} from './finalSelection';
 import {flushSync} from 'react-dom';
 import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
@@ -640,7 +642,7 @@ function loadTextbookModule(): Promise<TextbookModule> {
 }
 const textbookItems = computed(() => textbookModule.value?.buildTextbookItems([...allItems.value,...textbookSupplement.value],prepareEnergyBook.value) ?? []);
 const textbookAnswers = computed(() => textbookAnswersIn(studyStore.progress || {}));
-const itemMap = computed(() => new Map([...allItems.value, ...textbookItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
+const itemMap = computed(() => new Map([...allItems.value,...finalAuthoredItems, ...textbookItems.value, ...coolingRecordSourceItems(allItems.value).map(coolingRecordItem), ...coolingItemsWithOccurrences(coolingItems.value), ...coolingItemsWithOccurrences(coolingSafetyPool.value)].map((item) => [item.id, item])));
 const coolingDrawKey = 'school-cooling-midterm-draws';
 const coolingArchiveKey = 'school-cooling-midterm-sessions';
 const coolingDrawState = computed<CoolingDrawState>(() => {
@@ -2387,18 +2389,24 @@ watch([view, textbookPagesOpen, visualStyle], ([page, books, style]) => {
   if (page === 'home' ? style !== 'default' : !(page === 'rounds' && books)) void loadCurrentScope();
 });
 
-async function startFinalExam(subject: 'cooling' | 'energy', mode: StudyMode): Promise<void> {
+async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:FinalOptions): Promise<void> {
   const origin = view.value;
   let items: QuestionItem[];
   try {
     if (subject === 'energy') {
       await Promise.all([loadTextbookModule(), ensureBookSources('energy')]);
       items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy');
+    } else if(subject==='sports'||subject==='metal'){
+      items=finalAuthoredItems.filter(i=>i.round.id==='school-final-'+subject);
     } else {
-      await loadQuestionSources(['hvac-hansol']);
-      items = coolingRecordSourceItems(allItems.value).filter(({round}) =>
-        round.qualificationKey === 'hvac-hansol' && (round.year < 2024 || round.id === 'hvac-hansol-2024-1')
-      ).map(coolingRecordItem);
+      await Promise.all([loadTextbookModule(), ensureBookSources('hansol')]);
+      // Printed numbers, NOT the number/subject of the matched source CBT:
+      // in each of the 24 appendix sets, the second subject occupies 21–40.
+      items = textbookItems.value.filter(({round,question}) => {
+        const page = /^textbook-hansol-([45])-(\d+)$/.exec(round.id);
+        return !!page && (page[1] === '4' ? +page[2] >= 7 : +page[2] <= 108)
+          && question.number >= 21 && question.number <= 40;
+      });
     }
   } catch {
     showToast('기말고사 자료를 불러오지 못했습니다. 다시 시도해 주세요.');
@@ -2408,12 +2416,15 @@ async function startFinalExam(subject: 'cooling' | 'energy', mode: StudyMode): P
     if (view.value === origin) showToast('연결된 기말고사 문제가 없습니다.');
     return;
   }
-  const title = '기말고사 · ' + (subject === 'energy' ? '에너지설비' : '냉동공학');
-  if (savedLearningSession.value?.title === title && savedLearningSession.value.mode === mode) {
+  items=selectFinalItems(items,subject,options);
+  const title = '기말고사 · ' + finalNames[subject]+(options.expected?' · 예상 랜덤':'')+(options.exclude?' · 유사 제외':'');
+  const saved = savedLearningSession.value;
+  if (saved?.title === title && saved.mode === mode && saved.itemIds.length === items.length
+    && items.every((item,index)=>item.id === saved.itemIds[index])) {
     await resumeSavedLearning();
     return;
   }
-  const savedChoices = mode === 'learn' && subject === 'energy' ? textbookAnswers.value : {};
+  const savedChoices = mode === 'learn' && !options.expected && (subject === 'cooling'||subject==='energy') ? textbookAnswers.value : {};
   const answers = Object.fromEntries(items.filter(item => savedChoices[item.id]).map(item => [item.id,savedChoices[item.id]]));
   await beginSession(mode, title, items, answers, {qualificationKey: SCHOOL_EXAM_CATALOG_KEY});
 }

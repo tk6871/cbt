@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.6.2',scope:'industrial',date:'2026.11.23',title:'기말고사 범위별 연습',summary:'전체 문제·예상 랜덤과 주관식 연습을 구분했습니다.',changes:['냉동공학 주관식 2문제, 제관·체육 복습 PDF와 문제별 과목 표시를 추가했습니다.']},
     {version:'6.6.1',scope:'industrial',date:'2026.11.20',title:'회차별 기출의 연도별 카드와 목록',
       summary:'기본 회차 화면에서 연도를 골라 카드를 보거나 한 줄 목록으로 바꿀 수 있습니다.',
       changes:['자동 배경은 기본 회차에서 밝은 중성색·리얼블랙을 사용합니다. 직접 고른 작품과 캐릭터 테마는 해당 배경을 표시합니다.','회차를 연도별로 묶고 반복되는 종목·연도 표기를 줄였습니다.']},
@@ -3266,8 +3267,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.6.1';
+  changelog.versions.industrial = '6.6.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.6.1';
+  changelog.currentVersion = '6.6.2';
   window.CBT_CHANGELOG = changelog;
 })();

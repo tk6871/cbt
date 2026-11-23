@@ -19,13 +19,19 @@ test('이전 학교 종목을 저장한 사용자도 기출로 진입하고 기�
     await page.getByRole('button',{name:'메뉴 열기'}).click();
   await page.locator('.sidebar').getByRole('button',{name:'기말고사'}).click();
   await expect(page.getByRole('heading',{name:'기말고사',exact:true})).toBeVisible();
+  const pdf=await page.getByRole('link',{name:'시험범위 PDF 열기'}).getAttribute('href');
+  expect((await (await page.request.get(pdf!)).body()).subarray(0,5).toString()).toBe('%PDF-');
   await page.locator('.finals-hub article').filter({hasText:'냉동공학'}).getByRole('button',{name:'학습모드'}).click();
   await expect(page.locator('#session-question-1')).toBeVisible();
   await expect.poll(async()=>(await saved(page)).title).toBe('기말고사 · 냉동공학');
   const ids:string[]=(await saved(page)).itemIds;
-  expect(ids.length).toBeGreaterThan(10);
-  expect(ids.some(id=>id.includes('2024-1'))).toBe(true);
-  expect(ids.some(id=>/2024-[23]|2025|2026/.test(id))).toBe(false);
+  expect(new Set(ids).size).toBe(480);
+  expect(ids).toHaveLength(480);
+  const borders=(await import('../data/textbook-pages.json',{with:{type:'json'}})).default.entries.filter(e=>{
+    const [volume,page]=e.page.split('-').map(Number);
+    return e.book==='hansol' && (volume===4 && page>=7 || volume===5 && page<=108) && e.number>=21 && e.number<=40;
+  });
+  expect(ids.slice().sort()).toEqual(borders.map(e=>('previousDirectId' in e && e.previousDirectId)||`book-study::hansol::${e.page}::${e.number}::${e.sourceId}`).sort());
 });
 
 test('페이지 선택 초기화가 다른 쪽 답과 누적 기록을 보존한다',async({page})=>{
