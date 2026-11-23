@@ -17,6 +17,7 @@ export type TextbookCorrection = {text:string;choices:string[];answer?:number;no
  {presentation:'text';images:string[];choiceImages:string[][];asset?:never;size?:never;hotspots?:never} |
  {presentation?:'image';asset:string;size:number[];hotspots:AnswerHotspot[];images?:never;choiceImages?:never}
 );
+import {energyFamily,energyLabel} from './energyFinal';
 export type TextbookEntry = { book: string; page: string; number: number; sourceId: string | null; fingerprint: string | null; column?:number; imageSize?:number[]; pendingReason?:string; reviewHold?:boolean; workedExampleId?:string; previousDirectId?:string; directSourceId?:string; correction?:TextbookCorrection };
 export type TextbookDirectPart={page:string;rect:number[];label?:string;asset?:string;size?:number[]};
 export type TextbookDirectSource=typeof directBook.locations[number] & {questionParts:TextbookDirectPart[];solutionParts:TextbookDirectPart[]};
@@ -124,6 +125,8 @@ function buildTextbookItems(items: QuestionItem[], prepareEnergy: typeof prepare
    images:textCorrection?textCorrection.images.map(path=>textbookAssetUrl(path)):enhanced.images,
    choices:correction.choices.map((text,index)=>({text,html:'',images:(textCorrection?.choiceImages[index]||[]).map(path=>textbookAssetUrl(path))})),bookCorrection:{note:correction.note,originalImage:correction.sourceImage?textbookAssetUrl(correction.sourceImage):undefined}}:{}),sourceImageSize:textCorrection?undefined:e.imageSize||enhanced.sourceImageSize,number:e.number,_originRoundId:roundId,_originalNumber:e.number,
    _subject:original.subject,sourcePage:location};
+  const repeats=e.book==='energy'&&!correction&&energyFamily(original.id);
+  if(repeats){question.midtermOccurrences=repeats.map(energyLabel);question.midtermLatestSource=energyLabel(repeats[0]);}
   if(correction?.explanation){
    question.additionalExplanations=[...(enhanced.additionalExplanations||[]),...(enhanced.explanation?[{label:'수정 전 기존 CBT 해설',source:'기존 문제 보존본',text:enhanced.explanation}]:[])];
    question.explanation=correction.explanation;question.explanationHtml='';question.explanationType='editorial-supplement';question.explanationProvenance='book-verified-correction';

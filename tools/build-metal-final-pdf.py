@@ -39,20 +39,22 @@ def header(n,title,src):
     label(40,799,'제관공학   /   기말고사 곡선 읽기',11,teal,'Head')
     label(40,757,title,24,ink,'Head');path([(40,734),(555,734)],teal,1)
     label(40,27,('수업자료 PDF '+src+'쪽 기준  ·  그림은 읽기 연습용 개념도') if n<=5 else src,9,gray)
-    label(518,27,f'{n+1} / 9',10,gray)
+    label(509,27,f'{n+2} / 10',10,gray)
 def note(y,title,text):
     label(40,y,title,14,teal,'Head')
     text=''.join('<font name="Symbols">'+ch+'</font>' if unsupported(ch,'Body') else ch for ch in text)
     p=Paragraph(text,ParagraphStyle('body',fontName='Body',fontSize=12,leading=19,wordWrap='CJK'))
     _,h=p.wrap(503,500);p.drawOn(c,44,y-10-h);assert y-10-h>51
     return y-36-h
-def plate(page,box,x,y,w,h):
+def plate(page,box,x,y,w,h,practice=None):
     # Crop only the relevant diagram from the supplied scan; retain its axes.
     with TemporaryDirectory() as tmp:
         dest=Path(tmp)/'source'
         subprocess.run(['pdftoppm','-f',str(page),'-l',str(page),'-singlefile','-scale-to','2600','-png',str(book),str(dest)],check=True)
         with Image.open(dest.with_suffix('.png')) as im:
             part=im.crop(tuple(round(v*(im.width/1075 if i%2==0 else im.height/1520)) for i,v in enumerate(box)))
+            if practice:
+                part.convert('RGB').save(root/'assets/study'/practice,format='WEBP',quality=90,method=6)
             c.drawImage(ImageReader(part),x,y,width=w,height=h,preserveAspectRatio=True,anchor='c')
 
 # First sheet: overlay a bilingual key ON the original plot. Fixed scan coordinates
@@ -61,7 +63,7 @@ c.setPageSize((842,595))
 label(24,560,'철-탄소 평형 상태도  |  그림 위에서 바로 읽기',24,ink,'Head')
 label(24,535,'가로 = 탄소 함량   /   세로 = 온도   /   세 반응의 화살표는 냉각 기준. 가열할 때는 거꾸로 읽는다.',12,teal)
 box=(182,738,827,1310);scale=.67;ox,oy=196,110
-plate(21,box,ox,oy,(box[2]-box[0])*scale,(box[3]-box[1])*scale)
+plate(21,box,ox,oy,(box[2]-box[0])*scale,(box[3]-box[1])*scale,'metal-fe-c.webp')
 def marked(px,py,side,y,name,detail,color):
     x=ox+(px-box[0])*scale; target=oy+(box[3]-py)*scale
     tx=22 if side=='left' else 633; end=187 if side=='left' else 628
@@ -85,7 +87,34 @@ label(24,64,'S: 고체 하나 → 고체 둘     C: 액체 하나 → 고체 둘
 label(24,40,'교재 37~38쪽 그림 + 수업자료 56~60쪽 표기. 외부 자료는 공석 727℃ 등 다른 관례를 쓰므로 시험 수치는 수업 기준.',10,gray)
 label(24,22,'비교 자료: Iowa State University · Phase Equilibria (누르면 열기)',9,teal)
 c.linkURL('https://faculty.sites.iastate.edu/tec/files/inline-files/L19%20-%20Phase%20Equilibria%205.pdf',(23,19,340,34))
-label(784,22,'1 / 9',10);c.showPage();c.setPageSize(A4)
+label(776,22,'1 / 10',10);c.showPage()
+label(24,557,'온도를 멈췄나, 계속 식혔나, 다시 올렸나?',24,ink,'Head')
+label(24,530,'선의 모양만 외우지 말고, 출발 조직과 냉각 방법을 함께 읽자. 아래는 온도 이력의 개념도다.',12,gray)
+for j,(title,subtitle,pts,key,detail) in enumerate([
+    ('항온 유지','급냉 → 멈춰서 기다림',[(8,90),(22,51),(116,51),(142,9)],'수평선 = 같은 온도','시작선·종료선과 만나는 위치를 TTT에서 읽는다.'),
+    ('불림 / 완전 풀림','공냉 / 노냉',[(8,90),(29,66),(61,34),(112,8)],'로 밖이면 공냉, 안이면 노냉','불림은 공기 중에서, 완전 풀림은 가열로와 함께 더 천천히 식힌다.'),
+    ('담금질 후 뜨임','급냉 → 다시 가열',[(8,90),(20,8),(48,8),(71,48),(114,48),(140,9)],'두 번째 오르막 = 재가열','담금질한 강을 A1 아래로 다시 가열해 취성을 줄인다.'),
+]):
+    x=30+j*273; y=295
+    label(x,478,title,18,ink,'Head');label(x,451,subtitle,12,teal)
+    path([(x+11,y+115),(x+11,y),(x+230,y)],gray,1)
+    label(x+14,y+120,'온도',10,gray);label(x+190,y-16,'시간 →',10,gray)
+    if j==1:
+        path([(x+18,y+90),(x+62,y+77),(x+103,y+59),(x+150,y+34),(x+205,y+8)],'#395FA0',2.4)
+        label(x+167,y+37,'노냉',11,'#395FA0')
+        label(x+70,y+15,'공냉',11,coral)
+    if j==2:
+        path([(x+11,y+67),(x+224,y+67)],gray,1,True);label(x+193,y+73,'A₁',10,gray)
+    path([(x+10+px,y+py) for px,py in pts],coral,3)
+    label(x,245,key,13,teal,'Head')
+    p=Paragraph(detail,ParagraphStyle('small',fontName='Body',fontSize=12,leading=18,wordWrap='CJK'))
+    _,h=p.wrap(237,70);p.drawOn(c,x,230-h)
+path([(26,160),(815,160)],teal,1)
+label(30,131,'시험에서 “공냉했다”만 나오면?',15,ink,'Head')
+label(30,105,'바로 불림이라고 찍지 말자. Ms 위에서 온도를 맞춘 뒤 공냉했다면 마퀜칭일 수 있다. 공냉 전 단계가 단서다.',12)
+label(30,78,'불림처럼 연속해서 식힐 때 조직을 정밀하게 읽는 그림은 CCT다. TTT의 수평 유지 시간을 그대로 쓰지 않는다.',12)
+label(30,29,'강의 열처리 비교 · 축 간격과 경사는 실제 시간·온도 비율이 아니다.',10,gray)
+label(772,22,'2 / 10',10);c.showPage();c.setPageSize(A4)
 header(1,'그림을 볼 때, 가로축부터 찾자','56–60, 89–90')
 note(703,'먼저 물어볼 것: 오른쪽으로 가면 무엇이 달라질까?',
      '철-탄소 상태도에서는 탄소의 양, TTT 선도에서는 시간이 늘어난다. 둘 다 세로축은 온도지만 같은 가로선의 뜻이 다르다.')
@@ -161,12 +190,22 @@ y=note(308,'왼쪽 끝에서 위로: 순철 가열','G(912℃)는 α → γ, N(1
 y=note(y,'가로선을 따라: S는 공석, C는 공정, J는 포정','S: 탄소 0.77%, 723℃, 고체 → 고체 둘. C: 4.30%, 1147℃, 액체 → 고체 둘. J: 1495℃, 액체 + δ → γ. 수업 그림의 0.8%와 4.2%는 교재 표기와 다르므로 문제에 제시된 선도를 기준으로 읽는다.')
 note(y,'영역의 숫자를 우리말로','①은 액체, ⑦은 γ(오스테나이트), ⑨는 α와 γ의 공존, ⑪은 α와 Fe₃C의 공존이다. E의 2.11%는 γ에 탄소가 최대로 녹는 조성이지 C점이 아니다.')
 c.showPage()
-header(7,'전체 지도 ②  항온 변태 곡선','제관공학 교재 47쪽 (스캔 PDF 33쪽) · 수업자료 89~90쪽')
-plate(33,(290,258,750,646),55,346,485,376)
-y=note(313,'그림 속 표기 번역','왼쪽 숫자는 온도, 아래는 시간, 오른쪽 HRC는 경도다. P는 펄라이트, 상부 B·하부 B는 베이나이트다. 변태 개시점은 시작, 변태 종료점은 끝이라는 뜻이다.')
-y=note(y,'직접 짚기: 500℃에서 그대로 기다린다면?','왼쪽 500에서 손가락을 오른쪽으로 움직인다. 첫 곡선 전에는 아직 변태 전, 두 곡선 사이에서는 일부만 변태, 두 번째 곡선을 지나면 완료다. 시간을 물으면 교점에서 아래로 내려가 초(s)를 읽는다.')
-note(y,'헷갈리는 P 두 가지','상태도의 P는 점의 이름이고, 이 TTT 그림 영역의 P는 조직 이름이다. 두 그림이 같은 글자를 써도 뜻이 다르다.')
-c.showPage()
+c.setPageSize((842,595))
+label(24,560,'전체 지도 ②  항온변태곡선  |  500℃에서 오른쪽으로',23,ink,'Head')
+label(24,534,'가로 = 시간(로그 눈금)   /   왼쪽 세로 = 온도   /   오른쪽 HRC = 경도. 탄소 함량을 읽는 그림이 아니다.',12,teal)
+box=(290,258,750,646);scale=.92;ox,oy=200,123
+plate(33,box,ox,oy,(box[2]-box[0])*scale,(box[3]-box[1])*scale,'metal-ttt.webp')
+marked(375,377,'left',430,'① 첫 곡선 · 변태 시작','500℃에서 이 선 전은 변태 전.',teal)
+marked(430,377,'left',349,'② 두 번째 곡선 · 종료','두 선 사이에서는 일부만 변태.',coral)
+marked(528,352,'right',435,'P · 펄라이트','이쪽 온도에서 유지해 생긴 조직.',teal)
+marked(560,401,'right',363,'상부 B · 상부 베이나이트','B는 베이나이트의 첫 글자.',teal)
+marked(565,431,'right',286,'하부 B · 하부 베이나이트','상부 B보다 낮은 온도에서 생성.',teal)
+marked(483,554,'left',203,'아래 눈금 · 시간(초)','교점에서 수직으로 내려 읽는다.',gray)
+label(24,97,'손가락으로 풀기',14,teal,'Head')
+label(24,72,'500℃ 눈금에서 출발 → 오른쪽으로 ①을 만나면 변태 시작 → ②를 지나면 이 온도에서의 변태 완료.',13)
+label(24,48,'왜 수평인가? 기다리는 동안 시간만 지나고 온도는 그대로다. 계속 식히는 불림과는 경로가 다르다.',11,gray)
+label(24,22,'제관공학 교재 47쪽 원도 · 수업자료 89~90쪽과 대조. 이 선도의 숫자는 다른 강종에 그대로 적용하지 않는다.',9,gray)
+label(775,22,'9 / 10',10);c.showPage();c.setPageSize(A4)
 header(8,'전체 지도 ③  세 열처리를 나란히','제관공학 교재 47쪽 (스캔 PDF 33쪽) · 수업자료 91~95쪽')
 plate(33,(88,1098,945,1394),32,502,531,198)
 y=note(466,'원도 (a) 오스템퍼  |  변태 구역을 가로지름','유지선이 Ms 위에서 빗금 친 변태 구역을 끝까지 통과한다. 같은 온도에서 충분히 기다려 베이나이트가 되었다는 뜻이다.')

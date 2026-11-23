@@ -46,7 +46,7 @@ test('페이지 선택 초기화가 다른 쪽 답과 누적 기록을 보존한
   await pick(2);
   await expect.poll(async()=>Object.values((await saved(page)).answers||{})).toEqual([2]);
   const initial=await saved(page);
-  expect(initial.itemIds.length).toBeGreaterThan(1600);
+  expect(initial.itemIds.length).toBe(1680);
   await page.keyboard.press('ArrowRight');await expect(page.locator('#session-question-1')).toHaveCount(0);
   await pick(3);
   await expect.poll(async()=>Object.keys((await saved(page)).answers||{}).length).toBe(2);

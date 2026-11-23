@@ -39,6 +39,9 @@ if (bundled) {
   await cp(resolve(root,'assets'), resolve(output,'assets'), {recursive:true,filter:bundleFilter});
 } else {
   await mkdir(resolve(output, 'assets'), { recursive: true });
+  await mkdir(resolve(output,'assets/study'),{recursive:true});
+  for(const name of ['metal-heat-paths.svg','metal-fe-c.webp','metal-ttt.webp'])
+    await cp(resolve(root,'assets/study',name),resolve(output,'assets/study',name));
   await cp(resolve(root, 'assets/icons'), resolve(output, 'assets/icons'), { recursive: true, filter: bundleFilter });
   await cp(resolve(root, 'assets/lounge'), resolve(output, 'assets/lounge'), { recursive: true, filter: bundleFilter });
   const imageReplacements=JSON.parse(await readFile(resolve(root,'data/problem-images-webp90.json'),'utf8')).mappings;

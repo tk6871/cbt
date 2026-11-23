@@ -4,7 +4,7 @@ import type {StudyMode} from '../cbt/types';
 import {finalNames,type FinalSubject} from '../cbt/finalCourseBank';
 import {sampleSize,type FinalOptions} from '../cbt/finalSelection';
 import {CoolingFinalWritten} from './CoolingFinalWritten';
-const descriptions={cooling:'부록 4-7~5-108쪽 · 각 회 냉동냉장설비 21~40번',sports:'수업 요약본 7개 단원 · 운동·체력·리더십·윤리',metal:'예상 랜덤: 철-탄소 평형 상태도 7문제 + 항온변태·열처리 3문제',energy:'에너지 교재 전체 수록 문제'};
+const descriptions={cooling:'부록 4-7~5-108쪽 · 각 회 냉동냉장설비 21~40번',sports:'수업 요약본 7개 단원 · 운동·체력·리더십·윤리',metal:'예상 연습: 철–탄소 상태도 5 · 항온변태곡선 3 · 뜨임·불림 등 열처리 2',energy:'교재 321~644쪽 · 2018~2025년 수록 21회 · 1,680문제'};
 const pdfs={sports:['sports-leadership-final','시험범위 PDF 열기'],metal:['metal-curves-final','곡선 입문 PDF 열기']} as const;
 export function FinalExams({start, archive, children}: {
   start: (subject: FinalSubject, mode: StudyMode,options:FinalOptions) => Promise<void>;
@@ -27,9 +27,9 @@ export function FinalExams({start, archive, children}: {
     <div className="round-grid">{(['cooling','metal','sports','energy'] as const).map(subject =>
       <article key={subject} className="round-card final-course"><h2>{finalNames[subject]}</h2>
         <p>{descriptions[subject]}</p>
-        {subject!=='energy'&&<><label>문제 범위 <select value={get(subject).expected?'pick':'all'} onChange={e=>change(subject,{expected:e.target.value==='pick',exclude:e.target.value==='pick'})}>
+        <label>문제 범위 <select value={get(subject).expected?'pick':'all'} onChange={e=>change(subject,{expected:e.target.value==='pick',exclude:e.target.value==='pick'})}>
           <option value="all">전체 문제</option><option value="pick">예상 랜덤 · {sampleSize}문제</option></select></label>
-        <label><input type="checkbox" checked={get(subject).exclude} onChange={e=>change(subject,{exclude:e.target.checked})}/> 중복·비슷한 문제 제외</label></>}
+        <label><input type="checkbox" checked={get(subject).exclude} onChange={e=>change(subject,{exclude:e.target.checked})}/> 중복·비슷한 문제 제외</label>
         {(subject==='metal'||subject==='sports')&&<a href={'output/pdf/'+pdfs[subject][0]+'.pdf'} target="_blank" rel="noopener">{pdfs[subject][1]} ↗</a>}
         {subject==='cooling'&&<details><summary>주관식 연습 · 5점짜리 2문제</summary><CoolingFinalWritten/></details>}
         <footer>{(['learn','exam'] as const).map(mode =>

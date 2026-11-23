@@ -1,5 +1,6 @@
 import {authoredMeta,type FinalSubject} from './finalCourseBank';
 import type {QuestionItem} from './types';
+import {energyPick,energyPool} from './energyFinal';
 
 // Printed page:number -> tested skill. An allow-list, not a random sample of the book.
 const coolingPicks:Record<string,string>={
@@ -27,14 +28,31 @@ function curated(i:QuestionItem,subject:FinalSubject){
 }
 export type FinalOptions={expected:boolean,exclude:boolean};
 export const sampleSize=10;
+const thermalGroups=new Set(['불림','풀림','뜨임','담금질','냉각선도']);
+const tttGroups=new Set(['TTT축','변태율','Ms','마퀜칭','오스템퍼링','마템퍼링','코','항온조직']);
+export function metalBlock(i:QuestionItem){
+ const group=authoredMeta.get(i.id)?.group.split(':')[1]??'';
+ return thermalGroups.has(group)?'thermal':tttGroups.has(group)?'ttt':'phase';
+}
 export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options:FinalOptions){
+ if(subject==='energy'){
+   const pool=energyPool(all,options.exclude,options.expected);
+   if(!options.expected)return pool;
+   const used=new Set<string>();
+   return shuffle(pool).filter(i=>{
+     const skill=energyPick(i.sourceQuestionId);
+     if(options.exclude&&used.has(skill))return false;
+     used.add(skill);return true;
+   }).slice(0,sampleSize);
+ }
  const eligible=options.expected?all.filter(i=>curated(i,subject)):all;
  let pool=options.expected?shuffle(eligible):eligible;
  if(subject==='metal'&&options.expected){
-   const phase=(i:QuestionItem)=>!['TTT축','변태율','Ms','마퀜칭','오스템퍼링','마템퍼링'].includes(authoredMeta.get(i.id)!.group.split(':')[1]);
-   const main=pool.filter(phase), others=pool.filter(i=>!phase(i));
-   const core=options.exclude?main.filter((i,n)=>main.findIndex(x=>authoredMeta.get(x.id)?.group===authoredMeta.get(i.id)?.group)===n):main;
-   pool=[...shuffle([...core.slice(0,7),...others.slice(0,3)]),...core.slice(7),...others.slice(3)];
+   const slice=(block:string,n:number)=>{
+     const group=pool.filter(i=>metalBlock(i)===block);
+     return (options.exclude?group.filter((i,k)=>group.findIndex(x=>authoredMeta.get(x.id)?.group===authoredMeta.get(i.id)?.group)===k):group).slice(0,n);
+   };
+   return shuffle([...slice('phase',5),...slice('ttt',3),...slice('thermal',2)]);
  }
  if(!options.exclude)return options.expected?pool.slice(0,sampleSize):pool;
  const keys=new Set<string>(), results:QuestionItem[]=[];
