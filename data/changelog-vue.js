@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.6.7',scope:'industrial',date:'2026.11.24',title:'지게차 기말 기출 선별 연습',summary:'지게차운전기능사 기출에서 30문제를 골라 3·4회에 추가했습니다.',changes:['자체 예상과 기출을 구분하고 기출 문항에는 원래 회차와 번호를 표시합니다.']},
     {version:'6.6.6',scope:'industrial',date:'2026.11.23',title:'지게차 기말 연습',summary:'객관식 15문제와 주관식 2문제를 따로 연습합니다.',changes:['지게차·엔진·법규·일반안전에서 5·5·2·3문제를 추첨하고 도로교통법규는 제외합니다.','윤활유와 등화장치 답안을 작성하고 예시답안을 확인할 수 있습니다.']},
     {version:'6.6.5',scope:'industrial',date:'2026.11.23',title:'과목을 고르고 회차로 들어가는 기말 연습',summary:'네 과목을 각각 열어 회차와 예상 랜덤을 선택합니다.',changes:['회차 목록에서 범위와 진도를 바로 확인하며, 랜덤 설정은 같은 페이지에서 따로 열 수 있습니다.','일반 회차와 에너지 교재에서 과목만 풀기를 지원하고 과목 전환 제목을 키웠습니다.']},
     {version:'6.6.4',scope:'industrial',date:'2026.11.23',title:'내가 고르는 기말 연습',summary:'범위·문항 수·중복 여부를 골라 연습합니다.',changes:['60문제 단위로 쪽수와 풀이 진도를 확인하고 예상 랜덤 문항 수를 선택합니다.','냉동 주관식을 전용 페이지로 분리하고 스포츠 예상 문제와 제관 원도 한글 표시를 보강했습니다.']},
@@ -3271,8 +3272,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.6.6';
+  changelog.versions.industrial = '6.6.7';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.6.6';
+  changelog.currentVersion = '6.6.7';
   window.CBT_CHANGELOG = changelog;
 })();

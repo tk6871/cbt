@@ -5,12 +5,28 @@ import {bookSubject} from '../src/cbt/printedSubject';
 import {energyPool,energyFamily,energyKey} from '../src/cbt/energyFinal';
 import entries from '../data/textbook-pages.json' with {type:'json'};
 import type {QuestionItem} from '../src/cbt/types';
-test('지게차 예상 두 세트는 각각 5·5·2·3이며 이전 문항을 빼도 구성된다',()=>{
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
+import type {Round} from '../src/cbt/types';
+test('지게차 선별 30문제는 원래 회차·번호의 지문, 보기 순서, 정답과 일치한다',()=>{
+ const ctx={window:{} as {CBT_DATA_FORKLIFT_CRAFTSMAN?:{rounds:Round[]}}};
+ runInNewContext(readFileSync('data/forklift-craftsman.js','utf8'),ctx);
+ const items=finalAuthoredItems.filter(i=>i.id.startsWith('school-final-forklift:past:'));
+ expect(new Set(items.map(i=>i.id)).size).toBe(30);
+ for(const i of items){
+   const [r,n]=i.id.slice('school-final-forklift:past:'.length).split(':');
+   const original=ctx.window.CBT_DATA_FORKLIFT_CRAFTSMAN!.rounds.find(x=>x.id==='forklift-craftsman-'+r)!.questions.find(x=>x.number===+n)!;
+   expect(i.question.text).toBe(original.text);expect(i.question.answer).toBe(original.answer);
+   expect(i.question.choices.map(c=>c.text)).toEqual(original.choices.map(c=>c.text));
+   expect([...(original.images||[]),...original.choices.flatMap(c=>c.images||[])]).toHaveLength(0);
+ }
+});
+test('지게차 예상 네 세트는 각각 5·5·2·3이며 이전 문항을 빼도 구성된다',()=>{
  const all=finalAuthoredItems.filter(i=>i.round.id==='school-final-forklift');
- expect(all).toHaveLength(30);
+ expect(all).toHaveLength(60);
  for(let j=0;j<12;j++){
    let left=all;
-   for(let run=0;run<2;run++){
+   for(let run=0;run<4;run++){
      const set=selectFinalItems(left,'forklift',{expected:true,exclude:true});
      expect(new Set(set.map(i=>i.id)).size).toBe(15);
      expect(['지게차','엔진','법규','일반안전'].map(k=>set.filter(i=>i.subject===k).length)).toEqual([5,5,2,3]);
@@ -18,6 +34,13 @@ test('지게차 예상 두 세트는 각각 5·5·2·3이며 이전 문항을 �
    }
    expect(selectFinalItems(left,'forklift',{expected:true,exclude:false})).toEqual([]);
  }
+});
+test('지게차 3회에는 기능사 원 회차와 문제 번호를 표시한다',async({page})=>{
+ await page.goto('./?safe=1#/study/school-forklift');
+ const card=page.getByRole('article',{name:'3회 연습',exact:true});
+ await expect(card).toContainText('기능사 기출 선별');
+ await card.getByRole('button',{name:'학습모드'}).click();
+ await expect(page.locator('#session-question-1')).toContainText('2009년 5회 25번');
 });
 test('지게차 기말 메뉴에서 주관식 복원 및 객관식 15문제 시작',async({page})=>{
  await page.goto('./?safe=1#/study/school');

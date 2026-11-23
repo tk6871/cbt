@@ -1,5 +1,6 @@
 import type { QuestionItem, Round } from './types';
 import {forkliftRows} from './forkliftFinal';
+import pastForklift from '../../data/forklift-final-past.json' with {type:'json'};
 
 // Group, curated prediction, question, answer, distractors, rationale.
 type Row=[string,boolean,string,string,string,string,string,string];
@@ -114,4 +115,13 @@ for(const [key,rows] of [['sports',sports],['metal',metal],['forklift',forklift]
    const id=round.id+':'+question.number;round.questions.push(question);
    finalAuthoredItems.push({id,subject:area,round,question});authoredMeta.set(id,{group:key+':'+group,pick});
  });
+ if(key==='forklift')for(const row of pastForklift){
+   const [year,session,n]=row.ref.split(/[-:]/);
+   const question={number:round.questions.length+1,text:row.text,choices:row.choices.map(text=>({text})),answer:row.answer,
+     _subject:row.topic,explanation:row.explanation,sourcePage:`지게차운전기능사 기출 · ${year}년 ${session}회 ${n}번`};
+   const id='school-final-forklift:past:'+row.ref;
+   round.questions.push(question);
+   finalAuthoredItems.push({id,subject:row.topic,round,question});
+   authoredMeta.set(id,{group:'forklift:past:'+row.ref,pick:true});
+ }
 }

@@ -59,7 +59,7 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
        const done=r.items.filter(i=>choice(i)).length;
        return <article key={r.index} aria-label={r.index+1+'회 연습'} className="final-range">
          <header><h3>{r.index+1}회</h3>{last===String(r.index)&&<small>최근 선택</small>}</header>
-         <p>{r.label}</p><small>풀이 {done}/{r.items.length}</small><progress aria-label="회차 진도" value={done} max={r.items.length}/>
+         <p>{subject==='forklift'?(r.items[0]?.question.sourcePage?'기능사 기출 선별 · ':'자체 예상 · '):''}{r.label}</p><small>풀이 {done}/{r.items.length}</small><progress aria-label="회차 진도" value={done} max={r.items.length}/>
          <ModeButtons disabled={busy} go={m=>void launch(m,{range:r.index,expected:false,exclude:rangeExclude})}/></article>;
      })}</div>
      <details className="final-tool"><summary><BookOpen size={17}/> 전체 문제 · {items.length}문제</summary><ModeButtons disabled={busy} go={m=>void launch(m,{expected:false,exclude:rangeExclude})}/></details>
