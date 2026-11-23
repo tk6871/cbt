@@ -1,7 +1,7 @@
 import { generatePath, matchRoutes } from 'react-router';
 
 export const studyViews = [
-  'home', 'rounds', 'school', 'school-cooling','school-metal','school-sports','school-energy','school-written', 'history', 'wrong', 'search', 'calculation', 'guide',
+  'home', 'rounds', 'school', 'school-cooling','school-metal','school-sports','school-energy','school-written','school-forklift','school-forklift-written', 'history', 'wrong', 'search', 'calculation', 'guide',
   'coach', 'beta', 'showcase', 'stats', 'updates', 'settings',
 ] as const;
 export type StudyView = typeof studyViews[number];

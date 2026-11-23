@@ -1,4 +1,5 @@
 import type { QuestionItem, Round } from './types';
+import {forkliftRows} from './forkliftFinal';
 
 // Group, curated prediction, question, answer, distractors, rationale.
 type Row=[string,boolean,string,string,string,string,string,string];
@@ -88,11 +89,12 @@ const metal:Row[]=[
  ['불림',true,'열처리 경로 그림의 Normalizing은 가열로 밖의 공기에서 식히는 처리다. 우리말 이름은?','불림','완전 풀림','뜨임','오스템퍼링','불림은 공냉, 완전 풀림(Annealing)은 노냉이다. 그림에서 완전 풀림의 온도가 더 완만하게 떨어진다.'],
  ['뜨임',true,'열처리 경로 그림에서 급냉한 강을 다시 A₁ 아래까지 가열했다. 두 번째 가열의 이름은?','뜨임','불림','공정반응','담금질','첫 급냉은 담금질(Quenching), 그 뒤의 낮은 온도 재가열은 뜨임(Tempering)이다.'],
 ];
-export const finalNames={cooling:'냉동공학',sports:'스포츠리더십',metal:'제관공학',energy:'에너지설비'} as const;
+export const finalNames={cooling:'냉동공학',sports:'스포츠리더십',metal:'제관공학',energy:'에너지설비',forklift:'지게차'} as const;
 export type FinalSubject=keyof typeof finalNames;
 export const authoredMeta=new Map<string,{group:string,pick:boolean}>();
 export const finalAuthoredItems:QuestionItem[]=[];
-for(const [key,rows] of [['sports',sports],['metal',metal]] as const){
+const forklift:Row[]=forkliftRows.map(([topic,...row],i)=>[`${topic}:${i+1}`,true,...row]);
+for(const [key,rows] of [['sports',sports],['metal',metal],['forklift',forklift]] as const){
  const subject=finalNames[key];
  const round:Round={id:'school-final-'+key,qualificationKey:'school-exams',title:subject+' 기말 연습',subjects:[subject],year:2026,questions:[]};
  rows.forEach(([group,pick,text,right,a,b,c,explanation],i)=>{
@@ -106,9 +108,10 @@ for(const [key,rows] of [['sports',sports],['metal',metal]] as const){
      ['TTT축','변태율','Ms','코','항온조직'].includes(group)?'ttt':
      ['담금질','불림','풀림','뜨임','냉각선도'].includes(group)?'heat':
      ['축','공정','공석','포정','A1','A2','A3','A4','E점','상영역','두상','좌표','용융','시멘타이트'].includes(group)?'phase':undefined;
-   const question={number:i+1,text,choices:choices.map(text=>({text})),answer,explanation,_subject:subject,images,
+   const area=key==='forklift'?forkliftRows[i][0]:subject;
+   const question={number:i+1,text,choices:choices.map(text=>({text})),answer,explanation,_subject:area,images,
      explanationImages:keyPlate?['assets/study/metal-key-'+keyPlate+'.webp']:undefined};
    const id=round.id+':'+question.number;round.questions.push(question);
-   finalAuthoredItems.push({id,subject,round,question});authoredMeta.set(id,{group:key+':'+group,pick});
+   finalAuthoredItems.push({id,subject:area,round,question});authoredMeta.set(id,{group:key+':'+group,pick});
  });
 }

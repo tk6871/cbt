@@ -5,6 +5,35 @@ import {bookSubject} from '../src/cbt/printedSubject';
 import {energyPool,energyFamily,energyKey} from '../src/cbt/energyFinal';
 import entries from '../data/textbook-pages.json' with {type:'json'};
 import type {QuestionItem} from '../src/cbt/types';
+test('지게차 예상 두 세트는 각각 5·5·2·3이며 이전 문항을 빼도 구성된다',()=>{
+ const all=finalAuthoredItems.filter(i=>i.round.id==='school-final-forklift');
+ expect(all).toHaveLength(30);
+ for(let j=0;j<12;j++){
+   let left=all;
+   for(let run=0;run<2;run++){
+     const set=selectFinalItems(left,'forklift',{expected:true,exclude:true});
+     expect(new Set(set.map(i=>i.id)).size).toBe(15);
+     expect(['지게차','엔진','법규','일반안전'].map(k=>set.filter(i=>i.subject===k).length)).toEqual([5,5,2,3]);
+     left=left.filter(i=>!set.includes(i));
+   }
+   expect(selectFinalItems(left,'forklift',{expected:true,exclude:false})).toEqual([]);
+ }
+});
+test('지게차 기말 메뉴에서 주관식 복원 및 객관식 15문제 시작',async({page})=>{
+ await page.goto('./?safe=1#/study/school');
+ await page.getByRole('button',{name:'지게차',exact:true}).click();
+ await page.getByRole('button',{name:/주관식 2문제/}).click();
+ await page.getByLabel('윤활유 답안').fill('마찰과 마모 감소');
+ await page.reload();
+ await expect(page.getByLabel('윤활유 답안')).toHaveValue('마찰과 마모 감소');
+ await expect(page.getByLabel('등화장치 답안')).toBeVisible();
+ await page.getByRole('button',{name:'← 지게차 기말'}).click();
+ const random=page.locator('.final-tool').filter({hasText:'예상 랜덤'});
+ await random.locator('summary').click();
+ await random.getByRole('button',{name:'CBT 시험모드'}).click();
+ await expect(page.locator('#session-question-1')).toBeVisible();
+ await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').itemIds?.length)).toBe(15);
+});
 test('에너지 전체·예상은 교재 안에서만 고르고 최신 반복 회차를 남긴다',()=>{
  const items=entries.entries.filter(e=>e.book==='energy').map(e=>({id:e.page+':'+e.number,sourceQuestionId:e.sourceId}) as QuestionItem);
  const all=energyPool(items,false,false), unique=energyPool(items,true,false), picks=energyPool(items,false,true);
@@ -33,7 +62,7 @@ test('수업 예상 후보 선택과 같은 유형 제외는 원본을 바꾸지
 test('주관식 두 문제와 체육·제관 예상 연습이 열린다',async({page})=>{
   await page.goto('./?safe=1#/study/school');
   const hub=page.locator('.finals-hub');
-  await expect(hub.locator('.final-subjects button')).toHaveText(['냉동공학','제관공학','스포츠리더십','에너지설비']);
+  await expect(hub.locator('.final-subjects button')).toHaveText(['냉동공학','제관공학','스포츠리더십','에너지설비','지게차']);
   await expect(hub.locator('input,select')).toHaveCount(0);
   await hub.getByRole('button',{name:'냉동공학',exact:true}).click();
   await hub.getByRole('button',{name:/주관식 연습 열기/}).click();

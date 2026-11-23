@@ -1,13 +1,13 @@
 import {useEffect,useMemo,useState,type ReactNode} from 'react';
-import {ArrowRight,BookOpen,Flame,Layers,Snowflake,Trophy,Shuffle} from 'lucide-react';
+import {ArrowRight,BookOpen,Flame,Forklift,Layers,Snowflake,Trophy,Shuffle} from 'lucide-react';
 import type {QuestionItem,StudyMode} from '../cbt/types';
 import {finalNames,type FinalSubject} from '../cbt/finalCourseBank';
 import {sampleSize,finalRanges,selectFinalItems,drawnIds,storeDraw,type FinalOptions} from '../cbt/finalSelection';
 import type {StudyView} from './studyRoutes';
 
-const subjects=['cooling','metal','sports','energy'] as const;
-const icons={cooling:Snowflake,metal:Layers,sports:Trophy,energy:Flame};
-const scopes={cooling:'부록 4-7~5-108쪽 · 냉동냉장설비',metal:'철–탄소 상태도와 열처리',sports:'운동·체력·리더십·윤리',energy:'교재 321~644쪽 · 전 회차'};
+const subjects=['cooling','metal','sports','energy','forklift'] as const;
+const icons={cooling:Snowflake,metal:Layers,sports:Trophy,energy:Flame,forklift:Forklift};
+const scopes={cooling:'부록 4-7~5-108쪽 · 냉동냉장설비',metal:'철–탄소 상태도와 열처리',sports:'운동·체력·리더십·윤리',energy:'교재 321~644쪽 · 전 회차',forklift:'객관식 15문제 · 지게차 5 / 엔진 5 / 법규 2 / 일반안전 3 · 도로교통법규 제외'};
 const pdfs={metal:['metal-curves-final','곡선 입문 PDF 열기'],sports:['sports-leadership-final','시험범위 PDF 열기']};
 export function finalSubjectFor(view:StudyView){return subjects.find(s=>view==='school-'+s);}
 type Props={pool:(s:FinalSubject)=>Promise<QuestionItem[]>;choice:(i:QuestionItem)=>number;start:(s:FinalSubject,m:StudyMode,o:FinalOptions)=>Promise<void>;
@@ -43,13 +43,16 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
    <header><h1>{finalNames[subject]}</h1><p>{scopes[subject]}</p></header>
    {pdf&&<a href={'output/pdf/'+pdf[0]+'.pdf'} target="_blank" rel="noopener">{pdf[1]} ↗</a>}
    {subject==='cooling'&&<button className="final-back" onClick={()=>open('school-written')}>주관식 연습 열기 · 문항당 5점 →</button>}
+   {subject==='forklift'&&<><button className="final-back" onClick={()=>open('school-forklift-written')}>주관식 2문제 · 윤활유와 등화장치 →</button>
+   <small>법규 예상 범위: <a href="https://www.law.go.kr/법령/건설기계관리법/제13조" target="_blank" rel="noreferrer">건설기계 검사</a> · <a href="https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제178조" target="_blank" rel="noreferrer">사업장 지게차 안전기준</a></small></>}
    {!items?(error?<button onClick={()=>setRetry(v=>v+1)}>문제 다시 불러오기</button>:<p role="status">연습 회차를 불러오는 중…</p>):!items.length?<p>준비된 문제가 없습니다.</p>:<>
      <details className="final-tool" onToggle={e=>setRandom(e.currentTarget.open)}><summary><Shuffle size={17}/> 예상 랜덤</summary>
-       {random&&<div className="final-inline"><label>풀 문제 수 <input type="number" min={1} max={maximum} value={count===''?'':n} onChange={e=>setCount(e.target.value)}/> / {maximum}</label>
-         <label><input type="checkbox" checked={exclude} onChange={e=>setExclude(e.target.checked)}/> 중복·비슷한 문제 제외</label>
+       {random&&<div className="final-inline">{subject==='forklift'?<span>실전 구성 · 객관식 15문제 고정</span>:<><label>풀 문제 수 <input type="number" min={1} max={maximum} value={count===''?'':n} onChange={e=>setCount(e.target.value)}/> / {maximum}</label>
+         <label><input type="checkbox" checked={exclude} onChange={e=>setExclude(e.target.checked)}/> 중복·비슷한 문제 제외</label></>}
          <label><input type="checkbox" checked={skip} onChange={e=>setSkip(e.target.checked)}/> 이전 추첨 문제 제외</label>
          {skip&&drawnIds(subject).size>0&&<button onClick={()=>{if(window.confirm('풀이 기록을 유지하고 추첨 기록만 지울까요?')){storeDraw(subject,[]);refresh(v=>v+1);}}}>추첨 기록 초기화</button>}
-         <ModeButtons disabled={busy||!Number.isInteger(n)||n<1} go={m=>void launch(m,{expected:true,exclude,skipDrawn:skip,count:n})}/></div>}
+         {subject==='forklift'&&!maximum&&<small>이전 문제를 제외하면 15문제를 구성할 수 없습니다. 추첨 기록을 초기화하거나 제외를 해제하세요.</small>}
+         <ModeButtons disabled={busy||!Number.isInteger(n)||n<1} go={m=>void launch(m,{expected:true,exclude:subject==='forklift'?false:exclude,skipDrawn:skip,count:subject==='forklift'?15:n})}/></div>}
      </details>
      <div className="final-range-title"><h2>연습 회차 <small>{ranges.length}회</small></h2><label><input type="checkbox" checked={rangeExclude} onChange={e=>setRangeExclude(e.target.checked)}/> 중복·비슷한 문제 제외</label></div>
      <div className="final-range-grid">{ranges.map(r=>{

@@ -919,7 +919,7 @@ const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
   school: '기말고사',
-  'school-written': '냉동공학 주관식',
+  'school-written': '냉동공학 주관식', 'school-forklift':'지게차 기말','school-forklift-written':'지게차 주관식',
   'school-cooling':'냉동공학 기말','school-sports':'스포츠리더십 기말','school-metal':'제관공학 기말','school-energy':'에너지설비 기말',
   history: '학습 내역',
   wrong: '오답노트',
@@ -2397,7 +2397,7 @@ async function loadFinalPool(subject:FinalSubject) {
     if (subject === 'energy') {
       await Promise.all([loadTextbookModule(), ensureBookSources('energy')]);
       items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy');
-    } else if(subject==='sports'||subject==='metal'){
+    } else if(subject==='sports'||subject==='metal'||subject==='forklift'){
       items=finalAuthoredItems.filter(i=>i.round.id==='school-final-'+subject);
     } else {
       await Promise.all([loadTextbookModule(), ensureBookSources('hansol')]);

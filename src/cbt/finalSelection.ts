@@ -1,6 +1,7 @@
 import {authoredMeta,type FinalSubject} from './finalCourseBank';
 import type {QuestionItem} from './types';
 import {energyPick,energyPool} from './energyFinal';
+import {forkliftQuota} from './forkliftFinal';
 
 // Printed page:number -> tested skill. An allow-list, not a random sample of the book.
 const coolingPicks:Record<string,string>={
@@ -37,7 +38,7 @@ export const sampleSize=10;
 export const rangeSize=60;
 export function printedPage(i:QuestionItem){return /^textbook-(?:hansol|energy)-(.+)$/.exec(i.round.id)?.[1]||'';}
 export function finalRanges(pool:QuestionItem[]){
- const size=pool[0]?.round.id.startsWith('school-final-')?10:rangeSize;
+ const size=pool[0]?.round.id==='school-final-forklift'?15:pool[0]?.round.id.startsWith('school-final-')?10:rangeSize;
  return Array.from({length:Math.ceil(pool.length/size)},(_,index)=>{
    const items=pool.slice(index*size,(index+1)*size);
    const first=printedPage(items[0]),last=printedPage(items[items.length-1]);
@@ -51,6 +52,15 @@ export function metalBlock(i:QuestionItem){
  return thermalGroups.has(group)?'thermal':tttGroups.has(group)?'ttt':'phase';
 }
 export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options:FinalOptions){
+ if(subject==='forklift'&&options.expected){
+   const paper:QuestionItem[]=[];
+   for(const [topic,count] of Object.entries(forkliftQuota)){
+     const pool=all.filter(i=>i.subject===topic);
+     if(pool.length<count)return [];
+     paper.push(...shuffle(pool).slice(0,count));
+   }
+   return paper;
+ }
  const limit=Math.max(1,Math.trunc(options.count||sampleSize));
  if(!options.expected && options.range!==undefined){
    if(subject==='energy')all=energyPool(all,false,false);
