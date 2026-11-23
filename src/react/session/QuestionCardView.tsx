@@ -127,6 +127,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           },
         ])}
       >
+        {presentation!=='book' && item.round.kind==='textbook-pages' && <small className="printed-subject">{item.question.sourcePage||item.round.title}</small>}
         {subjectStart && presentation !== 'book' ? (
           <div className="subject-divider">
             <span>

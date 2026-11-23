@@ -1,4 +1,4 @@
-"""Vector diagrams and guided examples; source: 제관공학 수업자료 (1), PDF pp.56–60, 88–97."""
+"""Source plates only: render the supplied book and lecture PDF; never synthesize curves."""
 from pathlib import Path
 import argparse
 import subprocess
@@ -16,7 +16,8 @@ from reportlab.platypus import Paragraph
 root=Path(__file__).resolve().parents[1]
 args=argparse.ArgumentParser()
 args.add_argument('book',type=Path,help='제관공학 보정.pdf (385쪽 스캔)')
-book=args.parse_args().book
+args.add_argument('lecture',type=Path,help='제관공학 수업자료 PDF')
+inputs=args.parse_args();book=inputs.book
 for f,n in [('Regular','Body'),('Bold','Head')]:
     pdfmetrics.registerFont(TTFont(n,str(root/f'assets/fonts/NanumGothic-{f}.ttf')))
 c=Canvas(str(root/'output/pdf/metal-curves-final.pdf'),pagesize=A4,invariant=1)
@@ -33,26 +34,14 @@ def path(points,color,width=1.7,dash=False):
     p=c.beginPath();p.moveTo(*points[0])
     for point in points[1:]:p.lineTo(*point)
     c.drawPath(p);c.restoreState()
-def dot(x,y):
-    c.setFillColor(HexColor(coral));c.circle(x,y,4,fill=1,stroke=0)
-def header(n,title,src):
-    label(40,799,'제관공학   /   기말고사 곡선 읽기',11,teal,'Head')
-    label(40,757,title,24,ink,'Head');path([(40,734),(555,734)],teal,1)
-    label(40,27,('수업자료 PDF '+src+'쪽 기준  ·  그림은 읽기 연습용 개념도') if n<=5 else src,9,gray)
-    label(509,27,f'{n+2} / 10',10,gray)
-def note(y,title,text):
-    label(40,y,title,14,teal,'Head')
-    text=''.join('<font name="Symbols">'+ch+'</font>' if unsupported(ch,'Body') else ch for ch in text)
-    p=Paragraph(text,ParagraphStyle('body',fontName='Body',fontSize=12,leading=19,wordWrap='CJK'))
-    _,h=p.wrap(503,500);p.drawOn(c,44,y-10-h);assert y-10-h>51
-    return y-36-h
-def plate(page,box,x,y,w,h,practice=None):
+def plate(page,box,x,y,w,h,practice=None,slide=False):
     # Crop only the relevant diagram from the supplied scan; retain its axes.
     with TemporaryDirectory() as tmp:
         dest=Path(tmp)/'source'
-        subprocess.run(['pdftoppm','-f',str(page),'-l',str(page),'-singlefile','-scale-to','2600','-png',str(book),str(dest)],check=True)
+        subprocess.run(['pdftoppm','-f',str(page),'-l',str(page),'-singlefile','-scale-to','2600','-png',str(inputs.lecture if slide else book),str(dest)],check=True)
         with Image.open(dest.with_suffix('.png')) as im:
-            part=im.crop(tuple(round(v*(im.width/1075 if i%2==0 else im.height/1520)) for i,v in enumerate(box)))
+            sw,sh=(650,460) if slide else (1075,1520)
+            part=im.crop(tuple(round(v*(im.width/sw if i%2==0 else im.height/sh)) for i,v in enumerate(box)))
             if practice:
                 part.convert('RGB').save(root/'assets/study'/practice,format='WEBP',quality=90,method=6)
             c.drawImage(ImageReader(part),x,y,width=w,height=h,preserveAspectRatio=True,anchor='c')
@@ -84,113 +73,42 @@ marked(333,981,'right',280,'γ · 오스테나이트','고체 한 종류. 액체
 marked(596,1188,'right',197,'α + Fe₃C · 두 상 공존','페라이트와 시멘타이트가 함께 있다.',teal)
 label(24,84,'세 점만 가리고 말하기',13,teal,'Head')
 label(24,64,'S: 고체 하나 → 고체 둘     C: 액체 하나 → 고체 둘     J: 액체와 고체 → 고체 하나',13)
-label(24,40,'교재 37~38쪽 그림 + 수업자료 56~60쪽 표기. 외부 자료는 공석 727℃ 등 다른 관례를 쓰므로 시험 수치는 수업 기준.',10,gray)
-label(24,22,'비교 자료: Iowa State University · Phase Equilibria (누르면 열기)',9,teal)
-c.linkURL('https://faculty.sites.iastate.edu/tec/files/inline-files/L19%20-%20Phase%20Equilibria%205.pdf',(23,19,340,34))
-label(776,22,'1 / 10',10);c.showPage()
-label(24,557,'온도를 멈췄나, 계속 식혔나, 다시 올렸나?',24,ink,'Head')
-label(24,530,'선의 모양만 외우지 말고, 출발 조직과 냉각 방법을 함께 읽자. 아래는 온도 이력의 개념도다.',12,gray)
-for j,(title,subtitle,pts,key,detail) in enumerate([
-    ('항온 유지','급냉 → 멈춰서 기다림',[(8,90),(22,51),(116,51),(142,9)],'수평선 = 같은 온도','시작선·종료선과 만나는 위치를 TTT에서 읽는다.'),
-    ('불림 / 완전 풀림','공냉 / 노냉',[(8,90),(29,66),(61,34),(112,8)],'로 밖이면 공냉, 안이면 노냉','불림은 공기 중에서, 완전 풀림은 가열로와 함께 더 천천히 식힌다.'),
-    ('담금질 후 뜨임','급냉 → 다시 가열',[(8,90),(20,8),(48,8),(71,48),(114,48),(140,9)],'두 번째 오르막 = 재가열','담금질한 강을 A1 아래로 다시 가열해 취성을 줄인다.'),
-]):
-    x=30+j*273; y=295
-    label(x,478,title,18,ink,'Head');label(x,451,subtitle,12,teal)
-    path([(x+11,y+115),(x+11,y),(x+230,y)],gray,1)
-    label(x+14,y+120,'온도',10,gray);label(x+190,y-16,'시간 →',10,gray)
-    if j==1:
-        path([(x+18,y+90),(x+62,y+77),(x+103,y+59),(x+150,y+34),(x+205,y+8)],'#395FA0',2.4)
-        label(x+167,y+37,'노냉',11,'#395FA0')
-        label(x+70,y+15,'공냉',11,coral)
-    if j==2:
-        path([(x+11,y+67),(x+224,y+67)],gray,1,True);label(x+193,y+73,'A₁',10,gray)
-    path([(x+10+px,y+py) for px,py in pts],coral,3)
-    label(x,245,key,13,teal,'Head')
-    p=Paragraph(detail,ParagraphStyle('small',fontName='Body',fontSize=12,leading=18,wordWrap='CJK'))
-    _,h=p.wrap(237,70);p.drawOn(c,x,230-h)
-path([(26,160),(815,160)],teal,1)
-label(30,131,'시험에서 “공냉했다”만 나오면?',15,ink,'Head')
-label(30,105,'바로 불림이라고 찍지 말자. Ms 위에서 온도를 맞춘 뒤 공냉했다면 마퀜칭일 수 있다. 공냉 전 단계가 단서다.',12)
-label(30,78,'불림처럼 연속해서 식힐 때 조직을 정밀하게 읽는 그림은 CCT다. TTT의 수평 유지 시간을 그대로 쓰지 않는다.',12)
-label(30,29,'강의 열처리 비교 · 축 간격과 경사는 실제 시간·온도 비율이 아니다.',10,gray)
-label(772,22,'2 / 10',10);c.showPage();c.setPageSize(A4)
-header(1,'그림을 볼 때, 가로축부터 찾자','56–60, 89–90')
-note(703,'먼저 물어볼 것: 오른쪽으로 가면 무엇이 달라질까?',
-     '철-탄소 상태도에서는 탄소의 양, TTT 선도에서는 시간이 늘어난다. 둘 다 세로축은 온도지만 같은 가로선의 뜻이 다르다.')
-for x,cap,xt,caption in [(74,'철-탄소 상태도','탄소 함량(%)','합금을 정하고 아래로 읽기'),(335,'TTT 선도','시간(초)','같은 온도에서 오른쪽으로 읽기')]:
-    label(x,558,cap,17,ink,'Head');path([(x,516),(x,380),(x+175,380)],gray);label(x-5,524,'온도',10);label(x+77,357,xt,11)
-    if x<100:
-        path([(x+80,501),(x+80,400)],coral,3);path([(x+75,409),(x+80,400),(x+85,409)],coral)
-    else:
-        path([(x+12,446),(x+150,446)],coral,3);path([(x+141,451),(x+150,446),(x+141,441)],coral)
-    label(x-3,322,caption,11,teal,'Head')
-y=note(265,'상태도 예시','탄소 0.8%인 강을 식힌다. 탄소를 더 넣은 게 아니므로 가로 좌표 0.8은 그대로다. 온도만 낮아져 점이 아래로 움직인다.')
-note(y,'TTT 예시','600℃까지 빨리 식힌 다음 그 온도에서 기다린다. 급냉은 가파르게 내려가는 선, 기다리는 동안은 오른쪽으로 뻗는 수평선으로 그린다.')
-c.showPage()
-
-header(2,'철-탄소 상태도에서 세 점 읽기','56–60')
-label(40,705,'냉각 기준  ·  강의 그림의 대표점만 표시 (축 간격은 비례하지 않음)',11,gray)
-x0=108; path([(x0,657),(x0,430),(527,430)],gray)
-for y,t in [(621,'1495℃'),(547,'1147℃'),(476,'723℃')]:
-    label(47,y-4,t,11);path([(x0,y),(509,y)],'#B7C9C9',1,True)
-for x,y,s in [(146,621,'J  포정'),(227,476,'S  공석'),(429,547,'C  공정')]:
-    dot(x,y);label(x+8,y+8,s,12,coral,'Head')
-    path([(x,430),(x,y-5)],'#91A7AB',1,True)
-label(200,410,'약 0.8%',11);label(405,410,'약 4.2%',11);label(427,387,'탄소 함량 →',11,gray)
-y=note(345,'S 공석점  |  출발부터 고체','오스테나이트(γ) 한 종류가 페라이트(α)와 시멘타이트(Fe₃C)로 나뉜다. 두 상이 층을 이루는 혼합조직을 펄라이트라 한다. 강의 기준 723℃.')
-y=note(y,'C 공정점  |  액체 하나에서 고체 둘','액체 → 오스테나이트 + 시멘타이트. 이때 생긴 혼합조직은 레데뷰라이트다. 수업 그림은 1147℃, 약 4.2% C로 표시한다.')
-note(y,'J 포정점  |  액체와 고체가 만나 고체 하나','액체 + δ철 → γ철(오스테나이트). 1495℃. 이름이 헷갈리면 결과보다 왼쪽의 출발물부터 본다: 액체 하나면 공정, 고체 하나면 공석, 액체와 고체면 포정.')
-c.showPage()
-
-header(3,'A₁과 A₂는 무엇이 다른가?','56–60')
-y=note(699,'철 원자의 자리 vs 자석의 성질','동소변태는 철 원자가 늘어선 격자 모양이 바뀌는 일이다. 자기변태는 자성이 바뀌는 일이다. 같은 온도 눈금에 있어도 뜻이 다르다.')
-for name,t,body in [
- ('A₀','약 210℃','시멘타이트의 자기변태. 순철의 A₂와 대상이 다르다.'),
- ('A₁','723℃','공석 변태 기준선. 공석강을 냉각하면 γ가 펄라이트로 변한다.'),
- ('A₂','768℃','철의 자기변태점. 가열하면 강자성을 잃는다. 결정격자 자체가 바뀌는 점이 아니다.'),
- ('A₃','순철 약 910~912℃','가열하면 α철(체심입방) → γ철(면심입방). 탄소가 들어간 강에서는 A₃ 경계 온도가 달라진다.'),
- ('A₄','순철 약 1394℃','가열하면 γ철 → δ철(체심입방). 녹아서 액체가 되는 것은 아니다.'),
-]:
-    y=note(y,name+'    '+t,body)
-note(y,'연습  |  “768℃에서 격자가 변한다.” 맞을까?',
-     '아니다. A₂에서는 자성이 변한다. 자료 56쪽 그림의 A₃는 910℃, 59쪽 목록은 912℃다. 작은 수치 차이보다 α와 γ 사이의 변화를 기억하자.')
-c.showPage()
-
-header(4,'TTT: 두 곡선 사이에서 무슨 일이?','88–93')
-label(42,701,'오스테나이트를 빠르게 냉각한 뒤 한 온도에서 유지할 때의 개념도',11,gray)
-path([(96,667),(96,422),(530,422)],gray);label(48,657,'온도',11);label(436,383,'시간(로그 눈금)',10)
-for x,t in [(125,'1'),(236,'10'),(347,'100'),(458,'1000초')]:label(x,405,t,10)
-for dx,color in [(0,teal),(97,'#395FA0')]:
-    p=c.beginPath();p.moveTo(355+dx,657);p.curveTo(285+dx,648,160+dx,600,161+dx,578);p.curveTo(163+dx,553,239+dx,507,288+dx,470);c.setStrokeColor(HexColor(color));c.setLineWidth(2.2);c.drawPath(p)
-label(288,662,'변태 시작선',10,teal);label(393,662,'변태 종료선',10,'#395FA0')
-path([(99,452),(526,452)],gray,1,True);label(48,448,'Ms',12)
-path([(118,650),(128,578),(339,578)],coral,2.6)
-for x,t in [(142,'①'),(208,'②'),(315,'③')]: dot(x,578);label(x-6,586,t,11,coral)
-y=note(365,'① 시작 전 → ② 일부 변태 → ③ 변태 완료','빨간 선을 따라가자. ①에선 아직 오스테나이트다. ②는 변태가 진행 중이라 원래 조직과 새 조직이 함께 있다. ③은 이 온도에서 가능한 변태가 끝난 뒤다.')
-y=note(y,'새 조직은 유지 온도에 따라 다르다','강의 선도에서 위쪽 변태 구역은 펄라이트, 그 아래 구역은 베이나이트다. 시작선 왼쪽의 돌출된 부분(코)은 변태가 가장 빨리 시작되는 부근이다.')
-note(y,'Ms는 세 번째 C곡선이 아니다','Ms는 남은 오스테나이트에서 마르텐사이트가 생기기 시작하는 온도다. 오른쪽으로 오래 기다린다는 뜻이 아니다. 시간축도 1, 10, 100초처럼 같은 간격마다 곱으로 커진다.')
-c.showPage()
-
-header(5,'세 냉각 경로, 두 질문으로 구별하기','91–97')
-label(40,705,'① Ms 위인가 아래인가?   ② 온도만 맞췄나, 변태 완료까지 기다렸나?',12,teal,'Head')
-for j,(t,level,end) in enumerate([('마퀜칭',574,57),('오스템퍼링',594,105),('마템퍼링',525,70)]):
-    x=45+174*j;label(x,663,t,15,ink,'Head')
-    path([(x,639),(x,483),(x+150,483)],gray,1);path([(x,546),(x+143,546)],gray,1,True);label(x+123,551,'Ms',9,gray)
-    path([(x+9,630),(x+20,level),(x+end,level),(x+end+21,495)],coral,2.6)
-label(40,463,'세로: 온도  /  가로: 시간  /  점선: Ms  /  빨간 선: 온도가 변한 순서',10,gray)
-y=note(421,'마퀜칭: 위에서 잠깐','Ms 바로 위에서 표면과 중심의 온도를 고르게 한 뒤 냉각한다. 남은 오스테나이트가 Ms 아래에서 마르텐사이트로 바뀐다. 안팎 온도차를 줄여 변형·균열 위험을 낮추는 것이 목적이다.')
-y=note(y,'오스템퍼링: 위에서 변태 완료까지','베이나이트 구간으로 급냉하고, 끝선까지 충분히 유지한 뒤 냉각한다. 목표는 베이나이트다. 단순히 “Ms 위에서 유지”만으로 마퀜칭과 구별할 수 없다.')
-y=note(y,'마템퍼링: 이 수업에서는 아래에서 유지','수업자료 92·95쪽에서는 Ms 아래 100~200℃ 부근에서 유지 후 공냉하여 마르텐사이트와 베이나이트 혼합조직을 얻는 경로로 구분한다. 자료 밖에서는 명칭을 다르게 쓰기도 하므로 여기서는 수업 그림을 기준으로 한다.')
-note(y,'가리고 풀기','① 액체 없이 723℃에서 두 고체가 생겼다. ② 자성만 변했다(철). ③ Ms 위에서 베이나이트가 될 때까지 기다렸다.  /  답: ① 공석반응 ② A₂ ③ 오스템퍼링.')
-c.showPage()
-header(6,'전체 지도 ①  철-탄소 평형 상태도','제관공학 교재 37~38쪽 (스캔 PDF 21~22쪽) · 수업자료 56~60쪽')
-plate(21,(106,735,891,1398),37,337,520,384)
-y=note(308,'왼쪽 끝에서 위로: 순철 가열','G(912℃)는 α → γ, N(1394℃)은 γ → δ, A(1538℃)는 녹는점이다. A는 그래프 점 이름이고 A₁의 약자가 아니다. A₂(768℃)는 자성 변화라 새 상의 경계선을 찾는 문제가 아니다.')
-y=note(y,'가로선을 따라: S는 공석, C는 공정, J는 포정','S: 탄소 0.77%, 723℃, 고체 → 고체 둘. C: 4.30%, 1147℃, 액체 → 고체 둘. J: 1495℃, 액체 + δ → γ. 수업 그림의 0.8%와 4.2%는 교재 표기와 다르므로 문제에 제시된 선도를 기준으로 읽는다.')
-note(y,'영역의 숫자를 우리말로','①은 액체, ⑦은 γ(오스테나이트), ⑨는 α와 γ의 공존, ⑪은 α와 Fe₃C의 공존이다. E의 2.11%는 γ에 탄소가 최대로 녹는 조성이지 C점이 아니다.')
-c.showPage()
-c.setPageSize((842,595))
+def finish(n,source):
+    label(24,22,source,10,gray);label(785,22,f'{n} / 8',10,gray);c.showPage()
+def title(t,sub):
+    label(24,555,t,24,ink,'Head');label(24,529,sub,12,teal)
+def slide(n,box,x,y,w,h,asset=None):
+    plate(n,box,x,y,w,h,asset,slide=True)
+def tip(x,y,name,detail):
+    label(x,y,name,14,teal,'Head');label(x,y-22,detail,11)
+def tag(point,caption,text,color=teal):
+    """Source-registered overlay; coordinates in the 800px proof, from top left."""
+    def xy(pos):return (pos[0]*842/800,595-pos[1]*842/800)
+    px,py=xy(point);x,y=xy(caption)
+    width=pdfmetrics.stringWidth(text,'Head',10)+8
+    path([(px,py),(max(x,min(px,x+width)),y+3)],color,1)
+    c.setStrokeColor(HexColor(color));c.setLineWidth(1.3);c.circle(px,py,3.5,stroke=1,fill=0)
+    c.setFillColor(HexColor('#ffffff'));c.roundRect(x,y-2,width,14,3,fill=1,stroke=0)
+    label(x+4,y+1,text,10,color,'Head')
+finish(1,'교재 37~38쪽 원도  ·  점·온도·영역 표시는 원도 밖 설명에서 해당 위치로 연결했다.')
+title('수업 슬라이드의 파란 세 점','같은 세 점을 교수님 그림에서 다시 찾자. 탄소 %와 온도가 만나는 위치를 읽는다.')
+slide(56,(22,94,561,429),20,160,525,340)
+tag((144,140),(158,120),'J 포정점',coral)
+tag((190,299),(143,278),'S 공석점',coral)
+tag((365,214),(376,199),'C 공정점',coral)
+tip(552,454,'왼쪽 위 · J 포정점','1495℃. 액체와 δ철이 만나 γ철이 된다.')
+tip(552,372,'왼쪽 아래 · S 공석점','723℃. γ → 페라이트 + 시멘타이트.')
+tip(552,290,'오른쪽 · C 공정점','1147℃. 액체 → γ + 시멘타이트.')
+label(28,123,'두 자료의 숫자가 다를 때',15,teal,'Head')
+label(28,95,'공석: 슬라이드 0.8% / 교재 0.77%. 공정: 슬라이드 4.2% / 교재 4.30%. 문제에서 제시한 그림을 기준으로 읽는다.',12)
+label(28,66,'A₁ = 공석 변태, A₂ = 철의 자기변태(768℃). A₂에서는 자성만 바뀌고 결정격자가 바뀌지 않는다.',12)
+finish(2,'수업 슬라이드 55 (PDF 56쪽) 원도 · 강의자료 58~59번 슬라이드의 표·반응 설명과 대조.')
+title('같은 탄소강인데, 왜 사진이 다를까?','현미경으로 찍은 실제 조직. 무늬가 다른 부분을 먼저 찾은 뒤 아래 원래 캡션을 읽자.')
+slide(57,(20,106,622,385),25,191,785,314)
+tip(27,151,'왼쪽 SM45C · 밝은 바탕과 어두운 부분','밝은 페라이트 바탕 사이로 어두운 펄라이트가 보인다.')
+tip(432,151,'오른쪽 STC3 · 가느다란 망','슬라이드에서 설명하는 흰 망상 조직은 시멘타이트다.')
+label(28,69,'α, γ는 상의 이름이고, 펄라이트는 페라이트와 시멘타이트가 층을 이루는 조직이다. 어두운 곳을 모두 탄소라고 읽지 않는다.',11)
+finish(3,'수업 슬라이드 56 (PDF 57쪽)  ·  현미경 사진 두 장과 원래 배율·캡션을 보존.')
 label(24,560,'전체 지도 ②  항온변태곡선  |  500℃에서 오른쪽으로',23,ink,'Head')
 label(24,534,'가로 = 시간(로그 눈금)   /   왼쪽 세로 = 온도   /   오른쪽 HRC = 경도. 탄소 함량을 읽는 그림이 아니다.',12,teal)
 box=(290,258,750,646);scale=.92;ox,oy=200,123
@@ -204,12 +122,59 @@ marked(483,554,'left',203,'아래 눈금 · 시간(초)','교점에서 수직으
 label(24,97,'손가락으로 풀기',14,teal,'Head')
 label(24,72,'500℃ 눈금에서 출발 → 오른쪽으로 ①을 만나면 변태 시작 → ②를 지나면 이 온도에서의 변태 완료.',13)
 label(24,48,'왜 수평인가? 기다리는 동안 시간만 지나고 온도는 그대로다. 계속 식히는 불림과는 경로가 다르다.',11,gray)
-label(24,22,'제관공학 교재 47쪽 원도 · 수업자료 89~90쪽과 대조. 이 선도의 숫자는 다른 강종에 그대로 적용하지 않는다.',9,gray)
-label(775,22,'9 / 10',10);c.showPage();c.setPageSize(A4)
-header(8,'전체 지도 ③  세 열처리를 나란히','제관공학 교재 47쪽 (스캔 PDF 33쪽) · 수업자료 91~95쪽')
-plate(33,(88,1098,945,1394),32,502,531,198)
-y=note(466,'원도 (a) 오스템퍼  |  변태 구역을 가로지름','유지선이 Ms 위에서 빗금 친 변태 구역을 끝까지 통과한다. 같은 온도에서 충분히 기다려 베이나이트가 되었다는 뜻이다.')
-y=note(y,'원도 (b) 마템퍼  |  Ms 아래에서 기다림','유지 위치를 Ms 선과 비교한다. 이 교재는 마르텐사이트와 베이나이트의 혼합조직으로 설명한다.')
-y=note(y,'원도 (c) 마퀜칭  |  내부·외부 온도 차부터 줄임','선이 두 가닥인 것은 중심과 표면의 냉각 속도가 다르기 때문이다. Ms 위에서 두 온도를 맞추고 식힌다. 맨 오른쪽 다시 올라가는 구간은 그 뒤의 뜨임이다.')
-note(y,'시험 직전, 그림을 가리고 답하기','① 가로축이 탄소 %인가 시간인가? ② S·C·J에서 냉각 전후 액체는 몇 개인가? ③ 유지선은 Ms의 위인가 아래인가? ④ 변태 완료까지 기다렸나? 이 네 질문에 답하고 숫자를 외우면 선을 뒤집어 읽지 않는다.')
+finish(4,'교재 47쪽 원도 · HRC는 경도. 강종마다 곡선 위치가 달라 시간 숫자를 다른 강에 그대로 쓰지 않는다.')
+title('수업 그림에서 TTT 읽기','왼쪽은 기본 선도, 오른쪽은 수업자료에 이미 그려진 냉각 경로다. 빨간 선은 새로 그린 것이 아니다.')
+slide(89,(113,180,570,415),18,233,393,258)
+slide(90,(113,180,570,415),428,233,393,258)
+tag((70,185),(62,113),'코: 변태 시작이 가장 빠름')
+tag((94,187),(115,211),'변태 종료선',coral)
+tag((438,245),(430,342),'Ms: 마르텐사이트 시작')
+tip(25,187,'① 어느 온도에서 기다리나?','온도가 그대로면 오른쪽으로 간다. 가로축은 시간이다.')
+tip(428,187,'② 코를 피했나, 변태 영역에 들어갔나?','빨리 식혀 Ms 아래로 내려가면 남은 γ에서 마르텐사이트가 생긴다.')
+label(25,102,'A = 오스테나이트    P = 펄라이트    B = 베이나이트    M = 마르텐사이트    Ms = 마르텐사이트 변태 시작 온도',12)
+finish(5,'수업 슬라이드 88·89 (PDF 89·90쪽)의 원도. 연속 냉각의 정확한 변태량·온도는 CCT 선도로 읽는다.')
+title('세 가지 항온 열처리: 수평으로 머문 곳 찾기','위는 수업 슬라이드의 빨간 경로, 아래는 교재 47쪽 원도. 교재와 강의의 그림 순서가 다르다.')
+for j,(n,t,tiptext) in enumerate([(91,'마퀜칭','Ms 위에서 안팎 온도를 맞춘다.'),(92,'마템퍼링','수업 기준: Ms 아래 유지 후 공냉.'),(93,'오스템퍼링','베이나이트 변태가 끝날 때까지 유지.')]):
+    x=20+j*274
+    slide(n,(82 if n==91 else 141,219,426,430),x,287,259,195)
+    label(x,490,t,15,teal,'Head');label(x,270,tiptext,11)
+plate(33,(88,1098,945,1394),52,51,737,203)
+tag((119,202),(22,184),'온도 맞추기')
+tag((407,229),(409,251),'Ms 아래 유지')
+tag((702,202),(653,225),'변태 완료까지 유지')
+finish(6,'수업 슬라이드 90~92 (PDF 91~93쪽) · 아래 교재 (a) 오스템퍼 / (b) 마템퍼 / (c) 마퀜칭.')
+title('뜨임·불림·풀림: 수업 원도에서 비교','왼쪽은 온도 이력 네 가지, 오른쪽은 담금질 뒤 다시 가열하는 뜨임의 확대 설명이다.')
+slide(86,(122,133,550,421),22,199,418,293,'metal-heat-lecture.webp')
+slide(82,(35,242,374,424),452,205,354,250)
+tag((224,295),(143,271),'담금질 · 급냉',coral)
+tag((253,284),(252,330),'불림 · 공냉')
+tag((289,249),(301,250),'풀림 · 노냉')
+tag((264,199),(271,181),'뜨임 · 재가열',coral)
+tip(24,160,'불림 Normalizing / 풀림 Annealing','불림은 가열로 밖에서 공냉, 완전 풀림은 로 안에서 노냉한다.')
+tip(452,160,'담금질 Quenching / 뜨임 Tempering','급냉이 담금질. 담금질 뒤 A₁ 아래로 재가열하면 뜨임이다.')
+label(24,70,'이 그림은 열처리 순서를 보여 주는 온도–시간 그림이다. TTT의 변태 시작·종료선과 같은 선이 아니다.',12)
+finish(7,'수업 슬라이드 85·81 (PDF 86·82쪽). 영문 이름과 원래 곡선·눈금을 그대로 사용.')
+title('외부 원도 두 장으로 눈에 익히기','교재와 모양이 달라도 가로축부터 보면 된다. 왼쪽은 탄소 함량, 오른쪽 그림 왼쪽 축 아래의 Czas [s]는 시간(초)이다.')
+for x,name in [(24,'fe'),(429,'ttt')]:
+    c.drawImage(str(root/f'assets/study/metal-external-{name}.png'),x,139,381,360,preserveAspectRatio=True,anchor='c',mask='auto')
+tag((249,142),(261,127),'액체')
+tag((96,223),(156,230),'오스테나이트')
+tag((546,182),(389,183),'베이나이트 변태')
+tag((546,150),(392,145),'펄라이트 변태')
+tip(26,115,'왼쪽 · ciecz는 액체, γ는 오스테나이트','색과 영역을 읽는 비교용. 시험 온도는 수업 그림에서 확인한다.')
+tip(425,115,'오른쪽 · A → P / A → B','오스테나이트가 펄라이트 또는 베이나이트로 바뀐다는 뜻이다.')
+for x,filename in [(25,'Fe-Fe3C_phasediagr.svg'),(430,'TTT_diagram.svg')]:
+    label(x,52,'원본 열기: '+filename,10,teal)
+    c.linkURL('https://commons.wikimedia.org/wiki/File:'+filename,(x,49,x+220,66))
+finish(8,'두 그림: Joanna Kośmider, Wikimedia Commons, Public Domain (PD-self), 2011. 원도 비율 유지 · 한글 해설 별도.')
 c.save()
+
+# Use the same labelled plates after answering. The question itself keeps the
+# unlabelled source crop so it does not reveal the answer before the attempt.
+with TemporaryDirectory() as tmp:
+    for page,name in [(1,'phase'),(4,'ttt'),(6,'holds'),(7,'heat')]:
+        dest=Path(tmp)/name
+        subprocess.run(['pdftoppm','-f',str(page),'-l',str(page),'-singlefile','-scale-to','2050','-png',
+                        str(root/'output/pdf/metal-curves-final.pdf'),str(dest)],check=True)
+        with Image.open(dest.with_suffix('.png')) as im:
+            im.convert('RGB').save(root/'assets/study'/f'metal-key-{name}.webp',quality=90,method=6)

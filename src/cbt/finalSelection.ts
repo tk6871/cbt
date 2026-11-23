@@ -26,8 +26,23 @@ function curated(i:QuestionItem,subject:FinalSubject){
  if(authored)return authored.pick?authored.group:undefined;
  if(subject==='cooling')return coolingPicks[i.round.id.replace('textbook-hansol-','')+':'+i.question.number];
 }
-export type FinalOptions={expected:boolean,exclude:boolean};
+export type FinalOptions={expected:boolean,exclude:boolean,count?:number,range?:number,skipDrawn?:boolean};
+const drawKey=(subject:FinalSubject)=>'school-final-drawn-v1:'+subject;
+export function drawnIds(subject:FinalSubject):Set<string>{
+ try{const v:unknown=JSON.parse(localStorage.getItem(drawKey(subject))||'[]');return new Set(Array.isArray(v)?v.filter(i=>typeof i==='string'):[]);}
+ catch{return new Set();}
+}
+export function storeDraw(subject:FinalSubject,ids:string[]){try{localStorage.setItem(drawKey(subject),JSON.stringify(ids));}catch{}}
 export const sampleSize=10;
+export const rangeSize=60;
+export function printedPage(i:QuestionItem){return /^textbook-(?:hansol|energy)-(.+)$/.exec(i.round.id)?.[1]||'';}
+export function finalRanges(pool:QuestionItem[]){
+ return Array.from({length:Math.ceil(pool.length/rangeSize)},(_,index)=>{
+   const items=pool.slice(index*rangeSize,(index+1)*rangeSize);
+   const first=printedPage(items[0]),last=printedPage(items[items.length-1]);
+   return {index,items,label:first?(first===last?first:first+'~'+last)+'쪽':(index*rangeSize+1)+'~'+(index*rangeSize+items.length)+'번'};
+ });
+}
 const thermalGroups=new Set(['불림','풀림','뜨임','담금질','냉각선도']);
 const tttGroups=new Set(['TTT축','변태율','Ms','마퀜칭','오스템퍼링','마템퍼링','코','항온조직']);
 export function metalBlock(i:QuestionItem){
@@ -35,6 +50,11 @@ export function metalBlock(i:QuestionItem){
  return thermalGroups.has(group)?'thermal':tttGroups.has(group)?'ttt':'phase';
 }
 export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options:FinalOptions){
+ const limit=Math.max(1,Math.trunc(options.count||sampleSize));
+ if(!options.expected && options.range!==undefined){
+   if(subject==='energy')all=energyPool(all,false,false);
+   all=finalRanges(all)[options.range]?.items??[];
+ }
  if(subject==='energy'){
    const pool=energyPool(all,options.exclude,options.expected);
    if(!options.expected)return pool;
@@ -43,18 +63,24 @@ export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options
      const skill=energyPick(i.sourceQuestionId);
      if(options.exclude&&used.has(skill))return false;
      used.add(skill);return true;
-   }).slice(0,sampleSize);
+   }).slice(0,limit);
  }
  const eligible=options.expected?all.filter(i=>curated(i,subject)):all;
  let pool=options.expected?shuffle(eligible):eligible;
  if(subject==='metal'&&options.expected){
-   const slice=(block:string,n:number)=>{
+   const blockPool=(block:string)=>{
      const group=pool.filter(i=>metalBlock(i)===block);
-     return (options.exclude?group.filter((i,k)=>group.findIndex(x=>authoredMeta.get(x.id)?.group===authoredMeta.get(i.id)?.group)===k):group).slice(0,n);
+     return options.exclude?group.filter((i,k)=>group.findIndex(x=>authoredMeta.get(x.id)?.group===authoredMeta.get(i.id)?.group)===k):group;
    };
-   return shuffle([...slice('phase',5),...slice('ttt',3),...slice('thermal',2)]);
+   const bins={phase:blockPool('phase'),ttt:blockPool('ttt'),thermal:blockPool('thermal')};
+   const schedule=['phase','ttt','thermal','phase','ttt','phase','phase','thermal','ttt','phase'] as const;
+   const out:QuestionItem[]=[];
+   while(out.length<limit&&Object.values(bins).some(b=>b.length)){
+     for(const b of schedule){const next=bins[b].pop();if(next)out.push(next);if(out.length===limit)break;}
+   }
+   return shuffle(out);
  }
- if(!options.exclude)return options.expected?pool.slice(0,sampleSize):pool;
+ if(!options.exclude)return options.expected?pool.slice(0,limit):pool;
  const keys=new Set<string>(), results:QuestionItem[]=[];
  // Only compare near-identical stems with the same answer, numeric conditions and polarity.
  const near=new Map<string,Set<string>[]>();
@@ -76,7 +102,7 @@ export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options
    }))continue;
    if(grams){peers.push(grams);near.set(bucket,peers);}
    keysHere.forEach(k=>keys.add(k));results.push(i);
-   if(options.expected&&results.length===sampleSize)break;
+   if(options.expected&&results.length===limit)break;
  }
  return results;
 }

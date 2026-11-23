@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect,useState} from 'react';
 import {shuffle} from '../cbt/finalSelection';
 
 // The anchors identify related printed questions, not verbatim written exam questions.
@@ -15,16 +15,33 @@ const bank=[
  ['4-25쪽 28번','동결 없이 식품을 식힐 때 제거할 열량과 필요한 평균 냉동능력의 차이를 쓰시오.','열량은 질량 × 비열 × (처음 온도 − 나중 온도)이다. 이 열량을 냉각 시간으로 나누면 평균 냉동능력이다.','열량식 3점 / 시간으로 나눔 2점'],
 ];
 const storage='school-finals-written-2026-2';
-const draw=()=>shuffle(bank.map((_,i)=>i)).slice(0,2);
-function init():{ids:number[],answers:string[]}{
- try{const a=JSON.parse(localStorage.getItem(storage)||'null');if(a?.ids?.length===2&&new Set(a.ids).size===2&&a.ids.every((i:number)=>Number.isInteger(i)&&!!bank[i])&&a.answers?.length===2&&a.answers.every((v:unknown)=>typeof v==='string'))return a;}catch{}
- return {ids:draw(),answers:['','']};
+const all=bank.map((_,i)=>i);
+type Written={ids:number[];answers:string[];seen:number[]};
+const valid=(ids:unknown):ids is number[]=>Array.isArray(ids)&&ids.length>0&&ids.length<=bank.length&&new Set(ids).size===ids.length&&ids.every(i=>Number.isInteger(i)&&!!bank[i]);
+function init():Written{
+ try{const a=JSON.parse(localStorage.getItem(storage)||'null');if(valid(a?.ids)&&Array.isArray(a.answers)&&a.answers.length===a.ids.length&&a.answers.every((v:unknown)=>typeof v==='string'))return {...a,seen:valid(a.seen)?a.seen:a.ids};}catch{}
+ const ids=shuffle(all).slice(0,2);return {ids,answers:['',''],seen:ids};
 }
-export function CoolingFinalWritten(){
+export function CoolingFinalWritten({back}:{back:()=>void}){
  const [state,set]=useState(init);
- function save(next:typeof state){set(next);try{localStorage.setItem(storage,JSON.stringify(next));}catch{}}
- return <section aria-label="냉동공학 주관식"><h3>주관식 모의 연습 · 5점 × 2</h3><p>후보 {bank.length}개에서 두 문제를 뽑습니다. 배점은 연습용 기준입니다.</p>
- {state.ids.map((id,n)=><div key={id+'-'+n}><p><b>{n+1}. {bank[id][1]}</b></p><textarea aria-label={`주관식 ${n+1}번 답안`} value={state.answers[n]} onChange={e=>save({...state,answers:state.answers.map((s,j)=>j===n?e.target.value:s)})}/>
- <details><summary>모범답안·채점 기준</summary><p>{bank[id][2]}</p><small>{bank[id][3]} · 관련 교재 {bank[id][0]}</small></details></div>)}
- <button type="button" onClick={()=>{if(state.answers.some(Boolean)&&!window.confirm('작성한 답을 비우고 새 두 문제를 뽑을까요?'))return;save({ids:shuffle(bank.map((_,i)=>i).filter(i=>!state.ids.includes(i))).slice(0,2),answers:['','']});}}>새 두 문제 뽑기</button></section>;
+ useEffect(()=>{try{localStorage.setItem(storage,JSON.stringify(state));}catch{}},[state]);
+ const [count,setCount]=useState(String(state.ids.length)),[exclude,setExclude]=useState(true);
+ function save(next:typeof state){set(next);}
+ const available=exclude?all.filter(i=>!state.seen.includes(i)):all;
+ function draw(reset=false){
+   if(state.answers.some(Boolean)&&!window.confirm('작성한 답을 비우고 새 문제를 뽑을까요?'))return;
+   const ids=shuffle(reset?all:available).slice(0,Number(count));
+   save({ids,answers:ids.map(()=>''),seen:[...new Set([...(reset?[]:state.seen),...ids])]});
+ }
+ const validCount=Number.isInteger(+count)&&+count>=1&&+count<=bank.length;
+ return <section className="final-written" aria-label="냉동공학 주관식"><button onClick={back}>← 기말고사 목록</button>
+ <h1>냉동공학 주관식</h1><p>실전 기준은 5점 × 2문제입니다. 교재와 연결한 연습 후보 {bank.length}문제 중 원하는 만큼 뽑아 보세요.</p>
+ <div className="written-controls"><label>풀 문제 수 <input type="number" min={1} max={bank.length} value={count} onChange={e=>setCount(e.target.value)}/></label>
+ <label><input type="checkbox" checked={exclude} onChange={e=>setExclude(e.target.checked)}/> 이전에 뽑은 문제 제외</label>
+ <button disabled={!validCount||+count>available.length} onClick={()=>draw()}>새 문제 뽑기</button>
+ {exclude&&<small>아직 안 뽑은 문제 {available.length}개</small>}
+ {exclude&&validCount&&+count>available.length&&<button onClick={()=>draw(true)}>추첨 기록 초기화 후 {count}문제 뽑기</button>}</div>
+ <h2>이번 연습 · {state.ids.length}문제</h2>
+ {state.ids.map((id,n)=><article key={id+'-'+n}><small>관련 교재 {bank[id][0]} · 5점</small><h3>{n+1}. {bank[id][1]}</h3><textarea aria-label={`주관식 ${n+1}번 답안`} value={state.answers[n]} onChange={e=>save({...state,answers:state.answers.map((s,j)=>j===n?e.target.value:s)})}/>
+ <details><summary>모범답안·채점 기준</summary><p>{bank[id][2]}</p><small>{bank[id][3]}</small></details></article>)}</section>;
 }

@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.6.4',scope:'industrial',date:'2026.11.23',title:'내가 고르는 기말 연습',summary:'범위·문항 수·중복 여부를 골라 연습합니다.',changes:['60문제 단위로 쪽수와 풀이 진도를 확인하고 예상 랜덤 문항 수를 선택합니다.','냉동 주관식을 전용 페이지로 분리하고 스포츠 예상 문제와 제관 원도 한글 표시를 보강했습니다.']},
     {version:'6.6.3',scope:'industrial',date:'2026.11.23',title:'두 선도 집중 연습과 교재 기말',summary:'제관 열처리 경로와 에너지 교재 전 회차를 연습할 수 있습니다.',changes:['제관 예상 10문제를 평형상태도·항온변태·열처리로 나누고 비교 그림을 추가했습니다.','에너지 전체·예상 랜덤에서 교재 수록 문항만 사용하며 반복 문제 제외를 선택할 수 있습니다.']},
     {version:'6.6.2',scope:'industrial',date:'2026.11.23',title:'기말고사 범위별 연습',summary:'전체 문제·예상 랜덤과 주관식 연습을 구분했습니다.',changes:['냉동공학 주관식 2문제, 제관·체육 복습 PDF와 문제별 과목 표시를 추가했습니다.']},
     {version:'6.6.1',scope:'industrial',date:'2026.11.20',title:'회차별 기출의 연도별 카드와 목록',
@@ -3268,8 +3269,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.6.3';
+  changelog.versions.industrial = '6.6.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.6.3';
+  changelog.currentVersion = '6.6.4';
   window.CBT_CHANGELOG = changelog;
 })();

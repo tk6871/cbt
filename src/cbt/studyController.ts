@@ -1,6 +1,6 @@
 import {photoStyle, roundPhoto, workspacePhoto} from '../react/themePhotos';
 import {finalAuthoredItems,finalNames,type FinalSubject} from './finalCourseBank';
-import {selectFinalItems,type FinalOptions} from './finalSelection';
+import {drawnIds,storeDraw,printedPage,selectFinalItems,type FinalOptions} from './finalSelection';
 import {flushSync} from 'react-dom';
 import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
@@ -918,6 +918,7 @@ const viewTitle = computed(() => ({
   home: '학습 홈',
   rounds: '회차별 문제',
   school: '기말고사',
+  'school-written': '냉동공학 주관식',
   history: '학습 내역',
   wrong: '오답노트',
   search: '문제 검색',
@@ -2389,10 +2390,8 @@ watch([view, textbookPagesOpen, visualStyle], ([page, books, style]) => {
   if (page === 'home' ? style !== 'default' : !(page === 'rounds' && books)) void loadCurrentScope();
 });
 
-async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:FinalOptions): Promise<void> {
-  const origin = view.value;
+async function loadFinalPool(subject:FinalSubject) {
   let items: QuestionItem[];
-  try {
     if (subject === 'energy') {
       await Promise.all([loadTextbookModule(), ensureBookSources('energy')]);
       items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy');
@@ -2408,7 +2407,18 @@ async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:Fi
           && question.number >= 21 && question.number <= 40;
       });
     }
-  } catch {
+  if(subject==='energy')items=selectFinalItems(items,subject,{expected:false,exclude:false});
+  return items.sort((a,b)=>printedPage(a).localeCompare(printedPage(b),'ko',{numeric:true})||a.question.number-b.question.number);
+}
+function finalChoice(item:QuestionItem){
+  const saved=savedLearningSession.value;
+  if(saved?.title.startsWith('기말고사 · ')&&saved.answers?.[item.id])return saved.answers[item.id];
+  return bookForStudyId(item.id)?textbookAnswers.value[item.id]||0:roundLearningChoice(item.round,item.id);
+}
+async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:FinalOptions): Promise<void> {
+  const origin = view.value;
+  let items:QuestionItem[];
+  try {items=await loadFinalPool(subject);} catch {
     showToast('기말고사 자료를 불러오지 못했습니다. 다시 시도해 주세요.');
     return;
   }
@@ -2416,17 +2426,20 @@ async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:Fi
     if (view.value === origin) showToast('연결된 기말고사 문제가 없습니다.');
     return;
   }
+  const drawn=options.expected?drawnIds(subject):new Set<string>();
+  if(options.expected&&options.skipDrawn)items=items.filter(i=>!drawn.has(i.id));
   items=selectFinalItems(items,subject,options);
-  const title = '기말고사 · ' + finalNames[subject]+(options.expected?' · 예상 랜덤':'')+(options.exclude?' · 유사 제외':'');
+  if(!items.length){showToast('이 범위에 풀 수 있는 문제가 없습니다.');return;}
+  const title = '기말고사 · ' + finalNames[subject]+(options.expected?' · 예상 랜덤':options.range!==undefined?' · '+(options.range+1)+'회 연습':'')+(options.exclude?' · 유사 제외':'');
   const saved = savedLearningSession.value;
   if (saved?.title === title && saved.mode === mode && saved.itemIds.length === items.length
     && items.every((item,index)=>item.id === saved.itemIds[index])) {
     await resumeSavedLearning();
     return;
   }
-  const savedChoices = mode === 'learn' && !options.expected && (subject === 'cooling'||subject==='energy') ? textbookAnswers.value : {};
-  const answers = Object.fromEntries(items.filter(item => savedChoices[item.id]).map(item => [item.id,savedChoices[item.id]]));
+  const answers = mode==='learn'&&!options.expected?Object.fromEntries(items.map(item=>[item.id,finalChoice(item)] as const).filter(([,choice])=>choice)):{};
   await beginSession(mode, title, items, answers, {qualificationKey: SCHOOL_EXAM_CATALOG_KEY});
+  if(options.expected&&session.value?.title===title)storeDraw(subject,[...new Set([...drawn,...items.map(i=>i.id)])]);
 }
 
 async function loadCoolingMidterm(): Promise<void> {
@@ -5428,6 +5441,7 @@ openCoolingSearch,
 openPwaRecoveryFromError,
 openQualificationRounds,
 startFinalExam,
+loadFinalPool,finalChoice,
 openRegularRounds,
 openSchoolSetSearch,
 openTextbookPages,

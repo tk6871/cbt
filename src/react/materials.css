@@ -124,6 +124,13 @@
 .final-course select,.final-course textarea {font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.45rem;padding:.4rem}
 .final-course textarea {box-sizing:border-box;width:100%;min-height:4rem}
 .final-course footer {margin-top:auto}
+.final-written {max-width:50rem;margin:0 auto;padding:1rem;color:var(--text)}
+.final-written article {margin:1.25rem 0;border-block-start:1px solid var(--border);padding:1rem 0}
+.final-written textarea {display:block;width:100%;min-height:5em;margin:.7rem 0;box-sizing:border-box}
+.final-written textarea,.final-written input,.final-course input[type=number]{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.4rem;padding:.4rem}
+.final-written input[type=number],.final-course input[type=number]{width:4.5em}
+.written-controls {display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.final-course select {max-width:100%}
 .printed-subject {display:block;font-weight:700;color:var(--primary);margin-bottom:.25rem}
 .finals-hub > details > summary { cursor: pointer; padding-block: .8rem; }
 
