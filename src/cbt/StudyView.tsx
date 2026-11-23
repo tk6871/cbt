@@ -6,7 +6,7 @@ import {problemImage,problemImageHtml} from './problemImages';
 import QuestionCard from '../react/session/QuestionCard';
 import RoundsLoading from '../react/RoundsLoading';
 import ThemeStudyCover from '../react/ThemeStudyCover';
-import {FinalExams} from '../react/FinalExams';
+import {FinalExams,finalSubjectFor} from '../react/FinalExams';
 import {CoolingFinalWritten} from '../react/CoolingFinalWritten';
 import {StudyHome} from '../react/StudyHome';
 import TextbookLibrary, {getTextbookReader} from '../react/reader/TextbookLibrary';
@@ -48,7 +48,7 @@ return <>
 {"홈"}</button>
 <button onClick={() => { void openRegularRounds(); }} className={normalizeClass([{ active: view === 'rounds' }])}><span data-theme-symbol={"▤"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(1))} alt={""} className={"theme-nav-character simpsons-scene-cool"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-rounds-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""} className={"theme-nav-character crop-sunjae-night"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-rounds"}/>}</span>
 {"회차별 문제"}</button>
-{(!isJewelry) ? (<button onClick={() => { openView('school'); }} className={normalizeClass([{ active: view === 'school' }])}><span data-theme-symbol={"✎"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(6))} alt={""} className={"theme-nav-character simpsons-scene-doctor"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-school"}/>}</span>
+{(!isJewelry) ? (<button onClick={() => { openView('school'); }} className={normalizeClass([{ active: view.startsWith('school') }])}><span data-theme-symbol={"✎"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(6), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(6))} alt={""} className={"theme-nav-character simpsons-scene-doctor"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-school"}/>}</span>
 {"기말고사"}</button>) : null}
 <button onClick={() => { openView('history'); }} className={normalizeClass([{ active: view === 'history' }])}><span data-theme-symbol={"◴"}>{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(8), '64px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(8))} alt={""} className={"theme-nav-character simpsons-scene-exercise"}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-history-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(3), '64px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(3))} alt={""} className={"theme-nav-character crop-sunjae-face"}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-history"}/>}</span>
 {"복습·학습 내역"}</button>
@@ -75,7 +75,7 @@ return <>
 <main inert={mobileMenuOpen} className={"main-area"}>{(!practicalSolving) ? (<header className={"topbar"}><i className="window-lights" aria-hidden="true"/><button type={"button"} aria-label={"메뉴 열기"} onClick={() => { m.mobileMenuOpen = true; }} className={"menu-button"}>{"☰ "}
 <span >{"메뉴"}</span></button>
 <div className={"topbar-context"}><strong >{viewTitle}</strong>
-<SubjectPicker {...{groups:qualificationGroups,selected:selectedKey,name:view==='school'?'기말고사':selectedCatalog.name,onSelect:changeContextQualification}}/></div>
+<SubjectPicker {...{groups:qualificationGroups,selected:selectedKey,name:view.startsWith('school')?'기말고사':selectedCatalog.name,onSelect:changeContextQualification}}/></div>
 <div className={"top-actions"}><button type={"button"} aria-label={"문제 검색 열기"} onClick={() => { openView('search'); }}>{"⌕ "}
 <span >{"검색"}</span></button>
 <button type={"button"} aria-label={"공학용 계산기 열기"} onClick={openCalculator}>{"▦ "}
@@ -323,7 +323,7 @@ return <>
 {(pwaRegistrationError) ? (<small role={"status"}>{"온라인으로 계속 풀 수 있습니다. 설정의 ‘기록·동기화’에서도 복구 화면을 열 수 있습니다."}</small>) : <small >{updateAvailable ? '학습 기록은 유지되고 화면과 기능만 최신 상태로 바뀝니다.' : '새 업데이트가 있는지 언제든 다시 확인할 수 있습니다.'}</small>}</div>
 <div className={"home-release-actions"}>{(pwaRegistrationError) ? (<button type={"button"} onClick={openPwaRecoveryFromError}>{"자동 복구 열기"}</button>) : null}
 {(updateAvailable) ? (<button type={"button"} onClick={applyUpdate} className={"apply"}>{"신버전 적용"}</button>) : <button type={"button"} disabled={updateChecking} onClick={() => { checkForUpdate(true); }}>{updateChecking ? '확인 중…' : '업데이트 확인'}</button>}
-<button type={"button"} onClick={() => { openView('updates'); }}>{"패치노트 보기"}</button></div></section>) : null}</Fragment>) : view==='school-written' ? <CoolingFinalWritten back={()=>openView('school')}/> : (view === 'school') ? (<FinalExams start={m.startFinalExam} pool={m.loadFinalPool} choice={m.finalChoice} written={()=>openView('school-written')} archive={subject=>void openQualificationRounds(subject==='cooling'?SCHOOL_EXAM_CATALOG_KEY:'energy-midterm')}>
+<button type={"button"} onClick={() => { openView('updates'); }}>{"패치노트 보기"}</button></div></section>) : null}</Fragment>) : view==='school-written' ? <CoolingFinalWritten back={()=>openView('school-cooling')}/> : (view.startsWith('school')) ? (<FinalExams subject={finalSubjectFor(view)} open={openView} start={m.startFinalExam} pool={m.loadFinalPool} choice={m.finalChoice} archive={subject=>void openQualificationRounds(subject==='cooling'?SCHOOL_EXAM_CATALOG_KEY:'energy-midterm')}>
 {(savedLearningSession?.qualificationKey === SCHOOL_EXAM_CATALOG_KEY && !coolingSavedSession) ? (<section className={"resume-learning-card"}><div ><span >{"자동 저장된 학교 시험 "}
 {savedLearningSession.mode === 'exam' ? 'CBT' : '학습'}</span>
 <strong >{savedLearningSession.title}</strong>
@@ -457,7 +457,7 @@ return <>
 <small>오답</small></button>
 <button data-tip="검색" aria-label="검색" onClick={() => { openView('search'); }} className={normalizeClass([{ active: view === 'search' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(3))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-search-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(3), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(3))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-search"}/>}</span>
 <small>검색</small></button>
-{!isJewelry && <button data-tip="기말고사" aria-label="기말고사" onClick={()=>openView('school')} className={view==='school'?'active':''}><span aria-hidden="true">✎</span><small>기말고사</small></button>}
+{!isJewelry && <button data-tip="기말고사" aria-label="기말고사" onClick={()=>openView('school')} className={view.startsWith('school')?'active':''}><span aria-hidden="true">✎</span><small>기말고사</small></button>}
 <button data-tip="통계" aria-label="통계" onClick={() => { openView('stats'); }} className={normalizeClass([{ active: view === 'stats' }])}><span >{(visualStyle === 'simpsons') ? (<img {...responsiveImageAttrs(simpsonsFunnyImageAt(5), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(simpsonsFunnyImageAt(5))} alt={""}/>) : (visualStyle === 'sunjae') ? (<img key={`sunjae-mobile-stats-${sunjaeImageIndex}`} {...responsiveImageAttrs(sunjaePortraitImageAt(1), 'auto, (max-width: 820px) 80vw, 640px')} onError={restoreOriginalImage} src={problemImage(sunjaePortraitImageAt(1))} alt={""}/>) : <i aria-hidden={"true"} className={"study-menu-icon menu-stats"}/>}</span>
 <small>통계</small></button></nav>) : null}
 {(!practicalSolving) ? (<nav aria-label={"Android 앱 메뉴"} inert={mobileMenuOpen} className={"native-app-tabbar"}><button onClick={() => { m.nativeMoreOpen = false; openView('home'); }} className={normalizeClass([{ active: view === 'home' }])}><span >{"⌂"}</span>

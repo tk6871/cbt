@@ -35,7 +35,7 @@ test('쪽번호로 연 교재에서 같은 원문의 3D 해설을 펼치고 선�
 test('패치노트에는 짧은 공개 버전과 이전 회차별 수정 내용이 있다', async ({page}) => {
   await page.goto('./?safe=1#/study/updates');
   const notes = page.locator('.patch-timeline article');
-  await expect(notes.first().locator('.patch-version span')).toHaveText('v6.6.4');
+  await expect(notes.first().locator('.patch-version span')).toHaveText('v6.6.5');
   const versions = await notes.locator('.patch-version span').allTextContents();
   expect(versions).toContain('v6.4');
   expect(versions).toContain('v6.4.1');
@@ -53,7 +53,9 @@ test('관리자 디렉터리 주소가 검색 매개변수와 화면 경로를 �
 
 test('기말고사에서도 원문과 같은 압축기 모형을 열고 기말고사 ID에 답을 저장한다', async ({page}) => {
   await page.goto('./?safe=1#/study/school');
-  await page.locator('.finals-hub article').filter({hasText:'냉동공학'}).getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.getByRole('button',{name:'냉동공학',exact:true}).click();
+  const all=page.locator('details').filter({has:page.locator('summary').filter({hasText:'전체 문제 ·'})});
+  await all.locator('summary').click();await all.getByRole('button',{name:'학습모드',exact:true}).click();
   const key = 'unified-cbt-learning-session-industrial';
   const id = 'book-study::hansol::4-129::39::hvac-hansol-2019-1:39';
   await expect(page.locator('#session-question-1')).toBeVisible();

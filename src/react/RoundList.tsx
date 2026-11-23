@@ -8,9 +8,10 @@ export interface StudyRound {
   record?:{score:number;date:string;latest:boolean};
   calculation?:{count:number;included:boolean;set:(included:boolean)=>void};
   answered:number; total:number; progress:number; wrong:number; canReset:boolean;
-  start:()=>void; reset:()=>void; openWrong:()=>void; exam:()=>void;
+  start:(s?:string)=>void; reset:()=>void; openWrong:()=>void; exam:(s?:string)=>void;
 }
 function RoundCard({r, theme}: {r: StudyRound; theme: VisualStyle}) {
+  const [only,setOnly]=useState('');
   const cover = theme === 'default' ? undefined : roundPhoto(theme, r.id);
   const compact=theme==='default' && !r.school && r.year>0;
   const shortTitle=r.title.replace(/^.*?[：:]\s*/,'').replace(new RegExp('^'+r.year+'년\\s*'),'').replace(/\s*기출문제$/,'').trim();
@@ -25,11 +26,11 @@ function RoundCard({r, theme}: {r: StudyRound; theme: VisualStyle}) {
       {r.restored&&<em className="round-restored">CBT 복원문제 · 원문 이미지</em>}
       <h2 aria-label={r.title}>{compact ? shortTitle || r.title : r.title}</h2><p>{r.description}</p>{r.scope&&<small>{r.scope}</small>}
       {r.calculation&&<label className="energy-topic-calculation"><input type="checkbox" checked={r.calculation.included} aria-label={r.title+' 계산 문제 포함'} onChange={e=>r.calculation?.set(e.target.checked)}/>계산{r.calculation.count}문제 {r.calculation.included?'On · 포함':'Off · 제외'}</label>}
-      {r.subjects.length>0&&<div className="round-subjects">{r.subjects.map((s,i)=><span key={i}>{s}</span>)}</div>}
+      {!r.school&&r.subjects.length>1?<label className="round-paper-filter">풀이 과목 <select value={only} onChange={e=>setOnly(e.target.value)}><option value="">전체 과목</option>{r.subjects.map((s,i)=><option key={i} value={s}>{i+1}과목 · {s}</option>)}</select></label>:r.subjects.length>0&&<div className="round-subjects">{r.subjects.map((s,i)=><span key={i}>{s}</span>)}</div>}
       {r.hint&&<details className="energy-topic-note"><summary>자료 대조 안내</summary><p>{r.hint}</p></details>}
       {r.answered>0&&<><div className="round-progress"><span><i style={{width:r.progress+'%'}}/></span></div><small className="round-progress-copy">{r.answered}/{r.total} 학습 중</small></>}
-      <footer><button type="button" className="round-mode-button" onClick={r.start}>{r.answered?'이어 학습':'학습모드'}</button>
-        <button type="button" className="round-mode-button" onClick={r.exam}>CBT 시험모드</button>
+      <footer><button type="button" className="round-mode-button" onClick={()=>r.start(only||undefined)}>{r.answered&&!only?'이어 학습':'학습모드'}</button>
+        <button type="button" className="round-mode-button" onClick={()=>r.exam(only||undefined)}>CBT 시험모드</button>
         {r.wrong>0&&<button type="button" className="round-mode-button round-wrong-button" onClick={r.openWrong}>오답 {r.wrong}개</button>}
       </footer>
     </article>);

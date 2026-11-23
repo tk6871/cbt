@@ -37,10 +37,11 @@ export const sampleSize=10;
 export const rangeSize=60;
 export function printedPage(i:QuestionItem){return /^textbook-(?:hansol|energy)-(.+)$/.exec(i.round.id)?.[1]||'';}
 export function finalRanges(pool:QuestionItem[]){
- return Array.from({length:Math.ceil(pool.length/rangeSize)},(_,index)=>{
-   const items=pool.slice(index*rangeSize,(index+1)*rangeSize);
+ const size=pool[0]?.round.id.startsWith('school-final-')?10:rangeSize;
+ return Array.from({length:Math.ceil(pool.length/size)},(_,index)=>{
+   const items=pool.slice(index*size,(index+1)*size);
    const first=printedPage(items[0]),last=printedPage(items[items.length-1]);
-   return {index,items,label:first?(first===last?first:first+'~'+last)+'쪽':(index*rangeSize+1)+'~'+(index*rangeSize+items.length)+'번'};
+   return {index,items,label:first?(first===last?first:first+'~'+last)+'쪽':(index*size+1)+'~'+(index*size+items.length)+'번'};
  });
 }
 const thermalGroups=new Set(['불림','풀림','뜨임','담금질','냉각선도']);

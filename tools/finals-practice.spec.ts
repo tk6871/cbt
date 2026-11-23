@@ -33,6 +33,9 @@ test('수업 예상 후보 선택과 같은 유형 제외는 원본을 바꾸지
 test('주관식 두 문제와 체육·제관 예상 연습이 열린다',async({page})=>{
   await page.goto('./?safe=1#/study/school');
   const hub=page.locator('.finals-hub');
+  await expect(hub.locator('.final-subjects button')).toHaveText(['냉동공학','제관공학','스포츠리더십','에너지설비']);
+  await expect(hub.locator('input,select')).toHaveCount(0);
+  await hub.getByRole('button',{name:'냉동공학',exact:true}).click();
   await hub.getByRole('button',{name:/주관식 연습 열기/}).click();
   const written=page.getByRole('region',{name:'냉동공학 주관식'});
   await expect(page).toHaveURL(/school-written$/);
@@ -45,11 +48,13 @@ test('주관식 두 문제와 체육·제관 예상 연습이 열린다',async({
   await written.locator('textarea').first().fill('내 답');
   await page.reload();
   await expect(written.locator('textarea').first()).toHaveValue('내 답');
-  await written.getByRole('button',{name:/기말고사 목록/}).click();
+  await written.getByRole('button',{name:/냉동공학 회차 목록/}).click();
+  await hub.getByRole('button',{name:/기말고사 과목 목록/}).click();
   for(const name of ['제관공학','스포츠리더십','에너지설비','냉동공학']){
-    const card=hub.locator('article').filter({has:page.getByRole('heading',{name,exact:true})});
-    if(name==='제관공학'||name==='스포츠리더십'){const url=await card.locator('a').getAttribute('href');expect((await (await page.request.get(url!)).body()).subarray(0,5).toString()).toBe('%PDF-');}
-    await card.locator('select').selectOption('pick');
+    await hub.getByRole('button',{name,exact:true}).click();
+    if(name==='제관공학'||name==='스포츠리더십'){const url=await hub.locator('a').getAttribute('href');expect((await (await page.request.get(url!)).body()).subarray(0,5).toString()).toBe('%PDF-');}
+    const card=hub.locator('details').filter({has:page.locator('summary').filter({hasText:'예상 랜덤'})});
+    await card.locator('summary').click();
     await expect(card.getByLabel('중복·비슷한 문제 제외')).toBeChecked();
     await card.getByLabel('풀 문제 수').fill('7');
     await card.getByRole('button',{name:'학습모드',exact:true}).click();
@@ -60,22 +65,22 @@ test('주관식 두 문제와 체육·제관 예상 연습이 열린다',async({
 });
 test('냉동 교재 8개 범위에서 선택한 60문제와 쪽수·풀이 기록을 다시 연다',async({page})=>{
  await page.goto('./?safe=1#/study/school');
- const course=page.locator('.finals-hub article').filter({has:page.getByRole('heading',{name:'냉동공학',exact:true})});
- await course.getByLabel('문제 범위').selectOption('range');
- await expect(course.getByLabel('연습 회차').locator('option')).toHaveCount(8);
- await course.getByLabel('연습 회차').selectOption('1');
+ await page.getByRole('button',{name:'냉동공학',exact:true}).click();
+ await expect(page.locator('.final-range')).toHaveCount(8);
+ const course=page.getByRole('article',{name:'2회 연습',exact:true});
  await course.getByRole('button',{name:'학습모드',exact:true}).click();
  const card=page.locator('#session-question-1');
  await expect(card.locator('.printed-subject').first()).toContainText(/쪽 · \d+번/);
  await card.locator('.choice-button:visible,.image-choice-hotspot:visible,button[aria-label^="이미지에서"]:visible').first().click();
  await expect.poll(()=>page.evaluate(()=>Object.keys(JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers||{}).length)).toBe(1);
- await page.goto('about:blank');await page.goto('./?safe=1#/study/school');
- await expect(course.getByLabel('연습 회차')).toHaveValue('1');
- await expect(course.getByLabel('연습 회차').locator('option:checked')).toContainText('풀이 1/60');
+ await page.goBack();await expect(page).toHaveURL(/school-cooling$/);
+ await expect(course).toContainText('최근 선택');
+ await expect(course).toContainText('풀이 1/60');
 });
 test('제관 전체 첫 문제에는 해설이 붙지 않은 상태도 원도가 표시된다',async({page})=>{
  await page.goto('./?safe=1#/study/school');
- await page.locator('.finals-hub article').filter({has:page.getByRole('heading',{name:'제관공학',exact:true})}).getByRole('button',{name:'학습모드'}).click();
+ await page.getByRole('button',{name:'제관공학',exact:true}).click();
+ await page.getByRole('article',{name:'1회 연습',exact:true}).getByRole('button',{name:'학습모드'}).click();
  const image=page.locator('#session-question-1 img[src$="/metal-fe-c.webp"]');
  await expect(image).toBeVisible();await expect.poll(()=>image.evaluate(e=>(e as HTMLImageElement).naturalWidth)).toBeGreaterThan(800);
  const files=[...new Set(finalAuthoredItems.flatMap(i=>i.question.images??[]))];
@@ -88,8 +93,9 @@ test('제관 전체 첫 문제에는 해설이 붙지 않은 상태도 원도가
 test('예상 랜덤에서 이전 추첨 제외를 켜면 직전 문항이 다시 나오지 않는다',async({page})=>{
  const draw=async()=>{
    await page.goto('./?safe=1#/study/school');
-   const card=page.locator('.final-course').filter({has:page.getByRole('heading',{name:'스포츠리더십',exact:true})});
-   await card.getByLabel('문제 범위').selectOption('pick');
+   await page.getByRole('button',{name:'스포츠리더십',exact:true}).click();
+   const card=page.locator('.final-room details').filter({has:page.locator('summary').filter({hasText:'예상 랜덤'})});
+   await card.locator('summary').click();
    await card.getByLabel('이전 추첨 문제 제외').check();
    await card.getByLabel('풀 문제 수').fill('5');
    await card.getByRole('button',{name:'학습모드'}).click();

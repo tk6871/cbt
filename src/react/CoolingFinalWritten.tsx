@@ -34,7 +34,7 @@ export function CoolingFinalWritten({back}:{back:()=>void}){
    save({ids,answers:ids.map(()=>''),seen:[...new Set([...(reset?[]:state.seen),...ids])]});
  }
  const validCount=Number.isInteger(+count)&&+count>=1&&+count<=bank.length;
- return <section className="final-written" aria-label="냉동공학 주관식"><button onClick={back}>← 기말고사 목록</button>
+ return <section className="final-written" aria-label="냉동공학 주관식"><button onClick={back}>← 냉동공학 회차 목록</button>
  <h1>냉동공학 주관식</h1><p>실전 기준은 5점 × 2문제입니다. 교재와 연결한 연습 후보 {bank.length}문제 중 원하는 만큼 뽑아 보세요.</p>
  <div className="written-controls"><label>풀 문제 수 <input type="number" min={1} max={bank.length} value={count} onChange={e=>setCount(e.target.value)}/></label>
  <label><input type="checkbox" checked={exclude} onChange={e=>setExclude(e.target.checked)}/> 이전에 뽑은 문제 제외</label>

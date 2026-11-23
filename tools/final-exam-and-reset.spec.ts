@@ -2,6 +2,11 @@ import {expect,test,type Page} from '@playwright/test';
 test.use({serviceWorkers:'block'});
 const key='unified-cbt-learning-session-industrial';
 const saved=(page:Page)=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)||'{}'),key);
+async function allFromSubject(page:Page,name:string){
+ await page.getByRole('button',{name,exact:true}).click();
+ const panel=page.locator('.final-room details').filter({has:page.locator('summary').filter({hasText:'전체 문제 ·'})});
+ await panel.locator('summary').click();await panel.getByRole('button',{name:'학습모드',exact:true}).click();
+}
 
 test('이전 학교 종목을 저장한 사용자도 기출로 진입하고 기말고사는 메뉴에서만 연다',async({page})=>{
   await page.addInitScript(()=>{
@@ -19,9 +24,10 @@ test('이전 학교 종목을 저장한 사용자도 기출로 진입하고 기�
     await page.getByRole('button',{name:'메뉴 열기'}).click();
   await page.locator('.sidebar').getByRole('button',{name:'기말고사'}).click();
   await expect(page.getByRole('heading',{name:'기말고사',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'스포츠리더십',exact:true}).click();
   const pdf=await page.getByRole('link',{name:'시험범위 PDF 열기'}).getAttribute('href');
   expect((await (await page.request.get(pdf!)).body()).subarray(0,5).toString()).toBe('%PDF-');
-  await page.locator('.finals-hub article').filter({hasText:'냉동공학'}).getByRole('button',{name:'학습모드'}).click();
+  await page.goBack();await allFromSubject(page,'냉동공학');
   await expect(page.locator('#session-question-1')).toBeVisible();
   await expect.poll(async()=>(await saved(page)).title).toBe('기말고사 · 냉동공학');
   const ids:string[]=(await saved(page)).itemIds;
@@ -36,7 +42,7 @@ test('이전 학교 종목을 저장한 사용자도 기출로 진입하고 기�
 
 test('페이지 선택 초기화가 다른 쪽 답과 누적 기록을 보존한다',async({page})=>{
   await page.goto('./?safe=1#/study/school');
-  await page.locator('.finals-hub article').filter({hasText:'에너지설비'}).getByRole('button',{name:'학습모드'}).click();
+  await allFromSubject(page,'에너지설비');
   const card=page.locator('.question-card').first();
   const pick=async(n:number)=>{
     const candidates=card.locator('.choice-button:visible,.image-choice-hotspot:visible,button[aria-label^="이미지에서"]:visible');
@@ -71,6 +77,43 @@ test('페이지 선택 초기화가 다른 쪽 답과 누적 기록을 보존한
   expect((await saved(page)).answers).toEqual(initial.answers);
   expect((await saved(page)).itemIds).toEqual(initial.itemIds);
   expect(await records()).toEqual(history);
+});
+test('일반 회차 과목별 CBT와 전체 학습의 2과목 경계가 실제 문항과 맞는다',async({page})=>{
+  const route='./?safe=1#/study/rounds';
+  await page.goto(route);
+  const row=page.locator('#round-card-hvac-20160306');
+  const select=row.getByLabel('풀이 과목');
+  const name=await select.locator('option').nth(2).getAttribute('value');
+  await select.selectOption(name!);
+  await row.getByRole('button',{name:'CBT 시험모드'}).click();
+  await expect(page.locator('#session-question-1 .subject-divider')).toContainText('2과목');
+  await expect.poll(async()=>(await saved(page)).itemIds?.length).toBe(20);
+  expect((await saved(page)).itemIds[0]).toBe('hvac-20160306:21');
+  await page.goto('about:blank');await page.goto(route);
+  await row.getByRole('button',{name:'학습모드'}).click();
+  await expect.poll(async()=>(await saved(page)).itemIds?.length).toBe(80);
+  await page.getByRole('spinbutton',{name:'이동할 문제 번호'}).fill('21');
+  await page.locator('.session-jump-form').getByRole('button',{name:'이동',exact:true}).click();
+  const heading=page.locator('#session-question-21 .subject-divider');
+  await expect(heading).toContainText(name!);
+  expect(await heading.locator('strong').evaluate(el=>parseFloat(getComputedStyle(el).fontSize))).toBeGreaterThanOrEqual(16);
+});
+test('에너지 교재에서 선택한 한 과목만 교재 ID로 연습한다',async({page})=>{
+  await page.goto('./?safe=1');
+  await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
+  const library=page.locator('.textbook-library');
+  await library.locator('.library-books button').filter({hasText:'에너지설비 교재'}).click();
+  await library.getByRole('button',{name:'쪽번호로 바로 열기'}).click();
+  const dialog=page.locator('dialog.library-page-dialog[open]');
+  await dialog.locator('input').fill('414');await dialog.getByRole('button',{name:'문제 풀기'}).click();
+  const panel=page.locator('details').filter({has:page.locator('summary').filter({hasText:'에너지 교재 · 과목만 풀기'})});
+  await panel.locator('summary').click();
+  const select=panel.getByRole('combobox');await expect(select.locator('option')).toHaveCount(5);
+  await select.selectOption({index:2});await panel.getByRole('button',{name:'학습모드',exact:true}).click();
+  await expect(page.locator('#session-question-1 .subject-divider')).toContainText('2과목');
+  await expect.poll(async()=>(await saved(page)).itemIds?.length).toBe(420);
+  const ids:string[]=(await saved(page)).itemIds;
+  expect(ids.every(i=>i.startsWith('book-study::energy::')&&Number(i.split('::')[3])>=21&&Number(i.split('::')[3])<=40)).toBe(true);
 });
 
 for (const [book,pageNumber,number,choice] of [['한솔 공조 교재','1-168',25,2],['에너지설비 교재','414',16,3]] as const) {

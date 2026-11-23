@@ -129,7 +129,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
       >
         {presentation!=='book' && item.round.kind==='textbook-pages' && <small className="printed-subject">{item.question.sourcePage||item.round.title}</small>}
         {subjectStart && presentation !== 'book' ? (
-          <div className="subject-divider">
+          <div className="subject-divider" role="heading" aria-level={2}>
             <span>
               {questionSubject(item).ordinal ? questionSubject(item).ordinal+'과목' : '과목'}
             </span>

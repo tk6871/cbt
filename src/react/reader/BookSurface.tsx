@@ -47,6 +47,11 @@ function Example({example,original}:{example:(typeof textbookWorkedExamples)[num
 
 export function BookSurface(p:BookSurfaceProps) {
   const pageButtonLabel=p.start+'쪽 · 쪽번호 선택';
+  const starts=new Set<number>();let previous='';
+  for(const {entry,item} of p.columns.flat()){
+    const label=subjectLabel(bookSubject(p.book,entry.page,entry.number,item));
+    if(label!==previous)starts.add(entry.number);previous=label;
+  }
   return <><header className="reader-toolbar">
     <button type="button" className="reader-back" aria-label="교재 목록으로 돌아가기" onClick={p.close}>← <span>목록</span></button>
     <div className="reader-title"><h1>{textbookNames[p.book]}</h1></div>
@@ -75,7 +80,7 @@ export function BookSurface(p:BookSurfaceProps) {
             const page=direct&&textbookDirectPageMap.get(entry.page);
             const embedded=direct||(item&&isImagePrimary(item)&&item.question.bookSourceNumber===entry.number);
             return <section className="book-sheet-question" key={entry.number}>
-              <small className="printed-subject">{subjectLabel(bookSubject(p.book,entry.page,entry.number,item))}</small>
+              {starts.has(entry.number)?<div className="subject-divider"><strong>{subjectLabel(bookSubject(p.book,entry.page,entry.number,item))}</strong></div>:<small className="printed-subject">{subjectLabel(bookSubject(p.book,entry.page,entry.number,item))}</small>}
               <h3 aria-label={'교재 '+entry.number+'번'} className={embedded?'printed-number-embedded':undefined}><span>{String(entry.number).padStart(2,'0')}</span><small>교재 {entry.number}번</small></h3>
               {item?(p.renderLinked?<div className="book-linked-question">{p.renderLinked(item,entry.number)}</div>:<LinkedQuestionTarget id={item.id} register={p.register!}/>):direct&&page?<DirectQuestion chosen={p.answers[direct.id] || 0} saveChoice={p.saveDirect} key={direct.id} source={direct} page={page} original={p.original} showText={p.showText}/>:<p className="book-pending">이 문항은 아직 준비 중입니다.</p>}
             </section>;

@@ -1,6 +1,7 @@
 import {photoStyle, roundPhoto, workspacePhoto} from '../react/themePhotos';
 import {finalAuthoredItems,finalNames,type FinalSubject} from './finalCourseBank';
 import {drawnIds,storeDraw,printedPage,selectFinalItems,type FinalOptions} from './finalSelection';
+import {questionSubject,subjectLabel} from './printedSubject';
 import {flushSync} from 'react-dom';
 import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
@@ -156,7 +157,7 @@ const roundCards=computed(()=>visibleRounds.value.map(round=>{
     record:record?{score:record.score,date:new Date(record.finishedAt).toLocaleDateString('ko-KR'),latest:lastRoundRecord.value?.roundId===round.id}:undefined,
     calculation:calculations?{count:calculations,included:!excluded,set:(on:boolean)=>setEnergyTopicCalculation(round.id,on)}:undefined,
     answered,total,progress:total ? Math.round(answered / total * 100) : 0,canReset:answered > 0 || !!savedRoundLearning(round),wrong:roundWrongGroupMap.value.get(round.id)?.items.length??0,
-    start:()=>startRound(round,'learn'),reset:()=>resetRoundLearning(round),openWrong:()=>openRoundWrongAnswers(round),exam:()=>startRound(round,'exam'),
+    start:(s?:string)=>startRound(round,'learn',s),reset:()=>resetRoundLearning(round),openWrong:()=>openRoundWrongAnswers(round),exam:(s?:string)=>startRound(round,'exam',s),
   };
 }));
 const reactHome = computed<StudyHomeProps>(() => ({
@@ -919,6 +920,7 @@ const viewTitle = computed(() => ({
   rounds: '회차별 문제',
   school: '기말고사',
   'school-written': '냉동공학 주관식',
+  'school-cooling':'냉동공학 기말','school-sports':'스포츠리더십 기말','school-metal':'제관공학 기말','school-energy':'에너지설비 기말',
   history: '학습 내역',
   wrong: '오답노트',
   search: '문제 검색',
@@ -2318,7 +2320,7 @@ async function updateQualificationFromSetup(event: Event): Promise<void> {
 async function changeContextQualification(key: string): Promise<boolean> {
   if (!(await switchQualification(key))) return false;
   if (key === SCHOOL_EXAM_CATALOG_KEY) openView('school');
-  else if (view.value === 'school') openView('rounds');
+  else if (view.value.startsWith('school')) openView('rounds');
   return true;
 }
 
@@ -3237,7 +3239,9 @@ async function resumeSavedLearning(): Promise<void> {
     return;
   }
   if (saved.title.startsWith('기말고사 · ')) {
-    openView('school');
+    const name=saved.title.split(' · ')[1];
+    const subject=(Object.keys(finalNames) as FinalSubject[]).find(s=>finalNames[s]===name);
+    openView(subject?`school-${subject}`:'school');
   } else if (saved.itemIds.every(isCoolingRecord)) {
     selectedKey.value = SCHOOL_EXAM_CATALOG_KEY;
     localStorage.setItem(qualificationStorageKey, SCHOOL_EXAM_CATALOG_KEY);
@@ -3259,14 +3263,18 @@ async function resumeSavedLearning(): Promise<void> {
   });
 }
 
-async function startRound(round: Round, mode: StudyMode): Promise<void> {
-  const items = roundToItems(selectedKey.value === 'energy-midterm' ? { ...round, questions:energyTopicQuestions(round) } : round);
+async function startRound(round: Round, mode: StudyMode, only?:string): Promise<void> {
+  const items = roundToItems(selectedKey.value === 'energy-midterm' ? { ...round, questions:energyTopicQuestions(round) } : round).filter(i=>!only||questionSubject(i).name===only);
+  if(only&&!items.length){showToast('이 회차에는 선택한 과목의 문제가 없습니다.');return;}
   if (!items.length) { showToast('계산 제외 후 남은 문제가 없습니다. 계산 문제를 켜 주세요.'); return; }
   const saved = savedLearningSession.value;
-  const sameSavedRound = saved && ((selectedKey.value !== 'energy-midterm' && saved.roundId === round.id)
-    || (saved.itemIds.length === items.length && saved.itemIds.every((id, index) => id === items[index]?.id)));
+  const sameSavedRound = saved && saved.itemIds.length === items.length && saved.itemIds.every((id, index) => id === items[index]?.id);
   if (sameSavedRound && (saved.mode || 'learn') === mode) {
     return resumeSavedLearning();
+  }
+  if(only){
+    const answers=mode==='learn'?Object.fromEntries(items.map(i=>[i.id,roundLearningChoice(round,i.id)] as const).filter(([,n])=>n)):{};
+    return beginSession(mode,round.title+' · '+subjectLabel(questionSubject(items[0])),items,answers);
   }
   if (mode === 'learn') {
     const previousAnswers = Object.fromEntries(items.flatMap((item) => {
@@ -3660,7 +3668,7 @@ function toggleBookmark(item: QuestionItem): void {
 function isSubjectStart(item: QuestionItem): boolean {
   const index = session.value?.items.findIndex((entry) => entry.id === item.id) ?? -1;
   if (index <= 0) return index === 0;
-  return session.value?.items[index - 1]?.subject !== item.subject;
+  return subjectLabel(questionSubject(session.value!.items[index-1]))!==subjectLabel(questionSubject(item));
 }
 
 function sessionSubjectNumber(item: QuestionItem): number {

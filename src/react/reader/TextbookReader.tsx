@@ -12,6 +12,8 @@ import {studyStore,persistStudyStoreNow} from '../../cbt/storage';
 import {explanationDisplay} from '../../cbt/explanationDisplay';
 import {adjacentBookPage, compareBookPages, normalizeBookPage, readableBookPages, textbookDirectSources, textbookEntries, textbookNames, textbookReferencePage, textbookSelectionKey, textbookStudyId, textbookWorkedExamples, type TextbookKey} from '../../cbt/textbookPages';
 import {pageNavigationStep} from '../../cbt/pageNavigationKey';
+import {questionSubject,subjectLabel} from '../../cbt/printedSubject';
+import {energyPool} from '../../cbt/energyFinal';
 import './reader.css';
 
 interface Props {
@@ -30,6 +32,16 @@ const inRange=(page:string,start:string,end:string)=>end ? compareBookPages(page
 
 export default function TextbookReader(p:Props){
  const {book,items}=p;
+ const [paper,setPaper]=useState('');
+ const energyPapers=useMemo(()=>{
+   const groups=new Map<string,QuestionItem[]>();
+   if(book==='energy')for(const i of energyPool(items.filter(i=>i.round.id.startsWith('textbook-energy-')),false,false)){
+     const name=subjectLabel(questionSubject(i));
+     if(!groups.has(name))groups.set(name,[]);groups.get(name)!.push(i);
+   }
+   return [...groups].sort(([a],[b])=>a.localeCompare(b,'ko'));
+ },[book,items]);
+ const selectedPaper=energyPapers.find(([name])=>name===paper);
  const records=useSnapshot(studyStore);
  const answers=textbookAnswersIn(records.progress || {});
  const [selectedBook,setSelectedBook]=useState(book);
@@ -104,13 +116,16 @@ export default function TextbookReader(p:Props){
  const draftInvalid=!validPage(fromPage)||!!toPage&&(!validPage(toPage)||compareBookPages(fromPage,toPage)>0);
  if(starting)return <p className="library-note" role="status">선택한 문제를 여는 중…</p>;
  return <section className="textbook-pages" aria-label="교재 전용 풀이"><div data-react-view="textbook-reader" style={{display:'contents'}}>
-  <BookSurface chapterIndex={<details className="book-edge-index"><summary>단원 색인</summary>
+  <BookSurface chapterIndex={<>{book==='energy'&&!p.loading&&energyPapers.length>0&&<details className="final-tool"><summary>에너지 교재 · 과목만 풀기</summary>
+    <div className="final-inline"><label>교재 전 회차 <select value={paper} onChange={e=>setPaper(e.target.value)}><option value="">과목 선택</option>{energyPapers.map(([name,list])=><option key={name} value={name}>{name} · {list.length}문제</option>)}</select></label>
+    {(['learn','exam'] as const).map(mode=><button key={mode} disabled={!selectedPaper} onClick={()=>{if(selectedPaper)void startSession(()=>p.onStart({items:selectedPaper[1],mode,label:'에너지설비 교재 · '+paper}));}}>{mode==='learn'?'학습모드':'CBT 시험모드'}</button>)}</div></details>}
+    <details className="book-edge-index"><summary>단원 색인</summary>
     <nav aria-label="교재 단원 바로가기">{chapterIndex.map(part=><section key={part.title}><strong>{part.title}</strong>
       <div>{part.tabs.map(tab=><button key={tab.id} type="button"
         aria-current={(!tab.prefix || start.startsWith(tab.prefix)) && compareBookPages(start,tab.from)>=0 && (!tab.to || compareBookPages(start,tab.to)<=0) ? 'location' : undefined}
         onClick={e=>{e.currentTarget.closest('details')?.removeAttribute('open');jump(tab.page);
           document.querySelector<HTMLElement>('.book-edge-index>summary')?.focus({preventScroll:true});}}>
-          {tab.title}<small>{tab.page}쪽</small></button>)}</div></section>)}</nav></details>} book={book} start={start} end={end} title={selection.contentsLabel} loading={p.loading} error={p.error} invalid={invalid} matched={matched.length}
+          {tab.title}<small>{tab.page}쪽</small></button>)}</div></section>)}</nav></details></>} book={book} start={start} end={end} title={selection.contentsLabel} loading={p.loading} error={p.error} invalid={invalid} matched={matched.length}
    fullRound={round?.roundBankId?{title:round.title,open:()=>void startSession(()=>p.onRound(round.roundBankId!))}:undefined}
    directCount={locations.filter(e=>e.directSourceId).length} pending={locations.filter(e=>!e.directSourceId&&!byId.has(textbookStudyId(e))).length}
    hasLocations={!!locations.length} reference={end?undefined:textbookReferencePage(book,start)} examples={examples} columns={columns}
