@@ -142,6 +142,17 @@ test('제관 전체 첫 문제에는 해설이 붙지 않은 상태도 원도가
  expect(keys).toHaveLength(9);
  for(const src of keys)expect((await page.request.get(src)).ok()).toBe(true);
 });
+test('제관 기말에서 1 kW 단위 환산식과 PDF를 연다',async({page})=>{
+ await page.goto('./?safe=1#/study/school-metal');
+ const formula=page.locator('details').filter({hasText:'시험 계산 · 1 kW ≈ 860 kcal/h'});
+ await formula.locator('summary').click();
+ await expect(formula).toContainText('3,600 ÷ 4.1868 ≈ 859.85 kcal/h');
+ await expect(formula).not.toContainText('물 1 kg');
+ const link=await page.getByRole('link',{name:/시험 표시 자료/}).getAttribute('href');
+ const res=await page.request.get(link!);
+ expect(res.ok()).toBe(true);
+ expect((await res.body()).subarray(0,5).toString()).toBe('%PDF-');
+});
 test('예상 랜덤에서 이전 추첨 제외를 켜면 직전 문항이 다시 나오지 않는다',async({page})=>{
  const draw=async()=>{
    await page.goto('./?safe=1#/study/school');

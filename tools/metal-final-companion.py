@@ -26,7 +26,23 @@ def notes(title,sub,parts):
         y=422-i*99;txt(42,y,label,19,'#08746D')
         for j,line in enumerate(lines):txt(44,y-26-j*20,line)
     c.showPage()
-notes('01   재료의 성질: 무엇을 비교하는가?', '근거: 시험범위 PDF 2·9·11~15·18쪽   |   앞장의 열량 공식은 비열을 적용한 추가 예제다.',[
+head('1 kW를 kcal/h로 바꾸기','kW와 kcal/h는 모두 에너지를 얼마나 빠르게 쓰거나 전달하는지를 나타낸다.')
+c.setFillColor('#E9F4F1');c.roundRect(40,342,761,103,10,fill=1,stroke=0)
+txt(64,383,'1 kW  =',24,'#075D58')
+txt(240,403,'1 kJ/s × 3,600 s/h',21,'#075D58')
+c.setStrokeColor('#08776F');c.line(215,390,475,390)
+txt(259,362,'4.1868 kJ/kcal',19,'#075D58')
+txt(500,384,'≈ 860 kcal/h',26,'#075D58')
+txt(43,307,'①  3,600을 곱하는 이유',19,'#08746D')
+txt(45,277,'1 kW는 1초에 1 kJ다. 1시간은 3,600초라서 1시간당 3,600 kJ가 된다.')
+txt(43,231,'②  4.1868로 나누는 이유',19,'#08746D')
+txt(45,201,'1 kcal는 4.1868 kJ(국제표 기준)다. kJ를 kcal로 바꾸면 3,600 ÷ 4.1868 ≈ 859.85 kcal/h다.')
+txt(43,147,'시험 직전 기억:  kW × 860 ≈ kcal/h   |   kcal/h ÷ 860 ≈ kW',20,'#08746D')
+txt(45,108,'예: 2.5 kW ≈ 2.5 × 860 = 2,150 kcal/h.')
+txt(45,46,'환산 기준: NIST SP 811, Appendix B.9',11,'#506771')
+c.linkURL('https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b9',(45,40,320,60))
+c.showPage()
+notes('01   재료의 성질: 무엇을 비교하는가?', '근거: 시험범위 PDF 2·9·11~15·18쪽',[
  ('압력은 무게 자체가 아니라, 힘이 얼마나 좁게 모이는지다.',['압력 = 수직으로 누르는 힘 ÷ 면적. 같은 힘으로 누르면 면적이 절반일 때 압력은 두 배다.']),
  ('철·강·구리는 금속, 목재·시멘트·합성수지는 비금속이다.',['황동·청동은 구리 합금이다. 재료를 나눌 때는 색깔보다 바탕이 되는 금속을 본다.']),
  ('비중은 같은 부피끼리, 비열은 같은 질량끼리 비교한다.',['비중: 같은 부피의 물보다 몇 배 무거운가?  비열: 같은 질량을 1℃ 올릴 때 열이 얼마나 필요한가?', '용융점은 녹는 온도다. 자료의 대표 대비는 실온에서도 액체인 수은과 고온에서 녹는 텅스텐이다.']),
@@ -80,7 +96,7 @@ def graph(page,title,sub,crop,tags,side,steps):
         txt(40,y,label,14,'#08746D')
         y=wrapped(194,y,meaning,607,13)-5
     assert y>=12,(page,y)
-    txt(40,16,f'기말 핵심 정리  ·  {len(titles)+1}쪽',10,'#506771')
+    txt(40,16,f'기말 핵심 정리  ·  {len(titles)}쪽',10,'#506771')
     c.showPage()
 graph(51,'03   철-탄소 상태도: 기호와 영역','가로는 탄소 함량(%), 세로는 온도(℃). 같은 강을 식힐 때는 같은 탄소 함량에서 수직으로 내려간다.',
  (20,98,565,436),[('J 포정점',159,143,184,118),('C 공정점',401,223,421,166),
@@ -144,7 +160,6 @@ notes('07   겉만 단단하게: 무엇을 넣었는가?','근거: PDF 88~95쪽 
 c.save(); sheets=PdfReader(io.BytesIO(buf.getvalue()));w=PdfWriter()
 def add(p,name):
     w.add_page(p);w.add_outline_item(name,len(w.pages)-1)
-add(src.pages[0],'추가 계산 | 1 kg과 kcal/h')
 for page,title in zip(sheets.pages,titles,strict=True):
     add(page,title)
 for p in originals:add(p,'시험 원문 PDF '+str(int(p.extract_text().strip().split()[0])+1)+'쪽')

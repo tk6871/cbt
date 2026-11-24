@@ -42,11 +42,10 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
    <button type="button" className="final-back" onClick={()=>open('school')}>← 기말고사 과목 목록</button>
    <header><h1>{finalNames[subject]}</h1><p>{scopes[subject]}</p></header>
    {pdf&&<a href={'output/pdf/'+pdf[0]+'.pdf'} target="_blank" rel="noopener">{pdf[1]} ↗</a>}
-   {subject==='metal'&&<details className="final-tool"><summary>추가 시험 계산 · 1 kg으로 kcal/h 구하기</summary>
-     <p>kg은 질량, kcal/h는 한 시간에 주고받는 열량입니다. 질량만 주면 바로 바꿀 수 없습니다.</p>
-     <p><strong>온도만 변할 때: 시간당 열량 = 질량(kg) × 비열(kcal/kg·℃) × 온도차(℃) ÷ 걸린 시간(h)</strong></p>
-     <p>물 1 kg을 20℃에서 30℃로 30분 동안 데우면? 물의 비열은 약 1, 온도차는 10℃, 30분은 0.5 h입니다. 따라서 1 × 1 × 10 ÷ 0.5 = <strong>20 kcal/h</strong>입니다. 실제로 준 열은 10 kcal이고, 한 시간 기준으로 바꾸면 두 배입니다.</p>
-     <p>이미 kg/h로 주어지면 시간으로 또 나누지 않습니다. 끓어서 증기가 되는 구간은 온도차 대신 증발잠열(kcal/kg)을 곱합니다. 연료를 태우는 문제라면 연료 소비량(kg/h)에 발열량(kcal/kg)을 곱합니다.</p>
+   {subject==='metal'&&<details className="final-tool"><summary>시험 계산 · 1 kW ≈ 860 kcal/h</summary>
+     <p><strong>kW × 860 ≈ kcal/h · 반대로 kcal/h ÷ 860 ≈ kW</strong></p>
+     <p>1 kW는 1 kJ/s입니다. 1시간이 3,600초라서 3,600 kJ/h이고, 1 kcal는 4.1868 kJ(국제표 기준)라서 3,600 ÷ 4.1868 ≈ 859.85 kcal/h입니다.</p>
+     <p>예: 2.5 kW ≈ 2.5 × 860 = <strong>2,150 kcal/h</strong>.</p>
    </details>}
    {subject==='cooling'&&<button className="final-back" onClick={()=>open('school-written')}>주관식 연습 열기 · 문항당 5점 →</button>}
    {subject==='forklift'&&<><button className="final-back" onClick={()=>open('school-forklift-written')}>주관식 2문제 · 윤활유와 등화장치 →</button>
