@@ -49,6 +49,7 @@ const thermalGroups=new Set(['불림','풀림','뜨임','담금질','냉각선�
 const tttGroups=new Set(['TTT축','변태율','Ms','마퀜칭','오스템퍼링','마템퍼링','코','항온조직']);
 export function metalBlock(i:QuestionItem){
  const group=authoredMeta.get(i.id)?.group.split(':')[1]??'';
+ if(i.question.sourcePage && /PDF (?:[2-9]|1\d|2\d|3\d|4\d|50|9[1-5])쪽/.test(i.question.sourcePage))return 'materials';
  return thermalGroups.has(group)?'thermal':tttGroups.has(group)?'ttt':'phase';
 }
 export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options:FinalOptions){
@@ -83,8 +84,8 @@ export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options
      const group=pool.filter(i=>metalBlock(i)===block);
      return options.exclude?group.filter((i,k)=>group.findIndex(x=>authoredMeta.get(x.id)?.group===authoredMeta.get(i.id)?.group)===k):group;
    };
-   const bins={phase:blockPool('phase'),ttt:blockPool('ttt'),thermal:blockPool('thermal')};
-   const schedule=['phase','ttt','thermal','phase','ttt','phase','phase','thermal','ttt','phase'] as const;
+   const bins={phase:blockPool('phase'),ttt:blockPool('ttt'),thermal:blockPool('thermal'),materials:blockPool('materials')};
+   const schedule=['materials','phase','ttt','thermal','materials','phase','materials','thermal','ttt','materials'] as const;
    const out:QuestionItem[]=[];
    while(out.length<limit&&Object.values(bins).some(b=>b.length)){
      for(const b of schedule){const next=bins[b].pop();if(next)out.push(next);if(out.length===limit)break;}

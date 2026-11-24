@@ -129,6 +129,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
       >
         {presentation!=='book' && item.round.kind==='textbook-pages' && <small className="printed-subject">{item.question.sourcePage||item.round.title}</small>}
         {item.round.id==='school-final-forklift' && <small className="printed-subject">{item.question.sourcePage || '수업 범위 기반 · 자체 예상문제'}</small>}
+        {item.round.id==='school-final-metal' && <small className="printed-subject">{item.question.sourcePage}</small>}
         {subjectStart && presentation !== 'book' ? (
           <div className="subject-divider" role="heading" aria-level={2}>
             <span>

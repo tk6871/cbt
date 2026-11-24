@@ -7,8 +7,8 @@ import type {StudyView} from './studyRoutes';
 
 const subjects=['cooling','metal','sports','energy','forklift'] as const;
 const icons={cooling:Snowflake,metal:Layers,sports:Trophy,energy:Flame,forklift:Forklift};
-const scopes={cooling:'부록 4-7~5-108쪽 · 냉동냉장설비',metal:'철–탄소 상태도와 열처리',sports:'운동·체력·리더십·윤리',energy:'교재 321~644쪽 · 전 회차',forklift:'객관식 15문제 · 지게차 5 / 엔진 5 / 법규 2 / 일반안전 3 · 도로교통법규 제외'};
-const pdfs={metal:['metal-curves-final','곡선 입문 PDF 열기'],sports:['sports-leadership-final','시험범위 PDF 열기']};
+const scopes={cooling:'부록 4-7~5-108쪽 · 냉동냉장설비',metal:'시험 표시 범위 · 재료·검사·가공·상태도·열처리',sports:'운동·체력·리더십·윤리',energy:'교재 321~644쪽 · 전 회차',forklift:'객관식 15문제 · 지게차 5 / 엔진 5 / 법규 2 / 일반안전 3 · 도로교통법규 제외'};
+const pdfs={metal:['metal-marked-final','시험 표시 자료·그래프 45쪽 열기'],sports:['sports-leadership-final','시험범위 PDF 열기']};
 export function finalSubjectFor(view:StudyView){return subjects.find(s=>view==='school-'+s);}
 type Props={pool:(s:FinalSubject)=>Promise<QuestionItem[]>;choice:(i:QuestionItem)=>number;start:(s:FinalSubject,m:StudyMode,o:FinalOptions)=>Promise<void>;
  open:(v:StudyView)=>void;archive:(s:'energy'|'cooling')=>void;children:ReactNode;subject?:FinalSubject};
@@ -42,6 +42,12 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
    <button type="button" className="final-back" onClick={()=>open('school')}>← 기말고사 과목 목록</button>
    <header><h1>{finalNames[subject]}</h1><p>{scopes[subject]}</p></header>
    {pdf&&<a href={'output/pdf/'+pdf[0]+'.pdf'} target="_blank" rel="noopener">{pdf[1]} ↗</a>}
+   {subject==='metal'&&<details className="final-tool"><summary>추가 시험 계산 · 1 kg으로 kcal/h 구하기</summary>
+     <p>kg은 질량, kcal/h는 한 시간에 주고받는 열량입니다. 질량만 주면 바로 바꿀 수 없습니다.</p>
+     <p><strong>온도만 변할 때: 시간당 열량 = 질량(kg) × 비열(kcal/kg·℃) × 온도차(℃) ÷ 걸린 시간(h)</strong></p>
+     <p>물 1 kg을 20℃에서 30℃로 30분 동안 데우면? 물의 비열은 약 1, 온도차는 10℃, 30분은 0.5 h입니다. 따라서 1 × 1 × 10 ÷ 0.5 = <strong>20 kcal/h</strong>입니다. 실제로 준 열은 10 kcal이고, 한 시간 기준으로 바꾸면 두 배입니다.</p>
+     <p>이미 kg/h로 주어지면 시간으로 또 나누지 않습니다. 끓어서 증기가 되는 구간은 온도차 대신 증발잠열(kcal/kg)을 곱합니다. 연료를 태우는 문제라면 연료 소비량(kg/h)에 발열량(kcal/kg)을 곱합니다.</p>
+   </details>}
    {subject==='cooling'&&<button className="final-back" onClick={()=>open('school-written')}>주관식 연습 열기 · 문항당 5점 →</button>}
    {subject==='forklift'&&<><button className="final-back" onClick={()=>open('school-forklift-written')}>주관식 2문제 · 윤활유와 등화장치 →</button>
    <small>법규 예상 범위: <a href="https://www.law.go.kr/법령/건설기계관리법/제13조" target="_blank" rel="noreferrer">건설기계 검사</a> · <a href="https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제178조" target="_blank" rel="noreferrer">사업장 지게차 안전기준</a></small></>}

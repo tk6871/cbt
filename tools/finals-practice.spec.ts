@@ -75,7 +75,7 @@ test('수업 예상 후보 선택과 같은 유형 제외는 원본을 바꾸지
     for(let i=0;i<12;i++){
       const s=selectFinalItems(all,subject,{expected:true,exclude:true});
       expect(s).toHaveLength(10);draws.add(s.map(i=>i.id).sort().join());
-      if(subject==='metal')for(const [block,n] of [['phase',5],['ttt',3],['thermal',2]])expect(s.filter(i=>metalBlock(i)===block)).toHaveLength(Number(n));
+      if(subject==='metal')for(const [block,n] of [['phase',2],['ttt',2],['thermal',2],['materials',4]])expect(s.filter(i=>metalBlock(i)===block)).toHaveLength(Number(n));
     }
     expect(draws.size).toBeGreaterThan(1);
   }
@@ -133,13 +133,13 @@ test('제관 전체 첫 문제에는 해설이 붙지 않은 상태도 원도가
  await page.goto('./?safe=1#/study/school');
  await page.getByRole('button',{name:'제관공학',exact:true}).click();
  await page.getByRole('article',{name:'1회 연습',exact:true}).getByRole('button',{name:'학습모드'}).click();
- const image=page.locator('#session-question-1 img[src$="/metal-fe-c.webp"]');
+ const image=page.locator('#session-question-1 img[src$="/metal-exam-51.webp"]');
  await expect(image).toBeVisible();await expect.poll(()=>image.evaluate(e=>(e as HTMLImageElement).naturalWidth)).toBeGreaterThan(800);
  const files=[...new Set(finalAuthoredItems.flatMap(i=>i.question.images??[]))];
- expect(files).toHaveLength(3);
+ expect(files).toHaveLength(1);
  for(const src of files)expect((await page.request.get(src)).ok()).toBe(true);
  const keys=[...new Set(finalAuthoredItems.flatMap(i=>i.question.explanationImages??[]))];
- expect(keys).toHaveLength(4);
+ expect(keys).toHaveLength(9);
  for(const src of keys)expect((await page.request.get(src)).ok()).toBe(true);
 });
 test('예상 랜덤에서 이전 추첨 제외를 켜면 직전 문항이 다시 나오지 않는다',async({page})=>{
