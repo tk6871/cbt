@@ -104,6 +104,8 @@ export default function TextbookReader(p:Props){
  const close=()=>dialog.current?.close();
  function update(next:BookSelection){saveBookSelection(book,next);setSelection(next);close();window.scrollTo({top:0,behavior:'instant'});}
  function jump(from:string,to=''){update({from,to,contentsId:'',contentsLabel:''});}
+ const swipePage=useRef({book,start,jump});
+ swipePage.current={book,start,jump};
  useEffect(()=>{setActive('');},[book,start]);
  useEffect(()=>{
   function turn(event:KeyboardEvent){
@@ -127,10 +129,11 @@ export default function TextbookReader(p:Props){
  useEffect(()=>{
    const surface=root.current?.querySelector<HTMLElement>('.reader-main');
    if(!surface||starting||p.loading||p.error)return;
-   return bindMacHorizontalSwipe(surface,step=>!!adjacentBookPage(book,start,step),step=>{
-     const next=adjacentBookPage(book,start,step);if(next)jump(next);
+   return bindMacHorizontalSwipe(surface,step=>!!adjacentBookPage(swipePage.current.book,swipePage.current.start,step),step=>{
+     const current=swipePage.current;
+     const next=adjacentBookPage(current.book,current.start,step);if(next)current.jump(next);
    });
- },[book,start,starting,p.loading,p.error]);
+ },[starting,p.loading,p.error]);
  function selectRow(row:ContentsRow){
   const ready=readableBookPages(book,row.node.from||'',row.node.to||'',row.entries,new Set(byId.keys()));
   const from=ready[0]?.page||row.node.from||'',to=row.node.to||ready.at(-1)?.page||'';

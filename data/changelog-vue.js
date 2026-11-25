@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.7.2',scope:'industrial',date:'2026.11.25',title:'트랙패드 입력과 해설 위치 개선',summary:'가로 스와이프의 관성을 구분하고 확대는 제스처를 시작한 지점에서 진행합니다.',changes:['해설이 자동으로 접혀도 보고 있던 다음 문제의 화면 위치를 유지합니다.','문제를 클릭할 때 카드 테두리 색이 바뀌지 않습니다.']},
     {version:'6.7.1',scope:'industrial',date:'2026.11.25',title:'맥 트랙패드 가로 스와이프 수정',summary:'교재와 문항에서 두 손가락으로 수평으로 밀어도 넘길 수 있습니다.',changes:['문항 넘김은 풀이 메뉴에서 켜고, 확대 그림에서는 가로 이동을 유지합니다.']},
     {version:'6.7',scope:'industrial',date:'2026.11.25',title:'기말 회차·교재 풀이 개선',summary:'실제 회차 또는 문항 수를 고르고, 문제를 제외하면 개수가 바로 바뀝니다.',changes:['에너지설비 기말은 교재 2019년 4회~2025년 3회 범위입니다.','풀이 과목 팝업, 클릭한 문제에 숫자키 입력, 그림 확대와 맥 입력 지원을 개선했습니다.']},
     {version:'6.6.9',scope:'industrial',date:'2026.11.24',title:'제관 기말 단위 환산 수정',summary:'1 kW를 kcal/h로 바꾸는 공식과 예제를 넣었습니다.',changes:['1 kW ≈ 860 kcal/h의 계산을 제관 기말과 PDF에서 확인할 수 있습니다.']},
@@ -3276,8 +3277,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.7.1';
+  changelog.versions.industrial = '6.7.2';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.7.1';
+  changelog.currentVersion = '6.7.2';
   window.CBT_CHANGELOG = changelog;
 })();

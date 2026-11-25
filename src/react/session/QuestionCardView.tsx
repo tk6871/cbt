@@ -649,6 +649,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
         !explanationDismissed &&
         (!compactSolveLayout || inlineCompactExplanation) ? (
           <div
+            ref={m.explanationBoxRef}
             className={normalizeClass([
               'explanation-box',
               { 'comcbt-inline-explanation': inlineCompactExplanation },

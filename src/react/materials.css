@@ -164,7 +164,6 @@
 .final-source-rounds summary{cursor:pointer;font-size:.8rem;line-height:1.4}
 .final-source-rounds ul{max-height:8rem;overflow:auto;padding-inline-start:1.15rem;font-size:.78rem}
 .final-range .final-single-paper,.final-range p[data-range-count]{font-size:.82rem}
-.question-card.keyboard-active,.book-direct-question.keyboard-active{outline:2px solid var(--primary);outline-offset:2px}
 .session-gesture-setting{display:flex;gap:.5rem;align-items:center;padding:.55rem}
 .question-card .subject-divider,.book-sheet-question .subject-divider{display:flex;align-items:baseline;gap:.65rem;border-inline-start:4px solid var(--primary);margin-bottom:.9rem;padding:.7rem 1rem;background:var(--surface)}
 .question-card .subject-divider strong,.book-sheet-question .subject-divider strong{font-size:clamp(1.12rem,1rem + .5vw,1.5rem);line-height:1.35}

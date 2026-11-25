@@ -57,6 +57,8 @@ test('교재 정정본을 숫자키로 풀며 기존 CBT 비교 이미지는 노
   await expect(card).toContainText('65.14');
   await expect(card).not.toContainText('수정 전 CBT 원본 비교');
   await card.locator('.question-text').first().click();
+  await expect(card).toHaveClass(/keyboard-active/);
+  await expect(card).toHaveCSS('outline-style','none');
   await page.keyboard.press('4');
   await expect.poll(async()=>(await saved(page)).answers?.[ids[number-1]]).toBe(4);
   await expect(card).toContainText('22');
@@ -77,9 +79,16 @@ for(const [name,platform,mac] of [['Mac','MacIntel',true],['Windows','Win32',fal
     const viewer=page.locator('.study-image-dialog[open]');
     const stage=viewer.locator('.study-image-viewport');
     const scale=viewer.getByLabel('그림 확대 비율');
-    await stage.dispatchEvent('wheel',{deltaY:-40,deltaMode:0,ctrlKey:true,cancelable:true});
-    if(mac)await expect(stage).not.toHaveAttribute('data-zoom','100');
-    else await expect(stage).toHaveAttribute('data-zoom','100');
+    const focusX=await stage.evaluate(el=>{
+      const x=el.clientWidth/4;
+      const r=el.getBoundingClientRect();
+      el.dispatchEvent(new WheelEvent('wheel',{deltaY:-40,deltaMode:0,ctrlKey:true,cancelable:true,bubbles:true,clientX:r.left+el.clientLeft+x,clientY:r.top+el.clientHeight/2}));
+      return x;
+    });
+    if(mac){
+      await expect(stage).not.toHaveAttribute('data-zoom','100');
+      expect(await stage.evaluate((el,x)=>(el.scrollLeft+x)/el.scrollWidth,focusX)).toBeCloseTo(.25,1);
+    }else await expect(stage).toHaveAttribute('data-zoom','100');
     await scale.selectOption('200');
     const left=await stage.evaluate(el=>el.scrollLeft);
     await stage.hover();
@@ -88,10 +97,14 @@ for(const [name,platform,mac] of [['Mac','MacIntel',true],['Windows','Win32',fal
     await page.goBack();
     await expect(viewer).toHaveCount(0);
     await expect(card).toBeVisible();
-    const stroke=async(deltas:number[],y:number)=>{
-      await card.evaluate((el,{deltas,y})=>{
-        for(const x of deltas)el.dispatchEvent(new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:y,cancelable:true}));
-      },{deltas,y});
+    const stroke=async(deltas:number[],y:number,momentum=false)=>{
+      await card.evaluate((el,{deltas,y,momentum})=>{
+        for(const x of deltas){
+          const e=new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:y,cancelable:true});
+          Object.defineProperty(e,'momentum',{value:momentum});
+          el.dispatchEvent(e);
+        }
+      },{deltas,y,momentum});
     };
     await stroke([8,17,26,24],0);
     await expect(card).toHaveClass(/keyboard-active/);
@@ -104,6 +117,7 @@ for(const [name,platform,mac] of [['Mac','MacIntel',true],['Windows','Win32',fal
     expect(await page.locator('html').evaluate(el=>getComputedStyle(el).overscrollBehaviorX)).toBe(mac?'contain':'auto');
     await stroke([95],0);
     await stroke([2,2,2,2],24);
+    await stroke([36,28,22,16],0,true);
     await expect(card).toHaveClass(/keyboard-active/);
     await expect.poll(async()=>{
       await stroke([8,17,26,24],0);
@@ -132,9 +146,69 @@ test('맥 교재 원문 위의 순수 가로 스와이프는 쪽을 한 번만 �
   const toolbar=page.locator('.reader-navigator-trigger');
   await expect(toolbar).toContainText('414쪽');
   const source=page.locator('.book-sheet .source-question-image').first();
-  await source.evaluate(el=>{
-    for(const x of [4,9,15,21,26,19,11,6])el.dispatchEvent(new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:0,cancelable:true}));
-  });
+  const stroke=async(momentum:boolean)=>source.evaluate((el,momentum)=>{
+    for(const x of [4,9,15,21,26,19,11,6]){
+      const e=new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:0,cancelable:true});
+      Object.defineProperty(e,'momentum',{value:momentum});
+      el.dispatchEvent(e);
+    }
+  },momentum);
+  await stroke(false);
+  await expect(toolbar).toContainText('415쪽');
+  await stroke(true);
   await expect(toolbar).toContainText('415쪽');
   expect(await page.locator('html').evaluate(el=>getComputedStyle(el).overscrollBehaviorX)).toBe('contain');
+});
+
+test('Safari 방식의 핀치와 회전은 확대 그림에서만 적용된다',async({page},info)=>{
+  test.skip(info.project.name!=='desktop');
+  await page.addInitScript(()=>{
+    Object.defineProperty(navigator,'userAgentData',{get:()=>({platform:'macOS'})});
+    Object.defineProperty(navigator,'maxTouchPoints',{get:()=>0});
+    Object.defineProperty(window,'GestureEvent',{value:class extends Event{}});
+  });
+  await page.goto('./?safe=1#/study/school-energy');
+  await page.locator('.final-range').first().getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.locator('#session-question-1 .source-image-zoom-hint').click();
+  const stage=page.locator('.study-image-dialog[open] .study-image-viewport');
+  await stage.evaluate(el=>{
+    const r=el.getBoundingClientRect();
+    for(const [type,scale,rotation] of [['gesturestart',1,0],['gesturechange',1.5,87],['gestureend',1.5,87]] as const){
+      const event=new Event(type,{bubbles:true,cancelable:true});
+      Object.assign(event,{clientX:r.left+r.width/2,clientY:r.top+r.height/2,scale,rotation});
+      el.dispatchEvent(event);
+    }
+  });
+  await expect(stage).toHaveAttribute('data-zoom','150');
+  await expect(stage).toHaveAttribute('data-rotation','90');
+  await expect(page.locator('#session-question-1')).toBeVisible();
+});
+
+test('해설이 자동으로 접혀도 보고 있던 다음 문제의 화면 위치를 유지한다',async({page})=>{
+  await page.clock.install();
+  await page.goto('./?safe=1#/study/school-energy');
+  await page.locator('.final-range').first().getByRole('button',{name:'학습모드',exact:true}).click();
+  await page.addStyleTag({content:'html { overflow-anchor: none; scroll-behavior: auto !important; }'});
+  const first=page.locator('#session-question-1');
+  const below=first.locator('..').locator('.question-card').nth(1);
+  await first.getByRole('button',{name:'이미지에서 2번 선택',exact:true}).click();
+  const explanation=first.locator('.explanation-box');
+  await expect(explanation).toBeVisible();
+  await below.evaluate(el=>{
+    window.scrollBy({top:el.getBoundingClientRect().top-160,behavior:'instant'});
+  });
+  await page.evaluate(async()=>{
+    await document.fonts.ready;
+    await Promise.allSettled([...document.querySelectorAll<HTMLImageElement>('.question-columns img')].map(img=>{img.loading='eager';return img.decode();}));
+  });
+  await page.clock.runFor(18_000);
+  await expect(explanation).toBeVisible();
+  const measure=await below.evaluate(el=>({top:el.getBoundingClientRect().top,y:window.scrollY}));
+  expect(measure.top).toBeGreaterThanOrEqual(0);
+  await page.clock.runFor(2_500);
+  await expect(explanation).toHaveCount(0);
+  await expect(first.getByRole('button',{name:/해설 다시 보기/})).toBeVisible({timeout:1500});
+  const later=await below.evaluate(el=>({top:el.getBoundingClientRect().top,y:window.scrollY}));
+  expect(Math.abs(later.top-measure.top)).toBeLessThanOrEqual(2);
+  expect(later.y).toBeLessThan(measure.y);
 });
