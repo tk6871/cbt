@@ -207,8 +207,46 @@ test('해설이 자동으로 접혀도 보고 있던 다음 문제의 화면 위
   expect(measure.top).toBeGreaterThanOrEqual(0);
   await page.clock.runFor(2_500);
   await expect(explanation).toHaveCount(0);
+  await expect(first.locator('.inline-explanation-slot')).not.toHaveAttribute('data-explanation-space-held','true');
   await expect(first.getByRole('button',{name:/해설 다시 보기/})).toBeVisible({timeout:1500});
   const later=await below.evaluate(el=>({top:el.getBoundingClientRect().top,y:window.scrollY}));
   expect(Math.abs(later.top-measure.top)).toBeLessThanOrEqual(2);
   expect(later.y).toBeLessThan(measure.y);
+});
+
+test('한 문제 보기는 페이지 끝에서도 해설이 닫힐 때 위치를 지키고 위로 이동하면 공간을 비운다',async({page})=>{
+  await page.clock.install();
+  await page.goto('./?safe=1#/study/school-energy');
+  await page.locator('.final-range').first().getByRole('button',{name:'학습모드',exact:true}).click();
+  const first=page.locator('#session-question-1');
+  await first.getByRole('button',{name:'1번 한 문제로 크게 보기',exact:true}).click();
+  await expect(page.locator('.question-columns .question-card')).toHaveCount(1);
+  await first.getByRole('button',{name:'이미지에서 2번 선택',exact:true}).click();
+  const box=first.locator('.explanation-box'),slot=first.locator('.inline-explanation-slot');
+  await expect(box).toBeVisible();
+  await page.evaluate(async()=>{
+    await document.fonts.ready;
+    await Promise.allSettled([...document.querySelectorAll<HTMLImageElement>('.question-columns img')].map(img=>{img.loading='eager';return img.decode();}));
+  });
+  await page.clock.runFor(18_000);
+  const read=()=>first.evaluate(el=>({
+    y:window.scrollY,limit:document.scrollingElement!.scrollHeight-document.scrollingElement!.clientHeight,
+    questionTop:el.getBoundingClientRect().top,
+  }));
+  await page.evaluate(()=>window.scrollTo({top:document.scrollingElement!.scrollHeight,behavior:'instant'}));
+  const before=await read();
+  expect(before.y).toBeGreaterThan(0);
+  expect(before.y).toBe(before.limit);
+  await page.clock.runFor(2_500);
+  await expect(box).toHaveCount(0);
+  await expect(slot).toHaveAttribute('data-explanation-space-held','true');
+  await expect(first.getByRole('button',{name:/해설 다시 보기/})).toBeAttached();
+  const after=await read();
+  expect(Math.abs(after.y-before.y)).toBeLessThanOrEqual(2);
+  expect(Math.abs(after.questionTop-before.questionTop)).toBeLessThanOrEqual(2);
+  await page.evaluate(()=>window.scrollTo({top:0,behavior:'instant'}));
+  await page.clock.runFor(50);
+  await expect(slot).not.toHaveAttribute('data-explanation-space-held','true');
+  expect((await read()).limit).toBeLessThan(before.limit);
+  expect((await read()).y).toBe(0);
 });

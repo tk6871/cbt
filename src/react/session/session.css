@@ -24,3 +24,4 @@
   from {opacity:.65}
   to {opacity:1}
 }
+.inline-explanation-slot { display:flow-root; }

@@ -11,7 +11,7 @@ import type {QuestionItem, StudyMode} from '../../cbt/types';
 import {escapeTranscription} from '../../cbt/imageTranscription';
 import {useSourceTranscription} from './useSourceTranscription';
 import {renderQuestionCardView} from './QuestionCardView';
-import {automaticExplanationAnchor,restoreExplanationAnchor} from './explanationScrollAnchor';
+import {captureExplanationClose,restoreExplanationClose} from './explanationScrollAnchor';
 
 export interface QuestionCardFields {
   item: QuestionItem;
@@ -111,9 +111,8 @@ function useQuestionCard(props:QuestionCardProps) {
   const sourceImageRef=useRef<HTMLImageElement>(null);
   const choiceLayoutProbeRef=useRef<HTMLDivElement>(null);
   const explanationAutoCloseTimer=useRef<number | undefined>(undefined);
-  const pendingExplanationClose=useRef<(() => void) | undefined>(undefined);
-  const explanationBoxRef=useRef<HTMLDivElement>(null);
-  const explanationScrollAnchor=useRef<Exclude<ReturnType<typeof automaticExplanationAnchor>,false>>(null);
+  const explanationSlotRef=useRef<HTMLDivElement>(null);
+  const explanationCloseSnapshot=useRef<ReturnType<typeof captureExplanationClose>>(null);
   const speech=useRef<SpeechSynthesisUtterance | null>(null);
   const [sourceImageOverride, setSourceImageOverride] = useState(false);
   const [forceVerticalTextChoices, setForceVerticalTextChoices] = useState(false);
@@ -355,22 +354,14 @@ function useQuestionCard(props:QuestionCardProps) {
   function stopExplanationAutoClose() {
     window.clearInterval(explanationAutoCloseTimer.current);
     explanationAutoCloseTimer.current=undefined;
-    pendingExplanationClose.current?.();
     setExplanationAutoCloseSeconds(0);
   }
 
-  function autoCloseExplanation(){
-    const hold=automaticExplanationAnchor(explanationBoxRef.current);
-    if(hold===false)return false;
-    pendingExplanationClose.current?.();
-    explanationScrollAnchor.current=hold;
-    setExplanationDismissed(true);
-    return true;
-  }
   useLayoutEffect(()=>{
-    const anchor=explanationScrollAnchor.current;
-    explanationScrollAnchor.current=null;
-    if(explanationDismissed&&anchor)restoreExplanationAnchor(anchor);
+    const snapshot=explanationCloseSnapshot.current;
+    explanationCloseSnapshot.current=null;
+    const slot=explanationSlotRef.current;
+    if(explanationDismissed&&slot&&snapshot)return restoreExplanationClose(slot,snapshot);
   },[explanationDismissed]);
 
   const previousSelection=useRef({selected:props.selected, layout:props.solveLayout, mode:props.mode});
@@ -389,22 +380,11 @@ function useQuestionCard(props:QuestionCardProps) {
       setExplanationAutoCloseSeconds(seconds);
       if(seconds===0){
         stopExplanationAutoClose();
-        if(!autoCloseExplanation()){
-          const retry=()=>{autoCloseExplanation();};
-          pendingExplanationClose.current=()=>{
-            window.removeEventListener('scroll',retry,true);
-            window.removeEventListener('resize',retry);
-            pendingExplanationClose.current=undefined;
-          };
-          window.addEventListener('scroll',retry,{capture:true,passive:true});
-          window.addEventListener('resize',retry);
-        }
+        explanationCloseSnapshot.current=captureExplanationClose(explanationSlotRef.current);
+        setExplanationDismissed(true);
       }
     },1000);
-    return ()=>{
-      window.clearInterval(explanationAutoCloseTimer.current);
-      pendingExplanationClose.current?.();
-    };
+    return ()=>window.clearInterval(explanationAutoCloseTimer.current);
   },[props.selected,props.solveLayout,props.mode,correctSelected]);
 
   function toggleQuestionSpeech(): void {
@@ -524,7 +504,7 @@ function useQuestionCard(props:QuestionCardProps) {
     closeInlineExplanation, combatDenseChoices, combatUltraShortChoices,
     compactSolveLayout, compactTextChoices, compactVisualChoices,
     correctSelected, displayedChoices, displayedQuestionMarkup, readableText,
-    explanationAutoCloseSeconds, explanationBoxRef, explanationDismissed, explanationOpen,
+    explanationAutoCloseSeconds, explanationSlotRef, explanationDismissed, explanationOpen,
     explanationOrigin, fieldReportQuestion, hansolQuestion,
     hasReadableChoices, imageOptions, imageZoomOpen,
     inlineCompactExplanation, issueReportDetails, issueReportError,

@@ -632,9 +632,9 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             </div>
           </details>
         ) : null}
-        {mode === 'learn' &&
-        correctSelected &&
-        (explanationDismissed || (compactSolveLayout && !inlineCompactExplanation)) ? (
+        {mode === 'learn' && correctSelected ? (
+        <div className="inline-explanation-slot" ref={m.explanationSlotRef}>
+        {explanationDismissed || (compactSolveLayout && !inlineCompactExplanation) ? (
           <button type="button" onClick={reopenExplanation} className="compact-explanation-trigger">
             <span>
               {'정답 '}
@@ -644,12 +644,9 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             <small>열기</small>
           </button>
         ) : null}
-        {mode === 'learn' &&
-        correctSelected &&
-        !explanationDismissed &&
+        {!explanationDismissed &&
         (!compactSolveLayout || inlineCompactExplanation) ? (
           <div
-            ref={m.explanationBoxRef}
             className={normalizeClass([
               'explanation-box',
               { 'comcbt-inline-explanation': inlineCompactExplanation },
@@ -793,6 +790,8 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               </details>
             ))}
           </div>
+        ) : null}
+        </div>
         ) : null}
         {presentation === 'book' ? (
           <div className="book-question-tools">

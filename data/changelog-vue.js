@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.7.3',scope:'industrial',date:'2026.11.25',title:'해설 자동 닫힘 화면 이동 수정',summary:'한 문제 집중 보기와 페이지 끝에서도 해설을 자동으로 닫을 때 화면 위치를 유지합니다.',changes:['해설을 닫은 뒤 필요한 공간만 잠깐 유지하고 스크롤이 안전해지면 없앱니다.']},
     {version:'6.7.2',scope:'industrial',date:'2026.11.25',title:'트랙패드 입력과 해설 위치 개선',summary:'가로 스와이프의 관성을 구분하고 확대는 제스처를 시작한 지점에서 진행합니다.',changes:['해설이 자동으로 접혀도 보고 있던 다음 문제의 화면 위치를 유지합니다.','문제를 클릭할 때 카드 테두리 색이 바뀌지 않습니다.']},
     {version:'6.7.1',scope:'industrial',date:'2026.11.25',title:'맥 트랙패드 가로 스와이프 수정',summary:'교재와 문항에서 두 손가락으로 수평으로 밀어도 넘길 수 있습니다.',changes:['문항 넘김은 풀이 메뉴에서 켜고, 확대 그림에서는 가로 이동을 유지합니다.']},
     {version:'6.7',scope:'industrial',date:'2026.11.25',title:'기말 회차·교재 풀이 개선',summary:'실제 회차 또는 문항 수를 고르고, 문제를 제외하면 개수가 바로 바뀝니다.',changes:['에너지설비 기말은 교재 2019년 4회~2025년 3회 범위입니다.','풀이 과목 팝업, 클릭한 문제에 숫자키 입력, 그림 확대와 맥 입력 지원을 개선했습니다.']},
@@ -3277,8 +3278,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.7.2';
+  changelog.versions.industrial = '6.7.3';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.7.2';
+  changelog.currentVersion = '6.7.3';
   window.CBT_CHANGELOG = changelog;
 })();
