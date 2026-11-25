@@ -88,16 +88,53 @@ for(const [name,platform,mac] of [['Mac','MacIntel',true],['Windows','Win32',fal
     await page.goBack();
     await expect(viewer).toHaveCount(0);
     await expect(card).toBeVisible();
-    const swipe=async(x:number,y:number)=>{
-      for(let i=0;i<4;i++)await card.dispatchEvent('wheel',{deltaX:x,deltaY:y,deltaMode:0,cancelable:true});
+    const stroke=async(deltas:number[],y:number)=>{
+      await card.evaluate((el,{deltas,y})=>{
+        for(const x of deltas)el.dispatchEvent(new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:y,cancelable:true}));
+      },{deltas,y});
     };
-    await swipe(28,2);
+    await stroke([8,17,26,24],0);
     await expect(card).toHaveClass(/keyboard-active/);
-    await page.evaluate(()=>localStorage.setItem('cbt:mac-question-swipe','true'));
-    await swipe(28,0);
+    const toggle=page.getByRole('button',{name:'풀이 메뉴 열기'});
+    await toggle.click();
+    const option=page.getByRole('checkbox',{name:'트랙패드로 문항 넘기기'});
+    if(mac)await option.check();
+    else await expect(option).toHaveCount(0);
+    await page.locator('.session-drawer').getByRole('button',{name:'닫기',exact:true}).click();
+    expect(await page.locator('html').evaluate(el=>getComputedStyle(el).overscrollBehaviorX)).toBe(mac?'contain':'auto');
+    await stroke([95],0);
+    await stroke([2,2,2,2],24);
     await expect(card).toHaveClass(/keyboard-active/);
-    await swipe(28,2);
+    await expect.poll(async()=>{
+      await stroke([8,17,26,24],0);
+      return page.locator('#session-question-2').evaluate(el=>el.classList.contains('keyboard-active'));
+    },{intervals:[200]}).toBe(mac);
     if(mac)await expect(page.locator('#session-question-2')).toHaveClass(/keyboard-active/);
     else await expect(card).toHaveClass(/keyboard-active/);
   });
 }
+
+test('맥 교재 원문 위의 순수 가로 스와이프는 쪽을 한 번만 넘긴다',async({page},info)=>{
+  test.skip(info.project.name!=='desktop');
+  await page.addInitScript(()=>{
+    Object.defineProperty(navigator,'platform',{get:()=>'MacIntel'});
+    Object.defineProperty(navigator,'userAgentData',{get:()=>({platform:'macOS'})});
+    Object.defineProperty(navigator,'maxTouchPoints',{get:()=>0});
+  });
+  await page.goto('./?safe=1');
+  await page.getByRole('button',{name:'교재에서 풀기',exact:true}).click();
+  const library=page.locator('.textbook-library');
+  await library.locator('.library-books button').filter({hasText:'에너지설비 교재'}).click();
+  await library.getByRole('button',{name:'쪽번호로 바로 열기'}).click();
+  const dialog=page.locator('dialog.library-page-dialog[open]');
+  await dialog.locator('input').fill('414');
+  await dialog.getByRole('button',{name:'문제 풀기'}).click();
+  const toolbar=page.locator('.reader-navigator-trigger');
+  await expect(toolbar).toContainText('414쪽');
+  const source=page.locator('.book-sheet .source-question-image').first();
+  await source.evaluate(el=>{
+    for(const x of [4,9,15,21,26,19,11,6])el.dispatchEvent(new WheelEvent('wheel',{bubbles:true,deltaX:x,deltaY:0,cancelable:true}));
+  });
+  await expect(toolbar).toContainText('415쪽');
+  expect(await page.locator('html').evaluate(el=>getComputedStyle(el).overscrollBehaviorX)).toBe('contain');
+});

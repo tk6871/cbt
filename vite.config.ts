@@ -8,7 +8,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import { zodCommentCompat } from './tools/zod-comment-compat.mjs';
 
 const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-const buildVersion = '835';
+const buildVersion = '836';
 const analyzeBundle = process.env.npm_lifecycle_event === 'analyze';
 
 export default defineConfig({

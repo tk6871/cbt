@@ -1,4 +1,8 @@
 @import "../../assets/fonts/study-ui.css";
+/* Leave browser history gestures alone outside the two Mac swipe surfaces. */
+:root:has(.reader-main[data-mac-swipe="true"],.session-gesture-setting input:checked) {
+  overscroll-behavior-x: contain;
+}
 @font-face {
   font-family:"Nanum Gothic Bold";
   src:url("../../assets/fonts/NanumGothic-Bold.ttf") format("truetype");

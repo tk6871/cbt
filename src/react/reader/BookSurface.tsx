@@ -7,6 +7,7 @@ import {textbookAssetUrl,textbookDirectPageMap,textbookNames,textbookWorkedExamp
 import {BookNavigator,type NavigatorProps} from './BookNavigator';
 import {DirectQuestion} from './DirectQuestion';
 import {bookSubject,subjectLabel} from '../../cbt/printedSubject';
+import {macStudyInput} from '../../cbt/studyGestures';
 
 const MathFormula = lazy(()=>import('../practical/MathFormula'));
 
@@ -59,7 +60,7 @@ export function BookSurface(p:BookSurfaceProps) {
     <button type="button" aria-label="공학용 계산기 열기" onClick={p.calculator}>▦</button>
     <button type="button" aria-label="교재 풀이 설정" onClick={p.settings}>⚙ <span>설정</span></button>
   </header>
-  <main className="reader-main">
+  <main className="reader-main" data-mac-swipe={macStudyInput()?'true':undefined}>
     {p.chapterIndex}
     {p.invalid&&<p role="alert">끝 쪽은 시작 쪽보다 뒤여야 합니다. 한 페이지는 시작 쪽만 입력하세요.</p>}
     {p.loading?<p role="status">교재에 연결된 원문을 불러오는 중…</p>:p.error?<p role="alert">{p.error} <button onClick={p.retry}>다시 불러오기</button></p>:<>

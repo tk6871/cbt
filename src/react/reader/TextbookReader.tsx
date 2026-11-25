@@ -125,9 +125,9 @@ export default function TextbookReader(p:Props){
   return ()=>window.removeEventListener('keydown',turn);
  },[active,byId,book,start,starting,p.loading,p.error,p.onChoose]);
  useEffect(()=>{
-   const sheet=root.current?.querySelector<HTMLElement>('.book-sheet');
-   if(!sheet||starting||p.loading||p.error)return;
-   return bindMacHorizontalSwipe(sheet,step=>!!adjacentBookPage(book,start,step),step=>{
+   const surface=root.current?.querySelector<HTMLElement>('.reader-main');
+   if(!surface||starting||p.loading||p.error)return;
+   return bindMacHorizontalSwipe(surface,step=>!!adjacentBookPage(book,start,step),step=>{
      const next=adjacentBookPage(book,start,step);if(next)jump(next);
    });
  },[book,start,starting,p.loading,p.error]);
