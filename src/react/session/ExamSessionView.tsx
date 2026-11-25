@@ -2,6 +2,16 @@ import './session.css';
 import {clsx as normalizeClass} from 'clsx';
 import QuestionCard from './QuestionCard';
 import type { ExamSessionViewModel } from '../../cbt/studyController';
+import {useState} from 'react';
+import {macStudyInput} from '../../cbt/studyGestures';
+import {readStudyPreference,writeStudyPreference} from '../../cbt/studyInputPreferences';
+
+function MacQuestionSwipeSetting(){
+ const [swipe,setSwipe]=useState(()=>readStudyPreference('mac-question-swipe',false));
+ return <label className="session-gesture-setting"><input type="checkbox" checked={swipe} onChange={e=>{
+   setSwipe(e.target.checked);writeStudyPreference('mac-question-swipe',e.target.checked);
+ }}/> 트랙패드로 문항 넘기기</label>;
+}
 
 export function renderExamSessionView(m: ExamSessionViewModel) {
   const {
@@ -288,6 +298,7 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
           </button>
         </header>
         <nav>
+          {macStudyInput()&&<MacQuestionSwipeSetting/>}
           {session.mode === 'learn' && <button type="button" onClick={()=>{
             resetLearning();
             m.sessionMenuOpen=false;
@@ -456,7 +467,8 @@ export function renderExamSessionView(m: ExamSessionViewModel) {
                         hotspotIndicator: hotspotIndicator,
                         restoredImageTheme: restoredImageTheme,
                         solveLayout: solveLayoutMode,
-                        active: solveLayoutMode === 'comcbt' && activeSessionItem?.id === item.id,
+                        active: (solveLayoutMode === 'comcbt' || sessionTitle.startsWith('기말고사 · ') || item.round.kind==='textbook-pages') && activeSessionItem?.id === item.id,
+                        finalBook: sessionTitle.startsWith('기말고사 · ') && item.round.kind==='textbook-pages',
                         experimentalFeatures: experimentalFeaturesEnabled && questionJudgmentEnabled,
                         confidence: betaModeMeta(item.id, session.mode).confidence,
                         mistakeReason: betaModeMeta(item.id, session.mode).reason,

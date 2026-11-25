@@ -33,6 +33,7 @@ export interface QuestionCardFields {
   mistakeReason?: 'concept' | 'formula' | 'unit' | 'careless';
   studyNote?: string;
   presentation?: 'book';
+  finalBook?: boolean;
 }
 export interface QuestionCardProps extends QuestionCardFields {
   id?:string;
@@ -209,6 +210,7 @@ function useQuestionCard(props:QuestionCardProps) {
     return '';
   }, [explanationRaw]);
   const additionalExplanationSections = useMemo(() => {
+    if(props.finalBook&&props.item.question.bookCorrection)return [];
     const sections = [...(props.item.question.additionalExplanations || [])]
       .map((entry) => ({ ...entry, text: readableText(entry.text) }))
       .filter((entry) => entry.text);
@@ -216,7 +218,7 @@ function useQuestionCard(props:QuestionCardProps) {
       sections.push({ label: '추가 해설', source: '동일 문제 원문', text: legacyAdditionalExplanation });
     }
     return sections;
-  }, [props.item, legacyAdditionalExplanation]);
+  }, [props.item, props.finalBook, legacyAdditionalExplanation]);
   const hasReadableChoices = props.item.question.choices.some(hasReadableChoice);
   const compactVisualChoices = !restoredQuestion
     && props.item.question.choices.length === 4

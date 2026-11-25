@@ -10,6 +10,7 @@ import {textbookAssetUrl,textbookDirectImage,textbookDirectPageMap,type Textbook
 import {problemImage} from '../../cbt/problemImages';
 import {legacyDirectPrefix} from '../../cbt/textbookAnswerProgress';
 import {PrintedChoices} from './PrintedChoices';
+import {StudyImageDialog} from '../StudyImageDialog';
 import './direct-question.css';
 
 const indexedBoxes: Record<string,number[][]> = hitboxes;
@@ -60,7 +61,7 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
   const key=legacyDirectPrefix+source.id;
   const [storageFailed,setStorageFailed]=useState(false);
   const [solutionOpen,setSolutionOpen]=useState(false),[originalOpen,setOriginalOpen]=useState(false),[fullOpen,setFullOpen]=useState(false);
-  const [fallback,setFallback]=useState(false);
+  const [fallback,setFallback]=useState(false),[zoom,setZoom]=useState(false);
   const answer=textbookDirectAnswer(source,page),image=textbookDirectImage(page);
   const asset=problemImage(textbookAssetUrl(fallback?image.fallbackAsset:image.asset))!;
   const text=solutionOpen&&showText?textbookExplanationText(source):undefined;
@@ -100,8 +101,9 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
       <small>{answer?'인쇄 정답표를 대조했습니다. 여기서 채점하며 일반 학습·CBT 점수에는 합산하지 않습니다.':'책에 인쇄된 문제 번호로 확인하세요. 이 원문은 자동채점·점수에 포함하지 않습니다.'}</small></>}
     </details>
     <details className="direct-full-page" onToggle={e=>setFullOpen(e.currentTarget.open)}>
-      <summary>원문 쪽 전체 보기 · {source.page}쪽</summary><p>잘린 듯 보이거나 다음 열로 이어지는 문제·풀이를 책 한 쪽 전체에서 확인합니다. 정답표도 포함됩니다. <a href={asset} target="_blank" rel="noopener">원문 이미지 크게 열기 ↗</a></p>
+      <summary>원문 쪽 전체 보기 · {source.page}쪽</summary><p>잘린 듯 보이거나 다음 열로 이어지는 문제·풀이를 책 한 쪽 전체에서 확인합니다. 정답표도 포함됩니다. <button type="button" onClick={()=>setZoom(true)}>원문 이미지 크게 열기</button></p>
       {fullOpen&&<figure className="textbook-explanation-image"><img src={asset} className={original?'restored-image-original':undefined} width={page.size[0]} height={page.size[1]} alt={`교재 ${source.page}쪽 전체 원문`} onError={()=>onFallback(source.page)}/></figure>}
     </details>
+    {zoom&&<StudyImageDialog src={asset} alt={`교재 ${source.page}쪽 전체 원문`} sourceClass="hansol-source-image" original={original} onClose={()=>setZoom(false)}/>}
   </article>;
 }

@@ -60,6 +60,11 @@
 .practical-image-dialog > div { overflow:auto; flex:1; min-height:0; margin-top:12px; overscroll-behavior:contain; touch-action:pan-x pan-y pinch-zoom; }
 .practical-image-dialog .practical-image-close-target { display:block; min-height:0; max-width:none; padding:0; border:0; border-radius:0; background:transparent; cursor:zoom-out; line-height:0; }
 .practical-image-dialog img { display:block; width:100%; max-width:none; height:100%; object-fit:contain; }
+.study-image-dialog .study-image-viewport{overscroll-behavior:contain}
+.study-image-dialog .study-image-frame{display:grid;place-items:center;overflow:hidden;container-type:size}
+.study-image-dialog .study-image-frame img{object-fit:contain;max-width:100%;max-height:100%}
+.study-image-dialog .study-image-frame[data-sideways="true"] img{width:100cqh;height:100cqw;max-width:none;max-height:none}
+.study-image-open{display:block;max-width:100%;border:0;padding:0;background:none;cursor:zoom-in}
 /* Dedicated solving screen: no site sidebar, top navigation or bottom tabs. */
 :root .app-frame.practical-solving { padding:0 !important; margin:0; }
 .practical-solving .page-content:has(.practical-study-room) { width:min(1920px,calc(100% - 32px)); padding-top:max(12px,env(safe-area-inset-top)); padding-bottom:calc(24px + env(safe-area-inset-bottom)); }

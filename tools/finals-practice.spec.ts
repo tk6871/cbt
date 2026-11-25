@@ -1,6 +1,7 @@
 import {expect,test} from '@playwright/test';
 import {finalAuthoredItems} from '../src/cbt/finalCourseBank';
 import {selectFinalItems,metalBlock} from '../src/cbt/finalSelection';
+import {energyFinalInScope,filterBookPractice,isTextbookCalculation} from '../src/cbt/textbookPracticeFilters';
 import {bookSubject} from '../src/cbt/printedSubject';
 import {energyPool,energyFamily,energyKey} from '../src/cbt/energyFinal';
 import entries from '../data/textbook-pages.json' with {type:'json'};
@@ -66,6 +67,20 @@ test('에너지 전체·예상은 교재 안에서만 고르고 최신 반복 �
  expect(energyFamily('energy-industrial-restored-2025-3:2')).toContain('2023-1:2');
  expect(selectFinalItems(items,'energy',{expected:true,exclude:true})).toHaveLength(10);
 });
+test('에너지 기말 경계, 최신 중복 유지 및 숫자만 바뀐 계산 변형 보존',()=>{
+ const book=entries.entries.filter(e=>e.book==='energy').map(e=>({id:e.page+':'+e.number,sourceQuestionId:e.sourceId}) as QuestionItem);
+ expect(energyPool(book.filter(energyFinalInScope),false,false)).toHaveLength(1280);
+ const item=(year:number,page:string,temperature:number)=>({
+   id:String(year),round:{id:'textbook-hansol-'+page,year,session:'1회',title:'냉동냉장설비'},
+   question:{number:26,text:`고기가 ${temperature}℃일 때 5℃까지 냉각하는 데 필요한 열량은 얼마인가?`,choices:['22 kW','33 kW','44 kW','55 kW'].map(text=>({text})),answer:1},
+ }) as QuestionItem;
+ const a=item(2023,'5-8',20),b=item(2024,'5-43',20),c=item(2025,'5-79',25);
+ expect(isTextbookCalculation(a)).toBe(true);
+ const kept=filterBookPractice([a,b,c],{duplicates:true,similar:true,calculations:false});
+ expect(kept.map(i=>i.id)).toEqual(['2024','2025']);
+ expect(kept[0].question.midtermOccurrences).toHaveLength(2);
+ expect(filterBookPractice([a,b,c],{duplicates:false,similar:false,calculations:true})).toEqual([]);
+});
 test('수업 예상 후보 선택과 같은 유형 제외는 원본을 바꾸지 않는다',()=>{
   for(const subject of ['sports','metal'] as const){
     const all=finalAuthoredItems.filter(i=>i.round.id.endsWith(subject));
@@ -107,7 +122,8 @@ test('주관식 두 문제와 체육·제관 예상 연습이 열린다',async({
     if(name==='제관공학'||name==='스포츠리더십'){const url=await hub.locator('a').getAttribute('href');expect((await (await page.request.get(url!)).body()).subarray(0,5).toString()).toBe('%PDF-');}
     const card=hub.locator('details').filter({has:page.locator('summary').filter({hasText:'예상 랜덤'})});
     await card.locator('summary').click();
-    await expect(card.getByLabel('중복·비슷한 문제 제외')).toBeChecked();
+    if(name==='에너지설비'||name==='냉동공학')await hub.getByLabel('비슷한 문제도 제외').check();
+    else await expect(card.getByLabel('중복·비슷한 문제 제외')).toBeChecked();
     await card.getByLabel('풀 문제 수').fill('7');
     await card.getByRole('button',{name:'학습모드',exact:true}).click();
     await expect(page.locator('#session-question-1')).toBeVisible();

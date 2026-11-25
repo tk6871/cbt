@@ -11,6 +11,7 @@ import { createPortal } from 'react-dom';
 import { AnswerChoices } from '../AnswerChoices';
 import { PrintedChoices } from '../reader/PrintedChoices';
 import type { QuestionCardViewModel } from './QuestionCard';
+import {StudyImageButton,StudyImageDialog} from '../StudyImageDialog';
 
 const MathFormula = lazy(() => import('../practical/MathFormula'));
 
@@ -435,19 +436,17 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 />
               </div>
               {(item.question.images || []).map((image) => (
-                <img
+                <StudyImageButton
                   key={image}
-                  src={problemImage(image)}
+                  src={problemImage(image)!}
                   alt="문제 참고 그림"
-                  loading="lazy"
-                  decoding="async"
-                  className={normalizeClass(['question-image', restoredImageClass])}
+                  sourceClass={normalizeClass(['question-image', restoredImageClass])}
                 />
               ))}
             </>
           )}
         </div>
-        {item.question.bookCorrection ? (
+        {item.question.bookCorrection && !m.finalBook ? (
           <CorrectionNote className="book-correction-note">
             {presentation === 'book' ? <summary>교재 표기 안내 · 원문 비교</summary> : null}
             {mode === 'learn' ? (
@@ -707,7 +706,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             )}
             {readingTools()}
             <ExplanationFigures {...{
-                images: item.question.explanationImages,
+                images: m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
                 folded: item.question.originalExplanationImagesFolded,
                 imageClass: restoredImageClass,
                 onInteract: stopExplanationAutoClose,
@@ -906,7 +905,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                       )}
                       {readingTools()}
                       <ExplanationFigures {...{
-                          images: item.question.explanationImages,
+                          images: m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
                           folded: item.question.originalExplanationImagesFolded,
                           imageClass: restoredImageClass,
                           onInteract: stopExplanationAutoClose,
@@ -1009,52 +1008,13 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                   </section>
                 </div>
               ) : null}
-              {imageZoomOpen && item.question.sourceImage ? (
-                <div
-                  role="dialog"
-                  aria-modal="true"
-                  aria-label={`${item.question.number}번 문제 원문 확대`}
-                  onClick={() => {
-                    m.setImageZoomOpen(false);
-                  }}
-                  className="question-image-lightbox"
-                >
-                  <header
-                    onClick={(event) => {
-                      event.stopPropagation();
-                    }}
-                  >
-                    <strong>{item.question.number}번 원문 이미지</strong>
-                    <span>확대된 원본을 스크롤해서 확인하세요.</span>
-                    <button
-                      type="button"
-                      aria-label="확대 이미지 닫기"
-                      onClick={() => {
-                        m.setImageZoomOpen(false);
-                      }}
-                    >
-                      ×
-                    </button>
-                  </header>
-                  <div
-                    onClick={(event) => {
-                      if (event.target !== event.currentTarget) return;
-                      m.setImageZoomOpen(false);
-                    }}
-                  >
-                    <img
-                      src={problemImage(item.question.sourceImage)}
-                      alt={`${item.question.number}번 문제 원문 확대`}
-                      className={normalizeClass([
-                        [restoredImageClass, { 'hansol-source-image': hansolQuestion }],
-                      ])}
-                    />
-                  </div>
-                </div>
-              ) : null}
+              {imageZoomOpen && item.question.sourceImage && <StudyImageDialog
+                src={problemImage(item.question.sourceImage)!} alt={`${item.question.number}번 문제 원문 확대`}
+                sourceClass={normalizeClass([restoredImageClass,{'hansol-source-image':hansolQuestion}])}
+                onClose={()=>m.setImageZoomOpen(false)}/>}
             </>,
             document.body,
-          )}{' '}
+          )}
         </>
       </article>
     </>

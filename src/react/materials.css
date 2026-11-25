@@ -152,6 +152,20 @@
 .final-range progress{display:block;width:100%;height:.38rem;margin:.3rem 0 .85rem;accent-color:var(--primary)}
 .final-mode-actions button{padding:.45rem .8rem}.final-mode-actions button:first-child{font-weight:700}
 .round-paper-filter{display:flex;align-items:center;gap:.4rem;min-width:0}.round-paper-filter select,.final-inline select{min-width:0;max-width:100%;flex:1;color:var(--text);background:var(--surface)}
+.study-choice-trigger{flex:1;display:flex;align-items:center;justify-content:space-between;gap:.55rem;min-width:0;padding:.34rem .65rem;border:1px solid var(--line);border-radius:.55rem;color:var(--text);background:var(--surface);font:inherit;text-align:left}
+.study-choice-trigger strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.picker-list button small{display:block;color:var(--muted);font-weight:400;margin-top:.15rem}
+.final-range.round-card{height:auto;min-height:0;gap:0}
+.final-range.round-card footer{margin-top:.5rem;display:block;padding:0}
+.final-range .round-progress{margin:.28rem 0}
+.final-range .round-progress-copy{font-size:.8rem}
+.final-range .final-mode-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.45rem}
+.final-range .final-mode-actions button{min-width:0;padding-inline:.25rem;white-space:normal}
+.final-source-rounds summary{cursor:pointer;font-size:.8rem;line-height:1.4}
+.final-source-rounds ul{max-height:8rem;overflow:auto;padding-inline-start:1.15rem;font-size:.78rem}
+.final-range .final-single-paper,.final-range p[data-range-count]{font-size:.82rem}
+.question-card.keyboard-active,.book-direct-question.keyboard-active{outline:2px solid var(--primary);outline-offset:2px}
+.session-gesture-setting{display:flex;gap:.5rem;align-items:center;padding:.55rem}
 .question-card .subject-divider,.book-sheet-question .subject-divider{display:flex;align-items:baseline;gap:.65rem;border-inline-start:4px solid var(--primary);margin-bottom:.9rem;padding:.7rem 1rem;background:var(--surface)}
 .question-card .subject-divider strong,.book-sheet-question .subject-divider strong{font-size:clamp(1.12rem,1rem + .5vw,1.5rem);line-height:1.35}
 .question-card .subject-divider span,.book-sheet-question .subject-divider span{font-size:.85rem;white-space:nowrap}

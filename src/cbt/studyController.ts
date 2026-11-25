@@ -1,12 +1,16 @@
 import {photoStyle, roundPhoto, workspacePhoto} from '../react/themePhotos';
 import {finalAuthoredItems,finalNames,type FinalSubject} from './finalCourseBank';
-import {drawnIds,storeDraw,printedPage,selectFinalItems,type FinalOptions} from './finalSelection';
+import {drawnIds,storeDraw,printedPage,selectFinalItems,finalRanges,type FinalOptions} from './finalSelection';
 import {questionSubject,subjectLabel} from './printedSubject';
 import {flushSync} from 'react-dom';
 import {updateWallpaperContext} from '../react/wallpaper';
 import {glassMaterial,setGlassMaterial} from '../react/glassMaterial';
 import {shallow} from 'deepsignal/core';
 import {pageNavigationStep} from './pageNavigationKey';
+import {energyFinalInScope} from './textbookPracticeFilters';
+import {handleStudyOverlayHistory} from './studyOverlayHistory';
+import {readStudyPreference,writeStudyPreference} from './studyInputPreferences';
+import {bindMacHorizontalSwipe,blockedStudyKey} from './studyGestures';
 import {saveTextbookAnswer, textbookAnswersIn} from './textbookAnswerProgress';
 import {renderSearchView} from "../react/tools/SearchView";
 import {renderCalculationView} from "../react/tools/CalculationView";
@@ -148,12 +152,21 @@ const roundCards=computed(()=>visibleRounds.value.map(round=>{
   const record=roundRecordMap.value.get(round.id);
   const total=round.questions.length;
   const answered=roundAnswered(round);
+  const subjectItems=!school&&!energy&&round.subjects.length>1?roundToItems(round):undefined;
+  const subjectCounts=subjectItems?round.subjects.flatMap(name=>{
+    const list=subjectItems.filter(i=>questionSubject(i).name===name);
+    if(!list.length)return [];
+    const saved=savedRoundLearning(round);
+    return [{name,label:subjectLabel(questionSubject(list[0])),total:list.length,
+      minutes:roundExamMinutes({...round,questions:list.map(i=>i.question)}),
+      answered:list.filter(i=>saved?.answers[i.id]||roundLearningChoice(round,i.id)).length}];
+  }):undefined;
   return {
     id:round.id,title:round.title,qualification:round.shortQualification||round.qualification||selectedCatalog.value.name,
     year:round.year,school,restored:isRestoredRound(round),
     description:energy?`${energyTopicQuestions(round).length}문제 선택${excluded?' · 전체'+total+'문제 중 계산 제외':''}`:`${total}문제 · ${round.subjects.length}과목 · 시험 ${roundExamMinutes(round)}분`,
     scope:school?`시험범위${round.questions.filter(q=>q.midtermMatch==='direct').length} · 관련 예상${round.questions.filter(q=>q.midtermMatch==='related').length}${['school-energy-topic-6','school-energy-topic-11'].includes(round.id)?' · 계산 출제 예상':''}`:'',
-    subjects:energy?[]:round.subjects,hint:school?round.questions[0]?.teacherHint:undefined,
+    subjects:energy?[]:round.subjects,subjectCounts,hint:school?round.questions[0]?.teacherHint:undefined,
     record:record?{score:record.score,date:new Date(record.finishedAt).toLocaleDateString('ko-KR'),latest:lastRoundRecord.value?.roundId===round.id}:undefined,
     calculation:calculations?{count:calculations,included:!excluded,set:(on:boolean)=>setEnergyTopicCalculation(round.id,on)}:undefined,
     answered,total,progress:total ? Math.round(answered / total * 100) : 0,canReset:answered > 0 || !!savedRoundLearning(round),wrong:roundWrongGroupMap.value.get(round.id)?.items.length??0,
@@ -267,6 +280,7 @@ type SessionReturnState = {
   view: ViewName;
   scrollY: number;
   roundId?: string;
+  anchor?:string;
 };
 
 const isJewelry = window.CBT_APP_SPACE === 'jewelry';
@@ -500,6 +514,7 @@ const solveLayoutMode = ref<SolveLayoutMode>(
 );
 const omrFilter = ref<OmrFilter>('all');
 const activeSessionItemId = ref('');
+let explicitSessionItemId='';
 let sessionReturnState: SessionReturnState | null = null;
 const omrListRef = ref<HTMLElement | null>(null);
 let timerHandle = 0;
@@ -515,6 +530,8 @@ let motionMediaQuery: MediaQueryList | null = null;
 let motionPreferenceHandler: ((event: MediaQueryListEvent) => void) | null = null;
 let nativeBackHandle: PluginListenerHandle | null = null;
 let suspendedSession: SessionState | null = null;
+let suspendedSessionReturn:SessionReturnState|null=null;
+let unbindSessionSwipes:(()=>void)|undefined;
 let suspendedExamResult: ExamResult | null = null;
 let omrManualScrollUntil = 0;
 const historyScope = `cbt-${spaceScope}`;
@@ -2396,7 +2413,7 @@ async function loadFinalPool(subject:FinalSubject) {
   let items: QuestionItem[];
     if (subject === 'energy') {
       await Promise.all([loadTextbookModule(), ensureBookSources('energy')]);
-      items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy');
+      items = textbookItems.value.filter(item => bookForStudyId(item.id) === 'energy' && energyFinalInScope(item));
     } else if(subject==='sports'||subject==='metal'||subject==='forklift'){
       items=finalAuthoredItems.filter(i=>i.round.id==='school-final-'+subject);
     } else {
@@ -2429,18 +2446,22 @@ async function startFinalExam(subject: FinalSubject, mode: StudyMode, options:Fi
     return;
   }
   const drawn=options.expected?drawnIds(subject):new Set<string>();
+  const range=options.range===undefined?undefined:finalRanges(items,options.rangeSize)[options.range];
+  const anchor=range?'final-card-'+subject+'-'+(options.rangeSize||'base')+':'+range.index:undefined;
   if(options.expected&&options.skipDrawn)items=items.filter(i=>!drawn.has(i.id));
   items=selectFinalItems(items,subject,options);
   if(!items.length){showToast('이 범위에 풀 수 있는 문제가 없습니다.');return;}
-  const title = '기말고사 · ' + finalNames[subject]+(options.expected?' · 예상 랜덤':options.range!==undefined?' · '+(options.range+1)+'회 연습':'')+(options.exclude?' · 유사 제외':'');
+  const f=options.bookFilters;
+  const title = '기말고사 · ' + finalNames[subject]+(options.expected?' · 예상 랜덤':range?' · '+range.title+' 연습':'')+(options.paper?' · '+options.paper:'')
+    +(f?.similar||options.exclude?' · 유사 제외':f?.duplicates?' · 중복 제외':'')+(f?.calculations?' · 계산 제외':'');
   const saved = savedLearningSession.value;
   if (saved?.title === title && saved.mode === mode && saved.itemIds.length === items.length
     && items.every((item,index)=>item.id === saved.itemIds[index])) {
-    await resumeSavedLearning();
+    await restoreSavedLearning(items,anchor);
     return;
   }
   const answers = mode==='learn'&&!options.expected?Object.fromEntries(items.map(item=>[item.id,finalChoice(item)] as const).filter(([,choice])=>choice)):{};
-  await beginSession(mode, title, items, answers, {qualificationKey: SCHOOL_EXAM_CATALOG_KEY});
+  await beginSession(mode, title, items, answers, {qualificationKey: SCHOOL_EXAM_CATALOG_KEY,anchor});
   if(options.expected&&session.value?.title===title)storeDraw(subject,[...new Set([...drawn,...items.map(i=>i.id)])]);
 }
 
@@ -2909,10 +2930,11 @@ function openView(next: ViewName, options: { fromHistory?: boolean; replace?: bo
 
 function restoreSessionReturnPosition(state: SessionReturnState | null): void {
   if (!state) return;
+  if(state.anchor&&state.view.startsWith('school-'))writeStudyPreference('final-return:'+state.view.slice(7),state.anchor,'session');
   void nextTick(() => window.requestAnimationFrame(() => {
-    const roundCard = state.view === 'rounds' && state.roundId
+    const roundCard = state.anchor&&document.getElementById(state.anchor)|| (state.view === 'rounds' && state.roundId
       ? document.getElementById(`${roundsCollection.value === 'cooling' ? 'cooling-round' : 'round-card'}-${state.roundId}`)
-      : null;
+      : null);
     if (roundCard) roundCard.scrollIntoView({ block: 'center', behavior: motionAllowed.value ? 'smooth' : 'auto' });
     else window.scrollTo({ top: state.scrollY, behavior: 'auto' });
   }));
@@ -2922,9 +2944,11 @@ function deactivateSession(preserveForForward = false): void {
   if (learningSessionSaveHandle) saveActiveLearningSession();
   if (preserveForForward) {
     suspendedSession = session.value;
+    suspendedSessionReturn=sessionReturnState;
     suspendedExamResult = examResult.value;
   } else {
     suspendedSession = null;
+    suspendedSessionReturn=null;
     suspendedExamResult = null;
   }
   stopTimer();
@@ -2935,6 +2959,7 @@ function deactivateSession(preserveForForward = false): void {
 }
 
 function handleBrowserHistory(event: PopStateEvent): void {
+  if(handleStudyOverlayHistory(event))return;
   const link = viewFromHash(location.hash);
   const target = ownHistoryState(event.state) ?? (link ? { cbtSpace: historyScope, view: link } as CbtHistoryState : null);
   if (!target) return;
@@ -2963,8 +2988,10 @@ function handleBrowserHistory(event: PopStateEvent): void {
   if (target.sessionId) {
     if (suspendedSession?.id === target.sessionId) {
       session.value = suspendedSession;
+      sessionReturnState=suspendedSessionReturn;
       examResult.value = suspendedExamResult;
       suspendedSession = null;
+      suspendedSessionReturn=null;
       suspendedExamResult = null;
       document.body.classList.add('session-active');
       restartTimer();
@@ -3146,7 +3173,7 @@ async function beginSession(
   title: string,
   items: QuestionItem[],
   initialAnswers: Record<string, number> = {},
-  options: { qualificationKey?: string; sessionId?: string; calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean } = {},
+  options: { qualificationKey?: string; sessionId?: string; calculationMode?: boolean; page?: number; pageSize?: number; startedAt?: number; remainingSeconds?: number; kept?: string[]; resume?: boolean; anchor?:string } = {},
 ): Promise<void> {
   if (!items.length) {
     showToast('선택한 범위에 출제 가능한 문제가 없습니다.');
@@ -3158,6 +3185,7 @@ async function beginSession(
     view: view.value,
     scrollY: window.scrollY,
     roundId: items.every((item) => item.round.id === items[0]?.round.id) ? items[0]?.round.id : undefined,
+    anchor:options.anchor,
   };
   experienceTransitionPhase.value = 'home-leaving';
   if (animateEntry) await waitForMotion(300);
@@ -3193,9 +3221,11 @@ async function beginSession(
   const initialIndex = options.page != null
     ? Math.min(items.length - 1, Math.max(0, session.value.page * pageSize))
     : Math.max(0, firstUnanswered);
+  explicitSessionItemId='';
   activeSessionItemId.value = items[initialIndex]?.id || items[0]?.id || '';
   omrFilter.value = 'all';
   suspendedSession = null;
+  suspendedSessionReturn=null;
   suspendedExamResult = null;
   history.pushState(viewHistoryState(view.value, session.value.id), '', location.href);
   examSheetOpen.value = false;
@@ -3220,7 +3250,9 @@ async function beginSession(
   experienceTransitionPhase.value = null;
 }
 
-async function resumeSavedLearning(): Promise<void> {
+function resumeSavedLearning():Promise<void>{return restoreSavedLearning();}
+
+async function restoreSavedLearning(selectedItems?:QuestionItem[],anchor?:string): Promise<void> {
   let saved = savedLearningSession.value;
   if (!saved) return;
   // Preserve unfinished v5.3 midterm answers when switching to isolated records.
@@ -3230,7 +3262,7 @@ async function resumeSavedLearning(): Promise<void> {
   }
   try { await ensureItemSources(saved.itemIds); }
   catch { showToast('이어풀기 문제를 불러오지 못했습니다. 저장 기록은 유지됩니다.'); return; }
-  const items = saved.itemIds.flatMap((id) => {
+  const items = selectedItems ?? saved.itemIds.flatMap((id) => {
     const item = itemMap.value.get(id) || targetItemMap.get(id);
     return item ? [item] : [];
   });
@@ -3251,6 +3283,7 @@ async function resumeSavedLearning(): Promise<void> {
     localStorage.setItem(qualificationStorageKey, saved.qualificationKey);
   }
   return beginSession(saved.mode || 'learn', saved.title, items, saved.answers, {
+    anchor,
     calculationMode: saved.calculationMode,
     page: saved.page,
     pageSize: saved.pageSize,
@@ -3682,6 +3715,7 @@ function goToPage(page: number): void {
   if (nextPage === session.value.page) return;
   questionDirection.value = nextPage > session.value.page ? 1 : -1;
   session.value.page = nextPage;
+  explicitSessionItemId='';
   activeSessionItemId.value = session.value.items[nextPage * session.value.pageSize]?.id || '';
   scheduleLearningSessionSave();
   window.scrollTo({ top: 0, behavior: motionAllowed.value ? 'smooth' : 'auto' });
@@ -3731,6 +3765,7 @@ function setSessionPageSize(size: number, item?: QuestionItem): void {
 
 function activateSessionItem(item: QuestionItem): void {
   activeSessionItemId.value = item.id;
+  explicitSessionItemId=item.id;
 }
 
 function handleSessionKeydown(event: KeyboardEvent): void {
@@ -3752,15 +3787,18 @@ function handleSessionKeydown(event: KeyboardEvent): void {
     }
     return;
   }
-  if (solveLayoutMode.value !== 'comcbt' || !session.value || session.value.finished) return;
-  const target = event.target as HTMLElement | null;
-  if (target?.closest('input,select,textarea,button,[contenteditable="true"]') || event.metaKey || event.ctrlKey || event.altKey) return;
+  if (!session.value || session.value.finished || examSheetOpen.value || panelCalculator.value || panelNotes.value || sessionMenuOpen.value) return;
+  const standard=solveLayoutMode.value === 'comcbt';
+  const bookSession=session.value.title.startsWith('기말고사 · ')||session.value.items.some(i=>i.round.kind==='textbook-pages');
+  if(!standard&&!bookSession)return;
+  if(blockedStudyKey(event))return;
   const item = activeSessionItem.value;
-  if (/^[1-4]$/.test(event.key) && item) {
+  if (/^[1-4]$/.test(event.key) && item && (!bookSession||explicitSessionItemId===item.id) && currentItems.value.some(q=>q.id===item.id) && Number(event.key)<=item.question.choices.length) {
     event.preventDefault();
     chooseAnswer(item, Number(event.key));
     return;
   }
+  if(!standard)return;
   if (event.key.toLowerCase() === 'k' && item && session.value.mode === 'exam') {
     event.preventDefault();
     toggleKeep(item);
@@ -4974,6 +5012,14 @@ async function start() {
   window.addEventListener('pagehide', handlePageHide);
   window.addEventListener('resize', markViewportResizing, { passive: true });
   window.addEventListener('keydown', handleSessionKeydown);
+  unbindSessionSwipes=bindMacHorizontalSwipe(document.body,step=>{
+    if(!session.value||session.value.finished||examSheetOpen.value||sessionMenuOpen.value||panelCalculator.value||panelNotes.value||settingsOpen.value||!readStudyPreference('mac-question-swipe',false))return false;
+    const index=session.value.items.findIndex(i=>i.id===activeSessionItem.value?.id);
+    return index>=0&&index+step>=0&&index+step<session.value.items.length;
+  },step=>{
+    const index=session.value?.items.findIndex(i=>i.id===activeSessionItem.value?.id)??-1;
+    if(index>=0)goToQuestion(index+step);
+  },'.question-card');
   window.addEventListener('cbt:cloud-synced', handleCloudSynced);
   if (document.documentElement.dataset.nativeApp === 'true') {
     nativeBackHandle = await CapacitorApp.addListener('backButton', () => { void handleNativeBackButton(); });
@@ -5078,6 +5124,7 @@ function stop() {
   window.removeEventListener('pagehide', handlePageHide);
   window.removeEventListener('resize', markViewportResizing);
   window.removeEventListener('keydown', handleSessionKeydown);
+  unbindSessionSwipes?.();
   window.removeEventListener('cbt:cloud-synced', handleCloudSynced);
   void nativeBackHandle?.remove();
   if (motionMediaQuery && motionPreferenceHandler) {

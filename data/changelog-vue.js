@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.7',scope:'industrial',date:'2026.11.25',title:'기말 회차·교재 풀이 개선',summary:'실제 회차 또는 문항 수를 고르고, 문제를 제외하면 개수가 바로 바뀝니다.',changes:['에너지설비 기말은 교재 2019년 4회~2025년 3회 범위입니다.','풀이 과목 팝업, 클릭한 문제에 숫자키 입력, 그림 확대와 맥 입력 지원을 개선했습니다.']},
     {version:'6.6.9',scope:'industrial',date:'2026.11.24',title:'제관 기말 단위 환산 수정',summary:'1 kW를 kcal/h로 바꾸는 공식과 예제를 넣었습니다.',changes:['1 kW ≈ 860 kcal/h의 계산을 제관 기말과 PDF에서 확인할 수 있습니다.']},
     {version:'6.6.8',scope:'industrial',date:'2026.11.24',title:'제관 기말 시험범위 반영',summary:'시험 표시가 있는 쪽에서만 문제와 그래프를 골랐습니다.',changes:['재료·검사·표면경화 문제를 보강하고 표시된 45쪽을 따로 모았습니다.']},
     {version:'6.6.7',scope:'industrial',date:'2026.11.24',title:'지게차 기말 기출 선별 연습',summary:'지게차운전기능사 기출에서 30문제를 골라 3·4회에 추가했습니다.',changes:['자체 예상과 기출을 구분하고 기출 문항에는 원래 회차와 번호를 표시합니다.']},
@@ -3274,8 +3275,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.6.9';
+  changelog.versions.industrial = '6.7';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.6.9';
+  changelog.currentVersion = '6.7';
   window.CBT_CHANGELOG = changelog;
 })();

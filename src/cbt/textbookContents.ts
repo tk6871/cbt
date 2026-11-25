@@ -1,5 +1,6 @@
 import type {TextbookEntry,TextbookKey} from './textbookPages';
 import {compareBookPages,textbookWorkedExamples} from './textbookPages';
+import {coolingAppendixRounds} from './textbookRoundInfo';
 export type BookContentsNode={id:string;book:TextbookKey;title:string;from?:string;to?:string;roundBankId?:string;prefix?:string;pages?:string[];keywords?:string[];children?:BookContentsNode[];note?:string};
 type Chapter=[string,Array<[string,number,number?]>,number?];
 const keywords=(title:string):string[]=>{
@@ -67,8 +68,8 @@ export const bookContents:Record<TextbookKey,BookContentsNode[]>={
    ['제어용 기기',[['제어용기기',358,363]]],
    ['시퀀스 제어',[['시퀀스 제어',368,376]]],
   ]),
-  {id:'hansol-mock',book:'hansol',title:'부록 · 핵심 모의고사',prefix:'4-',note:'정상 열람한 교재 목차의 15회 쪽번호를 사용합니다. 문제 연결 수는 별도로 표시합니다.',children:[7,20,33,46,58,71,84,96,109,122,134,147,160,172,184].map((from,i,starts)=>({id:`hansol-mock-${i+1}`,book:'hansol',title:`제${i+1}회 핵심 모의고사`,from:`4-${from}`,to:`4-${(starts[i+1]||196)-1}`,prefix:'4-'}))},
-  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',prefix:'5-',note:'정상 열람한 교재 목차의 2023~2025년 회차별 쪽번호입니다.',children:[4,16,27,39,51,64,75,86,98].map((from,i,starts)=>({id:`hansol-latest-${2023+Math.floor(i/3)}-${i%3+1}`,book:'hansol',roundBankId:`hvac-hansol-${2023+Math.floor(i/3)}-${i%3+1}`,title:`${2023+Math.floor(i/3)}년 ${i%3+1}회`,from:`5-${from}`,to:`5-${(starts[i+1]||109)-1}`,prefix:'5-'}))},
+  {id:'hansol-mock',book:'hansol',title:'부록 · 핵심 모의고사',prefix:'4-',note:'정상 열람한 교재 목차의 15회 쪽번호를 사용합니다. 문제 연결 수는 별도로 표시합니다.',children:coolingAppendixRounds[0].map(row=>({...row,book:'hansol'}))},
+  {id:'hansol-latest',book:'hansol',title:'부록 · 최신경향문제',prefix:'5-',note:'정상 열람한 교재 목차의 2023~2025년 회차별 쪽번호입니다.',children:coolingAppendixRounds[1].map(row=>({...row,book:'hansol',roundBankId:`hvac-hansol-${row.year}-${row.round}`}))},
  ],
  energy:[
   {id:'energy-theory',book:'energy',title:'이론편 · 제공 PDF 본문 순서',note:'스캔에 앞쪽 목차가 없어 본문의 확인된 장 제목으로 구성했습니다. 객관식과 본문 풀이 예제를 구분합니다.',children:[

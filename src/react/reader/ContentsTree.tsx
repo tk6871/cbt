@@ -121,7 +121,7 @@ export function ContentsTree({ book, items, selected, onSelect }: Props) {
     let active = true;
     setLoading(true);
     setError(false);
-    import('../../../data/energy-textbook-search.json')
+    import('../../../data/energy-textbook-search.json',{with:{type:'json'}})
       .then(
         (data) => {
           if (active) setOcr(data.default.texts);

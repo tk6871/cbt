@@ -1,7 +1,10 @@
 import {authoredMeta,type FinalSubject} from './finalCourseBank';
 import type {QuestionItem} from './types';
-import {energyPick,energyPool} from './energyFinal';
+import {energyKey,energyPick,energyPool} from './energyFinal';
 import {forkliftQuota} from './forkliftFinal';
+import {filterBookPractice,type BookPracticeFilters} from './textbookPracticeFilters';
+import {questionSubject} from './printedSubject';
+import {coolingAppendixRound} from './textbookRoundInfo';
 
 // Printed page:number -> tested skill. An allow-list, not a random sample of the book.
 const coolingPicks:Record<string,string>={
@@ -27,7 +30,9 @@ function curated(i:QuestionItem,subject:FinalSubject){
  if(authored)return authored.pick?authored.group:undefined;
  if(subject==='cooling')return coolingPicks[i.round.id.replace('textbook-hansol-','')+':'+i.question.number];
 }
-export type FinalOptions={expected:boolean,exclude:boolean,count?:number,range?:number,skipDrawn?:boolean};
+export const finalRangeSizes=['actual','20','30','40','50','60','70','80'] as const;
+export type FinalRangeSize=typeof finalRangeSizes[number];
+export type FinalOptions={expected:boolean,exclude:boolean,count?:number,range?:number,rangeSize?:FinalRangeSize,paper?:string,skipDrawn?:boolean,bookFilters?:BookPracticeFilters};
 const drawKey=(subject:FinalSubject)=>'school-final-drawn-v1:'+subject;
 export function drawnIds(subject:FinalSubject):Set<string>{
  try{const v:unknown=JSON.parse(localStorage.getItem(drawKey(subject))||'[]');return new Set(Array.isArray(v)?v.filter(i=>typeof i==='string'):[]);}
@@ -37,12 +42,58 @@ export function storeDraw(subject:FinalSubject,ids:string[]){try{localStorage.se
 export const sampleSize=10;
 export const rangeSize=60;
 export function printedPage(i:QuestionItem){return /^textbook-(?:hansol|energy)-(.+)$/.exec(i.round.id)?.[1]||'';}
-export function finalRanges(pool:QuestionItem[]){
- const size=pool[0]?.round.id==='school-final-forklift'?15:pool[0]?.round.id.startsWith('school-final-')?10:rangeSize;
- return Array.from({length:Math.ceil(pool.length/size)},(_,index)=>{
-   const items=pool.slice(index*size,(index+1)*size);
-   const first=printedPage(items[0]),last=printedPage(items[items.length-1]);
-   return {index,items,label:first?(first===last?first:first+'~'+last)+'쪽':(index*size+1)+'~'+(index*size+items.length)+'번'};
+function originalRound(i:QuestionItem){
+ const r=i.round, q=i.question;
+ if(r.id.startsWith('textbook-hansol-')){
+   const source=coolingAppendixRound(printedPage(i));
+   if(source)return {id:source.id,label:source.title,number:q.number,kind:source.year?'exam':'mock'};
+ }
+ if(r.id.startsWith('textbook-energy-')){
+   const key=energyKey(i.sourceQuestionId).split(':')[0].replace(/1-2통합/g,'1·2통합');
+   const [year,session]=key.split('-');
+   if(year&&session)return {id:key,label:year+'년 '+session+'회',number:q.number,kind:'exam'};
+ }
+ const key=i.sourceQuestionId?.split(':')[0]||'';
+ if(r.year>=1900&&r.session)return {id:r.year+':'+r.session,label:r.year+'년 '+r.session,number:Number(i.sourceQuestionId?.split(':').at(-1))||q.number,kind:'exam'};
+ const m=/^hvac-(?:hansol-)?(\d{4})-?([1-4])$/.exec(key);
+ if(m)return {id:m[1]+':'+m[2]+'회',label:m[1]+'년 '+m[2]+'회',number:Number(i.sourceQuestionId?.split(':').at(-1))||q.number,kind:'exam'};
+ // A publisher-authored mock or a direct page is not a confirmed past exam.
+ return {id:'book:'+printedPage(i).split('-')[0],label:'교재 수록 · 회차 미확인',number:q.number,kind:'unknown'};
+}
+function displayNumbers(values:Iterable<number>){
+ const nums=[...new Set(values)].sort((a,b)=>a-b);
+ const runs:Array<[number,number]>=[];
+ for(const n of nums){
+   const tail=runs.at(-1);
+   if(tail&&n===tail[1]+1)tail[1]=n;else runs.push([n,n]);
+ }
+ return runs.map(([a,b])=>a===b?String(a):a+'~'+b).join(', ');
+}
+export function finalRanges(pool:QuestionItem[],selection?:FinalRangeSize){
+ const size=selection&&selection!=='actual'?Number(selection):pool[0]?.round.id==='school-final-forklift'?15:pool[0]?.round.id.startsWith('school-final-')?10:rangeSize;
+ const grouped=new Map<string,QuestionItem[]>();
+ if(selection==='actual')for(const i of pool){
+   const key=originalRound(i).id;
+   const items=grouped.get(key)||[];items.push(i);grouped.set(key,items);
+ }
+ const ranges=selection==='actual'?[...grouped.values()]:Array.from({length:Math.ceil(pool.length/size)},(_,index)=>pool.slice(index*size,(index+1)*size));
+ return ranges.map((items,index)=>{
+   const first=printedPage(items[0]),last=printedPage(items.at(-1)!);
+   const source=new Map<string,{label:string;kind:string;numbers:number[]}>();
+   if(first&&selection)for(const i of items){
+     const row=originalRound(i),entry=source.get(row.id)||{label:row.label,kind:row.kind,numbers:[]};
+     entry.numbers.push(row.number);source.set(row.id,entry);
+   }
+   const described=[...source.values()];
+   const compact=(labels:string[])=>labels.length<2?labels[0]:labels[0]+' ~ '+labels.at(-1);
+   const known=described.filter(row=>row.kind==='exam').map(row=>row.label);
+   const mocks=described.filter(row=>row.kind==='mock').map(row=>row.label);
+   const headings=described.map(row=>row.label);
+   const title=selection==='actual'?(headings[0]||index+1+'회'):index+1+'회';
+   const summary=[known.length&&compact(known)+' · 기출 '+known.length+'회차',mocks.length&&'핵심 모의고사 '+mocks.length+'회차',
+     known.length+mocks.length<headings.length&&'회차 미확인 포함'].filter(Boolean).join(' / ');
+   return {index,items,title,summary,detail:described.map(s=>s.label+' '+displayNumbers(s.numbers)+'번'),
+     label:first?(first===last?first:first+'~'+last)+'쪽':(index*size+1)+'~'+(index*size+items.length)+'번'};
  });
 }
 const thermalGroups=new Set(['불림','풀림','뜨임','담금질','냉각선도']);
@@ -65,7 +116,13 @@ export function selectFinalItems(all:QuestionItem[],subject:FinalSubject,options
  const limit=Math.max(1,Math.trunc(options.count||sampleSize));
  if(!options.expected && options.range!==undefined){
    if(subject==='energy')all=energyPool(all,false,false);
-   all=finalRanges(all)[options.range]?.items??[];
+   all=finalRanges(all,options.rangeSize)[options.range]?.items??[];
+ }
+ if(options.paper)all=all.filter(i=>questionSubject(i).name===options.paper);
+ if(options.bookFilters&&(subject==='energy'||subject==='cooling')){
+   const eligible=subject==='energy'?energyPool(all,false,options.expected):options.expected?all.filter(i=>curated(i,subject)):all;
+   const kept=filterBookPractice(eligible,options.bookFilters);
+   return options.expected?shuffle(kept).slice(0,limit):kept;
  }
  if(subject==='energy'){
    const pool=energyPool(all,options.exclude,options.expected);

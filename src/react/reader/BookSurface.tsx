@@ -17,7 +17,7 @@ export interface BookSurfaceProps {
   fullRound?:{title:string;open:()=>void};
   answers:Record<string,number>; saveDirect:(id:string,choice:number)=>void;
   navigator:NavigatorProps; book:TextbookKey; start:string; end:string; title:string; loading:boolean; error:string;
-  invalid:boolean; matched:number; directCount:number; pending:number; hasLocations:boolean;
+  invalid:boolean; matched:number; excluded?:number; directCount:number; pending:number; hasLocations:boolean;
   reference?:string; examples:typeof textbookWorkedExamples; columns:PageRow[][];
   original:boolean; showText:boolean; previous:boolean; next:boolean; register?:RegisterTarget;renderLinked?:(item:QuestionItem,number:number)=>ReactNode;
   navigationRef:(node:HTMLButtonElement|null)=>void;
@@ -64,7 +64,7 @@ export function BookSurface(p:BookSurfaceProps) {
     {p.invalid&&<p role="alert">끝 쪽은 시작 쪽보다 뒤여야 합니다. 한 페이지는 시작 쪽만 입력하세요.</p>}
     {p.loading?<p role="status">교재에 연결된 원문을 불러오는 중…</p>:p.error?<p role="alert">{p.error} <button onClick={p.retry}>다시 불러오기</button></p>:<>
       <div className="book-page-result" aria-live="polite"><div><h2>{p.title||p.start+'쪽'+(p.end?' ~ '+p.end+'쪽':'')}</h2>
-        <p><strong>{p.matched}문제</strong>{p.directCount?' · 교재 원문 '+p.directCount+'개':''}{p.end?` · 범위 ${p.start}~${p.end}쪽 · 아래는 ${p.start}쪽`:''}</p></div>
+        <p><strong>{p.matched}문제</strong>{p.excluded?' · 제외 '+p.excluded+'문제':''}{p.directCount?' · 교재 원문 '+p.directCount+'개':''}{p.end?` · 범위 ${p.start}~${p.end}쪽 · 아래는 ${p.start}쪽`:''}</p></div>
         <div className="book-play">{p.fullRound && <button onClick={p.fullRound.open}>{p.fullRound.title} 한솔 기출 60문제 전체 풀기</button>}<button disabled={!p.matched||p.invalid} onClick={()=>p.play('learn')}>범위를 모아 일반 학습</button><button disabled={!p.matched||p.invalid} onClick={()=>p.play('exam')}>범위를 모아 CBT 시험</button></div></div>
       {p.directCount>0&&<p className="reader-page-note direct-reading-notice">교재 원문은 ①~④로 답을 고를 수 있습니다. ‘정답표 대조 완료’ 문항은 바로 채점되고, ‘자가확인’은 풀이·인쇄 정답표에서 확인하세요. 선택은 이 기기에 저장되고 일반 학습·CBT 점수에는 합산하지 않습니다.</p>}
       {(p.reference||!p.hasLocations||p.examples.length>0)&&<div className="reader-page-note">

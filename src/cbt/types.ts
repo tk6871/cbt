@@ -25,6 +25,8 @@ export type Question = {
   sourceImage?: string | null;
   sourceImageSize?: number[];
   bookCorrection?: {note:string;originalImage?:string};
+  /** Text for book filtering only. Scanned questions still display their original image. */
+  bookFilterText?:string;
   bookSourceNumber?: number;
   choices: Choice[];
   answer: number;

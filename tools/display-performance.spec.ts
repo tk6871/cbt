@@ -8,7 +8,6 @@ test.beforeEach(async ({ page }) => {
     await page.locator('.pwa-error-notice').getByRole('button',{name:'나중에',exact:true}).click();
   });
   await page.addInitScript(() => {
-    localStorage.setItem('modern-cbt-qualification-industrial', 'energy-midterm');
     localStorage.setItem('unified-cbt-answer-layout', 'hotspot');
     localStorage.setItem('unified-cbt-dynamic-ui', 'false');
     sessionStorage.setItem('unified-cbt-ios-pwa-popup-seen-v351', 'true');
@@ -16,10 +15,8 @@ test.beforeEach(async ({ page }) => {
   });
 });
 async function start(page: Page) {
-  await page.goto('./?safe=1');
-  if ((page.viewportSize()?.width || 1440) <= 900) await page.getByRole('button', {name:'메뉴 열기',exact:true}).click();
-  await page.locator('.sidebar').getByRole('button', {name:/회차별 문제/}).click();
-  const round=page.locator('#round-card-school-energy-topic-1');
+  await page.goto('./?safe=1#/study/school-energy');
+  const round=page.locator('.final-range').first();
   await round.scrollIntoViewIfNeeded();
   await round.getByRole('button', {name:'CBT 시험모드',exact:true}).click();
   await expect(page.locator('.source-question-image').first()).toBeVisible();
@@ -54,10 +51,11 @@ test('반응형 원문·답안 영역·확대 원본·다크/라이트·스크�
     expect(filter.includes('invert')).toBe(theme==='dark');
   }
   await card.locator('.source-image-zoom-hint').click();
-  const zoom=page.locator('.question-image-lightbox img');
+  const viewer=page.locator('.study-image-dialog[open]');
+  const zoom=viewer.locator('img');
   await expect(zoom).toHaveAttribute('src',original!);
   await expect(zoom).not.toHaveAttribute('srcset');
-  await page.getByRole('button',{name:'확대 이미지 닫기',exact:true}).click();
+  await viewer.getByRole('button',{name:'닫기',exact:true}).click();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:`/private/tmp/display-performance-${info.project.name}.png`});
   expect(errors).toEqual([]);
@@ -86,7 +84,7 @@ test('문제는 경량 파일 없이 원본 표시',async({page})=>{
   const image=page.locator('.source-question-image').first();
   await expect.poll(()=>image.evaluate((el:HTMLImageElement)=>el.complete&&el.naturalWidth>0&&!el.hasAttribute('srcset'))).toBe(true);
 });
-test('테마 아이콘은 작은 사본·목록 모션은 보이는 카드만',async({page},info)=>{
+test('테마 아이콘은 작은 사본을 쓰고 회차 카드 전체에 입장 모션을 걸지 않는다',async({page},info)=>{
   test.skip(info.project.name!=='desktop');
   await page.setViewportSize({width:1440,height:1800});
   const brokenAssets:string[]=[];
@@ -101,14 +99,8 @@ test('테마 아이콘은 작은 사본·목록 모션은 보이는 카드만',a
   await expect.poll(()=>icon.evaluate((el:HTMLImageElement)=>el.complete&&el.currentSrc.includes('/responsive/'))).toBe(true);
   await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
   await expect(page.locator('.round-card').first()).toBeVisible();
-  // Motion can animate transform/opacity through JS rather than WAAPI.
-  await expect.poll(()=>page.locator('.round-card').evaluateAll(elements=>elements.filter(el=>(el as HTMLElement).style.opacity!=='').length),{intervals:[50,50,100]}).toBeGreaterThan(0);
-  const targets=await page.locator('.round-card').evaluateAll(elements=>elements.filter(el=>(el as HTMLElement).style.opacity!=='').map(el=>{
-    const r=el.getBoundingClientRect();return {top:r.top,bottom:r.bottom};
-  }));
-  expect(targets.length).toBeGreaterThan(0);
-  expect(targets.length).toBeLessThanOrEqual(16);
-  for(const r of targets){expect(r.top).toBeLessThan((page.viewportSize()!.height)+50);expect(r.bottom).toBeGreaterThan(-50);}
+  // The round view animates progress bars, not the card nodes themselves.
+  expect(await page.locator('.round-card').evaluateAll(elements=>elements.some(el=>(el as HTMLElement).style.opacity!==''))).toBe(false);
   await page.screenshot({path:'/private/tmp/display-performance-theme.png'});
   expect(brokenAssets).toEqual([]);
 });

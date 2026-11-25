@@ -3,6 +3,7 @@ import energyTextbookHotspots from '../../data/energy-textbook-hotspots.json' wi
 import type { AnswerHotspot, Question, Round, QuestionItem } from './types';
 import reviewedEnergyChoices from '../../data/energy-reviewed-printed-options.json' with { type: 'json' };
 import {energyTextbookComcbtSource,energyExplanation} from './energyTextbookExplanation';
+import energyBookSearch from '../../data/energy-textbook-search.json' with {type:'json'};
 
 const energyImageHotspots = { ...energyMidtermHotspots, ...energyTextbookHotspots } as Record<string, AnswerHotspot[]>;
 
@@ -29,5 +30,6 @@ export function prepareEnergyQuestions(round: Round, sourceQuestions: Map<string
 
 export function prepareEnergyBookItem(question: Question, id: string, items: Map<string, QuestionItem>): Question {
   const sourceId = energyTextbookComcbtSource(id);
-  return energyExplanation(withReviewedEnergyChoices(question), id, sourceId ? items.get(sourceId)?.question : undefined);
+  const result=energyExplanation(withReviewedEnergyChoices(question), id, sourceId ? items.get(sourceId)?.question : undefined);
+  return {...result,bookFilterText:(energyBookSearch.texts as Record<string,string>)[id]};
 }
