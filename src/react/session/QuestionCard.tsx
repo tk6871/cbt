@@ -106,7 +106,8 @@ function QuestionCardBody(props:QuestionCardProps) {
 }
 
 function useQuestionCard(props:QuestionCardProps) {
-  const {entry:sourceTranscription, pending:transcriptionPending}=useSourceTranscription(props.item.question.sourceImage);
+  const print=props.item.question.reviewedPrint;
+  const {entry:sourceTranscription, pending:transcriptionPending, mode:displayMode}=useSourceTranscription(print ? undefined : props.item.question.sourceImage);
   const pinSolution=useContext(PinSolutionContext);
   const sourceImageRef=useRef<HTMLImageElement>(null);
   const choiceLayoutProbeRef=useRef<HTMLDivElement>(null);
@@ -135,7 +136,10 @@ function useQuestionCard(props:QuestionCardProps) {
   const [issueReportSubmitted, setIssueReportSubmitted] = useState(false);
   const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
   const transcribedQuestion = !sourceImageOverride?sourceTranscription?.question:undefined;
-  const primaryImage = isImagePrimary(props.item)&&!transcribedQuestion;
+  const printAvailable = Boolean(print && displayMode !== 'image');
+  const printText = printAvailable && !sourceImageOverride ? print : undefined;
+  const sourcePhoto = printAvailable ? print?.image : props.item.question.sourceImage;
+  const primaryImage = isImagePrimary(props.item) && !transcribedQuestion && !printText;
   const hansolQuestion = props.item.round.qualificationKey === 'hvac-hansol';
   const fieldReportQuestion = props.item.round.kind === 'field-report-practice';
   const restoredQuestion = !fieldReportQuestion && props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021;
@@ -158,9 +162,9 @@ function useQuestionCard(props:QuestionCardProps) {
     const {round, id, question} = props.item;
     const bookImage = hansolQuestion || round.kind === 'textbook-pages'
       || id.startsWith('energy-industrial-restored-');
-    return primaryImage && (bookImage || props.imageAnswerMode === 'hotspot' || props.presentation === 'book')
+    return primaryImage && !printAvailable && (bookImage || props.imageAnswerMode === 'hotspot' || props.presentation === 'book')
       ? question.answerHotspots || emptyHotspots : emptyHotspots;
-  }, [props.item, primaryImage, hansolQuestion, props.imageAnswerMode, props.presentation]);
+  }, [props.item, primaryImage, printAvailable, hansolQuestion, props.imageAnswerMode, props.presentation]);
   const unifiedHotspots = useMemo(() => unifiedAnswerHotspots(verifiedHotspots), [verifiedHotspots]);
   const selectedAreaHighlightStyles = useMemo(() => {
     if (!props.selected) return [];
@@ -178,18 +182,20 @@ function useQuestionCard(props:QuestionCardProps) {
     wrong: props.mode === 'learn' && props.selected !== props.item.question.answer,
   });
   const displayedQuestionMarkup = useMemo(() => {
+    if(printText)return printText.stemHtml;
     if(transcribedQuestion)return escapeTranscription(transcribedQuestion.stem);
     const source = props.item.question.html || props.item.question.text || '';
     return String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
-  }, [props.item, transcribedQuestion]);
+  }, [props.item, transcribedQuestion, printText]);
   const embeddedChoiceMarkers = props.item.question.choices.length === 4
     && props.item.question.choices.every((choice, index) => leadingChoiceMarkerPattern(index)
       .test(String(choice.html || choice.text || '')));
   const displayedChoices = useMemo(() => props.item.question.choices.map((choice, index) => {
+    if(printAvailable)return print!.choices[index]!.html;
     if(transcribedQuestion)return escapeTranscription(transcribedQuestion.choices[index]||'');
     const source = String(choice.html || choice.text || `${index + 1}번`);
     return embeddedChoiceMarkers ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
-  }), [props.item, transcribedQuestion, embeddedChoiceMarkers]);
+  }), [props.item, transcribedQuestion, print, printAvailable, embeddedChoiceMarkers]);
   const canReadQuestion = speechAvailable
     && readableText(displayedQuestionMarkup).length >= 4
     && displayedChoices.some((choice) => readableText(choice).length >= 1);
@@ -273,11 +279,11 @@ function useQuestionCard(props:QuestionCardProps) {
     const number = index + 1;
     const showContent = !primaryImage || (props.answerLayout === 'inline' && hasReadableChoice(choice,index));
     return {
-      number, marker: String(circles[index] || number), selected: props.selected === number,
+      number, marker: printText?.choices[index]?.marker || String(circles[index] || number), selected: props.selected === number,
       className: Object.entries(choiceClass(index)).filter(([,active]) => active).map(([name]) => name).join(' '),
-      label: primaryImage ? `${number}번 ${choice.text || '답안'} 선택` : undefined,
+      label: printAvailable ? `${number}번째 보기 ${readableText(displayedChoices[index])}`.trim() : primaryImage ? `${number}번 ${choice.text || '답안'} 선택` : undefined,
       html: showContent ? choiceHtml(displayedChoices[index]) : undefined,
-      images: (choice.images || []).map(choiceImage).filter((src): src is string => Boolean(src)),
+      images: (printAvailable ? [] : choice.images || []).map(choiceImage).filter((src): src is string => Boolean(src)),
       imageClass: restoredImageClass,
       result: props.mode === 'learn' && props.selected === number ? (correctSelected ? '정답' : '다시 확인') : undefined,
     };
@@ -511,7 +517,7 @@ function useQuestionCard(props:QuestionCardProps) {
     issueReportOpen, issueReportSending, issueReportSubmitted,
     issueReportTypes, issueTypeOptions, keepExplanation,
     modelLesson, pinSolution, primaryExplanationText,
-    primaryImage, reactChoices, reopenExplanation,
+    printAvailable, printText, sourcePhoto, primaryImage, reactChoices, reopenExplanation,
     restoredImageClass, restoredQuestion, selectedAnswerState,
     selectedAreaHighlightStyles, selectedMarkerStyle, sendIssueReport,
     showQuestionIdentity, sourceImageOverride, sourceTranscription,

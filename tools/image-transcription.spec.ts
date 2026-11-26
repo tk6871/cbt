@@ -131,3 +131,32 @@ test('OCR 파일을 받지 못하면 원문을 풀 수 있음',async({page},info
  await card.locator('.image-answer-hotspot').first().click();
  await expect(card.locator('.image-answer-hotspot.selected')).toHaveCount(1);
 });
+
+test('대조한 지문과 보기 표시, 사진 전환 후 선택 유지', async ({page},info)=>{
+ test.skip(info.project.name!=='desktop','회차에 연결한 전사와 기존 답안 버튼을 검사합니다.');
+ await page.addInitScript(()=>{
+  localStorage.setItem('modern-cbt-qualification-industrial','hvac');
+  localStorage.setItem('cbt-explanation-display-v1','text');
+  sessionStorage.setItem('unified-cbt-android-apk-popup-seen-v351','true');
+ });
+ await page.route('**/data/hvac.js?*',async route=>{
+  const response=await route.fetch();
+  const fixture={stemHtml:'검증용 <math><mfrac><mn>1</mn><mn>2</mn></mfrac></math>',
+   choices:['①','②','③','③'].map((marker,i)=>({marker,html:String(i+1)})),visual:false,
+   image:'assets/icons/icon-192.png'};
+  await route.fulfill({response,body:(await response.text())+
+   '\nwindow.CBT_DATA_HVAC.rounds.find(r=>r.id==="hvac-20261").questions[0].reviewedPrint='+JSON.stringify(fixture)+';'});
+ });
+ await page.goto('./?safe=1#/study/rounds');
+ await page.locator('#round-card-hvac-20261').getByRole('button',{name:'학습모드',exact:true}).click();
+ const card=page.locator('#session-question-1');
+ await expect(card.locator('.question-text mfrac')).toHaveCount(1);
+ const choice=card.locator('.choice-button').nth(3);
+ await expect(choice.locator('.choice-number')).toHaveText('③');
+ await choice.click();
+ await card.getByRole('button',{name:'이미지로 보기',exact:true}).click();
+ await expect(card.locator('.source-question-image')).toHaveAttribute('src','assets/icons/icon-192.png');
+ await expect(card.locator('.image-answer-hotspot')).toHaveCount(0);
+ await card.getByRole('button',{name:'텍스트로 보기',exact:true}).click();
+ await expect(choice).toHaveAttribute('aria-pressed','true');
+});

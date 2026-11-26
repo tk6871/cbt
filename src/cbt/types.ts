@@ -21,6 +21,13 @@ export type Question = {
   text?: string;
   html?: string;
   ocrText?: string;
+  /** Display-only projection of a checked print source. Answer positions stay in the bank. */
+  reviewedPrint?: {
+    stemHtml: string;
+    choices: { marker: string; html: string }[];
+    image: string;
+    visual: boolean;
+  };
   images?: string[];
   sourceImage?: string | null;
   sourceImageSize?: number[];

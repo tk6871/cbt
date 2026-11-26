@@ -95,6 +95,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     unifiedHotspots,
     verifiedHotspots,
   } = m;
+  const { printAvailable, printText, sourcePhoto } = m;
   const focusStudy=m.readingSize===1 && mode==='learn' && !!m.onReadingFocus;
   const veiled=focusStudy && m.veil;
   const firstChoiceTop=imageOptions.length ? Math.min(...imageOptions.map(hit=>parseFloat(String(hit.style.top)))) : NaN;
@@ -327,11 +328,11 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           <button type="button" aria-pressed={m.ruler} onClick={()=>m.setRuler(!m.ruler)}>읽기 자</button>
           {m.ruler && <label>줄 위치 <input type="range" min="0" max="100" value={m.rulerAt} onChange={e=>m.setRulerAt(Number(e.target.value))}/></label>}</div>
         </details>}
-        {sourceTranscription?.question ? (
+        {printAvailable || sourceTranscription?.question ? (
           <div className="question-transcription-control">
             <small>
-              {transcribedQuestion
-                ? sourceTranscription.status === 'reviewed'
+              {printText || transcribedQuestion
+                ? printText || sourceTranscription?.status === 'reviewed'
                   ? '원문 대조 텍스트'
                   : 'OCR 임시 텍스트 · 오타 가능'
                 : '원문 이미지'}
@@ -342,7 +343,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 m.setSourceImageOverride(!sourceImageOverride);
               }}
             >
-              {transcribedQuestion ? '이미지로 보기' : '텍스트로 보기'}
+              {printText || transcribedQuestion ? '이미지로 보기' : '텍스트로 보기'}
             </button>
           </div>
         ) : null}
@@ -350,14 +351,14 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           {focusStudy && m.ruler && <i className="focus-reading-rule" aria-hidden="true" style={{top:m.rulerAt+'%'}}/>}
           {transcriptionPending ? (
             <p role="status">텍스트 확인 중…</p>
-          ) : primaryImage && item.question.sourceImage ? (
+          ) : primaryImage && sourcePhoto ? (
             <div className="source-image-frame">
               <SourceImageStage onChoose={n=>m.onChoose?.(n)}>
                 <img
                   ref={m.sourceImageRef}
-                  src={problemImage(item.question.sourceImage)}
-                  width={item.question.sourceImageSize?.[0]}
-                  height={item.question.sourceImageSize?.[1]}
+                  src={problemImage(sourcePhoto)}
+                  width={printAvailable ? undefined : item.question.sourceImageSize?.[0]}
+                  height={printAvailable ? undefined : item.question.sourceImageSize?.[1]}
                   alt={`${item.question.number}번 문제 원문`}
                   loading="lazy"
                   decoding="async"
@@ -435,7 +436,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                   dangerouslySetInnerHTML={{ __html: problemImageHtml(displayedQuestionMarkup) }}
                 />
               </div>
-              {(item.question.images || []).map((image) => (
+              {(printText ? (printText.visual ? [printText.image] : []) : item.question.images || []).map((image) => (
                 <StudyImageButton
                   key={image}
                   src={problemImage(image)!}
@@ -496,7 +497,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               >
                 {item.question.choices.map((choice, index) => (
                   <div key={index} className="choice-button">
-                    <span className="choice-number">{circles[index] || index + 1}</span>
+                    <span className="choice-number">{reactChoices[index]?.marker || circles[index] || index + 1}</span>
                     <span className="choice-copy">
                       <span dangerouslySetInnerHTML={{ __html: problemImageHtml(displayedChoices[index]) }} />
                     </span>
@@ -1008,8 +1009,8 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                   </section>
                 </div>
               ) : null}
-              {imageZoomOpen && item.question.sourceImage && <StudyImageDialog
-                src={problemImage(item.question.sourceImage)!} alt={`${item.question.number}번 문제 원문 확대`}
+              {imageZoomOpen && sourcePhoto && <StudyImageDialog
+                src={problemImage(sourcePhoto)!} alt={`${item.question.number}번 문제 원문 확대`}
                 sourceClass={normalizeClass([restoredImageClass,{'hansol-source-image':hansolQuestion}])}
                 onClose={()=>m.setImageZoomOpen(false)}/>}
             </>,

@@ -13,5 +13,5 @@ export function useSourceTranscription(source?:string | null) {
   const subscribe=useCallback((notify:()=>void)=>subscribeImageTranscription(key,notify),[key]);
   const result=useSyncExternalStore(subscribe,read);
   useEffect(()=>requestImageTranscription(key,mode),[key,mode]);
-  return {entry:result==='pending'?undefined:result,pending:result==='pending'};
+  return {mode,entry:result==='pending'?undefined:result,pending:result==='pending'};
 }
