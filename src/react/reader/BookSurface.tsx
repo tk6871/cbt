@@ -1,4 +1,6 @@
 import {lazy, Suspense, useCallback, useState, type ReactNode} from 'react';
+import {assetReading} from '../../cbt/printedStudy';
+import {useExplanationDisplay} from '../session/useSourceTranscription';
 import {TranscribedFigure} from '../session/ExplanationFigures';
 import {isImagePrimary} from '../../cbt/catalog';
 import {problemImage} from '../../cbt/problemImages';
@@ -32,13 +34,16 @@ function LinkedQuestionTarget({id,register}:{id:string;register:RegisterTarget})
 function Example({example,original}:{example:(typeof textbookWorkedExamples)[number];original:boolean}) {
   const cls=original?'restored-image-original':undefined;
   const [opened,setOpened] = useState(false);
+  const mode=useExplanationDisplay(), [originalQuestion,setOriginalQuestion]=useState(false);
+  const html=mode==='image' ? undefined : assetReading(example.question)?.html;
   return <article className="book-worked-example">
     <h2>교재 원문 · {example.title}</h2><p>{example.note}</p>
-    <figure className="textbook-explanation-image"><figcaption>교재 {example.pages[0]}쪽 · 문제</figcaption>
-      <img className={cls} src={problemImage(textbookAssetUrl(example.question))} width={example.questionSize[0]} height={example.questionSize[1]} alt={example.title+' 원문 문제'} loading="lazy"/></figure>
+    <figure className="textbook-explanation-image"><figcaption>교재 {example.pages[0]}쪽 · 문제 {html && <button type="button" onClick={()=>setOriginalQuestion(!originalQuestion)}>{originalQuestion?'텍스트로 보기':'이미지로 보기'}</button>}</figcaption>
+      {html && !originalQuestion ? <div className="printed-study" dangerouslySetInnerHTML={{__html:html}} /> :
+      <img className={cls} src={problemImage(textbookAssetUrl(example.question))} width={example.questionSize[0]} height={example.questionSize[1]} alt={example.title+' 원문 문제'} loading="lazy"/>}</figure>
     <details onToggle={event=>{if(event.currentTarget.open)setOpened(true)}}><summary>풀이와 답 보기 · 교재 {example.pages.at(-1)}쪽</summary><p><strong>답 {example.answer}</strong></p><p>{example.explanation}</p>
       {opened && example.explanationFormula && <Suspense fallback={null}><MathFormula {...example.explanationFormula}/></Suspense>}
-      {example.explanationTranscribed ? opened && <TranscribedFigure key={example.solution} source={textbookAssetUrl(example.solution)} imageClass={cls}/> :
+      {(example.explanationTranscribed || assetReading(example.solution)?.html) ? opened && <TranscribedFigure key={example.solution} source={textbookAssetUrl(example.solution)} imageClass={cls}/> :
         <figure className="textbook-explanation-image"><figcaption>교재 원문 풀이·정답</figcaption>
           <img className={cls} src={problemImage(textbookAssetUrl(example.solution))} width={example.solutionSize[0]} height={example.solutionSize[1]} alt={example.title+' 원문 풀이·정답'} loading="lazy"/>
         </figure>}

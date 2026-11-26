@@ -1,3 +1,4 @@
+import {assetReading} from '../../cbt/printedStudy';
 import {SourceImageStage} from '../reader/SourceImageStage';
 import {questionSubject,subjectLabel} from '../../cbt/printedSubject';
 import {ExplanationReadingTools} from './ExplanationReadingTools';
@@ -96,6 +97,8 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     verifiedHotspots,
   } = m;
   const { printAvailable, printText, sourcePhoto } = m;
+  const keyDifference = m.print?.printedAnswer && m.print.printedAnswer !== item.question.answer
+    ? <p className="printed-key-note">인쇄 정답 {circles[m.print.printedAnswer-1]} · 앱 채점 {circles[item.question.answer-1]}</p> : null;
   const focusStudy=m.readingSize===1 && mode==='learn' && !!m.onReadingFocus;
   const veiled=focusStudy && m.veil;
   const firstChoiceTop=imageOptions.length ? Math.min(...imageOptions.map(hit=>parseFloat(String(hit.style.top)))) : NaN;
@@ -111,6 +114,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
       <article
         id={m.id}
         data-react-view="question-card"
+        data-deferred-original={printText?.deferredOriginal || undefined}
         onPointerDown={() => {
           m.onActivate?.();
         }}
@@ -328,22 +332,23 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
           <button type="button" aria-pressed={m.ruler} onClick={()=>m.setRuler(!m.ruler)}>읽기 자</button>
           {m.ruler && <label>줄 위치 <input type="range" min="0" max="100" value={m.rulerAt} onChange={e=>m.setRulerAt(Number(e.target.value))}/></label>}</div>
         </details>}
-        {printAvailable || sourceTranscription?.question ? (
+        {m.hasPartReading || printAvailable || sourceTranscription?.question ? (
           <div className="question-transcription-control">
             <small>
-              {printText || transcribedQuestion
-                ? printText || sourceTranscription?.status === 'reviewed'
-                  ? '원문 대조 텍스트'
+              {printText || transcribedQuestion || (m.hasPartReading && m.showAssetReadings)
+                ? printText || m.hasPartReading || sourceTranscription?.status === 'reviewed'
+                  ? printText?.sourceLabel || (printText?.partial ? '원문 부분 판독' : '원문 대조 텍스트')
                   : 'OCR 임시 텍스트 · 오타 가능'
                 : '원문 이미지'}
             </small>
             <button
+              hidden={!sourcePhoto && !m.hasPartReading}
               type="button"
               onClick={() => {
                 m.setSourceImageOverride(!sourceImageOverride);
               }}
             >
-              {printText || transcribedQuestion ? '이미지로 보기' : '텍스트로 보기'}
+              {printText || transcribedQuestion || (m.hasPartReading && m.showAssetReadings) ? '이미지로 보기' : '텍스트로 보기'}
             </button>
           </div>
         ) : null}
@@ -436,7 +441,9 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                   dangerouslySetInnerHTML={{ __html: problemImageHtml(displayedQuestionMarkup) }}
                 />
               </div>
-              {(printText ? (printText.visual ? [printText.image] : []) : item.question.images || []).map((image) => (
+              {(printText ? (printText.figures ?? (printText.visual ? [printText.image] : [])) : item.question.images || []).map((image, index) => m.showAssetReadings && assetReading(image)?.html ? (
+                <div key={index} className="printed-study" dangerouslySetInnerHTML={{__html:assetReading(image)!.html!}} />
+              ) : (
                 <StudyImageButton
                   key={image}
                   src={problemImage(image)!}
@@ -692,7 +699,10 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 닫기 ×
               </button>
             </div>
-            {primaryExplanationText ? (
+            {keyDifference}
+            {m.printedSolution !== undefined ? (
+              <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
+            ) : primaryExplanationText ? (
               <p className="explanation-copy beginner-primary-explanation">
                 <strong>풀이</strong>
                 {primaryExplanationText}
@@ -700,13 +710,14 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             ) : !item.question.explanationImages?.length ? (
               <p className="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
             ) : null}
-            {item.question.explanationFormula && (
+            {m.printedSolution === undefined && item.question.explanationFormula && (
               <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
             )}
             {readingTools()}
             <ExplanationFigures {...{
-                images: m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
-                folded: item.question.originalExplanationImagesFolded,
+                images: m.printedSolution !== undefined ? (m.print?.solutionImage ? [m.print.solutionImage] : m.print?.solutionPages || []) : m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
+                folded: m.printedSolution !== undefined || item.question.originalExplanationImagesFolded,
+                originalOnly: m.printedSolution !== undefined,
                 imageClass: restoredImageClass,
                 onInteract: stopExplanationAutoClose,
               }}
@@ -893,7 +904,10 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                           </button>
                         ) : null}
                       </div>
-                      {primaryExplanationText ? (
+                      {keyDifference}
+            {m.printedSolution !== undefined ? (
+              <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
+            ) : primaryExplanationText ? (
                         <p className="explanation-copy beginner-primary-explanation">
                           <strong>풀이</strong>
                           {primaryExplanationText}
@@ -901,13 +915,14 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                       ) : !item.question.explanationImages?.length ? (
                         <p className="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
                       ) : null}
-                      {item.question.explanationFormula && (
+                      {m.printedSolution === undefined && item.question.explanationFormula && (
                         <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
                       )}
                       {readingTools()}
                       <ExplanationFigures {...{
-                          images: m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
-                          folded: item.question.originalExplanationImagesFolded,
+                          images: m.printedSolution !== undefined ? (m.print?.solutionImage ? [m.print.solutionImage] : m.print?.solutionPages || []) : m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
+                          folded: m.printedSolution !== undefined || item.question.originalExplanationImagesFolded,
+                originalOnly: m.printedSolution !== undefined,
                           imageClass: restoredImageClass,
                           onInteract: stopExplanationAutoClose,
                         }}

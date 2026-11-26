@@ -1,1 +1,9 @@
 .transcription-figure figcaption{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.transcription-figure button{font:inherit;padding:5px 9px;min-height:36px;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);color:var(--text);cursor:pointer}.transcription-figure small{display:block;color:var(--muted);font-size:.78rem}.transcription-text{white-space:pre-line;overflow-wrap:anywhere;font-size:max(16px,var(--explanation-text-size,1rem));line-height:1.7;margin:7px 0;color:var(--text)}
+
+:is(.printed-study,.question-text,.choice-copy) table {border-collapse:collapse;max-width:100%;margin:.45em 0;font-size:inherit}
+:is(.printed-study,.question-text,.choice-copy) :is(th,td) {border:1px solid currentColor;padding:.25em .45em;vertical-align:middle}
+:is(.printed-study,.question-text,.choice-copy) img {max-width:100%;height:auto}
+.printed-study {overflow-x:auto;line-height:1.65}
+
+/* Avoid the keyed color in a publisher’s annotated solution during practice. */
+[data-deferred-original] .choice-copy img {filter:grayscale(1) contrast(3)}

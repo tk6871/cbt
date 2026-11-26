@@ -27,6 +27,17 @@ export type Question = {
     choices: { marker: string; html: string }[];
     image: string;
     visual: boolean;
+    figures?: string[];
+    choiceFigures?: string[][];
+    solutionHtml?: string;
+    solutionImage?: string;
+    solutionPages?: string[];
+    answerKey?: number;
+    sourceNumber?: number;
+    partial?: boolean;
+    deferredOriginal?: boolean;
+    sourceLabel?: string;
+    printedAnswer?: number;
   };
   images?: string[];
   sourceImage?: string | null;

@@ -64,6 +64,10 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
   const [fallback,setFallback]=useState(false),[zoom,setZoom]=useState(false);
   const answer=textbookDirectAnswer(source,page),image=textbookDirectImage(page);
   const asset=problemImage(textbookAssetUrl(fallback?image.fallbackAsset:image.asset))!;
+  const [showOriginal, setShowOriginal] = useState(false);
+  const candidate = showText ? window.CBT_PRINTED_STUDY?.books[source.id] : undefined;
+  const printed = candidate?.choices.length === 4 && (!answer || answer === candidate.answerKey) ? candidate : undefined;
+  const visible = printed && !showOriginal ? printed : undefined;
   const text=solutionOpen&&showText?textbookExplanationText(source):undefined;
   function choose(n:number) { setChoice(chosen===n?0:n); }
   function setChoice(next:number) {
@@ -75,8 +79,12 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
   const scans={source,page,asset,original,onFallback};
   return <article className="book-direct-question" data-source-id={source.id} data-react-view="direct-question">
     <small className="direct-status">교재 원문 · {answer?'정답표 대조 완료':'자가확인'}{image.improved&&!fallback?' · 2배 화질 개선':''}{fallback?' · 원해상도 대체 표시':''}</small>
-    {!source.split&&<p className="direct-caution">풀이가 함께 포함될 수 있는 원문입니다. 아래 ‘원문 쪽 전체 보기’에서 이어지는 그림·풀이도 확인하세요.</p>}
-    <div className="direct-question-parts">{source.questionParts.map((part,i)=>{
+    {printed && <button type="button" onClick={()=>setShowOriginal(!showOriginal)}>{showOriginal?'텍스트로 보기':'이미지로 보기'}</button>}
+    {!visible && !source.split&&<p className="direct-caution">풀이가 함께 포함될 수 있는 원문입니다. 아래 ‘원문 쪽 전체 보기’에서 이어지는 그림·풀이도 확인하세요.</p>}
+    {visible ? <div className="printed-study">
+      <div dangerouslySetInnerHTML={{__html:visible.stemHtml}} />
+      {visible.figures?.map((src,i)=><img key={i} src={problemImage(src)} alt="문제 그림" />)}
+    </div> : <div className="direct-question-parts">{source.questionParts.map((part,i)=>{
       const [left,top,w,h]=part.rect as [number,number,number,number];
       const choices=(indexedBoxes[source.id]??[]).flatMap((box,index)=>box[0]===i?[{
         number:index+1,style:{left:(box[1]!-left)/w*100+'%',top:(box[2]!-top)/h*100+'%',width:box[3]!/w*100+'%',height:box[4]!/h*100+'%'},
@@ -84,17 +92,20 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
       return <Region key={i} part={part} original={original} onFallback={onFallback} onChoose={choices.length?choose:undefined} alt={`한솔 교재 ${part.page}쪽 ${source.number}번 원문 문제${i?' 이어짐':''}`}>
         <PrintedChoices choices={choices} selected={chosen} buttonClass="printed-choice" onChoose={choose}/>
       </Region>;
-    })}</div>
+    })}</div>}
     <div className="direct-choices" role="group" aria-label={`${source.page}쪽 ${source.number}번 내 답안 기록`}>
-      {choiceLabels.map((label,i)=><button type="button" key={label} aria-pressed={chosen===i+1} onClick={()=>choose(i+1)}>{label}</button>)}
+      {choiceLabels.map((label,i)=><button type="button" key={label} aria-pressed={chosen===i+1} onClick={()=>choose(i+1)}>{label} {visible && <span className="choice-copy">
+        <span dangerouslySetInnerHTML={{__html:visible.choices[i]!.html}} />
+        {visible.choiceFigures?.[i]?.map((src,k)=><img key={k} src={problemImage(src)} alt={label+' 보기 그림'} />)}
+      </span>}</button>)}
       <small>{chosen?chosen+'번 선택 · 다시 누르면 취소':'내 답안 선택'}</small>
     </div>
     {!!(answer&&chosen)&&<p className="direct-grade" data-result={chosen===answer?'correct':'wrong'} role="status">{chosen===answer?'맞았어요':'틀렸어요'} · 교재 정답 {answer}번</p>}
     {storageFailed&&<p role="status">현재 기기에 선택을 저장하지 못했습니다.</p>}
     <details open={solutionOpen} className="direct-solution" onToggle={e=>setSolutionOpen(e.currentTarget.open)}>
       <summary>{source.split?'교재 풀이·정답표 확인':'교재 정답표 확인'}</summary>
-      {solutionOpen&&<>{!!answer&&<p className="direct-answer-label">정답 {['①','②','③','④'][answer-1]} · {answer}번</p>}{text?<><div className="direct-explanation-text"><small>원문 대조 텍스트</small>
-        {text.blocks.map((block,i)=>block.text?<p key={i}>{block.text}</p>:block.tex?<div key={i} className="math-formula" aria-label={block.label||'교재 수식'} dangerouslySetInnerHTML={{__html:katex.renderToString(block.tex,{displayMode:true,throwOnError:false,strict:'ignore'})}}/>:null)}
+      {solutionOpen&&<>{!!answer&&<p className="direct-answer-label">정답 {['①','②','③','④'][answer-1]} · {answer}번</p>}{(visible?.solutionHtml || text)?<><div className="direct-explanation-text printed-study"><small>원문 대조 텍스트</small>
+        {visible?.solutionHtml ? <div dangerouslySetInnerHTML={{__html:visible.solutionHtml}} /> : text?.blocks.map((block,i)=>block.text?<p key={i}>{block.text}</p>:block.tex?<div key={i} className="math-formula" aria-label={block.label||'교재 수식'} dangerouslySetInnerHTML={{__html:katex.renderToString(block.tex,{displayMode:true,throwOnError:false,strict:'ignore'})}}/>:null)}
       </div><details className="direct-solution-original" onToggle={e=>setOriginalOpen(e.currentTarget.open)}>
         <summary>원문 풀이·정답표 이미지 보기</summary>{originalOpen&&<SolutionImages {...scans}/>}
       </details></>:<SolutionImages {...scans}/>}

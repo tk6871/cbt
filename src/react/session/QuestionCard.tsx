@@ -3,6 +3,7 @@ import {PinSolutionContext} from '../workspaceTypes';
 import {equipmentLessons} from '../modelPreference';
 import {problemImage as choiceImage, problemImageHtml as choiceHtml} from '../../cbt/problemImages';
 import {hotspotStyle, unifiedAnswerHotspots} from '../../cbt/answerHotspotGeometry';
+import {assetReading, hasPrintedInline, printedQuestion, replacePrintedInline} from '../../cbt/printedStudy';
 import {isImagePrimary} from '../../cbt/catalog';
 import {explanationSource} from '../../cbt/explanationSource';
 import {calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem} from '../../cbt/calculationGuide';
@@ -106,7 +107,7 @@ function QuestionCardBody(props:QuestionCardProps) {
 }
 
 function useQuestionCard(props:QuestionCardProps) {
-  const print=props.item.question.reviewedPrint;
+  const print=printedQuestion(props.item);
   const {entry:sourceTranscription, pending:transcriptionPending, mode:displayMode}=useSourceTranscription(print ? undefined : props.item.question.sourceImage);
   const pinSolution=useContext(PinSolutionContext);
   const sourceImageRef=useRef<HTMLImageElement>(null);
@@ -136,10 +137,16 @@ function useQuestionCard(props:QuestionCardProps) {
   const [issueReportSubmitted, setIssueReportSubmitted] = useState(false);
   const speechAvailable = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
   const transcribedQuestion = !sourceImageOverride?sourceTranscription?.question:undefined;
-  const printAvailable = Boolean(print && displayMode !== 'image');
+  const showAssetReadings = displayMode !== 'image' && !sourceImageOverride;
+  const hasPartReading = Boolean(window.CBT_PRINTED_STUDY && !print && displayMode !== 'image' && (
+    props.item.question.images?.some(src=>assetReading(src)?.html) ||
+    hasPrintedInline(props.item.question.html) ||
+    props.item.question.choices.some(c=>hasPrintedInline(c.html) || c.images?.some(src=>assetReading(src)?.html))
+  ));
+  const printAvailable = Boolean(print && (displayMode !== 'image' || print.deferredOriginal));
   const printText = printAvailable && !sourceImageOverride ? print : undefined;
-  const sourcePhoto = printAvailable ? print?.image : props.item.question.sourceImage;
-  const primaryImage = isImagePrimary(props.item) && !transcribedQuestion && !printText;
+  const sourcePhoto = print?.image || props.item.question.sourceImage;
+  const primaryImage = (isImagePrimary(props.item) || Boolean(print && sourcePhoto)) && !transcribedQuestion && !printText;
   const hansolQuestion = props.item.round.qualificationKey === 'hvac-hansol';
   const fieldReportQuestion = props.item.round.kind === 'field-report-practice';
   const restoredQuestion = !fieldReportQuestion && props.item.round.qualificationKey === 'hvac' && Number(props.item.round.year) >= 2021;
@@ -185,17 +192,20 @@ function useQuestionCard(props:QuestionCardProps) {
     if(printText)return printText.stemHtml;
     if(transcribedQuestion)return escapeTranscription(transcribedQuestion.stem);
     const source = props.item.question.html || props.item.question.text || '';
-    return String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
-  }, [props.item, transcribedQuestion, printText]);
+    const html = String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
+    return showAssetReadings ? replacePrintedInline(html) : html;
+  }, [props.item, transcribedQuestion, printText, showAssetReadings]);
   const embeddedChoiceMarkers = props.item.question.choices.length === 4
     && props.item.question.choices.every((choice, index) => leadingChoiceMarkerPattern(index)
       .test(String(choice.html || choice.text || '')));
   const displayedChoices = useMemo(() => props.item.question.choices.map((choice, index) => {
     if(printAvailable)return print!.choices[index]!.html;
     if(transcribedQuestion)return escapeTranscription(transcribedQuestion.choices[index]||'');
-    const source = String(choice.html || choice.text || `${index + 1}번`);
-    return embeddedChoiceMarkers ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
-  }), [props.item, transcribedQuestion, print, printAvailable, embeddedChoiceMarkers]);
+    const hasReading = showAssetReadings && choice.images?.some(src=>assetReading(src)?.html);
+    const source = String(choice.html || choice.text || (hasReading ? '' : `${index + 1}번`));
+    const html = embeddedChoiceMarkers ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
+    return showAssetReadings ? replacePrintedInline(html) : html;
+  }), [props.item, transcribedQuestion, print, printAvailable, embeddedChoiceMarkers, showAssetReadings]);
   const canReadQuestion = speechAvailable
     && readableText(displayedQuestionMarkup).length >= 4
     && displayedChoices.some((choice) => readableText(choice).length >= 1);
@@ -204,6 +214,7 @@ function useQuestionCard(props:QuestionCardProps) {
     && Boolean(props.displayNumber)
     && props.displayNumber !== props.item.question.number;
 
+  const printedSolution = displayMode !== 'image' || print?.deferredOriginal ? print?.solutionHtml : undefined;
   const explanationOrigin = explanationSource(props.item.question);
   const explanationRaw = String(
     props.item.question.explanationHtml || props.item.question.explanation || '',
@@ -277,13 +288,16 @@ function useQuestionCard(props:QuestionCardProps) {
 
   const reactChoices = props.item.question.choices.map((choice, index) => {
     const number = index + 1;
+    const images = printAvailable ? print?.choiceFigures?.[index] || [] : choice.images || [];
+    const parts = images.map(source => ({source, html: showAssetReadings ? assetReading(source)?.html : undefined}));
+    const embedded = /<img\b/i.test(choice.html || '');
     const showContent = !primaryImage || (props.answerLayout === 'inline' && hasReadableChoice(choice,index));
     return {
       number, marker: printText?.choices[index]?.marker || String(circles[index] || number), selected: props.selected === number,
       className: Object.entries(choiceClass(index)).filter(([,active]) => active).map(([name]) => name).join(' '),
       label: printAvailable ? `${number}번째 보기 ${readableText(displayedChoices[index])}`.trim() : primaryImage ? `${number}번 ${choice.text || '답안'} 선택` : undefined,
-      html: showContent ? choiceHtml(displayedChoices[index]) : undefined,
-      images: (printAvailable ? [] : choice.images || []).map(choiceImage).filter((src): src is string => Boolean(src)),
+      html: showContent ? choiceHtml(displayedChoices[index]) + (!embedded ? parts.map(p => p.html || '').join('') : '') : undefined,
+      images: parts.filter(p => !p.html).map(p => p.source).map(choiceImage).filter((src): src is string => Boolean(src)),
       imageClass: restoredImageClass,
       result: props.mode === 'learn' && props.selected === number ? (correctSelected ? '정답' : '다시 확인') : undefined,
     };
@@ -336,8 +350,8 @@ function useQuestionCard(props:QuestionCardProps) {
   function keepExplanation() {
     stopExplanationAutoClose();
     pinSolution?.({ id:props.item.id, number:props.item.question.number,round:props.item.round.title,
-      text:[primaryExplanationText,...additionalExplanationSections.map(entry=>entry.text)].filter(Boolean).join('\n\n'),
-      images:(props.item.question.explanationImages||[]).map(choiceImage).filter((src):src is string=>Boolean(src)) });
+      text:[printedSolution !== undefined ? readableText(printedSolution) : primaryExplanationText,...additionalExplanationSections.map(entry=>entry.text)].filter(Boolean).join('\n\n'),
+      images:(printedSolution !== undefined && print?.solutionImage ? [print.solutionImage] : props.item.question.explanationImages||[]).map(choiceImage).filter((src):src is string=>Boolean(src)) });
     closeInlineExplanation();
     closeCompactExplanation();
   }
@@ -517,7 +531,7 @@ function useQuestionCard(props:QuestionCardProps) {
     issueReportOpen, issueReportSending, issueReportSubmitted,
     issueReportTypes, issueTypeOptions, keepExplanation,
     modelLesson, pinSolution, primaryExplanationText,
-    printAvailable, printText, sourcePhoto, primaryImage, reactChoices, reopenExplanation,
+    showAssetReadings, hasPartReading, displayMode, printedSolution, print, printAvailable, printText, sourcePhoto, primaryImage, reactChoices, reopenExplanation,
     restoredImageClass, restoredQuestion, selectedAnswerState,
     selectedAreaHighlightStyles, selectedMarkerStyle, sendIssueReport,
     showQuestionIdentity, sourceImageOverride, sourceTranscription,
