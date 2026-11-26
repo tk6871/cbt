@@ -1,3 +1,4 @@
+import {usePrintedStudy} from '../session/usePrintedStudy';
 import {SourceImageStage} from './SourceImageStage';
 import continuations from '../../../data/textbook-continuation-images.json';
 import {useState,type ReactNode} from 'react';
@@ -58,6 +59,7 @@ function SolutionImages({source,page,asset,original,onFallback}:ScanProps & Pick
 export function DirectQuestion({source,page,original,showText,chosen,saveChoice}:DirectProps & {
   chosen:number; saveChoice:(id:string,choice:number)=>void;
 }) {
+  usePrintedStudy();
   const key=legacyDirectPrefix+source.id;
   const [storageFailed,setStorageFailed]=useState(false);
   const [solutionOpen,setSolutionOpen]=useState(false),[originalOpen,setOriginalOpen]=useState(false),[fullOpen,setFullOpen]=useState(false);

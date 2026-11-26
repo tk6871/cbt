@@ -1,10 +1,9 @@
-// Populated only by the private, locally assembled study site.
 import { problemImage } from './problemImages';
 import type { Question, QuestionItem } from './types';
 
 export type PrintedStudyQuestion = NonNullable<Question['reviewedPrint']>;
 type Reading = { html?: string; question?: PrintedStudyQuestion; diagram?: boolean };
-type PrintedStudyData = {
+export type PrintedStudyData = {
   books: Record<string, PrintedStudyQuestion>;
   assets: Record<string, Reading>;
   placements?: Record<string, {path:string; question:PrintedStudyQuestion}>;

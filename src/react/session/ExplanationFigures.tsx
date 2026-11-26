@@ -1,3 +1,4 @@
+import {usePrintedStudy} from './usePrintedStudy';
 import {assetReading} from '../../cbt/printedStudy';
 import {useState} from 'react';
 import {problemImage} from '../../cbt/problemImages';
@@ -5,6 +6,7 @@ import {useExplanationDisplay,useSourceTranscription} from './useSourceTranscrip
 import './transcription-figure.css';
 
 export function TranscribedFigure({source,imageClass,onInteract}:{source:string;imageClass?:string;onInteract?:()=>void}) {
+  usePrintedStudy();
   const {entry,pending,mode}=useSourceTranscription(source);
   const [original,setOriginal]=useState(false);
   const text=!original && entry?.kind==='explanation' ? entry : undefined;

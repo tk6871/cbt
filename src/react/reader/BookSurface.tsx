@@ -1,3 +1,4 @@
+import {usePrintedStudy} from '../session/usePrintedStudy';
 import {lazy, Suspense, useCallback, useState, type ReactNode} from 'react';
 import {assetReading} from '../../cbt/printedStudy';
 import {useExplanationDisplay} from '../session/useSourceTranscription';
@@ -32,6 +33,7 @@ function LinkedQuestionTarget({id,register}:{id:string;register:RegisterTarget})
   return <div ref={attach} className="book-linked-question"/>;
 }
 function Example({example,original}:{example:(typeof textbookWorkedExamples)[number];original:boolean}) {
+  usePrintedStudy();
   const cls=original?'restored-image-original':undefined;
   const [opened,setOpened] = useState(false);
   const mode=useExplanationDisplay(), [originalQuestion,setOriginalQuestion]=useState(false);

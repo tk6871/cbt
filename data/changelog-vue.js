@@ -4,6 +4,7 @@
   changelog.entries = changelog.entries || [];
 
   const entries = [
+    {version:'6.7.4',scope:'industrial',date:'2026.11.26',title:'필기·교재 전사와 인쇄 해설',summary:'필기 문제를 열면 별도 자료 사이트에서 지문과 보기를 불러옵니다.',changes:['원문과 사진을 전환할 수 있습니다. 학습모드에서는 채점 후 인쇄 해설을 확인할 수 있습니다.']},
     {version:'6.7.3',scope:'industrial',date:'2026.11.25',title:'해설 자동 닫힘 화면 이동 수정',summary:'한 문제 집중 보기와 페이지 끝에서도 해설을 자동으로 닫을 때 화면 위치를 유지합니다.',changes:['해설을 닫은 뒤 필요한 공간만 잠깐 유지하고 스크롤이 안전해지면 없앱니다.']},
     {version:'6.7.2',scope:'industrial',date:'2026.11.25',title:'트랙패드 입력과 해설 위치 개선',summary:'가로 스와이프의 관성을 구분하고 확대는 제스처를 시작한 지점에서 진행합니다.',changes:['해설이 자동으로 접혀도 보고 있던 다음 문제의 화면 위치를 유지합니다.','문제를 클릭할 때 카드 테두리 색이 바뀌지 않습니다.']},
     {version:'6.7.1',scope:'industrial',date:'2026.11.25',title:'맥 트랙패드 가로 스와이프 수정',summary:'교재와 문항에서 두 손가락으로 수평으로 밀어도 넘길 수 있습니다.',changes:['문항 넘김은 풀이 메뉴에서 켜고, 확대 그림에서는 가로 이동을 유지합니다.']},
@@ -3278,8 +3279,8 @@
       changelog.entries.unshift(entry);
     }
   });
-  changelog.versions.industrial = '6.7.3';
+  changelog.versions.industrial = '6.7.4';
   changelog.versions.jewelry = '4.0.1';
-  changelog.currentVersion = '6.7.3';
+  changelog.currentVersion = '6.7.4';
   window.CBT_CHANGELOG = changelog;
 })();

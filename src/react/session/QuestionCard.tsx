@@ -1,3 +1,4 @@
+import {usePrintedStudy} from './usePrintedStudy';
 import {useContext, useEffect, useLayoutEffect, useMemo, useRef, useState} from 'react';
 import {PinSolutionContext} from '../workspaceTypes';
 import {equipmentLessons} from '../modelPreference';
@@ -107,6 +108,7 @@ function QuestionCardBody(props:QuestionCardProps) {
 }
 
 function useQuestionCard(props:QuestionCardProps) {
+  usePrintedStudy();
   const print=printedQuestion(props.item);
   const {entry:sourceTranscription, pending:transcriptionPending, mode:displayMode}=useSourceTranscription(print ? undefined : props.item.question.sourceImage);
   const pinSolution=useContext(PinSolutionContext);
