@@ -317,8 +317,8 @@ body:has(.fan-wallpaper)::before { display:none }
   :root:not([data-dynamic-ui=off]):not([data-ui-motion=off]) .session-topbar .session-title {animation:workspace-settle .32s cubic-bezier(.2,.8,.2,1) both}
 }
 
-/* The catalogue uses its own neutral backdrop when artwork follows the route. */
-:root[data-wallpaper-mode=auto][data-theme]:has(.round-library) body::before {
+/* The jewelry catalogue has a neutral backdrop in automatic mode. */
+:root[data-space=jewelry][data-wallpaper-mode=auto][data-theme]:has(.round-library) body::before {
   background:radial-gradient(ellipse at 85% 8%,var(--library-light),transparent 48%),var(--library-base);
   opacity:1;mask-image:none;
 }

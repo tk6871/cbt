@@ -1,5 +1,8 @@
 body:has(#textbook-navigator[open]){overflow:hidden}
 .textbook-pages{min-height:100dvh;background:var(--bg,#101925);color:var(--text,#dce7f5);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-reduced-transparency: no-preference) and (forced-colors: none) {
+  :root[data-glass] .textbook-pages {background:color-mix(in srgb,var(--bg) 76%,transparent)}
+}
 .textbook-pages .reader-toolbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top,0px)) max(16px,calc((100vw - 1440px)/2)) 10px;background:var(--surface,#172537)}
 .textbook-pages .reader-title{flex:1;min-width:0}
 .textbook-pages .reader-title small{font-size:10px;letter-spacing:.15em;color:var(--muted)}

@@ -26,6 +26,7 @@ activeWallpaper.subscribe(value=>{
 export function updateWallpaperContext(view:string,subject:string,jewelry:boolean){
   if(view==='settings'||view==='history'||view==='stats') context.value='coast';
   else if(jewelry) context.value='shell';
+  else if(view==='home'||view==='rounds'||view==='school'||view.startsWith('school-')) context.value='ice';
   else if(subject.startsWith('energy')) context.value='copper';
   else if(subject.startsWith('hvac')||subject.startsWith('cooling')) context.value='ice';
   else context.value='nexus';
