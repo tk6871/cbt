@@ -4,9 +4,8 @@ import {PinSolutionContext} from '../workspaceTypes';
 import {equipmentLessons} from '../modelPreference';
 import {problemImage as choiceImage, problemImageHtml as choiceHtml} from '../../cbt/problemImages';
 import {hotspotStyle, unifiedAnswerHotspots} from '../../cbt/answerHotspotGeometry';
-import {assetReading, hasPrintedInline, printedQuestion, replacePrintedInline} from '../../cbt/printedStudy';
+import {assetReading, hasPrintedInline, printedQuestion, printedSolutionHtml, replacePrintedInline} from '../../cbt/printedStudy';
 import {isImagePrimary} from '../../cbt/catalog';
-import {explanationSource} from '../../cbt/explanationSource';
 import {calculationGuideFor, commonCalculationNumberOrigins, isCalculationItem} from '../../cbt/calculationGuide';
 import {submitQuestionIssue, type QuestionIssueType} from '../../cbt/cloudSync';
 import type {QuestionItem, StudyMode} from '../../cbt/types';
@@ -108,7 +107,7 @@ function QuestionCardBody(props:QuestionCardProps) {
 }
 
 function useQuestionCard(props:QuestionCardProps) {
-  usePrintedStudy();
+  const study = usePrintedStudy();
   const print=printedQuestion(props.item);
   const {entry:sourceTranscription, pending:transcriptionPending, mode:displayMode}=useSourceTranscription(print ? undefined : props.item.question.sourceImage);
   const pinSolution=useContext(PinSolutionContext);
@@ -196,7 +195,7 @@ function useQuestionCard(props:QuestionCardProps) {
     const source = props.item.question.html || props.item.question.text || '';
     const html = String(source).replace(leadingQuestionNumberPattern(props.item.question.number), '');
     return showAssetReadings ? replacePrintedInline(html) : html;
-  }, [props.item, transcribedQuestion, printText, showAssetReadings]);
+  }, [props.item, transcribedQuestion, printText, showAssetReadings, study]);
   const embeddedChoiceMarkers = props.item.question.choices.length === 4
     && props.item.question.choices.every((choice, index) => leadingChoiceMarkerPattern(index)
       .test(String(choice.html || choice.text || '')));
@@ -207,7 +206,7 @@ function useQuestionCard(props:QuestionCardProps) {
     const source = String(choice.html || choice.text || (hasReading ? '' : `${index + 1}번`));
     const html = embeddedChoiceMarkers ? source.replace(leadingChoiceMarkerPattern(index), '') : source;
     return showAssetReadings ? replacePrintedInline(html) : html;
-  }), [props.item, transcribedQuestion, print, printAvailable, embeddedChoiceMarkers, showAssetReadings]);
+  }), [props.item, transcribedQuestion, print, printAvailable, embeddedChoiceMarkers, showAssetReadings, study]);
   const canReadQuestion = speechAvailable
     && readableText(displayedQuestionMarkup).length >= 4
     && displayedChoices.some((choice) => readableText(choice).length >= 1);
@@ -216,8 +215,7 @@ function useQuestionCard(props:QuestionCardProps) {
     && Boolean(props.displayNumber)
     && props.displayNumber !== props.item.question.number;
 
-  const printedSolution = displayMode !== 'image' || print?.deferredOriginal ? print?.solutionHtml : undefined;
-  const explanationOrigin = explanationSource(props.item.question);
+  const printedSolution = displayMode !== 'image' || print?.deferredOriginal ? printedSolutionHtml(print) : undefined;
   const explanationRaw = String(
     props.item.question.explanationHtml || props.item.question.explanation || '',
   );
@@ -352,7 +350,7 @@ function useQuestionCard(props:QuestionCardProps) {
   function keepExplanation() {
     stopExplanationAutoClose();
     pinSolution?.({ id:props.item.id, number:props.item.question.number,round:props.item.round.title,
-      text:[printedSolution !== undefined ? readableText(printedSolution) : primaryExplanationText,...additionalExplanationSections.map(entry=>entry.text)].filter(Boolean).join('\n\n'),
+      text:[printedSolution !== undefined ? readableText(printedSolution) : primaryExplanationText,print?.learningSolution && readableText(print.learningSolution.html),...additionalExplanationSections.map(entry=>entry.text)].filter(Boolean).join('\n\n'),
       images:(printedSolution !== undefined && print?.solutionImage ? [print.solutionImage] : props.item.question.explanationImages||[]).map(choiceImage).filter((src):src is string=>Boolean(src)) });
     closeInlineExplanation();
     closeCompactExplanation();
@@ -527,7 +525,7 @@ function useQuestionCard(props:QuestionCardProps) {
     compactSolveLayout, compactTextChoices, compactVisualChoices,
     correctSelected, displayedChoices, displayedQuestionMarkup, readableText,
     explanationAutoCloseSeconds, explanationSlotRef, explanationDismissed, explanationOpen,
-    explanationOrigin, fieldReportQuestion, hansolQuestion,
+    fieldReportQuestion, hansolQuestion,
     hasReadableChoices, imageOptions, imageZoomOpen,
     inlineCompactExplanation, issueReportDetails, issueReportError,
     issueReportOpen, issueReportSending, issueReportSubmitted,

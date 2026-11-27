@@ -111,11 +111,10 @@ export function renderWrongView(m: WrongViewModel) {
                 </span>
                 <b>{item.question.number}번</b>
               </header>
-              <QuestionLibraryPreview {...{
-                  text: item.question.text || '',
-                  image: item.question.sourceImage,
-                  imageTheme: restoredImageTheme,
-                }}
+              <QuestionLibraryPreview
+                item={item}
+                text={item.question.text || ''}
+                imageTheme={restoredImageTheme}
               />
               <footer>
                 {wrongAnswerDetailMap.get(item.id) ? (

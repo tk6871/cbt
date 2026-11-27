@@ -1,3 +1,4 @@
+import { coolingOriginalId } from './coolingRecordId';
 import { problemImage } from './problemImages';
 import type { Question, QuestionItem } from './types';
 
@@ -22,11 +23,12 @@ export function printedQuestion(item: QuestionItem) {
   const data = window.CBT_PRINTED_STUDY;
   const question = item.question;
   // A textbook variant can use a different order or answer from its source question.
-  const book = data?.books[item.id];
+  const id = coolingOriginalId(item.id);
+  const book = data?.books[id];
   const singlePhoto = !question.sourceImage && question.images?.length === 1
     && question.choices.every(c=>!c.images?.length && /^(?:[①②③④]|[1-4]번)?$/.test((c.text || c.html || '').trim()))
     ? question.images[0] : undefined;
-  const placement = data?.placements?.[item.id];
+  const placement = data?.placements?.[id];
   const confirmed = placement && placement.path === pathKey(question.sourceImage) ? placement.question : undefined;
   let inline: PrintedStudyQuestion | undefined;
   if (data && question.html?.includes('data:image')) {
@@ -40,6 +42,13 @@ export function printedQuestion(item: QuestionItem) {
       (reading.sourceNumber != null && reading.sourceNumber !== question.number && reading.sourceNumber !== question.bookSourceNumber) ||
       (reading.answerKey != null && reading.answerKey !== question.answer)) return;
   return reading;
+}
+
+// Older published archives used these status messages in the solution field.
+const missingSolutions = new Set(['복원 PDF에 별도 인쇄 해설 없음', '별도 인쇄 해설 없음', '인쇄 해설 원본 미확보']);
+export function printedSolutionHtml(print?: PrintedStudyQuestion) {
+  const html = print?.solutionHtml;
+  return html?.trim() && !missingSolutions.has(html.trim()) ? html : undefined;
 }
 
 export function replacePrintedInline(html: string) {

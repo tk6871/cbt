@@ -8,6 +8,7 @@ import hitboxes from '../../../data/textbook-direct-hitboxes.json';
 import {textbookDirectAnswer} from '../../cbt/textbookDirectAnswer';
 import {textbookExplanationText} from '../../cbt/textbookExplanationText';
 import {textbookAssetUrl,textbookDirectImage,textbookDirectPageMap,type TextbookDirectSource,type TextbookDirectPage,type TextbookDirectPart} from '../../cbt/textbookPages';
+import {printedSolutionHtml} from '../../cbt/printedStudy';
 import {problemImage} from '../../cbt/problemImages';
 import {legacyDirectPrefix} from '../../cbt/textbookAnswerProgress';
 import {PrintedChoices} from './PrintedChoices';
@@ -70,6 +71,7 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
   const candidate = showText ? window.CBT_PRINTED_STUDY?.books[source.id] : undefined;
   const printed = candidate?.choices.length === 4 && (!answer || answer === candidate.answerKey) ? candidate : undefined;
   const visible = printed && !showOriginal ? printed : undefined;
+  const solution = printedSolutionHtml(visible);
   const text=solutionOpen&&showText?textbookExplanationText(source):undefined;
   function choose(n:number) { setChoice(chosen===n?0:n); }
   function setChoice(next:number) {
@@ -96,7 +98,7 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
       </Region>;
     })}</div>}
     <div className="direct-choices" role="group" aria-label={`${source.page}쪽 ${source.number}번 내 답안 기록`}>
-      {choiceLabels.map((label,i)=><button type="button" key={label} aria-pressed={chosen===i+1} onClick={()=>choose(i+1)}>{label} {visible && <span className="choice-copy">
+      {choiceLabels.map((label,i)=><button type="button" key={label} aria-pressed={chosen===i+1} onClick={()=>choose(i+1)}>{visible?.choices[i]?.marker || label} {visible && <span className="choice-copy">
         <span dangerouslySetInnerHTML={{__html:visible.choices[i]!.html}} />
         {visible.choiceFigures?.[i]?.map((src,k)=><img key={k} src={problemImage(src)} alt={label+' 보기 그림'} />)}
       </span>}</button>)}
@@ -106,8 +108,8 @@ export function DirectQuestion({source,page,original,showText,chosen,saveChoice}
     {storageFailed&&<p role="status">현재 기기에 선택을 저장하지 못했습니다.</p>}
     <details open={solutionOpen} className="direct-solution" onToggle={e=>setSolutionOpen(e.currentTarget.open)}>
       <summary>{source.split?'교재 풀이·정답표 확인':'교재 정답표 확인'}</summary>
-      {solutionOpen&&<>{!!answer&&<p className="direct-answer-label">정답 {['①','②','③','④'][answer-1]} · {answer}번</p>}{(visible?.solutionHtml || text)?<><div className="direct-explanation-text printed-study"><small>원문 대조 텍스트</small>
-        {visible?.solutionHtml ? <div dangerouslySetInnerHTML={{__html:visible.solutionHtml}} /> : text?.blocks.map((block,i)=>block.text?<p key={i}>{block.text}</p>:block.tex?<div key={i} className="math-formula" aria-label={block.label||'교재 수식'} dangerouslySetInnerHTML={{__html:katex.renderToString(block.tex,{displayMode:true,throwOnError:false,strict:'ignore'})}}/>:null)}
+      {solutionOpen&&<>{!!answer&&<p className="direct-answer-label">정답 {['①','②','③','④'][answer-1]} · {answer}번</p>}{(solution || text)?<><div className="direct-explanation-text printed-study"><small>원문 대조 텍스트</small>
+        {solution ? <div dangerouslySetInnerHTML={{__html:solution}} /> : text?.blocks.map((block,i)=>block.text?<p key={i}>{block.text}</p>:block.tex?<div key={i} className="math-formula" aria-label={block.label||'교재 수식'} dangerouslySetInnerHTML={{__html:katex.renderToString(block.tex,{displayMode:true,throwOnError:false,strict:'ignore'})}}/>:null)}
       </div><details className="direct-solution-original" onToggle={e=>setOriginalOpen(e.currentTarget.open)}>
         <summary>원문 풀이·정답표 이미지 보기</summary>{originalOpen&&<SolutionImages {...scans}/>}
       </details></>:<SolutionImages {...scans}/>}

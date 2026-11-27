@@ -288,11 +288,10 @@ export function renderCalculationView(m: CalculationViewModel) {
                 </span>
                 <b>{item.question.number}번</b>
               </header>
-              <QuestionLibraryPreview {...{
-                  text: stripMarkup(item.question.text || item.question.html),
-                  image: item.question.sourceImage,
-                  imageTheme: restoredImageTheme,
-                }}
+              <QuestionLibraryPreview
+                item={item}
+                text={stripMarkup(item.question.text || item.question.html)}
+                imageTheme={restoredImageTheme}
               />
               <footer>
                 <span>{item.round.session || item.round.title}</span>

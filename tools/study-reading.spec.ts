@@ -23,7 +23,7 @@ test('네 문제 중 선택한 문항으로 집중하고 답과 위치를 보존
   await expect(second.locator('button.choice-button:visible').nth(2)).toHaveAttribute('aria-pressed','true');
 });
 
-test('실제 기출의 단위와 보기 차이를 해설에서 읽는다',async({page})=>{
+test('실제 기출의 해설에서 정답 보기의 단위를 바꿔 읽는다',async({page})=>{
   await page.goto('./#/study/rounds');
   await page.locator('#round-card-hvac-20160306').getByRole('button',{name:'학습모드',exact:true}).click();
   for(let i=0;i<5;i++)await page.locator('.pager-next').click();
@@ -35,16 +35,7 @@ test('실제 기출의 단위와 보기 차이를 해설에서 읽는다',async(
   await expect(unit.locator('output')).toHaveText('6,900 W');
   await unit.getByRole('button',{name:'kW로 보기',exact:true}).click();
   await expect(unit.locator('output')).toHaveText('6.9kW');
-  const compare=q.locator('.reading-comparison');
-  await compare.locator('summary').click();
-  await compare.locator('select').first().selectOption('0');
-  await compare.locator('select').nth(1).selectOption('2');
-  await expect(compare.locator('p').nth(1)).toHaveText('6.9kW');
-  const original=await compare.locator('p').allTextContents();
-  await expect(compare.locator('mark')).toHaveCount(2);
-  await compare.getByRole('button').click();
-  await expect(compare.locator('mark')).toHaveCount(0);
-  expect(await compare.locator('p').allTextContents()).toEqual(original);
+  await expect(q.getByText('두 보기 대조', {exact:true})).toHaveCount(0);
 });
 
 test('일반 CBT 시험에서 이미 응답한 문항을 미응답 필터로 제외한다',async({page})=>{
@@ -119,12 +110,14 @@ test('집중 읽기에서 보기와 읽기 자를 조절하고 원래 네 문제
   await expect(page.locator('.focus-reading-rule')).toHaveCount(0);
 });
 
-test('원문 보기를 길게 눌러 옮긴 뒤 놓은 번호만 저장하고 정답 위치를 읽는다',async({page})=>{
-  await page.addInitScript(()=>localStorage.setItem('unified-cbt-answer-layout','hotspot'));
+test('원문 보기를 길게 눌러 옮긴 뒤 놓은 번호만 저장하고 채점한다',async({page})=>{
+  await page.addInitScript(()=>{
+    localStorage.setItem('unified-cbt-answer-layout','hotspot');
+    localStorage.setItem('cbt-explanation-display-v1','image');
+  });
   await page.goto('./#/study/rounds');
   await page.locator('#round-card-hvac-20261').getByRole('button',{name:'학습모드',exact:true}).click();
   const q=page.locator('#session-question-1');
-  if(await q.getByRole('button',{name:'이미지로 보기',exact:true}).isVisible())await q.getByRole('button',{name:'이미지로 보기',exact:true}).click();
   const first=q.getByRole('button',{name:'이미지에서 1번 선택'}),third=q.getByRole('button',{name:'이미지에서 3번 선택'});
   await first.scrollIntoViewIfNeeded();await q.locator('.source-question-image').evaluate((el:HTMLImageElement)=>el.decode());
   const [a,b]=await Promise.all([first.boundingBox(),third.boundingBox()]);
@@ -136,10 +129,8 @@ test('원문 보기를 길게 눌러 옮긴 뒤 놓은 번호만 저장하고 �
   await expect(third).toHaveAttribute('aria-pressed','true');await expect(first).toHaveAttribute('aria-pressed','false');
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-industrial-cbt-v1')||'{}').attempts?.['hvac-20261:1']?.lastChoice)).toBe(3);
   await first.click();
-  const overlay=page.locator('.reading-overlay:visible').first();
-  await overlay.locator('summary').click();
-  await expect(overlay.locator('figure img')).toBeVisible();
-  expect(await overlay.locator('figure i').count()).toBeGreaterThan(0);
+  await expect(q.locator('.explanation-box')).toBeVisible();
+  await expect(q.getByText('원문에서 정답 위치 보기', {exact:true})).toHaveCount(0);
 });
 
 test('보석관 홈에서 세 조명을 바꾼다',async({page})=>{

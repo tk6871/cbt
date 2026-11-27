@@ -21,6 +21,12 @@ async function prepare(page:Page,key:string){
  if((page.viewportSize()?.width||1440)<=900)await page.getByRole('button',{name:'메뉴 열기',exact:true}).click();
  await page.locator('.sidebar').getByRole('button',{name:/회차별 문제/}).click();
 }
+async function recordedBasis(page: Page, bank: 'CBT_DATA_SAFETY_ENGINEER' | 'CBT_DATA_HVAC', roundId: string, number: number) {
+  return page.evaluate(({bank, roundId, number}) => window[bank]?.rounds
+    .find(round => round.id === roundId)?.questions.find(question => question.number === number)?.explanationBasis,
+    {bank, roundId, number});
+}
+
 test('교정된 펌프 해설·단위·지수와 답안 저장',async({page},info)=>{
  await prepare(page,'hvac');
  await page.locator('#round-card-hvac-20150531').getByRole('button',{name:'학습모드',exact:true}).click();
@@ -130,10 +136,10 @@ test('COMCBT 참고 회차와 재배열된 정답 보기', async ({page}) => {
   const first = card.locator('.choice-button').first();
   await expect(first).toContainText('모방');
   await first.click();
-  const source = card.locator('.explanation-source-note');
-  await source.locator('summary').click();
-  await expect(source.locator('p')).toContainText('2011.06.12 6번');
-  await expect(source.locator('p')).toContainText('2017.08.26 8번');
+  const basis = await recordedBasis(page, 'CBT_DATA_SAFETY_ENGINEER', 'safety-engineer-20220305', 16);
+  expect(basis).toContain('2011.06.12 6번');
+  expect(basis).toContain('2017.08.26 8번');
+  await expect(card.getByText('출처 보기', {exact:true})).toHaveCount(0);
   await expect(card.locator('.beginner-primary-explanation')).toContainText('①');
 });
 
@@ -224,8 +230,7 @@ test('버드의 경상 20건 환산 분수와 참고 회차', async ({page}, inf
   const formula = explanation.locator('.math-formula');
   await expect(formula.locator('.katex-html .mfrac')).toBeVisible();
   await expect(formula).toHaveAttribute('aria-label', /1200건/);
-  await card.locator('.explanation-source-note summary').click();
-  await expect(card.locator('.explanation-source-note p')).toContainText('2013.06.02 13번');
+  expect(await recordedBasis(page, 'CBT_DATA_SAFETY_ENGINEER', 'safety-engineer-20220424', 12)).toContain('2013.06.02 13번');
   expect(await formula.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
   await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['safety-engineer-20220424:12'])).toBe(3);
   await explanation.screenshot({path:info.outputPath('bird-ratio.png')});
@@ -335,11 +340,7 @@ test('대수평균온도차 교정 분수와 답안 저장', async ({page}, info
  await card.locator('.choice-button').nth(1).click();
  const box=card.locator('.explanation-box');
  await expect(box).toContainText('3.27 °C');
- const source=box.locator('.explanation-source-note');
- await expect(source.locator('p')).toBeHidden();
- await source.getByText('출처 보기',{exact:true}).click();
- await expect(source.locator('p')).toContainText('3/ln(2.5)=3.27407 °C');
- await source.locator('summary').click();
+ expect(await recordedBasis(page, 'CBT_DATA_HVAC', 'hvac-20050306', 29)).toContain('3/ln(2.5)=3.27407 °C');
  await expect(box.locator('.katex-html .mfrac')).toBeVisible();
  await expect(box.locator('math mfrac')).toHaveCount(1);
  await expect.poll(()=>page.evaluate(()=>JSON.parse(localStorage.getItem('unified-cbt-learning-session-industrial')||'{}').answers?.['hvac-20050306:29'])).toBe(2);

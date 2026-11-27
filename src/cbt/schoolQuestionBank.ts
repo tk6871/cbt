@@ -1,3 +1,4 @@
+import {coolingRecordId, coolingOriginalId} from './coolingRecordId';
 import { mappedSubject, subjectFor } from './catalog';
 import type { QuestionItem } from './types';
 import { coolingSafety, coolingScopeCandidate, coolingSupplementChapter } from './coolingScope';
@@ -10,10 +11,7 @@ const reviewedDuplicateKeys = new Map(reviewedDuplicates.clusters.flatMap(group 
   group.members.flatMap(member => member.ids.map(id => [id, { key: member.key, group: group.group }] as const))));
 
 export const coolingMidtermTitle = '냉동공학 중간고사';
-export const coolingRecordPrefix = 'school-cooling::';
-export const coolingRecordId = (id: string) => id.startsWith(coolingRecordPrefix) ? id : `${coolingRecordPrefix}${id}`;
-export const isCoolingRecord = (id: string) => id.startsWith(coolingRecordPrefix);
-export const coolingOriginalId = (id: string) => isCoolingRecord(id) ? id.slice(coolingRecordPrefix.length) : id;
+export {coolingRecordId, coolingOriginalId, coolingRecordPrefix, isCoolingRecord} from './coolingRecordId';
 export function coolingRecordItem(item: QuestionItem): QuestionItem {
   return { ...item, id: coolingRecordId(item.id), sourceQuestionId: item.sourceQuestionId ?? coolingOriginalId(item.id), subject: '냉동냉장설비' };
 }

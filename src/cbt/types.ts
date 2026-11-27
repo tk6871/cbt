@@ -30,6 +30,7 @@ export type Question = {
     figures?: string[];
     choiceFigures?: string[][];
     solutionHtml?: string;
+    learningSolution?: {label: string; html: string; source: string; url?: string};
     solutionImage?: string;
     solutionPages?: string[];
     answerKey?: number;
@@ -219,6 +220,7 @@ declare global {
         summary?: string;
         tags?: string[];
         changes?: string[];
+        sources?: Array<{label: string; detail?: string; url?: string}>;
       }>;
     };
   }

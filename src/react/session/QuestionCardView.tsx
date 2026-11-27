@@ -45,7 +45,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
     explanationAutoCloseSeconds,
     explanationDismissed,
     explanationOpen,
-    explanationOrigin,
     fieldReportQuestion,
     hansolQuestion,
     hasReadableChoices,
@@ -99,16 +98,18 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
   const { printAvailable, printText, sourcePhoto } = m;
   const keyDifference = m.print?.printedAnswer && m.print.printedAnswer !== item.question.answer
     ? <p className="printed-key-note">인쇄 정답 {circles[m.print.printedAnswer-1]} · 앱 채점 {circles[item.question.answer-1]}</p> : null;
+  const supplement = m.print?.learningSolution;
+  const learningSolution = supplement && <section className="printed-study">
+    <strong>{supplement.label}</strong>
+    <div dangerouslySetInnerHTML={{__html:supplement.html}} />
+  </section>;
   const focusStudy=m.readingSize===1 && mode==='learn' && !!m.onReadingFocus;
   const veiled=focusStudy && m.veil;
   const firstChoiceTop=imageOptions.length ? Math.min(...imageOptions.map(hit=>parseFloat(String(hit.style.top)))) : NaN;
   const canVeil=!primaryImage || Number.isFinite(firstChoiceTop);
   const readingTools = () => <ExplanationReadingTools choices={m.displayedChoices.map((html,i) =>
     (item.question.choices[i]?.images?.length || /<(?:img|svg|math|sup|sub)\b/i.test(html)) ? '' : m.readableText(html))}
-    source={item.question.sourceImage ? problemImage(item.question.sourceImage) : undefined}
-    hotspot={item.question.answerHotspots?.find(row=>row.choice===item.question.answer)}
     answer={item.question.answer} onInteract={stopExplanationAutoClose}/>;
-  const CorrectionNote = presentation === 'book' ? 'details' : 'aside';
   return (
     <>
       <article
@@ -323,8 +324,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
         ) : null}
         {(item.id === 'hvac-hansol-2024-2:39' || item.id.endsWith('::hvac-hansol-2024-2:39')) && (
           <p className="reader-page-note" aria-label="문제 조건 정정">
-            <strong>정압비열 0.93 kJ/(kg·K)</strong>를 사용하세요. 원문에는 0.221로 인쇄되어 있습니다.{' '}
-            <a href="https://www.inup.co.kr/bookstore/reform/reform_view.jsp?id=691" target="_blank" rel="noreferrer">한솔 정오표 · 2024년 2회 39번</a>
+            <strong>정압비열 0.93 kJ/(kg·K)</strong>를 사용하세요. 원문에는 0.221로 인쇄되어 있습니다.
           </p>
         )}
         {focusStudy && <details className="focus-reading-tools"><summary>집중 읽기 도구</summary>
@@ -454,30 +454,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             </>
           )}
         </div>
-        {item.question.bookCorrection && !m.finalBook ? (
-          <CorrectionNote className="book-correction-note">
-            {presentation === 'book' ? <summary>교재 표기 안내 · 원문 비교</summary> : null}
-            {mode === 'learn' ? (
-              <p>{item.question.bookCorrection.note}</p>
-            ) : (
-              <p>
-                교재와 기존 CBT의 표기 차이를 반영한 문제입니다. 자세한 대조 내용은 학습모드에서 확인할 수
-                있습니다.
-              </p>
-            )}
-            {mode === 'learn' && item.question.bookCorrection.originalImage ? (
-              <details>
-                <summary>수정 전 CBT 원본 비교</summary>
-                <img
-                  src={problemImage(item.question.bookCorrection.originalImage)}
-                  alt="수정 전 CBT 원본 · 교재 정정본과 비교용"
-                  loading="lazy"
-                  className={normalizeClass(['source-question-image', restoredImageClass])}
-                />
-              </details>
-            ) : null}
-          </CorrectionNote>
-        ) : null}
         {!veiled && !transcriptionPending && (!verifiedHotspots.length || imageAnswerMode !== 'hotspot') ? (
           <div className="choice-grid-shell">
             <div
@@ -704,15 +680,16 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
             ) : primaryExplanationText ? (
               <p className="explanation-copy beginner-primary-explanation">
-                <strong>풀이</strong>
+                <strong>{m.print ? '학습 해설' : '풀이'}</strong>
                 {primaryExplanationText}
               </p>
-            ) : !item.question.explanationImages?.length ? (
+            ) : !supplement && !item.question.explanationImages?.length ? (
               <p className="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
             ) : null}
             {m.printedSolution === undefined && item.question.explanationFormula && (
               <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
             )}
+            {learningSolution}
             {readingTools()}
             <ExplanationFigures {...{
                 images: m.printedSolution !== undefined ? (m.print?.solutionImage ? [m.print.solutionImage] : m.print?.solutionPages || []) : m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
@@ -726,15 +703,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               <ModelSlot key={item.id} {...{ kind: modelLesson, active: active, onInteract: stopExplanationAutoClose }}
               />
             ) : null}
-            <details onClick={stopExplanationAutoClose} className="explanation-source-note">
-              <summary>출처 보기</summary>
-              <p>{explanationOrigin.detail}</p>
-              {explanationOrigin.url ? (
-                <a href={problemImage(explanationOrigin.url)} target="_blank" rel="noopener noreferrer">
-                  문제 출처 열기 ↗
-                </a>
-              ) : null}
-            </details>
             <div className="explanation-extra-actions">
               {beginnerCalculationAvailable ? (
                 <button
@@ -797,7 +765,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                   <strong>{section.label}</strong>
                   <b>열기</b>
                 </summary>
-                <small>{section.source}</small>
+
                 <p>{section.text}</p>
               </details>
             ))}
@@ -909,16 +877,17 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
               <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
             ) : primaryExplanationText ? (
                         <p className="explanation-copy beginner-primary-explanation">
-                          <strong>풀이</strong>
+                          <strong>{m.print ? '학습 해설' : '풀이'}</strong>
                           {primaryExplanationText}
                         </p>
-                      ) : !item.question.explanationImages?.length ? (
+                      ) : !supplement && !item.question.explanationImages?.length ? (
                         <p className="explanation-copy">이 문제에는 상세 해설이 아직 등록되지 않았습니다.</p>
                       ) : null}
                       {m.printedSolution === undefined && item.question.explanationFormula && (
                         <Suspense fallback={null}><MathFormula {...item.question.explanationFormula} /></Suspense>
                       )}
-                      {readingTools()}
+                      {learningSolution}
+            {readingTools()}
                       <ExplanationFigures {...{
                           images: m.printedSolution !== undefined ? (m.print?.solutionImage ? [m.print.solutionImage] : m.print?.solutionPages || []) : m.finalBook&&item.question.bookCorrection?undefined:item.question.explanationImages,
                           folded: m.printedSolution !== undefined || item.question.originalExplanationImagesFolded,
@@ -935,19 +904,6 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                           }}
                         />
                       ) : null}
-                      <details onClick={stopExplanationAutoClose} className="explanation-source-note">
-                        <summary>출처 보기</summary>
-                        <p>{explanationOrigin.detail}</p>
-                        {explanationOrigin.url ? (
-                          <a
-                            href={problemImage(explanationOrigin.url)}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            문제 출처 열기 ↗
-                          </a>
-                        ) : null}
-                      </details>
                       <div className="explanation-extra-actions">
                         {beginnerCalculationAvailable ? (
                           <button
@@ -1010,7 +966,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                             <strong>{section.label}</strong>
                             <b>열기</b>
                           </summary>
-                          <small>{section.source}</small>
+
                           <p>{section.text}</p>
                         </details>
                       ))}
