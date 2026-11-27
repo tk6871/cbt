@@ -51,15 +51,16 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
         style={{ display: matches('mobileModel') ? undefined : 'none' }}
       >
         <span>모바일 3D 해설</span>
-        <p>휴대폰에서는 기본으로 꺼집니다. 허용하면 관련 문제의 해설에서 눌러 모형을 열 수 있습니다.</p>
-        <div>
+        <p className="setting-description">{settingsHelp.mobileModel}</p>
+        <div className="restored-image-options">
           <button
             type="button"
             aria-pressed={!m.values.mobileModel}
             className={!m.values.mobileModel ? 'active' : ''}
             onClick={() => change('mobileModel', false)}
           >
-            꺼짐
+            <strong>꺼짐</strong>
+            <small>모바일 기본값</small>
           </button>
           <button
             type="button"
@@ -67,7 +68,8 @@ export function renderSettingsContent(m: ReturnType<typeof settingsModel>) {
             className={m.values.mobileModel ? 'active' : ''}
             onClick={() => change('mobileModel', true)}
           >
-            눌러서 3D 보기 허용
+            <strong>눌러서 3D 보기 허용</strong>
+            <small>관련 문제의 해설에서 열기</small>
           </button>
         </div>
       </section>

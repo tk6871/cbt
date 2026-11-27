@@ -16,7 +16,7 @@ const scopes={cooling:'부록 4-7~5-108쪽 · 냉동냉장설비',metal:'시험 
 const pdfs={metal:['metal-marked-final','시험 표시 자료·그래프 45쪽 열기'],sports:['sports-leadership-final','시험범위 PDF 열기']};
 export function finalSubjectFor(view:StudyView){return subjects.find(s=>view==='school-'+s);}
 type Props={pool:(s:FinalSubject)=>Promise<QuestionItem[]>;choice:(i:QuestionItem)=>number;start:(s:FinalSubject,m:StudyMode,o:FinalOptions)=>Promise<void>;
- open:(v:StudyView)=>void;archive:(s:'energy'|'cooling')=>void;children:ReactNode;subject?:FinalSubject};
+ open:(v:StudyView)=>void;children:ReactNode;subject?:FinalSubject};
 
 function ModeButtons({go,disabled=false}:{go:(m:StudyMode)=>void;disabled?:boolean}){
  return <div className="final-mode-actions">{(['learn','exam'] as const).map(m=><button className="round-mode-button" type="button" key={m} disabled={disabled} onClick={()=>go(m)}>{m==='learn'?'학습모드':'CBT 시험모드'}</button>)}</div>;
@@ -88,7 +88,7 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
    {subject==='cooling'&&<button className="final-back" onClick={()=>open('school-written')}>주관식 연습 열기 · 문항당 5점 →</button>}
    {subject==='forklift'&&<><button className="final-back" onClick={()=>open('school-forklift-written')}>주관식 2문제 · 윤활유와 등화장치 →</button>
    <small>법규 예상 범위: <a href="https://www.law.go.kr/법령/건설기계관리법/제13조" target="_blank" rel="noreferrer">건설기계 검사</a> · <a href="https://www.law.go.kr/법령/산업안전보건기준에관한규칙/제178조" target="_blank" rel="noreferrer">사업장 지게차 안전기준</a></small></>}
-   {!items?(error?<button onClick={()=>setRetry(v=>v+1)}>문제 다시 불러오기</button>:<p role="status">연습 회차를 불러오는 중…</p>):!items.length?<p>준비된 문제가 없습니다.</p>:<>
+   {!items?(error?<p role="alert">기말고사 문제를 불러오지 못했습니다. <button type="button" onClick={()=>setRetry(v=>v+1)}>다시 불러오기</button></p>:<p role="status">연습 회차를 불러오는 중…</p>):!items.length?<p>준비된 문제가 없습니다.</p>:<>
      {useBookFilters&&<div className="final-tool">
        <BookPracticeFilterControls value={filters} onChange={filters=>changeSettings({filters})}/>
        {(filters.duplicates||filters.similar)&&<small>회차에서는 그 회차 안에서만 제외합니다. 회차 사이 반복은 전체 풀이에서 제외됩니다.</small>}
@@ -126,10 +126,10 @@ function SubjectRoom({subject,open,pool,choice,start}:Pick<Props,'open'|'pool'|'
  </section>;
 }
 export function FinalExams(props:Props){
- const [archive,setArchive]=useState(false);
+ const [materialsOpen,setMaterialsOpen]=useState(false);
  if(props.subject)return <SubjectRoom key={props.subject} {...props} subject={props.subject}/>;
  return <section className="finals-hub final-library" aria-label="기말고사"><h1>기말고사</h1><p>공부할 과목을 선택하세요.</p>
    <div className="final-subjects">{subjects.map(s=>{const Icon=icons[s];return <button key={s} onClick={()=>props.open(`school-${s}`)}><Icon aria-hidden="true"/><strong>{finalNames[s]}</strong><ArrowRight size={17} aria-hidden="true"/></button>;})}</div>
-   <details onToggle={e=>setArchive(e.currentTarget.open)}><summary>내 학교 시험 자료 · 이전 시험</summary>{archive&&<><button onClick={()=>props.archive('cooling')}>냉동공학 중간고사 자료</button><button onClick={()=>props.archive('energy')}>에너지설비 중간고사 자료</button>{props.children}</>}</details>
+   <details onToggle={e=>setMaterialsOpen(e.currentTarget.open)}><summary>내 학교 시험 자료</summary>{materialsOpen&&props.children}</details>
  </section>;
 }

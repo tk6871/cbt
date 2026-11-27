@@ -124,12 +124,31 @@
 .final-course select,.final-course textarea {font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.45rem;padding:.4rem}
 .final-course textarea {box-sizing:border-box;width:100%;min-height:4rem}
 .final-course footer {margin-top:auto}
-.final-written {max-width:50rem;margin:0 auto;padding:1rem;color:var(--text)}
-.final-written article {margin:1.25rem 0;border-block-start:1px solid var(--border);padding:1rem 0}
-.final-written textarea {display:block;width:100%;min-height:5em;margin:.7rem 0;box-sizing:border-box}
-.final-written textarea,.final-written input,.final-course input[type=number]{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.4rem;padding:.4rem}
+.final-written {max-width:46rem;margin:0 auto;color:var(--text)}
+.written-header h1 {margin:.35rem 0 .8rem;font-size:clamp(1.45rem,4vw,2rem)}
+.written-progress {display:grid;gap:.35rem;margin-bottom:1rem;color:var(--muted);font-size:.875rem}
+.written-progress progress {width:100%;height:.55rem;accent-color:var(--primary)}
+.written-card {padding:clamp(1rem,4vw,1.8rem);border:1px solid var(--line);border-radius:1rem;background:var(--surface)}
+.written-position {display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--muted);font-size:.875rem}
+.written-card h2 {margin:.55rem 0 1.25rem;font-size:clamp(1.12rem,3vw,1.4rem);line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+.written-answer {display:grid;gap:.4rem;color:var(--muted);font-size:.875rem}
+.written-answer textarea {display:block;width:100%;min-height:8rem;resize:vertical;padding:.75rem;border-radius:.6rem;font-size:max(16px,1rem);line-height:1.6}
+.final-course input[type=number]{font:inherit;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:.4rem;padding:.4rem}
+.final-written textarea,.final-written input{color:inherit;background:var(--surface-2);border:1px solid var(--line);font-family:inherit}
 .final-written input[type=number],.final-course input[type=number]{width:4.5em}
+.written-card button,.written-controls button {min-height:44px;padding:.55rem .85rem;border:1px solid var(--line);border-radius:.625rem;background:var(--surface-2);color:var(--text);font:inherit;font-size:.875rem;font-weight:700}
+.written-card button:disabled,.written-controls button:disabled {opacity:.5;cursor:default}
+.written-card .written-primary {border-color:var(--primary);background:var(--primary);color:var(--on-primary)}
+.written-check {margin-top:.65rem}
+.written-example {margin-top:.85rem;padding:1rem;border-radius:.65rem;background:var(--surface-2);line-height:1.65}
+.written-example h3 {margin:0;font-size:.9rem}
+.written-example p {margin:.3rem 0 1rem}
+.written-example p:last-child {margin-bottom:0}
+.written-actions {display:flex;justify-content:space-between;gap:.5rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line)}
+.written-settings {margin-top:1rem;padding:.75rem 1rem;border:1px solid var(--line);border-radius:.65rem;background:var(--surface);font-size:.875rem}
+.written-settings summary {cursor:pointer;padding:.25rem 0;font-weight:700}
 .written-controls {display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
+.written-controls input[type=number] {padding:.4rem;border-radius:.4rem;font:inherit}
 .final-course select {max-width:100%}
 .printed-subject {display:block;font-weight:700;color:var(--primary);margin-bottom:.25rem}
 .finals-hub > details > summary { cursor: pointer; padding-block: .8rem; }

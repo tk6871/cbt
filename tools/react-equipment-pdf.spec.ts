@@ -37,7 +37,7 @@ function coloredPdf() {
 
 test('PDF 두 쪽 이동·선택 영역 PNG 실제 픽셀·손상 파일 복구', async ({page}) => {
   await page.goto(mobileTestUrl(page,'./?safe=1#/study/school'));
-  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
+  await page.getByText('내 학교 시험 자료',{exact:true}).click();
   await page.getByRole('button',{name:'사진·PDF 자르기'}).click();
   const panel = page.locator('.school-source-prep');
   const input = panel.locator('input[type=file]');

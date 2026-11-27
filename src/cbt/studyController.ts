@@ -656,7 +656,12 @@ function loadTextbookModule(): Promise<TextbookModule> {
   return textbookImport ??= import('./textbookPages').then(({browserTextbookData}) => {
     textbookModule.value = browserTextbookData;
     return browserTextbookData;
-  }).catch(error => { textbookImport = undefined; throw error; });
+  }).catch(error => {
+    textbookImport = undefined;
+    // An open tab can still point at a lazy chunk removed by a deployment.
+    void checkForUpdate(false);
+    throw error;
+  });
 }
 const textbookItems = computed(() => textbookModule.value?.buildTextbookItems([...allItems.value,...textbookSupplement.value],prepareEnergyBook.value) ?? []);
 const textbookAnswers = computed(() => textbookAnswersIn(studyStore.progress || {}));

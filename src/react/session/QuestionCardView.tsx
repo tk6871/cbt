@@ -101,7 +101,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
   const supplement = m.print?.learningSolution;
   const learningSolution = supplement && <section className="printed-study">
     <strong>{supplement.label}</strong>
-    <div dangerouslySetInnerHTML={{__html:supplement.html}} />
+    <div dangerouslySetInnerHTML={{__html:problemImageHtml(supplement.html)}} />
   </section>;
   const focusStudy=m.readingSize===1 && mode==='learn' && !!m.onReadingFocus;
   const veiled=focusStudy && m.veil;
@@ -442,7 +442,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                 />
               </div>
               {(printText ? (printText.figures ?? (printText.visual ? [printText.image] : [])) : item.question.images || []).map((image, index) => m.showAssetReadings && assetReading(image)?.html ? (
-                <div key={index} className="printed-study" dangerouslySetInnerHTML={{__html:assetReading(image)!.html!}} />
+                <div key={index} className="printed-study" dangerouslySetInnerHTML={{__html:problemImageHtml(assetReading(image)!.html!)}} />
               ) : (
                 <StudyImageButton
                   key={image}
@@ -677,7 +677,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
             </div>
             {keyDifference}
             {m.printedSolution !== undefined ? (
-              <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
+              <div className="printed-study" dangerouslySetInnerHTML={{__html:problemImageHtml(m.printedSolution)}} />
             ) : primaryExplanationText ? (
               <p className="explanation-copy beginner-primary-explanation">
                 <strong>{m.print ? '학습 해설' : '풀이'}</strong>
@@ -874,7 +874,7 @@ export function renderQuestionCardView(m: QuestionCardViewModel) {
                       </div>
                       {keyDifference}
             {m.printedSolution !== undefined ? (
-              <div className="printed-study" dangerouslySetInnerHTML={{__html:m.printedSolution}} />
+              <div className="printed-study" dangerouslySetInnerHTML={{__html:problemImageHtml(m.printedSolution)}} />
             ) : primaryExplanationText ? (
                         <p className="explanation-copy beginner-primary-explanation">
                           <strong>{m.print ? '학습 해설' : '풀이'}</strong>

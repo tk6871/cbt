@@ -28,8 +28,8 @@ export function problemImage(source:string|undefined|null):string|undefined {
   try{const u=new URL(source);if(u.origin!==globalThis.location?.origin&&!source.startsWith(published+'assets/'))return source;}catch{return source;}
  }else if(!/^(?:\.\/|\/[^?#]*\/|\/)?$/.test(prefix!))return source;
  let key:string;try{key=decodeURIComponent(path!);}catch{return source;}
- const target=mappedImage(key);
  const native=typeof document!=='undefined'&&document.documentElement.dataset.nativeApp==='true';
+ const target=mappedImage(key) || (native && key.startsWith('assets/problem-webp90/') ? key : undefined);
  const bundled=key.startsWith('assets/hvac/formula-samples/');
  if(native && document.documentElement.dataset.bundledAssets==='true'){
    const local=source.startsWith(published)?'':prefix;

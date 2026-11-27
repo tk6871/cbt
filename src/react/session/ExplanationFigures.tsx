@@ -1,7 +1,7 @@
 import {usePrintedStudy} from './usePrintedStudy';
 import {assetReading} from '../../cbt/printedStudy';
 import {useState} from 'react';
-import {problemImage} from '../../cbt/problemImages';
+import {problemImage,problemImageHtml} from '../../cbt/problemImages';
 import {useExplanationDisplay,useSourceTranscription} from './useSourceTranscription';
 import './transcription-figure.css';
 
@@ -13,7 +13,7 @@ export function TranscribedFigure({source,imageClass,onInteract}:{source:string;
   const html = mode !== 'image' ? assetReading(source)?.html : undefined;
   return <figure className="textbook-explanation-image transcription-figure" onClick={onInteract}>
     <figcaption>교재 원문 해설 {(entry || html)&&<button type="button" onClick={()=>setOriginal(!original)}>{(text || (html && !original))?'이미지로 보기':'텍스트로 보기'}</button>}</figcaption>
-    {html && !original ? <div className="printed-study" dangerouslySetInnerHTML={{__html:html}} /> : pending?<small role="status">텍스트 확인 중…</small>:text?<><small>{text.status==='reviewed'?'원문 대조 텍스트':'OCR 임시 텍스트 · 글자·수식이 다르면 이미지로 확인'}</small><p className="transcription-text">{text.text}</p></>:
+    {html && !original ? <div className="printed-study" dangerouslySetInnerHTML={{__html:problemImageHtml(html)}} /> : pending?<small role="status">텍스트 확인 중…</small>:text?<><small>{text.status==='reviewed'?'원문 대조 텍스트':'OCR 임시 텍스트 · 글자·수식이 다르면 이미지로 확인'}</small><p className="transcription-text">{text.text}</p></>:
       <img src={problemImage(source)} className={imageClass} alt="교재 원문 해설" loading="lazy" decoding="async"/>}
   </figure>;
 }

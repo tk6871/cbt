@@ -220,7 +220,6 @@ declare global {
         summary?: string;
         tags?: string[];
         changes?: string[];
-        sources?: Array<{label: string; detail?: string; url?: string}>;
       }>;
     };
   }

@@ -1,3 +1,4 @@
+import { fetchJson } from './fetchJson';
 import type { Question, QuestionItem, Round } from './types';
 import type { TextbookKey } from './textbookRoutes';
 
@@ -20,9 +21,7 @@ export function unpackTextbookSources(file: TextbookSourceFile): QuestionItem[] 
 
 export async function fetchTextbookSources(book: TextbookKey): Promise<QuestionItem[]> {
   const url = new URL(`modern/textbook-${book}-sources-v${__CBT_BUILD_VERSION__}.json`, document.baseURI);
-  const response = await fetch(url, {signal: AbortSignal.timeout(30000)});
-  if (!response.ok) throw new Error('교재 문항을 받지 못했습니다.');
-  const file: TextbookSourceFile = await response.json();
+  const file = await fetchJson<TextbookSourceFile>(url, 30000);
   if (file.book !== book || !file.items.length) throw new Error('교재 종류를 확인하세요.');
   return unpackTextbookSources(file);
 }

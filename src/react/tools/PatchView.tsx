@@ -1,16 +1,8 @@
-import {lazy, Suspense, useState} from 'react';
 import type { PatchViewModel } from '../../cbt/studyController';
 import {clsx as normalizeClass} from 'clsx';
 import { problemImage } from '../../cbt/problemImages';
-const PatchSources = lazy(() => import('./PatchSources'));
 
 export function renderPatchView(m: PatchViewModel) {
-  return <PatchView model={m}/>;
-}
-
-function PatchView({model: m}: {model: PatchViewModel}) {
-  const [sourcesOpen, setSourcesOpen] = useState(false);
-  const [version, setVersion] = useState('');
   const {
     androidApkUrl,
     checkForUpdate,
@@ -37,7 +29,6 @@ function PatchView({model: m}: {model: PatchViewModel}) {
         </div>
         <div className="patch-version-actions">
           <strong>v{currentVersion}</strong>
-          <button type="button" aria-expanded={sourcesOpen} aria-controls="patch-sources" onClick={() => setSourcesOpen(!sourcesOpen)}>출처</button>
           {savedLearningSession ? (
             <button type="button" onClick={resumeSavedLearning} className="resume-after-update">
               ▶ 저장한 문제 이어서 풀기
@@ -63,11 +54,6 @@ function PatchView({model: m}: {model: PatchViewModel}) {
           </button>
         </div>
       </section>
-      <div id="patch-sources" tabIndex={-1} hidden={!sourcesOpen}>
-        {sourcesOpen && <Suspense fallback={<p role="status">출처를 불러오는 중…</p>}>
-          <PatchSources entries={patchEntries} version={version} selectVersion={setVersion}/>
-        </Suspense>}
-      </div>
       {showAndroidApkPatchDownload ? (
         <section aria-labelledby="patch-apk-download-title" className="patch-apk-download">
           <div aria-hidden="true" className="android-app-mark">
@@ -117,15 +103,6 @@ function PatchView({model: m}: {model: PatchViewModel}) {
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              {entry.sources?.length ? <button type="button" className="patch-source-link" aria-controls="patch-sources" onClick={() => {
-                setVersion(entry.version);
-                setSourcesOpen(true);
-                requestAnimationFrame(() => {
-                  const panel = document.getElementById('patch-sources');
-                  panel?.focus();
-                  panel?.scrollIntoView({block: 'start'});
-                });
-              }}>v{entry.version} 자료 출처</button> : null}
               {entry.changes.length > 4 ? <details><summary>세부 변경 {entry.changes.length}건 보기</summary>{changes}</details> : changes}
             </div>
           </article>

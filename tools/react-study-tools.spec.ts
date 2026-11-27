@@ -32,7 +32,7 @@ test('검색·복수 출처·계산 실험과 보조 화면의 정상 진입',as
 
 test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시 푼다',async({page})=>{
   await open(page,'school');
-  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
+  await page.getByText('내 학교 시험 자료',{exact:true}).click();
   const school=page.locator('[data-react-view=school-exams]');
   await school.getByPlaceholder('예: 냉동공학').fill('설비 복습');
   await school.locator('.scope-form').getByLabel('학기').selectOption('2');
@@ -42,7 +42,7 @@ test('학교 시험지와 직접 입력한 보기·정답을 저장하고 다시
   await school.locator('.question-form').getByRole('combobox').selectOption('3');
   await school.getByRole('button',{name:'객관식 문제 추가'}).click();
   await page.reload();
-  await page.getByText('내 학교 시험 자료 · 이전 시험',{exact:true}).click();
+  await page.getByText('내 학교 시험 자료',{exact:true}).click();
   await school.locator('.school-round-grid article').filter({hasText:'설비 복습'}).getByRole('button',{name:'학습모드',exact:true}).click();
   const card=page.locator('.question-card').first();await expect(card).toContainText('저장 확인용 문항');
   const third=card.locator('.choice-button').nth(2);await third.click();await expect(third).toHaveAttribute('aria-pressed','true');
