@@ -85,7 +85,7 @@ async function loadRounds(key: string): Promise<SourceRound[]> {
 // Review notes can mix bibliographic references with solutions. Keep the source tokens only.
 function reviewCitations(note: string): Citation[] {
   const references = [
-    /(?:COMCBT|한솔아카데미|한솔 공조|공조에듀강|에듀강|안전과장)(?:\s+[가-힣]+(?:산업기사|기사|기능사))?(?:\s+(?:이용자 해설|공개 기출|복원 PDF|교재))?/gi,
+    /(?:COMCBT|한솔아카데미|한솔 공조|안전과장)(?:\s+[가-힣]+(?:산업기사|기사|기능사))?(?:\s+(?:이용자 해설|공개 기출|복원 PDF|교재))?/gi,
     /(?:19|20)\d{2}[./-]\s*\d{1,2}[./-]\s*\d{1,2}\.?\s*(?:원문\s*)?\d{1,3}\s*번/g,
     /(?:19|20)\d{2}년\s*(?:제\s*)?\d+(?:[·/-]\d+)?회(?:\s*통합)?(?:\s*[·,]?\s*(?:원문\s*)?\d{1,3}\s*번)?/g,
     /(?:(?:교재(?:\s*정답표)?|인쇄|PDF)\s*)?\d+(?:-\d+)?\s*(?:쪽|페이지)(?:\s*[·,]?\s*(?:원문\s*)?\d{1,3}\s*번)?/g,
@@ -109,8 +109,7 @@ function QuestionSources({record, bankKey, bankName, round}: {record: SourceQues
   const direct = study?.books[record.id];
   const print = item ? printedQuestion(item) : direct?.choices.length === 4 && (!record.directAnswer || record.directAnswer === direct.answerKey) ? direct : undefined;
   const book = bankKey.startsWith('book-');
-  const edugang = bankKey === 'hvac' && /^hvac-20\d{3}:\d+$/.test(record.id) && Boolean(study?.books[record.id]);
-  const source = edugang ? '공조에듀강 필기 복원 PDF' : book ? bankName
+  const source = book ? bankName
     : q?.source && q.source !== 'local-source' && !/^https?:/i.test(q.source) ? q.source
     : q?.visualSource || bankName;
   const refs = new Set(q?.sourcePage?.match(/(?:교재\s*|PDF\s*)?\d+(?:-\d+)?\s*쪽/g) || []);
